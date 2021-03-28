@@ -39,12 +39,14 @@ collections:
           name: "date",
           widget: "datetime",
           required: true,
+          date_format: "D MMMM YYYY",
+          time_format: false,
         }
       - {
-          label: "Featured Image",
-          name: "thumbnail",
+          label: "Main image",
+          name: "coverImage",
           widget: "image",
-          required: true,
+          required: false,
         }
       - { label: "Body", name: "body", widget: "markdown", required: true }
   - label: "About"
@@ -64,7 +66,7 @@ collections:
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Role, name: role, widget: string }
-              - { label: Image, name: image, widget: image }
+              - { label: Image, name: image, widget: image, required: false }
           - label: Committees
             name: committees
             allow_add: true
