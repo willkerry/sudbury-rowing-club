@@ -9,7 +9,7 @@ sections:
   label: News
   create: documents
   match: "**/*"
-  new_doc_ext: ".md"
+  new_doc_ext: md
 - type: document
   path: data/governance.json
   label: Governance
