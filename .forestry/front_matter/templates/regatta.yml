@@ -1,0 +1,163 @@
+---
+label: Regatta
+hide_body: true
+fields:
+- type: field_group
+  name: regattaIntro
+  label: regattaIntro
+  fields:
+  - type: datetime
+    name: date
+    label: date
+  - type: text
+    name: title
+    label: title
+  - type: textarea
+    name: description
+    label: description
+  - type: boolean
+    name: displayNote
+    label: displayNote
+  - type: field_group
+    name: note
+    label: note
+    fields:
+    - type: text
+      name: title
+      label: title
+    - type: textarea
+      name: text
+      label: text
+    - type: text
+      name: color
+      label: color
+  - type: boolean
+    name: displayNotification
+    label: displayNotification
+  - type: field_group
+    name: notification
+    label: notification
+    fields:
+    - type: text
+      name: title
+      label: title
+    - type: textarea
+      name: text
+      label: text
+    - type: text
+      name: color
+      label: color
+- type: field_group
+  name: events
+  label: events
+  fields:
+  - type: text
+    name: coursemap
+    label: coursemap
+  - type: field_group_list
+    name: event
+    label: event
+    fields:
+    - type: text
+      name: title
+      label: title
+    - type: file
+      name: map
+      label: map
+    - type: text
+      name: description
+      label: description
+    - type: list
+      name: categories
+      label: categories
+    - type: list
+      name: gender
+      label: gender
+    - type: list
+      name: boatClasses
+      label: boatClasses
+    - type: text
+      name: prizes
+      label: prizes
+- type: field_group
+  name: entries
+  label: entries
+  fields:
+  - type: textarea
+    name: text
+    label: text
+- type: field_group
+  name: results
+  label: results
+  fields:
+  - type: file
+    name: courseRecords
+    label: courseRecords
+  - type: field_group_list
+    name: results
+    label: results
+    fields:
+    - type: text
+      name: year
+      label: year
+    - type: text
+      name: link
+      label: link
+- type: field_group
+  name: competitorInformation
+  label: competitorInformation
+  fields:
+  - type: textarea
+    name: intro
+    label: intro
+  - type: field_group_list
+    name: resources
+    label: resources
+    fields:
+    - type: text
+      name: title
+      label: title
+    - type: file
+      name: link
+      label: link
+- type: field_group_list
+  name: gallery
+  label: gallery
+  fields:
+  - type: file
+    name: image
+    label: image
+- type: field_group
+  name: praise
+  label: praise
+  fields:
+  - type: text
+    name: title
+    label: title
+  - type: field_group_list
+    name: year
+    label: year
+    fields:
+    - type: datetime
+      name: date
+      label: date
+    - type: number
+      name: number
+      label: number
+    - type: field_group_list
+      name: items
+      label: items
+      fields:
+      - type: textarea
+        name: text
+        label: text
+      - type: field_group
+        name: attribution
+        label: attribution
+        fields:
+        - type: text
+          name: name
+          label: name
+        - type: text
+          name: club
+          label: club
