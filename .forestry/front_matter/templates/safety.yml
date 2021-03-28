@@ -1,0 +1,20 @@
+---
+label: Safety
+hide_body: true
+fields:
+- type: field_group_list
+  name: safetyNotices
+  label: safetyNotices
+  fields:
+  - type: text
+    name: name
+    label: name
+  - type: textarea
+    name: description
+    label: description
+  - type: datetime
+    name: date
+    label: date
+  - type: text
+    name: file
+    label: file

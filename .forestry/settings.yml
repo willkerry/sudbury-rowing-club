@@ -7,7 +7,6 @@ sections:
 - type: document
   path: data/safety.json
   label: Safety
-  match: "**/*"
 - type: directory
   path: data/_news
   label: News
