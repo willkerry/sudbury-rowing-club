@@ -65,3 +65,5 @@ fields:
     label: Surname
   config:
     labelField: firstName
+pages:
+- data/governance.json

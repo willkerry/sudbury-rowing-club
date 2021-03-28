@@ -2,32 +2,104 @@
   "presidentDescription": "By convention, the incoming Mayor of Sudbury is invited each year to become the Club president.",
   "vicePresidentDescription": "Vice-presidents are elected each year at the AGM.",
   "vicePresidents": [
-    { "firstName": "Christiane", "surname": "Mills" },
-    { "firstName": "Tony", "surname": "Moule" },
-    { "firstName": "Stephen", "surname": "Nichols" },
-    { "firstName": "Keith", "surname": "Paxman" },
-    { "firstName": "Andrew", "surname": "Phillips" },
-    { "firstName": "Simon", "surname": "White" },
-    { "firstName": "David", "surname": "Wasse" },
-    { "firstName": "Mike", "surname": "Deed" },
-    { "firstName": "Aidan", "surname": "Dunn" },
-    { "firstName": "Tricia", "surname": "Fincham" },
-    { "firstName": "Peter", "surname": "Gostling" },
-    { "firstName": "Chris", "surname": "Jeffreys" },
-    { "firstName": "Adrian", "surname": "Ablitt" },
-    { "firstName": "Patricia", "surname": "Alston" },
-    { "firstName": "Mike", "surname": "Arnott" },
-    { "firstName": "Andrew", "surname": "Blit" },
-    { "firstName": "Danny", "surname": "Botham" },
-    { "firstName": "Dave", "surname": "Busby" },
-    { "firstName": "Trevor", "surname": "Chambers" }
+    {
+      "firstName": "Christiane",
+      "surname": "Mills"
+    },
+    {
+      "firstName": "Tony",
+      "surname": "Moule"
+    },
+    {
+      "firstName": "Stephen",
+      "surname": "Nichols"
+    },
+    {
+      "firstName": "Keith",
+      "surname": "Paxman"
+    },
+    {
+      "firstName": "Andrew",
+      "surname": "Phillips"
+    },
+    {
+      "firstName": "Simon",
+      "surname": "White"
+    },
+    {
+      "firstName": "David",
+      "surname": "Wasse"
+    },
+    {
+      "firstName": "Mike",
+      "surname": "Deed"
+    },
+    {
+      "firstName": "Aidan",
+      "surname": "Dunn"
+    },
+    {
+      "firstName": "Tricia",
+      "surname": "Fincham"
+    },
+    {
+      "firstName": "Peter",
+      "surname": "Gostling"
+    },
+    {
+      "firstName": "Chris",
+      "surname": "Jeffreys"
+    },
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    },
+    {
+      "firstName": "Patricia",
+      "surname": "Alston"
+    },
+    {
+      "firstName": "Mike",
+      "surname": "Arnott"
+    },
+    {
+      "firstName": "Andrew",
+      "surname": "Blit"
+    },
+    {
+      "firstName": "Danny",
+      "surname": "Botham"
+    },
+    {
+      "firstName": "Dave",
+      "surname": "Busby"
+    },
+    {
+      "firstName": "Trevor",
+      "surname": "Chambers"
+    }
   ],
   "trustees": [
-    { "firstName": "Tony", "surname": "Moule" },
-    { "firstName": "Simon", "surname": "White" },
-    { "firstName": "Tricia", "surname": "Fincham" },
-    { "firstName": "Adrian", "surname": "Ablitt" },
-    { "firstName": "Andrew", "surname": "Blit" }
+    {
+      "firstName": "Tony",
+      "surname": "Moule"
+    },
+    {
+      "firstName": "Simon",
+      "surname": "White"
+    },
+    {
+      "firstName": "Tricia",
+      "surname": "Fincham"
+    },
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    },
+    {
+      "firstName": "Andrew",
+      "surname": "Blit"
+    }
   ],
   "officers": [
     {
@@ -111,7 +183,12 @@
     {
       "name": "Management Committee",
       "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
-      "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
+      "officers": [
+        "Chairman",
+        "Secretary",
+        "Treasurer",
+        "Captain"
+      ]
     },
     {
       "name": "Rowing Committee",
@@ -141,11 +218,18 @@
     {
       "name": "Compliance Committee",
       "description": "Responsible for ensuring that the club is compliant with financial, safeguarding and safety responsibilities and duties.",
-      "officers": ["Treasurer", "Safety Officer", "Welfare Officer"]
+      "officers": [
+        "Treasurer",
+        "Safety Officer",
+        "Welfare Officer"
+      ]
     },
     {
       "name": "Development Committee",
-      "description": "When formed, will identify options for investing club funds in infrastructure or club development"
+      "description": "When formed, will identify options for investing club funds in infrastructure or club development",
+      "officers": [
+
+      ]
     }
   ]
 }
