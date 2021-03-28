@@ -1,0 +1,53 @@
+---
+label: Governance
+hide_body: true
+fields:
+- type: text
+  name: presidentDescription
+  label: presidentDescription
+- type: text
+  name: vicePresidentDescription
+  label: vicePresidentDescription
+- type: field_group_list
+  name: vicePresidents
+  label: vicePresidents
+  fields:
+  - type: text
+    name: firstName
+    label: firstName
+  - type: text
+    name: surname
+    label: surname
+- type: field_group_list
+  name: trustees
+  label: trustees
+  fields:
+  - type: text
+    name: firstName
+    label: firstName
+  - type: text
+    name: surname
+    label: surname
+- type: field_group_list
+  name: officers
+  label: officers
+  fields:
+  - type: text
+    name: name
+    label: name
+  - type: text
+    name: role
+    label: role
+- type: field_group_list
+  name: committees
+  label: committees
+  fields:
+  - type: text
+    name: name
+    label: name
+  - type: textarea
+    name: description
+    label: description
+  - type: list
+    name: officers
+    label: officers
