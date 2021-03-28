@@ -79,5 +79,12 @@
       "name": "Will Kerry",
       "role": "Website"
     }
+  ],
+  "committees": [
+    {
+      "name": "Management Committee",
+      "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
+      "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
+    }
   ]
 }
