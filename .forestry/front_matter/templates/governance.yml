@@ -65,5 +65,12 @@ fields:
     label: Surname
   config:
     labelField: firstName
+- name: trial_of_sortable_list
+  type: list
+  config:
+    use_select: false
+    min: 
+    max: 
+  label: Trial of sortable list
 pages:
 - data/governance.json
