@@ -65,12 +65,14 @@ fields:
     label: Surname
   config:
     labelField: firstName
-- name: trial_of_sortable_list
-  type: list
+- name: blocks_trial
+  type: blocks
+  label: blocks trial
+  template_types:
+  - news
+  - governance
   config:
-    use_select: false
     min: 
     max: 
-  label: Trial of sortable list
 pages:
 - data/governance.json
