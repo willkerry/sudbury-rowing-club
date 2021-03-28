@@ -11,7 +11,7 @@ fields:
     label: Date of the next regatta
     config:
       date_format: D MMMM YYYY
-      time_format: 'null'
+      time_format: ''
       export_format: D MMMM YYYY
   - type: text
     name: title
