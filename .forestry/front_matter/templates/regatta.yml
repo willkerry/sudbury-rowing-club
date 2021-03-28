@@ -60,6 +60,10 @@ fields:
     - type: textarea
       name: text
       label: Text
+      config:
+        wysiwyg: true
+        schema:
+          format: html-blocks
     - name: color
       type: select
       default: []
@@ -103,7 +107,7 @@ fields:
       name: categories
       label: Categories
       config:
-        use_select: true
+        use_select: false
         source:
           type: documents
           section: regatta-83171900-d8b4-444c-9529-f4f0673dbcef
@@ -117,88 +121,116 @@ fields:
     - type: list
       name: boatClasses
       label: Boat Classes
+      config:
+        use_select: true
+        source:
+          type: documents
+          section: regatta-83171900-d8b4-444c-9529-f4f0673dbcef
+          file: data/regatta.json
+          path: availableBoatClasses
     - type: text
       name: prizes
       label: Prizes
 - type: field_group
   name: entries
-  label: entries
+  label: Entries
   fields:
   - type: textarea
     name: text
-    label: text
+    label: Text
+    config:
+      wysiwyg: true
+      schema:
+        format: html-blocks
 - type: field_group
   name: results
-  label: results
+  label: Results
   fields:
   - type: file
     name: courseRecords
-    label: courseRecords
+    label: Course Records
   - type: field_group_list
     name: results
-    label: results
+    label: Results
     fields:
-    - type: text
-      name: year
-      label: year
+    - name: year
+      type: datetime
+      label: Year
+      description: ''
+      config:
+        required: false
+        date_format: YYYY
+        time_format: 'null'
+        display_utc: false
+        export_format: YYYY
     - type: text
       name: link
-      label: link
+      label: Link
 - type: field_group
   name: competitorInformation
-  label: competitorInformation
+  label: Competitor Information
   fields:
   - type: textarea
     name: intro
-    label: intro
+    label: Introduction
   - type: field_group_list
     name: resources
-    label: resources
+    label: Resources
     fields:
     - type: text
       name: title
-      label: title
+      label: Title
     - type: file
       name: link
-      label: link
+      label: File
 - type: field_group_list
   name: gallery
-  label: gallery
+  label: Gallery
   fields:
   - type: file
     name: image
-    label: image
+    label: Image
 - type: field_group
   name: praise
-  label: praise
+  label: Praise
   fields:
   - type: text
     name: title
-    label: title
+    label: Title
   - type: field_group_list
     name: year
-    label: year
+    label: Year
     fields:
     - type: datetime
       name: date
-      label: date
+      label: Year
+      config:
+        date_format: YYYY
+        time_format: 'null'
+        export_format: YYYY
     - type: number
       name: number
-      label: number
+      label: Regatta Number
+      config:
+        step: 1
     - type: field_group_list
       name: items
-      label: items
       fields:
       - type: textarea
         name: text
-        label: text
+        label: Text
+        config:
+          wysiwyg: true
+          schema:
+            format: html-blocks
       - type: field_group
         name: attribution
-        label: attribution
+        label: Attribution
         fields:
         - type: text
           name: name
-          label: name
+          label: Name
         - type: text
           name: club
-          label: club
+          label: Club
+      label: Items
