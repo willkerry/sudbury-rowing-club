@@ -18,6 +18,12 @@ sections:
 - type: document
   path: data/governance.json
   label: Governance
+- type: heading
+  label: Regatta
+- type: document
+  path: data/regatta.json
+  label: Regatta
+  match: "**/*"
 upload_dir: public/assets
 public_path: "/assets"
 front_matter_path: ''
