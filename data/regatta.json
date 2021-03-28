@@ -195,37 +195,37 @@
     "title": "Praise for the Sudbury Regatta",
     "year": [
       {
-        "date": "2015",
-        "number": "135",
+        "date": "2012-01-01T00:00:00Z",
+        "number": "132",
         "items": [
           {
-            "text": "Thank you for a wonderful regatta. As one club member said “It’s Midsummer Murders” or another description could be bucolic England at its full-blown summer best and with a blue moon. Who could want more out of life?",
-            "name": "",
+            "text": "As usual Maidstone Invicta had a great day. We brought along a lot of young novice juniors for a taste of racing, Many thanks for the usual friendly well run regatta.",
+            "name": "Maidstone Invicta Rowing Club",
             "club": ""
           },
           {
-            "text": "Hi, Please could you let me know the date for next year’s regatta as we need to book accommodation for Lea masters.",
-            "name": "Lea RC",
+            "text": "Thank you very much for yet another fantastic regatta. It was, as ever, brilliantly organised and great for both competitors and spectators (and in particular our juniors for whom it was their first proper race experience). We look forward to coming back again next year.",
+            "name": "City of Cambridge Rowing Club",
             "club": ""
           },
           {
-            "text": "A big thank you to you and your hard working team in organising another incredibly well run regatta. Anybody who has experienced organising a regatta will appreciate the time effort and hard work needed to run such an event. As usual your team achieve this with the utmost precision and timing which all comes together seamlessly. I’m sure there are many ‘hairy moments’ through the course of the day but as usual everything comes together for the competitors to enjoy their racing. Please thank all your team for once again producing a brilliant day out for all of us at Broxbourne.",
-            "name": "Broxbourne Rowing Club",
+            "text": "We had a wonderful day at Sudbury. Next time we will have to practice to go fast and steering… Thank you for making us very welcome.",
+            "name": "Ghent Rowing Club",
             "club": ""
           },
           {
-            "text": "Thanks to you all for another wonderful regatta!",
-            "name": "X-Press Boat Club",
+            "text": "Thank you and your team for a great day. All of us from Norwich (NRC, Yare BC, and Broadland BC) enjoyed it and want to come again.",
+            "name": "The delegation from Norwich",
             "club": ""
           },
           {
-            "text": "Many, many thanks for another superb regatta. We did actually have blood, sweat and tears as well as plenty of smiles, improvement in confidence and experience. Please pass on our thanks to your team who did an excellent job.",
-            "name": "Alton Rowing Club",
+            "text": "I would really like to say a massive thank you for yesterday’s amazing regatta! It was run so well and we all loved the whole day. Thank you also for allowing us to camp! You have such a beautiful little town and club.",
+            "name": "Lea Rowing Club",
             "club": ""
           },
           {
-            "text": "We had a great day out and are looking forward to next year’s already! Please pass on our thanks to everyone involved in running the regatta – you did a splendid job in making sure it ran smoothly and keeping everyone entertained.",
-            "name": "Erith Rowing Club",
+            "text": "May I thank you and your team for a fabulous day. Those of us from Oundle who came thoroughly enjoyed ourselves and hope to be annual supporters!",
+            "name": "Oundle Town Rowing Club",
             "club": ""
           }
         ]
@@ -470,6 +470,88 @@
             "text": "I think athletes’ unwavering enthusiasm (only apart perhaps from MAV keenness to hand their semi final victory back to Broadland to avoid final !) is a tribute to you and Sudbury RC. Massive collective effort well-rewarded. Thank you – it was a pleasure to join in. Frau Hogsbjerg’s VIP tent and lunch were much appreciated.",
             "name": "An Umpire",
             "club": ""
+          }
+        ]
+      },
+      {
+        "date": "2015",
+        "number": "135",
+        "items": [
+          {
+            "text": "Thank you for a wonderful regatta. As one club member said “It’s Midsummer Murders” or another description could be bucolic England at its full-blown summer best and with a blue moon. Who could want more out of life?",
+            "name": "",
+            "club": ""
+          },
+          {
+            "text": "Hi, Please could you let me know the date for next year’s regatta as we need to book accommodation for Lea masters.",
+            "name": "Lea RC",
+            "club": ""
+          },
+          {
+            "text": "A big thank you to you and your hard working team in organising another incredibly well run regatta. Anybody who has experienced organising a regatta will appreciate the time effort and hard work needed to run such an event. As usual your team achieve this with the utmost precision and timing which all comes together seamlessly. I’m sure there are many ‘hairy moments’ through the course of the day but as usual everything comes together for the competitors to enjoy their racing. Please thank all your team for once again producing a brilliant day out for all of us at Broxbourne.",
+            "name": "Broxbourne Rowing Club",
+            "club": ""
+          },
+          {
+            "text": "Thanks to you all for another wonderful regatta!",
+            "name": "X-Press Boat Club",
+            "club": ""
+          },
+          {
+            "text": "Many, many thanks for another superb regatta. We did actually have blood, sweat and tears as well as plenty of smiles, improvement in confidence and experience. Please pass on our thanks to your team who did an excellent job.",
+            "name": "Alton Rowing Club",
+            "club": ""
+          },
+          {
+            "text": "We had a great day out and are looking forward to next year’s already! Please pass on our thanks to everyone involved in running the regatta – you did a splendid job in making sure it ran smoothly and keeping everyone entertained.",
+            "name": "Erith Rowing Club",
+            "club": ""
+          }
+        ]
+      },
+      {
+        "date": "2013-02-28T23:00:00Z",
+        "number": "133",
+        "items": [
+          {
+            "text": "It was a super day and I can imagine that pretty well every single competitor will have gone home happy if tired!",
+            "name": "",
+            "club": ""
+          },
+          {
+            "text": "A thoroughly enjoyable day as usual. Very much looking forward to next year.",
+            "name": "",
+            "club": ""
+          },
+          {
+            "text": "Thank you for yet another great regatta",
+            "name": "Mark Stratton",
+            "club": "Oundle Town Rowing Club"
+          },
+          {
+            "text": "Thank you for such a marvellous regatta yesterday. We will certainly be coming to next year’s regatta with an even larger entry.",
+            "name": "Peter Gwizdala",
+            "club": "Bewl Bridge Rowing Club"
+          },
+          {
+            "text": "Thanks for another great regatta at Sudbury. The course is a joy whether you’re racing or spectating and the umpires, marshals and race control are all really helpful. The excellent barbeque, cake stalls and beer tent will keep you fuelled to the finish and the commentary is very entertaining.",
+            "name": "Alex Wood",
+            "club": "Gravesend Rowing Club"
+          },
+          {
+            "text": "Thank you for yet another superb regatta. We had a great time and thoroughly enjoyed ourselves, once again!",
+            "name": "Lois Birrell",
+            "club": "Maidstone Invicta Rowing Club"
+          },
+          {
+            "text": "We really enjoyed it and will be back!",
+            "name": "Alison Fisher",
+            "club": "Erith Rowing Club"
+          },
+          {
+            "text": "Once again the best regatta of the year.",
+            "name": "Sally Lawrence",
+            "club": "Lea Rowing Club"
           }
         ]
       }
