@@ -216,11 +216,14 @@ fields:
         date_format: YYYY
         time_format: 'null'
         export_format: YYYY
-    - type: number
-      name: number
-      label: Regatta Number
+        required: true
+    - name: number
+      type: text
       config:
-        step: 1
+        required: true
+        min: 2
+        max: 3
+      label: Regatta number
     - type: field_group_list
       name: items
       fields:
