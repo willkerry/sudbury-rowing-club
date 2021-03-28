@@ -235,7 +235,7 @@ fields:
         name: text
         label: Text
         config:
-          wysiwyg: true
+          wysiwyg: false
           schema:
             format: html-blocks
           required: true
