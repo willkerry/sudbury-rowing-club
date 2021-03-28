@@ -234,14 +234,15 @@ fields:
           wysiwyg: true
           schema:
             format: html-blocks
-      - type: field_group
-        name: attribution
-        label: Attribution
-        fields:
-        - type: text
-          name: name
-          label: Name
-        - type: text
-          name: club
-          label: Club
+          required: true
+      - name: name
+        type: text
+        config:
+          required: false
+        label: Name
+      - name: club
+        type: text
+        config:
+          required: false
+        label: Club
       label: Items
