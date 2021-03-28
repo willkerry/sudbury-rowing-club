@@ -4,17 +4,25 @@ hide_body: true
 fields:
 - type: field_group_list
   name: safetyNotices
-  label: safetyNotices
+  label: Safety Notice
   fields:
   - type: text
     name: name
-    label: name
+    label: Title
+    config:
+      required: true
   - type: textarea
     name: description
-    label: description
+    label: Description
+    config:
+      wysiwyg: true
+      schema:
+        format: html-blocks
   - type: datetime
     name: date
-    label: date
+    label: Date updated
+    config:
+      date_format: DD MMMM YYYY
   - type: text
     name: file
-    label: file
+    label: File upload
