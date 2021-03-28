@@ -185,7 +185,7 @@
   },
   "gallery": [
     {
-      "image": "/images/sample.jpg"
+      "image": ""
     },
     {
       "image": "/images/sample.jpg"
@@ -367,6 +367,17 @@
           {
             "text": "Well done to everybody for putting such a fab day on yesterday. My sister and her fella came along too and absolutely loved it.",
             "name": "Bev",
+            "club": ""
+          }
+        ]
+      },
+      {
+        "date": "2017",
+        "number": "137",
+        "items": [
+          {
+            "text": "<p>I think athletes’ unwavering enthusiasm (only apart perhaps from MAV keenness to hand their semi final victory back to Broadland to avoid final !) is a tribute to you and Sudbury RC. Massive collective effort well-rewarded. Thank you – it was a pleasure to join in. Frau Hogsbjerg’s VIP tent and lunch were much appreciated.</p>",
+            "name": "An Umpire",
             "club": ""
           }
         ]
