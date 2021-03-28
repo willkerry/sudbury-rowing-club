@@ -102,8 +102,11 @@ collections:
             label_singular: Vice-President
             minimize_collapsed: true
             widget: list
-            summary: "{{fields.name}}"
-            field: { label: Vice-President name, name: name, widget: string }
+            summary: "{{fields.firstName}} {{fields.surame}}"
+            hint: "Names are automatically sorted alphabetically when display on the website."
+            fields: 
+                - { label: First name, name: firstName, widget: string }
+                - { label: Surname, name: firstName, widget: string }
 
           - label: Trustees
             name: trustees
