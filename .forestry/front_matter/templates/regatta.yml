@@ -219,7 +219,7 @@ fields:
       config:
         date_format: YYYY
         time_format: 'null'
-        export_format: YYYY
+        export_format: ''
         required: true
     - name: number
       type: text
