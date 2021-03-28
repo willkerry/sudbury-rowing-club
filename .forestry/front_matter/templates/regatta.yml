@@ -15,6 +15,10 @@ fields:
   - type: textarea
     name: description
     label: Description
+    config:
+      wysiwyg: true
+      schema:
+        format: markdown
   - type: boolean
     name: displayNote
     label: Display note under intro?
@@ -173,6 +177,10 @@ fields:
   - type: textarea
     name: intro
     label: Introduction
+    config:
+      wysiwyg: true
+      schema:
+        format: html-blocks
   - type: field_group_list
     name: resources
     label: Resources
