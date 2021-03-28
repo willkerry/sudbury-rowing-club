@@ -66,7 +66,6 @@ collections:
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Role, name: role, widget: string }
-              - { label: Image, name: image, widget: image, required: false }
           - label: Committees
             name: committees
             allow_add: true
@@ -108,12 +107,7 @@ collections:
             widget: list
             summary: "{{fields.name}}"
             field: { label: Vice-President name, name: name, widget: string }
-          - {
-              label: Trustees,
-              name: trusteeDescription,
-              widget: string,
-              hint: "A sentence that describes the trustees’ roles.",
-            }
+
           - label: Trustees
             name: trustees
             allow_add: true
@@ -183,7 +177,7 @@ collections:
                   name: description,
                   widget: markdown,
                   buttons: ["bulleted-list", "link"],
-                  editor_components: [''],
+                  editor_components: [""],
                 }
               - label: "Date updated"
                 name: "date"
