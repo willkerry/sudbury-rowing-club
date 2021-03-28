@@ -23,8 +23,10 @@ fields:
     label: Date updated
     config:
       date_format: DD MMMM YYYY
-  - type: text
-    name: file
-    label: File upload
+  - name: file
+    type: file
+    config:
+      maxSize: 64
+    label: Document upload
 pages:
 - data/safety.json
