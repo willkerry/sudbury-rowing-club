@@ -93,7 +93,7 @@ fields:
   fields:
   - type: text
     name: coursemap
-    label: Coursemap page
+    label: Course Map page
   - type: field_group_list
     name: event
     label: Event
