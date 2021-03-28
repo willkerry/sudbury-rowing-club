@@ -2,6 +2,37 @@
 label: Governance
 hide_body: true
 fields:
+- type: field_group_list
+  name: officers
+  label: Club Officers
+  fields:
+  - type: text
+    name: name
+    label: Name
+  - type: text
+    name: role
+    label: Role
+  config:
+    labelField: name
+- type: field_group_list
+  name: committees
+  label: Committees
+  fields:
+  - type: text
+    name: name
+    label: Committee Name
+    config:
+      required: true
+  - type: textarea
+    name: description
+    label: Committee Description
+  - type: list
+    name: officers
+    label: Committee Members
+    config:
+      use_select: false
+  config:
+    labelField: name
 - type: text
   name: presidentDescription
   label: presidentDescription
@@ -28,26 +59,3 @@ fields:
   - type: text
     name: surname
     label: surname
-- type: field_group_list
-  name: officers
-  label: officers
-  fields:
-  - type: text
-    name: name
-    label: name
-  - type: text
-    name: role
-    label: role
-- type: field_group_list
-  name: committees
-  label: committees
-  fields:
-  - type: text
-    name: name
-    label: name
-  - type: textarea
-    name: description
-    label: description
-  - type: list
-    name: officers
-    label: officers
