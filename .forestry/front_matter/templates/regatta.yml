@@ -1,0 +1,204 @@
+---
+label: Regatta
+hide_body: true
+fields:
+- type: field_group
+  name: regattaIntro
+  label: Intro
+  fields:
+  - type: datetime
+    name: date
+    label: Date of the next regatta
+  - type: text
+    name: title
+    label: Title
+  - type: textarea
+    name: description
+    label: Description
+  - type: boolean
+    name: displayNote
+    label: Display note under intro?
+  - type: field_group
+    name: note
+    label: Note
+    fields:
+    - type: text
+      name: title
+      label: Title
+    - type: textarea
+      name: text
+      label: Text
+    - name: color
+      type: select
+      default: []
+      config:
+        required: false
+        options:
+        - Neutral
+        - Success
+        - Hazard
+        - Warning
+        source:
+          type: simple
+          section: 
+          file: 
+          path: 
+      label: Colour
+    showOnly:
+      field: displayNote
+      value: true
+  - type: boolean
+    name: displayNotification
+    label: Display notification above intro?
+  - type: field_group
+    name: notification
+    label: Notification
+    fields:
+    - type: text
+      name: title
+      label: Title
+    - type: textarea
+      name: text
+      label: Text
+    - name: color
+      type: select
+      default: []
+      config:
+        required: false
+        options:
+        - Neutral
+        - Success
+        - Hazard
+        - Warning
+        source:
+          type: simple
+          section: 
+          file: 
+          path: 
+      label: Colour
+    showOnly:
+      field: displayNotification
+      value: true
+- type: field_group
+  name: events
+  label: Events
+  fields:
+  - type: text
+    name: coursemap
+    label: Coursemap page
+  - type: field_group_list
+    name: event
+    label: Event
+    fields:
+    - type: text
+      name: title
+      label: Name
+    - type: file
+      name: map
+      label: Coursemap
+    - type: text
+      name: description
+      label: Description
+    - type: list
+      name: categories
+      label: Categories
+      config:
+        use_select: true
+        source:
+          type: documents
+          section: regatta-83171900-d8b4-444c-9529-f4f0673dbcef
+          file: data/regatta.json
+          path: events
+    - type: list
+      name: gender
+      label: Gender classes
+      config:
+        use_select: false
+    - type: list
+      name: boatClasses
+      label: Boat Classes
+    - type: text
+      name: prizes
+      label: Prizes
+- type: field_group
+  name: entries
+  label: entries
+  fields:
+  - type: textarea
+    name: text
+    label: text
+- type: field_group
+  name: results
+  label: results
+  fields:
+  - type: file
+    name: courseRecords
+    label: courseRecords
+  - type: field_group_list
+    name: results
+    label: results
+    fields:
+    - type: text
+      name: year
+      label: year
+    - type: text
+      name: link
+      label: link
+- type: field_group
+  name: competitorInformation
+  label: competitorInformation
+  fields:
+  - type: textarea
+    name: intro
+    label: intro
+  - type: field_group_list
+    name: resources
+    label: resources
+    fields:
+    - type: text
+      name: title
+      label: title
+    - type: file
+      name: link
+      label: link
+- type: field_group_list
+  name: gallery
+  label: gallery
+  fields:
+  - type: file
+    name: image
+    label: image
+- type: field_group
+  name: praise
+  label: praise
+  fields:
+  - type: text
+    name: title
+    label: title
+  - type: field_group_list
+    name: year
+    label: year
+    fields:
+    - type: datetime
+      name: date
+      label: date
+    - type: number
+      name: number
+      label: number
+    - type: field_group_list
+      name: items
+      label: items
+      fields:
+      - type: textarea
+        name: text
+        label: text
+      - type: field_group
+        name: attribution
+        label: attribution
+        fields:
+        - type: text
+          name: name
+          label: name
+        - type: text
+          name: club
+          label: club
