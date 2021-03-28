@@ -207,7 +207,7 @@ fields:
     label: Title
   - type: field_group_list
     name: year
-    label: Year
+    label: Regatta
     fields:
     - type: datetime
       name: date
