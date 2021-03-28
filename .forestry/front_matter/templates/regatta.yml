@@ -81,36 +81,45 @@ fields:
       value: true
 - type: field_group
   name: events
-  label: events
+  label: Events
   fields:
   - type: text
     name: coursemap
-    label: coursemap
+    label: Coursemap page
   - type: field_group_list
     name: event
-    label: event
+    label: Event
     fields:
     - type: text
       name: title
-      label: title
+      label: Name
     - type: file
       name: map
-      label: map
+      label: Coursemap
     - type: text
       name: description
-      label: description
+      label: Description
     - type: list
       name: categories
-      label: categories
+      label: Categories
+      config:
+        use_select: true
+        source:
+          type: documents
+          section: regatta-83171900-d8b4-444c-9529-f4f0673dbcef
+          file: data/regatta.json
+          path: events
     - type: list
       name: gender
-      label: gender
+      label: Gender classes
+      config:
+        use_select: false
     - type: list
       name: boatClasses
-      label: boatClasses
+      label: Boat Classes
     - type: text
       name: prizes
-      label: prizes
+      label: Prizes
 - type: field_group
   name: entries
   label: entries
