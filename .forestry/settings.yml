@@ -4,15 +4,17 @@ auto_deploy: false
 admin_path: 
 webhook_url: 
 sections:
-- type: document
-  path: data/safety.json
-  label: Safety
 - type: directory
   path: data/_news
   label: News
   create: documents
   match: "**/*"
   new_doc_ext: md
+- type: heading
+  label: About
+- type: document
+  path: data/safety.json
+  label: Safety
 - type: document
   path: data/governance.json
   label: Governance
