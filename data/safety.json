@@ -1,0 +1,15 @@
+{
+  "safetyNotices": [
+    {
+      "name": "Covid-19",
+      "description": "The UK Government recently released ‘Guidance for the public on the phased return of outdoor sport and recreation’ and this sets out more detailed information, specific for the sports sector, and building on the Government’s COVID-19 recovery strategy. ",
+      "date": "23 May 2020",
+      "file": null
+    },
+    {
+      "name": "Danger from waterborne diseases",
+      "description": "Members should be aware that there is a small risk of contracting Weil’s Disease (Leptospirosis) and other disorders because of micro-organisms in the river.  The risk is higher in the summer months when the river flow is reduced.",
+      "file": null
+    }
+  ]
+}
