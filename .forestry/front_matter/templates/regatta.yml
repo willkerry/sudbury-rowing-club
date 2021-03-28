@@ -18,7 +18,7 @@ fields:
     config:
       wysiwyg: true
       schema:
-        format: markdown
+        format: html-blocks
   - type: boolean
     name: displayNote
     label: Display note under intro?
