@@ -1,6 +1,6 @@
 {
   "regattaIntro": {
-    "date": "2019-08-03",
+    "date": "2019-08-02T22:00:00Z",
     "title": "139th Sudbury International Regatta",
     "description": "<p>The Sudbury Regatta takes place on the first Saturday of August each year.</p>\n <p>The 650m Rowing course is raced upstream from a stake boat start along a course characterised by some challenging bends. One of the highlights of the regatta is the sprint eights event, racing for hip-flasks along the last and straighter 350m.</p>\n <p>We provide state of the art spectator facilities, particularly in the stadium section of the course with wonderful home-baked cakes, burgers, a hog roast, ice cream and locally brewed beer.</p>\n <p>The official event photographer is <a href=\"https://www.hiskett.net/\">Bill Hiskett</a>. His photographs may be used on the website and social media sites of the Regatta and its Organising Committee. Official photographs will also be available for sale from Bill’s <a href=\"https://www.hiskett.net/\">website</a>&nbsp;after the event. By entering the Regatta, competitors and those responsible for them consent to this.</p>",
     "displayNote": true,
@@ -30,17 +30,38 @@
           "Adaptive/Para-Rowing",
           "Parent & Child (Junior/J15 and under)"
         ],
-        "gender": ["Open", "Women", "Mixed"],
-        "boatClasses": ["4+", "4×−", "4×+", "2+", "2−", "2×", "1×"],
+        "gender": [
+          "Open",
+          "Women",
+          "Mixed"
+        ],
+        "boatClasses": [
+          "4+",
+          "4×−",
+          "4×+",
+          "2+",
+          "2−",
+          "2×",
+          "1×"
+        ],
         "prizes": "Pewter tankards"
       },
       {
         "title": "Sprint Eights",
         "map": "https://sudburyrowingclub.org.uk/wp-content/uploads/2020/06/Artboard-1350m.svg",
         "description": "350m upstream from a free start",
-        "categories": ["Senior", "Masters"],
-        "gender": ["Open", "Women", "Mixed"],
-        "boatClasses": ["8+"],
+        "categories": [
+          "Senior",
+          "Masters"
+        ],
+        "gender": [
+          "Open",
+          "Women",
+          "Mixed"
+        ],
+        "boatClasses": [
+          "8+"
+        ],
         "prizes": "Hipflasks"
       }
     ]
@@ -163,20 +184,24 @@
     ]
   },
   "gallery": [
-    { "image": "/images/sample.jpg" },
-    { "image": "/images/sample.jpg" }
+    {
+      "image": "/images/sample.jpg"
+    },
+    {
+      "image": "/images/sample.jpg"
+    }
   ],
   "praise": {
     "title": "Praise for the Sudbury Regatta",
     "year": [
       {
-        "date": "2019-08-03",
-        "number": 139,
+        "date": "2018",
+        "number": "139",
         "items": [
           {
             "text": "Thanks to you and all your team for a fantastic day at Sudbury International Regatta today. So well organised and great fun.",
             "name": "David W",
-            "club": null
+            "club": ""
           },
           {
             "text": "As always, lovely little regatta. Thanks for organising. Next time hope we can get more than one entry ?",
@@ -186,16 +211,15 @@
           {
             "text": "Great regatta not only because I won a pot! I liked the shuttle system and no wash from umpire launches hence very flat water. Also very friendly and relaxed. I even enjoyed the jokes and the commentary.",
             "name": "Paul",
-            "club": null
+            "club": ""
           },
           {
             "text": "You run a marvellous event. Well done and long may it continue and flourish.",
             "name": "David",
-            "club": null
+            "club": ""
           },
           {
             "text": "<p>On behalf of West Norfolk Rowing Club I would like to express our thanks for a great day at Sudbury Regatta. Thank you!</p><p>It was a most enjoyable day (if a little long), and all those running it were in good humour, making for a fine atmosphere.</p><p>We had a trailer-full of entries, an achievement in itself for a small new club, and were thrilled our chaps came away with silverware from our last race of the day!</p><p>It is such a beautiful setting, and clearly lots of preparation work had gone into setting up the course and the regatta field.</p><p>Many thanks.</p>",
-
             "name": "Nicola Marston",
             "club": "Captain, West Norfolk Rowing Club"
           },
@@ -207,17 +231,17 @@
           {
             "text": "<p>Just passing on a big thank you from the small but very happy Norwich Rowing Club contingent to you and everyone involved in Saturday’s event.</p><p>It was the first time we had raced at Sudbury and we (and the other NRC members) couldn’t be more impressed by the regatta, from the excellent location, food, live music and helpful volunteers.</p><p>But most of all we were impressed by your seemingly endless (and often hilarious) enthusiasm with the microphone which had us smiling throughout the day.</p><p>Thank you!</p>",
             "name": "Sarah",
-            "club": null
+            "club": ""
           },
           {
             "text": "Many thanks for the wonderful regatta.",
             "name": "Claire",
-            "club": null
+            "club": ""
           },
           {
             "text": "I just wanted to pass on my thanks and appreciation to the Committee, the Rowing Committee and of course Nicola and Andrew for a fantastic and fun Regatta. Brilliant to see so many Sudbury wins as well. Well done all.",
             "name": "Tim",
-            "club": null
+            "club": ""
           },
           {
             "text": "Thank you all very much for a brilliant day out. Those of us from Broadland had a great time – whether we won or ended up in the reeds!",
@@ -242,7 +266,7 @@
           {
             "text": "Excellent regatta and so much fun as always, I am just sorry I couldn’t stay for the whole day, next year… Thanks again for great organisation (and commentary).",
             "name": "David",
-            "club": null
+            "club": ""
           },
           {
             "text": "<p>Oh dear, how do we begin?</p><p>Firstly thank you Sudbury RC for lending us the 2-, and the welcome and help we received from you lovely Suffolk Folk !!</p><p>Secondly, for letting us share your truly named ‘International’ Regatta.</p><p>It personally took me back to the 1960’s when a fete type atmosphere existed at regattas, where the whole town came to experience the regatta scene by the river on a beautiful summers day.</p><p>An absolutely glorious setting on the meadow, your people had worked tremendously hard to prepare the reeds to show off the magnificence of the river, and what a river !!</p><p>I was so proud of my course around the big bend in my single, lost concentration momentarily and the pill box reeds got me, so I took a little bit of Suffolk foliage away with me.</p><p>Then in the coxless pair my mate steered a superb course around the big bend, only to falter in his steering 3 times to enable my stroke side blade to chip away at the Essex bank !</p><p>It took me around 40 years of rowing and thinking about going to Sudbury, I only wish I’d done it sooner, a brilliant event which we will have no hesitation in recommending to anyone in our region who will listen!!!</p>",
@@ -252,7 +276,7 @@
           {
             "text": "I really enjoyed Saturday, it was a lovely regatta with a great atmosphere!",
             "name": "Umpire",
-            "club": null
+            "club": ""
           },
           {
             "text": "Everything about the day was fantastic. From the organisation to the friendliness of other crews – in both helping our (much less experienced crew) out with boats / advice and help. We (Curlew) will definitely be back next year with more crews",
@@ -263,47 +287,47 @@
       },
       {
         "date": "2018-08-04",
-        "number": 138,
+        "number": "138",
         "items": [
           {
             "text": "I take my hat off to Andrew Blit and his team. You inherit a less than ideal stretch of water and you put your tongue in your cheek, erect a progress board, you have a Sprint 8’s event that I am sure I read was on a 350m ‘straight’ ! You call it Sudbury International Regatta, you do an enthusiastic commentary. You time races and encourage participants to beat records, have a jazz band, get prime farmers beef burgers and be friendly. Marvellous, brilliant and fantastic.",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "Every cox and sculler should have Sudbury Regatta on their bucket list. Every umpire should have the ‘bend’ position on their bucket list too!",
             "name": "Umpire",
-            "club": null
+            "club": ""
           },
           {
             "text": "Our crews had an excellent time, so thanks for another wonderful regatta!",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "A fantastic regatta as always – you have set yourself a high standard that others would love to get near.",
             "name": "Umpire",
-            "club": null
+            "club": ""
           },
           {
             "text": "Another super Sudbury International Regatta. Super event, super people, super food, everything a good old fashion town regatta should be.",
             "name": "Umpire",
-            "club": null
+            "club": ""
           },
           {
             "text": "Fab regatta again, thank you Sudbury!",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "Every photo I see convinces me that this must be one of the most beautiful events in the rowing world.",
             "name": "Social media commentator",
-            "club": null
+            "club": ""
           },
           {
             "text": "Thanks team Sudbury, cracking day, very enjoyable as always. Could have done with someone turning the temperature down a little but otherwise perfect!",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "Thanks go to you and your team – what a fantastic event! We all had a great time, and it was a really worthwhile and positive race experience for both of the guys. Your members also made us feel most welcome at the clubhouse, and we appreciated the assistance with boating/de-boating too. It was also my pleasure to get on the Mic and say a few words about adaptive rowing… no other event has ever asked me to and it was great – thank you.",
@@ -312,42 +336,51 @@
           },
           {
             "text": "Thank you to all the members of Sudbury RC who make your regatta the best regatta of the year.",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "Thank you very much for your and your clubmates’ efforts organising and running yet another great day’s racing and ancillary entertainment. You all do a terrific job making everyone welcome and having an event which runs smoothly despite very challenging boat and rower logistics.",
             "name": "Umpire",
-            "club": null
+            "club": ""
           },
           {
             "text": "Another excellent event. As always we had great fun with a good haul of wins too. We love supporting this event and it remains one of the highlights of our rowing calendar.",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "Well done Sudbury RC. Really great day in a Suffolk meadow by the Stour. Great racing with all the thrills and spills of a river regatta.",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "Another wonderful Sudbury Regatta, thanks for putting up with us.",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "What a lovely day it was! Thanks to Sudbury Rowing Club and all the team.",
-            "name": null,
-            "club": null
+            "name": "",
+            "club": ""
           },
           {
             "text": "Well done to everybody for putting such a fab day on yesterday. My sister and her fella came along too and absolutely loved it.",
             "name": "Bev",
-            "club": null
+            "club": ""
           }
         ]
       }
     ]
   },
-  "availableBoatClasses": ["8+", "4+", "4×−", "4×+", "2+", "2−", "2×", "1×"]
+  "availableBoatClasses": [
+    "8+",
+    "4+",
+    "4×−",
+    "4×+",
+    "2+",
+    "2−",
+    "2×",
+    "1×"
+  ]
 }

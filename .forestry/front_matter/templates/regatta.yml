@@ -9,6 +9,10 @@ fields:
   - type: datetime
     name: date
     label: Date of the next regatta
+    config:
+      date_format: D MMMM YYYY
+      time_format: 'null'
+      export_format: D MMMM YYYY
   - type: text
     name: title
     label: Title
@@ -246,3 +250,5 @@ fields:
           required: false
         label: Club
       label: Items
+pages:
+- data/regatta.json
