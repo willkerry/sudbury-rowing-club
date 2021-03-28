@@ -68,3 +68,5 @@ fields:
     max: 
     labelField: 
   label: Addresses
+pages:
+- data/regatta-location.json
