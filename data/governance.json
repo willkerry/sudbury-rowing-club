@@ -1,6 +1,34 @@
 {
-  "title": "Governance",
-  "description": "",
+  "presidentDescription": "By convention, the incoming Mayor of Sudbury is invited each year to become the Club president.",
+  "vicePresidentDescription": "Vice-presidents are elected each year at the AGM.",
+  "vicePresidents": [
+    { "firstName": "Christiane", "surname": "Mills" },
+    { "firstName": "Tony", "surname": "Moule" },
+    { "firstName": "Stephen", "surname": "Nichols" },
+    { "firstName": "Keith", "surname": "Paxman" },
+    { "firstName": "Andrew", "surname": "Phillips" },
+    { "firstName": "Simon", "surname": "White" },
+    { "firstName": "David", "surname": "Wasse" },
+    { "firstName": "Mike", "surname": "Deed" },
+    { "firstName": "Aidan", "surname": "Dunn" },
+    { "firstName": "Tricia", "surname": "Fincham" },
+    { "firstName": "Peter", "surname": "Gostling" },
+    { "firstName": "Chris", "surname": "Jeffreys" },
+    { "firstName": "Adrian", "surname": "Ablitt" },
+    { "firstName": "Patricia", "surname": "Alston" },
+    { "firstName": "Mike", "surname": "Arnott" },
+    { "firstName": "Andrew", "surname": "Blit" },
+    { "firstName": "Danny", "surname": "Botham" },
+    { "firstName": "Dave", "surname": "Busby" },
+    { "firstName": "Trevor", "surname": "Chambers" }
+  ],
+  "trustees": [
+    { "firstName": "Tony", "surname": "Moule" },
+    { "firstName": "Simon", "surname": "White" },
+    { "firstName": "Tricia", "surname": "Fincham" },
+    { "firstName": "Adrian", "surname": "Ablitt" },
+    { "firstName": "Andrew", "surname": "Blit" }
+  ],
   "officers": [
     {
       "name": "Keith Paxman",
@@ -77,6 +105,47 @@
     {
       "name": "Will Kerry",
       "role": "Website"
+    }
+  ],
+  "committees": [
+    {
+      "name": "Management Committee",
+      "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
+      "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
+    },
+    {
+      "name": "Rowing Committee",
+      "description": "Responsible for all rowing matters including training, racing, coaching and development and maintenance of the boat fleet.",
+      "officers": [
+        "Captain",
+        "Men’s VC",
+        "Women’s VC",
+        "Junior VC",
+        "Recreational VC",
+        "Boatman"
+      ]
+    },
+    {
+      "name": "Operations Committee",
+      "description": "Responsible for non-rowing activities including clubhouse and grounds maintenance, social activities, Regatta organisation, sponsorship and grants, and IT.",
+      "officers": [
+        "Secretary",
+        "Facilities",
+        "Publicity",
+        "Social",
+        "Sponsorship & Grants",
+        "Regatta",
+        "IT"
+      ]
+    },
+    {
+      "name": "Compliance Committee",
+      "description": "Responsible for ensuring that the club is compliant with financial, safeguarding and safety responsibilities and duties.",
+      "officers": ["Treasurer", "Safety Officer", "Welfare Officer"]
+    },
+    {
+      "name": "Development Committee",
+      "description": "When formed, will identify options for investing club funds in infrastructure or club development"
     }
   ]
 }

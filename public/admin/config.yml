@@ -54,13 +54,14 @@ collections:
     files:
       - label: "Governance"
         name: "governance"
-        file: "content/governance.json"
+        file: "data/governance.json"
         fields:
           - label: Club Officers
             name: officers
             allow_add: true
             label_singular: club officer
             minimize_collapsed: true
+            hint: "Club officers are displayed in the order defined here."
             summary: "{{fields.name}}, {{fields.role}}"
             widget: list
             fields:
@@ -73,6 +74,7 @@ collections:
             minimize_collapsed: true
             widget: list
             summary: "{{fields.name}}"
+            hint: "Committees and committee members are displayed in the order defined here."
             fields:
               - { label: Committee name, name: name, widget: string }
               - { label: Description, name: description, widget: text }
@@ -102,11 +104,11 @@ collections:
             label_singular: Vice-President
             minimize_collapsed: true
             widget: list
-            summary: "{{fields.firstName}} {{fields.surame}}"
-            hint: "Names are automatically sorted alphabetically when display on the website."
+            summary: "{{fields.firstName}} {{fields.surname}}"
+            hint: "Vice-Presidents’ names are displayed alphabetically by surname on the website."
             fields: 
                 - { label: First name, name: firstName, widget: string }
-                - { label: Surname, name: firstName, widget: string }
+                - { label: Surname, name: surname, widget: string }
 
           - label: Trustees
             name: trustees
@@ -114,8 +116,11 @@ collections:
             label_singular: trustee
             minimize_collapsed: true
             widget: list
-            summary: "{{fields.name}}"
-            field: { label: Trustee name, name: name, widget: string }
+            summary: "{{fields.firstName}} {{fields.surname}}"
+            hint: "Trustees’ names are displayed alphabetically by surname on the website."
+            fields: 
+                - { label: First name, name: firstName, widget: string }
+                - { label: Surname, name: surname, widget: string }
           - label: Document Groups
             name: documents
             allow_add: true
@@ -123,6 +128,7 @@ collections:
             minimize_collapsed: true
             widget: list
             summary: "{{fields.name}}"
+            hint: "Document groups and the documents within them are displayed in the order defined here."
             fields:
               - { label: Group name, name: name, widget: string }
               - label: Documents
