@@ -41,14 +41,31 @@ fields:
   label: vicePresidentDescription
 - type: field_group_list
   name: vicePresidents
-  label: vicePresidents
+  label: Vice-Presidents
   fields:
   - type: text
-    name: firstName
-    label: firstName
-  - type: text
     name: surname
-    label: surname
+    label: Surname
+  - type: text
+    name: firstName
+    label: First Name
+  - name: name
+    type: field_group
+    config: {}
+    fields:
+    - name: name
+      type: text
+      config:
+        required: false
+      label: Name
+    - name: surname
+      type: text
+      config:
+        required: false
+      label: Surname
+    label: Name
+  config:
+    labelField: firstName
 - type: field_group_list
   name: trustees
   label: trustees
