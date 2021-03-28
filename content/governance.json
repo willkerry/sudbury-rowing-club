@@ -85,6 +85,40 @@
       "name": "Management Committee",
       "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
       "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
+    },
+    {
+      "name": "Rowing Committee",
+      "description": "Responsible for all rowing matters including training, racing, coaching and development and maintenance of the boat fleet.",
+      "officers": [
+        "Captain",
+        "Men’s VC",
+        "Women’s VC",
+        "Junior VC",
+        "Recreational VC",
+        "Boatman"
+      ]
+    },
+    {
+      "name": "Operations Committee",
+      "description": "Responsible for non-rowing activities including clubhouse and grounds maintenance, social activities, Regatta organisation, sponsorship and grants, and IT.",
+      "officers": [
+        "Secretary",
+        "Facilities",
+        "Publicity",
+        "Social",
+        "Sponsorship & Grants",
+        "Regatta",
+        "IT"
+      ]
+    },
+    {
+      "name": "Compliance Committee",
+      "description": "Responsible for ensuring that the club is compliant with financial, safeguarding and safety responsibilities and duties.",
+      "officers": ["Treasurer", "Safety Officer", "Welfare Officer"]
+    },
+    {
+      "name": "Development Committee",
+      "description": "When formed, will identify options for investing club funds in infrastructure or club development"
     }
   ]
 }

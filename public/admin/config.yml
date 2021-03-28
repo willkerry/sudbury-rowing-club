@@ -83,9 +83,6 @@ collections:
                 minimize_collapsed: true
                 widget: list
                 required: false
-                summary: "{{fields.name}}"
-                fields:
-                  - { label: Role name, name: name, widget: string }
 
           - {
               label: President,
