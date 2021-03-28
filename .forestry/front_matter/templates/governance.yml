@@ -39,7 +39,7 @@ fields:
   description: A sentence that describes the president’s role.
 - type: text
   name: vicePresidentDescription
-  label: Vice-President
+  label: Vice-Presidents
   description: A sentence that describes the vice-presidents’ roles.
 - type: field_group_list
   name: vicePresidents
