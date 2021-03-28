@@ -195,42 +195,6 @@
     "title": "Praise for the Sudbury Regatta",
     "year": [
       {
-        "date": "2012-01-01T00:00:00Z",
-        "number": "132",
-        "items": [
-          {
-            "text": "As usual Maidstone Invicta had a great day. We brought along a lot of young novice juniors for a taste of racing, Many thanks for the usual friendly well run regatta.",
-            "name": "Maidstone Invicta Rowing Club",
-            "club": ""
-          },
-          {
-            "text": "Thank you very much for yet another fantastic regatta. It was, as ever, brilliantly organised and great for both competitors and spectators (and in particular our juniors for whom it was their first proper race experience). We look forward to coming back again next year.",
-            "name": "City of Cambridge Rowing Club",
-            "club": ""
-          },
-          {
-            "text": "We had a wonderful day at Sudbury. Next time we will have to practice to go fast and steering… Thank you for making us very welcome.",
-            "name": "Ghent Rowing Club",
-            "club": ""
-          },
-          {
-            "text": "Thank you and your team for a great day. All of us from Norwich (NRC, Yare BC, and Broadland BC) enjoyed it and want to come again.",
-            "name": "The delegation from Norwich",
-            "club": ""
-          },
-          {
-            "text": "I would really like to say a massive thank you for yesterday’s amazing regatta! It was run so well and we all loved the whole day. Thank you also for allowing us to camp! You have such a beautiful little town and club.",
-            "name": "Lea Rowing Club",
-            "club": ""
-          },
-          {
-            "text": "May I thank you and your team for a fabulous day. Those of us from Oundle who came thoroughly enjoyed ourselves and hope to be annual supporters!",
-            "name": "Oundle Town Rowing Club",
-            "club": ""
-          }
-        ]
-      },
-      {
         "date": "2018",
         "number": "139",
         "items": [
@@ -265,7 +229,7 @@
             "club": "Broadland Boat Club"
           },
           {
-            "text": "<p>Just passing on a big thank you from the small but very happy Norwich Rowing Club contingent to you and everyone involved in Saturday’s event.</p><p>It was the first time we had raced at Sudbury and we (and the other NRC members) couldn’t be more impressed by the regatta, from the excellent location, food, live music and helpful volunteers.</p><p>But most of all we were impressed by your seemingly endless (and often hilarious) enthusiasm with the microphone which had us smiling throughout the day.</p><p>Thank you!</p>",
+            "text": "Just passing on a big thank you from the small but very happy Norwich Rowing Club contingent to you and everyone involved in Saturday’s event.\nIt was the first time we had raced at Sudbury and we (and the other NRC members) couldn’t be more impressed by the regatta, from the excellent location, food, live music and helpful volunteers.\nBut most of all we were impressed by your seemingly endless (and often hilarious) enthusiasm with the microphone which had us smiling throughout the day.\nThank you!",
             "name": "Sarah",
             "club": ""
           },
@@ -290,7 +254,7 @@
             "club": "Barcelona Club de Rem"
           },
           {
-            "text": "<p>On behalf of Yare Boat Club I would like to thank the organisers and volunteers who have made Sudbury Regatta such a resounding success.</p><p>Every detail was thought of and the whole day worked seamlessly, with the glorious weather even ordered to perfection. A fantastic day of racing enjoyed by all.</p>",
+            "text": "On behalf of Yare Boat Club I would like to thank the organisers and volunteers who have made Sudbury Regatta such a resounding success.\nEvery detail was thought of and the whole day worked seamlessly, with the glorious weather even ordered to perfection. A fantastic day of racing enjoyed by all.",
             "name": "Shelagh Tubby",
             "club": "Captain, Yare Boat Club"
           },
@@ -305,7 +269,7 @@
             "club": ""
           },
           {
-            "text": "<p>Oh dear, how do we begin?</p><p>Firstly thank you Sudbury RC for lending us the 2-, and the welcome and help we received from you lovely Suffolk Folk !!</p><p>Secondly, for letting us share your truly named ‘International’ Regatta.</p><p>It personally took me back to the 1960’s when a fete type atmosphere existed at regattas, where the whole town came to experience the regatta scene by the river on a beautiful summers day.</p><p>An absolutely glorious setting on the meadow, your people had worked tremendously hard to prepare the reeds to show off the magnificence of the river, and what a river !!</p><p>I was so proud of my course around the big bend in my single, lost concentration momentarily and the pill box reeds got me, so I took a little bit of Suffolk foliage away with me.</p><p>Then in the coxless pair my mate steered a superb course around the big bend, only to falter in his steering 3 times to enable my stroke side blade to chip away at the Essex bank !</p><p>It took me around 40 years of rowing and thinking about going to Sudbury, I only wish I’d done it sooner, a brilliant event which we will have no hesitation in recommending to anyone in our region who will listen!!!</p>",
+            "text": "Oh dear, how do we begin?\nFirstly thank you Sudbury RC for lending us the 2-, and the welcome and help we received from you lovely Suffolk Folk !!\nSecondly, for letting us share your truly named ‘International’ Regatta.\nIt personally took me back to the 1960’s when a fete type atmosphere existed at regattas, where the whole town came to experience the regatta scene by the river on a beautiful summers day.\nAn absolutely glorious setting on the meadow, your people had worked tremendously hard to prepare the reeds to show off the magnificence of the river, and what a river !!\nI was so proud of my course around the big bend in my single, lost concentration momentarily and the pill box reeds got me, so I took a little bit of Suffolk foliage away with me.\nThen in the coxless pair my mate steered a superb course around the big bend, only to falter in his steering 3 times to enable my stroke side blade to chip away at the Essex bank !\nIt took me around 40 years of rowing and thinking about going to Sudbury, I only wish I’d done it sooner, a brilliant event which we will have no hesitation in recommending to anyone in our region who will listen!!!",
             "name": "Stan and Prue",
             "club": "Broadland Boat Club"
           },
@@ -552,6 +516,42 @@
             "text": "Once again the best regatta of the year.",
             "name": "Sally Lawrence",
             "club": "Lea Rowing Club"
+          }
+        ]
+      },
+      {
+        "date": "2012-01-01T00:00:00Z",
+        "number": "132",
+        "items": [
+          {
+            "text": "As usual Maidstone Invicta had a great day. We brought along a lot of young novice juniors for a taste of racing, Many thanks for the usual friendly well run regatta.",
+            "name": "Maidstone Invicta Rowing Club",
+            "club": ""
+          },
+          {
+            "text": "Thank you very much for yet another fantastic regatta. It was, as ever, brilliantly organised and great for both competitors and spectators (and in particular our juniors for whom it was their first proper race experience). We look forward to coming back again next year.",
+            "name": "City of Cambridge Rowing Club",
+            "club": ""
+          },
+          {
+            "text": "We had a wonderful day at Sudbury. Next time we will have to practice to go fast and steering… Thank you for making us very welcome.",
+            "name": "Ghent Rowing Club",
+            "club": ""
+          },
+          {
+            "text": "Thank you and your team for a great day. All of us from Norwich (NRC, Yare BC, and Broadland BC) enjoyed it and want to come again.",
+            "name": "The delegation from Norwich",
+            "club": ""
+          },
+          {
+            "text": "I would really like to say a massive thank you for yesterday’s amazing regatta! It was run so well and we all loved the whole day. Thank you also for allowing us to camp! You have such a beautiful little town and club.",
+            "name": "Lea Rowing Club",
+            "club": ""
+          },
+          {
+            "text": "May I thank you and your team for a fabulous day. Those of us from Oundle who came thoroughly enjoyed ourselves and hope to be annual supporters!",
+            "name": "Oundle Town Rowing Club",
+            "club": ""
           }
         ]
       }
