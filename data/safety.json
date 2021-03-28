@@ -7,12 +7,6 @@
       "file": ""
     },
     {
-      "name": "Hypothermia",
-      "description": "<p>The following are the most usual symptoms and signs, but not all may be present.</p><ul><li><p>Unexpected and unreasonable behaviour possibly accompanied by complaints of coldness and tiredness.</p></li><li><p>Physical and mental lethargy with failure to understand a question or orders.</p></li><li><p>Slurring of speech.</p></li><li><p>Violent outburst of unexpected energy and violent language, becoming uncooperative.</p></li><li><p>Failure of, or abnormality in, vision.</p></li><li><p>Twitching.</p></li><li><p>Lack of control of limbs, unsteadiness and complaining of numbness and cramp.</p></li><li><p>General shock with pallor and blueness of lips and nails.</p></li><li><p>Slow weak pulse, wheezing and coughing.</p></li></ul><p>Try to reduce the chances of hypothermia by dressing to beat the cold. Wear layers of clothing and the outer layer should be wind and waterproof. A major source of heat loss is the head, wearing some sort of heat can help to reduce this loss.</p><p>When hypothermia is suspected the aim must be to prevent the casualty losing more body heat and to rewarm the casualty.</p>",
-      "date": "",
-      "file": ""
-    },
-    {
       "name": "Covid-19",
       "description": "<p>The UK Government recently released ‘Guidance for the public on the phased return of outdoor sport and recreation’ and this sets out more detailed information, specific for the sports sector, and building on the Government’s COVID-19 recovery strategy.</p><p><a href=\"https://youtu.be/3awIjDHY7O4\" title=\"\">The club has produced a detailed video guide for our return rowing.</a></p><p>The Government permits sports clubs to re-open for physical and mental well-being provided social distancing is adhered to and steps are taken to prevent any possible transference of COVID-19.</p><p>Following guidance from our governing body British Rowing, Sudbury Rowing Club is planning to re-open the Club to its members from Tuesday 26 May. Single sculling will be permitted, with no more than 2 members at the Club or on the water at any one time. For members of the same household pairs/ doubles are also permitted, subject to no other club members being present.</p><p>Measures have been put in place for social distancing, sanitisation before and after outings and for thorough cleansing of boats /ancillary equipment and any touch points necessary to gain access to the grounds.</p><p>If you require any further information regarding this matter, please <a href=\"https://sudburyrowingclub.org.uk/how-to-contact-us/\">contact the chairman</a>.</p>",
       "date": "23 May 2020",
@@ -23,6 +17,12 @@
       "description": "<p>Members should be aware that there is a small risk of contracting Weil’s Disease (Leptospirosis) and other disorders because of micro-organisms in the river. The risk is higher in the summer months when the river flow is reduced.</p><p>Recommended precautions are:</p><ul><li><p>Minimise contact with the water</p></li><li><p>Cuts and abrasions should be covered with waterproof dressings</p></li><li><p>Shower after contact with water</p></li><li><p>Wash hands thoroughly before eating and drinking</p></li></ul><p>If ‘flu like symptoms develop shortly after contact with the water (1-3 weeks) then your doctor should be contacted and advised of the circumstances of exposure.</p>",
       "file": "",
       "date": ""
+    },
+    {
+      "name": "Hypothermia",
+      "description": "<p>The following are the most usual symptoms and signs, but not all may be present.</p><ul><li><p>Unexpected and unreasonable behaviour possibly accompanied by complaints of coldness and tiredness.</p></li><li><p>Physical and mental lethargy with failure to understand a question or orders.</p></li><li><p>Slurring of speech.</p></li><li><p>Violent outburst of unexpected energy and violent language, becoming uncooperative.</p></li><li><p>Failure of, or abnormality in, vision.</p></li><li><p>Twitching.</p></li><li><p>Lack of control of limbs, unsteadiness and complaining of numbness and cramp.</p></li><li><p>General shock with pallor and blueness of lips and nails.</p></li><li><p>Slow weak pulse, wheezing and coughing.</p></li></ul><p>Try to reduce the chances of hypothermia by dressing to beat the cold. Wear layers of clothing and the outer layer should be wind and waterproof. A major source of heat loss is the head, wearing some sort of heat can help to reduce this loss.</p><p>When hypothermia is suspected the aim must be to prevent the casualty losing more body heat and to rewarm the casualty.</p>",
+      "date": "",
+      "file": ""
     }
   ]
 }

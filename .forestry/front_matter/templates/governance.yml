@@ -65,5 +65,23 @@ fields:
     label: Surname
   config:
     labelField: firstName
+- name: trial_group
+  type: field_group
+  config: {}
+  fields:
+  - name: trustees
+    type: field_group_list
+    fields:
+    - name: name
+      type: text
+      config:
+        required: false
+      label: name
+    config:
+      min: 
+      max: 
+      labelField: 
+    label: trustees
+  label: trial group
 pages:
 - data/governance.json
