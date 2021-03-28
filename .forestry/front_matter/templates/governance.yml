@@ -65,14 +65,9 @@ fields:
     label: Surname
   config:
     labelField: firstName
-- name: blocks_trial
-  type: blocks
-  label: blocks trial
-  template_types:
-  - news
-  - governance
-  config:
-    min: 
-    max: 
+- name: trial_group
+  type: field_group
+  config: {}
+  label: trial group
 pages:
 - data/governance.json
