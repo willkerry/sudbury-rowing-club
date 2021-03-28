@@ -26,7 +26,6 @@ sections:
 - type: document
   path: data/regatta-location.json
   label: Find the regatta
-  match: "**/*"
 upload_dir: public/assets
 public_path: "/assets"
 front_matter_path: ''
