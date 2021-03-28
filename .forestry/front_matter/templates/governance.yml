@@ -35,10 +35,12 @@ fields:
     labelField: name
 - type: text
   name: presidentDescription
-  label: presidentDescription
+  label: President
+  description: A sentence that describes the president’s role.
 - type: text
   name: vicePresidentDescription
-  label: vicePresidentDescription
+  label: Vice-President
+  description: A sentence that describes the vice-presidents’ roles.
 - type: field_group_list
   name: vicePresidents
   label: Vice-Presidents
@@ -49,30 +51,17 @@ fields:
   - type: text
     name: firstName
     label: First Name
-  - name: name
-    type: field_group
-    config: {}
-    fields:
-    - name: name
-      type: text
-      config:
-        required: false
-      label: Name
-    - name: surname
-      type: text
-      config:
-        required: false
-      label: Surname
-    label: Name
   config:
     labelField: firstName
 - type: field_group_list
   name: trustees
-  label: trustees
+  label: Trustees
   fields:
   - type: text
     name: firstName
-    label: firstName
+    label: First Name
   - type: text
     name: surname
-    label: surname
+    label: Surname
+  config:
+    labelField: firstName
