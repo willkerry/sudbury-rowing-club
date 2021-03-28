@@ -1,4 +1,70 @@
 ---
 label: Location
 hide_body: true
-fields: []
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Title
+- name: directions
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Directions
+- name: latitude
+  type: number
+  label: Latitude
+  description: ''
+  default: 52.034895
+  required: true
+  config:
+    min: -90
+    max: 90
+    step: 
+- name: longitude
+  type: number
+  label: Longitude
+  description: ''
+  default: 0.732047
+  required: true
+  config:
+    min: -180
+    max: 180
+    step: 
+- name: label
+  type: text
+  config:
+    required: false
+  label: Map label
+- name: addresses
+  type: field_group_list
+  fields:
+  - name: title
+    type: text
+    config:
+      required: false
+    label: Title
+  - name: address
+    type: textarea
+    default: ''
+    config:
+      required: false
+      wysiwyg: false
+      schema:
+        format: markdown
+    label: Address
+  - name: link
+    type: text
+    config:
+      required: false
+    label: Google Maps link
+  config:
+    min: 
+    max: 
+    labelField: 
+  label: Addresses
