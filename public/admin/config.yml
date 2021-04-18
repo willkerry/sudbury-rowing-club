@@ -156,7 +156,7 @@ collections:
                     }
       - label: "Safety"
         name: "safety"
-        file: "content/safety.json"
+        file: "data/safety.json"
         fields:
           - label: River safety status
             name: status
