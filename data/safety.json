@@ -33,7 +33,8 @@
   "status": {
     "severity": "Red",
     "display": true,
-    "description": "The river is in flood"
+    "description": "The river is in flood",
+    "date": "2021-04-18T18:47:43.680Z"
   },
   "documents": [
     {
