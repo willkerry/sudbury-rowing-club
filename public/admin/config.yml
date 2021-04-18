@@ -67,6 +67,13 @@ collections:
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Role, name: role, widget: string }
+              - {
+                  label: "Vacant",
+                  name: "vacant",
+                  widget: "boolean",
+                  default: false,
+                  hint: "Display a ‘TBA’ icon instead of the officer’s name. "
+                }
           - label: Committees
             name: committees
             allow_add: true
@@ -107,9 +114,9 @@ collections:
             widget: list
             summary: "{{fields.firstName}} {{fields.surname}}"
             hint: "Vice-Presidents’ names are displayed alphabetically by surname on the website."
-            fields: 
-                - { label: First name, name: firstName, widget: string }
-                - { label: Surname, name: surname, widget: string }
+            fields:
+              - { label: First name, name: firstName, widget: string }
+              - { label: Surname, name: surname, widget: string }
 
           - label: Trustees
             name: trustees
@@ -119,16 +126,16 @@ collections:
             widget: list
             summary: "{{fields.firstName}} {{fields.surname}}"
             hint: "Trustees’ names are displayed alphabetically by surname on the website."
-            fields: 
-                - { label: First name, name: firstName, widget: string }
-                - { label: Surname, name: surname, widget: string }
+            fields:
+              - { label: First name, name: firstName, widget: string }
+              - { label: Surname, name: surname, widget: string }
           - label: Document Groups
             name: documents
             allow_add: true
             label_singular: document group
             minimize_collapsed: true
             widget: list
-            summary: "{{fields.name}}"
+            summary: "{{fields.group}}"
             hint: "Document groups and the documents within them are displayed in the order defined here."
             fields:
               - { label: Group name, name: group, widget: string }
