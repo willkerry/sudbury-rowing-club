@@ -3,7 +3,8 @@
     {
       "name": "Keith Paxman",
       "vacant": 0,
-      "role": "Chairman"
+      "role": "Chairman",
+      "email": "will.kerry icloud.com"
     },
     {
       "name": "Pippa Kerry",
@@ -100,7 +101,12 @@
     {
       "name": "Management Committee",
       "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
-      "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
+      "officers": [
+        "Chairman",
+        "Secretary",
+        "Treasurer",
+        "Captain"
+      ]
     },
     {
       "name": "Rowing Committee",
@@ -130,7 +136,11 @@
     {
       "name": "Compliance Committee",
       "description": "Responsible for ensuring that the club is compliant with financial, safeguarding and safety responsibilities and duties.",
-      "officers": ["Treasurer", "Safety Officer", "Welfare Officer"]
+      "officers": [
+        "Treasurer",
+        "Safety Officer",
+        "Welfare Officer"
+      ]
     },
     {
       "name": "Development Committee",
@@ -156,8 +166,14 @@
     {
       "group": "Governance",
       "items": [
-        { "name": "Constitution", "href": "/governance/club-constitution/" },
-        { "name": "Club Rules", "href": "/governance/club-rules/" }
+        {
+          "name": "Constitution",
+          "href": "/governance/club-constitution/"
+        },
+        {
+          "name": "Club Rules",
+          "href": "/governance/club-rules/"
+        }
       ]
     },
     {
@@ -193,7 +209,10 @@
           "href": "https://docs.google.com/document/d/11CRxQkfE4pvAqiDEqwMeibPJ9gLKh4tZW-NesAQ-ajE/edit?usp=sharing",
           "external": true
         },
-        { "name": "Privacy Policy", "href": "/" }
+        {
+          "name": "Privacy Policy",
+          "href": "/"
+        }
       ]
     },
     {
