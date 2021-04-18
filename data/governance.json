@@ -2,98 +2,7 @@
   "officers": [
     {
       "name": "Keith Paxman",
-      "vacant": 0,
       "role": "Chairman"
-    },
-    {
-      "name": "Pippa Kerry",
-      "vacant": 0,
-      "role": "Captain"
-    },
-    {
-      "name": "Jeremy Milbank",
-      "vacant": 0,
-      "role": "Club Secretary"
-    },
-    {
-      "name": "Tim Hysom",
-      "vacant": 0,
-      "role": "Treasurer"
-    },
-    {
-      "name": "Tim Hysom",
-      "vacant": 0,
-      "role": "Men’s Vice-Captain"
-    },
-    {
-      "name": "Sophie Lovegrove",
-      "vacant": 0,
-      "role": "Ladies’ Vice-Captain"
-    },
-    {
-      "name": "Nick Power",
-      "vacant": 0,
-      "role": "Junior Vice-Captain"
-    },
-    {
-      "name": "Jeremy Milbank",
-      "vacant": 0,
-      "role": "Recreational Vice-Captain"
-    },
-    {
-      "name": "Sean Moriarty",
-      "vacant": 0,
-      "role": "Learn to Row/Development"
-    },
-    {
-      "name": "Alex Elmon",
-      "vacant": 0,
-      "role": "Safety"
-    },
-    {
-      "name": "TBA",
-      "vacant": true,
-      "role": "Welfare"
-    },
-    {
-      "name": "TBA",
-      "vacant": true,
-      "role": "Regatta Secretary"
-    },
-    {
-      "name": "Tony Moule",
-      "vacant": 0,
-      "role": "Boatman"
-    },
-    {
-      "name": "Penny Wilby",
-      "vacant": 0,
-      "role": "Sponsorship"
-    },
-    {
-      "name": "Lee Adams",
-      "vacant": 0,
-      "role": "Facilities"
-    },
-    {
-      "name": "Amanda Ashton",
-      "vacant": 0,
-      "role": "Publicity"
-    },
-    {
-      "name": "TBA",
-      "vacant": 1,
-      "role": "Social Secretary"
-    },
-    {
-      "name": "Tim Hysom",
-      "vacant": 0,
-      "role": "Membership"
-    },
-    {
-      "name": "Will Kerry",
-      "vacant": 0,
-      "role": "Website"
     }
   ],
   "committees": [
@@ -138,67 +47,27 @@
       "officers": []
     }
   ],
+  "presidentDescription": "By convention, the incoming Mayor of Sudbury is invited each year to become the Club president.",
+  "vicePresidentDescription": "Vice-presidents are elected each year at the AGM.",
+  "vicePresidents": [
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    }
+  ],
+  "trustees": [
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    }
+  ],
   "documents": [
     {
-      "group": "Governance",
-      "items": [
-        { "name": "Constitution", "href": "/governance/club-constitution/" },
-        { "name": "Club Rules", "href": "/governance/club-rules/" }
-      ]
-    },
-    {
-      "group": "Policies and Guidance",
-      "items": [
-        {
-          "name": "Anti-Bullying Policy",
-          "href": "https://drive.google.com/open?id=1QRH9UIb-fXCisc9t4CxrgH_qDgHI2o2bpktkf4_GZ2g",
-          "external": true
-        },
-        {
-          "name": "Grievance and Disciplinary Policy",
-          "href": "https://drive.google.com/open?id=1TqcHjjAuk-qnZZB5ovUeCTxbtWRSlYW95C0utmmtas4",
-          "external": true
-        },
-        {
-          "name": "Use of Photographic Equipment",
-          "href": "https://drive.google.com/open?id=1f0F-l6h_2Dt9t6_i1cDH9zinZBvDVuMTMdRX2B8gbWo",
-          "external": true
-        },
-        {
-          "name": "Membership Application Form",
-          "href": "https://drive.google.com/open?id=1WaTnDrOacbtsfckpefh4YoxzE58Jh380_tMgSC_Ywzg",
-          "external": true
-        },
-        {
-          "name": "Volunteer Reference Form",
-          "href": "https://drive.google.com/open?id=1Dce6_tNYxkRQwPeVQ5tFWRu_etx7htnlOLgXXvf9krs",
-          "external": true
-        },
-        {
-          "name": "General Risk Assessment",
-          "href": "https://docs.google.com/document/d/11CRxQkfE4pvAqiDEqwMeibPJ9gLKh4tZW-NesAQ-ajE/edit?usp=sharing",
-          "external": true
-        },
-        { "name": "Privacy Policy", "href": "/" }
-      ]
-    },
-    {
-      "group": "British Rowing",
-      "items": [
+      "name": "British Rowing",
+      "documents": [
         {
           "name": "Codes of Conduct",
-          "href": "https://www.britishrowing.org/wp-content/uploads/2018/08/Codes-of-Conduct-1-Septrember-2018.pdf",
-          "external": true
-        },
-        {
-          "name": "Safeguarding",
-          "href": "https://www.britishrowing.org/wp-content/uploads/2017/04/British-Rowing-Safeguarding-and-Protecting-Children-Policy-Feb2013.pdf?41e6e6&41e6e6",
-          "download": "true"
-        },
-        {
-          "name": "Standards of Good Practice for Acceptable Behaviour",
-          "href": "https://www.britishrowing.org/wp-content/uploads/2018/08/Code-of-Ethics-Behaviours-1-September-2018.pdf",
-          "download": "true"
+          "file": "https://www.britishrowing.org/wp-content/uploads/2018/08/Codes-of-Conduct-1-Septrember-2018.pdf"
         }
       ]
     }
