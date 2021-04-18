@@ -1,5 +1,7 @@
 @tailwind base;
 
+@import "~@fontsource/inter/variable.css";
+@import "~@fontsource/spectral/index.css";
 /* Write your own custom base styles here */
 
 /* Start purging... */

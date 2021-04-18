@@ -1,9 +1,13 @@
 import Container from "../components/container";
-export default function HeroTitle({ title, children }) {
+import cn from "classnames";
+
+export default function HeroTitle({ title, children, prose }) {
   return (
-    <div className="flex flex-wrap content-center h-64 mb-16 text-white bg-sudbury-brand">
+    <div className="flex flex-wrap content-center pb-8 text-white h-36 bg-sudbury-brand">
       <Container>
-        <h1 className="text-4xl font-bold tracking-snug">{title}</h1>
+        <div className={cn(prose && "max-w-prose mx-auto text-center")}>
+          <h1 className="font-serif text-4xl">{title}</h1>
+        </div>
       </Container>
     </div>
   );

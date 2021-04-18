@@ -107,8 +107,12 @@
   ],
   "officers": [
     {
+<<<<<<< HEAD
       "name": "Keith Paxman",
       "vacant": 0,
+=======
+      "name": "Keith Paxman TEST",
+>>>>>>> c92c0386212d026d84c8db920121d293b29766a5
       "role": "Chairman"
     },
     {
@@ -242,6 +246,7 @@
       "name": "Development Committee",
       "description": "When formed, will identify options for investing club funds in infrastructure or club development",
       "officers": []
+<<<<<<< HEAD
     }
   ],
   "documents": [
@@ -307,6 +312,8 @@
           "download": "true"
         }
       ]
+=======
+>>>>>>> c92c0386212d026d84c8db920121d293b29766a5
     }
   ]
 }

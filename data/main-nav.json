@@ -1,0 +1,37 @@
+{
+  "about": {
+    "name": "About",
+    "mainItems": [
+      {
+        "name": "About",
+        "description": "Introduction to Sudbury Rowing Club",
+        "href": "/"
+      },
+      {
+        "name": "History",
+        "description": "Rowing in Sudbury since 1874",
+        "href": "/"
+      },
+      {
+        "name": "Governance",
+        "description": "How our club is organised",
+        "href": "/"
+      },
+      {
+        "name": "Safety",
+        "description": "How we’re rowing safely",
+        "href": "/"
+      }
+    ],
+    "quickItems": [
+      {
+        "name": "How to find us",
+        "href": "/"
+      },
+      {
+        "name": "Contact us",
+        "href": "/"
+      }
+    ]
+  }
+}

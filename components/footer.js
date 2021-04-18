@@ -1,30 +1,157 @@
-import Container from './container'
-import { EXAMPLE_PATH } from '../lib/constants'
+import Container from "./container";
+import { Facebook, Twitter, Instagram } from "react-feather";
+import Crest from "@/components/icons/logo/crest";
 
 export default function Footer() {
   return (
-    <footer className="bg-accent-1 border-t border-accent-2">
+    <footer className="bg-white border-t ">
       <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-            Statically Generated with Next.js.
-          </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
+        <div class="py-24 flex flex-wrap justify-left">
+          <div class="w-1/2 sm:w-4/12 md:w-3/12">
+            <Crest className="w-16 h-20 mb-6 text-gray-700" />
+            <div className="space-y-1 text-sm text-gray-500">
+              <p className="font-medium text-gray-800">Sudbury Rowing Club</p>
+              <p>Quay Lane</p>
+              <p>Sudbury</p>
+              <p>CO10 2AN</p>
+              
+            </div><p className="mt-4 text-sm text-gray-500"><a className="transition hover:text-gray-900" href="/">Report a bug</a></p>
+          </div>
+        </div>
+        <div class="pb-24 flex flex-wrap justify-left">
+          <div class="w-1/2 sm:w-4/12 md:w-3/12">
+            <div class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-4">
+              About
+            </div>
             <a
-              href="https://nextjs.org/docs/basic-features/pages"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
             >
-              Read Documentation
+              Introduction
             </a>
             <a
-              href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-              className="mx-3 font-bold hover:underline"
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
             >
-              View on GitHub
+              History
             </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Governance
+            </a>
+          </div>
+
+          <div class="w-1/2 sm:w-4/12 md:w-3/12">
+            <div class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-4">
+              Squads
+            </div>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Ladies
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Men
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Juniors
+            </a>
+          </div>
+
+          <div class="w-1/2 sm:w-4/12 md:w-3/12">
+            <div class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-4">
+              Regatta
+            </div>
+
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              About
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Events
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Entries
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Course
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Results
+            </a>
+          </div>
+
+          <div class="w-1/2 sm:w-4/12 md:w-3/12">
+            <div class="text-xs uppercase text-gray-400 font-bold tracking-widest mb-4">
+              Community
+            </div>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              myClubhouse
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Facebook
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Instagram
+            </a>
+            <a
+              href="#"
+              class="my-3 block text-gray-500 hover:text-gray-700 text-sm font-medium duration-700"
+            >
+              Twitter
+            </a>
+          </div>
+        </div>
+        <div class="pt-2">
+          <div class="flex py-5 m-auto text-gray-400 text-sm flex-col md:flex-row">
+            <div class="mt-2">© Sudbury Rowing Club 2021</div>
+
+            <div class="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
+              <a href="#" class="">
+                <Facebook size={18} />
+              </a>
+              <a href="#" class="mr-4">
+                <Twitter size={18} />
+              </a>
+              <a href="#" class="mr-4">
+                <Instagram size={18} />
+              </a>
+            </div>
           </div>
         </div>
       </Container>
     </footer>
-  )
+  );
 }

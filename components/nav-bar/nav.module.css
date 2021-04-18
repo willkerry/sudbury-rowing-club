@@ -1,0 +1,39 @@
+.navButton {
+  @apply inline-flex items-center text-base font-medium text-gray-300 rounded-md bg-sudbury-brand group hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-500;
+}
+.chevron {
+  @apply w-5 h-5 ml-2 text-gray-400 group-hover:text-gray-500;
+}
+.menuItemsParent {
+  @apply absolute z-20 w-screen max-w-xl px-2 mt-3 -ml-4 transform focus:outline-none sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2;
+}
+.menuItemsMiddle {
+  @apply overflow-hidden rounded-lg shadow-lg focus:outline-none;
+}
+.menuItemsChild {
+  @apply relative grid grid-cols-2 gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8;
+}
+.menuItem {
+  @apply flex items-start p-3 -m-3 rounded-lg;
+}
+.menuItemIcon {
+  @apply flex-shrink-0 w-6 h-6 text-sudbury;
+}
+.menuItemTitle {
+  @apply text-sm font-semibold text-gray-900;
+}
+.menuItemDescription {
+  @apply mt-px text-sm text-gray-500;
+}
+.menuItemLink {
+  @apply text-sm font-medium text-gray-500 hover:text-gray-800;
+}
+.menuFooter {
+  @apply px-5 py-5 space-y-6 bg-gray-50 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8;
+}
+.menuFooterItem {
+  @apply flex items-center p-3 -m-3 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100;
+}
+.menuFooterIcon {
+  @apply flex-shrink-0 w-6 h-6 text-gray-400;
+}

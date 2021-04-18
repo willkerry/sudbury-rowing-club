@@ -1,0 +1,59 @@
+.govContainer {
+  @apply container px-5 mx-auto;
+}
+.row {
+  @apply my-16 md:flex;
+}
+.fullWidthContainer {
+  @apply relative w-screen py-10 left-1/2;
+  margin-left: -50vw;
+}
+.govGrid {
+  @apply grid grid-cols-2 gap-16 md:grid-cols-3 md:w-4/5;
+}
+.govGrid3 {
+  @apply grid grid-cols-2 gap-16 md:grid-cols-3 md:w-4/5;
+}
+.sectionTitle {
+  @apply mb-8 text-xl font-bold tracking-tight text-gray-800;
+}
+.officerName {
+  @apply h-8 font-serif text-2xl tracking-tight text-gray-800;
+}
+.officerVacantContainer {
+  @apply h-8;
+}
+.officerVacant {
+    @apply p-1 text-sm font-medium tracking-wider text-gray-500 border rounded bg-gray-50; 
+  }
+.subTitle {
+  @apply font-semibold text-gray-900;
+}
+.description {
+  @apply mb-4 text-gray-700;
+}
+.threeColFlow {
+  @apply col-start-2 col-end-5;
+}
+@media (min-width: 768px) {
+  .threeColFlow {
+    columns: 2;
+  }
+}
+ul.dashList {
+  @apply text-gray-600 list-inside;
+}
+li.dashList {
+  @apply relative pl-8;
+}
+ul.dashList > li:before {
+  content: "\2014\a0";
+  font-weight: 400;
+  @apply absolute left-0 text-gray-300;
+}
+.scrollLink {
+  @apply inline-block;
+}
+.scrollLink:hover {
+  @apply text-gray-800 cursor-pointer;
+}
