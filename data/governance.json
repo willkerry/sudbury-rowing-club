@@ -154,11 +154,65 @@
   ],
   "documents": [
     {
-      "name": "British Rowing",
-      "documents": [
+      "group": "Governance",
+      "items": [
+        { "name": "Constitution", "href": "/governance/club-constitution/" },
+        { "name": "Club Rules", "href": "/governance/club-rules/" }
+      ]
+    },
+    {
+      "group": "Policies and Guidance",
+      "items": [
+        {
+          "name": "Anti-Bullying Policy",
+          "href": "https://drive.google.com/open?id=1QRH9UIb-fXCisc9t4CxrgH_qDgHI2o2bpktkf4_GZ2g",
+          "external": true
+        },
+        {
+          "name": "Grievance and Disciplinary Policy",
+          "href": "https://drive.google.com/open?id=1TqcHjjAuk-qnZZB5ovUeCTxbtWRSlYW95C0utmmtas4",
+          "external": true
+        },
+        {
+          "name": "Use of Photographic Equipment",
+          "href": "https://drive.google.com/open?id=1f0F-l6h_2Dt9t6_i1cDH9zinZBvDVuMTMdRX2B8gbWo",
+          "external": true
+        },
+        {
+          "name": "Membership Application Form",
+          "href": "https://drive.google.com/open?id=1WaTnDrOacbtsfckpefh4YoxzE58Jh380_tMgSC_Ywzg",
+          "external": true
+        },
+        {
+          "name": "Volunteer Reference Form",
+          "href": "https://drive.google.com/open?id=1Dce6_tNYxkRQwPeVQ5tFWRu_etx7htnlOLgXXvf9krs",
+          "external": true
+        },
+        {
+          "name": "General Risk Assessment",
+          "href": "https://docs.google.com/document/d/11CRxQkfE4pvAqiDEqwMeibPJ9gLKh4tZW-NesAQ-ajE/edit?usp=sharing",
+          "external": true
+        },
+        { "name": "Privacy Policy", "href": "/" }
+      ]
+    },
+    {
+      "group": "British Rowing",
+      "items": [
         {
           "name": "Codes of Conduct",
-          "file": "https://www.britishrowing.org/wp-content/uploads/2018/08/Codes-of-Conduct-1-Septrember-2018.pdf"
+          "href": "https://www.britishrowing.org/wp-content/uploads/2018/08/Codes-of-Conduct-1-Septrember-2018.pdf",
+          "external": true
+        },
+        {
+          "name": "Safeguarding",
+          "href": "https://www.britishrowing.org/wp-content/uploads/2017/04/British-Rowing-Safeguarding-and-Protecting-Children-Policy-Feb2013.pdf?41e6e6&41e6e6",
+          "download": "true"
+        },
+        {
+          "name": "Standards of Good Practice for Acceptable Behaviour",
+          "href": "https://www.britishrowing.org/wp-content/uploads/2018/08/Code-of-Ethics-Behaviours-1-September-2018.pdf",
+          "download": "true"
         }
       ]
     }

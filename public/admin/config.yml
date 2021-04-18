@@ -85,6 +85,7 @@ collections:
                 minimize_collapsed: true
                 widget: list
                 required: false
+                hint: "A list of comma-separated terms, e.g. Chairman, Secretary, Treasurer"
 
           - {
               label: President,
@@ -130,9 +131,9 @@ collections:
             summary: "{{fields.name}}"
             hint: "Document groups and the documents within them are displayed in the order defined here."
             fields:
-              - { label: Group name, name: name, widget: string }
+              - { label: Group name, name: group, widget: string }
               - label: Documents
-                name: documents
+                name: items
                 allow_add: true
                 label_singular: document
                 minimize_collapsed: true
@@ -142,9 +143,9 @@ collections:
                   - { label: Document name, name: name, widget: string }
                   - {
                       label: Document,
-                      name: file,
+                      name: href,
                       widget: file,
-                      hint: Upload a PDF version of the document.,
+                      hint: Upload or link to PDF version of the document.,
                     }
       - label: "Safety"
         name: "safety"
