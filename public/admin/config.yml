@@ -72,7 +72,7 @@ collections:
                   name: "vacant",
                   widget: "boolean",
                   default: false,
-                  hint: "Display a ‘TBA’ icon instead of the officer’s name. "
+                  hint: "Display a ‘TBA’ icon instead of the officer’s name. ",
                 }
           - label: Committees
             name: committees
@@ -182,16 +182,17 @@ collections:
             allow_add: true
             label_singular: safety notice
             minimize_collapsed: true
-            summary: "{{fields.subject}}"
+            summary: "{{fields.name}}"
             widget: list
             fields:
-              - { label: Subject, name: subject, widget: string }
+              - { label: Subject, name: name, widget: string }
               - {
                   label: Description,
                   name: description,
                   widget: markdown,
                   buttons: ["bulleted-list", "link"],
                   editor_components: [""],
+                  required: false,
                 }
               - label: "Date updated"
                 name: "date"
