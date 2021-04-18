@@ -1,0 +1,45 @@
+{
+  "officers": [
+    {
+      "name": "Keith Paxman",
+      "role": "Chairman"
+    }
+  ],
+  "committees": [
+    {
+      "name": "Management Committee",
+      "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees",
+      "officers": [
+        "Chairman",
+        "Secretary",
+        "Treasurer",
+        "Captain"
+      ]
+    }
+  ],
+  "presidentDescription": "By convention, the incoming Mayor of Sudbury is invited each year to become the Club president.",
+  "vicePresidentDescription": "Vice-presidents are elected each year at the AGM.",
+  "vicePresidents": [
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    }
+  ],
+  "trustees": [
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    }
+  ],
+  "documents": [
+    {
+      "name": "British Rowing",
+      "documents": [
+        {
+          "name": "Codes of Conduct",
+          "file": "https://www.britishrowing.org/wp-content/uploads/2018/08/Codes-of-Conduct-1-Septrember-2018.pdf"
+        }
+      ]
+    }
+  ]
+}

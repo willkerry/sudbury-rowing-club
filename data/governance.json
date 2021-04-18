@@ -2,7 +2,98 @@
   "officers": [
     {
       "name": "Keith Paxman",
+      "vacant": 0,
       "role": "Chairman"
+    },
+    {
+      "name": "Pippa Kerry",
+      "vacant": 0,
+      "role": "Captain"
+    },
+    {
+      "name": "Jeremy Milbank",
+      "vacant": 0,
+      "role": "Club Secretary"
+    },
+    {
+      "name": "Tim Hysom",
+      "vacant": 0,
+      "role": "Treasurer"
+    },
+    {
+      "name": "Tim Hysom",
+      "vacant": 0,
+      "role": "Men’s Vice-Captain"
+    },
+    {
+      "name": "Sophie Lovegrove",
+      "vacant": 0,
+      "role": "Ladies’ Vice-Captain"
+    },
+    {
+      "name": "Nick Power",
+      "vacant": 0,
+      "role": "Junior Vice-Captain"
+    },
+    {
+      "name": "Jeremy Milbank",
+      "vacant": 0,
+      "role": "Recreational Vice-Captain"
+    },
+    {
+      "name": "Sean Moriarty",
+      "vacant": 0,
+      "role": "Learn to Row/Development"
+    },
+    {
+      "name": "Alex Elmon",
+      "vacant": 0,
+      "role": "Safety"
+    },
+    {
+      "name": "TBA",
+      "vacant": true,
+      "role": "Welfare"
+    },
+    {
+      "name": "TBA",
+      "vacant": true,
+      "role": "Regatta Secretary"
+    },
+    {
+      "name": "Tony Moule",
+      "vacant": 0,
+      "role": "Boatman"
+    },
+    {
+      "name": "Penny Wilby",
+      "vacant": 0,
+      "role": "Sponsorship"
+    },
+    {
+      "name": "Lee Adams",
+      "vacant": 0,
+      "role": "Facilities"
+    },
+    {
+      "name": "Amanda Ashton",
+      "vacant": 0,
+      "role": "Publicity"
+    },
+    {
+      "name": "TBA",
+      "vacant": 1,
+      "role": "Social Secretary"
+    },
+    {
+      "name": "Tim Hysom",
+      "vacant": 0,
+      "role": "Membership"
+    },
+    {
+      "name": "Will Kerry",
+      "vacant": 0,
+      "role": "Website"
     }
   ],
   "committees": [
