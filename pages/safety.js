@@ -84,9 +84,9 @@ export default function Governance({ preview }) {
               </div>
 
               <div className="md:w-2/3">
-                {item.file && (
+                {item.link.file && (
                   <a className="px-3 py-2 font-medium transition border-2 rounded-md hover:border-gray-500">
-                    <Link href={item.file}>Download</Link>
+                    <Link href={item.link.file}>{item.link.name}</Link>
                   </a>
                 )}
                 <div className="prose">
