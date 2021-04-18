@@ -202,7 +202,32 @@ collections:
                 format: "LLL"
                 required: false
                 picker_utc: false
-              - { label: File, name: file, widget: file, required: false }
+              - label: "Link"
+                name: "link"
+                widget: "object"
+                summary: { { fields.name } }
+                fields:
+                  - {
+                      label: File/Link,
+                      name: file,
+                      widget: file,
+                      required: false,
+                    }
+                  - {
+                      label: File/Link Title,
+                      name: name,
+                      widget: string,
+                      required: false,
+                    }
+                  - label: "Type"
+                    name: "type"
+                    widget: "select"
+
+                    required: false
+                    options:
+                      - { label: "Internal Link", value: "internal" }
+                      - { label: "External Link", value: "external" }
+                      - { label: "File Download", value: "download" }
           - label: Safety Documents
             name: documents
             allow_add: true

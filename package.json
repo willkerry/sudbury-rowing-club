@@ -11,6 +11,7 @@
     "@fontsource/spectral": "^4.2.2",
     "@headlessui/react": "^0.3.1",
     "@heroicons/react": "^1.0.0",
+    "@silvenon/remark-smartypants": "^1.0.0",
     "@tailwindcss/typography": "^0.4.0",
     "classnames": "2.2.6",
     "date-fns": "2.16.1",
@@ -20,6 +21,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.9",
+    "react-markdown": "^6.0.0",
     "react-scroll": "^1.8.2",
     "remark": "13.0.0",
     "remark-html": "13.0.1"

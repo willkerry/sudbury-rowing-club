@@ -3,9 +3,11 @@ import Container from "../components/container";
 import HeroTitle from "../components/hero-title";
 import Layout from "../components/layout";
 import styles from "../components/governance/governance.module.css";
-import {
-  Link as ScrollLink
-} from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+import Link from "next/link";
+
+import ReactMarkdown from "react-markdown";
+import smartypants from "@silvenon/remark-smartypants";
 
 import {
   officers as clubOfficers,
@@ -16,18 +18,9 @@ import {
   trustees,
 } from "../data/governance.json";
 
-export default function Governance({ preview }) {
-  const sorted = vicePresidents.sort(function (a, b) {
-    if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
-    if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
-    return 0;
-  });
-  const sortedB = trustees.sort(function (a, b) {
-    if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
-    if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
-    return 0;
-  });
+import { safety } from "../data/safety.json";
 
+export default function Governance({ preview }) {
   return (
     <Layout preview={preview}>
       <Head>
@@ -38,7 +31,7 @@ export default function Governance({ preview }) {
         <div className="container px-5 py-5 mx-auto space-x-6 text-gray-500 ">
           <ScrollLink
             activeClass="text-gray-800"
-            className={styles.scrollLink + ' transition'}
+            className={styles.scrollLink + " transition"}
             to="officers"
             spy={true}
             smooth={true}
@@ -49,7 +42,7 @@ export default function Governance({ preview }) {
           </ScrollLink>
           <ScrollLink
             activeClass="text-gray-800"
-            className={styles.scrollLink + ' transition'}
+            className={styles.scrollLink + " transition"}
             to="committees"
             spy={true}
             smooth={true}
@@ -60,7 +53,7 @@ export default function Governance({ preview }) {
           </ScrollLink>
           <ScrollLink
             activeClass="text-gray-800"
-            className={styles.scrollLink + ' transition'}
+            className={styles.scrollLink + " transition"}
             to="nonexec"
             spy={true}
             smooth={true}
@@ -71,7 +64,7 @@ export default function Governance({ preview }) {
           </ScrollLink>
           <ScrollLink
             activeClass="text-gray-800"
-            className={styles.scrollLink + ' transition'}
+            className={styles.scrollLink + " transition"}
             to="documents"
             spy={true}
             smooth={true}
@@ -83,24 +76,34 @@ export default function Governance({ preview }) {
         </div>
       </div>
       <Container>
-        <div className={styles.row} id="officers">
-          <div className="md:w-1/5">
-            <h2 className={styles.sectionTitle}>Club Officers</h2>
-          </div>
-          <div className={styles.govGrid}>
-            {clubOfficers.map((entry) => {
-              return (
-                <div key={entry.name}>
-                  <div className={styles.officerName}>{entry.name}</div>
-                  <div>{entry.role}</div>
+        {safety.map((item) => {
+          return (
+            <div id={item.name} className={styles.row}>
+              <div className="md:w-1/3">
+                <h2 className={styles.sectionTitle}>{item.name}</h2>
+              </div>
+
+              <div className="md:w-2/3">
+                {item.file && (
+                  <a className="px-3 py-2 font-medium transition border-2 rounded-md hover:border-gray-500">
+                    <Link href={item.file}>Download</Link>
+                  </a>
+                )}
+                <div className="prose">
+                  {item.description && (
+                    <ReactMarkdown remarkPlugins={[smartypants]}>
+                      {item.description}
+                    </ReactMarkdown>
+                  )}
+                  {item.date && <small>Last updated {item.date}</small>}
                 </div>
-              );
-            })}
-          </div>
-        </div>
+              </div>
+            </div>
+          );
+        })}
         <div id="committees" className={styles.row}>
           <div className="md:w-1/5">
-            <h2 className={styles.sectionTitle}>Committees</h2>
+            <h2 className={styles.sectionTitle}>Covid-19</h2>
           </div>
           <div className={styles.govGrid}>
             {committees.map((entry) => {
@@ -108,18 +111,6 @@ export default function Governance({ preview }) {
                 <div key={entry.name}>
                   <h3 className={styles.subTitle}>{entry.name}</h3>
                   <p className={styles.description}>{entry.description}</p>
-                  <ul className={styles.dashList}>
-                    {entry.officers.map((sitting) => {
-                      return (
-                        <li
-                          className="first:font-bold"
-                          key={sitting.toString()}
-                        >
-                          {sitting}
-                        </li>
-                      );
-                    })}
-                  </ul>
                 </div>
               );
             })}
