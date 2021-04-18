@@ -16,7 +16,7 @@ collections:
         name: "home"
         file: "content/home.md"
         fields:
-          - { label: "Club Officers", name: "co", widget: "string" }
+          - { label: "Club Officers", name: "clubOfficers", widget: "string" }
           - { label: "Publish Date", name: "date", widget: "datetime" }
           - { label: "Body", name: "body", widget: "markdown" }
       - label: "About"
@@ -54,7 +54,7 @@ collections:
     files:
       - label: "Governance"
         name: "governance"
-        file: "data/governance.json"
+        file: "data/newgovernance.json"
         fields:
           - label: Club Officers
             name: officers
