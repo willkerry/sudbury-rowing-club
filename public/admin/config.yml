@@ -164,13 +164,12 @@ collections:
             collapsed: true
             fields:
               - {
-                  label: Disable?,
-                  name: disable,
+                  label: Display river status notification?,
+                  name: display,
                   widget: boolean,
                   default: false,
                 }
-              - { label: Title, name: title, widget: string }
-              - { label: Body, name: body, widget: text }
+              - { label: Description, name: description, widget: text }
               - {
                   label: Severity,
                   name: severity,
@@ -203,4 +202,14 @@ collections:
                 format: "LLL"
                 required: false
                 picker_utc: false
+              - { label: File, name: file, widget: file, required: false }
+          - label: Safety Documents
+            name: documents
+            allow_add: true
+            label_singular: document
+            minimize_collapsed: true
+            summary: "{{fields.name}}"
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
               - { label: File, name: file, widget: file, required: false }

@@ -24,11 +24,5 @@
       "date": "",
       "file": ""
     }
-  ],
-  "status": {
-    "disable": true,
-    "title": "Do not row",
-    "body": "The river is currently in flood. ",
-    "severity": "Red"
-  }
+  ]
 }
