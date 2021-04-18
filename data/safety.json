@@ -24,5 +24,32 @@
       "date": "",
       "file": ""
     }
+  ],
+  "status": {
+    "severity": "Red",
+    "display": true,
+    "description": "The river is in flood"
+  },
+  "documents": [
+    {
+      "name": "Safety Plan and Policy",
+      "file": "https://sudburyrowingclub.org.uk/wp-content/uploads/2021/04/SRC-Safety-Policy-and-Plan-V5-13112020.pdf"
+    },
+    {
+      "name": "Incident Reporting Form",
+      "file": "https://sudburyrowingclub.org.uk/wp-content/uploads/2018/03/SRC-Incident-Recording-Book.pdf"
+    },
+    {
+      "name": "British Rowing Incident Reporting",
+      "file": "https://incidentreporting.britishrowing.org"
+    },
+    {
+      "name": "Speed limit exemption",
+      "file": "https://sudburyrowingclub.org.uk/wp-content/uploads/2019/05/Sudbury-Rowing-Club-Speed-Exemption-May-19-May-20.pdf"
+    },
+    {
+      "name": "Collision Regulations",
+      "file": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/281965/msn1781.pdf"
+    }
   ]
 }
