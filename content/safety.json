@@ -1,0 +1,15 @@
+{
+  "status": {
+    "disable": true,
+    "title": "No not row",
+    "body": "The river is currently in flood. ",
+    "severity": "Red"
+  },
+  "safety": [
+    {
+      "date": "",
+      "subject": "Pre-row safety guide",
+      "description": "Our simple guide to safe rowing. If in doubt, seek guidance – a missed outing is better than taking unnessecary risk."
+    }
+  ]
+}
