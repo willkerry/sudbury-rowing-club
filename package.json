@@ -9,14 +9,14 @@
   "dependencies": {
     "@fontsource/inter": "latest",
     "@fontsource/spectral": "latest",
-    "@headlessui/react": "^1.0.0",
+    "@headlessui/react": "^1.1.1",
     "@heroicons/react": "latest",
     "@silvenon/remark-smartypants": "^1.0.0",
     "@tailwindcss/typography": "^0.4.0",
-    "classnames": "2.2.6",
-    "date-fns": "^2.21.1",
+    "classnames": "^2.3.1",
+    "date-fns": "^2.21.2",
     "gray-matter": "4.0.2",
-    "netlify-cms-app": "^2.14.45",
+    "netlify-cms-app": "2.15.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -30,8 +30,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.1",
-    "postcss": "^8.2.4",
-    "tailwindcss": "^2.0.2"
+    "postcss": "^8.2.14",
+    "tailwindcss": "^2.1"
   },
   "license": "MIT"
 }
