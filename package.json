@@ -13,7 +13,7 @@
     "@heroicons/react": "latest",
     "@silvenon/remark-smartypants": "^1.0.0",
     "@tailwindcss/typography": "^0.4.0",
-    "classnames": "2.2.6",
+    "classnames": "2.3.1",
     "date-fns": "^2.21.1",
     "gray-matter": "4.0.2",
     "netlify-cms-app": "^2.14.45",
