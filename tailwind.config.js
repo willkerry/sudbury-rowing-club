@@ -1,6 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+  plugins: [require("@tailwindcss/typography")],
   purge: ["./components/**/*.js", "./pages/**/*.js"],
   theme: {
     extend: {
@@ -36,7 +37,6 @@ module.exports = {
       fontFamily: {
         sans: ["InterVariable", "sans-serif"],
         serif: ["Spectral", "serif"],
-        caps: ["ridley"],
       },
       boxShadow: {
         small: "0 5px 10px rgba(0, 0, 0, 0.12)",
@@ -52,7 +52,6 @@ module.exports = {
             "h2, h3": {
               lineHeight: theme("lineHeight.snug"),
             },
-
             blockquote: {
               fontWeight: null,
               color: theme("colors.gray.600"),
@@ -76,6 +75,17 @@ module.exports = {
             "blockquote p:last-of-type::after": {
               content: null,
             },
+            a: {
+              fontWeight: null,
+              textDecoration: null,
+              color: theme('colors.sudbury.light'),
+              transitionProperty: theme('transitionProperty.colors'),
+              transitionDuration: theme('transitionDuration.200'),
+              transitionTimingFunction: theme('transitionTimingFunction.DEFAULT'),
+            },
+            'a:hover': {
+              color: theme('colors.sudbury.lighter'),
+            },
           },
         },
       }),
@@ -86,5 +96,4 @@ module.exports = {
       fontWeight: ["first"],
     },
   },
-  plugins: [require("@tailwindcss/typography")],
 };

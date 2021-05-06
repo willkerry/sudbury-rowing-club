@@ -5,4 +5,4 @@ categories:
   - "news"
 ---
 
-https://www.youtube.com/watch?v=HLfhQ8SKjwI&list=PLE0CE140C981F64AE
+https://youtu.be/HLfhQ8SKjwI

@@ -176,6 +176,7 @@ collections:
                   widget: select,
                   options: ["Green", "Amber", "Red"],
                 }
+              - { label: Date updated, name: date, widget: datetime }
           - label: Safety Notices
             name: safety
             allow_add: true

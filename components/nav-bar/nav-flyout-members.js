@@ -7,7 +7,6 @@ import {
   LocationMarkerIcon,
   MailIcon,
 } from "@heroicons/react/outline";
-import { ChevronRightIcon } from "@heroicons/react/solid";
 import styles from "../../components/nav-bar/nav.module.css";
 import cn from "classnames";
 
@@ -17,20 +16,14 @@ import Governance from "@/components/icons/governance";
 import Resources from "@/components/icons/resources";
 import Rower from "@/components/icons/rower";
 
-export default function NavDropdown() {
+export default function NavFlyoutMembers() {
   return (
     <div className="relative z-40">
       <Menu>
         {({ open }) => (
           <>
             <Menu.Button className={styles.navButton}>
-              <span>About</span>
-              <ChevronRightIcon
-                className={
-                  styles.chevron +
-                  `${open ? " transform rotate-90 transition" : ""}`
-                }
-              />
+              <span>Members</span>
             </Menu.Button>
             <Transition
               show={open}
@@ -62,7 +55,7 @@ export default function NavDropdown() {
                                   Introduction
                                 </p>
                                 <p className={styles.menuItemDescription}>
-                                  Welcome to Sudbury
+                                  ...to the Sudbury International Regatta.
                                 </p>
                               </div>
                             </a>
@@ -71,12 +64,12 @@ export default function NavDropdown() {
                       </Link>
                       <div href="/" className={styles.menuItem}>
                         <Rower className={styles.menuItemIcon} />
-                        <div className="ml-4">
+                        <div className="w-full ml-4">
                           <p className="mb-1 text-xs font-semibold tracking-wider text-gray-400 uppercase">
-                            Squads
+                            Results
                           </p>
-                          <div className="grid grid-cols-2">
-                            <Link href="/squads/ladies">
+                          <div className="flex flex-wrap">
+                            <Link href="/">
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
@@ -85,12 +78,12 @@ export default function NavDropdown() {
                                       "text-gray-800": active,
                                     })}
                                   >
-                                    Ladies
+                                    2019
                                   </a>
                                 )}
                               </Menu.Item>
                             </Link>
-                            <Link href="/squads/men">
+                            <Link href="/">
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
@@ -99,54 +92,12 @@ export default function NavDropdown() {
                                       "text-gray-800": active,
                                     })}
                                   >
-                                    Men
+                                    2018
                                   </a>
                                 )}
                               </Menu.Item>
                             </Link>
                             <Link href="/">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="/squads/juniors"
-                                    className={cn(styles.menuItemLink, {
-                                      "text-gray-800": active,
-                                    })}
-                                  >
-                                    Juniors
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </Link>
-                            <Link href="/">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="/squads/recreational"
-                                    className={cn(styles.menuItemLink, {
-                                      "text-gray-800": active,
-                                    })}
-                                  >
-                                    Recreational
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </Link>
-                            <Link href="/">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="/squads/adaptive"
-                                    className={cn(styles.menuItemLink, {
-                                      "text-gray-800": active,
-                                    })}
-                                  >
-                                    Adaptive
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </Link>
-                            <Link href="/squads/indoor">
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
@@ -155,7 +106,91 @@ export default function NavDropdown() {
                                       "text-gray-800": active,
                                     })}
                                   >
-                                    Indoor
+                                    2017
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </Link>
+                            <Link href="/">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/"
+                                    className={cn(styles.menuItemLink, {
+                                      "text-gray-800": active,
+                                    })}
+                                  >
+                                    2016
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </Link>
+                            <Link href="/">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/"
+                                    className={cn(styles.menuItemLink, {
+                                      "text-gray-800": active,
+                                    })}
+                                  >
+                                    2015
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </Link>
+                            <Link href="/">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/"
+                                    className={cn(styles.menuItemLink, {
+                                      "text-gray-800": active,
+                                    })}
+                                  >
+                                    2014
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </Link>
+                            <Link href="/">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/"
+                                    className={cn(styles.menuItemLink, {
+                                      "text-gray-800": active,
+                                    })}
+                                  >
+                                    2013
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </Link>
+                            <Link href="/">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/"
+                                    className={cn(styles.menuItemLink, {
+                                      "text-gray-800": active,
+                                    })}
+                                  >
+                                    2012
+                                  </a>
+                                )}
+                              </Menu.Item>
+                            </Link>
+                            <Link href="/">
+                              <Menu.Item>
+                                {({ active }) => (
+                                  <a
+                                    href="/"
+                                    className={cn(styles.menuItemLink, {
+                                      "text-gray-800": active,
+                                    })}
+                                  >
+                                    More
                                   </a>
                                 )}
                               </Menu.Item>
@@ -206,73 +241,63 @@ export default function NavDropdown() {
                           )}
                         </Menu.Item>
                       </Link>
-                      <Link href="/safety">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              className={cn(styles.menuItem, {
-                                "bg-gray-50": active,
-                              })}
-                              href="/safety"
-                            >
-                              <Safety className={styles.menuItemIcon} />
-                              <div className="ml-4">
-                                <p className={styles.menuItemTitle}>Safety</p>
-                                <p className={styles.menuItemDescription}>
-                                  Our precautions
-                                </p>
-                              </div>
-                            </a>
-                          )}
-                        </Menu.Item>
-                      </Link>
-                      <Link href="/resources">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              className={cn(styles.menuItem, {
-                                "bg-gray-50": active,
-                              })}
-                              href="/resources"
-                            >
-                              <Resources className={styles.menuItemIcon} />
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            className={cn(styles.menuItem, {
+                              "bg-gray-50": active,
+                            })}
+                            href="/account-settings"
+                          >
+                            <Safety className={styles.menuItemIcon} />
+                            <div className="ml-4">
+                              <p className={styles.menuItemTitle}>Safety</p>
+                              <p className={styles.menuItemDescription}>
+                                Our precautions
+                              </p>
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            className={cn(styles.menuItem, {
+                              "bg-gray-50": active,
+                            })}
+                            href="/account-settings"
+                          >
+                            <Resources className={styles.menuItemIcon} />
 
-                              <div className="ml-4">
-                                <p className={styles.menuItemTitle}>
-                                  Resources
-                                </p>
-                                <p className={styles.menuItemDescription}>
-                                  Useful links
-                                </p>
-                              </div>
-                            </a>
-                          )}
-                        </Menu.Item>
-                      </Link>
+                            <div className="ml-4">
+                              <p className={styles.menuItemTitle}>Resources</p>
+                              <p className={styles.menuItemDescription}>
+                                Useful links
+                              </p>
+                            </div>
+                          </a>
+                        )}
+                      </Menu.Item>
                     </div>
                     <div className={styles.menuFooter}>
                       <div className="flow-root">
-                        <Link href="/location">
-                          <Menu.Item>
-                            <a href="#" className={styles.menuFooterItem}>
-                              <LocationMarkerIcon
-                                className={styles.menuFooterIcon}
-                              />
+                        <Menu.Item>
+                          <a href="#" className={styles.menuFooterItem}>
+                            <LocationMarkerIcon
+                              className={styles.menuFooterIcon}
+                            />
 
-                              <span className="ml-3">How to find us</span>
-                            </a>
-                          </Menu.Item>
-                        </Link>
+                            <span className="ml-3">How to find us</span>
+                          </a>
+                        </Menu.Item>
                       </div>
                       <div className="flow-root">
-                        <Link href="/contact">
-                          <Menu.Item>
-                            <a href="#" className={styles.menuFooterItem}>
-                              <MailIcon className={styles.menuFooterIcon} />
-                              <span className="ml-3">Contact us</span>
-                            </a>
-                          </Menu.Item>
-                        </Link>
+                        <Menu.Item>
+                          <a href="#" className={styles.menuFooterItem}>
+                            <MailIcon className={styles.menuFooterIcon} />
+                            <span className="ml-3">Contact us</span>
+                          </a>
+                        </Menu.Item>
                       </div>
                     </div>
                   </div>

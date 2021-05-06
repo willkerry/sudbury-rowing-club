@@ -1,6 +1,7 @@
 import DateFormatter from "../components/date-formatter";
 import CoverImage from "./cover-image";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PostPreview({
   title,
@@ -11,27 +12,29 @@ export default function PostPreview({
   slug,
 }) {
   return (
-    <div>
-      <div className="mb-5">
-        {/* {CoverImage ? (
-          <CoverImage
-            slug={slug}
-            title={title}
-            src={coverImage}
-            height={278}
-            width={556}
-          />
-        ) : null} */}
-      </div>
-      <h3 className="mb-3 text-3xl leading-snug">
-        <Link as={`/news/${slug}`} href="/news/[slug]">
-          <a className="hover:underline">{title}</a>
-        </Link>
-      </h3>
-      <div className="mb-4 text-lg">
-        <DateFormatter dateString={date} />
-      </div>
-      <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
-    </div>
+    <>
+      <Link as={`/news/${slug}`} href="/news/[slug]">
+        <a className="relative h-64 border rounded-lg bg-sudbury-brand">
+          {coverImage && (
+            <Image
+              src={coverImage}
+              layout="fill"
+              objectFit="cover"
+              className="z-0 rounded-lg"
+            />
+          )}
+          <div className="absolute w-full h-full transition duration-200 rounded-lg hover:shadow-lg opacity-70 bg-gradient-to-b from-transparent to-gray-900 hover:opacity-80"></div>
+
+          <div className="absolute bottom-0 z-40 mx-5 my-4 text-white rounded-lg">
+          <div className="mb-1 text-sm font-medium opacity-90 ">
+            <DateFormatter dateString={date} />
+          </div>
+          <h3 className="font-serif text-2xl tracking-tight">
+            <a className="" dangerouslySetInnerHTML={{ __html: title }}></a>
+          </h3>
+        </div>
+        </a>
+      </Link>
+    </>
   );
 }

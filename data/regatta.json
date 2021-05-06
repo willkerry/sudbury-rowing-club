@@ -1,8 +1,8 @@
 {
   "regattaIntro": {
-    "date": "2019-08-02T22:00:00Z",
+    "date": "2019-08-03T00:00:00.000Z",
     "title": "139th Sudbury International Regatta",
-    "description": "<p>The Sudbury Regatta takes place on the first Saturday of August each year.</p>\n <p>The 650m Rowing course is raced upstream from a stake boat start along a course characterised by some challenging bends. One of the highlights of the regatta is the sprint eights event, racing for hip-flasks along the last and straighter 350m.</p>\n <p>We provide state of the art spectator facilities, particularly in the stadium section of the course with wonderful home-baked cakes, burgers, a hog roast, ice cream and locally brewed beer.</p>\n <p>The official event photographer is <a href=\"https://www.hiskett.net/\">Bill Hiskett</a>. His photographs may be used on the website and social media sites of the Regatta and its Organising Committee. Official photographs will also be available for sale from Bill’s <a href=\"https://www.hiskett.net/\">website</a>&nbsp;after the event. By entering the Regatta, competitors and those responsible for them consent to this.</p>",
+    "description": "The Sudbury Regatta takes place on the first Saturday of August each year.\n\n The 650m Rowing course is raced upstream from a stake boat start along a course characterised by some challenging bends. One of the highlights of the regatta is the sprint eights event, racing for hip-flasks along the last and straighter 350m.\n\n We provide state of the art spectator facilities, particularly in the stadium section of the course with wonderful home-baked cakes, burgers, a hog roast, ice cream and locally brewed beer.\n\n The official event photographer is [Bill Hiskett](https://www.hiskett.net/). His photographs may be used on the website and social media sites of the Regatta and its Organising Committee. Official photographs will also be available for sale from [Bill’s website](https://www.hiskett.net/) after the event. By entering the Regatta, competitors and those responsible for them consent to this.",
     "displayNote": true,
     "note": {
       "title": "Single-Use Plastics",
@@ -30,38 +30,17 @@
           "Adaptive/Para-Rowing",
           "Parent & Child (Junior/J15 and under)"
         ],
-        "gender": [
-          "Open",
-          "Women",
-          "Mixed"
-        ],
-        "boatClasses": [
-          "4+",
-          "4×−",
-          "4×+",
-          "2+",
-          "2−",
-          "2×",
-          "1×"
-        ],
+        "gender": ["Open", "Women", "Mixed"],
+        "boatClasses": ["4+", "4×−", "4×+", "2+", "2−", "2×", "1×"],
         "prizes": "Pewter tankards"
       },
       {
         "title": "Sprint Eights",
         "map": "https://sudburyrowingclub.org.uk/wp-content/uploads/2020/06/Artboard-1350m.svg",
         "description": "350m upstream from a free start",
-        "categories": [
-          "Senior",
-          "Masters"
-        ],
-        "gender": [
-          "Open",
-          "Women",
-          "Mixed"
-        ],
-        "boatClasses": [
-          "8+"
-        ],
+        "categories": ["Senior", "Masters"],
+        "gender": ["Open", "Women", "Mixed"],
+        "boatClasses": ["8+"],
         "prizes": "Hipflasks"
       }
     ]
@@ -557,14 +536,5 @@
       }
     ]
   },
-  "availableBoatClasses": [
-    "8+",
-    "4+",
-    "4×−",
-    "4×+",
-    "2+",
-    "2−",
-    "2×",
-    "1×"
-  ]
+  "availableBoatClasses": ["8+", "4+", "4×−", "4×+", "2+", "2−", "2×", "1×"]
 }

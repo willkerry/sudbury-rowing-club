@@ -1,8 +1,12 @@
-import Logo from "../../components/logo/";
-import NavFlyout from "../../components/nav-bar/nav-flyout";
-import NavFlyoutRegatta from "../../components/nav-bar/nav-flyout-regatta";
+import Logo from "@/components/logo/";
+import NavFlyout from "@/components/nav-bar/nav-flyout";
+import NavFlyoutRegatta from "@/components/nav-bar/nav-flyout-regatta";
+import NavFlyoutMembers from "@/components/nav-bar/nav-flyout-members";
 import { MenuIcon } from "@heroicons/react/outline";
-import styles from "../../components/nav-bar/nav.module.css";
+import styles from "@/components/nav-bar/nav.module.css";
+
+import Link from "next/link";
+import SafetyStatus from "./safety-status";
 
 export default function NavBar() {
   return (
@@ -10,12 +14,14 @@ export default function NavBar() {
       <div className="px-4 mx-auto max-w-7xl sm:px-6">
         <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <span className="sr-only">Sudbury Rowing Club</span>
-
-              <Logo className="w-auto h-8 sm:h-10" />
-            </a>
+            <Link href="/">
+              <a href="/">
+                <span className="sr-only">Sudbury Rowing Club</span>
+                <Logo className="w-auto h-8 sm:h-10" />
+              </a>
+            </Link>
           </div>
+
           <div className="-my-2 -mr-2 md:hidden">
             <button
               type="button"
@@ -26,7 +32,7 @@ export default function NavBar() {
               <MenuIcon className="w-6 h-6" />
             </button>
           </div>
-          <nav className="hidden space-x-10 md:flex">
+          <nav className="hidden space-x-5 md:flex">
             <NavFlyout />
             <NavFlyoutRegatta />
 
@@ -34,8 +40,9 @@ export default function NavBar() {
               News
             </a>
           </nav>
-          <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
-            <NavFlyoutRegatta />
+          <div className="items-center justify-end hidden space-x-5 md:flex md:flex-1 lg:w-0">
+            <SafetyStatus />
+            <NavFlyoutMembers />
             <a
               href="#"
               className="inline-flex items-center justify-center px-4 py-2 ml-8 text-base font-medium text-white transition border-2 border-transparent rounded-md bg-sudbury whitespace-nowrap hover:bg-sudbury-brand hover:border-white"
