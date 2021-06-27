@@ -18,6 +18,7 @@ export default function PostPreview({
           {coverImage && (
             <Image
               src={coverImage}
+              alt=""
               layout="fill"
               objectFit="cover"
               className="z-0 rounded-lg"

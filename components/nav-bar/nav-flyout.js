@@ -43,7 +43,7 @@ export default function NavDropdown() {
                 <div className={styles.menuItemsParent}>
                   <div className={styles.menuItemsMiddle}>
                     <div className={styles.menuItemsChild}>
-                      <Link href="/">
+                      <Link href="/" passHref>
                         <Menu.Item>
                           {({ active }) => (
                             <a
@@ -102,7 +102,7 @@ export default function NavDropdown() {
                                 )}
                               </Menu.Item>
                             </Link>
-                            <Link href="/">
+                            <Link href="/" passHref>
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
@@ -116,7 +116,7 @@ export default function NavDropdown() {
                                 )}
                               </Menu.Item>
                             </Link>
-                            <Link href="/">
+                            <Link href="/" passHref>
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
@@ -130,7 +130,7 @@ export default function NavDropdown() {
                                 )}
                               </Menu.Item>
                             </Link>
-                            <Link href="/">
+                            <Link href="/" passHref>
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
@@ -144,7 +144,7 @@ export default function NavDropdown() {
                                 )}
                               </Menu.Item>
                             </Link>
-                            <Link href="/squads/indoor">
+                            <Link href="/squads/indoor" passHref>
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
@@ -181,7 +181,7 @@ export default function NavDropdown() {
                           </a>
                         )}
                       </Menu.Item>
-                      <Link href="/governance">
+                      <Link href="/governance" passHref>
                         <Menu.Item>
                           {({ active }) => (
                             <a
@@ -204,7 +204,7 @@ export default function NavDropdown() {
                           )}
                         </Menu.Item>
                       </Link>
-                      <Link href="/safety">
+                      <Link href="/safety" passHref>
                         <Menu.Item>
                           {({ active }) => (
                             <a
@@ -224,7 +224,7 @@ export default function NavDropdown() {
                           )}
                         </Menu.Item>
                       </Link>
-                      <Link href="/resources">
+                      <Link href="/resources" passHref>
                         <Menu.Item>
                           {({ active }) => (
                             <a
@@ -250,7 +250,7 @@ export default function NavDropdown() {
                     </div>
                     <div className={styles.menuFooter}>
                       <div className="flow-root">
-                        <Link href="/location">
+                        <Link href="/location" passHref>
                           <Menu.Item>
                             <a href="#" className={styles.menuFooterItem}>
                               <LocationMarkerIcon
@@ -263,7 +263,7 @@ export default function NavDropdown() {
                         </Link>
                       </div>
                       <div className="flow-root">
-                        <Link href="/contact">
+                        <Link href="/contact" passHref>
                           <Menu.Item>
                             <a href="#" className={styles.menuFooterItem}>
                               <MailIcon className={styles.menuFooterIcon} />

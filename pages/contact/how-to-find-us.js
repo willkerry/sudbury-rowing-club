@@ -102,10 +102,12 @@ export default function FindUs({ preview }) {
                       key={item.name}
                       href={item.href}
                       target="_blank"
+                      rel="noreferrer"
                       title={"Open in " + item.name}
                     >
                       <Image
                         src={item.icon}
+                        alt={item.name}
                         height={24}
                         width={24}
                         className="border rounded-lg"
@@ -133,10 +135,12 @@ export default function FindUs({ preview }) {
                       key={item.name}
                       href={item.hrefregatta}
                       target="_blank"
+                      rel="noreferrer"
                       title={"Open in " + item.name}
                     >
                       <Image
                         src={item.icon}
+                        alt={item.name}
                         height={24}
                         width={24}
                         className="border rounded-lg"

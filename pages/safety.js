@@ -16,7 +16,7 @@ import cn from "classnames";
 import ReactMarkdown from "react-markdown";
 import smartypants from "@silvenon/remark-smartypants";
 
-import { safety, documents, status } from "../data/safety.json";
+import safety from "../data/safety.json";
 
 export default function Safety({ preview }) {
   return (
@@ -54,7 +54,7 @@ export default function Safety({ preview }) {
         </div>
       </div> */}
       <Container>
-        {status.display ? (
+        {safety.status.display ? (
           <div className={styles.row}>
             <div className="md:w-1/3"></div>
 
@@ -62,10 +62,10 @@ export default function Safety({ preview }) {
               <div>
                 <div
                   className={cn("w-12 h-12 mr-4 border rounded-full", {
-                    "bg-red-600": status.severity == "Red",
-                    "bg-yellow-500": status.severity == "Amber",
-                    "bg-green-600": status.severity == "Green",
-                    "bg-sudbury": status.severity == "Neutral",
+                    "bg-red-600": safety.status.severity == "Red",
+                    "bg-yellow-500": safety.status.severity == "Amber",
+                    "bg-green-600": safety.status.severity == "Green",
+                    "bg-sudbury": safety.status.severity == "Neutral",
                   })}
                 />
               </div>
@@ -74,14 +74,15 @@ export default function Safety({ preview }) {
                   River Safety Status
                 </h2>
                 <h3 className="text-2xl font-bold text-gray-900">
-                  {status.severity}
+                  {safety.status.severity}
                 </h3>
                 <div className="prose">
-                  {status.description}
+                  {safety.status.description}
                   <div className="flex flex-col pt-3 space-y-1 text-sm lg:flex-row lg:space-y-0 lg:space-x-4">
-                    {status.date && (
+                    {safety.status.date && (
                       <div>
-                        Updated <DateTimeFormatter dateString={status.date} />
+                        Updated{" "}
+                        <DateTimeFormatter dateString={safety.status.date} />
                       </div>
                     )}
                     <div>
@@ -106,7 +107,7 @@ export default function Safety({ preview }) {
             </div>
           </div>
         ) : null}
-        {safety.map((item) => {
+        {safety.safety.map((item) => {
           return (
             <div
               key={item.name.toString()}
@@ -159,7 +160,7 @@ export default function Safety({ preview }) {
                 <h2 className={styles.sectionTitle}>Documents</h2>
               </div>
               <div className="md:w-2/3">
-                {documents.map((item) => (
+                {safety.documents.map((item) => (
                   <p
                     key={item.name.toString()}
                     className="my-2 leading-tight text-gray-600 hover:text-gray-800"

@@ -7,7 +7,7 @@ export default function Constitution() {
         The Secretary shall retain each member’s signed declaration.
       </p>
       <p>
-        Amendments ratified at the EGM (<time datetime="2019-02-25">25 Feb 2019</time>, <time datetime="2019-06-04">4 June 2019</time>) are
+        Amendments ratified at the EGM (<time dateTime="2019-02-25">25 Feb 2019</time>, <time dateTime="2019-06-04">4 June 2019</time>) are
         <em className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded">
           highlighted
         </em>

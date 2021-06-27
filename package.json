@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@fontsource/inter": "latest",
@@ -17,7 +18,7 @@
     "date-fns": "^2.22.1",
     "gray-matter": "4.0.3",
     "netlify-cms-app": "2.15.19",
-    "next": "latest",
+    "next": "11.0.0",
     "pigeon-maps": "^0.19.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.2",
@@ -31,6 +32,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
+    "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.1",
     "postcss": "^8.3.5",
     "tailwindcss": "^2.1"
   },

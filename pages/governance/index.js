@@ -8,23 +8,15 @@ import Link from "next/link";
 import { DownloadIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import cn from "classnames";
 
-import {
-  officers as clubOfficers,
-  committees,
-  presidentDescription,
-  vicePresidentDescription,
-  vicePresidents,
-  trustees,
-  documents,
-} from "@/data/governance.json";
+import data from "@/data/governance.json";
 
 export default function Governance({ preview }) {
-  const sorted = vicePresidents.sort(function (a, b) {
+  const sorted = data.vicePresidents.sort(function (a, b) {
     if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
     return 0;
   });
-  const sortedB = trustees.sort(function (a, b) {
+  const sortedB = data.trustees.sort(function (a, b) {
     if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
     return 0;
@@ -90,7 +82,7 @@ export default function Governance({ preview }) {
             <h2 className={styles.sectionTitle}>Club Officers</h2>
           </div>
           <div className={styles.govGrid}>
-            {clubOfficers.map((entry) => {
+            {data.officers.map((entry) => {
               return (
                 <div key={entry.name}>
                   {(entry.vacant) ? (
@@ -110,7 +102,7 @@ export default function Governance({ preview }) {
             <h2 className={styles.sectionTitle}>Committees</h2>
           </div>
           <div className={styles.govGrid3}>
-            {committees.map((entry) => {
+            {data.committees.map((entry) => {
               return (
                 <div key={entry.name}>
                   <h3 className={styles.subTitle}>{entry.name}</h3>
@@ -141,18 +133,18 @@ export default function Governance({ preview }) {
               <div className={styles.govGrid}>
                 <div>
                   <h3 className={styles.subTitle}>President</h3>
-                  <p className={styles.description}>{presidentDescription}</p>
+                  <p className={styles.description}>{data.presidentDescription}</p>
                 </div>
                 <div className="col-start-1">
                   <h3 className={styles.subTitle}>Vice-Presidents</h3>
                   <p className={styles.description}>
-                    {vicePresidentDescription}
+                    {data.vicePresidentDescription}
                   </p>
                 </div>
 
                 <div className={styles.threeColFlow}>
                   <ul className={styles.dashList}>
-                    {vicePresidents.map((entry) => {
+                    {data.vicePresidents.map((entry) => {
                       return (
                         <li key={entry.surname} className={styles.dashList}>
                           {entry.firstName} {entry.surname}
@@ -166,7 +158,7 @@ export default function Governance({ preview }) {
                 </div>
                 <div>
                   <ul className={styles.dashList}>
-                    {trustees.map((entry) => {
+                    {data.trustees.map((entry) => {
                       return (
                         <li key={entry.surname} className={styles.dashList}>
                           {entry.firstName} {entry.surname}
@@ -190,7 +182,7 @@ export default function Governance({ preview }) {
                 <h2 className={styles.sectionTitle}>Documents</h2>
               </div>
               <div className={styles.govGrid3}>
-                {documents.map((groups) => {
+                {data.documents.map((groups) => {
                   return (
                     <div key={groups.group.toString()}>
                       <h3 className={styles.subTitle}>{groups.group}</h3>
