@@ -15,14 +15,14 @@
     "@tailwindcss/typography": "^0.4.0",
     "classnames": "^2.3.1",
     "date-fns": "^2.21.2",
-    "gray-matter": "4.0.2",
-    "netlify-cms-app": "2.15.0",
+    "gray-matter": "4.0.3",
+    "netlify-cms-app": "2.15.19",
     "next": "latest",
     "pigeon-maps": "^0.19.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.2",
     "react-feather": "^2.0.9",
-    "react-markdown": "^6.0.0",
+    "react-markdown": "^6.0.2",
     "react-scroll": "^1.8.2",
     "remark": "13.0.0",
     "remark-html": "13.0.1",
@@ -30,8 +30,8 @@
     "remark-textr": "^4.0.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.1",
-    "postcss": "^8.2.14",
+    "autoprefixer": "^10.2.6",
+    "postcss": "^8.3.4",
     "tailwindcss": "^2.1"
   },
   "license": "MIT"
