@@ -78,13 +78,15 @@ module.exports = {
             a: {
               fontWeight: null,
               textDecoration: null,
-              color: theme('colors.sudbury.light'),
-              transitionProperty: theme('transitionProperty.colors'),
-              transitionDuration: theme('transitionDuration.200'),
-              transitionTimingFunction: theme('transitionTimingFunction.DEFAULT'),
+              color: theme("colors.sudbury.light"),
+              transitionProperty: theme("transitionProperty.colors"),
+              transitionDuration: theme("transitionDuration.200"),
+              transitionTimingFunction: theme(
+                "transitionTimingFunction.DEFAULT"
+              ),
             },
-            'a:hover': {
-              color: theme('colors.sudbury.lighter'),
+            "a:hover": {
+              color: theme("colors.sudbury.lighter"),
             },
           },
         },

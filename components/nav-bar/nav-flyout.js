@@ -1,8 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import {
-  BookOpenIcon,
-  DocumentTextIcon,
   InformationCircleIcon,
   LocationMarkerIcon,
   MailIcon,

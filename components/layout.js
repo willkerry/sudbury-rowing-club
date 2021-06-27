@@ -1,7 +1,7 @@
 import Alert from "../components/alert";
 import Footer from "../components/footer";
 import Meta from "../components/meta";
-import NavBar from "../components/nav-bar/";
+import NewNavBar from "../components/nav-bar/new-navbar";
 
 export default function Layout({ preview, children }) {
   return (
@@ -9,7 +9,7 @@ export default function Layout({ preview, children }) {
       <Meta />
 
       <div className="min-h-screen">
-        <NavBar />
+        <NewNavBar />
         {/* <Alert preview={preview} /> */}
         <main>{children}</main>
       </div>
