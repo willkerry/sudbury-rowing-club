@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 export function Testimonial(props) {
   const { children, name, organisation, shadow } = props;
   return (
-    <figure className=""
+    <figure
     className={cn(
         "inline-block p-6 mb-10 border rounded-xl break-inside",
         {
