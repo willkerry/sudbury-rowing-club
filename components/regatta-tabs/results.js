@@ -6,7 +6,6 @@ function Results({ results, record }) {
       <div>
         <Link href={record}>Course records (Updated 2019)</Link>
       </div>
-      {count(results.index)}
       <div className="">
         <ul>
           
