@@ -17,7 +17,7 @@
     "@reach/tabs": "^0.15.2",
     "@silvenon/remark-smartypants": "^1.0.0",
     "@storybook/addon-postcss": "^2.0.0",
-    "@tailwindcss/typography": "^0.4.0",
+    "@tailwindcss/typography": "^0.4.1",
     "classnames": "^2.3.1",
     "date-fns": "^2.22.1",
     "gray-matter": "4.0.3",
