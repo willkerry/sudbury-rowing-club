@@ -19,6 +19,7 @@ import Safety from "@/components/icons/safety";
 import Governance from "@/components/icons/governance";
 import Resources from "@/components/icons/resources";
 import Rower from "@/components/icons/rower";
+import Button from "@/components/stour/button";
 
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
@@ -43,7 +44,12 @@ const about = [
     href: "history",
     icon: History,
   },
-  { name: "Safety", description: "Rowing safely.", href: "safety", icon: Safety },
+  {
+    name: "Safety",
+    description: "Rowing safely.",
+    href: "safety",
+    icon: Safety,
+  },
   {
     name: "Governance",
     description: "How our club is organised.",
@@ -58,7 +64,11 @@ const about = [
   },
 ];
 const callsToAction = [
-  { name: "How to find us", href: "/contact/how-to-find-us", icon: LocationMarkerIcon },
+  {
+    name: "How to find us",
+    href: "/contact/how-to-find-us",
+    icon: LocationMarkerIcon,
+  },
   { name: "Contact us", href: "/contact", icon: MailIcon },
 ];
 const regatta = [
@@ -285,8 +295,7 @@ export default function Example() {
                               <div className="mt-5 text-sm">
                                 <Link href="#">
                                   <a className="font-medium text-sudbury-light hover:text-sudbury">
-                                    {" "}
-                                    View all posts{" "}
+                                    View all posts
                                     <span aria-hidden="true">&rarr;</span>
                                   </a>
                                 </Link>

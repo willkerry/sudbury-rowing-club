@@ -174,8 +174,8 @@
     "title": "Praise for the Sudbury Regatta",
     "year": [
       {
-        "date": "2018",
-        "number": "139",
+        "date": "2019-08-03",
+        "number": 139,
         "items": [
           {
             "text": "Thanks to you and all your team for a fantastic day at Sudbury International Regatta today. So well organised and great fun.",
@@ -266,7 +266,7 @@
       },
       {
         "date": "2018-08-04",
-        "number": "138",
+        "number": 138,
         "items": [
           {
             "text": "I take my hat off to Andrew Blit and his team. You inherit a less than ideal stretch of water and you put your tongue in your cheek, erect a progress board, you have a Sprint 8’s event that I am sure I read was on a 350m ‘straight’ ! You call it Sudbury International Regatta, you do an enthusiastic commentary. You time races and encourage participants to beat records, have a jazz band, get prime farmers beef burgers and be friendly. Marvellous, brilliant and fantastic.",
@@ -351,8 +351,8 @@
         ]
       },
       {
-        "date": "2017",
-        "number": "137",
+        "date": "2017-08-05",
+        "number": 137,
         "items": [
           {
             "text": "Once again thank you to all of Sudbury Rowing Club and their other halves/quarters etc, and hope your clearing up went well.",
@@ -417,8 +417,8 @@
         ]
       },
       {
-        "date": "2015",
-        "number": "135",
+        "date": "2015-08-01",
+        "number": 135,
         "items": [
           {
             "text": "Thank you for a wonderful regatta. As one club member said “It’s Midsummer Murders” or another description could be bucolic England at its full-blown summer best and with a blue moon. Who could want more out of life?",
@@ -453,8 +453,8 @@
         ]
       },
       {
-        "date": "2013-02-28T23:00:00Z",
-        "number": "133",
+        "date": "2013-08-03",
+        "number": 133,
         "items": [
           {
             "text": "It was a super day and I can imagine that pretty well every single competitor will have gone home happy if tired!",
@@ -499,38 +499,38 @@
         ]
       },
       {
-        "date": "2012-01-01T00:00:00Z",
-        "number": "132",
+        "date": "2012-08-04",
+        "number": 132,
         "items": [
           {
             "text": "As usual Maidstone Invicta had a great day. We brought along a lot of young novice juniors for a taste of racing, Many thanks for the usual friendly well run regatta.",
-            "name": "Maidstone Invicta Rowing Club",
-            "club": ""
+            "name": "Representative",
+            "club": "Maidstone Invicta Rowing Club"
           },
           {
             "text": "Thank you very much for yet another fantastic regatta. It was, as ever, brilliantly organised and great for both competitors and spectators (and in particular our juniors for whom it was their first proper race experience). We look forward to coming back again next year.",
-            "name": "City of Cambridge Rowing Club",
-            "club": ""
+            "name": "Representative",
+            "club": "City of Cambridge Rowing Club"
           },
           {
             "text": "We had a wonderful day at Sudbury. Next time we will have to practice to go fast and steering… Thank you for making us very welcome.",
-            "name": "Ghent Rowing Club",
-            "club": ""
+            "name": "Members",
+            "club": "Ghent Rowing Club"
           },
           {
             "text": "Thank you and your team for a great day. All of us from Norwich (NRC, Yare BC, and Broadland BC) enjoyed it and want to come again.",
-            "name": "The delegation from Norwich",
-            "club": ""
+            "name": "Members",
+            "club": "Rowing clubs of Norwich"
           },
           {
             "text": "I would really like to say a massive thank you for yesterday’s amazing regatta! It was run so well and we all loved the whole day. Thank you also for allowing us to camp! You have such a beautiful little town and club.",
-            "name": "Lea Rowing Club",
-            "club": ""
+            "name": "Representative",
+            "club": "Lea Rowing Club"
           },
           {
             "text": "May I thank you and your team for a fabulous day. Those of us from Oundle who came thoroughly enjoyed ourselves and hope to be annual supporters!",
-            "name": "Oundle Town Rowing Club",
-            "club": ""
+            "name": "Representative",
+            "club": "Oundle Town Rowing Club"
           }
         ]
       }

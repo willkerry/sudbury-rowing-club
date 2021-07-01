@@ -6,9 +6,66 @@ import styles from "@/components/governance/governance.module.css";
 import { Link as ScrollLink } from "react-scroll";
 import Link from "next/link";
 import { DownloadIcon, ExternalLinkIcon } from "@heroicons/react/outline";
-import cn from "classnames";
 
 import data from "@/data/governance.json";
+
+const GovGrid = (props) => (
+  <div {...props} className="grid grid-cols-2 gap-16 md:grid-cols-3 md:w-4/5" />
+);
+const Row = (props) => <section {...props} className="my-16 md:flex" />;
+const StyledScrollLink = (props) => (
+  <ScrollLink
+    activeClass="text-gray-800"
+    className="inline-block transition hover:text-gray-800 hover:cursor-pointer"
+    spy={true}
+    smooth={true}
+    offset={-100}
+    duration={200}
+    {...props}
+  />
+);
+const ScrollComponent = (props) => (
+  <div className="sticky top-0 z-10 bg-white border-b">
+    <div className="container px-5 py-5 mx-auto space-x-6 text-gray-500 ">
+      <StyledScrollLink to="officers">Club Officers</StyledScrollLink>
+      <StyledScrollLink to="committees">Committees</StyledScrollLink>
+      <StyledScrollLink to="nonexec">Non-Executive Officers</StyledScrollLink>
+      <StyledScrollLink to="documents">Documents</StyledScrollLink>
+    </div>
+  </div>
+);
+const SectionTitle = (props) => (
+  <h2
+    {...props}
+    className="mb-8 text-xl font-bold tracking-tight text-gray-800"
+  />
+);
+const SubTitle = (props) => (
+  <h3 className="font-semibold text-gray-900" {...props} />
+);
+const Vacant = (props) => (
+  <div className="h-8">
+    <span className="p-1 text-sm font-medium tracking-wider text-gray-500 border rounded bg-gray-50">
+      TBA
+    </span>
+  </div>
+);
+const OfficerName = (props) => (
+  <div
+    className="h-8 font-serif text-2xl tracking-tight text-gray-800"
+    {...props}
+  />
+);
+const Description = (props) => (
+  <div className="mb-4 text-gray-700" {...props} />
+);
+const DashUl = (props) => (
+  <ul className={("text-gray-600 list-inside", styles.dashList)} {...props} />
+);
+const DashLi = (props) => <li className="relative pl-8" {...props} />;
+const DashLiFirst = (props) => (
+  <li className="relative pl-8 first:font-bold" {...props} />
+);
 
 export default function Governance({ preview }) {
   const sorted = data.vicePresidents.sort(function (a, b) {
@@ -28,182 +85,131 @@ export default function Governance({ preview }) {
         <title>Governance</title>
       </Head>
       <HeroTitle title="Governance" />
-      <div className="sticky top-0 z-10 bg-white border-b">
-        <div className="container px-5 py-5 mx-auto space-x-6 text-gray-500 ">
-          <ScrollLink
-            activeClass="text-gray-800"
-            className={styles.scrollLink + " transition"}
-            to="officers"
-            spy={true}
-            smooth={true}
-            offset={-100}
-            duration={200}
-          >
-            Club Officers
-          </ScrollLink>
-          <ScrollLink
-            activeClass="text-gray-800"
-            className={styles.scrollLink + " transition"}
-            to="committees"
-            spy={true}
-            smooth={true}
-            offset={-100}
-            duration={200}
-          >
-            Committees
-          </ScrollLink>
-          <ScrollLink
-            activeClass="text-gray-800"
-            className={styles.scrollLink + " transition"}
-            to="nonexec"
-            spy={true}
-            smooth={true}
-            offset={-100}
-            duration={200}
-          >
-            Non-Executive Officers
-          </ScrollLink>
-          <ScrollLink
-            activeClass="text-gray-800"
-            className={styles.scrollLink + " transition"}
-            to="documents"
-            spy={true}
-            smooth={true}
-            offset={-50}
-            duration={200}
-          >
-            Documents
-          </ScrollLink>
-        </div>
-      </div>
+      <ScrollComponent />
       <Container>
-        <div className={styles.row} id="officers">
+        <Row id="officers">
           <div className="md:w-1/4">
-            <h2 className={styles.sectionTitle}>Club Officers</h2>
+            <SectionTitle>Club Officers</SectionTitle>
           </div>
-          <div className={styles.govGrid}>
+          <GovGrid>
             {data.officers.map((entry) => {
               return (
                 <div key={entry.name}>
-                  {(entry.vacant) ? (
-                    <div className={styles.officerVacantContainer}><span className={styles.officerVacant}>TBA</span></div>
+                  {entry.vacant ? (
+                    <Vacant />
                   ) : (
-                    <div className={styles.officerName}>{entry.name}</div>
+                    <OfficerName>{entry.name}</OfficerName>
                   )}
 
-                  <div className={styles.description}>{entry.role}</div>
+                  <Description>{entry.role}</Description>
                 </div>
               );
             })}
-          </div>
-        </div>
-        <div id="committees" className={styles.row}>
+          </GovGrid>
+        </Row>
+        <Row id="committees">
           <div className="md:w-1/4">
-            <h2 className={styles.sectionTitle}>Committees</h2>
+            <SectionTitle>Committees</SectionTitle>
           </div>
-          <div className={styles.govGrid3}>
+
+          <GovGrid>
             {data.committees.map((entry) => {
               return (
                 <div key={entry.name}>
-                  <h3 className={styles.subTitle}>{entry.name}</h3>
-                  <p className={styles.description}>{entry.description}</p>
-                  <ul className={styles.dashList}>
+                  <SubTitle>{entry.name}</SubTitle>
+                  <Description>{entry.description}</Description>
+                  <DashUl>
                     {entry.officers.map((sitting) => {
                       return (
-                        <li
-                          className={cn(styles.dashList, "first:font-semibold")}
-                          key={sitting.toString()}
-                        >
+                        <DashLiFirst key={sitting.toString()}>
                           {sitting}
-                        </li>
+                        </DashLiFirst>
                       );
                     })}
-                  </ul>
+                  </DashUl>
                 </div>
               );
             })}
-          </div>
-        </div>
+          </GovGrid>
+        </Row>
         <div id="nonexec" className={styles.fullWidthContainer + " bg-gray-50"}>
-          <div className={styles.govContainer}>
-            <div className={styles.row}>
+          <Container>
+            <Row>
               <div className="md:w-1/4">
-                <h2 className={styles.sectionTitle}>Non-Executive</h2>
+                <SectionTitle>Non-Executive Officers</SectionTitle>
               </div>
-              <div className={styles.govGrid}>
+              <GovGrid>
                 <div>
-                  <h3 className={styles.subTitle}>President</h3>
-                  <p className={styles.description}>{data.presidentDescription}</p>
+                  <SubTitle>President</SubTitle>
+                  <Description>{data.presidentDescription}</Description>
                 </div>
                 <div className="col-start-1">
-                  <h3 className={styles.subTitle}>Vice-Presidents</h3>
-                  <p className={styles.description}>
-                    {data.vicePresidentDescription}
-                  </p>
+                  <SubTitle>Vice-Presidents</SubTitle>
+                  <Description>{data.vicePresidentDescription}</Description>
                 </div>
 
                 <div className={styles.threeColFlow}>
-                  <ul className={styles.dashList}>
-                    {data.vicePresidents.map((entry) => {
+                  <DashUl>
+                    {data.vicePresidents.map((entry, index) => {
                       return (
-                        <li key={entry.surname} className={styles.dashList}>
+                        <DashLi key={index}>
                           {entry.firstName} {entry.surname}
-                        </li>
+                        </DashLi>
                       );
                     })}
-                  </ul>
+                  </DashUl>
                 </div>
                 <div className="col-start-1">
-                  <h3 className={styles.subTitle}>Trustees</h3>
+                  <SubTitle>Trustees</SubTitle>
                 </div>
                 <div>
-                  <ul className={styles.dashList}>
-                    {data.trustees.map((entry) => {
+                  <DashUl>
+                    {data.trustees.map((entry, index) => {
                       return (
-                        <li key={entry.surname} className={styles.dashList}>
+                        <DashLi key={index}>
                           {entry.firstName} {entry.surname}
-                        </li>
+                        </DashLi>
                       );
                     })}
-                  </ul>
+                  </DashUl>
                 </div>
-              </div>
-            </div>
-          </div>
+              </GovGrid>
+            </Row>
+          </Container>
         </div>
 
         <div
           id="documents"
           className={styles.fullWidthContainer + " bg-sudbury-lightest"}
         >
-          <div className={styles.govContainer}>
-            <div className={styles.row}>
+          <Container>
+            <Row>
               <div className="md:w-1/4">
-                <h2 className={styles.sectionTitle}>Documents</h2>
+                <SectionTitle>Documents</SectionTitle>
               </div>
-              <div className={styles.govGrid3}>
+              <GovGrid>
                 {data.documents.map((groups) => {
                   return (
                     <div key={groups.group.toString()}>
-                      <h3 className={styles.subTitle}>{groups.group}</h3>
+                      <SubTitle>{groups.group}</SubTitle>
                       {groups.items.map((item) => {
                         return (
                           <p
                             key={item.name.toString()}
-                            className="my-2 leading-tight text-gray-600 hover:text-gray-800"
+                            className="my-2 leading-tight text-gray-600 align-baseline hover:text-gray-800"
                           >
                             <Link href={item.href}>{item.name}</Link>
 
                             {item.external && !item.download && (
                               <span>
                                 &nbsp;
-                                <ExternalLinkIcon className="inline w-4 h-4 mb-1 opacity-50" />
+                                <ExternalLinkIcon className="inline-flex w-4 h-4 mb-1 opacity-50" />
                               </span>
                             )}
                             {item.download && (
                               <span>
                                 &nbsp;
-                                <DownloadIcon className="inline w-4 h-4 mb-1 opacity-50" />
+                                <DownloadIcon className="inline-flex w-4 h-4 mb-1 opacity-50" />
                               </span>
                             )}
                           </p>
@@ -212,9 +218,9 @@ export default function Governance({ preview }) {
                     </div>
                   );
                 })}
-              </div>
-            </div>
-          </div>
+              </GovGrid>
+            </Row>
+          </Container>
         </div>
       </Container>
     </Layout>

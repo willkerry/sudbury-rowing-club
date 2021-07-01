@@ -5,44 +5,96 @@ import Layout from "@/components/layout";
 import DayDateFormatter from "@/components/daydate-formatter";
 import Link from "next/link";
 import cn from "classnames";
+import ordinal from "ordinal";
+import Note from "@/components/stour/note";
+import Text from "@/components/stour/text";
+import Testimonial from "@/components/stour/testimonial";
+import Masonry from "@/components/stour/masonry";
+import Hero from "@/components/stour/hero";
 
-import ReactMarkdown from "react-markdown";
-import smartypants from "@silvenon/remark-smartypants";
+import DataTabs from "@/components/regatta-tabs/data-tabs";
+import Events from "@/components/regatta-tabs/events";
+import Entries from "@/components/regatta-tabs/entries";
+import Results from "@/components/regatta-tabs/results";
 
-import regatta from "@/data/regatta.json";
+import data from "@/data/regatta.json";
 
-export default function Regatta( ) {
+console.log(data.results.results);
+
+const tabData = [
+  { label: "Events", content: <Events data={data.events.event} coursemap={data.events.coursemap} /> },
+  { label: "Entries", content: <Entries>{data.entries.text}</Entries> },
+  { label: "Results", content: <Results results={data.results.results} record={data.results.courseRecords}/> },
+  { label: "Important", content: <Entries>{data.entries.text}</Entries> },
+  { label: "Contact", content: <Entries>{data.entries.text}</Entries> },
+];
+
+export default function Regatta() {
   return (
     <Layout>
       <Head>
         <title>Regatta</title>
       </Head>
+      <Container className="my-32">
+        <DataTabs data={tabData} />
+      </Container>
       <Container>
-        <div>
-          <div className="mx-auto space-y-3">
-            <span className="font-semibold tracking-wide text-gray-700 uppercase">
-              <DayDateFormatter dateString={regatta.regattaIntro.date} />
-            </span>
-            <h1 className="pb-6 font-serif text-4xl font-normal tracking-tight">
-              {regatta.regattaIntro.title}
-            </h1>
-            <div className="grid grid-cols-2 gap-12">
-              <div className="prose">
-                <ReactMarkdown remarkPlugins={[smartypants]}>
-                  {regatta.regattaIntro.description}
-                </ReactMarkdown>
-              </div>
-              <div className="prose">
-                <div className="px-8 pt-1 pb-2 text-green-900 bg-green-300 rounded-lg">
-                  <h4>{regatta.regattaIntro.note.title}</h4>
-                  <ReactMarkdown remarkPlugins={[smartypants]}>
-                    {regatta.regattaIntro.note.text}
-                  </ReactMarkdown>
-                </div>
-              </div>
-            </div>
+        <div className="pt-10">
+          <Note label="2021 Update" centered>
+            We are delighted to confirm that we are planning to hold our
+            regatta, ‘The International’ on Saturday 7 August 2021. We are still
+            working on the changes we will need to put in place in response to
+            the pandemic so watch this space.
+          </Note>
+        </div>
+
+        <div className="py-20">
+          <Hero
+            title={data.regattaIntro.title}
+            label={<DayDateFormatter dateString={data.regattaIntro.date} />}
+          />
+          <div className="pt-10 space-y-3 max-w-prose">
+            <Text markdown className="py-10">
+              {data.regattaIntro.description}
+            </Text>
+            <Note type="success" label={data.regattaIntro.note.title}>
+              {data.regattaIntro.note.text}
+            </Note>
           </div>
         </div>
+      </Container>
+      <Hero
+        title="Some of the people who’ve come to our regatta have said lovely things about it"
+        label="Feedback"
+        fullwidth
+      />
+      <Container>
+        {data.praise.year.map((item) => {
+          return (
+            <div key={item.date.toString()}>
+              <h3 className="pt-12 font-serif text-3xl font-medium">
+                Praise for the {ordinal(item.number)} regatta{" "}
+              </h3>
+              <div className="pb-12 font-medium tracking-widest uppercase opacity-70">
+                <DayDateFormatter dateString={item.date} />
+              </div>
+
+              <Masonry cols="3">
+                {item.items.map((testimonial) => {
+                  return (
+                    <Testimonial
+                      key={testimonial.text}
+                      name={testimonial.name}
+                      organisation={testimonial.club}
+                    >
+                      {testimonial.text}
+                    </Testimonial>
+                  );
+                })}
+              </Masonry>
+            </div>
+          );
+        })}
       </Container>
     </Layout>
   );

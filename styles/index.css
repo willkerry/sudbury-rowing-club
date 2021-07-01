@@ -1,17 +1,42 @@
 @tailwind base;
 
+html {
+  @apply antialiased;
+}
+
 @import "~@fontsource/inter/variable.css";
 @import "~@fontsource/spectral/index.css";
-/* Write your own custom base styles here */
-
-/* Start purging... */
 @tailwind components;
-/* Stop purging. */
-
-/* Write you own custom component styles here */
-
-/* Start purging... */
+@layer components {
+  :root {
+    --reach-tabs: 1;
+  }
+  [data-reach-tab]:active {
+    -webkit-user-select: none;
+  }
+  [data-reach-tab]:disabled {
+    @apply opacity-25 cursor-default;
+  }
+  [data-reach-tab][data-selected].tab {
+    @apply text-gray-900 border-b border-black outline-none appearance-none select-none;
+  }
+  [data-reach-tab][data-selected].regatta-tab {
+    @apply text-white rounded-t-lg shadow-lg outline-none appearance-none select-none bg-gradient-to-tr from-sudbury-light to-sudbury;
+  }
+}
 @tailwind utilities;
-/* Stop purging. */
-
-/* Your own custom utilities */
+@layer utilities {
+  @variants responsive {
+    .masonry-3-col {
+      column-count: 3;
+      column-gap: 2em;
+    }
+    .masonry-2-col {
+      column-count: 2;
+      column-gap: 2em;
+    }
+    .break-inside {
+      break-inside: avoid;
+    }
+  }
+}
