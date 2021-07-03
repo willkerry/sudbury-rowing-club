@@ -10,7 +10,7 @@ export default function Rules() {
         1.1 (Model Anti-Bullying Policy), which is itself based on a document
         prepared by KIDSCAPE, a voluntary organisation committed to helping
         prevent child bullying, who can be contacted at{" "}
-        <a href="https://www.kidscape.org.uk/" target="_blank">
+        <a href="https://www.kidscape.org.uk/" target="_blank" rel="noreferrer">
           kidscape.org.uk
         </a>
         , or on <a href="tel:+442077303300">0207 730 3300</a>.
