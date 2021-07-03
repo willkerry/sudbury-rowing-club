@@ -26,6 +26,9 @@ html {
 }
 @tailwind utilities;
 @layer utilities {
+  .hyphens-auto {
+    hyphens: auto;
+  }
   @variants responsive {
     .masonry-3-col {
       column-count: 3;

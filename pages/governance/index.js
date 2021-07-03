@@ -45,7 +45,7 @@ const SubTitle = (props) => (
 );
 const Vacant = (props) => (
   <div className="h-8">
-    <span className="p-1 text-sm font-medium tracking-wider text-gray-500 border rounded bg-gray-50">
+    <span className="p-1 text-xs font-semibold tracking-widest text-gray-600 border rounded bg-gray-50">
       TBA
     </span>
   </div>

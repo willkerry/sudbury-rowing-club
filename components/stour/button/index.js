@@ -34,11 +34,12 @@ export function Button(props) {
     <Link href={href} passHref>
       <a
         className={cn(
-          "rounded-md transition duration-300 border",
+          "rounded-md transition duration-300 border text-center",
           VARIANT_MAPS[type],
           SIZE_MAPS[size],
           SHADOW_MAPS[shadow]
         )}
+        {...props}
       >
         {label}
       </a>

@@ -100,12 +100,7 @@
     {
       "name": "Management Committee",
       "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
-      "officers": [
-        "Chairman",
-        "Secretary",
-        "Treasurer",
-        "Captain"
-      ]
+      "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
     },
     {
       "name": "Rowing Committee",
@@ -135,11 +130,7 @@
     {
       "name": "Compliance Committee",
       "description": "Responsible for ensuring that the club is compliant with financial, safeguarding and safety responsibilities and duties.",
-      "officers": [
-        "Treasurer",
-        "Safety Officer",
-        "Welfare Officer"
-      ]
+      "officers": ["Treasurer", "Safety Officer", "Welfare Officer"]
     },
     {
       "name": "Development Committee",
@@ -196,13 +187,13 @@
       "items": [
         {
           "name": "Anti-Bullying Policy",
-          "href": "https://drive.google.com/open?id=1QRH9UIb-fXCisc9t4CxrgH_qDgHI2o2bpktkf4_GZ2g",
-          "external": true
+          "href": "../governance/anti-bullying-policy/",
+          "external": false
         },
         {
           "name": "Grievance and Disciplinary Policy",
-          "href": "https://drive.google.com/open?id=1TqcHjjAuk-qnZZB5ovUeCTxbtWRSlYW95C0utmmtas4",
-          "external": true
+          "href": "../governance/grievance-and-disciplinary-policy",
+          "external": false
         },
         {
           "name": "Use of Photographic Equipment",
@@ -226,7 +217,7 @@
         },
         {
           "name": "Privacy Policy",
-          "href": "/"
+          "href": "../governance/privacy-policy"
         }
       ]
     },

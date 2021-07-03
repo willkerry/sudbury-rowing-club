@@ -1,6 +1,6 @@
 function Entries({children}) {
   return <div>
-    <div className="prose" dangerouslySetInnerHTML={{ __html: children }}/>
+    <div className="mx-auto prose" dangerouslySetInnerHTML={{ __html: children }}/>
   </div>;
 }
 

@@ -7,6 +7,7 @@ export default function HeroTitle({ title, children, prose }) {
       <Container>
         <div className={cn(prose && "max-w-prose mx-auto text-center")}>
           <h1 className="font-serif text-4xl">{title}</h1>
+          {children}
         </div>
       </Container>
     </div>

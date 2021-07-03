@@ -22,9 +22,22 @@ import data from "@/data/regatta.json";
 console.log(data.results.results);
 
 const tabData = [
-  { label: "Events", content: <Events data={data.events.event} coursemap={data.events.coursemap} /> },
+  {
+    label: "Events",
+    content: (
+      <Events data={data.events.event} coursemap={data.events.coursemap} />
+    ),
+  },
   { label: "Entries", content: <Entries>{data.entries.text}</Entries> },
-  { label: "Results", content: <Results results={data.results.results} record={data.results.courseRecords}/> },
+  {
+    label: "Results",
+    content: (
+      <Results
+        results={data.results.results}
+        record={data.results.courseRecords}
+      />
+    ),
+  },
   { label: "Important", content: <Entries>{data.entries.text}</Entries> },
   { label: "Contact", content: <Entries>{data.entries.text}</Entries> },
 ];
@@ -35,11 +48,9 @@ export default function Regatta() {
       <Head>
         <title>Regatta</title>
       </Head>
-      <Container className="my-32">
-        <DataTabs data={tabData} />
-      </Container>
+      <HeroTitle title="The Sudbury Regatta"/>
       <Container>
-        <div className="pt-10">
+        <div className="pt-12">
           <Note label="2021 Update" centered>
             We are delighted to confirm that we are planning to hold our
             regatta, ‘The International’ on Saturday 7 August 2021. We are still
@@ -62,6 +73,9 @@ export default function Regatta() {
             </Note>
           </div>
         </div>
+      </Container>
+      <Container className="my-32">
+        <DataTabs data={tabData} />
       </Container>
       <Hero
         title="Some of the people who’ve come to our regatta have said lovely things about it"

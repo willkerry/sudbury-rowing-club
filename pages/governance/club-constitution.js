@@ -1,5 +1,14 @@
 import TextPage from "@/components/layouts/text-page";
 
+const Highlight = (props) => (
+  <em
+    {...props}
+    className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded"
+  />
+);
+const BlockHighlight = (props) => (
+  <div {...props} className="pl-4 border-l-4 border-green-300" />
+);
 export default function Constitution() {
   return (
     <TextPage title="Club Constitution">
@@ -7,16 +16,16 @@ export default function Constitution() {
         The Secretary shall retain each member’s signed declaration.
       </p>
       <p>
-        Amendments ratified at the EGM (<time dateTime="2019-02-25">25 Feb 2019</time>, <time dateTime="2019-06-04">4 June 2019</time>) are
-        <em className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded">
-          highlighted
-        </em>
-        .
+        Amendments ratified at the EGM (
+        <time dateTime="2019-02-25">25 Feb 2019</time>,{" "}
+        <time dateTime="2019-06-04">4 June 2019</time>) are
+        <Highlight>highlighted</Highlight>.
       </p>
       <h2>1. Name</h2>
       <p>
         The club shall be known as the Sudbury Rowing Club hereinafter referred
-        to as <strong>“the club”</strong>. The Club colours shall be Oxford Blue and White
+        to as <strong>“the club”</strong>. The Club colours shall be Oxford Blue
+        and White
       </p>
       <h2>2. Objectives</h2>
       <p>
@@ -132,30 +141,30 @@ export default function Constitution() {
         treatment on the grounds of gender, disability, marital status, creed,
         social class, ethnicity, age or sexual orientation.
       </p>
-      <div className="pl-4 border-l-4 border-green-300">
+      <BlockHighlight>
         <h2>8. Codes of Conduct</h2>
         <p>
           The Club adopts the British Rowing Codes of Conduct, to which all
           members must adhere. Members will be required to sign a declaration to
           that effect.
         </p>
-      </div>
-      <div className="pl-4 border-l-4 border-green-300">
+      </BlockHighlight>
+      <BlockHighlight>
         <h2>9. Anti-Bullying Policy</h2>
         <p>
           The Club has a clear Anti-Bullying Policy, and all members are
           required to behave with care and courtesy to others at all times.
         </p>
-      </div>
+      </BlockHighlight>
       <h2>10. Grievance and Disciplinary Procedures</h2>
       <p>
         An individual or member with a complaint about treatment by the Club
         should set out their grievance, in the first instance to the Club
         Chairman. The Club will seek to deal with complaints in a fair and
         timely manner
-        <em className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded">
-        , with reference to its published Grievance and Disciplinary Policy.
-        </em>
+        <Highlight>
+          , with reference to its published Grievance and Disciplinary Policy.
+        </Highlight>
       </p>
       <h2>11. Child Protection Procedures</h2>
       <p>
@@ -194,7 +203,7 @@ export default function Constitution() {
         consist of a Chairman, Secretary, Treasurer, and other Officers and
         committee members as deemed necessary.
       </p>
-      <div className="pl-4 border-l-4 border-green-300">
+      <BlockHighlight>
         <p>
           Nominations for the position of Chairman, Secretary, Treasurer,
           Captain and other officers shall be put forward by two other members,
@@ -209,12 +218,12 @@ export default function Constitution() {
           Only when no nominations are received for a post 8 days prior to the
           meeting can nominations be presented at that meeting.
         </p>
-      </div>
+      </BlockHighlight>
       <p>
         If required, the Committee shall elect a Vice-Chairman from among its
         number.
       </p>
-      <div className="pl-4 border-l-4 border-green-300">
+      <BlockHighlight>
         <p>
           The term of office for Chairman, Secretary, Treasurer and Captain
           shall be for one year, and members shall be eligible for re-election
@@ -224,7 +233,7 @@ export default function Constitution() {
           The term of office for other offices shall be for one year, and
           members shall be eligible for re-election.
         </p>
-      </div>
+      </BlockHighlight>
       <h2>16. Club Committee</h2>
       <p>
         The Committee is responsible for the general conduct of the Club’s
@@ -277,10 +286,8 @@ export default function Constitution() {
         account showing the Club’s financial position and the results of its
         transactions for the year. The transactions of the Club will be
         conducted through a bank account and will require the signatures
-        <em className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded">
-          , or appropriate electronic authorisations
-        </em>{" "}
-        of any 2 of 3 members of the Committee who have been designated for the
+        <Highlight>, or appropriate electronic authorisations</Highlight> of any
+        2 of 3 members of the Committee who have been designated for the
         purpose.
       </p>
       <h2>18. Trustees</h2>
@@ -333,24 +340,23 @@ export default function Constitution() {
         entitled to vote shall constitute a quorum.
       </p>
       <ol type="i">
-      <li>
-        Absences of Quorum
-        <br />
-        If after half an hour from the time appointed for
-        the meeting, a quorum is not present, the Meeting, if called at the
-        request of the members, shall be dissolved.  In any other case, the
-        Meeting shall be adjourned until a time and place to be fixed by the
-        Committee.  If a quorum is not present within half an hour from the time
-        appointed for an Adjourned Meeting, the members present shall be a
-        quorum.
-      </li>
-      <li>
-        Accidental Omission
-        <br />
-        Accidental Omission to give notice of a meeting to,
-        or the non-receipt of notice of, a meeting by any member shall not
-        invalidate the proceedings of a meeting.
-      </li>
+        <li>
+          Absences of Quorum
+          <br />
+          If after half an hour from the time appointed for the meeting, a
+          quorum is not present, the Meeting, if called at the request of the
+          members, shall be dissolved.  In any other case, the Meeting shall be
+          adjourned until a time and place to be fixed by the Committee.  If a
+          quorum is not present within half an hour from the time appointed for
+          an Adjourned Meeting, the members present shall be a quorum.
+        </li>
+        <li>
+          Accidental Omission
+          <br />
+          Accidental Omission to give notice of a meeting to, or the non-receipt
+          of notice of, a meeting by any member shall not invalidate the
+          proceedings of a meeting.
+        </li>
       </ol>
       <h2>20. Liability</h2>
       <p>
