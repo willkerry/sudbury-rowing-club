@@ -14,7 +14,7 @@ export default function PostPreview({
   return (
     <>
       <Link as={`/news/${slug}`} href="/news/[slug]">
-        <a className="relative h-64 border rounded-lg bg-sudbury-brand">
+        <a className="relative h-64 bg-blue-800 border rounded-lg">
           {coverImage && (
             <Image
               src={coverImage}

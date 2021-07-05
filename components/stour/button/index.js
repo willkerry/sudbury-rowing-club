@@ -18,11 +18,11 @@ const VARIANT_MAPS = {
   secondary:
     "text-white border-gray-900 bg-gray-900 hover:text-gray-900 hover:bg-white",
   brandDark:
-    "text-white border-sudbury-brand bg-sudbury-brand hover:text-sudbury-brand hover:bg-white",
+    "text-white border-blue-800 bg-blue-800 hover:text-blue-800 hover:bg-white",
   brand:
-    "text-white border-sudbury bg-sudbury hover:text-sudbury hover:bg-white",
+    "text-white border-blue-600 bg-blue-600 hover:text-blue-600 hover:bg-white",
   brandLight:
-    "text-white border-sudbury-light bg-sudbury-light hover:text-sudbury-light hover:bg-white",
+    "text-white border-blue-400 bg-blue-400 hover:text-blue-400 hover:bg-white",
   success:
     "text-white border-green-600 bg-green-600 hover:text-green-700 hover:bg-white",
   error:

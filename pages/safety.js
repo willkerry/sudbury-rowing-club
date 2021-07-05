@@ -152,7 +152,7 @@ export default function Safety({ preview }) {
 
         <div
           id="documents"
-          className={styles.fullWidthContainer + " bg-sudbury-lightest"}
+          className={styles.fullWidthContainer + " bg-blue-50"}
         >
           <div className={styles.govContainer}>
             <div className={styles.row}>

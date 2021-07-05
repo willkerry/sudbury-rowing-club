@@ -1,23 +1,25 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   plugins: [require("@tailwindcss/typography")],
-  mode: 'jit',
+  mode: "jit",
   purge: ["./components/**/*.js", "./pages/**/*.js"],
   theme: {
     extend: {
       colors: {
-        "accent-1": "#FAFAFA",
-        "accent-2": "#EAEAEA",
-        "accent-7": "#333",
-        success: "#0070f3",
         cyan: "#79FFE1",
-        sudbury: {
-          brand: "#002147",
-          DEFAULT: "#094284",
-          light: "#1A71C2",
-          lighter: "#289EFF",
-          lightest: "#C4E4FF",
+        blue: {
+          900: "#000c1a",
+          800: "#002147" /* SRC Oxford Blue */,
+          700: "#003b80",
+          600: "#0053b3",
+          500: "#006be6",
+          400: "#1a84ff",
+          300: "#4d9fff",
+          200: "#80bbff",
+          100: "#b3d6ff",
+          50: "#e5f1ff",
         },
       },
       spacing: {

@@ -32,7 +32,7 @@
     }
   ],
   "status": {
-    "severity": "Green",
+    "severity": "Amber",
     "display": true,
     "description": "No hazardous weather conditions are predicted this week.",
     "date": "20210418T182931Z"

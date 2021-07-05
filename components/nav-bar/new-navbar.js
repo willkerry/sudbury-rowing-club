@@ -116,7 +116,7 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <Popover className="relative text-gray-100 bg-sudbury-brand">
+    <Popover className="relative text-gray-100 bg-blue-800">
       {({ open }) => (
         <>
           <div className="px-4 mx-auto max-w-7xl sm:px-6">
@@ -142,7 +142,7 @@ export default function Example() {
                       <Popover.Button
                         className={classNames(
                           open ? "text-white" : "text-gray-300",
-                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-sudbury-brand focus:ring-gray-300 "
+                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 "
                         )}
                       >
                         <span>About</span>
@@ -224,7 +224,7 @@ export default function Example() {
                       <Popover.Button
                         className={classNames(
                           open ? "text-white" : "text-gray-300",
-                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-sudbury-brand focus:ring-gray-300 "
+                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 "
                         )}
                       >
                         <span>Regatta</span>
@@ -294,7 +294,7 @@ export default function Example() {
                               </div>
                               <div className="mt-5 text-sm">
                                 <Link href="#">
-                                  <a className="font-medium text-sudbury-light hover:text-sudbury">
+                                  <a className="font-medium text-blue-500 hover:text-blue-700">
                                     View all posts
                                     <span aria-hidden="true">&rarr;</span>
                                   </a>
@@ -316,7 +316,7 @@ export default function Example() {
                   </a>
                 </Link>
                 <Link href="#">
-                  <a className="inline-flex items-center justify-center px-2 py-1 ml-4 text-base font-medium text-white transition border-2 border-white rounded-md shadow-sm whitespace-nowrap hover:bg-white hover:text-sudbury-brand">
+                  <a className="inline-flex items-center justify-center px-2 py-1 ml-4 text-base font-medium text-white transition border-2 border-white rounded-md shadow-sm whitespace-nowrap hover:bg-white hover:text-blue-800">
                     Join us
                   </a>
                 </Link>
@@ -343,7 +343,7 @@ export default function Example() {
                 <div className="px-5 pt-5 pb-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <Logo className="w-auto h-9 text-sudbury-brand" />
+                      <Logo className="w-auto text-blue-800 h-9" />
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-400 bg-white rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sudbury">
@@ -392,7 +392,7 @@ export default function Example() {
                   </div>
                   <div>
                     <Link href="#">
-                      <a className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-sudbury hover:bg-sudbury-brand">
+                      <a className="flex items-center justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-sudbury hover:bg-blue-800">
                         Join us
                       </a>
                     </Link>

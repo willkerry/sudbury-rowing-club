@@ -180,7 +180,7 @@ export default function Governance({ preview }) {
 
         <div
           id="documents"
-          className={styles.fullWidthContainer + " bg-sudbury-lightest"}
+          className={styles.fullWidthContainer + " bg-blue-50"}
         >
           <Container>
             <Row>

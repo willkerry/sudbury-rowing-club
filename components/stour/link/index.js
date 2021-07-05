@@ -8,8 +8,8 @@ function Link({ href, children, dark, icon, className, ...props }) {
         <a
           className={cn(
             dark
-              ? "text-sudbury-lightest hover:text-white"
-              : "text-sudbury-light hover:text-sudbury-lighter",
+              ? "text-blue-100 hover:text-white"
+              : "text-blue-500 hover:text-blue-300",
             icon && "inline-flex align-baseline",
             "transition",
             className

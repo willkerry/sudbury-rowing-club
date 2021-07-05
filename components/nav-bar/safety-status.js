@@ -14,7 +14,7 @@ export default function SafetyStatus() {
                 "bg-white border-red-500": safety.status.severity == "Red",
                 "bg-yellow-50": safety.status.severity == "Amber",
                 "bg-green-50": safety.status.severity == "Green",
-                "bg-sudbury-lightest": safety.status.severity == "Neutral",
+                "bg-blue-50": safety.status.severity == "Neutral",
               }
             )}
           >
@@ -25,7 +25,7 @@ export default function SafetyStatus() {
                   "bg-red-500": safety.status.severity == "Red",
                   "bg-yellow-600": safety.status.severity == "Amber",
                   "bg-green-500": safety.status.severity == "Green",
-                  "bg-sudbury": safety.status.severity == "Neutral",
+                  "bg-blue-500": safety.status.severity == "Neutral",
                 }
               )}
             />
@@ -34,7 +34,7 @@ export default function SafetyStatus() {
                 "text-red-900": safety.status.severity == "Red",
                 "text-yellow-900": safety.status.severity == "Amber",
                 "text-green-900": safety.status.severity == "Green",
-                "text-sudbury-brand": safety.status.severity == "Neutral",
+                "text-blue-800": safety.status.severity == "Neutral",
               })}
             >
               <span className="sr-only">{safety.status.severity}</span>River status
