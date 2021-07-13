@@ -41,7 +41,7 @@
     "@storybook/addon-essentials": "^6.3.0",
     "@storybook/addon-links": "^6.3.4",
     "@storybook/react": "^6.3.0",
-    "autoprefixer": "^10.2.6",
+    "autoprefixer": "^10.3.1",
     "babel-loader": "^8.2.2",
     "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",
