@@ -38,13 +38,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
-    "@storybook/addon-actions": "^6.3.0",
+    "@storybook/addon-actions": "^6.3.4",
     "@storybook/addon-essentials": "^6.3.0",
-    "@storybook/addon-links": "^6.3.0",
+    "@storybook/addon-links": "^6.3.4",
     "@storybook/react": "^6.3.0",
     "autoprefixer": "^10.2.6",
     "babel-loader": "^8.2.2",
-    "eslint": "^7.29.0",
+    "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",
     "postcss": "^8.3.5",
     "tailwindcss": "^2.2"
