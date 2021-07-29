@@ -30,6 +30,7 @@
     "react-feather": "^2.0.9",
     "react-markdown": "^6.0.2",
     "react-scroll": "^1.8.2",
+    "react-tabs": "^3.2.2",
     "remark": "13.0.0",
     "remark-html": "13.0.1",
     "remark-oembed": "^1.2.2",
@@ -37,7 +38,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
-    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-actions": "^6.3.6",
     "@storybook/addon-essentials": "^6.3.0",
     "@storybook/addon-links": "^6.3.4",
     "@storybook/react": "^6.3.0",
