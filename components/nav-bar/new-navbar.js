@@ -76,7 +76,7 @@ const regatta = [
     name: "Introduction",
     description:
       "Get all of your questions answered in our forums or contact support.",
-    href: "#",
+    href: "../regatta/",
     icon: SupportIcon,
   },
   {
@@ -142,7 +142,7 @@ export default function Example() {
                       <Popover.Button
                         className={classNames(
                           open ? "text-white" : "text-gray-300",
-                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 "
+                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 pl-1"
                         )}
                       >
                         <span>About</span>
@@ -175,7 +175,7 @@ export default function Example() {
                                 <Link key={item.name} href={item.href}>
                                   <a className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50">
                                     <item.icon
-                                      className="flex-shrink-0 w-6 h-6 text-sudbury"
+                                      className="flex-shrink-0 w-6 h-6 text-blue-700"
                                       aria-hidden="true"
                                     />
                                     <div className="ml-4">
@@ -224,7 +224,7 @@ export default function Example() {
                       <Popover.Button
                         className={classNames(
                           open ? "text-white" : "text-gray-300",
-                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 "
+                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 pl-1"
                         )}
                       >
                         <span>Regatta</span>
@@ -257,7 +257,7 @@ export default function Example() {
                                 <Link key={item.name} href={item.href}>
                                   <a className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50">
                                     <item.icon
-                                      className="flex-shrink-0 w-6 h-6 text-sudbury"
+                                      className="flex-shrink-0 w-6 h-6 text-blue-700"
                                       aria-hidden="true"
                                     />
                                     <div className="ml-4">
@@ -358,7 +358,7 @@ export default function Example() {
                         <Link key={item.name} href={item.href}>
                           <a className="flex items-center p-3 -m-3 rounded-md hover:bg-gray-50">
                             <item.icon
-                              className="flex-shrink-0 w-6 h-6 text-sudbury"
+                              className="flex-shrink-0 w-6 h-6 text-blue-700"
                               aria-hidden="true"
                             />
                             <span className="ml-3 text-base font-medium text-gray-900">

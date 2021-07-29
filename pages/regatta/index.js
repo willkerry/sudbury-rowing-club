@@ -3,14 +3,20 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import DayDateFormatter from "@/components/daydate-formatter";
-import Link from "next/link";
-import cn from "classnames";
 import ordinal from "ordinal";
 import Note from "@/components/stour/note";
 import Text from "@/components/stour/text";
 import Testimonial from "@/components/stour/testimonial";
 import Masonry from "@/components/stour/masonry";
 import Hero from "@/components/stour/hero";
+
+import {
+  ContactIcon,
+  EntriesIcon,
+  EventsIcon,
+  InfoIcon,
+  ResultsIcon,
+} from "@/components/regatta-tabs/icons";
 
 import DataTabs from "@/components/regatta-tabs/data-tabs";
 import Events from "@/components/regatta-tabs/events";
@@ -27,8 +33,9 @@ const tabData = [
     content: (
       <Events data={data.events.event} coursemap={data.events.coursemap} />
     ),
+    icon: <EventsIcon />,
   },
-  { label: "Entries", content: <Entries>{data.entries.text}</Entries> },
+  { label: "Entries", content: <Entries>{data.entries.text}</Entries>, icon: <EntriesIcon />, },
   {
     label: "Results",
     content: (
@@ -37,9 +44,18 @@ const tabData = [
         record={data.results.courseRecords}
       />
     ),
+    icon: <ResultsIcon />,
   },
-  { label: "Important", content: <Entries>{data.entries.text}</Entries> },
-  { label: "Contact", content: <Entries>{data.entries.text}</Entries> },
+  {
+    label: "Important",
+    content: <Entries>{data.entries.text}</Entries>,
+    icon: <InfoIcon />,
+  },
+  {
+    label: "Contact",
+    content: <Entries>{data.entries.text}</Entries>,
+    icon: <ContactIcon />,
+  },
 ];
 
 export default function Regatta() {
@@ -48,7 +64,7 @@ export default function Regatta() {
       <Head>
         <title>Regatta</title>
       </Head>
-      <HeroTitle title="The Sudbury Regatta"/>
+      <HeroTitle title="The Sudbury Regatta" />
       <Container>
         <div className="pt-12">
           <Note label="2021 Update" centered>

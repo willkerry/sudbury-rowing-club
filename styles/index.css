@@ -20,9 +20,6 @@ html {
   [data-reach-tab][data-selected].tab {
     @apply text-gray-900 border-b border-black outline-none appearance-none select-none;
   }
-  [data-reach-tab][data-selected].regatta-tab {
-    @apply text-white rounded-t-lg shadow-lg outline-none appearance-none select-none bg-gradient-to-tr from-blue-500 to-blue-700;
-  }
 }
 @tailwind utilities;
 @layer utilities {

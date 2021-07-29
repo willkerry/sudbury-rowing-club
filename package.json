@@ -30,6 +30,7 @@
     "react-feather": "^2.0.9",
     "react-markdown": "^6.0.2",
     "react-scroll": "^1.8.2",
+    "react-tabs": "^3.2.2",
     "remark": "13.0.0",
     "remark-html": "13.0.1",
     "remark-oembed": "^1.2.2",
