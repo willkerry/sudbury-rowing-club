@@ -1,30 +1,39 @@
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { useState } from "react";
-import Link from "next/link";
+import cn from "classnames";
+import { Tab } from "@headlessui/react";
 
 function DataTabs({ data }) {
   const [tabIndex, setTabIndex] = useState(0);
   return (
-    <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-      <TabList className="flex justify-center border-b">
+    <Tab.Group>
+      <Tab.List className="flex justify-center my-3">
+        <div className="rounded-lg shadow">
+          {data.map((tab, index) => (
+            <Tab
+              key={index}
+              className={({ selected }) =>
+                cn(
+                  "px-10 pt-4 pb-3 outline-none appearance-none transition first:rounded-l-lg last:rounded-r-lg",
+                  selected
+                    ? "select-none text-blue-500 border-b-2 border-b-blue-400 shadow-inner"
+                    : "text-gray-600 cursor-pointer hover:text-gray-500"
+                )
+              }
+            >
+              <div className="w-8 h-8 mx-auto mb-1">{tab.icon}</div>
+              <div className="">{tab.label}</div>
+            </Tab>
+          ))}
+        </div>
+      </Tab.List>
+      <Tab.Panels>
         {data.map((tab, index) => (
-          <Tab
-            key={index}
-            className="flex flex-col px-12 pt-4 pb-3 text-gray-500 cursor-pointer"
-            selectedClassName="!text-white rounded-t-lg shadow-lg outline-none appearance-none select-none bg-gradient-to-tr from-blue-500 to-blue-700"
-          >
-            <div className="w-8 h-8 mx-auto mb-1">{tab.icon}</div>
-            <div className="">{tab.label}</div>
-          </Tab>
+          <Tab.Panel key={index}>
+            <div className="py-12 mx-auto md:max-w-5xl">{tab.content}</div>
+          </Tab.Panel>
         ))}
-      </TabList>
-
-      {data.map((tab, index) => (
-        <TabPanel key={index}>
-          <div className="py-12 mx-auto md:max-w-5xl">{tab.content}</div>
-        </TabPanel>
-      ))}
-    </Tabs>
+      </Tab.Panels>
+    </Tab.Group>
   );
 }
 

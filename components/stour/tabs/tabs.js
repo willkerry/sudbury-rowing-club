@@ -1,11 +1,9 @@
-import { Tabs as ReachTabs } from "@reach/tabs";
-import { TabList, Tab, TabPanels, TabPanel } from "@reach/tabs";
-import styles from "./tabs.module.css"
+import Tab from "@headlessui/react"
 
 function Tabs({ data }) {
   return (
-    <ReachTabs>
-      <TabList className="flex space-x-4 border-b">
+    <Tab.Group>
+      <Tab.List className="flex space-x-4 border-b">
         {data.map((tab, index) => (
           <Tab
             key={index}
@@ -14,16 +12,16 @@ function Tabs({ data }) {
             {tab.label}
           </Tab>
         ))}
-      </TabList>
+      </Tab.List>
 
-      <TabPanels>
+      <Tab.Panels>
         {data.map((tab, index) => (
-          <TabPanel key={index} className="my-4 prose text-gray-900">
+          <Tab.Panel key={index} className="my-4 prose text-gray-900">
             {tab.content}
-          </TabPanel>
+          </Tab.Panel>
         ))}
-      </TabPanels>
-    </ReachTabs>
+      </Tab.Panels>
+    </Tab.Group>
   );
 }
 
