@@ -28,5 +28,28 @@ fields:
       required: false
     label: YouTube embed URL
   label: Hero
+- name: intro
+  type: field_group
+  config: {}
+  fields:
+  - name: first
+    type: textarea
+    default: ''
+    config:
+      required: false
+      wysiwyg: false
+      schema:
+        format: markdown
+    label: First
+  - name: second
+    type: textarea
+    default: ''
+    config:
+      required: false
+      wysiwyg: false
+      schema:
+        format: markdown
+    label: Second
+  label: Intro
 pages:
 - data/landing.json
