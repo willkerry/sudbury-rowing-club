@@ -107,6 +107,14 @@ fields:
       config:
         required: false
       label: URL
+    - name: file
+      type: file
+      config:
+        maxSize: 64
+      label: File
+      showOnly:
+        field: type
+        value: File download
     config:
       min: 
       max: 
