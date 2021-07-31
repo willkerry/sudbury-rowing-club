@@ -87,6 +87,26 @@ fields:
       config:
         required: false
       label: Name
+    - name: type
+      type: select
+      default: []
+      config:
+        required: false
+        options:
+        - Internal link
+        - External link
+        - File download
+        source:
+          type: simple
+          section: 
+          file: 
+          path: 
+      label: Type
+    - name: href
+      type: text
+      config:
+        required: false
+      label: URL
     config:
       min: 
       max: 
@@ -96,6 +116,6 @@ fields:
     min: 
     max: 
     labelField: 
-  label: documents
+  label: Document groups
 pages:
 - data/governance.json
