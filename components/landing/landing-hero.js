@@ -12,9 +12,8 @@ function LandingHero(props) {
         <Image
           src={DroneImage}
           alt="Aerial photograph of a Sudbury crew training."
-          width="982px"
-          height="552px"
           className="rounded-2xl"
+          placeholder="blur"
         />
 
         <div className="absolute top-0 flex items-center w-full h-full p-24">
@@ -22,13 +21,13 @@ function LandingHero(props) {
             <BoathouseDoor className="flex justify-center w-full text-white" />
             <div className="flex justify-center">
               <span className="px-3 py-1 font-medium bg-white rounded-full">
-                Your friendly local rowing club
+                {props.slogan}
               </span>
             </div>
           </div>
         </div>
         <div className="absolute text-white bottom-3 right-3">
-          <Player youTubeEmbedUrl="https://www.youtube.com/embed/2EiBu6A7KhA">
+          <Player youTubeEmbedUrl={props.youtube}>
             <PlayIcon className="w-12 h-12 transition opacity-100 hover:opacity-70" />
           </Player>
         </div>

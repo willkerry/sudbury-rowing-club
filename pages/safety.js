@@ -2,7 +2,6 @@ import Head from "next/head";
 import Container from "../components/container";
 import HeroTitle from "../components/hero-title";
 import Layout from "../components/layout";
-import DateTimeFormatter from "@/components/datetime-formatter";
 import styles from "../components/governance/governance.module.css";
 import Link from "next/link";
 import {
@@ -10,8 +9,7 @@ import {
   DownloadIcon,
   ExternalLinkIcon,
 } from "@heroicons/react/outline";
-import cn from "classnames";
-import Button from "../components/stour/button";
+import Button from "@/components/stour/button";
 import SafetyPopup from "@/components/safety";
 import ReactMarkdown from "react-markdown";
 import smartypants from "@silvenon/remark-smartypants";
