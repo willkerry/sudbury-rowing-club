@@ -78,7 +78,7 @@ fields:
     type: text
     config:
       required: false
-    label: Group
+    label: Document Group Label
   - name: items
     type: field_group_list
     fields:
