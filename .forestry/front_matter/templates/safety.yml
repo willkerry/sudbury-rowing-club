@@ -78,11 +78,24 @@ fields:
     config:
       required: false
     label: Name
+  - name: file_upload
+    type: boolean
+    label: File upload
   - name: file
     type: file
     config:
       maxSize: 64
     label: File
+    showOnly:
+      field: file_upload
+      value: true
+  - name: href
+    type: text
+    config:
+      required: false
+    label: Link
+    showOnly:
+      field: file_upload
   config:
     min: 
     max: 
