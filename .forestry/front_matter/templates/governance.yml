@@ -12,8 +12,14 @@ fields:
   - type: text
     name: role
     label: Role
+  - name: email
+    type: text
+    config:
+      required: false
+    label: Email
+    description: 'Used in the backend –&nbsp;never displayed publicly. '
   config:
-    labelField: name
+    labelField: role
 - type: field_group_list
   name: committees
   label: Committees
