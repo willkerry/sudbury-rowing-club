@@ -18,6 +18,9 @@ fields:
       required: false
     label: Email
     description: 'Used in the backend –&nbsp;never displayed publicly. '
+  - name: vacant
+    type: boolean
+    label: Position vacant
   config:
     labelField: role
 - type: field_group_list
