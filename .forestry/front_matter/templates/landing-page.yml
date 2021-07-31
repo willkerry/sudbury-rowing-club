@@ -1,4 +1,35 @@
 ---
 label: Landing Page
 hide_body: true
-fields: []
+display_field: page_title
+fields:
+- name: page_title
+  type: text
+  config:
+    required: false
+  label: Page Title
+- name: page_description
+  type: text
+  config:
+    required: false
+  label: Page description
+- name: hero
+  type: field_group
+  config: {}
+  fields:
+  - name: hero_image
+    type: file
+    config:
+      maxSize: 64
+    label: Hero image
+  - name: slogan
+    type: text
+    config:
+      required: false
+    label: Slogan
+  - name: youtube_embed_url
+    type: text
+    config:
+      required: false
+    label: YouTube embed URL
+  label: Hero
