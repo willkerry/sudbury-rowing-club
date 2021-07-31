@@ -1,6 +1,7 @@
 import Container from "./container";
 import { Facebook, Twitter, Instagram } from "react-feather";
 import Crest from "@/components/icons/logo/crest";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -27,24 +28,24 @@ export default function Footer() {
             <div className="mb-4 text-xs font-bold tracking-widest text-gray-400 uppercase">
               About
             </div>
-            <a
+            <Link
               href="#"
               className="block my-3 text-sm font-medium text-gray-500 duration-700 hover:text-gray-700"
             >
               Introduction
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="block my-3 text-sm font-medium text-gray-500 duration-700 hover:text-gray-700"
             >
               History
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="block my-3 text-sm font-medium text-gray-500 duration-700 hover:text-gray-700"
             >
               Governance
-            </a>
+            </Link>
           </div>
 
           <div className="w-1/2 sm:w-4/12 md:w-3/12">

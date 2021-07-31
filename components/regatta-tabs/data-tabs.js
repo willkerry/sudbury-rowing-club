@@ -7,16 +7,16 @@ function DataTabs({ data }) {
   return (
     <Tab.Group>
       <Tab.List className="flex justify-center my-3">
-        <div className="rounded-lg shadow">
+        <div className="border rounded-lg">
           {data.map((tab, index) => (
             <Tab
               key={index}
               className={({ selected }) =>
                 cn(
-                  "px-10 pt-4 pb-3 outline-none appearance-none transition first:rounded-l-lg last:rounded-r-lg",
+                  "px-10 pt-4 pb-3 outline-none appearance-none transition first:rounded-l-lg last:rounded-r-lg border-transparent",
                   selected
-                    ? "select-none text-blue-500 border-b-2 border-b-blue-400 shadow-inner"
-                    : "text-gray-600 cursor-pointer hover:text-gray-500"
+                    ? "select-none text-blue-500 border-b-2 border-b-blue-400"
+                    : "text-gray-800 cursor-pointer border-b-2 hover:border-b-blue-100"
                 )
               }
             >

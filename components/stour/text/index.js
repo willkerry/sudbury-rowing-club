@@ -16,7 +16,14 @@ const VARIANT_MAPS = {
 export function Text(props) {
   const { children, type, size, markdown } = props;
   return (
-    <div className={cn("prose", VARIANT_MAPS[type], SIZE_MAPS[size])}>
+    <div
+      className={cn(
+        "prose",
+        VARIANT_MAPS[type],
+        SIZE_MAPS[size],
+        props.className
+      )}
+    >
       {markdown ? (
         <ReactMarkdown remarkPlugins={[smartypants]}>{children}</ReactMarkdown>
       ) : (

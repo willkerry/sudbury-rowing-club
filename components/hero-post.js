@@ -12,28 +12,28 @@ export default function HeroPost({
 }) {
   return (
     <section>
-      <div className="mb-8 md:mb-16">
-        <CoverImage
-          title={title}
-          src={coverImage}
-          slug={slug}
-          height={620}
-          width={1240}
-        />
-      </div>
-      <div className="mb-20 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 md:mb-28">
+      <div className="grid md:grid-cols-3 md:gap-x-16 lg:gap-x-8">
         <div>
-          <h3 className="mb-4 text-4xl leading-tight lg:text-6xl">
-            <Link as={`/news/${slug}`} href="/news/[slug]">
-              <a className="hover:underline">{title}</a>
-            </Link>
-          </h3>
-          <div className="mb-4 text-lg md:mb-0">
+          <div className="mb-3 font-medium">
             <DateFormatter dateString={date} />
           </div>
+          <h3 className="mb-4 font-serif text-2xl leading-tight lg:text-5xl">
+            <Link as={`/news/${slug}`} href="/news/[slug]">
+              <a className="">{title}</a>
+            </Link>
+          </h3>
+          <p className="mb-4 text-lg">{excerpt}</p>
         </div>
-        <div>
-          <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
+        <div className="order-first md:col-span-2">
+          <div className="relative mb-8 rounded-lg h-96 md:mb-16">
+            <CoverImage
+              title={title}
+              src={coverImage}
+              slug={slug}
+              height={620}
+              width={1240}
+            />
+          </div>
         </div>
       </div>
     </section>

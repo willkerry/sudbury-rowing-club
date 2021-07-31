@@ -2,7 +2,10 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
   mode: "jit",
   purge: ["./components/**/*.js", "./pages/**/*.js"],
   theme: {
@@ -31,12 +34,7 @@ module.exports = {
       lineHeight: {
         tight: 1.2,
       },
-      fontSize: {
-        "5xl": "2.5rem",
-        "6xl": "2.75rem",
-        "7xl": "4.5rem",
-        "8xl": "6.25rem",
-      },
+
       fontFamily: {
         sans: ["InterVariable", "sans-serif"],
         serif: ["Spectral", "serif"],

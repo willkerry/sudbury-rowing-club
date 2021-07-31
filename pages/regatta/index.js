@@ -35,7 +35,11 @@ const tabData = [
     ),
     icon: <EventsIcon />,
   },
-  { label: "Entries", content: <Entries>{data.entries.text}</Entries>, icon: <EntriesIcon />, },
+  {
+    label: "Entries",
+    content: <Entries>{data.entries.text}</Entries>,
+    icon: <EntriesIcon />,
+  },
   {
     label: "Results",
     content: (
@@ -66,21 +70,18 @@ export default function Regatta() {
       </Head>
       <HeroTitle title="The Sudbury Regatta" />
       <Container>
-        <div className="pt-12">
-          <Note label="2021 Update" centered>
-            We are delighted to confirm that we are planning to hold our
-            regatta, ‘The International’ on Saturday 7 August 2021. We are still
-            working on the changes we will need to put in place in response to
-            the pandemic so watch this space.
-          </Note>
-        </div>
-
         <div className="py-20">
           <Hero
             title={data.regattaIntro.title}
             label={<DayDateFormatter dateString={data.regattaIntro.date} />}
           />
           <div className="pt-10 space-y-3 max-w-prose">
+            <Note label="2021 Update" className="mb-6">
+              We are delighted to confirm that we are planning to hold our
+              regatta, ‘The International’ on Saturday 7 August 2021. We are
+              still working on the changes we will need to put in place in
+              response to the pandemic so watch this space.
+            </Note>
             <Text markdown className="py-10">
               {data.regattaIntro.description}
             </Text>
@@ -99,9 +100,9 @@ export default function Regatta() {
         fullwidth
       />
       <Container>
-        {data.praise.year.map((item) => {
+        {data.praise.year.map((item, index) => {
           return (
-            <div key={item.date.toString()}>
+            <div key={index}>
               <h3 className="pt-12 font-serif text-3xl font-medium">
                 Praise for the {ordinal(item.number)} regatta{" "}
               </h3>

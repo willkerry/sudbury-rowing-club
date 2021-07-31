@@ -3,10 +3,11 @@ import { PropTypes } from "prop-types";
 
 const SIZE_MAPS = {
   small: "py-2 px-3 prose-sm my-5",
-  large: "py-3 px-5 prose-sm my-5",
+  large: "py-3 px-5 prose my-5",
 };
 const CENTERED_MAPS = {
-  true: "mx-auto",
+  true: "mx-auto max-w-prose",
+  false: "max-w-none",
 };
 const VARIANT_MAPS = {
   primary: "text-black",
@@ -23,10 +24,11 @@ export function Note(props) {
         "border rounded-md max-w-prose prose",
         VARIANT_MAPS[type],
         SIZE_MAPS[size],
-        CENTERED_MAPS[centered]
+        CENTERED_MAPS[centered],
+        props.className
       )}
     >
-      {label ? <span className="pr-1.5 font-semibold">{label}:</span> : null}
+      {label && <span className="pr-1.5 font-semibold">{label}:</span>}
 
       {children}
     </div>
@@ -62,6 +64,7 @@ Note.defaultProps = {
   type: "primary",
   size: "large",
   label: null,
+  centered: false,
 };
 
 Note.type = VARIANT_MAPS;

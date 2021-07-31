@@ -10,7 +10,7 @@ import { DownloadIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import data from "@/data/governance.json";
 
 const GovGrid = (props) => (
-  <div {...props} className="grid grid-cols-2 gap-16 md:grid-cols-3 md:w-4/5" />
+  <div {...props} className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-3 md:w-4/5" />
 );
 const Row = (props) => <section {...props} className="my-16 md:flex" />;
 const StyledScrollLink = (props) => (
@@ -26,7 +26,7 @@ const StyledScrollLink = (props) => (
 );
 const ScrollComponent = (props) => (
   <div className="sticky top-0 z-10 bg-white border-b">
-    <div className="container px-5 py-5 mx-auto space-x-6 text-gray-500 ">
+    <div className="container max-w-screen-lg px-5 py-5 mx-auto space-x-6 text-gray-500 ">
       <StyledScrollLink to="officers">Club Officers</StyledScrollLink>
       <StyledScrollLink to="committees">Committees</StyledScrollLink>
       <StyledScrollLink to="nonexec">Non-Executive Officers</StyledScrollLink>
@@ -41,11 +41,14 @@ const SectionTitle = (props) => (
   />
 );
 const SubTitle = (props) => (
-  <h3 className="font-semibold text-gray-900" {...props} />
+  <h3 className="pb-4 font-semibold text-gray-900" {...props} />
 );
 const Vacant = (props) => (
   <div className="h-8">
-    <span className="p-1 text-xs font-semibold tracking-widest text-gray-600 border rounded bg-gray-50">
+    <span
+      className="p-1 text-xs font-semibold tracking-widest text-gray-600 border rounded bg-gray-50"
+      {...props}
+    >
       TBA
     </span>
   </div>
@@ -196,22 +199,25 @@ export default function Governance({ preview }) {
                         return (
                           <p
                             key={item.name.toString()}
-                            className="my-2 leading-tight text-gray-600 align-baseline hover:text-gray-800"
+                            className="my-2 text-sm leading-tight text-gray-600 align-baseline hover:text-gray-800"
                           >
-                            <Link href={item.href}>{item.name}</Link>
-
-                            {item.external && !item.download && (
-                              <span>
-                                &nbsp;
-                                <ExternalLinkIcon className="inline-flex w-4 h-4 mb-1 opacity-50" />
-                              </span>
-                            )}
-                            {item.download && (
-                              <span>
-                                &nbsp;
-                                <DownloadIcon className="inline-flex w-4 h-4 mb-1 opacity-50" />
-                              </span>
-                            )}
+                            <Link href={item.href}>
+                              <a>
+                                <span>{item.name}</span>
+                                {item.external && !item.download && (
+                                  <span>
+                                    &nbsp;
+                                    <ExternalLinkIcon className="inline-flex w-3 h-3 mb-0.5 opacity-50" />
+                                  </span>
+                                )}
+                                {item.download && (
+                                  <span>
+                                    &nbsp;
+                                    <DownloadIcon className="inline-flex w-3 h-3 mb-0.5 opacity-50" />
+                                  </span>
+                                )}
+                              </a>
+                            </Link>
                           </p>
                         );
                       })}

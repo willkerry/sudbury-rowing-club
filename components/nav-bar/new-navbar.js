@@ -2,16 +2,18 @@ import { Fragment } from "react";
 import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import {
-  BookmarkAltIcon,
-  CalendarIcon,
   InformationCircleIcon,
   MenuIcon,
   LocationMarkerIcon,
   MailIcon,
   ShieldCheckIcon,
-  SupportIcon,
   XIcon,
+  CollectionIcon,
+  MapIcon,
+  TicketIcon,
 } from "@heroicons/react/outline";
+import { Calendar, Users, ChevronDown as ChevronDownIcon } from "react-feather";
+import cn from "classnames";
 
 import Logo from "@/components/logo/";
 import History from "@/components/icons/history";
@@ -19,41 +21,44 @@ import Safety from "@/components/icons/safety";
 import Governance from "@/components/icons/governance";
 import Resources from "@/components/icons/resources";
 import Rower from "@/components/icons/rower";
-import Button from "@/components/stour/button";
-
-import { ChevronDownIcon } from "@heroicons/react/solid";
 
 import SafetyStatus from "./safety-status";
+import SafetyPopup from "../safety";
+import MyClubhouse from "../icons/myclubhouse";
+import { Button as StourButton } from "../stour/button";
+import NavPopover from "./nav-popover";
 
 const about = [
-  {
-    name: "Introduction",
-    description: "Welcome to Sudbury.",
-    href: "#",
-    icon: InformationCircleIcon,
-  },
   {
     name: "Squads",
     description: "",
     href: "squads",
     icon: Rower,
+    quicklinks: [
+      { name: "Juniors", href: "" },
+      { name: "Women", href: "" },
+      { name: "Men", href: "" },
+      { name: "Adaptive", href: "" },
+      { name: "Indoor", href: "" },
+      { name: "Recreational", href: "" },
+    ],
   },
   {
     name: "History",
     description: "Rowing since 1874.",
-    href: "history",
+    href: "../history",
     icon: History,
   },
   {
     name: "Safety",
     description: "Rowing safely.",
-    href: "safety",
+    href: "../safety",
     icon: Safety,
   },
   {
     name: "Governance",
     description: "How our club is organised.",
-    href: "/governance",
+    href: "../governance",
     icon: Governance,
   },
   {
@@ -73,60 +78,97 @@ const callsToAction = [
 ];
 const regatta = [
   {
-    name: "Introduction",
+    name: "The ’International’",
     description:
-      "Get all of your questions answered in our forums or contact support.",
+      "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
     href: "../regatta/",
-    icon: SupportIcon,
+    icon: InformationCircleIcon,
   },
   {
     name: "Results",
     description:
-      "Learn how to maximize our platform to get the most out of it.",
+      "See who won, check your performance or explore our 20-year archive.",
     href: "#",
-    icon: BookmarkAltIcon,
+    icon: CollectionIcon,
   },
   {
-    name: "Find the regatta",
-    description:
-      "See what meet-ups and other events we might be planning near you.",
+    name: "Location",
+    description: "Plan your journey.",
     href: "#",
-    icon: CalendarIcon,
+    icon: MapIcon,
   },
   {
-    name: "Security",
-    description: "Understand how we take your privacy seriously.",
+    name: "Safety information",
+    description: "Understand how we take your safety seriously.",
     href: "#",
     icon: ShieldCheckIcon,
   },
 ];
-const recentPosts = [
-  { id: 1, name: "Boost your conversion rate", href: "#" },
+const regattaCTAs = [
   {
-    id: 2,
-    name: "How to use search engine optimization to drive traffic to your site",
+    name: "Entries",
+    href: "/contact/how-to-find-us",
+    icon: TicketIcon,
+  },
+  { name: "Competitors", href: "/contact", icon: Rower },
+];
+const members = [
+  {
+    name: "Officer Nominations",
+    href: "../regatta/",
+  },
+  {
+    name: "Membership Rates",
     href: "#",
   },
-  { id: 3, name: "Improve your customer experience", href: "#" },
+  {
+    name: "Race Fees",
+    href: "#",
+  },
+  {
+    name: "Club Kit",
+    href: "#",
+  },
+  {
+    name: "Committee Minutes",
+    href: "#",
+  },
+  {
+    name: "Training Resources",
+    href: "#",
+  },
+  {
+    name: "Fundraising",
+    href: "#",
+  },
+];
+const memberCTAs = [
+  {
+    name: "Squadlist",
+    href: "/contact/how-to-find-us",
+    icon: Calendar,
+  },
+  { name: "myClubhouse", href: "/contact", icon: MyClubhouse },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+const navLinkClasses =
+  "group transition duration-200 rounded-md inline-flex items-center text-base hover:text-black focus:outline-none px-1 -mx-1 py-0.5 -my-0.5";
+const navLinkColor = "text-gray-600";
+const navLinkActiveColor = "text-black font-medium";
 
-export default function Example() {
+export default function Navbar() {
   return (
-    <Popover className="relative text-gray-100 bg-blue-800">
+    <Popover className="relative text-gray-900 bg-white">
       {({ open }) => (
         <>
-          <div className="px-4 mx-auto max-w-7xl sm:px-6">
+          <div className="max-w-screen-lg px-4 mx-auto sm:px-6">
             <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
               <div className="flex justify-start lg:w-0 lg:flex-1">
-                <Link href="/">
-                  <>
+                <Link href="../../">
+                  <a>
                     <span className="sr-only">Sudbury Rowing Club</span>
                     <Logo className="w-auto h-8 sm:h-10" />
-                  </>
+                  </a>
                 </Link>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
@@ -135,192 +177,32 @@ export default function Example() {
                   <MenuIcon className="w-6 h-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
-              <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-                <Popover className="relative">
-                  {({ open }) => (
-                    <>
-                      <Popover.Button
-                        className={classNames(
-                          open ? "text-white" : "text-gray-300",
-                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 pl-1"
-                        )}
-                      >
-                        <span>About</span>
-                        <ChevronDownIcon
-                          className={classNames(
-                            open ? "text-gray-300" : "text-gray-200",
-                            "ml-2 h-5 w-5 group-hover:text-gray-300"
-                          )}
-                          aria-hidden="true"
-                        />
-                      </Popover.Button>
-
-                      <Transition
-                        show={open}
-                        as={Fragment}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-1"
-                        enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 translate-y-1"
-                      >
-                        <Popover.Panel
-                          static
-                          className="absolute z-20 w-screen max-w-sm px-2 mt-3 -ml-4 transform sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
-                        >
-                          <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                            <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
-                              {about.map((item) => (
-                                <Link key={item.name} href={item.href}>
-                                  <a className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50">
-                                    <item.icon
-                                      className="flex-shrink-0 w-6 h-6 text-blue-700"
-                                      aria-hidden="true"
-                                    />
-                                    <div className="ml-4">
-                                      <p className="text-base font-medium text-gray-900">
-                                        {item.name}
-                                      </p>
-                                      <p className="mt-1 text-sm text-gray-500">
-                                        {item.description}
-                                      </p>
-                                    </div>
-                                  </a>
-                                </Link>
-                              ))}
-                            </div>
-                            <div className="px-5 py-5 space-y-6 bg-gray-50 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                              {callsToAction.map((item) => (
-                                <div key={item.name} className="flow-root">
-                                  <Link href={item.href}>
-                                    <a className="flex items-center p-3 -m-3 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100">
-                                      <item.icon
-                                        className="flex-shrink-0 w-6 h-6 text-gray-400"
-                                        aria-hidden="true"
-                                      />
-                                      <span className="ml-3">{item.name}</span>
-                                    </a>
-                                  </Link>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </Popover.Panel>
-                      </Transition>
-                    </>
-                  )}
-                </Popover>
-
-                <Link href="#">
-                  <a className="text-base font-medium text-gray-300 hover:text-white">
-                    News
-                  </a>
+              <Popover.Group as="nav" className="hidden space-x-6 md:flex">
+                <NavPopover
+                  label="About"
+                  navData={about}
+                  ctaData={callsToAction}
+                />
+                <Link href="../news/">
+                  <a className={cn(navLinkClasses, navLinkColor)}>News</a>
                 </Link>
-
-                <Popover className="relative">
-                  {({ open }) => (
-                    <>
-                      <Popover.Button
-                        className={classNames(
-                          open ? "text-white" : "text-gray-300",
-                          "group rounded-md inline-flex items-center text-base font-medium hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-blue-800 focus:ring-gray-300 pl-1"
-                        )}
-                      >
-                        <span>Regatta</span>
-                        <ChevronDownIcon
-                          className={classNames(
-                            open ? "text-gray-300" : "text-gray-200",
-                            "ml-2 h-5 w-5 group-hover:text-gray-300"
-                          )}
-                          aria-hidden="true"
-                        />
-                      </Popover.Button>
-
-                      <Transition
-                        show={open}
-                        as={Fragment}
-                        enter="transition ease-out duration-200"
-                        enterFrom="opacity-0 translate-y-1"
-                        enterTo="opacity-100 translate-y-0"
-                        leave="transition ease-in duration-150"
-                        leaveFrom="opacity-100 translate-y-0"
-                        leaveTo="opacity-0 translate-y-1"
-                      >
-                        <Popover.Panel
-                          static
-                          className="absolute z-20 w-screen max-w-sm px-2 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0"
-                        >
-                          <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                            <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
-                              {regatta.map((item) => (
-                                <Link key={item.name} href={item.href}>
-                                  <a className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50">
-                                    <item.icon
-                                      className="flex-shrink-0 w-6 h-6 text-blue-700"
-                                      aria-hidden="true"
-                                    />
-                                    <div className="ml-4">
-                                      <p className="text-base font-medium text-gray-900">
-                                        {item.name}
-                                      </p>
-                                      <p className="mt-1 text-sm text-gray-500">
-                                        {item.description}
-                                      </p>
-                                    </div>
-                                  </a>
-                                </Link>
-                              ))}
-                            </div>
-                            <div className="px-5 py-5 bg-gray-50 sm:px-8 sm:py-8">
-                              <div>
-                                <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
-                                  Recent Posts
-                                </h3>
-                                <ul className="mt-4 space-y-4">
-                                  {recentPosts.map((post) => (
-                                    <li
-                                      key={post.id}
-                                      className="text-base truncate"
-                                    >
-                                      <Link href={post.href}>
-                                        <a className="font-medium text-gray-900 hover:text-gray-700">
-                                          {post.name}
-                                        </a>
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div className="mt-5 text-sm">
-                                <Link href="#">
-                                  <a className="font-medium text-blue-500 hover:text-blue-700">
-                                    View all posts
-                                    <span aria-hidden="true">&rarr;</span>
-                                  </a>
-                                </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </Popover.Panel>
-                      </Transition>
-                    </>
-                  )}
-                </Popover>
+                <NavPopover
+                  label="Regatta"
+                  navData={regatta}
+                  ctaData={regattaCTAs}
+                />
               </Popover.Group>
-              <div className="items-center justify-end hidden md:flex md:flex-1 lg:w-0">
+              <Popover.Group className="items-center justify-end hidden space-x-4 md:flex md:flex-1 lg:w-0">
                 <SafetyStatus />
-                <Link href="#">
-                  <a className="ml-4 text-base font-medium text-gray-300 whitespace-nowrap hover:text-white">
-                    Members
-                  </a>
-                </Link>
-                <Link href="#">
-                  <a className="inline-flex items-center justify-center px-2 py-1 ml-4 text-base font-medium text-white transition border-2 border-white rounded-md shadow-sm whitespace-nowrap hover:bg-white hover:text-blue-800">
-                    Join us
-                  </a>
-                </Link>
-              </div>
+                <NavPopover
+                  compact
+                  icon={Users}
+                  label="Members"
+                  navData={members}
+                  ctaData={memberCTAs}
+                />
+                <StourButton label="Join us" size="small" />
+              </Popover.Group>
             </div>
           </div>
 

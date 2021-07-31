@@ -2,7 +2,7 @@
   "safety": [
     {
       "name": "Pre-row safety guide",
-      "description": "",
+      "description": "It is the every rower's responsibility to assess the risks of every outing. If in doubt, seek advice or change your plans – a missed outing is better than taking unnecessary risks. The considerations rowers should make before taking to the water are detailed in our one-page pre-row safety guide.",
       "date": "",
       "link": {
         "file": "https://sudburyrowingclub.org.uk/wp-content/uploads/2021/02/Pre-Row-Safety-Poster-A4.pdf",
@@ -13,7 +13,12 @@
     {
       "name": "Covid-19",
       "description": "The UK Government recently released ‘Guidance for the public on the phased return of outdoor sport and recreation’ and this sets out more detailed information, specific for the sports sector, and building on the Government’s COVID-19 recovery strategy.\n\n [The club has produced a detailed video guide for our return rowing.](https://youtu.be/3awIjDHY7O4)\n\nThe Government permits sports clubs to re-open for physical and mental well-being provided social distancing is adhered to and steps are taken to prevent any possible transference of COVID-19.\n\nFollowing guidance from our governing body British Rowing, Sudbury Rowing Club is planning to re-open the Club to its members from Tuesday 26 May. Single sculling will be permitted, with no more than 2 members at the Club or on the water at any one time.  For members of the same household pairs/doubles are also permitted, subject to no other club members being present.\n\nMeasures have been put in place for social distancing, sanitisation before and after outings and for thorough cleansing of boats/ancillary equipment and any touch points necessary to gain access to the grounds.\n\nIf you require any further information regarding this matter, please [contact the chairman](https://sudburyrowingclub.org.uk/how-to-contact-us/).",
-      "date": "23 May 2020"
+      "date": "23 May 2020",
+      "link": {
+        "file": "https://youtu.be/3awIjDHY7O4/",
+        "name": "Video guide to COVID-19 precautions",
+        "type": "external"
+      }
     },
     {
       "name": "Danger from waterborne diseases",
@@ -32,9 +37,9 @@
     }
   ],
   "status": {
-    "severity": "Amber",
+    "severity": "Red",
     "display": true,
-    "description": "No hazardous weather conditions are predicted this week.",
+    "description": "Rowing is currently suspended due to severe reed overgrowth. No outings are permitted without the express permission of the captain.",
     "date": "20210418T182931Z"
   },
   "documents": [
