@@ -3,16 +3,6 @@ label: Landing Page
 hide_body: true
 display_field: page_title
 fields:
-- name: page_title
-  type: text
-  config:
-    required: false
-  label: Page Title
-- name: page_description
-  type: text
-  config:
-    required: false
-  label: Page description
 - name: hero
   type: field_group
   config: {}
@@ -51,5 +41,51 @@ fields:
         format: markdown
     label: Secondary
   label: Intro
+- name: page_title
+  type: text
+  config:
+    required: false
+  label: Page Title
+- name: page_description
+  type: text
+  config:
+    required: false
+  label: Page description
+- name: notice
+  type: field_group
+  config: {}
+  fields:
+  - name: label
+    type: text
+    config:
+      required: false
+    label: Label
+  - name: text
+    type: textarea
+    default: ''
+    config:
+      required: false
+      wysiwyg: false
+      schema:
+        format: markdown
+    label: Text
+  - name: type
+    type: select
+    default: []
+    config:
+      required: false
+      options:
+      - primary
+      - secondary
+      - success
+      - error
+      - warning
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: Type
+  label: Notice
 pages:
 - data/landing.json
