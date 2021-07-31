@@ -14,8 +14,8 @@
   },
   "notice": {
     "display": true,
-    "label": "Regatta update",
+    "label": "",
     "text": "The club is active the whole year round, training through the winter for the Mens’, Women’s and Masters’ eights heads in March and April while for the rest of the year the club concentrates on fours, pairs, doubles and sculls. We have an active junior membership that often competes in various competitions.",
-    "type": "secondary"
+    "type": "error"
   }
 }
