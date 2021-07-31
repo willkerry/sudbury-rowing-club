@@ -3,104 +3,128 @@
     {
       "name": "Keith Paxman",
       "vacant": 0,
-      "role": "Chairman"
+      "role": "Chairman",
+      "email": ""
     },
     {
       "name": "Pippa Kerry",
       "vacant": 0,
-      "role": "Captain"
+      "role": "Captain",
+      "email": ""
     },
     {
       "name": "Jeremy Milbank",
       "vacant": 0,
-      "role": "Club Secretary"
+      "role": "Club Secretary",
+      "email": ""
     },
     {
       "name": "Tim Hysom",
       "vacant": 0,
-      "role": "Treasurer"
+      "role": "Treasurer",
+      "email": ""
     },
     {
       "name": "Tim Hysom",
       "vacant": 0,
-      "role": "Men’s Vice-Captain"
+      "role": "Men’s Vice-Captain",
+      "email": ""
     },
     {
       "name": "Sophie Lovegrove",
       "vacant": 0,
-      "role": "Ladies’ Vice-Captain"
+      "role": "Ladies’ Vice-Captain",
+      "email": ""
     },
     {
       "name": "Nick Power",
       "vacant": 0,
-      "role": "Junior Vice-Captain"
+      "role": "Junior Vice-Captain",
+      "email": ""
     },
     {
       "name": "Jeremy Milbank",
       "vacant": 0,
-      "role": "Recreational Vice-Captain"
+      "role": "Recreational Vice-Captain",
+      "email": ""
     },
     {
       "name": "Sean Moriarty",
       "vacant": 0,
-      "role": "Learn to Row/Development"
+      "role": "Learn to Row/Development",
+      "email": ""
     },
     {
       "name": "Alex Elmon",
       "vacant": 0,
-      "role": "Safety"
+      "role": "Safety",
+      "email": ""
     },
     {
       "name": "TBA",
       "vacant": true,
-      "role": "Welfare"
+      "role": "Welfare",
+      "email": ""
     },
     {
       "name": "TBA",
       "vacant": true,
-      "role": "Regatta Secretary"
+      "role": "Regatta Secretary",
+      "email": ""
     },
     {
       "name": "Tony Moule",
       "vacant": 0,
-      "role": "Boatman"
+      "role": "Boatman",
+      "email": ""
     },
     {
       "name": "Penny Wilby",
       "vacant": 0,
-      "role": "Sponsorship"
+      "role": "Sponsorship",
+      "email": ""
     },
     {
       "name": "Lee Adams",
       "vacant": 0,
-      "role": "Facilities"
+      "role": "Facilities",
+      "email": ""
     },
     {
       "name": "Amanda Ashton",
       "vacant": 0,
-      "role": "Publicity"
+      "role": "Publicity",
+      "email": ""
     },
     {
       "name": "TBA",
       "vacant": 1,
-      "role": "Social Secretary"
+      "role": "Social Secretary",
+      "email": ""
     },
     {
       "name": "Tim Hysom",
       "vacant": 0,
-      "role": "Membership"
+      "role": "Membership",
+      "email": ""
     },
     {
       "name": "Will Kerry",
       "vacant": 0,
-      "role": "Website"
+      "role": "Website",
+      "email": ""
     }
   ],
   "committees": [
     {
       "name": "Management Committee",
       "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
-      "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
+      "officers": [
+        "Chairman",
+        "Secretary",
+        "Treasurer",
+        "Captain"
+      ]
     },
     {
       "name": "Rowing Committee",
@@ -130,43 +154,121 @@
     {
       "name": "Compliance Committee",
       "description": "Responsible for ensuring that the club is compliant with financial, safeguarding and safety responsibilities and duties.",
-      "officers": ["Treasurer", "Safety Officer", "Welfare Officer"]
+      "officers": [
+        "Treasurer",
+        "Safety Officer",
+        "Welfare Officer"
+      ]
     },
     {
       "name": "Development Committee",
       "description": "When formed, will identify options for investing club funds in infrastructure or club development",
-      "officers": []
+      "officers": [
+
+      ]
     }
   ],
   "presidentDescription": "By convention, the incoming Mayor of Sudbury is invited each year to become the Club president.",
   "vicePresidentDescription": "Vice-presidents are elected each year at the AGM.",
   "vicePresidents": [
-    { "firstName": "Christiane", "surname": "Mills" },
-    { "firstName": "Tony", "surname": "Moule" },
-    { "firstName": "Stephen", "surname": "Nichols" },
-    { "firstName": "Keith", "surname": "Paxman" },
-    { "firstName": "Andrew", "surname": "Phillips" },
-    { "firstName": "Simon", "surname": "White" },
-    { "firstName": "David", "surname": "Wasse" },
-    { "firstName": "Mike", "surname": "Deed" },
-    { "firstName": "Aidan", "surname": "Dunn" },
-    { "firstName": "Tricia", "surname": "Fincham" },
-    { "firstName": "Peter", "surname": "Gostling" },
-    { "firstName": "Chris", "surname": "Jeffreys" },
-    { "firstName": "Adrian", "surname": "Ablitt" },
-    { "firstName": "Patricia", "surname": "Alston" },
-    { "firstName": "Mike", "surname": "Arnott" },
-    { "firstName": "Andrew", "surname": "Blit" },
-    { "firstName": "Danny", "surname": "Botham" },
-    { "firstName": "Dave", "surname": "Busby" },
-    { "firstName": "Trevor", "surname": "Chambers" }
+    {
+      "firstName": "Christiane",
+      "surname": "Mills"
+    },
+    {
+      "firstName": "Tony",
+      "surname": "Moule"
+    },
+    {
+      "firstName": "Stephen",
+      "surname": "Nichols"
+    },
+    {
+      "firstName": "Keith",
+      "surname": "Paxman"
+    },
+    {
+      "firstName": "Andrew",
+      "surname": "Phillips"
+    },
+    {
+      "firstName": "Simon",
+      "surname": "White"
+    },
+    {
+      "firstName": "David",
+      "surname": "Wasse"
+    },
+    {
+      "firstName": "Mike",
+      "surname": "Deed"
+    },
+    {
+      "firstName": "Aidan",
+      "surname": "Dunn"
+    },
+    {
+      "firstName": "Tricia",
+      "surname": "Fincham"
+    },
+    {
+      "firstName": "Peter",
+      "surname": "Gostling"
+    },
+    {
+      "firstName": "Chris",
+      "surname": "Jeffreys"
+    },
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    },
+    {
+      "firstName": "Patricia",
+      "surname": "Alston"
+    },
+    {
+      "firstName": "Mike",
+      "surname": "Arnott"
+    },
+    {
+      "firstName": "Andrew",
+      "surname": "Blit"
+    },
+    {
+      "firstName": "Danny",
+      "surname": "Botham"
+    },
+    {
+      "firstName": "Dave",
+      "surname": "Busby"
+    },
+    {
+      "firstName": "Trevor",
+      "surname": "Chambers"
+    }
   ],
   "trustees": [
-    { "firstName": "Tony", "surname": "Moule" },
-    { "firstName": "Simon", "surname": "White" },
-    { "firstName": "Tricia", "surname": "Fincham" },
-    { "firstName": "Adrian", "surname": "Ablitt" },
-    { "firstName": "Andrew", "surname": "Blit" }
+    {
+      "firstName": "Tony",
+      "surname": "Moule"
+    },
+    {
+      "firstName": "Simon",
+      "surname": "White"
+    },
+    {
+      "firstName": "Tricia",
+      "surname": "Fincham"
+    },
+    {
+      "firstName": "Adrian",
+      "surname": "Ablitt"
+    },
+    {
+      "firstName": "Andrew",
+      "surname": "Blit"
+    }
   ],
   "documents": [
     {
@@ -174,11 +276,13 @@
       "items": [
         {
           "name": "Constitution",
-          "href": "/governance/club-constitution/"
+          "href": "/governance/club-constitution/",
+          "type": "Internal link"
         },
         {
           "name": "Club Rules",
-          "href": "/governance/club-rules/"
+          "href": "/governance/club-rules/",
+          "type": "Internal link"
         }
       ]
     },
@@ -188,36 +292,43 @@
         {
           "name": "Anti-Bullying Policy",
           "href": "../governance/anti-bullying-policy/",
-          "external": false
+          "external": false,
+          "type": "Internal link"
         },
         {
           "name": "Grievance and Disciplinary Policy",
           "href": "../governance/grievance-and-disciplinary-policy",
-          "external": false
+          "external": false,
+          "type": "Internal link"
         },
         {
           "name": "Use of Photographic Equipment",
           "href": "https://drive.google.com/open?id=1f0F-l6h_2Dt9t6_i1cDH9zinZBvDVuMTMdRX2B8gbWo",
-          "external": true
+          "external": true,
+          "type": "External link"
         },
         {
           "name": "Membership Application Form",
           "href": "https://drive.google.com/open?id=1WaTnDrOacbtsfckpefh4YoxzE58Jh380_tMgSC_Ywzg",
-          "external": true
+          "external": true,
+          "type": "External link"
         },
         {
           "name": "Volunteer Reference Form",
           "href": "https://drive.google.com/open?id=1Dce6_tNYxkRQwPeVQ5tFWRu_etx7htnlOLgXXvf9krs",
-          "external": true
+          "external": true,
+          "type": "External link"
         },
         {
           "name": "General Risk Assessment",
           "href": "https://docs.google.com/document/d/11CRxQkfE4pvAqiDEqwMeibPJ9gLKh4tZW-NesAQ-ajE/edit?usp=sharing",
-          "external": true
+          "external": true,
+          "type": "External link"
         },
         {
           "name": "Privacy Policy",
-          "href": "../governance/privacy-policy"
+          "href": "../governance/privacy-policy",
+          "type": "Internal link"
         }
       ]
     },
@@ -227,17 +338,20 @@
         {
           "name": "Codes of Conduct",
           "href": "https://www.britishrowing.org/wp-content/uploads/2018/08/Codes-of-Conduct-1-Septrember-2018.pdf",
-          "external": true
+          "external": true,
+          "type": "External link"
         },
         {
           "name": "Safeguarding",
           "href": "https://www.britishrowing.org/wp-content/uploads/2017/04/British-Rowing-Safeguarding-and-Protecting-Children-Policy-Feb2013.pdf?41e6e6&41e6e6",
-          "download": "true"
+          "download": "true",
+          "type": "External link"
         },
         {
           "name": "Standards of Good Practice for Acceptable Behaviour",
           "href": "https://www.britishrowing.org/wp-content/uploads/2018/08/Code-of-Ethics-Behaviours-1-September-2018.pdf",
-          "download": "true"
+          "download": "true",
+          "type": "External link"
         }
       ]
     }
