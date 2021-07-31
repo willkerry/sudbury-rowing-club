@@ -1,6 +1,6 @@
 import safety from "@/data/safety.json";
 import DateTimeFormatter from "../datetime-formatter";
-import cn from "classNames";
+import cn from "classnames";
 import Button from "../stour/button";
 
 export default function SafetyPopup() {

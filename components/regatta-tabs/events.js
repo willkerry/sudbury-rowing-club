@@ -1,5 +1,4 @@
 import Link from "@/components/stour/link";
-import cn from "classnames";
 
 const Section = (props) => <div {...props} className="" />;
 const Table = (props) => (
@@ -26,7 +25,7 @@ function Results({ data, coursemap }) {
       {data.map((item, index) => (
         <Section key={index}>
           <div className="text-center">
-            <img src={item.map} width={250} className="mx-auto" />
+            <img src={item.map} width={250} className="mx-auto" alt="" />
             <h4 className="pt-6 pb-1 text-xl font-bold">{item.title}</h4>
             <p className="pb-6 text-gray-500">{item.description}</p>
           </div>
@@ -64,7 +63,9 @@ function Results({ data, coursemap }) {
               <Row>
                 <LabelCell />
                 <Cell>
-                  <Link icon href={coursemap}>View coursemap</Link>
+                  <Link icon href={coursemap}>
+                    View coursemap
+                  </Link>
                 </Cell>
               </Row>
             </TableBody>

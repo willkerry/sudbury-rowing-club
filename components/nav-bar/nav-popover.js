@@ -77,8 +77,8 @@ export default function NavPopover(props) {
                   </div>
                 ) : (
                   <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
-                    {props.navData.map((item) => (
-                      <Link key={item.name} href={item.href}>
+                    {props.navData.map((item, index) => (
+                      <Link key={index} href={item.href}>
                         <a className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50">
                           {item.icon && (
                             <item.icon
@@ -98,8 +98,8 @@ export default function NavPopover(props) {
                             <div className="grid grid-cols-2 gap-1 text-sm font-medium text-gray-600">
                               {item.quicklinks &&
                                 item.quicklinks.map((linkItem, index) => (
-                                  <div>
-                                    <Link href={linkItem.href} key={index}>
+                                  <div key={index}>
+                                    <Link href={linkItem.href}>
                                       <a className="inline-block px-1 -mx-1 py-0.5 -my-0.5 hover:text-blue-700 hover:bg-blue-50 rounded">
                                         {linkItem.name}
                                       </a>
@@ -115,8 +115,8 @@ export default function NavPopover(props) {
                 )}
 
                 <div className="px-5 py-5 space-y-6 bg-gray-50 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                  {props.ctaData.map((item) => (
-                    <div key={item.name} className="flow-root">
+                  {props.ctaData.map((item, index) => (
+                    <div key={index} className="flow-root">
                       <Link href={item.href}>
                         <a className="flex items-center p-3 -m-3 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100">
                           <item.icon
