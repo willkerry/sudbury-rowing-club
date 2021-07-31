@@ -11,5 +11,11 @@
     "second": "The club is active the whole year round, training through the winter for the Mens’, Women’s and Masters’ eights heads in March and April while for the rest of the year the club concentrates on fours, pairs, doubles and sculls. We have an active junior membership that often competes in various competitions.",
     "main": "Sudbury Rowing Club is situated five minutes from the centre of Sudbury in Suffolk and Essex, in the middle of scenic Constable country. Rowing and sculling take place on a 1500m stretch of the River Stour between a weir at one end and a low bridge with shallow water at the other.",
     "secondary": "The club is active the whole year round, training through the winter for the Mens’, Women’s and Masters’ eights heads in March and April while for the rest of the year the club concentrates on fours, pairs, doubles and sculls. We have an active junior membership that often competes in various competitions."
+  },
+  "notice": {
+    "display_notice_": true,
+    "label": "Regatta update",
+    "text": "The club is active the whole year round, training through the winter for the Mens’, Women’s and Masters’ eights heads in March and April while for the rest of the year the club concentrates on fours, pairs, doubles and sculls. We have an active junior membership that often competes in various competitions.",
+    "type": "secondary"
   }
 }
