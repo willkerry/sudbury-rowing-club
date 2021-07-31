@@ -55,6 +55,9 @@ fields:
   type: field_group
   config: {}
   fields:
+  - name: display_notice_
+    type: boolean
+    label: Display notice?
   - name: label
     type: text
     config:
