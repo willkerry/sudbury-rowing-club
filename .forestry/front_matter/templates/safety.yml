@@ -70,5 +70,23 @@ fields:
       time_format: h:mm
       display_utc: false
   label: River safety status
+- name: documents
+  type: field_group_list
+  fields:
+  - name: name
+    type: text
+    config:
+      required: false
+    label: Name
+  - name: file
+    type: file
+    config:
+      maxSize: 64
+    label: File
+  config:
+    min: 
+    max: 
+    labelField: 
+  label: Documents
 pages:
 - data/safety.json
