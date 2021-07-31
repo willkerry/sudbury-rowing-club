@@ -33,3 +33,5 @@ fields:
       required: false
     label: YouTube embed URL
   label: Hero
+pages:
+- data/landing.json
