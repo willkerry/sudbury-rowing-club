@@ -4,6 +4,10 @@ auto_deploy: false
 admin_path: 
 webhook_url: 
 sections:
+- type: document
+  path: "../data/landing.json"
+  label: Landing Page
+  match: "**/*"
 - type: directory
   path: data/_news
   label: News
