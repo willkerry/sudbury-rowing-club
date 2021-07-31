@@ -17,11 +17,6 @@ fields:
   type: field_group
   config: {}
   fields:
-  - name: hero_image
-    type: file
-    config:
-      maxSize: 64
-    label: Hero image
   - name: slogan
     type: text
     config:
