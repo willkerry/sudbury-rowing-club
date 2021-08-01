@@ -30,20 +30,20 @@ export default function SafetyPopup() {
               Updated <DateTimeFormatter dateString={safety.status.date} />
             </div>
           )}
-          <div className="flex flex-col pt-4 text-sm lg:flex-row lg:space-y-0 lg:space-x-2">
-            <Button
-              label="Environment&nbsp;Agency"
-              href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
-              size="mini"
-              icon="external"
-            />
-            <Button
-              label="Met&nbsp;Office"
-              href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
-              size="mini"
-              icon="external"
-            />
-          </div>
+        </div>
+        <div className="flex flex-col pt-4 text-sm lg:flex-row lg:space-y-0 lg:space-x-2">
+          <Button
+            label="Environment&nbsp;Agency"
+            href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
+            size="mini"
+            icon="external"
+          />
+          <Button
+            label="Met&nbsp;Office"
+            href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
+            size="mini"
+            icon="external"
+          />
         </div>
       </div>
     </div>

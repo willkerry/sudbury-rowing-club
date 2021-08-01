@@ -80,7 +80,7 @@ module.exports = {
             a: {
               fontWeight: null,
               textDecoration: null,
-              color: theme("colors.sudbury.light"),
+              color: theme("colors.blue.500"),
               transitionProperty: theme("transitionProperty.colors"),
               transitionDuration: theme("transitionDuration.200"),
               transitionTimingFunction: theme(
@@ -88,7 +88,7 @@ module.exports = {
               ),
             },
             "a:hover": {
-              color: theme("colors.sudbury.lighter"),
+              color: theme("colors.blue.300"),
             },
             "figure img": {
               borderRadius: theme("borderRadius.lg"),
