@@ -120,8 +120,13 @@ class ContactForm extends Component {
         mail: "",
         formContent: "",
       });
+    }
+    if (res.status > 300) {
+      this.setState({
+        formButtonText: "There‘s been an error. ",
+      });
     } else {
-      this.setState({ formButtonText: "Please fill out all fields." });
+      this.setState({ formButtonText: "I don’t kmnow what this error is." });
     }
   };
 }
