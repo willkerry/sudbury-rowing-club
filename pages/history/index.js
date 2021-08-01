@@ -7,7 +7,7 @@ import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";
 import river1920sImage from "public/assets/history/1920s-river.jpg";
 import regatta1888Image from "public/assets/history/1888-regatta.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
-import reachPreWw1Image from "public/assets/history/pre-ww1-reach.jpg";
+import reachPreWw1Image from "public/assets/history/reach.jpg";
 
 export default function Rules() {
   return (
