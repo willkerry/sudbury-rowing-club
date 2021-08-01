@@ -33,15 +33,16 @@ export default async (req, res) => {
 };
 
 const mailer = ({ senderMail, name, text, recipientMail }) => {
-  const from =
+  const replyTo =
     name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`;
+  const from = "noreply@sudburyrowingclub.co.uk";
   const to = `${getOfficerByHash(recipientMail)}`;
   const message = {
     from,
     to,
-    subject: `New message from ${from}`,
+    subject: `New message from ${name}`,
     text,
-    replyTo: from,
+    replyTo,
   };
 
   return new Promise((resolve, reject) => {

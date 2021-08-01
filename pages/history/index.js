@@ -4,9 +4,10 @@ import Image from "next/image";
 import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import aerial1936Image from "public/assets/history/1936-aerial.jpg";
 import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";
-import river1920sImage from "public/assets/history/1920s-river.jpg"
-import regatta1888Image from "public/assets/history/1888-regatta.jpg"
+import river1920sImage from "public/assets/history/1920s-river.jpg";
+import regatta1888Image from "public/assets/history/1888-regatta.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
+import reachPreWw1Image from "public/assets/history/pre-ww1-reach.jpg";
 
 export default function Rules() {
   return (
@@ -285,8 +286,8 @@ export default function Rules() {
       </p>
 
       <figure>
-        <img
-          src="https://i2.wp.com/sudburyrowingclub.org.uk/wp-content/uploads/2020/06/pa1025SI.jpg"
+        <Image
+          src={reachPreWw1Image}
           alt="A pre-WW1 view of the bridge taken looking downstream along ‘The Reach’ from the vicinity of Friars Meadow.The photo brings out the meandering nature of the old river course, often the cause of flooding in the low-lying parts of the town. The channel was straightened and meanders cut through after WW2. Before that I the bridge led directly onto the Essex bank, not as today onto an island."
         />
         <figcaption>

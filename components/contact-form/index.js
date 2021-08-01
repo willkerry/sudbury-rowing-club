@@ -2,8 +2,7 @@ import { Component } from "react";
 import { sendContactMail } from "../../lib/mail-api";
 import Button from "../stour/button";
 import { contactableOfficers } from "../../lib/officer-contacts";
-
-import data from "@/data/governance.json";
+import TextareaAutosize from "react-textarea-autosize";
 
 class ContactForm extends Component {
   state = {
@@ -31,28 +30,7 @@ class ContactForm extends Component {
       "block w-full mt-1 border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition";
 
     return (
-      <form className="grid max-w-lg grid-cols-1 gap-6 mx-auto">
-        <label htmlFor="fname" className="block">
-          <span className="text-gray-700">Name</span>
-          <input
-            type="text"
-            value={name}
-            name="fname"
-            onChange={this.onNameChange}
-            className={fieldClasses}
-          />
-        </label>
-
-        <label htmlFor="email" className="block">
-          <span className="text-gray-700">Email</span>
-          <input
-            type="email"
-            value={mail}
-            name="email"
-            onChange={this.onMailChange}
-            className={fieldClasses}
-          />
-        </label>
+      <form className="grid grid-cols-1 gap-6 mx-auto">
         <label htmlFor="recipient" className="block">
           <span className="text-gray-700">Recipient</span>
 
@@ -62,6 +40,9 @@ class ContactForm extends Component {
             value={recipientMail}
             onChange={this.onRecipientChange}
           >
+            <option value="" disabled selected>
+              Select a recipient
+            </option>
             {contactableOfficers.map((officer, index) => (
               <option key={index} value={officer.hash}>
                 {officer.role + ", " + officer.name}
@@ -71,7 +52,7 @@ class ContactForm extends Component {
         </label>
         <label htmlFor="text" className="block">
           <span className="text-gray-700">Message</span>
-          <textarea
+          <TextareaAutosize
             name="text"
             placeholder="Message"
             value={formContent}
@@ -79,13 +60,41 @@ class ContactForm extends Component {
             className={fieldClasses}
           />
         </label>
+        <div className="grid gap-6 md:grid-cols-2 md:gap-4">
+          <label htmlFor="fname" className="block">
+            <span className="text-gray-700">Your name</span>
+            <input
+              type="text"
+              value={name}
+              name="fname"
+              onChange={this.onNameChange}
+              placeholder="Josie Bloggs"
+              className={fieldClasses}
+            />
+          </label>
+
+          <label htmlFor="email" className="block">
+            <span className="text-gray-700">Your email</span>
+            <input
+              type="email"
+              value={mail}
+              name="email"
+              onChange={this.onMailChange}
+              className={fieldClasses}
+              placeholder="josie@bloggsco.com"
+            />
+          </label>
+        </div>
+        <div className="mx-auto">
         <Button
           type="submit"
           onClick={this.submitContactForm}
           disabled={formButtonDisabled}
           label={formButtonText}
           button={true}
+          size="large"
         />
+        </div>
       </form>
     );
   }
@@ -120,13 +129,8 @@ class ContactForm extends Component {
         mail: "",
         formContent: "",
       });
-    }
-    if (res.status > 300) {
-      this.setState({
-        formButtonText: "There‘s been an error. ",
-      });
     } else {
-      this.setState({ formButtonText: "I don’t kmnow what this error is." });
+      this.setState({ formButtonText: "Error" });
     }
   };
 }
