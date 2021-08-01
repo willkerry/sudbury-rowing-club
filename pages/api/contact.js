@@ -1,14 +1,13 @@
 import nodemailer from "nodemailer";
 import { getOfficerByHash } from "../../lib/officer-contacts";
 
-const emailPass = "yourPassword";
-
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: true,
   auth: {
-    user: "sedrick.zulauf@ethereal.email",
-    pass: "S925WfAzZSFK1uuAzS",
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
 });
 
