@@ -38,7 +38,7 @@ const mailer = ({ senderMail, name, text, recipientMail }) => {
   const to = `${getOfficerByHash(recipientMail)}`;
   const message = {
     from,
-    to: to,
+    to,
     subject: `New message from ${from}`,
     text,
     replyTo: from,

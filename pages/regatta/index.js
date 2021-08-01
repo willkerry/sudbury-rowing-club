@@ -25,8 +25,6 @@ import Results from "@/components/regatta-tabs/results";
 
 import data from "@/data/regatta.json";
 
-console.log(data.results.results);
-
 const tabData = [
   {
     label: "Events",
