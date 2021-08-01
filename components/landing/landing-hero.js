@@ -34,7 +34,7 @@ function LandingHero(props) {
       </div>
       <div className="flex items-center justify-center pt-16 space-x-3 text-white">
         <Button label="Discover more" shadow size="large" />
-        <Button label="Join us" type="secondary" shadow size="large" />
+        <Button label="Join us" variant="secondary" shadow size="large" />
       </div>
     </>
   );

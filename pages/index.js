@@ -2,7 +2,6 @@ import Head from "next/head";
 import Container from "../components/container";
 import MoreStories from "../components/more-stories";
 import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
 import Layout from "../components/layout";
 import { getAllPosts } from "../lib/api";
 import LandingHero from "@/components/landing/landing-hero";
@@ -12,10 +11,11 @@ import ParallaxImage from "@/components/landing/parallax-images";
 import Note from "@/components/stour/note";
 
 import landingData from "../data/landing.json";
+import Hero from "@/components/stour/hero";
 
 export default function Index({ allPosts }) {
   const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  const morePosts = allPosts.slice(1, 4);
 
   return (
     <>
@@ -41,36 +41,39 @@ export default function Index({ allPosts }) {
             youtube={landingData.hero.youtube_embed_url}
           />
         </Container>
-        <Container className="py-20">
-          <div className="md:grid md:grid-cols-3 md:gap-8">
-            <ParallaxImage />
-            <div className="md:col-span-2">
-              <div className="prose">
-                <p className="text-lg font-semibold tracking-tight">
-                  {landingData.intro.main}
-                </p>
-                <p>{landingData.intro.secondary}</p>
-                <CommitteeSignature className="max-w-sm py-16 mx-auto" />
-                <span className="sr-only">The Committee</span>
+        <section>
+          <Container className="py-20">
+            <div className="md:grid md:grid-cols-3 md:gap-8">
+              <ParallaxImage />
+              <div className="md:col-span-2">
+                <div className="prose">
+                  <p className="text-lg font-semibold tracking-tight">
+                    {landingData.intro.main}
+                  </p>
+                  <p>{landingData.intro.secondary}</p>
+                  <CommitteeSignature className="max-w-sm py-16 mx-auto" />
+                  <span className="sr-only">The Committee</span>
+                </div>
+                <Sponsors />
               </div>
-              <Sponsors />
             </div>
-          </div>
-        </Container>
-        <Container>
-          <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
+          </Container>
+        </section>
+        <section className="pt-16 pb-4 bg-blue-50">
+          <Container>
+            {heroPost && (
+              <HeroPost
+                title={heroPost.title}
+                coverImage={heroPost.coverImage}
+                date={heroPost.date}
+                author={heroPost.author}
+                slug={heroPost.slug}
+                excerpt={heroPost.excerpt}
+              />
+            )}
+            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          </Container>
+        </section>
       </Layout>
     </>
   );

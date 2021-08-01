@@ -7,11 +7,9 @@ export function Hero(props) {
   function Text() {
     return (
       <>
-        {label ? (
-          <p className="ml-0.5 tracking-widest uppercase">{label}</p>
-        ) : null}
+        {label && <p className="ml-0.5 tracking-widest uppercase">{label}</p>}
         <h2 className="pt-3 pb-6 font-serif text-4xl text-medium">{title}</h2>
-        {description ? <p className="font-medium opacity-80">{description}</p> : null}
+        {description && <p className="font-medium opacity-80">{description}</p>}
       </>
     );
   }

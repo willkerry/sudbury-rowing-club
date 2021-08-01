@@ -12,7 +12,7 @@ export default function HeroPost({
 }) {
   return (
     <section>
-      <div className="grid md:grid-cols-3 md:gap-x-16 lg:gap-x-8">
+      <div className="grid overflow-hidden md:grid-cols-3 md:gap-x-16 lg:gap-x-8">
         <div>
           <div className="mb-3 font-medium">
             <DateFormatter dateString={date} />
@@ -22,7 +22,7 @@ export default function HeroPost({
               <a className="">{title}</a>
             </Link>
           </h3>
-          <p className="mb-4 text-lg">{excerpt}</p>
+          <p className="mb-4 text-lg text-gray-600">{excerpt}</p>
         </div>
         <div className="order-first md:col-span-2">
           <div className="relative mb-8 rounded-lg h-96 md:mb-16">

@@ -13,6 +13,7 @@ const SIZE_MAPS = {
 };
 const SHADOW_MAPS = {
   true: "shadow-lg hover:shadow",
+  false: null,
 };
 const ICON_MAPS = {
   external: <ExternalLinkIcon className="w-3 h-3 ml-2" />,
@@ -33,27 +34,48 @@ const VARIANT_MAPS = {
   error:
     "text-white border-red-600 bg-red-600 hover:text-red-700 hover:bg-white",
 };
-export function Button(props) {
-  const { label, type, size, shadow, href, icon } = props;
+
+function ButtonInner(props) {
   return (
-    <Link href={href} passHref>
-      <a
-        className={cn(
-          "rounded-md transition duration-300 border inline-block",
-          VARIANT_MAPS[type],
-          SIZE_MAPS[size],
-          SHADOW_MAPS[shadow]
-        )}
-        {...props}
-      >
-        <div className="flex items-center justify-center">
-          
-            {label}
-            {icon && ICON_MAPS[icon]}
-          
-        </div>
-      </a>
-    </Link>
+    <div className="flex items-center justify-center">
+      {props.label}
+      {props.icon && ICON_MAPS[props.icon]}
+    </div>
+  );
+}
+
+export function Button(props) {
+  const { label, variant, size, shadow, href, icon, button } = props;
+  return (
+    <>
+      {button ? (
+        <button
+          {...props}
+          className={cn(
+            "rounded-md transition duration-300 border inline-block",
+            VARIANT_MAPS[variant],
+            SIZE_MAPS[size],
+            SHADOW_MAPS[shadow]
+          )}
+        >
+          <ButtonInner label={label} icon={icon} />
+        </button>
+      ) : (
+        <Link href={href} passHref>
+          <a
+            className={cn(
+              "rounded-md transition duration-300 border inline-block",
+              VARIANT_MAPS[variant],
+              SIZE_MAPS[size],
+              SHADOW_MAPS[shadow]
+            )}
+            {...props}
+          >
+            <ButtonInner label={label} icon={icon} />
+          </a>
+        </Link>
+      )}
+    </>
   );
 }
 
@@ -65,7 +87,7 @@ Button.propTypes = {
   /**
    * Pick a colour.
    */
-  type: PropTypes.oneOf([
+  variant: PropTypes.oneOf([
     "primary",
     "secondary",
     "brandDark",
@@ -90,17 +112,22 @@ Button.propTypes = {
    * Add a helpful icon if you’re linking to a file or an external site.
    */
   icon: PropTypes.oneOf(["external", "download", false]),
+  /**
+   * Override’s default behaviour (i.e. to render an `<a>` hyperlink using next/link) and produces a `<button` instead.
+   */
+  button: PropTypes.bool,
 };
 
 Button.defaultProps = {
-  type: "primary",
+  variant: "primary",
   size: "auto",
-  shadow: false,
-  href: "/",
-  icon: false,
+  href: "",
+  shadow: null,
+  icon: null,
+  button: null,
 };
 
-Button.type = VARIANT_MAPS;
+Button.variant = VARIANT_MAPS;
 Button.size = SIZE_MAPS;
 Button.shadow = SHADOW_MAPS;
 Button.icon = ICON_MAPS;

@@ -4,31 +4,31 @@
       "name": "Keith Paxman",
       "vacant": 0,
       "role": "Chairman",
-      "email": ""
+      "email": "chairman@example.com"
     },
     {
       "name": "Pippa Kerry",
       "vacant": 0,
       "role": "Captain",
-      "email": ""
+      "email": "kerry.pippa@gmail.com"
     },
     {
       "name": "Jeremy Milbank",
       "vacant": 0,
       "role": "Club Secretary",
-      "email": ""
+      "email": "test@email.com"
     },
     {
       "name": "Tim Hysom",
       "vacant": 0,
       "role": "Treasurer",
-      "email": ""
+      "email": "test@email.com"
     },
     {
       "name": "Tim Hysom",
       "vacant": 0,
       "role": "Men’s Vice-Captain",
-      "email": ""
+      "email": "test@email.com"
     },
     {
       "name": "Sophie Lovegrove",
@@ -98,7 +98,7 @@
     },
     {
       "name": "TBA",
-      "vacant": 1,
+      "vacant": true,
       "role": "Social Secretary",
       "email": ""
     },
@@ -112,19 +112,14 @@
       "name": "Will Kerry",
       "vacant": 0,
       "role": "Website",
-      "email": ""
+      "email": "will.kerry@icloud.com"
     }
   ],
   "committees": [
     {
       "name": "Management Committee",
       "description": "Responsible for developing strategy, guiding club culture, overseeing good governance and leading the sub-committees.",
-      "officers": [
-        "Chairman",
-        "Secretary",
-        "Treasurer",
-        "Captain"
-      ]
+      "officers": ["Chairman", "Secretary", "Treasurer", "Captain"]
     },
     {
       "name": "Rowing Committee",
@@ -154,18 +149,12 @@
     {
       "name": "Compliance Committee",
       "description": "Responsible for ensuring that the club is compliant with financial, safeguarding and safety responsibilities and duties.",
-      "officers": [
-        "Treasurer",
-        "Safety Officer",
-        "Welfare Officer"
-      ]
+      "officers": ["Treasurer", "Safety Officer", "Welfare Officer"]
     },
     {
       "name": "Development Committee",
       "description": "When formed, will identify options for investing club funds in infrastructure or club development",
-      "officers": [
-
-      ]
+      "officers": []
     }
   ],
   "presidentDescription": "By convention, the incoming Mayor of Sudbury is invited each year to become the Club president.",

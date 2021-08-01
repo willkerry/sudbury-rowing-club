@@ -69,7 +69,6 @@ export default function Safety({ preview }) {
                     label={item.link.name}
                     href={item.link.file}
                     icon={item.link.type}
-                    type="brandDark"
                   />
                 )}
               </div>

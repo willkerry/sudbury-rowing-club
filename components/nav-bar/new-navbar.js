@@ -23,10 +23,10 @@ import Resources from "@/components/icons/resources";
 import Rower from "@/components/icons/rower";
 
 import SafetyStatus from "./safety-status";
-import SafetyPopup from "../safety";
 import MyClubhouse from "../icons/myclubhouse";
 import { Button as StourButton } from "../stour/button";
 import NavPopover from "./nav-popover";
+import { NavLink } from "./nav-popover";
 
 const about = [
   {
@@ -150,12 +150,6 @@ const memberCTAs = [
   },
   { name: "myClubhouse", href: "/contact", icon: MyClubhouse },
 ];
-
-const navLinkClasses =
-  "group transition duration-200 rounded-md inline-flex items-center text-base hover:text-black focus:outline-none px-1 -mx-1 py-0.5 -my-0.5";
-const navLinkColor = "text-gray-600";
-const navLinkActiveColor = "text-black font-medium";
-
 export default function Navbar() {
   return (
     <Popover className="relative text-gray-900 bg-white">
@@ -183,9 +177,7 @@ export default function Navbar() {
                   navData={about}
                   ctaData={callsToAction}
                 />
-                <Link href="../news/">
-                  <a className={cn(navLinkClasses, navLinkColor)}>News</a>
-                </Link>
+                <NavLink href="/news">News</NavLink>
                 <NavPopover
                   label="Regatta"
                   navData={regatta}

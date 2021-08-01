@@ -5,6 +5,7 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/forms"),
   ],
   mode: "jit",
   purge: ["./components/**/*.js", "./pages/**/*.js"],
@@ -88,6 +89,9 @@ module.exports = {
             },
             "a:hover": {
               color: theme("colors.sudbury.lighter"),
+            },
+            "figure img": {
+              borderRadius: theme("borderRadius.lg"),
             },
           },
         },

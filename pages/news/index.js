@@ -2,9 +2,9 @@ import Head from "next/head";
 import Container from "@/components/container";
 import MoreStories from "@/components/more-stories";
 import HeroPost from "@/components/hero-post";
-import Intro from "@/components/intro";
 import Layout from "@/components/layout";
 import { getAllPosts } from "../../lib/api";
+import HeroTitle from "@/components/hero-title";
 
 export default function News({ allPosts }) {
   const heroPost = allPosts[0];
@@ -15,8 +15,8 @@ export default function News({ allPosts }) {
       <Head>
         <title>News</title>
       </Head>
-      <Container>
-        <Intro />
+      <HeroTitle title="Latest News"/>
+      <Container className="pt-12">
         {heroPost && (
           <HeroPost
             title={heroPost.title}

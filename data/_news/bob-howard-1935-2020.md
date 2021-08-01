@@ -4,6 +4,7 @@ date: "2020-08-02"
 categories: 
   - "news"
 coverImage: "/assets/news/images/image001.jpg"
+excerpt: "For over twenty-five years Bob Howard has been a consistent presence at Sudbury Rowing Club."
 ---
 
 **For over twenty-five years Bob Howard has been a consistent presence at Sudbury Rowing Club. In earlier years he would be in a launch coaching those crews he felt were committed to improving and winning. More recently Bob would be standing at the Regatta finish observing passing boats and offering simple but key coaching tips. Bob would be there as seasons came and went and members progressed from novice through to experienced rowers.**

@@ -3,6 +3,7 @@ import cn from "classnames";
 import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDown } from "react-feather";
+import ActiveLink from "./active-link";
 
 const navLinkClasses =
   "group transition duration-200 rounded-md inline-flex items-center text-base hover:text-black focus:outline-none px-1 -mx-1 py-0.5 -my-0.5";
@@ -17,6 +18,14 @@ function Chevron() {
       className="w-4 h-4 ml-0.5 -mb-px text-gray-400 group-hover:text-gray-500 transition"
       aria-hidden="true"
     />
+  );
+}
+
+export function NavLink(props) {
+  return (
+    <ActiveLink href={props.href} activeClassName={navLinkActiveColor}>
+      <a className={cn(navLinkClasses, navLinkColor)}>{props.children}</a>
+    </ActiveLink>
   );
 }
 
