@@ -1,0 +1,97 @@
+[
+  {
+    "year": 2019,
+    "password": "SRC2019",
+    "provider": [
+      {
+        "href": "https://www.hiskett.net/Sports/Sudbury-Rowing-Club-Regatta-2019",
+        "name": "Bill Hiskett"
+      }
+    ]
+  },
+  {
+    "year": 2018,
+    "password": "SRC2018",
+    "provider": [
+      {
+        "href": "https://www.hiskett.net/Sports/Sudbury-Regatta-2018",
+        "name": "Bill Hiskett"
+      }
+    ]
+  },
+  {
+    "year": 2016,
+    "provider": [
+      {
+        "href": "https://dephoto.biz/dashboard#/events/85660/watersports/sudbury-rowing-club/regatta",
+        "name": "DEPhoto"
+      }
+    ]
+  },
+  {
+    "year": 2015,
+    "provider": [
+      {
+        "href": "https://dephoto.biz/dashboard#/events/82302/watersports/sudbury-rowing-club/sudbury-regatta",
+        "name": "DEPhoto"
+      }
+    ]
+  },
+  {
+    "year": 2014,
+    "provider": [
+      {
+        "href": "https://www.hiskett.net/Sports/Sudbury-Regatta-2015/",
+        "name": "Bill Hiskett"
+      },
+      {
+        "href": "https://dephoto.biz/dashboard#/events/78516/watersports/sudbury-rowing-club/sudbury-regatta",
+        "name": "DEPhoto"
+      }
+    ]
+  },
+  {
+    "year": 2013,
+    "provider": [
+      {
+        "href": "https://www.hiskett.net/Sports/Sudbury-Regatta-2013",
+        "name": "Bill Hiskett"
+      },
+      {
+        "href": "https://dephoto.biz/dashboard#/events/74046/watersports/sudbury-rowing-club/subury-regatta",
+        "name": "DEPhoto"
+      }
+    ]
+  },
+  {
+    "year": 2012,
+    "provider": [
+      {
+        "href": "https://www.hiskett.net/Sports/Sudbury-Regatta-2012/",
+        "name": "Bill Hiskett"
+      }
+    ]
+  },
+  {
+    "year": 2011,
+    "provider": [
+      {
+        "href": "https://www.hiskett.net/Sports/Sudbury-Regatta-August-2011/",
+        "name": "Bill Hiskett"
+      },
+      {
+        "href": "https://dephoto.biz/dashboard#/events/64716/watersports/sudbury-rowing-club/sudbury-regatta",
+        "name": "DEPhoto"
+      }
+    ]
+  },
+  {
+    "year": 2010,
+    "provider": [
+      {
+        "href": "https://dephoto.biz/dashboard#/events/59852/rowing/sudbury-rowing-club/sudbury-regatta",
+        "name": "DEPhoto"
+      }
+    ]
+  }
+]

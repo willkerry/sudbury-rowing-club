@@ -358,10 +358,11 @@ export default function Rules() {
       <figure>
         <Image
           src={henley2002Image}
-          alt="Aidan Dunn and Sam Hogsbjerg carrying their pair at Henley in 2002."
+          alt="Sam Hogsbjerg and Aidan Dunn carrying their pair at Henley in 2002."
         />
         <figcaption>
-          Aidan Dunn and Sam Hogsbjerg carrying their pair at Henley in 2002.
+          Sam Hogsbjerg and Aidan Dunn carrying their pair at Henley in 2002.
+          Image source: SRC Archive.
         </figcaption>
       </figure>
 
@@ -373,12 +374,20 @@ export default function Rules() {
         club to race at the event when they competed in the Silver Goblets and
         Nichols Cup for coxless pairs.
       </p>
-
-      <p>
-        Trevor Chambers, 1996
-        <br />
-        Updated Simon White, March 2006
-      </p>
+      <div className="pt-16 text-sm text-gray-500">
+        <p>
+          Written by Trevor Chambers in 1996.
+          <br />
+          Updated by Simon White in March 2006.
+        </p>
+        <p>
+          Images courtesy of{" "}
+          <a href="https://photoarchive.sudburyheritagecentre.co.uk">
+            Sudbury Heritage Photo Archive
+          </a>{" "}
+          unless otherwise noted.
+        </p>
+      </div>
     </TextPage>
   );
 }
