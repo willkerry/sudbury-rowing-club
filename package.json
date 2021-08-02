@@ -26,6 +26,7 @@
     "md5": "^2.3.0",
     "netlify-cms-app": "2.15.30",
     "next": "latest",
+    "nextjs-breadcrumbs": "^1.1.4",
     "nodemailer": "^6.6.3",
     "ordinal": "^1.0.3",
     "pigeon-maps": "^0.19.7",
