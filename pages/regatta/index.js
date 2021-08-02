@@ -64,7 +64,7 @@ export default function Regatta() {
   return (
     <Layout>
       <Head>
-        <title>Regatta</title>
+        <title>Sudbury Rowing Club Regatta, the ’International’</title>
       </Head>
       <HeroTitle title="The Sudbury Regatta" />
       <Container>

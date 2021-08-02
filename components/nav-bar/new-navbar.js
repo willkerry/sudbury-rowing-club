@@ -8,12 +8,11 @@ import {
   MailIcon,
   ShieldCheckIcon,
   XIcon,
-  CollectionIcon,
-  MapIcon,
   TicketIcon,
+  PhotographIcon,
+  ChartBarIcon,
 } from "@heroicons/react/outline";
-import { Calendar, Users, ChevronDown as ChevronDownIcon } from "react-feather";
-import cn from "classnames";
+import { Calendar, Users } from "react-feather";
 
 import Logo from "@/components/logo/";
 import History from "@/components/icons/history";
@@ -21,6 +20,7 @@ import Safety from "@/components/icons/safety";
 import Governance from "@/components/icons/governance";
 import Resources from "@/components/icons/resources";
 import Rower from "@/components/icons/rower";
+import Results from "@/components/icons/results";
 
 import SafetyStatus from "./safety-status";
 import MyClubhouse from "../icons/myclubhouse";
@@ -86,31 +86,31 @@ const regatta = [
   },
   {
     name: "Results",
-    description:
-      "See who won, check your performance or explore our 20-year archive.",
-    href: "#",
-    icon: CollectionIcon,
+    href: "/regatta/",
+    icon: Results,
   },
   {
-    name: "Location",
-    description: "Plan your journey.",
-    href: "#",
-    icon: MapIcon,
+    name: "Official Photography",
+    href: "/regatta/galleries/",
+    icon: PhotographIcon,
   },
   {
-    name: "Safety information",
-    description: "Understand how we take your safety seriously.",
-    href: "#",
+    name: "Competitor information",
+    href: "/regatta",
     icon: ShieldCheckIcon,
   },
 ];
 const regattaCTAs = [
   {
-    name: "Entries",
+    name: "Find the regatta",
     href: "/contact/how-to-find-us",
+    icon: LocationMarkerIcon,
+  },
+  {
+    name: "Entries",
+    href: "/regatta",
     icon: TicketIcon,
   },
-  { name: "Competitors", href: "/contact", icon: Rower },
 ];
 const members = [
   {

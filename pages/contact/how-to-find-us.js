@@ -41,7 +41,10 @@ const openInApp = [
   },
 ];
 
-const maptilerProvider = maptiler("q3gbdmFDPGft7ylWLC6u", "streets");
+const maptilerProvider = maptiler(
+  "q3gbdmFDPGft7ylWLC6u",
+  "uk-openzoomstack-road"
+);
 
 export default function FindUs({ preview }) {
   return (
@@ -52,7 +55,7 @@ export default function FindUs({ preview }) {
       <HeroTitle title="How to find us" />
 
       <Container>
-        <div className="grid grid-cols-1 gap-16 py-10 md:grid-cols-2 ">
+        <div className="grid grid-cols-1 gap-16 py-10 md:grid-cols-2">
           <Map
             provider={maptilerProvider}
             dprs={[1, 2]}
@@ -60,6 +63,7 @@ export default function FindUs({ preview }) {
             defaultCenter={[clubLocation.lat, clubLocation.long]}
             defaultZoom={14}
             metaWheelZoom={true}
+            attribution={false}
           >
             <Marker
               width={50}
@@ -67,6 +71,7 @@ export default function FindUs({ preview }) {
               color="#094284"
             />
           </Map>
+
           <div className="self-center prose">
             <p className="text-lg">
               The club is located at the end of Quay Lane, a few minutes from
@@ -78,10 +83,10 @@ export default function FindUs({ preview }) {
                 Finding the regatta
               </span>
               Our Regatta takes place on Friars Meadow, barely 100m from the
-              boathouse but cut off from it by waterways. Access to the meadow is
-              from Edgworth Road (CO10 2TL). During the regatta, the
-              routes are signposted. We provide parking for spectators,
-              trailers and competitors on Friars Meadow.
+              boathouse but cut off from it by waterways. Access to the meadow
+              is from Edgworth Road (CO10 2TL). During the regatta, the routes
+              are signposted. We provide parking for spectators, trailers and
+              competitors on Friars Meadow.
             </p>
             <div className="grid lg:grid-cols-2">
               <div>

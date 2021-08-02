@@ -20,7 +20,7 @@ const ICON_MAPS = {
   download: <DownloadIcon className="w-3 h-3 ml-2" />,
 };
 const VARIANT_MAPS = {
-  primary: "text-gray-700 hover:border-black hover:text-black",
+  primary: "!text-gray-700 hover:border-black hover:text-black",
   secondary:
     "text-white border-gray-900 bg-gray-900 hover:text-gray-900 hover:bg-white",
   brandDark:

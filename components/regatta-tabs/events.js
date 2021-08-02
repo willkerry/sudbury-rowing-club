@@ -1,4 +1,5 @@
 import Link from "@/components/stour/link";
+import Image from "next/image";
 
 const Section = (props) => <div {...props} className="" />;
 const Table = (props) => (
@@ -25,7 +26,7 @@ function Results({ data, coursemap }) {
       {data.map((item, index) => (
         <Section key={index}>
           <div className="text-center">
-            <img src={item.map} width={250} className="mx-auto" alt="" />
+            <Image src={item.map} width={350} height={200} className="mx-auto" alt="" />
             <h4 className="pt-6 pb-1 text-xl font-bold">{item.title}</h4>
             <p className="pb-6 text-gray-500">{item.description}</p>
           </div>

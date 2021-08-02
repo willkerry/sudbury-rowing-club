@@ -92,6 +92,7 @@ module.exports = {
             },
             "figure img": {
               borderRadius: theme("borderRadius.lg"),
+              backgroundColor: theme("colors.gray.50"),
             },
           },
         },
