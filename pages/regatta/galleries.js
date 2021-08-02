@@ -12,8 +12,7 @@ export default function Photography({ preview }) {
       <Head>
         <title>Official photography from the Sudbury Regatta</title>
       </Head>
-      <HeroTitle title="Official regatta photography" />
-
+      <HeroTitle title="Official regatta photography" breadcrumbs />
       <Container>
         <div className="py-16 prose prose-lg max-w-none">
           <table>

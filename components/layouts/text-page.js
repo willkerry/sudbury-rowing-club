@@ -9,7 +9,7 @@ export default function TextPage({ title, children }) {
       <Head>
         <title>{title}</title>
       </Head>
-      <HeroTitle title={title} prose/>
+      <HeroTitle title={title} prose breadcrumbs/>
       <Container>
         <div className="mx-auto my-16 prose">{children}</div>
       </Container>

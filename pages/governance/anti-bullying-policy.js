@@ -5,7 +5,7 @@ export default function Rules() {
   return (
     <TextPage title="Anti-Bullying Policy">
       <h3>Introduction</h3>
-      <p>
+      <p className="lead">
         This policy is based on the British Rowing Welfare Guidance document WG
         1.1 (Model Anti-Bullying Policy), which is itself based on a document
         prepared by KIDSCAPE, a voluntary organisation committed to helping

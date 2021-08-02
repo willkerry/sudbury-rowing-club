@@ -81,22 +81,22 @@ const regatta = [
     name: "The ’International’",
     description:
       "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
-    href: "../regatta/",
+    href: "/regatta",
     icon: InformationCircleIcon,
   },
   {
     name: "Results",
-    href: "/regatta/",
+    href: "/regatta/results",
     icon: Results,
   },
   {
     name: "Official Photography",
-    href: "/regatta/galleries/",
+    href: "/regatta/galleries",
     icon: PhotographIcon,
   },
   {
     name: "Competitor information",
-    href: "/regatta",
+    href: "/regatta/competitor-information",
     icon: ShieldCheckIcon,
   },
 ];
@@ -108,47 +108,51 @@ const regattaCTAs = [
   },
   {
     name: "Entries",
-    href: "/regatta",
+    href: "/regatta/entries",
     icon: TicketIcon,
   },
 ];
 const members = [
   {
     name: "Officer Nominations",
-    href: "../regatta/",
+    href: "/members/officer-nominations",
   },
   {
     name: "Membership Rates",
-    href: "#",
+    href: "/members/rates",
   },
   {
     name: "Race Fees",
-    href: "#",
+    href: "/members/fees",
   },
   {
     name: "Club Kit",
-    href: "#",
+    href: "/members/kit",
   },
   {
     name: "Committee Minutes",
-    href: "#",
+    href: "/governance/minutes",
   },
   {
     name: "Training Resources",
-    href: "#",
+    href: "/members/training",
   },
   {
     name: "Fundraising",
-    href: "#",
+    href: "/members/fundraising",
   },
 ];
 const memberCTAs = [
   {
     name: "Squadlist",
-    href: "/contact/how-to-find-us",
+    href: "https://sudbury.squadlist.app",
     icon: Calendar,
   },
-  { name: "myClubhouse", href: "/contact", icon: MyClubhouse },
+  {
+    name: "myClubhouse",
+    href: "https://sudburyrowingclub.myclubhouse.co.uk",
+    icon: MyClubhouse,
+  },
 ];
 export default function Navbar() {
   return (

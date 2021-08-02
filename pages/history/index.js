@@ -12,7 +12,7 @@ import reachPreWw1Image from "public/assets/history/reach.jpg";
 export default function Rules() {
   return (
     <TextPage title="Club History">
-      <p>
+      <p className="lead">
         Although early records have been lost, it is known that Sudbury RC,
         formerly Stour BC, was formed some time before 1873, but ceased to
         function during a period from that time until 1883 when in May of that
