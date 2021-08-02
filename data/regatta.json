@@ -21,8 +21,8 @@
     "event": [
       {
         "title": "650m Course",
-        "map": "https://sudburyrowingclub.org.uk/wp-content/uploads/2020/06/Artboard-1650m.svg",
-        "description": "650m upstream from a stern-on stakeboat start.",
+        "map": "/assets/regatta/events/650.svg",
+        "description": "650m upstream from a stern-on stakeboat start",
         "categories": [
           "Senior",
           "Masters",
@@ -36,7 +36,7 @@
       },
       {
         "title": "Sprint Eights",
-        "map": "https://sudburyrowingclub.org.uk/wp-content/uploads/2020/06/Artboard-1350m.svg",
+        "map": "/assets/regatta/events/350.svg",
         "description": "350m upstream from a free start",
         "categories": ["Senior", "Masters"],
         "gender": ["Open", "Women", "Mixed"],
@@ -52,75 +52,122 @@
     "courseRecords": "https://sudburyrowingclub.org.uk/wp-content/uploads/2019/08/Course-Records-19.pdf",
     "results": [
       {
+        "number": 140,
+        "year": "2020",
+        "date": "2020-08-02",
+        "link": ""
+      },
+      {
+        "number": 139,
         "year": "2019",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2019"
+        "date": "2019-08-03",
+        "link": "/results/regatta2019",
+        "eightsFastest": "01:01",
+        "fastest": "02:02"
       },
       {
+        "number": 138,
         "year": "2018",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2018"
+        "date": "2018-08-04",
+        "link": "https://sudburyrowingclub.org.uk/results/regatta2018",
+        "eightsFastest": "00:57",
+        "fastest": "02:02"
       },
       {
+        "number": 137,
         "year": "2017",
+        "date": "2017-08-05",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2017"
       },
       {
+        "number": 136,
         "year": "2016",
+        "date": "2016-08-06",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2016"
       },
       {
+        "number": 135,
         "year": "2015",
+        "date": "2015-08-01",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2015"
       },
       {
+        "number": 134,
         "year": "2014",
+        "date": "2014-08-02",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2014"
       },
       {
+        "number": 133,
         "year": "2013",
+        "date": "2013-08-03",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2013"
       },
       {
+        "number": 132,
         "year": "2012",
+        "date": "2012-08-04",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2012"
       },
       {
+        "number": 131,
         "year": "2011",
+        "date": "2011-08-06",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2011"
       },
       {
+        "number": 130,
         "year": "2010",
+        "date": "2010-08-07",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2010"
       },
       {
+        "number": 129,
         "year": "2009",
+        "date": "2009-08-08",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2009"
       },
       {
+        "number": 128,
+
         "year": "2008",
+        "date": "2008-08-02",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2008"
       },
       {
+        "number": 127,
         "year": "2007",
+        "date": "2007-08-04",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2007"
       },
       {
+        "number": 126,
         "year": "2006",
+        "date": "2006-08-05",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2006"
       },
       {
+        "number": 125,
         "year": "2005",
+        "date": "2005-08-06",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2005"
       },
       {
+        "number": 124,
         "year": "2004",
+        "date": "2004-08-07",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2004"
       },
       {
+        "number": 123,
         "year": "2003",
+        "date": "2003-08-02",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2003"
       },
       {
+        "number": 122,
         "year": "2002",
+        "date": "2002-08-03",
         "link": "https://sudburyrowingclub.org.uk/results/regatta2002"
       }
     ]
