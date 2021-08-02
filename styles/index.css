@@ -1,26 +1,13 @@
 @tailwind base;
 
 html {
-  @apply antialiased;
+  @apply antialiased selection:bg-green-100;
 }
 
 @import "~@fontsource/inter/variable.css";
 @import "~@fontsource/spectral/index.css";
 @tailwind components;
-@layer components {
-  :root {
-    --reach-tabs: 1;
-  }
-  [data-reach-tab]:active {
-    -webkit-user-select: none;
-  }
-  [data-reach-tab]:disabled {
-    @apply opacity-25 cursor-default;
-  }
-  [data-reach-tab][data-selected].tab {
-    @apply text-gray-900 border-b border-black outline-none appearance-none select-none;
-  }
-}
+
 @tailwind utilities;
 @layer utilities {
   .hyphens-auto {
