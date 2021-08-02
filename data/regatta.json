@@ -61,7 +61,7 @@
         "number": 139,
         "year": "2019",
         "date": "2019-08-03",
-        "link": "/results/regatta2019",
+        "link": "/results/regatta2019/index.html",
         "eightsFastest": "01:01",
         "fastest": "02:02"
       },
@@ -69,7 +69,7 @@
         "number": 138,
         "year": "2018",
         "date": "2018-08-04",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2018",
+        "link": "/results/regatta2018/index.html",
         "eightsFastest": "00:57",
         "fastest": "02:02"
       },
@@ -77,98 +77,98 @@
         "number": 137,
         "year": "2017",
         "date": "2017-08-05",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2017"
+        "link": "/results/regatta2017/index.html"
       },
       {
         "number": 136,
         "year": "2016",
         "date": "2016-08-06",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2016"
+        "link": "/results/regatta2016/index.html"
       },
       {
         "number": 135,
         "year": "2015",
         "date": "2015-08-01",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2015"
+        "link": "/results/regatta2015/index.html"
       },
       {
         "number": 134,
         "year": "2014",
         "date": "2014-08-02",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2014"
+        "link": "/results/regatta2014/index.html"
       },
       {
         "number": 133,
         "year": "2013",
         "date": "2013-08-03",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2013"
+        "link": "/results/regatta2013/index.html"
       },
       {
         "number": 132,
         "year": "2012",
         "date": "2012-08-04",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2012"
+        "link": "/results/regatta2012/index.html"
       },
       {
         "number": 131,
         "year": "2011",
         "date": "2011-08-06",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2011"
+        "link": "/results/regatta2011/index.html"
       },
       {
         "number": 130,
         "year": "2010",
         "date": "2010-08-07",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2010"
+        "link": "/results/regatta2010/index.html"
       },
       {
         "number": 129,
         "year": "2009",
         "date": "2009-08-08",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2009"
+        "link": "/results/regatta2009/index.html"
       },
       {
         "number": 128,
 
         "year": "2008",
         "date": "2008-08-02",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2008"
+        "link": "/results/regatta2008/index.html"
       },
       {
         "number": 127,
         "year": "2007",
         "date": "2007-08-04",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2007"
+        "link": "/results/regatta2007/index.html"
       },
       {
         "number": 126,
         "year": "2006",
         "date": "2006-08-05",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2006"
+        "link": "/results/regatta2006/index.html"
       },
       {
         "number": 125,
         "year": "2005",
         "date": "2005-08-06",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2005"
+        "link": "/results/regatta2005/index.html"
       },
       {
         "number": 124,
         "year": "2004",
         "date": "2004-08-07",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2004"
+        "link": "/results/regatta2004/index.html"
       },
       {
         "number": 123,
         "year": "2003",
         "date": "2003-08-02",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2003"
+        "link": "/results/regatta2003/index.html"
       },
       {
         "number": 122,
         "year": "2002",
         "date": "2002-08-03",
-        "link": "https://sudburyrowingclub.org.uk/results/regatta2002"
+        "link": "/results/regatta2002/index.html"
       }
     ]
   },
