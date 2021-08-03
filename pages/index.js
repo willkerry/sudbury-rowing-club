@@ -9,7 +9,7 @@ import CommitteeSignature from "@/components/landing/committee-signature";
 import Sponsors from "@/components/landing/sponsors";
 import ParallaxImage from "@/components/landing/parallax-images";
 import Note from "@/components/stour/note";
-
+import Button from "@/components/stour/button";
 import landingData from "../data/landing.json";
 
 export default function Index({ allPosts }) {
@@ -40,6 +40,10 @@ export default function Index({ allPosts }) {
             youTubeId={landingData.hero.youTubeId}
             youTubeStart={landingData.hero.youTubeStart}
           />
+          <div className="flex items-center justify-center pt-16 space-x-3 text-white">
+            <Button label="Discover more" shadow size="large" />
+            <Button label="Join us" variant="secondary" shadow size="large" />
+          </div>
         </Container>
         <section>
           <Container className="py-20">

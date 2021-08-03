@@ -18,21 +18,17 @@ function LandingHero(props) {
 
         <div className="absolute top-0 flex items-center w-full h-full p-24">
           <div className="flex flex-col justify-center w-full space-y-6">
-            <BoathouseDoor className="w-full text-white" />
+            <BoathouseDoor className="w-full text-white drop-shadow" />
             <div>
-              <span className="px-3 py-1 font-medium bg-white rounded-full">
+              <span className="px-3 py-1 font-medium bg-white rounded-full drop-shadow">
                 {props.slogan}
               </span>
             </div>
           </div>
         </div>
         <div className="absolute text-white bottom-4 right-4">
-          <PlayIcon className="w-16 h-16 transition group-hover:transform group-hover:scale-105" />
+          <PlayIcon className="w-16 h-16 transition group-hover:transform group-hover:scale-110 filter drop-shadow" />
         </div>
-      </div>
-      <div className="flex items-center justify-center pt-16 space-x-3 text-white">
-        <Button label="Discover more" shadow size="large" />
-        <Button label="Join us" variant="secondary" shadow size="large" />
       </div>
     </Player>
   );
