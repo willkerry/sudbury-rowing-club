@@ -4,7 +4,8 @@
   "hero": {
     "hero_image": "/assets/landing/drone.jpg",
     "slogan": "Your friendly local rowing club.",
-    "youtube_embed_url": "https://www.youtube.com/embed/2EiBu6A7KhA"
+    "youTubeId": "2EiBu6A7KhA",
+    "youTubeStart": 54
   },
   "intro": {
     "first": "Sudbury Rowing Club is situated five minutes from the centre of Sudbury in Suffolk and Essex, in the middle of scenic Constable country. Rowing and sculling take place on a 1500m stretch of the River Stour between a weir at one end and a low bridge with shallow water at the other.",

@@ -63,7 +63,7 @@
         "date": "2019-08-03",
         "link": "/results/regatta2019/index.html",
         "eightsFastest": "01:01",
-        "fastest": "02:02"
+        "fastest": "02:07"
       },
       {
         "number": 138,
@@ -71,43 +71,55 @@
         "date": "2018-08-04",
         "link": "/results/regatta2018/index.html",
         "eightsFastest": "00:57",
-        "fastest": "02:02"
+        "fastest": "02:06"
       },
       {
         "number": 137,
         "year": "2017",
         "date": "2017-08-05",
-        "link": "/results/regatta2017/index.html"
+        "link": "/results/regatta2017/index.html",
+        "eightsFastest": "01:01",
+        "fastest": "02:19"
       },
       {
         "number": 136,
         "year": "2016",
         "date": "2016-08-06",
-        "link": "/results/regatta2016/index.html"
+        "link": "/results/regatta2016/index.html",
+        "eightsFastest": "00:57",
+        "fastest": "02:15"
       },
       {
         "number": 135,
         "year": "2015",
         "date": "2015-08-01",
-        "link": "/results/regatta2015/index.html"
+        "link": "/results/regatta2015/index.html",
+        "eightsFastest": "01:03",
+        "fastest": "02:19"
       },
       {
         "number": 134,
         "year": "2014",
         "date": "2014-08-02",
-        "link": "/results/regatta2014/index.html"
+        "link": "/results/regatta2014/index.html",
+        "eightsFastest": "00:58",
+        "fastest": "02:12"
       },
       {
         "number": 133,
         "year": "2013",
         "date": "2013-08-03",
-        "link": "/results/regatta2013/index.html"
+        "link": "/results/regatta2013/index.html",
+        "eightsFastest": "01:04",
+        "fastest": "02:21"
       },
       {
         "number": 132,
         "year": "2012",
         "date": "2012-08-04",
-        "link": "/results/regatta2012/index.html"
+        "link": "/results/regatta2012/index.html",
+        "eightsFastest": "00:58",
+        "fastest": "02:13"
       },
       {
         "number": 131,
@@ -119,50 +131,66 @@
         "number": 130,
         "year": "2010",
         "date": "2010-08-07",
-        "link": "/results/regatta2010/index.html"
+        "link": "/results/regatta2010/index.html",
+        "eightsFastest": "00:57",
+        "fastest": "02:15"
       },
       {
         "number": 129,
         "year": "2009",
         "date": "2009-08-08",
-        "link": "/results/regatta2009/index.html"
+        "link": "/results/regatta2009/index.html",
+        "eightsFastest": "01:01",
+        "fastest": "02:07"
       },
       {
         "number": 128,
 
         "year": "2008",
         "date": "2008-08-02",
-        "link": "/results/regatta2008/index.html"
+        "link": "/results/regatta2008/index.html",
+        "eightsFastest": "01:01",
+        "fastest": "02:12"
       },
       {
         "number": 127,
         "year": "2007",
         "date": "2007-08-04",
-        "link": "/results/regatta2007/index.html"
+        "link": "/results/regatta2007/index.html",
+        "eightsFastest": "00:53",
+        "fastest": "02:15"
       },
       {
         "number": 126,
         "year": "2006",
         "date": "2006-08-05",
-        "link": "/results/regatta2006/index.html"
+        "link": "/results/regatta2006/index.html",
+        "eightsFastest": "00:58",
+        "fastest": "02:08"
       },
       {
         "number": 125,
         "year": "2005",
         "date": "2005-08-06",
-        "link": "/results/regatta2005/index.html"
+        "link": "/results/regatta2005/index.html",
+        "eightsFastest": "00:58",
+        "fastest": "02:14"
       },
       {
         "number": 124,
         "year": "2004",
         "date": "2004-08-07",
-        "link": "/results/regatta2004/index.html"
+        "link": "/results/regatta2004/index.html",
+        "eightsFastest": "00:58",
+        "fastest": "02:10"
       },
       {
         "number": 123,
         "year": "2003",
         "date": "2003-08-02",
-        "link": "/results/regatta2003/index.html"
+        "link": "/results/regatta2003/index.html",
+        "eightsFastest": "00:58",
+        "fastest": "02:10"
       },
       {
         "number": 122,

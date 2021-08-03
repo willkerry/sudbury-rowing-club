@@ -38,46 +38,44 @@ export default function Photography({ preview }) {
                   number,
                   index,
                 }) => (
-                  <Link key={index} href={link}>
-                    <tr className="cursor-pointer hover:bg-gray-50 group">
-                      <td>
-                        <span className="font-semibold">
-                          {ordinal(number)} Sudbury Regatta
-                        </span>
-                      </td>
-                      <td>
-                        <span className="tabular-nums">
-                          <DateFormatter dateString={date} />
-                        </span>
-                      </td>
-                      <td>
-                        <span className="font-semibold text-pink-500 tabular-nums ">
-                          {eightsFastest}
-                        </span>
-                      </td>
-                      <td>
-                        <span className="font-semibold text-pink-500 tabular-nums ">
-                          {fastest}
-                        </span>
-                      </td>
-                      <td>
-                        {link ? (
-                          <Link href={link}>
-                            <a
-                              className="inline-block pr-4 last-of-type:pr-0 group-hover:text-blue-300"
-                              title={"View the " + year + " regatta results."}
-                            >
-                              View results
-                              <ExternalLink
-                                size={12}
-                                className="inline mb-1 ml-1"
-                              />
-                            </a>
-                          </Link>
-                        ) : null}
-                      </td>
-                    </tr>
-                  </Link>
+                  <tr className="hover:bg-gray-50">
+                    <td>
+                      <span className="font-semibold">
+                        {ordinal(number)} Sudbury Regatta
+                      </span>
+                    </td>
+                    <td>
+                      <span className="tabular-nums">
+                        <DateFormatter dateString={date} />
+                      </span>
+                    </td>
+                    <td>
+                      <span className="font-semibold text-pink-500 tabular-nums ">
+                        {eightsFastest}
+                      </span>
+                    </td>
+                    <td>
+                      <span className="font-semibold text-pink-500 tabular-nums ">
+                        {fastest}
+                      </span>
+                    </td>
+                    <td>
+                      {link ? (
+                        <Link href={link} passHref>
+                          <a
+                            className="inline-block pr-4 last-of-type:pr-0"
+                            title={"View the " + year + " regatta results."}
+                          >
+                            View results
+                            <ExternalLink
+                              size={12}
+                              className="inline mb-1 ml-1"
+                            />
+                          </a>
+                        </Link>
+                      ) : null}
+                    </td>
+                  </tr>
                 )
               )}
             </tbody>
