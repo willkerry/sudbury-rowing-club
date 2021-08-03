@@ -38,7 +38,7 @@ export default function Photography({ preview }) {
                   number,
                   index,
                 }) => (
-                  <tr className="hover:bg-gray-50">
+                  <tr key="date" className="hover:bg-gray-50">
                     <td>
                       <span className="font-semibold">
                         {ordinal(number)} Sudbury Regatta
