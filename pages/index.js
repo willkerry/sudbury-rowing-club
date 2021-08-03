@@ -11,7 +11,6 @@ import ParallaxImage from "@/components/landing/parallax-images";
 import Note from "@/components/stour/note";
 
 import landingData from "../data/landing.json";
-import Hero from "@/components/stour/hero";
 
 export default function Index({ allPosts }) {
   const heroPost = allPosts[0];
@@ -38,7 +37,8 @@ export default function Index({ allPosts }) {
         <Container className="py-6">
           <LandingHero
             slogan={landingData.hero.slogan}
-            youtube={landingData.hero.youtube_embed_url}
+            youTubeId={landingData.hero.youTubeId}
+            youTubeStart={landingData.hero.youTubeStart}
           />
         </Container>
         <section>

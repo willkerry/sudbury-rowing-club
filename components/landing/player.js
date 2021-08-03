@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { PlayCircle } from "react-feather";
-import { PlayIcon } from "@heroicons/react/solid";
+import YouTube from "react-youtube";
 
 function Player(props) {
   let [isOpen, setIsOpen] = useState(false);
+  const videoId = props.youTubeId;
+  const opts = {
+    playerVars: {
+      autoplay: 1,
+      controls: 0,
+      modestbranding: 1,
+      start: props.youTubeStart,
+    },
+  };
+
   return (
     <>
       <button onClick={() => setIsOpen(!isOpen)} title="Open video">
@@ -27,15 +36,13 @@ function Player(props) {
           <div className="flex justify-center">
             <Dialog.Overlay className="fixed inset-0 z-0 bg-black opacity-60" />
             <div className="flex items-center w-screen h-screen p-48">
-              <div className="w-full aspect-w-16 aspect-h-9">
-                <iframe
-                  className="bg-white rounded-lg shadow-xl z-2"
-                  src={props.youTubeEmbedUrl}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullCcreen
-                />
-              </div>
+              <YouTube
+                videoId={videoId}
+                opts={opts}
+                containerClassName="w-full aspect-w-16 aspect-h-9"
+                className="bg-white rounded-lg shadow-xl z-2"
+              />
+              <button />
             </div>
           </div>
         </Dialog>
