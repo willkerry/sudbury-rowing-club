@@ -2,7 +2,11 @@ import * as React from "react";
 
 function Errc(props) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 163 42" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 163 42"
+      {...props}
+    >
       <title>Eastern Regional Rowing Council</title>
       <path
         fill="#284163"

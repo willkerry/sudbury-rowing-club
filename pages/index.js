@@ -7,10 +7,10 @@ import { getAllPosts } from "../lib/api";
 import LandingHero from "@/components/landing/landing-hero";
 import CommitteeSignature from "@/components/landing/committee-signature";
 import Sponsors from "@/components/landing/sponsors";
-import ParallaxImage from "@/components/landing/parallax-images";
 import Note from "@/components/stour/note";
 import Button from "@/components/stour/button";
 import landingData from "../data/landing.json";
+import LandingImages from "@/components/landing/landing-images";
 
 export default function Index({ allPosts }) {
   const heroPost = allPosts[0];
@@ -46,24 +46,18 @@ export default function Index({ allPosts }) {
           </div>
         </Container>
         <section>
-          <Container className="py-20">
-            <div className="md:grid md:grid-cols-3 md:gap-8">
-              <ParallaxImage />
-              <div className="md:col-span-2">
-                <div className="prose">
-                  <p className="text-lg font-semibold tracking-tight">
-                    {landingData.intro.main}
-                  </p>
-                  <p>{landingData.intro.secondary}</p>
-                  <CommitteeSignature className="max-w-sm py-16 mx-auto" />
-                  <span className="sr-only">The Committee</span>
-                </div>
-                <Sponsors />
-              </div>
+          <Container className="mt-16">
+            <div className="mx-auto prose">
+              <p className="lead">{landingData.intro.main}</p>
+              <p>{landingData.intro.secondary}</p>
+              <CommitteeSignature className="max-w-sm py-16 mx-auto" />
+              <span className="sr-only">The Committee</span>
             </div>
+            <Sponsors />
           </Container>
+          <LandingImages />
         </section>
-        <section className="pt-16 pb-4 bg-blue-50">
+        <section className="pt-16 pb-4 ">
           <Container>
             {heroPost && (
               <HeroPost

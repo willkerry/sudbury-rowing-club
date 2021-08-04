@@ -73,13 +73,11 @@ export default function NavPopover(props) {
             >
               <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                 {props.compact ? (
-                  <div className="relative grid grid-cols-2 gap-8 bg-white sm:gap-4 sm:p-4">
+                  <div className="relative grid gap-8 bg-white sm:gap-4 sm:p-4">
                     {props.navData.map((item) => (
                       <Link key={item.name} href={item.href}>
-                        <a className="flex items-start p-2 -m-2 rounded-lg hover:bg-gray-100">
-                          <p className="text-sm font-medium text-gray-900">
-                            {item.name}
-                          </p>
+                        <a className="flex items-start p-2 -m-2 text-sm font-medium text-gray-900 rounded-lg hover:bg-gray-100">
+                          {item.name}
                         </a>
                       </Link>
                     ))}
@@ -104,18 +102,6 @@ export default function NavPopover(props) {
                                 {item.description}
                               </p>
                             )}
-                            <div className="grid grid-cols-2 gap-1 text-sm font-medium text-gray-600">
-                              {item.quicklinks &&
-                                item.quicklinks.map((linkItem, index) => (
-                                  <div key={index}>
-                                    <Link href={linkItem.href}>
-                                      <a className="inline-block px-1 -mx-1 py-0.5 -my-0.5 hover:text-blue-700 hover:bg-blue-50 rounded">
-                                        {linkItem.name}
-                                      </a>
-                                    </Link>
-                                  </div>
-                                ))}
-                            </div>
                           </div>
                         </a>
                       </Link>

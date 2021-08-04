@@ -2,7 +2,11 @@ import * as React from "react";
 
 function Rowperfect(props) {
   return (
-    <svg viewBox="0 0 281 29" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg
+      viewBox="0 0 281 29"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
       <title>Rowperfect</title>
       <g fill="#00b4d5">
         <path d="M0 1.305c6.443-.802 28.584-.23 28.994 4.238.41 4.467-21.906 4.81-21.906 6.243 0 .954 5.564 1.756 16.693 2.405-15.385 1.565-23.078.86-23.078-2.12 0-4.466 15.64-3.95 15.64-6.872 0-1.947-5.448-3.245-16.343-3.894" />

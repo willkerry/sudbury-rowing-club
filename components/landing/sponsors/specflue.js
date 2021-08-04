@@ -2,7 +2,11 @@ import * as React from "react";
 
 function Specflue(props) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 145" {...props}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 660 145"
+      {...props}
+    >
       <title>Specflue</title>
       <path
         fill="#C61532"
