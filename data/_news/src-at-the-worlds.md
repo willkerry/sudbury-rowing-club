@@ -11,7 +11,7 @@ SJ Gibbons, Sarah Watts, Rosemary Hogsbjerg and Teresa Moriarty raced in the Mas
 
 David Wasse and Jeremy Milbank took part in the Masters F and G double sculls events and Jeremy Milbank and Tracy Muir raced in the mixed double sculls.
 
-All the crews raced over 1000 metres on Lake Bagsvaerd, and experienced some world class racing.
+All the crews raced over 1000 metres on Lake Bagsværd, and experienced some world class racing.
 
 Susie Moule.
 

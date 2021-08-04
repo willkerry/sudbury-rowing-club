@@ -22,7 +22,7 @@ Amelia Moule competed in the Junior single sculls event in a field of 23. Qualif
 
 A. Moule was drawn against a rower from Thames RC who she had raced twice before this year with the score at 1-1 before this race. Amelia was faster out of the blocks and typically aggressive in the first half of the race, as she got out to a lead greater than one length, with her bows ahead for much of the race. However the Thames sculler made a late push for the line taking the win by 3/4 length in the very quick (unofficial) time of 6.16.9
 
- Martha Bullen rowed as a member of the Isle of Ely J16 quad, who qualified fastest of all crews in their class. 
+Martha Bullen rowed as a member of the Isle of Ely J16 quad, who qualified fastest of all crews in their class. 
 
 It was always likely to come down to a test between themselves and the girls from Henley Rowing Club, the semi-final between them was the best race of the event. Unfortunately the Ely quad did not have their best row and Henley beat them by 3/4 of a length in 5.14.5, a time 7 seconds faster than the other semi. Henley went on to win the event comfortably.
 

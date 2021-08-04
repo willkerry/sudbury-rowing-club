@@ -10,7 +10,7 @@ coverImage: "/assets/news/images/image2-2018.png"
 
 Hello everyone,
 
-Welcome to your latest Captains’ Update. With the great improvement in weather it is good to see rowing taking place on the Stour on most days of the week from 6am in the morning right through until 8.30pm on some days. It is good to see the increase in activity.
+Welcome to your latest Captains’ Update. With the great improvement in whether it is good to see rowing taking place on the Stour on most days of the week from 6am in the morning right through until 8.30pm on some days. It is good to see the increase in activity.
 
 [Text extracted from PDF](http://sudburyrowingclub.org.uk/wp-content/uploads/2018/06/SRC-Captains-Update-June-2018.pdf)
 

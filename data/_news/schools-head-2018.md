@@ -9,7 +9,7 @@ coverImage: "/assets/news/images/Schools-Head-2018.jpg"
 
 The Junior Squad from Sudbury Rowing Club was represented by two crews at the Schools Head of the River Race on the Thames.
 
-The race, which covers 4 1/4 miles from Putney to Mortlake, is the same course as the Oxford / Cambridge Boat Race and competitors came from all over the UK as well as Ireland and Italy.
+The race, which covers 4 1/4 miles from Putney to Mortlake, is the same course as the Oxford/Cambridge Boat Race and competitors came from all over the UK as well as Ireland and Italy.
 
 As well as Club crews, many crews represented schools and colleges where rowing is part of the curriculum. There were nearly four hundred crews competing in eights, fours and quads, all having to contend with very wet conditions. The fast flowing stream on the Thames is always challenging and steering the best course, staying in the fastest stream can prove tricky, especially for coxless crews.
 

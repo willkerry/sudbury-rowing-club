@@ -24,7 +24,7 @@ In addition to this we are also arranging to name some boats on the day and are 
 
 ## Fishing and swimmers
 
-Please be vigilant for both Anglers and Swimmers as we move into our (hopefully) indian summer. In particular we have been advised that there is a Fishing Match on Sunday 31st Aug. If you are rowing on this day please turn early before the final straight stretch down to the weir (or earlier if on the day the anglers are further up river than this).
+Please be vigilant for both Anglers and Swimmers as we move into our (hopefully) Indian summer. In particular we have been advised that there is a Fishing Match on Sunday 31st Aug. If you are rowing on this day please turn early before the final straight stretch down to the weir (or earlier if on the day the anglers are further up river than this).
 
 ## Racing Fees
 
@@ -32,7 +32,7 @@ Can I remind all members that race/towing fees should be paid to Andrew Blit in 
 
 ## Clubmark
 
-The club is hoping to renew it's Clubmark status this October. As such you may see small changes to or introduction of new processes/policies to support our application. Please support the club by adopting and following these when they are communicated out to you.
+The club is hoping to renew its Clubmark status this October. As such you may see small changes to or introduction of new processes/policies to support our application. Please support the club by adopting and following these when they are communicated out to you.
 
 ## Boat and blade care
 

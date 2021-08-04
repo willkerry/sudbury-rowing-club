@@ -53,13 +53,13 @@ Well done Katherine and Sophie.
 
 ## Recent Events
 
-### NORFOLK SCULLERS HEAD
+### Norfolk Scullers Head
 
 We attended the head on a cold and windy day with Tom Bowles and Ellie Adams representing the Juniors in singles and Pippa Kerry and Jeremy Milbank and Hannah Lodge and Keith Paxman in Masters Doubles.
 
 Tom performed really well and Ellie won her event. The doubles were the only entries in their category although Pippa and Jeremy were clear winners between the two SRC boats.
 
-### STAR HEAD
+### Star Head
 
 We came back from Star Head after a pleasant day in the autumn sun with 7 wins – a great day for the club.
 
@@ -75,7 +75,7 @@ Congratulations to:
 
 ## Coming Events
 
-### ARDLEIGH HEAD
+### Ardleigh Head
 
 We have a number of crews going to the Ardleigh Head on 8 December. This is event is being organised by our colleagues at Essex University and I am pleased we are able to support them this year.
 

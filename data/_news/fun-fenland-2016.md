@@ -21,7 +21,7 @@ The Mens Novice coxed four of Sean Moriarty, Alan Muir, Shyam Thobhani, Tim Boye
 
 The mens Master C coxed four of Stephen Nichols, Mark Tyrie, Austin Shaw, Paul Spencer and Helen Sharp (cox) won their semi against Milton Keynes RC taking them into the final against Devil's Elbow RC. Sudbury raced well to win by a couple of lengths.
 
-The womens Masters C coxed four of Sophie Lovegrove, Angela Colclough, Jenny Ward, Maria Vigneau and Helen Sharp (cox) won their semi against Devil's Elbow RC. In the final they raced XPress BC and after a very close race XPress won by half a length.
+The women’s Masters C coxed four of Sophie Lovegrove, Angela Colclough, Jenny Ward, Maria Vigneau and Helen Sharp (cox) won their semi against Devil's Elbow RC. In the final they raced XPress BC and after a very close race XPress won by half a length.
 
 In the mens Masters E/G double sculls event, Sudbury had two crews competing. First Sean Moriarty and Tim Boyes raced against St. Ives. The St. Ives crew went on to win and met with the other Sudbury crew of Mike Arnott and Keith Paxman in the final. The Sudbury crew won by one and a half lengths.
 
@@ -29,9 +29,9 @@ More wins for Sudbury came from Junior 18 double scull Morgan Moriarty and Callu
 
 Sam McLoughlin and Byron Bullen raced in the Junior 16 double sculls event, losing their heat to Peterborough.
 
-The womens Junior 16 Double Scull of Amelia Moule and Nell Belcher had some excellent racing in one of the most popular events of the day. They won all four races , beating London Youth Rowing, Beccles, Globe RC and in the final Broxbourne. Amelia Moule also raced in the Junior 16 single scull event where she won her heat against St. Ives. In the quarter final she met with a sculler from Globe RC who beat Sudbury by one and a half lengths.
+The women’s Junior 16 Double Scull of Amelia Moule and Nell Belcher had some excellent racing in one of the most popular events of the day. They won all four races , beating London Youth Rowing, Beccles, Globe RC and in the final Broxbourne. Amelia Moule also raced in the Junior 16 single scull event where she won her heat against St. Ives. In the quarter final she met with a sculler from Globe RC who beat Sudbury by one and a half lengths.
 
-The newly formed womens Junior 15 double scull of Martha Bullen and Amelia Maskell won their heat against London Youth Rowing. In the semi they beat a crew from Putney High School RC taking them into the final against another Putney crew. This time the opposition was too strong.
+The newly formed women’s Junior 15 double scull of Martha Bullen and Amelia Maskell won their heat against London Youth Rowing. In the semi they beat a crew from Putney High School RC taking them into the final against another Putney crew. This time the opposition was too strong.
 
 The Mixed Masters C double scull of Susie and Tony Moule retained their title at this event by beating a crew from Deben. Scullers Byron Bullen, Sam McLoughlin and Martha Bullen all raced in single sculls but on this occasion didn't make the finals.
 

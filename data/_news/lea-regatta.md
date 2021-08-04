@@ -11,4 +11,4 @@ The day ended with 3 wins - George Cook and Ellie Adams with a strong win in the
 
 Final win of the day, and losing the novice status was the novice Masters - Lee Adams, Graham Morris, St.John Gardner and Giles Stock coxed by Toby Stock. The race was against Maidstone, who started well and took the lead, but Sudbury pushed hard and overtook to win by 3 lengths.
 
-Good start to the season and hopefully the gaunlet has been laid for the rest of the club to follow.
+Good start to the season and hopefully the gauntlet has been laid for the rest of the club to follow.

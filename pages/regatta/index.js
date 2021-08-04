@@ -16,14 +16,16 @@ import {
   EventsIcon,
   InfoIcon,
   ResultsIcon,
-} from "@/components/regatta-tabs/icons";
+} from "@/components/regatta/icons";
 
-import DataTabs from "@/components/regatta-tabs/data-tabs";
-import Events from "@/components/regatta-tabs/events";
-import Entries from "@/components/regatta-tabs/entries";
-import Results from "@/components/regatta-tabs/results";
+import DataTabs from "@/components/regatta/data-tabs";
+import Events from "@/components/regatta/events";
+import Entries from "@/components/regatta/entries";
+import Results from "@/components/regatta/results";
 
 import data from "@/data/regatta.json";
+import CompetitorInformation from "@/components/regatta/competitor-information";
+import ContactForm from "@/components/contact-form";
 
 const tabData = [
   {
@@ -40,22 +42,21 @@ const tabData = [
   },
   {
     label: "Results",
-    content: (
-      <Results
-        results={data.results.results}
-        record={data.results.courseRecords}
-      />
-    ),
+    content: <Results tab />,
     icon: <ResultsIcon />,
   },
   {
     label: "Important",
-    content: <Entries>{data.entries.text}</Entries>,
+    content: <CompetitorInformation tab />,
     icon: <InfoIcon />,
   },
   {
     label: "Contact",
-    content: <Entries>{data.entries.text}</Entries>,
+    content: (
+      <div className="max-w-md mx-auto">
+        <ContactForm />
+      </div>
+    ),
     icon: <ContactIcon />,
   },
 ];

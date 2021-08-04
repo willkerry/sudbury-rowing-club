@@ -9,7 +9,7 @@ Sudbury Rowing Club celebrated a very successful year - 46 wins in total - at th
 
 Each year various trophies are awarded to club members for commitment, devotion, achievements and success.
 
-Junior Award - Girls Junior 18 coxed four - Henley crew - Ellie Adams, Victoria Burgess, Amy Bowles, Zoe McGee, Molly Shaw, Lucy Keedy-Davies (cox) Stour Shield - David Wasse The Andrew Foster Memorial Trophy - Tom Bowles Most Improved Rower - Harriett Brownell Senior Award - The Mens Brittania Cup crew of Sam Hogsbjerg, James Brownell, Sam Cooper, James Woodward and Harriett Brownell (cox) The Sainsburys Trophy for Best in Regatta - Amelia Moule
+Junior Award - Girls Junior 18 coxed four - Henley crew - Ellie Adams, Victoria Burgess, Amy Bowles, Zoe McGee, Molly Shaw, Lucy Keedy-Davies (cox) Stour Shield - David Wasse The Andrew Foster Memorial Trophy - Tom Bowles Most Improved Rower - Harriett Brownell Senior Award - The Mens Britannia Cup crew of Sam Hogsbjerg, James Brownell, Sam Cooper, James Woodward and Harriett Brownell (cox) The Sainsburys Trophy for Best in Regatta - Amelia Moule
 
 The Head racing season now takes us through the winter months along with intensive training in preparation for next years Regatta season.
 

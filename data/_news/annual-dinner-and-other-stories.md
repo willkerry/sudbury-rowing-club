@@ -12,7 +12,7 @@ coverImage: "/assets/news/images/Dinner_2017.jpg"
 
 Sudbury Rowing Club held their annual dinner and presentation evening where the Chairman introduced the nominees for the various awards, the year was reviewed in song by the captain and the list of club wins was celebrated.
 
-Awards went to : Jen Titterington - Senior Award Martha Bullen - Junior Award Angela Colclough - Stour Shield Amelia Moule - Andrew Foster Award for Sculling Nicola and Colin Swift - Best in Regatta award Amelia Maskell - Most Improved Hannah Lodge - Special Award
+Awards went to: Jen Titterington - Senior Award Martha Bullen - Junior Award Angela Colclough - Stour Shield Amelia Moule - Andrew Foster Award for Sculling Nicola and Colin Swift - Best in Regatta award Amelia Maskell - Most Improved Hannah Lodge - Special Award
 
 ### Bedford Small Boats Head
 

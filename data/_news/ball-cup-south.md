@@ -12,7 +12,7 @@ Sunday 12 May saw a number of Juniors competing at the Ball Cup (South) on the O
 
 The SRC Juniors accounted for themselves admirably with some of them racing against older opposition, coming away from the event with 6 gold medals, 1 silver and 1 bronze
 
-The first gold medal won was by Amelia Moule in the womens J18 single category, this was quickly followed up by Byron Bullen and Sam McLoughlin winning gold for the Open J18 double. Martha Bullen collected the silver for her race in the womens J17 single. Fergus Grant then followed up a short time later collecting the bronze in a very close battle with Harry Moule in the J15 singles.
+The first gold medal won was by Amelia Moule in the womens J18 single category, this was quickly followed up by Byron Bullen and Sam McLoughlin winning gold for the Open J18 double. Martha Bullen collected the silver for her race in the women’s J17 single. Fergus Grant then followed up a short time later collecting the bronze in a very close battle with Harry Moule in the J15 singles.
 
 Amelia Moule then rowed with Martha Bullen in the womens J18 double where they collected the gold in emphatic style winning by 3 lengths. Byron Bullen then rounded off his day nicely and made a clean sweep of the J18 category by winning the J18 single. The end of the day saw Sam McLoughlin win the J17 single, swiftly followed by Harry Moule winning gold for the J14 single.
 

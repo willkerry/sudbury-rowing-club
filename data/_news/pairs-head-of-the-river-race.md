@@ -9,7 +9,7 @@ coverImage: "/assets/news/images/Pairs-Head-1-of-3-Cropped.jpg"
 
 Jen Titterington and Bev Goodchild (Ipswich RC) raced on the Thames on 14th Oct in the Pairs Head of the River Race.
 
-They won a National class pennant in their event, Womens Club double sculls, winning by a massive 17 seconds, ahead of 11 other crews in their category.
+They won a National class pennant in their event, Women’s Club double sculls, winning by a massive 17 seconds, ahead of 11 other crews in their category.
 
 They finished in a time of 15 minutes and 30 seconds, an overall 221st out of 480 crews.
 

@@ -15,7 +15,7 @@ Later on in the afternoon when conditions had changed slightly, the crews now ha
 
 On Sunday, two more crews competed in perfect conditions. The first to race was the Women's E/F IM3 Double Scull of  Rosemary Hogsbjerg and Sarah Watts. In a full six lane line up the final proved to be tricky from the start, with three attempts to start the race fairly! Eventually Putney RC was disqualified leaving five crews to battle it out over the 1000 metre course. Sudbury raced well to earn a silver medal in a time of 4 minutes 49 seconds, behind Mortlake RC who won gold in a time of 4.40. In third place, Tyne RC won the bronze medal in 4.49. Fourth place was Upton RC (4.55), fifth place Ross RC (5.04).
 
-In the afternoon Watts and Hogsbjerg teamed up with Teresa Moriarty and Sarah Jane Gibbons to race in the Womens Masters C IM3 Quad Scull event. This was a two boat straight final against Broxbourne RC. A very close and exciting race, but  Broxbourne managed to pull away to take the gold medal in a time of 4.04 with Sudbury finishing close behind in 4.09.
+In the afternoon Watts and Hogsbjerg teamed up with Teresa Moriarty and Sarah Jane Gibbons to race in the Womens Masters C IM3 Quad Scull event. This was a two boat straight final against Broxbourne RC. A very close and exciting race, but Broxbourne managed to pull away to take the gold medal in a time of 4.04 with Sudbury finishing close behind in 4.09.
 
 Sudbury will be competing again this weekend at St. Ives Regatta.
 

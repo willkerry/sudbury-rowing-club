@@ -12,4 +12,4 @@ We will now be running two sessions on Sunday mornings.
 
 We realise that Sundays have been getting very busy over the last few weeks. We hope that by running two sessions, and by knowing who is going to be turning up, we will be able to schedule the use of boats and be able to get you out on the water in a planned manner.
 
-In order to try and organise crews and allocate boats in advance we would like you to submit your availability for the sessions, please use the availability website or email your co-ordinator to avoid dissapointment.
+In order to try and organise crews and allocate boats in advance we would like you to submit your availability for the sessions, please use the availability website or email your co-ordinator to avoid disappointment.

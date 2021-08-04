@@ -47,7 +47,7 @@ Amelia Maskell and Freya Evans raced in the Women's double sculls event. With on
 
 Rosemary Hogsbjerg, Sarah Stirling, Teresa Moriarty and Tracy Muir raced in the Women's Masters A-E quad sculls event. They finished in fourth place in a time of 22.51.
 
-All the Sudbury wins, along with Deben and Ipswich, contributed to Suffolk winning The Deuchar Norfolk and Suffolk Challenge Cup, which was awarded to Suffolk. This challenge trophy between Norfolk and Suffolk was first presented in 1909, and this is the first time Suffolk have won it in 70 years !
+All the Sudbury wins, along with Deben and Ipswich, contributed to Suffolk winning The Deuchar Norfolk and Suffolk Challenge Cup, which was awarded to Suffolk. This challenge trophy between Norfolk and Suffolk was first presented in 1909, and this is the first time Suffolk have won it in 70 years!
 
 Susie Moule.
 

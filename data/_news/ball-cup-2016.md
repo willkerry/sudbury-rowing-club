@@ -11,7 +11,7 @@ Racing got underway early, the course was a 750 metre stretch of the lake racing
 
 Conditions were good to start with but despite being dry with temperatures reaching 28 degrees, the wind strengthened during the day and conditions deteriorated, with some races being cancelled.
 
-The Junior 18 double of Callum Power and Morgan Moriarty raced well to win bronze in their catagory. They also both raced in the J17 single scull event. Callum Power made it through to the final, just missing out on a second medal, finishing in fourth place.
+The Junior 18 double of Callum Power and Morgan Moriarty raced well to win bronze in their category. They also both raced in the J17 single scull event. Callum Power made it through to the final, just missing out on a second medal, finishing in fourth place.
 
 The women's junior 16 quad of Lily Blair Slater, Natasha Treagust, Emma Rogers and Amelia Moule, just missed out on a medal, finishing in fourth place.
 

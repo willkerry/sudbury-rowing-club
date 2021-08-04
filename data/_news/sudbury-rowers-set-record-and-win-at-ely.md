@@ -13,7 +13,7 @@ On Sunday, many crews from Sudbury Rowing Club competed at the Great Ouse Marath
 
 This year’s entrants included Stephen Nichols, Mike Arnott and Andrew Blit who were part of the ‘Sudbury Lifeboat’ crew of 2017 who had stopped to rescue a fisherman, this time competing in their single sculls, finishing 3rd, 3rd and 5th in their categories respectively.
 
-The fourth member of the Lifeboat, Keith Paxman, crewed with Luke Payne this year. One of Sudbury RC’s para-rowing squad, Luke is able to row with his arms and shoulders and has equipment specifically adapted for his abilities. Having competed against potential Olympians in the summer, Luke was determined to take on this next, massive challenge with Keith as his crewmate. Keith and Luke were first across the start line and set a new course record for ‘assisted double scull’.
+The fourth member of the Lifeboat, Keith Paxman, crewed with Luke Payne this year. One of Sudbury RC’s para-rowing squad, Luke is able to row with his arms and shoulders and has equipment specifically adapted for his abilities. Having competed against potential Olympians in the summer, Luke was determined to take on this next, massive challenge with Keith as his crew-mate. Keith and Luke were first across the start line and set a new course record for ‘assisted double scull’.
 
 Competing in Mixed Double Sculls were Pippa Kerry with Jeremy Milbank and Sophie Lovegrove with Pete Donovan. Kerry and Milbank were up against some of the strongest competition in the country at Masters D (50 – 55) and were a very respectable 3rd out of 5 crews. Lovegrove and Donovan, however, were able to repeat last year’s triumph and win at Masters C (43 – 49), beating the next crew by almost 8 minutes.
 

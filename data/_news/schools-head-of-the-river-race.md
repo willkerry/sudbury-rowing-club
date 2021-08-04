@@ -7,7 +7,7 @@ categories:
 coverImage: "/assets/news/images/cid_3F9DF00E-428A-4ED1-B38E-DE1027D5A33A.png"
 ---
 
-Sudbury Rowing Club were represented at the Schools Head of the River Race on Thursday by Morgan Moriarty, Callum Power, Byron Bullen, Henry Tullin and Amelia Moule (cox), who raced in the Junior Coxed Fours catagory.
+Sudbury Rowing Club were represented at the Schools Head of the River Race on Thursday by Morgan Moriarty, Callum Power, Byron Bullen, Henry Tullin and Amelia Moule (cox), who raced in the Junior Coxed Fours category.
 
 The 6.5km race from Mortlake to Putney was shortened to 2.5km due to very windy conditions which made the course  rough and challenging. Instead of the race taking approximately 20 minutes,  it turned into a much shorter race taking 5 minutes 46 seconds.
 

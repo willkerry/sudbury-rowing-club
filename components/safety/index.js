@@ -23,7 +23,7 @@ export default function SafetyPopup() {
         <h3 className="my-1.5 text-3xl font-bold text-gray-900">
           {safety.status.severity}
         </h3>
-        <div className="space-y-4 prose">
+        <div className="space-y-4 leading-snug prose">
           <div>{safety.status.description}</div>
           {safety.status.date && (
             <div className="text-xs">

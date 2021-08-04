@@ -7,80 +7,19 @@ import ordinal from "ordinal";
 import Link from "next/link";
 import { ExternalLink } from "react-feather";
 import DateFormatter from "@/components/date-formatter";
+import Results from "@/components/regatta/results";
 
-export default function Photography({ preview }) {
+export default function ResultsPage() {
   const resultsData = data.results.results;
   const courseRecords = data.results.courseRecords;
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Head>
         <title>Sudbury Rowing Club Regatta Results</title>
       </Head>
       <HeroTitle title="Regatta results" breadcrumbs />
-      <Container>
-        <div className="py-16 prose prose-lg max-w-none">
-          <table>
-            <thead>
-              <th></th>
-              <th>Date</th>
-              <th>Fastest 350m</th>
-              <th>Fastest 650m</th>
-              <th>Results</th>
-            </thead>
-            <tbody>
-              {resultsData.map(
-                ({
-                  link,
-                  year,
-                  date,
-                  fastest,
-                  eightsFastest,
-                  number,
-                  index,
-                }) => (
-                  <tr key="date" className="hover:bg-gray-50">
-                    <td>
-                      <span className="font-semibold">
-                        {ordinal(number)} Sudbury Regatta
-                      </span>
-                    </td>
-                    <td>
-                      <span className="tabular-nums">
-                        <DateFormatter dateString={date} />
-                      </span>
-                    </td>
-                    <td>
-                      <span className="font-semibold text-pink-500 tabular-nums ">
-                        {eightsFastest}
-                      </span>
-                    </td>
-                    <td>
-                      <span className="font-semibold text-pink-500 tabular-nums ">
-                        {fastest}
-                      </span>
-                    </td>
-                    <td>
-                      {link ? (
-                        <Link href={link} passHref>
-                          <a
-                            className="inline-block pr-4 last-of-type:pr-0"
-                            title={"View the " + year + " regatta results."}
-                          >
-                            View results
-                            <ExternalLink
-                              size={12}
-                              className="inline mb-1 ml-1"
-                            />
-                          </a>
-                        </Link>
-                      ) : null}
-                    </td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
-        </div>
+      <Container className="py-16">
+        <Results />
       </Container>
     </Layout>
   );

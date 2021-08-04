@@ -15,11 +15,11 @@ Please read it as some will apply to you as a member of the club.
 
 This is a reminder that good Friday is traditionally when we mark the opening of the Rowing Season. The racing is open to all members with the traditional Easter Egg prize for the winning team. If you would like to row on the day can you please let your Vice Captain know before Wednesday 27 March to ease organisation. The plan is as follows:
 
-- 8.00                             Arrive and ready to boat
-- 08.15                           Team Selection
-- 09:00 – 10:30              Racing
-- 10:45                           Refreshments
-- 11:30                           Opening Ceremony with the Mayor of Sudbury
+- `08:00`: Arrive and ready to boat
+- `08:15`: Team Selection
+- `09:00-10:30`: Racing
+- `10:45`: Refreshments
+- `11:30`: Opening Ceremony with the Mayor of Sudbury
 
 Please invite relations and friends to join us. There will be the usual beer and hot cross buns as well as other refreshments and this year Sainsbury’s is sponsoring the refreshments and prizes. Please note that the Sudbury Fun Run will mean that roads through and around Sudbury will be closed between 9-10 am.
 
@@ -27,7 +27,7 @@ Please invite relations and friends to join us. There will be the usual beer an
 
 Pippa has been working hard to introduce potential new members to the club with some taster sessions. These will now be followed by our next Learn to Row Course which will be starting on Saturday 6th April at 12.30 and will run for 6 weeks. These courses are a key means by which we can bring new members into the club and are also a source of income. For them to run smoothly requires at least 4 members to be present and volunteers are needed for each session. Don’t worry if you are not sure about your coaching skills – you know more than you think you do and your help is invaluable.
 
-Can you please contact Pippa to let her know that you can assist her with your vital support – [learn2row@sudbury.rowing.org.uk](mailto:learn2row@sudbury.rowing.org.uk)
+Can you please contact Pippa to let her know that you can assist her with your vital support – [learn2row@sudbury.rowing.org.uk](mailto:learn2row@sudbury.rowing.org.uk)
 
 ## Head of the River Races
 
@@ -54,7 +54,7 @@ Here are some dates that you should put in your diary:
 
 Note these are events we are currently planning to enter or are notable rowing events we should aspire to enter at least one crew. We may attend others as the season progresses. Speak to your Vice Captain to discuss entries.
 
-- 14th April – Bedford 4’s and Small Boats Head – entries urgently needed to ensure a place
+- 14th April – Bedford 4s and Small Boats Head – entries urgently needed to ensure a place
 - 5 May Wallingford Regatta Dorney Lake
 - 19 May British Masters – Nottingham
 - 1-2 June Peterborough Spring

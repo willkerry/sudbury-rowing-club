@@ -11,6 +11,16 @@ module.exports = {
         destination: "/contact",
         permanent: true,
       },
+      {
+        source: "/history",
+        destination: "/about/history",
+        permanent: true,
+      },
+      {
+        source: "/about",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

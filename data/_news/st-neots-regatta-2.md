@@ -17,7 +17,7 @@ Racing started early on Sunday, some of the Sudbury crews took to the water befo
 
 The most exciting race of the day came from Junior 16 Double scull of Byron Bullen and Sam McLoughlin who had such a close race in the semi final against Peterborough, it was declared as a dead heat. The crews returned to the start for an immediate re-race. The Sudbury crew were triumphant the second time round and earned a place in the final.
 
-Winning crews were Women's Masters C double scull of Susie Moule and Sophie Lovegrove in their debut race together, Amelia Maskell and Martha Bullen in the Women's Junior 15 double sculls event, Martha Bullen also won the Womens Junior 14 single sculls event. Amelia Moule continued her winning streak, taking her second win of the weekend in the Women's Junior 16 Single sculls event.
+Winning crews were Women's Masters C double scull of Susie Moule and Sophie Lovegrove in their debut race together, Amelia Maskell and Martha Bullen in the Women's Junior 15 double sculls event, Martha Bullen also won the Women’s Junior 14 single sculls event. Amelia Moule continued her winning streak, taking her second win of the weekend in the Women's Junior 16 Single sculls event.
 
 Sudbury Regatta will be held on Friars Meadow on Saturday 5th August. Spectators and supporters welcome. Enjoy live music, BBQ, hog roast and beer tent with local ale and Pimms whilst watching the racing. Entertainment for the whole family !
 

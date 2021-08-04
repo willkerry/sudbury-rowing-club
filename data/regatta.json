@@ -53,8 +53,8 @@
     "results": [
       {
         "number": 140,
-        "year": "2020",
-        "date": "2020-08-02",
+        "year": "2021",
+        "date": "2021-08-02",
         "link": ""
       },
       {
@@ -201,7 +201,7 @@
     ]
   },
   "competitorInformation": {
-    "intro": "<h5>Draw, trees, and results and more</h5><p>When available, the draw will be prominently accessible from this page.</p>",
+    "intro": "We ask that competitors and their entourages read the following documents.",
     "resources": [
       {
         "title": "Competitor Instructions 2019",

@@ -19,7 +19,7 @@ Other members competing were Nell Belcher, Freya Evans, Helena Griffiths, Byron 
 
 Sean Moriarty raced in a single scull at a regatta for the first time, then competed with wife Teresa as they doubled up for the first time and pushed an experienced Mixed Masters E double scull from Peterborough City all the way to the line.
 
-On the same weekend, Jen Titterington competed with her regular doubles partner from Ipswich Rowing Club, Bev Goodchild, at Henley Women's Regatta. The regatta is held over three days, over a distance of 1500 meteres, on the Henley Royal Regatta course.
+On the same weekend, Jen Titterington competed with her regular doubles partner from Ipswich Rowing Club, Bev Goodchild, at Henley Women's Regatta. The regatta is held over three days, over a distance of 1500 meters, on the Henley Royal Regatta course.
 
 On the Friday morning, all 38 of the competitors in their event, Aspirational Double Sculls, completed a time trial. The fastest 16 crews from this race went through to the heats on Friday afternoon, where the Ipswich/Sudbury crew beat Cantabrigian in a time of 5:59.
 

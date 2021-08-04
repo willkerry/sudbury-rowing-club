@@ -7,7 +7,7 @@ categories:
 coverImage: "/assets/news/images/2017-09-14-image4.jpg"
 ---
 
-Sudbury Rowing Club have had a busy few weeks with members attending Peterborough Summer Regatta, Great Ouse Marathon, World Masters Chamionships in Bled, Slovenia and Cambridge Autumn Regatta.
+Sudbury Rowing Club have had a busy few weeks with members attending Peterborough Summer Regatta, Great Ouse Marathon, World Masters Championships in Bled, Slovenia and Cambridge Autumn Regatta.
 
 David Wasse and Jeremy Milbank won the Masters G double sculls event at Peterborough Summer regatta. Other competitors included Sophie Lovegrove in her debut single scull, Jen Titterington and Asha Thobhani in a composite quad scull. Nell Belcher and Amelia Maskell also competed in single sculls.
 

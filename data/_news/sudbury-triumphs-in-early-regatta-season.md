@@ -13,7 +13,7 @@ Sudbury’s mens’ Masters C eight faced some of the toughest of that competiti
 
 New pairing, Pippa Kerry and Bryony Dixon raced in the IM3 doubles and won their heat easily before achieving a convincing first win in the final.
 
-In the IM2 pairs, Lee Adams and Rob Frost, fresh from their performance in the eight, managed a narrow but skillful win over a Peterborough crew.
+In the IM2 pairs, Lee Adams and Rob Frost, fresh from their performance in the eight, managed a narrow but skilful win over a Peterborough crew.
 
 Also from the eight, brothers Paul and Lee Adams raced with John Bowles and Paul Sant in the Masters C fours, coxed by Ella Hysom. Despite an unfortunate start, the crew met coach Tony Hogsbjerg’s predictions and rowed past multiple crews to success and another win.
 

@@ -21,7 +21,7 @@ The W J13 4X+ crew on their first race outing together under race conditions sho
 
 The Sudbury Men’s 4 of Lee Adams, Paul Adams, John Bevan and Giles Stock were entered in two categories – Nov 4+ coxed by Sarah Watts. Stiff competition here from some younger crews, but they rowed well together with good coxing from Sarah.
 
-There other event the Men’s Vet A Nov 4+ was a straight race against Bedford Stars crew. Good coxing from Holly Adams who pushed the crew well over the 2000m beating the rivals by 15 seconds and taking victory in their category.
+Their other event the Men’s Vet A Nov 4+ was a straight race against Bedford Stars crew. Good coxing from Holly Adams who pushed the crew well over the 2000m beating the rivals by 15 seconds and taking victory in their category.
 
 Finally, John Bevan was also sculling in the IM3 1X, after the two outings earlier in the 4+, John rowed well but the stamina took its toll in a tough division.
 

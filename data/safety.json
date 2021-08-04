@@ -37,10 +37,10 @@
     }
   ],
   "status": {
-    "severity": "Red",
+    "severity": "Green",
     "display": true,
-    "description": "Rowing is currently suspended due to severe reed overgrowth. No outings are permitted without the express permission of the captain.",
-    "date": "20210418T182931Z"
+    "description": "We have beautiful August weather. Take care, but the weather’s not your enemy.",
+    "date": "2021-08-03"
   },
   "documents": [
     {

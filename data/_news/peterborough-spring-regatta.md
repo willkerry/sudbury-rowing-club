@@ -33,23 +33,23 @@ Martha Bullen raced in the Junior 14 single sculls event winning her heat. In th
 
 On Sunday racing started early and more Sudbury members travelled to Peterborough.
 
-The Womens IM3 eight of Sophie Lovegrove, SJ Gibbons, Katie Newbigging, Rebecca Houghton, Hannah Lodge, Daisy Anderson, Amelia Moule, Susie Moule (stroke) and Asha Thobhani (cox) won their heat in a time of 3.36. The final was a very close race with Birmingham Uni taking first place and the second, third and fourth places all within a second of each other.
+The Women’s IM3 eight of Sophie Lovegrove, SJ Gibbons, Katie Newbigging, Rebecca Houghton, Hannah Lodge, Daisy Anderson, Amelia Moule, Susie Moule (stroke) and Asha Thobhani (cox) won their heat in a time of 3.36. The final was a very close race with Birmingham Uni taking first place and the second, third and fourth places all within a second of each other.
 
-Womens Novice coxed four of Hannah Lodge, Rebecca Houghton, Katie Newbigging, Daisy Anderson (stroke) and Harry Moule (cox) won their heat in 4.06. In the final they finished in fourth position behind University College London, Lea RC and Birmingham RC.
+Women’s Novice coxed four of Hannah Lodge, Rebecca Houghton, Katie Newbigging, Daisy Anderson (stroke) and Harry Moule (cox) won their heat in 4.06. In the final they finished in fourth position behind University College London, Lea RC and Birmingham RC.
 
-Womens Masters D coxed four of Maria Vigneau, Linda Newbigging, Mary-Jane Budd, Nicola Porter-Vaughan and Sean Moriarty (cox) finished in fourth place in the final.
+Women’s Masters D coxed four of Maria Vigneau, Linda Newbigging, Mary-Jane Budd, Nicola Porter-Vaughan and Sean Moriarty (cox) finished in fourth place in the final.
 
 The Mens Masters E quad scull of Stephen Nichols, Sean Moriarty, Alan Muir and Jeremy Milbank finished in fourth place in the final in a time of 3.57.
 
 The Womens IM3 quad scull of Asha Thobhani, Sophie Lovegrove, Jen Titterington and Susie Moule finished second in the final in a time of 3.52 behind Birmingham Uni.
 
-The Womens Junior 15 coxed quad of Jemima Savage, Helena Griffiths, Martha Bullen, Amelia Maskell and Harry Moule (cox) came second in their heat taking them into the final where they had a battle to the line with Nottingham and Union RC. The Sudbury crew took the win in 3.55.
+The Women’s Junior 15 coxed quad of Jemima Savage, Helena Griffiths, Martha Bullen, Amelia Maskell and Harry Moule (cox) came second in their heat taking them into the final where they had a battle to the line with Nottingham and Union RC. The Sudbury crew took the win in 3.55.
 
 The Mens Masters E double scull of Alan Muir and Sean Moriarty finished in fourth place in their heat behind Hollingworth Lake RC, Peterborough RC and St. Neots RC.
 
 Mens Masters G double scull of Jeremy Milbank and David Wasse finished in second place in the final in a time of 4.06.
 
-Tracy Muir and Teresa Moriarty raced in the Womens Masters D double scull event. They finished second in their heat in a time of 4.34. In the final they knocked 12 seconds off their time, finishing in third place behind RAF RC, Champion of the Thames, with Oundle RC in fourth place.
+Tracy Muir and Teresa Moriarty raced in the Women’s Masters D double scull event. They finished second in their heat in a time of 4.34. In the final they knocked 12 seconds off their time, finishing in third place behind RAF RC, Champion of the Thames, with Oundle RC in fourth place.
 
 The Junior 18 Double scull of Emma Rogers and Lucy Edwards finished in second place in their heat in 4.24, then finished fourth in the final in a quicker time of 4.17.
 
@@ -57,7 +57,7 @@ Amelia Moule and Amelia Maskell again raced in the Junior 16 double sculls event
 
 Byron Bullen competed in the Junior 16 single sculls event finishing third in the heat in a time of 4.05 behind Peterborough RC and Cambridge 99 RC.
 
-Jen Titterington again raced in the Womens IM3 single sculls event finishing first in her heat in 4.14. In the final, Sudbury had a re-match with Bedford who won the event on Saturday. This time the Sudbury sculler was triumphant and took the win by the narrowest of margins in a time of 4.07.
+Jen Titterington again raced in the Women’s IM3 single sculls event finishing first in her heat in 4.14. In the final, Sudbury had a re-match with Bedford who won the event on Saturday. This time the Sudbury sculler was triumphant and took the win by the narrowest of margins in a time of 4.07.
 
 So another successful weekend for the Sudbury RC with six wins, five of those coming from the Junior Squad.
 
