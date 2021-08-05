@@ -1,7 +1,8 @@
 import DateFormatter from "../components/date-formatter";
-import CoverImage from "../components/cover-image";
 import PostTitle from "../components/post-title";
-import Image from "next/image"
+import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import smartypants from "@silvenon/remark-smartypants";
 
 export default function PostHeader({ title, coverImage, date, author }) {
   return (
@@ -11,7 +12,9 @@ export default function PostHeader({ title, coverImage, date, author }) {
           <DateFormatter dateString={date} />
           <span className="text-gray-500"></span>
         </div>
-        <PostTitle>{title}</PostTitle>
+        <PostTitle>
+          <ReactMarkdown remarkPlugins={[smartypants]}>{title}</ReactMarkdown>
+        </PostTitle>
       </div>
 
       {coverImage && (

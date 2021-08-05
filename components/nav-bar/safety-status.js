@@ -39,8 +39,8 @@ function StatusIndicator() {
               "text-blue-800": safety.status.severity == "Neutral",
             })}
           >
-            <span className="sr-only">{safety.status.severity}</span>River
-            status
+            <span className="lg:sr-only">{safety.status.severity}</span>
+            <span className="hidden lg:inline">River status</span>
           </span>
         </div>
       )}

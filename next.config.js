@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512, 1024, 1280],
+  },
   async redirects() {
     return [
       {

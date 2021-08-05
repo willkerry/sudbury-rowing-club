@@ -45,7 +45,7 @@ function ButtonInner(props) {
 }
 
 export function Button(props) {
-  const { label, variant, size, shadow, href, icon, button } = props;
+  const { label, variant, size, shadow, href, icon, button, children } = props;
   return (
     <>
       {button ? (
@@ -58,7 +58,7 @@ export function Button(props) {
             SHADOW_MAPS[shadow]
           )}
         >
-          <ButtonInner label={label} icon={icon} />
+          <ButtonInner label={children} icon={icon} />
         </button>
       ) : (
         <Link href={href} passHref>
@@ -71,7 +71,7 @@ export function Button(props) {
             )}
             {...props}
           >
-            <ButtonInner label={label} icon={icon} />
+            <ButtonInner label={children} icon={icon} />
           </a>
         </Link>
       )}

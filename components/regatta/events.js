@@ -13,7 +13,7 @@ const LabelCell = (props) => (
     className="py-2 pr-2 font-medium text-gray-900 border-t border-gray-200 whitespace-nowrap"
   />
 );
-const Cell = (props, right) => (
+const Cell = (props) => (
   <td
     {...props}
     className="w-full py-2 pl-2 space-y-2 text-gray-600 border-t border-gray-200"

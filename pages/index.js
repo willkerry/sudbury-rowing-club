@@ -41,8 +41,12 @@ export default function Index({ allPosts }) {
             youTubeStart={landingData.hero.youTubeStart}
           />
           <div className="flex items-center justify-center pt-16 space-x-3 text-white">
-            <Button label="Discover more" shadow size="large" />
-            <Button label="Join us" variant="secondary" shadow size="large" />
+            <Button shadow size="large">
+              Discover<span className="hidden sm:inline"> more</span>
+            </Button>
+            <Button variant="secondary" shadow size="large">
+              Join us
+            </Button>
           </div>
         </Container>
         <section>

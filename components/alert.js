@@ -1,42 +1,34 @@
-import Container from './container'
-import cn from 'classnames'
-import { EXAMPLE_PATH } from '../lib/constants'
+import data from "@/data/alert";
+import Link from "next/link";
 
-export default function Alert({ preview }) {
+export default function Alert() {
   return (
-    <div
-      className={cn('border-b', {
-        'bg-accent-7 border-accent-7 text-white': preview,
-        'bg-accent-1 border-accent-2': !preview,
-      })}
-    >
-      <Container>
-        <div className="py-2 text-center text-sm">
-          {preview ? (
-            <>
-              This page is a preview.{' '}
-              <a
-                href="/api/exit-preview"
-                className="underline hover:text-cyan duration-200 transition-colors"
-              >
-                Click here
-              </a>{' '}
-              to exit preview mode.
-            </>
-          ) : (
-            <>
-              The source code for this blog is{' '}
-              <a
-                href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-                className="underline hover:text-success duration-200 transition-colors"
-              >
-                available on GitHub
-              </a>
-              .
-            </>
-          )}
+    <>
+      {data.display && (
+        <div className="py-2 overflow-hidden border-b bg-gradient-to-tr from-white to-green-100">
+          <div className="relative px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
+            <div className="relative flex items-center justify-center">
+              <div className="text-sm font-medium text-gray-900">
+                {data.description}
+              </div>
+              <span
+                aria-hidden="true"
+                className="hidden w-px h-6 mx-6 bg-black sm:block bg-opacity-20"
+              ></span>
+              <div className="ml-6 sm:ml-0">
+                <Link href={data.href}>
+                  <a
+                    className="inline-flex px-3 py-2 text-xs font-semibold text-gray-800 uppercase transition bg-white border rounded-md hover:border-gray-900 whitespace-nowrap hover:bg-opacity-90"
+                    href="/docs/just-in-time-mode"
+                  >
+                    {data.linkText} →
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
-      </Container>
-    </div>
-  )
+      )}
+    </>
+  );
 }

@@ -86,14 +86,15 @@ class ContactForm extends Component {
           </label>
         </div>
         <div className="mx-auto">
-        <Button
-          type="submit"
-          onClick={this.submitContactForm}
-          disabled={formButtonDisabled}
-          label={formButtonText}
-          button={true}
-          size="large"
-        />
+          <Button
+            type="submit"
+            onClick={this.submitContactForm}
+            disabled={formButtonDisabled}
+            button={true}
+            size="large"
+          >
+            {formButtonText}
+          </Button>
         </div>
       </form>
     );

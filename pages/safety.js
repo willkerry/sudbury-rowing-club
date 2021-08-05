@@ -65,11 +65,9 @@ export default function Safety({ preview }) {
                   </div>
                 )}
                 {item.link && (
-                  <Button
-                    label={item.link.name}
-                    href={item.link.file}
-                    icon={item.link.type}
-                  />
+                  <Button href={item.link.file} icon={item.link.type}>
+                    {item.link.name}
+                  </Button>
                 )}
               </div>
             </Row>

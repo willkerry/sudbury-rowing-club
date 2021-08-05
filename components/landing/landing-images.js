@@ -10,7 +10,7 @@ const juniors = juniorsImage;
 const landingImages = [
   {
     src: tour,
-    alt: "Sudbury Rowing Club members posing for a photo at an event in Hungary.",
+    alt: "Sudbury Rowing Club members posing for a photo at the World Rowing Masters Regatta in Hungary.",
   },
   {
     src: regatta,
@@ -28,7 +28,7 @@ function LandingImages() {
       <div className="flex flex-row">
         {landingImages.map(({ src, alt, index }) => (
           <div key={index} className="relative w-1/3 h-24 bg-black sm:h-72">
-            <Image src={src} alt={alt} layout="fill" className="object-cover" />
+            <Image src={src} alt={alt} layout="fill" className="object-cover" placeholder="blur" />
           </div>
         ))}
       </div>

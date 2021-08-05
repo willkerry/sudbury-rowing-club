@@ -32,7 +32,7 @@ export function PostPreview(props) {
 
           <div
             className={cn(
-              "absolute bottom-0 z-40 mx-5 my-4 text-white rounded-lg",
+              "absolute bottom-0 z-40 mx-5 my-4 rounded-lg",
               coverImage ? "text-white" : "text-gray-900"
             )}
           >
@@ -41,7 +41,7 @@ export function PostPreview(props) {
             </div>
             <h3
               className={cn(
-                "text-2xl font-semibold tracking-tight ",
+                "text-2xl font-semibold tracking-tight",
                 coverImage ? "" : "transition group-hover:text-blue-500"
               )}
             >
