@@ -24,7 +24,7 @@
     "date-fns": "^2.23.0",
     "gray-matter": "4.0.3",
     "md5": "^2.3.0",
-    "netlify-cms-app": "2.15.30",
+    "netlify-cms-app": "2.15.33",
     "next": "latest",
     "nextjs-breadcrumbs": "^1.1.6",
     "nodemailer": "^6.6.3",
