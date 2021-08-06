@@ -17,9 +17,9 @@ export default function Footer() {
               <p>CO10 2AN</p>
             </div>
             <p className="mt-4 text-sm text-gray-500">
-              <a className="transition hover:text-gray-900" href="/">
+              <Link className="transition hover:text-gray-900" href="/">
                 Report a bug
-              </a>
+              </Link>
             </p>
           </div>
         </div>
@@ -141,7 +141,7 @@ export default function Footer() {
         </div>
         <div className="pt-2">
           <div className="flex flex-col py-5 m-auto text-sm text-gray-400 md:flex-row">
-            <div className="mt-2">© Sudbury Rowing Club 2021</div>
+            <div className="mt-2">© Sudbury Rowing Club 2021. This site is open-source and was provided for free.</div>
 
             <div className="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
               <a href="#" className="">

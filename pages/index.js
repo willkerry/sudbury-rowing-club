@@ -34,7 +34,7 @@ export default function Index({ allPosts }) {
             </Note>
           </Container>
         )}
-        <Container className="py-6">
+        <Container>
           <LandingHero
             slogan={landingData.hero.slogan}
             youTubeId={landingData.hero.youTubeId}

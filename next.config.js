@@ -24,6 +24,11 @@ module.exports = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/course",
+        destination: "/regatta/course",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {

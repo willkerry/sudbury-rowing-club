@@ -99,6 +99,12 @@ module.exports = {
               borderRadius: theme("borderRadius.lg"),
               backgroundColor: theme("colors.gray.50"),
             },
+            'code::before': {
+              content: null,
+            },
+            'code::after': {
+              content: null,
+            },
           },
         },
       }),

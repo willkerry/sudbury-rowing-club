@@ -17,17 +17,25 @@ export default function Photography({ preview }) {
         <div className="py-16 prose prose-lg max-w-none">
           <table>
             <thead>
-              <th colSpan="2">Year</th>
+              <th>Year</th>
+              <th>
+                <span className="sm:hidden">Password</span>
+              </th>
               <th>Providers</th>
             </thead>
             <tbody>
               {data.map(({ year, password, provider, index }) => (
                 <tr key={index}>
-                  <th>{year} Regatta</th>
+                  <th>
+                    {year}
+                    <span className="hidden sm:inline"> Regatta</span>
+                  </th>
                   <td className="!align-middle">
                     {password && (
                       <>
-                        <span className="select-none">Password: </span>
+                        <span className="hidden select-none sm:inline">
+                          Password:{" "}
+                        </span>
                         <code>{password}</code>
                       </>
                     )}

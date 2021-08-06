@@ -14,10 +14,10 @@ function LandingHero(props) {
           className="rounded-2xl"
           placeholder="blur"
         />
-        <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-2 p-6 md:gap-6 sm:p-12 md:p-24">
+        <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-3 p-6 sm:gap-8 md:gap-12 lg:gap-14 sm:p-12 md:p-24">
           <BoathouseDoor className="w-full text-white drop-shadow" />
           <div>
-            <span className="px-1 md:px-3 py-0.5 md:py-1 text-xs sm:text-sm md:text-base font-medium bg-white rounded-full drop-shadow">
+            <span className="px-1 md:px-3 py-0.5 md:py-1 text-xs sm:text-sm md:text-base font-medium bg-white rounded-full drop-shadow-lg">
               {props.slogan}
             </span>
           </div>

@@ -19,7 +19,7 @@ export function MobileMenuSection({ title, data, compact }) {
       <div className="mt-3">
         <nav
           className={cn(
-            "grid grid-cols-2",
+            "grid grid-cols-2 sm:grid-cols-6",
             compact ? "gap-y-2 gap-x-6" : "gap-y-4 gap-x-6"
           )}
         >

@@ -21,28 +21,6 @@ function Chevron() {
 }
 
 export default function NavPopover(props) {
-  const NavList = ({ items, index }) => {
-    return items.map((item) => {
-      return (
-        <Link key={index} href={item.href}>
-          <a className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50">
-            {item.icon && (
-              <item.icon
-                className="flex-shrink-0 w-6 h-6 text-blue-700"
-                aria-hidden="true"
-              />
-            )}
-            <div className={item.icon && "ml-4"}>
-              <p className="text-base font-medium text-gray-900">{item.name}</p>
-              {item.description && (
-                <p className="mt-1 text-sm text-gray-500">{item.description}</p>
-              )}
-            </div>
-          </a>
-        </Link>
-      );
-    });
-  };
   const NavItemList = ({ items }) => {
     return items.map((item, index) => {
       return (

@@ -17,7 +17,7 @@
     }
   },
   "events": {
-    "coursemap": "https://sudburyrowingclub.org.uk/course/",
+    "coursemap": "/regatta/course",
     "event": [
       {
         "title": "650m Course",
