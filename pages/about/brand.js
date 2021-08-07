@@ -164,15 +164,16 @@ export default function Brand() {
       return (
         <tr key={index}>
           <td>
-            <ColorIndicator color={color} />
+            <ColorIndicator color={color} type="hex" />
           </td>
           <td>
             <FileExtensionWidget href={item.href} />
           </td>
-          <td>{item.w ? <code>{item.w}px </code> : "\u221e"}</td>
+          <td className="hidden sm:table-cell">{item.w ? <code>{item.w}px </code> : "\u221e"}</td>
           <td>
             <Link href={item.href} download>
-              Download
+              <span className="hidden sm:inline">Download</span>
+              <span className="inline sm:hidden">Get</span>
             </Link>
           </td>
         </tr>
@@ -220,7 +221,7 @@ export default function Brand() {
               <tr>
                 <th>Colour</th>
                 <th>File format</th>
-                <th>Width</th>
+                <th className="hidden sm:table-cell">Width</th>
                 <th></th>
               </tr>
             </thead>
