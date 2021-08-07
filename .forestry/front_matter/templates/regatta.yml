@@ -105,9 +105,6 @@ fields:
     - type: text
       name: title
       label: Name
-    - type: file
-      name: map
-      label: Coursemap
     - type: text
       name: description
       label: Description
@@ -174,6 +171,35 @@ fields:
     - type: text
       name: link
       label: Link
+    - name: number
+      type: number
+      label: Number
+      description: ''
+      default: 0
+      required: true
+      config:
+        min: 
+        max: 
+        step: 
+    - name: date
+      type: datetime
+      label: Date
+      description: ''
+      config:
+        required: false
+        date_format: DD/MM/YYYY
+        time_format: 
+        display_utc: false
+    - name: eightsFastest
+      type: text
+      config:
+        required: false
+      label: Fastest 350 m time
+    - name: fastest
+      type: text
+      config:
+        required: false
+      label: Fastest 650 m time
 - type: field_group
   name: competitorInformation
   label: Competitor Information
