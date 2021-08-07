@@ -13,7 +13,7 @@ export function PostPreview(props) {
           className={cn(
             "relative h-64 border rounded-lg",
             coverImage
-              ? "bg-blue-800"
+              ? "bg-blue-900"
               : "bg-white border-gray-300 hover:border-blue-400 transition group"
           )}
         >

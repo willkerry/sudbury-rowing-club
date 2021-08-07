@@ -14,6 +14,7 @@ import {
   ShieldCheckIcon,
   TicketIcon,
 } from "@heroicons/react/outline";
+import { Facebook, Instagram, Twitter } from "react-feather";
 import Spond from "../icons/spond";
 
 export const about = [
@@ -67,7 +68,7 @@ export const aboutCTAs = [
 export const regatta = [
   {
     name: "The ‘International’",
-    shortName: "Intro",
+    shortName: "About",
     description:
       "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
     href: "/regatta",
@@ -136,5 +137,36 @@ export const memberCTAs = [
     name: "Spond",
     href: "https://sudburyrowingclub.myclubhouse.co.uk",
     icon: Spond,
+  },
+];
+export const socials = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/sudburyrowingclubuk",
+    icon: Instagram,
+  },
+  {
+    name: "Facebook",
+    href: "https://m.facebook.com/sudburyrowing",
+    icon: Facebook,
+  },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/sudbury_rowing",
+    icon: Twitter,
+  },
+];
+export const misc = [
+  {
+    name: "Get brand assets",
+    href: "/about/brand",
+  },
+  {
+    name: "Report a bug",
+    href: "/",
+  },
+  {
+    name: "Privacy policy",
+    href: "/governance/privacy-policy",
   },
 ];

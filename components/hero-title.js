@@ -20,7 +20,7 @@ export default function HeroTitle({ title, children, prose, breadcrumbs }) {
   );
   return (
     <>
-      <div className="relative flex flex-wrap content-center h-48 min-h-[48] bg-blue-800 text-blue-50">
+      <div className="relative flex flex-wrap content-center h-48 min-h-[48] bg-blue-900 text-blue-50">
         <Container>
           <div className={cn(prose && "max-w-prose mx-auto text-center")}>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">

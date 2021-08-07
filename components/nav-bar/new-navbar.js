@@ -28,7 +28,7 @@ export default function Navbar() {
     </div>
   );
   const navbarLogo = (
-    <div className="flex justify-start lg:w-0 lg:flex-1">
+    <div className="flex justify-start text-blue-800 lg:w-0 lg:flex-1">
       <Link href="/">
         <a>
           <span className="sr-only">Sudbury Rowing Club</span>

@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       colors: {
         cyan: "#79FFE1",
-        blue: {
+        oldblue: {
           900: "#000c1a",
           800: "#002147" /* SRC Oxford Blue */,
           700: "#003b80",
@@ -24,6 +24,18 @@ module.exports = {
           200: "#80bbff",
           100: "#b3d6ff",
           50: "#e5f1ff",
+        },
+        blue: {
+          50: "#DAEBFF",
+          100: "#C0DDFF",
+          200: "#8DC2FF",
+          300: "#5AA6FF",
+          400: "#278BFF",
+          500: "#0070F3",
+          600: "#0058C0",
+          700: "#00418D",
+          800: "#00295A",
+          900: "#002147",
         },
       },
       spacing: {
@@ -47,6 +59,10 @@ module.exports = {
       listStyleType: {
         alpha: "lower-alpha",
         roman: "lower-roman",
+      },
+      backgroundImage: {
+        "indicate-transparency":
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23000' fill-opacity='0.1'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E\")",
       },
       typography: (theme) => ({
         DEFAULT: {
@@ -99,10 +115,10 @@ module.exports = {
               borderRadius: theme("borderRadius.lg"),
               backgroundColor: theme("colors.gray.50"),
             },
-            'code::before': {
+            "code::before": {
               content: null,
             },
-            'code::after': {
+            "code::after": {
               content: null,
             },
           },

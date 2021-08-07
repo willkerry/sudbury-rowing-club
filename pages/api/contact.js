@@ -35,7 +35,7 @@ export default async (req, res) => {
 const mailer = ({ senderMail, name, text, recipientMail }) => {
   const replyTo =
     name && senderMail ? `${name} <${senderMail}>` : `${name || senderMail}`;
-  const from = "noreply@sudburyrowingclub.co.uk";
+  const from = "Sudbury Rowing Club <noreply@sudburyrowingclub.org.uk>";
   const to = `${getOfficerByHash(recipientMail)}`;
   const message = {
     from,
