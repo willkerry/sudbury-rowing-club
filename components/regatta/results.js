@@ -1,4 +1,3 @@
-import data from "@/data/regatta";
 import ordinal from "ordinal";
 import Link from "next/link";
 import { ExternalLink } from "react-feather";
@@ -6,7 +5,7 @@ import DateFormatter from "@/components/date-formatter";
 import Note from "@/components/stour/note";
 import cn from "classnames";
 
-function Results({ tab }) {
+function Results({ tab, data }) {
   const resultsData = data.results.results;
   const courseRecords = data.results.courseRecords;
   return (

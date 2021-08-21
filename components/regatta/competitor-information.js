@@ -8,10 +8,8 @@ function CompetitorInformation(props) {
       {data.competitorInformation.intro}
       <div className="py-6 prose">
         <ul>
-          {data.competitorInformation.resources.map((item) => (
-            <li key={item.index}>
-              <Link href={item.link} download>{item.title}</Link>
-            </li>
+          {data.competitorInformation.resources.map((item, index) => (
+            <CompetitorInfoItem key={index} item={item} />
           ))}
         </ul>
       </div>
@@ -20,3 +18,13 @@ function CompetitorInformation(props) {
 }
 
 export default CompetitorInformation;
+
+function CompetitorInfoItem({ item }) {
+  return (
+    <li key={item.index}>
+      <Link href={item.link} download>
+        {item.title}
+      </Link>
+    </li>
+  );
+}

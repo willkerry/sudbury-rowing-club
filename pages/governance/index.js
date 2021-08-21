@@ -6,11 +6,22 @@ import styles from "@/components/governance/governance.module.css";
 import { Link as ScrollLink } from "react-scroll";
 import Link from "next/link";
 import { DownloadIcon, ExternalLinkIcon } from "@heroicons/react/outline";
+import rawData from "@/data/governance.json";
 
-import data from "@/data/governance.json";
+export const getStaticProps = async () => {
+  return {
+    props: {
+      data: await rawData,
+    },
+    revalidate: 60,
+  };
+};
 
 const GovGrid = (props) => (
-  <div {...props} className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-3 md:w-4/5" />
+  <div
+    {...props}
+    className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-3 md:w-4/5"
+  />
 );
 const Row = (props) => <section {...props} className="my-16 md:flex" />;
 const StyledScrollLink = (props) => (
@@ -55,7 +66,7 @@ const Vacant = (props) => (
 );
 const OfficerName = (props) => (
   <div
-    className="h-8 font-serif text-2xl tracking-tight text-gray-800"
+    className="text-xl font-semibold tracking-tight text-gray-800"
     {...props}
   />
 );
@@ -70,7 +81,7 @@ const DashLiFirst = (props) => (
   <li className="relative pl-8 first:font-bold" {...props} />
 );
 
-export default function Governance({ preview }) {
+export default function Governance({ data }) {
   const sorted = data.vicePresidents.sort(function (a, b) {
     if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
@@ -83,7 +94,7 @@ export default function Governance({ preview }) {
   });
 
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Head>
         <title>Governance</title>
       </Head>

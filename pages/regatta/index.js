@@ -9,7 +9,6 @@ import Text from "@/components/stour/text";
 import Testimonial from "@/components/stour/testimonial";
 import Masonry from "@/components/stour/masonry";
 import Hero from "@/components/stour/hero";
-
 import {
   ContactIcon,
   EntriesIcon,
@@ -17,17 +16,25 @@ import {
   InfoIcon,
   ResultsIcon,
 } from "@/components/regatta/icons";
-
 import DataTabs from "@/components/regatta/data-tabs";
 import Events from "@/components/regatta/events";
 import Entries from "@/components/regatta/entries";
 import Results from "@/components/regatta/results";
 
-import data from "@/data/regatta.json";
+import rawData from "@/data/regatta.json";
 import CompetitorInformation from "@/components/regatta/competitor-information";
 import ContactForm from "@/components/contact-form";
 
-const tabData = [
+export const getStaticProps = async () => {
+  return {
+    props: {
+      data: rawData,
+    },
+    revalidate: 60,
+  };
+};
+
+const tabData = ({ data }) => [
   {
     label: "Events",
     content: (
@@ -61,7 +68,7 @@ const tabData = [
   },
 ];
 
-export default function Regatta() {
+export default function Regatta({ data }) {
   return (
     <Layout>
       <Head>
@@ -91,7 +98,7 @@ export default function Regatta() {
         </div>
       </Container>
       <Container className="my-32">
-        <DataTabs data={tabData} />
+        {/*  <DataTabs tabData={tabData} /> */}
       </Container>
       <Hero
         title="Some of the people who’ve come to our regatta have said lovely things about it"

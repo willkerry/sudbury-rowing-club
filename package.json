@@ -12,6 +12,7 @@
     "@fontsource/spectral": "^4.5.0",
     "@headlessui/react": "^1.4.0",
     "@heroicons/react": "^1.0.3",
+    "@next/bundle-analyzer": "^11.0.1",
     "@silvenon/remark-smartypants": "^1.0.0",
     "@storybook/addon-postcss": "^2.0.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",

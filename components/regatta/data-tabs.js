@@ -2,13 +2,13 @@ import { useState } from "react";
 import cn from "classnames";
 import { Tab } from "@headlessui/react";
 
-function DataTabs({ data }) {
+function DataTabs(tabData) {
   const [tabIndex, setTabIndex] = useState(0);
   return (
     <Tab.Group>
       <Tab.List className="flex justify-center my-3">
         <div className="border rounded-lg">
-          {data.map((tab, index) => (
+          {tabData.map((tab, index) => (
             <Tab
               key={index}
               className={({ selected }) =>
@@ -27,7 +27,7 @@ function DataTabs({ data }) {
         </div>
       </Tab.List>
       <Tab.Panels>
-        {data.map((tab, index) => (
+        {tabData.map((tab, index) => (
           <Tab.Panel key={index}>
             <div className="py-12 mx-auto md:max-w-5xl">{tab.content}</div>
           </Tab.Panel>

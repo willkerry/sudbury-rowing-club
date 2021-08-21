@@ -4,21 +4,22 @@ import HeroTitle from "../components/hero-title";
 import Layout from "../components/layout";
 import styles from "../components/governance/governance.module.css";
 import Link from "next/link";
-import {
-  DocumentDownloadIcon,
-  DownloadIcon,
-  ExternalLinkIcon,
-} from "@heroicons/react/outline";
+import { DocumentDownloadIcon } from "@heroicons/react/outline";
 import Button from "@/components/stour/button";
 import SafetyPopup from "@/components/safety";
 import ReactMarkdown from "react-markdown";
 import smartypants from "@silvenon/remark-smartypants";
 
-import safety from "../data/safety.json";
+import data from "../data/safety.json";
 
-const Grid = (props) => (
-  <div {...props} className="grid grid-cols-2 gap-16 md:grid-cols-3 md:w-4/5" />
-);
+export const getStaticProps = async () => {
+  return {
+    props: {
+      safety: await data,
+    },
+    revalidate: 60,
+  };
+};
 
 const Row = (props) => <section {...props} className="my-16 md:flex" />;
 
@@ -29,9 +30,9 @@ const SectionTitle = (props) => (
   />
 );
 
-export default function Safety({ preview }) {
+export default function Safety({ safety }) {
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Head>
         <title>Safety</title>
       </Head>
