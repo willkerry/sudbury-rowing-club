@@ -5,9 +5,28 @@ html {
 }
 
 @import "~@fontsource/inter/variable.css";
-@import "~@fontsource/spectral/index.css";
 @tailwind components;
 
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select {
+  @apply w-full mt-1 transition border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50;
+}
+[type="checkbox"] {
+  @apply mx-2 rounded hover:cursor-pointer;
+}
 @tailwind utilities;
 @layer utilities {
   .hyphens-auto {

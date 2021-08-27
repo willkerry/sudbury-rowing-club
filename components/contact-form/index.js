@@ -3,6 +3,7 @@ import { sendContactMail } from "../../lib/mail-api";
 import Button from "../stour/button";
 import { contactableOfficers } from "../../lib/officer-contacts";
 import TextareaAutosize from "react-textarea-autosize";
+import { Check, Loader } from "react-feather";
 
 class ContactForm extends Component {
   state = {
@@ -27,7 +28,7 @@ class ContactForm extends Component {
     const btnClass = formButtonDisabled ? "disabled" : "";
 
     const fieldClasses =
-      "block w-full mt-1 border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition";
+      "block w-full border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition";
 
     return (
       <form className="grid grid-cols-1 gap-6 mx-auto">
@@ -81,7 +82,7 @@ class ContactForm extends Component {
               name="email"
               onChange={this.onMailChange}
               className={fieldClasses}
-              placeholder="josie@bloggsco.com"
+              placeholder="you@example.com"
             />
           </label>
         </div>
@@ -118,6 +119,7 @@ class ContactForm extends Component {
 
   submitContactForm = async (event) => {
     event.preventDefault();
+    this.setState({ formButtonText: <Loader className="animate-spin" /> });
 
     const { name, mail, formContent, recipientMail } = this.state;
 
@@ -125,7 +127,7 @@ class ContactForm extends Component {
     if (res.status < 300) {
       this.setState({
         formButtonDisabled: true,
-        formButtonText: "Thanks for your message",
+        formButtonText: <Check />,
         name: "",
         mail: "",
         formContent: "",

@@ -6,6 +6,7 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/forms"),
+    require("@tailwindcss/line-clamp"),
   ],
   mode: "jit",
   purge: ["./components/**/*.js", "./pages/**/*.js"],
@@ -50,7 +51,6 @@ module.exports = {
 
       fontFamily: {
         sans: ["InterVariable", "sans-serif"],
-        serif: ["Spectral", "serif"],
       },
       boxShadow: {
         small: "0 5px 10px rgba(0, 0, 0, 0.12)",

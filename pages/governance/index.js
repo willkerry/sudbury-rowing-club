@@ -27,7 +27,7 @@ const Row = (props) => <section {...props} className="my-16 md:flex" />;
 const StyledScrollLink = (props) => (
   <ScrollLink
     activeClass="text-gray-800"
-    className="inline-block transition hover:text-gray-800 hover:cursor-pointer"
+    className="inline-block mr-6 transition hover:text-gray-800 hover:cursor-pointer"
     spy={true}
     smooth={true}
     offset={-100}
@@ -37,10 +37,10 @@ const StyledScrollLink = (props) => (
 );
 const ScrollComponent = (props) => (
   <div className="sticky top-0 z-10 bg-white border-b">
-    <div className="container max-w-screen-lg px-5 py-5 mx-auto space-x-6 text-gray-500 ">
-      <StyledScrollLink to="officers">Club Officers</StyledScrollLink>
+    <div className="container max-w-screen-lg px-5 py-5 mx-auto text-gray-500 ">
+      <StyledScrollLink to="officers">Officers</StyledScrollLink>
       <StyledScrollLink to="committees">Committees</StyledScrollLink>
-      <StyledScrollLink to="nonexec">Non-Executive Officers</StyledScrollLink>
+      <StyledScrollLink to="nonexec">Non-Exec</StyledScrollLink>
       <StyledScrollLink to="documents">Documents</StyledScrollLink>
     </div>
   </div>
@@ -66,19 +66,27 @@ const Vacant = (props) => (
 );
 const OfficerName = (props) => (
   <div
-    className="text-xl font-semibold tracking-tight text-gray-800"
+    className="text-base font-semibold tracking-tight text-gray-800 sm:text-lg"
     {...props}
   />
 );
 const Description = (props) => (
-  <div className="mb-4 text-gray-700" {...props} />
+  <div className="mb-8 text-sm text-gray-700 sm:text-base" {...props} />
 );
 const DashUl = (props) => (
-  <ul className={("text-gray-600 list-inside", styles.dashList)} {...props} />
+  <ul className="text-sm text-gray-600 list-inside" {...props} />
 );
-const DashLi = (props) => <li className="relative pl-8" {...props} />;
+const DashLi = (props) => (
+  <li
+    className="relative pl-8 before:content-['\2014\a0'] before:font-normal before:absolute before:left-0 before:text-gray-300"
+    {...props}
+  />
+);
 const DashLiFirst = (props) => (
-  <li className="relative pl-8 first:font-bold" {...props} />
+  <li
+    className="relative pl-8 first:font-bold before:content-['\2014\a0'] before:font-normal before:absolute before:left-0 before:text-gray-300"
+    {...props}
+  />
 );
 
 export default function Governance({ data }) {
@@ -122,7 +130,7 @@ export default function Governance({ data }) {
           </GovGrid>
         </Row>
         <Row id="committees">
-          <div className="md:w-1/4">
+          <div className="md:w-1/4 md:pr-6">
             <SectionTitle>Committees</SectionTitle>
           </div>
 
@@ -149,7 +157,7 @@ export default function Governance({ data }) {
         <div id="nonexec" className={styles.fullWidthContainer + " bg-gray-50"}>
           <Container>
             <Row>
-              <div className="md:w-1/4">
+              <div className="md:w-1/4 md:pr-6">
                 <SectionTitle>Non-Executive Officers</SectionTitle>
               </div>
               <GovGrid>
@@ -162,7 +170,7 @@ export default function Governance({ data }) {
                   <Description>{data.vicePresidentDescription}</Description>
                 </div>
 
-                <div className={styles.threeColFlow}>
+                <div className="col-start-2 col-end-5">
                   <DashUl>
                     {data.vicePresidents.map((entry, index) => {
                       return (
@@ -198,7 +206,7 @@ export default function Governance({ data }) {
         >
           <Container>
             <Row>
-              <div className="md:w-1/4">
+              <div className="md:w-1/4 md:pr-6">
                 <SectionTitle>Documents</SectionTitle>
               </div>
               <GovGrid>

@@ -1,6 +1,5 @@
 import cn from "classnames";
 import { PropTypes } from "prop-types";
-import ReactMarkdown from "react-markdown";
 
 export function Masonry(props) {
   const { children, className } = props;

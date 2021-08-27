@@ -7,9 +7,15 @@ export function Hero(props) {
   function Text() {
     return (
       <>
-        {label && <p className="ml-0.5 tracking-widest uppercase">{label}</p>}
-        <h2 className="pt-3 pb-6 font-serif text-4xl text-medium">{title}</h2>
-        {description && <p className="font-medium opacity-80">{description}</p>}
+        {label && (
+          <div className="ml-0.5 tracking-widest uppercase">{label}</div>
+        )}
+        <h2 className="pt-3 pb-6 text-4xl font-semibold tracking-tighter">
+          {title}
+        </h2>
+        {description && (
+          <div className="font-medium opacity-80">{description}</div>
+        )}
       </>
     );
   }
@@ -27,28 +33,5 @@ export function Hero(props) {
     <Text />
   );
 }
-
-Hero.propTypes = {
-  /**
-   * What’s the big serif text in the middle.
-   */
-  title: PropTypes.string,
-  /**
-   * The more important uppercase text that appears at the top and summarise the whole shabbang.
-   */
-  label: PropTypes.string,
-  /**
-   * Subsidiary information, displayed in a very short paragraph belowed the title.
-   */
-  description: PropTypes.string,
-  /**
-   * Set to true in the hero is totally irrestricted by containers, i.e. if it’s full-width.
-   */
-  fullWidth: PropTypes.boolean,
-  /**
-   * Would you rather an Oxford Blue background?
-   */
-  dark: PropTypes.boolean,
-};
 
 export default Hero;

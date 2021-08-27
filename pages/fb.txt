@@ -1,0 +1,123 @@
+import DateFormatter from "@/components/date-formatter";
+import { ThumbsUp } from "react-feather";
+import Social from "@/components/logo/social";
+import Facebook from "@/components/icons/socials/facebook";
+import Script from "next/script";
+
+const facebookAppId = process.env.FACEBOOK_APP_ID;
+
+export function initFacebookSdk() {
+  return new Promise((resolve) => {
+    // wait for Facebook SDK to initialise
+    window.fbAsyncInit = function () {
+      window.FB.init({
+        appId: facebookAppId,
+        cookie: true,
+        xfbml: true,
+        version: "v8.0",
+      });
+    };
+
+    // load Facebook SDK script
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_GB/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+  });
+}
+
+export async function getStaticProps(context) {
+  const fbPageId = "theoriginalhoar";
+  const fbAccessToken =
+    "EAAKWCfxFMPgBAHyYuJhMjAUmTZCBnloSTjJUdCHTEjBZAAVLBYgk3JyOTJCEGm4ZAJUklsskRn1w0xS3GZCBPcLIchmF67tur4J3nAikdMiTf8xMTGFjJZBY9S7uUCyxvBJgiODQkvhYbsZAgSQNzftc97OzoZASB1us8eaoO6nVurEMoI2FjIpqVvJbUSmQoCKOfI4kdpDvVTPDNIiBXtC";
+  const fbQueryFields =
+    "created_time,message,shares,likes.summary(true),id,attachments.limit(1){media},permalink_url&limit=4";
+  const fbQueryUrl = `https://graph.facebook.com/v11.0/${fbPageId}/feed?fields=${fbQueryFields}&access_token=${fbAccessToken}`;
+  const res = await fetch(fbQueryUrl);
+  const data = await res.json();
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: { data },
+    revalidate: 3600,
+  };
+}
+
+export default function facebook(props) {
+  const latestPosts = props.data.data;
+  return (
+    <>
+      <div className="grid grid-cols-2 gap-4 p-4 md:grid-cols-4">
+        {latestPosts.map((post) => (
+          <div key={post.id}>
+            <div className="border rounded-3xl">
+              {" "}
+              <div className="flex items-center w-full m-4">
+                <a href={post.permalink_url}>
+                  <Social className="mr-2 rounded-full w-9 h-9" />
+                </a>
+                <div>
+                  <a
+                    href={post.permalink_url}
+                    className="block text-sm font-medium transition hover:underline"
+                  >
+                    Sudbury Rowing Club
+                  </a>
+                  <a
+                    href={post.permalink_url}
+                    className="block text-xs text-gray-600 transition hover:underline"
+                  >
+                    <DateFormatter dateString={post.created_time} />
+                  </a>
+                </div>
+              </div>
+              <div className="m-4">
+                <div className="text-sm whitespace-pre-line line-clamp-5">
+                  {post.message}
+                </div>
+              </div>
+              {post.attachments.data[0].media.image.src && (
+                <a href={post.permalink_url}>
+                  <img
+                    src={post.attachments.data[0].media.image.src}
+                    alt=""
+                    width={post.attachments.data[0].media.image.width}
+                    height={post.attachments.data[0].media.image.height}
+                  />
+                </a>
+              )}
+              <div className="flex items-center justify-between p-4 pb-3.5">
+                <div className="flex items-center">
+                  <ThumbsUp
+                    size={14}
+                    strokeWidth={2.5}
+                    className="mb-0.5 mr-1 text-gray-400"
+                  />
+                  <div className="text-xs font-medium leading-none text-gray-700">
+                    {post.likes.summary.total_count == 1
+                      ? post.likes.summary.total_count + " like"
+                      : "No likes"}
+                  </div>
+                </div>
+                <a href={post.permalink_url}>
+                  <Facebook className="w-4 h-4 text-blue-500" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}

@@ -1,4 +1,3 @@
-
 .fullWidthContainer {
   @apply relative w-screen py-10 left-1/2;
   margin-left: -50vw;
@@ -10,10 +9,4 @@
   .threeColFlow {
     columns: 2;
   }
-}
-
-ul.dashList > li:before {
-  content: "\2014\a0";
-  font-weight: 400;
-  @apply absolute left-0 text-gray-300;
 }

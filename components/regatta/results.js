@@ -37,22 +37,20 @@ function Results({ tab, data }) {
       <div className="prose prose-lg max-w-none">
         <table>
           <thead>
-            <th></th>
+            <th className="hidden sm:table-cell"></th>
             <th>Date</th>
-            <th className="hidden sm:table-cell">Fastest 350m</th>
-            <th className="hidden sm:table-cell">Fastest 650m</th>
+            <th className="hidden md:table-cell">Fastest 350m</th>
+            <th className="hidden md:table-cell">Fastest 650m</th>
             <th>Results</th>
           </thead>
           <tbody>
             {resultsData.map(
               ({ link, year, date, fastest, eightsFastest, number, index }) => (
-                <tr key="date" className="hover:bg-gray-50">
-                  <td>
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="hidden sm:table-cell">
                     <span className="font-semibold">
-                      {ordinal(number)}{" "}
-                      <span className="hidden sm:table-cell">
-                        Sudbury Regatta
-                      </span>
+                      {ordinal(number)}
+                      <span className="hidden lg:inline"> Sudbury Regatta</span>
                     </span>
                   </td>
                   <td>
@@ -60,12 +58,12 @@ function Results({ tab, data }) {
                       <DateFormatter dateString={date} />
                     </span>
                   </td>
-                  <td className="hidden sm:table-cell">
+                  <td className="hidden md:table-cell">
                     <span className="font-semibold text-pink-500 tabular-nums">
                       {eightsFastest}
                     </span>
                   </td>
-                  <td className="hidden sm:table-cell">
+                  <td className="hidden md:table-cell">
                     <span className="font-semibold text-pink-500 tabular-nums">
                       {fastest}
                     </span>
@@ -77,7 +75,7 @@ function Results({ tab, data }) {
                           className="inline-block pr-4 last-of-type:pr-0"
                           title={"View the " + year + " regatta results."}
                         >
-                          View results
+                          View<span className="hidden sm:inline"> results</span>
                           <ExternalLink
                             size={12}
                             className="inline mb-1 ml-1"

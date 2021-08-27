@@ -4,7 +4,7 @@ import HeroTitle from "../components/hero-title";
 import Layout from "../components/layout";
 import styles from "../components/governance/governance.module.css";
 import Link from "next/link";
-import { DocumentDownloadIcon } from "@heroicons/react/outline";
+import { Download } from "react-feather";
 import Button from "@/components/stour/button";
 import SafetyPopup from "@/components/safety";
 import ReactMarkdown from "react-markdown";
@@ -26,7 +26,7 @@ const Row = (props) => <section {...props} className="my-16 md:flex" />;
 const SectionTitle = (props) => (
   <h2
     {...props}
-    className="mb-8 text-xl font-bold tracking-tight text-gray-800"
+    className="mb-8 text-xl font-bold tracking-tight text-gray-800 md:pr-6"
   />
 );
 
@@ -93,7 +93,7 @@ export default function Safety({ safety }) {
                     <Link href={item.file}>
                       <a>
                         {item.name}{" "}
-                        <DocumentDownloadIcon className="inline w-4 h-4 mb-1 opacity-50" />
+                        <Download className="inline w-4 h-4 mb-1 opacity-50" />
                       </a>
                     </Link>
                   </p>

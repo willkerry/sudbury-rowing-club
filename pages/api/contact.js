@@ -10,9 +10,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export default async (req, res) => {
+const composeMail = async (req, res) => {
   const { senderMail, name, content, recipientMail } = req.body;
-
   if (
     senderMail === "" ||
     name === "" ||
@@ -51,3 +50,5 @@ const mailer = ({ senderMail, name, text, recipientMail }) => {
     );
   });
 };
+
+export default composeMail;

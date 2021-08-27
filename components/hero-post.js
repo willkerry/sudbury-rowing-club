@@ -17,7 +17,7 @@ export default function HeroPost({
           <div className="mb-3 font-medium">
             <DateFormatter dateString={date} />
           </div>
-          <h3 className="mb-4 font-serif text-2xl leading-tight lg:text-5xl">
+          <h3 className="mb-4 text-2xl font-bold leading-tight tracking-tighter text-gray-900 lg:text-5xl">
             <Link as={`/news/${slug}`} href="/news/[slug]">
               <a className="">{title}</a>
             </Link>

@@ -12,7 +12,7 @@ export default function HeroTitle({ title, children, prose, breadcrumbs }) {
             prose && "max-w-min mx-auto justify-center"
           )}
           rootLabel="Home"
-          inactiveItemClassName="whitespace-nowrap after:content-['→'] after:px-4 after:text-gray-400 after:font-serif capitalize text-blue-500 hover:text-blue-300 transition"
+          inactiveItemClassName="whitespace-nowrap after:content-['→'] after:px-4 after:text-gray-400 capitalize text-blue-500 hover:text-blue-300 transition"
           activeItemClassName="whitespace-nowrap font-medium capitalize"
         />
       </Container>

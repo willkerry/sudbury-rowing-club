@@ -1,25 +1,44 @@
 import cn from "classnames";
 import { PropTypes } from "prop-types";
-import ReactMarkdown from "react-markdown";
 import { ShieldCheckIcon } from "@heroicons/react/solid";
 
 function Anonymous() {
   return (
     <div className="flex">
       <ShieldCheckIcon className="inline-flex w-4 h-4 mr-1 text-gray-300" />
-      <div className="inline-flex mt-px text-xs tracking-widest text-gray-600 uppercase">Anonymous</div>
+
+      <div>
+        Anonymous
+        <style jsx>{`
+          div {
+            display: inline-flex;
+            margin-top: 2px;
+            font-size: 0.7em;
+            letter-spacing: 0.1em;
+            color: rgb(75, 85, 99);
+            text-transform: uppercase;
+            @apply inline-flex mt-px text-xs tracking-widest text-gray-600 uppercase;
+          }
+        `}</style>
+      </div>
     </div>
   );
 }
 
 export function Testimonial(props) {
-  const { children, name, organisation, shadow } = props;
+  const { children, name, organisation } = props;
   return (
-    <figure
-      className={cn("inline-block p-6 mb-10 border rounded-xl break-inside", {
-        "shadow-xl": shadow,
-      })}
-    >
+    <figure>
+      <style jsx>{`
+        figure {
+          display: inline-block;
+          padding: 1.5em;
+          margin-bottom: 2.5em;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 0.75rem;
+          break-inside: avoid;
+        }
+      `}</style>
       <blockquote
         className={cn(
           "space-y-4 leading-snug",
@@ -31,12 +50,12 @@ export function Testimonial(props) {
           }
         )}
       >
-        <ReactMarkdown>{children}</ReactMarkdown>
+        {children}
       </blockquote>
       <figcaption className="pt-5 font-medium leading-snug">
-        <p className="text-gray-800">{name ? name : <Anonymous />}</p>
+        <div className="text-gray-800">{name ? name : <Anonymous />}</div>
         {organisation ? (
-          <p className="text-sm text-gray-500">{organisation}</p>
+          <div className="text-sm text-gray-500">{organisation}</div>
         ) : null}
       </figcaption>
     </figure>

@@ -11,16 +11,12 @@ const SIZE_MAPS = {
   large: "py-2 px-8 min-w-min w-64",
   auto: "py-2 px-4 text-sm",
 };
-const SHADOW_MAPS = {
-  true: "shadow-lg hover:shadow",
-  false: null,
-};
 const ICON_MAPS = {
   external: <ExternalLinkIcon className="w-3 h-3 ml-2" />,
   download: <DownloadIcon className="w-3 h-3 ml-2" />,
 };
 const VARIANT_MAPS = {
-  primary: "!text-gray-700 hover:border-black hover:text-black",
+  primary: "!text-gray-700 hover:border-black hover:!text-black",
   secondary:
     "text-white border-gray-900 bg-gray-900 hover:text-gray-900 hover:bg-white",
   brandDark:
@@ -33,29 +29,48 @@ const VARIANT_MAPS = {
     "text-white border-green-600 bg-green-600 hover:text-green-700 hover:bg-white",
   error:
     "text-white border-red-600 bg-red-600 hover:text-red-700 hover:bg-white",
+  disabled: "text-gray-300 bg-gray-100 cursor-not-allowed",
 };
 
-function ButtonInner(props) {
-  return (
-    <div className="flex items-center justify-center">
-      {props.label}
-      {props.icon && ICON_MAPS[props.icon]}
-    </div>
-  );
-}
-
 export function Button(props) {
-  const { label, variant, size, shadow, href, icon, button, children } = props;
+  const {
+    variant,
+    size,
+    shadow,
+    href,
+    icon,
+    button,
+    children,
+    disabled,
+    iconLeft,
+    iconRight,
+  } = props;
+  function ButtonInner(props) {
+    return (
+      <div
+        className={cn(
+          "relative inline-flex items-center justify-center text-center",
+          iconLeft && size != "large" && "pl-6",
+          iconRight && size != "large" && "pr-6"
+        )}
+      >
+        {props.label}
+        {props.icon && ICON_MAPS[props.icon]}
+      </div>
+    );
+  }
+  const baseStyles =
+    "rounded-md transition duration-300 border inline-block border-box select-none whitespace-nowrap relative text-center";
   return (
     <>
       {button ? (
         <button
           {...props}
           className={cn(
-            "rounded-md transition duration-300 border inline-block",
-            VARIANT_MAPS[variant],
+            baseStyles,
             SIZE_MAPS[size],
-            SHADOW_MAPS[shadow]
+            shadow && "shadow-lg hover:shadow",
+            !disabled ? VARIANT_MAPS[variant] : VARIANT_MAPS["disabled"]
           )}
         >
           <ButtonInner label={children} icon={icon} />
@@ -64,14 +79,24 @@ export function Button(props) {
         <Link href={href} passHref>
           <a
             className={cn(
-              "rounded-md transition duration-300 border inline-block",
-              VARIANT_MAPS[variant],
+              baseStyles,
+              !disabled ? VARIANT_MAPS[variant] : VARIANT_MAPS["disabled"],
               SIZE_MAPS[size],
-              SHADOW_MAPS[shadow]
+              shadow && "shadow-lg hover:shadow"
             )}
             {...props}
           >
             <ButtonInner label={children} icon={icon} />
+            {iconLeft && (
+              <span className="absolute right-auto flex items-center w-4 h-4 -translate-y-1/2 left-3 top-1/2">
+                {iconLeft}
+              </span>
+            )}
+            {iconRight && (
+              <span className="absolute left-auto flex items-center w-4 h-4 -translate-y-1/2 right-3 top-1/2">
+                {iconRight}
+              </span>
+            )}
           </a>
         </Link>
       )}
@@ -129,7 +154,6 @@ Button.defaultProps = {
 
 Button.variant = VARIANT_MAPS;
 Button.size = SIZE_MAPS;
-Button.shadow = SHADOW_MAPS;
 Button.icon = ICON_MAPS;
 
 export default Button;

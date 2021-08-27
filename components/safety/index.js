@@ -3,16 +3,18 @@ import DateTimeFormatter from "../datetime-formatter";
 import cn from "classnames";
 import Button from "../stour/button";
 
+const status = safety.status;
+
 export default function SafetyPopup() {
   return (
     <div className="flex p-6">
       <div className="hidden sm:flex">
         <div
           className={cn("w-12 h-12 mr-5 mt-4 border rounded-full", {
-            "bg-red-600": safety.status.severity == "Red",
-            "bg-yellow-500": safety.status.severity == "Amber",
-            "bg-green-600": safety.status.severity == "Green",
-            "bg-sudbury": safety.status.severity == "Neutral",
+            "bg-red-600": status.severity == "Red",
+            "bg-yellow-500": status.severity == "Amber",
+            "bg-green-600": status.severity == "Green",
+            "bg-sudbury": status.severity == "Neutral",
           })}
         />
       </div>
@@ -21,10 +23,10 @@ export default function SafetyPopup() {
           River Safety Status
         </h2>
         <h3 className="mb-6 mt-1.5 text-3xl font-bold text-gray-900">
-          {safety.status.severity}
+          {status.severity}
         </h3>
         <div className="leading-snug prose">
-          <div>{safety.status.description}</div>
+          <div>{status.description}</div>
         </div>
         <div className="flex flex-col pt-4 space-y-2 text-sm lg:flex-row lg:space-y-0 lg:space-x-2">
           <Button
@@ -42,9 +44,9 @@ export default function SafetyPopup() {
             Met&nbsp;Office
           </Button>
         </div>
-        {safety.status.date && (
+        {status.date && (
           <div className="mt-10 text-xs">
-            Updated <DateTimeFormatter dateString={safety.status.date} />
+            Updated <DateTimeFormatter dateString={status.date} />
           </div>
         )}
       </div>
