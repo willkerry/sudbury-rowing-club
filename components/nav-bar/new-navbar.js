@@ -45,12 +45,11 @@ export default function Navbar() {
             <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
               {navbarLogo}
               {mobileMenuButton}
-              <Popover.Group as="nav" className="hidden md:space-x-3 lg:space-x-6 md:flex">
-                <NavPopover
-                  label="About"
-                  navData={about}
-                  ctaData={aboutCTAs}
-                />
+              <Popover.Group
+                as="nav"
+                className="hidden md:space-x-3 lg:space-x-6 md:flex"
+              >
+                <NavPopover label="About" navData={about} ctaData={aboutCTAs} />
                 <NavLink href="/news">News</NavLink>
                 <NavPopover
                   label="Regatta"
@@ -71,7 +70,9 @@ export default function Navbar() {
                   ctaData={memberCTAs}
                 />
                 <div className="hidden md:flex">
-                  <StourButton size="auto">Join<span className="hidden lg:inline"> us</span></StourButton>
+                  <StourButton size="auto" href="/join">
+                    Join<span className="hidden lg:inline"> us</span>
+                  </StourButton>
                 </div>
               </Popover.Group>
             </div>
