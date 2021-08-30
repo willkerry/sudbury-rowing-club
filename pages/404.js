@@ -3,6 +3,7 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Button from "@/components/stour/button";
+import { ExternalLink, Home, Search } from "react-feather";
 
 export default function Custom404() {
   return (
@@ -10,22 +11,23 @@ export default function Custom404() {
       <Head>
         <title>Error 404</title>
       </Head>
-      <HeroTitle title="404: We seem to have lost that page." />
+      <HeroTitle prose title="Page not found." />
 
-      <Container className="mt-6 prose">
-        <p className="lead">Sorry, we know link rot is really annoying.</p>
+      <Container className="mt-12 prose max-w-prose">
         <p>
-          Scroll down to the footer and peruse our sitemap to see if you can
-          find what{" "}
-          <span>
-            <Button size="mini">Back to the sitemap</Button>
-          </span>{" "}
-          you’re looking for, or else try a Google search.
+          Sorry, we know link rot is really annoying, but this page isn’t here
+          any more.
         </p>
-
-        <p>
-          If you’re sure there ought to be a page here, send Will a message.
-        </p>
+        <div className="flex flex-col gap-4">
+          <Button
+            iconLeft={<Search />}
+            variant="brandDark"
+            href="https://www.google.com/search?q=site%3Asudburyrowingclub.org.uk"
+          >
+            Search our site with Google
+          </Button>
+          <Button iconLeft={<Home />} href="/">Return to the homepage</Button>
+        </div>
       </Container>
     </Layout>
   );
