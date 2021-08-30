@@ -4,7 +4,6 @@ import Layout from "@/components/layout";
 import Button from "@/components/stour/button";
 import { ThumbsUp } from "react-feather";
 import Note from "@/components/stour/note";
-import l2rImage from "../../public/assets/join/l2r.jpg";
 import Image from "next/image";
 import Link from "@/components/stour/link";
 import cn from "classnames";
@@ -148,7 +147,7 @@ export default function Index() {
             style={{ maxWidth: 240, maxHeight: 160 }}
           >
             <Image
-              src={l2rImage}
+              src="/assets/join/l2r.jpg"
               alt="Trainee rowers on the water during on learn to row course."
               placeholder="blur"
               width={240}
@@ -381,7 +380,9 @@ function OverviewSidebar() {
           >
             {title}
           </ScrollLink>
-          <div className="hidden text-sm text-gray-500 md:block">{subtitle}</div>
+          <div className="hidden text-sm text-gray-500 md:block">
+            {subtitle}
+          </div>
         </li>
       ))}
     </ul>
@@ -395,7 +396,9 @@ function L2RCallToAction({}) {
     <div className="grid gap-6 my-20 text-gray-700 sm:gap-12 md:grid-cols-2 sm:my-36">
       <div className={cn("border-green-300 bg-green-50", classes)}>
         Send your application form now
-        <Button variant="success">Apply</Button>
+        <Button variant="success" href="/join/learn-to-row-application-form">
+          Apply
+        </Button>
       </div>
       <div className={cn("border-gray-300 bg-gray-50", classes)}>
         <span className="tracking-snug">
