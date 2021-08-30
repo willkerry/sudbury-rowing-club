@@ -33,7 +33,7 @@
     "react-scroll": "^1.8.3",
     "react-textarea-autosize": "^8.3.3",
     "react-youtube": "^7.13.1",
-    "remark": "13.0.0",
+    "remark": "14.0.1",
     "remark-html": "13.0.1",
     "remark-textr": "^4.0.0",
     "sharp": "^0.29.0"
