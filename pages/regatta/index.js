@@ -7,13 +7,11 @@ import {
   EntriesIcon,
   EventsIcon,
   InfoIcon,
-  ResultsIcon,
+  ResultsIcon
 } from "@/components/regatta/icons";
 import Hero from "@/components/stour/hero";
-import Masonry from "@/components/stour/masonry";
 import Note from "@/components/stour/note";
 import Skeleton from "@/components/stour/skeleton";
-import Text from "@/components/stour/text";
 import rawData from "@/data/regatta.json";
 import { Disclosure, Transition } from "@headlessui/react";
 import dynamic from "next/dynamic";
@@ -21,6 +19,8 @@ import Head from "next/head";
 import ordinal from "ordinal";
 import { ChevronDown, Zap } from "react-feather";
 
+const Text = dynamic(() => import("@/components/stour/text"));
+const Masonry = dynamic(() => import("@/components/stour/masonry"));
 const Results = dynamic(() => import("@/components/regatta/results"), {
   loading: () => Skeleton(),
 });

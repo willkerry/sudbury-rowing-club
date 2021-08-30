@@ -1,21 +1,25 @@
+import SafetyPopup from "@/components/safety";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import Container from "../components/container";
-import HeroTitle from "../components/hero-title";
-import Layout from "../components/layout";
-import styles from "../components/governance/governance.module.css";
 import Link from "next/link";
 import { Download } from "react-feather";
-import Button from "@/components/stour/button";
-import SafetyPopup from "@/components/safety";
-import ReactMarkdown from "react-markdown";
-import smartypants from "@silvenon/remark-smartypants";
+import Container from "@/components/container";
+import HeroTitle from "@/components/hero-title";
+import Layout from "@/components/layout";
+import data from "@/data/safety.json";
+import Skeleton from "@/components/stour/skeleton";
 
-import data from "../data/safety.json";
+const ReactMarkdown = dynamic(() => import("react-markdown"), {
+  loading: () => Skeleton(),
+});
+const Button = dynamic(() => import("@/components/stour/button"));
 
 export const getStaticProps = async () => {
   return {
     props: {
-      safety: await data,
+      items: await data.safety,
+      docs: await data.documents,
+      showStatus: await data.status.display,
     },
     revalidate: 60,
   };
@@ -30,16 +34,15 @@ const SectionTitle = (props) => (
   />
 );
 
-export default function Safety({ safety }) {
+export default function Safety({ items, docs, showStatus }) {
   return (
     <Layout>
       <Head>
         <title>Safety</title>
       </Head>
       <HeroTitle title="Safety" />
-
       <Container>
-        {safety.status.display && (
+        {showStatus && (
           <Row>
             <div className="md:w-1/3"></div>
 
@@ -48,7 +51,7 @@ export default function Safety({ safety }) {
             </div>
           </Row>
         )}
-        {safety.safety.map((item) => {
+        {items.map((item) => {
           return (
             <Row key={item.name.toString()} id={item.name.toString()}>
               <div className="md:w-1/3">
@@ -58,10 +61,7 @@ export default function Safety({ safety }) {
               <div className="space-y-6 md:w-2/3">
                 {item.description && (
                   <div className="prose">
-                    <ReactMarkdown remarkPlugins={[smartypants]}>
-                      {item.description}
-                    </ReactMarkdown>
-
+                    <ReactMarkdown>{item.description}</ReactMarkdown>
                     {item.date && <small>Last updated {item.date}</small>}
                   </div>
                 )}
@@ -74,34 +74,26 @@ export default function Safety({ safety }) {
             </Row>
           );
         })}
-
-        <div
-          id="documents"
-          className={styles.fullWidthContainer + " bg-blue-50"}
-        >
-          <Container>
-            <Row>
-              <div className="md:w-1/3">
-                <SectionTitle>Documents</SectionTitle>
-              </div>
-              <div className="md:w-2/3">
-                {safety.documents.map((item) => (
-                  <p
-                    key={item.name.toString()}
-                    className="my-2 leading-tight text-gray-600 hover:text-gray-800"
-                  >
-                    <Link href={item.file}>
-                      <a>
-                        {item.name}{" "}
-                        <Download className="inline w-4 h-4 mb-1 opacity-50" />
-                      </a>
-                    </Link>
-                  </p>
-                ))}
-              </div>
-            </Row>
-          </Container>
-        </div>
+        <Row>
+          <div className="md:w-1/3">
+            <SectionTitle>Documents</SectionTitle>
+          </div>
+          <div className="md:w-2/3">
+            {docs.map((item) => (
+              <p
+                key={item.name.toString()}
+                className="my-2 leading-tight text-gray-600 hover:text-gray-800"
+              >
+                <Link href={item.file}>
+                  <a>
+                    {item.name}{" "}
+                    <Download className="inline w-4 h-4 mb-1 opacity-50" />
+                  </a>
+                </Link>
+              </p>
+            ))}
+          </div>
+        </Row>
       </Container>
     </Layout>
   );

@@ -5,12 +5,18 @@ import HeroPost from "../components/hero-post";
 import Layout from "../components/layout";
 import { getAllPosts } from "../lib/api";
 import LandingHero from "@/components/landing/landing-hero";
-import CommitteeSignature from "@/components/landing/committee-signature";
-import Sponsors from "@/components/landing/sponsors";
 import Note from "@/components/stour/note";
 import Button from "@/components/stour/button";
 import landingData from "../data/landing.json";
-import LandingImages from "@/components/landing/landing-images";
+import dynamic from "next/dynamic";
+
+const Sponsors = dynamic(() => import("@/components/landing/sponsors"));
+const CommitteeSignature = dynamic(() =>
+  import("@/components/landing/committee-signature")
+);
+const LandingImages = dynamic(() =>
+  import("@/components/landing/landing-images")
+);
 
 export default function Index({ allPosts }) {
   const heroPost = allPosts[0];

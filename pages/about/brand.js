@@ -1,16 +1,34 @@
 import TextPage from "@/components/layouts/text-page";
-import Crest from "@/components/logo/crest";
 import Link from "@/components/stour/link";
+import Color from "color";
+import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
-import Logo from "@/components/logo";
 import urljoin from "url-join";
-import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "/tailwind.config.js";
-import Color from "color";
-import Social from "@/components/logo/social";
 
-const fullConfig = resolveConfig(tailwindConfig);
+const Social = dynamic(() => import("@/components/logo/social"));
+const Logo = dynamic(() => import("@/components/logo"));
+const Crest = dynamic(() => import("@/components/logo/crest"));
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      blue: {
+        50: tailwindConfig.theme.extend.colors.blue[50],
+        100: tailwindConfig.theme.extend.colors.blue[100],
+        200: tailwindConfig.theme.extend.colors.blue[200],
+        300: tailwindConfig.theme.extend.colors.blue[300],
+        400: tailwindConfig.theme.extend.colors.blue[400],
+        500: tailwindConfig.theme.extend.colors.blue[500],
+        600: tailwindConfig.theme.extend.colors.blue[600],
+        700: tailwindConfig.theme.extend.colors.blue[700],
+        800: tailwindConfig.theme.extend.colors.blue[800],
+        900: tailwindConfig.theme.extend.colors.blue[900],
+      },
+    },
+  };
+};
 
 const brandAssets = [
   {
@@ -104,31 +122,30 @@ const brandAssets = [
   },
 ];
 
-const brandColors = [
-  {
-    id: "900",
-    color: fullConfig.theme.colors.blue[900],
-    library: "Pantone 282",
-    name: "Oxford Blue",
-  },
-  { id: "800", color: fullConfig.theme.colors.blue[800] },
-  { id: "700", color: fullConfig.theme.colors.blue[700] },
-  { id: "600", color: fullConfig.theme.colors.blue[600] },
-  { id: "500", color: fullConfig.theme.colors.blue[500] },
-  { id: "400", color: fullConfig.theme.colors.blue[400] },
-  { id: "300", color: fullConfig.theme.colors.blue[300] },
-  { id: "200", color: fullConfig.theme.colors.blue[200] },
-  { id: "100", color: fullConfig.theme.colors.blue[100] },
-  { id: "50", color: fullConfig.theme.colors.blue[50] },
-];
-
 function extension(url) {
   return url.substring(url.lastIndexOf(".") + 1, url.length) || url;
 }
 
 const fileInfo = "https://fileinfo.com/extension/";
 
-export default function Brand() {
+export default function Brand({ blue }) {
+  const brandColors = [
+    {
+      id: "900",
+      color: blue[900],
+      library: "Pantone 282",
+      name: "Oxford Blue",
+    },
+    { id: "800", color: blue[800] },
+    { id: "700", color: blue[700] },
+    { id: "600", color: blue[600] },
+    { id: "500", color: blue[500] },
+    { id: "400", color: blue[400] },
+    { id: "300", color: blue[300] },
+    { id: "200", color: blue[200] },
+    { id: "100", color: blue[100] },
+    { id: "50", color: blue[50] },
+  ];
   function ColorIndicator({ color, type }) {
     const newColor = Color(color);
     const rgb = newColor.rgb().string();
@@ -169,7 +186,9 @@ export default function Brand() {
           <td>
             <FileExtensionWidget href={item.href} />
           </td>
-          <td className="hidden sm:table-cell">{item.w ? <code>{item.w}px </code> : "\u221e"}</td>
+          <td className="hidden sm:table-cell">
+            {item.w ? <code>{item.w}px </code> : "\u221e"}
+          </td>
           <td>
             <Link href={item.href} download>
               <span className="hidden sm:inline">Download</span>
@@ -183,7 +202,7 @@ export default function Brand() {
   const ColorRows = ({ data }) => {
     return data.map((item, index) => {
       return (
-        <tr key={index} className={item.id == "900" && "bg-gray-100"}>
+        <tr key={index} className={item.id == "900" ? "bg-gray-100" : null}>
           <td className="text-right">
             <code>{item.id}</code>
           </td>
