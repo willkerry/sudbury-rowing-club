@@ -18,7 +18,7 @@ import { Facebook, Instagram, Twitter } from "react-feather";
 import Spond from "../icons/spond";
 
 export const about = [
-  {
+  /* {
     name: "Squads",
     description: "",
     href: "squads",
@@ -31,7 +31,7 @@ export const about = [
       { name: "Indoor rowing", href: "" },
       { name: "Recreation", href: "" },
     ],
-  },
+  }, */
   {
     name: "History",
     description: "Rowing in Sudbury since 1874.",
@@ -108,18 +108,6 @@ export const members = [
   {
     name: "Officer Nominations",
     href: "/members/officer-nominations",
-  },
-  {
-    name: "Membership Rates",
-    href: "/members/rates",
-  },
-  {
-    name: "Race Fees",
-    href: "/members/fees",
-  },
-  {
-    name: "Committee Minutes",
-    href: "/governance/minutes",
   },
 ];
 export const memberCTAs = [
