@@ -37,16 +37,18 @@ function Results({ tab, data }) {
       <div className="prose prose-lg max-w-none">
         <table>
           <thead>
-            <th className="hidden sm:table-cell"></th>
-            <th>Date</th>
-            <th className="hidden md:table-cell">Fastest 350m</th>
-            <th className="hidden md:table-cell">Fastest 650m</th>
-            <th>Results</th>
+            <tr>
+              <th className="hidden sm:table-cell"></th>
+              <th>Date</th>
+              <th className="hidden md:table-cell">Fastest 350m</th>
+              <th className="hidden md:table-cell">Fastest 650m</th>
+              <th>Results</th>
+            </tr>
           </thead>
           <tbody>
             {resultsData.map(
-              ({ link, year, date, fastest, eightsFastest, number, index }) => (
-                <tr key={index} className="hover:bg-gray-50">
+              ({ link, year, date, fastest, eightsFastest, number }, index) => (
+                <tr key={date.toString() + index} className="hover:bg-gray-50">
                   <td className="hidden sm:table-cell">
                     <span className="font-semibold">
                       {ordinal(number)}
