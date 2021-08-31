@@ -111,7 +111,7 @@ export function Button(props) {
   }
   return (
     <>
-      {button ? (
+      {props.as == "button" ? (
         <button {...props} className={buttonClassName}>
           <ButtonInner label={children} icon={icon} />
           {(iconLeft || iconRight) && (
