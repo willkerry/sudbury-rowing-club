@@ -10,7 +10,7 @@
   "dependencies": {
     "@fontsource/inter": "latest",
     "@headlessui/react": "^1.4.0",
-    "@heroicons/react": "^1.0.3",
+    "@heroicons/react": "^1.0.4",
     "@next/bundle-analyzer": "^11.0.1",
     "@silvenon/remark-smartypants": "^1.0.0",
     "axios": "^0.21.1",
