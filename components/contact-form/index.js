@@ -12,7 +12,7 @@ class ContactForm extends Component {
     name: "",
     mail: "",
     formContent: "",
-    recipientMail: "",
+    recipientMail: "default",
   };
 
   render() {
@@ -41,7 +41,7 @@ class ContactForm extends Component {
             value={recipientMail}
             onChange={this.onRecipientChange}
           >
-            <option value="" disabled selected>
+            <option value="default" disabled>
               Select a recipient
             </option>
             {contactableOfficers.map((officer, index) => (
@@ -91,7 +91,7 @@ class ContactForm extends Component {
             type="submit"
             onClick={this.submitContactForm}
             disabled={formButtonDisabled}
-            button={true}
+            as="button"
             size="large"
           >
             {formButtonText}
