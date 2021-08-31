@@ -22,7 +22,7 @@ export default CompetitorInformation;
 function CompetitorInfoItem({ item }) {
   return (
     <li key={item.index}>
-      <Link href={item.link} download>
+      <Link href={item.link} download aria-label={"Download" + " " + item.title}>
         {item.title}
       </Link>
     </li>
