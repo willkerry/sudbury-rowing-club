@@ -257,14 +257,8 @@ export default function Brand({ blue }) {
     <TextPage title="Brand Assets">
       <h2>Crest</h2>
       <p>
-        This version of our crest was drawn from scratch for better performance
-        on screens. It’s two years in development, is in (roughly) version 17,
-        and will keep evolving.
-      </p>
-      <p>
-        It’s not meant to replace any of the six-plus crests we already use –
-        instead it’s a sort of an average of all of them, intended to work on
-        screens and be expressed as a tiny 6 KB SVG string.
+        This version of our crest is intended to work well on screens and is
+        optimised as a tiny 6 KB SVG string.
       </p>
       <AssetSections data={brandAssets} />
       <h2>Blues</h2>

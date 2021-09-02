@@ -2,6 +2,7 @@ import safety from "@/data/safety.json";
 import DateTimeFormatter from "../datetime-formatter";
 import cn from "classnames";
 import Button from "../stour/button";
+import { ExternalLink } from "react-feather";
 
 const status = safety.status;
 
@@ -32,14 +33,14 @@ export default function SafetyPopup() {
           <Button
             href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
             size="mini"
-            icon="external"
+            iconRight={<ExternalLink />}
           >
             Environment&nbsp;Agency
           </Button>
           <Button
             href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
             size="mini"
-            icon="external"
+            iconRight={<ExternalLink />}
           >
             Met&nbsp;Office
           </Button>
