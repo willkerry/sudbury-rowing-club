@@ -7,50 +7,47 @@ export function PostPreview(props) {
   const { title, coverImage, date, excerpt, author, slug } = props;
 
   return (
-    <>
-      <Link as={`/news/${slug}`} href="/news/[slug]">
-        <a
+    <Link as={`/news/${slug}`} href="/news/[slug]">
+      <a
+        className={cn(
+          "relative h-64 border rounded-lg",
+          !coverImage &&
+            "bg-white border-gray-300 hover:border-blue-400 transition group"
+        )}
+      >
+        {coverImage && (
+          <>
+            <Image
+              src={coverImage}
+              alt=""
+              layout="fill"
+              objectFit="cover"
+              className="z-0 rounded-lg"
+            />
+            <div className="absolute w-full h-full transition duration-200 rounded-lg hover:shadow-lg opacity-70 bg-gradient-to-b from-transparent to-blue-800 hover:opacity-60"></div>
+          </>
+        )}
+
+        <div
           className={cn(
-            "relative h-64 border rounded-lg",
-            coverImage
-              ? "bg-blue-900"
-              : "bg-white border-gray-300 hover:border-blue-400 transition group"
+            "absolute bottom-0 z-40 mx-5 my-4 rounded-lg",
+            coverImage ? "text-white" : "text-gray-900"
           )}
         >
-          {coverImage && (
-            <>
-              <Image
-                src={coverImage}
-                alt=""
-                layout="fill"
-                objectFit="cover"
-                className="z-0 rounded-lg"
-              />
-              <div className="absolute w-full h-full transition duration-200 rounded-lg hover:shadow-lg opacity-70 bg-gradient-to-b from-transparent to-blue-900 hover:opacity-60"></div>
-            </>
-          )}
-
-          <div
+          <div className="mb-1 text-sm font-medium opacity-90 ">
+            <DateFormatter dateString={date} />
+          </div>
+          <h3
             className={cn(
-              "absolute bottom-0 z-40 mx-5 my-4 rounded-lg",
-              coverImage ? "text-white" : "text-gray-900"
+              "text-2xl font-semibold tracking-tight",
+              !coverImage && "transition group-hover:text-blue-500"
             )}
           >
-            <div className="mb-1 text-sm font-medium opacity-90 ">
-              <DateFormatter dateString={date} />
-            </div>
-            <h3
-              className={cn(
-                "text-2xl font-semibold tracking-tight",
-                coverImage ? "" : "transition group-hover:text-blue-500"
-              )}
-            >
-              <a className="" dangerouslySetInnerHTML={{ __html: title }}></a>
-            </h3>
-          </div>
-        </a>
-      </Link>
-    </>
+            {title}
+          </h3>
+        </div>
+      </a>
+    </Link>
   );
 }
 export default PostPreview;
