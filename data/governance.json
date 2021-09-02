@@ -141,7 +141,7 @@
         "Facilities",
         "Publicity",
         "Social",
-        "Sponsorship & Grants",
+        "Sponsorship",
         "Regatta",
         "IT"
       ]
@@ -280,13 +280,13 @@
       "items": [
         {
           "name": "Anti-Bullying Policy",
-          "href": "../governance/anti-bullying-policy/",
+          "href": "/governance/anti-bullying-policy/",
           "external": false,
           "type": "Internal link"
         },
         {
           "name": "Grievance and Disciplinary Policy",
-          "href": "../governance/grievance-and-disciplinary-policy",
+          "href": "/governance/grievance-and-disciplinary-policy",
           "external": false,
           "type": "Internal link"
         },
@@ -316,7 +316,7 @@
         },
         {
           "name": "Privacy Policy",
-          "href": "../governance/privacy-policy",
+          "href": "/governance/privacy-policy",
           "type": "Internal link"
         }
       ]
