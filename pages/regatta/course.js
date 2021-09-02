@@ -6,6 +6,7 @@ import Button from "@/components/stour/button";
 import Image from "next/image";
 
 import courseMap from "public/assets/regatta/course/course-map.jpg";
+import { Download } from "react-feather";
 
 export default function Photography({ preview }) {
   return (
@@ -29,7 +30,7 @@ export default function Photography({ preview }) {
             </p>
             <Button
               href="/assets/regatta/course/course-map.pdf"
-              icon="download"
+              iconRight={<Download />}
             >
               Download the PDF
             </Button>

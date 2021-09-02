@@ -6,6 +6,8 @@ import Image from "next/image";
 
 import { Map, Marker } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
+import Note from "@/components/stour/note";
+import { MapPin } from "react-feather";
 
 const apis = {
   google: "https://www.google.com/maps/search/?api=1&query=",
@@ -56,21 +58,29 @@ export default function FindUs({ preview }) {
 
       <Container>
         <div className="grid grid-cols-1 gap-16 py-10 md:grid-cols-2">
-          <Map
-            provider={maptilerProvider}
-            dprs={[1, 2]}
-            height={500}
-            defaultCenter={[clubLocation.lat, clubLocation.long]}
-            defaultZoom={14}
-            metaWheelZoom={true}
-            attribution={false}
-          >
-            <Marker
-              width={50}
-              anchor={[clubLocation.lat, clubLocation.long]}
-              color="#094284"
-            />
-          </Map>
+          <div>
+            <div className="relative z-10 flex overflow-hidden border rounded-lg">
+              <Map
+                provider={maptilerProvider}
+                dprs={[1, 2]}
+                height={565}
+                defaultCenter={[clubLocation.lat, clubLocation.long]}
+                defaultZoom={14}
+                attribution={false}
+              >
+                <Marker
+                  width={50}
+                  anchor={[clubLocation.lat, clubLocation.long]}
+                  color="#0070F3"
+                />
+                <Marker
+                  width={30}
+                  anchor={[regattaLocation.lat, regattaLocation.long]}
+                  color="rgb(16, 185, 129)"
+                />
+              </Map>
+            </div>
+          </div>
 
           <div className="self-center prose">
             <p className="text-lg">
@@ -78,19 +88,19 @@ export default function FindUs({ preview }) {
               the centre of Sudbury, and next-door to the Quay Theatre. Parking
               is available outside the club gates.
             </p>
-            <p className="px-4 py-3 text-gray-500 border rounded-lg ">
-              <span className="pr-1.5 font-bold text-gray-900 ">
-                Finding the regatta
-              </span>
+            <Note label="Find the Regatta">
               Our Regatta takes place on Friars Meadow, barely 100m from the
               boathouse but cut off from it by waterways. Access to the meadow
               is from Edgworth Road (CO10 2TL). During the regatta, the routes
               are signposted. We provide parking for spectators, trailers and
               competitors on Friars Meadow.
-            </p>
+            </Note>
+
             <div className="grid lg:grid-cols-2">
               <div>
-                <h4>Club</h4>
+                <h4>
+                  Club <MapPin className="inline-flex text-blue-500" />
+                </h4>
                 <p>
                   Sudbury Rowing Club
                   <br />
@@ -123,7 +133,7 @@ export default function FindUs({ preview }) {
                 </div>
               </div>
               <div>
-                <h4>Regatta</h4>
+                <h4>Regatta <MapPin className="inline-flex text-green-500"/></h4>
                 <p>
                   Friars Meadow
                   <br />
