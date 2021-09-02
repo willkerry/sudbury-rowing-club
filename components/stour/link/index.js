@@ -1,6 +1,7 @@
 import NextLink from "next/link";
 import cn from "classnames";
 import { DownloadIcon, ExternalLinkIcon } from "@heroicons/react/outline";
+import { Download, ExternalLink } from "react-feather";
 
 function Link({
   href,
@@ -12,7 +13,7 @@ function Link({
   className,
   ...props
 }) {
-  const iconClass = "inline-flex self-center w-4 h-4 mb-1 ml-1";
+  const iconClass = "inline-flex mb-0.5 ml-1";
   return (
     <NextLink href={href}>
       <a
@@ -20,16 +21,15 @@ function Link({
           dark
             ? "text-blue-100 hover:text-white"
             : "text-blue-500 hover:text-blue-300",
-          icon && "inline-flex align-baseline",
+          (external || download) && "relative",
           "transition",
           className
         )}
         {...props}
       >
         {children}
-        {icon && <ExternalLinkIcon className={iconClass} />}
-        {external && <ExternalLinkIcon className={iconClass} />}
-        {download && <DownloadIcon className={iconClass} />}
+        {external && <ExternalLink className={iconClass} size="0.9em" />}
+        {download && <Download className={iconClass} size="0.9em" />}
       </a>
     </NextLink>
   );

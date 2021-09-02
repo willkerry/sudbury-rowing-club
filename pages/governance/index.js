@@ -2,11 +2,13 @@ import Head from "next/head";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
-import styles from "@/components/governance/governance.module.css";
 import { Link as ScrollLink } from "react-scroll";
-import Link from "next/link";
-import { DownloadIcon, ExternalLinkIcon } from "@heroicons/react/outline";
+import Link from "@/components/stour/link";
 import rawData from "@/data/governance.json";
+import Button from "@/components/stour/button";
+import { HelpCircle, Image as ImageIcon, Info, XCircle } from "react-feather";
+import cn from "classnames";
+import { Popover, Transition } from "@headlessui/react";
 
 export const getStaticProps = async () => {
   return {
@@ -17,13 +19,11 @@ export const getStaticProps = async () => {
   };
 };
 
-const GovGrid = (props) => (
-  <div
-    {...props}
-    className="grid grid-cols-2 gap-y-12 gap-x-8 md:grid-cols-3 md:w-4/5"
-  />
+const GovGrid = ({ children }) => (
+  <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
+    {children}
+  </div>
 );
-const Row = (props) => <section {...props} className="my-16 md:flex" />;
 const StyledScrollLink = (props) => (
   <ScrollLink
     activeClass="text-gray-800"
@@ -35,31 +35,35 @@ const StyledScrollLink = (props) => (
     {...props}
   />
 );
-const ScrollComponent = (props) => (
+const ScrollComponent = ({ items }) => (
   <div className="sticky top-0 z-10 bg-white border-b">
     <div className="container max-w-screen-lg px-5 py-5 mx-auto text-gray-500 ">
-      <StyledScrollLink to="officers">Officers</StyledScrollLink>
-      <StyledScrollLink to="committees">Committees</StyledScrollLink>
-      <StyledScrollLink to="nonexec">Non-Exec</StyledScrollLink>
-      <StyledScrollLink to="documents">Documents</StyledScrollLink>
+      {items.map((item, index) => (
+        <StyledScrollLink key={index} to={item.to}>
+          {item.name}
+        </StyledScrollLink>
+      ))}
     </div>
   </div>
 );
 const SectionTitle = (props) => (
   <h2
+    className={cn(
+      "mt-24 mb-6 text-2xl font-bold tracking-tight text-gray-800",
+      props.className
+    )}
     {...props}
-    className="mb-8 text-xl font-bold tracking-tight text-gray-800"
   />
 );
 const SubTitle = (props) => (
-  <h3 className="pb-4 font-semibold text-gray-900" {...props} />
+  <h3
+    className={cn("mb-0.5 mt-8 font-semibold text-gray-900", props.className)}
+    {...props}
+  />
 );
-const Vacant = (props) => (
+const Vacant = () => (
   <div className="h-8">
-    <span
-      className="p-1 text-xs font-semibold tracking-widest text-gray-600 border rounded bg-gray-50"
-      {...props}
-    >
+    <span className="p-1 text-xs font-semibold tracking-widest text-gray-600 border rounded bg-gray-50">
       TBA
     </span>
   </div>
@@ -71,10 +75,13 @@ const OfficerName = (props) => (
   />
 );
 const Description = (props) => (
-  <div className="mb-8 text-sm text-gray-700 sm:text-base" {...props} />
+  <div
+    className={cn("text-sm text-gray-700 sm:text-base", props.className)}
+    {...props}
+  />
 );
 const DashUl = (props) => (
-  <ul className="text-sm text-gray-600 list-inside" {...props} />
+  <ul className="mt-6 text-gray-600 list-inside" {...props} />
 );
 const DashLi = (props) => (
   <li
@@ -84,18 +91,18 @@ const DashLi = (props) => (
 );
 const DashLiFirst = (props) => (
   <li
-    className="relative pl-8 first:font-bold before:content-['\2014\a0'] before:font-normal before:absolute before:left-0 before:text-gray-300"
+    className="relative pl-8 first:font-medium first:text-gray-800 before:content-['\2014\a0'] before:font-normal before:absolute before:left-0 before:text-gray-300"
     {...props}
   />
 );
 
 export default function Governance({ data }) {
-  const sorted = data.vicePresidents.sort(function (a, b) {
+  const sortedVicePresidents = data.vicePresidents.sort(function (a, b) {
     if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
     return 0;
   });
-  const sortedB = data.trustees.sort(function (a, b) {
+  const sorsortedTrustees = data.trustees.sort(function (a, b) {
     if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
     return 0;
@@ -106,147 +113,161 @@ export default function Governance({ data }) {
       <Head>
         <title>Governance</title>
       </Head>
-      <HeroTitle title="Governance" />
-      <ScrollComponent />
+      <HeroTitle title="Governance" prose />
+      <ScrollComponent
+        items={[
+          { to: "officers", name: "Officers" },
+          { to: "committees", name: "Committees" },
+          { to: "nonexec", name: "Non-Exec" },
+          { to: "documents", name: "Documents" },
+        ]}
+      />
+
       <Container>
-        <Row id="officers">
-          <div className="md:w-1/4">
-            <SectionTitle>Club Officers</SectionTitle>
-          </div>
+        <section id="officers">
+          <SectionTitle>Club Officers</SectionTitle>
           <GovGrid>
-            {data.officers.map((entry) => {
+            {data.officers.map((entry, index) => {
               return (
-                <div key={entry.name}>
+                <div key={index}>
+                  <div
+                    className={cn(
+                      "flex items-center justify-center w-full mb-2 rounded-lg h-36 relative overflow-hidden",
+                      !entry.vacant &&
+                        "bg-gradient-to-b from-gray-200 to-gray-100"
+                    )}
+                  >
+                    {!entry.vacant && (
+                      <>
+                        <ImageIcon className="text-gray-400" />
+
+                        <Popover className="">
+                          <Popover.Button>
+                            <HelpCircle
+                              className="absolute text-blue-500 transition right-2 bottom-2 hover:text-gray-700"
+                              size="1em"
+                              strokeWidth="0.15em"
+                            />
+                          </Popover.Button>
+                          <Transition
+                            enter="transition-opacity duration-150 ease-in-out"
+                            enterFrom="opacity-0"
+                            enterTo="opacity-100"
+                            leave="transition duration-75 ease-in-out"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                          >
+                            <Popover.Panel className="absolute top-0 left-0 w-full h-full p-4 bg-white bg-opacity-50 rounded-lg backdrop-blur">
+                              <div className="text-xs font-medium text-gray-600">
+                                <p>Image not currently available.</p>
+                              </div>
+                              <Popover.Button>
+                                <XCircle
+                                  className="absolute text-gray-500 transition hover:text-gray-700 right-2 bottom-2"
+                                  size="1em"
+                                  strokeWidth="0.15em"
+                                />
+                              </Popover.Button>
+                            </Popover.Panel>
+                          </Transition>
+                        </Popover>
+                      </>
+                    )}
+                  </div>
                   {entry.vacant ? (
                     <Vacant />
                   ) : (
                     <OfficerName>{entry.name}</OfficerName>
                   )}
-
                   <Description>{entry.role}</Description>
                 </div>
               );
             })}
           </GovGrid>
-        </Row>
-        <Row id="committees">
-          <div className="md:w-1/4 md:pr-6">
-            <SectionTitle>Committees</SectionTitle>
-          </div>
+        </section>
+        <section id="committees">
+          <SectionTitle>Committees</SectionTitle>
 
           <GovGrid>
-            {data.committees.map((entry) => {
+            {data.committees.map((entry, index) => {
               return (
-                <div key={entry.name}>
+                <div key={index}>
                   <SubTitle>{entry.name}</SubTitle>
                   <Description>{entry.description}</Description>
                   <DashUl>
-                    {entry.officers.map((sitting) => {
-                      return (
-                        <DashLiFirst key={sitting.toString()}>
-                          {sitting}
-                        </DashLiFirst>
-                      );
+                    {entry.officers.map((sitting, index) => {
+                      return <DashLiFirst key={index}>{sitting}</DashLiFirst>;
                     })}
                   </DashUl>
                 </div>
               );
             })}
           </GovGrid>
-        </Row>
-        <div id="nonexec" className={styles.fullWidthContainer + " bg-gray-50"}>
-          <Container>
-            <Row>
-              <div className="md:w-1/4 md:pr-6">
-                <SectionTitle>Non-Executive Officers</SectionTitle>
-              </div>
-              <GovGrid>
-                <div>
-                  <SubTitle>President</SubTitle>
-                  <Description>{data.presidentDescription}</Description>
-                </div>
-                <div className="col-start-1">
-                  <SubTitle>Vice-Presidents</SubTitle>
-                  <Description>{data.vicePresidentDescription}</Description>
-                </div>
-
-                <div className="col-start-2 col-end-5">
-                  <DashUl>
-                    {data.vicePresidents.map((entry, index) => {
-                      return (
-                        <DashLi key={index}>
-                          {entry.firstName} {entry.surname}
-                        </DashLi>
-                      );
-                    })}
-                  </DashUl>
-                </div>
-                <div className="col-start-1">
-                  <SubTitle>Trustees</SubTitle>
-                </div>
-                <div>
-                  <DashUl>
-                    {data.trustees.map((entry, index) => {
-                      return (
-                        <DashLi key={index}>
-                          {entry.firstName} {entry.surname}
-                        </DashLi>
-                      );
-                    })}
-                  </DashUl>
-                </div>
-              </GovGrid>
-            </Row>
-          </Container>
-        </div>
-
-        <div
-          id="documents"
-          className={styles.fullWidthContainer + " bg-blue-50"}
-        >
-          <Container>
-            <Row>
-              <div className="md:w-1/4 md:pr-6">
-                <SectionTitle>Documents</SectionTitle>
-              </div>
-              <GovGrid>
-                {data.documents.map((groups) => {
+        </section>
+        <section id="nonexec">
+          <SectionTitle>Non-Executive Officers</SectionTitle>
+          <GovGrid>
+            <div>
+              <SubTitle>President</SubTitle>
+              <Description>{data.presidentDescription}</Description>
+            </div>
+            <div className="col-start-1">
+              <SubTitle>Vice-Presidents</SubTitle>
+              <Description>{data.vicePresidentDescription}</Description>
+            </div>
+            <div className="col-span-4 sm:masonry-2-col md:masonry-4-col">
+              <DashUl>
+                {sortedVicePresidents.map((entry, index) => {
                   return (
-                    <div key={groups.group.toString()}>
-                      <SubTitle>{groups.group}</SubTitle>
-                      {groups.items.map((item) => {
-                        return (
-                          <p
-                            key={item.name.toString()}
-                            className="my-2 text-sm leading-tight text-gray-600 align-baseline hover:text-gray-800"
-                          >
-                            <Link href={item.href}>
-                              <a>
-                                <span>{item.name}</span>
-                                {item.external && !item.download && (
-                                  <span>
-                                    &nbsp;
-                                    <ExternalLinkIcon className="inline-flex w-3 h-3 mb-0.5 opacity-50" />
-                                  </span>
-                                )}
-                                {item.download && (
-                                  <span>
-                                    &nbsp;
-                                    <DownloadIcon className="inline-flex w-3 h-3 mb-0.5 opacity-50" />
-                                  </span>
-                                )}
-                              </a>
-                            </Link>
-                          </p>
-                        );
-                      })}
-                    </div>
+                    <DashLi key={index}>
+                      {entry.firstName} {entry.surname}
+                    </DashLi>
                   );
                 })}
-              </GovGrid>
-            </Row>
-          </Container>
-        </div>
+              </DashUl>
+            </div>
+            <div className="col-span-1">
+              <SubTitle>Trustees</SubTitle>
+            </div>
+            <div className="col-span-4">
+              <DashUl>
+                {sorsortedTrustees.map((entry, index) => {
+                  return (
+                    <DashLi key={index}>
+                      {entry.firstName} {entry.surname}
+                    </DashLi>
+                  );
+                })}
+              </DashUl>
+            </div>
+          </GovGrid>
+        </section>
+
+        <section id="documents" className="py-12">
+          <SectionTitle>Documents</SectionTitle>
+          {data.documents.map((groups, index) => {
+            return (
+              <div key={index} className="mt-6">
+                <SubTitle>{groups.group}</SubTitle>
+                <ul className="space-y-1">
+                  {groups.items.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        <Link
+                          href={item.href}
+                          download={item.download}
+                          external={item.external}
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
+        </section>
       </Container>
     </Layout>
   );

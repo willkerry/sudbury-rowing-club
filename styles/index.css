@@ -33,6 +33,10 @@ select {
     hyphens: auto;
   }
   @variants responsive {
+    .masonry-4-col {
+      column-count: 4;
+      column-gap: 2em;
+    }
     .masonry-3-col {
       column-count: 3;
       column-gap: 2em;
