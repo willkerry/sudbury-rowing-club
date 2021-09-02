@@ -9,6 +9,7 @@ import Note from "@/components/stour/note";
 import Button from "@/components/stour/button";
 import landingData from "../data/landing.json";
 import dynamic from "next/dynamic";
+import { NextSeo } from "next-seo";
 
 const Sponsors = dynamic(() => import("@/components/landing/sponsors"));
 const CommitteeSignature = dynamic(() =>
@@ -24,10 +25,17 @@ export default function Index({ allPosts }) {
 
   return (
     <>
+      <NextSeo
+        title={landingData.page_title}
+        description="This example uses more of the available config options."
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          url: "https://www.url.ie/a",
+          title: `${landingData.page_title}`,
+          description: "Open Graph Description",
+        }}
+      />
       <Layout>
-        <Head>
-          <title>{landingData.page_title}</title>
-        </Head>
         {landingData.notice.display && (
           <Container>
             <Note
