@@ -14,18 +14,6 @@ module.exports = {
     extend: {
       colors: {
         cyan: "#79FFE1",
-        oldblue: {
-          900: "#000c1a",
-          800: "#002147" /* SRC Oxford Blue */,
-          700: "#003b80",
-          600: "#0053b3",
-          500: "#006be6",
-          400: "#1a84ff",
-          300: "#4d9fff",
-          200: "#80bbff",
-          100: "#b3d6ff",
-          50: "#e5f1ff",
-        },
         blue: {
           50: "#DAEBFF",
           100: "#C0DDFF",
