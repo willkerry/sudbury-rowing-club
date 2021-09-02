@@ -1,7 +1,5 @@
-import { DownloadIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import cn from "classnames";
 import Link from "next/link";
-import { PropTypes } from "prop-types";
 
 const SIZE_MAPS = {
   mini: "py-1 px-2 min-w-min w-18 text-xs",
@@ -9,10 +7,6 @@ const SIZE_MAPS = {
   medium: "py-2 px-4 min-w-min w-40 text-sm",
   large: "py-2 px-8 min-w-min w-64",
   auto: "py-2 px-4 text-sm",
-};
-const ICON_MAPS = {
-  external: <ExternalLinkIcon className="w-3 h-3 ml-2" />,
-  download: <DownloadIcon className="w-3 h-3 ml-2" />,
 };
 const ICON_SIZE_MAPS = {
   mini: "w-2.5 h-2.5",
@@ -51,25 +45,22 @@ const RIGHT_ICON_PADDING_MAPS = {
   large: null,
   auto: "pr-5",
 };
+
 function Icon({ iconLeft, iconRight, size }) {
   const iconClass = "absolute flex items-center -translate-y-1/2 top-1/2";
   return (
-    <>
-      {iconLeft && (
-        <span
-          className={cn(iconClass, ICON_SIZE_MAPS[size], "right-auto left-3")}
-        >
-          {iconLeft}
-        </span>
-      )}
-      {iconRight && (
-        <span
-          className={cn(iconClass, ICON_SIZE_MAPS[size], "left-auto right-3")}
-        >
-          {iconRight}
-        </span>
-      )}
-    </>
+    (iconLeft || iconRight) && (
+      <span
+        className={cn(
+          iconClass,
+          ICON_SIZE_MAPS[size],
+          iconRight && "right-auto",
+          iconLeft && "left-auto"
+        )}
+      >
+        {iconLeft || iconRight}
+      </span>
+    )
   );
 }
 
@@ -79,8 +70,6 @@ export function Button(props) {
     size,
     shadow,
     href,
-    icon,
-    button,
     children,
     disabled,
     iconLeft,
@@ -105,82 +94,37 @@ export function Button(props) {
         )}
       >
         {props.label}
-        {props.icon && ICON_MAPS[props.icon]}
       </div>
     );
   }
-  return (
-    <>
-      {props.as == "button" ? (
-        <button {...props} className={buttonClassName}>
-          <ButtonInner label={children} icon={icon} />
-          {(iconLeft || iconRight) && (
-            <Icon iconLeft={iconLeft} size={size} iconRight={iconRight} />
-          )}
-        </button>
-      ) : (
-        <Link href={href} passHref>
-          <a className={buttonClassName} {...props}>
-            <ButtonInner label={children} icon={icon} />
-            {(iconLeft || iconRight) && (
-              <Icon iconLeft={iconLeft} size={size} iconRight={iconRight} />
-            )}
-          </a>
-        </Link>
+  return props.as == "button" ? (
+    <button {...props} className={buttonClassName}>
+      <ButtonInner label={children} />
+      {(iconLeft || iconRight) && (
+        <Icon iconLeft={iconLeft} size={size} iconRight={iconRight} />
       )}
-    </>
+    </button>
+  ) : (
+    <Link href={href} passHref>
+      <a className={buttonClassName}>
+        <ButtonInner label={children} />
+        {(iconLeft || iconRight) && (
+          <Icon iconLeft={iconLeft} size={size} iconRight={iconRight} />
+        )}
+      </a>
+    </Link>
   );
 }
-
-Button.propTypes = {
-  /**
-   * This is just the button text.
-   */
-  label: PropTypes.string,
-  /**
-   * Pick a colour.
-   */
-  variant: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "brandDark",
-    "brand",
-    "brandLight",
-    "success",
-    "error",
-  ]),
-  /**
-   * Where are we headed? Routes through, `next/link`, so relative URLs will maintain SPA behaviour.
-   */
-  href: PropTypes.string,
-  /**
-   * Pick a size. Use `auto` anywhere users can change button text.
-   */
-  size: PropTypes.oneOf(["auto", "mini", "small", "medium", "large"]),
-  /**
-   * Optionally, give the button a shadow.
-   */
-  /**
-   * Add a helpful icon if you’re linking to a file or an external site.
-   */
-  icon: PropTypes.oneOf(["external", "download", false]),
-  /**
-   * Override’s default behaviour (i.e. to render an `<a>` hyperlink using next/link) and produces a `<button` instead.
-   */
-  button: PropTypes.bool,
-};
 
 Button.defaultProps = {
   variant: "primary",
   size: "auto",
   href: "",
   shadow: null,
-  icon: null,
   button: null,
 };
 
 Button.variant = VARIANT_MAPS;
 Button.size = SIZE_MAPS;
-Button.icon = ICON_MAPS;
 
 export default Button;
