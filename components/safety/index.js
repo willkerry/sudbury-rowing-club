@@ -3,6 +3,8 @@ import DateTimeFormatter from "../datetime-formatter";
 import cn from "classnames";
 import Button from "../stour/button";
 import { ExternalLink } from "react-feather";
+import EnvironmentAgency from "../icons/organisations/environment-agency";
+import MetOffice from "../icons/organisations/met-office";
 
 const status = safety.status;
 
@@ -33,14 +35,16 @@ export default function SafetyPopup() {
           <Button
             href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
             size="mini"
-            iconRight={<ExternalLink />}
+            variant="secondary"
+            iconLeft={<EnvironmentAgency />}
           >
             Environment&nbsp;Agency
           </Button>
           <Button
             href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
             size="mini"
-            iconRight={<ExternalLink />}
+            iconLeft={<MetOffice />}
+            variant="secondary"
           >
             Met&nbsp;Office
           </Button>
