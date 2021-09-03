@@ -43,7 +43,7 @@ const RIGHT_ICON_PADDING_MAPS = {
   small: "pr-5",
   medium: "pr-2",
   large: null,
-  auto: "pr-5",
+  auto: "pr-5 ",
 };
 
 function Icon({ iconLeft, iconRight, size }) {
@@ -54,8 +54,8 @@ function Icon({ iconLeft, iconRight, size }) {
         className={cn(
           iconClass,
           ICON_SIZE_MAPS[size],
-          iconRight && "right-auto",
-          iconLeft && "left-auto"
+          iconRight && "left-auto right-2.5",
+          iconLeft && "right-auto left-2.5"
         )}
       >
         {iconLeft || iconRight}
