@@ -33,6 +33,8 @@ export default function Post({ post, morePosts, preview }) {
           <>
             <article className="mb-32">
               <NextSeo
+                title={post.title}
+                description={post.description}
                 openGraph={{
                   title: post.title,
                   description: post.description,
