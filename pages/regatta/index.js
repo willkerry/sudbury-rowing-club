@@ -155,6 +155,23 @@ export default function Regatta({
                     <Link href="/contact/how-to-find-us">Sudbury CO10 2TL</Link>
                   ),
                 },
+                {
+                  label: "Spectator Admission",
+                  value: "Free",
+                },
+                {
+                  label: "Competitor Entries",
+                  value: (
+                    <>
+                      Via BROE. <Link href="/contact">Enquiries</Link>.
+                    </>
+                  ),
+                },
+
+                {
+                  label: "Parking",
+                  value: "Temporary event parking on Friars Meadow (paid)",
+                },
               ].map((item, index) => (
                 <>
                   <dt className="mt-3 text-xs font-semibold leading-7 tracking-wider text-gray-500 uppercase align-baseline">
