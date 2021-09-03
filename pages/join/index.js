@@ -149,7 +149,6 @@ export default function Index() {
             <Image
               src="/assets/join/l2r.jpg"
               alt="Trainee rowers on the water during on learn to row course."
-              placeholder="blur"
               width={240}
               height={160}
             />
