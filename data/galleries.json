@@ -1,5 +1,15 @@
 [
   {
+    "year": 2021,
+    "password": "SRC2021",
+    "provider": [
+      {
+        "href": "https://www.hiskett.net/Sports/Sudbury-Regatta-2021",
+        "name": "Bill Hiskett"
+      }
+    ]
+  },
+  {
     "year": 2019,
     "password": "SRC2019",
     "provider": [

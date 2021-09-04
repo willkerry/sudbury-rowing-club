@@ -5,6 +5,8 @@ html {
 }
 
 @import "~@fontsource/inter/variable.css";
+@import "~@fontsource/jetbrains-mono/variable.css";
+
 @tailwind components;
 
 [type="text"],

@@ -2,7 +2,6 @@ import Governance from "@/components/icons/governance";
 import History from "@/components/icons/history";
 import MyClubhouse from "@/components/icons/myclubhouse";
 import Results from "@/components/icons/results";
-import Rower from "@/components/icons/rower";
 import Safety from "@/components/icons/safety";
 import {
   CalendarIcon,
@@ -13,8 +12,10 @@ import {
   PhotographIcon,
   ShieldCheckIcon,
   TicketIcon,
+  FlagIcon,
 } from "@heroicons/react/outline";
 import { Facebook, Instagram, Twitter } from "react-feather";
+import Rower from "../icons/rower";
 import Spond from "../icons/spond";
 
 export const about = [
@@ -78,6 +79,17 @@ export const regatta = [
     name: "Results",
     href: "/regatta/results",
     icon: Results,
+  },
+  {
+    name: "Events",
+    href: "/regatta/course",
+    icon: Rower,
+  },
+  {
+    name: "Course Map",
+    shortName: "Course",
+    href: "/regatta/course",
+    icon: FlagIcon,
   },
   {
     name: "Official Photography",
@@ -148,10 +160,6 @@ export const misc = [
   {
     name: "Get brand assets",
     href: "/about/brand",
-  },
-  {
-    name: "Report a bug",
-    href: "/",
   },
   {
     name: "Privacy policy",

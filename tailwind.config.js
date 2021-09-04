@@ -39,6 +39,18 @@ module.exports = {
 
       fontFamily: {
         sans: ["InterVariable", "sans-serif"],
+        mono: [
+          "JetBrains MonoVariable",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "Liberation Mono",
+          "Courier New",
+          "monospace",
+        ],
+        serif: null,
       },
       boxShadow: {
         small: "0 5px 10px rgba(0, 0, 0, 0.12)",

@@ -223,9 +223,9 @@ export default function Brand({ blue }) {
     });
   };
   const AssetSections = ({ data }) => {
-    return data.map((data) => {
+    return data.map((data, index) => {
       return (
-        <section key={data.index}>
+        <section key={index}>
           <figure>
             <data.Illustration
               className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
@@ -302,10 +302,12 @@ export default function Brand({ blue }) {
       </p>
       <table>
         <thead>
-          <th className="text-right">Identifier</th>
-          <th>Name</th>
-          <th>RGB</th>
-          <th>Hex</th>
+          <tr>
+            <th className="text-right">Identifier</th>
+            <th>Name</th>
+            <th>RGB</th>
+            <th>Hex</th>
+          </tr>
         </thead>
         <tbody>
           <ColorRows data={brandColors} />

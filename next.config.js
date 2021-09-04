@@ -29,19 +29,22 @@ module.exports = {
         destination: "/regatta/course",
         permanent: true,
       },
-    ];
-  },
-  async rewrites() {
-    return [
+      {
+        source: "/contact/:slug(\\S+)",
+        destination: "/contact",
+        permanent: true,
+      },
       {
         source: "/about/club-officers",
         destination: "/governance",
+        permanent: true,
       },
+      /* {
+        // move plain HTML results to a dedicated subdomain (eventually)
+        source: "/results/:slug*",
+        destination: "https://results.sudburyrowingclub.org.uk/:slug*",
+        permanent: true,
+      }, */
     ];
   },
 };
-
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
-module.exports = withBundleAnalyzer({});

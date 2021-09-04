@@ -15,9 +15,9 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Photography({ preview, data }) {
+export default function Photography({ data }) {
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Head>
         <title>Official photography from the Sudbury Regatta</title>
       </Head>
@@ -26,11 +26,13 @@ export default function Photography({ preview, data }) {
         <div className="py-16 prose prose-lg max-w-none">
           <table>
             <thead>
-              <th>Year</th>
-              <th>
-                <span className="sm:hidden">Password</span>
-              </th>
-              <th>Providers</th>
+              <tr>
+                <th>Year</th>
+                <th>
+                  <span className="sm:hidden">Password</span>
+                </th>
+                <th>Providers</th>
+              </tr>
             </thead>
             <GalleryTbody data={data} />
           </table>
@@ -60,9 +62,9 @@ function GalleryPassword({ password }) {
   );
 }
 
-function GalleryRow({ index, year, password, provider }) {
+function GalleryRow({ year, password, provider }) {
   return (
-    <tr key={index}>
+    <tr>
       <th>
         {year}
         <span className="hidden sm:inline"> Regatta</span>
@@ -71,8 +73,8 @@ function GalleryRow({ index, year, password, provider }) {
         {password && <GalleryPassword password={password} />}
       </td>
       <td>
-        {provider.map(({ name, href, index }) => (
-          <GalleryLink key={index} index={index} href={href} name={name} />
+        {provider.map(({ name, href }, index) => (
+          <GalleryLink key={index} href={href} name={name} />
         ))}
       </td>
     </tr>
@@ -82,7 +84,7 @@ function GalleryRow({ index, year, password, provider }) {
 function GalleryTbody({ data }) {
   return (
     <tbody>
-      {data.map(({ year, password, provider, index }) => (
+      {data.map(({ year, password, provider }, index) => (
         <GalleryRow
           key={index}
           year={year}

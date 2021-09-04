@@ -17,7 +17,7 @@ export default function Contact() {
           We’re a volunteer-run club that provides a safe and fun way to row,
           but we also need your help. Since we don’t have a full-time staff to
           respond to enquiries, we ask that you select an appropriate recipient
-          for your enquiry. <Link href="/">Help.</Link>
+          for your enquiry.
         </div>
         <ContactForm />
       </Container>

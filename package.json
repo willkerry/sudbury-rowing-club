@@ -10,6 +10,7 @@
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
     "@fontsource/inter": "latest",
+    "@fontsource/jetbrains-mono": "^4.5.0",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
     "@silvenon/remark-smartypants": "^1.0.0",

@@ -1,7 +1,6 @@
 import SafetyPopup from "@/components/safety";
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import Link from "next/link";
 import { Download, ExternalLink } from "react-feather";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
@@ -9,6 +8,7 @@ import Layout from "@/components/layout";
 import data from "@/data/safety.json";
 import Skeleton from "@/components/stour/skeleton";
 import { BASE_URL } from "lib/constants";
+import Link from "@/components/stour/link";
 
 const ReactMarkdown = dynamic(() => import("react-markdown"), {
   loading: () => Skeleton(),
@@ -25,8 +25,6 @@ export const getStaticProps = async () => {
     revalidate: 60,
   };
 };
-
-const Row = (props) => <section {...props} className="my-16 md:flex" />;
 
 const SectionTitle = (props) => (
   <h2
@@ -82,12 +80,10 @@ export default function Safety({ items, docs, showStatus }) {
         })}
         <div>
           <SectionTitle>Documents</SectionTitle>
-          {docs.map((item) => (
-            <div key={item.name.toString()} className="my-2">
-              <Button href={item.file} iconRight={<Download />} size="small">
-                {item.name}
-              </Button>
-            </div>
+          {docs.map((item, index) => (
+            <Link href={item.file} external key={index} className="block mb-2">
+              {item.name}
+            </Link>
           ))}
         </div>
       </Container>

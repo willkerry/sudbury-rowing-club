@@ -1,9 +1,9 @@
 import ordinal from "ordinal";
-import Link from "next/link";
 import { ExternalLink } from "react-feather";
 import DateFormatter from "@/components/date-formatter";
 import Note from "@/components/stour/note";
 import cn from "classnames";
+import Link from "@/components/stour/link";
 
 function Results({ tab, data }) {
   const resultsData = data.results.results;
@@ -17,7 +17,7 @@ function Results({ tab, data }) {
         <p>
           We have an archive of regatta results that stretches back to 2002, and
           an{" "}
-          <Link href={courseRecords}>
+          <Link href={courseRecords} download>
             extremely detailed log of the course records (PDF)
           </Link>{" "}
           set since 2005.
@@ -72,17 +72,12 @@ function Results({ tab, data }) {
                   </td>
                   <td>
                     {link ? (
-                      <Link href={link} passHref>
-                        <a
-                          className="inline-block pr-4 last-of-type:pr-0"
-                          title={"View the " + year + " regatta results."}
-                        >
-                          View<span className="hidden sm:inline"> results</span>
-                          <ExternalLink
-                            size={12}
-                            className="inline mb-1 ml-1"
-                          />
-                        </a>
+                      <Link
+                        href={link}
+                        title={"View the " + year + " regatta results."}
+                        external
+                      >
+                        View<span className="hidden sm:inline"> results</span>
                       </Link>
                     ) : null}
                   </td>

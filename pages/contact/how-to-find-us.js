@@ -8,6 +8,7 @@ import { Map, Marker } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
 import Note from "@/components/stour/note";
 import { MapPin } from "react-feather";
+import { LocationMarkerIcon } from "@heroicons/react/solid";
 
 const apis = {
   google: "https://www.google.com/maps/search/?api=1&query=",
@@ -99,7 +100,8 @@ export default function FindUs({ preview }) {
             <div className="grid lg:grid-cols-2">
               <div>
                 <h4>
-                  Club <MapPin className="inline-flex text-blue-500" />
+                  <LocationMarkerIcon className="inline-flex w-6 h-6 mb-0.5 text-blue-500" />
+                  Club
                 </h4>
                 <p>
                   Sudbury Rowing Club
@@ -133,7 +135,10 @@ export default function FindUs({ preview }) {
                 </div>
               </div>
               <div>
-                <h4>Regatta <MapPin className="inline-flex text-green-500"/></h4>
+                <h4>
+                  <LocationMarkerIcon className="inline-flex w-6 h-6 mb-0.5 text-green-500" />
+                  Regatta
+                </h4>
                 <p>
                   Friars Meadow
                   <br />

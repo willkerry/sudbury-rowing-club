@@ -64,7 +64,7 @@ function Results({ data, coursemap }) {
               <Row>
                 <LabelCell />
                 <Cell>
-                  <Link external href={coursemap}>
+                  <Link href={coursemap}>
                     View coursemap
                   </Link>
                 </Cell>
