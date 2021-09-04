@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.1.2",
     "@fontsource/inter": "latest",
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
