@@ -1,5 +1,4 @@
 import Container from "@/components/container";
-import DayDateFormatter from "@/components/daydate-formatter";
 import Layout from "@/components/layout";
 import {
   ContactIcon,
@@ -19,6 +18,7 @@ import { EventJsonLd } from "next-seo";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import ordinal from "ordinal";
+import { parseISO, format, formatDistanceStrict } from "date-fns";
 
 const RegattaHeroImage = dynamic(() =>
   import("@/components/regatta/landing-page/regatta-hero-image")
@@ -70,6 +70,11 @@ export default function Regatta({
   races,
   courseMap,
 }) {
+  const regattaDate = (
+    <time dateTime={intro.date}>
+      {format(parseISO(intro.date), "EEEE d LLLL yyyy")}
+    </time>
+  );
   const ticketItems = [
     {
       label: "Event",
@@ -77,7 +82,7 @@ export default function Regatta({
     },
     {
       label: "Date",
-      value: <DayDateFormatter dateString={intro.date} />,
+      value: regattaDate,
     },
     {
       label: "Location",
@@ -107,12 +112,12 @@ export default function Regatta({
         images={[BASE_URL + "/assets/regatta/landing/drone.jpg"]}
         description="The best little regatta in the world."
       />
+
       <Container>
         <RegattaHero
           ticketItems={ticketItems}
           subtitle="The Sudbury Regatta takes place on the first Saturday of August each year."
         />
-
         <RegattaHeroImage
           title={
             <>
@@ -147,7 +152,7 @@ export default function Regatta({
               {[
                 {
                   label: "Date",
-                  value: <DayDateFormatter dateString={intro.date} />,
+                  value: regattaDate,
                 },
                 {
                   label: "Location",
@@ -173,12 +178,12 @@ export default function Regatta({
                   value: "Temporary event parking on Friars Meadow (paid)",
                 },
               ].map((item, index) => (
-                <>
+                <span key={index}>
                   <dt className="mt-3 text-xs font-semibold leading-7 tracking-wider text-gray-500 uppercase align-baseline">
                     {item.label}
                   </dt>
                   <dd className="mb-5 leading-7">{item.value}</dd>
-                </>
+                </span>
               ))}
             </dl>
           </div>
@@ -234,7 +239,7 @@ export default function Regatta({
                     Praise for the {ordinal(item.number)} regatta{" "}
                   </h3>
                   <div className="text-xs font-medium tracking-widest uppercase opacity-70">
-                    <DayDateFormatter dateString={item.date} />
+                    {regattaDate}
                   </div>
                 </div>
                 {item.items.map((testimonial) => {
