@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import YouTube from "react-youtube";
+import dynamic from "next/dynamic";
+
+const YouTube = dynamic(() => import("react-youtube"));
 
 function Player(props) {
   let [isOpen, setIsOpen] = useState(false);
