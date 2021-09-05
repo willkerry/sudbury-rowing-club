@@ -50,7 +50,7 @@ module.exports = {
           "Courier New",
           "monospace",
         ],
-        serif: null,
+        serif: "Charter",
       },
       boxShadow: {
         small: "0 5px 10px rgba(0, 0, 0, 0.12)",

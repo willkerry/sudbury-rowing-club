@@ -18,7 +18,7 @@ function LandingHero(props) {
           <BoathouseDoor className="w-full text-white drop-shadow" />
           <div>
             <span className="px-1 md:px-3 py-0.5 md:py-1 text-xs sm:text-sm md:text-base font-medium bg-white rounded-full drop-shadow-lg">
-              {props.slogan}
+              <span className="text-transparent bg-yellow-700 bg-gradient-to-r from-blue-800 via-green-700 to bg-clip-text">{props.slogan}</span>
             </span>
           </div>
         </div>
