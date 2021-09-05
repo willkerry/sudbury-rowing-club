@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Container from "../components/container";
 import MoreStories from "../components/more-stories";
 import HeroPost from "../components/hero-post";
@@ -55,15 +54,15 @@ export default function Index({ allPosts }) {
             youTubeStart={landingData.hero.youTubeStart}
           />
           <div className="flex items-center justify-center pt-16 space-x-3 text-white">
-            <Button shadow size="large">
+            <Button href="#intro" shadow size="large">
               Discover<span className="hidden sm:inline"> more</span>
             </Button>
-            <Button variant="secondary" shadow size="large">
+            <Button href="/join" variant="secondary" shadow size="large">
               Join us
             </Button>
           </div>
         </Container>
-        <section>
+        <section id="intro">
           <Container className="mt-16">
             <div className="mx-auto prose">
               <p className="lead">{landingData.intro.main}</p>
