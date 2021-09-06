@@ -135,7 +135,7 @@ export const memberCTAs = [
   },
   {
     name: "Spond",
-    href: "https://sudburyrowingclub.myclubhouse.co.uk",
+    href: "https://spond.com/login",
     icon: Spond,
   },
 ];

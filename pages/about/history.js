@@ -11,7 +11,11 @@ import reachPreWw1Image from "public/assets/history/reach.jpg";
 
 export default function Rules() {
   return (
-    <TextPage title="Club History">
+    <TextPage
+      title="Club History"
+      description="Rowing in Sudbury for more than 150 years."
+      ogImage="assets/og/history.png"
+    >
       <p className="lead">
         Although early records have been lost, it is known that Sudbury RC,
         formerly Stour BC, was formed some time before 1873, but ceased to

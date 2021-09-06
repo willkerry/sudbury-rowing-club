@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Container from "@/components/container";
 import Layout from "@/components/layout";
 import Button from "@/components/stour/button";
@@ -8,6 +7,8 @@ import Image from "next/image";
 import Link from "@/components/stour/link";
 import cn from "classnames";
 import { Link as ScrollLink } from "react-scroll";
+import { NextSeo } from "next-seo";
+import { BASE_URL } from "@/lib/constants";
 
 const l2rStages = [
   {
@@ -126,10 +127,15 @@ export default function Index() {
   return (
     <>
       <Layout>
-        <Head>
-          <title>Join us</title>
-        </Head>
-
+        <NextSeo
+          title="Start rowing at Sudbury Rowing Club"
+          description="Everything you need to know about getting rowing."
+          openGraph={{
+            title: "Start rowing at Sudbury Rowing Club",
+            description: "Everything you need to know about getting rowing.",
+            images: [{ url: BASE_URL + "/assets/og/join.png" }],
+          }}
+        />
         {/* Big hero */}
         <Container
           className="py-16 text-center text-gray-900 sm:py-24"

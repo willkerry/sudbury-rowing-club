@@ -1,14 +1,13 @@
-import Head from "next/head";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import { Link as ScrollLink } from "react-scroll";
 import Link from "@/components/stour/link";
 import rawData from "@/data/governance.json";
-import Button from "@/components/stour/button";
 import { HelpCircle, Image as ImageIcon, Info, XCircle } from "react-feather";
 import cn from "classnames";
 import { Popover, Transition } from "@headlessui/react";
+import { NextSeo } from "next-seo";
 
 export const getStaticProps = async () => {
   return {
@@ -110,9 +109,13 @@ export default function Governance({ data }) {
 
   return (
     <Layout>
-      <Head>
-        <title>Governance</title>
-      </Head>
+      <NextSeo
+        title="Governance"
+        openGraph={{
+          title: "Governance",
+          images: [{ url: BASE_URL + "assets/og/goverance.png" }],
+        }}
+      />
       <HeroTitle title="Governance" prose />
       <ScrollComponent
         items={[

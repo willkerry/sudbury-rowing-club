@@ -9,6 +9,7 @@ import { maptiler } from "pigeon-maps/providers";
 import Note from "@/components/stour/note";
 import { MapPin } from "react-feather";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
+import { NextSeo } from "next-seo";
 
 const apis = {
   google: "https://www.google.com/maps/search/?api=1&query=",
@@ -52,9 +53,15 @@ const maptilerProvider = maptiler(
 export default function FindUs({ preview }) {
   return (
     <Layout preview={preview}>
-      <Head>
-        <title>How to find us</title>
-      </Head>
+      <NextSeo
+        title="How to find us"
+        description="Directions to our club and to our regatta"
+        openGraph={{
+          title: "How to find us",
+          description: "Directions to our club and to our regatta",
+          images: [{ url: BASE_URL + "/assets/og/how-to-find-us.png" }],
+        }}
+      />
       <HeroTitle title="How to find us" />
 
       <Container>

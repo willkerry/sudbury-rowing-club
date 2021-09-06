@@ -1,6 +1,7 @@
 import TextPage from "@/components/layouts/text-page";
 import Link from "@/components/stour/link";
 import Color from "color";
+import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
@@ -254,7 +255,11 @@ export default function Brand({ blue }) {
   };
 
   return (
-    <TextPage title="Brand Assets">
+    <TextPage
+      title="Brand Assets"
+      description="Some handy resources for building things for Sudbury RC."
+      ogImage="/assets/og/brand.png"
+    >
       <h2>Crest</h2>
       <p>
         This version of our crest is intended to work well on screens and is

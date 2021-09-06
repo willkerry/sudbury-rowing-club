@@ -46,7 +46,75 @@
     ]
   },
   "entries": {
-    "text": "<ul><li>Entry fees £12 a seat excluding coxes.</li><li>All entries through BROE.</li><li>Entries close Sunday 1 August 23:59 hours.</li> <li>Entries may close earlier if oversubscribed.</li><li>The committee will limit racing to that which can be managed under the public health arrangements applicable to the event.</li><li>Payments accepted via BROE or cheques made payable to Sudbury Rowing Club and posted to: Sudbury Regatta, 97 Bures Road, Great Cornard, Sudbury, Suffolk, CO10 0JE</li></ul><p>The draw will take place at Great Cornard on Monday 2 August from 09:00. The committee will organise masters racing using the handicap system. Ranking points may be used to provide better racing for any relevant categories of entry. Please let us have as much information as possible on BROE. Sudbury Rowing Club is affiliated to British Rowing. The regatta is run by Sudbury Rowing Club under British Rowing Rules and Rules of Racing will apply. The regatta adheres to Row Safe, the BR guide to safe practice in rowing.<p>In order to help manage racing in these new times we are introducing Waves to the Stour. Under this system there will be 3 Waves each containing specific events. Competitors may have one entry only in any one Wave and clubs must\r\n    arrange for sufficient equipment for all their crews in any wave. There is no other limit to doubling up.</p<p>Crews who are successful in semi-finals may be asked to stay on the water to race their finals. In other words, if you are good you may race often.</p><p>We hope that this will reduce timetabling problems for athletes, clubs and the regatta.</p><p>The scheme is as below – please note that for Adaptive, Para-rowing or Mixed Junior entries we will catalyse negotiations between entrants to find suitable race times. Parent and Child events run in the same Divisions as the relevant adult gender.</p>"
+    "text": "<ul><li>Entry fees £12 a seat excluding coxes.</li><li>All entries through BROE.</li><li>Entries close Sunday 1 August 23:59 hours.</li> <li>Entries may close earlier if oversubscribed.</li><li>The committee will limit racing to that which can be managed under the public health arrangements applicable to the event.</li><li>Payments accepted via BROE or cheques made payable to Sudbury Rowing Club and posted to: Sudbury Regatta, 97 Bures Road, Great Cornard, Sudbury, Suffolk, CO10 0JE</li></ul><p>The draw will take place at Great Cornard on Monday 2 August from 09:00. The committee will organise masters racing using the handicap system. Ranking points may be used to provide better racing for any relevant categories of entry. Please let us have as much information as possible on BROE. Sudbury Rowing Club is affiliated to British Rowing. The regatta is run by Sudbury Rowing Club under British Rowing Rules and Rules of Racing will apply. The regatta adheres to Row Safe, the BR guide to safe practice in rowing.<p>In order to help manage racing in these new times we are introducing Waves to the Stour. Under this system there will be 3 Waves each containing specific events. Competitors may have one entry only in any one Wave and clubs must\r\n    arrange for sufficient equipment for all their crews in any wave. There is no other limit to doubling up.</p<p>Crews who are successful in semi-finals may be asked to stay on the water to race their finals. In other words, if you are good you may race often.</p><p>We hope that this will reduce timetabling problems for athletes, clubs and the regatta.</p><p>The scheme is as below – please note that for Adaptive, Para-rowing or Mixed Junior entries we will catalyse negotiations between entrants to find suitable race times. Parent and Child events run in the same Divisions as the relevant adult gender.</p>",
+    "waves": [
+      ["", "1×", "2×/−", "4×+", "4×−", "4", "8o"],
+      ["Ada/PR", "Any", "Any", "Any", "Any", "Any", "Any"],
+      ["Mixed Juniors", "Any", "Any", "Any", "Any", "Any", "Any"],
+      ["W", "2", "3", "1", "2", "2", "1"],
+      ["WJ", "1", "2", "3", "2", "3", ""],
+      ["O", "2", "3", "1", "3", "2", "1"],
+      ["OJ", "2", "1", "2", "3", "3", ""],
+      ["Mx", "", "2", "3", "2", "2", "3"],
+      ["WMas", "3", "1", "1", "3", "1", "2"],
+      ["Mas", "3", "1", "1", "3", "1", "2"],
+      ["Mx Mas", "", "2", "1", "1", "2", "3"]
+    ],
+    "categories": [
+      [
+        "Wave 1",
+        "WJ 1×",
+        "OJ 2×/−",
+        "WMas 2×/",
+        "Mas 2×/−",
+        "W 4×+",
+        "O 4×+",
+        "WMas 4×+",
+        "Mas 4×+",
+        "Mx Mas 4×+",
+        "Mx Mas 4×",
+        "WMas 4+",
+        "Mas 4+",
+        "W 8o",
+        "O 8o"
+      ],
+      [
+        "Wave 2",
+        "W 1×",
+        "O 1×",
+        "OJ 1×",
+        "WJ 2×/−",
+        "Mx 2×/−",
+        "Mx Mas 2×/−",
+        "OJ 4×+",
+        "W 4×−",
+        "WJ 4×−",
+        "Mx 4×−",
+        "W 4+",
+        "O 4+",
+        "Mx 4+",
+        "Mx Mas 4+",
+        "WMas 8o",
+        "Mas 8o"
+      ],
+      [
+        "Wave 3",
+        "WMas 1×",
+        "Mas 1×",
+        "W 2×/−",
+        "O 2×/−",
+        "WJ 4×+",
+        "Mx 4×+",
+        "O 4×−",
+        "OJ 4×−",
+        "WMas 4×−",
+        "Mas 4×−",
+        "WJ 4+",
+        "OJ 4+",
+        "Mx 8o",
+        "Mx Mas 8o"
+      ]
+    ]
   },
   "results": {
     "courseRecords": "/results/course/records.pdf",
@@ -299,7 +367,7 @@
             "club": ""
           },
           {
-            "text": "As always, lovely little regatta. Thanks for organising. Next time hope we can get more than one entry ?",
+            "text": "As always, lovely little regatta. Thanks for organising. Next time hope we can get more than one entry?",
             "name": "Alister",
             "club": "X-Press Boat Club"
           },

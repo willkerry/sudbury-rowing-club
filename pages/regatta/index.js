@@ -14,11 +14,10 @@ import Link from "@/components/stour/link";
 import Skeleton from "@/components/stour/skeleton";
 import rawData from "@/data/regatta.json";
 import { BASE_URL } from "@/lib/constants";
-import { EventJsonLd } from "next-seo";
+import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import ordinal from "ordinal";
-import { parseISO, format, formatDistanceStrict } from "date-fns";
+import { parseISO, format } from "date-fns";
 
 const RegattaHeroImage = dynamic(() =>
   import("@/components/regatta/landing-page/regatta-hero-image")
@@ -91,9 +90,15 @@ export default function Regatta({
   ];
   return (
     <Layout>
-      <Head>
-        <title>Sudbury Rowing Club Regatta, the ’International’</title>
-      </Head>
+      <NextSeo
+        title="Sudbury Rowing Club Regatta, the ’International’"
+        description="The best little regatta in the world."
+        openGraph={{
+          title: "Sudbury Rowing Club Regatta, the ’International’",
+          description: "The best little regatta in the world.",
+          images: [{ url: BASE_URL + "/assets/og/regatta.png" }],
+        }}
+      />
       <EventJsonLd
         name={intro.title}
         startDate={intro.date}
@@ -200,7 +205,14 @@ export default function Regatta({
             {
               summary: "Entries",
               icon: <EntriesIcon />,
-              content: <Entries>{data.entries.text}</Entries>,
+              content: (
+                <Entries
+                  table={data.entries.waves}
+                  categories={data.entries.categories}
+                >
+                  {data.entries.text}
+                </Entries>
+              ),
             },
             {
               summary: "Results",

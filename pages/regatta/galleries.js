@@ -5,6 +5,7 @@ import Layout from "@/components/layout";
 import rawData from "@/data/galleries";
 import Link from "next/link";
 import { ExternalLink } from "react-feather";
+import { NextSeo } from "next-seo";
 
 export const getStaticProps = async () => {
   return {
@@ -18,9 +19,15 @@ export const getStaticProps = async () => {
 export default function Photography({ data }) {
   return (
     <Layout>
-      <Head>
-        <title>Official photography from the Sudbury Regatta</title>
-      </Head>
+      <NextSeo
+        title="Official Photography | Sudbury Regatta"
+        description="Professional photography from the Sudbury Regatta."
+        openGraph={{
+          title: "Official Photography",
+          description: "Professional photography from the Sudbury Regatta.",
+          images: [{ url: BASE_URL + "/assets/og/photography.png" }],
+        }}
+      />
       <HeroTitle title="Official regatta photography" breadcrumbs />
       <Container>
         <div className="py-16 prose prose-lg max-w-none">

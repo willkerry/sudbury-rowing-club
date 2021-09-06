@@ -1,8 +1,8 @@
-import Head from "next/head";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Button from "@/components/stour/button";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 
 import courseMap from "public/assets/regatta/course/course-map.jpg";
@@ -11,9 +11,15 @@ import { Download } from "react-feather";
 export default function Photography({ preview }) {
   return (
     <Layout preview={preview}>
-      <Head>
-        <title>Sudbury Regatta Course</title>
-      </Head>
+      <NextSeo
+        title="Coursemap | Sudbury Regatta"
+        description="Sudbury’s challenging regatta course."
+        openGraph={{
+          title: "Coursemap",
+          description: "The Sudbury Regatta’s challenging regatta course.",
+          images: [{ url: BASE_URL + "/assets/og/course.png" }],
+        }}
+      />
       <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
       <Container className="mb-16">
         <div className="grid grid-cols-1 gap-16 py-16 sm:grid-cols-2">

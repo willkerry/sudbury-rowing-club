@@ -2,8 +2,10 @@ import TextPage from "@/components/layouts/text-page";
 
 export default function Rules() {
   return (
-    <TextPage title="Club Rules">
-      <p>(Ratified AGM <time dateTime="2005-12-18">18 December 2005</time>.)</p>
+    <TextPage title="Club Rules" ogImage="assets/og/club-rules.png">
+      <p>
+        (Ratified AGM <time dateTime="2005-12-18">18 December 2005</time>.)
+      </p>
       <p>
         The Committee will endeavour to provide refreshments for purchase in the
         club house. Individual members are asked to use the honesty box provided

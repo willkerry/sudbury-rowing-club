@@ -3,7 +3,10 @@ import Note from "@/components/stour/note";
 
 export default function Rules() {
   return (
-    <TextPage title="Anti-Bullying Policy">
+    <TextPage
+      title="Anti-Bullying Policy"
+      ogImage="assets/og/anti-bullying-policy.png"
+    >
       <h3>Introduction</h3>
       <p className="lead">
         This policy is based on the British Rowing Welfare Guidance document WG

@@ -2,7 +2,7 @@ import TextPage from "@/components/layouts/text-page";
 
 export default function PrivacyPolicy() {
   return (
-    <TextPage title="Privacy Policy">
+    <TextPage title="Privacy Policy" ogImage="assets/og/privacy-policy.png">
       <p>
         Updated <time dateTime="2018-08-24">24 August 2018</time>
       </p>

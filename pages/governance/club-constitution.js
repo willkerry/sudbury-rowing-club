@@ -11,7 +11,7 @@ const BlockHighlight = (props) => (
 );
 export default function Constitution() {
   return (
-    <TextPage title="Club Constitution">
+    <TextPage title="Club Constitution" ogImage="assets/og/constitution.png">
       <p className="block-emphasis">
         The Secretary shall retain each member’s signed declaration.
       </p>

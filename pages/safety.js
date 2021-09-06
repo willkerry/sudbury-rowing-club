@@ -1,6 +1,5 @@
 import SafetyPopup from "@/components/safety";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import { Download, ExternalLink } from "react-feather";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
@@ -9,6 +8,7 @@ import data from "@/data/safety.json";
 import Skeleton from "@/components/stour/skeleton";
 import { BASE_URL } from "lib/constants";
 import Link from "@/components/stour/link";
+import { NextSeo } from "next-seo";
 
 const ReactMarkdown = dynamic(() => import("react-markdown"), {
   loading: () => Skeleton(),
@@ -36,9 +36,15 @@ const SectionTitle = (props) => (
 export default function Safety({ items, docs, showStatus }) {
   return (
     <Layout>
-      <Head>
-        <title>Safety</title>
-      </Head>
+      <NextSeo
+        title="Safety | Sudbury Rowing Club"
+        description="Rowing safely at Sudbury Rowing Club."
+        openGraph={{
+          title: "Safety",
+          description: "Rowing safely at Sudbury Rowing Club.",
+          images: [{ url: BASE_URL + "/assets/og/safety.png" }],
+        }}
+      />
       <HeroTitle prose title="Safety" />
       <Container className="mx-auto my-12 space-y-16 max-w-prose">
         {showStatus && (

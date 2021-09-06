@@ -1,16 +1,21 @@
-import Head from "next/head";
 import Container from "@/components/container";
 import Layout from "@/components/layout";
 import ContactForm from "@/components/contact-form";
 import HeroTitle from "@/components/hero-title";
-import Link from "next/link";
+import { NextSeo } from "next-seo";
 
 export default function Contact() {
   return (
     <Layout>
-      <Head>
-        <title>Contact Sudbury Rowing Club</title>
-      </Head>
+      <NextSeo
+        title="Contact Sudbury Rowing Club"
+        description="Get in touch"
+        openGraph={{
+          title: "Contact Sudbury Rowing Club",
+          description: "Get in touch",
+          images: [{ url: BASE_URL + "/assets/og/contact.png" }],
+        }}
+      />
       <HeroTitle title="Contact a club officer" prose />
       <Container className="max-w-lg py-12">
         <div className="pb-10 mx-auto prose">

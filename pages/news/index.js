@@ -5,6 +5,7 @@ import HeroPost from "@/components/hero-post";
 import Layout from "@/components/layout";
 import { getAllPosts } from "../../lib/api";
 import HeroTitle from "@/components/hero-title";
+import { NextSeo } from "next-seo";
 
 export default function News({ allPosts }) {
   const heroPost = allPosts[0];
@@ -12,10 +13,16 @@ export default function News({ allPosts }) {
 
   return (
     <Layout>
-      <Head>
-        <title>News</title>
-      </Head>
-      <HeroTitle title="Latest News"/>
+      <NextSeo
+        title="News | Sudbury Rowing Club"
+        description="Latest news from Sudbury Rowing Club."
+        openGraph={{
+          title: "Latest News",
+          description: "Latest news from Sudbury Rowing Club.",
+          images: [{ url: BASE_URL + "/assets/og/news.png" }],
+        }}
+      />
+      <HeroTitle title="Latest News" />
       <Container className="pt-12">
         {heroPost && (
           <HeroPost
