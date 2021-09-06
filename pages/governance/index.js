@@ -8,6 +8,7 @@ import { HelpCircle, Image as ImageIcon, Info, XCircle } from "react-feather";
 import cn from "classnames";
 import { Popover, Transition } from "@headlessui/react";
 import { NextSeo } from "next-seo";
+import { BASE_URL } from "@/lib/constants";
 
 export const getStaticProps = async () => {
   return {

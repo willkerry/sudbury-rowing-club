@@ -5,7 +5,7 @@ import {
   EntriesIcon,
   EventsIcon,
   InfoIcon,
-  ResultsIcon,
+  ResultsIcon
 } from "@/components/regatta/icons";
 import Details from "@/components/regatta/landing-page/details";
 import RegattaHero from "@/components/regatta/landing-page/regatta-hero";
@@ -14,10 +14,10 @@ import Link from "@/components/stour/link";
 import Skeleton from "@/components/stour/skeleton";
 import rawData from "@/data/regatta.json";
 import { BASE_URL } from "@/lib/constants";
+import { format, parseISO } from "date-fns";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import ordinal from "ordinal";
-import { parseISO, format } from "date-fns";
 
 const RegattaHeroImage = dynamic(() =>
   import("@/components/regatta/landing-page/regatta-hero-image")
@@ -114,7 +114,7 @@ export default function Regatta({
           },
         }}
         url="https://sudburyrowingclub.org.uk/regatta"
-        images={[BASE_URL + "/assets/regatta/landing/drone.jpg"]}
+        images={[BASE_URL + "/assets/og/regatta.png"]}
         description="The best little regatta in the world."
       />
 

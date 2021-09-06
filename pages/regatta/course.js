@@ -2,9 +2,9 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Button from "@/components/stour/button";
+import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-
 import courseMap from "public/assets/regatta/course/course-map.jpg";
 import { Download } from "react-feather";
 

@@ -1,15 +1,13 @@
-import Head from "next/head";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
-import Image from "next/image";
-
-import { Map, Marker } from "pigeon-maps";
-import { maptiler } from "pigeon-maps/providers";
 import Note from "@/components/stour/note";
-import { MapPin } from "react-feather";
+import { BASE_URL } from "@/lib/constants";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 import { NextSeo } from "next-seo";
+import Image from "next/image";
+import { Map, Marker } from "pigeon-maps";
+import { maptiler } from "pigeon-maps/providers";
 
 const apis = {
   google: "https://www.google.com/maps/search/?api=1&query=",

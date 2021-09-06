@@ -1,4 +1,4 @@
-import Head from "next/head";
+import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/container";
 import MoreStories from "@/components/more-stories";
 import HeroPost from "@/components/hero-post";

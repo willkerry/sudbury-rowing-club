@@ -1,4 +1,4 @@
-import Head from "next/head";
+import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";

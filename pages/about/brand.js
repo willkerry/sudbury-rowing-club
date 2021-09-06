@@ -1,7 +1,6 @@
 import TextPage from "@/components/layouts/text-page";
 import Link from "@/components/stour/link";
 import Color from "color";
-import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";

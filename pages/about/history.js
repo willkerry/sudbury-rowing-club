@@ -1,6 +1,5 @@
 import TextPage from "@/components/layouts/text-page";
 import Image from "next/image";
-
 import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import aerial1936Image from "public/assets/history/1936-aerial.jpg";
 import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";

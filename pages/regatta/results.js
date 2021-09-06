@@ -12,7 +12,7 @@ export const getStaticProps = async () => {
     },
     revalidate: 60,
   };
-};
+};Œ
 
 export default function ResultsPage({ data }) {
   return (
