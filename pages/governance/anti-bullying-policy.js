@@ -5,7 +5,7 @@ export default function Rules() {
   return (
     <TextPage
       title="Anti-Bullying Policy"
-      ogImage="assets/og/anti-bullying-policy.png"
+      ogImage="/assets/og/anti-bullying-policy.png"
     >
       <h3>Introduction</h3>
       <p className="lead">

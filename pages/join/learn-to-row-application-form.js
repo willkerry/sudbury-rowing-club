@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function LearnToRowApplicationForm() {
   return (
-    <TextPage title="Apply for Learn to Row" ogImage="assets/og/apply.png">
+    <TextPage title="Apply for Learn to Row" ogImage="/assets/og/apply.png">
       <Note label="Course Dates" type="success" size="small">
         Our next Learn to Row course will run on Saturday afternoons from 4 Sep
         2021 to 25 Sep 2021, (13:00 to 16:00).

@@ -4,7 +4,7 @@ export default function Rules() {
   return (
     <TextPage
       title="Grievance and Disciplinary Policy"
-      ogImage="assets/og/grievance-and-disciplinary-policy.png"
+      ogImage="/assets/og/grievance-and-disciplinary-policy.png"
     >
       <h3>1. Introduction and Purpose</h3>
 

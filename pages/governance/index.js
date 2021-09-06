@@ -114,7 +114,7 @@ export default function Governance({ data }) {
         title="Governance"
         openGraph={{
           title: "Governance",
-          images: [{ url: BASE_URL + "assets/og/goverance.png" }],
+          images: [{ url: BASE_URL + "/assets/og/goverance.png" }],
         }}
       />
       <HeroTitle title="Governance" prose />
