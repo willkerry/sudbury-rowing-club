@@ -1,10 +1,9 @@
-import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
+import Link from "@/components/stour/link";
 import rawData from "@/data/galleries";
-import Link from "next/link";
-import { ExternalLink } from "react-feather";
+import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
 
 export const getStaticProps = async () => {
@@ -51,11 +50,8 @@ export default function Photography({ data }) {
 
 function GalleryLink({ index, href, name }) {
   return (
-    <Link key={index} href={href}>
-      <a className="inline-block pr-4 last-of-type:pr-0">
-        {name}
-        <ExternalLink size={12} className="inline mb-1 ml-1" />
-      </a>
+    <Link key={index} href={href} external>
+      {name}
     </Link>
   );
 }
@@ -79,7 +75,7 @@ function GalleryRow({ year, password, provider }) {
       <td className="!align-middle">
         {password && <GalleryPassword password={password} />}
       </td>
-      <td>
+      <td className="flex gap-6">
         {provider.map(({ name, href }, index) => (
           <GalleryLink key={index} href={href} name={name} />
         ))}
