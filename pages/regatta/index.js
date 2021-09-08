@@ -5,15 +5,16 @@ import {
   EntriesIcon,
   EventsIcon,
   InfoIcon,
-  ResultsIcon
+  ResultsIcon,
 } from "@/components/regatta/icons";
 import Details from "@/components/regatta/landing-page/details";
 import RegattaHero from "@/components/regatta/landing-page/regatta-hero";
 import Hero from "@/components/stour/hero";
 import Link from "@/components/stour/link";
-import Skeleton from "@/components/stour/skeleton";
+import Loading from "@/components/stour/loading";
 import rawData from "@/data/regatta.json";
 import { BASE_URL } from "@/lib/constants";
+import { CalendarIcon, MapIcon } from "@heroicons/react/outline";
 import { format, parseISO } from "date-fns";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
@@ -26,26 +27,26 @@ const Note = dynamic(() => import("@/components/stour/note"));
 const Text = dynamic(() => import("@/components/stour/text"));
 const Masonry = dynamic(() => import("@/components/stour/masonry"));
 const Results = dynamic(() => import("@/components/regatta/results"), {
-  loading: () => Skeleton(),
+  loading: () => Loading(),
 });
 const Entries = dynamic(() => import("@/components/regatta/entries"), {
-  loading: () => Skeleton(),
+  loading: () => Loading(),
 });
 const Events = dynamic(() => import("@/components/regatta/events"), {
-  loading: () => Skeleton(),
+  loading: () => Loading(),
 });
 const CompetitorInformation = dynamic(
   () => import("@/components/regatta/competitor-information"),
   {
-    loading: () => Skeleton(),
+    loading: () => Loading(),
   }
 );
 const ContactForm = dynamic(() => import("@/components/contact-form"), {
-  loading: () => Skeleton(),
+  loading: () => Loading(),
 });
 
 const Testimonial = dynamic(() => import("@/components/stour/testimonial"), {
-  loading: () => Skeleton(),
+  loading: () => Loading(),
 });
 
 export const getStaticProps = async () => {
@@ -123,6 +124,10 @@ export default function Regatta({
           ticketItems={ticketItems}
           subtitle="The Sudbury Regatta takes place on the first Saturday of August each year."
         />
+        <DateLocation
+          date={regattaDate}
+          location="Friars Meadow, Sudbury, CO10 2TL"
+        />
         <RegattaHeroImage
           title={
             <>
@@ -148,49 +153,6 @@ export default function Regatta({
             <Note type="success" label={intro.note.title}>
               {intro.note.text}
             </Note>
-          </div>
-          <div className="px-4 py-2 -mt-2 border rounded-lg">
-            <h3 className="mb-5 text-sm font-medium leading-7 tracking-widest text-gray-500 uppercase">
-              At a glance
-            </h3>
-            <dl className="">
-              {[
-                {
-                  label: "Date",
-                  value: regattaDate,
-                },
-                {
-                  label: "Location",
-                  value: (
-                    <Link href="/contact/how-to-find-us">Sudbury CO10 2TL</Link>
-                  ),
-                },
-                {
-                  label: "Spectator Admission",
-                  value: "Free",
-                },
-                {
-                  label: "Competitor Entries",
-                  value: (
-                    <>
-                      Via BROE. <Link href="/contact">Enquiries</Link>.
-                    </>
-                  ),
-                },
-
-                {
-                  label: "Parking",
-                  value: "Temporary event parking on Friars Meadow (paid)",
-                },
-              ].map((item, index) => (
-                <span key={index}>
-                  <dt className="mt-3 text-xs font-semibold leading-7 tracking-wider text-gray-500 uppercase align-baseline">
-                    {item.label}
-                  </dt>
-                  <dd className="mb-5 leading-7">{item.value}</dd>
-                </span>
-              ))}
-            </dl>
           </div>
         </div>
       </Container>
@@ -271,5 +233,35 @@ export default function Regatta({
         })}
       </Container>
     </Layout>
+  );
+}
+
+function Asides({ item, index }) {
+  return (
+    <div>
+      {aside.map((item, index) => (
+        <div key={index}>
+          <item.icon />
+          <span>{item.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DateLocation({ date, location }) {
+  return (
+    <div className="flex justify-center gap-6 my-8">
+      <div className="flex items-center">
+        <CalendarIcon className="inline-flex w-4 h-4 mr-1.5 text-gray-400" />
+        <span className="text-sm text-gray-800">{date}</span>
+      </div>
+      <div className="flex items-center">
+        <MapIcon className="inline-flex w-4 h-4 mr-1.5 text-gray-400" />
+        <span className="text-sm text-gray-800">
+          <Link href="/contact/how-to-find-us">{location}</Link>
+        </span>
+      </div>
+    </div>
   );
 }

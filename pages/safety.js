@@ -5,13 +5,13 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import data from "@/data/safety.json";
-import Skeleton from "@/components/stour/skeleton";
 import { BASE_URL } from "lib/constants";
 import Link from "@/components/stour/link";
 import { NextSeo } from "next-seo";
+import Loading from "@/components/stour/loading";
 
 const ReactMarkdown = dynamic(() => import("react-markdown"), {
-  loading: () => Skeleton(),
+  loading: () => Loading(),
 });
 const Button = dynamic(() => import("@/components/stour/button"));
 

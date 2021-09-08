@@ -3,7 +3,8 @@ import { sendContactMail } from "../../lib/mail-api";
 import Button from "../stour/button";
 import { contactableOfficers } from "../../lib/officer-contacts";
 import TextareaAutosize from "react-textarea-autosize";
-import { Check, Loader } from "react-feather";
+import { Check } from "react-feather";
+import Loading from "../stour/loading";
 
 class ContactForm extends Component {
   state = {
@@ -119,7 +120,7 @@ class ContactForm extends Component {
 
   submitContactForm = async (event) => {
     event.preventDefault();
-    this.setState({ formButtonText: <Loader className="animate-spin" /> });
+    this.setState({ formButtonText: <Loading /> });
 
     const { name, mail, formContent, recipientMail } = this.state;
 
