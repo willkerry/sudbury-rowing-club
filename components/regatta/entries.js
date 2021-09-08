@@ -2,7 +2,7 @@ import cn from "classnames";
 
 function Entries({ children, table, categories }) {
   return (
-    <div className="mx-auto prose" ƒ>
+    <div className="mx-auto prose">
       <div dangerouslySetInnerHTML={{ __html: children }} />
       <figure>
         <table>

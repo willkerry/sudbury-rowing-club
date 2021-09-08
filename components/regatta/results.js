@@ -1,5 +1,4 @@
 import ordinal from "ordinal";
-import { ExternalLink } from "react-feather";
 import DateFormatter from "@/components/date-formatter";
 import Note from "@/components/stour/note";
 import cn from "classnames";

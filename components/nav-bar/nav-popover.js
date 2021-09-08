@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import cn from "classnames";
 import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronDown } from "react-feather";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 
 export const navLinkClasses =
   "group transition duration-200 rounded-md inline-flex items-center text-base hover:text-black focus:outline-none px-1 -mx-1 py-0.5 -my-0.5";
@@ -13,7 +13,7 @@ const iconLinkClasses = "transition hover:text-black focus:outline-none";
 
 function Chevron() {
   return (
-    <ChevronDown
+    <ChevronDownIcon
       className="w-4 h-4 ml-0.5 -mb-px text-gray-400 group-hover:text-gray-500 transition"
       aria-hidden="true"
     />

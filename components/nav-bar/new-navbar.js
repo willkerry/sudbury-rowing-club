@@ -42,7 +42,7 @@ export default function Navbar() {
       {({ open }) => (
         <>
           <div className="max-w-screen-lg px-4 mx-auto sm:px-6">
-            <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
+            <div className="flex items-center justify-between py-6 md:space-x-10">
               {navbarLogo}
               {mobileMenuButton}
               <Popover.Group
@@ -61,7 +61,9 @@ export default function Navbar() {
                 as="nav"
                 className="items-center justify-end hidden space-x-4 md:flex md:flex-1 lg:w-0"
               >
-                <SafetyStatus />
+                <div className="hidden lg:flex">
+                  <SafetyStatus />
+                </div>
                 <NavPopover
                   compact
                   icon={Users}

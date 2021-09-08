@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import droneImage from "../../../public/assets/regatta/landing/drone.jpg";
-import { ArrowUp } from "react-feather";
+import { ArrowUpIcon } from "@heroicons/react/solid";
 
 export default function RegattaHeroImage({ title, subtitle }) {
   return (
@@ -20,7 +20,7 @@ export default function RegattaHeroImage({ title, subtitle }) {
             {title}
           </div>
           <div className="font-medium text-white opacity-75">
-            <ArrowUp className="inline-flex" size="1em" /> {subtitle}
+            <ArrowUpIcon className="inline-flex w-4 h-4 mb-px" size="1em" /> {subtitle}
           </div>
         </div>
       </div>

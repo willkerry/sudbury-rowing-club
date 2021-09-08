@@ -1,5 +1,5 @@
 import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDown, Zap } from "react-feather";
+import { ChevronDownIcon, LightningBoltIcon } from "@heroicons/react/solid";
 
 export default function Details({ items }) {
   function Detail(props) {
@@ -11,10 +11,10 @@ export default function Details({ items }) {
               <div className="flex items-center">
                 <div className="w-8 h-8 mr-4 text-gray-500">{props.icon}</div>
                 <div className="text-base text-gray-800">{props.summary}</div>
-                <ChevronDown
+                <ChevronDownIcon
                   className={`${
                     open ? "transform rotate-180" : ""
-                  } w-5 h-5 text-gray-400 ml-2`}
+                  } w-5 h-5 mt-0.5 text-gray-400 ml-2`}
                 />
               </div>
             </Disclosure.Button>
@@ -41,7 +41,7 @@ export default function Details({ items }) {
   return (
     <div className="p-6 space-y-3 border bg-gray-50 rounded-2xl">
       <h3 className="pb-1.5 flex items-center">
-        <Zap className="inline w-4 h-4 mr-1 text-blue-500 transform rotate-180" />
+        <LightningBoltIcon className="inline w-4 h-4 mr-1 text-blue-500 transform rotate-180" />
         <div className="text-sm font-medium tracking-wider text-gray-500 uppercase">
           Quick information
         </div>

@@ -1,6 +1,6 @@
-import { ChevronRight } from "react-feather";
 import { ImageComposite } from "@/components/regatta/landing-page/image-composite";
 import Link from "@/components/stour/link";
+import { ChevronRightIcon } from "@heroicons/react/solid";
 
 export default function RegattaHero({ ticketItems, subtitle }) {
   return (
@@ -15,7 +15,7 @@ export default function RegattaHero({ ticketItems, subtitle }) {
         {subtitle}{" "}
         <Link href="/">
           Learn more
-          <ChevronRight className="inline-flex mb-px" size="1em" />
+          <ChevronRightIcon className="inline-flex w-5 h-5 mb-px" />
         </Link>
       </p>
     </div>
