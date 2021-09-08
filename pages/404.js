@@ -11,7 +11,7 @@ export default function Custom404() {
       <Head>
         <title>Error 404</title>
       </Head>
-      <HeroTitle prose title="Page not found." />
+      <HeroTitle prose title="Page not found." transparent/>
 
       <Container className="mt-12 prose max-w-prose">
         <p>

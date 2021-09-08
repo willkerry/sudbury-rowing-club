@@ -26,7 +26,7 @@ function LandingImages() {
   return (
     <div className="my-10 border-t border-b sm:my-16">
       <div className="flex flex-row">
-        {landingImages.map(({ src, alt, index }) => (
+        {landingImages.map(({ src, alt }, index) => (
           <div key={index} className="relative w-1/3 h-24 bg-black sm:h-72">
             <Image src={src} alt={alt} layout="fill" className="object-cover" placeholder="blur" />
           </div>

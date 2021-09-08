@@ -31,7 +31,7 @@ const SponsorLogos = [
 function Sponsors(props) {
   return (
     <div className="flex items-center justify-center gap-8 my-12 space-between">
-      {SponsorLogos.map(({ logo, href, name, index }) => (
+      {SponsorLogos.map(({ logo, href, name }, index) => (
         <Link key={index} href={href}>
           <a aria-label={name} className="">
             {logo}
