@@ -9,36 +9,36 @@ function StatusIndicator() {
     <Link href="/safety" passHref>
       <a
         className={cn(
-          "flex items-center px-1.5 py-1 rounded font-semibold text-xs",
+          "flex items-center px-2 py-1 rounded-full font-medium text-xs border group transition",
           {
-            "bg-red-100": status == grades[3],
-            "bg-yellow-100": status == grades[2],
-            "bg-green-100": status == grades[1],
-            "bg-blue-100": status == grades[0],
+            "hover:bg-red-600 hover:border-red-600": status == grades[3],
+            "hover:bg-yellow-600 hover:border-yellow-600": status == grades[2],
+            "hover:bg-green-600 hover:border-green-600": status == grades[1],
+            "hover:bg-blue-600 hover:border-blue-600": status == grades[0],
           }
         )}
+        title={`River safety status: ${status}`}
       >
         <div
-          className={cn(
-            "inline-block w-3 h-3 mr-1 rounded-full animate-pulse",
-            {
-              "bg-red-500": status == grades[3],
-              "bg-yellow-600": status == grades[2],
-              "bg-green-500": status == grades[1],
-              "bg-blue-500": status == grades[0],
-            }
-          )}
+          className={cn("w-2.5 h-2.5 mr-1.5 rounded-full", {
+            "bg-red-500 animate-pulse group-hover:bg-red-200":
+              status == grades[3],
+            "bg-yellow-500 animate-pulse group-hover:bg-yellow-100":
+              status == grades[2],
+            "bg-green-500 group-hover:bg-green-200": status == grades[1],
+            "bg-blue-500 group-hover:bg-blue-200": status == grades[0],
+          })}
         />
         <span
-          className={cn("pt-px", {
-            "text-red-900": status == grades[3],
-            "text-yellow-900": status == grades[2],
-            "text-green-900": status == grades[1],
-            "text-blue-800": status == grades[0],
+          className={cn("font-medium group-hover:text-white transition", {
+            "text-red-600": status == grades[3],
+            "text-yellow-600": status == grades[2],
+            "text-green-600": status == grades[1],
+            "text-blue-600": status == grades[0],
           })}
         >
-          <span className="lg:sr-only">{status}</span>
-          <span className="hidden lg:inline">River status</span>
+          <span className="sr-only">River safety status: {status}</span>
+          <span className="">{status}</span>
         </span>
       </a>
     </Link>

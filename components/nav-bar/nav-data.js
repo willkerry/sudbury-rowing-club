@@ -147,7 +147,7 @@ export const socials = [
   },
   {
     name: "Facebook",
-    href: "https://m.facebook.com/sudburyrowing",
+    href: "https://facebook.com/sudburyrowing",
     icon: Facebook,
   },
   {
