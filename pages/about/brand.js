@@ -1,10 +1,10 @@
 import TextPage from "@/components/layouts/text-page";
 import Link from "@/components/stour/link";
+import combineURLs from "@/lib/helpers/combineURLs";
 import Color from "color";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
-import urljoin from "url-join";
 import tailwindConfig from "/tailwind.config.js";
 
 const Social = dynamic(() => import("@/components/logo/social"));
@@ -170,7 +170,7 @@ export default function Brand({ blue }) {
     return (
       <span className="flex flex-row items-center gap-1">
         <code className="uppercase">{getExtension}</code>
-        <Link href={urljoin(fileInfo, getExtension)}>
+        <Link href={combineURLs(fileInfo, getExtension)}>
           <HelpCircle className="w-4 h-4" />
         </Link>
       </span>
