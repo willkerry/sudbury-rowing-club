@@ -47,8 +47,8 @@ export default function Footer() {
     return data.map((item, index) => {
       return (
         <Link key={index} href={item.href} passHref>
-          <a href="#" className="mr-4">
-            <item.icon size={18} />
+          <a href="#" className="mr-4 transition hover:text-blue-200">
+            <item.icon size={18} strokeWidth={1.5} />
           </a>
         </Link>
       );
@@ -79,19 +79,23 @@ export default function Footer() {
           <div className="flex flex-col justify-between py-5 m-auto text-sm md:flex-row">
             <div className="mt-2">© Sudbury Rowing Club 2021.</div>
             <div className="mt-2">
-              <Link href="https://willkerry.com/">
-                <a className="mx-1.5 text-blue-100 transition  hover:text-white">
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    className="inline-flex mx-px mb-0.5"
-                  >
-                    <path d="M0 5h3.5l4 9.5L6 18H5zM7 5h3.5l4 9.5L13 18h-1zM16 13.5l4 4.5h4l-6.5-8zM18 8.5L19.5 5H24l-5 3.5z"></path>
-                  </svg>
-                </a>
-              </Link>
+              <div className="ml-2 text-blue-200">
+                <Link href="https://willkerry.com/">
+                  <a className="transition hover:text-white">
+                    Web by{" "}
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18.5"
+                      height="18.5"
+                      fill="currentColor"
+                      className="inline-flex mb-0.5"
+                    >
+                      <path d="M0 5h3.5l4 9.5L6 18H5zM7 5h3.5l4 9.5L13 18h-1zM16 13.5l4 4.5h4l-6.5-8zM18 8.5L19.5 5H24l-5 3.5z"></path>
+                    </svg>
+                    .
+                  </a>
+                </Link>
+              </div>
             </div>
             <div className="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
               <SocialIcons data={socials} />
