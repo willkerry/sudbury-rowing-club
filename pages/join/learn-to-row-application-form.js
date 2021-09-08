@@ -36,7 +36,7 @@ export default function LearnToRowApplicationForm() {
         marginWidth="0"
         className="overflow-hidden border shadow-inner rounded-xl"
       >
-        <Loading />
+        Loading…
       </iframe>
       <p className="prose-sm">
         Trouble accessing the Google Form?{" "}
