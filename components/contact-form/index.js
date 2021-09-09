@@ -3,8 +3,10 @@ import { sendContactMail } from "../../lib/mail-api";
 import Button from "../stour/button";
 import { contactableOfficers } from "../../lib/officer-contacts";
 import TextareaAutosize from "react-textarea-autosize";
-import { Check } from "react-feather";
 import Loading from "../stour/loading";
+import { CheckIcon } from "@heroicons/react/outline";
+
+console.log(contactableOfficers);
 
 class ContactForm extends Component {
   state = {
@@ -35,7 +37,6 @@ class ContactForm extends Component {
       <form className="grid grid-cols-1 gap-6 mx-auto">
         <label htmlFor="recipient" className="block">
           <span className="text-gray-700">Recipient</span>
-
           <select
             name="recipient"
             className={fieldClasses}
@@ -120,7 +121,7 @@ class ContactForm extends Component {
 
   submitContactForm = async (event) => {
     event.preventDefault();
-    this.setState({ formButtonText: <Loading /> });
+    this.setState({ formButtonText: Loading() });
 
     const { name, mail, formContent, recipientMail } = this.state;
 
@@ -128,7 +129,11 @@ class ContactForm extends Component {
     if (res.status < 300) {
       this.setState({
         formButtonDisabled: true,
-        formButtonText: <Check />,
+        formButtonText: (
+          <>
+            <CheckIcon className="w-6 h-6 mr-1" /> Sent
+          </>
+        ),
         name: "",
         mail: "",
         formContent: "",

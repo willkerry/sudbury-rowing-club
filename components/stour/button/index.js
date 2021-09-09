@@ -77,7 +77,7 @@ export function Button(props) {
   } = props;
 
   const baseStyles =
-    "rounded-md transition duration-300 border inline-block border-box select-none whitespace-nowrap relative text-center";
+    "rounded-md transition duration-300 border inline-block border-box select-none whitespace-nowrap relative text-center leading-none";
   const buttonClassName = cn(
     baseStyles,
     SIZE_MAPS[size],
