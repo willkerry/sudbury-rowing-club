@@ -1,6 +1,12 @@
 {
   "officers": [
     {
+      "name": "Test Officer",
+      "vacant": 0,
+      "role": "Secretary General",
+      "email": "wkerry.uk@gmail.com"
+    },
+    {
       "name": "Keith Paxman",
       "vacant": 0,
       "role": "Chairman",
