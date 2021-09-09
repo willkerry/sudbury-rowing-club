@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  repo: willkerry/sudbury-next-netlifycms
+  repo: willkerry/sudbury-rowing-club
 media_folder: static/img
 editor:
   preview: false
