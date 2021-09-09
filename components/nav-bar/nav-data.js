@@ -82,7 +82,7 @@ export const regatta = [
   },
   {
     name: "Events",
-    href: "/regatta/course",
+    href: "/regatta/events",
     icon: Rower,
   },
   {
