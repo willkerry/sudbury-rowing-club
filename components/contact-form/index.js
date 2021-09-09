@@ -6,8 +6,6 @@ import TextareaAutosize from "react-textarea-autosize";
 import Loading from "../stour/loading";
 import { CheckIcon } from "@heroicons/react/outline";
 
-console.log(contactableOfficers);
-
 class ContactForm extends Component {
   state = {
     formButtonDisabled: false,
