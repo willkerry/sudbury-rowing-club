@@ -47,7 +47,7 @@
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.11"
+    "tailwindcss": "^2.2.14"
   },
   "license": "MIT"
 }
