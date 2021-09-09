@@ -22,10 +22,22 @@ const composeMail = async (req, res) => {
     return;
   }
 
+  const adminMessage =
+    "Sent from a contact form on the Sudbury Rowing Club website.";
+  const newLine = "\r\n\r\n";
+
   const mailerRes = await mailer({
     senderMail,
     name,
-    text: content,
+    text:
+      content +
+      newLine +
+      "* * *" +
+      newLine +
+      "Sender: " +
+      `${name} <${senderMail}>` +
+      newLine +
+      adminMessage,
     recipientMail,
   });
   res.send(mailerRes);
