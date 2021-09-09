@@ -18,7 +18,7 @@ export default function Entries({ entryText, wavetable, wavecategories }) {
   return (
     <TextPage
       title="Entry Information"
-      ogImage="/assets/og/entires.png"
+      ogImage="/assets/og/entries.png"
       description="Details for competetive entry to the Sudbury Regatta."
     >
       <EntriesComponent categories={wavecategories} table={wavetable}>
