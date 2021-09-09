@@ -5,7 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { Fragment } from "react";
-import { Users } from "react-feather";
+import Users from "@/components/icons/user-dropdown";
 import NavPopover from "./nav-popover";
 import NavLink from "./nav-link";
 import SafetyStatus from "./safety-status";
