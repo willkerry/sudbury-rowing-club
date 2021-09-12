@@ -5,6 +5,10 @@ admin_path:
 webhook_url: 
 sections:
 - type: document
+  path: data/galleries.json
+  label: Galleries
+  match: "**/*"
+- type: document
   path: data/landing.json
   label: Landing page
 - type: directory
