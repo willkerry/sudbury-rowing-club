@@ -65,7 +65,7 @@ export default function Index({ allPosts }) {
             <div className="mx-auto prose">
               <p className="lead">{landingData.intro.main}</p>
               <p>{landingData.intro.secondary}</p>
-              <CommitteeSignature className="max-w-sm py-16 mx-auto" />
+              <CommitteeSignature className="w-48 py-16 mx-auto sm:w-min sm:max-w-sm" />
               <span className="sr-only">The Committee</span>
             </div>
             <Sponsors />

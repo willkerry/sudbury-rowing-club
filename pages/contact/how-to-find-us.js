@@ -65,7 +65,7 @@ export default function FindUs({ preview }) {
       <Container>
         <div className="grid grid-cols-1 gap-16 py-10 md:grid-cols-2">
           <div>
-            <div className="relative z-10 flex overflow-hidden border rounded-lg">
+            <div className="relative z-10 flex overflow-hidden border rounded">
               <Map
                 provider={maptilerProvider}
                 dprs={[1, 2]}

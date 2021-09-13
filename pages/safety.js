@@ -48,7 +48,7 @@ export default function Safety({ items, docs, showStatus }) {
       <HeroTitle prose title="Safety" />
       <Container className="mx-auto my-12 space-y-16 max-w-prose">
         {showStatus && (
-          <div className="border rounded-lg">
+          <div className="border rounded">
             <SafetyPopup />
           </div>
         )}

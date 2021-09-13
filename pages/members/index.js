@@ -1,21 +1,54 @@
-import TextPage from "@/components/layouts/text-page";
-import Image from "next/image";
+import Head from "next/head";
+import Container from "@/components/container";
+import HeroTitle from "@/components/hero-title";
+import Layout from "@/components/layout";
+import Button from "@/components/stour/button";
+import { Home, Search } from "react-feather";
+import Link from "@/components/stour/link";
 
-import boathouseImage from "public/assets/members/boathouse.png";
-
-export default function Rules() {
+export default function Custom404() {
   return (
-    <TextPage title="Members’ Resources">
-      <Image src={boathouseImage} placeholder="blur" alt="" />
-      <p className="lead">
-        Although early records have been lost, it is known that Sudbury RC,
-        formerly Stour BC, was formed some time before 1873, but ceased to
-        function during a period from that time until 1883 when in May of that
-        year two meetings took place at the Anchor Hotel in Sudbury, when it was
-        proposed and agreed that the Boat Club be reformed. The Treasurer’s
-        books for the old Club for the years from 1877 to 1881 were produced
-        showing a credit balance of 14/6d (72.5p).
-      </p>
-    </TextPage>
+    <Layout>
+      <Head>
+        <title>Notices</title>
+      </Head>
+      <HeroTitle prose title="Notices" transparent />
+
+      <Container className="mt-12 max-w-prose">
+        <div className="border divide-y rounded">
+          <h2 className="p-4 text-sm font-medium tracking-wide text-gray-600 uppercase">
+            Officer Nominations
+          </h2>
+          <p className="p-4">
+            The following officers nominations have been submitted ahead of the
+            2021 AGM. Further nominations should be submitted to the secretary.
+          </p>
+          <div className="flex flex-col gap-4 p-4">
+            <div className="flex flex-col">
+              <h3 className="font-medium text-gray-700">
+                Nominations for Chairman
+              </h3>
+              <Link href="" download>
+                Name Name
+              </Link>
+              <Link href="" download>
+                Name Name
+              </Link>
+            </div>
+            <div className="flex flex-col">
+              <h3 className="font-medium text-gray-700">
+                Nominations for Captain
+              </h3>
+              <Link href="" download>
+                Name Name
+              </Link>
+              <Link href="" download>
+                Name Name
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </Layout>
   );
 }

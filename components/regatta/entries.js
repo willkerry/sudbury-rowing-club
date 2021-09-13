@@ -53,7 +53,7 @@ function Entries({ children, table, categories }) {
       {categories.map((category, index) => (
         <p
           className={cn(
-            "flex flex-wrap gap-2 text-sm rounded-lg p-2",
+            "flex flex-wrap gap-2 text-sm rounded p-2",
             index == 0
               ? "bg-red-500 text-white"
               : index == 1

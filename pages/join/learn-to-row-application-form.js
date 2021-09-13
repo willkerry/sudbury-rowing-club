@@ -34,7 +34,7 @@ export default function LearnToRowApplicationForm() {
         frameBorder="0"
         marginHeight="0"
         marginWidth="0"
-        className="overflow-hidden border shadow-inner rounded-xl"
+        className="overflow-hidden border rounded shadow-inner"
       >
         Loading…
       </iframe>

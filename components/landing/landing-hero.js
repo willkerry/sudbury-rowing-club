@@ -7,11 +7,11 @@ import { PlayIcon } from "@heroicons/react/solid";
 function LandingHero(props) {
   return (
     <Player youTubeId={props.youTubeId} youTubeStart={props.youTubeStart}>
-      <div className="relative flex overflow-hidden shadow-lg rounded-2xl group">
+      <div className="relative flex overflow-hidden shadow-lg rounded-xl group">
         <Image
           src={DroneImage}
           alt="Aerial photograph of a Sudbury crew training."
-          className="rounded-2xl"
+          className="rounded-xl"
           placeholder="blur"
         />
         <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-3 p-6 sm:gap-8 md:gap-12 lg:gap-14 sm:p-12 md:p-24">

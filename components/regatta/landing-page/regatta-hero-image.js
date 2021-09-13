@@ -5,7 +5,7 @@ import { ArrowUpIcon } from "@heroicons/react/solid";
 
 export default function RegattaHeroImage({ title, subtitle }) {
   return (
-    <div className="relative flex overflow-hidden shadow-lg rounded-2xl">
+    <div className="relative flex overflow-hidden shadow-lg rounded-xl">
       <Image
         src={droneImage}
         placeholder="blur"

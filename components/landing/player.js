@@ -35,17 +35,16 @@ function Player(props) {
           onClose={() => setIsOpen(false)}
           className="fixed inset-0 z-10 overflow-y-auto"
         >
-          <div className="flex justify-center">
-            <Dialog.Overlay className="fixed inset-0 z-0 bg-black opacity-60" />
-            <div className="flex items-center w-screen h-screen p-48">
-              <YouTube
-                videoId={videoId}
-                opts={opts}
-                containerClassName="w-full aspect-w-16 aspect-h-9"
-                className="bg-white rounded-lg shadow-xl z-2"
-              />
-              <button />
-            </div>
+          <Dialog.Overlay className="fixed inset-0 z-0 bg-black opacity-60" />
+
+          <div className="flex items-center justify-center w-full h-full p-2 sm:p-10 md:p-20 lg:p-40 xl:p-60">
+            <YouTube
+              videoId={videoId}
+              opts={opts}
+              containerClassName="w-full aspect-w-16 aspect-h-9"
+              className="bg-white rounded-lg shadow-xl z-2"
+            />
+            <button />
           </div>
         </Dialog>
       </Transition>

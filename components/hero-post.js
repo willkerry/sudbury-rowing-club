@@ -25,7 +25,7 @@ export default function HeroPost({
           <p className="mb-4 text-lg text-gray-600">{excerpt}</p>
         </div>
         <div className="order-first md:col-span-2">
-          <div className="relative mb-8 rounded-lg h-96 md:mb-16">
+          <div className="relative mb-8 rounded h-96 md:mb-16">
             <CoverImage
               title={title}
               src={coverImage}

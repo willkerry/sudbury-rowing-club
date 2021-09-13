@@ -1,6 +1,7 @@
 import Container from "../components/container";
 import cn from "classnames";
 import Breadcrumbs from "nextjs-breadcrumbs";
+import { HelpCircle } from "react-feather";
 
 export default function HeroTitle({
   title,

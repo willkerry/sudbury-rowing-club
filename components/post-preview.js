@@ -10,7 +10,7 @@ export function PostPreview(props) {
     <Link as={`/news/${slug}`} href="/news/[slug]">
       <a
         className={cn(
-          "relative h-64 border rounded-lg",
+          "relative h-64 border rounded",
           !coverImage &&
             "bg-white border-gray-300 hover:border-blue-400 transition group"
         )}
@@ -22,15 +22,15 @@ export function PostPreview(props) {
               alt=""
               layout="fill"
               objectFit="cover"
-              className="z-0 rounded-lg"
+              className="z-0 rounded"
             />
-            <div className="absolute w-full h-full transition duration-200 rounded-lg hover:shadow-lg opacity-70 bg-gradient-to-b from-transparent to-blue-800 hover:opacity-60"></div>
+            <div className="absolute w-full h-full transition duration-200 rounded hover:shadow-lg opacity-70 bg-gradient-to-b from-transparent to-blue-800 hover:opacity-60"></div>
           </>
         )}
 
         <div
           className={cn(
-            "absolute bottom-0 z-40 mx-5 my-4 rounded-lg",
+            "absolute bottom-0 z-40 mx-5 my-4 rounded",
             coverImage ? "text-white" : "text-gray-900"
           )}
         >

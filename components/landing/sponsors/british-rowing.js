@@ -1,4 +1,3 @@
-import parseWithOptions from "date-fns/fp/parseWithOptions";
 import * as React from "react";
 
 function BritishRowing(props) {

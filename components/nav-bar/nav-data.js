@@ -118,8 +118,8 @@ export const regattaCTAs = [
 ];
 export const members = [
   {
-    name: "Officer Nominations",
-    href: "/members/officer-nominations",
+    name: "Notices",
+    href: "/members",
   },
 ];
 export const memberCTAs = [

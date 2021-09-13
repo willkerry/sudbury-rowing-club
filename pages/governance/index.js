@@ -1,14 +1,14 @@
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
-import { Link as ScrollLink } from "react-scroll";
 import Link from "@/components/stour/link";
 import rawData from "@/data/governance.json";
-import { HelpCircle, Image as ImageIcon, Info, XCircle } from "react-feather";
-import cn from "classnames";
-import { Popover, Transition } from "@headlessui/react";
-import { NextSeo } from "next-seo";
 import { BASE_URL } from "@/lib/constants";
+import { Popover, Transition } from "@headlessui/react";
+import cn from "classnames";
+import { NextSeo } from "next-seo";
+import { HelpCircle, Image as ImageIcon, XCircle } from "react-feather";
+import { Link as ScrollLink } from "react-scroll";
 
 export const getStaticProps = async () => {
   return {
@@ -26,8 +26,8 @@ const GovGrid = ({ children }) => (
 );
 const StyledScrollLink = (props) => (
   <ScrollLink
-    activeClass="text-gray-800"
-    className="inline-block mr-6 transition hover:text-gray-800 hover:cursor-pointer"
+    activeClass="text-gray-900 bg-gray-100"
+    className="block p-2 mr-4 -m-2 transition rounded-md whitespace-nowrap hover:bg-gray-100 hover:text-gray-900 hover:cursor-pointer"
     spy={true}
     smooth={true}
     offset={-100}
@@ -37,7 +37,7 @@ const StyledScrollLink = (props) => (
 );
 const ScrollComponent = ({ items }) => (
   <div className="sticky top-0 z-10 bg-white border-b">
-    <div className="container max-w-screen-lg px-5 py-5 mx-auto text-gray-500 ">
+    <div className="container flex items-center h-16 max-w-screen-lg px-5 mx-auto overflow-scroll text-gray-500">
       {items.map((item, index) => (
         <StyledScrollLink key={index} to={item.to}>
           {item.name}
@@ -136,7 +136,7 @@ export default function Governance({ data }) {
                 <div key={index}>
                   <div
                     className={cn(
-                      "flex items-center justify-center w-full mb-2 rounded-lg h-36 relative overflow-hidden",
+                      "flex items-center justify-center w-full mb-2 rounded h-36 relative overflow-hidden",
                       !entry.vacant &&
                         "bg-gradient-to-b from-gray-200 to-gray-100"
                     )}
@@ -161,7 +161,7 @@ export default function Governance({ data }) {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute top-0 left-0 w-full h-full p-4 bg-white bg-opacity-50 rounded-lg backdrop-blur">
+                            <Popover.Panel className="absolute top-0 left-0 w-full h-full p-4 bg-white bg-opacity-50 rounded backdrop-blur">
                               <div className="text-xs font-medium text-gray-600">
                                 <p>Image not currently available.</p>
                               </div>

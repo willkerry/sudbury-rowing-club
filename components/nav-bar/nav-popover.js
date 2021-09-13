@@ -5,16 +5,18 @@ import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
 export const navLinkClasses =
-  "group transition duration-200 rounded-md inline-flex items-center text-base hover:text-black focus:outline-none px-1 -mx-1 py-0.5 -my-0.5";
-export const navLinkColor = "text-gray-600";
-export const navLinkActiveColor = "text-black font-medium";
+  "group transition duration-200 inline-flex p-3 text-sm hover:text-black focus:outline-none hover:bg-gray-50 focus:bg- rounded-md";
+export const navLinkColor = "text-gray-500";
+export const navLinkActiveColor = "text-black";
 const iconLinkColor = "text-gray-500";
 const iconLinkClasses = "transition hover:text-black focus:outline-none";
 
-function Chevron() {
+function Chevron(open) {
   return (
     <ChevronDownIcon
-      className="w-4 h-4 ml-0.5 -mb-px text-gray-400 group-hover:text-gray-500 transition"
+      className={cn(
+        "w-3 h-3 ml-0.5 -mb-px transition group-hover:text-gray-800 text-gray-400"
+      )}
       aria-hidden="true"
     />
   );
@@ -25,7 +27,7 @@ export default function NavPopover(props) {
     return items.map((item, index) => {
       return (
         <Link key={index} href={item.href}>
-          <a className="flex items-start p-3 -m-3 rounded-lg hover:bg-gray-50">
+          <a className="flex items-start p-3 -m-3 rounded hover:bg-gray-50">
             {item.icon && (
               <item.icon
                 className="flex-shrink-0 w-6 h-6 text-blue-700"
@@ -111,7 +113,7 @@ export default function NavPopover(props) {
                 !props.compact ? "w-screen max-w-sm" : " max-w-xs"
               )}
             >
-              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
                 {props.compact ? (
                   <div className="relative grid gap-4 p-4 bg-white">
                     <CompactNavItemList items={props.navData} />
@@ -143,7 +145,7 @@ export default function NavPopover(props) {
       <Popover.Button
         className={cn(
           open ? navLinkActiveColor : props.icon ? iconLinkColor : navLinkColor,
-          props.icon ? iconLinkClasses : navLinkClasses
+          props.icon ? iconLinkClasses : cn(navLinkClasses, "items-center")
         )}
       >
         {props.icon ? (

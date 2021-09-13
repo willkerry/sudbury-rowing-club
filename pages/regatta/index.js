@@ -19,6 +19,7 @@ import { format, parseISO } from "date-fns";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import ordinal from "ordinal";
+import Image from "next/image";
 
 const RegattaHeroImage = dynamic(() =>
   import("@/components/regatta/landing-page/regatta-hero-image")
@@ -89,6 +90,43 @@ export default function Regatta({
       value: "Friars Meadow, \nSudbury CO10 2TL",
     },
   ];
+  const galleryImages = [
+    {
+      src: "/assets/regatta/landing/gallery/regatta1600x900.jpg",
+      width: 1600,
+      height: 900,
+    },
+    {
+      src: "/assets/regatta/landing/gallery/regatta1920x1278.jpg",
+      width: 1920,
+      height: 1278,
+    },
+    {
+      src: "/assets/regatta/landing/gallery/regatta2560x1707.jpg",
+      width: 2560,
+      height: 1707,
+    },
+    {
+      src: "/assets/regatta/landing/gallery/regatta768x576.jpg",
+      width: 768,
+      height: 576,
+    },
+    {
+      src: "/assets/regatta/landing/gallery/regatta960x512.jpg",
+      width: 960,
+      height: 512,
+    },
+    {
+      src: "/assets/regatta/landing/gallery/regatta960x720.jpg",
+      width: 960,
+      height: 720,
+    },
+    {
+      src: "/assets/regatta/landing/gallery/regatta1024x683.jpg",
+      width: 1024,
+      height: 683,
+    },
+  ];
   return (
     <Layout>
       <NextSeo
@@ -153,51 +191,69 @@ export default function Regatta({
             <Note type="success" label={intro.note.title}>
               {intro.note.text}
             </Note>
+            <div className="h-5" />
+            <Details
+              items={[
+                {
+                  summary: "Events",
+                  icon: <EventsIcon />,
+                  content: <Events data={races} coursemap={courseMap} />,
+                },
+                {
+                  summary: "Entries",
+                  icon: <EntriesIcon />,
+                  content: (
+                    <Entries
+                      table={data.entries.waves}
+                      categories={data.entries.categories}
+                    >
+                      {data.entries.text}
+                    </Entries>
+                  ),
+                },
+                {
+                  summary: "Results",
+                  icon: <ResultsIcon />,
+                  content: <Results data={data} tab />,
+                },
+                {
+                  summary: "Important",
+                  icon: <InfoIcon />,
+                  content: <CompetitorInformation tab />,
+                },
+                {
+                  summary: "Contact",
+                  icon: <ContactIcon />,
+                  content: (
+                    <div className="max-w-md mx-auto">
+                      <ContactForm />
+                    </div>
+                  ),
+                },
+              ]}
+            />
           </div>
         </div>
       </Container>
-      <Container className="my-10">
-        <Details
-          items={[
-            {
-              summary: "Events",
-              icon: <EventsIcon />,
-              content: <Events data={races} coursemap={courseMap} />,
-            },
-            {
-              summary: "Entries",
-              icon: <EntriesIcon />,
-              content: (
-                <Entries
-                  table={data.entries.waves}
-                  categories={data.entries.categories}
-                >
-                  {data.entries.text}
-                </Entries>
-              ),
-            },
-            {
-              summary: "Results",
-              icon: <ResultsIcon />,
-              content: <Results data={data} tab />,
-            },
-            {
-              summary: "Important",
-              icon: <InfoIcon />,
-              content: <CompetitorInformation tab />,
-            },
-            {
-              summary: "Contact",
-              icon: <ContactIcon />,
-              content: (
-                <div className="max-w-md mx-auto">
-                  <ContactForm />
-                </div>
-              ),
-            },
-          ]}
-        />
-      </Container>
+
+      <div className="w-full overflow-x-scroll">
+        <div className="flex gap-4 pr-4 m-4 min-w-max">
+          {galleryImages.map((image, index) => (
+            <figure key={index} className="flex flex-col">
+              <Image
+                src={image.src}
+                width={(image.width / image.height) * 300}
+                height={300}
+                alt=""
+                className="rounded"
+              />
+              <figcaption className="mt-1 text-sm text-gray-800">
+                caption
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
       <Hero
         title="Some of the people who’ve come to our regatta have said lovely things about it"
         label="Feedback"

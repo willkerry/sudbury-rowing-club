@@ -3,7 +3,6 @@ import Errc from "@/components/landing/sponsors/errc";
 import Rowperfect from "@/components/landing/sponsors/rowperfect";
 import Specflue from "@/components/landing/sponsors/specflue";
 import Link from "next/link";
-import cn from "classnames";
 
 const SponsorLogos = [
   {
@@ -28,17 +27,19 @@ const SponsorLogos = [
   },
 ];
 
-function Sponsors(props) {
+function Sponsors() {
   return (
-    <div className="flex items-center justify-center gap-8 my-12 space-between">
+    <ul className="flex items-center justify-center gap-8 my-12 space-between">
       {SponsorLogos.map(({ logo, href, name }, index) => (
-        <Link key={index} href={href}>
-          <a aria-label={name} className="">
+        <li key={index}>
+        <Link href={href}>
+          <a aria-label={name}>
             {logo}
           </a>
         </Link>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 export default Sponsors;

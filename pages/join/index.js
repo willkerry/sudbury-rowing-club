@@ -149,7 +149,7 @@ export default function Index() {
             <ThumbsUp className="inline w-12 h-12 text-blue-400 sm:w-16 sm:h-16 rotate-3" />
           </h1>
           <div
-            className="z-0 flex mx-auto overflow-hidden shadow-xl rounded-xl -rotate-2"
+            className="z-0 flex mx-auto overflow-hidden rounded shadow-xl -rotate-2"
             style={{ maxWidth: 240, maxHeight: 160 }}
           >
             <Image
@@ -241,7 +241,7 @@ function JoinCTA(props) {
   return (
     <div
       className={cn(
-        "grid gap-12 p-12 bg-gray-100 border shadow-lg md:grid-cols-2 rounded-xl",
+        "grid gap-12 p-12 bg-gray-100 border shadow-lg md:grid-cols-2 rounded",
         props.className
       )}
     >
@@ -347,7 +347,7 @@ function OverviewContent() {
       {overview.map(({ title, content, index, image }) => (
         <div key={index} id={title} className="">
           {image && (
-            <div className="flex overflow-hidden rounded-lg shadow">
+            <div className="flex overflow-hidden rounded shadow">
               <Image
                 src={image.src}
                 alt={image.alt}
@@ -396,7 +396,7 @@ function OverviewSidebar() {
 
 function L2RCallToAction({}) {
   const classes =
-    "flex items-center justify-between gap-4 p-6 border shadow rounded-xl";
+    "flex items-center justify-between gap-4 p-6 border shadow rounded";
   return (
     <div className="grid gap-6 my-20 text-gray-700 sm:gap-12 md:grid-cols-2 sm:my-36">
       <div className={cn("border-green-300 bg-green-50", classes)}>
