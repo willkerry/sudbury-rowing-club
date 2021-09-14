@@ -15,14 +15,13 @@ export default function PostHeader({ title, coverImage, date, author }) {
 
       {coverImage && (
         <div className="mb-8 md:mb-16 sm:mx-0">
-          <div style={{ height: "32em" }} className="max-w-3xl mx-auto">
+          <div className="h-56 max-w-3xl mx-auto sm:h-64 md:h-96">
             <div className="relative h-full max-w-full rounded shadow-lg">
               <Image
                 src={coverImage}
                 alt={title}
                 layout="fill"
                 objectFit="cover"
-                quality={100}
                 className="rounded bg-gray-50"
               />
             </div>

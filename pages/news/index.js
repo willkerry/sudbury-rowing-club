@@ -4,8 +4,9 @@ import MoreStories from "@/components/more-stories";
 import HeroPost from "@/components/hero-post";
 import Layout from "@/components/layout";
 import { getAllPosts } from "../../lib/api";
-import HeroTitle from "@/components/hero-title";
 import { NextSeo } from "next-seo";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
 
 export default function News({ allPosts }) {
   const heroPost = allPosts[0];
@@ -22,8 +23,17 @@ export default function News({ allPosts }) {
           images: [{ url: BASE_URL + "/assets/og/news.png" }],
         }}
       />
-      <HeroTitle title="Latest News" />
-      <Container className="pt-12">
+      {/* <HeroTitle title="News" transparent/>  */}
+      <div className="flex items-center py-6 border-t border-b">
+        <Container>
+          <Label className="max-w-prose">Latest News</Label>
+          <h1 className="max-w-prose">
+            For more updates, follow us on{" "}
+            <Link href="https://facebook.com/sudburyrowing">Facebook</Link>.
+          </h1>
+        </Container>
+      </div>
+      <Container className="my-10">
         {heroPost && (
           <HeroPost
             title={heroPost.title}

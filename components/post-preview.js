@@ -12,7 +12,7 @@ export function PostPreview(props) {
         <Link as={`/news/${slug}`} href="/news/[slug]">
           <a className="flex flex-col overflow-hidden transition bg-white border divide-y rounded hover:border-blue-400 group">
             {coverImage ? (
-              <div className="relative h-56 ">
+              <div className="relative h-56 sm:h-48 md:h-36 lg:h-56">
                 <Image
                   src={coverImage}
                   alt=""
@@ -23,7 +23,7 @@ export function PostPreview(props) {
                 />
               </div>
             ) : (
-              <div className="relative h-56 px-2.5 pt-1.5 overflow-hidden text-6xl font-bold tracking-tighter text-gray-100 transition select-none group-hover:text-blue-50">
+              <div className="relative h-56 sm:h-48 md:h-36 lg:h-56 px-2.5 pt-1.5 overflow-hidden text-6xl font-bold tracking-tighter text-gray-100 transition select-none group-hover:text-blue-50">
                 {title}
               </div>
             )}

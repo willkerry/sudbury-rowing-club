@@ -26,6 +26,9 @@ textarea,
 select {
   @apply w-full mt-1 transition border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50;
 }
+select {
+  @apply cursor-pointer hover:border-blue-600 hover:ring-blue-200 hover:ring hover:ring-opacity-50;
+}
 [type="checkbox"] {
   @apply mx-2 rounded hover:cursor-pointer;
 }

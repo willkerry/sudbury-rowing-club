@@ -6,20 +6,9 @@ export default function CoverImage({ title, src, slug, height, width }) {
     <Image
       src={src}
       alt={`Cover Image for ${title}`}
-      className="rounded"
       layout="fill"
       objectFit="cover"
     />
   );
-  return (
-    <div className="sm:mx-0">
-      {slug ? (
-        <Link as={`/news/${slug}`} href="/news/[slug]">
-          <a aria-label={title}>{image}</a>
-        </Link>
-      ) : (
-        image
-      )}
-    </div>
-  );
+  return image;
 }
