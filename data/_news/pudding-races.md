@@ -13,4 +13,4 @@ Don Christmas hats and plenty of layers this December before bundling the in-la
 
 Let Emma or Jeanette know that you'll be attending so that sufficient food can be prepared and then declare your availability on Squadlist so that approximately equal teams can be engineered.
 
-... and, whatever you do, don't forget the hats!
+...and, whatever you do, don't forget the hats!

@@ -1,15 +1,15 @@
 import DateFormatter from "../components/date-formatter";
 import PostTitle from "../components/post-title";
 import Image from "next/image";
-
+import Label from "./stour/label";
 export default function PostHeader({ title, coverImage, date, author }) {
   return (
     <>
-      <div className="max-w-2xl mx-auto my-16">
-        <div className="mb-3">
+      <div className="max-w-2xl mx-auto my-12 text-center">
+        <Label>
           <DateFormatter dateString={date} />
-          <span className="text-gray-500"></span>
-        </div>
+        </Label>
+
         <PostTitle>{title}</PostTitle>
       </div>
 

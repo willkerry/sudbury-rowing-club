@@ -1,6 +1,7 @@
 ---
 title: "Peterborough Spring and National Schools"
 date: "2018-06-04"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

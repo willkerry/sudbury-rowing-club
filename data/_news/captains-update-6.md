@@ -1,6 +1,7 @@
 ---
 title: "Captain's Update"
 date: "2013-07-28"
+author: "Keith Paxman"
 categories: 
   - "news"
 ---

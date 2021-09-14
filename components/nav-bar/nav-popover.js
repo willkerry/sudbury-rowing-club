@@ -5,7 +5,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
 export const navLinkClasses =
-  "group transition duration-200 inline-flex p-3 text-sm hover:text-black focus:outline-none hover:bg-gray-50 focus:bg- rounded-md";
+  "group transition duration-200 inline-flex p-3 text-sm hover:text-black focus:outline-none hover:bg-gray-100 focus:bg- rounded-md";
 export const navLinkColor = "text-gray-500";
 export const navLinkActiveColor = "text-black";
 const iconLinkColor = "text-gray-500";
@@ -27,7 +27,7 @@ export default function NavPopover(props) {
     return items.map((item, index) => {
       return (
         <Link key={index} href={item.href}>
-          <a className="flex items-start p-3 -m-3 rounded hover:bg-gray-50">
+          <a className="flex items-start p-3 -m-3 rounded hover:bg-gray-100">
             {item.icon && (
               <item.icon
                 className="flex-shrink-0 w-6 h-6 text-blue-700"
@@ -61,7 +61,7 @@ export default function NavPopover(props) {
       return (
         <div key={index} className="flow-root">
           <Link href={cta.href}>
-            <a className="flex items-center p-3 -m-3 text-base font-medium text-gray-900 rounded-md hover:bg-gray-100">
+            <a className="flex items-center p-3 -m-3 text-base font-medium text-gray-900 rounded-md hover:bg-gray-200">
               <cta.icon
                 className="flex-shrink-0 w-6 h-6 text-gray-400"
                 aria-hidden="true"

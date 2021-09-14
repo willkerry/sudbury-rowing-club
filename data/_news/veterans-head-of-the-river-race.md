@@ -1,6 +1,7 @@
 ---
 title: "Veterans' Head of the River Race"
 date: "2018-03-26"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

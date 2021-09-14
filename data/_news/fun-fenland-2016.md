@@ -1,6 +1,7 @@
 ---
 title: "Fun in Fenland (2016)"
 date: "2016-09-12"
+author: "Susie Moule"
 categories: 
   - "news"
 ---

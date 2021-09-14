@@ -1,6 +1,7 @@
 ---
 title: "British Rowing Masters Championships (2016)"
 date: "2016-06-15"
+author: "Susie Moule"
 categories: 
   - "news"
 ---

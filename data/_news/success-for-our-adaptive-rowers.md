@@ -1,6 +1,7 @@
 ---
 title: "Success for our Adaptive Rowers"
 date: "2017-04-25"
+author: "Angela Colclough"
 categories: 
   - "news"
   - "racing"

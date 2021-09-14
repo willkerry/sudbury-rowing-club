@@ -1,6 +1,7 @@
 ---
 title: "Bedford Small Boats Head"
 date: "2019-04-23"
+author: "Amanda Ashton"
 categories: 
   - "news"
 tags: 

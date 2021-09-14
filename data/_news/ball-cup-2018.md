@@ -1,6 +1,7 @@
 ---
 title: "Ball Cup 2018"
 date: "2018-05-20"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

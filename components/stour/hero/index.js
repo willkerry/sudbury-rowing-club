@@ -1,15 +1,13 @@
 import cn from "classnames";
-import { PropTypes } from "prop-types";
 import Container from "../../container";
+import Label from "@/components/stour/label";
 
 export function Hero(props) {
   const { title, label, description, dark, fullwidth } = props;
   function Text() {
     return (
       <>
-        {label && (
-          <div className="ml-0.5 tracking-widest uppercase">{label}</div>
-        )}
+        {label && <Label className="ml-1">{label}</Label>}
         <h2 className="pt-3 pb-6 text-4xl font-semibold tracking-tighter">
           {title}
         </h2>

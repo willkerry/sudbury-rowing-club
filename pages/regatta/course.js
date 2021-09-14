@@ -22,27 +22,25 @@ export default function Photography({ preview }) {
       />
       <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
       <Container className="mb-16">
-        <div className="grid grid-cols-1 gap-16 py-16 sm:grid-cols-2">
-          <h2 className="text-6xl font-semibold tracking-tighter text-gray-800">
-            Introducing the world’s shortest sprint course
-          </h2>
-          <div className="mt-2 prose">
-            <p>
-              All boats other than the sprint eights race on the 650m course at
-              Sudbury, beginning at stake-boats before the bend and finishing at
-              the shared finish. Eights race on the straighter 350m course –
-              possibly the shortest of its kind anywhere in the world – avoiding
-              the tight bend and making for very exciting racing indeed.
-            </p>
-            <Button
-              href="/assets/regatta/course/course-map.pdf"
-              iconRight={<Download />}
-            >
-              Download the PDF
-            </Button>
-          </div>
+        <div className="my-16 prose">
+          <p className="lead">Introducing the world’s shortest sprint course</p>
+          <p>
+            All boats other than the sprint eights race on the 650m course at
+            Sudbury, beginning at stake-boats before the bend and finishing at
+            the shared finish. Eights race on the straighter 350m course –
+            possibly the shortest of its kind anywhere in the world – avoiding
+            the tight bend and making for very exciting racing indeed.
+          </p>
+          <Button
+            href="/assets/regatta/course/course-map.pdf"
+            iconRight={<Download />}
+          >
+            Download the PDF
+          </Button>
         </div>
-        <Image src={courseMap} alt="" />
+        <div className="flex overflow-hidden border rounded shadow-xl">
+          <Image src={courseMap} alt="" />
+        </div>
       </Container>
     </Layout>
   );

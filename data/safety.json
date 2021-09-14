@@ -37,10 +37,10 @@
     }
   ],
   "status": {
-    "severity": "Green",
+    "severity": "Neutral",
     "display": true,
-    "description": "We have beautiful August weather. Take care, but the weather’s not your enemy.",
-    "date": "2021-08-03"
+    "description": "There’s not currently any river safety guidance.",
+    "date": "2021-09-14T09:00:28+01:00"
   },
   "documents": [
     {

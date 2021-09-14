@@ -1,6 +1,7 @@
 ---
 title: "Cambridge Winter Head"
 date: "2016-11-28"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

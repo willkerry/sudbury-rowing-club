@@ -1,6 +1,7 @@
 ---
 title: "Sudbury Regatta 2018"
 date: "2018-08-05"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

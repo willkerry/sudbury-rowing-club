@@ -15,6 +15,7 @@ import {
 import markdownToHtml from "../../lib/markdownToHtml";
 import { NextSeo } from "next-seo";
 import { ArticleJsonLd } from "next-seo";
+import Label from "@/components/stour/label";
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
@@ -66,6 +67,14 @@ export default function Post({ post, morePosts, preview }) {
                 author={post.author}
               />
               <PostBody content={post.content} />
+              {post.author && (
+                <div className="mx-auto my-12 border divide-y rounded max-w-prose">
+                  <div className="px-4 py-2">
+                    <Label>Credits</Label>
+                  </div>
+                  <div className="p-4">{post.author}</div>
+                </div>
+              )}
             </article>
           </>
         )}

@@ -1,5 +1,6 @@
 ---
 title: "Chairman's Regatta Message"
+author: "Mike Arnott"
 date: "2012-08-05"
 categories: 
   - "news"

@@ -35,7 +35,8 @@
     "remark": "13.0.0",
     "remark-html": "13.0.2",
     "remark-textr": "^4.0.0",
-    "sharp": "^0.29.1"
+    "sharp": "^0.29.1",
+    "typographic-quotes": "^2.0.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^11.1.2",

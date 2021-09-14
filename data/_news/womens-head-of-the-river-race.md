@@ -1,6 +1,7 @@
 ---
 title: "Women's Head of the River Race"
 date: "2017-03-17"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

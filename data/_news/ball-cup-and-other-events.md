@@ -1,6 +1,7 @@
 ---
 title: "Ball Cup and other Events"
 date: "2017-05-08"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

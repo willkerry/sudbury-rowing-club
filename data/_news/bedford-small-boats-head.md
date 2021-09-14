@@ -1,6 +1,7 @@
 ---
 title: "Bedford Small Boats Head"
 date: "2017-04-18"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

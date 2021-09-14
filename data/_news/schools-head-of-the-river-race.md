@@ -1,6 +1,7 @@
 ---
 title: "School's Head of the River Race"
 date: "2017-03-26"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

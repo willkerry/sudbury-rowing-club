@@ -1,6 +1,7 @@
 ---
 title: "St. Neots Regatta"
 date: "2017-07-28"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

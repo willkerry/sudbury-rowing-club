@@ -1,6 +1,7 @@
 ---
 title: "Pudding Races 2015"
 date: "2015-12-03"
+author: "Teresa Moriarty"
 categories: 
   - "news"
 ---

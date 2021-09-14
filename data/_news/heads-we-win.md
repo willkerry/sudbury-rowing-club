@@ -1,6 +1,7 @@
 ---
-title: "Heads we win !"
+title: "Heads we win!"
 date: "2017-11-06"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

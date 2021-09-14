@@ -1,6 +1,7 @@
 ---
 title: "A Busy October"
 date: "2018-10-27"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

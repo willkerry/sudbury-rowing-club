@@ -1,6 +1,7 @@
 ---
 title: "Pudding Races (2018)"
 date: "2019-01-06"
+author: "Amanda Ashton"
 categories: 
   - "events"
   - "news"

@@ -2,6 +2,7 @@
 title: "Sudbury Regatta 2021"
 date: "2021-08-12"
 coverImage: "/assets/news/images/IMG_7082-1.jpg"
+author: "Amanda Ashton"
 excerpt: "The 7 August 2021 saw the long-awaited return of Sudbury Regatta on Friars Meadow."
 ---
 

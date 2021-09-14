@@ -1,6 +1,7 @@
 ---
 title: "National Junior Championships (2016)"
 date: "2016-07-18"
+author: "Susie Moule"
 categories: 
   - "news"
 ---

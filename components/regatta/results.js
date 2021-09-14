@@ -39,14 +39,12 @@ function Results({ tab, data }) {
             <tr>
               <th className="hidden sm:table-cell"></th>
               <th>Date</th>
-              <th className="hidden md:table-cell">Fastest 350m</th>
-              <th className="hidden md:table-cell">Fastest 650m</th>
               <th>Results</th>
             </tr>
           </thead>
           <tbody>
             {resultsData.map(
-              ({ link, year, date, fastest, eightsFastest, number }, index) => (
+              ({ link, year, date, number }, index) => (
                 <tr key={date.toString() + index} className="hover:bg-gray-50">
                   <td className="hidden sm:table-cell">
                     <span className="font-semibold">
@@ -59,16 +57,7 @@ function Results({ tab, data }) {
                       <DateFormatter dateString={date} />
                     </span>
                   </td>
-                  <td className="hidden md:table-cell">
-                    <span className="font-semibold text-pink-500 tabular-nums">
-                      {eightsFastest}
-                    </span>
-                  </td>
-                  <td className="hidden md:table-cell">
-                    <span className="font-semibold text-pink-500 tabular-nums">
-                      {fastest}
-                    </span>
-                  </td>
+
                   <td>
                     {link ? (
                       <Link

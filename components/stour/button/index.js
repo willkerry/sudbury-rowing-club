@@ -2,11 +2,11 @@ import cn from "classnames";
 import Link from "next/link";
 
 const SIZE_MAPS = {
-  mini: "py-1 px-2 min-w-min w-18 text-xs",
-  small: "py-1.5 px-3 min-w-min w-24 text-sm",
-  medium: "py-2 px-4 min-w-min w-40 text-sm",
-  large: "py-2 px-8 min-w-min w-64",
-  auto: "py-2 px-4 text-sm",
+  mini: "h-8 px-2 min-w-min w-18 text-xs",
+  small: "h-9  px-3 min-w-min w-24 text-sm",
+  medium: "h-10 px-4 min-w-min w-40 text-sm",
+  large: "h-12 px-8 min-w-min w-64 text-base",
+  auto: "h-10 px-4 text-sm",
 };
 const ICON_SIZE_MAPS = {
   mini: "w-2.5 h-2.5",
@@ -16,7 +16,7 @@ const ICON_SIZE_MAPS = {
   auto: "w-3.5 h-3.5",
 };
 const VARIANT_MAPS = {
-  primary: "!text-gray-700 hover:border-black hover:!text-black",
+  primary: "!text-gray-600 hover:border-black hover:!text-black",
   secondary:
     "!text-white border-gray-900 bg-gray-900 hover:!text-gray-900 hover:bg-white",
   brandDark:
@@ -28,7 +28,7 @@ const VARIANT_MAPS = {
   success:
     "text-white border-green-600 bg-green-600 hover:text-green-700 hover:bg-white",
   error:
-    "text-white border-red-600 bg-red-600 hover:text-red-700 hover:bg-white",
+    "text-white !text-white border-red-600 bg-red-600 hover:!text-red-700 hover:bg-white",
   disabled: "text-gray-300 bg-gray-100 cursor-not-allowed",
 };
 const LEFT_ICON_PADDING_MAPS = {
@@ -77,7 +77,7 @@ export function Button(props) {
   } = props;
 
   const baseStyles =
-    "rounded-md transition duration-300 border inline-block border-box select-none whitespace-nowrap relative text-center leading-none";
+    "rounded transition duration-300 border inline-block border-box select-none whitespace-nowrap relative text-center leading-none";
   const buttonClassName = cn(
     baseStyles,
     SIZE_MAPS[size],
@@ -88,7 +88,7 @@ export function Button(props) {
     return (
       <div
         className={cn(
-          "relative inline-flex items-center justify-center text-center",
+          "relative inline-flex items-center justify-center text-center h-full",
           iconLeft && LEFT_ICON_PADDING_MAPS[size],
           iconRight && RIGHT_ICON_PADDING_MAPS[size]
         )}

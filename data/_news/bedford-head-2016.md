@@ -1,6 +1,7 @@
 ---
 title: "Bedford Head (2016)"
 date: "2016-10-14"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

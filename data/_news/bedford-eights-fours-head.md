@@ -1,6 +1,7 @@
 ---
 title: "Bedford Eights and Fours Head"
 date: "2017-02-18"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

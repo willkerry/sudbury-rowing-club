@@ -20,6 +20,7 @@ import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import ordinal from "ordinal";
 import Image from "next/image";
+import Label from "@/components/stour/label";
 
 const RegattaHeroImage = dynamic(() =>
   import("@/components/regatta/landing-page/regatta-hero-image")
@@ -268,9 +269,7 @@ export default function Regatta({
                   <h3 className="text-xl font-medium">
                     Praise for the {ordinal(item.number)} regatta{" "}
                   </h3>
-                  <div className="text-xs font-medium tracking-widest uppercase opacity-70">
-                    {regattaDate}
-                  </div>
+                  <Label className="text-xs">{regattaDate}</Label>
                 </div>
                 {item.items.map((testimonial) => {
                   return (

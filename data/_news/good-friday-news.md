@@ -1,6 +1,7 @@
 ---
 title: "Good (Friday) News"
 date: "2018-04-05"
+author: "Susie Moule"
 categories: 
   - "events"
   - "news"

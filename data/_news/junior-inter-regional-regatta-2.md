@@ -1,6 +1,7 @@
 ---
 title: "Junior Inter-Regional Regatta"
 date: "2018-04-30"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

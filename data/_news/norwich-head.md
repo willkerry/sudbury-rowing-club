@@ -1,6 +1,7 @@
 ---
 title: "Norwich Head"
 date: "2018-02-25"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

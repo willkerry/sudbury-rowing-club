@@ -1,6 +1,7 @@
 ---
 title: "British Indoor Rowing Championships"
 date: "2016-12-13"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

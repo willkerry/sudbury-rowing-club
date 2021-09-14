@@ -1,6 +1,7 @@
 ---
 title: "Captain's Update"
 date: "2018-06-15"
+author: "Sean Moriarty"
 categories:
   - "news"
 tags:

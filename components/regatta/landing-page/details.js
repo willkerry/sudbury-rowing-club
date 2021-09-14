@@ -1,3 +1,4 @@
+import Label from "@/components/stour/label";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, LightningBoltIcon } from "@heroicons/react/solid";
 
@@ -40,9 +41,7 @@ export default function Details({ items }) {
     <div className="border rounded bg-gray-50">
       <h3 className="flex items-center px-4 py-3">
         <LightningBoltIcon className="inline w-4 h-4 mr-1 text-blue-500 transform rotate-180" />
-        <div className="text-sm font-medium tracking-wider text-gray-500 uppercase">
-          Quick information
-        </div>
+        <Label>Quick Information</Label>
       </h3>
       {items.map((item, index) => (
         <Detail key={index} summary={item.summary} icon={item.icon}>

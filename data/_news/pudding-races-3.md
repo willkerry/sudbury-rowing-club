@@ -1,6 +1,7 @@
 ---
 title: "BRIC and Pudding Races"
 date: "2017-12-16"
+author: "Susie Moule"
 categories: 
   - "events"
   - "news"

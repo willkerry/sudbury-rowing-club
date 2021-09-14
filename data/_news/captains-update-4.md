@@ -1,6 +1,7 @@
 ---
 title: "Captain's Update"
 date: "2012-12-02"
+author: "Keith Paxman"
 categories: 
   - "news"
 ---

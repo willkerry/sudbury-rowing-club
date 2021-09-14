@@ -1,6 +1,7 @@
 ---
 title: "Captain’s Update"
 date: "2014-09-05"
+author: "Tim Hysom"
 categories: 
   - "news"
 tags: 

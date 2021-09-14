@@ -44,9 +44,7 @@ export default function Navbar() {
                   navData={members}
                   ctaData={memberCTAs}
                 />
-                <div className="ml-1">
-                  <SafetyStatus />
-                </div>
+                <SafetyStatus />
               </Popover.Group>
             </div>
           </div>

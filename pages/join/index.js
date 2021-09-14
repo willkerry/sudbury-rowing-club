@@ -9,6 +9,7 @@ import cn from "classnames";
 import { Link as ScrollLink } from "react-scroll";
 import { NextSeo } from "next-seo";
 import { BASE_URL } from "@/lib/constants";
+import Label from "@/components/stour/label";
 
 const l2rStages = [
   {
@@ -141,9 +142,7 @@ export default function Index() {
           className="py-16 text-center text-gray-900 sm:py-24"
           id="hero"
         >
-          <p className="font-medium tracking-wider text-gray-600 uppercase sm:mb-3">
-            Join Sudbury Rowing Club
-          </p>
+          <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
           <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 sm:text-8xl drop-shadow-xl">
             Start rowing with us{" "}
             <ThumbsUp className="inline w-12 h-12 text-blue-400 sm:w-16 sm:h-16 rotate-3" />
@@ -295,9 +294,7 @@ function JoinCTA(props) {
 function L2RStages() {
   return (
     <div className="mt-24">
-      <h3 className="mb-6 ml-8 text-sm font-semibold tracking-widest text-green-600 uppercase md:ml-0">
-        How it works
-      </h3>
+      <Label as="h3" className="mb-6 ml-8 text-green-600 md:ml-0">How it works</Label>
       <ol className="grid gap-16 text-green-500 sm:grid-cols-2 md:grid-cols-3">
         <style jsx>{`
           ol {
@@ -418,7 +415,7 @@ function L2RCallToAction({}) {
 function SectionHeading({ title, label }) {
   return (
     <div className="my-16 text-center">
-      <p className="my-4 tracking-wider text-gray-500 uppercase">{label}</p>
+      <Label as="div" className="my-4">{label}</Label>
       <h2 className="text-5xl font-bold tracking-tighter">{title}</h2>
     </div>
   );

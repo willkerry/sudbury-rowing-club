@@ -1,6 +1,7 @@
 ---
 title: "Reading Amateur Regatta"
 date: "2003-06-14"
+author: "Andrew Blit"
 categories: 
   - "news"
 ---

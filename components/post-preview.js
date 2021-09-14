@@ -7,47 +7,38 @@ export function PostPreview(props) {
   const { title, coverImage, date, excerpt, author, slug } = props;
 
   return (
-    <Link as={`/news/${slug}`} href="/news/[slug]">
-      <a
-        className={cn(
-          "relative h-64 border rounded",
-          !coverImage &&
-            "bg-white border-gray-300 hover:border-blue-400 transition group"
-        )}
-      >
-        {coverImage && (
-          <>
-            <Image
-              src={coverImage}
-              alt=""
-              layout="fill"
-              objectFit="cover"
-              className="z-0 rounded"
-            />
-            <div className="absolute w-full h-full transition duration-200 rounded hover:shadow-lg opacity-70 bg-gradient-to-b from-transparent to-blue-800 hover:opacity-60"></div>
-          </>
-        )}
-
-        <div
-          className={cn(
-            "absolute bottom-0 z-40 mx-5 my-4 rounded",
-            coverImage ? "text-white" : "text-gray-900"
-          )}
-        >
-          <div className="mb-1 text-sm font-medium opacity-90 ">
-            <DateFormatter dateString={date} />
-          </div>
-          <h3
-            className={cn(
-              "text-2xl font-semibold tracking-tight",
-              !coverImage && "transition group-hover:text-blue-500"
+    <li>
+      <article id={slug}>
+        <Link as={`/news/${slug}`} href="/news/[slug]">
+          <a className="flex flex-col overflow-hidden transition bg-white border divide-y rounded hover:border-blue-400 group">
+            {coverImage ? (
+              <div className="relative h-56 ">
+                <Image
+                  src={coverImage}
+                  alt=""
+                  layout="fill"
+                  objectFit="cover"
+                  className="z-0 bg-gradient-to-r from-gray-200 to-white"
+                  sizes="15vw"
+                />
+              </div>
+            ) : (
+              <div className="relative h-56 px-2.5 pt-1.5 overflow-hidden text-6xl font-bold tracking-tighter text-gray-100 transition select-none group-hover:text-blue-50">
+                {title}
+              </div>
             )}
-          >
-            {title}
-          </h3>
-        </div>
-      </a>
-    </Link>
+            <div className="p-3">
+              <div className="mb-1 text-xs font-medium text-gray-700">
+                <DateFormatter dateString={date} />
+              </div>
+              <h3 className="text-xl font-semibold leading-tight tracking-tight transition group-hover:text-blue-500">
+                {title}
+              </h3>
+            </div>
+          </a>
+        </Link>
+      </article>
+    </li>
   );
 }
 export default PostPreview;

@@ -7,6 +7,7 @@ categories:
 tags: 
   - "sliding"
 coverImage: "/assets/news/images/promo-hungary-scaled.jpeg"
+author: "Andrew Blit"
 ---
 
 **_[World Rowing Masters Regatta, Lake Velence, Hungary.](http://www.worldrowing.com/events/2019-world-rowing-masters-regatta/event-information)_**

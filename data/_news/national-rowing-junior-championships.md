@@ -1,6 +1,7 @@
 ---
 title: "British Rowing Junior Championships"
 date: "2018-07-24"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

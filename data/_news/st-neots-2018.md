@@ -1,6 +1,7 @@
 ---
 title: "St. Neots 2018"
 date: "2018-07-30"
+author: "Susie Moule"
 categories: 
   - "news"
   - "racing"

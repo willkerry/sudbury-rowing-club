@@ -1,6 +1,7 @@
 ---
 title: "An account of unforeseen rowing pleasure"
 date: "2019-05-24"
+author: "Andrew Blit"
 categories: 
   - "news"
 tags: 

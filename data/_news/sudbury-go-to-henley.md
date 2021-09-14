@@ -1,6 +1,7 @@
 ---
 title: "Sudbury go to Henley"
 date: "2018-05-02"
+author: "Luke Payne"
 categories: 
   - "news"
   - "racing"

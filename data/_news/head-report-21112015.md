@@ -1,6 +1,7 @@
 ---
 title: "Head Report 21/11/2015"
 date: "2015-11-26"
+author: "Susie Moule"
 categories: 
   - "news"
 ---

@@ -1,6 +1,7 @@
 ---
 title: "SRC at 'The Worlds'"
 date: "2016-09-16"
+author: "Susie Moule"
 categories: 
   - "news"
 ---
