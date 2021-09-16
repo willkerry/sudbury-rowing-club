@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 import cn from "classnames";
-import { Download, ExternalLink } from "react-feather";
+import { ArrowRight, Download, ExternalLink } from "react-feather";
 
 function Link({
   href,
@@ -9,7 +9,8 @@ function Link({
   icon,
   external,
   download,
-  className,
+  arrow,
+  extension,
   ...props
 }) {
   const iconClass = "inline-flex mb-0.5 ml-1";
@@ -22,13 +23,19 @@ function Link({
             : "text-blue-500 hover:text-blue-300",
           (external || download) && "relative",
           "transition",
-          className
+          props.className
         )}
         {...props}
       >
         {children}
+        {extension && (
+          <span className="px-1 ml-1 text-xs font-medium text-gray-400 uppercase transition border rounded-full">
+            {extension}
+          </span>
+        )}
         {external && <ExternalLink className={iconClass} size="1em" />}
         {download && <Download className={iconClass} size="1em" />}
+        {arrow && <ArrowRight className={iconClass} size="1em" />}
       </a>
     </NextLink>
   );

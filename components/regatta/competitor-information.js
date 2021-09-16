@@ -2,14 +2,24 @@ import data from "@/data/regatta";
 import Link from "@/components/stour/link";
 import cn from "classnames";
 
-function CompetitorInformation(props) {
+function CompetitorInformation({ tab, description, items }) {
   return (
-    <div className={cn(props.tab && "mx-auto", "prose")}>
-      {data.competitorInformation.intro}
+    <div className={cn(tab && "mx-auto", "prose")}>
+      {description}
       <div className="py-6 prose">
         <ul>
-          {data.competitorInformation.resources.map((item, index) => (
-            <CompetitorInfoItem key={index} item={item} />
+          {console.log(items)}
+          {items.map((item) => (
+            <li key={item._id}>
+              <Link
+                href={item.url}
+                download
+                aria-label={"Download" + " " + item.title}
+                extension={item.extension}
+              >
+                {item.title}
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
@@ -18,13 +28,3 @@ function CompetitorInformation(props) {
 }
 
 export default CompetitorInformation;
-
-function CompetitorInfoItem({ item }) {
-  return (
-    <li key={item.index}>
-      <Link href={item.link} download aria-label={"Download" + " " + item.title}>
-        {item.title}
-      </Link>
-    </li>
-  );
-}

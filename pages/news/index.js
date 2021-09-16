@@ -23,7 +23,6 @@ export default function News({ allPosts }) {
           images: [{ url: BASE_URL + "/assets/og/news.png" }],
         }}
       />
-      {/* <HeroTitle title="News" transparent/>  */}
       <div className="flex items-center py-6 border-t border-b">
         <Container>
           <Label className="max-w-prose">Latest News</Label>

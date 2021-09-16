@@ -3,7 +3,7 @@ import PostPreview from "../components/post-preview";
 export default function MoreStories({ posts }) {
   return (
     <section>
-      <ul className="grid grid-cols-1 gap-8 mb-32 sm:grid-cols-2 md:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
         {posts.map((post) => (
           <PostPreview
             key={post.slug}

@@ -1,6 +1,7 @@
 module.exports = {
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512, 1024, 1280],
+    domains: ["cdn.sanity.io"],
   },
   async redirects() {
     return [
@@ -46,5 +47,31 @@ module.exports = {
         permanent: true,
       }, */
     ];
+  },
+  webpack(config, options) {
+    config.module.rules.push({
+      test: /\.svg?$/,
+      oneOf: [
+        {
+          use: [
+            {
+              loader: "@svgr/webpack",
+              options: {
+                prettier: false,
+                svgo: true,
+                svgoConfig: {
+                  plugins: [{ removeViewBox: false }],
+                },
+                titleProp: true,
+              },
+            },
+          ],
+          issuer: {
+            and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
+          },
+        },
+      ],
+    });
+    return config;
   },
 };

@@ -4,6 +4,7 @@ import Layout from "@/components/layout";
 import CompetitorInformation from "@/components/regatta/competitor-information";
 import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
+import TextPage from "@/components/layouts/text-page";
 
 export default function CompetitorInformationPage() {
   return (

@@ -12,7 +12,6 @@ import RegattaHero from "@/components/regatta/landing-page/regatta-hero";
 import Hero from "@/components/stour/hero";
 import Link from "@/components/stour/link";
 import Loading from "@/components/stour/loading";
-import rawData from "@/data/regatta.json";
 import { BASE_URL } from "@/lib/constants";
 import { CalendarIcon, MapIcon } from "@heroicons/react/outline";
 import { format, parseISO } from "date-fns";
@@ -21,6 +20,10 @@ import dynamic from "next/dynamic";
 import ordinal from "ordinal";
 import Image from "next/image";
 import Label from "@/components/stour/label";
+
+import { groq } from "next-sanity";
+import { urlFor } from "@/lib/sanity";
+import { sanityClient } from "@/lib/sanity.server";
 
 const RegattaHeroImage = dynamic(() =>
   import("@/components/regatta/landing-page/regatta-hero-image")
@@ -51,36 +54,70 @@ const Testimonial = dynamic(() => import("@/components/stour/testimonial"), {
   loading: () => Loading(),
 });
 
-export const getStaticProps = async () => {
-  const data = await rawData;
-  return {
-    props: {
-      data: data,
-      intro: data.regattaIntro,
-      testimonials: data.praise.year,
-      races: data.events.event,
-      courseMap: data.events.coursemap,
-    },
-    revalidate: 60,
-  };
-};
+const pageQuery = groq`
 
-export default function Regatta({
-  data,
-  intro,
-  testimonials,
-  races,
-  courseMap,
-}) {
+{"page": *[_type == "regattaSettings"][0] {
+  title,
+  date,
+  landingPage {
+    description,
+    heroImage {
+      heading,
+      subheading,
+        image {
+          'id': asset->_id,
+          'aspectRatio': asset->metadata.dimensions.aspectRatio,
+          'lqip': asset->metadata.lqip
+        }
+    },
+    images[] {
+      asset->,
+      caption 
+    },
+    tagline
+  },
+  note,
+  competitorInformation { 
+    description,
+    documents[]
+    {	title,
+      "extension": asset->extension,
+      "url": asset->url,
+      "_id": asset->_id,
+      "size": asset->size
+      
+    }
+  },
+  courseMap {
+    heading,
+    description,
+    "coursemap": map.asset->url,
+    mapImage {
+      'url':  asset->url,
+      'aspectRatio': asset->metadata.dimensions.aspectRatio,
+      'lqip': asset->metadata.lqip
+    } 
+  },
+  entries,
+  results,
+  "events": events.events,
+}} 
++ 
+{"regattas": *[_type == "regattas"] | order(date desc) {date, results, number}}
++
+{"testimonials": *[_type == "regattas"] | order(date desc) {date, testimonials, number}}
+`;
+
+export default function Regatta({ testimonials, page, regattas }) {
   const regattaDate = (
-    <time dateTime={intro.date}>
-      {format(parseISO(intro.date), "EEEE d LLLL yyyy")}
+    <time dateTime={page.date}>
+      {format(parseISO(page.date), "EEEE d LLLL yyyy")}
     </time>
   );
   const ticketItems = [
     {
       label: "Event",
-      value: intro.title,
+      value: page.title,
     },
     {
       label: "Date",
@@ -91,43 +128,7 @@ export default function Regatta({
       value: "Friars Meadow, \nSudbury CO10 2TL",
     },
   ];
-  const galleryImages = [
-    {
-      src: "/assets/regatta/landing/gallery/regatta1600x900.jpg",
-      width: 1600,
-      height: 900,
-    },
-    {
-      src: "/assets/regatta/landing/gallery/regatta1920x1278.jpg",
-      width: 1920,
-      height: 1278,
-    },
-    {
-      src: "/assets/regatta/landing/gallery/regatta2560x1707.jpg",
-      width: 2560,
-      height: 1707,
-    },
-    {
-      src: "/assets/regatta/landing/gallery/regatta768x576.jpg",
-      width: 768,
-      height: 576,
-    },
-    {
-      src: "/assets/regatta/landing/gallery/regatta960x512.jpg",
-      width: 960,
-      height: 512,
-    },
-    {
-      src: "/assets/regatta/landing/gallery/regatta960x720.jpg",
-      width: 960,
-      height: 720,
-    },
-    {
-      src: "/assets/regatta/landing/gallery/regatta1024x683.jpg",
-      width: 1024,
-      height: 683,
-    },
-  ];
+
   return (
     <Layout>
       <NextSeo
@@ -140,9 +141,9 @@ export default function Regatta({
         }}
       />
       <EventJsonLd
-        name={intro.title}
-        startDate={intro.date}
-        endDate={intro.date}
+        name={page.title}
+        startDate={page.date}
+        endDate={page.date}
         location={{
           name: "Friars Meadow",
           address: {
@@ -159,68 +160,83 @@ export default function Regatta({
       />
 
       <Container>
+        {page.note.display && (
+          <Note
+            label={page.note.label}
+            centered
+            className="mb-6"
+            type={page.note.type !== "" ? page.note.type : "primary"}
+          >
+            {page.note.text}
+          </Note>
+        )}
         <RegattaHero
           ticketItems={ticketItems}
-          subtitle="The Sudbury Regatta takes place on the first Saturday of August each year."
+          subtitle={page.landingPage.tagline}
         />
+
         <DateLocation
           date={regattaDate}
           location="Friars Meadow, Sudbury, CO10 2TL"
         />
+        {console.log(page.landingPage.heroImage.image)}
         <RegattaHeroImage
-          title={
-            <>
-              The best <br />
-              little regatta <br />
-              in the world.
-            </>
-          }
-          subtitle="according to a 2019 competitor."
+          aspectRatio={page.landingPage.heroImage.image.aspectRatio}
+          src={page.landingPage.heroImage.image.id}
+          blurDataURL={page.landingPage.heroImage.image.lqip}
+          title={page.landingPage.heroImage.heading}
+          subtitle={page.landingPage.heroImage.subheading}
         />
       </Container>
 
       <Container>
         <div className="flex gap-12 my-14">
           <div className="space-y-3 max-w-prose md:w-3/4">
-            {/* <Note label="2021 Update" className="mb-6">
-              We are delighted to confirm that we are planning to hold our
-              regatta, ‘The International’ on Saturday 7 August 2021. We are
-              still working on the changes we will need to put in place in
-              response to the pandemic so watch this space.
-            </Note> */}
-            <Text markdown>{intro.description}</Text>
-            <Note type="success" label={intro.note.title}>
-              {intro.note.text}
-            </Note>
+            <Text portableText lead>
+              {page.landingPage.description}
+            </Text>
             <div className="h-5" />
             <Details
               items={[
                 {
                   summary: "Events",
                   icon: <EventsIcon />,
-                  content: <Events data={races} coursemap={courseMap} />,
+                  content: <Events data={page.events} />,
                 },
                 {
                   summary: "Entries",
                   icon: <EntriesIcon />,
                   content: (
                     <Entries
-                      table={data.entries.waves}
-                      categories={data.entries.categories}
+                      table={page.entries.waves.rows.map((row) => row.cells)}
+                      caption={page.entries.caption}
+                      waveNames={page.entries.waveNames}
                     >
-                      {data.entries.text}
+                      <Text portableText>{page.entries.description}</Text>
                     </Entries>
                   ),
                 },
                 {
                   summary: "Results",
                   icon: <ResultsIcon />,
-                  content: <Results data={data} tab />,
+                  content: (
+                    <Results results={regattas} tab>
+                      <Text portableText lead>
+                        {page.results.description}
+                      </Text>
+                    </Results>
+                  ),
                 },
                 {
                   summary: "Important",
                   icon: <InfoIcon />,
-                  content: <CompetitorInformation tab />,
+                  content: (
+                    <CompetitorInformation
+                      tab
+                      description={page.competitorInformation.description}
+                      items={page.competitorInformation.documents}
+                    />
+                  ),
                 },
                 {
                   summary: "Contact",
@@ -239,17 +255,19 @@ export default function Regatta({
 
       <div className="w-full overflow-x-scroll">
         <div className="flex gap-4 pr-4 m-4 min-w-max">
-          {galleryImages.map((image, index) => (
-            <figure key={index} className="flex flex-col">
+          {page.landingPage.images.map((image) => (
+            <figure key={image.asset._id} className="flex flex-col">
               <Image
-                src={image.src}
-                width={(image.width / image.height) * 300}
+                src={urlFor(image).height(600).url()}
+                width={300 * image.asset.metadata.dimensions.aspectRatio}
                 height={300}
-                alt=""
+                placeholder="blur"
+                blurDataURL={image.asset.metadata.lqip}
+                alt={image.caption}
                 className="rounded"
               />
               <figcaption className="mt-1 text-sm text-gray-800">
-                caption
+                {image.caption}
               </figcaption>
             </figure>
           ))}
@@ -262,19 +280,23 @@ export default function Regatta({
       />
       <Container>
         {testimonials.map((item, index) => {
-          return (
+          return item.testimonials ? (
             <div key={index} className="mb-24">
               <Masonry cols="3">
                 <div className="py-24">
                   <h3 className="text-xl font-medium">
-                    Praise for the {ordinal(item.number)} regatta{" "}
+                    Praise for the {ordinal(item.number)} regatta
                   </h3>
-                  <Label className="text-xs">{regattaDate}</Label>
+                  <Label>
+                    <time dateTime={item.date}>
+                      {format(parseISO(item.date), "EEEE d LLLL yyyy")}
+                    </time>
+                  </Label>
                 </div>
-                {item.items.map((testimonial) => {
+                {item.testimonials.map((testimonial, index) => {
                   return (
                     <Testimonial
-                      key={testimonial.text}
+                      key={index}
                       name={testimonial.name}
                       organisation={testimonial.club}
                     >
@@ -284,23 +306,10 @@ export default function Regatta({
                 })}
               </Masonry>
             </div>
-          );
+          ) : null;
         })}
       </Container>
     </Layout>
-  );
-}
-
-function Asides({ item, index }) {
-  return (
-    <div>
-      {aside.map((item, index) => (
-        <div key={index}>
-          <item.icon />
-          <span>{item.value}</span>
-        </div>
-      ))}
-    </div>
   );
 }
 
@@ -320,3 +329,15 @@ function DateLocation({ date, location }) {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const page = await sanityClient.fetch(pageQuery);
+  return {
+    props: {
+      page: page.page,
+      regattas: page.regattas,
+      testimonials: page.testimonials,
+    },
+    revalidate: 3600,
+  };
+};

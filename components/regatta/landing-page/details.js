@@ -1,6 +1,7 @@
 import Label from "@/components/stour/label";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, LightningBoltIcon } from "@heroicons/react/solid";
+import cn from "classnames";
 
 export default function Details({ items }) {
   function Detail(props) {
@@ -8,25 +9,34 @@ export default function Details({ items }) {
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex items-center w-full px-4 py-2 overflow-hidden text-sm font-medium text-left bg-white border-t focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-              <div className="w-8 h-8 mr-4 text-gray-500">{props.icon}</div>
-              <div className="text-base text-gray-800">{props.summary}</div>
-              <ChevronDownIcon
-                className={`${
-                  open ? "transform rotate-180" : ""
-                } w-5 h-5 mt-0.5 text-gray-400 ml-2`}
-              />
+            <Disclosure.Button className="flex items-center justify-between w-full px-4 overflow-hidden transition border-t first:border-t-0 h-14 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75 group">
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 text-gray-400">
+                  {props.icon}
+                </div>
+                <Label className="transition group-hover:text-black">
+                  {props.summary}
+                </Label>
+              </div>
+              <div className="justify-self-end">
+                <ChevronDownIcon
+                  className={cn(
+                    "w-6 h-6 text-gray-400 transition duration-300 opacity-0 group-hover:opacity-100",
+                    open ? "transform -rotate-180" : ""
+                  )}
+                />
+              </div>
             </Disclosure.Button>
             <div className="overflow-hidden">
               <Transition
-                enter="transition ease-in-out duration-300 transform-gpu origin-top"
-                enterFrom="-translate-y-full opacity-0"
-                enterTo="translate-y-0  opacity-100"
-                leave="transition ease-in-out duration-300 transform"
-                leaveFrom="translate-y-0 opacity-100"
-                leaveTo="-translate-y-full opacity-0"
+                enter="transition delay-50 duration-300 ease-in-out"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition duration-300 delay-50 ease-in-out"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
               >
-                <Disclosure.Panel className="p-6 border-t">
+                <Disclosure.Panel className="p-4 border-t">
                   {props.children}
                 </Disclosure.Panel>
               </Transition>
@@ -38,11 +48,11 @@ export default function Details({ items }) {
   }
 
   return (
-    <div className="border rounded bg-gray-50">
-      <h3 className="flex items-center px-4 py-3">
-        <LightningBoltIcon className="inline w-4 h-4 mr-1 text-blue-500 transform rotate-180" />
-        <Label>Quick Information</Label>
-      </h3>
+    <div className="border rounded">
+      {/* <h3 className="flex items-center h-10 px-4 bg-gray-100">
+        <LightningBoltIcon className="inline w-4 h-4 ml-1 mr-4 text-gray-300 transform rotate-180" />
+        <Label className="text-xs">Quick Information</Label>
+      </h3> */}
       {items.map((item, index) => (
         <Detail key={index} summary={item.summary} icon={item.icon}>
           {item.content}

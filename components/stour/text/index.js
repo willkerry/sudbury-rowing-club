@@ -1,7 +1,11 @@
 import cn from "classnames";
 import { PropTypes } from "prop-types";
-import ReactMarkdown from "react-markdown";
-import smartypants from "@silvenon/remark-smartypants";
+import { PortableText } from "@/lib/sanity";
+
+import dynamic from "next/dynamic";
+
+const ReactMarkdown = dynamic(() => import("react-markdown"));
+const smartypants = dynamic(() => import("@silvenon/remark-smartypants"));
 
 const SIZE_MAPS = {
   sm: "prose-sm",
@@ -14,22 +18,22 @@ const VARIANT_MAPS = {
   secondary: "text-gray-500",
 };
 export function Text(props) {
-  const { children, type, size, markdown } = props;
-  return (
-    <div
-      className={cn(
-        "prose",
-        VARIANT_MAPS[type],
-        SIZE_MAPS[size],
-        props.className
-      )}
-    >
-      {markdown ? (
-        <ReactMarkdown remarkPlugins={[smartypants]}>{children}</ReactMarkdown>
-      ) : (
-        children
-      )}
-    </div>
+  const { children, type, size, markdown, portableText, lead } = props;
+  const classes = cn(
+    "prose",
+    VARIANT_MAPS[type],
+    SIZE_MAPS[size],
+    props.className,
+    lead && "auto-lead"
+  );
+  return markdown ? (
+    <ReactMarkdown className={classes} remarkPlugins={[smartypants]}>
+      {children}
+    </ReactMarkdown>
+  ) : portableText ? (
+    <PortableText className={classes} blocks={children} />
+  ) : (
+    <div className={classes}>{children}</div>
   );
 }
 
@@ -52,6 +56,7 @@ Text.defaultProps = {
   type: "default",
   size: "base",
   markdown: false,
+  lead: false,
 };
 
 Text.type = VARIANT_MAPS;

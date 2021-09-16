@@ -20,6 +20,7 @@
     "gray-matter": "4.0.3",
     "md5": "^2.3.0",
     "next": "latest",
+    "next-sanity": "^0.4.0",
     "next-seo": "^4.26.0",
     "nextjs-breadcrumbs": "^1.1.9",
     "nodemailer": "^6.6.3",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^11.1.2",
+    "@svgr/webpack": "^5.5.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
@@ -48,6 +50,8 @@
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "postcss": "^8.3.6",
+    "prettier": "2.4.0",
+    "prettier-plugin-groq": "^0.2.5",
     "tailwindcss": "^2.2.15"
   },
   "license": "MIT"

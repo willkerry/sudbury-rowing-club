@@ -115,7 +115,7 @@ function Card({ title, children, items, meta }) {
           <Transition
             enter="transition delay-50 duration-300 ease-in-out"
             enterFrom="opacity-0"
-            enterTo="pacity-100 "
+            enterTo="opacity-100"
             leave="transition duration-300 delay-50 ease-in-out"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"

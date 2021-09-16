@@ -9,6 +9,8 @@ import Button from "@/components/stour/button";
 import landingData from "../data/landing.json";
 import dynamic from "next/dynamic";
 import { NextSeo } from "next-seo";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
 
 const Sponsors = dynamic(() => import("@/components/landing/sponsors"));
 const CommitteeSignature = dynamic(() =>
@@ -45,12 +47,15 @@ export default function Index({ allPosts }) {
             </Note>
           </Container>
         )}
-        <Container>
+        <div className="container max-w-screen-lg md:mx-auto md:px-5">
           <LandingHero
             slogan={landingData.hero.slogan}
             youTubeId={landingData.hero.youTubeId}
             youTubeStart={landingData.hero.youTubeStart}
           />
+        </div>
+
+        <Container>
           <div className="flex items-center justify-center pt-16 space-x-3 text-white">
             <Button href="#intro" shadow size="large">
               Discover<span className="hidden sm:inline"> more</span>
@@ -61,7 +66,7 @@ export default function Index({ allPosts }) {
           </div>
         </Container>
         <section id="intro">
-          <Container className="mt-16">
+          <Container className="my-16">
             <div className="mx-auto prose">
               <p className="lead">{landingData.intro.main}</p>
               <p>{landingData.intro.secondary}</p>
@@ -73,7 +78,16 @@ export default function Index({ allPosts }) {
           <LandingImages />
         </section>
 
-        <section className="pt-16 pb-4 ">
+        <section className="my-16">
+          <div className="flex items-center py-6 my-6">
+            <Container>
+              <Label className="max-w-prose">Latest News</Label>
+              <h1 className="max-w-prose">
+                For more updates, follow us on{" "}
+                <Link href="https://facebook.com/sudburyrowing">Facebook</Link>.
+              </h1>
+            </Container>
+          </div>
           <Container>
             {heroPost && (
               <HeroPost
@@ -86,6 +100,10 @@ export default function Index({ allPosts }) {
               />
             )}
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            <div className="invisible h-8" />
+            <Link href="/news" arrow>
+              See more
+            </Link>
           </Container>
         </section>
       </Layout>

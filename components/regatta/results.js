@@ -4,34 +4,21 @@ import Note from "@/components/stour/note";
 import cn from "classnames";
 import Link from "@/components/stour/link";
 
-function Results({ tab, data }) {
-  const resultsData = data.results.results;
-  const courseRecords = data.results.courseRecords;
+function Results({ tab, children, results }) {
   return (
     <>
-      <div className={cn(tab && "mx-auto", "pb-16 prose")}>
-        <p className="lead">
-          At Sudbury Rowing Club we take your results very seriously.
-        </p>
-        <p>
-          We have an archive of regatta results that stretches back to 2002, and
-          an{" "}
-          <Link href={courseRecords} download>
-            extremely detailed log of the course records (PDF)
-          </Link>{" "}
-          set since 2005.
-        </p>
-        <p>
-          Before each regatta, once the draw is available, we provide prominent
-          access to it across our website. Over the regatta’s course, that
-          ‘draw’ is populated with live results. Hit refresh on the draw after
-          each division to see full provisional results.
-        </p>
+      <div className={cn(tab && "mx-auto", "mb-12")}>
+        {children}
         <Note label="Mobile users" type="secondary" className="sm:hidden">
           Our results software pre-dates the mobile web. We’re working on it,
           but for now we acknowledge our results pages are difficult to navigate
           on mobile devices.
         </Note>
+        <p>
+          <Link href="" download>
+            Course records
+          </Link>
+        </p>
       </div>
       <div className="prose prose-lg max-w-none">
         <table>
@@ -43,35 +30,33 @@ function Results({ tab, data }) {
             </tr>
           </thead>
           <tbody>
-            {resultsData.map(
-              ({ link, year, date, number }, index) => (
-                <tr key={date.toString() + index} className="hover:bg-gray-50">
-                  <td className="hidden sm:table-cell">
-                    <span className="font-semibold">
-                      {ordinal(number)}
-                      <span className="hidden lg:inline"> Sudbury Regatta</span>
-                    </span>
-                  </td>
-                  <td>
-                    <span className="tabular-nums">
-                      <DateFormatter dateString={date} />
-                    </span>
-                  </td>
+            {results.map(({ results, date, number }, index) => (
+              <tr key={date.toString() + index} className="hover:bg-gray-50">
+                <td className="hidden sm:table-cell">
+                  <span className="font-semibold">
+                    {ordinal(number)}
+                    <span className="hidden lg:inline"> Sudbury Regatta</span>
+                  </span>
+                </td>
+                <td>
+                  <span className="tabular-nums">
+                    <DateFormatter dateString={date} />
+                  </span>
+                </td>
 
-                  <td>
-                    {link ? (
-                      <Link
-                        href={link}
-                        title={"View the " + year + " regatta results."}
-                        external
-                      >
-                        View<span className="hidden sm:inline"> results</span>
-                      </Link>
-                    ) : null}
-                  </td>
-                </tr>
-              )
-            )}
+                <td>
+                  {results ? (
+                    <Link
+                      href={results}
+                      external
+                      aria-label={`View results from the ${date} regatta.`}
+                    >
+                      View<span className="hidden sm:inline"> results</span>
+                    </Link>
+                  ) : null}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

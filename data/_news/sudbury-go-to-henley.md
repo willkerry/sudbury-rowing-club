@@ -1,7 +1,6 @@
 ---
 title: "Sudbury go to Henley"
 date: "2018-05-02"
-author: "Luke Payne"
 categories: 
   - "news"
   - "racing"
@@ -18,10 +17,10 @@ Our para rowers Sophie Brown and Luke Payne, closely watched by Sophie’s dad a
 
 During the day we also received much encouragement from other clubs. They all also competed in supported doubles together with their own able bodied club members in specially modified double sculling boats. By the end of the day we had gained the expertise to achieve this for Sudbury. Next year we hope to be back with a stronger squad of both singles and supported doubles.
 
-[![](/assets/news/images/Phyllis-Court-1.jpg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2018/05/Phyllis-Court-1.jpg)
+[![Sophie Brown](/assets/news/images/Phyllis-Court-1.jpg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2018/05/Phyllis-Court-1.jpg)
 
 Sophie Brown
 
-[![](/assets/news/images/Phyllis-Court-2.jpg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2018/05/Phyllis-Court-2.jpg)
+[![Luke Payne](/assets/news/images/Phyllis-Court-2.jpg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2018/05/Phyllis-Court-2.jpg)
 
 Luke Payne

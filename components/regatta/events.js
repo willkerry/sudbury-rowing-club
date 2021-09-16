@@ -1,53 +1,49 @@
-import Link from "@/components/stour/link";
-import Image from "next/image";
+import Label from "../stour/label";
+import LongCourse from "@/components/regatta/events/650.svg";
+import ShortCourse from "@/components/regatta/events/350.svg";
 
-const Section = (props) => <div {...props} className="" />;
-const Table = (props) => (
-  <table {...props} className="table w-full text-left border-collapse" />
+const Section = (props) => <section {...props} />;
+const Table = (props) => <div {...props} className="w-full" />;
+const TableBody = (props) => <dl {...props} />;
+const Row = (props) => (
+  <div {...props} className="flex flex-col py-2 border-t" />
 );
-const TableBody = (props) => <tbody {...props} className="align-baseline" />;
-const Row = (props) => <tr {...props} className="h-16" />;
 const LabelCell = (props) => (
-  <td
-    {...props}
-    className="py-2 pr-2 font-medium text-gray-900 border-t border-gray-200 whitespace-nowrap"
-  />
+  <dd {...props}>
+    <Label className="text-xs">{props.children}</Label>
+  </dd>
 );
 const Cell = (props) => (
-  <td
-    {...props}
-    className="w-full py-2 pl-2 space-y-2 text-gray-600 border-t border-gray-200"
-  />
+  <dl {...props} className="w-full text-sm font-medium text-gray-800" />
 );
 
-function Results({ data, coursemap }) {
+function Results({ data }) {
   return (
-    <div className="grid gap-16 md:grid-cols-2">
-      {data.map((item, index) => (
-        <Section key={index}>
+    <div className="grid gap-8 md:grid-cols-2">
+      {data.map((item) => (
+        <Section key={item._key}>
           <div className="text-center">
-            <Image src={item.map} width={350} height={200} className="mx-auto" alt="" />
+            {item.course === "350m" ? (
+              <ShortCourse className="w-full px-4" />
+            ) : (
+              <LongCourse className="w-full px-4" />
+            )}
+
             <h4 className="pt-6 pb-1 text-xl font-bold">{item.title}</h4>
-            <p className="pb-6 text-gray-500">{item.description}</p>
+            <p className="pb-6 text-sm text-gray-500 h-14">
+              {item.description}
+            </p>
           </div>
 
           <Table>
             <TableBody>
               <Row>
                 <LabelCell>Categories</LabelCell>
-                <Cell>
-                  {item.categories.map((item, index) => (
-                    <span key={index}>{(index ? ", " : "") + item}</span>
-                  ))}
-                </Cell>
+                <Cell>{item.categories}</Cell>
               </Row>
               <Row>
                 <LabelCell>Gender</LabelCell>
-                <Cell>
-                  {item.gender.map((item, index) => (
-                    <span key={index}>{(index ? ", " : "") + item}</span>
-                  ))}
-                </Cell>
+                <Cell>{item.gender}</Cell>
               </Row>
               <Row>
                 <LabelCell>Boat Classes</LabelCell>
@@ -60,14 +56,6 @@ function Results({ data, coursemap }) {
               <Row>
                 <LabelCell>Prizes</LabelCell>
                 <Cell>{item.prizes}</Cell>
-              </Row>
-              <Row>
-                <LabelCell />
-                <Cell>
-                  <Link href={coursemap}>
-                    View coursemap
-                  </Link>
-                </Cell>
               </Row>
             </TableBody>
           </Table>

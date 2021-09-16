@@ -1,5 +1,6 @@
 ---
 title: "A safe return to rowing"
+author: "Tricia Fincham"
 date: "2020-06-23"
 categories: 
   - "news"

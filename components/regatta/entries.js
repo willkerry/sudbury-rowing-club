@@ -1,10 +1,10 @@
 import cn from "classnames";
 
-function Entries({ children, table, categories }) {
+function Entries({ children, table, waveNames, caption }) {
   return (
-    <div className="mx-auto prose">
-      <div dangerouslySetInnerHTML={{ __html: children }} />
-      <figure>
+    <div className="mx-auto">
+      {children}
+      <figure className="my-4 prose">
         <table>
           <thead>
             <tr>
@@ -26,12 +26,18 @@ function Entries({ children, table, categories }) {
                   >
                     <div
                       className={cn(
-                        entry == 1
+                        entry == waveNames[0]
                           ? "bg-red-500 text-white"
-                          : entry == 2
+                          : entry == waveNames[1]
                           ? "bg-green-500 text-white"
-                          : entry == 3
+                          : entry == waveNames[2]
                           ? "bg-blue-500 text-white"
+                          : entry == waveNames[3]
+                          ? "bg-yellow-500 text-white"
+                          : entry == waveNames[4]
+                          ? "bg-purple-500 text-white"
+                          : entry == waveNames[5]
+                          ? "bg-pink-500 text-white"
                           : null,
                         "rounded-full"
                       )}
@@ -44,13 +50,9 @@ function Entries({ children, table, categories }) {
             ))}
           </tbody>
         </table>
-        <figcaption>
-          Wave matrix: entries are divided between waves 1, 2 and 3. Note that
-          Adaptive, Para-rowing and Mixed Junior entries are not included in the
-          scheme.
-        </figcaption>
+        <figcaption>{caption}</figcaption>
       </figure>
-      {categories.map((category, index) => (
+      {/* {categories.map((category, index) => (
         <p
           className={cn(
             "flex flex-wrap gap-2 text-sm rounded p-2",
@@ -71,7 +73,7 @@ function Entries({ children, table, categories }) {
             </span>
           ))}
         </p>
-      ))}
+      ))} */}
     </div>
   );
 }

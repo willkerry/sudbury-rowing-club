@@ -32,10 +32,14 @@ select {
 [type="checkbox"] {
   @apply mx-2 rounded hover:cursor-pointer;
 }
+
 @tailwind utilities;
 @layer utilities {
   .hyphens-auto {
     hyphens: auto;
+  }
+  .auto-lead > :first-child {
+    @apply text-xl font-medium tracking-tight;
   }
   @variants responsive {
     .masonry-4-col {
