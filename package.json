@@ -16,7 +16,7 @@
     "@silvenon/remark-smartypants": "^1.0.0",
     "axios": "^0.21.4",
     "classnames": "^2.3.1",
-    "date-fns": "^2.23.0",
+    "date-fns": "^2.24.0",
     "gray-matter": "4.0.3",
     "md5": "^2.3.0",
     "next": "latest",
