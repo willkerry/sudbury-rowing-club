@@ -1,7 +1,23 @@
-module.exports = {
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+module.exports = withBundleAnalyzer({
   images: {
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 512, 1024, 1280],
     domains: ["cdn.sanity.io"],
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: { svgoConfig: { plugins: { removeViewBox: false } } },
+        },
+      ],
+    });
+
+    return config;
   },
   async redirects() {
     return [
@@ -48,30 +64,4 @@ module.exports = {
       }, */
     ];
   },
-  webpack(config, options) {
-    config.module.rules.push({
-      test: /\.svg?$/,
-      oneOf: [
-        {
-          use: [
-            {
-              loader: "@svgr/webpack",
-              options: {
-                prettier: false,
-                svgo: true,
-                svgoConfig: {
-                  plugins: [{ removeViewBox: false }],
-                },
-                titleProp: true,
-              },
-            },
-          ],
-          issuer: {
-            and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
-          },
-        },
-      ],
-    });
-    return config;
-  },
-};
+});

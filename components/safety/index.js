@@ -1,28 +1,24 @@
-import safety from "@/data/safety.json";
 import DateTimeFormatter from "../datetime-formatter";
 import cn from "classnames";
-import Button from "../stour/button";
 import EnvironmentAgency from "../icons/organisations/environment-agency";
 import MetOffice from "../icons/organisations/met-office";
 import { ExclamationIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import Label from "../stour/label";
 
-const status = safety.status;
-
-export default function SafetyPopup() {
+export default function SafetyPopup({ description, date, status }) {
   return (
     <div className="divide-y">
       <div className="p-4">
         <Label as="h2">River Safety Status</Label>
       </div>
-      <SeveritySection />
+      <SeveritySection status={status} />
 
       <div className="p-4">
-        {status.description}
-        {status.date && (
+        {description}
+        {date && (
           <div className="mt-6 text-xs text-gray-600">
-            Updated <DateTimeFormatter dateString={status.date} />
+            Updated <DateTimeFormatter dateString={date} />
           </div>
         )}
       </div>
@@ -48,21 +44,21 @@ export default function SafetyPopup() {
   );
 }
 
-function SeveritySection() {
+function SeveritySection({ status }) {
   return (
     <div
       className={cn(
-        "flex items-center justify-between h-24 p-4 text-4xl font-bold tracking-tight",
+        "flex items-center justify-between h-24 p-4 text-4xl font-bold tracking-tight capitalize",
         {
-          "text-red-500 bg-red-50": status.severity == "Red",
-          "text-yellow-500 bg-yellow-50": status.severity == "Amber",
-          "text-green-500 bg-green-50": status.severity == "Green",
-          "text-blue-500 bg-blue-50": status.severity == "Neutral",
+          "text-red-500 bg-red-50": status == "red",
+          "text-yellow-500 bg-yellow-50": status == "amber",
+          "text-green-500 bg-green-50": status == "green",
+          "text-blue-500 bg-blue-50": status == "neutral",
         }
       )}
     >
-      {status.severity}
-      {(status.severity == "Red" || status.severity == "Amber") && (
+      {status}
+      {(status == "red" || status == "amber") && (
         <ExclamationIcon className="w-6 h-6" />
       )}
     </div>

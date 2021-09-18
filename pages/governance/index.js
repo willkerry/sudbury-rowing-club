@@ -2,22 +2,15 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Link from "@/components/stour/link";
-import rawData from "@/data/governance.json";
+import data from "@/data/governance.json";
 import { BASE_URL } from "@/lib/constants";
 import { Popover, Transition } from "@headlessui/react";
 import cn from "classnames";
 import { NextSeo } from "next-seo";
 import { HelpCircle, Image as ImageIcon, XCircle } from "react-feather";
 import { Link as ScrollLink } from "react-scroll";
-
-export const getStaticProps = async () => {
-  return {
-    props: {
-      data: await rawData,
-    },
-    revalidate: 60,
-  };
-};
+import groq from "groq";
+import { sanityClient } from "@/lib/sanity.server";
 
 const GovGrid = ({ children }) => (
   <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
@@ -49,7 +42,7 @@ const ScrollComponent = ({ items }) => (
 const SectionTitle = (props) => (
   <h2
     className={cn(
-      "mt-24 mb-6 text-2xl font-bold tracking-tight text-gray-800",
+      "mt-16 mb-6 text-2xl font-bold tracking-tight text-gray-800",
       props.className
     )}
     {...props}
@@ -57,7 +50,7 @@ const SectionTitle = (props) => (
 );
 const SubTitle = (props) => (
   <h3
-    className={cn("mb-0.5 mt-8 font-semibold text-gray-900", props.className)}
+    className={cn("mb-0.5 font-semibold text-gray-900", props.className)}
     {...props}
   />
 );
@@ -69,35 +62,47 @@ const Vacant = () => (
   </div>
 );
 const OfficerName = (props) => (
-  <div
-    className="text-base font-semibold tracking-tight text-gray-800 sm:text-lg"
-    {...props}
-  />
+  <div className="font-semibold text-gray-800 tracking-snug" {...props} />
 );
 const Description = (props) => (
-  <div
-    className={cn("text-sm text-gray-700 sm:text-base", props.className)}
-    {...props}
-  />
+  <div className={cn("text-gray-700", props.className)} {...props} />
 );
-const DashUl = (props) => (
-  <ul className="mt-6 text-gray-600 list-inside" {...props} />
-);
+const Spacer = (props) => <div className="h-4" {...props} />;
+const DashUl = (props) => <ul className="" {...props} />;
 const DashLi = (props) => (
-  <li
-    className="relative pl-8 before:content-['\2014\a0'] before:font-normal before:absolute before:left-0 before:text-gray-300"
-    {...props}
-  />
+  <li className="relative mb-3 text-gray-800 committee-member" {...props} />
 );
 const DashLiFirst = (props) => (
-  <li
-    className="relative pl-8 first:font-medium first:text-gray-800 before:content-['\2014\a0'] before:font-normal before:absolute before:left-0 before:text-gray-300"
-    {...props}
-  />
+  <>
+    <li
+      className="relative mb-3 ml-4 text-gray-800 first:before:text-gray-400 committee-member"
+      {...props}
+    />
+    <style jsx>{`
+      .committee-member:first-child::before {
+        writing-mode: vertical-rl;
+        font-weight: 600;
+        content: 'Chair';
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.5rem;
+        line-height: 1;
+        position: absolute;
+        left: -1rem;
+        top: .3rem;
+
+    `}</style>
+  </>
 );
 
-export default function Governance({ data }) {
-  const sortedVicePresidents = data.vicePresidents.sort(function (a, b) {
+export default function Governance({
+  officers,
+  committees,
+  vicePresidents,
+  trustees,
+  documents,
+}) {
+  /* const sortedVicePresidents = data.vicePresidents.sort(function (a, b) {
     if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
     return 0;
@@ -106,8 +111,8 @@ export default function Governance({ data }) {
     if (a.surname.toLowerCase() < b.surname.toLowerCase()) return -1;
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
     return 0;
-  });
-
+  }); */
+  console.log(documents);
   return (
     <Layout>
       <NextSeo
@@ -127,24 +132,23 @@ export default function Governance({ data }) {
         ]}
       />
 
-      <Container>
+      <Container className="my-16">
         <section id="officers">
           <SectionTitle>Club Officers</SectionTitle>
           <GovGrid>
-            {data.officers.map((entry, index) => {
+            {officers.map((officer) => {
               return (
-                <div key={index}>
+                <div key={officer._id}>
                   <div
                     className={cn(
                       "flex items-center justify-center w-full mb-2 rounded h-36 relative overflow-hidden",
-                      !entry.vacant &&
+                      !officer.vacant &&
                         "bg-gradient-to-b from-gray-200 to-gray-100"
                     )}
                   >
-                    {!entry.vacant && (
+                    {!officer.vacant && (
                       <>
                         <ImageIcon className="text-gray-400" />
-
                         <Popover className="">
                           <Popover.Button>
                             <HelpCircle
@@ -178,12 +182,12 @@ export default function Governance({ data }) {
                       </>
                     )}
                   </div>
-                  {entry.vacant ? (
+                  {officer.vacant ? (
                     <Vacant />
                   ) : (
-                    <OfficerName>{entry.name}</OfficerName>
+                    <OfficerName>{officer.name}</OfficerName>
                   )}
-                  <Description>{entry.role}</Description>
+                  <Description>{officer.role}</Description>
                 </div>
               );
             })}
@@ -193,15 +197,26 @@ export default function Governance({ data }) {
           <SectionTitle>Committees</SectionTitle>
 
           <GovGrid>
-            {data.committees.map((entry, index) => {
+            {committees.map((committee) => {
               return (
-                <div key={index}>
-                  <SubTitle>{entry.name}</SubTitle>
-                  <Description>{entry.description}</Description>
+                <div key={committee._id}>
+                  <SubTitle>{committee.title}</SubTitle>
+                  <Description>{committee.description}</Description>
+                  <Spacer />
                   <DashUl>
-                    {entry.officers.map((sitting, index) => {
-                      return <DashLiFirst key={index}>{sitting}</DashLiFirst>;
-                    })}
+                    {committee.members !== null &&
+                      committee.members.map((member) => {
+                        return (
+                          <DashLiFirst key={member._id}>
+                            <div className="text-sm font-medium text-gray-700">
+                              {member.role}
+                            </div>
+                            <div className="text-xs text-gray-500">
+                              {member.name}
+                            </div>
+                          </DashLiFirst>
+                        );
+                      })}
                   </DashUl>
                 </div>
               );
@@ -213,56 +228,65 @@ export default function Governance({ data }) {
           <GovGrid>
             <div>
               <SubTitle>President</SubTitle>
-              <Description>{data.presidentDescription}</Description>
+              <Description>
+                By convention, the mayor of Sudbury is invited to be club
+                president.
+              </Description>
             </div>
-            <div className="col-start-1">
+            <div className="">
               <SubTitle>Vice-Presidents</SubTitle>
-              <Description>{data.vicePresidentDescription}</Description>
+              <Description>
+                Vice-presidents are elected each year at the AGM.
+              </Description>
+              <Spacer />
+              <ul className="text-sm text-gray-600">
+                {vicePresidents !== null &&
+                  vicePresidents.map((vicePresident) => {
+                    return (
+                      <li key={vicePresident._id}>
+                        {vicePresident.firstName} {vicePresident.surname}
+                      </li>
+                    );
+                  })}
+              </ul>
             </div>
-            <div className="col-span-4 sm:masonry-2-col md:masonry-4-col">
-              <DashUl>
-                {sortedVicePresidents.map((entry, index) => {
-                  return (
-                    <DashLi key={index}>
-                      {entry.firstName} {entry.surname}
-                    </DashLi>
-                  );
-                })}
-              </DashUl>
-            </div>
-            <div className="col-span-1">
+
+            <div>
               <SubTitle>Trustees</SubTitle>
-            </div>
-            <div className="col-span-4">
-              <DashUl>
-                {sorsortedTrustees.map((entry, index) => {
-                  return (
-                    <DashLi key={index}>
-                      {entry.firstName} {entry.surname}
-                    </DashLi>
-                  );
-                })}
-              </DashUl>
+              <ul className="text-sm text-gray-600">
+                {trustees !== null &&
+                  trustees.map((trustee) => {
+                    return (
+                      <li key={trustee._id}>
+                        {trustee.firstName} {trustee.surname}
+                      </li>
+                    );
+                  })}
+              </ul>
             </div>
           </GovGrid>
         </section>
 
         <section id="documents" className="py-12">
           <SectionTitle>Documents</SectionTitle>
-          {data.documents.map((groups, index) => {
+          {documents.map((group) => {
             return (
-              <div key={index} className="mt-6">
-                <SubTitle>{groups.group}</SubTitle>
+              <div key={group._key} className="mt-6">
+                <SubTitle>{group.groupTitle}</SubTitle>
                 <ul className="space-y-1">
-                  {groups.items.map((item, index) => {
+                  {group.resources.map((doc) => {
                     return (
-                      <li key={index}>
+                      <li key={doc._key}>
                         <Link
-                          href={item.href}
-                          download={item.download}
-                          external={item.external}
+                          href={doc.url ? doc.url : `${doc.file}?dl=`}
+                          download={doc.fileOrLink == "Upload a file"}
+                          external={
+                            doc.fileOrLink == "Enter a link" &&
+                            !doc.url.includes(BASE_URL) &&
+                            doc.url.includes("http")
+                          }
                         >
-                          {item.name}
+                          {doc.name}
                         </Link>
                       </li>
                     );
@@ -276,3 +300,53 @@ export default function Governance({ data }) {
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`{
+      "officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(order asc){
+        _id,
+        name,
+        role,
+        vacant
+      },
+      "committees": *[_type == "committees" && !(_id in path("drafts.**"))] | order(title desc){
+        _id,
+        title,
+        description,
+        members[]-> {_id, role, name}
+      },
+      "vicePresidents": *[_type == "vicePresidents" && !(_id in path("drafts.**"))] | order(surname asc){
+        _id,
+        firstName,
+        surname
+      },
+      "trustees": *[_type == "trustees" && !(_id in path("drafts.**"))] | order(surname asc){
+        _id,
+        firstName,
+        surname
+      },
+      "documents": *[_id == "siteSettings" && !(_id in path("drafts.**"))][0].governanceResources[] {
+        _key,
+        groupTitle,
+        resources[] {
+          _key,
+          name,
+          url,
+          "file": file.asset->url,
+          fileOrLink 
+        } 
+		  } 
+    }`
+  );
+  return {
+    props: {
+      officers: data.officers,
+      committees: data.committees,
+      vicePresidents: data.vicePresidents,
+      trustees: data.trustees,
+      documents: data.documents,
+    },
+    revalidate: 3600,
+  };
+};

@@ -2,27 +2,17 @@ import Layout from "@/components/layout";
 import { NextSeo } from "next-seo";
 import HeroTitle from "@/components/hero-title";
 import Container from "@/components/container";
-import rawData from "@/data/regatta.json";
 import EventsComponent from "@/components/regatta/events";
 import { BASE_URL } from "@/lib/constants";
-
-export const getStaticProps = async () => {
-  const data = await rawData;
-  return {
-    props: {
-      races: data.events.event,
-      courseMap: data.events.coursemap,
-    },
-    revalidate: 3600,
-  };
-};
+import { sanityClient } from "@/lib/sanity.server";
+import groq from "groq";
 
 const og = {
   title: "Event Information",
   description: "Races at the Sudbury Regatta.",
 };
 
-export default function Entries({ races, courseMap }) {
+export default function Entries({ data }) {
   return (
     <Layout>
       <NextSeo
@@ -34,10 +24,22 @@ export default function Entries({ races, courseMap }) {
           images: [{ url: BASE_URL + "/assets/og/events.png" }],
         }}
       />
-      <HeroTitle title={og.title} breadcrumbs />
-      <Container className="my-12">
-        <EventsComponent data={races} coursemap={courseMap} />
+      <HeroTitle title={og.title} breadcrumbs prose/>
+      <Container className="my-12 max-w-prose">
+        <EventsComponent data={data} />
       </Container>
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`*[_type == "regattaSettings"][0]{events}`
+  );
+  return {
+    props: {
+      data: data.events.events,
+    },
+    revalidate: 3600,
+  };
+};

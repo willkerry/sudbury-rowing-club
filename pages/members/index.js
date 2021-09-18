@@ -1,57 +1,56 @@
-import Head from "next/head";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
-import Link from "@/components/stour/link";
 import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
+import Text from "@/components/stour/text";
+import { sanityClient } from "@/lib/sanity.server";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import cn from "classnames";
-import data from "@/data/notices.json";
+import groq from "groq";
+import Head from "next/head";
 
-export const getStaticProps = async () => {
-  return {
-    props: {
-      notices: await data,
-    },
-  };
-};
-
-export default function Notices(props) {
+export default function Notices({ data }) {
   return (
     <Layout>
       <Head>
-        <title>Notices</title>
+        <title>Members’ Notices</title>
       </Head>
       <HeroTitle prose title="Notices" transparent />
       <Container className="my-12 space-y-6 max-w-prose">
-        {props.notices.map((item, index) => (
+        {data.map((item) => (
           <Card
-            key={index}
+            key={item._id}
             title={item.title}
-            items={item.items}
+            items={item.documents}
             meta={item.meta}
-          >
-            {item.content}
-          </Card>
+            created={item._createdAt}
+            updated={item._updatedAt}
+            body={item.body}
+          />
         ))}
       </Container>
     </Layout>
   );
 }
 
-function Card({ title, children, items, meta }) {
+function Card({ title, body, items, meta, updated, created }) {
   // How many document groups do we have?
-  const numberOfItems = items.length;
+
+  const numberOfItems = items !== null ? items.length : 2;
 
   // Sort those document groups by the number of documents in each group (just to help it look pretty)
-  const sortedItems = items.sort((a, b) =>
-    a.files.length < b.files.length
-      ? 1
-      : a.files.length > b.files.length
-      ? -1
-      : 0
-  );
+  const sortedItems =
+    items !== null
+      ? items.sort((a, b) =>
+          a.files.length < b.files.length
+            ? 1
+            : a.files.length > b.files.length
+            ? -1
+            : 0
+        )
+      : [items];
 
   // Split the array of document groups into two arrays, one for the first half and one for the second half
   const splitNumberOfItems = Math.ceil(numberOfItems / 2);
@@ -63,13 +62,13 @@ function Card({ title, children, items, meta }) {
     return items.map((item, index) => {
       return (
         <div key={index} className="flex flex-col">
-          {item.group && (
-            <h3 className="font-medium text-gray-700">{item.group}</h3>
+          {item.title && (
+            <h3 className="font-medium text-gray-700">{item.title}</h3>
           )}
 
-          {item.files.map((file, index) => (
-            <Link key={index} href={file.url} download>
-              {file.name}
+          {item.documents.map((doc) => (
+            <Link key={doc._key} href={`${doc.url}?dl=`} download>
+              {doc.title}
             </Link>
           ))}
         </div>
@@ -77,9 +76,9 @@ function Card({ title, children, items, meta }) {
     });
   };
   const MetaSection = ({ items }) => {
-    return items.map((item, index) => {
+    return items.map((item) => {
       return (
-        <div className="px-4" key={index}>
+        <div className="px-4" key={item._key}>
           <Label className="text-xs select-none">
             {item.label + ":" + " "}
           </Label>
@@ -121,13 +120,18 @@ function Card({ title, children, items, meta }) {
             leaveTo="opacity-0"
           >
             <Disclosure.Panel className="divide-y">
-              <p className="p-4">{children}</p>
-              {meta && meta.length > 0 && (
+              {body && (
+                <Text portableText className="p-4">
+                  {body}
+                </Text>
+              )}
+
+              {meta && (
                 <div className="flex py-2.5 text-sm bg-gray-50">
                   <MetaSection items={meta} />
                 </div>
               )}
-              {items && items.length > 0 && (
+              {items !== null && (
                 <div className="grid grid-cols-2 gap-4 p-4">
                   <div className="space-y-4">
                     <FileGroupList items={firstColumnItems} />
@@ -137,6 +141,29 @@ function Card({ title, children, items, meta }) {
                   </div>
                 </div>
               )}
+              <div className="flex gap-4 px-4 py-2 text-xs font-medium text-gray-500 bg-gray-100">
+                <time dateTime={created}>
+                  Created:{" "}
+                  {new Date(created).toLocaleDateString("en-GB", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </time>
+                {created !== updated && (
+                  <time dateTime={updated}>
+                    Updated:{" "}
+                    {new Date(updated).toLocaleString("en-GB", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                      hour12: true,
+                      hour: "numeric",
+                      minute: "2-digit",
+                    })}
+                  </time>
+                )}
+              </div>
             </Disclosure.Panel>
           </Transition>
         </>
@@ -144,3 +171,40 @@ function Card({ title, children, items, meta }) {
     </Disclosure>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`*[_type == "members" && !(_id in path("drafts.**"))]| order(_updatedAt desc){
+      _id,
+      _updatedAt,
+      _createdAt,
+      title,
+      body[]{
+          ...,
+          _type == "figure" => {
+             "_id": @.image.asset->_id,       
+             "altText": @.image.asset->altText,
+             "description": @.image.asset->description,   
+             "lqip": @.image.asset->metadata.lqip,
+             "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio, 
+          },
+      },
+      meta,
+      documents[] {
+        _key, 
+        title, 
+        documents[] {
+          _key,
+          title,
+          "url": asset->url
+        }
+      } 
+    }`
+  );
+  return {
+    props: {
+      data,
+    },
+    revalidate: 3600,
+  };
+};

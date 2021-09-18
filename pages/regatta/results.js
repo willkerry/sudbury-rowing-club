@@ -2,20 +2,13 @@ import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
-import rawData from "@/data/regatta";
 import Results from "@/components/regatta/results";
 import { NextSeo } from "next-seo";
+import Text from "@/components/stour/text";
+import { sanityClient } from "@/lib/sanity.server";
+import groq from "groq";
 
-export const getStaticProps = async () => {
-  return {
-    props: {
-      data: rawData,
-    },
-    revalidate: 60,
-  };
-};
-
-export default function ResultsPage({ data }) {
+export default function ResultsPage({ data, other }) {
   return (
     <Layout>
       <NextSeo
@@ -27,8 +20,38 @@ export default function ResultsPage({ data }) {
       />
       <HeroTitle title="Regatta results" breadcrumbs />
       <Container className="py-16">
-        <Results data={data} />
+        <Results results={data} records={other.records}>
+          <Text portableText lead>
+            {other.description}
+          </Text>
+        </Results>
       </Container>
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`
+      {
+        "results": *[_type == "regattas" && results != "" && !(_id in path("drafts.**"))] | order(date desc) {
+          _id,
+          date, 
+          results,
+          number
+        },
+        "other": *[_type == "regattaSettings"][0] {
+          "description": results.description,
+          "records": results.courseRecords.asset->url
+	      }   
+      } 
+    `
+  );
+  return {
+    props: {
+      data: data.results,
+      other: data.other,
+    },
+    revalidate: 3600,
+  };
+};

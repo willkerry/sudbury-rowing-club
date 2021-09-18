@@ -2,18 +2,13 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Link from "@/components/stour/link";
-import rawData from "@/data/galleries";
 import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
+import { sanityClient } from "@/lib/sanity.server";
+import groq from "groq";
+import tinytime from "tinytime";
 
-export const getStaticProps = async () => {
-  return {
-    props: {
-      data: await rawData,
-    },
-    revalidate: 60,
-  };
-};
+const formatDate = tinytime("{YYYY}").render;
 
 export default function Photography({ data }) {
   return (
@@ -65,19 +60,22 @@ function GalleryPassword({ password }) {
   );
 }
 
-function GalleryRow({ year, password, provider }) {
+function GalleryRow({ year, galleries }) {
   return (
     <tr>
       <th>
-        {year}
+        {formatDate(new Date(year))}
         <span className="hidden sm:inline"> Regatta</span>
       </th>
       <td className="!align-middle">
-        {password && <GalleryPassword password={password} />}
+        {galleries.map(
+          ({ password }, index) =>
+            password && <GalleryPassword key={index} password={password} />
+        )}
       </td>
       <td className="flex gap-6">
-        {provider.map(({ name, href }, index) => (
-          <GalleryLink key={index} href={href} name={name} />
+        {galleries.map(({ name, url }, index) => (
+          <GalleryLink key={index} href={url} name={name} />
         ))}
       </td>
     </tr>
@@ -87,14 +85,27 @@ function GalleryRow({ year, password, provider }) {
 function GalleryTbody({ data }) {
   return (
     <tbody>
-      {data.map(({ year, password, provider }, index) => (
-        <GalleryRow
-          key={index}
-          year={year}
-          password={password}
-          provider={provider}
-        />
+      {data.map(({ _id, date, galleries }) => (
+        <GalleryRow key={_id} year={date} galleries={galleries} />
       ))}
     </tbody>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`
+      *[_type == "regattas" && galleries != null] | order(date desc) {
+        _id,
+        date, 
+        galleries
+      }
+    `
+  );
+  return {
+    props: {
+      data,
+    },
+    revalidate: 3600,
+  };
+};

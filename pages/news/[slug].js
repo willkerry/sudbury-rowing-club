@@ -16,9 +16,7 @@ import markdownToHtml from "../../lib/markdownToHtml";
 import { NextSeo } from "next-seo";
 import { ArticleJsonLd } from "next-seo";
 import Label from "@/components/stour/label";
-import { format, formatDistance } from "date-fns";
-import { enGBLocale } from "date-fns/locale/en-GB";
-import Link from "@/components/stour/link";
+import DateFormatter from "@/components/date-formatter";
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
@@ -81,12 +79,7 @@ export default function Post({ post, morePosts, preview }) {
                 <div className="p-4">
                   <Label className="text-xs">Published</Label>
                   <div className="text-sm font-medium">
-                    {format(new Date(post.date), "d MMM yyyy")}
-                    {" (" +
-                      formatDistance(new Date(post.date), new Date(), {
-                        addSuffix: true,
-                      }) +
-                      ")"}
+                    <DateFormatter dateString={post.date} />
                   </div>
                 </div>
               </div>

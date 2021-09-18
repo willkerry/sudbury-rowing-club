@@ -1,6 +1,6 @@
 import Label from "@/components/stour/label";
 import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDownIcon, LightningBoltIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 import cn from "classnames";
 
 export default function Details({ items }) {

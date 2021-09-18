@@ -1,30 +1,15 @@
 import SafetyPopup from "@/components/safety";
-import dynamic from "next/dynamic";
 import { Download, ExternalLink } from "react-feather";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
-import data from "@/data/safety.json";
 import { BASE_URL } from "lib/constants";
 import Link from "@/components/stour/link";
 import { NextSeo } from "next-seo";
-import Loading from "@/components/stour/loading";
-
-const ReactMarkdown = dynamic(() => import("react-markdown"), {
-  loading: () => Loading(),
-});
-const Button = dynamic(() => import("@/components/stour/button"));
-
-export const getStaticProps = async () => {
-  return {
-    props: {
-      items: await data.safety,
-      docs: await data.documents,
-      showStatus: await data.status.display,
-    },
-    revalidate: 60,
-  };
-};
+import { sanityClient } from "@/lib/sanity.server";
+import groq from "groq";
+import Text from "@/components/stour/text";
+import Button from "@/components/stour/button";
 
 const SectionTitle = (props) => (
   <h2
@@ -33,7 +18,7 @@ const SectionTitle = (props) => (
   />
 );
 
-export default function Safety({ items, docs, showStatus }) {
+export default function Safety({ safety, safetyStatus }) {
   return (
     <Layout>
       <NextSeo
@@ -47,52 +32,98 @@ export default function Safety({ items, docs, showStatus }) {
       />
       <HeroTitle prose title="Safety" />
       <Container className="mx-auto my-12 space-y-16 max-w-prose">
-        {showStatus && (
+        {safetyStatus.display && (
           <div className="overflow-hidden border rounded">
-            <SafetyPopup />
+            <SafetyPopup
+              description={safetyStatus.description}
+              date={safetyStatus._updatedAt}
+              status={safetyStatus.status}
+            />
           </div>
         )}
-        {items.map((item) => {
+        {safety.map((item) => {
           return (
-            <div
-              key={item.name.toString()}
-              id={item.name.toString()}
-              className="space-y-6"
-            >
-              <SectionTitle>{item.name}</SectionTitle>
-              {item.description && (
-                <div className="prose">
-                  <ReactMarkdown>{item.description}</ReactMarkdown>
-                  {item.date && <small>Last updated {item.date}</small>}
-                </div>
-              )}
+            <div key={item._id} id={item._id} className="space-y-6">
+              <SectionTitle>{item.title}</SectionTitle>
+              {item.body && <Text portableText>{item.body}</Text>}
+              {item.__updatedAt}
               {item.link && (
                 <Button
-                  href={item.link.file}
-                  variant="brand"
+                  href={item.link.url}
                   iconRight={
-                    item.link.file.includes(BASE_URL) ? (
+                    item.link.url.includes(BASE_URL) ? (
                       <Download />
                     ) : (
                       <ExternalLink />
                     )
                   }
                 >
-                  {item.link.name}
+                  {item.link.title}
+                </Button>
+              )}
+              {item.document && (
+                <Button
+                  href={`${item.document.url}?dl=`}
+                  iconRight={<Download />}
+                >
+                  {item.document.title}
                 </Button>
               )}
             </div>
           );
         })}
-        <div>
+        {/* <div>
           <SectionTitle>Documents</SectionTitle>
           {docs.map((item, index) => (
             <Link href={item.file} external key={index} className="block mb-2">
               {item.name}
             </Link>
           ))}
-        </div>
+        </div> */}
       </Container>
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`{
+      "safety": *[_type == "safety" && !(_id in path("drafts.**"))] | order(_updatedAt asc){
+        _updatedAt,
+        _id,
+        title,
+        body[]{
+          ...,
+          _type == "figure" => {
+            "_id": @.image.asset->_id,       
+            "altText": @.image.asset->altText,
+            "description": @.image.asset->description,   
+            "lqip": @.image.asset->metadata.lqip,
+            "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio, 
+          },
+        },
+        document != null => {
+          document {
+            title,
+            "url": asset->url,
+            "extension": asset->extension,
+          },
+        },
+        link != null => { link },
+      },
+      "safetyStatus": *[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
+        _updatedAt,
+        description,
+        display,
+        status
+      } 
+    }`
+  );
+  return {
+    props: {
+      safety: data.safety,
+      safetyStatus: data.safetyStatus,
+    },
+    revalidate: 3600,
+  };
+};

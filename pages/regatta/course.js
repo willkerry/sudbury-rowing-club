@@ -5,12 +5,14 @@ import Button from "@/components/stour/button";
 import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import courseMap from "public/assets/regatta/course/course-map.jpg";
 import { Download } from "react-feather";
+import { sanityClient } from "@/lib/sanity.server";
+import groq from "groq";
+import { urlFor } from "@/lib/sanity";
 
-export default function Photography({ preview }) {
+export default function Photography({ data }) {
   return (
-    <Layout preview={preview}>
+    <Layout>
       <NextSeo
         title="Coursemap | Sudbury Regatta"
         description="Sudbury’s challenging regatta course."
@@ -23,25 +25,48 @@ export default function Photography({ preview }) {
       <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
       <Container className="mb-16">
         <div className="my-16 prose">
-          <p className="lead">Introducing the world’s shortest sprint course</p>
-          <p>
-            All boats other than the sprint eights race on the 650m course at
-            Sudbury, beginning at stake-boats before the bend and finishing at
-            the shared finish. Eights race on the straighter 350m course –
-            possibly the shortest of its kind anywhere in the world – avoiding
-            the tight bend and making for very exciting racing indeed.
-          </p>
-          <Button
-            href="/assets/regatta/course/course-map.pdf"
-            iconRight={<Download />}
-          >
+          <p className="lead">{data.heading}</p>
+          <p>{data.description}</p>
+          <Button href={`${data.map}?dl=`} iconRight={<Download />}>
             Download the PDF
           </Button>
         </div>
         <div className="flex overflow-hidden border rounded shadow-xl">
-          <Image src={courseMap} alt="" />
+          <Image
+            src={urlFor(data.mapImage.id)
+              .width(982 * 2)
+              .url()}
+            width={982}
+            height={982 / data.mapImage.aspectRatio}
+            placeholder="blur"
+            blurDataURL={data.mapImage.lqip}
+            alt=""
+          />
         </div>
       </Container>
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`*[_type == "regattaSettings"][0]
+    {
+      "heading": courseMap.heading,
+      "description": courseMap.description,
+      "map": courseMap.map.asset->url,
+      "mapImage": 
+      {
+        'id': courseMap.mapImage.asset->_id,
+        'aspectRatio': courseMap.mapImage.asset->metadata.dimensions.aspectRatio,
+        'lqip': courseMap.mapImage.asset->metadata.lqip
+      }
+    }`
+  );
+  return {
+    props: {
+      data,
+    },
+    revalidate: 3600,
+  };
+};

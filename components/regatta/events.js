@@ -1,6 +1,6 @@
 import Label from "../stour/label";
-import LongCourse from "@/components/regatta/events/650.svg";
 import ShortCourse from "@/components/regatta/events/350.svg";
+import LongCourse from "@/components/regatta/events/650.svg";
 
 const Section = (props) => <section {...props} />;
 const Table = (props) => <div {...props} className="w-full" />;
@@ -17,7 +17,7 @@ const Cell = (props) => (
   <dl {...props} className="w-full text-sm font-medium text-gray-800" />
 );
 
-function Results({ data }) {
+function Events({ data }) {
   return (
     <div className="grid gap-8 md:grid-cols-2">
       {data.map((item) => (
@@ -65,4 +65,4 @@ function Results({ data }) {
   );
 }
 
-export default Results;
+export default Events;

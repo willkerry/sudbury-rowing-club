@@ -4,9 +4,10 @@ import Layout from "@/components/layout";
 import CompetitorInformation from "@/components/regatta/competitor-information";
 import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
-import TextPage from "@/components/layouts/text-page";
+import { sanityClient } from "@/lib/sanity.server";
+import groq from "groq";
 
-export default function CompetitorInformationPage() {
+export default function CompetitorInformationPage({ data }) {
   return (
     <Layout>
       <NextSeo
@@ -21,8 +22,35 @@ export default function CompetitorInformationPage() {
       />
       <HeroTitle title="Competitor Information" breadcrumbs />
       <Container className="py-16">
-        <CompetitorInformation />
+        <CompetitorInformation
+          description={data.description}
+          items={data.documents}
+        />
       </Container>
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(groq`
+  *[_type == "regattaSettings"][0]{
+    competitorInformation 
+      { 
+      description, 
+      documents[] 
+        { 
+        title, 
+        "extension": asset->extension, 
+        "url": asset->url, 
+        "_id": asset->_id
+        },
+      },
+    } 
+  `);
+  return {
+    props: {
+      data: data.competitorInformation,
+    },
+    revalidate: 3600,
+  };
+};

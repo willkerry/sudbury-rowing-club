@@ -1,6 +1,6 @@
-import { parseISO, format } from 'date-fns'
+import tinytime from "tinytime";
 
 export default function DateFormatter({ dateString }) {
-  const date = parseISO(dateString)
-  return <time dateTime={dateString}>{format(date, 'd LLLL yyyy')}</time>
+  const formatDate = tinytime("{DD} {MMMM} {YYYY}").render;
+  return <time dateTime={dateString}>{formatDate(new Date(dateString))}</time>;
 }

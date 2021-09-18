@@ -1,4 +1,3 @@
-import data from "@/data/regatta";
 import Link from "@/components/stour/link";
 import cn from "classnames";
 
@@ -8,11 +7,10 @@ function CompetitorInformation({ tab, description, items }) {
       {description}
       <div className="py-6 prose">
         <ul>
-          {console.log(items)}
           {items.map((item) => (
             <li key={item._id}>
               <Link
-                href={item.url}
+                href={`${item.url}?dl=`}
                 download
                 aria-label={"Download" + " " + item.title}
                 extension={item.extension}
