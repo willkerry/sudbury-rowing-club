@@ -21,7 +21,7 @@
     "gray-matter": "4.0.3",
     "md5": "^2.3.0",
     "next": "latest",
-    "next-seo": "^4.26.0",
+    "next-seo": "^4.28.0",
     "nextjs-breadcrumbs": "^1.1.9",
     "nodemailer": "^6.6.3",
     "picosanity": "^3.0.1",
