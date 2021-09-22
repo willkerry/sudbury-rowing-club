@@ -4,7 +4,6 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import { BASE_URL } from "lib/constants";
-import Link from "@/components/stour/link";
 import { NextSeo } from "next-seo";
 import { sanityClient } from "@/lib/sanity.server";
 import groq from "groq";
@@ -72,14 +71,6 @@ export default function Safety({ safety, safetyStatus }) {
             </div>
           );
         })}
-        {/* <div>
-          <SectionTitle>Documents</SectionTitle>
-          {docs.map((item, index) => (
-            <Link href={item.file} external key={index} className="block mb-2">
-              {item.name}
-            </Link>
-          ))}
-        </div> */}
       </Container>
     </Layout>
   );
@@ -124,6 +115,5 @@ export const getStaticProps = async () => {
       safety: data.safety,
       safetyStatus: data.safetyStatus,
     },
-    revalidate: 3600,
   };
 };

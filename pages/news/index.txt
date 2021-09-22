@@ -1,14 +1,17 @@
-import NewsList from "@/components/news/news-list";
 import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/container";
+import MoreStories from "@/components/more-stories";
+import HeroPost from "@/components/hero-post";
 import Layout from "@/components/layout";
+import { getAllPosts } from "../../lib/api";
 import { NextSeo } from "next-seo";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
-import groq from "groq";
-import { sanityClient } from "@/lib/sanity.server";
 
-export default function News({ data }) {
+export default function News({ allPosts }) {
+  const heroPost = allPosts[0];
+  const morePosts = allPosts.slice(1);
+
   return (
     <Layout>
       <NextSeo
@@ -30,42 +33,34 @@ export default function News({ data }) {
         </Container>
       </div>
       <Container className="my-10">
-        <NewsList postData={data} />
+        {heroPost && (
+          <HeroPost
+            title={heroPost.title}
+            coverImage={heroPost.coverImage}
+            date={heroPost.date}
+            author={heroPost.author}
+            slug={heroPost.slug}
+            excerpt={heroPost.excerpt}
+          />
+        )}
+        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const data = await sanityClient.fetch(groq`
-    *[_type == "news" && !(_id in path("drafts.**"))] | order(date desc){
-        _id,
-        "slug": slug.current,
-        title,
-        excerpt,
-        date,
-        author {"firstName": @->firstName, "surname": @->surname},
-        body[]{
-          ...,
-          _type == "figure" => {
-            "_id": @.image.asset->_id,
-            "altText": @.image.asset->altText,
-            "description": @.image.asset->description,   
-            "lqip": @.image.asset->metadata.lqip,
-          },
-        },
-        
-        featuredImage {
-          alt, 
-          caption,
-          "_id": @.image.asset->_id, 
-          "lqip": @.image.asset->metadata.lqip, 
-          "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio
-        },
-      }
-   `);
+  const allPosts = getAllPosts([
+    "title",
+    "date",
+    "slug",
+    "author",
+    "coverImage",
+    "excerpt",
+  ]);
 
   return {
-    props: { data },
+    props: { allPosts },
+    revalidate: 60,
   };
 }

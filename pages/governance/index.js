@@ -112,7 +112,6 @@ export default function Governance({
     if (a.surname.toLowerCase() > b.surname.toLowerCase()) return 1;
     return 0;
   }); */
-  console.log(documents);
   return (
     <Layout>
       <NextSeo
@@ -347,6 +346,5 @@ export const getStaticProps = async () => {
       trustees: data.trustees,
       documents: data.documents,
     },
-    revalidate: 3600,
   };
 };

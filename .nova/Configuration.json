@@ -1,3 +1,8 @@
 {
-  "apexskier.eslint.config.eslintConfigPath" : ".eslintrc"
+  "apexskier.eslint.config.eslintConfigPath" : ".eslintrc",
+  "editor.default_syntax" : "jsx",
+  "workspace.name" : "Sudbury Rowing Club 7",
+  "workspace.preview_append_paths" : true,
+  "workspace.preview_server_allow_external" : false,
+  "workspace.preview_url" : "localhost:3000\/"
 }

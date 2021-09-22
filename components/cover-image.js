@@ -1,13 +1,21 @@
-import Link from "next/link";
 import Image from "next/image";
 
-export default function CoverImage({ title, src, slug, height, width }) {
+export default function CoverImage({
+  title,
+  src,
+  alt,
+  height,
+  width,
+  blurDataURL,
+}) {
   const image = (
     <Image
       src={src}
-      alt={`Cover Image for ${title}`}
-      layout="fill"
-      objectFit="cover"
+      alt={alt ? alt : `Cover Image for ${title}`}
+      width={width}
+      height={height}
+      placeholder="blur"
+      blurDataURL={blurDataURL}
     />
   );
   return image;

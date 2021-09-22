@@ -24,12 +24,12 @@ export default function Meta() {
       <link
         rel="mask-icon"
         href="/favicon/safari-pinned-tab.svg?v=3"
-        color="#003B80"
+        color="#00295A"
       />
       <link rel="shortcut icon" href="/favicon/favicon.ico?v=3" />
-      <meta name="msapplication-TileColor" content="#003B80" />
+      <meta name="msapplication-TileColor" content="#00295A" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
-      <meta name="theme-color" content="#003B80" />
+      <meta name="theme-color" content="#00295A" />
     </Head>
   );
 }

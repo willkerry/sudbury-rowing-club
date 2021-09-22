@@ -1,34 +1,22 @@
 import Image from "next/image";
-import tourImage from "../../public/assets/landing/tour.jpg";
-import regattaImage from "../../public/assets/landing/regatta.jpg";
-import juniorsImage from "../../public/assets/landing/juniors.jpg";
+import { urlFor } from "@/lib/sanity";
 
-const tour = tourImage;
-const regatta = regattaImage;
-const juniors = juniorsImage;
-
-const landingImages = [
-  {
-    src: tour,
-    alt: "Sudbury Rowing Club members posing for a photo at the World Rowing Masters Regatta in Hungary.",
-  },
-  {
-    src: regatta,
-    alt: "Sudbury members with their pots at the sunny Sudbury Regatta.",
-  },
-  {
-    src: juniors,
-    alt: "Some of Sudbury’s juniors posing with pots at a summer regatta.",
-  },
-];
-
-function LandingImages() {
+function LandingImages(props) {
+  const images = props.images.slice(0, 3);
   return (
     <div className="my-10 border-t border-b sm:my-16">
       <div className="flex flex-row">
-        {landingImages.map(({ src, alt }, index) => (
+        {images.map(({ _id, aspectRatio, caption, lqip }, index) => (
           <div key={index} className="relative w-1/3 h-24 bg-black sm:h-72">
-            <Image src={src} alt={alt} layout="fill" className="object-cover" placeholder="blur" />
+            <Image
+              src={urlFor(_id).height(576).url()}
+              alt={caption}
+              layout="fill"
+              sizes="33.3vw"
+              className="object-cover"
+              placeholder="blur"
+              blurDataURL={lqip}
+            />
           </div>
         ))}
       </div>

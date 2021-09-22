@@ -51,6 +51,5 @@ export const getStaticProps = async () => {
     props: {
       data: data.competitorInformation,
     },
-    revalidate: 3600,
   };
 };

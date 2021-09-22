@@ -1,14 +1,17 @@
 import DateFormatter from "../components/date-formatter";
 import CoverImage from "../components/cover-image";
 import Link from "next/link";
+import { urlFor } from "@/lib/sanity";
 
 export default function HeroPost({
   title,
-  coverImage,
   date,
   excerpt,
   author,
   slug,
+  imageId,
+  imageAlt,
+  imageLqip,
 }) {
   return (
     <Link as={`/news/${slug}`} href="/news/[slug]">
@@ -16,10 +19,11 @@ export default function HeroPost({
         <div className="relative border-b md:border-b-0 md:border-r md:col-span-2 h-60 sm:h-96">
           <CoverImage
             title={title}
-            src={coverImage}
-            slug={slug}
-            height={620}
-            width={1240}
+            src={urlFor(imageId).width(1286).height(772).fit("min").url()}
+            height={386}
+            width={643}
+            alt={imageAlt}
+            blurDataURL={imageLqip} 
           />
         </div>
         <div className="flex flex-col m-4 md:my-8 md:mr-8 place-content-between">

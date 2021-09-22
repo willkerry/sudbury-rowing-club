@@ -5,7 +5,6 @@ import { PortableText } from "@/lib/sanity";
 import dynamic from "next/dynamic";
 
 const ReactMarkdown = dynamic(() => import("react-markdown"));
-const smartypants = dynamic(() => import("@silvenon/remark-smartypants"));
 
 const SIZE_MAPS = {
   sm: "prose-sm",
@@ -27,7 +26,7 @@ export function Text(props) {
     lead && "auto-lead"
   );
   return markdown ? (
-    <ReactMarkdown className={classes} remarkPlugins={[smartypants]}>
+    <ReactMarkdown className={classes}>
       {children}
     </ReactMarkdown>
   ) : portableText ? (

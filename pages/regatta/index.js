@@ -11,16 +11,20 @@ import {
 import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import { BASE_URL } from "@/lib/constants";
-import { urlFor } from "@/lib/sanity";
 import { sanityClient } from "@/lib/sanity.server";
 import groq from "groq";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
 import DateLocation from "@/components/regatta/landing-page/date-location";
 import Text from "@/components/stour/text";
 
+const Gallery = dynamic(
+  () => import("@/components/regatta/landing-page/gallery"),
+  {
+    loading: () => Loading(),
+  }
+);
 const Details = dynamic(() =>
   import("@/components/regatta/landing-page/details")
 );
@@ -197,31 +201,6 @@ export default function Regatta({ page, testimonials, results }) {
   );
 }
 
-function Gallery({ imagesArray }) {
-  return (
-    <div className="w-full overflow-x-scroll">
-      <div className="flex gap-4 pr-4 m-4 min-w-max">
-        {imagesArray.map((image) => (
-          <figure key={image._id} className="flex flex-col">
-            <Image
-              src={urlFor(image._id).height(600).url()}
-              width={300 * image.aspectRatio}
-              height={300}
-              placeholder="blur"
-              blurDataURL={image.lqip}
-              alt={image.caption}
-              className="rounded"
-            />
-            <figcaption className="mt-1 text-sm text-gray-800">
-              {image.caption}
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export const getStaticProps = async () => {
   const page = await sanityClient.fetch(groq`
   {"page": *[_type == "regattaSettings"][0] {
@@ -242,6 +221,8 @@ export const getStaticProps = async () => {
         "_id": asset->_id,
         "aspectRatio": asset->metadata.dimensions.aspectRatio,
         "lqip": asset->metadata.lqip,
+        "bgColor": asset->metadata.palette.darkMuted.background,
+        "color": asset->metadata.palette.darkMuted.foreground,
         caption 
       },
       tagline
@@ -272,6 +253,5 @@ export const getStaticProps = async () => {
       testimonials: page.testimonials,
       results: page.results,
     },
-    revalidate: 3600,
   };
 };

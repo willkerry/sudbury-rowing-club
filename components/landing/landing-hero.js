@@ -1,7 +1,7 @@
 import Image from "next/image";
-import DroneImage from "../../public/assets/landing/drone.jpg";
 import BoathouseDoor from "@/components/landing/boathouse-door";
 import Player from "@/components/landing/player";
+import { urlFor } from "@/lib/sanity";
 
 function LandingHero(props) {
   return (
@@ -9,9 +9,12 @@ function LandingHero(props) {
       {/* The  image is a static import – Next.js auto-populates its width and height. */}
 
       <Image
-        src={DroneImage}
+        src={urlFor(props.imageId).url()}
+        width={984}
+        height={984 / props.imageAspectRatio}
         alt="Aerial photograph of a Sudbury crew training."
         placeholder="blur"
+        blurDataURL={props.imageLqip}
       />
 
       {/* All the text/body content is inside an absolute container on top of the container. */}

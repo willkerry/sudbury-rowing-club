@@ -1,25 +1,26 @@
 import DateFormatter from "../components/date-formatter";
 import Link from "next/link";
 import Image from "next/image";
-import cn from "classnames";
+import { urlFor } from "@/lib/sanity";
 
 export function PostPreview(props) {
-  const { title, coverImage, date, excerpt, author, slug } = props;
+  const { title, imageId, imageAlt, imageLqip, date, slug } = props;
 
   return (
     <li>
       <article id={slug}>
         <Link as={`/news/${slug}`} href="/news/[slug]">
           <a className="flex flex-col overflow-hidden transition bg-white border divide-y rounded hover:border-blue-400 group">
-            {coverImage ? (
+            {imageId ? (
               <div className="relative h-56 sm:h-48 md:h-36 lg:h-56">
                 <Image
-                  src={coverImage}
-                  alt=""
-                  layout="fill"
-                  objectFit="cover"
+                  src={urlFor(imageId).width(610).height(450).fit("min").url()}
+                  alt={imageAlt}
+                  placeholder="blur"
+                  blurDataURL={imageLqip}
+                  width={305}
+                  height={225}
                   className="z-0 bg-gradient-to-r from-gray-200 to-white"
-                  sizes="15vw"
                 />
               </div>
             ) : (

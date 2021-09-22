@@ -1,16 +1,16 @@
 import Container from "../components/container";
-import MoreStories from "../components/more-stories";
-import HeroPost from "../components/hero-post";
 import Layout from "../components/layout";
-import { getAllPosts } from "../lib/api";
 import LandingHero from "@/components/landing/landing-hero";
 import Note from "@/components/stour/note";
 import Button from "@/components/stour/button";
-import landingData from "../data/landing.json";
 import dynamic from "next/dynamic";
 import { NextSeo } from "next-seo";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import groq from "groq";
+import { sanityClient } from "@/lib/sanity.server";
+import Text from "@/components/stour/text";
+import NewsList from "@/components/news/news-list";
 
 const Sponsors = dynamic(() => import("@/components/landing/sponsors"));
 const CommitteeSignature = dynamic(() =>
@@ -20,38 +20,37 @@ const LandingImages = dynamic(() =>
   import("@/components/landing/landing-images")
 );
 
-export default function Index({ allPosts }) {
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1, 4);
-
+export default function Index({ news, landingPage }) {
   return (
     <>
       <NextSeo
-        title={landingData.page_title}
-        description={landingData.hero.slogan}
+        title={landingPage.title}
+        description={landingPage.tagline}
         openGraph={{
-          title: `${landingData.page_title}`,
-          description: `${landingData.hero.slogan}`,
+          title: `${landingPage.title}`,
+          description: `${landingPage.tagline}`,
         }}
       />
       <Layout>
-        {landingData.notice.display && (
+        {landingPage.note.display && (
           <Container>
             <Note
               centered
-              label={landingData.notice.label}
-              type={landingData.notice.type}
-              size="small"
+              label={landingPage.note.label}
+              type={landingPage.note.type}
             >
-              {landingData.notice.text}
+              {landingPage.note.text}
             </Note>
           </Container>
         )}
         <div className="container max-w-screen-lg md:mx-auto md:px-5">
           <LandingHero
-            slogan={landingData.hero.slogan}
-            youTubeId={landingData.hero.youTubeId}
-            youTubeStart={landingData.hero.youTubeStart}
+            slogan={landingPage.tagline}
+            youTubeId={landingPage.heroImage.youtubeId}
+            youTubeStart={landingPage.heroImage.youtubeStartOffset}
+            imageId={landingPage.heroImage.image._id}
+            imageAspectRatio={landingPage.heroImage.image.aspectRatio}
+            imageLqip={landingPage.heroImage.image.lqip}
           />
         </div>
 
@@ -67,15 +66,16 @@ export default function Index({ allPosts }) {
         </Container>
         <section id="intro">
           <Container className="my-16">
-            <div className="mx-auto prose">
-              <p className="lead">{landingData.intro.main}</p>
-              <p>{landingData.intro.secondary}</p>
+            <div className="mx-auto ">
+              <Text portableText lead className="mx-auto">
+                {landingPage.description}
+              </Text>
               <CommitteeSignature className="w-48 py-16 mx-auto sm:w-min sm:max-w-sm" />
               <span className="sr-only">The Committee</span>
             </div>
             <Sponsors />
           </Container>
-          <LandingImages />
+          <LandingImages images={landingPage.images} />
         </section>
 
         <section className="my-16">
@@ -89,17 +89,7 @@ export default function Index({ allPosts }) {
             </Container>
           </div>
           <Container>
-            {heroPost && (
-              <HeroPost
-                title={heroPost.title}
-                coverImage={heroPost.coverImage}
-                date={heroPost.date}
-                author={heroPost.author}
-                slug={heroPost.slug}
-                excerpt={heroPost.excerpt}
-              />
-            )}
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            <NewsList postData={news} />
             <div className="invisible h-8" />
             <Link href="/news" arrow>
               See more
@@ -111,17 +101,51 @@ export default function Index({ allPosts }) {
   );
 }
 
-export async function getStaticProps() {
-  const allPosts = getAllPosts([
-    "title",
-    "date",
-    "slug",
-    "author",
-    "coverImage",
-    "excerpt",
-  ]);
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(groq`
+    {
+      "landingPage": *[_id == "siteSettings" && !(_id in path("drafts.**"))][0].landingPage {
+        description,
+        images[] { 
+          caption, 
+          "_id": asset->_id,
+          "lqip": asset->metadata.lqip,
+          "aspectRatio": asset->metadata.dimensions.aspectRatio
+          },
+        heroImage {
+          image {
+            "_id": asset->_id,
+            "lqip": asset->metadata.lqip,
+            "aspectRatio": asset->metadata.dimensions.aspectRatio,
+          }, 
+          youtubeId,
+          youtubeStartOffset
+        },
+        note,
+        tagline,
+        title,
+      },
+      "news": *[_type == "news" && !(_id in path("drafts.**"))] | order(date desc){
+        _id,
+        "slug": slug.current,
+        title,
+        excerpt,
+        date,
+        featuredImage {
+          alt, 
+          caption,
+          "_id": @.image.asset->_id, 
+          "lqip": @.image.asset->metadata.lqip, 
+          "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio
+        },
+      }[0..3]
+    }
+   `);
 
   return {
-    props: { allPosts },
+    props: {
+      landingPage: data.landingPage,
+      news: data.news,
+    },
   };
-}
+};
