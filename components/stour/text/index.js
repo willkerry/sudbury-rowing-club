@@ -4,8 +4,6 @@ import { PortableText } from "@/lib/sanity";
 
 import dynamic from "next/dynamic";
 
-const ReactMarkdown = dynamic(() => import("react-markdown"));
-
 const SIZE_MAPS = {
   sm: "prose-sm",
   base: "",
@@ -25,11 +23,7 @@ export function Text(props) {
     props.className,
     lead && "auto-lead"
   );
-  return markdown ? (
-    <ReactMarkdown className={classes}>
-      {children}
-    </ReactMarkdown>
-  ) : portableText ? (
+  return portableText ? (
     <PortableText className={classes} blocks={children} />
   ) : (
     <div className={classes}>{children}</div>

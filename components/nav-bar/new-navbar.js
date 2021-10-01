@@ -6,6 +6,8 @@ import NavPopover from "./nav-popover";
 import NavLink from "./nav-link";
 import SafetyStatus from "./safety-status";
 import NavLogo from "./nav-logo";
+import { useState, useEffect } from "react";
+import cn from "classnames";
 import {
   about,
   aboutCTAs,
@@ -16,8 +18,19 @@ import {
 } from "./nav-data";
 
 export default function Navbar() {
+  const [scroll, setScroll] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScroll(window.scrollY > 50);
+    });
+  }, []);
   return (
-    <Popover className="relative text-gray-900 bg-white">
+    <Popover
+      className={cn(
+        "sticky top-0 z-20 text-gray-900 bg-white transition ",
+        scroll && "border-b"
+      )}
+    >
       {({ open }) => (
         <>
           <div className="max-w-screen-lg px-4 mx-auto sm:px-6">

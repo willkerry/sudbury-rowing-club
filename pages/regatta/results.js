@@ -52,5 +52,6 @@ export const getStaticProps = async () => {
       data: data.results,
       other: data.other,
     },
+    revalidate: 7200,
   };
 };

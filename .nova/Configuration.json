@@ -1,6 +1,8 @@
 {
   "apexskier.eslint.config.eslintConfigPath" : ".eslintrc",
   "editor.default_syntax" : "jsx",
+  "workspace.art_style" : 1,
+  "workspace.color" : 8,
   "workspace.name" : "Sudbury Rowing Club 7",
   "workspace.preview_append_paths" : true,
   "workspace.preview_server_allow_external" : false,

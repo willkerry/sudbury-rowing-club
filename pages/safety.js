@@ -115,5 +115,6 @@ export const getStaticProps = async () => {
       safety: data.safety,
       safetyStatus: data.safetyStatus,
     },
+    revalidate: 7200,
   };
 };

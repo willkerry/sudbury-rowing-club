@@ -48,8 +48,7 @@ export const getStaticProps = async () => {
     } 
   `);
   return {
-    props: {
-      data: data.competitorInformation,
-    },
+    props: { data: data.competitorInformation },
+    revalidate: 7200,
   };
 };

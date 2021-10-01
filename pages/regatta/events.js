@@ -24,7 +24,7 @@ export default function Entries({ data }) {
           images: [{ url: BASE_URL + "/assets/og/events.png" }],
         }}
       />
-      <HeroTitle title={og.title} breadcrumbs prose/>
+      <HeroTitle title={og.title} breadcrumbs prose />
       <Container className="my-12 max-w-prose">
         <EventsComponent data={data} />
       </Container>
@@ -37,8 +37,7 @@ export const getStaticProps = async () => {
     groq`*[_type == "regattaSettings"][0]{events}`
   );
   return {
-    props: {
-      data: data.events.events,
-    },
+    props: { data: data.events.events },
+    revalidate: 7200,
   };
 };

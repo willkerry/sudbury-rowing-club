@@ -29,8 +29,7 @@ export const getStaticProps = async () => {
     groq`*[_type == "regattaSettings"][0]{entries}`
   );
   return {
-    props: {
-      data: data.entries,
-    },
+    props: { data: data.entries },
+    revalidate: 7200,
   };
 };

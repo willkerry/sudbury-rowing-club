@@ -16,7 +16,7 @@ function Results({ tab, children, results, records }) {
             Course records
           </Button>
         )}
-        <Note label="Mobile users" type="secondary" className="sm:hidden">
+        <Note label="Mobile users" type="warning" className="sm:hidden">
           Our results software pre-dates the mobile web. We’re working on it,
           but for now we acknowledge our results pages are difficult to navigate
           on mobile devices.

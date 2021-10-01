@@ -346,5 +346,6 @@ export const getStaticProps = async () => {
       trustees: data.trustees,
       documents: data.documents,
     },
+    revalidate: 7200,
   };
 };

@@ -29,7 +29,8 @@ export default function Meta() {
       <link rel="shortcut icon" href="/favicon/favicon.ico?v=3" />
       <meta name="msapplication-TileColor" content="#00295A" />
       <meta name="msapplication-config" content="/favicon/browserconfig.xml" />
-      <meta name="theme-color" content="#00295A" />
+      {/* <meta name="theme-color" content="#00295A" /> */}
+      <meta name="theme-color" content="#fff" />
     </Head>
   );
 }
