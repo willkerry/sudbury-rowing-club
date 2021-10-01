@@ -22,7 +22,7 @@
     "next": "latest",
     "next-seo": "^4.28.1",
     "nextjs-breadcrumbs": "^1.1.9",
-    "nodemailer": "^6.6.3",
+    "nodemailer": "^6.6.5",
     "picosanity": "^3.0.1",
     "pigeon-maps": "^0.19.7",
     "react": "^17.0.1",
