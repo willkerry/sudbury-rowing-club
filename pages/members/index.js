@@ -39,39 +39,27 @@ function Card({ title, body, items, meta, updated, created }) {
   // How many document groups do we have?
 
   const numberOfItems = items !== null ? items.length : 2;
-
-  // Sort those document groups by the number of documents in each group (just to help it look pretty)
-  const sortedItems =
-    items !== null
-      ? items.sort((a, b) =>
-          a.files.length < b.files.length
-            ? 1
-            : a.files.length > b.files.length
-            ? -1
-            : 0
-        )
-      : [items];
-
   // Split the array of document groups into two arrays, one for the first half and one for the second half
   const splitNumberOfItems = Math.ceil(numberOfItems / 2);
-  const firstColumnItems = sortedItems.slice(0, splitNumberOfItems);
-  const secondColumnItems = sortedItems.slice(splitNumberOfItems);
+  const firstColumnItems = items.slice(0, splitNumberOfItems);
+  const secondColumnItems = items.slice(splitNumberOfItems);
 
   // Render a column of document groups
   const FileGroupList = ({ items }) => {
     return items.map((item, index) => {
       return (
-        <div key={index} className="flex flex-col">
-          {item.title && (
-            <h3 className="font-medium text-gray-700">{item.title}</h3>
-          )}
-
-          {item.documents.map((doc) => (
-            <Link key={doc._key} href={`${doc.url}?dl=`} download>
-              {doc.title}
-            </Link>
-          ))}
-        </div>
+        item.documents && (
+          <div key={index} className="flex flex-col">
+            {item.title && (
+              <h3 className="font-medium text-gray-700">{item.title}</h3>
+            )}
+            {item.documents.map((doc) => (
+              <Link key={doc._key} href={`${doc.url}?dl=`} download>
+                {doc.title}
+              </Link>
+            ))}
+          </div>
+        )
       );
     });
   };
