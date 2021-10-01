@@ -6,12 +6,19 @@ export default function NewsList({ postData }) {
   const morePosts = postData.slice(1);
   return (
     <>
-      {heroPost && (
+      {heroPost.featuredImage ? (
         <HeroPost
           title={heroPost.title}
           imageId={heroPost.featuredImage._id}
           imageAlt={heroPost.featuredImage.alt}
           imageLqip={heroPost.featuredImage.lqip}
+          date={heroPost.date}
+          slug={heroPost.slug}
+          excerpt={heroPost.excerpt}
+        />
+      ) : (
+        <HeroPost
+          title={heroPost.title}
           date={heroPost.date}
           slug={heroPost.slug}
           excerpt={heroPost.excerpt}

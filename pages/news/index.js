@@ -44,17 +44,6 @@ export async function getStaticProps() {
         title,
         excerpt,
         date,
-        author {"firstName": @->firstName, "surname": @->surname},
-        body[]{
-          ...,
-          _type == "figure" => {
-            "_id": @.image.asset->_id,
-            "altText": @.image.asset->altText,
-            "description": @.image.asset->description,   
-            "lqip": @.image.asset->metadata.lqip,
-          },
-        },
-        
         featuredImage {
           alt, 
           caption,
@@ -67,5 +56,6 @@ export async function getStaticProps() {
 
   return {
     props: { data },
+    revalidate: 7200,
   };
 }

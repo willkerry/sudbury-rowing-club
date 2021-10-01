@@ -4,7 +4,6 @@ import Container from "../../components/container";
 import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
 import Layout from "../../components/layout";
-import { getPostBySlug, getAllPosts } from "../../lib/api";
 import PostTitle from "../../components/post-title";
 import {
   BASE_URL,
@@ -12,22 +11,35 @@ import {
   LOGO,
   HOME_OG_IMAGE_URL,
 } from "../../lib/constants";
-import markdownToHtml from "../../lib/markdownToHtml";
 import { NextSeo } from "next-seo";
 import { ArticleJsonLd } from "next-seo";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/date-formatter";
+import { sanityClient } from "@/lib/sanity.server";
+import { postQuery, postSlugsQuery } from "@/lib/queries";
+import { urlFor } from "@/lib/sanity";
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post }) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  const shareImage = post.coverImage
-    ? BASE_URL + post.coverImage
-    : HOME_OG_IMAGE_URL;
-  return (
-    <Layout preview={preview}>
+
+  // THE NEXT FUNCITON IS SHITTY
+
+  // Turns featuredImage object into a useful URL. Making it a function, not a variable might be a bad idea, but attempts at a component-level variable led to build failures.
+  const CoverImage = (image) => {
+    image === null
+      ? null
+      : image === undefined
+      ? null
+      : urlFor(image).width(1200).url();
+  };
+
+  return post === undefined ? (
+    "Loading..."
+  ) : (
+    <Layout>
       <Container>
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
@@ -47,7 +59,7 @@ export default function Post({ post, morePosts, preview }) {
                   },
                   images: [
                     {
-                      url: shareImage,
+                      url: CoverImage(post.featuredImage),
                     },
                   ],
                 }}
@@ -55,25 +67,30 @@ export default function Post({ post, morePosts, preview }) {
               <ArticleJsonLd
                 url={BASE_URL + router.asPath}
                 title={post.title}
-                images={[shareImage]}
+                images={[CoverImage(post.featuredImage)]}
                 datePublished={post.date}
                 publisherName={PROJECT_NAME}
                 publisherLogo={LOGO}
                 description={post.description}
               />
+
               <PostHeader
                 title={post.title}
-                coverImage={post.coverImage}
+                featuredImage={post.featuredImage && post.featuredImage}
                 date={post.date}
-                author={post.author}
+                alt={post.featuredImage && post.featuredImage.alt}
+                caption={post.featuredImage && post.featuredImage.caption}
+                lqip={post.featuredImage && post.featuredImage.lqip}
               />
-              <PostBody content={post.content} />
+              {post.body && <PostBody content={post.body} />}
 
               <div className="flex flex-wrap mx-auto my-12 border rounded max-w-prose">
                 {post.author && (
                   <div className="p-4">
                     <Label className="text-xs">Author</Label>
-                    <div className="text-sm font-medium">{post.author}</div>
+                    <div className="text-sm font-medium">
+                      {post.author.firstName + " " + post.author.surname}
+                    </div>
                   </div>
                 )}
                 <div className="p-4">
@@ -92,6 +109,25 @@ export default function Post({ post, morePosts, preview }) {
 }
 
 export async function getStaticProps({ params }) {
+  const post = await sanityClient.fetch(postQuery, {
+    slug: params.slug,
+  });
+
+  return {
+    props: { post },
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(postSlugsQuery);
+
+  return {
+    paths: paths.map((slug) => ({ params: { slug } })),
+    fallback: true,
+  };
+}
+
+/* export async function getStaticProps({ params }) {
   const post = getPostBySlug(params.slug, [
     "title",
     "date",
@@ -141,3 +177,4 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
+ */

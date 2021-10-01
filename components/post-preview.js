@@ -12,20 +12,31 @@ export function PostPreview(props) {
         <Link as={`/news/${slug}`} href="/news/[slug]">
           <a className="flex flex-col overflow-hidden transition bg-white border divide-y rounded hover:border-blue-400 group">
             {imageId ? (
-              <div className="relative h-56 sm:h-48 md:h-36 lg:h-56">
+              <div className="relative">
                 <Image
-                  src={urlFor(imageId).width(610).height(450).fit("min").url()}
+                  src={urlFor(imageId).width(610).height(376).fit("min").url()}
                   alt={imageAlt}
                   placeholder="blur"
                   blurDataURL={imageLqip}
                   width={305}
-                  height={225}
+                  height={188}
                   className="z-0 bg-gradient-to-r from-gray-200 to-white"
+                  layout="responsive"
                 />
               </div>
             ) : (
-              <div className="relative h-56 sm:h-48 md:h-36 lg:h-56 px-2.5 pt-1.5 overflow-hidden text-6xl font-bold tracking-tighter text-gray-100 transition select-none group-hover:text-blue-50">
-                {title}
+              <div className="relative overflow-hidden text-6xl font-bold tracking-tighter text-gray-100 transition select-none group-hover:text-blue-50">
+                <div className="box-border relative block m-0 overflow-hidden">
+                  <div className="px-2.5 pt-1.5 pseudo-img">
+                    <style jsx>{`
+                      .pseudo-img {
+                        width: 305px;
+                        height: 188px;
+                      }
+                    `}</style>
+                    {title}
+                  </div>
+                </div>
               </div>
             )}
             <div className="p-3">
