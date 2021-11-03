@@ -15,14 +15,14 @@
     "@heroicons/react": "^1.0.4",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
-    "axios": "^0.21.4",
+    "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "embla-carousel": "^4.5.3",
     "md5": "^2.3.0",
     "next": "latest",
     "next-seo": "^4.28.1",
     "nextjs-breadcrumbs": "^1.1.9",
-    "nodemailer": "^6.6.3",
+    "nodemailer": "^6.7.0",
     "picosanity": "^3.0.1",
     "pigeon-maps": "^0.19.7",
     "react": "^17.0.1",
@@ -44,13 +44,13 @@
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
-    "autoprefixer": "^10.3.5",
+    "autoprefixer": "^10.4.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^11.1.2",
     "groq": "^2.15.0",
     "postcss": "^8.3.7",
     "prettier": "2.4.1",
-    "tailwindcss": "^2.2.15"
+    "tailwindcss": "^2.2.19"
   },
   "license": "MIT"
 }
