@@ -19,7 +19,7 @@ const GovGrid = ({ children }) => (
 const StyledScrollLink = (props) => (
   <ScrollLink
     activeClass="text-gray-900 bg-gray-100"
-    className="block p-2 mr-4 -m-2 transition rounded-md whitespace-nowrap hover:bg-gray-100 hover:text-gray-900 hover:cursor-pointer"
+    className="block px-2 py-2 my-0.5 mr-4 -mx-2 transition rounded-md whitespace-nowrap hover:bg-gray-100 hover:text-gray-900 hover:cursor-pointer"
     spy={true}
     smooth={true}
     offset={-100}
@@ -28,8 +28,8 @@ const StyledScrollLink = (props) => (
   />
 );
 const ScrollComponent = ({ items }) => (
-  <div className="sticky top-0 z-10 bg-white border-b">
-    <div className="container flex items-center h-16 max-w-screen-lg px-5 mx-auto overflow-scroll text-gray-500">
+  <div className="bg-white border-b">
+    <div className="container flex flex-wrap items-center max-w-screen-lg px-5 py-2 mx-auto overflow-hidden text-xs font-medium tracking-wide text-gray-500 uppercase sm:h-16 sm:font-normal sm:tracking-normal sm:normal-case sm:text-base">
       {items.map((item, index) => (
         <StyledScrollLink key={index} to={item.to}>
           {item.name}
@@ -84,7 +84,6 @@ const DashLiFirst = (props) => (
     `}</style>
   </>
 );
-
 export default function Governance({
   officers,
   committees,
@@ -120,7 +119,6 @@ export default function Governance({
           { to: "documents", name: "Documents" },
         ]}
       />
-
       <Container className="my-16">
         <section id="officers">
           <SectionTitle>Club Officers</SectionTitle>
@@ -130,13 +128,12 @@ export default function Governance({
                 <div key={officer._id}>
                   <div className="relative flex items-center justify-center w-full mb-2 overflow-hidden rounded h-36 bg-gradient-to-b from-gray-200 to-gray-100">
                     {officer.vacant ? (
-                      <div className="font-bold tracking-widest text-gray-400 uppercase ">
+                      <div className="font-bold tracking-widest text-gray-400 uppercase">
                         TBA
                       </div>
                     ) : (
                       <ImageIcon className="text-gray-400" />
                     )}
-
                     {officer.description && (
                       <Popover className="">
                         <Popover.Button>
@@ -173,7 +170,6 @@ export default function Governance({
                   <OfficerName>
                     {officer.vacant ? <>&nbsp;</> : officer.name}
                   </OfficerName>
-
                   <Description>{officer.role}</Description>
                 </div>
               );
