@@ -2,7 +2,6 @@ import Container from "@/components/container";
 import DayDateFormatter from "@/components/daydate-formatter";
 import Layout from "@/components/layout";
 import {
-  ContactIcon,
   EntriesIcon,
   EventsIcon,
   InfoIcon,
@@ -114,7 +113,7 @@ export default function Regatta({ page, testimonials, results }) {
         />
       ),
     },
-    {
+    /* {
       summary: "Contact",
       icon: <ContactIcon />,
       content: (
@@ -122,7 +121,7 @@ export default function Regatta({ page, testimonials, results }) {
           <ContactForm />
         </div>
       ),
-    },
+    }, */
   ];
   return (
     <Layout>
@@ -189,6 +188,7 @@ export default function Regatta({ page, testimonials, results }) {
         <Details items={accordion} />
       </Container>
       <Gallery imagesArray={page.landingPage.images} />
+
       <Hero
         title="Some of the people who’ve come to our regatta have said lovely things about it"
         label="Feedback"

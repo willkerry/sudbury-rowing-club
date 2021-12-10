@@ -26,17 +26,17 @@ function Entries({ children, table, waveNames, caption }) {
                   >
                     <div
                       className={cn(
-                        entry == waveNames[0]
+                        entry === waveNames[0]
                           ? "bg-red-500 text-white"
-                          : entry == waveNames[1]
+                          : entry === waveNames[1]
                           ? "bg-green-500 text-white"
-                          : entry == waveNames[2]
+                          : entry === waveNames[2]
                           ? "bg-blue-500 text-white"
-                          : entry == waveNames[3]
+                          : entry === waveNames[3]
                           ? "bg-yellow-500 text-white"
-                          : entry == waveNames[4]
+                          : entry === waveNames[4]
                           ? "bg-purple-500 text-white"
-                          : entry == waveNames[5]
+                          : entry === waveNames[5]
                           ? "bg-pink-500 text-white"
                           : null,
                         "rounded-full"

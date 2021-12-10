@@ -89,7 +89,6 @@ module.exports = {
               borderLeftWidth: null,
               borderLeftColor: null,
               quotes: null,
-              fontWeight: null,
               fontStyle: null,
             },
             "blockquote p:first-of-type::before": {

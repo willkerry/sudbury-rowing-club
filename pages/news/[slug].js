@@ -5,14 +5,8 @@ import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
 import Layout from "../../components/layout";
 import PostTitle from "../../components/post-title";
-import {
-  BASE_URL,
-  PROJECT_NAME,
-  LOGO,
-  HOME_OG_IMAGE_URL,
-} from "../../lib/constants";
-import { NextSeo } from "next-seo";
-import { ArticleJsonLd } from "next-seo";
+import { BASE_URL, LOGO, PROJECT_NAME } from "@/lib/constants";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/date-formatter";
 import { sanityClient } from "@/lib/sanity.server";
@@ -25,15 +19,13 @@ export default function Post({ post }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  // THE NEXT FUNCITON IS SHITTY
-
   // Turns featuredImage object into a useful URL. Making it a function, not a variable might be a bad idea, but attempts at a component-level variable led to build failures.
   const CoverImage = (image) => {
     image === null
       ? null
       : image === undefined
-      ? null
-      : urlFor(image).width(1200).url();
+        ? null
+        : urlFor(image).width(1200).url();
   };
 
   return post === undefined ? (
@@ -55,13 +47,13 @@ export default function Post({ post }) {
                   url: BASE_URL + router.asPath,
                   type: "article",
                   article: {
-                    publishedTime: post.date,
+                    publishedTime: post.date
                   },
                   images: [
                     {
-                      url: CoverImage(post.featuredImage),
-                    },
-                  ],
+                      url: CoverImage(post.featuredImage)
+                    }
+                  ]
                 }}
               />
               <ArticleJsonLd
@@ -110,11 +102,11 @@ export default function Post({ post }) {
 
 export async function getStaticProps({ params }) {
   const post = await sanityClient.fetch(postQuery, {
-    slug: params.slug,
+    slug: params.slug
   });
 
   return {
-    props: { post },
+    props: { post }
   };
 }
 
@@ -123,7 +115,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths.map((slug) => ({ params: { slug } })),
-    fallback: true,
+    fallback: true
   };
 }
 

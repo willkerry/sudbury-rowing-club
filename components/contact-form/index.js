@@ -1,10 +1,11 @@
 import { Component } from "react";
-import { sendContactMail } from "../../lib/mail-api";
+import { sendContactMail } from "@/lib/mail-api";
 import Button from "../stour/button";
-import { contactableOfficers } from "../../lib/officer-contacts";
+import Link from "next/link";
 import TextareaAutosize from "react-textarea-autosize";
 import Loading from "../stour/loading";
 import { CheckIcon } from "@heroicons/react/outline";
+import Note from "../stour/note";
 
 class ContactForm extends Component {
   state = {
@@ -14,6 +15,7 @@ class ContactForm extends Component {
     mail: "",
     formContent: "",
     recipientMail: "default",
+    errorHelpText: "",
   };
 
   render() {
@@ -24,12 +26,15 @@ class ContactForm extends Component {
       mail,
       formContent,
       recipientMail,
+      errorHelpText,
     } = this.state;
 
     const btnClass = formButtonDisabled ? "disabled" : "";
 
     const fieldClasses =
       "block w-full border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition";
+
+    const enquiriesMail = "enquiries@sudburyrowingclub.org.uk";
 
     return (
       <form className="grid grid-cols-1 gap-6 mx-auto">
@@ -44,8 +49,8 @@ class ContactForm extends Component {
             <option value="default" disabled>
               Select a recipient
             </option>
-            {contactableOfficers.map((officer, index) => (
-              <option key={index} value={officer.hash}>
+            {this.props.contacts.map((officer) => (
+              <option key={officer._id} value={officer._id}>
                 {officer.role + ", " + officer.name}
               </option>
             ))}
@@ -97,6 +102,21 @@ class ContactForm extends Component {
             {formButtonText}
           </Button>
         </div>
+        {errorHelpText && (
+          <Note size="small" type="error" label="Error">
+            We couldn’t process that request. If the problem persists, please
+            mail us at{" "}
+            <Link
+              href={
+                "mailto:" + enquiriesMail + "?body=" + encodeURI(formContent)
+              }
+            >
+              {enquiriesMail}
+            </Link>{" "}
+            instead. (This link will open a new email on your device and
+            autofill the message above.)
+          </Note>
+        )}
       </form>
     );
   }
@@ -137,7 +157,10 @@ class ContactForm extends Component {
         formContent: "",
       });
     } else {
-      this.setState({ formButtonText: "Error" });
+      this.setState({
+        formButtonText: "Could not be sent.",
+        errorHelpText: true,
+      });
     }
   };
 }

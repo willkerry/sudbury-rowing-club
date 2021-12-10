@@ -309,7 +309,6 @@ function L2RStages() {
             content: counter(a);
             font-weight: 500;
             font-size: 0.875rem;
-            line-height: 1.25rem;
             text-align: center;
             position: absolute;
             border-radius: 100%;
@@ -322,7 +321,7 @@ function L2RStages() {
             line-height: 1.3;
           }
           ol li p {
-            color: inhert;
+            color: inherit;
           }
         `}</style>
         {l2rStages.map((stage) => (

@@ -202,7 +202,7 @@ export default function Brand({ blue }) {
   const ColorRows = ({ data }) => {
     return data.map((item, index) => {
       return (
-        <tr key={index} className={item.id == "900" ? "bg-gray-100" : null}>
+        <tr key={index} className={item.id === "900" ? "bg-gray-100" : null}>
           <td className="text-right">
             <code>{item.id}</code>
           </td>

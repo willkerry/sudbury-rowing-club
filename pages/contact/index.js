@@ -4,8 +4,15 @@ import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
+import groq from "groq";
+import { sanityClient } from "@/lib/sanity.server";
 
-export default function Contact() {
+import { FetchOfficerById } from "@/lib/officer-contacts";
+
+export default function Contact({ contactableOfficers }) {
+  const inputId = "will";
+  console.log(inputId);
+  console.log(FetchOfficerById(inputId));
   return (
     <Layout>
       <NextSeo
@@ -25,8 +32,23 @@ export default function Contact() {
           respond to enquiries, we ask that you select an appropriate recipient
           for your enquiry.
         </div>
-        <ContactForm />
+        <ContactForm contacts={contactableOfficers} />
       </Container>
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await sanityClient.fetch(
+    groq`
+      *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
+        _id,
+        name,
+        role
+      }
+    `
+  );
+  return {
+    props: { contactableOfficers: [...data] },
+  };
+};

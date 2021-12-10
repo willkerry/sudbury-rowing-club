@@ -155,7 +155,10 @@ export default function NavPopover(props) {
           </>
         ) : (
           <>
-            <span>{props.label}</span>
+            {props.label}
+            {props.altLabel && (
+              <span className="sr-only">{props.altLabel}</span>
+            )}
             <Chevron />
           </>
         )}

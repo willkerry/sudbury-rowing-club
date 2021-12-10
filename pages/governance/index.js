@@ -2,7 +2,6 @@ import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Link from "@/components/stour/link";
-import data from "@/data/governance.json";
 import { BASE_URL } from "@/lib/constants";
 import { Popover, Transition } from "@headlessui/react";
 import cn from "classnames";
@@ -54,13 +53,6 @@ const SubTitle = (props) => (
     {...props}
   />
 );
-const Vacant = () => (
-  <div className="h-8">
-    <span className="p-1 text-xs font-semibold tracking-widest text-gray-600 border rounded bg-gray-50">
-      TBA
-    </span>
-  </div>
-);
 const OfficerName = (props) => (
   <div className="font-semibold text-gray-800 tracking-snug" {...props} />
 );
@@ -69,9 +61,7 @@ const Description = (props) => (
 );
 const Spacer = (props) => <div className="h-4" {...props} />;
 const DashUl = (props) => <ul className="" {...props} />;
-const DashLi = (props) => (
-  <li className="relative mb-3 text-gray-800 committee-member" {...props} />
-);
+
 const DashLiFirst = (props) => (
   <>
     <li
@@ -82,15 +72,15 @@ const DashLiFirst = (props) => (
       .committee-member:first-child::before {
         writing-mode: vertical-rl;
         font-weight: 600;
-        content: 'Chair';
+        content: "Chair";
         letter-spacing: 0.1em;
         text-transform: uppercase;
         font-size: 0.5rem;
         line-height: 1;
         position: absolute;
         left: -1rem;
-        top: .3rem;
-
+        top: 0.3rem;
+      }
     `}</style>
   </>
 );
@@ -138,59 +128,64 @@ export default function Governance({
             {officers.map((officer) => {
               return (
                 <div key={officer._id}>
-                  <div
-                    className={cn(
-                      "flex items-center justify-center w-full mb-2 rounded h-36 relative overflow-hidden",
-                      !officer.vacant &&
-                        "bg-gradient-to-b from-gray-200 to-gray-100"
+                  <div className="relative flex items-center justify-center w-full mb-2 overflow-hidden rounded h-36 bg-gradient-to-b from-gray-200 to-gray-100">
+                    {officer.vacant ? (
+                      <div className="font-bold tracking-widest text-gray-400 uppercase ">
+                        TBA
+                      </div>
+                    ) : (
+                      <ImageIcon className="text-gray-400" />
                     )}
-                  >
-                    {!officer.vacant && (
-                      <>
-                        <ImageIcon className="text-gray-400" />
-                        <Popover className="">
-                          <Popover.Button>
-                            <HelpCircle
-                              className="absolute text-blue-500 transition right-2 bottom-2 hover:text-gray-700"
-                              size="1em"
-                              strokeWidth="0.15em"
-                            />
-                          </Popover.Button>
-                          <Transition
-                            enter="transition-opacity duration-150 ease-in-out"
-                            enterFrom="opacity-0"
-                            enterTo="opacity-100"
-                            leave="transition duration-75 ease-in-out"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                          >
-                            <Popover.Panel className="absolute top-0 left-0 w-full h-full p-4 bg-white bg-opacity-50 rounded backdrop-blur">
-                              <div className="text-xs font-medium text-gray-600">
-                                <p>Image not currently available.</p>
-                              </div>
-                              <Popover.Button>
-                                <XCircle
-                                  className="absolute text-gray-500 transition hover:text-gray-700 right-2 bottom-2"
-                                  size="1em"
-                                  strokeWidth="0.15em"
-                                />
-                              </Popover.Button>
-                            </Popover.Panel>
-                          </Transition>
-                        </Popover>
-                      </>
+
+                    {officer.description && (
+                      <Popover className="">
+                        <Popover.Button>
+                          <HelpCircle
+                            className="absolute text-blue-500 transition right-2 bottom-2 hover:text-gray-700"
+                            size="1em"
+                            strokeWidth="0.15em"
+                          />
+                        </Popover.Button>
+                        <Transition
+                          enter="transition-opacity duration-150 ease-in-out"
+                          enterFrom="opacity-0"
+                          enterTo="opacity-100"
+                          leave="transition duration-75 ease-in-out"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Popover.Panel className="absolute top-0 left-0 w-full h-full p-4 bg-white bg-opacity-50 rounded backdrop-blur">
+                            <div className="text-xs font-medium text-gray-600">
+                              <p>{officer.description}</p>
+                            </div>
+                            <Popover.Button>
+                              <XCircle
+                                className="absolute text-gray-500 transition hover:text-gray-700 right-2 bottom-2"
+                                size="1em"
+                                strokeWidth="0.15em"
+                              />
+                            </Popover.Button>
+                          </Popover.Panel>
+                        </Transition>
+                      </Popover>
                     )}
                   </div>
-                  {officer.vacant ? (
-                    <Vacant />
-                  ) : (
-                    <OfficerName>{officer.name}</OfficerName>
-                  )}
+                  <OfficerName>
+                    {officer.vacant ? <>&nbsp;</> : officer.name}
+                  </OfficerName>
+
                   <Description>{officer.role}</Description>
                 </div>
               );
             })}
           </GovGrid>
+          <p className="py-12 text-sm text-gray-500">
+            The role descriptions provided above are abbreviated and for
+            illustrative purposes only. Please refer to the{" "}
+            <Link href="/governance/constitution">constitution</Link> for
+            accurate details. If you wish to enquire about a vacant position,
+            please contact the club secretary.
+          </p>
         </section>
         <section id="committees">
           <SectionTitle>Committees</SectionTitle>
@@ -278,9 +273,9 @@ export default function Governance({
                       <li key={doc._key}>
                         <Link
                           href={doc.url ? doc.url : `${doc.file}?dl=`}
-                          download={doc.fileOrLink == "Upload a file"}
+                          download={doc.fileOrLink === "Upload a file"}
                           external={
-                            doc.fileOrLink == "Enter a link" &&
+                            doc.fileOrLink === "Enter a link" &&
                             !doc.url.includes(BASE_URL) &&
                             doc.url.includes("http")
                           }
@@ -307,7 +302,8 @@ export const getStaticProps = async () => {
         _id,
         name,
         role,
-        vacant
+        vacant,
+        description,
       },
       "committees": *[_type == "committees" && !(_id in path("drafts.**"))] | order(title desc){
         _id,

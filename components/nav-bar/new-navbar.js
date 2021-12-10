@@ -16,6 +16,7 @@ import {
   members,
   memberCTAs,
 } from "./nav-data";
+import { Users } from "react-feather";
 
 export default function Navbar() {
   const [scroll, setScroll] = useState(false);
@@ -53,7 +54,8 @@ export default function Navbar() {
                 <NavLink href="/join">Join</NavLink>
                 <NavPopover
                   compact
-                  label="Members"
+                  label={<Users className="flex w-4 h-4" />}
+                  altLabel="Members"
                   navData={members}
                   ctaData={memberCTAs}
                 />

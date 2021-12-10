@@ -7,19 +7,8 @@ function Anonymous() {
     <div className="flex">
       <ShieldCheckIcon className="inline-flex w-4 h-4 mr-1 text-gray-300" />
 
-      <div>
+      <div className="inline-flex mt-o.5 text-xs tracking-wider text-gray-600 uppercase">
         Anonymous
-        <style jsx>{`
-          div {
-            display: inline-flex;
-            margin-top: 2px;
-            font-size: 0.7em;
-            letter-spacing: 0.1em;
-            color: rgb(75, 85, 99);
-            text-transform: uppercase;
-            @apply inline-flex mt-px text-xs tracking-widest text-gray-600 uppercase;
-          }
-        `}</style>
       </div>
     </div>
   );

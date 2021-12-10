@@ -2,8 +2,6 @@ import cn from "classnames";
 import { PropTypes } from "prop-types";
 import { PortableText } from "@/lib/sanity";
 
-import dynamic from "next/dynamic";
-
 const SIZE_MAPS = {
   sm: "prose-sm",
   base: "",

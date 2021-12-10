@@ -50,15 +50,15 @@ function SeveritySection({ status }) {
       className={cn(
         "flex items-center justify-between h-24 p-4 text-4xl font-bold tracking-tight capitalize",
         {
-          "text-red-500 bg-red-50": status == "red",
-          "text-yellow-500 bg-yellow-50": status == "amber",
-          "text-green-500 bg-green-50": status == "green",
-          "text-blue-500 bg-blue-50": status == "neutral",
+          "text-red-500 bg-red-50": status === "red",
+          "text-yellow-500 bg-yellow-50": status === "amber",
+          "text-green-500 bg-green-50": status === "green",
+          "text-blue-500 bg-blue-50": status === "neutral",
         }
       )}
     >
       {status}
-      {(status == "red" || status == "amber") && (
+      {(status === "red" || status === "amber") && (
         <ExclamationIcon className="w-6 h-6" />
       )}
     </div>

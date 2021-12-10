@@ -121,6 +121,10 @@ export const members = [
     name: "Notices",
     href: "/members",
   },
+  {
+    name: "Kit",
+    href: "/members/kit",
+  },
 ];
 export const memberCTAs = [
   {

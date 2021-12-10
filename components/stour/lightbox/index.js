@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { XIcon } from "@heroicons/react/solid";
+import Head from "next/head";
 
 export default function Lightbox() {
   let [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ export default function Lightbox() {
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-10" onClose={closeModal}>
+        <Dialog as="div" className="fixed inset-0 z-50" onClose={closeModal}>
           <div className="min-h-screen">
             <Transition.Child
               as={Fragment}
@@ -38,8 +38,11 @@ export default function Lightbox() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 backdrop-brightness-50 backdrop-saturate-150 backdrop-blur" />
+              <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur" />
             </Transition.Child>
+            <Head>
+              <meta name="theme-color" content="#333" />
+            </Head>
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
@@ -59,15 +62,21 @@ export default function Lightbox() {
             >
               <button
                 type="button"
-                className=""
                 onClick={closeModal}
               >
+                <style jsx>{`
+                  button {
+                    cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2248%22%20height%3D%2248%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cline%20x1%3D%2218%22%20y1%3D%226%22%20x2%3D%226%22%20y2%3D%2218%22%3E%3C/line%3E%3Cline%20x1%3D%226%22%20y1%3D%226%22%20x2%3D%2218%22%20y2%3D%2218%22%3E%3C/line%3E%3C/svg%3E")
+                        48 48,
+                      auto;
+                  }
+                `}</style>
                 <Image
                   alt=""
                   src="/assets/landing/drone.jpg"
                   layout="fill"
                   onClick={openModal}
-                  className="object-contain"
+                  className="object-contain overflow-hidden rounded-xl"
                   placeholder="blur"
                   blurDataURL="data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7"
                 />
