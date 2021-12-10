@@ -41,21 +41,19 @@ select {
   .auto-lead > :first-child {
     @apply text-xl font-medium tracking-tight;
   }
-  @variants responsive {
-    .masonry-4-col {
-      column-count: 4;
-      column-gap: 2em;
-    }
-    .masonry-3-col {
-      column-count: 3;
-      column-gap: 2em;
-    }
-    .masonry-2-col {
-      column-count: 2;
-      column-gap: 2em;
-    }
-    .break-inside {
-      break-inside: avoid;
-    }
+  .masonry-4-col {
+    column-count: 4;
+    column-gap: 2em;
+  }
+  .masonry-3-col {
+    column-count: 3;
+    column-gap: 2em;
+  }
+  .masonry-2-col {
+    column-count: 2;
+    column-gap: 2em;
+  }
+  .break-inside {
+    break-inside: avoid;
   }
 }

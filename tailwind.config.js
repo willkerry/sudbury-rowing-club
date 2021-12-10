@@ -9,7 +9,7 @@ module.exports = {
     require("@tailwindcss/line-clamp"),
   ],
   mode: "jit",
-  purge: ["./components/**/*.js", "./pages/**/*.js"],
+  content: ["./components/**/*.js", "./pages/**/*.js"],
   theme: {
     extend: {
       colors: {
@@ -123,11 +123,6 @@ module.exports = {
           },
         },
       }),
-    },
-  },
-  variants: {
-    extend: {
-      fontWeight: ["first"],
     },
   },
 };
