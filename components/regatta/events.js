@@ -1,6 +1,7 @@
 import Label from "../stour/label";
-import ShortCourse from "@/components/regatta/events/350.svg";
-import LongCourse from "@/components/regatta/events/650.svg";
+import shortCourse from "@/components/regatta/events/350.svg";
+import longCourse from "@/components/regatta/events/650.svg";
+import Image from "next/image";
 
 const Section = (props) => <section {...props} />;
 const Table = (props) => <div {...props} className="w-full" />;
@@ -24,9 +25,17 @@ function Events({ data }) {
         <Section key={item._key}>
           <div className="text-center">
             {item.course === "350m" ? (
-              <ShortCourse className="w-full px-4" />
+              <Image
+                src={shortCourse}
+                className="w-full px-4"
+                alt="Illustrative map of the short regatta course. "
+              />
             ) : (
-              <LongCourse className="w-full px-4" />
+              <Image
+                src={longCourse}
+                className="w-full px-4"
+                alt="Illustrative map of the long regatta course. "
+              />
             )}
 
             <h4 className="pt-6 pb-1 text-xl font-bold">{item.title}</h4>

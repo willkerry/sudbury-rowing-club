@@ -1,13 +1,9 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
-
-module.exports = withBundleAnalyzer({
+module.exports = {
   images: {
     domains: ["cdn.sanity.io"],
   },
   swcMinify: true,
-  webpack(config) {
+  /* webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
       use: [
@@ -19,7 +15,7 @@ module.exports = withBundleAnalyzer({
     });
 
     return config;
-  },
+  }, */
   async redirects() {
     return [
       {
@@ -65,4 +61,4 @@ module.exports = withBundleAnalyzer({
       }, */
     ];
   },
-});
+};
