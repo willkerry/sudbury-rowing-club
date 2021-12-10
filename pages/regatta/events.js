@@ -25,7 +25,7 @@ export default function Entries({ data }) {
         }}
       />
       <HeroTitle title={og.title} breadcrumbs prose />
-      <Container className="my-12 max-w-prose">
+      <Container className="my-12">
         <EventsComponent data={data} />
       </Container>
     </Layout>
