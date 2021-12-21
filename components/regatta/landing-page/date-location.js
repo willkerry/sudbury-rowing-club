@@ -1,4 +1,5 @@
 import Link from "@/components/stour/link";
+import { CalendarIcon, MapIcon } from "@heroicons/react/solid";
 
 function DateLocation({ date, location }) {
   return (
