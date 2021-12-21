@@ -80,15 +80,15 @@ export default function Rules() {
         persons present in the Boathouse or clubhouse
       </p>
       <h3>12. Boathouse or Clubhouse</h3>
-      <p>
-        <ol type="a">
-          <li>No person shall smoke in the Boathouse or clubhouse.</li>
-          <li>
-            Every member shall use his best endeavours to leave the Boathouse or
-            clubhouse as tidy as possible.
-          </li>
-        </ol>
-      </p>
+
+      <ol type="a">
+        <li>No person shall smoke in the Boathouse or clubhouse.</li>
+        <li>
+          Every member shall use his best endeavours to leave the Boathouse or
+          clubhouse as tidy as possible.
+        </li>
+      </ol>
+
       <h3>13. Grounds</h3>
       <p>
         All members shall do all in their power to preserve the appearance of
