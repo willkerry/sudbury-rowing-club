@@ -269,7 +269,7 @@ export default function Brand({ blue }) {
       <p>
         The club colours, as{" "}
         <NextLink href="/governance/constitution">
-          defined in the consitution
+          defined in the constitution
         </NextLink>
         , are Oxford blue and white. We take heed of the{" "}
         <NextLink href="https://www.ox.ac.uk/sites/files/oxford/media_wysiwyg/Oxford%20Blue%20LR.pdf">
