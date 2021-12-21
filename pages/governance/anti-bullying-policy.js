@@ -142,7 +142,7 @@ export default function Rules() {
         </li>
         <li>
           In cases of serious bullying, the incidents will be referred to
-          British Rowng for advice.
+          British Rowing for advice.
         </li>
         <li>
           Where applicable, parents should be informed and will be asked to come
