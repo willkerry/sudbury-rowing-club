@@ -1,4 +1,3 @@
-import { CalendarIcon, MapIcon } from "@heroicons/react/outline/";
 import Link from "@/components/stour/link";
 
 function DateLocation({ date, location }) {

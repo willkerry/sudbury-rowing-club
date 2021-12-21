@@ -11,9 +11,9 @@ export default function Alert() {
               {data.description}
             </div>
             <span
-              aria-hidden="true"
-              className="hidden w-px h-6 mx-6 bg-black sm:block bg-opacity-20"
-            ></span>
+  aria-hidden="true"
+  className="hidden w-px h-6 mx-6 bg-black sm:block bg-opacity-20"
+  />
             <div className="ml-6 sm:ml-0">
               <Link href={data.href}>
                 <a

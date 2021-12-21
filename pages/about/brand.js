@@ -241,7 +241,7 @@ export default function Brand({ blue }) {
                 <th>Colour</th>
                 <th>File format</th>
                 <th className="hidden sm:table-cell">Width</th>
-                <th></th>
+                <th/>
               </tr>
             </thead>
             <tbody>
@@ -285,13 +285,13 @@ export default function Brand({ blue }) {
       </p>
       <figure>
         <div
-          className="w-full h-16 bg-blue-900 rounded shadow"
-          style={{
-            background: `linear-gradient(to right, ${brandColors.map(
-              (a) => a.color
-            )})`,
-          }}
-        ></div>
+  className="w-full h-16 bg-blue-900 rounded shadow"
+  style={{
+    background: `linear-gradient(to right, ${brandColors.map(
+      (a) => a.color
+    )})`
+  }}
+  />
         <figcaption>
           A visual representation of the shade scale, starting at the original
           Oxford Blue.

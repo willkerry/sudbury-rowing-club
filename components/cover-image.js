@@ -8,7 +8,7 @@ export default function CoverImage({
   width,
   blurDataURL,
 }) {
-  const image = (
+  return (
     <Image
       src={src}
       alt={alt ? alt : `Cover Image for ${title}`}
@@ -18,5 +18,4 @@ export default function CoverImage({
       blurDataURL={blurDataURL}
     />
   );
-  return image;
 }

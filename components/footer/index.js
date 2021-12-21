@@ -92,7 +92,7 @@ export default function Footer() {
                     fill="currentColor"
                     className="inline-flex mb-0.5"
                   >
-                    <path d="M0 5h3.5l4 9.5L6 18H5zM7 5h3.5l4 9.5L13 18h-1zM16 13.5l4 4.5h4l-6.5-8zM18 8.5L19.5 5H24l-5 3.5z"></path>
+                    <path d="M0 5h3.5l4 9.5L6 18H5zM7 5h3.5l4 9.5L13 18h-1zM16 13.5l4 4.5h4l-6.5-8zM18 8.5L19.5 5H24l-5 3.5z"/>
                   </svg>
                   .
                 </a>

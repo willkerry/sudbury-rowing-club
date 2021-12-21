@@ -26,7 +26,7 @@ function Results({ tab, children, results, records }) {
         <table>
           <thead>
             <tr>
-              <th className="hidden sm:table-cell"></th>
+              <th className="hidden sm:table-cell"/>
               <th>Date</th>
               <th>Results</th>
             </tr>

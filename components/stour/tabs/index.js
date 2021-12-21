@@ -1,7 +1,5 @@
-import Tabs from './tabs'
-import TabsItem from './tabs-item'
+import Tabs from "./tabs";
 
-Tabs.Item = TabsItem
-Tabs.Tab = TabsItem
+Tabs.Tab = TabsItem;
 
-export default Tabs
+export default Tabs;
