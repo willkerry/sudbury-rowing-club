@@ -1,22 +1,17 @@
 import MobileMenu from "@/components/nav-bar/mobile-menu/";
 import MobileMenuButton from "@/components/nav-bar/mobile-menu/mobile-menu-button";
 import { Popover, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import NavPopover from "./nav-popover";
-import NavLink from "./nav-link";
-import SafetyStatus from "./safety-status";
-import NavLogo from "./nav-logo";
-import { useState, useEffect } from "react";
-import cn from "classnames";
+import { Fragment, useEffect } from "react";
+import { Users } from "react-feather";
 import {
   about,
-  aboutCTAs,
-  regatta,
-  regattaCTAs,
-  members,
-  memberCTAs,
+  aboutCTAs, memberCTAs, members, regatta,
+  regattaCTAs
 } from "./nav-data";
-import { Users } from "react-feather";
+import NavLink from "./nav-link";
+import NavLogo from "./nav-logo";
+import NavPopover from "./nav-popover";
+import SafetyStatus from "./safety-status";
 
 export default function Navbar() {
   // Add a border to the navbar when the user scrolls down
