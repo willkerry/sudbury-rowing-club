@@ -26,9 +26,8 @@ export default function Post({ post }) {
 
   // Turns featuredImage object into a useful URL. Making it a function, not a variable might be a bad idea, but attempts at a component-level variable led to build failures.
   const CoverImage = (image) => {
-    image === null || image === undefined
-      ? HOME_OG_IMAGE_URL
-      : urlFor(image).width(1200).url();
+    if (image === null || image === undefined) return HOME_OG_IMAGE_URL;
+    else return urlFor(image).width(1200).url();
   };
 
   return post === undefined ? (
