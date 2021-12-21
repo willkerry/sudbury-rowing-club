@@ -13,7 +13,7 @@ const VARIANT_MAPS = {
   secondary: "text-gray-500",
 };
 export function Text(props) {
-  const { children, type, size, markdown, portableText, lead } = props;
+  const { children, type, size, portableText, lead } = props;
   const classes = cn(
     "prose",
     VARIANT_MAPS[type],
