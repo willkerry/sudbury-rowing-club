@@ -61,7 +61,6 @@ const Breadcrumbs = (props) => {
               </Link>
             </li>
           );
-          e;
         })}
       </ol>
     </nav>
