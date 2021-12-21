@@ -5,18 +5,18 @@ import {
   EntriesIcon,
   EventsIcon,
   InfoIcon,
-  ResultsIcon,
+  ResultsIcon
 } from "@/components/regatta/icons";
+import DateLocation from "@/components/regatta/landing-page/date-location";
 import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
+import Text from "@/components/stour/text";
 import { BASE_URL } from "@/lib/constants";
 import { sanityClient } from "@/lib/sanity.server";
 import groq from "groq";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 
-import DateLocation from "@/components/regatta/landing-page/date-location";
-import Text from "@/components/stour/text";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
@@ -52,9 +52,6 @@ const CompetitorInformation = dynamic(
     loading: () => Loading(),
   }
 );
-const ContactForm = dynamic(() => import("@/components/contact-form"), {
-  loading: () => Loading(),
-});
 
 export default function Regatta({ page, testimonials, results }) {
   const regattaDate = <DayDateFormatter dateString={page.date} />;
