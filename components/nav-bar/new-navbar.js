@@ -19,18 +19,19 @@ import {
 import { Users } from "react-feather";
 
 export default function Navbar() {
-  const [scroll, setScroll] = useState(false);
+  // Add a border to the navbar when the user scrolls down
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      setScroll(window.scrollY > 50);
-    });
+    window.onscroll = () => {
+      window.scrollY > 50
+        ? document.getElementById("navbar").classList.add("border-b")
+        : document.getElementById("navbar").classList.remove("border-b");
+    };
   }, []);
+
   return (
     <Popover
-      className={cn(
-        "sticky top-0 z-20 text-gray-900 bg-white transition ",
-        scroll && "border-b"
-      )}
+      className="sticky top-0 z-20 text-gray-900 transition bg-white"
+      id="navbar"
     >
       {({ open }) => (
         <>
