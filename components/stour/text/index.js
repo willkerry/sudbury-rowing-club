@@ -30,10 +30,6 @@ export function Text(props) {
 
 Text.propTypes = {
   /**
-   * Parse Markdown? **Causes an error in Storybook.**
-   */
-  markdown: PropTypes.bool,
-  /**
    * Make the text `invert`ed or give it `secondary` significance. **Only works for simple text, not lists, blockquotes etc.**
    */
   type: PropTypes.oneOf(["default", "invert", "secondary"]),
