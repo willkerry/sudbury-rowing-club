@@ -29,8 +29,6 @@ class ContactForm extends Component {
       errorHelpText,
     } = this.state;
 
-    const btnClass = formButtonDisabled ? "disabled" : "";
-
     const fieldClasses =
       "block w-full border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition";
 
