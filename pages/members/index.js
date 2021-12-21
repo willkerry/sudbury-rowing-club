@@ -36,13 +36,11 @@ export default function Notices({ data }) {
 }
 
 function Card({ title, body, items, meta, updated, created }) {
-  // How many document groups do we have?
 
-  const numberOfItems = items !== null ? items.length : 2;
   // Split the array of document groups into two arrays, one for the first half and one for the second half
-  const splitNumberOfItems = Math.ceil(numberOfItems / 2);
-  const firstColumnItems = items.slice(0, splitNumberOfItems);
-  const secondColumnItems = items.slice(splitNumberOfItems);
+  const splitItemCount = Math.ceil((items !== null && items.length) / 2);
+  const firstColumnItems = items !== null && items.slice(0, splitItemCount);
+  const secondColumnItems = items !== null && items.slice(splitItemCount);
 
   // Render a column of document groups
   const FileGroupList = ({ items }) => {
