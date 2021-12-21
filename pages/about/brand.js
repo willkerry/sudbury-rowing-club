@@ -262,7 +262,7 @@ export default function Brand({ blue }) {
       <h2>Crest</h2>
       <p>
         This version of our crest is intended to work well on screens and is
-        optimised as a tiny 6 KB SVG string.
+        optimised as a tiny 6&nbsp;KB SVG string.
       </p>
       <AssetSections data={brandAssets} />
       <h2>Blues</h2>
@@ -299,7 +299,7 @@ export default function Brand({ blue }) {
       </figure>
       <p>
         These colour definitions are provided in case they’re of any help to
-        anyone – <code>900</code> is the ‘official’ club colour. The shade scale
+        anyone –&nbsp;<code>900</code> is the ‘official’ club colour. The shade scale
         may change in development, but the values on this page are
         programmatically extracted from the design system and will immediately
         reflect any changes.

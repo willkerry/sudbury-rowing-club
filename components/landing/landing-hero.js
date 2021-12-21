@@ -6,7 +6,6 @@ import { urlFor } from "@/lib/sanity";
 function LandingHero(props) {
   return (
     <div className="relative flex overflow-hidden shadow-lg md:rounded-xl group">
-      {/* The  image is a static import – Next.js auto-populates its width and height. */}
 
       <Image
         src={urlFor(props.imageId).url()}

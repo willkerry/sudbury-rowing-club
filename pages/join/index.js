@@ -294,7 +294,9 @@ function JoinCTA(props) {
 function L2RStages() {
   return (
     <div className="mt-24">
-      <Label as="h3" className="mb-6 ml-8 text-green-600 md:ml-0">How it works</Label>
+      <Label as="h3" className="mb-6 ml-8 text-green-600 md:ml-0">
+        How it works
+      </Label>
       <ol className="grid gap-16 text-green-500 sm:grid-cols-2 md:grid-cols-3">
         <style jsx>{`
           ol {
@@ -390,7 +392,7 @@ function OverviewSidebar() {
   );
 }
 
-function L2RCallToAction({}) {
+function L2RCallToAction() {
   const classes =
     "flex items-center justify-between gap-4 p-6 border shadow rounded";
   return (
@@ -414,7 +416,9 @@ function L2RCallToAction({}) {
 function SectionHeading({ title, label }) {
   return (
     <div className="my-16 text-center">
-      <Label as="div" className="my-4">{label}</Label>
+      <Label as="div" className="my-4">
+        {label}
+      </Label>
       <h2 className="text-5xl font-bold tracking-tighter">{title}</h2>
     </div>
   );

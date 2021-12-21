@@ -11,7 +11,7 @@ export const navLinkActiveColor = "text-black";
 const iconLinkColor = "text-gray-500";
 const iconLinkClasses = "transition hover:text-black focus:outline-none";
 
-function Chevron(open) {
+function Chevron() {
   return (
     <ChevronDownIcon
       className={cn(

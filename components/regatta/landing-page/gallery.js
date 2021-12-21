@@ -4,10 +4,10 @@ import { useEmblaCarousel } from "embla-carousel/react";
 import { useCallback, useEffect, useState } from "react";
 
 const Gallery = ({ imagesArray }) => {
-  const [slidesInView, setSlidesInView] = useState([]);
+  const [, setSlidesInView] = useState([]);
   const [viewportRef, embla] = useEmblaCarousel({
     loop: true,
-    inViewThreshold: 1
+    inViewThreshold: 1,
   });
 
   const onSelect = useCallback(() => {
@@ -37,14 +37,17 @@ const Gallery = ({ imagesArray }) => {
   }, [embla, onSelect, findSlidesInView]);
 
   return (
-    <div className="overflow-hidden cursor-pointer select-none" ref={viewportRef}>
+    <div
+      className="overflow-hidden cursor-pointer select-none"
+      ref={viewportRef}
+    >
       <div className="flex">
         {imagesArray.map((image) => (
           <figure
             key={image._id}
             className="relative flex-none mr-4 overflow-hidden"
             style={{
-              width: 200 * image.aspectRatio
+              width: 200 * image.aspectRatio,
             }}
           >
             <div className="relative flex overflow-hidden rounded">

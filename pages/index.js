@@ -57,7 +57,7 @@ export default function Index({ news, landingPage }) {
         <Container>
           <div className="flex items-center justify-center pt-16 space-x-3 text-white">
             <Button href="#intro" shadow size="large">
-              Discover<span className="hidden sm:inline"> more</span>
+              Discover<span className="hidden sm:inline">&nbsp;more</span>
             </Button>
             <Button href="/join" variant="secondary" shadow size="large">
               Join us

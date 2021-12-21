@@ -6,7 +6,7 @@ function LandingImages(props) {
   return (
     <div className="my-10 border-t border-b sm:my-16">
       <div className="flex flex-row">
-        {images.map(({ _id, aspectRatio, caption, lqip }, index) => (
+        {images.map(({ _id, caption, lqip }, index) => (
           <div key={index} className="relative w-1/3 h-24 bg-black sm:h-72">
             <Image
               src={urlFor(_id).height(576).url()}

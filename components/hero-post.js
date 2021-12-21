@@ -7,7 +7,6 @@ export default function HeroPost({
   title,
   date,
   excerpt,
-  author,
   slug,
   imageId,
   imageAlt,

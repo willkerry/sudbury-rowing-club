@@ -6,7 +6,6 @@ function Link({
   href,
   children,
   dark,
-  icon,
   external,
   download,
   arrow,

@@ -1,7 +1,6 @@
+import Promise from "react";
 import nodemailer from "nodemailer";
 import { getOfficerByHash } from "@/lib/officer-contacts";
-
-
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,

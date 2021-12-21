@@ -125,14 +125,14 @@ export default function Constitution() {
       <p>
         Any member violating any of the rules or regulations of the Club or
         being adjudged guilty of unsatisfactory conduct may, by resolution of
-        the Committee, be suspended or expelled.  In doing this the committee
+        the Committee, be suspended or expelled. In doing this the committee
         shall provide full reasons for their decision, upon written request, and
         grant a right of appeal to the members.
       </p>
       <p>
         A member shall be deemed to have resigned from the Club if, after due
         notice in writing, they have not paid, or set up a direct debit by 1st
-        January  the annual subscription which became due on 1st November.
+        January the annual subscription which became due on 1st November.
       </p>
       <h2>7. Equal Opportunities Policy</h2>
       <p>
@@ -262,7 +262,7 @@ export default function Constitution() {
         Chairman: The Chairman (or Chair) will preside at all General meetings
         of the Club and at all meetings of the Committee, and shall be
         responsible for guiding the activities of the club in accordance with
-        its general policy as expressed by the majority of its members.  The
+        its general policy as expressed by the majority of its members. The
         Chairman shall represent or arrange for the representation of the Club
         at British Rowing regional level and at meetings of other organisations.
         The Chairman shall ex officio be a member of any other committee of the
@@ -345,8 +345,8 @@ export default function Constitution() {
           <br />
           If after half an hour from the time appointed for the meeting, a
           quorum is not present, the Meeting, if called at the request of the
-          members, shall be dissolved.  In any other case, the Meeting shall be
-          adjourned until a time and place to be fixed by the Committee.  If a
+          members, shall be dissolved. In any other case, the Meeting shall be
+          adjourned until a time and place to be fixed by the Committee. If a
           quorum is not present within half an hour from the time appointed for
           an Adjourned Meeting, the members present shall be a quorum.
         </li>
@@ -360,7 +360,7 @@ export default function Constitution() {
       </ol>
       <h2>20. Liability</h2>
       <p>
-        The General Committee shall manage the affairs of the Club.  Financial
+        The General Committee shall manage the affairs of the Club. Financial
         or legal liability incurred in the rightful and proper exercise of their
         office shall not, however, be the personal liability of the Committee,
         but shall be the responsibility of the Club as a whole.
