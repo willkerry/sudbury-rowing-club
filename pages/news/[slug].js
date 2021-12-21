@@ -83,7 +83,7 @@ export default function Post({ post }) {
                   <div className="p-4">
                     <Label className="text-xs">Author</Label>
                     <div className="text-sm font-medium">
-                      {post.author.firstName + " " + post.author.surname}
+                      {`${post.author.firstName} ${post.author.surname}`}
                     </div>
                   </div>
                 )}
