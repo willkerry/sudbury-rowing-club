@@ -21,7 +21,7 @@ MobileMenuItem.propTypes = {
     name: PropTypes.string.isRequired,
     shortName: PropTypes.string,
     href: PropTypes.string.isRequired,
-    icon: PropTypes.node.isRequired,
+    icon: PropTypes.elementType.isRequired,
   }).isRequired,
 };
 

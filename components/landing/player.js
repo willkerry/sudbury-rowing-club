@@ -47,7 +47,9 @@ export default function Player({ youTubeId, youTubeStart, children }) {
               containerClassName="w-full aspect-w-16 aspect-h-9"
               className="bg-white rounded-lg shadow-xl z-2"
             />
-            <button />
+            <button className="hidden" type="button">
+              Close
+            </button>
           </div>
         </Dialog>
       </Transition>

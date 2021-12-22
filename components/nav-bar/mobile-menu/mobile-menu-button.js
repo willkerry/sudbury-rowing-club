@@ -1,7 +1,7 @@
 import { Popover } from "@headlessui/react";
 import { MenuIcon } from "@heroicons/react/outline";
 
-function MobileMenuButton({}) {
+function MobileMenuButton() {
   return (
     <div className="-my-2 -mr-2 md:hidden">
       <Popover.Button className="inline-flex items-center justify-center p-2 transition rounded-md text-gray-40 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">

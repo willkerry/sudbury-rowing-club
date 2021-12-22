@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import { DefaultSeo } from "next-seo";
 import "../styles/index.css";
