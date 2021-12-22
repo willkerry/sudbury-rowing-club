@@ -1,6 +1,6 @@
+/* eslint-disable react/no-array-index-key */
 import cn from "classnames";
 import PropTypes from "prop-types";
-import randomUUID from "crypto";
 import { CompactMobileMenuItem, MobileMenuItem } from "./mobile-menu-item";
 
 export default function MobileMenuSection({ title, data, compact }) {
@@ -17,18 +17,10 @@ export default function MobileMenuSection({ title, data, compact }) {
           )}
         >
           {compact
-            ? data.map((a) => (
-                <CompactMobileMenuItem
-                  data={a}
-                  key={randomUUID.randomBytes(4).toString("hex")}
-                />
+            ? data.map((a, index) => (
+                <CompactMobileMenuItem data={a} key={index} />
               ))
-            : data.map((a) => (
-                <MobileMenuItem
-                  data={a}
-                  key={randomUUID.randomBytes(4).toString("hex")}
-                />
-              ))}
+            : data.map((a, index) => <MobileMenuItem data={a} key={index} />)}
         </nav>
       </div>
     </div>

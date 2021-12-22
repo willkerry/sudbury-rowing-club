@@ -1,6 +1,5 @@
 import Color from "color";
 import PropTypes from "prop-types";
-import randomUUID from "crypto";
 import { Circle, HelpCircle } from "react-feather";
 import NextLink from "next/link";
 import TextPage from "@/components/layouts/text-page";
@@ -164,8 +163,9 @@ FileExtensionWidget.propTypes = {
 };
 
 function FileRows({ data, color }) {
-  return data.map((item) => (
-    <tr key={randomUUID.randomBytes(4).toString("hex")}>
+  return data.map((item, i) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <tr key={i}>
       <td>
         <ColorIndicator color={color} type="hex" />
       </td>
@@ -220,8 +220,9 @@ function ColorRows({ data }) {
 }
 
 const AssetSections = ({ assets }) =>
-  assets.map((item) => (
-    <section key={randomUUID.randomBytes(4).toString("hex")}>
+  assets.map((item, i) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <section key={i}>
       <figure>
         <item.Illustration
           className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
