@@ -1,12 +1,16 @@
-import MobileMenu from "@/components/nav-bar/mobile-menu/";
-import MobileMenuButton from "@/components/nav-bar/mobile-menu/mobile-menu-button";
 import { Popover, Transition } from "@headlessui/react";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
+import cn from "classnames";
 import { Users } from "react-feather";
+import MobileMenuButton from "@/components/nav-bar/mobile-menu/mobile-menu-button";
+import MobileMenu from "@/components/nav-bar/mobile-menu/";
 import {
   about,
-  aboutCTAs, memberCTAs, members, regatta,
-  regattaCTAs
+  aboutCTAs,
+  memberCTAs,
+  members,
+  regatta,
+  regattaCTAs,
 } from "./nav-data";
 import NavLink from "./nav-link";
 import NavLogo from "./nav-logo";
@@ -15,17 +19,28 @@ import SafetyStatus from "./safety-status";
 
 export default function Navbar() {
   // Add a border to the navbar when the user scrolls down
+  const [navbarBorder, setNavbarBorder] = useState(false);
   useEffect(() => {
-    window.onscroll = () => {
-      window.scrollY > 50
-        ? document.getElementById("navbar").classList.add("border-b")
-        : document.getElementById("navbar").classList.remove("border-b");
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      if (scrollTop > 50) {
+        setNavbarBorder(true);
+      } else {
+        setNavbarBorder(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
     <Popover
-      className="sticky top-0 z-20 text-gray-900 transition bg-white"
+      className={cn(
+        "sticky top-0 z-20 text-gray-900 transition bg-white",
+        navbarBorder && "border-b"
+      )}
       id="navbar"
     >
       {({ open }) => (

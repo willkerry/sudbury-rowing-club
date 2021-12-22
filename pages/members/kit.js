@@ -1,5 +1,5 @@
-import TextPage from "@/components/layouts/text-page";
 import Link from "next/link";
+import TextPage from "@/components/layouts/text-page";
 
 export default function ClubKit() {
   return (

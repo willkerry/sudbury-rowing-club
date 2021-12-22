@@ -1,11 +1,12 @@
+import Image from "next/image";
+import PropTypes from "prop-types";
 import cupImage from "../../../public/assets/regatta/landing/cup.png";
 import victoriaImage from "../../../public/assets/regatta/landing/victoria.png";
 import bladeImage from "../../../public/assets/regatta/landing/blade.png";
 import buntingImage from "../../../public/assets/regatta/landing/bunting.png";
 import Ticket from "@/components/regatta/landing-page/ticket";
-import Image from "next/image";
 
-export function ImageComposite({ ticketItems }) {
+export default function ImageComposite({ ticketItems }) {
   return (
     <div className="relative w-64 mx-auto h-96">
       <div className="absolute z-10 bottom-12 left-10">
@@ -59,3 +60,12 @@ export function ImageComposite({ ticketItems }) {
     </div>
   );
 }
+
+ImageComposite.propTypes = {
+  ticketItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

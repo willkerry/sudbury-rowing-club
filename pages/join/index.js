@@ -1,13 +1,14 @@
-import Container from "@/components/container";
-import Layout from "@/components/layout";
-import Button from "@/components/stour/button";
 import { ThumbsUp } from "react-feather";
-import Note from "@/components/stour/note";
+import PropTypes from "prop-types";
 import Image from "next/image";
-import Link from "@/components/stour/link";
 import cn from "classnames";
 import { Link as ScrollLink } from "react-scroll";
 import { NextSeo } from "next-seo";
+import Container from "@/components/container";
+import Layout from "@/components/layout";
+import Button from "@/components/stour/button";
+import Note from "@/components/stour/note";
+import Link from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
 import Label from "@/components/stour/label";
 
@@ -54,8 +55,12 @@ const overview = [
     index: 0,
     title: "Juniors",
     subtitle: "There’s a different route for under-18s.",
-    content:
-      "<p>The main aim of the Junior Squad is to introduce young people to the sport of rowing with a view to future participation in top domestic events including: the main Head races; National Schools; Junior Inter regional; and National Championship regattas.</p><p>The Junior Squad also acts as a feeder to the senior sections of the club. In this manner the more senior juniors gradually integrate with senior athletes and act as role models for the younger members.</p><p>The competition junior squad trains three times a week (Wednesday, Saturday and Sunday) and the high performance juniors aim to train six days a week.</p><p>The novice Junior squad trains on Sunday mornings.</p>",
+    content: [
+      "The main aim of the Junior Squad is to introduce young people to the sport of rowing with a view to future participation in top domestic events including: the main Head races; National Schools; Junior Inter regional; and National Championship regattas.",
+      "The Junior Squad also acts as a feeder to the senior sections of the club. In this manner the more senior juniors gradually integrate with senior athletes and act as role models for the younger members.",
+      "The competition junior squad trains three times a week (Wednesday, Saturday and Sunday) and the high performance juniors aim to train six days a week.",
+      "The novice Junior squad trains on Sunday mornings.",
+    ],
     image: {
       src: "/assets/join/juniors.jpg",
       alt: "A Sudbury junior crew racing at Dorney Lake, the 2012 Olympic rowing venue.",
@@ -67,8 +72,15 @@ const overview = [
     index: 1,
     title: "Racing",
     subtitle: "The thrill of rowing.",
-    content:
-      "<p>Competition in rowing falls into two seasons. The regatta season runs throughout the summer (generally from around May to August). Regattas are sprint races that allow for side by side racing, or at bigger events, multi-lane racing. Distances vary but cover anything from 500m to 2000m.</p><p>The head season runs throughout the winter. Head races are generally over longer distances and are organised as time trials; boats start racing one after the other.</p><p>In the last twelve months we’ve attended over 40 events, ranging from our locals at Norwich, Bedford, St Neots and Peterborough, to further afield events at Wallingford, Oxford and the Olympic venue at Eton Dorney.</p><p>In recent years we entered nearly all of the National Events including the Head of the River races, National Championships, Ladies and Henley Royal Regatta and the World Championships. There’s something for everyone, from Novice to Elite.</p><p>We aim to group people with similar rowing aspirations into crews. As a member of a crew you will train on the water and build your fitness on land. The level at which you can compete will depend on you and your fellow crew members but you will be able to take part in your first races within a few months of taking up the sport.</p><p>Our own Regatta, always held on the first Saturday of August, is highly regarded as a gem of a traditional regatta and is always a highlight in our own rowing year.</p>",
+    content: [
+      "Competition in rowing falls into two seasons. The regatta season runs throughout the summer (generally from around May to August). Regattas are sprint races that allow for side by side racing, or at bigger events, multi-lane racing. Distances vary but cover anything from 500m to 2000m.",
+      "The head season runs throughout the winter. Head races are generally over longer distances and are organised as time trials; boats start racing one after the other.",
+      "In the last twelve months we’ve attended over 40 events, ranging from our locals at Norwich, Bedford, St Neots and Peterborough, to further afield events at Wallingford, Oxford and the Olympic venue at Eton Dorney.",
+      "In recent years we entered nearly all of the National Events including the Head of the River races, National Championships, Ladies and Henley Royal Regatta and the World Championships. There’s something for everyone, from Novice to Elite.",
+      "We aim to group people with similar rowing aspirations into crews. As a member of a crew you will train on the water and build your fitness on land. The level at which you can compete will depend on you and your fellow crew members but you will be able to take part in your first races within a few months of taking up the sport.",
+      "Our own Regatta, always held on the first Saturday of August, is highly regarded as a gem of a traditional regatta and is always a highlight in our own rowing year.",
+    ],
+
     image: {
       src: "/assets/join/racing.jpg",
       alt: "A Sudbury double races to victory.",
@@ -80,8 +92,10 @@ const overview = [
     index: 2,
     title: "Recreational rowing",
     subtitle: "You don’t have to race to row.",
-    content:
-      "<p>Non competitive recreational rowing is a fun way of getting fit and enjoying the outdoors. Membership of the club and British Rowing gives you access to contact other clubs and arrange to row in different venues.</p><p>We also have a group who travel to Portugal each summer for four days of varied rowing on an organised event. There are lots of opportunities to row at Sudbury outside of the normal club sessions during the week or evenings in the summer.</p>",
+    content: [
+      "Non competitive recreational rowing is a fun way of getting fit and enjoying the outdoors. Membership of the club and British Rowing gives you access to contact other clubs and arrange to row in different venues.",
+      "We also have a group who travel to Portugal each summer for four days of varied rowing on an organised event. There are lots of opportunities to row at Sudbury outside of the normal club sessions during the week or evenings in the summer.",
+    ],
     image: {
       src: "/assets/join/recreational.jpg",
       alt: "Sudbury rowers in Hungary.",
@@ -93,8 +107,10 @@ const overview = [
     index: 3,
     title: "Coxing",
     subtitle: "",
-    content:
-      "<p>We warmly welcome anyone with an interest in coxing: whether new to boats or an old hand. Generally, coxes are put with crews that match their abilities and objectives, but we also operate a coxing rotation policy, so novice coxes can learn from experienced crews and vice versa.</p><p>Similarly, coxes are welcome to take out men’s and women’s crews depending on their preference.</p>",
+    content: [
+      "We warmly welcome anyone with an interest in coxing: whether new to boats or an old hand. Generally, coxes are put with crews that match their abilities and objectives, but we also operate a coxing rotation policy, so novice coxes can learn from experienced crews and vice versa.",
+      "Similarly, coxes are welcome to take out men’s and women’s crews depending on their preference.",
+    ],
     image: {
       src: "/assets/join/coxing.jpg",
       alt: "A Sudbury eight crew and cox pose for a post-win photo. ",
@@ -106,8 +122,11 @@ const overview = [
     index: 4,
     title: "Social Membership and Volunteers",
     subtitle: "",
-    content:
-      "<p>SRC is very much an active sociable club. We provide opportunities to be with other people, perhaps to provide help and support and to work with others as part of a team.</p><p>We are always in need of people to help mend boats, provide refreshments, keep the boathouse tidy and shipshape, help crews get on or off the water and even help with coaching.</p>",
+    content: [
+      "SRC is very much an active sociable club. We provide opportunities to be with other people, perhaps to provide help and support and to work with others as part of a team.",
+      "We are always in need of people to help mend boats, provide refreshments, keep the boathouse tidy and shipshape, help crews get on or off the water and even help with coaching.",
+    ],
+
     image: {
       src: "/assets/join/volunteer.jpg",
       alt: "Members at our annual Good Friday opening. ",
@@ -119,131 +138,122 @@ const overview = [
     index: 5,
     title: "Commitment",
     subtitle: "",
-    content:
-      "<p>Like any sport, rowing takes time to master and you will gain reward proportional to the time and effort you are prepared to put in.</p><p>Welcome to Sudbury and good luck!</p>",
+    content: [
+      "Like any sport, rowing takes time to master and you will gain reward proportional to the time and effort you are prepared to put in.</p><p>Welcome to Sudbury and good luck!",
+    ],
   },
 ];
 
 export default function Index() {
   return (
-    <>
-      <Layout>
-        <NextSeo
-          title="Start rowing at Sudbury Rowing Club"
-          description="Everything you need to know about getting rowing."
-          openGraph={{
-            title: "Start rowing at Sudbury Rowing Club",
-            description: "Everything you need to know about getting rowing.",
-            images: [{ url: BASE_URL + "/assets/og/join.png" }],
-          }}
-        />
-        {/* Big hero */}
-        <Container
-          className="py-16 text-center text-gray-900 sm:py-24"
-          id="hero"
+    <Layout>
+      <NextSeo
+        title="Start rowing at Sudbury Rowing Club"
+        description="Everything you need to know about getting rowing."
+        openGraph={{
+          title: "Start rowing at Sudbury Rowing Club",
+          description: "Everything you need to know about getting rowing.",
+          images: [{ url: `${BASE_URL}/assets/og/join.png` }],
+        }}
+      />
+      {/* Big hero */}
+      <Container className="py-16 text-center text-gray-900 sm:py-24" id="hero">
+        <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
+        <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 sm:text-8xl drop-shadow-xl">
+          Start rowing with us{" "}
+          <ThumbsUp className="inline w-12 h-12 text-blue-400 sm:w-16 sm:h-16 rotate-3" />
+        </h1>
+        <div
+          className="z-0 flex mx-auto overflow-hidden rounded shadow-xl -rotate-2"
+          style={{ maxWidth: 240, maxHeight: 160 }}
         >
-          <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
-          <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 sm:text-8xl drop-shadow-xl">
-            Start rowing with us{" "}
-            <ThumbsUp className="inline w-12 h-12 text-blue-400 sm:w-16 sm:h-16 rotate-3" />
-          </h1>
-          <div
-            className="z-0 flex mx-auto overflow-hidden rounded shadow-xl -rotate-2"
-            style={{ maxWidth: 240, maxHeight: 160 }}
-          >
-            <Image
-              src="/assets/join/l2r.jpg"
-              alt="Trainee rowers on the water during on learn to row course."
-              width={240}
-              height={160}
-            />
-          </div>
-          <div className="max-w-xl mx-auto mt-12 mb-16 prose text-left">
-            <p className="lead">
-              Sudbury Rowing Club welcomes new members
-              <span className="whitespace-nowrap"> –</span> whether you’ve never
-              rowed before and are seeking a new activity, or have rowed in the
-              past and would like to return to the sport.
-            </p>
-            <p>
-              We have two routes to club membership and only one essential
-              criterion – that you can swim 50m.
-            </p>
-          </div>
-          <JoinCTA />
-        </Container>
-
-        {/* About the L2R course */}
-        <div className="my-24" id="l2r">
-          <Container>
-            <SectionHeading
-              title="Getting started in rowing couldn’t be easier"
-              label="Our Learn to Row course"
-            />
-            <div className="grid gap-12 md:grid-cols-2">
-              <div>
-                <div className="prose">
-                  <p className="lead">
-                    Our Learn to Row programme starts with a ‘taster session’
-                    and teaches you the basics of sculling (an oar in each hand)
-                    and sweep oar rowing (one oar for both hands) over a period
-                    of 6-8 weeks.
-                  </p>
-                </div>
-                <div className="max-w-md">
-                  <Note label="Course Dates" type="success">
-                    Our next Learn to Row course will run on Saturday afternoons
-                    from 4 Sep 2021 to 25 Sep 2021, (13:00 to 16:00). Please{" "}
-                    <Link href="/">apply now.</Link>
-                  </Note>
-                </div>
-              </div>
-              <div className="prose">
-                <p>
-                  We plan to run the Learn to Row programme on a group basis for
-                  adults over the next year and after your taster session you
-                  will be allocated a start date along with a number of other
-                  participants at a similar level. Juniors (under 18) will be
-                  separately invited to programmed courses.
-                </p>
-                <p>
-                  The programme costs £100. For its duration, you’ll be a club
-                  member, and at the end you’ll be given the option to continue
-                  your membership at the current adult rate of £32 per month.
-                </p>
-              </div>
-            </div>
-            {/* Grid <ol> component for L2R stages */}
-            <L2RStages />
-            <L2RCallToAction />
-          </Container>
-        </div>
-        <Container className="text-gray-800" id="overview">
-          <SectionHeading
-            title="What can you do at Sudbury Rowing Club?"
-            label="What to expect"
+          <Image
+            src="/assets/join/l2r.jpg"
+            alt="Trainee rowers on the water during on learn to row course."
+            width={240}
+            height={160}
           />
-          <div className="gap-16 my-24 sm:grid sm:grid-cols-12">
-            <div className="hidden sm:col-span-4 sm:block">
-              <OverviewSidebar />
+        </div>
+        <div className="max-w-xl mx-auto mt-12 mb-16 prose text-left">
+          <p className="lead">
+            Sudbury Rowing Club welcomes new members
+            <span className="whitespace-nowrap"> –</span> whether you’ve never
+            rowed before and are seeking a new activity, or have rowed in the
+            past and would like to return to the sport.
+          </p>
+          <p>
+            We have two routes to club membership and only one essential
+            criterion – that you can swim 50m.
+          </p>
+        </div>
+        <JoinCTA />
+      </Container>
+
+      {/* About the L2R course */}
+      <div className="my-24" id="l2r">
+        <Container>
+          <SectionHeading
+            title="Getting started in rowing couldn’t be easier"
+            label="Our Learn to Row course"
+          />
+          <div className="grid gap-12 md:grid-cols-2">
+            <div>
+              <div className="prose">
+                <p className="lead">
+                  Our Learn to Row programme starts with a ‘taster session’ and
+                  teaches you the basics of sculling (an oar in each hand) and
+                  sweep oar rowing (one oar for both hands) over a period of 6-8
+                  weeks.
+                </p>
+              </div>
+              <div className="max-w-md">
+                <Note label="Course Dates" type="success">
+                  Our next Learn to Row course will run on Saturday afternoons
+                  from 4 Sep 2021 to 25 Sep 2021, (13:00 to 16:00). Please{" "}
+                  <Link href="/">apply now.</Link>
+                </Note>
+              </div>
             </div>
-            <OverviewContent />
+            <div className="prose">
+              <p>
+                We plan to run the Learn to Row programme on a group basis for
+                adults over the next year and after your taster session you will
+                be allocated a start date along with a number of other
+                participants at a similar level. Juniors (under 18) will be
+                separately invited to programmed courses.
+              </p>
+              <p>
+                The programme costs £100. For its duration, you’ll be a club
+                member, and at the end you’ll be given the option to continue
+                your membership at the current adult rate of £32 per month.
+              </p>
+            </div>
           </div>
+          {/* Grid <ol> component for L2R stages */}
+          <L2RStages />
           <L2RCallToAction />
         </Container>
-      </Layout>
-    </>
+      </div>
+      <Container className="text-gray-800" id="overview">
+        <SectionHeading
+          title="What can you do at Sudbury Rowing Club?"
+          label="What to expect"
+        />
+        <div className="gap-16 my-24 sm:grid sm:grid-cols-12">
+          <div className="hidden sm:col-span-4 sm:block">
+            <OverviewSidebar />
+          </div>
+          <OverviewContent />
+        </div>
+        <L2RCallToAction />
+      </Container>
+    </Layout>
   );
 }
 
-function JoinCTA(props) {
+function JoinCTA() {
   return (
-    <div
-      className={cn(
-        "grid gap-12 p-12 bg-gray-100 border shadow-lg md:grid-cols-2 rounded",
-        props.className
-      )}
-    >
+    <div className="grid gap-12 p-12 bg-gray-100 border rounded shadow-lg md:grid-cols-2">
       <div>
         <p className="text-center">
           <span className="text-xl font-medium text-gray-800">
@@ -256,17 +266,18 @@ function JoinCTA(props) {
         </p>
         <span className="block h-6" />
         <div className="flex justify-center">
-          <ScrollLink
+          <Button
+            size="large"
+            variant="secondary"
+            as={ScrollLink}
             to="l2r"
-            spy={true}
-            smooth={true}
+            spy
+            smooth
             offset={-30}
             duration={300}
           >
-            <Button size="large" variant="secondary">
-              Learn to Row
-            </Button>
-          </ScrollLink>
+            Learn to Row
+          </Button>
         </div>
       </div>
       <div>
@@ -331,7 +342,7 @@ function L2RStages() {
             <div className="text-lg font-semibold leading-tight tracking-tight text-gray-700">
               {stage.name}
             </div>
-            <p className="text-gray-500">{stage.content}</p>
+            <p className="!text-gray-500">{stage.content}</p>
           </li>
         ))}
       </ol>
@@ -355,12 +366,11 @@ function OverviewContent() {
             </div>
           )}
           <h3>{title}</h3>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: content,
-            }}
-            className="pb-10"
-          />
+          <div className="pb-10">
+            {content.map((paragraph) => (
+              <p key={paragraph.substring(4, 9)}>{paragraph}</p>
+            ))}
+          </div>
         </div>
       ))}
     </div>
@@ -375,8 +385,8 @@ function OverviewSidebar() {
           <ScrollLink
             activeClass="!text-blue-500 font-semibold"
             className="font-medium text-gray-700 transition hover:text-gray-900 hover:cursor-pointer"
-            spy={true}
-            smooth={true}
+            spy
+            smooth
             offset={-30}
             duration={200}
             to={title}
@@ -399,7 +409,11 @@ function L2RCallToAction() {
     <div className="grid gap-6 my-20 text-gray-700 sm:gap-12 md:grid-cols-2 sm:my-36">
       <div className={cn("border-green-300 bg-green-50", classes)}>
         Send your application form now
-        <Button variant="success" href="/join/learn-to-row-application-form">
+        <Button
+          as={Link}
+          variant="success"
+          href="/join/learn-to-row-application-form"
+        >
           Apply
         </Button>
       </div>
@@ -407,7 +421,9 @@ function L2RCallToAction() {
         <span className="tracking-snug">
           Contact the Learn to Row coordinator
         </span>
-        <Button href="../contact">Contact</Button>
+        <Button as={Link} href="/contact">
+          Contact
+        </Button>
       </div>
     </div>
   );
@@ -423,3 +439,8 @@ function SectionHeading({ title, label }) {
     </div>
   );
 }
+
+SectionHeading.propTypes = {
+  title: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+};

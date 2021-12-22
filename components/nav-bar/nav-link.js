@@ -6,12 +6,10 @@ import {
   navLinkColor,
 } from "./nav-popover";
 
-export function NavLink(props) {
+export default function NavLink({ href, children }) {
   return (
-    <ActiveLink href={props.href} activeClassName={navLinkActiveColor}>
-      <a className={cn(navLinkClasses, navLinkColor)}>{props.children}</a>
+    <ActiveLink href={href} activeClassName={navLinkActiveColor} passHref>
+      <a className={cn(navLinkClasses, navLinkColor)}>{children}</a>
     </ActiveLink>
   );
 }
-
-export default NavLink;

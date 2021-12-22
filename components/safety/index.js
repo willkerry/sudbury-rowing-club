@@ -1,9 +1,10 @@
-import DateTimeFormatter from "../datetime-formatter";
 import cn from "classnames";
-import EnvironmentAgency from "../icons/organisations/environment-agency";
-import MetOffice from "../icons/organisations/met-office";
+import PropTypes from "prop-types";
 import { ExclamationIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import Link from "next/link";
+import DateTimeFormatter from "../datetime-formatter";
+import EnvironmentAgency from "../icons/organisations/environment-agency";
+import MetOffice from "../icons/organisations/met-office";
 import Label from "../stour/label";
 
 export default function SafetyPopup({ description, date, status }) {
@@ -44,6 +45,12 @@ export default function SafetyPopup({ description, date, status }) {
   );
 }
 
+SafetyPopup.propTypes = {
+  description: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+};
+
 function SeveritySection({ status }) {
   return (
     <div
@@ -64,3 +71,7 @@ function SeveritySection({ status }) {
     </div>
   );
 }
+
+SeveritySection.propTypes = {
+  status: PropTypes.string.isRequired,
+};

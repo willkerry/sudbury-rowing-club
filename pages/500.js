@@ -1,9 +1,9 @@
 import Head from "next/head";
+import { Home, Search } from "react-feather";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Button from "@/components/stour/button";
-import { Home, Search } from "react-feather";
 
 export default function Custom500() {
   return (

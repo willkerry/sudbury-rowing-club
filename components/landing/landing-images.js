@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 
-function LandingImages(props) {
-  const images = props.images.slice(0, 3);
+function LandingImages({ images: imageArray }) {
+  const images = imageArray.slice(0, 3);
   return (
     <div className="my-10 border-t border-b sm:my-16">
       <div className="flex flex-row">
-        {images.map(({ _id, caption, lqip }, index) => (
-          <div key={index} className="relative w-1/3 h-24 bg-black sm:h-72">
+        {images.map(({ _id, caption, lqip }) => (
+          <div key={_id} className="relative w-1/3 h-24 bg-black sm:h-72">
             <Image
               src={urlFor(_id).height(576).url()}
               alt={caption}

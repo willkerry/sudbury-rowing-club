@@ -42,7 +42,7 @@ export function Testimonial(props) {
         {children}
       </blockquote>
       <figcaption className="pt-5 font-medium leading-snug">
-        <div className="text-gray-800">{name ? name : <Anonymous />}</div>
+        <div className="text-gray-800">{name || <Anonymous />}</div>
         {organisation ? (
           <div className="text-sm text-gray-500">{organisation}</div>
         ) : null}
@@ -60,6 +60,16 @@ Testimonial.propTypes = {
    * ...and optionally provide the name of that person’s organisation.
    */
   organisation: PropTypes.string,
+  /**
+   * The testimonial text.
+   */
+  children: PropTypes.string,
+};
+
+Testimonial.defaultProps = {
+  name: null,
+  organisation: null,
+  children: null,
 };
 
 export default Testimonial;

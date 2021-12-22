@@ -1,5 +1,6 @@
-import Link from "@/components/stour/link";
 import cn from "classnames";
+import PropTypes from "prop-types";
+import Link from "@/components/stour/link";
 
 function CompetitorInformation({ tab, description, items }) {
   return (
@@ -12,7 +13,7 @@ function CompetitorInformation({ tab, description, items }) {
               <Link
                 href={`${item.url}?dl=`}
                 download
-                aria-label={"Download" + " " + item.title}
+                aria-label={`Download ${item.title}`}
                 extension={item.extension}
               >
                 {item.title}
@@ -24,5 +25,24 @@ function CompetitorInformation({ tab, description, items }) {
     </div>
   );
 }
+
+CompetitorInformation.propTypes = {
+  tab: PropTypes.bool,
+  description: PropTypes.string,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+CompetitorInformation.defaultProps = {
+  tab: false,
+  description: "",
+  items: [],
+};
 
 export default CompetitorInformation;

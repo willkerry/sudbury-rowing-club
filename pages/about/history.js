@@ -1,4 +1,3 @@
-import TextPage from "@/components/layouts/text-page";
 import Image from "next/image";
 import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import aerial1936Image from "public/assets/history/1936-aerial.jpg";
@@ -7,6 +6,7 @@ import river1920sImage from "public/assets/history/1920s-river.jpg";
 import regatta1888Image from "public/assets/history/1888-regatta.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
 import reachPreWw1Image from "public/assets/history/reach.jpg";
+import TextPage from "@/components/layouts/text-page";
 
 export default function Rules() {
   return (

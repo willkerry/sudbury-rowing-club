@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PropTypes from "prop-types";
 
 export default function CoverImage({
   title,
@@ -11,7 +12,7 @@ export default function CoverImage({
   return (
     <Image
       src={src}
-      alt={alt ? alt : `Cover Image for ${title}`}
+      alt={alt || `Cover Image for ${title}`}
       width={width}
       height={height}
       placeholder="blur"
@@ -19,3 +20,16 @@ export default function CoverImage({
     />
   );
 }
+
+CoverImage.propTypes = {
+  title: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  blurDataURL: PropTypes.string,
+};
+
+CoverImage.defaultProps = {
+  blurDataURL: null,
+};

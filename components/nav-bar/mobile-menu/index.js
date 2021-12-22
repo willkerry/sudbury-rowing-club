@@ -1,6 +1,6 @@
 import { Popover } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { MobileMenuSection } from "./mobile-menu-section";
+import MobileMenuSection from "./mobile-menu-section";
 import { about, regatta, members } from "@/components/nav-bar/nav-data";
 
 export default function MobileMenu() {

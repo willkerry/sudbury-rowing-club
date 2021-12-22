@@ -19,7 +19,15 @@ Masonry.propTypes = {
   /**
    * Put all the elements inside. Tailwind classes `inline-block`, `overflow-hidden` and our custom `break-inside` may be neeced to keep the child elements in check.
    */
-  children: PropTypes.any.isRequired,
+  children: PropTypes.node.isRequired,
+  /**
+   * Optionally, add some custom classes.
+   */
+  className: PropTypes.string,
+};
+
+Masonry.defaultProps = {
+  className: null,
 };
 
 export default Masonry;

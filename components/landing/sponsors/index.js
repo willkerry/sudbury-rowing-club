@@ -1,8 +1,8 @@
+import Link from "next/link";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Errc from "@/components/landing/sponsors/errc";
 import Rowperfect from "@/components/landing/sponsors/rowperfect";
 import Specflue from "@/components/landing/sponsors/specflue";
-import Link from "next/link";
 
 const SponsorLogos = [
   {
@@ -30,13 +30,11 @@ const SponsorLogos = [
 function Sponsors() {
   return (
     <ul className="flex items-center justify-center gap-8 my-12 space-between">
-      {SponsorLogos.map(({ logo, href, name }, index) => (
-        <li key={index}>
-        <Link href={href}>
-          <a aria-label={name}>
-            {logo}
-          </a>
-        </Link>
+      {SponsorLogos.map(({ logo, href, name }) => (
+        <li key={`${href}${name}`}>
+          <Link href={href}>
+            <a aria-label={name}>{logo}</a>
+          </Link>
         </li>
       ))}
     </ul>

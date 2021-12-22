@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const convertBreadcrumb = (string) => {
-  return string
+const convertBreadcrumb = (string) =>
+  string
     .replace(/-/g, " ")
     .replace(/oe/g, "ö")
     .replace(/ae/g, "ä")
     .replace(/ue/g, "ü");
-};
 
-const Breadcrumbs = (props) => {
+function Breadcrumbs({
+  listClassName,
+  activeItemClassName,
+  inactiveItemClassName,
+  rootLabel,
+}) {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState(null);
 
@@ -19,12 +24,10 @@ const Breadcrumbs = (props) => {
       const linkPath = router.asPath.split("/");
       linkPath.shift();
 
-      const pathArray = linkPath.map((path, i) => {
-        return {
-          breadcrumb: path,
-          href: "/" + linkPath.slice(0, i + 1).join("/"),
-        };
-      });
+      const pathArray = linkPath.map((path, i) => ({
+        breadcrumb: path,
+        href: `/${linkPath.slice(0, i + 1).join("/")}`,
+      }));
 
       setBreadcrumbs(pathArray);
     }
@@ -36,35 +39,45 @@ const Breadcrumbs = (props) => {
 
   return (
     <nav aria-label="breadcrumbs">
-      <ol className={props.listClassName}>
-        <li className={props.inactiveItemClassName}>
-          <Link href="/">{props.rootLabel}</Link>
+      <ol className={listClassName}>
+        <li className={inactiveItemClassName}>
+          <Link href="/">{rootLabel}</Link>
         </li>
 
-        {breadcrumbs.map((breadcrumb, i) => {
-          return i === breadcrumbs.length - 1 ? (
-            <li
-              key={breadcrumb.href}
-              index={i}
-              className={props.activeItemClassName}
-            >
+        {breadcrumbs.map((breadcrumb, i) =>
+          i === breadcrumbs.length - 1 ? (
+            <li key={breadcrumb.href} index={i} className={activeItemClassName}>
               {convertBreadcrumb(breadcrumb.breadcrumb)}
             </li>
           ) : (
             <li
               key={breadcrumb.href}
               index={i}
-              className={props.inactiveItemClassName}
+              className={inactiveItemClassName}
             >
               <Link href={breadcrumb.href}>
                 <a>{convertBreadcrumb(breadcrumb.breadcrumb)}</a>
               </Link>
             </li>
-          );
-        })}
+          )
+        )}
       </ol>
     </nav>
   );
+}
+
+Breadcrumbs.propTypes = {
+  listClassName: PropTypes.string,
+  activeItemClassName: PropTypes.string,
+  inactiveItemClassName: PropTypes.string,
+  rootLabel: PropTypes.string,
+};
+
+Breadcrumbs.defaultProps = {
+  listClassName: null,
+  activeItemClassName: null,
+  inactiveItemClassName: null,
+  rootLabel: "Homes",
 };
 
 export default Breadcrumbs;

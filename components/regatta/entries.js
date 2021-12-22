@@ -1,6 +1,26 @@
 import cn from "classnames";
+import PropTypes from "prop-types";
+import randomUUID from "crypto";
 
 function Entries({ children, table, waveNames, caption }) {
+  const getWaveColor = (entry) => {
+    switch (entry) {
+      case waveNames[0]:
+        return "bg-red-500";
+      case waveNames[1]:
+        return "bg-green-500";
+      case waveNames[2]:
+        return "bg-blue-500";
+      case waveNames[3]:
+        return "bg-yellow-500";
+      case waveNames[4]:
+        return "bg-purple-500";
+      case waveNames[5]:
+        return "bg-pink-500";
+      default:
+        return "bg-gray-400";
+    }
+  };
   return (
     <div className="mx-auto">
       {children}
@@ -8,38 +28,26 @@ function Entries({ children, table, waveNames, caption }) {
         <table>
           <thead>
             <tr>
-              {table[0].map((entry, index) => (
-                <th key={index} className="text-center">
+              {table[0].map((entry) => (
+                <th key={entry} className="text-center">
                   {entry}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {table.slice(1).map((wave, index) => (
-              <tr key={index}>
-                <th key={index}>{wave[0]}</th>
-                {wave.slice(1).map((entry, index) => (
+            {table.slice(1).map((wave) => (
+              <tr key={wave[0]}>
+                <th>{wave[0]}</th>
+                {wave.slice(1).map((entry) => (
                   <td
                     className="font-medium text-center numerals-lining"
-                    key={index}
+                    key={randomUUID.randomBytes(4)}
                   >
                     <div
                       className={cn(
-                        entry === waveNames[0]
-                          ? "bg-red-500 text-white"
-                          : entry === waveNames[1]
-                          ? "bg-green-500 text-white"
-                          : entry === waveNames[2]
-                          ? "bg-blue-500 text-white"
-                          : entry === waveNames[3]
-                          ? "bg-yellow-500 text-white"
-                          : entry === waveNames[4]
-                          ? "bg-purple-500 text-white"
-                          : entry === waveNames[5]
-                          ? "bg-pink-500 text-white"
-                          : null,
-                        "rounded-full"
+                        "text-white rounded-full",
+                        getWaveColor(entry)
                       )}
                     >
                       {entry}
@@ -52,30 +60,34 @@ function Entries({ children, table, waveNames, caption }) {
         </table>
         <figcaption>{caption}</figcaption>
       </figure>
-      {/* {categories.map((category, index) => (
-        <p
-          className={cn(
-            "flex flex-wrap gap-2 text-sm rounded p-2",
-            index == 0
-              ? "bg-red-500 text-white"
-              : index == 1
-              ? "bg-green-500 text-white"
-              : index == 2
-              ? "bg-blue-500 text-white"
-              : null
-          )}
-          key={index}
-        >
-          <span className="font-bold">{category[0]}:</span>
-          {category.slice(1).map((entry, index) => (
-            <span className="px-1.5 text-sm border rounded-full" key={index}>
-              {entry}
-            </span>
-          ))}
-        </p>
-      ))} */}
     </div>
   );
 }
+
+Entries.propTypes = {
+  /**
+   * The table to display.
+   */
+  table: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  /**
+   * The wave names to display.
+   */
+  waveNames: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * The caption to display.
+   */
+  caption: PropTypes.string,
+  /**
+   * The children (i.e. typically the blurb up top) to display.
+   */
+  children: PropTypes.node,
+};
+
+Entries.defaultProps = {
+  table: [],
+  waveNames: [],
+  caption: "",
+  children: null,
+};
 
 export default Entries;

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import PropTypes from "prop-types";
 import { ArrowUpIcon } from "@heroicons/react/solid";
 import { urlFor } from "@/lib/sanity";
 
@@ -41,3 +41,11 @@ export default function RegattaHeroImage({
     </div>
   );
 }
+
+RegattaHeroImage.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  aspectRatio: PropTypes.number.isRequired,
+  src: PropTypes.string.isRequired,
+  blurDataURL: PropTypes.string.isRequired,
+};

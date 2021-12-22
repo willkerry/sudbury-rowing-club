@@ -1,6 +1,7 @@
-import DateFormatter from "../components/date-formatter";
-import CoverImage from "../components/cover-image";
 import Link from "next/link";
+import PropTypes from "prop-types";
+import DateFormatter from "./date-formatter";
+import CoverImage from "./cover-image";
 import { urlFor } from "@/lib/sanity";
 
 export default function HeroPost({
@@ -48,3 +49,19 @@ export default function HeroPost({
     </Link>
   );
 }
+
+HeroPost.propTypes = {
+  title: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  excerpt: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  imageId: PropTypes.string,
+  imageAlt: PropTypes.string,
+  imageLqip: PropTypes.string,
+};
+
+HeroPost.defaultProps = {
+  imageId: null,
+  imageAlt: null,
+  imageLqip: null,
+};

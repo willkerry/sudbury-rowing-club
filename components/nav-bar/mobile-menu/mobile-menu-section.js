@@ -1,16 +1,15 @@
 import cn from "classnames";
 import { CompactMobileMenuItem, MobileMenuItem } from "./mobile-menu-item";
 
-export function MobileMenuSection({ title, data, compact }) {
-  const MenuItemList = (props) => {
-    return props.listData.map(function (item) {
-      return compact ? (
+export default function MobileMenuSection({ title, data, compact }) {
+  const MenuItemList = (props) =>
+    props.listData.map((item) =>
+      compact ? (
         <CompactMobileMenuItem data={item} />
       ) : (
         <MobileMenuItem data={item} />
-      );
-    });
-  };
+      )
+    );
   return (
     <div className="px-5 pt-4 pb-6">
       <div className="text-xs font-semibold tracking-wider text-gray-500 uppercase">

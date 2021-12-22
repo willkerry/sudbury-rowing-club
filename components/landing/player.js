@@ -4,22 +4,26 @@ import dynamic from "next/dynamic";
 
 const YouTube = dynamic(() => import("react-youtube"));
 
-function Player(props) {
-  let [isOpen, setIsOpen] = useState(false);
-  const videoId = props.youTubeId;
+function Player({ youTubeId, youTubeStart, children }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const videoId = youTubeId;
   const opts = {
     playerVars: {
       autoplay: 1,
       controls: 0,
       modestbranding: 1,
-      start: props.youTubeStart,
+      start: youTubeStart,
     },
   };
 
   return (
     <>
-      <button onClick={() => setIsOpen(!isOpen)} title="Open video">
-        {props.children}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        type="button"
+        title="Open video"
+      >
+        {children}
       </button>
       <Transition
         show={isOpen}
@@ -44,7 +48,6 @@ function Player(props) {
               containerClassName="w-full aspect-w-16 aspect-h-9"
               className="bg-white rounded-lg shadow-xl z-2"
             />
-            <button />
           </div>
         </Dialog>
       </Transition>

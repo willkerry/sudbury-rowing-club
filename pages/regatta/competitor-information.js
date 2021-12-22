@@ -1,11 +1,12 @@
+import groq from "groq";
+import { NextSeo } from "next-seo";
+import PropTypes from "prop-types";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import CompetitorInformation from "@/components/regatta/competitor-information";
 import { BASE_URL } from "@/lib/constants";
-import { NextSeo } from "next-seo";
-import { sanityClient } from "@/lib/sanity.server";
-import groq from "groq";
+import sanityClient from "@/lib/sanity.server";
 
 export default function CompetitorInformationPage({ data }) {
   return (
@@ -17,7 +18,7 @@ export default function CompetitorInformationPage({ data }) {
           title: "Competitor Information",
           description:
             "Essential information for competitors at the Sudbury Regatta.",
-          images: [{ url: BASE_URL + "/assets/og/competitor-information.png" }],
+          images: [{ url: `${BASE_URL}/assets/og/competitor-information.png` }],
         }}
       />
       <HeroTitle title="Competitor Information" breadcrumbs />
@@ -30,6 +31,24 @@ export default function CompetitorInformationPage({ data }) {
     </Layout>
   );
 }
+
+CompetitorInformationPage.propTypes = {
+  data: PropTypes.shape({
+    description: PropTypes.string.isRequired,
+    documents: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        extension: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+      })
+    ),
+  }),
+};
+
+CompetitorInformationPage.defaultProps = {
+  data: {},
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(groq`

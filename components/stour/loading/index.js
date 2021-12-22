@@ -1,12 +1,11 @@
-export default function Loading(className, children, ...props) {
+export default function Loading(className, children) {
   return (
     <div
       className={`w-full h-full min-w-[48px] inline-flex items-center relative text-base min-h-[1em] ${className}`}
-      {...props}
     >
       <span className="absolute flex items-center content-center justify-center w-full h-full -translate-x-1/2 -translate-y-1/2 bg-transparent select-none top-1/2 left-1/2">
         {children && (
-          <label className="mr-2 leading-none text-gray-600">{children}</label>
+          <span className="mr-2 leading-none text-gray-600">{children}</span>
         )}
         <Dot />
         <Dot />
@@ -16,7 +15,7 @@ export default function Loading(className, children, ...props) {
   );
 }
 
-const Dot = () => {
+function Dot() {
   return (
     <>
       <i className="inline-block w-1 h-1 mx-0.5 bg-gray-600 rounded-full" />
@@ -44,4 +43,4 @@ const Dot = () => {
       `}</style>
     </>
   );
-};
+}

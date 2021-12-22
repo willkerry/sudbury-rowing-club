@@ -1,21 +1,22 @@
-import SafetyPopup from "@/components/safety";
 import { Download, ExternalLink } from "react-feather";
+import { NextSeo } from "next-seo";
+import { BASE_URL } from "lib/constants";
+import groq from "groq";
+import SafetyPopup from "@/components/safety";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
-import { BASE_URL } from "lib/constants";
-import { NextSeo } from "next-seo";
-import { sanityClient } from "@/lib/sanity.server";
-import groq from "groq";
+import sanityClient from "@/lib/sanity.server";
 import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
 
-const SectionTitle = (props) => (
-  <h2
-    {...props}
-    className="mb-8 text-xl font-bold tracking-tight text-gray-800 md:pr-6"
-  />
-);
+function SectionTitle({ children }) {
+  return (
+    <h2 className="mb-8 text-xl font-bold tracking-tight text-gray-800 md:pr-6">
+      {children}
+    </h2>
+  );
+}
 
 export default function Safety({ safety, safetyStatus }) {
   return (
@@ -26,7 +27,7 @@ export default function Safety({ safety, safetyStatus }) {
         openGraph={{
           title: "Safety",
           description: "Rowing safely at Sudbury Rowing Club.",
-          images: [{ url: BASE_URL + "/assets/og/safety.png" }],
+          images: [{ url: `${BASE_URL}/assets/og/safety.png` }],
         }}
       />
       <HeroTitle prose title="Safety" />
@@ -40,37 +41,35 @@ export default function Safety({ safety, safetyStatus }) {
             />
           </div>
         )}
-        {safety.map((item) => {
-          return (
-            <div key={item._id} id={item._id} className="space-y-6">
-              <SectionTitle>{item.title}</SectionTitle>
-              {item.body && <Text portableText>{item.body}</Text>}
-              {item.__updatedAt}
-              {item.link && (
-                <Button
-                  href={item.link.url}
-                  iconRight={
-                    item.link.url.includes(BASE_URL) ? (
-                      <Download />
-                    ) : (
-                      <ExternalLink />
-                    )
-                  }
-                >
-                  {item.link.title}
-                </Button>
-              )}
-              {item.document && (
-                <Button
-                  href={`${item.document.url}?dl=`}
-                  iconRight={<Download />}
-                >
-                  {item.document.title}
-                </Button>
-              )}
-            </div>
-          );
-        })}
+        {safety.map((item) => (
+          <div key={item._id} id={item._id} className="space-y-6">
+            <SectionTitle>{item.title}</SectionTitle>
+            {item.body && <Text portableText>{item.body}</Text>}
+            {item.__updatedAt}
+            {item.link && (
+              <Button
+                href={item.link.url}
+                iconRight={
+                  item.link.url.includes(BASE_URL) ? (
+                    <Download />
+                  ) : (
+                    <ExternalLink />
+                  )
+                }
+              >
+                {item.link.title}
+              </Button>
+            )}
+            {item.document && (
+              <Button
+                href={`${item.document.url}?dl=`}
+                iconRight={<Download />}
+              >
+                {item.document.title}
+              </Button>
+            )}
+          </div>
+        ))}
       </Container>
     </Layout>
   );

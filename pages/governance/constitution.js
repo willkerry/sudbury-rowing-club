@@ -1,14 +1,16 @@
 import TextPage from "@/components/layouts/text-page";
 
-const Highlight = (props) => (
-  <em
-    {...props}
-    className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded"
-  />
-);
-const BlockHighlight = (props) => (
-  <div {...props} className="pl-4 border-l-4 border-green-300" />
-);
+function Highlight(props) {
+  return (
+    <em
+      {...props}
+      className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded"
+    />
+  );
+}
+function BlockHighlight(props) {
+  return <div {...props} className="pl-4 border-l-4 border-green-300" />;
+}
 export default function Constitution() {
   return (
     <TextPage title="Club Constitution" ogImage="/assets/og/constitution.png">
@@ -360,8 +362,8 @@ export default function Constitution() {
       </ol>
       <h2>20. Liability</h2>
       <p>
-        The General Committee shall manage the affairs of the Club. Financial
-        or legal liability incurred in the rightful and proper exercise of their
+        The General Committee shall manage the affairs of the Club. Financial or
+        legal liability incurred in the rightful and proper exercise of their
         office shall not, however, be the personal liability of the Committee,
         but shall be the responsibility of the Club as a whole.
       </p>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "@/components/container";
 import Crest from "@/components/logo/crest";
 import {
@@ -9,54 +10,47 @@ import {
   socials,
   misc,
 } from "@/components/nav-bar/nav-data";
-import Link from "next/link";
 
 const footerAbout = [...about, ...aboutCTAs];
 const footerRegatta = [...regatta, ...regattaCTAs];
 const communityFooter = [...memberCTAs, ...socials];
 
-export default function Footer() {
-  function FooterColumn({ heading, data }) {
-    return (
-      <div className="w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
-        <FooterHeading>{heading}</FooterHeading>
-        <FooterItemList data={data} />
-      </div>
-    );
-  }
-  const FooterHeading = ({ children }) => (
+function FooterColumn({ heading, data }) {
+  return (
+    <div className="w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
+      <FooterHeading>{heading}</FooterHeading>
+      <FooterItemList data={data} />
+    </div>
+  );
+}
+function FooterHeading({ children }) {
+  return (
     <div className="mb-4 text-xs font-semibold tracking-widest uppercase select-none">
       {children}
     </div>
   );
-  const FooterItemList = ({ data }) => {
-    return data.map((item, index) => {
-      return (
-        <Link key={index} href={item.href} passHref>
-          <a
-            href="#"
-            className="block my-3 text-sm text-gray-500 duration-100 hover:text-black"
-          >
-            {item.shortName ? item.shortName : item.name}
-          </a>
-        </Link>
-      );
-    });
-  };
-  const SocialIcons = ({ data }) => {
-    return data.map((item, index) => {
-      return (
-        <Link key={index} href={item.href} passHref>
-          <a
-            href="#"
-            className="mr-4 text-gray-400 transition hover:text-black"
-          >
-            <item.icon size={18} strokeWidth={1.5} />
-          </a>
-        </Link>
-      );
-    });
-  };
+}
+const FooterItemList = ({ data }) =>
+  data.map((item) => (
+    <Link key={item.href} href={item.href} passHref>
+      <a
+        href="#"
+        className="block my-3 text-sm text-gray-500 duration-100 hover:text-black"
+      >
+        {item.shortName ? item.shortName : item.name}
+      </a>
+    </Link>
+  ));
+const SocialIcons = ({ data }) =>
+  data.map((item) => (
+    <Link key={item.href} href={item.href} passHref>
+      <a href="#" className="mr-4 text-gray-400 transition hover:text-black">
+        <item.icon size={18} strokeWidth={1.5} />
+      </a>
+    </Link>
+  ));
+
+export default function Footer() {
   return (
     <footer className="border-t">
       <Container>
@@ -92,7 +86,7 @@ export default function Footer() {
                     fill="currentColor"
                     className="inline-flex mb-0.5"
                   >
-                    <path d="M0 5h3.5l4 9.5L6 18H5zM7 5h3.5l4 9.5L13 18h-1zM16 13.5l4 4.5h4l-6.5-8zM18 8.5L19.5 5H24l-5 3.5z"/>
+                    <path d="M0 5h3.5l4 9.5L6 18H5zM7 5h3.5l4 9.5L13 18h-1zM16 13.5l4 4.5h4l-6.5-8zM18 8.5L19.5 5H24l-5 3.5z" />
                   </svg>
                   .
                 </a>

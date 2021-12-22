@@ -1,6 +1,6 @@
+import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
-import Link from "next/link";
 
 export default function LearnToRowApplicationForm() {
   return (
@@ -28,6 +28,7 @@ export default function LearnToRowApplicationForm() {
       </p>
       <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLScoypkKpYLlr4Tv-pdsl2N9hJs1_TCGJyv1xdkDWpZs2se6qA/viewform?embedded=true"
+        title="Learn to Row Application Form"
         width="100%"
         height={720}
         frameBorder="0"

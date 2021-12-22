@@ -1,3 +1,6 @@
+import { EventJsonLd, NextSeo } from "next-seo";
+import groq from "groq";
+import dynamic from "next/dynamic";
 import Container from "@/components/container";
 import DayDateFormatter from "@/components/daydate-formatter";
 import Layout from "@/components/layout";
@@ -5,18 +8,14 @@ import {
   EntriesIcon,
   EventsIcon,
   InfoIcon,
-  ResultsIcon
+  ResultsIcon,
 } from "@/components/regatta/icons";
 import DateLocation from "@/components/regatta/landing-page/date-location";
 import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import { BASE_URL } from "@/lib/constants";
-import { sanityClient } from "@/lib/sanity.server";
-import groq from "groq";
-import { EventJsonLd, NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
-
+import sanityClient from "@/lib/sanity.server";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
@@ -128,7 +127,7 @@ export default function Regatta({ page, testimonials, results }) {
         openGraph={{
           title: "Sudbury Rowing Club Regatta, the ’International’",
           description: "The best little regatta in the world.",
-          images: [{ url: BASE_URL + "/assets/og/regatta.png" }],
+          imafes: [{ url: `${BASE_URL}/assets/og/regatta.png` }],
         }}
       />
       <EventJsonLd
@@ -146,7 +145,7 @@ export default function Regatta({ page, testimonials, results }) {
           },
         }}
         url="https://sudburyrowingclub.org.uk/regatta"
-        images={[BASE_URL + "/assets/og/regatta.png"]}
+        images={[`${BASE_URL}/assets/og/regatta.png`]}
         description="The best little regatta in the world."
       />
 

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import Container from "../../components/container";
 import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
@@ -11,10 +12,9 @@ import {
   PROJECT_NAME,
   HOME_OG_IMAGE_URL,
 } from "@/lib/constants";
-import { ArticleJsonLd, NextSeo } from "next-seo";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/date-formatter";
-import { sanityClient } from "@/lib/sanity.server";
+import sanityClient from "@/lib/sanity.server";
 import { postQuery, postSlugsQuery } from "@/lib/queries";
 import { urlFor } from "@/lib/sanity";
 
@@ -27,7 +27,7 @@ export default function Post({ post }) {
   // Turns featuredImage object into a useful URL. Making it a function, not a variable might be a bad idea, but attempts at a component-level variable led to build failures.
   const CoverImage = (image) => {
     if (image === null || image === undefined) return HOME_OG_IMAGE_URL;
-    else return urlFor(image).width(1200).url();
+    return urlFor(image).width(1200).url();
   };
 
   return post === undefined ? (
@@ -38,64 +38,62 @@ export default function Post({ post }) {
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
         ) : (
-          <>
-            <article className="mb-32">
-              <NextSeo
-                title={post.title}
-                description={post.description}
-                openGraph={{
-                  title: post.title,
-                  description: post.description,
-                  url: BASE_URL + router.asPath,
-                  type: "article",
-                  article: {
-                    publishedTime: post.date,
+          <article className="mb-32">
+            <NextSeo
+              title={post.title}
+              description={post.description}
+              openGraph={{
+                title: post.title,
+                description: post.description,
+                url: BASE_URL + router.asPath,
+                type: "article",
+                article: {
+                  publishedTime: post.date,
+                },
+                images: [
+                  {
+                    url: CoverImage(post.featuredImage),
                   },
-                  images: [
-                    {
-                      url: CoverImage(post.featuredImage),
-                    },
-                  ],
-                }}
-              />
-              <ArticleJsonLd
-                url={BASE_URL + router.asPath}
-                title={post.title}
-                images={[CoverImage(post.featuredImage)]}
-                datePublished={post.date}
-                publisherName={PROJECT_NAME}
-                publisherLogo={LOGO}
-                description={post.description}
-              />
+                ],
+              }}
+            />
+            <ArticleJsonLd
+              url={BASE_URL + router.asPath}
+              title={post.title}
+              images={[CoverImage(post.featuredImage)]}
+              datePublished={post.date}
+              publisherName={PROJECT_NAME}
+              publisherLogo={LOGO}
+              description={post.description}
+            />
 
-              <PostHeader
-                title={post.title}
-                featuredImage={post.featuredImage && post.featuredImage}
-                date={post.date}
-                alt={post.featuredImage && post.featuredImage.alt}
-                caption={post.featuredImage && post.featuredImage.caption}
-                lqip={post.featuredImage && post.featuredImage.lqip}
-              />
-              {post.body && <PostBody content={post.body} />}
+            <PostHeader
+              title={post.title}
+              featuredImage={post.featuredImage && post.featuredImage}
+              date={post.date}
+              alt={post.featuredImage && post.featuredImage.alt}
+              caption={post.featuredImage && post.featuredImage.caption}
+              lqip={post.featuredImage && post.featuredImage.lqip}
+            />
+            {post.body && <PostBody content={post.body} />}
 
-              <div className="flex flex-wrap mx-auto my-12 border rounded max-w-prose">
-                {post.author && (
-                  <div className="p-4">
-                    <Label className="text-xs">Author</Label>
-                    <div className="text-sm font-medium">
-                      {`${post.author.firstName} ${post.author.surname}`}
-                    </div>
-                  </div>
-                )}
+            <div className="flex flex-wrap mx-auto my-12 border rounded max-w-prose">
+              {post.author && (
                 <div className="p-4">
-                  <Label className="text-xs">Published</Label>
+                  <Label className="text-xs">Author</Label>
                   <div className="text-sm font-medium">
-                    <DateFormatter dateString={post.date} />
+                    {`${post.author.firstName} ${post.author.surname}`}
                   </div>
                 </div>
+              )}
+              <div className="p-4">
+                <Label className="text-xs">Published</Label>
+                <div className="text-sm font-medium">
+                  <DateFormatter dateString={post.date} />
+                </div>
               </div>
-            </article>
-          </>
+            </div>
+          </article>
         )}
       </Container>
     </Layout>

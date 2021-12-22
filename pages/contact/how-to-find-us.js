@@ -1,44 +1,42 @@
-import Container from "@/components/container";
-import HeroTitle from "@/components/hero-title";
-import Layout from "@/components/layout";
-import Note from "@/components/stour/note";
-import { BASE_URL } from "@/lib/constants";
 import { LocationMarkerIcon } from "@heroicons/react/solid";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { Map, Marker } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
+import Container from "@/components/container";
+import HeroTitle from "@/components/hero-title";
+import Layout from "@/components/layout";
+import Note from "@/components/stour/note";
+import { BASE_URL } from "@/lib/constants";
 
 const apis = {
   google: "https://www.google.com/maps/search/?api=1&query=",
   waze: "https://waze.com/ul?ll=",
   apple: "https://maps.apple.com/?address=",
 };
-const clubLocation = {
-  lat: 52.033997,
-  long: 0.727634,
-};
-const regattaLocation = {
-  lat: 52.035273,
-  long: 0.730891,
-};
+const clubLocation = [52.033997, 0.727634];
+const regattaLocation = [52.035273, 0.730891];
+const locationStrings = [
+  `${clubLocation[0]},${clubLocation[1]}`,
+  `${regattaLocation[0]},${regattaLocation[1]}`,
+];
 const openInApp = [
   {
     name: "Google Maps",
-    href: apis.google + clubLocation.lat + "," + clubLocation.long,
-    hrefregatta: apis.google + regattaLocation.lat + "," + regattaLocation.long,
+    href: `${apis.google}${locationStrings[0]}`,
+    hrefregatta: `${apis.google}${locationStrings[1]}`,
     icon: "/assets/contact/how-to-find-us/google-maps.png",
   },
   {
     name: "Waze",
-    href: apis.waze + clubLocation.lat + "," + clubLocation.long,
-    hrefregatta: apis.waze + regattaLocation.lat + "," + regattaLocation.long,
+    href: `${apis.waze}${locationStrings[0]}`,
+    hrefregatta: `${apis.waze}${locationStrings[1]}`,
     icon: "/assets/contact/how-to-find-us/waze.png",
   },
   {
     name: "Apple Maps",
-    href: apis.apple + clubLocation.lat + "," + clubLocation.long,
-    hrefregatta: apis.apple + regattaLocation.lat + "," + regattaLocation.long,
+    href: `${apis.apple}${locationStrings[0]}`,
+    hrefregatta: `${apis.apple}${locationStrings[1]}`,
     icon: "/assets/contact/how-to-find-us/apple-maps.png",
   },
 ];
@@ -57,7 +55,7 @@ export default function FindUs({ preview }) {
         openGraph={{
           title: "How to find us",
           description: "Directions to our club and to our regatta",
-          images: [{ url: BASE_URL + "/assets/og/how-to-find-us.png" }],
+          imafes: [{ url: `${BASE_URL}/assets/og/how-to-find-us.png` }],
         }}
       />
       <HeroTitle title="How to find us" />
@@ -70,18 +68,14 @@ export default function FindUs({ preview }) {
                 provider={maptilerProvider}
                 dprs={[1, 2]}
                 height={565}
-                defaultCenter={[clubLocation.lat, clubLocation.long]}
+                defaultCenter={clubLocation}
                 defaultZoom={14}
                 attribution={false}
               >
-                <Marker
-                  width={50}
-                  anchor={[clubLocation.lat, clubLocation.long]}
-                  color="#0070F3"
-                />
+                <Marker width={50} anchor={clubLocation} color="#0070F3" />
                 <Marker
                   width={30}
-                  anchor={[regattaLocation.lat, regattaLocation.long]}
+                  anchor={regattaLocation}
                   color="rgb(16, 185, 129)"
                 />
               </Map>
@@ -125,7 +119,7 @@ export default function FindUs({ preview }) {
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
-                      title={"Open in " + item.name}
+                      title={`Open in ${item.name}`}
                     >
                       <Image
                         src={item.icon}
@@ -161,7 +155,7 @@ export default function FindUs({ preview }) {
                       href={item.hrefregatta}
                       target="_blank"
                       rel="noreferrer"
-                      title={"Open in " + item.name}
+                      title={`Open in ${item.name}`}
                     >
                       <Image
                         src={item.icon}

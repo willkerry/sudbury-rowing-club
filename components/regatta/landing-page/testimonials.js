@@ -1,14 +1,18 @@
+import randomUUID from "crypto";
 import Label from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
 import DayDateFormatter from "@/components/daydate-formatter";
 import Testimonial from "@/components/stour/testimonial";
 import ordinal from "@/lib/helpers/ordinal";
 
-const Testimonials = ({ data }) => {
-  return data.map((item, index) => {
-    return (
+const Testimonials = ({ data }) =>
+  data.map(
+    (item) =>
       item.testimonials && (
-        <div key={index} className="mb-24">
+        <div
+          key={`${item.number}${item.testimonials[0].text.substring(8, 12)}`}
+          className="mb-24"
+        >
           <Masonry cols="3">
             <div className="py-24">
               <h3 className="text-xl font-medium">
@@ -18,22 +22,22 @@ const Testimonials = ({ data }) => {
                 <DayDateFormatter dateString={item.date} />
               </Label>
             </div>
-            {item.testimonials.map((testimonial, index) => {
-              return (
-                <Testimonial
-                  key={index}
-                  name={testimonial.name}
-                  organisation={testimonial.club}
-                >
-                  {testimonial.text}
-                </Testimonial>
-              );
-            })}
+            {item.testimonials.map((testimonial) => (
+              <Testimonial
+                key={`${testimonial.text
+                  .substring(8, 16)
+                  .replace(/\s/g, "")}-${randomUUID
+                  .randomBytes(1)
+                  .toString("hex")}`}
+                name={testimonial.name}
+                organisation={testimonial.club}
+              >
+                {testimonial.text}
+              </Testimonial>
+            ))}
           </Masonry>
         </div>
       )
-    );
-  });
-};
+  );
 
 export default Testimonials;

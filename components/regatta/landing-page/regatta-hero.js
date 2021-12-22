@@ -1,6 +1,7 @@
-import { ImageComposite } from "@/components/regatta/landing-page/image-composite";
-import Link from "@/components/stour/link";
 import { ChevronRightIcon } from "@heroicons/react/solid";
+import PropTypes from "prop-types";
+import ImageComposite from "@/components/regatta/landing-page/image-composite";
+import Link from "@/components/stour/link";
 
 export default function RegattaHero({ ticketItems, subtitle }) {
   return (
@@ -21,3 +22,8 @@ export default function RegattaHero({ ticketItems, subtitle }) {
     </div>
   );
 }
+
+RegattaHero.propTypes = {
+  ticketItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  subtitle: PropTypes.string.isRequired,
+};

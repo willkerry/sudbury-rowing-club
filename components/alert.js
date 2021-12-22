@@ -1,5 +1,5 @@
-import data from "@/data/alert";
 import Link from "next/link";
+import data from "@/data/alert";
 
 export default function Alert() {
   return (

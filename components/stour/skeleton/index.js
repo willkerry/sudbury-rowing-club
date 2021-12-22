@@ -1,5 +1,5 @@
-import Cleavers from "@/components/icons/cleavers";
 import { Circle } from "react-feather";
+import Cleavers from "@/components/icons/cleavers";
 
 export function Skeleton() {
   return (

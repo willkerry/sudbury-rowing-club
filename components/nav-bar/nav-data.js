@@ -1,8 +1,3 @@
-import Governance from "@/components/icons/governance";
-import History from "@/components/icons/history";
-import MyClubhouse from "@/components/icons/myclubhouse";
-import Results from "@/components/icons/results";
-import Safety from "@/components/icons/safety";
 import {
   CalendarIcon,
   InformationCircleIcon,
@@ -15,6 +10,11 @@ import {
   FlagIcon,
 } from "@heroicons/react/outline";
 import { Facebook, Instagram, Twitter } from "react-feather";
+import Governance from "@/components/icons/governance";
+import History from "@/components/icons/history";
+import MyClubhouse from "@/components/icons/myclubhouse";
+import Results from "@/components/icons/results";
+import Safety from "@/components/icons/safety";
 import Rower from "../icons/rower";
 import Spond from "../icons/spond";
 

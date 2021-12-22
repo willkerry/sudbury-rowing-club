@@ -1,14 +1,14 @@
+import dynamic from "next/dynamic";
+import { NextSeo } from "next-seo";
+import groq from "groq";
 import Container from "../components/container";
 import Layout from "../components/layout";
 import LandingHero from "@/components/landing/landing-hero";
 import Note from "@/components/stour/note";
 import Button from "@/components/stour/button";
-import dynamic from "next/dynamic";
-import { NextSeo } from "next-seo";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
-import groq from "groq";
-import { sanityClient } from "@/lib/sanity.server";
+import sanityClient from "@/lib/sanity.server";
 import Text from "@/components/stour/text";
 import NewsList from "@/components/news/news-list";
 

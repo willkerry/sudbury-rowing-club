@@ -1,28 +1,60 @@
+import Image from "next/image";
+import PropTypes from "prop-types";
 import Label from "../stour/label";
 import shortCourse from "@/components/regatta/events/350.svg";
 import longCourse from "@/components/regatta/events/650.svg";
-import Image from "next/image";
 
-const Section = (props) => <section {...props} />;
-const Table = (props) => <div {...props} className="w-full" />;
-const TableBody = (props) => <dl {...props} />;
-const Row = (props) => (
-  <div {...props} className="flex flex-col py-2 border-t" />
-);
-const LabelCell = (props) => (
-  <dd {...props}>
-    <Label className="text-xs">{props.children}</Label>
-  </dd>
-);
-const Cell = (props) => (
-  <dl {...props} className="w-full text-sm font-medium text-gray-800" />
-);
+function Table({ children }) {
+  return <div className="w-full">{children}</div>;
+}
 
-function Events({ data }) {
+Table.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+function TableBody({ children }) {
+  return <dl>{children}</dl>;
+}
+
+TableBody.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+function Row({ children }) {
+  return <div className="flex flex-col py-2 border-t">{children}</div>;
+}
+
+Row.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+function LabelCell({ children }) {
+  return (
+    <dd>
+      <Label className="text-xs">{children}</Label>
+    </dd>
+  );
+}
+
+LabelCell.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+function Cell({ children }) {
+  return (
+    <dl className="w-full text-sm font-medium text-gray-800">{children}</dl>
+  );
+}
+
+Cell.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default function Events({ data }) {
   return (
     <div className="grid gap-8 md:grid-cols-2">
       {data.map((item) => (
-        <Section key={item._key}>
+        <section key={item._key}>
           <div className="text-center">
             {item.course === "350m" ? (
               <Image
@@ -57,8 +89,8 @@ function Events({ data }) {
               <Row>
                 <LabelCell>Boat Classes</LabelCell>
                 <Cell>
-                  {item.boatClasses.map((item, index) => (
-                    <span key={index}>{(index ? ", " : "") + item}</span>
+                  {item.boatClasses.map((w, index) => (
+                    <span key={w}>{(index ? ", " : "") + w}</span>
                   ))}
                 </Cell>
               </Row>
@@ -68,10 +100,24 @@ function Events({ data }) {
               </Row>
             </TableBody>
           </Table>
-        </Section>
+        </section>
       ))}
     </div>
   );
 }
 
-export default Events;
+Events.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      _key: PropTypes.string.isRequired,
+      course: PropTypes.string.isRequired,
+      categories: PropTypes.string.isRequired,
+      gender: PropTypes.string.isRequired,
+      boatClasses: PropTypes.arrayOf(PropTypes.string).isRequired,
+      prizes: PropTypes.string.isRequired,
+    })
+  ),
+};
+Events.defaultProps = {
+  data: [],
+};

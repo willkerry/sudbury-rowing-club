@@ -1,5 +1,6 @@
-import PostPreview from "../components/post-preview";
 import smartquotes from "smartquotes";
+import PropTypes from "prop-types";
+import PostPreview from "./post-preview";
 
 export default function MoreStories({ posts }) {
   return (
@@ -26,3 +27,23 @@ export default function MoreStories({ posts }) {
     </section>
   );
 }
+
+MoreStories.propTypes = {
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      featuredImage: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        alt: PropTypes.string,
+        lqip: PropTypes.string,
+      }),
+    })
+  ),
+};
+
+MoreStories.defaultProps = {
+  posts: [],
+};

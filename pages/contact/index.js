@@ -1,18 +1,12 @@
-import ContactForm from "@/components/contact-form";
+import groq from "groq";
+import { NextSeo } from "next-seo";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import { BASE_URL } from "@/lib/constants";
-import { NextSeo } from "next-seo";
-import groq from "groq";
-import { sanityClient } from "@/lib/sanity.server";
+import sanityClient from "@/lib/sanity.server";
 
-import { FetchOfficerById } from "@/lib/officer-contacts";
-
-export default function Contact({ contactableOfficers }) {
-  const inputId = "will";
-  console.log(inputId);
-  console.log(FetchOfficerById(inputId));
+export default function Contact() {
   return (
     <Layout>
       <NextSeo
@@ -21,7 +15,7 @@ export default function Contact({ contactableOfficers }) {
         openGraph={{
           title: "Contact Sudbury Rowing Club",
           description: "Get in touch",
-          images: [{ url: BASE_URL + "/assets/og/contact.png" }],
+          images: [{ url: `${BASE_URL}/assets/og/contact.png` }],
         }}
       />
       <HeroTitle title="Contact a club officer" prose />
@@ -32,7 +26,7 @@ export default function Contact({ contactableOfficers }) {
           respond to enquiries, we ask that you select an appropriate recipient
           for your enquiry.
         </div>
-        <ContactForm contacts={contactableOfficers} />
+        {/* <ContactForm contacts={contactableOfficers} /> */}
       </Container>
     </Layout>
   );

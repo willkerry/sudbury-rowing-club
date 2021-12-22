@@ -1,27 +1,28 @@
-import Layout from "@/components/layout";
+import groq from "groq";
+import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
+import Layout from "@/components/layout";
 import HeroTitle from "@/components/hero-title";
 import Container from "@/components/container";
 import EventsComponent from "@/components/regatta/events";
 import { BASE_URL } from "@/lib/constants";
-import { sanityClient } from "@/lib/sanity.server";
-import groq from "groq";
+import sanityClient from "@/lib/sanity.server";
 
 const og = {
   title: "Event Information",
   description: "Races at the Sudbury Regatta.",
 };
 
-export default function Entries({ data }) {
+export default function EventsPage({ data }) {
   return (
     <Layout>
       <NextSeo
-        title={og.title + " | Sudbury Regatta"}
+        title={`${og.title} | Sudbury Regatta`}
         description={og.description}
         openGraph={{
           title: og.title,
           description: og.description,
-          images: [{ url: BASE_URL + "/assets/og/events.png" }],
+          images: [{ url: `${BASE_URL}/assets/og/events.png` }],
         }}
       />
       <HeroTitle title={og.title} breadcrumbs prose />
@@ -31,6 +32,21 @@ export default function Entries({ data }) {
     </Layout>
   );
 }
+EventsPage.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      _key: PropTypes.string.isRequired,
+      course: PropTypes.string.isRequired,
+      categories: PropTypes.string.isRequired,
+      gender: PropTypes.string.isRequired,
+      boatClasses: PropTypes.arrayOf(PropTypes.string).isRequired,
+      prizes: PropTypes.string.isRequired,
+    })
+  ),
+};
+EventsPage.defaultProps = {
+  data: [],
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(

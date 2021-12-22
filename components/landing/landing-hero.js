@@ -3,17 +3,23 @@ import BoathouseDoor from "@/components/landing/boathouse-door";
 import Player from "@/components/landing/player";
 import { urlFor } from "@/lib/sanity";
 
-function LandingHero(props) {
+function LandingHero({
+  imageId,
+  imageAspectRatio,
+  imageLqip,
+  slogan,
+  youTubeId,
+  youTubeStart,
+}) {
   return (
     <div className="relative flex overflow-hidden shadow-lg md:rounded-xl group">
-
       <Image
-        src={urlFor(props.imageId).url()}
+        src={urlFor(imageId).url()}
         width={984}
-        height={984 / props.imageAspectRatio}
+        height={984 / imageAspectRatio}
         alt="Aerial photograph of a Sudbury crew training."
         placeholder="blur"
-        blurDataURL={props.imageLqip}
+        blurDataURL={imageLqip}
       />
 
       {/* All the text/body content is inside an absolute container on top of the container. */}
@@ -23,7 +29,7 @@ function LandingHero(props) {
         <div>
           <span className="px-1 md:px-3 py-0.5 md:py-1 text-xs sm:text-sm md:text-base font-medium bg-white rounded-full">
             <span className="text-transparent to-yellow-700 bg-gradient-to-r from-blue-800 via-green-700 bg-clip-text">
-              {props.slogan}
+              {slogan}
             </span>
           </span>
         </div>
@@ -31,7 +37,7 @@ function LandingHero(props) {
 
       {/* The  player component is triggered from this absolutely positioned play icon. */}
 
-      <Player youTubeId={props.youTubeId} youTubeStart={props.youTubeStart}>
+      <Player youTubeId={youTubeId} youTubeStart={youTubeStart}>
         <div className="absolute text-white bottom-3 right-3 sm:bottom-7 sm:right-7">
           <svg
             xmlns="http://www.w3.org/2000/svg"

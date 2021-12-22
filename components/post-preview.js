@@ -1,11 +1,17 @@
-import DateFormatter from "../components/date-formatter";
 import Link from "next/link";
 import Image from "next/image";
+import PropTypes from "prop-types";
+import DateFormatter from "./date-formatter";
 import { urlFor } from "@/lib/sanity";
 
-export function PostPreview(props) {
-  const { title, imageId, imageAlt, imageLqip, date, slug } = props;
-
+export default function PostPreview({
+  title,
+  imageId,
+  imageAlt,
+  imageLqip,
+  date,
+  slug,
+}) {
   return (
     <li>
       <article id={slug}>
@@ -53,4 +59,18 @@ export function PostPreview(props) {
     </li>
   );
 }
-export default PostPreview;
+
+PostPreview.propTypes = {
+  title: PropTypes.string.isRequired,
+  imageId: PropTypes.string,
+  imageAlt: PropTypes.string,
+  imageLqip: PropTypes.string,
+  date: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+};
+
+PostPreview.defaultProps = {
+  imageId: null,
+  imageAlt: null,
+  imageLqip: null,
+};

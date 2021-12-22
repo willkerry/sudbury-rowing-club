@@ -1,13 +1,14 @@
+import { NextSeo } from "next-seo";
+import PropTypes from "prop-types";
+import Image from "next/image";
+import { Download } from "react-feather";
+import groq from "groq";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Button from "@/components/stour/button";
 import { BASE_URL } from "@/lib/constants";
-import { NextSeo } from "next-seo";
-import Image from "next/image";
-import { Download } from "react-feather";
-import { sanityClient } from "@/lib/sanity.server";
-import groq from "groq";
+import sanityClient from "@/lib/sanity.server";
 import { urlFor } from "@/lib/sanity";
 
 export default function Photography({ data }) {
@@ -19,7 +20,7 @@ export default function Photography({ data }) {
         openGraph={{
           title: "Coursemap",
           description: "The Sudbury Regatta’s challenging regatta course.",
-          images: [{ url: BASE_URL + "/assets/og/course.png" }],
+          images: [{ url: `${BASE_URL}/assets/og/course.png` }],
         }}
       />
       <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
@@ -47,6 +48,23 @@ export default function Photography({ data }) {
     </Layout>
   );
 }
+
+Photography.propTypes = {
+  data: PropTypes.shape({
+    heading: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    map: PropTypes.string.isRequired,
+    mapImage: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      aspectRatio: PropTypes.number.isRequired,
+      lqip: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
+};
+
+Photography.defaultProps = {
+  data: {},
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(

@@ -1,5 +1,6 @@
-import Link from "@/components/stour/link";
 import { CalendarIcon, MapIcon } from "@heroicons/react/solid";
+import PropTypes from "prop-types";
+import Link from "@/components/stour/link";
 
 function DateLocation({ date, location }) {
   return (
@@ -17,5 +18,10 @@ function DateLocation({ date, location }) {
     </div>
   );
 }
+
+DateLocation.propTypes = {
+  date: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+};
 
 export default DateLocation;

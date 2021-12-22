@@ -1,5 +1,6 @@
-import Container from "../components/container";
 import cn from "classnames";
+import PropTypes from "prop-types";
+import Container from "./container";
 /* import Breadcrumbs from "nextjs-breadcrumbs"; */
 import Breadcrumbs from "./stour/breadcrumbs";
 
@@ -48,3 +49,18 @@ export default function HeroTitle({
     </>
   );
 }
+
+HeroTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  prose: PropTypes.bool,
+  breadcrumbs: PropTypes.bool,
+  transparent: PropTypes.bool,
+};
+
+HeroTitle.defaultProps = {
+  children: null,
+  prose: false,
+  breadcrumbs: false,
+  transparent: false,
+};

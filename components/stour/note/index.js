@@ -17,7 +17,7 @@ const VARIANT_MAPS = {
   warning: "text-yellow-600 border-yellow-400",
 };
 export function Note(props) {
-  const { children, type, size, label, centered } = props;
+  const { children, type, size, label, centered, className } = props;
   return (
     <div
       className={cn(
@@ -25,7 +25,7 @@ export function Note(props) {
         VARIANT_MAPS[type],
         SIZE_MAPS[size],
         CENTERED_MAPS[centered],
-        props.className
+        className
       )}
     >
       {label && <span className="pr-1.5 font-semibold">{label}:</span>}
@@ -58,6 +58,23 @@ Note.propTypes = {
    * A nicer way to centre the element.
    */
   centered: PropTypes.bool,
+  /**
+   * Any additional class names to add to the component.
+   * @type {string}
+   * @example
+   * <Note className="my-custom-class" />
+   */
+  className: PropTypes.string,
+  /**
+   * The children of the component.
+   * @type {node}
+   * @example
+   * @optional
+   * <Note label="Hello world">
+   * <img src="https://source.unsplash.com/random/400x200" />
+   * </Note>
+   */
+  children: PropTypes.node,
 };
 
 Note.defaultProps = {
@@ -65,6 +82,8 @@ Note.defaultProps = {
   size: "large",
   label: null,
   centered: false,
+  className: null,
+  children: null,
 };
 
 Note.type = VARIANT_MAPS;

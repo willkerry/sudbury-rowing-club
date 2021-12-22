@@ -1,10 +1,10 @@
 import cn from "classnames";
+import PropTypes from "prop-types";
 import Container from "../../container";
 import Label from "@/components/stour/label";
 
-export function Hero(props) {
-  const { title, label, description, dark, fullwidth } = props;
-  function Text() {
+export function Hero({ title, label, description, dark, fullwidth }) {
+  function text() {
     return (
       <>
         {label && <Label className="ml-1">{label}</Label>}
@@ -17,19 +17,33 @@ export function Hero(props) {
       </>
     );
   }
-  return fullwidth ? (
+  if (!fullwidth) {
+    return text();
+  }
+  return (
     <div className={cn(dark ? "text-white bg-blue-900" : "text-gray-900")}>
       <Container>
         <div className="flex flex-col h-96 justify-content-center max-w-prose">
-          <div className="my-auto">
-            <Text />
-          </div>
+          <div className="my-auto">{text()}</div>
         </div>
       </Container>
     </div>
-  ) : (
-    <Text />
   );
 }
+
+Hero.propTypes = {
+  title: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  description: PropTypes.string,
+  dark: PropTypes.bool,
+  fullwidth: PropTypes.bool,
+};
+
+Hero.defaultProps = {
+  label: null,
+  description: null,
+  dark: false,
+  fullwidth: false,
+};
 
 export default Hero;

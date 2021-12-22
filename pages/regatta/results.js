@@ -1,12 +1,12 @@
+import groq from "groq";
+import { NextSeo } from "next-seo";
 import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Results from "@/components/regatta/results";
-import { NextSeo } from "next-seo";
 import Text from "@/components/stour/text";
-import { sanityClient } from "@/lib/sanity.server";
-import groq from "groq";
+import sanityClient from "@/lib/sanity.server";
 
 export default function ResultsPage({ data, other }) {
   return (
@@ -15,7 +15,7 @@ export default function ResultsPage({ data, other }) {
         title="Regatta Results | Sudbury Rowing Club"
         openGraph={{
           title: "Regatta Results",
-          images: [{ url: BASE_URL + "/assets/og/results.png" }],
+          images: [{ url: `${BASE_URL}/assets/og/results.png` }],
         }}
       />
       <HeroTitle title="Regatta results" breadcrumbs />

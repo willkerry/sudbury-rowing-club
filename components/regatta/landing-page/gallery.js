@@ -1,17 +1,19 @@
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
 import { useEmblaCarousel } from "embla-carousel/react";
 import { useCallback, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { urlFor } from "@/lib/sanity";
 
-const Gallery = ({ imagesArray }) => {
+function Gallery({ imagesArray }) {
   const [, setSlidesInView] = useState([]);
   const [viewportRef, embla] = useEmblaCarousel({
     loop: true,
     inViewThreshold: 1,
   });
 
+  // eslint-disable-next-line consistent-return
   const onSelect = useCallback(() => {
-    if (!embla) return;
+    if (!embla) return null;
   }, [embla]);
 
   const findSlidesInView = useCallback(() => {
@@ -68,6 +70,10 @@ const Gallery = ({ imagesArray }) => {
       </div>
     </div>
   );
+}
+
+Gallery.propTypes = {
+  imagesArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Gallery;

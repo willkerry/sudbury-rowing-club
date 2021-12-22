@@ -1,15 +1,16 @@
+import { Disclosure, Transition } from "@headlessui/react";
+import PropTypes from "prop-types";
+import cn from "classnames";
+import { ChevronDownIcon } from "@heroicons/react/solid";
+import groq from "groq";
+import Head from "next/head";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Text from "@/components/stour/text";
-import { sanityClient } from "@/lib/sanity.server";
-import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
-import cn from "classnames";
-import groq from "groq";
-import Head from "next/head";
+import sanityClient from "@/lib/sanity.server";
 
 export default function Notices({ data }) {
   return (
@@ -35,19 +36,32 @@ export default function Notices({ data }) {
   );
 }
 
-function Card({ title, body, items, meta, updated, created }) {
+Notices.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      documents: PropTypes.arrayOf(PropTypes.object),
+      meta: PropTypes.arrayOf(PropTypes.object),
+      _createdAt: PropTypes.string.isRequired,
+      _updatedAt: PropTypes.string.isRequired,
+      body: PropTypes.arrayOf(PropTypes.object),
+    })
+  ).isRequired,
+};
 
+function Card({ title, body, items, meta, updated, created }) {
   // Split the array of document groups into two arrays, one for the first half and one for the second half
   const splitItemCount = Math.ceil((items !== null && items.length) / 2);
   const firstColumnItems = items !== null && items.slice(0, splitItemCount);
   const secondColumnItems = items !== null && items.slice(splitItemCount);
 
   // Render a column of document groups
-  const FileGroupList = ({ items }) => {
-    return items.map((item, index) => {
-      return (
+  const FileGroupList = ({ fileItems }) =>
+    fileItems.map(
+      (item) =>
         item.documents && (
-          <div key={index} className="flex flex-col">
+          <div key={item} className="flex flex-col">
             {item.title && (
               <h3 className="font-medium text-gray-700">{item.title}</h3>
             )}
@@ -58,21 +72,14 @@ function Card({ title, body, items, meta, updated, created }) {
             ))}
           </div>
         )
-      );
-    });
-  };
-  const MetaSection = ({ items }) => {
-    return items.map((item) => {
-      return (
-        <div className="px-4" key={item._key}>
-          <Label className="text-xs select-none">
-            {item.label + ":" + " "}
-          </Label>
-          <Label className="text-xs !text-gray-800">{item.value}</Label>
-        </div>
-      );
-    });
-  };
+    );
+  const MetaSection = ({ metaItems }) =>
+    metaItems.map((item) => (
+      <div className="px-4" key={item._key}>
+        <Label className="text-xs select-none">{`${item.label} : `}</Label>
+        <Label className="text-xs !text-gray-800">{item.value}</Label>
+      </div>
+    ));
   const slug = title.toLowerCase().replace(/ /g, "-");
 
   return (
@@ -114,16 +121,16 @@ function Card({ title, body, items, meta, updated, created }) {
 
               {meta && (
                 <div className="flex py-2.5 text-sm bg-gray-50">
-                  <MetaSection items={meta} />
+                  <MetaSection metaItems={meta} />
                 </div>
               )}
               {items !== null && (
                 <div className="grid grid-cols-2 gap-4 p-4">
                   <div className="space-y-4">
-                    <FileGroupList items={firstColumnItems} />
+                    <FileGroupList fileItems={firstColumnItems} />
                   </div>
                   <div className="space-y-4">
-                    <FileGroupList items={secondColumnItems} />
+                    <FileGroupList fileItems={secondColumnItems} />
                   </div>
                 </div>
               )}
@@ -157,6 +164,20 @@ function Card({ title, body, items, meta, updated, created }) {
     </Disclosure>
   );
 }
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  body: PropTypes.arrayOf(PropTypes.object),
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  meta: PropTypes.arrayOf(PropTypes.object),
+  updated: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+};
+
+Card.defaultProps = {
+  body: null,
+  meta: null,
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(

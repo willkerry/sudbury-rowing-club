@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 
 export default function Ticket({ items }) {
   return (
@@ -21,8 +21,8 @@ export default function Ticket({ items }) {
         }}
       />
       <div className="px-3 py-3 space-y-1.5">
-        {items.map((item, index) => (
-          <div key={index}>
+        {items.map((item) => (
+          <div key={item.label.toString()}>
             <div className="font-bold uppercase text-[9px] tracking-widest text-gray-500">
               {item.label}
             </div>
@@ -45,3 +45,13 @@ export default function Ticket({ items }) {
     </div>
   );
 }
+
+Ticket.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        .isRequired,
+    })
+  ).isRequired,
+};
