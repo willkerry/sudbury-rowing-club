@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { DefaultSeo } from "next-seo";
-import PropTypes from "prop-types";
 import "../styles/index.css";
 import Router from "next/router";
 import ProgressBar from "@badrap/bar-of-progress";
@@ -32,8 +31,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-
-App.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.instanceOf(Object).isRequired,
-};

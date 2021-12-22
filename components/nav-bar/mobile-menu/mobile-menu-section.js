@@ -1,16 +1,16 @@
 import cn from "classnames";
-import PropTypes from "prop-types";
 import { CompactMobileMenuItem, MobileMenuItem } from "./mobile-menu-item";
 
-export default function MobileMenuSection({ title, data, compact }) {
-  const MenuItemList = (listData) =>
-    listData.map((item) =>
-      compact ? (
+export function MobileMenuSection({ title, data, compact }) {
+  const MenuItemList = (props) => {
+    return props.listData.map(function (item) {
+      return compact ? (
         <CompactMobileMenuItem data={item} />
       ) : (
         <MobileMenuItem data={item} />
-      )
-    );
+      );
+    });
+  };
   return (
     <div className="px-5 pt-4 pb-6">
       <div className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
@@ -29,17 +29,3 @@ export default function MobileMenuSection({ title, data, compact }) {
     </div>
   );
 }
-MobileMenuSection.propTypes = {
-  title: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      href: PropTypes.string.isRequired,
-      shortName: PropTypes.string,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  compact: PropTypes.bool,
-};
-MobileMenuSection.defaultProps = {
-  compact: false,
-};
