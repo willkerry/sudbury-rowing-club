@@ -21,7 +21,7 @@ export default function MobileMenu() {
       <div className="relative bg-white divide-y rounded shadow-lg ring-1 ring-black ring-opacity-5">
         <MobileMenuSection title="About" data={about} />
         <MobileMenuSection title="Regatta" data={regatta} />
-        <MobileMenuSection title="Members" data={members} compact="true" />
+        <MobileMenuSection title="Members" data={members} compact />
       </div>
       {mobileMenuCloseButton}
     </Popover.Panel>
