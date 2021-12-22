@@ -127,27 +127,13 @@ function extension(url) {
 
 function ColorIndicator({ color, type }) {
   const newColor = Color(color);
-  const rgb = newColor.rgb().string();
-  const hsl = newColor.hsl().round().string();
-  let print = "";
-  switch (type) {
-    case "rgb":
-      print = <code>{rgb}</code>;
-      break;
-    case "hsl":
-      print = <code>{hsl}</code>;
-      break;
-    case "hex":
-      print = <code>{color}</code>;
-      break;
-    default:
-      print = <code>{rgb}</code>;
-  }
+  let print = color;
+  if (type === "rgb") print = newColor.rgb().string();
+  if (type === "hsl") print = newColor.hsl().round().string();
   return (
     <span className="flex flex-row items-center uppercase">
       <Circle className="h-4 text-gray-200" fill={color} />
-
-      {print}
+      <code>{print}</code>
     </span>
   );
 }
@@ -179,7 +165,7 @@ FileExtensionWidget.propTypes = {
 
 function FileRows({ data, color }) {
   return data.map((item) => (
-    <tr key={randomUUID.randomBytes(3)}>
+    <tr key={randomUUID.randomBytes(4).toString("hex")}>
       <td>
         <ColorIndicator color={color} type="hex" />
       </td>
@@ -213,10 +199,7 @@ FileRows.defaultProps = {
 
 function ColorRows({ data }) {
   return data.map((item) => (
-    <tr
-      key={item.id.toString()}
-      className={item.id === "900" ? "bg-gray-100" : null}
-    >
+    <tr key={item.id} className={item.id === "900" ? "bg-gray-100" : null}>
       <td className="text-right">
         <code>{item.id}</code>
       </td>
@@ -238,7 +221,7 @@ function ColorRows({ data }) {
 
 const AssetSections = ({ assets }) =>
   assets.map((item) => (
-    <section key={item.name}>
+    <section key={randomUUID.randomBytes(4).toString("hex")}>
       <figure>
         <item.Illustration
           className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
