@@ -109,15 +109,6 @@ export default function Regatta({ page, testimonials, results }) {
         />
       ),
     },
-    /* {
-      summary: "Contact",
-      icon: <ContactIcon />,
-      content: (
-        <div className="max-w-md mx-auto">
-          <ContactForm />
-        </div>
-      ),
-    }, */
   ];
   return (
     <Layout>

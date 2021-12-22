@@ -20,7 +20,7 @@ function DateLocation({ date, location }) {
 }
 
 DateLocation.propTypes = {
-  date: PropTypes.string.isRequired,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   location: PropTypes.string.isRequired,
 };
 

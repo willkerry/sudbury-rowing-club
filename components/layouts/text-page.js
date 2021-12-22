@@ -1,4 +1,5 @@
 import { NextSeo } from "next-seo";
+import PropTypes from "prop-types";
 import Container from "@/components/container";
 import HeroTitle from "@/components/hero-title";
 import Layout from "@/components/layout";
@@ -23,3 +24,10 @@ export default function TextPage({ title, description, ogImage, children }) {
     </Layout>
   );
 }
+
+TextPage.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  ogImage: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};

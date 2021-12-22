@@ -1,12 +1,12 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Dialog, Transition } from "@headlessui/react";
 import dynamic from "next/dynamic";
 
 const YouTube = dynamic(() => import("react-youtube"));
 
-function Player({ youTubeId, youTubeStart, children }) {
+export default function Player({ youTubeId, youTubeStart, children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const videoId = youTubeId;
   const opts = {
     playerVars: {
       autoplay: 1,
@@ -15,7 +15,6 @@ function Player({ youTubeId, youTubeStart, children }) {
       start: youTubeStart,
     },
   };
-
   return (
     <>
       <button
@@ -43,7 +42,7 @@ function Player({ youTubeId, youTubeStart, children }) {
 
           <div className="flex items-center justify-center w-full h-full p-2 sm:p-10 md:p-20 lg:p-40 xl:p-60">
             <YouTube
-              videoId={videoId}
+              videoId={youTubeId}
               opts={opts}
               containerClassName="w-full aspect-w-16 aspect-h-9"
               className="bg-white rounded-lg shadow-xl z-2"
@@ -54,4 +53,8 @@ function Player({ youTubeId, youTubeStart, children }) {
     </>
   );
 }
-export default Player;
+Player.propTypes = {
+  youTubeId: PropTypes.string.isRequired,
+  youTubeStart: PropTypes.number.isRequired,
+  children: PropTypes.node.isRequired,
+};

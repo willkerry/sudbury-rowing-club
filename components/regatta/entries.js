@@ -1,6 +1,5 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
-import randomUUID from "crypto";
 
 function Entries({ children, table, waveNames, caption }) {
   const getWaveColor = (entry) => {
@@ -39,10 +38,11 @@ function Entries({ children, table, waveNames, caption }) {
             {table.slice(1).map((wave) => (
               <tr key={wave[0]}>
                 <th>{wave[0]}</th>
-                {wave.slice(1).map((entry) => (
+                {wave.slice(1).map((entry, index) => (
                   <td
                     className="font-medium text-center numerals-lining"
-                    key={randomUUID.randomBytes(4)}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={index}
                   >
                     <div
                       className={cn(

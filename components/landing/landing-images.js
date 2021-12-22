@@ -1,7 +1,8 @@
 import Image from "next/image";
+import PropTypes from "prop-types";
 import { urlFor } from "@/lib/sanity";
 
-function LandingImages({ images: imageArray }) {
+export default function LandingImages({ images: imageArray }) {
   const images = imageArray.slice(0, 3);
   return (
     <div className="my-10 border-t border-b sm:my-16">
@@ -23,4 +24,12 @@ function LandingImages({ images: imageArray }) {
     </div>
   );
 }
-export default LandingImages;
+LandingImages.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      caption: PropTypes.string.isRequired,
+      lqip: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

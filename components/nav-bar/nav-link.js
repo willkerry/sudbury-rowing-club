@@ -1,4 +1,5 @@
 import cn from "classnames";
+import PropTypes from "prop-types";
 import ActiveLink from "./active-link";
 import {
   navLinkActiveColor,
@@ -13,3 +14,7 @@ export default function NavLink({ href, children }) {
     </ActiveLink>
   );
 }
+NavLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};

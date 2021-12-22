@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PropTypes from "prop-types";
 import Container from "@/components/container";
 import Crest from "@/components/logo/crest";
 import {
@@ -23,6 +24,16 @@ function FooterColumn({ heading, data }) {
     </div>
   );
 }
+FooterColumn.propTypes = {
+  heading: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequired,
+      shortName: PropTypes.string,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 function FooterHeading({ children }) {
   return (
     <div className="mb-4 text-xs font-semibold tracking-widest uppercase select-none">
@@ -30,6 +41,10 @@ function FooterHeading({ children }) {
     </div>
   );
 }
+FooterHeading.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 const FooterItemList = ({ data }) =>
   data.map((item) => (
     <Link key={item.href} href={item.href} passHref>
@@ -41,6 +56,16 @@ const FooterItemList = ({ data }) =>
       </a>
     </Link>
   ));
+FooterItemList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequired,
+      shortName: PropTypes.string,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
+
 const SocialIcons = ({ data }) =>
   data.map((item) => (
     <Link key={item.href} href={item.href} passHref>
@@ -49,6 +74,14 @@ const SocialIcons = ({ data }) =>
       </a>
     </Link>
   ));
+SocialIcons.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequired,
+      icon: PropTypes.elementType.isRequired,
+    })
+  ).isRequired,
+};
 
 export default function Footer() {
   return (

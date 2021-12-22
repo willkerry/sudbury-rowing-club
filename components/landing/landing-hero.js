@@ -1,4 +1,5 @@
 import Image from "next/image";
+import PropTypes from "prop-types";
 import BoathouseDoor from "@/components/landing/boathouse-door";
 import Player from "@/components/landing/player";
 import { urlFor } from "@/lib/sanity";
@@ -64,3 +65,12 @@ function LandingHero({
   );
 }
 export default LandingHero;
+
+LandingHero.propTypes = {
+  imageId: PropTypes.string.isRequired,
+  imageAspectRatio: PropTypes.number.isRequired,
+  imageLqip: PropTypes.string.isRequired,
+  slogan: PropTypes.string.isRequired,
+  youTubeId: PropTypes.string.isRequired,
+  youTubeStart: PropTypes.number.isRequired,
+};
