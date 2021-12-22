@@ -1,4 +1,5 @@
 import cn from "classnames";
+import PropTypes from "prop-types";
 import Link from "next/link";
 import useSWR from "swr";
 import groq from "groq";
@@ -46,6 +47,14 @@ function StatusShell({ grade, text }) {
     </Link>
   );
 }
+StatusShell.propTypes = {
+  grade: PropTypes.number,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+};
+StatusShell.defaultProps = {
+  grade: null,
+  text: "",
+};
 
 function StatusIndicator() {
   const { data, error } = useSWR(

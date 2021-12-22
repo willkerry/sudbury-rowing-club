@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
 import groq from "groq";
 import Container from "../components/container";
@@ -100,6 +101,31 @@ export default function Index({ news, landingPage }) {
     </>
   );
 }
+
+Index.propTypes = {
+  news: PropTypes.arrayOf(PropTypes.object).isRequired,
+  landingPage: PropTypes.shape({
+    description: PropTypes.arrayOf(PropTypes.object).isRequired,
+    tagline: PropTypes.string,
+    title: PropTypes.string,
+    note: PropTypes.shape({
+      display: PropTypes.bool,
+      label: PropTypes.string,
+      type: PropTypes.string,
+      text: PropTypes.string,
+    }),
+    heroImage: PropTypes.shape({
+      youtubeId: PropTypes.string,
+      youtubeStartOffset: PropTypes.number,
+      image: PropTypes.shape({
+        _id: PropTypes.string,
+        aspectRatio: PropTypes.number,
+        lqip: PropTypes.string,
+      }),
+    }),
+    images: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(groq`

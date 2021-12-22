@@ -1,6 +1,11 @@
+/* eslint-disable dot-notation */
+/* eslint-disable no-shadow */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
 import cn from "classnames";
-import PropTypes from "prop-types";
+import Link from "next/link";
 
 const SIZE_MAPS = {
   mini: "h-8 px-2 min-w-min w-18 text-xs",
@@ -17,19 +22,19 @@ const ICON_SIZE_MAPS = {
   auto: "w-3.5 h-3.5",
 };
 const VARIANT_MAPS = {
-  primary: "!text-gray-600 hover:border-black hover:!text-black cursor-pointer",
+  primary: "!text-gray-600 hover:border-black hover:!text-black",
   secondary:
-    "!text-white border-gray-900 bg-gray-900 hover:!text-gray-900 hover:bg-white cursor-pointer",
+    "!text-white border-gray-900 bg-gray-900 hover:!text-gray-900 hover:bg-white",
   brandDark:
-    "!text-white border-blue-800 bg-blue-800 hover:!text-blue-800 hover:bg-white cursor-pointer",
+    "!text-white border-blue-800 bg-blue-800 hover:!text-blue-800 hover:bg-white",
   brand:
-    "!text-white border-blue-600 bg-blue-600 hover:!text-blue-600 hover:bg-white cursor-pointer",
+    "!text-white border-blue-600 bg-blue-600 hover:!text-blue-600 hover:bg-white",
   brandLight:
-    "text-white border-blue-400 bg-blue-400 hover:text-blue-400 hover:bg-white cursor-pointer",
+    "text-white border-blue-400 bg-blue-400 hover:text-blue-400 hover:bg-white",
   success:
-    "text-white border-green-600 bg-green-600 hover:text-green-700 hover:bg-white cursor-pointer",
+    "text-white border-green-600 bg-green-600 hover:text-green-700 hover:bg-white",
   error:
-    "text-white !text-white border-red-600 bg-red-600 hover:!text-red-700 hover:bg-white cursor-pointer",
+    "text-white !text-white border-red-600 bg-red-600 hover:!text-red-700 hover:bg-white",
   disabled: "text-gray-300 bg-gray-100 cursor-not-allowed",
 };
 const LEFT_ICON_PADDING_MAPS = {
@@ -66,8 +71,16 @@ function Icon({ iconLeft, iconRight, size }) {
 }
 
 export function Button(props) {
-  const { variant, size, shadow, children, disabled, iconLeft, iconRight } =
-    props;
+  const {
+    variant,
+    size,
+    shadow,
+    href,
+    children,
+    disabled,
+    iconLeft,
+    iconRight,
+  } = props;
 
   const baseStyles =
     "rounded transition duration-300 border inline-block border-box select-none whitespace-nowrap relative text-center leading-none";
@@ -75,9 +88,9 @@ export function Button(props) {
     baseStyles,
     SIZE_MAPS[size],
     shadow && "shadow-lg hover:shadow",
-    !disabled ? VARIANT_MAPS[variant] : VARIANT_MAPS.disabled
+    !disabled ? VARIANT_MAPS[variant] : VARIANT_MAPS["disabled"]
   );
-  function ButtonInner({ label }) {
+  function ButtonInner(props) {
     return (
       <div
         className={cn(
@@ -86,48 +99,35 @@ export function Button(props) {
           iconRight && RIGHT_ICON_PADDING_MAPS[size]
         )}
       >
-        {label}
+        {props.label}
       </div>
     );
   }
-  return (
-    <props.as className={buttonClassName} {...props}>
+  return props.as === "button" ? (
+    <button {...props} className={buttonClassName}>
       <ButtonInner label={children} />
       {(iconLeft || iconRight) && (
         <Icon iconLeft={iconLeft} size={size} iconRight={iconRight} />
       )}
-    </props.as>
+    </button>
+  ) : (
+    <Link href={href} passHref>
+      <a className={buttonClassName}>
+        <ButtonInner label={children} />
+        {(iconLeft || iconRight) && (
+          <Icon iconLeft={iconLeft} size={size} iconRight={iconRight} />
+        )}
+      </a>
+    </Link>
   );
 }
-
-Button.propTypes = {
-  variant: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "brand",
-    "brandLight",
-    "brandDark",
-    "success",
-    "error",
-  ]),
-  size: PropTypes.oneOf(["mini", "small", "medium", "large", "auto"]),
-  shadow: PropTypes.bool,
-  button: PropTypes.bool,
-  disabled: PropTypes.bool,
-  iconLeft: PropTypes.node,
-  iconRight: PropTypes.node,
-  as: PropTypes.elementType,
-};
 
 Button.defaultProps = {
   variant: "primary",
   size: "auto",
+  href: "",
   shadow: null,
   button: null,
-  disabled: false,
-  iconLeft: null,
-  iconRight: null,
-  as: "a",
 };
 
 Button.variant = VARIANT_MAPS;

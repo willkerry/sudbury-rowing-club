@@ -1,4 +1,5 @@
 import { Download, ExternalLink } from "react-feather";
+import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
 import { BASE_URL } from "lib/constants";
 import groq from "groq";
@@ -17,7 +18,9 @@ function SectionTitle({ children }) {
     </h2>
   );
 }
-
+SectionTitle.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default function Safety({ safety, safetyStatus }) {
   return (
     <Layout>
@@ -74,6 +77,34 @@ export default function Safety({ safety, safetyStatus }) {
     </Layout>
   );
 }
+
+Safety.propTypes = {
+  safety: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      body: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.array,
+        PropTypes.node,
+      ]),
+      link: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+      }),
+      document: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+      }),
+    })
+  ).isRequired,
+  safetyStatus: PropTypes.shape({
+    _updatedAt: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    display: PropTypes.bool.isRequired,
+    description: PropTypes.string,
+  }).isRequired,
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(

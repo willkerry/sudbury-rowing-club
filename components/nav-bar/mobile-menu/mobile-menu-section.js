@@ -1,9 +1,10 @@
 import cn from "classnames";
+import PropTypes from "prop-types";
 import { CompactMobileMenuItem, MobileMenuItem } from "./mobile-menu-item";
 
 export default function MobileMenuSection({ title, data, compact }) {
-  const MenuItemList = (props) =>
-    props.listData.map((item) =>
+  const MenuItemList = (listData) =>
+    listData.map((item) =>
       compact ? (
         <CompactMobileMenuItem data={item} />
       ) : (
@@ -28,3 +29,17 @@ export default function MobileMenuSection({ title, data, compact }) {
     </div>
   );
 }
+MobileMenuSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      href: PropTypes.string.isRequired,
+      shortName: PropTypes.string,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  compact: PropTypes.bool,
+};
+MobileMenuSection.defaultProps = {
+  compact: false,
+};

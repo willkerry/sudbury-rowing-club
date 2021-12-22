@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import PropTypes from "prop-types";
 import cn from "classnames";
 import Link from "next/link";
 import { Popover, Transition } from "@headlessui/react";
@@ -22,8 +23,10 @@ function Chevron() {
   );
 }
 
-export default function NavPopover(props) {
-  const { label, icon, altLabel, compact, navData, ctaData } = props;
+export default function NavPopover(
+  { label, icon, altLabel, compact, navData, ctaData },
+  props
+) {
   const NavItemList = ({ items }) =>
     items.map((item) => (
       <Link key={item.href} href={item.href} passHref>
@@ -152,3 +155,29 @@ export default function NavPopover(props) {
     </Popover>
   );
 }
+NavPopover.propTypes = {
+  label: PropTypes.node.isRequired,
+  icon: PropTypes.elementType,
+  altLabel: PropTypes.string,
+  compact: PropTypes.bool,
+  navData: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      icon: PropTypes.elementType,
+    })
+  ).isRequired,
+  ctaData: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
+      icon: PropTypes.elementType,
+    })
+  ).isRequired,
+};
+NavPopover.defaultProps = {
+  icon: null,
+  altLabel: null,
+  compact: false,
+};

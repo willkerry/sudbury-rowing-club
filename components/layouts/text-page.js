@@ -27,7 +27,12 @@ export default function TextPage({ title, description, ogImage, children }) {
 
 TextPage.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  ogImage: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  ogImage: PropTypes.string,
   children: PropTypes.node.isRequired,
+};
+
+TextPage.defaultProps = {
+  description: null,
+  ogImage: null,
 };

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PropTypes from "prop-types";
 
 export function MobileMenuItem({ data }) {
   return (
@@ -15,6 +16,15 @@ export function MobileMenuItem({ data }) {
     </Link>
   );
 }
+MobileMenuItem.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    shortName: PropTypes.string,
+    href: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired,
+  }).isRequired,
+};
+
 export function CompactMobileMenuItem({ data }) {
   return (
     <Link key={data.name} href={data.href}>
@@ -26,3 +36,10 @@ export function CompactMobileMenuItem({ data }) {
     </Link>
   );
 }
+CompactMobileMenuItem.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    shortName: PropTypes.string,
+    href: PropTypes.string.isRequired,
+  }).isRequired,
+};

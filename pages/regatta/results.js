@@ -1,4 +1,5 @@
 import groq from "groq";
+import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
 import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/container";
@@ -29,6 +30,24 @@ export default function ResultsPage({ data, other }) {
     </Layout>
   );
 }
+ResultsPage.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      number: PropTypes.number.isRequired,
+      results: PropTypes.string,
+    })
+  ).isRequired,
+  other: PropTypes.shape({
+    description: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+      PropTypes.node,
+    ]),
+    records: PropTypes.string,
+  }).isRequired,
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(

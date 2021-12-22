@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 import ErrorPage from "next/error";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Container from "../../components/container";
@@ -41,10 +42,10 @@ export default function Post({ post }) {
           <article className="mb-32">
             <NextSeo
               title={post.title}
-              description={post.description}
+              description={post.excerpt}
               openGraph={{
                 title: post.title,
-                description: post.description,
+                description: post.excerpt,
                 url: BASE_URL + router.asPath,
                 type: "article",
                 article: {
@@ -64,7 +65,7 @@ export default function Post({ post }) {
               datePublished={post.date}
               publisherName={PROJECT_NAME}
               publisherLogo={LOGO}
-              description={post.description}
+              description={post.excerpt}
             />
 
             <PostHeader
@@ -99,6 +100,27 @@ export default function Post({ post }) {
     </Layout>
   );
 }
+Post.propTypes = {
+  post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    excerpt: PropTypes.string,
+    slug: PropTypes.string.isRequired,
+    featuredImage: PropTypes.shape({
+      _id: PropTypes.string,
+      alt: PropTypes.string,
+      lqip: PropTypes.string,
+      aspectRatio: PropTypes.number,
+      caption: PropTypes.string,
+    }),
+    date: PropTypes.string.isRequired,
+    body: PropTypes.arrayOf(PropTypes.object),
+    author: PropTypes.shape({
+      firstName: PropTypes.string,
+      surname: PropTypes.string,
+    }),
+  }).isRequired,
+};
 
 export async function getStaticProps({ params }) {
   const post = await sanityClient.fetch(postQuery, {

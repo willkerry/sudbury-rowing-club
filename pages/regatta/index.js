@@ -1,4 +1,5 @@
 import { EventJsonLd, NextSeo } from "next-seo";
+import PropTypes from "prop-types";
 import groq from "groq";
 import dynamic from "next/dynamic";
 import Container from "@/components/container";
@@ -187,6 +188,90 @@ export default function Regatta({ page, testimonials, results }) {
     </Layout>
   );
 }
+
+Regatta.propTypes = {
+  page: PropTypes.shape({
+    title: PropTypes.string,
+    date: PropTypes.string,
+    landingPage: PropTypes.shape({
+      description: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+        PropTypes.array,
+      ]),
+      tagline: PropTypes.string,
+      heroImage: PropTypes.shape({
+        heading: PropTypes.string,
+        subheading: PropTypes.string,
+        image: PropTypes.shape({
+          id: PropTypes.string,
+          aspectRatio: PropTypes.number,
+          lqip: PropTypes.string,
+        }),
+      }),
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          _id: PropTypes.string,
+          aspectRatio: PropTypes.number,
+          lqip: PropTypes.string,
+          bgColor: PropTypes.string,
+          color: PropTypes.string,
+          caption: PropTypes.string,
+        })
+      ),
+    }),
+    note: PropTypes.shape({
+      display: PropTypes.bool,
+      label: PropTypes.string,
+      text: PropTypes.string,
+      type: PropTypes.string,
+    }),
+    competitorInformation: PropTypes.shape({
+      description: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+        PropTypes.array,
+      ]),
+      documents: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string,
+          url: PropTypes.string,
+        })
+      ),
+    }),
+    results: PropTypes.shape({
+      description: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+        PropTypes.array,
+      ]),
+    }),
+    events: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+      })
+    ),
+    entries: PropTypes.shape({
+      caption: PropTypes.string,
+      description: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.node,
+        PropTypes.array,
+      ]),
+      waveNames: PropTypes.arrayOf(PropTypes.string),
+      waves: PropTypes.shape({
+        rows: PropTypes.arrayOf(
+          PropTypes.shape({
+            cells: PropTypes.arrayOf(PropTypes.string),
+          })
+        ),
+      }),
+    }),
+  }).isRequired,
+  testimonials: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
 
 export const getStaticProps = async () => {
   const page = await sanityClient.fetch(groq`

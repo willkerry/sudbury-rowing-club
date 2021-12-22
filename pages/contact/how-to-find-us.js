@@ -46,9 +46,9 @@ const maptilerProvider = maptiler(
   "uk-openzoomstack-road"
 );
 
-export default function FindUs({ preview }) {
+export default function FindUs() {
   return (
-    <Layout preview={preview}>
+    <Layout>
       <NextSeo
         title="How to find us"
         description="Directions to our club and to our regatta"

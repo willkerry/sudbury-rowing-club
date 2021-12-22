@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import HeroPost from "../hero-post";
 import MoreStories from "../more-stories";
 
@@ -28,3 +29,20 @@ export default function NewsList({ postData }) {
     </>
   );
 }
+NewsList.propTypes = {
+  postData: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      excerpt: PropTypes.string,
+      featuredImage: PropTypes.shape({
+        _id: PropTypes.string,
+        alt: PropTypes.string,
+        lqip: PropTypes.string,
+        aspectRatio: PropTypes.number,
+        caption: PropTypes.string,
+      }),
+    })
+  ).isRequired,
+};
