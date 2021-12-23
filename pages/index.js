@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import PropTypes from "prop-types";
-import { NextLink } from "next/link";
+import NextLink from "next/link";
 import { NextSeo } from "next-seo";
 import groq from "groq";
 import Container from "@/components/layouts/container";
