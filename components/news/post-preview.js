@@ -24,6 +24,7 @@ export default function PostPreview({
                   alt={imageAlt}
                   placeholder="blur"
                   blurDataURL={imageLqip}
+                  quality={30}
                   width={305}
                   height={188}
                   className="z-0 bg-gradient-to-r from-gray-200 to-white"

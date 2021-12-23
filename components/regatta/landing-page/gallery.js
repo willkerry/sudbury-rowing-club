@@ -43,5 +43,12 @@ export default function Gallery({ imagesArray }) {
 }
 
 Gallery.propTypes = {
-  imagesArray: PropTypes.arrayOf(PropTypes.object).isRequired,
+  imagesArray: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      caption: PropTypes.string,
+      lqip: PropTypes.string.isRequired,
+      aspectRatio: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };

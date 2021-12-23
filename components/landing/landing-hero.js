@@ -1,8 +1,12 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
-import BoathouseDoor from "@/components/landing/boathouse-door";
-import Player from "@/components/landing/player";
+import dynamic from "next/dynamic";
 import { urlFor } from "@/lib/sanity";
+
+const BoathouseDoor = dynamic(() =>
+  import("@/components/landing/boathouse-door")
+);
+const Player = dynamic(() => import("@/components/landing/player"));
 
 function LandingHero({
   imageId,
@@ -19,6 +23,7 @@ function LandingHero({
         width={984}
         height={984 / imageAspectRatio}
         alt="Aerial photograph of a Sudbury crew training."
+        quality={50}
         placeholder="blur"
         blurDataURL={imageLqip}
       />

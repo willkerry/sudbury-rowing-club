@@ -35,6 +35,7 @@ export default function PostHeader({
               alt={alt}
               width={768}
               height={768 / featuredImage.aspectRatio}
+              quality={50}
               className="bg-gray-50"
               placeholder="blur"
               blurDataURL={lqip}
@@ -70,7 +71,10 @@ export default function PostHeader({
               alt={title}
               width={512 * featuredImage.aspectRatio}
               height={512}
+              quality={50}
               className="bg-gray-50"
+              placeholder="blur"
+              blurDataURL={lqip}
             />
           </div>
         </div>

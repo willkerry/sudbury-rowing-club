@@ -5,21 +5,21 @@ import { NextSeo } from "next-seo";
 import groq from "groq";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import LandingHero from "@/components/landing/landing-hero";
 import Button from "@/components/stour/button";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import sanityClient from "@/lib/sanity.server";
 import Text from "@/components/stour/text";
-import NewsList from "@/components/news/news-list";
+import LandingHero from "@/components/landing/landing-hero";
 
+const Gallery = dynamic(() =>
+  import("@/components/regatta/landing-page/gallery")
+);
+const NewsList = dynamic(() => import("@/components/news/news-list"));
 const Note = dynamic(() => import("@/components/stour/note"));
 const Sponsors = dynamic(() => import("@/components/landing/sponsors"));
 const CommitteeSignature = dynamic(() =>
   import("@/components/landing/committee-signature")
-);
-const LandingImages = dynamic(() =>
-  import("@/components/landing/landing-images")
 );
 
 export default function Index({ news, landingPage }) {
@@ -85,7 +85,7 @@ export default function Index({ news, landingPage }) {
         </div>
         <Sponsors />
       </Container>
-      <LandingImages images={landingPage.images} />
+      <Gallery imagesArray={landingPage.images} />
     </section>
   );
   return (
