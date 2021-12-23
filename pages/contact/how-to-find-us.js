@@ -3,9 +3,9 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { Map, Marker } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
-import Container from "@/components/container";
-import HeroTitle from "@/components/hero-title";
-import Layout from "@/components/layout";
+import Container from "@/components/layouts/container";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Layout from "@/components/layouts/layout";
 import Note from "@/components/stour/note";
 import { BASE_URL } from "@/lib/constants";
 

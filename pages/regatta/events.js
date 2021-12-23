@@ -1,9 +1,9 @@
 import groq from "groq";
 import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
-import Layout from "@/components/layout";
-import HeroTitle from "@/components/hero-title";
-import Container from "@/components/container";
+import Layout from "@/components/layouts/layout";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Container from "@/components/layouts/container";
 import EventsComponent from "@/components/regatta/events";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";

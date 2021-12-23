@@ -1,7 +1,7 @@
 import randomUUID from "crypto";
 import Label from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
-import DayDateFormatter from "@/components/daydate-formatter";
+import DayDateFormatter from "@/components/utils/daydate-formatter";
 import Testimonial from "@/components/stour/testimonial";
 import ordinal from "@/lib/helpers/ordinal";
 

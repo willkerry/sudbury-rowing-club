@@ -1,6 +1,6 @@
 import smartquotes from "smartquotes";
 import PropTypes from "prop-types";
-import PostPreview from "./news/post-preview";
+import PostPreview from "./post-preview";
 
 export default function MoreStories({ posts }) {
   return (

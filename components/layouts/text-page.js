@@ -1,8 +1,8 @@
 import { NextSeo } from "next-seo";
 import PropTypes from "prop-types";
-import Container from "@/components/container";
-import HeroTitle from "@/components/hero-title";
-import Layout from "@/components/layout";
+import Container from "@/components/layouts/container";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Layout from "@/components/layouts/layout";
 import { BASE_URL } from "@/lib/constants";
 
 export default function TextPage({ title, description, ogImage, children }) {

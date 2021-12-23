@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { Home, Search } from "react-feather";
-import Container from "@/components/container";
-import HeroTitle from "@/components/hero-title";
-import Layout from "@/components/layout";
+import Container from "@/components/layouts/container";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
 
 export default function Custom404() {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PropTypes from "prop-types";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Errc from "@/components/landing/sponsors/errc";
 import Rowperfect from "@/components/landing/sponsors/rowperfect";
@@ -26,6 +27,12 @@ const SponsorLogos = [
     name: "Easter Region Rowing Council",
   },
 ];
+
+SponsorLogos.propTypes = {
+  logo: PropTypes.elementType.isRequired,
+  href: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 function Sponsors() {
   return (

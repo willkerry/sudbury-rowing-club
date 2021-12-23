@@ -1,9 +1,9 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
 import Image from "next/image";
-import DateFormatter from "./date-formatter";
+import DateFormatter from "../utils/date-formatter";
 import PostTitle from "./post-title";
-import Label from "./stour/label";
+import Label from "../stour/label";
 import { urlFor } from "@/lib/sanity";
 
 export default function PostHeader({

@@ -2,9 +2,9 @@ import { EventJsonLd, NextSeo } from "next-seo";
 import PropTypes from "prop-types";
 import groq from "groq";
 import dynamic from "next/dynamic";
-import Container from "@/components/container";
-import DayDateFormatter from "@/components/daydate-formatter";
-import Layout from "@/components/layout";
+import Container from "@/components/layouts/container";
+import DayDateFormatter from "@/components/utils/daydate-formatter";
+import Layout from "@/components/layouts/layout";
 import {
   EntriesIcon,
   EventsIcon,

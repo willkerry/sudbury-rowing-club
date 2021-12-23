@@ -2,7 +2,7 @@ import cn from "classnames";
 import PropTypes from "prop-types";
 import { ExclamationIcon, ExternalLinkIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-import DateTimeFormatter from "../datetime-formatter";
+import DateTimeFormatter from "../utils/datetime-formatter";
 import EnvironmentAgency from "../icons/organisations/environment-agency";
 import MetOffice from "../icons/organisations/met-office";
 import Label from "../stour/label";

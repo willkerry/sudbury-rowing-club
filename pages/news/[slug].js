@@ -2,11 +2,11 @@ import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import ErrorPage from "next/error";
 import { ArticleJsonLd, NextSeo } from "next-seo";
-import Container from "../../components/container";
-import PostBody from "../../components/post-body";
-import PostHeader from "../../components/post-header";
-import Layout from "../../components/layout";
-import PostTitle from "../../components/post-title";
+import Container from "@/components/layouts/container";
+import PostBody from "@/components/news/post-body";
+import PostHeader from "@/components/news/post-header";
+import Layout from "@/components/layouts/layout";
+import PostTitle from "@/components/news/post-title";
 import {
   BASE_URL,
   LOGO,
@@ -14,7 +14,7 @@ import {
   HOME_OG_IMAGE_URL,
 } from "@/lib/constants";
 import Label from "@/components/stour/label";
-import DateFormatter from "@/components/date-formatter";
+import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
 import { postQuery, postSlugsQuery } from "@/lib/queries";
 import { urlFor } from "@/lib/sanity";

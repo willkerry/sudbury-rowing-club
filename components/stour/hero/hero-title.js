@@ -1,8 +1,8 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
-import Container from "./container";
+import Container from "../../layouts/container";
 /* import Breadcrumbs from "nextjs-breadcrumbs"; */
-import Breadcrumbs from "./stour/breadcrumbs";
+import Breadcrumbs from "../breadcrumbs";
 
 export default function HeroTitle({
   title,

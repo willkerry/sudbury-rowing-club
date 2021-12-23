@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
-import Container from "@/components/container";
+import Container from "@/components/layouts/container";
 import Crest from "@/components/logo/crest";
 import {
   about,

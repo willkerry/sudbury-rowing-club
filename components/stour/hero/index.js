@@ -1,6 +1,6 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
-import Container from "../../container";
+import Container from "../../layouts/container";
 import Label from "@/components/stour/label";
 
 export function Hero({ title, label, description, dark, fullwidth }) {

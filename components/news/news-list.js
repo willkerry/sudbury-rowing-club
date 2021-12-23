@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
-import HeroPost from "../hero-post";
-import MoreStories from "../more-stories";
+import HeroPost from "./hero-post";
+import MoreStories from "./more-stories";
 
 export default function NewsList({ postData }) {
   const heroPost = postData[0];

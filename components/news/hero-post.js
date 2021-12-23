@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
-import DateFormatter from "./date-formatter";
+import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
 import { urlFor } from "@/lib/sanity";
 

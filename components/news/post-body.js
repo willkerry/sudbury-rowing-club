@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Text from "./stour/text";
+import Text from "../stour/text";
 
 export default function PostBody({ content }) {
   return (

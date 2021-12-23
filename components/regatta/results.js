@@ -2,7 +2,7 @@ import cn from "classnames";
 import { Download } from "react-feather";
 import PropTypes from "prop-types";
 import ordinal from "@/lib/helpers/ordinal";
-import DateFormatter from "@/components/date-formatter";
+import DateFormatter from "@/components/utils/date-formatter";
 import Note from "@/components/stour/note";
 import Link from "@/components/stour/link";
 import Button from "@/components/stour/button";
