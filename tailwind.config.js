@@ -5,7 +5,7 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/forms"),
+    // require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
   ],
   mode: "jit",
@@ -38,7 +38,7 @@ module.exports = {
       },
 
       fontFamily: {
-        sans: ["InterVariable", "sans-serif"],
+        sans: ["Inter var", "Inter", "system-ui", "sans-serif"],
         mono: [
           "JetBrains MonoVariable",
           "ui-monospace",

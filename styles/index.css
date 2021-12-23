@@ -4,9 +4,6 @@ html {
   @apply antialiased selection:bg-green-100;
 }
 
-@import "~@fontsource/inter/variable.css";
-@import "~@fontsource/jetbrains-mono/variable.css";
-
 @tailwind components;
 
 [type="text"],

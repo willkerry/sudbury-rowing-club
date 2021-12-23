@@ -5,6 +5,8 @@ import "../styles/index.css";
 import Router from "next/router";
 import ProgressBar from "@badrap/bar-of-progress";
 import SEO from "../next-seo.config";
+import "inter-ui/inter.css";
+import "@fontsource/jetbrains-mono/variable.css";
 
 const progress = new ProgressBar({
   size: 2,
