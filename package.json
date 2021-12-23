@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
-    "@fontsource/inter": "^4.5.1",
     "@fontsource/jetbrains-mono": "^4.5.0",
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
@@ -18,6 +17,7 @@
     "classnames": "^2.3.1",
     "color": "^4.1.0",
     "groq": "^2.15.0",
+    "inter-ui": "^3.19.3",
     "next": "^12.0.7",
     "next-seo": "^4.28.1",
     "picosanity": "^3.0.3",
