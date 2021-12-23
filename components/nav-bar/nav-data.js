@@ -169,4 +169,8 @@ export const misc = [
     name: "Privacy policy",
     href: "/governance/privacy-policy",
   },
+  {
+    name: "Content Management System",
+    href: "https://edit.sudburyrowingclub.org.uk/",
+  },
 ];
