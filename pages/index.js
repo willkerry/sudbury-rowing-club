@@ -192,6 +192,6 @@ export const getStaticProps = async () => {
       landingPage: data.landingPage,
       news: data.news,
     },
-    revalidate: 7200,
+    revalidate: 900,
   };
 };

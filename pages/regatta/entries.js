@@ -53,6 +53,6 @@ export const getStaticProps = async () => {
   );
   return {
     props: { data: data.entries },
-    revalidate: 7200,
+    revalidate: 900,
   };
 };
