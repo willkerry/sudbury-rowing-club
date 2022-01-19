@@ -15,7 +15,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
     "classnames": "^2.3.1",
-    "color": "^4.1.0",
+    "color": "^4.2.0",
     "groq": "^2.15.0",
     "inter-ui": "^3.19.3",
     "next": "^12.0.7",
@@ -51,7 +51,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
-    "tailwindcss": "^3.0.13"
+    "tailwindcss": "^3.0.15"
   },
   "license": "MIT"
 }
