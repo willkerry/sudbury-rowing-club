@@ -19,7 +19,7 @@
     "groq": "^2.15.0",
     "inter-ui": "^3.19.3",
     "next": "^12.0.8",
-    "next-seo": "^4.28.1",
+    "next-seo": "^4.29.0",
     "picosanity": "^3.0.3",
     "pigeon-maps": "^0.19.7",
     "prop-types": "^15.8.1",
