@@ -3,9 +3,9 @@ import { Download } from "react-feather";
 import PropTypes from "prop-types";
 import ordinal from "@/lib/helpers/ordinal";
 import DateFormatter from "@/components/utils/date-formatter";
-import Note from "../stour/note";
 import Link from "@/components/stour/link";
 import Button from "@/components/stour/button";
+import Note from "../stour/note";
 
 function Results({ tab, children, results, records }) {
   return (

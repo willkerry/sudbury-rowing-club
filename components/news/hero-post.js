@@ -1,8 +1,8 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
+import { urlFor } from "@/lib/sanity";
 import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
-import { urlFor } from "@/lib/sanity";
 
 export default function HeroPost({
   title,

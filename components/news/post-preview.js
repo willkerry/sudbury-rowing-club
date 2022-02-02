@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import DateFormatter from "../utils/date-formatter";
 import { urlFor } from "@/lib/sanity";
+import DateFormatter from "../utils/date-formatter";
 
 export default function PostPreview({
   title,

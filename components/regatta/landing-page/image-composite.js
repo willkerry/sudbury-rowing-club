@@ -1,10 +1,10 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
+import Ticket from "@/components/regatta/landing-page/ticket";
 import cupImage from "../../../public/assets/regatta/landing/cup.png";
 import victoriaImage from "../../../public/assets/regatta/landing/victoria.png";
 import bladeImage from "../../../public/assets/regatta/landing/blade.png";
 import buntingImage from "../../../public/assets/regatta/landing/bunting.png";
-import Ticket from "@/components/regatta/landing-page/ticket";
 
 export default function ImageComposite({ ticketItems }) {
   return (

@@ -1,7 +1,7 @@
 import { Popover } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import MobileMenuSection from "./mobile-menu-section";
 import { about, regatta, members } from "@/components/nav-bar/nav-data";
+import MobileMenuSection from "./mobile-menu-section";
 
 export default function MobileMenu() {
   const mobileMenuCloseButton = (

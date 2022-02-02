@@ -1,3 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable func-names */
+/* eslint-disable camelcase */
+/* eslint-disable consistent-return */
+/* eslint-disable prefer-arrow-callback */
 import axios from "axios";
 import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
@@ -61,7 +66,9 @@ const transporter = nodemailer.createTransport({
 
 // Verify that the transporter is working
 // TODO: log this.
-transporter.verify(function (error, success) {
+transporter.verify(function (error,
+  // success
+) {
   if (error) {
     console.log(error);
   } else {
@@ -126,7 +133,7 @@ Did Akismet think this was spam? ${isSpam.data ? "Yes" : "No"}`,
 
     // Send the email
     if (!isSpam.data) {
-      transporter.sendMail(emailMessage, function (error, info) {
+      transporter.sendMail(emailMessage, function (error) {
         if (error) {
           throw new Error(error);
         }

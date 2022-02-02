@@ -1,7 +1,7 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
-import Container from "../../layouts/container";
 import Label from "@/components/stour/label";
+import Container from "../../layouts/container";
 
 export default function Hero({ title, label, description, dark, fullwidth }) {
   function text() {

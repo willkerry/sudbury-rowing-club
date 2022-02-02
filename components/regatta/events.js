@@ -1,8 +1,8 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
-import Label from "../stour/label";
 import shortCourse from "@/components/regatta/events/350.svg";
 import longCourse from "@/components/regatta/events/650.svg";
+import Label from "../stour/label";
 
 function Table({ children }) {
   return <div className="w-full">{children}</div>;
