@@ -29,7 +29,19 @@ select {
 [type="checkbox"] {
   @apply mx-2 rounded hover:cursor-pointer;
 }
+input:disabled,
+select:disabled,
+textarea:disabled {
+  @apply bg-gray-100;
+}
 
+input:user-invalid {
+  @apply border-red-500 ring-red-200 ring-2;
+}
+
+label {
+  @apply block text-xs font-medium tracking-wider text-gray-600 uppercase;
+}
 @tailwind utilities;
 @layer utilities {
   .hyphens-auto {
