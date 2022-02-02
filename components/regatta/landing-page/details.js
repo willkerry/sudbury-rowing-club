@@ -1,7 +1,6 @@
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import PropTypes from "prop-types";
-import randomUUID from "crypto";
 import cn from "classnames";
 import Label from "@/components/stour/label";
 
@@ -56,11 +55,7 @@ export default function Details({ items }) {
   return (
     <div className="border rounded">
       {items.map((item) => (
-        <Detail
-          key={randomUUID.randomBytes(4)}
-          summary={item.summary}
-          icon={item.icon}
-        >
+        <Detail key={item.summary} summary={item.summary} icon={item.icon}>
           {item.content}
         </Detail>
       ))}

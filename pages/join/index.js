@@ -7,6 +7,7 @@ import { NextSeo } from "next-seo";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
+// eslint-disable-next-line import/no-named-as-default
 import Note from "@/components/stour/note";
 import Link from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
@@ -210,7 +211,7 @@ export default function Index() {
                 <Note label="Course Dates" type="success">
                   Our next Learn to Row course will run on Saturday afternoons
                   from 4 Sep 2021 to 25 Sep 2021, (13:00 to 16:00). Please{" "}
-                  <Link href="/">apply now.</Link>
+                  <Link href="join/apply">apply now.</Link>
                 </Note>
               </div>
             </div>
@@ -293,7 +294,7 @@ function JoinCTA() {
 
         <span className="block h-6" />
         <div className="flex justify-center">
-          <Button size="large" href="/contact/">
+          <Button size="large" href="/contact" as={Link}>
             Contact the Captain
           </Button>
         </div>
@@ -412,7 +413,7 @@ function L2RCallToAction() {
         <Button
           as={Link}
           variant="success"
-          href="/join/learn-to-row-application-form"
+          href="/join/apply"
         >
           Apply
         </Button>

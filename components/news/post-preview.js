@@ -20,7 +20,12 @@ export default function PostPreview({
             {imageId ? (
               <div className="relative">
                 <Image
-                  src={urlFor(imageId).width(610).height(376).fit("min").url()}
+                  src={urlFor(imageId)
+                    .width(610)
+                    .height(376)
+                    .fit("crop")
+                    .crop("entropy")
+                    .url()}
                   alt={imageAlt}
                   placeholder="blur"
                   blurDataURL={imageLqip}
@@ -32,7 +37,7 @@ export default function PostPreview({
                 />
               </div>
             ) : (
-              <div className="relative overflow-hidden text-6xl font-bold tracking-tighter text-gray-100 transition select-none group-hover:text-blue-50">
+              <div className="relative overflow-hidden text-6xl font-bold tracking-tighter text-gray-300 transition select-none bg-gray-50 group-hover:text-blue-100">
                 <div className="box-border relative block m-0 overflow-hidden">
                   <div className="px-2.5 pt-1.5 pseudo-img">
                     <style jsx>{`

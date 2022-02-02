@@ -20,7 +20,12 @@ export default function HeroPost({
           {imageId ? (
             <CoverImage
               title={title}
-              src={urlFor(imageId).width(1286).height(772).fit("min").url()}
+              src={urlFor(imageId)
+                .width(1286)
+                .height(772)
+                .fit("crop")
+                .crop("entropy")
+                .url()}
               height={386}
               width={643}
               alt={imageAlt}

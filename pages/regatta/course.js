@@ -28,7 +28,7 @@ export default function Photography({ data }) {
         <div className="my-16 prose">
           <p className="lead">{data.heading}</p>
           <p>{data.description}</p>
-          <Button href={`${data.map}?dl=`} iconRight={<Download />}>
+          <Button href={`${data.map}?dl=`} icon={<Download />} as="a">
             Download the PDF
           </Button>
         </div>

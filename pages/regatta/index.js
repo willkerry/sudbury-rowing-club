@@ -175,7 +175,7 @@ export default function Regatta({ page, testimonials, results }) {
         <div className="h-5" />
         <Details items={accordion} />
       </Container>
-      <Gallery imagesArray={page.landingPage.images} />
+      <Gallery images={page.landingPage.images} />
 
       <Hero
         title="Some of the people who’ve come to our regatta have said lovely things about it"

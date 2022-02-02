@@ -1,4 +1,3 @@
-import randomUUID from "crypto";
 import Label from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
 import DayDateFormatter from "@/components/utils/daydate-formatter";
@@ -24,11 +23,9 @@ const Testimonials = ({ data }) =>
             </div>
             {item.testimonials.map((testimonial) => (
               <Testimonial
-                key={`${testimonial.text
-                  .substring(8, 16)
-                  .replace(/\s/g, "")}-${randomUUID
-                  .randomBytes(1)
-                  .toString("hex")}`}
+                key={`${testimonial.text.substring(8, 16).replace(/\s/g, "")}-${
+                  testimonial.author
+                }`}
                 name={testimonial.name}
                 organisation={testimonial.club}
               >

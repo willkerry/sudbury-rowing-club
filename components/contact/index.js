@@ -4,7 +4,6 @@ import { Form, Field } from "react-final-form";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import getRandomName from "@/lib/random-name";
-// import Obfuscate from "react-obfuscate";
 // import { AlertCircle, CheckCircle, SendIcon } from "react-feather";
 import Button from "../stour/button";
 import Center from "../stour/center";

@@ -14,7 +14,7 @@ function Anonymous() {
   );
 }
 
-export function Testimonial(props) {
+export default function Testimonial(props) {
   const { children, name, organisation } = props;
   return (
     <figure>
@@ -71,5 +71,3 @@ Testimonial.defaultProps = {
   organisation: null,
   children: null,
 };
-
-export default Testimonial;

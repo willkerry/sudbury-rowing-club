@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Container from "../../layouts/container";
 import Label from "@/components/stour/label";
 
-export function Hero({ title, label, description, dark, fullwidth }) {
+export default function Hero({ title, label, description, dark, fullwidth }) {
   function text() {
     return (
       <>
@@ -45,5 +45,3 @@ Hero.defaultProps = {
   dark: false,
   fullwidth: false,
 };
-
-export default Hero;

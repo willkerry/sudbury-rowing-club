@@ -52,7 +52,8 @@ export default function Safety({ safety, safetyStatus }) {
             {item.link && (
               <Button
                 href={item.link.url}
-                iconRight={
+                as="a"
+                icon={
                   item.link.url.includes(BASE_URL) ? (
                     <Download />
                   ) : (
@@ -65,8 +66,9 @@ export default function Safety({ safety, safetyStatus }) {
             )}
             {item.document && (
               <Button
+                as="a"
                 href={`${item.document.url}?dl=`}
-                iconRight={<Download />}
+                icon={<Download />}
               >
                 {item.document.title}
               </Button>

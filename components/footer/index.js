@@ -108,8 +108,8 @@ export default function Footer() {
         <div className="pt-2">
           <div className="flex flex-col justify-between py-5 m-auto text-sm text-gray-500 md:flex-row">
             <div className="mt-2">
-              © Sudbury Rowing Club 2021.{" "}
-              <Link href="https://willkerry.com/">
+              © Sudbury Rowing Club {new Date().getFullYear()}.
+              {/* <Link href="https://willkerry.com/">
                 <a className="transition hover:text-black">
                   Website by{" "}
                   <svg
@@ -123,7 +123,7 @@ export default function Footer() {
                   </svg>
                   .
                 </a>
-              </Link>
+              </Link> */}
             </div>
 
             <div className="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">

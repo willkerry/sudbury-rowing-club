@@ -2,9 +2,15 @@ import { Popover, Transition } from "@headlessui/react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 import { NextSeo } from "next-seo";
-import { HelpCircle, Image as ImageIcon, XCircle } from "react-feather";
+import {
+  HelpCircle,
+  Image as ImageIcon,
+  MessageCircle,
+  XCircle,
+} from "react-feather";
 import { Link as ScrollLink } from "react-scroll";
 import groq from "groq";
+import NextLink from "next/link";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
@@ -191,6 +197,7 @@ export default function Governance({
                   ) : (
                     <ImageIcon className="text-gray-400" />
                   )}
+
                   {officer.description && (
                     <Popover className="">
                       <Popover.Button>
@@ -225,7 +232,28 @@ export default function Governance({
                   )}
                 </div>
                 <OfficerName>
-                  {officer.vacant ? <>&nbsp;</> : officer.name}
+                  {officer.vacant ? (
+                    <>&nbsp;</>
+                  ) : (
+                    <NextLink
+                      href={{
+                        pathname: "contact",
+                        query: { to: officer._id },
+                      }}
+                    >
+                      <a
+                        className="flex items-center gap-1.5 group"
+                        title={`Contact ${officer.name}`}
+                      >
+                        {officer.name}
+                        <MessageCircle
+                          size="1em"
+                          strokeWidth="0.15em"
+                          className="text-blue-500 transition group-hover:text-gray-600"
+                        />
+                      </a>
+                    </NextLink>
+                  )}
                 </OfficerName>
                 <Description>{officer.role}</Description>
               </div>

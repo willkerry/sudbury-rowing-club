@@ -3,7 +3,7 @@ import { Download } from "react-feather";
 import PropTypes from "prop-types";
 import ordinal from "@/lib/helpers/ordinal";
 import DateFormatter from "@/components/utils/date-formatter";
-import Note from "@/components/stour/note";
+import Note from "../stour/note";
 import Link from "@/components/stour/link";
 import Button from "@/components/stour/button";
 
@@ -13,7 +13,7 @@ function Results({ tab, children, results, records }) {
       <div className={cn(tab && "mx-auto", "mb-12 space-y-12")}>
         {children}
         {records && (
-          <Button href={`${records}?dl=`} iconRight={<Download />}>
+          <Button href={`${records}?dl=`} icon={<Download />} as="a">
             Course records
           </Button>
         )}

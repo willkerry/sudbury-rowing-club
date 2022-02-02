@@ -25,7 +25,6 @@ export default function Post({ post }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  // Turns featuredImage object into a useful URL. Making it a function, not a variable might be a bad idea, but attempts at a component-level variable led to build failures.
   const CoverImage = (image) => {
     if (image === null || image === undefined) return HOME_OG_IMAGE_URL;
     return urlFor(image).width(1200).url();
@@ -140,55 +139,3 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
-
-/* export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug, [
-    "title",
-    "date",
-    "slug",
-    "author",
-    "content",
-    "ogImage",
-    "coverImage",
-    "excerpt",
-  ]);
-
-  const content = await markdownToHtml(post.content || "");
-
-  const regexHtmlTags = /(<([^>]+)>)/gi;
-  const firstParagraph = content.match(/(^.*?)((<p[^>]*>.*?<\/p>\s*){1})/gi);
-  const firstParagraphString = firstParagraph && firstParagraph.toString();
-  const description = post.excerpt
-    ? post.excerpt
-    : firstParagraphString && firstParagraphString.length < 300
-    ? firstParagraphString.replace(/(<([^>]+)>)/gi, "")
-    : !firstParagraphString
-    ? ""
-    : content.split(". ")[0].replace(regexHtmlTags, "") + ".";
-
-  return {
-    props: {
-      post: {
-        ...post,
-        content,
-        description,
-      },
-    },
-  };
-}
-
-export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"]);
-
-  return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug,
-        },
-      };
-    }),
-    fallback: false,
-  };
-}
- */

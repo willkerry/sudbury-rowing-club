@@ -1,15 +1,20 @@
-// const defaultTheme = require("tailwindcss/defaultTheme");
-// const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
-    // require("@tailwindcss/forms"),
+    require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
   ],
   mode: "jit",
-  content: ["./components/**/*.js", "./pages/**/*.js"],
+  content: [
+    "./components/**/*.js",
+    "./pages/**/*.js",
+    "./components/**/*.tsx",
+    "./pages/**/*.tsx",
+  ],
   theme: {
     extend: {
       colors: {

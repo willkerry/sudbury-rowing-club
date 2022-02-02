@@ -16,7 +16,7 @@ const VARIANT_MAPS = {
   error: "text-red-600 border-red-400",
   warning: "text-yellow-600 border-yellow-400",
 };
-export function Note(props) {
+export default function Note(props) {
   const { children, type, size, label, centered, className } = props;
   return (
     <div
@@ -89,5 +89,3 @@ Note.defaultProps = {
 Note.type = VARIANT_MAPS;
 Note.size = SIZE_MAPS;
 Note.centered = CENTERED_MAPS;
-
-export default Note;

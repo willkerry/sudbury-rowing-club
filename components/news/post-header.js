@@ -14,24 +14,14 @@ export default function PostHeader({
   caption,
   lqip,
 }) {
-  let landscape = false;
-  let portrait = false;
-  if (featuredImage && featuredImage.aspectRatio < 1) {
-    landscape = false;
-    portrait = true;
-  } else if (featuredImage && featuredImage.aspectRatio > 1) {
-    landscape = true;
-    portrait = false;
-  }
-
-  if (landscape)
+  if (featuredImage && featuredImage.aspectRatio > 1)
     return (
       <>
         <Heading date={date} title={title} center />
         <div className="mb-8 md:mb-16 sm:mx-0">
           <figure className="relative flex flex-col mx-auto overflow-hidden rounded w-max">
             <Image
-              src={urlFor(featuredImage._id).width(1536).url()}
+              src={urlFor(featuredImage._id).width(1536).fit("max").url()}
               alt={alt}
               width={768}
               height={768 / featuredImage.aspectRatio}
@@ -52,7 +42,7 @@ export default function PostHeader({
         </div>
       </>
     );
-  if (portrait)
+  if (featuredImage)
     return (
       <div className="flex-row items-center max-w-3xl gap-8 mx-auto mb-8 sm:flex md:mb-16">
         <div className="my-12">
@@ -67,7 +57,7 @@ export default function PostHeader({
             style={{ maxWidth: 512 * featuredImage.aspectRatio }}
           >
             <Image
-              src={urlFor(featuredImage._id).height(1024).url()}
+              src={urlFor(featuredImage._id).height(1024).fit("max").url()}
               alt={title}
               width={512 * featuredImage.aspectRatio}
               height={512}

@@ -15,17 +15,18 @@ export default function Custom500() {
       <Container className="mt-12 prose max-w-prose">
         <div className="flex flex-col gap-4">
           <Button
-            iconLeft={<Search />}
-            variant="brandDark"
+            as="a"
+            icon={<Search />}
+            variant="brand"
             href="https://www.google.com/search?q=site%3Asudburyrowingclub.org.uk"
           >
             Search our site with Google
           </Button>
-          <Button iconLeft={<Home />} href="/">
+          <Button as="a" icon={<Home />} href="/">
             Return to the homepage
           </Button>
         </div>
-        <div className="h-12"/>
+        <div className="h-12" />
         <code>Error 500</code>
       </Container>
     </Layout>

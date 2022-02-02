@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import useSWR from "swr";
 import groq from "groq";
-import safety from "../../data/safety.json";
 import sanityClient from "@/lib/sanity.server";
 import Loading from "../stour/loading";
 
@@ -63,11 +62,13 @@ function StatusIndicator() {
   );
   if (error) return <div>Unavailable</div>;
   if (!data) return <StatusShell status={null} text={Loading()} />;
-  const { status } = data;
+  const { status, display } = data;
   const statusIndex = grades.indexOf(status);
-  return <StatusShell grade={statusIndex} text={grades[statusIndex]} />;
+  if (display)
+    return <StatusShell grade={statusIndex} text={grades[statusIndex]} />;
+  return null;
 }
 
 export default function SafetyStatus() {
-  return safety.status.display && <StatusIndicator />;
+  return <StatusIndicator />;
 }

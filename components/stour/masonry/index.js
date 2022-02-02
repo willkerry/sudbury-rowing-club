@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { PropTypes } from "prop-types";
 
-export function Masonry(props) {
+export default function Masonry(props) {
   const { children, className } = props;
   return (
     <div
@@ -29,5 +29,3 @@ Masonry.propTypes = {
 Masonry.defaultProps = {
   className: null,
 };
-
-export default Masonry;
