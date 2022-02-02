@@ -8,20 +8,19 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
-    "test": "sanity check",
     "build": "sanity build public -y"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.23.2",
+    "@sanity/base": "^2.26.0",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.23.2",
-    "@sanity/default-layout": "^2.23.2",
-    "@sanity/default-login": "^2.23.2",
-    "@sanity/desk-tool": "^2.23.2",
-    "@sanity/vision": "^2.23.2",
+    "@sanity/core": "^2.26.0",
+    "@sanity/default-layout": "^2.26.0",
+    "@sanity/default-login": "^2.26.0",
+    "@sanity/desk-tool": "^2.26.0",
+    "@sanity/vision": "^2.26.0",
     "prop-types": "^15.7",
     "react": "^17.0",
     "react-dom": "^17.0",
@@ -33,6 +32,6 @@
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.23.2"
+    "@sanity/cli": "^2.26.0"
   }
 }
