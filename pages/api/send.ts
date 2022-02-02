@@ -44,25 +44,25 @@ const getOfficer = async (id: string) => {
   return result;
 };
 
-// // Instantiate a new nodemailer transporter
-// const transporter = nodemailer.createTransport({
-//   host: process.env.SMTP_HOST,
-//   port: process.env.SMTP_PORT,
-//   auth: {
-//     user: process.env.SMTP_USER,
-//     pass: process.env.SMTP_PASS,
-//   },
-// });
-
-// A debugging Ethereal mail transporter to use for development
+// Instantiate a new nodemailer transporter
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
   auth: {
-    user: "obvkbaertz2uynel@ethereal.email",
-    pass: "8UkJYM4YCZ2gK9wMPR",
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
 });
+
+// // A debugging Ethereal mail transporter to use for development
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.ethereal.email",
+//   port: 587,
+//   auth: {
+//     user: "obvkbaertz2uynel@ethereal.email",
+//     pass: "8UkJYM4YCZ2gK9wMPR",
+//   },
+// });
 
 // Verify that the transporter is working
 // TODO: log this.
