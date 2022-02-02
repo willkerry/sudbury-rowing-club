@@ -19,5 +19,6 @@
     "statusBarItem.remoteBackground": "#002147",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
-  "eslint.alwaysShowStatus": true
+  "eslint.alwaysShowStatus": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
