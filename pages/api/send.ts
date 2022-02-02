@@ -106,7 +106,7 @@ export default async function (req: any, res: any): Promise<void> {
     );
 
     console.log(`Akismet response: ${isSpam.data}`);
-    console.log(req);
+    console.log(`Akismet query: ${query}`);
 
     // // If the Akismet response is malformed, throw an error
     if (isSpam.data !== false && isSpam.data !== true)
