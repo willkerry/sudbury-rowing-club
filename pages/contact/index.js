@@ -1,12 +1,35 @@
 import groq from "groq";
+import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
+import ContactForm from "@/components/contact";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 
-export default function Contact() {
+export const getStaticProps = async () => {
+  const officers = await sanityClient.fetch(
+    groq`
+      *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
+        _id,
+        name,
+        role
+      }
+    `
+  );
+
+  return {
+    props: {
+      officers,
+    },
+  };
+};
+
+export default function Contact({ officers }) {
+  const router = useRouter();
+  const initialValues = router.query;
   return (
     <Layout>
       <NextSeo
@@ -26,23 +49,33 @@ export default function Contact() {
           respond to enquiries, we ask that you select an appropriate recipient
           for your enquiry.
         </div>
-        {/* <ContactForm contacts={contactableOfficers} /> */}
+        <ContactForm contacts={officers} initialValues={initialValues} />
       </Container>
     </Layout>
   );
 }
 
-export const getStaticProps = async () => {
-  const data = await sanityClient.fetch(
-    groq`
-      *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
-        _id,
-        name,
-        role
-      }
-    `
-  );
-  return {
-    props: { contactableOfficers: [...data] },
-  };
+Contact.propTypes = {
+  officers: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      role: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
+
+// export const getStaticProps = async () => {
+//   const data = await sanityClient.fetch(
+//     groq`
+//       *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
+//         _id,
+//         name,
+//         role
+//       }
+//     `
+//   );
+//   return {
+//     props: { officers: data },
+//   };
+// };
