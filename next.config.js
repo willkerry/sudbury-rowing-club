@@ -1,21 +1,12 @@
-module.exports = {
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
+const config = {
   images: {
     domains: ["cdn.sanity.io"],
   },
   swcMinify: true,
-  /* webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: "@svgr/webpack",
-          options: { svgoConfig: { plugins: { removeViewBox: false } } },
-        },
-      ],
-    });
-
-    return config;
-  }, */
   async redirects() {
     return [
       {
@@ -44,7 +35,7 @@ module.exports = {
         permanent: true,
       },
       {
-        source: "/contact/:slug(\\S+)",
+        source: "/contact/:slug((?!how-to-find-us$).*)",
         destination: "/contact",
         permanent: true,
       },
@@ -62,3 +53,5 @@ module.exports = {
     ];
   },
 };
+
+module.exports = withBundleAnalyzer(config);
