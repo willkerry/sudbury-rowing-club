@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
-    "@fontsource/jetbrains-mono": "^4.5.0",
+    "@fontsource/jetbrains-mono": "^4.5.3",
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
     "@next/bundle-analyzer": "^12.0.7",
