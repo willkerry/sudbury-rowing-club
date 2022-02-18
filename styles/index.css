@@ -32,7 +32,7 @@ select {
 input:disabled,
 select:disabled,
 textarea:disabled {
-  @apply bg-gray-100;
+  @apply text-gray-300 cursor-not-allowed bg-gray-50 hover:ring-0 placeholder:text-gray-300 hover:border-inherit;
 }
 
 input:user-invalid {
@@ -42,6 +42,7 @@ input:user-invalid {
 label {
   @apply block text-xs font-medium tracking-wider text-gray-600 uppercase;
 }
+
 @tailwind utilities;
 @layer utilities {
   .hyphens-auto {

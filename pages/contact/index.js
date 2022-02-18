@@ -2,6 +2,7 @@ import groq from "groq";
 import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import Obfuscate from "react-obfuscate";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
@@ -44,12 +45,24 @@ export default function Contact({ officers }) {
       <HeroTitle title="Contact a club officer" prose />
       <Container className="max-w-lg py-12">
         <div className="pb-10 mx-auto prose">
-          We’re a volunteer-run club that provides a safe and fun way to row,
-          but we also need your help. Since we don’t have a full-time staff to
-          respond to enquiries, we ask that you select an appropriate recipient
-          for your enquiry.
+          <p>
+            We’re a volunteer-run club that provides a safe and fun way to row,
+            but we also need your help. Since we don’t have a full-time staff to
+            respond to enquiries, we ask that you select an appropriate
+            recipient for your enquiry.
+          </p>
         </div>
-        <ContactForm contacts={officers} initialValues={initialValues} />
+        <ContactForm
+          contacts={officers}
+          initialValues={initialValues}
+          disabled
+        />
+        <div className="mt-16 text-sm prose text-gray-500">
+          Alternatively, mail{" "}
+          <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general
+          enquiries, or <Obfuscate email="regatta@sudburyrowingclub.org.uk" />{" "}
+          for regatta-related enquiries.
+        </div>
       </Container>
     </Layout>
   );

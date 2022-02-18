@@ -4,7 +4,8 @@ import { Form, Field } from "react-final-form";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import getRandomName from "@/lib/random-name";
-// import { AlertCircle, CheckCircle, SendIcon } from "react-feather";
+import Obfuscate from "react-obfuscate";
+import { AlertCircle } from "react-feather";
 import Button from "../stour/button";
 import Center from "../stour/center";
 
@@ -25,10 +26,10 @@ const onSubmit = async (values) => {
   // setSent(true);
 };
 
-export default function ContactForm({ contacts, initialValues }) {
+export default function ContactForm({ contacts, initialValues, disabled }) {
+  const localDisabled = disabled;
   const randomName = getRandomName();
-  // let res = "";
-  return (
+  const form = (
     <Form
       initialValues={initialValues}
       onSubmit={onSubmit}
@@ -50,6 +51,7 @@ export default function ContactForm({ contacts, initialValues }) {
               id="to"
               defaultValue="default"
               required
+              disabled={localDisabled}
             >
               <option disabled value="default">
                 Select an officer
@@ -73,6 +75,7 @@ export default function ContactForm({ contacts, initialValues }) {
               component="input"
               placeholder={randomName[0]}
               required
+              disabled={localDisabled}
             />
           </div>
           {/*
@@ -87,6 +90,7 @@ export default function ContactForm({ contacts, initialValues }) {
               component="input"
               placeholder={randomName[1]}
               required
+              disabled={localDisabled}
             />
           </div>
           {/*
@@ -107,6 +111,7 @@ export default function ContactForm({ contacts, initialValues }) {
                     value={props.input.value}
                     // eslint-disable-next-line react/prop-types
                     onChange={props.input.onChange}
+                    disabled={localDisabled}
                   />
                 </div>
               )}
@@ -119,7 +124,7 @@ export default function ContactForm({ contacts, initialValues }) {
               id="message"
               type="submit"
               size="large"
-              disabled={submitting || pristine}
+              disabled={submitting || pristine || localDisabled}
               // iconRight={<SendIcon />}
               // isLoading={isSubmitting}
             >
@@ -130,6 +135,25 @@ export default function ContactForm({ contacts, initialValues }) {
       )}
     />
   );
+  if (localDisabled)
+    return (
+      <div className="relative">
+        <div className="absolute top-0 z-10 flex flex-col items-center justify-center w-full h-full gap-2">
+          <p className="flex items-center gap-2 text-lg font-semibold text-gray-600">
+            <AlertCircle className="text-yellow-500" />
+            Contact form temporarily disabled
+          </p>
+          <div className="prose">
+            <p>
+              Contact us on{" "}
+              <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> instead.
+            </p>
+          </div>
+        </div>
+        <div className="blur-[2px] select-none">{form}</div>
+      </div>
+    );
+  return form;
 }
 
 ContactForm.propTypes = {
@@ -146,6 +170,7 @@ ContactForm.propTypes = {
     from_mail: PropTypes.string,
     message: PropTypes.string,
   }),
+  disabled: PropTypes.bool,
 };
 
 ContactForm.defaultProps = {
@@ -155,4 +180,5 @@ ContactForm.defaultProps = {
     from_mail: "",
     message: "",
   },
+  disabled: false,
 };

@@ -44,7 +44,7 @@ Link.propTypes = {
   /**
    * The href of the link.
    */
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   /**
    * The children of the link. For non-string children, use the regular `next/link`. This component only adds styling.
    * @default "Link"
@@ -102,6 +102,7 @@ Link.propTypes = {
 };
 
 Link.defaultProps = {
+  href: "",
   dark: false,
   external: false,
   download: false,

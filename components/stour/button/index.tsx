@@ -45,7 +45,7 @@ const VARIANT = {
     "text-white !text-white border-yellow-600 bg-yellow-600 hover:!text-yellow-700 hover:bg-white ring-yellow-200",
 };
 const disabledClassNames =
-  "text-gray-300 bg-gray-100 cursor-not-allowed focus:ring-none";
+  "text-gray-300 bg-gray-100 cursor-not-allowed focus:ring-none hover:text-inherit hover:border-inherit";
 
 export default function Button({
   asChild,
@@ -62,7 +62,7 @@ export default function Button({
   const Comp = as;
   const hasIcon = icon !== null;
   const baseClassNames: string =
-    "rounded transition duration-300 border inline-block border-box focus:ring-2 focus:ring-offset-2 focus:outline-none select-none whitespace-nowrap relative text-center leading-none";
+    "rounded transition duration-300 border inline-block border-box focus:ring-2 focus:ring-offset-2 focus:outline-none select-none whitespace-nowrap relative text-center leading-none disabled:hover:!text-inherit disabled:hover:border-inherit";
   const classNames: string = cn([
     baseClassNames,
     VARIANT[variant],
@@ -72,7 +72,7 @@ export default function Button({
     className,
   ]);
   return (
-    <Comp {...props} className={classNames}>
+    <Comp {...props} className={classNames} disabled={disabled}>
       <div className="flex items-center justify-center w-full h-full">
         {hasIcon && <Slot className="flex w-4 mr-2">{icon}</Slot>}
         {children}
