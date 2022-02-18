@@ -36,16 +36,16 @@ export default function Player({ youTubeId, youTubeStart, children }) {
         <Dialog
           open={isOpen}
           onClose={() => setIsOpen(false)}
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-40 overflow-y-auto"
         >
-          <Dialog.Overlay className="fixed inset-0 z-0 bg-black opacity-60" />
+          <Dialog.Overlay className="absolute inset-0 bg-black opacity-70 backdrop-blur" />
 
           <div className="flex items-center justify-center w-full h-full p-2 sm:p-10 md:p-20 lg:p-40 xl:p-60">
             <YouTube
               videoId={youTubeId}
               opts={opts}
               containerClassName="w-full aspect-w-16 aspect-h-9"
-              className="bg-white rounded-lg shadow-xl z-2"
+              className="z-50 bg-white rounded-lg shadow-xl"
             />
           </div>
         </Dialog>
