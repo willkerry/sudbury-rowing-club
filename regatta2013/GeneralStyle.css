@@ -1,0 +1,33 @@
+BODY
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, Verdana;
+    FONT-SIZE: small
+}
+TABLE
+{
+}
+TD
+{
+    FONT-FAMILY: Arial, Verdana;
+    FONT-SIZE: 10pt
+}
+TD.CellA
+{
+	BACKGROUND-COLOR: silver;
+    TEXT-ALIGN: left;
+    BORDER-BOTTOM: gray thin solid;
+    BORDER-TOP: gray thin solid;
+}
+TD.CellB
+{
+	BACKGROUND-COLOR: silver;
+    TEXT-ALIGN: right;
+    BORDER-RIGHT: gray thin solid;
+    BORDER-BOTTOM: gray thin solid;
+    BORDER-TOP: gray thin solid;
+}
+TD.CellC
+{
+    BORDER-RIGHT: gray thin solid;
+}
