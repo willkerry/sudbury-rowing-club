@@ -75,11 +75,6 @@ const config = {
         permanent: true,
       },
       {
-        source: "/news/:slug",
-        destination: "/news",
-        permanent: true,
-      },
-      {
         source: "/governance/club-constitution",
         destination: "/governance/constitution",
         permanent: true,
