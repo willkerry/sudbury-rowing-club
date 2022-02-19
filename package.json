@@ -1,0 +1,25 @@
+{
+  "scripts": {
+    "build": "node convert.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "iconv-lite": "^0.6.3"
+  },
+  "name": "results",
+  "version": "1.0.0",
+  "main": "convert.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willkerry/sudbury-regatta-results.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/willkerry/sudbury-regatta-results/issues"
+  },
+  "homepage": "https://github.com/willkerry/sudbury-regatta-results#readme",
+  "description": ""
+}
