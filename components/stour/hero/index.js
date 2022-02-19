@@ -8,10 +8,7 @@ export default function Hero({ title, label, description, dark, fullwidth }) {
     return (
       <>
         {label && <Label className="ml-1">{label}</Label>}
-        <h2
-          className="pt-3 pb-6 text-4xl font-semibold tracking-tighter"
-          id={title.toLowerCase().replace(/\s/g, "-")}
-        >
+        <h2 className="pt-3 pb-6 text-4xl font-semibold tracking-tighter">
           {title}
         </h2>
         {description && (

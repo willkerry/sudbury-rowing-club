@@ -176,15 +176,16 @@ export default function Regatta({ page, testimonials, results }) {
         <Details items={accordion} />
       </Container>
       <Gallery images={page.landingPage.images} />
-
-      <Hero
-        title="Some of the people who’ve come to our regatta have said lovely things about it"
-        label="Feedback"
-        fullwidth
-      />
-      <Container>
-        <Testimonials data={testimonials} />
-      </Container>
+      <div id="feedback">
+        <Hero
+          title="Some of the people who’ve come to our regatta have said lovely things about it"
+          label="Feedback"
+          fullwidth
+        />
+        <Container>
+          <Testimonials data={testimonials} />
+        </Container>
+      </div>
     </Layout>
   );
 }
