@@ -5,7 +5,7 @@
       "source": "/:path*",
       "headers": [
         {
-          "key": "content-type",
+          "key": "Content-Type",
           "value": "text/html;charset=iso-8859-1"
         }
       ]
