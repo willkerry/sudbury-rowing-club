@@ -1,9 +1,4 @@
 {
   "trailingSlash": true,
-  "headers": [
-    {
-      "key": "content-type",
-      "value": "text/html;charset=8859-1"
-    }
-  ]
+  "encoding": "iso-8859-1"
 }
