@@ -7,19 +7,16 @@ const config = {
     domains: ["cdn.sanity.io"],
   },
   swcMinify: true,
-  async rewrites() {
-    return [
-      {
-        source: "/results/:id*",
-        destination: "https://results.sudburyrowingclub.org.uk/:id*",
-      },
-    ];
-  },
   async redirects() {
     return [
       {
         source: "/results",
         destination: "/regatta/results",
+        permanent: true,
+      },
+      {
+        source: "/results/:id*",
+        destination: "https://results.sudburyrowingclub.org.uk/:id*",
         permanent: true,
       },
       {
@@ -60,6 +57,36 @@ const config = {
       {
         source: "/praise",
         destination: "/regatta#feedback",
+        permanent: true,
+      },
+      {
+        source: "/club-kit",
+        destination: "/members/kit",
+        permanent: true,
+      },
+      {
+        source: "/category/:slug",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/author/:slug",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/news/:slug",
+        destination: "/news",
+        permanent: true,
+      },
+      {
+        source: "/governance/club-constitution",
+        destination: "/governance/constitution",
+        permanent: true,
+      },
+      {
+        source: "/regatta/find-the-regatta",
+        destination: "/contact/how-to-find-us",
         permanent: true,
       },
 
