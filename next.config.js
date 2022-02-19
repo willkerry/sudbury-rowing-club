@@ -10,8 +10,8 @@ const config = {
   async rewrites() {
     return [
       {
-        source: "/results/:slug*",
-        destination: "https://results.sudburyrowingclub.org.uk/:slug*",
+        source: "/results/:id*",
+        destination: "https://results.sudburyrowingclub.org.uk/:id*",
       },
     ];
   },
