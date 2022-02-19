@@ -6,6 +6,7 @@ import iconv from "iconv-lite";
 import { fileURLToPath } from "url";
 import htmlMinify from "html-minifier";
 import CleanCSS from "clean-css";
+import tidy from "tidy-html5";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -16,6 +17,10 @@ const outputDir = path.join(__dirname, ".output");
 
 const viewportTag = `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
 const link = `<a style="position: fixed; top: 0; left: 0; padding: 0.5em; background: #fff" href="https://sudburyrowingclub.org.uk/regatta/results/">View all results</a>`;
+
+const cssOptions = {
+  level: { 1: { all: true }, 2: { all: true }, 3: { all: true } },
+};
 
 // Delete the output directory if it exists.
 if (fs.existsSync(outputDir)) {
@@ -49,36 +54,43 @@ fs.readdirSync(inputDir).forEach((folder) => {
       // strip BOM
       const noBOM = no8859.replace(/ï¿/g, "");
 
-      // minify HTML – in a try-catch block to prevent errors from stopping the build
-      let minified;
-      try {
-        minified = htmlMinify.minify(noBOM);
-      } catch (e) {
-        minified = noBOM;
-      }
+      // // minify HTML – in a try-catch block to prevent errors from stopping the build
+      // let minified;
+      // try {
+      //   minified = htmlMinify.minify(noBOM);
+      // } catch (e) {
+      //   minified = noBOM;
+      // }
+
+      // tidy the HTML using tidy-html5
+      const tidied = tidy.tidy_html5(noBOM, {
+        clean: true,
+        indent: false,
+        quiet: true,
+        doctype: "html5",
+        "drop-proprietary-attributes": true,
+        "show-info": false,
+        "show-warnings": false,
+        "show-errors": 0,
+      });
 
       // add return link to the top of every page
-      const withLink = minified.replace(/<body>/, `<body>${link}`);
+      const withLink = tidied.replace(/<body>/, `<body>${link}`);
 
       // add the viewport meta tag
       const withTag = withLink.replace(/<head>/, `<head>${viewportTag}`);
 
-      fs.writeFileSync(outputFile, withTag);
+      // minify the HTML
+      const minified = htmlMinify.minify(withTag, {
+        collapseWhitespace: true,
+        minifyCSS: true,
+        removeRedundantAttributes: true,
+      });
+
+      fs.writeFileSync(outputFile, minified);
     } else if (file.endsWith(".css")) {
       // minify CSS
-      const minified = new CleanCSS({
-        level: {
-          1: {
-            all: true,
-          },
-          2: {
-            all: true,
-          },
-          3: {
-            all: true,
-          },
-        },
-      }).minify(output).styles;
+      const minified = new CleanCSS(cssOptions).minify(output).styles;
       // add the comment '/*! minified */' to the top of the file
       const withComment = `/*! minified */\n${minified}`;
       fs.writeFileSync(outputFile, withComment);
