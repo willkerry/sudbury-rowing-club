@@ -1,3 +1,14 @@
 {
-  "trailingSlash": true
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/**/*.html",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html; charset=8859-1"
+        }
+      ]
+    }
+  ]
 }
