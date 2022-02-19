@@ -15,6 +15,11 @@ const config = {
         permanent: true,
       },
       {
+        source: "/results/:slug*",
+        destination: "https://results.sudburyrowingclub.org.uk/:slug*",
+        permanent: true,
+      },
+      {
         source: "/how-to-contact-us",
         destination: "/contact",
         permanent: true,
