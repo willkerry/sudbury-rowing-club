@@ -2,13 +2,8 @@
   "trailingSlash": true,
   "headers": [
     {
-      "source": "*",
-      "headers": [
-        {
-          "key": "content-type",
-          "value": "text/html;charset=8859-1"
-        }
-      ]
+      "key": "content-type",
+      "value": "text/html;charset=8859-1"
     }
   ]
 }
