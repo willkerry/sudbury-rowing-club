@@ -4,12 +4,13 @@
   },
   "type": "module",
   "dependencies": {
+    "html-minifier": "^4.0.0",
+    "html-to-react": "^1.4.8",
     "iconv-lite": "^0.6.3"
   },
   "name": "results",
   "version": "1.0.0",
   "main": "convert.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/willkerry/sudbury-regatta-results.git"
