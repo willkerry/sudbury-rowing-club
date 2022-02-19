@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import htmlMinify from "html-minifier";
 import CleanCSS from "clean-css";
 import tidy from "tidy-html5";
+import { stdout } from "process";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -29,6 +30,7 @@ if (fs.existsSync(outputDir)) {
 
 fs.mkdirSync(outputDir, { recursive: true });
 fs.readdirSync(inputDir).forEach((folder) => {
+  process.stdout.write(`Processing ${folder}...`);
   fs.readdirSync(path.join(inputDir, folder)).forEach((file) => {
     const inputFile = path.join(inputDir, folder, file);
     const outputFile = path.join(outputDir, folder, file);
@@ -98,4 +100,5 @@ fs.readdirSync(inputDir).forEach((folder) => {
       fs.writeFileSync(outputFile, output);
     }
   });
+  process.stdout.write(` done.\n`);
 });
