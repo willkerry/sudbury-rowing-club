@@ -1,5 +1,12 @@
 {
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://sudburyrowingclub.org.uk/regatta/results/",
+      "statusCode": 301
+    }
+  ],
   "headers": [
     {
       "source": "/:path*",
