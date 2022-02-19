@@ -5,8 +5,8 @@
       "source": "/**/*.html",
       "headers": [
         {
-          "name": "Content-Type",
-          "value": "text/html; charset=8859-1"
+          "key": "content-type",
+          "value": "text/html;charset=8859-1"
         }
       ]
     }
