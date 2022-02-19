@@ -1,4 +1,14 @@
 {
   "trailingSlash": true,
-  "encoding": "iso-8859-1"
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "content-type",
+          "value": "text/html;charset=iso-8859-1"
+        }
+      ]
+    }
+  ]
 }
