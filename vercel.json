@@ -6,16 +6,5 @@
       "destination": "https://sudburyrowingclub.org.uk/regatta/results/",
       "permanent": true
     }
-  ],
-  "headers": [
-    {
-      "source": "/:path*",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/html;charset=iso-8859-1"
-        }
-      ]
-    }
   ]
 }
