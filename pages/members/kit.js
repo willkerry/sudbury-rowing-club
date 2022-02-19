@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
+import Obfuscate from "react-obfuscate";
 
 export default function ClubKit() {
   return (
@@ -87,9 +88,9 @@ export default function ClubKit() {
         I am already aware of some requests for all in ones, tech tops and
         splash tops but for me to negotiate the best deal I need to know who
         else out there wants kit. So, please email me (
-        <a href="mailto:kit@sudburyrowingclub.org.uk">Amelia Moule</a>) back and
-        let me know what you are after. At this stage I do not require any size
-        information or money.
+        <Obfuscate email="kit@sudburyrowingclub.org.uk">Amelia Moule</Obfuscate>
+        ) back and let me know what you are after. At this stage I do not
+        require any size information or money.
       </p>
 
       <p>
