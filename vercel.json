@@ -2,7 +2,7 @@
   "trailingSlash": true,
   "headers": [
     {
-      "source": "*/**",
+      "source": "*",
       "headers": [
         {
           "key": "content-type",
