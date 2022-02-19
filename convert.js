@@ -5,6 +5,7 @@ import path from "path";
 import iconv from "iconv-lite";
 import { fileURLToPath } from "url";
 import htmlMinify from "html-minifier";
+import CleanCSS from "clean-css";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -12,6 +13,9 @@ const __dirname = path.dirname(__filename);
 
 const inputDir = path.join(__dirname, "src");
 const outputDir = path.join(__dirname, ".output");
+
+const viewportTag = `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
+const link = `<a style="position: fixed; top: 0; left: 0; padding: 0.5em; background: #fff" href="https://sudburyrowingclub.org.uk/regatta/results/">View all results</a>`;
 
 // Delete the output directory if it exists.
 if (fs.existsSync(outputDir)) {
@@ -34,21 +38,52 @@ fs.readdirSync(inputDir).forEach((folder) => {
       fs.mkdirSync(path.dirname(outputFile), { recursive: true });
     }
 
-    // replace charset isntances of 'iso-8859-1' with 'utf-8'
-    const no8859 = output.replace(/charset=iso-8859-1/g, "charset=utf-8");
+    if (
+      file.endsWith(".html") ||
+      file.endsWith(".htm") ||
+      file.endsWith(".HTM")
+    ) {
+      // replace charset isntances of 'iso-8859-1' with 'utf-8'
+      const no8859 = output.replace(/charset=iso-8859-1/g, "charset=utf-8");
 
-    // strip BOM
-    const noBOM = no8859.replace(/ï¿/g, "");
+      // strip BOM
+      const noBOM = no8859.replace(/ï¿/g, "");
 
-    // minify HTML – in a try catch to prevent errors from stopping the build
-    let minified;
-    try {
-      minified = htmlMinify.minify(noBOM);
-    } catch (e) {
-      minified = noBOM;
+      // minify HTML – in a try-catch block to prevent errors from stopping the build
+      let minified;
+      try {
+        minified = htmlMinify.minify(noBOM);
+      } catch (e) {
+        minified = noBOM;
+      }
+
+      // add return link to the top of every page
+      const withLink = minified.replace(/<body>/, `<body>${link}`);
+
+      // add the viewport meta tag
+      const withTag = withLink.replace(/<head>/, `<head>${viewportTag}`);
+
+      fs.writeFileSync(outputFile, withTag);
+    } else if (file.endsWith(".css")) {
+      // minify CSS
+      const minified = new CleanCSS({
+        level: {
+          1: {
+            all: true,
+          },
+          2: {
+            all: true,
+          },
+          3: {
+            all: true,
+          },
+        },
+      }).minify(output).styles;
+      // add the comment '/*! minified */' to the top of the file
+      const withComment = `/*! minified */\n${minified}`;
+      fs.writeFileSync(outputFile, withComment);
+    } else {
+      fs.writeFileSync(outputFile, output);
     }
-
-    // strip BOM ("ï¿") from the output
-    fs.writeFileSync(outputFile, minified);
   });
 });
