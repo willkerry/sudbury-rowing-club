@@ -19,7 +19,7 @@ export default function PostHeader({
       <>
         <Heading date={date} title={title} center />
         <div className="mb-8 md:mb-16 sm:mx-0">
-          <figure className="relative flex flex-col mx-auto overflow-hidden rounded w-max">
+          <figure className="relative flex flex-col mx-auto overflow-hidden rounded">
             <Image
               src={urlFor(featuredImage._id).width(1536).fit("max").url()}
               alt={alt}
@@ -32,8 +32,8 @@ export default function PostHeader({
             />
             {caption && (
               <figcaption
-                className="w-full px-3 py-2 mx-auto text-xs font-medium text-white bg-gray-500 bg-bottom bg-cover"
-                style={{ backgroundImage: `url(${lqip})`, maxWidth: "768px" }}
+                className="px-3 py-2 text-xs font-medium text-white bg-gray-500 bg-bottom bg-cover drop-shadow"
+                style={{ backgroundImage: `url(${lqip})` }}
               >
                 {caption}
               </figcaption>

@@ -24,7 +24,7 @@ function Introduction({ description, images }) {
     <section id="intro">
       <Container className="my-16">
         <div className="mx-auto ">
-          <Text portableText lead className="mx-auto">
+          <Text portableText className="mx-auto">
             {description}
           </Text>
           <CommitteeSignature className="w-48 py-16 mx-auto sm:w-min sm:max-w-sm" />

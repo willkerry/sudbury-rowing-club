@@ -16,7 +16,11 @@ export default function HeroPost({
   return (
     <Link as={`/news/${slug}`} href="/news/[slug]">
       <a className="grid mb-12 overflow-hidden transition duration-200 border rounded md:grid-cols-3 md:gap-x-8 group hover:border-blue-400">
-        <div className="relative border-b md:border-b-0 md:border-r md:col-span-2 h-60 sm:h-96">
+        <div
+          className={`relative border-b md:border-b-0 md:border-r md:col-span-2 ${
+            !imageId ? "h-60 sm:h-96" : "flex"
+          }`}
+        >
           {imageId ? (
             <CoverImage
               title={title}
