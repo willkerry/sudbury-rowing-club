@@ -1,6 +1,7 @@
 import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
+import Obfuscate from "react-obfuscate";
 
 export default function LearnToRowApplicationForm() {
   return (
@@ -16,7 +17,7 @@ export default function LearnToRowApplicationForm() {
         taster session.
       </p>
       <p className="prose-sm">
-        Contact the Learn to Row coordinator for{" "}
+        {/* Contact the Learn to Row coordinator for{" "}
         <Link href="/contact">help with this form</Link>. If you’d like to find
         out a little more about the club before applying, the{" "}
         <Link href="/contact">chairman and captain</Link> will be happy to help.
@@ -24,7 +25,9 @@ export default function LearnToRowApplicationForm() {
         <Link href="https://www.britishrowing.org/go-rowing/learn-to-row/adults/">
           more background on Learn to Row
         </Link>
-        .
+        . */}
+        Alternatively, contact the Learn to Row coordinator directly at{" "}
+        <Obfuscate email="l2r@sudburyrowingclub.org.uk" />.
       </p>
       <iframe
         title="Learn to Row application form"
