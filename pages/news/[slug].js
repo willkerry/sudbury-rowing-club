@@ -7,6 +7,7 @@ import PostBody from "@/components/news/post-body";
 import PostHeader from "@/components/news/post-header";
 import Layout from "@/components/layouts/layout";
 import PostTitle from "@/components/news/post-title";
+import Share from "@/components/news/share";
 import {
   BASE_URL,
   LOGO,
@@ -91,6 +92,15 @@ export default function Post({ post }) {
                 <div className="text-sm font-medium">
                   <DateFormatter dateString={post.date} />
                 </div>
+              </div>
+
+              <div className="p-4">
+                <Label className="text-xs">Share</Label>
+                <Share
+                  path={router.asPath}
+                  title={post.title}
+                  summary={post.excerpt}
+                />
               </div>
             </div>
           </article>

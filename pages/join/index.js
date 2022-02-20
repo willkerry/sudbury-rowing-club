@@ -209,8 +209,9 @@ export default function Index() {
               </div>
               <div className="max-w-md">
                 <Note label="Course Dates" type="success">
-                  Our next Learn to Row course will run on Saturday afternoons
-                  from 4 Sep 2021 to 25 Sep 2021, (13:00 to 16:00). Please{" "}
+                  Our next two Learn to Row courses will run 13:00 to 16:00 on
+                  Saturday afternoons from, Course 1: 12 Mar to 2 Apr 2022, and
+                  course 2: 23 April to 14 May 2022. Please{" "}
                   <Link href="join/apply">apply now.</Link>
                 </Note>
               </div>
@@ -410,11 +411,7 @@ function L2RCallToAction() {
     <div className="grid gap-6 my-20 text-gray-700 sm:gap-12 md:grid-cols-2 sm:my-36">
       <div className={cn("border-green-300 bg-green-50", classes)}>
         Send your application form now
-        <Button
-          as={Link}
-          variant="success"
-          href="/join/apply"
-        >
+        <Button as={Link} variant="success" href="/join/apply">
           Apply
         </Button>
       </div>
