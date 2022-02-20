@@ -36,7 +36,7 @@ SponsorLogos.propTypes = {
 
 function Sponsors() {
   return (
-    <ul className="flex items-center justify-center gap-8 my-12 space-between">
+    <ul className="flex flex-wrap items-center justify-center gap-8 my-12 space-between">
       {SponsorLogos.map(({ logo, href, name }) => (
         <li key={`${href}${name}`}>
           <Link href={href}>

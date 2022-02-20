@@ -18,7 +18,7 @@ const communityFooter = [...memberCTAs, ...socials];
 
 function FooterColumn({ heading, data }) {
   return (
-    <div className="w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
+    <div className="w-1/2 mb-12 text-gray-700 sm:w-4/12 md:w-3/12">
       <FooterHeading>{heading}</FooterHeading>
       <FooterItemList data={data} />
     </div>
@@ -98,7 +98,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap pb-24 justify-left">
+        <div className="flex flex-wrap mb-12 justify-left">
           <FooterColumn heading="About" data={footerAbout} />
           <FooterColumn heading="Regatta" data={footerRegatta} />
           <FooterColumn heading="Community" data={communityFooter} />
@@ -106,7 +106,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-2">
-          <div className="flex flex-col justify-between py-5 m-auto text-sm text-gray-500 md:flex-row">
+          <div className="flex justify-between py-5 m-auto text-sm text-gray-500 md:flex-row">
             <div className="mt-2">
               © Sudbury Rowing Club {new Date().getFullYear()}.
               {/* <Link href="https://willkerry.com/">
@@ -126,7 +126,7 @@ export default function Footer() {
               </Link> */}
             </div>
 
-            <div className="flex flex-row mt-2 md:flex-auto md:flex-row-reverse">
+            <div className="flex flex-row mt-2">
               <SocialIcons data={socials} />
             </div>
           </div>

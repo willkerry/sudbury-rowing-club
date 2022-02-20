@@ -48,7 +48,7 @@ function LandingHero({
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            className="w-6 h-6 md:w-8 md:h-8"
+            className="w-10 h-10 md:w-8 md:h-8"
           >
             <circle
               cx="12"

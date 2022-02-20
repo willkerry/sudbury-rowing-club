@@ -27,15 +27,15 @@ function Results({ tab, children, results, records }) {
         <table>
           <thead>
             <tr>
-              <th className="sr-only">Regatta</th>
-              <th>Date</th>
+              <th className="">Regatta</th>
+              <th >Date</th>
               <th>Results</th>
             </tr>
           </thead>
           <tbody>
             {results.map(({ results: resultsLink, date, number, _id }) => (
               <tr key={_id} className="hover:bg-gray-50">
-                <td className="hidden sm:table-cell">
+                <td className="">
                   <span className="font-semibold">
                     {number
                       ? ordinal(number)
