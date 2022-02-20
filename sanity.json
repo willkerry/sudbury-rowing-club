@@ -16,7 +16,8 @@
     "json-to-docs",
     "@sanity/vision",
     "order-documents",
-    "table"
+    "table",
+    "vercel-deploy"
   ],
   "env": {
     "development": {
