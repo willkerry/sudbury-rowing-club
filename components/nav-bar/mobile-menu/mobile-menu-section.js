@@ -1,12 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import cn from "classnames";
 import PropTypes from "prop-types";
-import {
-  CompactMobileMenuItem,
-  MobileMenuItem
-} from "./mobile-menu-item";
+import { CompactMobileMenuItem, MobileMenuItem } from "./mobile-menu-item";
 
-export default function MobileMenuSection({ title, data,  compact }) {
+export default function MobileMenuSection({ title, data, compact }) {
   return (
     <div className="px-5 pt-4 pb-6">
       <div className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
