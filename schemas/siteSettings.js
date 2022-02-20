@@ -68,7 +68,6 @@ export default {
           options: {
             layout: "grid",
           },
-          validation: Rule => Rule.max(3),
           of: [
             {
               name: "image",
@@ -139,80 +138,6 @@ export default {
             },
           ],
         },
-      ],
-      options: {
-        collapsible: true,
-      },
-    },
-
-    {
-      name: "entries",
-      type: "object",
-      description: "Provide entry instructions",
-      fields: [
-        { name: "description", type: "richText" },
-        { name: "waves", title: "Wave matrix", type: "table" },
-        {
-          name: "wavesCaption",
-          title: "Wave matrix caption",
-          type: "text",
-          rows: 3,
-        },
-        {
-          name: "waveNames",
-          type: "array",
-          title: "Wave names",
-          of: [{ type: "string" }],
-          description: "List of wave names",
-          options: { layout: "tags" },
-        },
-      ],
-      options: {
-        collapsible: true,
-      },
-    },
-    {
-      name: "results",
-      type: "object",
-      description: "Control how regatta results are displayed.",
-      fields: [
-        { name: "description", type: "richText" },
-        { name: "courseRecords", type: "file" },
-      ],
-      options: {
-        collapsible: true,
-      },
-    },
-    {
-      name: "competitorInformation",
-      type: "object",
-      description: "Documents and information",
-      fields: [
-        { name: "description", type: "text", rows: 4 },
-        {
-          name: "documents",
-          type: "array",
-          of: [
-            {
-              type: "file",
-              name: "file",
-              fields: [{ name: "title", type: "string" }],
-            },
-          ],
-        },
-      ],
-      options: {
-        collapsible: true,
-      },
-    },
-    {
-      name: "courseMap",
-      type: "object",
-      fields: [
-        { name: "heading", type: "string" },
-        { name: "description", type: "text", rows: 4 },
-        { name: "map", type: "file" },
-        { name: "mapImage", title: "Map Image", type: "image" },
       ],
       options: {
         collapsible: true,

@@ -1,6 +1,5 @@
 {
   "name": "sudburyrowingclub",
-  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
@@ -14,24 +13,33 @@
     "sanity"
   ],
   "dependencies": {
+    "@babel/core": "^7.17.5",
     "@sanity/base": "^2.27.0",
+    "@sanity/client": "^3.1.0",
+    "@sanity/color": "^2.1.8",
     "@sanity/components": "^2.14.0",
     "@sanity/core": "^2.27.0",
     "@sanity/dashboard": "^2.27.0",
     "@sanity/default-layout": "^2.27.0",
     "@sanity/default-login": "^2.27.0",
     "@sanity/desk-tool": "^2.27.0",
+    "@sanity/icons": "^1.2.5",
+    "@sanity/ui": "^0.33.10",
+    "@sanity/uuid": "^3.0.1",
     "@sanity/vision": "^2.27.0",
+    "caniuse-lite": "^1.0.30000697",
     "prop-types": "^15.7",
-    "react": "^17.0",
-    "react-dom": "^17.0",
+    "react": "16",
+    "react-dom": "16",
     "react-feather": "^2.0.9",
     "react-icons": "^4.3.1",
+    "react-is": "^17.0.2",
     "sanity-plugin-json-to-docs": "^1.0.3",
-    "sanity-plugin-order-documents": "^0.0.20",
+    "sanity-plugin-order-documents": "^0.0.22",
     "sanity-plugin-table": "^2.3.0",
     "sanity-plugin-vercel-deploy": "^2.1.6",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "webpack": "^5.69.1"
   },
   "devDependencies": {
     "@sanity/cli": "^2.27.0"
