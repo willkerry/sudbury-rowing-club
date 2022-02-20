@@ -1,6 +1,11 @@
 import { Popover } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import { about, regatta, members } from "@/components/nav-bar/nav-data";
+import {
+  about,
+  aboutCTAs,
+  regatta,
+  members,
+} from "@/components/nav-bar/nav-data";
 import MobileMenuSection from "./mobile-menu-section";
 
 export default function MobileMenu() {
@@ -19,7 +24,7 @@ export default function MobileMenu() {
       className="absolute inset-x-0 top-0 z-20 p-2 transition origin-top-right transform md:hidden"
     >
       <div className="relative bg-white divide-y rounded shadow-lg ring-1 ring-black ring-opacity-5">
-        <MobileMenuSection title="About" data={about} />
+        <MobileMenuSection title="About" data={about.concat(aboutCTAs)} />
         <MobileMenuSection title="Regatta" data={regatta} />
         <MobileMenuSection title="Members" data={members} compact />
       </div>

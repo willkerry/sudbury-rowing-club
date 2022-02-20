@@ -8,6 +8,7 @@ import {
   ShieldCheckIcon,
   TicketIcon,
   FlagIcon,
+  UserAddIcon,
 } from "@heroicons/react/outline";
 import { Facebook, Instagram, Twitter } from "react-feather";
 import Governance from "@/components/icons/governance";
@@ -52,6 +53,12 @@ export const about = [
     icon: Governance,
   },
   {
+    name: "Join",
+    href: "/join",
+    mobileOnly: true,
+    icon: UserAddIcon,
+  },
+  {
     name: "News",
     href: "/news",
     mobileOnly: true,
@@ -61,10 +68,16 @@ export const about = [
 export const aboutCTAs = [
   {
     name: "How to find us",
+    shortName: "Find us",
     href: "/contact/how-to-find-us",
     icon: LocationMarkerIcon,
   },
-  { name: "Contact us", href: "/contact", icon: MailIcon },
+  {
+    name: "Contact us",
+    shortName: "Contact",
+    href: "/contact",
+    icon: MailIcon,
+  },
 ];
 export const regatta = [
   {
