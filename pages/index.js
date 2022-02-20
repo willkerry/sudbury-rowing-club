@@ -60,7 +60,7 @@ export default function Index({ news, landingPage }) {
       <NewsList postData={news} />
       <div className="invisible h-8" />
       <Link href="/news" arrow>
-        See more
+        See more news
       </Link>
     </Container>
   );
@@ -112,10 +112,10 @@ export default function Index({ news, landingPage }) {
           <div className="flex items-center py-6 my-6">
             <Container>
               <Label className="max-w-prose">Latest News</Label>
-              <h1 className="max-w-prose">
+              <h2 className="max-w-prose">
                 For more updates, follow us on{" "}
                 <Link href="https://facebook.com/sudburyrowing">Facebook</Link>.
-              </h1>
+              </h2>
             </Container>
           </div>
           {latestNews}

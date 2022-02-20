@@ -70,6 +70,7 @@ const SocialIcons = ({ data }) =>
   data.map((item) => (
     <Link key={item.href} href={item.href} passHref>
       <a href="#" className="mr-4 text-gray-400 transition hover:text-black">
+        <span className="sr-only">{item.name}</span>
         <item.icon size={18} strokeWidth={1.5} />
       </a>
     </Link>
