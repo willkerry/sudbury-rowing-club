@@ -1,4 +1,4 @@
-import { MessageCircle, Linkedin, Twitter, Facebook } from "react-feather";
+import { Linkedin, Twitter, Facebook } from "react-feather";
 import { BASE_URL } from "@/lib/constants";
 import propTypes from "prop-types";
 
@@ -31,19 +31,6 @@ export default function Share({ path, title, summary }) {
           color="#3b5998"
         />
       </a>
-      <a
-        href={`https://www.whatsapp.com/send?text=${title} ${url}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        title="Share on WhatsApp"
-      >
-        <MessageCircle
-          className="w-4 h-4"
-          style={{ color: "#25d366", fill: "currentcolor" }}
-          strokeWidth={1}
-        />
-      </a>
-
       <a
         href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}&source=${BASE_URL}`}
         target="_blank"
