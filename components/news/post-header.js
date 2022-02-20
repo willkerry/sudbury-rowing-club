@@ -19,7 +19,7 @@ export default function PostHeader({
       <>
         <Heading date={date} title={title} center />
         <div className="mb-8 md:mb-16 sm:mx-0">
-          <figure className="relative flex flex-col mx-auto overflow-hidden rounded">
+          <figure className="relative flex flex-col max-w-3xl mx-auto overflow-hidden rounded" >
             <Image
               src={urlFor(featuredImage._id).width(1536).fit("max").url()}
               alt={alt}
@@ -30,6 +30,7 @@ export default function PostHeader({
               placeholder="blur"
               blurDataURL={lqip}
             />
+            {console.log(featuredImage.aspectRatio)}
             {caption && (
               <figcaption
                 className="px-3 py-2 text-xs font-medium text-white bg-gray-500 bg-bottom bg-cover drop-shadow"
