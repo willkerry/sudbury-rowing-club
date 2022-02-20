@@ -15,7 +15,7 @@ import {
 import NavLink from "./nav-link";
 import NavLogo from "./nav-logo";
 import NavPopover from "./nav-popover";
-import SafetyStatus from "./safety-status";
+// import SafetyStatus from "./safety-status";
 
 export default function Navbar() {
   // Add a border to the navbar when the user scrolls down
@@ -70,7 +70,7 @@ export default function Navbar() {
                   navData={members}
                   ctaData={memberCTAs}
                 />
-                <SafetyStatus />
+                {/* <SafetyStatus /> */}
               </Popover.Group>
             </div>
           </div>
