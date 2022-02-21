@@ -2,10 +2,9 @@
 /* eslint-disable no-console */
 import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
-// import SibApiV3Sdk from "sib-api-v3-sdk";
 import snarkdown from "snarkdown";
-// import axios from "axios";
-// import url from "url";
+import axios from "axios";
+import url from "url";
 import sendInBlue from "@/lib/sendInBlue";
 
 // This API receives HTTP POST requests with the following structure:
@@ -51,25 +50,24 @@ async function getOfficer(id: string) {
   return result;
 }
 
-
-// async function checkForSpam(userIp: string, userAgent: string, referer: string, commentAuthor: string, commentAuthorEmail: string, commentContent: string) {
-//   const query = new url.URLSearchParams({
-//     blog: "https://sudburyrowingclub.org.uk/",
-//     user_ip: userIp,
-//     user_agent: userAgent,
-//     referrer: referer,
-//     comment_type: "contact-form",
-//     comment_author: commentAuthor,
-//     comment_author_email: commentAuthorEmail,
-//     comment_content: commentContent,
-//     blog_lang: "en_gb",
-//   });
-//   const isSpam = await axios.post(
-//     "https://6c80e09f5c4d.rest.akismet.com/1.1/comment-check",
-//     query
-//   );
-//   return isSpam.data;
-// }
+async function checkForSpam(userIp: string, userAgent: string, referer: string, commentAuthor: string, commentAuthorEmail: string, commentContent: string) {
+  const query = new url.URLSearchParams({
+    blog: "https://sudburyrowingclub.org.uk/",
+    user_ip: userIp,
+    user_agent: userAgent,
+    referrer: referer,
+    comment_type: "contact-form",
+    comment_author: commentAuthor,
+    comment_author_email: commentAuthorEmail,
+    comment_content: commentContent,
+    blog_lang: "en_gb",
+  });
+  const isSpam = await axios.post(
+    "https://6c80e09f5c4d.rest.akismet.com/1.1/comment-check",
+    query
+  );
+  return isSpam.data;
+}
 
 // Send an email to the supplied email address
 /**
@@ -92,10 +90,10 @@ export default async function Send(req: any, res: any): Promise<void> {
     if (!from_mail || !from_name || !to || !message) {
       throw new Error("Missing required fields");
     }
-    // const isSpam = await checkForSpam(req.ip, req.headers["user-agent"], req.headers.referer, from_name, from_mail, message);
-    // if (isSpam) {
-    //   throw new Error("Message rejected as spam.");
-    // }
+    const isSpam = await checkForSpam(req.ip, req.headers["user-agent"], req.headers.referer, from_name, from_mail, message);
+    if (isSpam) {
+      throw new Error("Message rejected as spam.");
+    }
 
     const addressee = await getOfficer(to);
     if (!addressee) {
