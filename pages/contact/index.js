@@ -55,7 +55,7 @@ export default function Contact({ officers }) {
         <ContactForm
           contacts={officers}
           initialValues={initialValues}
-          disabled
+          // disabled
         />
         <div className="mt-16 text-sm prose text-gray-500">
           Alternatively, mail{" "}

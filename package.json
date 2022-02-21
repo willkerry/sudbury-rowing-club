@@ -24,7 +24,6 @@
     "inter-ui": "^3.19.3",
     "next": "^12.1.0",
     "next-seo": "^5.1.0",
-    "nodemailer": "^6.7.2",
     "picosanity": "^4.0.0",
     "pigeon-maps": "^0.20.0",
     "prop-types": "^15.8.1",
@@ -37,7 +36,9 @@
     "react-textarea-autosize": "^8.3.3",
     "react-youtube": "^7.14.0",
     "sharp": "^0.30.1",
+    "sib-api-v3-sdk": "^8.2.1",
     "smartquotes": "^2.3.2",
+    "snarkdown": "^2.0.0",
     "swr": "^1.1.2",
     "tinytime": "^0.2.6",
     "typescript": "^4.5.4"

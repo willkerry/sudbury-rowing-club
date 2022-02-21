@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import { type Icon as RFIcon } from "react-feather";
+import Loading from "../loading";
 
 type ButtonProps = {
   children: string;
@@ -13,6 +14,7 @@ type ButtonProps = {
   disabled: boolean;
   className?: string;
   icon?: RFIcon;
+  isLoading?: boolean;
 };
 
 const defaultProps = {
@@ -22,6 +24,7 @@ const defaultProps = {
   icon: null,
   as: "button",
   shadow: false,
+  isLoading: false,
 };
 
 const SIZE = {
@@ -57,6 +60,7 @@ export default function Button({
   icon,
   children,
   shadow,
+  isLoading,
   ...props
 }: ButtonProps) {
   const Comp = as;
@@ -75,7 +79,7 @@ export default function Button({
     <Comp {...props} className={classNames} disabled={disabled}>
       <div className="flex items-center justify-center w-full h-full">
         {hasIcon && <Slot className="flex w-4 mr-2">{icon}</Slot>}
-        {children}
+        {isLoading ? Loading() : children}
       </div>
     </Comp>
   );
