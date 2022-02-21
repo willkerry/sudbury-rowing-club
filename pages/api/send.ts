@@ -4,8 +4,8 @@ import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
 // import SibApiV3Sdk from "sib-api-v3-sdk";
 import snarkdown from "snarkdown";
-import axios from "axios";
-import url from "url";
+// import axios from "axios";
+// import url from "url";
 import sendInBlue from "@/lib/sendInBlue";
 
 // This API receives HTTP POST requests with the following structure:
