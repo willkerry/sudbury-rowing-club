@@ -26,10 +26,11 @@ async function onSubmit(values) {
     success: true,
   };
 }
-
+const requiredField = (value) => (value ? undefined : "Required");
 export default function ContactForm({ contacts, initialValues, disabled }) {
   const localDisabled = disabled;
   const randomName = getRandomName();
+
   const submitHandler = async (values) => {
     try {
       await onSubmit(values);
@@ -50,12 +51,11 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
         submitSucceeded,
         submitFailed,
         submitError,
-        // combinedDisabled = submitting
-        // ||
-        //   localDisabled ||
-        //   submitSucceeded ||
-        //   submitFailed,
-        combinedDisabled = false,
+        valid,
+        combinedDisabled = submitting ||
+          localDisabled ||
+          submitSucceeded ||
+          submitFailed,
       }) => (
         <>
           {submitFailed && (
@@ -64,7 +64,7 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
               <Obfuscate email="enquiries@sudburyrowingclub.org.uk">
                 email us
               </Obfuscate>
-              . <code>Description: {submitError}</code>
+              . <code>{submitError}</code>
             </Note>
           )}
           {submitSucceeded && (
@@ -85,6 +85,7 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
                 id="to"
                 defaultValue="default"
                 required
+                validate={requiredField}
                 disabled={combinedDisabled}
               >
                 <option disabled value="default">
@@ -109,6 +110,7 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
                 component="input"
                 placeholder={randomName[0]}
                 required
+                validate={requiredField}
                 disabled={combinedDisabled}
               />
             </div>
@@ -124,6 +126,7 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
                 component="input"
                 placeholder={randomName[1]}
                 required
+                validate={requiredField}
                 disabled={combinedDisabled}
               />
             </div>
@@ -132,19 +135,16 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
              */}
             <div className="col-span-2">
               <label htmlFor="message">Your message</label>
-              <Field name="message" minRows={3}>
-                {(props) => (
+              <Field name="message" minRows={3} validate={requiredField}>
+                {({ input }) => (
                   <div>
                     <TextareaAutosize
                       id="message"
                       minRows={3}
                       required
-                      // eslint-disable-next-line react/prop-types
-                      name={props.input.name}
-                      // eslint-disable-next-line react/prop-types
-                      value={props.input.value}
-                      // eslint-disable-next-line react/prop-types
-                      onChange={props.input.onChange}
+                      name={input.name}
+                      value={input.value}
+                      onChange={input.onChange}
                       disabled={combinedDisabled}
                     />
                   </div>
@@ -158,7 +158,7 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
                 id="message"
                 type="submit"
                 size="large"
-                disabled={pristine || combinedDisabled}
+                disabled={pristine || combinedDisabled || !valid}
                 isLoading={submitting}
               >
                 Send

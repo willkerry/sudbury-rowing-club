@@ -69,20 +69,6 @@ async function checkForSpam(userIp: string, userAgent: string, referer: string, 
   return isSpam.data;
 }
 
-// Send an email to the supplied email address
-/**
- * This API receives HTTP POST requests with the following structure:
- * {
- *  "from_mail": ""
- *  "from_name": ""
- *  "to": ""
- *  "message": ""
- * }
- * the 'to' field is a club officer ID
- * @param  {any} req
- * @param  {any} res
- * @returns Promise
- */
 export default async function Send(req: any, res: any): Promise<void> {
   try {
     const { from_mail, from_name, to, message } = req.body;
@@ -99,7 +85,6 @@ export default async function Send(req: any, res: any): Promise<void> {
     if (!addressee) {
       throw new Error("No officer found with that ID");
     }
-
 
     const mailBody = {
       subject: `${from_name} via SRC Contact`,
