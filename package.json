@@ -40,7 +40,7 @@
     "smartquotes": "^2.3.2",
     "snarkdown": "^2.0.0",
     "superagent": "^7.1.1",
-    "swr": "^1.1.2",
+    "swr": "^1.2.2",
     "tinytime": "^0.2.6",
     "typescript": "^4.5.4"
   },
