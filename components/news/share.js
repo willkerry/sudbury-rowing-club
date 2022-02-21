@@ -16,6 +16,12 @@ function SmallButton({ link, color, service }) {
   );
 }
 
+SmallButton.propTypes = {
+  link: propTypes.string.isRequired,
+  color: propTypes.string.isRequired,
+  service: propTypes.string.isRequired,
+};
+
 export default function Share({ path, title, summary }) {
   const url = `${BASE_URL}${path.substring(1)}`;
   return (
