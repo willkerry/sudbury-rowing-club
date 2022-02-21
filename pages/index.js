@@ -5,12 +5,10 @@ import groq from "groq";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
-import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import sanityClient from "@/lib/sanity.server";
 import Text from "@/components/stour/text";
 import LandingHero from "@/components/landing/landing-hero";
-import Gallery from "@/components/regatta/landing-page/gallery";
 
 const NewsList = dynamic(() => import("@/components/news/news-list"));
 const Note = dynamic(() => import("@/components/stour/note"));
@@ -18,6 +16,8 @@ const Sponsors = dynamic(() => import("@/components/landing/sponsors"));
 const CommitteeSignature = dynamic(() =>
   import("@/components/landing/committee-signature")
 );
+const Label = dynamic(() => import("@/components/stour/label"));
+const Gallery = dynamic(() => import("@/components/regatta/landing-page/gallery"));
 
 function Introduction({ description, images }) {
   return (
@@ -90,7 +90,7 @@ export default function Index({ news, landingPage }) {
   );
 
   return (
-    <>
+    <Layout>
       <NextSeo
         title={landingPage.title}
         description={landingPage.tagline}
@@ -99,29 +99,27 @@ export default function Index({ news, landingPage }) {
           description: `${landingPage.tagline}`,
         }}
       />
-      <Layout>
-        {landingPage.note.display && note}
-        {hero}
-        {cta}
-        <Introduction
-          description={landingPage.description}
-          images={landingPage.images}
-        />
+      {landingPage.note.display && note}
+      {hero}
+      {cta}
+      <Introduction
+        description={landingPage.description}
+        images={landingPage.images}
+      />
 
-        <section className="my-16">
-          <div className="flex items-center py-6 my-6">
-            <Container>
-              <Label className="max-w-prose">Latest News</Label>
-              <h2 className="max-w-prose">
-                For more updates, follow us on{" "}
-                <Link href="https://facebook.com/sudburyrowing">Facebook</Link>.
-              </h2>
-            </Container>
-          </div>
-          {latestNews}
-        </section>
-      </Layout>
-    </>
+      <section className="my-16">
+        <div className="flex items-center py-6 my-6">
+          <Container>
+            <Label className="max-w-prose">Latest News</Label>
+            <h2 className="max-w-prose">
+              For more updates, follow us on{" "}
+              <Link href="https://facebook.com/sudburyrowing">Facebook</Link>.
+            </h2>
+          </Container>
+        </div>
+        {latestNews}
+      </section>
+    </Layout>
   );
 }
 
@@ -196,6 +194,5 @@ export const getStaticProps = async () => {
       landingPage: data.landingPage,
       news: data.news,
     },
-    revalidate: 900,
   };
 };

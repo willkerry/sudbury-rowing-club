@@ -4,13 +4,13 @@ import snarkdown from "snarkdown";
 import sendInBlue from "@/lib/sendInBlue";
 import checkForSpam from "@/lib/akismet";
 import getOfficer from "@/lib/get-officer";
+import DOMPurify from "dompurify";
 
 const footerText: string = "Sent via the contact form on the Sudbury Rowing Club website. If you believe you’ve received this message in error, or are receiving excessive spam, please contact will@willkerry.com.";
 
 export default async function Send(req: any, res: any): Promise<void> {
   try {
     const { from_mail, from_name, to, message } = req.body;
-
     if (!from_mail || !from_name || !to || !message) {
       throw new Error("Missing required fields");
     }
@@ -23,6 +23,7 @@ export default async function Send(req: any, res: any): Promise<void> {
     if (!addressee) {
       throw new Error("No officer found with that ID");
     }
+    const cleanMessage = DOMPurify.sanitize(message);
 
     const mailBody = {
       subject: `${from_name} via SRC Contact`,
@@ -30,7 +31,7 @@ export default async function Send(req: any, res: any): Promise<void> {
       replyTo: { email: from_mail, name: from_name },
       to: [{ name: addressee.name, email: addressee.email }],
       htmlContent:
-        `<html><body>${snarkdown(message)}<hr/><small><p>${footerText}</p></small></body></html>`,
+        `<html><body>${snarkdown(cleanMessage)}<hr/><small><p>${footerText}</p></small></body></html>`,
     }
     const mail = await sendInBlue(mailBody);
     if (mail !== "success") {

@@ -1,6 +1,5 @@
 import { NextSeo } from "next-seo";
 import PropTypes from "prop-types";
-import tinytime from "tinytime";
 import groq from "groq";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
@@ -23,8 +22,6 @@ const propTypeGalleryData = PropTypes.arrayOf(
     galleries: propTypesGalleries.isRequired,
   })
 );
-
-const formatDate = tinytime("{YYYY}").render;
 
 export default function Photography({ data }) {
   return (
@@ -89,10 +86,11 @@ GalleryPassword.propTypes = {
 };
 
 function GalleryRow({ year, galleries }) {
+  const date = new Date(year);
   return (
     <tr>
       <th>
-        {formatDate(new Date(year))}
+        {date.getFullYear()}
         <span className="hidden sm:inline"> Regatta</span>
       </th>
       <td className="!align-middle">

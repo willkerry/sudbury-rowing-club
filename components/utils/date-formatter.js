@@ -1,9 +1,10 @@
-import tinytime from "tinytime";
 import PropTypes from "prop-types";
 
+const options = { year: "numeric", month: "long", day: "numeric" };
 export default function DateFormatter({ dateString }) {
-  const formatDate = tinytime("{DD} {MMMM} {YYYY}").render;
-  return <time dateTime={dateString}>{formatDate(new Date(dateString))}</time>;
+  const date = new Date(dateString);
+  const output = date.toLocaleDateString("en-GB", options);
+  return <time dateTime={dateString}>{output}</time>;
 }
 
 DateFormatter.propTypes = {
