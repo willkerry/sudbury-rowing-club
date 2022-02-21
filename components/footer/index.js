@@ -109,22 +109,23 @@ export default function Footer() {
         <div className="pt-2">
           <div className="flex justify-between py-5 m-auto text-sm text-gray-500 md:flex-row">
             <div className="mt-2">
-              © Sudbury Rowing Club {new Date().getFullYear()}.
-              {/* <Link href="https://willkerry.com/">
+              © Sudbury Rowing Club {new Date().getFullYear()}.{" "}
+              <Link href="https://willkerry.com/">
                 <a className="transition hover:text-black">
-                  Website by{" "}
+                  (Free) site by
+                  {` `}
                   <svg
                     viewBox="0 0 24 24"
                     width="18.5"
                     height="18.5"
                     fill="currentColor"
-                    className="inline-flex mb-0.5"
+                    className="inline-flex"
                   >
                     <path d="M0 5h3.5l4 9.5L6 18H5zM7 5h3.5l4 9.5L13 18h-1zM16 13.5l4 4.5h4l-6.5-8zM18 8.5L19.5 5H24l-5 3.5z" />
                   </svg>
                   .
                 </a>
-              </Link> */}
+              </Link>
             </div>
 
             <div className="flex flex-row mt-2">

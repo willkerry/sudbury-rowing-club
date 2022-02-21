@@ -2,10 +2,35 @@ import { Linkedin, Twitter, Facebook } from "react-feather";
 import { BASE_URL } from "@/lib/constants";
 import propTypes from "prop-types";
 
+function SmallButton({ link, color, service }) {
+  return (
+    <a
+      className="text-xs text-white px-0.5 rounded-sm font-medium"
+      style={{ backgroundColor: color }}
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {service}
+    </a>
+  );
+}
+
+SmallButton.propTypes = {
+  link: propTypes.string.isRequired,
+  color: propTypes.string.isRequired,
+  service: propTypes.string.isRequired,
+};
+
 export default function Share({ path, title, summary }) {
   const url = `${BASE_URL}${path.substring(1)}`;
   return (
     <div className="flex gap-1 mt-0.5">
+      <SmallButton
+        link={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+        color="#3b5998"
+        service="Facebook"
+      />
       <a
         href={`https://twitter.com/intent/tweet?text=${title}&url=${url}`}
         target="_blank"
