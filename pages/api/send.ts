@@ -1,73 +1,11 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
-import sanityClient from "@/lib/sanity.server";
-import groq from "groq";
 import snarkdown from "snarkdown";
-import axios from "axios";
-import url from "url";
 import sendInBlue from "@/lib/sendInBlue";
-
-// This API receives HTTP POST requests with the following structure:
-// {
-//   "from_mail": ""
-//   "from_name": ""
-//   "to": ""
-//   "message": ""
-// }
-// the 'to' field is a club officer ID
-
-type officer = {
-  name: string;
-  email: string;
-};
+import checkForSpam from "@/lib/akismet";
+import getOfficer from "@/lib/get-officer";
 
 const footerText: string = "Sent via the contact form on the Sudbury Rowing Club website. If you believe you’ve received this message in error, or are receiving excessive spam, please contact will@willkerry.com.";
-
-// Query our Sanity database for the supplied officer ID, return the officer's email address
-async function getOfficer(id: string) {
-  if (!id) {
-    throw new Error("No officer ID supplied");
-  }
-  const data = await sanityClient.fetch(
-    groq`
-        *[_id == $id && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
-          name,
-          email
-        }
-      `,
-    { id }
-  );
-  if (data.length === 0) {
-    throw new Error("No officer found with that ID");
-  }
-  else if (data.length > 1) {
-    throw new Error("Multiple officers found with that ID");
-  }
-  const result: officer = {
-    name: data[0].name,
-    email: data[0].email,
-  };
-  return result;
-}
-
-async function checkForSpam(userIp: string, userAgent: string, referer: string, commentAuthor: string, commentAuthorEmail: string, commentContent: string) {
-  const query = new url.URLSearchParams({
-    blog: "https://sudburyrowingclub.org.uk/",
-    user_ip: userIp,
-    user_agent: userAgent,
-    referrer: referer,
-    comment_type: "contact-form",
-    comment_author: commentAuthor,
-    comment_author_email: commentAuthorEmail,
-    comment_content: commentContent,
-    blog_lang: "en_gb",
-  });
-  const isSpam = await axios.post(
-    "https://6c80e09f5c4d.rest.akismet.com/1.1/comment-check",
-    query
-  );
-  return isSpam.data;
-}
 
 export default async function Send(req: any, res: any): Promise<void> {
   try {

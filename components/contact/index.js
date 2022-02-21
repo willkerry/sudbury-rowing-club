@@ -21,7 +21,6 @@ async function onSubmit(values) {
       console.log(err.response.data.message);
       throw new Error(err.response.data.message);
     });
-
   return {
     success: true,
   };
@@ -30,7 +29,6 @@ const requiredField = (value) => (value ? undefined : "Required");
 export default function ContactForm({ contacts, initialValues, disabled }) {
   const localDisabled = disabled;
   const randomName = getRandomName();
-
   const submitHandler = async (values) => {
     try {
       await onSubmit(values);
@@ -39,7 +37,6 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
       return { [FORM_ERROR]: error.message };
     }
   };
-
   const form = (
     <Form
       initialValues={initialValues}
@@ -52,6 +49,7 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
         submitFailed,
         submitError,
         valid,
+        values,
         combinedDisabled = submitting ||
           localDisabled ||
           submitSucceeded ||
@@ -61,7 +59,12 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
           {submitFailed && (
             <Note label="Error" type="error">
               We were unable to send your message. Please try again later or{" "}
-              <Obfuscate email="enquiries@sudburyrowingclub.org.uk">
+              <Obfuscate
+                email="enquiries@sudburyrowingclub.org.uk"
+                headers={{
+                  body: values.message,
+                }}
+              >
                 email us
               </Obfuscate>
               . <code>{submitError}</code>
