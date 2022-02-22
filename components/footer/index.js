@@ -85,6 +85,10 @@ SocialIcons.propTypes = {
 };
 
 export default function Footer() {
+  const userAgent =
+    typeof window === "undefined" ? null : window.navigator.userAgent;
+  const currentPath =
+    typeof window === "undefined" ? null : window.location.pathname;
   return (
     <footer className="border-t">
       <Container>
@@ -110,10 +114,10 @@ export default function Footer() {
           <div className="flex justify-between py-5 m-auto text-sm text-gray-500 md:flex-row">
             <div className="mt-2">
               © Sudbury Rowing Club {new Date().getFullYear()}.{" "}
-              <Link href="http://localhost:3000/contact?to=5b54081d-46f0-485b-83c2-691e086fdf19/">
-                <a className="transition hover:text-black">
-                  Report a bug.
-                </a>
+              <Link
+                href={`http://localhost:3000/contact?to=5b54081d-46f0-485b-83c2-691e086fdf19&message=User-Agent: ${userAgent}. Path: ${currentPath}. Please describe the bug below:`}
+              >
+                <a className="transition hover:text-black">Report a bug.</a>
               </Link>
             </div>
 
