@@ -110,7 +110,6 @@ export default function Footer() {
           <FooterColumn heading="Community" data={communityFooter} />
           <FooterColumn heading="Miscellany" data={misc} />
         </div>
-
         <div className="pt-2">
           <div className="flex justify-between py-5 m-auto text-sm text-gray-500 md:flex-row">
             <div className="mt-2">
@@ -121,7 +120,6 @@ export default function Footer() {
                 <a className="transition hover:text-black">Report a bug.</a>
               </Link>
             </div>
-
             <div className="flex flex-row mt-2">
               <SocialIcons data={socials} />
             </div>

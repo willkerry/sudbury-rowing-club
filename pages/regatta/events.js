@@ -54,6 +54,5 @@ export const getStaticProps = async () => {
   );
   return {
     props: { data: data.events.events },
-    revalidate: 900,
   };
 };

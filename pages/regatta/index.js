@@ -326,6 +326,5 @@ export const getStaticProps = async () => {
       testimonials: page.testimonials,
       results: page.results,
     },
-    revalidate: 900,
   };
 };

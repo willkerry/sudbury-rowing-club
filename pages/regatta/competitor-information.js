@@ -68,6 +68,5 @@ export const getStaticProps = async () => {
   `);
   return {
     props: { data: data.competitorInformation },
-    revalidate: 900,
   };
 };
