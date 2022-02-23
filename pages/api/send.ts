@@ -4,7 +4,7 @@ import snarkdown from "snarkdown";
 import sendInBlue from "@/lib/sendInBlue";
 import checkForSpam from "@/lib/akismet";
 import getOfficer from "@/lib/get-officer";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 const footerText: string = "Sent via the contact form on the Sudbury Rowing Club website. If you believe you’ve received this message in error, or are receiving excessive spam, please contact will@willkerry.com.";
 
