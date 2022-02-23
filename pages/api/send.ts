@@ -10,11 +10,11 @@ const footerText: string = "Sent via the contact form on the Sudbury Rowing Club
 
 export default async function Send(req: any, res: any): Promise<void> {
   try {
-    const { from_mail, from_name, to, message } = req.body;
-    if (!from_mail || !from_name || !to || !message) {
+    const { email, name, to, message } = req.body;
+    if (!email || !name || !to || !message) {
       throw new Error("Missing required fields");
     }
-    const isSpam = await checkForSpam(req.ip, req.headers["user-agent"], req.headers.referer, from_name, from_mail, message);
+    const isSpam = await checkForSpam(req.ip, req.headers["user-agent"], req.headers.referer, name, email, message);
     if (isSpam) {
       throw new Error("Message rejected as spam.");
     }
@@ -26,9 +26,9 @@ export default async function Send(req: any, res: any): Promise<void> {
     const cleanMessage = DOMPurify.sanitize(message);
 
     const mailBody = {
-      subject: `${from_name} via SRC Contact`,
-      sender: { email: "noreply@sudburyrowingclub.org.uk", name: from_name },
-      replyTo: { email: from_mail, name: from_name },
+      subject: `${name} via SRC Contact`,
+      sender: { email: "noreply@sudburyrowingclub.org.uk", name },
+      replyTo: { email, name },
       to: [{ name: addressee.name, email: addressee.email }],
       htmlContent:
         `<html><body>${snarkdown(cleanMessage)}<hr/><small><p>${footerText}</p></small></body></html>`,

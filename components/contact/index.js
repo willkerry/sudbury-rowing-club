@@ -1,16 +1,21 @@
-/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-console */
 import PropTypes from "prop-types";
 import { Form, Field } from "react-final-form";
 import { FORM_ERROR } from "final-form";
 import axios from "axios";
 import TextareaAutosize from "react-textarea-autosize";
 import getRandomName from "@/lib/random-name";
-import Obfuscate from "react-obfuscate";
-import { AlertCircle } from "react-feather";
-import Button from "../stour/button";
-import Center from "../stour/center";
-import Note from "../stour/note";
+import Input from "@/components/contact/fields/input";
+import Select from "@/components/contact/fields/select";
+import Error from "@/components/contact/views/error";
+import Success from "@/components/contact/views/success";
+import Button from "@/components/stour/button";
+import Center from "@/components/stour/center";
+import DisabledOverlay from "@/components/contact/views/disabledOverlay";
+
+const mailRegex =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 async function onSubmit(values) {
   await axios
@@ -25,10 +30,14 @@ async function onSubmit(values) {
     success: true,
   };
 }
-const requiredField = (value) => (value ? undefined : "Required");
+
 export default function ContactForm({ contacts, initialValues, disabled }) {
   const localDisabled = disabled;
   const randomName = getRandomName();
+  const optionArray = contacts.map((contact) => ({
+    value: contact._id,
+    label: `${contact.name} (${contact.role})`,
+  }));
   const submitHandler = async (values) => {
     try {
       await onSubmit(values);
@@ -48,121 +57,78 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
         submitSucceeded,
         submitFailed,
         submitError,
-        valid,
+        hasValidationErrors,
         values,
-        combinedDisabled = submitting ||
-          localDisabled ||
-          submitSucceeded ||
-          submitFailed,
+        combinedDisabled = submitting || localDisabled || submitSucceeded,
       }) => (
         <>
           {submitFailed && (
-            <Note label="Error" type="error">
-              We were unable to send your message. Please try again later or{" "}
-              <Obfuscate
-                email="enquiries@sudburyrowingclub.org.uk"
-                headers={{
-                  body: values.message,
-                }}
-              >
-                email us
-              </Obfuscate>
-              . <code>{submitError}</code>
-            </Note>
+            <Error error={submitError} message={values.message} />
           )}
-          {submitSucceeded && (
-            <Note label="Message sent" type="success">
-              Thank you for your message. We will get back to you as soon as
-              possible.
-            </Note>
-          )}
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-6">
-            {/*
-             * Recipient select
-             */}
-            <div className="col-span-2">
-              <label htmlFor="to">Who would you like to contact?</label>
-              <Field
-                component="select"
-                name="to"
-                id="to"
-                defaultValue="default"
-                required
-                validate={requiredField}
-                disabled={combinedDisabled}
-              >
-                <option disabled value="default">
-                  Select an officer
-                </option>
-                {contacts.map((contact) => (
-                  <option key={contact._id} value={contact._id}>
-                    {contact.role} ({contact.name})
-                  </option>
-                ))}
-              </Field>
-            </div>
-            {/*
-             * From name
-             */}
-            <div className="col-span-2 sm:col-span-1">
-              <label htmlFor="from-name">Your name</label>
-              <Field
-                id="from-name"
-                name="from_name"
-                type="text"
-                component="input"
-                placeholder={randomName[0]}
-                required
-                validate={requiredField}
-                disabled={combinedDisabled}
-              />
-            </div>
-            {/*
-             * From email
-             */}
-            <div className="col-span-2 sm:col-span-1">
-              <label htmlFor="from-email">Your email address</label>
-              <Field
-                name="from_mail"
-                id="from-mail"
-                type="email"
-                component="input"
-                placeholder={randomName[1]}
-                required
-                validate={requiredField}
-                disabled={combinedDisabled}
-              />
-            </div>
-            {/*
-             * Message
-             */}
-            <div className="col-span-2">
-              <label htmlFor="message">Your message</label>
-              <Field name="message" minRows={3} validate={requiredField}>
-                {({ input }) => (
-                  <div>
-                    <TextareaAutosize
-                      id="message"
-                      minRows={3}
-                      required
-                      name={input.name}
-                      value={input.value}
-                      onChange={input.onChange}
-                      disabled={combinedDisabled}
-                    />
-                  </div>
-                )}
-              </Field>
-            </div>
-
+          {submitSucceeded && <Success />}
+          <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit}>
+            <Field defaultValue="default" name="to">
+              {({ input, meta }) => (
+                <Select
+                  disabled={combinedDisabled}
+                  id="to"
+                  input={input}
+                  label="Who would you like to contact?"
+                  meta={meta}
+                  options={optionArray}
+                  pristine={pristine}
+                />
+              )}
+            </Field>
+            <Field name="name">
+              {({ input, meta }) => (
+                <Input
+                  disabled={combinedDisabled}
+                  id="name"
+                  input={input}
+                  label="Your name"
+                  meta={meta}
+                  placeholder={randomName[0]}
+                  type="text"
+                />
+              )}
+            </Field>
+            <Field name="email">
+              {({ input, meta }) => (
+                <Input
+                  disabled={combinedDisabled}
+                  id="email"
+                  input={input}
+                  label="Your email"
+                  meta={meta}
+                  placeholder={randomName[1]}
+                  type="email"
+                />
+              )}
+            </Field>
+            <Field name="message">
+              {({ input, meta }) => (
+                <div className="col-span-2">
+                  <label htmlFor="message">Your message</label>
+                  <TextareaAutosize
+                    {...input}
+                    className={meta.invalid && meta.touched ? "invalid" : ""}
+                    disabled={combinedDisabled}
+                    id="message"
+                    minRows={3}
+                    required
+                  />
+                </div>
+              )}
+            </Field>
             <Center className="col-span-2">
               <Button
                 as="button"
+                disabled={pristine || combinedDisabled || hasValidationErrors}
                 id="message"
-                type="submit"
-                size="large"
-                disabled={pristine || combinedDisabled || !valid}
                 isLoading={submitting}
+                size="large"
+                type="submit"
               >
                 Send
               </Button>
@@ -170,26 +136,19 @@ export default function ContactForm({ contacts, initialValues, disabled }) {
           </form>
         </>
       )}
+      validate={(values) => {
+        const errors = {};
+        if (values.to === "default") errors.to = "Required";
+        if (!values.name) errors.name = "Required";
+        if (!values.email) errors.email = "Required";
+        if (!mailRegex.test(values.email))
+          errors.email = "Invalid email address";
+        if (!values.message) errors.message = "Required";
+        return Object.keys(errors).length ? errors : undefined;
+      }}
     />
   );
-  if (localDisabled)
-    return (
-      <div className="relative">
-        <div className="absolute top-0 z-10 flex flex-col items-center justify-center w-full h-full gap-2">
-          <p className="flex items-center gap-2 text-lg font-semibold text-gray-600">
-            <AlertCircle className="text-yellow-500" />
-            Contact form temporarily disabled
-          </p>
-          <div className="prose">
-            <p>
-              Contact us on{" "}
-              <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> instead.
-            </p>
-          </div>
-        </div>
-        <div className="blur-[2px] select-none">{form}</div>
-      </div>
-    );
+  if (localDisabled) return <DisabledOverlay form={form} />;
   return form;
 }
 
@@ -203,8 +162,8 @@ ContactForm.propTypes = {
   ).isRequired,
   initialValues: PropTypes.shape({
     to: PropTypes.string,
-    from_name: PropTypes.string,
-    from_mail: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
     message: PropTypes.string,
   }),
   disabled: PropTypes.bool,
@@ -213,8 +172,8 @@ ContactForm.propTypes = {
 ContactForm.defaultProps = {
   initialValues: {
     to: "",
-    from_name: "",
-    from_mail: "",
+    name: "",
+    email: "",
     message: "",
   },
   disabled: false,

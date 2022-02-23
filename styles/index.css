@@ -35,8 +35,16 @@ textarea:disabled {
   @apply text-gray-300 cursor-not-allowed bg-gray-50 hover:ring-0 placeholder:text-gray-300 hover:border-inherit;
 }
 
-input:user-invalid {
-  @apply border-red-500 ring-red-200 ring-2;
+input.invalid,
+select.invalid,
+textarea.invalid {
+  @apply border-red-500 cursor-pointer ring-red-200 ring-2 hover:ring-4 focus:ring-4;
+}
+
+input:invalid:before {
+  position: absolute;
+  content: "✖";
+  padding-left: 5px;
 }
 
 label {

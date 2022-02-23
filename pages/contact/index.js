@@ -20,7 +20,6 @@ export const getStaticProps = async () => {
       }
     `
   );
-
   return {
     props: {
       officers,
@@ -34,15 +33,15 @@ export default function Contact({ officers }) {
   return (
     <Layout>
       <NextSeo
-        title="Contact Sudbury Rowing Club"
         description="Get in touch"
         openGraph={{
           title: "Contact Sudbury Rowing Club",
           description: "Get in touch",
           images: [{ url: `${BASE_URL}/assets/og/contact.png` }],
         }}
+        title="Contact Sudbury Rowing Club"
       />
-      <HeroTitle title="Contact a club officer" prose />
+      <HeroTitle prose title="Contact a club officer" />
       <Container className="max-w-lg py-12">
         <div className="pb-10 mx-auto prose">
           <p>
@@ -77,18 +76,3 @@ Contact.propTypes = {
     })
   ).isRequired,
 };
-
-// export const getStaticProps = async () => {
-//   const data = await sanityClient.fetch(
-//     groq`
-//       *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
-//         _id,
-//         name,
-//         role
-//       }
-//     `
-//   );
-//   return {
-//     props: { officers: data },
-//   };
-// };

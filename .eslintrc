@@ -45,7 +45,9 @@
       }
     ],
     "no-underscore-dangle": 0,
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-sort-props": 1,
+    "no-use-before-define": ["error", { "functions": false, "classes": false }]
     //     "prefer-const": 2,
     //     "array-callback-return": "error",
     //     "default-case": ["error", { "commentPattern": "^no default$" }],
