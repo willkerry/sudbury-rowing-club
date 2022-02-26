@@ -89,6 +89,11 @@ const config = {
         destination: "/contact/how-to-find-us",
         permanent: true,
       },
+      {
+        source: "/learn2row",
+        destination: "/join",
+        permanent: true,
+      },
 
       // Redirects for old news permalinks
       // Do not manually edit below this point
