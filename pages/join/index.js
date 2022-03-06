@@ -149,13 +149,13 @@ export default function Index() {
   return (
     <Layout>
       <NextSeo
-        title="Start rowing at Sudbury Rowing Club"
         description="Everything you need to know about getting rowing."
         openGraph={{
           title: "Start rowing at Sudbury Rowing Club",
           description: "Everything you need to know about getting rowing.",
           images: [{ url: `${BASE_URL}/assets/og/join.png` }],
         }}
+        title="Start rowing at Sudbury Rowing Club"
       />
       {/* Big hero */}
       <Container className="py-16 text-center text-gray-900 sm:py-24" id="hero">
@@ -169,10 +169,10 @@ export default function Index() {
           style={{ maxWidth: 240, maxHeight: 160 }}
         >
           <Image
-            src="/assets/join/l2r.jpg"
             alt="Trainee rowers on the water during on learn to row course."
-            width={240}
             height={160}
+            src="/assets/join/l2r.jpg"
+            width={240}
           />
         </div>
         <div className="max-w-xl mx-auto mt-12 mb-16 prose text-left">
@@ -194,8 +194,8 @@ export default function Index() {
       <div className="my-24" id="l2r">
         <Container>
           <SectionHeading
-            title="Getting started in rowing couldn’t be easier"
             label="Our Learn to Row course"
+            title="Getting started in rowing couldn’t be easier"
           />
           <div className="grid gap-12 md:grid-cols-2">
             <div>
@@ -238,8 +238,8 @@ export default function Index() {
       </div>
       <Container className="text-gray-800" id="overview">
         <SectionHeading
-          title="What can you do at Sudbury Rowing Club?"
           label="What to expect"
+          title="What can you do at Sudbury Rowing Club?"
         />
         <div className="gap-16 my-24 sm:grid sm:grid-cols-12">
           <div className="hidden sm:col-span-4 sm:block">
@@ -269,14 +269,14 @@ function JoinCTA() {
         <span className="block h-6" />
         <div className="flex justify-center">
           <Button
-            size="large"
-            variant="secondary"
             as={ScrollLink}
-            to="l2r"
-            spy
-            smooth
-            offset={-30}
             duration={300}
+            offset={-30}
+            size="large"
+            smooth
+            spy
+            to="l2r"
+            variant="secondary"
           >
             Learn to Row
           </Button>
@@ -289,13 +289,13 @@ function JoinCTA() {
           </span>
           <br />
           <span className="text-gray-500">
-            Contact the club captain for more information.
+            Contact the a vice-captain for more information.
           </span>
         </p>
 
         <span className="block h-6" />
         <div className="flex justify-center">
-          <Button size="large" href="/contact" as={Link}>
+          <Button as={Link} href="/contact" size="large">
             Contact the Captain
           </Button>
         </div>
@@ -356,14 +356,14 @@ function OverviewContent() {
   return (
     <div className="col-span-8 prose">
       {overview.map(({ title, content, index, image }) => (
-        <div key={index} id={title} className="">
+        <div key={index} id={title}>
           {image && (
             <div className="flex overflow-hidden rounded shadow">
               <Image
-                src={image.src}
                 alt={image.alt}
-                width={635}
                 height={(635 / image.width) * image.height}
+                src={image.src}
+                width={635}
               />
             </div>
           )}
@@ -387,10 +387,10 @@ function OverviewSidebar() {
           <ScrollLink
             activeClass="!text-blue-500 font-semibold"
             className="font-medium text-gray-700 transition hover:text-gray-900 hover:cursor-pointer"
-            spy
-            smooth
-            offset={-30}
             duration={200}
+            offset={-30}
+            smooth
+            spy
             to={title}
           >
             {title}
@@ -411,7 +411,7 @@ function L2RCallToAction() {
     <div className="grid gap-6 my-20 text-gray-700 sm:gap-12 md:grid-cols-2 sm:my-36">
       <div className={cn("border-green-300 bg-green-50", classes)}>
         Send your application form now
-        <Button as={Link} variant="success" href="/join/apply">
+        <Button as={Link} href="/join/apply" variant="success">
           Apply
         </Button>
       </div>
