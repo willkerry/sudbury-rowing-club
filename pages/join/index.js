@@ -289,7 +289,7 @@ function JoinCTA() {
           </span>
           <br />
           <span className="text-gray-500">
-            Contact the a vice-captain for more information.
+            Contact a vice-captain for more information.
           </span>
         </p>
 
