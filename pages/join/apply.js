@@ -7,9 +7,13 @@ export default function LearnToRowApplicationForm() {
   return (
     <TextPage title="Apply for Learn to Row" ogImage="/assets/og/apply.png">
       <Note label="Course Dates" type="success" size="small">
-        Our next two Learn to Row courses will run 13:00 to 16:00 on Saturday
-        afternoons from, Course 1: 12 Mar to 2 Apr 2022, and course 2: 23 April
-        to 14 May 2022.
+        We’re running two Learn to Row courses this Spring. Both run 13:00 to
+        16:00 on Saturday afternoons.
+        <ul>
+          <li>Course 1: 12 Mar to 2 Apr 2022</li>
+          <li>Course 2: 23 Apr to 14 May 2022</li>
+        </ul>{" "}
+        Please <Link href="join/apply">apply now.</Link>
       </Note>
 
       <p>

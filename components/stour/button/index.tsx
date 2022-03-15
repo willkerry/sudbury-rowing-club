@@ -41,11 +41,11 @@ const VARIANT = {
   brand:
     "!text-white border-blue-700 bg-blue-700 hover:!text-blue-700 hover:bg-white ring-blue-200",
   success:
-    "text-white border-green-600 bg-green-600 hover:text-green-700 hover:bg-white ring-green-200",
+    "!text-white border-green-600 bg-green-600 hover:!text-green-700 hover:bg-white ring-green-200",
   error:
-    "text-white !text-white border-red-600 bg-red-600 hover:!text-red-700 hover:bg-white ring-red-200",
+    "!text-white border-red-600 bg-red-600 hover:!text-red-700 hover:bg-white ring-red-200",
   warning:
-    "text-white !text-white border-yellow-600 bg-yellow-600 hover:!text-yellow-700 hover:bg-white ring-yellow-200",
+    "!text-white border-yellow-600 bg-yellow-600 hover:!text-yellow-700 hover:bg-white ring-yellow-200",
 };
 const disabledClassNames =
   "text-gray-300 bg-gray-100 cursor-not-allowed focus:ring-none hover:text-inherit hover:border-inherit";

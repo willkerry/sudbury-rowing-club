@@ -209,10 +209,13 @@ export default function Index() {
               </div>
               <div className="max-w-md">
                 <Note label="Course Dates" type="success">
-                  Our next two Learn to Row courses will run 13:00 to 16:00 on
-                  Saturday afternoons from, Course 1: 12 Mar to 2 Apr 2022, and
-                  course 2: 23 April to 14 May 2022. Please{" "}
-                  <Link href="join/apply">apply now.</Link>
+                  We’re running two Learn to Row courses this Spring. Both run
+                  13:00 to 16:00 on Saturday afternoons.
+                  <ul>
+                    <li>Course 1: 12 Mar to 2 Apr 2022</li>
+                    <li>Course 2: 23 Apr to 14 May 2022</li>
+                  </ul>{" "}
+                  Please <Link href="join/apply">apply now.</Link>
                 </Note>
               </div>
             </div>
@@ -296,7 +299,7 @@ function JoinCTA() {
         <span className="block h-6" />
         <div className="flex justify-center">
           <Button as={Link} href="/contact" size="large">
-            Contact the Captain
+            Contact a Vice-Captain
           </Button>
         </div>
       </div>
