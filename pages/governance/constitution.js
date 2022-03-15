@@ -1,4 +1,5 @@
 import TextPage from "@/components/layouts/text-page";
+import Logo from "@/components/logo";
 
 function Highlight(props) {
   return (
@@ -9,7 +10,12 @@ function Highlight(props) {
   );
 }
 function BlockHighlight(props) {
-  return <div {...props} className="pl-4 border-l-4 border-green-300" />;
+  return (
+    <div
+      {...props}
+      className="pl-2 pr-2 border-l-2 border-green-300 rounded bg-green-50"
+    />
+  );
 }
 export default function Constitution() {
   return (
@@ -405,8 +411,16 @@ export default function Constitution() {
       </p>
       <h2>26. Declaration</h2>
       <p>Each member upon joining shall sign the following declaration:</p>
-      <blockquote>
-        <p>Name: </p>
+      <div
+        className="px-24 pb-12 font-serif text-xl text-black border rounded shadow-xl"
+      >
+        <p className="flex justify-center">
+          <Logo className="w-1/2" />
+        </p>
+        <p>
+          Name:{" "}
+          <span className="inline-block -mb-1 border-b border-black w-36" />
+        </p>
         <p>
           Upon acceptance into membership of the Sudbury Rowing Club I
           understand that rowing is undertaken at my own risk.
@@ -417,18 +431,31 @@ export default function Constitution() {
           <span className="px-px font-semibold">*</span>
         </p>
         <p>I also confirm that I am able to swim a minimum of 50 metres.</p>
-        <p>Signed:</p>
-        <p>Parent/Guardian (if under 18):</p>
         <p>
-          <span className="px-px font-semibold">*</span>Should a medical
-          condition exist, this will not necessarily preclude you from
-          membership/participation, but it must be declared.
+          Signed:{" "}
+          <span className="inline-block -mb-1 border-b border-black w-36" />
         </p>
         <p>
-          Should you be in any doubt, advice should be sought from your family
-          doctor.
+          Parent/Guardian (if under 18):{" "}
+          <span className="inline-block -mb-1 border-b border-black w-36" />
         </p>
-      </blockquote>
+        <div className="text-lg">
+          <p>
+            <span className="px-px font-semibold">*</span>
+            <em>
+              Should a medical condition exist, this will not necessarily
+              preclude you from membership/participation, but it must be
+              declared.
+            </em>
+          </p>
+          <p>
+            <em>
+              Should you be in any doubt, advice should be sought from your
+              family doctor.
+            </em>
+          </p>
+        </div>
+      </div>
     </TextPage>
   );
 }
