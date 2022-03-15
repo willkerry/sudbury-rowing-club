@@ -11,23 +11,23 @@ export default function Custom404() {
       <Head>
         <title>Error 404</title>
       </Head>
-      <HeroTitle prose title="Page not found." transparent />
+      <HeroTitle prose title="404 Page not found." transparent />
 
       <Container className="mt-12 prose max-w-prose">
         <p>
-          Sorry, we know link rot is really annoying, but this page isn’t here
-          any more.
+          The page you are looking for might have been removed, or might have
+          just moved.
         </p>
         <div className="flex flex-col gap-4">
           <Button
             as="a"
+            href="https://www.google.com/search?q=site%3Asudburyrowingclub.org.uk"
             icon={<Search />}
             variant="brand"
-            href="https://www.google.com/search?q=site%3Asudburyrowingclub.org.uk"
           >
             Search our site with Google
           </Button>
-          <Button as="a" icon={<Home />} href="/">
+          <Button as="a" href="/" icon={<Home />}>
             Return to the homepage
           </Button>
         </div>

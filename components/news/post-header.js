@@ -14,30 +14,33 @@ export default function PostHeader({
   caption,
   lqip,
 }) {
+  const captionBlock = (
+    <figcaption className="px-3 py-2 text-xs font-medium bg-bottom bg-cover">
+      {caption}
+    </figcaption>
+  );
   if (featuredImage && featuredImage.aspectRatio > 1)
     return (
       <>
         <Heading date={date} title={title} center />
         <div className="mb-8 md:mb-16 sm:mx-0">
-          <figure className="relative flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
+          <figure className="relative flex flex-col max-w-3xl mx-auto overflow-hidden text-gray-600 bg-gray-200 rounded">
+            <style jsx>{`
+              figure {
+                background-color: ${featuredImage.background};
+                color: ${featuredImage.foreground};
+              }
+            `}</style>
             <Image
               src={urlFor(featuredImage._id).width(1536).fit("max").url()}
               alt={alt}
               width={768}
               height={768 / featuredImage.aspectRatio}
               quality={50}
-              className="bg-gray-50"
               placeholder="blur"
               blurDataURL={lqip}
             />
-            {caption && (
-              <figcaption
-                className="px-3 py-2 text-xs font-medium text-white bg-gray-500 bg-bottom bg-cover drop-shadow"
-                style={{ backgroundImage: `url(${lqip})` }}
-              >
-                {caption}
-              </figcaption>
-            )}
+            {caption && captionBlock}
           </figure>
         </div>
       </>
@@ -52,10 +55,16 @@ export default function PostHeader({
           <PostTitle>{title}</PostTitle>
         </div>
         <div className="relative flex-none">
-          <div
-            className="flex overflow-hidden rounded shadow-lg"
+          <figure
+            className="flex flex-col overflow-hidden rounded shadow-lg"
             style={{ maxWidth: 512 * featuredImage.aspectRatio }}
           >
+            <style jsx>{`
+              figure {
+                background-color: ${featuredImage.background};
+                color: ${featuredImage.foreground};
+              }
+            `}</style>
             <Image
               src={urlFor(featuredImage._id).height(1024).fit("max").url()}
               alt={title}
@@ -66,7 +75,8 @@ export default function PostHeader({
               placeholder="blur"
               blurDataURL={lqip}
             />
-          </div>
+            {caption && captionBlock}
+          </figure>
         </div>
       </div>
     );
@@ -78,6 +88,8 @@ PostHeader.propTypes = {
   featuredImage: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     aspectRatio: PropTypes.number.isRequired,
+    background: PropTypes.string,
+    foreground: PropTypes.string,
   }),
   date: PropTypes.string.isRequired,
   alt: PropTypes.string,

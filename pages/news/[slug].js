@@ -74,6 +74,8 @@ export default function Post({ post }) {
               alt={post.featuredImage && post.featuredImage.alt}
               caption={post.featuredImage && post.featuredImage.caption}
               lqip={post.featuredImage && post.featuredImage.lqip}
+              foreground={post.featuredImage && post.featuredImage.foreground}
+              background={post.featuredImage && post.featuredImage.background}
             />
             {post.body && <PostBody content={post.body} />}
 
@@ -111,6 +113,8 @@ Post.propTypes = {
       lqip: PropTypes.string,
       aspectRatio: PropTypes.number,
       caption: PropTypes.string,
+      background: PropTypes.string,
+      foreground: PropTypes.string,
     }),
     date: PropTypes.string.isRequired,
     body: PropTypes.arrayOf(PropTypes.object),
