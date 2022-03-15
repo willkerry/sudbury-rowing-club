@@ -7,36 +7,32 @@ import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Note from "@/components/stour/note";
-import { BASE_URL } from "@/lib/constants";
+import {
+  BASE_URL,
+  CLUB_LOCATION,
+  REGATTA_LOCATION,
+  MAPPING_APIS,
+  CLUB_LOCATION_STRING,
+  REGATTA_LOCATION_STRING,
+} from "@/lib/constants";
 
-const apis = {
-  google: "https://www.google.com/maps/search/?api=1&query=",
-  waze: "https://waze.com/ul?ll=",
-  apple: "https://maps.apple.com/?address=",
-};
-const clubLocation = [52.033997, 0.727634];
-const regattaLocation = [52.035273, 0.730891];
-const locationStrings = [
-  `${clubLocation[0]},${clubLocation[1]}`,
-  `${regattaLocation[0]},${regattaLocation[1]}`,
-];
 const openInApp = [
   {
     name: "Google Maps",
-    href: `${apis.google}${locationStrings[0]}`,
-    hrefregatta: `${apis.google}${locationStrings[1]}`,
+    href: `${MAPPING_APIS.google}${CLUB_LOCATION_STRING}`,
+    hrefregatta: `${MAPPING_APIS.google}${REGATTA_LOCATION_STRING}`,
     icon: "/assets/contact/how-to-find-us/google-maps.png",
   },
   {
     name: "Waze",
-    href: `${apis.waze}${locationStrings[0]}`,
-    hrefregatta: `${apis.waze}${locationStrings[1]}`,
+    href: `${MAPPING_APIS.waze}${CLUB_LOCATION_STRING}`,
+    hrefregatta: `${MAPPING_APIS.waze}${REGATTA_LOCATION_STRING}`,
     icon: "/assets/contact/how-to-find-us/waze.png",
   },
   {
     name: "Apple Maps",
-    href: `${apis.apple}${locationStrings[0]}`,
-    hrefregatta: `${apis.apple}${locationStrings[1]}`,
+    href: `${MAPPING_APIS.apple}${CLUB_LOCATION_STRING}`,
+    hrefregatta: `${MAPPING_APIS.apple}${REGATTA_LOCATION_STRING}`,
     icon: "/assets/contact/how-to-find-us/apple-maps.png",
   },
 ];
@@ -50,13 +46,13 @@ export default function FindUs() {
   return (
     <Layout>
       <NextSeo
-        title="How to find us"
         description="Directions to our club and to our regatta"
         openGraph={{
           title: "How to find us",
           description: "Directions to our club and to our regatta",
           imafes: [{ url: `${BASE_URL}/assets/og/how-to-find-us.png` }],
         }}
+        title="How to find us"
       />
       <HeroTitle title="How to find us" />
 
@@ -65,18 +61,18 @@ export default function FindUs() {
           <div>
             <div className="relative z-10 flex overflow-hidden border rounded">
               <Map
-                provider={maptilerProvider}
+                attribution={false}
+                defaultCenter={CLUB_LOCATION}
+                defaultZoom={14}
                 dprs={[1, 2]}
                 height={565}
-                defaultCenter={clubLocation}
-                defaultZoom={14}
-                attribution={false}
+                provider={maptilerProvider}
               >
-                <Marker width={50} anchor={clubLocation} color="#0070F3" />
+                <Marker anchor={CLUB_LOCATION} color="#0070F3" width={50} />
                 <Marker
-                  width={30}
-                  anchor={regattaLocation}
+                  anchor={REGATTA_LOCATION}
                   color="rgb(16, 185, 129)"
+                  width={30}
                 />
               </Map>
             </div>
@@ -114,20 +110,20 @@ export default function FindUs() {
                 <div className="flex my-4 space-x-3 text-sm">
                   {openInApp.map((item) => (
                     <a
-                      className="flex p-px bg-gray-200 rounded-lg"
                       key={item.name}
+                      className="flex p-px bg-gray-200 rounded-lg"
                       href={item.href}
-                      target="_blank"
                       rel="noreferrer"
+                      target="_blank"
                       title={`Open in ${item.name}`}
                     >
                       <Image
-                        src={item.icon}
                         alt={item.name}
-                        height={24}
-                        width={24}
                         className="border rounded-lg"
+                        height={24}
                         layout="fixed"
+                        src={item.icon}
+                        width={24}
                       />
                     </a>
                   ))}
@@ -150,20 +146,20 @@ export default function FindUs() {
                 <div className="flex my-4 space-x-3 text-sm">
                   {openInApp.map((item) => (
                     <a
-                      className="flex p-px bg-gray-200 rounded-lg"
                       key={item.name}
+                      className="flex p-px bg-gray-200 rounded-lg"
                       href={item.hrefregatta}
-                      target="_blank"
                       rel="noreferrer"
+                      target="_blank"
                       title={`Open in ${item.name}`}
                     >
                       <Image
-                        src={item.icon}
                         alt={item.name}
-                        height={24}
-                        width={24}
                         className="border rounded-lg"
+                        height={24}
                         layout="fixed"
+                        src={item.icon}
+                        width={24}
                       />
                     </a>
                   ))}
