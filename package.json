@@ -63,7 +63,7 @@
     "eslint-plugin-next": "latest",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "postcss": "^8.4.6",
+    "postcss": "^8.4.11",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.23"
   },
