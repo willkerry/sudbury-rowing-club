@@ -135,6 +135,10 @@ export const members = [
     href: "/members",
   },
   {
+    name: "Minutes",
+    href: "/governance/minutes",
+  },
+  {
     name: "Kit",
     href: "/members/kit",
   },

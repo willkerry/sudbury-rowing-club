@@ -168,13 +168,13 @@ export default function Governance({
   return (
     <Layout>
       <NextSeo
-        title="Governance"
         openGraph={{
           title: "Governance",
           images: [{ url: `${BASE_URL}/assets/og/goverance.png` }],
         }}
+        title="Governance"
       />
-      <HeroTitle title="Governance" prose />
+      <HeroTitle prose title="Governance" />
       <ScrollComponent
         items={[
           { to: "officers", name: "Officers" },
@@ -270,6 +270,8 @@ export default function Governance({
         <section id="committees">
           <SectionTitle>Committees</SectionTitle>
 
+          <Link href="">Minutes</Link>
+
           <GovGrid>
             {committees.map((committee) => (
               <div key={committee._id}>
@@ -306,10 +308,10 @@ export default function Governance({
             <div className="">
               <SubTitle>Vice-Presidents</SubTitle>
               <Description>
-                Vice-presidents are elected each year at the AGM.
+                New vice-presidents may be elected each year at the AGM.
               </Description>
               <Spacer />
-              <ul className="text-sm text-gray-600">
+              <ul className="space-y-1 text-sm font-medium text-gray-900 ">
                 {vicePresidents !== null &&
                   vicePresidents.map((vicePresident) => (
                     <li key={vicePresident._id}>
@@ -321,7 +323,11 @@ export default function Governance({
 
             <div>
               <SubTitle>Trustees</SubTitle>
-              <ul className="text-sm text-gray-600">
+              <Description>
+                Trustees are responsible for, but not in control of, the club.
+              </Description>
+              <Spacer />
+              <ul className="space-y-1 text-sm font-medium text-gray-900 ">
                 {trustees !== null &&
                   trustees.map((trustee) => (
                     <li key={trustee._id}>
@@ -333,7 +339,7 @@ export default function Governance({
           </GovGrid>
         </section>
 
-        <section id="documents" className="py-12">
+        <section className="py-12" id="documents">
           <SectionTitle>Documents</SectionTitle>
           {documents.map((group) => (
             <div key={group._key} className="mt-6">
@@ -342,13 +348,13 @@ export default function Governance({
                 {group.resources.map((doc) => (
                   <li key={doc._key}>
                     <Link
-                      href={doc.url ? doc.url : `${doc.file}?dl=`}
                       download={doc.fileOrLink === "Upload a file"}
                       external={
                         doc.fileOrLink === "Enter a link" &&
                         !doc.url.includes(BASE_URL) &&
                         doc.url.includes("http")
                       }
+                      href={doc.url ? doc.url : `${doc.file}?dl=`}
                     >
                       {doc.name}
                     </Link>
