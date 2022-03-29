@@ -269,9 +269,6 @@ export default function Governance({
         </section>
         <section id="committees">
           <SectionTitle>Committees</SectionTitle>
-
-          <Link href="">Minutes</Link>
-
           <GovGrid>
             {committees.map((committee) => (
               <div key={committee._id}>
