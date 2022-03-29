@@ -19,6 +19,7 @@ import safetyStatus from "./safety-status";
 import regattaSettings from "./regattaSettings";
 import quote from "./quote";
 import note from "./note";
+import minutes from "./minutes";
 import siteSettings from "./siteSettings";
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -34,6 +35,7 @@ export default createSchema({
     figure,
     quote,
     committees,
+    minutes,
     vicePresidents,
     trustees,
     safety,
