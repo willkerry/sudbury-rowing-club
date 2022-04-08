@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@badrap/bar-of-progress": "^0.1.2",
-    "@fontsource/jetbrains-mono": "^4.5.3",
+    "@fontsource/jetbrains-mono": "^4.5.5",
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.6",
     "@next/bundle-analyzer": "^12.1.0",
@@ -40,7 +40,7 @@
     "sib-api-v3-sdk": "^8.3.0",
     "smartquotes": "^2.3.2",
     "snarkdown": "^2.0.0",
-    "superagent": "^7.1.1",
+    "superagent": "^7.1.2",
     "swr": "^1.2.2",
     "typescript": "^4.6.2"
   },
@@ -62,7 +62,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-next": "latest",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "postcss": "^8.4.12",
     "prettier": "^2.6.0",
     "tailwindcss": "^3.0.23"
