@@ -31,7 +31,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-feather": "^2.0.9",
-    "react-final-form": "^6.5.7",
+    "react-final-form": "^6.5.9",
     "react-obfuscate": "^3.6.8",
     "react-scroll": "^1.8.6",
     "react-textarea-autosize": "^8.3.3",
