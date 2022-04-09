@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent, ReactNode } from "react";
 import cn from "classnames";
 import { Slot } from "@radix-ui/react-slot";
 import { type Icon as RFIcon } from "react-feather";
@@ -13,7 +13,7 @@ type ButtonProps = {
   shadow?: boolean;
   disabled: boolean;
   className?: string;
-  icon?: RFIcon;
+  icon?: ReactNode;
   isLoading?: boolean;
 };
 
