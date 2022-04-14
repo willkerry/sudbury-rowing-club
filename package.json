@@ -12,7 +12,7 @@
     "@fontsource/jetbrains-mono": "^4.5.5",
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.6",
-    "@next/bundle-analyzer": "^12.1.4",
+    "@next/bundle-analyzer": "^12.1.5",
     "@radix-ui/react-slot": "^0.1.2",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
