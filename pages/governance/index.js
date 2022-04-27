@@ -348,8 +348,8 @@ export default function Governance({
                       download={doc.fileOrLink === "Upload a file"}
                       external={
                         doc.fileOrLink === "Enter a link" &&
-                        !doc.url.includes(BASE_URL) &&
-                        doc.url.includes("http")
+                        !doc?.url?.includes(BASE_URL) &&
+                        doc?.url?.includes("http")
                       }
                       href={doc.url ? doc.url : `${doc.file}?dl=`}
                     >
