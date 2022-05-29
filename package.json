@@ -36,7 +36,7 @@
     "react-scroll": "^1.8.7",
     "react-textarea-autosize": "^8.3.4",
     "react-youtube": "^9.0.1",
-    "sharp": "^0.30.4",
+    "sharp": "^0.30.5",
     "sib-api-v3-sdk": "^8.3.0",
     "smartquotes": "^2.3.2",
     "snarkdown": "^2.0.0",
