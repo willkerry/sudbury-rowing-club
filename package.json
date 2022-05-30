@@ -7,26 +7,27 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "sanity start",
-    "build": "sanity build public -y"
+    "build": "sanity build public -y",
+    "run-upgrade": "sanity upgrade"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
     "@babel/core": "^7.17.5",
-    "@sanity/base": "^2.29.2",
+    "@sanity/base": "^2.30.0",
     "@sanity/client": "^3.3.0",
-    "@sanity/color": "^2.1.8",
+    "@sanity/color": "^2.1.11",
     "@sanity/components": "^2.14.0",
-    "@sanity/core": "^2.28.1",
-    "@sanity/dashboard": "^2.29.2",
-    "@sanity/default-layout": "^2.29.2",
-    "@sanity/default-login": "^2.29.2",
-    "@sanity/desk-tool": "^2.29.2",
+    "@sanity/core": "^2.30.0",
+    "@sanity/dashboard": "^2.30.0",
+    "@sanity/default-layout": "^2.30.0",
+    "@sanity/default-login": "^2.30.0",
+    "@sanity/desk-tool": "^2.30.0",
     "@sanity/icons": "^1.2.5",
     "@sanity/ui": "^0.33.10",
     "@sanity/uuid": "^3.0.1",
-    "@sanity/vision": "^2.29.2",
+    "@sanity/vision": "^2.30.0",
     "caniuse-lite": "^1.0.30000697",
     "prop-types": "^15.7",
     "react": "16",
@@ -42,6 +43,6 @@
     "webpack": "^5.69.1"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.28.0"
+    "@sanity/cli": "^2.30.0"
   }
 }
