@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import dynamic from "next/dynamic";
 import YouTube from "react-youtube";
 
 type Props = {
@@ -64,7 +63,7 @@ const Player = ({ youTubeId, youTubeStart }: Props) => {
                   start: youTubeStart,
                 },
               }}
-              containerClassName="w-full aspect-w-16 aspect-h-9"
+              iframeClassName="w-full aspect-w-16 aspect-h-9"
               className="z-50 bg-white rounded-lg shadow-xl"
             />
           </div>
