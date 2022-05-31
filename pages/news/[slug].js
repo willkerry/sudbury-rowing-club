@@ -6,7 +6,6 @@ import Container from "@/components/layouts/container";
 import PostBody from "@/components/news/post-body";
 import PostHeader from "@/components/news/post-header";
 import Layout from "@/components/layouts/layout";
-import PostTitle from "@/components/news/post-title";
 import {
   BASE_URL,
   LOGO,
@@ -36,7 +35,7 @@ export default function Post({ post }) {
     <Layout>
       <Container>
         {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
+          <h1>Loading…</h1>
         ) : (
           <article className="mb-32">
             <NextSeo

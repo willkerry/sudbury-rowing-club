@@ -27,7 +27,7 @@ function Introduction({ description, images }) {
           <Text portableText className="mx-auto">
             {description}
           </Text>
-          <CommitteeSignature className="w-48 py-16 mx-auto sm:w-min sm:max-w-sm" />
+          <CommitteeSignature className="w-48 py-16 mx-auto" />
           <span className="sr-only">The Committee</span>
         </div>
         <Sponsors />
@@ -57,7 +57,7 @@ export default function Index({ news, landingPage }) {
   );
   const latestNews = (
     <Container>
-      <NewsList postData={news} />
+      <NewsList posts={news} />
       <div className="invisible h-8" />
       <Link href="/news" arrow>
         See more news

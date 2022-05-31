@@ -8,6 +8,7 @@ import combineURLs from "@/lib/helpers/combineURLs";
 // eslint-disable-next-line import/no-absolute-path
 import tailwindConfig from "/tailwind.config.js";
 import Social from "@/components/logo/social";
+import Note from "@/components/stour/note";
 import Logo from "@/components/logo";
 import Crest from "@/components/logo/crest";
 
@@ -275,9 +276,29 @@ export default function Brand({ blue }) {
     >
       <h2>Crest</h2>
       <p>
-        This version of our crest is intended to work well on screens and is
-        optimised as a tiny 6&nbsp;KB SVG string.
+        This version of our crest is intended to work well on screens, is based
+        on all the locatable extinct and extant crests, and is optimised as a
+        tiny 6&nbsp;KB SVG string.
       </p>
+
+      <Note label="Relax" size="small">
+        This isn’t a single point of truth. The club crest isn’t a corporate
+        logo: it’s always been a limitless set of drawings that contain the
+        right components in the right arrangement.
+      </Note>
+
+      <p>
+        If you can’t find what you need,{" "}
+        <Link
+          href={`/contact?to=5b54081d-46f0-485b-83c2-691e086fdf19&message=Crest Support Group: `}
+        >
+          <a className="transition hover:text-black">
+            Will might be able to help
+          </a>
+        </Link>
+        .
+      </p>
+
       <AssetSections assets={brandAssets} />
       <h2>Blues</h2>
       <p>
@@ -291,11 +312,17 @@ export default function Brand({ blue }) {
         </NextLink>{" "}
         and identify Oxford blue as <strong>Pantone 282</strong>.
       </p>
-
       <p>
-        In developing our online design system, we’ve produced a ten-step shade
-        graduation based on Pantone 282. This allows us to use visually
-        congruent lighter blues in interface design.
+        White is undefined. On the web, SRC has used `#fff` and `white` since
+        the mid-nineties, so we use it now on someone else’s conscience.
+      </p>
+      <Note label="Colour me magenta" size="small">
+        In print design, use Pantone 282 as a background to white text.
+      </Note>
+      <p>
+        This website’s design system includes a ten-step shade graduation based
+        on Pantone 282. This allows us to use visually congruent lighter blues
+        in interface design.
       </p>
       <figure>
         <div

@@ -38,18 +38,18 @@ const Testimonials = dynamic(() =>
 );
 const Note = dynamic(() => import("@/components/stour/note"));
 const Results = dynamic(() => import("@/components/regatta/results"), {
-  loading: () => Loading(),
+  loading: () => <Loading />,
 });
 const Entries = dynamic(() => import("@/components/regatta/entries"), {
-  loading: () => Loading(),
+  loading: () => <Loading />,
 });
 const Events = dynamic(() => import("@/components/regatta/events"), {
-  loading: () => Loading(),
+  loading: () => <Loading />,
 });
 const CompetitorInformation = dynamic(
   () => import("@/components/regatta/competitor-information"),
   {
-    loading: () => Loading(),
+    loading: () => <Loading />,
   }
 );
 
@@ -316,7 +316,7 @@ export const getStaticProps = async () => {
     "events": events.events,
   }} 
   + 
-  {"testimonials": *[_type == "regattas" && testimonials != null && !(_id in path("drafts.**"))] | order(date desc) {date, testimonials, number}}
+  {"testimonials": *[_type == "regattas" && testimonials != null && !(_id in path("drafts.**"))] | order(date desc) {_id, date, testimonials, number}}
   + 
   {"results": *[_type == "regattas" && results != "" && !(_id in path("drafts.**")) ] | order(date desc){_id, date, results, number}}
   `);

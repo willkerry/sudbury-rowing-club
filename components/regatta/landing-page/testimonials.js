@@ -8,10 +8,7 @@ const Testimonials = ({ data }) =>
   data.map(
     (item) =>
       item.testimonials && (
-        <div
-          key={`${item.number}${item.testimonials[0].text.substring(8, 12)}`}
-          className="mb-24"
-        >
+        <div key={item._id} className="mb-24">
           <Masonry cols="3">
             <div className="py-24">
               <h3 className="text-xl font-medium">
@@ -21,16 +18,13 @@ const Testimonials = ({ data }) =>
                 <DayDateFormatter dateString={item.date} />
               </Label>
             </div>
-            {item.testimonials.map((testimonial) => (
+            {item.testimonials.map((testimonial, index) => (
               <Testimonial
-                key={`${testimonial.text.substring(8, 16).replace(/\s/g, "")}-${
-                  testimonial.author
-                }`}
+                key={index}
                 name={testimonial.name}
                 organisation={testimonial.club}
-              >
-                {testimonial.text}
-              </Testimonial>
+                text={testimonial.text}
+              />
             ))}
           </Masonry>
         </div>

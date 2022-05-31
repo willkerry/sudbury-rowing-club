@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 import snarkdown from "snarkdown";
-import sendInBlue from "@/lib/sendInBlue";
+import sendMail from "@/lib/sendMail";
 import checkForSpam from "@/lib/akismet";
 import getOfficer from "@/lib/get-officer";
 import DOMPurify from "isomorphic-dompurify";
@@ -25,17 +25,24 @@ export default async function Send(req: any, res: any): Promise<void> {
     }
     const cleanMessage = DOMPurify.sanitize(message);
 
-    const mailBody = {
-      subject: `${name} via SRC Contact`,
-      sender: { email: "noreply@sudburyrowingclub.org.uk", name },
-      replyTo: { email, name },
-      to: [{ name: addressee.name, email: addressee.email }],
-      htmlContent:
-        `<html><body>${snarkdown(cleanMessage)}<hr/><small><p>${footerText}</p></small></body></html>`,
-    }
-    const mail = await sendInBlue(mailBody);
+    const mailSubject = `${name} via SRC Contact`
+    const mailFrom = { email: "noreply@sudburyrowingclub.org.uk", name }
+    const mailReplyTo = { email, name }
+    const mailTo = [{ name: addressee.name, email: addressee.email }]
+    const mailContent = `<html><body>${snarkdown(cleanMessage)}<hr/><small><p>${footerText}</p></small></body></html>`
+
+    const mail = await sendMail(
+      mailSubject,
+      mailFrom,
+      mailReplyTo,
+      mailTo,
+      mailContent
+    );
+
+    console.log("mail", mail);
+
     if (mail !== "success") {
-      throw new Error(mail);
+      throw new Error("Could not connect to mail API");
     }
 
     res.status(200).json({
@@ -44,8 +51,9 @@ export default async function Send(req: any, res: any): Promise<void> {
     });
 
   }
-  catch (error) {
+  catch (error: any) {
     res.status(500).json({
+      status: "error",
       message: error.message,
     });
   }

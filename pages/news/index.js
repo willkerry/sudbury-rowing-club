@@ -31,7 +31,7 @@ export default function News({ data }) {
         </Container>
       </div>
       <Container className="my-10">
-        <NewsList postData={data} />
+        <NewsList posts={data} />
       </Container>
     </Layout>
   );
