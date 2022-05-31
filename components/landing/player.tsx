@@ -61,10 +61,10 @@ const Player = ({ youTubeId, youTubeStart }: Props) => {
                   controls: 0,
                   modestbranding: 1,
                   start: youTubeStart,
+                  mute: 1,
                 },
               }}
-              iframeClassName="w-full aspect-w-16 aspect-h-9"
-              className="z-50 bg-white rounded-lg shadow-xl"
+              className="z-50 w-full overflow-hidden bg-white rounded-lg shadow-xl aspect-w-16 aspect-h-9"
             />
           </div>
         </Dialog>
