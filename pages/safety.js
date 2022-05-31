@@ -47,7 +47,7 @@ export default function Safety({ safety, safetyStatus }) {
         {safety.map((item) => (
           <div key={item._id} id={item._id} className="space-y-6">
             <SectionTitle>{item.title}</SectionTitle>
-            {item.body && <Text portableText>{item.body}</Text>}
+            {item.body && <Text portableText={item.body} />}
             {item.__updatedAt}
             {item.link && (
               <Button
