@@ -113,11 +113,7 @@ function Card({ title, body, items, meta, updated, created }) {
             leaveTo="opacity-0"
           >
             <Disclosure.Panel className="divide-y">
-              {body && (
-                <Text portableText className="p-4">
-                  {body}
-                </Text>
-              )}
+              {body && <Text portableText={body} className="p-4" />}
 
               {meta && (
                 <div className="flex py-2.5 text-sm bg-gray-50">

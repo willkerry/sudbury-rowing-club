@@ -84,7 +84,7 @@ export default function Regatta({ page, testimonials, results }) {
           caption={page.entries.caption}
           waveNames={page.entries.waveNames}
         >
-          <Text portableText>{page.entries.description}</Text>
+          <Text portableText={page.entries.description} />
         </Entries>
       ),
     },
@@ -93,9 +93,7 @@ export default function Regatta({ page, testimonials, results }) {
       icon: <ResultsIcon />,
       content: (
         <Results results={results} tab>
-          <Text portableText lead>
-            {page.results.description}
-          </Text>
+          <Text portableText={page.entries.description} lead />
         </Results>
       ),
     },
@@ -169,9 +167,7 @@ export default function Regatta({ page, testimonials, results }) {
         />
       </Container>
       <Container className="my-24 max-w-prose">
-        <Text portableText lead>
-          {page.landingPage.description}
-        </Text>
+        <Text portableText={page.landingPage.description} />
         <div className="h-5" />
         <Details items={accordion} />
       </Container>

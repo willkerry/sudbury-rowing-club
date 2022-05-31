@@ -17,16 +17,16 @@ const CommitteeSignature = dynamic(() =>
   import("@/components/landing/committee-signature")
 );
 const Label = dynamic(() => import("@/components/stour/label"));
-const Gallery = dynamic(() => import("@/components/regatta/landing-page/gallery"));
+const Gallery = dynamic(() =>
+  import("@/components/regatta/landing-page/gallery")
+);
 
 function Introduction({ description, images }) {
   return (
     <section id="intro">
       <Container className="my-16">
         <div className="mx-auto ">
-          <Text portableText className="mx-auto">
-            {description}
-          </Text>
+          <Text portableText={description} className="mx-auto" />
           <CommitteeSignature className="w-48 py-16 mx-auto" />
           <span className="sr-only">The Committee</span>
         </div>

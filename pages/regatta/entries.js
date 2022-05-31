@@ -17,9 +17,7 @@ export default function Entries({ data }) {
         caption={data.caption}
         waveNames={data.waveNames}
       >
-        <Text portableText lead>
-          {data.description}
-        </Text>
+        <Text lead portableText={data.description} />
       </EntriesComponent>
     </TextPage>
   );

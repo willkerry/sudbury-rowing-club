@@ -22,9 +22,7 @@ export default function ResultsPage({ data, other }) {
       <HeroTitle title="Regatta results" breadcrumbs />
       <Container className="py-16">
         <Results results={data} records={other.records}>
-          <Text portableText lead>
-            {other.description}
-          </Text>
+          <Text lead portableText={other.description} />
         </Results>
       </Container>
     </Layout>
