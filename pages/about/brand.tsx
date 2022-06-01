@@ -1,33 +1,14 @@
-import Color from "color";
-import PropTypes from "prop-types";
-import { Circle, HelpCircle } from "react-feather";
-import NextLink from "next/link";
 import TextPage from "@/components/layouts/text-page";
-import Link from "@/components/stour/link";
-import combineURLs from "@/lib/helpers/combineURLs";
-// eslint-disable-next-line import/no-absolute-path
-import tailwindConfig from "/tailwind.config.js";
-import Social from "@/components/logo/social";
-import Note from "@/components/stour/note";
 import Logo from "@/components/logo";
 import Crest from "@/components/logo/crest";
-
-export const getStaticProps = async () => ({
-  props: {
-    blue: {
-      50: tailwindConfig.theme.extend.colors.blue[50],
-      100: tailwindConfig.theme.extend.colors.blue[100],
-      200: tailwindConfig.theme.extend.colors.blue[200],
-      300: tailwindConfig.theme.extend.colors.blue[300],
-      400: tailwindConfig.theme.extend.colors.blue[400],
-      500: tailwindConfig.theme.extend.colors.blue[500],
-      600: tailwindConfig.theme.extend.colors.blue[600],
-      700: tailwindConfig.theme.extend.colors.blue[700],
-      800: tailwindConfig.theme.extend.colors.blue[800],
-      900: tailwindConfig.theme.extend.colors.blue[900],
-    },
-  },
-});
+import Social from "@/components/logo/social";
+import Link from "@/components/stour/link";
+import combineURLs from "@/lib/helpers/combineURLs";
+import Color from "color";
+import { GetStaticProps } from "next";
+import NextLink from "next/link";
+import { Circle, HelpCircle } from "react-feather";
+import tailwindConfig from "../../tailwind.config.js";
 
 const brandAssets = [
   {
@@ -121,11 +102,16 @@ const brandAssets = [
   },
 ];
 
-function extension(url) {
-  return url.substring(url.lastIndexOf(".") + 1, url.length) || url;
-}
+const getFileExtensionFromPath = (url: string) =>
+  url.substring(url.lastIndexOf(".") + 1, url.length) || url;
 
-function ColorIndicator({ color, type }) {
+function ColorIndicator({
+  color = "rgb",
+  type,
+}: {
+  color: string;
+  type: string;
+}) {
   const newColor = Color(color);
   let print = color;
   if (type === "rgb") print = newColor.rgb().string();
@@ -138,17 +124,9 @@ function ColorIndicator({ color, type }) {
   );
 }
 
-ColorIndicator.propTypes = {
-  color: PropTypes.string.isRequired,
-  type: PropTypes.string,
-};
-ColorIndicator.defaultProps = {
-  type: "rgb",
-};
-
-function FileExtensionWidget({ href }) {
+function FileExtensionWidget({ href }: { href: string }) {
   const fileInfo = "https://fileinfo.com/extension/";
-  const getExtension = extension(href);
+  const getExtension = getFileExtensionFromPath(href);
   return (
     <span className="flex flex-row items-center gap-1">
       <code className="uppercase">{getExtension}</code>
@@ -159,97 +137,7 @@ function FileExtensionWidget({ href }) {
   );
 }
 
-FileExtensionWidget.propTypes = {
-  href: PropTypes.string.isRequired,
-};
-
-function FileRows({ data, color }) {
-  return data.map((item, i) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <tr key={i}>
-      <td>
-        <ColorIndicator color={color} type="hex" />
-      </td>
-      <td>
-        <FileExtensionWidget href={item.href} />
-      </td>
-      <td className="hidden sm:table-cell">
-        {item.w ? <code>{item.w}px </code> : "\u221e"}
-      </td>
-      <td>
-        <Link href={item.href} download>
-          <span className="hidden sm:inline">Download</span>
-          <span className="inline sm:hidden">Get</span>
-        </Link>
-      </td>
-    </tr>
-  ));
-}
-FileRows.propTypes = {
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      href: PropTypes.string.isRequired,
-      w: PropTypes.string,
-    })
-  ).isRequired,
-  color: PropTypes.string.isRequired,
-};
-FileRows.defaultProps = {
-  data: [],
-};
-
-function ColorRows({ data }) {
-  return data.map((item) => (
-    <tr key={item.id} className={item.id === "900" ? "bg-gray-100" : null}>
-      <td className="text-right">
-        <code>{item.id}</code>
-      </td>
-      <td>
-        <span className="text-sm font-medium">
-          {item.name}
-          {item.library && ` (${item.library})`}
-        </span>
-      </td>
-      <td>
-        <ColorIndicator color={item.color} type="rgb" />
-      </td>
-      <td>
-        <ColorIndicator color={item.color} type="hex" />
-      </td>
-    </tr>
-  ));
-}
-
-const AssetSections = ({ assets }) =>
-  assets.map((item, i) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <section key={i}>
-      <figure>
-        <item.Illustration
-          className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
-          fill={item.color}
-        />
-        <figcaption>
-          <h4 className="inline">{item.name}:</h4> {item.description}
-        </figcaption>
-      </figure>
-      <table>
-        <thead>
-          <tr>
-            <th>Colour</th>
-            <th>File format</th>
-            <th className="hidden sm:table-cell">Width</th>
-            <th className="sr-only">Download</th>
-          </tr>
-        </thead>
-        <tbody>
-          <FileRows data={item.files} color={item.color} />
-        </tbody>
-      </table>
-    </section>
-  ));
-
-export default function Brand({ blue }) {
+const Brand = ({ blue }: { blue: string }) => {
   const brandColors = [
     {
       id: "900",
@@ -267,8 +155,7 @@ export default function Brand({ blue }) {
     { id: "100", color: blue[100] },
     { id: "50", color: blue[50] },
   ];
-
-  const layout = (
+  return (
     <TextPage
       title="Brand Assets"
       description="Some handy resources for building things for Sudbury RC."
@@ -280,13 +167,6 @@ export default function Brand({ blue }) {
         on all the locatable extinct and extant crests, and is optimised as a
         tiny 6&nbsp;KB SVG string.
       </p>
-
-      <Note label="Relax" size="small">
-        This isn’t a single point of truth. The club crest isn’t a corporate
-        logo: it’s always been a limitless set of drawings that contain the
-        right components in the right arrangement.
-      </Note>
-
       <p>
         If you can’t find what you need,{" "}
         <Link
@@ -298,8 +178,50 @@ export default function Brand({ blue }) {
         </Link>
         .
       </p>
-
-      <AssetSections assets={brandAssets} />
+      {brandAssets.map((item, i) => (
+        <section key={i}>
+          <figure>
+            <item.Illustration
+              className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
+              fill={item.color}
+            />
+            <figcaption>
+              <h4 className="inline">{item.name}:</h4> {item.description}
+            </figcaption>
+          </figure>
+          <table>
+            <thead>
+              <tr>
+                <th>Colour</th>
+                <th>File format</th>
+                <th className="hidden sm:table-cell">Width</th>
+                <th className="sr-only">Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {item.files.map((file, i) => (
+                <tr key={i}>
+                  <td>
+                    <ColorIndicator color={item.color} type="hex" />
+                  </td>
+                  <td>
+                    <FileExtensionWidget href={file.href} />
+                  </td>
+                  <td className="hidden sm:table-cell">
+                    {file.w ? <code>{file.w}px </code> : "\u221e"}
+                  </td>
+                  <td>
+                    <Link href={file.href} download>
+                      <span className="hidden sm:inline">Download</span>
+                      <span className="inline sm:hidden">Get</span>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      ))}
       <h2>Blues</h2>
       <p>
         The club colours, as{" "}
@@ -316,9 +238,6 @@ export default function Brand({ blue }) {
         White is undefined. On the web, SRC has used `#fff` and `white` since
         the mid-nineties, so we use it now on someone else’s conscience.
       </p>
-      <Note label="Colour me magenta" size="small">
-        In print design, use Pantone 282 as a background to white text.
-      </Note>
       <p>
         This website’s design system includes a ten-step shade graduation based
         on Pantone 282. This allows us to use visually congruent lighter blues
@@ -345,6 +264,7 @@ export default function Brand({ blue }) {
         programmatically extracted from the design system and will immediately
         reflect any changes.
       </p>
+
       <table>
         <thead>
           <tr>
@@ -355,11 +275,48 @@ export default function Brand({ blue }) {
           </tr>
         </thead>
         <tbody>
-          <ColorRows data={brandColors} />
+          {brandColors.map((item) => (
+            <tr
+              key={item.id}
+              className={item.id === "900" ? "bg-gray-100" : ""}
+            >
+              <td className="text-right">
+                <code>{item.id}</code>
+              </td>
+              <td>
+                <span className="text-sm font-medium">
+                  {item.name} {item.library}
+                </span>
+              </td>
+              <td>
+                <ColorIndicator color={item.color} type="rgb" />
+              </td>
+              <td>
+                <ColorIndicator color={item.color} type="hex" />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </TextPage>
   );
+};
 
-  return layout;
-}
+export default Brand;
+
+export const getStaticProps: GetStaticProps = async () => ({
+  props: {
+    blue: {
+      50: tailwindConfig.theme.extend.colors.blue[50],
+      100: tailwindConfig.theme.extend.colors.blue[100],
+      200: tailwindConfig.theme.extend.colors.blue[200],
+      300: tailwindConfig.theme.extend.colors.blue[300],
+      400: tailwindConfig.theme.extend.colors.blue[400],
+      500: tailwindConfig.theme.extend.colors.blue[500],
+      600: tailwindConfig.theme.extend.colors.blue[600],
+      700: tailwindConfig.theme.extend.colors.blue[700],
+      800: tailwindConfig.theme.extend.colors.blue[800],
+      900: tailwindConfig.theme.extend.colors.blue[900],
+    },
+  },
+});
