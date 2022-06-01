@@ -10,10 +10,11 @@ type Props = {
   size?: "auto" | "mini" | "small" | "medium" | "large";
   variant?: "primary" | "secondary" | "brand" | "success" | "error" | "warning";
   shadow?: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   className?: string;
   icon?: React.ReactNode;
   isLoading?: boolean;
+  href?: string;
 };
 
 const SIZE = {
@@ -50,9 +51,10 @@ const Button = ({
   children,
   shadow = false,
   isLoading = false,
+  href,
   ...rest
 }: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
-  const Comp = as;
+  const Comp = href ? "a" : as;
   const hasIcon = icon !== null;
   const baseClassNames: string =
     "rounded transition duration-300 border inline-block border-box" +
@@ -70,7 +72,7 @@ const Button = ({
   ]);
 
   return (
-    <Comp {...rest} className={classNames} disabled={disabled}>
+    <Comp {...rest} className={classNames} disabled={disabled} href={href}>
       <div className="flex items-center justify-center w-full h-full">
         {hasIcon && <Slot className="flex w-4 mr-2">{icon}</Slot>}
         {isLoading ? <Loading /> : children}

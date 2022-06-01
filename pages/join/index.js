@@ -7,7 +7,6 @@ import { NextSeo } from "next-seo";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
-// eslint-disable-next-line import/no-named-as-default
 import Note from "@/components/stour/note";
 import Link from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
