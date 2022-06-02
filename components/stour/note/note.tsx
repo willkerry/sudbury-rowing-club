@@ -1,6 +1,6 @@
 import cn from "classnames";
 
-type Props = {
+export type NoteProps = {
   children: React.ReactNode;
   className?: string;
   type?: "primary" | "secondary" | "success" | "warning" | "error";
@@ -28,7 +28,7 @@ const Note = ({
   size = "large",
   centered = false,
   label,
-}: Props) => (
+}: NoteProps) => (
   <div
     className={cn(
       "border rounded-md max-w-prose prose",

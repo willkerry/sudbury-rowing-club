@@ -1,6 +1,6 @@
-import { HOME_OG_IMAGE_URL, BASE_URL } from "/lib/constants";
+import { HOME_OG_IMAGE_URL, BASE_URL } from "./lib/constants";
 
-module.exports = {
+const SEO = {
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -18,3 +18,5 @@ module.exports = {
     cardType: "summary_large_image",
   },
 };
+
+export default SEO;

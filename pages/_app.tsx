@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
 import { DefaultSeo } from "next-seo";
 import "../styles/index.css";
 import Router from "next/router";
@@ -7,6 +5,7 @@ import ProgressBar from "@badrap/bar-of-progress";
 import SEO from "../next-seo.config";
 import "inter-ui/inter.css";
 import "@fontsource/jetbrains-mono/variable.css";
+import { AppProps } from "next/app";
 
 const progress = new ProgressBar({
   size: 2,
@@ -26,11 +25,11 @@ Router.events.on("routeChangeComplete", () => {
 });
 Router.events.on("routeChangeError", progress.finish);
 
-export default function App({ Component, pageProps }) {
-  return (
-    <>
-      <DefaultSeo {...SEO} />
-      <Component {...pageProps} />
-    </>
-  );
-}
+const App = ({ Component, pageProps }: AppProps) => (
+  <>
+    <DefaultSeo {...SEO} />
+    <Component {...pageProps} />
+  </>
+);
+
+export default App;
