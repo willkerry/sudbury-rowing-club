@@ -78,16 +78,16 @@ export default function Post({ post }: { post: Post }) {
             />
             {post.body && <PostBody content={post.body} />}
 
-            <div className="flex flex-wrap mx-auto my-12 border rounded max-w-prose">
+            <div className="flex flex-wrap px-5 pt-3 pb-4 mx-auto my-12 space-x-8 border rounded max-w-prose">
               {post.author && (
-                <div className="p-4">
+                <div>
                   <Label className="text-xs">Author</Label>
                   <div className="text-sm font-medium">
                     {`${post.author?.firstName} ${post.author?.surname}`}
                   </div>
                 </div>
               )}
-              <div className="p-4">
+              <div>
                 <Label className="text-xs">Published</Label>
                 <div className="text-sm font-medium">
                   <DateFormatter dateString={post.date} />
