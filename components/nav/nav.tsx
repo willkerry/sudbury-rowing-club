@@ -1,9 +1,10 @@
+import { NavLink, NavLogo, NavSection } from "@/components/nav";
+import { MobileMenu, MobileMenuButton } from "@/components/nav/mobile-menu";
 import { Popover, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
 import cn from "classnames";
+import { Fragment, useEffect, useState } from "react";
 import { Users } from "react-feather";
-import MobileMenuButton from "@/components/nav/mobile-menu/mobile-menu-button";
-import MobileMenu from "@/components/nav/mobile-menu/";
+import { IconNavItemType } from "../../types/nav-item";
 import {
   about,
   aboutCTAs,
@@ -12,26 +13,17 @@ import {
   regatta,
   regattaCTAs,
 } from "./nav-data";
-import NavLink from "./nav-link";
-import NavLogo from "./nav-logo";
-import NavPopover from "./nav-popover";
 
-export default function Nav() {
-  // Add a border to the navbar when the user scrolls down
+const Nav = () => {
   const [navbarBorder, setNavbarBorder] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 50) {
-        setNavbarBorder(true);
-      } else {
-        setNavbarBorder(false);
-      }
+      if (scrollTop > 50) setNavbarBorder(true);
+      else setNavbarBorder(false);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -49,9 +41,9 @@ export default function Nav() {
               <NavLogo />
               <MobileMenuButton />
               <Popover.Group as="nav" className="hidden md:flex">
-                <NavPopover label="About" navData={about} ctaData={aboutCTAs} />
+                <NavSection label="About" navData={about} ctaData={aboutCTAs} />
                 <NavLink href="/news">News</NavLink>
-                <NavPopover
+                <NavSection
                   label="Regatta"
                   navData={regatta}
                   ctaData={regattaCTAs}
@@ -62,11 +54,11 @@ export default function Nav() {
                 className="items-center justify-end hidden md:flex lg:w-0 lg:flex-1"
               >
                 <NavLink href="/join">Join</NavLink>
-                <NavPopover
+                <NavSection
                   compact
-                  label={<Users className="flex w-4 h-4" />}
+                  icon={<Users className="flex w-4 h-4" />}
                   altLabel="Members"
-                  navData={members}
+                  navData={members as IconNavItemType[]}
                   ctaData={memberCTAs}
                 />
               </Popover.Group>
@@ -89,4 +81,6 @@ export default function Nav() {
       )}
     </Popover>
   );
-}
+};
+
+export default Nav;

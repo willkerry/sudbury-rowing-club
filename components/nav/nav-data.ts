@@ -1,5 +1,16 @@
 import {
+  Governance,
+  History,
+  MyClubhouse,
+  Results,
+  Rower,
+  Safety,
+  Spond
+} from "@/components/icons";
+import { type NavItemType, type IconNavItemType } from "@/types/nav-item";
+import {
   CalendarIcon,
+  FlagIcon,
   InformationCircleIcon,
   LocationMarkerIcon,
   MailIcon,
@@ -7,33 +18,11 @@ import {
   PhotographIcon,
   ShieldCheckIcon,
   TicketIcon,
-  FlagIcon,
-  UserAddIcon,
+  UserAddIcon
 } from "@heroicons/react/outline";
 import { Facebook, Instagram, Twitter } from "react-feather";
-import Governance from "@/components/icons/governance";
-import History from "@/components/icons/history";
-import MyClubhouse from "@/components/icons/myclubhouse";
-import Results from "@/components/icons/results";
-import Safety from "@/components/icons/safety";
-import Rower from "../icons/rower";
-import Spond from "../icons/spond";
 
-export const about = [
-  /* {
-    name: "Squads",
-    description: "",
-    href: "squads",
-    icon: Rower,
-    quicklinks: [
-      { name: "Junior squad", href: "" },
-      { name: "Womens’ squad", href: "" },
-      { name: "Men’s squad", href: "" },
-      { name: "Adaptive rowing", href: "" },
-      { name: "Indoor rowing", href: "" },
-      { name: "Recreation", href: "" },
-    ],
-  }, */
+export const about: IconNavItemType[] = [
   {
     name: "History",
     description: "Rowing in Sudbury since 1874.",
@@ -65,7 +54,7 @@ export const about = [
     icon: NewspaperIcon,
   },
 ];
-export const aboutCTAs = [
+export const aboutCTAs: IconNavItemType[] = [
   {
     name: "How to find us",
     shortName: "Find us",
@@ -79,7 +68,7 @@ export const aboutCTAs = [
     icon: MailIcon,
   },
 ];
-export const regatta = [
+export const regatta: IconNavItemType[] = [
   {
     name: "The ‘International’",
     shortName: "About",
@@ -117,7 +106,7 @@ export const regatta = [
     icon: ShieldCheckIcon,
   },
 ];
-export const regattaCTAs = [
+export const regattaCTAs: IconNavItemType[] = [
   {
     name: "Find the regatta",
     href: "/contact/how-to-find-us",
@@ -129,7 +118,7 @@ export const regattaCTAs = [
     icon: TicketIcon,
   },
 ];
-export const members = [
+export const members: NavItemType[] = [
   {
     name: "Notices",
     href: "/members",
@@ -143,7 +132,7 @@ export const members = [
     href: "/members/kit",
   },
 ];
-export const memberCTAs = [
+export const memberCTAs: IconNavItemType[] = [
   {
     name: "Squadlist",
     href: "https://sudbury.squadlist.app",
@@ -160,7 +149,7 @@ export const memberCTAs = [
     icon: Spond,
   },
 ];
-export const socials = [
+export const socials: IconNavItemType[] = [
   {
     name: "Instagram",
     href: "https://www.instagram.com/sudburyrowingclubuk",

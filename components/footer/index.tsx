@@ -12,7 +12,7 @@ import {
   regattaCTAs,
   socials,
   misc,
-} from "@/components/nav-bar/nav-data";
+} from "@/components/nav/nav-data";
 
 const footerAbout = [...about, ...aboutCTAs];
 const footerRegatta = [...regatta, ...regattaCTAs];
