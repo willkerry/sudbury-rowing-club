@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
 import snarkdown from "snarkdown";
 import sendMail from "@/lib/sendMail";
 import checkForSpam from "@/lib/akismet";

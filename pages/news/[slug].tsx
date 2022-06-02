@@ -18,17 +18,18 @@ import sanityClient from "@/lib/sanity.server";
 import { postQuery, postSlugsQuery } from "@/lib/queries";
 import { urlFor } from "@/lib/sanity";
 
-export default function Post({ post }) {
+import type Post from "@/types/post";
+import { GetStaticPaths, GetStaticProps } from "next/types";
+
+export default function Post({ post }: { post: Post }) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-
-  const CoverImage = (image) => {
-    if (image === null || image === undefined) return HOME_OG_IMAGE_URL;
+  const CoverImage = (image: Post["featuredImage"]) => {
+    if (!image) return HOME_OG_IMAGE_URL;
     return urlFor(image).width(1200).url();
   };
-
   return post === undefined ? (
     "Loading..."
   ) : (
@@ -59,6 +60,7 @@ export default function Post({ post }) {
             <ArticleJsonLd
               url={BASE_URL + router.asPath}
               title={post.title}
+              authorName={`${post.author?.firstName} ${post.author?.surname}`}
               images={[CoverImage(post.featuredImage)]}
               datePublished={post.date}
               publisherName={PROJECT_NAME}
@@ -68,13 +70,11 @@ export default function Post({ post }) {
 
             <PostHeader
               title={post.title}
-              featuredImage={post.featuredImage && post.featuredImage}
+              featuredImage={post.featuredImage}
               date={post.date}
-              alt={post.featuredImage && post.featuredImage.alt}
-              caption={post.featuredImage && post.featuredImage.caption}
-              lqip={post.featuredImage && post.featuredImage.lqip}
-              foreground={post.featuredImage && post.featuredImage.foreground}
-              background={post.featuredImage && post.featuredImage.background}
+              alt={post.featuredImage?.alt}
+              caption={post.featuredImage?.caption}
+              lqip={post.featuredImage?.lqip}
             />
             {post.body && <PostBody content={post.body} />}
 
@@ -83,7 +83,7 @@ export default function Post({ post }) {
                 <div className="p-4">
                   <Label className="text-xs">Author</Label>
                   <div className="text-sm font-medium">
-                    {`${post.author.firstName} ${post.author.surname}`}
+                    {`${post.author?.firstName} ${post.author?.surname}`}
                   </div>
                 </div>
               )}
@@ -100,45 +100,21 @@ export default function Post({ post }) {
     </Layout>
   );
 }
-Post.propTypes = {
-  post: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    excerpt: PropTypes.string,
-    slug: PropTypes.string.isRequired,
-    featuredImage: PropTypes.shape({
-      _id: PropTypes.string,
-      alt: PropTypes.string,
-      lqip: PropTypes.string,
-      aspectRatio: PropTypes.number,
-      caption: PropTypes.string,
-      background: PropTypes.string,
-      foreground: PropTypes.string,
-    }),
-    date: PropTypes.string.isRequired,
-    body: PropTypes.arrayOf(PropTypes.object),
-    author: PropTypes.shape({
-      firstName: PropTypes.string,
-      surname: PropTypes.string,
-    }),
-  }).isRequired,
-};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = await sanityClient.fetch(postQuery, {
-    slug: params.slug,
+    slug: params?.slug,
   });
 
   return {
     props: { post },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await sanityClient.fetch(postSlugsQuery);
-
   return {
-    paths: paths.map((slug) => ({ params: { slug } })),
+    paths: paths.map((slug: string) => ({ params: { slug } })),
     fallback: true,
   };
-}
+};

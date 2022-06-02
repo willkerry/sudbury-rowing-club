@@ -6,7 +6,7 @@ type Post = {
     date: string,
     slug: string,
     excerpt: string,
-    body: PortableTextProps["value"][],
+    body: PortableTextProps["value"],
     author: {
         firstName: string,
         surname: string,
