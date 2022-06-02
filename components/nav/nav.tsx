@@ -2,8 +2,8 @@ import { Popover, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import cn from "classnames";
 import { Users } from "react-feather";
-import MobileMenuButton from "@/components/nav-bar/mobile-menu/mobile-menu-button";
-import MobileMenu from "@/components/nav-bar/mobile-menu/";
+import MobileMenuButton from "@/components/nav/mobile-menu/mobile-menu-button";
+import MobileMenu from "@/components/nav/mobile-menu/";
 import {
   about,
   aboutCTAs,
@@ -15,9 +15,8 @@ import {
 import NavLink from "./nav-link";
 import NavLogo from "./nav-logo";
 import NavPopover from "./nav-popover";
-// import SafetyStatus from "./safety-status";
 
-export default function Navbar() {
+export default function Nav() {
   // Add a border to the navbar when the user scrolls down
   const [navbarBorder, setNavbarBorder] = useState(false);
   useEffect(() => {
@@ -70,7 +69,6 @@ export default function Navbar() {
                   navData={members}
                   ctaData={memberCTAs}
                 />
-                {/* <SafetyStatus /> */}
               </Popover.Group>
             </div>
           </div>
