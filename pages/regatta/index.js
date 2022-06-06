@@ -93,7 +93,7 @@ export default function Regatta({ page, testimonials, results }) {
       icon: <ResultsIcon />,
       content: (
         <Results results={results} tab>
-          <Text portableText={page.entries.description} lead />
+          <Text portableText={page.results.description} />
         </Results>
       ),
     },
