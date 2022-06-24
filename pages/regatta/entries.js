@@ -2,28 +2,31 @@ import groq from "groq";
 import PropTypes from "prop-types";
 import TextPage from "@/components/layouts/text-page";
 import EntriesComponent from "@/components/regatta/entries";
+import EventsComponent from "@/components/regatta/events";
 import Text from "@/components/stour/text";
 import sanityClient from "@/lib/sanity.server";
 
-export default function Entries({ data }) {
+export default function Entries({ entries, events }) {
   return (
     <TextPage
       title="Entry Information"
       ogImage="/assets/og/entries.png"
       description="Details for competetive entry to the Sudbury Regatta."
     >
+      <EventsComponent data={events} />
+      <div className="h-24" />
       <EntriesComponent
-        table={data.waves.rows.map((row) => row.cells)}
-        caption={data.caption}
-        waveNames={data.waveNames}
+        table={entries.waves.rows.map((row) => row.cells)}
+        caption={entries.caption}
+        waveNames={entries.waveNames}
       >
-        <Text lead portableText={data.description} />
+        <Text lead portableText={entries.description} />
       </EntriesComponent>
     </TextPage>
   );
 }
 Entries.propTypes = {
-  data: PropTypes.shape({
+  entries: PropTypes.shape({
     waves: PropTypes.shape({
       rows: PropTypes.arrayOf(
         PropTypes.shape({
@@ -47,9 +50,12 @@ Entries.defaultProps = {
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
-    groq`*[_type == "regattaSettings"][0]{entries}`
+    groq`*[_type == "regattaSettings"][0]{entries, events}`
   );
   return {
-    props: { data: data.entries },
+    props: {
+      entries: data.entries,
+      events: data.events.events,
+    },
   };
 };

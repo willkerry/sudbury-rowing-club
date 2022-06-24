@@ -8,6 +8,23 @@ type Props = {
 };
 
 const Entries = ({ children, table, waveNames, caption }: Props) => {
+  let boatsByWave: string[][] = [[]];
+  const crewCategories = table.map((value) => value[0]);
+  table.map(function (row, x) {
+    if (!x) return;
+    row.map(function (value, y) {
+      if (!y) return;
+      const waveIndex = parseInt(value) - 1;
+      if (!value) return;
+      console.log(waveIndex, value);
+      const fullName = `${crewCategories[x]} ${table[0][y]}`;
+      if (boatsByWave[waveIndex]) {
+        boatsByWave[waveIndex].push(fullName);
+      } else {
+        boatsByWave[waveIndex] = [fullName];
+      }
+    });
+  });
   const getWaveColor = (entry: string) => {
     switch (entry) {
       case waveNames[0]:
@@ -65,6 +82,16 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
         </table>
         <figcaption>{caption}</figcaption>
       </figure>
+
+      <div className="prose">
+        {boatsByWave.map((wave, i) => (
+          <p key={i}>
+            <span className="font-semibold">Wave {waveNames[i]}:</span>
+            {" "}
+            <span>{wave.join(", ")}</span>
+          </p>
+        ))}
+      </div>
     </div>
   );
 };
