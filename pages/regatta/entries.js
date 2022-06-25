@@ -4,6 +4,7 @@ import TextPage from "@/components/layouts/text-page";
 import EntriesComponent from "@/components/regatta/entries";
 import { CompactEvents } from "@/components/regatta/events";
 import Text from "@/components/stour/text";
+import Link from "@/components/stour/link";
 import sanityClient from "@/lib/sanity.server";
 
 export default function Entries({ entries, events }) {
@@ -14,6 +15,10 @@ export default function Entries({ entries, events }) {
       description="Details for competetive entry to the Sudbury Regatta."
     >
       <CompactEvents data={events} />
+      <div className="space-x-4">
+        <Link href="/regatta/events">More on events</Link>
+        <Link href="regatta/course">Course Map</Link>
+      </div>
       <div className="h-16" />
       <EntriesComponent
         table={entries.waves.rows.map((row) => row.cells)}
