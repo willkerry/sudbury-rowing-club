@@ -1,4 +1,5 @@
 import cn from "classnames";
+import getBoatsByWave from "../utils/getBoatsByWave";
 
 type Props = {
   children: React.ReactNode;
@@ -8,29 +9,13 @@ type Props = {
 };
 
 const Entries = ({ children, table, waveNames, caption }: Props) => {
-  let boatsByWave: string[][] = [[]];
-  const crewCategories = table.map((value) => value[0]);
-  table.map(function (row, x) {
-    if (!x) return;
-    row.map(function (value, y) {
-      if (!y) return;
-      const waveIndex = parseInt(value) - 1;
-      if (!value) return;
-      console.log(waveIndex, value);
-      const fullName = `${crewCategories[x]} ${table[0][y]}`;
-      if (boatsByWave[waveIndex]) {
-        boatsByWave[waveIndex].push(fullName);
-      } else {
-        boatsByWave[waveIndex] = [fullName];
-      }
-    });
-  });
+  const boatsByWave = getBoatsByWave(table, "Any");
   const getWaveColor = (entry: string) => {
     switch (entry) {
       case waveNames[0]:
         return "bg-red-500";
       case waveNames[1]:
-        return "bg-green-500";
+        return "bg-green-600";
       case waveNames[2]:
         return "bg-blue-500";
       case waveNames[3]:
@@ -46,7 +31,7 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
   return (
     <div className="mx-auto">
       {children}
-      <figure className="my-4 prose">
+      <figure className="my-4 text-xs prose sm:text-sm lg:text-base">
         <table>
           <thead>
             <tr>
@@ -83,17 +68,48 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
         <figcaption>{caption}</figcaption>
       </figure>
 
-      <div className="prose">
-        {boatsByWave.map((wave, i) => (
-          <p key={i}>
-            <span className="font-semibold">Wave {waveNames[i]}:</span>
-            {" "}
-            <span>{wave.join(", ")}</span>
-          </p>
-        ))}
+      <div className="space-y-4">
+        {
+          // Iterate over the boatsByWave object and display the boats in each wave
+          Object.keys(boatsByWave).map((wave) => (
+            <div className="space-x-4" key={wave}>
+              <strong className="text-center">Wave {wave}:</strong>
+              {boatsByWave[wave].map((boat) => {
+                const full = `${boat.x} ${boat.y}`;
+                return (
+                  <span
+                    className={`inline-block px-2 text-xs sm:text-sm lg:text-base text-white font-medium rounded-full ${getWaveColor(wave)}`}
+                    key={full}
+                  >
+                    {full}
+                  </span>
+                );
+              })}
+            </div>
+          ))
+        }
       </div>
     </div>
   );
 };
 
 export default Entries;
+
+// function getBoatsByWave(table: string[][]) {
+//   const categories = table.map((value) => value[0]);
+//   const output: string[][] = [];
+//   table.map(function (row, x) {
+//     if (!x) return; // skip header row
+//     row.map(function (value, y) {
+//       if (!y || !parseInt(value)) return; // skip category column and non-numeric values
+//       const fullName = `${categories[x]} ${table[0][y]}`;
+//       const waveIndex = parseInt(value) - 1;
+//       if (output[waveIndex]) {
+//         output[waveIndex].push(fullName);
+//       } else {
+//         output[waveIndex] = [fullName];
+//       }
+//     });
+//   });
+//   return output;
+// }
