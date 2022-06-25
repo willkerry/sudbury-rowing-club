@@ -2,7 +2,7 @@ import groq from "groq";
 import PropTypes from "prop-types";
 import TextPage from "@/components/layouts/text-page";
 import EntriesComponent from "@/components/regatta/entries";
-import EventsComponent from "@/components/regatta/events";
+import { CompactEvents } from "@/components/regatta/events";
 import Text from "@/components/stour/text";
 import sanityClient from "@/lib/sanity.server";
 
@@ -13,8 +13,8 @@ export default function Entries({ entries, events }) {
       ogImage="/assets/og/entries.png"
       description="Details for competetive entry to the Sudbury Regatta."
     >
-      <EventsComponent data={events} />
-      <div className="h-24" />
+      <CompactEvents data={events} />
+      <div className="h-16" />
       <EntriesComponent
         table={entries.waves.rows.map((row) => row.cells)}
         caption={entries.caption}

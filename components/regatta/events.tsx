@@ -56,4 +56,33 @@ const Events = ({ data }: { data: Event[] }) => (
   </div>
 );
 
+export const CompactEvents = ({ data }: { data: Event[] }) => (
+  <table>
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Categories</th>
+        <th>Gender</th>
+        <th>Boat Classes</th>
+        <th>Prizes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {data.map((item, i) => (
+        <tr key={i}>
+          <td className="font-bold">{item.title}</td>
+          <td>{item.categories}</td>
+          <td>{item.gender}</td>
+          <td>
+            {item.boatClasses.map((w, index) => (
+              <span key={w}>{(index ? ", " : "") + w}</span>
+            ))}
+          </td>
+          <td>{item.prizes}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+);
+
 export default Events;
