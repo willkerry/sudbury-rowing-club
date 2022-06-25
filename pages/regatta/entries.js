@@ -17,7 +17,7 @@ export default function Entries({ entries, events }) {
       <CompactEvents data={events} />
       <div className="space-x-4">
         <Link href="/regatta/events">More on events</Link>
-        <Link href="regatta/course">Course Map</Link>
+        <Link href="/regatta/course">Course Map</Link>
       </div>
       <div className="h-16" />
       <EntriesComponent
