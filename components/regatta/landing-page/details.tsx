@@ -7,7 +7,6 @@ export type DetailProps = {
   summary: string;
   icon: React.ReactNode;
   children: React.ReactNode;
-  content?: React.ReactNode;
 };
 
 const Detail = ({ summary, icon, children }: DetailProps) => (
@@ -53,7 +52,7 @@ const Details = ({ items }: { items: DetailProps[] }) => (
   <div className="border rounded">
     {items.map((item) => (
       <Detail key={item.summary} summary={item.summary} icon={item.icon}>
-        {item.content}
+        {item.children}
       </Detail>
     ))}
   </div>
