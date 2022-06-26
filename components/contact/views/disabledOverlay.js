@@ -1,6 +1,6 @@
 import { AlertCircle } from "react-feather";
 import { EMAIL } from "@/lib/constants";
-import Obfuscate from "@south-paw/react-obfuscate-ts";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import PropTypes from "prop-types";
 
 export default function DisabledOverlay({ form }) {
