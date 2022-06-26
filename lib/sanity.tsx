@@ -1,19 +1,27 @@
 import Image from "next/image";
-import { PortableText as BlockContent } from "@portabletext/react";
+import {
+  PortableText as BlockContent,
+  PortableTextComponents,
+} from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import Note from "@/components/stour/note";
-import { config } from "./config";
+import config from "./config";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { type PortableTextProps } from "@portabletext/react";
 
-export const urlFor = (source) => imageUrlBuilder(config).image(source);
+export const urlFor = (source: SanityImageSource) =>
+  imageUrlBuilder(config).image(source);
 
 const WIDTH = 650;
 
-const components = {
+const components: PortableTextComponents = {
   marks: {
-    link: ({ value, children }) => {
-      return <Link href={value?.href}>{children[0]}</Link>;
-    },
+    link: ({ value, children }) => (
+      <Link href={value?.href} passHref>
+        <a>{children}</a>
+      </Link>
+    ),
   },
   types: {
     code: ({ value }) => (
@@ -24,7 +32,7 @@ const components = {
     quote: ({ value }) => (
       <figure>
         <blockquote>
-          <PortableText blocks={value?.quote} />
+          <PortableText value={value?.quote} />
         </blockquote>
         <figcaption>{value?.attribution}</figcaption>
       </figure>
@@ -34,7 +42,6 @@ const components = {
         {value?.note}
       </Note>
     ),
-
     figure: ({ value }) => {
       const { caption, image, altText, lqip, aspectRatio, description } = value;
       const alt = altText || caption;
@@ -66,16 +73,15 @@ const components = {
   },
 };
 
-export function PortableText({ blocks, className }, props) {
-  if (blocks) {
+type WrappedPortableTextProps = PortableTextProps & {
+  className?: string;
+};
+
+export function PortableText(props: WrappedPortableTextProps) {
+  if (props.value) {
     return (
-      <div className={className}>
-        <BlockContent
-          value={blocks}
-          components={components}
-          {...config}
-          {...props}
-        />
+      <div className={props.className}>
+        <BlockContent components={components} {...config} {...props} />
       </div>
     );
   }

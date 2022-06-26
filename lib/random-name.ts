@@ -1,4 +1,4 @@
-import names from "@/data/wodehouse";
+import names from "@/data/wodehouse.json";
 
 export default function getRandomName() {
   const name = names[Math.floor(Math.random() * names.length)];

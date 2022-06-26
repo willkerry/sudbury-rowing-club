@@ -1,4 +1,4 @@
-import Obfuscate from "react-obfuscate";
+import Obfuscate from "@south-paw/react-obfuscate-ts";
 import PropTypes from "prop-types";
 import Note from "@/components/stour/note";
 import { EMAIL } from "@/lib/constants";

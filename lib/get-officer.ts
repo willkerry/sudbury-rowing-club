@@ -1,7 +1,7 @@
 import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
 
-export default async function getOfficer(id) {
+export default async function getOfficer(id: string) {
   if (!id) {
     throw new Error("No officer ID supplied");
   }

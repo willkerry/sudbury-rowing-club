@@ -1,24 +1,26 @@
-import groq from "groq";
-import PropTypes from "prop-types";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import Obfuscate from "react-obfuscate";
-import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Layout from "@/components/layouts/layout";
 import ContactForm from "@/components/contact";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import HeroTitle from "@/components/stour/hero/hero-title";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
+import type { Officer } from "@/types/governance";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import groq from "groq";
+import type { GetStaticProps } from "next";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+import type { Message } from "@/components/contact/contactForm";
+import { InferGetStaticPropsType } from "next";
 
-export const getStaticProps = async () => {
-  const officers = await sanityClient.fetch(
+export const getStaticProps: GetStaticProps = async () => {
+  const officers: Officer[] = await sanityClient.fetch(
     groq`
       *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
         _id,
         name,
         role
-      }
-    `
+      }`
   );
   return {
     props: {
@@ -27,9 +29,12 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Contact({ officers }) {
+const Contact = ({
+  officers,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
-  const initialValues = router.query;
+  const initialValues = router.query as Message;
+  console.log(initialValues);
   return (
     <Layout>
       <NextSeo
@@ -51,11 +56,7 @@ export default function Contact({ officers }) {
             recipient for your enquiry.
           </p>
         </div>
-        <ContactForm
-          contacts={officers}
-          initialValues={initialValues}
-          // disabled
-        />
+        <ContactForm contacts={officers} initialValues={initialValues} />
         <div className="mt-16 text-sm prose text-gray-500">
           Alternatively, mail{" "}
           <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general
@@ -65,14 +66,6 @@ export default function Contact({ officers }) {
       </Container>
     </Layout>
   );
-}
-
-Contact.propTypes = {
-  officers: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      role: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
+
+export default Contact;

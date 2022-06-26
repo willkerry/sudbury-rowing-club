@@ -38,7 +38,7 @@ const Text = ({
     lead && "auto-lead"
   );
   return portableText ? (
-    <PortableText className={classes} blocks={portableText} />
+    <PortableText className={classes} value={portableText} />
   ) : (
     <div className={classes}>{children}</div>
   );

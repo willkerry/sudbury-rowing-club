@@ -28,7 +28,7 @@ export type Message = {
 };
 
 type Props = {
-  disabled: boolean;
+  disabled?: boolean;
   contacts: Contact[];
   initialValues: Message;
 };
