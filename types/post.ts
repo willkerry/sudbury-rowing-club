@@ -1,4 +1,4 @@
-import { PortableTextProps } from "@portabletext/react";
+import type { PortableTextProps } from "@portabletext/react";
 
 type Post = {
     _id: string;

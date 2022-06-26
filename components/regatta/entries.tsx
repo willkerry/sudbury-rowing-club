@@ -5,7 +5,7 @@ type Props = {
   children: React.ReactNode;
   table: string[][];
   waveNames: string[];
-  caption: string;
+  caption?: string;
 };
 
 const Entries = ({ children, table, waveNames, caption }: Props) => {
@@ -13,25 +13,25 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
   const getWaveColor = (entry: string) => {
     switch (entry) {
       case waveNames[0]:
-        return "bg-red-500";
+        return "bg-red-500 text-white";
       case waveNames[1]:
-        return "bg-green-600";
+        return "bg-green-600 text-white";
       case waveNames[2]:
-        return "bg-blue-500";
+        return "bg-blue-500 text-white";
       case waveNames[3]:
-        return "bg-yellow-500";
+        return "bg-yellow-500 text-white";
       case waveNames[4]:
-        return "bg-purple-500";
+        return "bg-purple-500 text-white";
       case waveNames[5]:
-        return "bg-pink-500";
+        return "bg-pink-500 text-white";
       default:
-        return "bg-gray-400";
+        return "bg-gray-100";
     }
   };
   return (
     <div className="mx-auto">
       {children}
-      <figure className="my-4 text-xs prose sm:text-sm lg:text-base">
+      <figure className="my-12 text-xs prose sm:text-sm lg:text-base">
         <table>
           <thead>
             <tr>
@@ -49,13 +49,11 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
                 {wave.slice(1).map((entry, i) => (
                   <td
                     key={i}
-                    className="font-medium text-center numerals-lining"
+                    className="text-center"
                   >
                     <div
-                      className={cn(
-                        "text-white rounded-full",
-                        getWaveColor(entry)
-                      )}
+                      className={`font-medium rounded-lg px-0.5 ${getWaveColor(entry)}
+                      `}
                     >
                       {entry}
                     </div>
@@ -68,48 +66,22 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
         <figcaption>{caption}</figcaption>
       </figure>
 
-      <div className="space-y-4">
-        {
-          // Iterate over the boatsByWave object and display the boats in each wave
-          Object.keys(boatsByWave).map((wave) => (
-            <div className="space-x-4" key={wave}>
-              <strong className="text-center">Wave {wave}:</strong>
-              {boatsByWave[wave].map((boat) => {
-                const full = `${boat.x} ${boat.y}`;
-                return (
-                  <span
-                    className={`inline-block px-2 text-xs sm:text-sm lg:text-base text-white font-medium rounded-full ${getWaveColor(wave)}`}
-                    key={full}
-                  >
-                    {full}
-                  </span>
-                );
-              })}
-            </div>
-          ))
-        }
-      </div>
+      {Object.keys(boatsByWave).map((wave) => (
+        <div className="text-sm" key={wave}>
+          <h4 className="inline-block pr-2">Wave {wave}: </h4>
+          {boatsByWave[wave].map((boat, i) => {
+            const full = `${boat.x} ${boat.y}`;
+            return (
+              <span key={i} className="inline-block pr-2">
+                {full}
+                {i < boatsByWave[wave].length - 1 && ", "}
+              </span>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };
 
 export default Entries;
-
-// function getBoatsByWave(table: string[][]) {
-//   const categories = table.map((value) => value[0]);
-//   const output: string[][] = [];
-//   table.map(function (row, x) {
-//     if (!x) return; // skip header row
-//     row.map(function (value, y) {
-//       if (!y || !parseInt(value)) return; // skip category column and non-numeric values
-//       const fullName = `${categories[x]} ${table[0][y]}`;
-//       const waveIndex = parseInt(value) - 1;
-//       if (output[waveIndex]) {
-//         output[waveIndex].push(fullName);
-//       } else {
-//         output[waveIndex] = [fullName];
-//       }
-//     });
-//   });
-//   return output;
-// }

@@ -1,13 +1,26 @@
 import groq from "groq";
-import PropTypes from "prop-types";
 import TextPage from "@/components/layouts/text-page";
 import EntriesComponent from "@/components/regatta/entries";
 import { CompactEvents } from "@/components/regatta/events";
 import Text from "@/components/stour/text";
 import Link from "@/components/stour/link";
 import sanityClient from "@/lib/sanity.server";
+import type { PortableTextProps } from "@portabletext/react";
 
-export default function Entries({ entries, events }) {
+type Entries = {
+  caption?: string;
+  description: PortableTextProps["value"];
+  waveNames: string[];
+  waves: string[][];
+};
+
+export default function Entries({
+  entries,
+  events,
+}: {
+  entries: Entries;
+  events: any;
+}) {
   return (
     <TextPage
       title="Entry Information"
@@ -21,37 +34,15 @@ export default function Entries({ entries, events }) {
       </div>
       <div className="h-16" />
       <EntriesComponent
-        table={entries.waves.rows.map((row) => row.cells)}
-        caption={entries.caption}
-        waveNames={entries.waveNames}
+        table={entries?.waves}
+        caption={entries?.caption}
+        waveNames={entries?.waveNames}
       >
         <Text lead portableText={entries.description} />
       </EntriesComponent>
     </TextPage>
   );
 }
-Entries.propTypes = {
-  entries: PropTypes.shape({
-    waves: PropTypes.shape({
-      rows: PropTypes.arrayOf(
-        PropTypes.shape({
-          cells: PropTypes.arrayOf(PropTypes.string.isRequired),
-        })
-      ),
-    }),
-    caption: PropTypes.string,
-    description: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.array,
-      PropTypes.object,
-      PropTypes.node,
-    ]),
-    waveNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  }),
-};
-Entries.defaultProps = {
-  data: {},
-};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
@@ -59,7 +50,12 @@ export const getStaticProps = async () => {
   );
   return {
     props: {
-      entries: data.entries,
+      entries: {
+        caption: data.entries.wavesCaption,
+        description: data.entries.description,
+        waveNames: data.entries.waveNames,
+        waves: data.entries.waves.rows.map((row: any) => row.cells),
+      },
       events: data.events.events,
     },
   };

@@ -1,5 +1,4 @@
 import { NextSeo } from "next-seo";
-import PropTypes from "prop-types";
 import Image from "next/image";
 import { Download } from "react-feather";
 import groq from "groq";
@@ -11,7 +10,18 @@ import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import { urlFor } from "@/lib/sanity";
 
-export default function Photography({ data }) {
+type Props = {
+  heading: string;
+  description: string;
+  map: string;
+  mapImage: {
+    id: string;
+    aspectRatio: number;
+    lqip: string;
+  };
+};
+
+export default function Photography(props: Props) {
   return (
     <Layout>
       <NextSeo
@@ -26,21 +36,21 @@ export default function Photography({ data }) {
       <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
       <Container className="mb-16">
         <div className="my-16 prose">
-          <p className="lead">{data.heading}</p>
-          <p>{data.description}</p>
-          <Button href={`${data.map}?dl=`} icon={<Download />} as="a">
+          <p className="lead">{props.heading}</p>
+          <p>{props.description}</p>
+          <Button href={`${props.map}?dl=`} icon={<Download />} as="a">
             Download the PDF
           </Button>
         </div>
         <div className="flex overflow-hidden border rounded shadow-xl">
           <Image
-            src={urlFor(data.mapImage.id)
+            src={urlFor(props.mapImage.id)
               .width(982 * 2)
               .url()}
             width={982}
-            height={982 / data.mapImage.aspectRatio}
+            height={982 / props.mapImage.aspectRatio}
             placeholder="blur"
-            blurDataURL={data.mapImage.lqip}
+            blurDataURL={props.mapImage.lqip}
             alt=""
           />
         </div>
@@ -48,23 +58,6 @@ export default function Photography({ data }) {
     </Layout>
   );
 }
-
-Photography.propTypes = {
-  data: PropTypes.shape({
-    heading: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    map: PropTypes.string.isRequired,
-    mapImage: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      aspectRatio: PropTypes.number.isRequired,
-      lqip: PropTypes.string.isRequired,
-    }).isRequired,
-  }),
-};
-
-Photography.defaultProps = {
-  data: {},
-};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
@@ -82,6 +75,6 @@ export const getStaticProps = async () => {
     }`
   );
   return {
-    props: { data },
+    props: data as Props,
   };
 };

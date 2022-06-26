@@ -4,7 +4,7 @@ import Link from "@/components/stour/link";
 type Props = {
   tab?: boolean;
   description: string;
-  items: [{ _id: string; title: string; url: string; extension: string }];
+  items?: { _id: string; title: string; url: string; extension: string }[];
 };
 
 const CompetitorInformation = ({ tab = false, description, items }: Props) => (
@@ -12,7 +12,7 @@ const CompetitorInformation = ({ tab = false, description, items }: Props) => (
     {description}
     <div className="py-6 prose">
       <ul>
-        {items.map((item) => (
+        {items?.map((item) => (
           <li key={item._id}>
             <Link
               href={`${item.url}?dl=`}
