@@ -14,7 +14,7 @@
     "@heroicons/react": "^1.0.6",
     "@next/bundle-analyzer": "^12.1.6",
     "@portabletext/react": "^1.0.6",
-    "@radix-ui/react-slot": "^0.1.3-rc.32",
+    "@radix-ui/react-slot": "^0.1.3-rc.41",
     "@sanity/image-url": "^1.0.1",
     "@south-paw/react-obfuscate-ts": "^1.0.2",
     "axios": "^0.27.2",
