@@ -7,7 +7,7 @@ type Props = {
   subtitle: string;
   aspectRatio: number;
   src: string;
-  blurDataURL: string;
+  blurDataURL?: string;
 };
 
 const RegattaHeroImage = ({

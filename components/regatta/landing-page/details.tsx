@@ -3,7 +3,7 @@ import { ChevronDownIcon } from "@heroicons/react/solid";
 import cn from "classnames";
 import Label from "@/components/stour/label";
 
-type DetailProps = {
+export type DetailProps = {
   summary: string;
   icon: React.ReactNode;
   children: React.ReactNode;

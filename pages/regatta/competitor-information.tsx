@@ -7,7 +7,7 @@ import CompetitorInformation from "@/components/regatta/competitor-information";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 
-type Props = {
+export type CompetitorInformation = {
   description: string;
   documents: {
     _id: string;
@@ -17,7 +17,7 @@ type Props = {
   }[];
 };
 
-const CompetitorInformationPage = (props: Props) => (
+const CompetitorInformationPage = (props: CompetitorInformation) => (
   <Layout>
     <NextSeo
       title="Competitor Information | Sudbury Regatta"

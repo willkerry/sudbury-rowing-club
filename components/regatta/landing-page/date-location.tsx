@@ -1,8 +1,9 @@
 import { CalendarIcon, MapIcon } from "@heroicons/react/solid";
 import Link from "@/components/stour/link";
+import { ReactNode } from "react";
 
 type Props = {
-  date: string;
+  date: ReactNode;
   location: string;
 };
 

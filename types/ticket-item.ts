@@ -1,6 +1,8 @@
+import { ReactNode } from "react";
+
 export type TicketItem = {
     label: string;
-    value: string;
+    value: ReactNode;
 };
 
 export default TicketItem;

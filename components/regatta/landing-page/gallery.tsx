@@ -3,8 +3,8 @@ import { urlFor } from "@/lib/sanity";
 
 type Image = {
   _id: string;
-  caption: string;
-  lqip: string;
+  caption?: string;
+  lqip?: string;
   aspectRatio: number;
 };
 

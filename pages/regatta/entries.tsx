@@ -6,8 +6,9 @@ import Text from "@/components/stour/text";
 import Link from "@/components/stour/link";
 import sanityClient from "@/lib/sanity.server";
 import type { PortableTextProps } from "@portabletext/react";
+import type { Event } from "./events";
 
-type Entries = {
+export type Entries = {
   caption?: string;
   description: PortableTextProps["value"];
   waveNames: string[];
@@ -19,7 +20,7 @@ export default function Entries({
   events,
 }: {
   entries: Entries;
-  events: any;
+  events: Event[];
 }) {
   return (
     <TextPage

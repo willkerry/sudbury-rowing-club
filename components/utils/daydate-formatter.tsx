@@ -1,5 +1,5 @@
 type Props = {
-  dateString: string;
+  dateString: string | Date;
 };
 
 const options: Intl.DateTimeFormatOptions = {
@@ -12,7 +12,7 @@ const options: Intl.DateTimeFormatOptions = {
 const DayDateFormatter = ({ dateString }: Props) => {
   const date = new Date(dateString);
   const output = date.toLocaleString("en-GB", options);
-  return <time dateTime={dateString}>{output}</time>;
+  return <time dateTime={dateString.toString()}>{output}</time>;
 };
 
 export default DayDateFormatter;

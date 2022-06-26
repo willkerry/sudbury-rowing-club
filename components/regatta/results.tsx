@@ -9,7 +9,7 @@ import Note from "@/components/stour/note";
 type Result = {
   _id: string;
   results: string;
-  date: string;
+  date: Date;
   number: number;
 };
 

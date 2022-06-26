@@ -13,7 +13,7 @@ const og = {
   description: "Races at the Sudbury Regatta.",
 };
 
-type Events = {
+export type Event = {
   _key: string;
   title: string;
   description: string;
@@ -22,10 +22,10 @@ type Events = {
   gender: string;
   boatClasses: string[];
   prizes: string;
-}[];
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { events }: { events: { events: Events } } = await sanityClient.fetch(
+  const { events }: { events: { events: Event[] } } = await sanityClient.fetch(
     groq`*[_type == "regattaSettings"][0]{events}`
   );
   return {
