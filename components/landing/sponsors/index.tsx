@@ -1,11 +1,16 @@
 import Link from "next/link";
-import PropTypes from "prop-types";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Errc from "@/components/landing/sponsors/errc";
 import Rowperfect from "@/components/landing/sponsors/rowperfect";
 import Specflue from "@/components/landing/sponsors/specflue";
 
-const SponsorLogos = [
+interface SponsorLogo {
+  logo: React.ReactElement;
+  href: string;
+  name: string;
+}
+
+const SponsorLogos: SponsorLogo[] = [
   {
     logo: <Specflue className="w-full max-h-7" />,
     href: "https://specflue.com/",
@@ -28,23 +33,16 @@ const SponsorLogos = [
   },
 ];
 
-SponsorLogos.propTypes = {
-  logo: PropTypes.elementType.isRequired,
-  href: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};
+const Sponsors = () => (
+  <ul className="flex flex-wrap items-center justify-center gap-8 my-12 space-between">
+    {SponsorLogos.map(({ logo, href, name }) => (
+      <li key={`${href}${name}`}>
+        <Link href={href}>
+          <a aria-label={name}>{logo}</a>
+        </Link>
+      </li>
+    ))}
+  </ul>
+);
 
-function Sponsors() {
-  return (
-    <ul className="flex flex-wrap items-center justify-center gap-8 my-12 space-between">
-      {SponsorLogos.map(({ logo, href, name }) => (
-        <li key={`${href}${name}`}>
-          <Link href={href}>
-            <a aria-label={name}>{logo}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
 export default Sponsors;

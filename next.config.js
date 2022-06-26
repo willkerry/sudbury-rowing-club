@@ -1,6 +1,8 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
+// @ts-check
+
+/**
+ * @type {import('next').NextConfig}
+ **/
 
 const config = {
   images: {
@@ -1059,4 +1061,4 @@ const config = {
   },
 };
 
-module.exports = withBundleAnalyzer(config);
+module.exports = config;
