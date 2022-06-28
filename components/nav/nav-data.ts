@@ -83,10 +83,15 @@ export const regatta: IconNavItemType[] = [
     icon: Results,
   },
   {
-    name: "Events",
-    href: "/regatta/events",
-    icon: Rower,
+    name: "Entries",
+    href: "/regatta/entries",
+    icon: TicketIcon,
   },
+  // {
+  //   name: "Events",
+  //   href: "/regatta/events",
+  //   icon: Rower,
+  // },
   {
     name: "Course Map",
     shortName: "Course",
@@ -111,12 +116,7 @@ export const regattaCTAs: IconNavItemType[] = [
     name: "Find the regatta",
     href: "/contact/how-to-find-us",
     icon: LocationMarkerIcon,
-  },
-  {
-    name: "Entries",
-    href: "/regatta/entries",
-    icon: TicketIcon,
-  },
+  }
 ];
 export const members: NavItemType[] = [
   {
