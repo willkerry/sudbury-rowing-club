@@ -29,11 +29,6 @@ const Results = ({ tab = false, children, records, results }: Props) => (
           Course records
         </Button>
       )}
-      <Note label="Mobile users" type="warning" className="sm:hidden">
-        Our results software pre-dates the mobile web. We’re working on it, but
-        for now we acknowledge our results pages are difficult to navigate on
-        mobile devices.
-      </Note>
     </div>
     <div className="prose prose-lg max-w-none">
       <table>
