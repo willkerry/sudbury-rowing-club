@@ -48,7 +48,7 @@
     "@types/color": "^3.0.3",
     "@types/node": "^18.0.1",
     "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.5",
+    "@types/react-dom": "^18.0.6",
     "@types/react-scroll": "^1.8.3",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.19.0",
