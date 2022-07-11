@@ -1,3 +1,5 @@
+import { NameEmail } from "./sendMail";
+
 export const HOME_OG_IMAGE_URL =
   "https://sudburyrowingclub.org.uk/assets/og/og.jpg";
 export const BASE_URL = "https://sudburyrowingclub.org.uk/";
@@ -16,3 +18,7 @@ export const MAPPING_APIS = {
   apple: "https://maps.apple.com/?address=",
 };
 
+export const SENDER: NameEmail = {
+  email: "noreply@sudburyrowingclub.org.uk",
+  name: "Sudbury Rowing Club",
+};

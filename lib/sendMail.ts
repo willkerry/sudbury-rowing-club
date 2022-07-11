@@ -1,21 +1,24 @@
-const SibApiV3Sdk = require('sib-api-v3-typescript');
+import { SENDER } from "./constants";
+const SibApiV3Sdk = require("sib-api-v3-typescript");
+// import SibApiV3Sdk from "sib-api-v3-typescript";
 
-type NameEmail = { email: string, name: string }
+export type NameEmail = { email: string; name: string };
 
 let apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
-apiInstance.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey,
-  process.env.SENDINBLUE_API_KEY ? process.env.SENDINBLUE_API_KEY : "");
-
+apiInstance.setApiKey(
+  SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.SENDINBLUE_API_KEY ? process.env.SENDINBLUE_API_KEY : ""
+);
 
 let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
 const sendMail = async (
   subject: string,
-  sender: NameEmail,
   replyTo: NameEmail,
   to: NameEmail[],
-  htmlContent: string
+  htmlContent: string,
+  sender: NameEmail = SENDER
 ) => {
   sendSmtpEmail.subject = subject;
   sendSmtpEmail.htmlContent = htmlContent;
@@ -28,5 +31,5 @@ const sendMail = async (
   } catch (error) {
     return error;
   }
-}
+};
 export default sendMail;
