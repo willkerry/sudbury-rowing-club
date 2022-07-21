@@ -9040,11 +9040,6 @@ sanity-diff-patch@^1.0.9:
   dependencies:
     diff-match-patch "^1.0.5"
 
-sanity-plugin-json-to-docs@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/sanity-plugin-json-to-docs/-/sanity-plugin-json-to-docs-1.0.3.tgz#fe326abda17c3a52548718e536fce586aa713cda"
-  integrity sha512-iI5feg2QfRPJfh/AJE6mEBL/vqb4dUKfo+IN5nxEspat9PjIvHv6G7P6CqNJUbqV3LWjhXnHO70DLFrN+L/RYg==
-
 sanity-plugin-order-documents@^0.0.22:
   version "0.0.22"
   resolved "https://registry.yarnpkg.com/sanity-plugin-order-documents/-/sanity-plugin-order-documents-0.0.22.tgz#cf605f9abf836f9a58fbf5a0f5b491615459f56f"

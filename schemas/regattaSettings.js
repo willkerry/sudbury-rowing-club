@@ -66,9 +66,11 @@ export default {
       description:
         "A optional note, displayed near the top of the regatta landing page.",
       fields: [
-        { name: "label", type: "string" },
         { name: "display", type: "boolean" },
-        { name: "text", type: "text" },
+        {
+          name: "text", type: 'array',
+          of: [{ type: 'block' }]
+        },
         {
           name: "type",
           type: "string",
@@ -171,7 +173,7 @@ export default {
       type: "object",
       description: "Control how regatta results are displayed.",
       fields: [
-        { name: "description", type: "richText"},
+        { name: "description", type: "richText" },
         { name: "courseRecords", type: "file" },
       ],
       options: {
