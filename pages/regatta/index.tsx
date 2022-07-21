@@ -21,7 +21,7 @@ import dynamic from "next/dynamic";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import type { NoteProps } from "@/components/stour/note/note";
 import type { Testimonial } from "@/types/testimonial";
-import type { PortableTextProps } from "@portabletext/react";
+import { PortableText, PortableTextProps } from "@portabletext/react";
 import type { GetStaticProps } from "next";
 import type { CompetitorInformation } from "./competitor-information";
 import type { Entries } from "./entries";
@@ -62,7 +62,7 @@ const CompetitorInformation = dynamic(
 interface Note {
   display: boolean;
   label: string;
-  text: string;
+  text: PortableTextProps["value"];
   type: NoteProps["type"];
 }
 interface ImageElement {
@@ -192,13 +192,8 @@ const RegattaPage = ({
       />
       <Container>
         {page.note.display && (
-          <Note
-            label={page.note.label}
-            centered
-            className="mb-6"
-            type={page.note.type}
-          >
-            {page.note.text}
+          <Note centered className="mb-6" type={page.note.type}>
+            <PortableText value={page.note.text} />
           </Note>
         )}
         <RegattaHero
