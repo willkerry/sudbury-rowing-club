@@ -1,15 +1,14 @@
-import groq from "groq";
-import PropTypes from "prop-types";
-import { NextSeo } from "next-seo";
-import { BASE_URL } from "@/lib/constants";
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Results from "@/components/regatta/results";
+import HeroTitle from "@/components/stour/hero/hero-title";
 import Text from "@/components/stour/text";
+import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import type { PortableTextProps } from "@portabletext/react";
+import groq from "groq";
 import { InferGetStaticPropsType } from "next";
+import { NextSeo } from "next-seo";
 
 export interface Result {
   _id: string;

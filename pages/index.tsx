@@ -9,6 +9,7 @@ import { type PortableTextProps } from "@portabletext/react";
 import groq from "groq";
 import { NextSeo } from "next-seo";
 import { type GetStaticProps } from "next/types";
+import Notice from "@/components/regatta/notice";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
@@ -62,6 +63,9 @@ const Home = ({
         description: `${landingPage.tagline}`,
       }}
     />
+    <Container>
+      <Notice />
+    </Container>
     {landingPage.note.display && (
       <Container>
         <Note

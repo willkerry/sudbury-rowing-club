@@ -21,12 +21,13 @@ import dynamic from "next/dynamic";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import type { NoteProps } from "@/components/stour/note/note";
 import type { Testimonial } from "@/types/testimonial";
-import { PortableText, PortableTextProps } from "@portabletext/react";
+import { PortableTextProps } from "@portabletext/react";
 import type { GetStaticProps } from "next";
 import type { CompetitorInformation } from "./competitor-information";
 import type { Entries } from "./entries";
 import type { Event } from "./events";
 import type { Result } from "./results";
+import Notice from "@/components/regatta/notice";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
@@ -44,7 +45,6 @@ const RegattaHeroImage = dynamic(
   () => import("@/components/regatta/landing-page/regatta-hero-image"),
   { loading: () => <Loading /> }
 );
-const Note = dynamic(() => import("@/components/stour/note"));
 const Results = dynamic(() => import("@/components/regatta/results"), {
   loading: () => <Loading />,
 });
@@ -58,13 +58,6 @@ const CompetitorInformation = dynamic(
   () => import("@/components/regatta/competitor-information"),
   { loading: () => <Loading /> }
 );
-
-interface Note {
-  display: boolean;
-  label: string;
-  text: PortableTextProps["value"];
-  type: NoteProps["type"];
-}
 interface ImageElement {
   _id: string;
   aspectRatio: number;
@@ -89,7 +82,6 @@ export interface Page {
   entries: Entries;
   events: Event[];
   landingPage: LandingPage;
-  note: Note;
   results: {
     description: PortableTextProps["value"];
     records: string;
@@ -191,11 +183,7 @@ const RegattaPage = ({
         description="The best little regatta in the world."
       />
       <Container>
-        {page.note.display && (
-          <Note centered className="mb-6" type={page.note.type}>
-            <PortableText value={page.note.text} />
-          </Note>
-        )}
+        <Notice />
         <RegattaHero
           ticketItems={ticketItems}
           subtitle={page.landingPage.tagline}
@@ -258,7 +246,6 @@ export const getStaticProps: GetStaticProps = async () => {
       },
       tagline
     },
-    note,
     competitorInformation {
       description,
       documents[] { 
