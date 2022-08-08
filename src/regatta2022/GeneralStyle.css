@@ -1,0 +1,64 @@
+BODY
+{
+    FONT-SIZE: 11pt;
+    COLOR: #0000C0;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    BACKGROUND-COLOR: #FFE0E0
+}
+TABLE
+{
+    FONT-SIZE: x-small
+}
+TD
+{
+    PADDING: 1px;
+    FONT-SIZE: 10pt;
+    FONT-FAMILY: Tahoma, Arial, Verdana
+}
+TD.CellA
+{
+    BORDER-TOP: gray thin solid;
+    BORDER-BOTTOM: gray thin solid;
+    BACKGROUND-COLOR: silver;
+    TEXT-ALIGN: left
+}
+TD.CellB
+{
+    BORDER-RIGHT: gray thin solid;
+    BORDER-TOP: gray thin solid;
+    BORDER-BOTTOM: gray thin solid;
+    BACKGROUND-COLOR: silver;
+    TEXT-ALIGN: right
+}
+TD.CellC
+{
+    BORDER-RIGHT: gray thin solid
+}
+A
+{
+    TEXT-DECORATION: none
+}
+TD.CellScratched
+{
+    BORDER-TOP: gray thin solid;
+    BORDER-BOTTOM: gray thin solid;
+    BACKGROUND-COLOR: silver;
+    TEXT-ALIGN: left;
+    TEXT-DECORATION: line-through
+}
+TD.Scratched
+{
+    TEXT-DECORATION: line-through
+}
+TR
+{
+    PAGE-BREAK-INSIDE: avoid
+}
+P
+{
+    PAGE-BREAK-INSIDE: avoid
+}
+TR.ListA:NTH-CHILD(even)
+{
+    BACKGROUND-COLOR: #f2f2f2;
+}
