@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "clean-css": "^5.2.4",
+    "cli-progress": "^3.11.2",
     "html-minifier": "^4.0.0",
     "iconv-lite": "^0.6.3",
     "tidy-html5": "^0.1.1"
