@@ -1,9 +1,18 @@
-import { about, aboutCTAs, memberCTAs, members, regatta } from "@/components/nav/nav-data";
+import {
+  about,
+  aboutCTAs,
+  memberCTAs,
+  members,
+  regatta,
+} from "@/components/nav/nav-data";
 import { Popover } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 
 import { regattaCTAs } from "../nav-data";
-import { CompactMobileMenuSection, MobileMenuSection } from "./mobile-menu-section";
+import {
+  CompactMobileMenuSection,
+  MobileMenuSection,
+} from "./mobile-menu-section";
 
 const MobileMenu = () => (
   <Popover.Panel
@@ -13,7 +22,11 @@ const MobileMenu = () => (
   >
     <div className="relative bg-white divide-y rounded shadow-lg ring-1 ring-black ring-opacity-5">
       <MobileMenuSection title="About" data={about.concat(aboutCTAs)} />
-      <MobileMenuSection title="Regatta" data={regatta.concat(regattaCTAs)} />
+      <MobileMenuSection
+        collapse
+        title="Regatta"
+        data={regatta.concat(regattaCTAs)}
+      />
       <CompactMobileMenuSection
         title="Members"
         data={members.concat(memberCTAs)}

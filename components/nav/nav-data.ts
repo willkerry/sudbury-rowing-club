@@ -5,9 +5,9 @@ import {
   Results,
   Rower,
   Safety,
-  Spond
+  Spond,
 } from "@/components/icons";
-import { type NavItemType, type IconNavItemType } from "@/types/nav-item";
+import { IconNavItemType, NavItemType } from "@/types/nav-item";
 import {
   CalendarIcon,
   FlagIcon,
@@ -18,7 +18,7 @@ import {
   PhotographIcon,
   ShieldCheckIcon,
   TicketIcon,
-  UserAddIcon
+  UserAddIcon,
 } from "@heroicons/react/outline";
 import { Facebook, Instagram, Twitter } from "react-feather";
 
@@ -87,11 +87,6 @@ export const regatta: IconNavItemType[] = [
     href: "/regatta/entries",
     icon: TicketIcon,
   },
-  // {
-  //   name: "Events",
-  //   href: "/regatta/events",
-  //   icon: Rower,
-  // },
   {
     name: "Course Map",
     shortName: "Course",
@@ -114,9 +109,10 @@ export const regatta: IconNavItemType[] = [
 export const regattaCTAs: IconNavItemType[] = [
   {
     name: "Find the regatta",
+    shortName: "Find",
     href: "/contact/how-to-find-us",
     icon: LocationMarkerIcon,
-  }
+  },
 ];
 export const members: NavItemType[] = [
   {
