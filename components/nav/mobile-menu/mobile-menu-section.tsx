@@ -30,7 +30,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = (
   const inner = (
     <nav
       className={cn(
-        "grid grid-cols-2 sm:grid-cols-6 gap-x-6",
+        "grid grid-cols-2 sm:grid-cols-3 gap-x-6",
         props.compact ? "gap-y-1" : "gap-y-4"
       )}
     >
