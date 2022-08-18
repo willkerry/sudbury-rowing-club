@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
-// import { LandingHero } from "@/components/landing";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
+import Notice from "@/components/regatta/notice";
 import { type NoteProps } from "@/components/stour/note/note";
 import sanityClient from "@/lib/sanity.server";
 import type Post from "@/types/post";
@@ -9,7 +9,6 @@ import { type PortableTextProps } from "@portabletext/react";
 import groq from "groq";
 import { NextSeo } from "next-seo";
 import { type GetStaticProps } from "next/types";
-import Notice from "@/components/regatta/notice";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
