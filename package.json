@@ -42,7 +42,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.9",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.7",
     "@types/color": "^3.0.3",
