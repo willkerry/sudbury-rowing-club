@@ -1,6 +1,7 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
-import { ExclamationIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
+import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import Link from "next/link";
 import DateTimeFormatter from "../utils/datetime-formatter";
 import EnvironmentAgency from "../icons/organisations/environment-agency";
@@ -66,7 +67,7 @@ function SeveritySection({ status }) {
     >
       {status}
       {(status === "red" || status === "amber") && (
-        <ExclamationIcon className="w-6 h-6" />
+        <ExclamationCircleIcon className="w-6 h-6" />
       )}
     </div>
   );
