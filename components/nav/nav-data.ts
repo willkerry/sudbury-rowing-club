@@ -3,22 +3,19 @@ import {
   History,
   MyClubhouse,
   Results,
-  Rower,
   Safety,
-  Spond,
+  Spond
 } from "@/components/icons";
 import { IconNavItemType, NavItemType } from "@/types/nav-item";
+import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
-  CalendarIcon,
-  FlagIcon,
+  EnvelopeIcon, FlagIcon,
   InformationCircleIcon,
-  MapPinIcon,
-  EnvelopeIcon,
-  NewspaperIcon,
+  MapPinIcon, NewspaperIcon,
   PhotoIcon,
   ShieldCheckIcon,
   TicketIcon,
-  UserPlusIcon,
+  UserPlusIcon
 } from "@heroicons/react/24/outline";
 import { Facebook, Instagram, Twitter } from "react-feather";
 

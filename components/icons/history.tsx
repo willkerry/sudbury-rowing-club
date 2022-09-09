@@ -9,7 +9,7 @@ const History = (
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
-    strokeWidth={2}
+    strokeWidth={1.5}
     {...props}
   >
     <path d="M10 7V5h10v12c0 .7-.2 1.2-.5 1.5-.3.3-.8.5-1.5.5H9c-.7 0-1.2-.2-1.5-.5-.3-.3-.5-.8-.5-1.5v-1h9v1c0 .7.2 1.2.5 1.5.3.3.8.5 1.5.5" />

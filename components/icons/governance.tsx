@@ -7,7 +7,7 @@ const Governance = (
     fill="none"
     fillRule="evenodd"
     stroke="currentColor"
-    strokeWidth={2}
+    strokeWidth={1.5}
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}

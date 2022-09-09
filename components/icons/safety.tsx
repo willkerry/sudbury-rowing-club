@@ -7,7 +7,7 @@ const Safety = (
     fill="none"
     fillRule="evenodd"
     stroke="currentColor"
-    strokeWidth={2}
+    strokeWidth={1.5}
     strokeLinejoin="round"
     {...props}
   >
