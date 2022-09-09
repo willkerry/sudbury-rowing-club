@@ -1,5 +1,5 @@
 import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import cn from "classnames";
 import Label from "@/components/stour/label";
 

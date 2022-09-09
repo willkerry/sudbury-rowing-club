@@ -1,7 +1,7 @@
 import Label from "@/components/stour/label";
 import Text from "@/components/stour/text";
 import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import cn from "classnames";
 import FileGroup from "./file-group";
 import DateTimeFormatter from "@/components/utils/datetime-formatter";

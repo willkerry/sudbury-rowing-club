@@ -1,4 +1,4 @@
-import { ShieldCheckIcon } from "@heroicons/react/solid";
+import { ShieldCheckIcon } from "@heroicons/react/20/solid";
 
 const Anonymous = () => (
   <div className="flex">

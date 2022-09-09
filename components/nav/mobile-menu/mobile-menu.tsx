@@ -6,7 +6,7 @@ import {
   regatta,
 } from "@/components/nav/nav-data";
 import { Popover } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import { regattaCTAs } from "../nav-data";
 import {
@@ -35,7 +35,7 @@ const MobileMenu = () => (
     <div className="absolute top-3 right-3">
       <Popover.Button className="inline-flex items-center justify-center p-2 text-gray-700 transition rounded-md hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
         <span className="sr-only">Close menu</span>
-        <XIcon className="w-6 h-6" aria-hidden="true" />
+        <XMarkIcon className="w-6 h-6" aria-hidden="true" />
       </Popover.Button>
     </div>
   </Popover.Panel>

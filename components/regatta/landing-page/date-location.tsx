@@ -1,4 +1,4 @@
-import { CalendarIcon, MapIcon } from "@heroicons/react/solid";
+import { CalendarIcon, MapIcon } from "@heroicons/react/20/solid";
 import Link from "@/components/stour/link";
 import { ReactNode } from "react";
 

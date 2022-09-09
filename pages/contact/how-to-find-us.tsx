@@ -1,4 +1,4 @@
-import { LocationMarkerIcon } from "@heroicons/react/solid";
+import { MapPinIcon } from "@heroicons/react/24/solid";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { Map, Marker } from "pigeon-maps";
@@ -98,7 +98,7 @@ const FindUs = () => (
           <div className="grid lg:grid-cols-2">
             <div>
               <h4>
-                <LocationMarkerIcon className="inline-flex w-6 h-6 mb-0.5 text-blue-500" />
+                <MapPinIcon className="inline-flex w-6 h-6 mb-0.5 text-blue-500" />
                 Club
               </h4>
               <p>
@@ -134,7 +134,7 @@ const FindUs = () => (
             </div>
             <div>
               <h4>
-                <LocationMarkerIcon className="inline-flex w-6 h-6 mb-0.5 text-green-500" />
+                <MapPinIcon className="inline-flex w-6 h-6 mb-0.5 text-green-500" />
                 Regatta
               </h4>
               <p>

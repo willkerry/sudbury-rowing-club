@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/solid";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import ImageComposite from "@/components/regatta/landing-page/image-composite";
 import Link from "@/components/stour/link";
 import { type TicketItem } from "@/types/ticket-item";

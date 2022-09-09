@@ -12,14 +12,14 @@ import {
   CalendarIcon,
   FlagIcon,
   InformationCircleIcon,
-  LocationMarkerIcon,
-  MailIcon,
+  MapPinIcon,
+  EnvelopeIcon,
   NewspaperIcon,
-  PhotographIcon,
+  PhotoIcon,
   ShieldCheckIcon,
   TicketIcon,
-  UserAddIcon,
-} from "@heroicons/react/outline";
+  UserPlusIcon,
+} from "@heroicons/react/24/outline";
 import { Facebook, Instagram, Twitter } from "react-feather";
 
 export const about: IconNavItemType[] = [
@@ -45,7 +45,7 @@ export const about: IconNavItemType[] = [
     name: "Join",
     href: "/join",
     mobileOnly: true,
-    icon: UserAddIcon,
+    icon: UserPlusIcon,
   },
   {
     name: "News",
@@ -59,13 +59,13 @@ export const aboutCTAs: IconNavItemType[] = [
     name: "How to find us",
     shortName: "Find us",
     href: "/contact/how-to-find-us",
-    icon: LocationMarkerIcon,
+    icon: MapPinIcon,
   },
   {
     name: "Contact us",
     shortName: "Contact",
     href: "/contact",
-    icon: MailIcon,
+    icon: EnvelopeIcon,
   },
 ];
 export const regatta: IconNavItemType[] = [
@@ -97,7 +97,7 @@ export const regatta: IconNavItemType[] = [
     name: "Official Photography",
     shortName: "Photography",
     href: "/regatta/galleries",
-    icon: PhotographIcon,
+    icon: PhotoIcon,
   },
   {
     name: "Competitor information",
@@ -111,7 +111,7 @@ export const regattaCTAs: IconNavItemType[] = [
     name: "Find the regatta",
     shortName: "Find",
     href: "/contact/how-to-find-us",
-    icon: LocationMarkerIcon,
+    icon: MapPinIcon,
   },
 ];
 export const members: NavItemType[] = [

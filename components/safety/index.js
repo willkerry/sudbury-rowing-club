@@ -1,6 +1,6 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
-import { ExclamationIcon, ExternalLinkIcon } from "@heroicons/react/outline";
+import { ExclamationIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import DateTimeFormatter from "../utils/datetime-formatter";
 import EnvironmentAgency from "../icons/organisations/environment-agency";
@@ -28,7 +28,7 @@ export default function SafetyPopup({ description, date, status }) {
           <a className="flex items-center justify-between px-4 text-sm text-gray-500 transition duration-300 h-14 bg-gray-50 hover:text-black hover:bg-white group">
             <EnvironmentAgency className="w-4 h-4" />
             EA Floods
-            <ExternalLinkIcon className="w-4 h-4 transition duration-300 opacity-30 group-hover:opacity-70" />
+            <ArrowTopRightOnSquareIcon className="w-4 h-4 transition duration-300 opacity-30 group-hover:opacity-70" />
           </a>
         </Link>
         <Link href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings">
@@ -37,7 +37,7 @@ export default function SafetyPopup({ description, date, status }) {
               <MetOffice className="w-4 h-4" />
             </div>
             Met Office
-            <ExternalLinkIcon className="w-4 h-4 transition duration-300 opacity-30 group-hover:opacity-70" />
+            <ArrowTopRightOnSquareIcon className="w-4 h-4 transition duration-300 opacity-30 group-hover:opacity-70" />
           </a>
         </Link>
       </div>

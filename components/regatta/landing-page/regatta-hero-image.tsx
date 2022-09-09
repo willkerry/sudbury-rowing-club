@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowUpIcon } from "@heroicons/react/solid";
+import { ArrowUpIcon } from "@heroicons/react/20/solid";
 import { urlFor } from "@/lib/sanity";
 
 type Props = {
