@@ -15,7 +15,7 @@ const LatestNews = ({ news }: { news: Post[] }) => (
         For more updates, follow us on{" "}
         <Link href="https://facebook.com/sudburyrowing">Facebook</Link>.
       </p>
-      <NewsList posts={news} />
+      <NewsList posts={news} hero />
       <div className="h-8" />
       <Link href="/news" arrow>
         See more news

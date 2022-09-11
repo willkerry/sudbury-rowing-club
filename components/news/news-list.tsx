@@ -4,12 +4,14 @@ import type Post from "../../types/post";
 
 type Props = {
   posts: Post[];
+  hero?: boolean;
+  more?: string;
 };
 
-const NewsList = ({ posts }: Props) => (
+const NewsList = ({ posts, hero, more }: Props) => (
   <>
-    <HeroPost post={posts[0]} />
-    <MoreStories posts={posts.slice(1)} />
+    {hero && <HeroPost post={posts[0]} />}
+    <MoreStories posts={posts.slice(hero ? 1 : 0)} {...{ more }} />
   </>
 );
 

@@ -15,6 +15,31 @@ type Props = {
   data: Post[];
 };
 
+// Get URL query string
+
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await sanityClient.fetch(groq`
+    *[_type == "news" && !(_id in path("drafts.**"))] | order(date desc){
+        _id,
+        "slug": slug.current,
+        title,
+        excerpt,
+        date,
+        featuredImage {
+          alt, 
+          caption,
+          "_id": @.image.asset->_id, 
+          "lqip": @.image.asset->metadata.lqip, 
+          "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio
+        },
+      }[0...30]
+   `);
+
+  return {
+    props: { data },
+  };
+};
+
 const News = ({ data }: Props) => (
   <Layout>
     <NextSeo
@@ -38,32 +63,9 @@ const News = ({ data }: Props) => (
       </Container>
     </div>
     <Container className="my-10">
-      <NewsList posts={data} />
+      <NewsList posts={data} hero more={data?.length === 30 ? "/news/p/2" : ""} />
     </Container>
   </Layout>
 );
 
 export default News;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await sanityClient.fetch(groq`
-    *[_type == "news" && !(_id in path("drafts.**"))] | order(date desc){
-        _id,
-        "slug": slug.current,
-        title,
-        excerpt,
-        date,
-        featuredImage {
-          alt, 
-          caption,
-          "_id": @.image.asset->_id, 
-          "lqip": @.image.asset->metadata.lqip, 
-          "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio
-        },
-      }
-   `);
-
-  return {
-    props: { data },
-  };
-};

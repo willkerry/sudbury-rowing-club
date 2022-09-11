@@ -105,10 +105,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = await sanityClient.fetch(postQuery, {
     slug: params?.slug,
   });
-
-  return {
-    props: { post },
-  };
+  return { props: { post } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
