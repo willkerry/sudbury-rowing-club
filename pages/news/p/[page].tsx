@@ -63,8 +63,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const News = ({ data, page, pages }: Props) => {
   const showPrev = Number(page) > 1;
   const showNext = pages > Number(page);
-  const previous =
-    Number(page) === 2 ? "/news/" : `/news/p/${Number(page) - 1}`;
+  const previous = `/news/p/${Number(page) - 1}`;
   const next = `/news/p/${Number(page) + 1}`;
 
   return (
