@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import groq from "groq";
 import Head from "next/head";
 import Container from "@/components/layouts/container";
@@ -7,7 +6,6 @@ import Layout from "@/components/layouts/layout";
 import sanityClient from "@/lib/sanity.server";
 import CollapsibleCard from "@/components/stour/collapsible-card";
 import { FileGroupProps } from "@/components/stour/collapsible-card/collapsible-card";
-import { PortableTextProps } from "@portabletext/react";
 
 type Props = {
   data: {
