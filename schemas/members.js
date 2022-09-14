@@ -8,6 +8,15 @@ export default {
   fields: [
     { name: "title", type: "string", required: true },
     {
+      name: "slug",
+      type: "slug",
+      required: true,
+      options: {
+        source: "title",
+        maxLength: 96,
+      },
+    },
+    {
       name: "meta",
       type: "array",
       options: {
