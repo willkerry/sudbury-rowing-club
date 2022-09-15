@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 type Props = {
   dateString: string | Date;
 };
@@ -10,8 +12,11 @@ const options: Intl.DateTimeFormatOptions = {
 };
 
 const DayDateFormatter = ({ dateString }: Props) => {
-  const date = new Date(dateString);
-  const output = date.toLocaleString("en-GB", options);
+  const [output, setOutput] = useState("");
+  useEffect(() => {
+    const date = new Date(dateString);
+    setOutput(date.toLocaleDateString("en-GB", options));
+  }, []);
   return <time dateTime={dateString.toString()}>{output}</time>;
 };
 
