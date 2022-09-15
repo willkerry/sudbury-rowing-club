@@ -5,25 +5,9 @@ import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import sanityClient from "@/lib/sanity.server";
 import CollapsibleCard from "@/components/stour/collapsible-card";
-import { FileGroupProps } from "@/components/stour/collapsible-card/collapsible-card";
+import type { NoticeProps } from "./[slug]";
 
-type Props = {
-  data: {
-    _id: string;
-    title: string;
-    documents: FileGroupProps["fileItems"];
-    meta: {
-      _key: string;
-      label: string;
-      value: string;
-    }[];
-    _updatedAt: string;
-    _createdAt: string;
-    body: any[];
-  }[];
-};
-
-export default function Notices({ data }: Props) {
+export default function Notices({ data }: { data: NoticeProps[] }) {
   return (
     <Layout>
       <Head>
@@ -40,6 +24,7 @@ export default function Notices({ data }: Props) {
             created={item._createdAt}
             updated={item._updatedAt}
             body={item.body}
+            slug={item.slug.current}
           />
         ))}
       </Container>
@@ -54,6 +39,7 @@ export const getStaticProps = async () => {
       _updatedAt,
       _createdAt,
       title,
+      slug,
       body[]{
           ...,
           _type == "figure" => {
