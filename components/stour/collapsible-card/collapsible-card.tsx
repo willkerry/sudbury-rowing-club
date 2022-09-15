@@ -1,11 +1,14 @@
 import Label from "@/components/stour/label";
 import Text from "@/components/stour/text";
 import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
 import cn from "classnames";
 import FileGroup from "./file-group";
 import DateTimeFormatter from "@/components/utils/datetime-formatter";
 import DateFormatter from "@/components/utils/date-formatter";
+import { PortableTextProps } from "@portabletext/react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export type FileGroupProps = {
   fileItems: {
@@ -20,7 +23,7 @@ export type FileGroupProps = {
 
 export type CollapsibleCardProps = {
   title: string;
-  body: any[];
+  body: PortableTextProps["value"];
   updated: string;
   created: string;
   items: FileGroupProps["fileItems"];
@@ -29,6 +32,61 @@ export type CollapsibleCardProps = {
     label: string;
     value: string;
   }[];
+  slug?: string;
+};
+
+export const NoticeBody = ({
+  body,
+  items,
+  meta,
+  updated,
+  created,
+  link,
+}: Omit<CollapsibleCardProps, "title"> & { link?: string }) => {
+  const [splitItemCount, setSplitItemCount] = useState(0);
+  useEffect(() => {
+    setSplitItemCount(Math.ceil(items.length / 2));
+  }, []);
+  return (
+    <>
+      {body && <Text portableText={body} className="p-4" />}
+      {meta && (
+        <div className="flex py-2.5 text-sm bg-gray-50">
+          {meta.map((item) => (
+            <div className="px-4" key={item._key}>
+              <Label className="text-xs select-none">{`${item.label} : `}</Label>
+              <Label className="text-xs !text-gray-800">{item.value}</Label>
+            </div>
+          ))}
+        </div>
+      )}
+      {items && (
+        <div className="grid grid-cols-2 gap-4 p-4">
+          <FileGroup fileItems={items.slice(0, splitItemCount)} />
+          <FileGroup fileItems={items.slice(splitItemCount)} />
+        </div>
+      )}
+      <div className="flex justify-between gap-4 px-4 py-3 text-xs font-medium text-gray-500 bg-gray-100">
+        <div className="flex gap-4">
+          <span>
+            Created: <DateFormatter dateString={created} />
+          </span>
+          {created !== updated && (
+            <span>
+              Updated: <DateTimeFormatter dateString={updated} />
+            </span>
+          )}
+        </div>
+        {link && (
+          <Link href={link} passHref>
+            <a className="transition-colors hover:text-black">
+              <LinkIcon className="w-4 h-4" />
+            </a>
+          </Link>
+        )}
+      </div>
+    </>
+  );
 };
 
 const CollapsibleCard = ({
@@ -38,11 +96,8 @@ const CollapsibleCard = ({
   meta,
   updated,
   created,
+  slug,
 }: CollapsibleCardProps) => {
-  const splitItemCount = Math.ceil(items?.length / 2);
-  const firstColumnItems = items !== null ? items.slice(0, splitItemCount) : [];
-  const secondColumnItems = items !== null ? items.slice(splitItemCount) : [];
-  const slug = title.toLowerCase().replace(/ /g, "-");
   return (
     <Disclosure
       as="div"
@@ -51,7 +106,11 @@ const CollapsibleCard = ({
     >
       {({ open }) => (
         <>
-          <Disclosure.Button className="flex items-center justify-between w-full px-4 text-left h-14 group">
+          <Disclosure.Button
+            className={`flex items-center justify-between w-full px-4 text-left h-14 group hover:bg-gray-50 transition ${
+              open && "bg-gray-50"
+            }`}
+          >
             <Label
               className="transition duration-300 group-hover:text-black"
               as="h2"
@@ -74,37 +133,14 @@ const CollapsibleCard = ({
             leaveTo="opacity-0"
           >
             <Disclosure.Panel className="divide-y">
-              {body && <Text portableText={body} className="p-4" />}
-              {meta && (
-                <div className="flex py-2.5 text-sm bg-gray-50">
-                  {meta.map((item) => (
-                    <div className="px-4" key={item._key}>
-                      <Label className="text-xs select-none">{`${item.label} : `}</Label>
-                      <Label className="text-xs !text-gray-800">
-                        {item.value}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {items && (
-                <div className="grid grid-cols-2 gap-4 p-4">
-                  <FileGroup fileItems={firstColumnItems} />
-                  <FileGroup fileItems={secondColumnItems} />
-                </div>
-              )}
-              <div className="flex gap-4 px-4 py-2 text-xs font-medium text-gray-500 bg-gray-100">
-                <time dateTime={created}>
-                  <>
-                    Created: <DateFormatter dateString={created} />
-                  </>
-                </time>
-                {created !== updated && (
-                  <>
-                    Updated: <DateTimeFormatter dateString={updated} />
-                  </>
-                )}
-              </div>
+              <NoticeBody
+                body={body}
+                items={items}
+                meta={meta}
+                created={created}
+                updated={updated}
+                link={`../members/${slug}`}
+              />
             </Disclosure.Panel>
           </Transition>
         </>
