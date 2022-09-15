@@ -38,7 +38,7 @@ const Notice: React.FC<{ notice: NoticeProps }> = ({
 }) => (
   <Layout>
     <Head>
-      <title>Members’ Notices</title>
+      <title>{notice?.title}</title>
     </Head>
     <HeroTitle prose title={notice?.title} transparent>
       <div className="h-2" />
