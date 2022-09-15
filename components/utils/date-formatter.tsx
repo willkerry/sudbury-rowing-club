@@ -7,7 +7,7 @@ type Props = {
 
 const defaultOptions: Map<string, Intl.DateTimeFormatOptions> = new Map([
   ["default", { year: "numeric", month: "long", day: "numeric" }],
-  ["long", { weekday: "long", year: "numeric", month: "long", day: "numeric" }],
+  ["long", { year: "numeric", month: "long", day: "numeric", weekday: "long" }],
   ["short", { year: "numeric", month: "short", day: "numeric" }],
   ["numeric", { year: "numeric", month: "numeric", day: "numeric" }],
   [
