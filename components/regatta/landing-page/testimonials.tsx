@@ -1,6 +1,6 @@
 import Label from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
-import DayDateFormatter from "@/components/utils/daydate-formatter";
+import DateFormatter from "@/components/utils/date-formatter";
 import Testimonial from "@/components/stour/testimonial";
 import ordinal from "@/lib/helpers/ordinal";
 import type TestimonialType from "../../../types/testimonial";
@@ -26,7 +26,7 @@ const Testimonials = ({ data }: Props) => (
                   Praise for the {ordinal(year.number)} regatta
                 </h3>
                 <Label>
-                  <DayDateFormatter dateString={year.date} />
+                  <DateFormatter dateString={year.date} format="long" />
                 </Label>
               </div>
               {year.testimonials.map((testimonial, i) => (

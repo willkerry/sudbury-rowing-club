@@ -12,8 +12,6 @@ import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
 import { GetStaticProps } from "next";
 import { PortableTextProps } from "@portabletext/react";
-import DateTimeFormatter from "@/components/utils/datetime-formatter";
-import Label from "@/components/stour/label";
 
 type SafetyItem = {
   _id: string;

@@ -1,22 +1,42 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Props = {
   dateString: string | Date;
+  format?: "default" | "long" | "short" | "numeric" | "time" | "year";
 };
 
-const options: Intl.DateTimeFormatOptions = {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
+const defaultOptions: Map<string, Intl.DateTimeFormatOptions> = new Map([
+  ["default", { year: "numeric", month: "long", day: "numeric" }],
+  ["long", { weekday: "long", year: "numeric", month: "long", day: "numeric" }],
+  ["short", { year: "numeric", month: "short", day: "numeric" }],
+  ["numeric", { year: "numeric", month: "numeric", day: "numeric" }],
+  [
+    "time",
+    {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    },
+  ],
+  ["year", { year: "numeric" }],
+]);
+
+const DateFormatter = ({ dateString, format }: Props) => {
+  const [dateObj] = useState(new Date(dateString));
+  return (
+    <time dateTime={dateObj.toString()}>
+      {dateObj.toLocaleDateString(
+        "en-GB",
+        defaultOptions.get(format || "default")
+      )}
+    </time>
+  );
 };
 
-const DateFormatter = ({ dateString }: Props) => {
-  const [output, setOutput] = useState("");
-  useEffect(() => {
-    const date = new Date(dateString);
-    setOutput(date.toLocaleDateString("en-GB", options));
-  }, []);
-  return <time dateTime={dateString.toString()}>{output}</time>;
+DateFormatter.defaultProps = {
+  format: "default",
 };
 
 export default DateFormatter;

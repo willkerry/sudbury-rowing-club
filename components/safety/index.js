@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import { ExclamationCircleIcon } from '@heroicons/react/24/solid'
 import Link from "next/link";
-import DateTimeFormatter from "../utils/datetime-formatter";
+import DateFormatter from "../utils/date-formatter";
 import EnvironmentAgency from "../icons/organisations/environment-agency";
 import MetOffice from "../icons/organisations/met-office";
 import Label from "../stour/label";
@@ -20,7 +20,7 @@ export default function SafetyPopup({ description, date, status }) {
         {description}
         {date && (
           <div className="mt-6 text-xs text-gray-600">
-            Updated <DateTimeFormatter dateString={date} />
+            Updated <DateFormatter dateString={date} format="time" />
           </div>
         )}
       </div>

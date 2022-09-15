@@ -11,7 +11,7 @@ import Testimonials from "@/components/regatta/landing-page/testimonials";
 import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
-import DayDateFormatter from "@/components/utils/daydate-formatter";
+import DateFormatter from "@/components/utils/date-formatter";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
@@ -98,7 +98,7 @@ const RegattaPage = ({
   testimonials: Testimonial[];
   results: Result[];
 }) => {
-  const regattaDate = <DayDateFormatter dateString={page.date} />;
+  const regattaDate = <DateFormatter dateString={page.date} format="long" />;
   const ticketItems = [
     {
       label: "Event",

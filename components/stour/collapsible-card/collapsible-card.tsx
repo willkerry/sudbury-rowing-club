@@ -1,14 +1,13 @@
 import Label from "@/components/stour/label";
 import Text from "@/components/stour/text";
+import DateFormatter from "@/components/utils/date-formatter";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
-import cn from "classnames";
-import FileGroup from "./file-group";
-import DateTimeFormatter from "@/components/utils/datetime-formatter";
-import DateFormatter from "@/components/utils/date-formatter";
 import { PortableTextProps } from "@portabletext/react";
-import { useEffect, useState } from "react";
+import cn from "classnames";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import FileGroup from "./file-group";
 
 export type FileGroupProps = {
   fileItems: {
@@ -46,7 +45,7 @@ export const NoticeBody = ({
   const [splitItemCount, setSplitItemCount] = useState(0);
   useEffect(() => {
     setSplitItemCount(Math.ceil(items.length / 2));
-  }, []);
+  }, [items.length]);
   return (
     <>
       {body && <Text portableText={body} className="p-4" />}
@@ -69,11 +68,11 @@ export const NoticeBody = ({
       <div className="flex justify-between gap-4 px-4 py-3 text-xs font-medium text-gray-500 bg-gray-100">
         <div className="flex gap-4">
           <span>
-            Created: <DateFormatter dateString={created} />
+            Created: <DateFormatter dateString={created} format="short" />
           </span>
           {created !== updated && (
             <span>
-              Updated: <DateTimeFormatter dateString={updated} />
+              Updated: <DateFormatter dateString={updated} format="time" />
             </span>
           )}
         </div>
@@ -97,56 +96,54 @@ const CollapsibleCard = ({
   updated,
   created,
   slug,
-}: CollapsibleCardProps) => {
-  return (
-    <Disclosure
-      as="div"
-      className="overflow-hidden border divide-y rounded"
-      id={slug}
-    >
-      {({ open }) => (
-        <>
-          <Disclosure.Button
-            className={`flex items-center justify-between w-full px-4 text-left h-14 group hover:bg-gray-50 transition ${
-              open && "bg-gray-50"
-            }`}
+}: CollapsibleCardProps) => (
+  <Disclosure
+    as="div"
+    className="overflow-hidden border divide-y rounded"
+    id={slug}
+  >
+    {({ open }) => (
+      <>
+        <Disclosure.Button
+          className={`flex items-center justify-between w-full px-4 text-left h-14 group hover:bg-gray-50 transition ${
+            open && "bg-gray-50"
+          }`}
+        >
+          <Label
+            className="transition duration-300 group-hover:text-black"
+            as="h2"
           >
-            <Label
-              className="transition duration-300 group-hover:text-black"
-              as="h2"
-            >
-              {title}
-            </Label>
-            <ChevronDownIcon
-              className={cn(
-                "w-6 h-6 text-gray-400 transition duration-300 opacity-0 group-hover:opacity-100",
-                open ? "transform -rotate-180" : ""
-              )}
+            {title}
+          </Label>
+          <ChevronDownIcon
+            className={cn(
+              "w-6 h-6 text-gray-400 transition duration-300 opacity-0 group-hover:opacity-100",
+              open ? "transform -rotate-180" : ""
+            )}
+          />
+        </Disclosure.Button>
+        <Transition
+          enter="transition delay-50 duration-300 ease-in-out"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition duration-300 delay-50 ease-in-out"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <Disclosure.Panel className="divide-y">
+            <NoticeBody
+              body={body}
+              items={items}
+              meta={meta}
+              created={created}
+              updated={updated}
+              link={`../members/${slug}`}
             />
-          </Disclosure.Button>
-          <Transition
-            enter="transition delay-50 duration-300 ease-in-out"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition duration-300 delay-50 ease-in-out"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Disclosure.Panel className="divide-y">
-              <NoticeBody
-                body={body}
-                items={items}
-                meta={meta}
-                created={created}
-                updated={updated}
-                link={`../members/${slug}`}
-              />
-            </Disclosure.Panel>
-          </Transition>
-        </>
-      )}
-    </Disclosure>
-  );
-};
+          </Disclosure.Panel>
+        </Transition>
+      </>
+    )}
+  </Disclosure>
+);
 
 export default CollapsibleCard;

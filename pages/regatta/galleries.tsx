@@ -3,9 +3,9 @@ import groq from "groq";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
-import YearFormatter from "@/components/utils/year-formatter";
 import Link from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
+import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 
@@ -67,7 +67,7 @@ export default function Photography({
               {regattas.map((regatta: Regatta) => (
                 <tr key={regatta._id}>
                   <th>
-                    <YearFormatter dateString={regatta.date} />
+                    <DateFormatter dateString={regatta.date} format="year" />
                     <span className="hidden sm:inline"> Regatta</span>
                   </th>
                   <td className="!align-middle">
