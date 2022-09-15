@@ -42,7 +42,10 @@ const Notice: React.FC<{ notice: NoticeProps }> = ({
     </Head>
     <HeroTitle prose title={notice?.title} transparent>
       <div className="h-2" />
-      <Label>Members’ Notices</Label> <Link href="/members" arrow className="text-sm font-medium">View all</Link>
+      <Label>Members’ Notices</Label>{" "}
+      <Link href="/members" arrow className="text-sm font-medium">
+        View all
+      </Link>
     </HeroTitle>
     <Container className="my-12 space-y-6 max-w-prose">
       <div className="overflow-hidden border divide-y rounded">
@@ -65,7 +68,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = data.map((item: { slug: { current: string } }) => ({
     params: { slug: item.slug.current },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps<{
@@ -96,7 +99,7 @@ export const getStaticProps: GetStaticProps<{
     }`,
     { slug: params?.slug }
   );
-  return { props: { notice } };
+  return { props: { notice }, revalidate: 60 };
 };
 
 export default Notice;
