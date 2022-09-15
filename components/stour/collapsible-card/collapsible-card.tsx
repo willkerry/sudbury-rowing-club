@@ -44,8 +44,10 @@ export const NoticeBody = ({
 }: Omit<CollapsibleCardProps, "title"> & { link?: string }) => {
   const [splitItemCount, setSplitItemCount] = useState(0);
   useEffect(() => {
-    setSplitItemCount(Math.ceil(items.length / 2));
-  }, [items.length]);
+    if (items) {
+      setSplitItemCount(Math.ceil(items.length / 2));
+    }
+  }, [items]);
   return (
     <>
       {body && <Text portableText={body} className="p-4" />}
