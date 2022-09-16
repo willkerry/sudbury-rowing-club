@@ -1,6 +1,10 @@
 import NextLink from "next/link";
-import cn from "classnames";
-import { ArrowRight, Download, ExternalLink } from "react-feather";
+import { ComponentProps } from "react";
+import {
+  ArrowDownIcon,
+  ArrowRightIcon,
+  ArrowUpRightIcon,
+} from "@heroicons/react/20/solid";
 
 type Props = {
   href: string;
@@ -13,7 +17,19 @@ type Props = {
   className?: string;
 };
 
-const Link = ({
+// Ridiculous hack because I set up an awful component API
+function assignIcon(
+  external: boolean,
+  download: boolean,
+  arrow: boolean
+): (props: ComponentProps<"svg">) => JSX.Element {
+  if (external) return ArrowUpRightIcon;
+  if (download) return ArrowDownIcon;
+  if (arrow) return ArrowRightIcon;
+  return ArrowRightIcon;
+}
+
+const Link: React.FC<Props> = ({
   href,
   children,
   dark = false,
@@ -22,31 +38,38 @@ const Link = ({
   arrow = false,
   extension,
   className,
-}: Props) => (
-  <NextLink href={href} passHref>
-    <a
-      className={cn(
-        dark
-          ? "text-blue-100 hover:text-white"
-          : "text-blue-500 hover:text-blue-300",
-        (external || download) && "relative",
-        "transition",
-        className
-      )}
-    >
-      {children}
-      {extension && (
-        <span className="px-1 ml-1 text-xs font-medium text-gray-400 uppercase transition border rounded-full">
-          {extension}
-        </span>
-      )}
-      {external && (
-        <ExternalLink className="inline-flex mb-0.5 ml-1" size="1em" />
-      )}
-      {download && <Download className="inline-flex mb-0.5 ml-1" size="1em" />}
-      {arrow && <ArrowRight className="inline-flex mb-0.5 ml-1" size="1em" />}
-    </a>
-  </NextLink>
-);
+}: Props) => {
+  const hasIcon = external || download || arrow;
+  const RightIcon = assignIcon(external, download, arrow);
+
+  return (
+    <NextLink href={href} passHref>
+      <a
+        className={`transition whitespace-nowrap ${
+          dark
+            ? "text-blue-100 hover:text-white"
+            : "text-blue-500 hover:text-blue-300"
+        } ${className !== undefined ? className : ""}`}
+      >
+        {children}
+        {extension && (
+          <span className="px-1 ml-1 text-xs font-medium text-gray-400 uppercase transition border rounded-full">
+            {extension}
+          </span>
+        )}
+        {hasIcon && <RightIcon className="inline mb-0.5 ml-1 w-4 h-4" />}
+      </a>
+    </NextLink>
+  );
+};
+
+Link.defaultProps = {
+  dark: false,
+  external: false,
+  download: false,
+  arrow: false,
+};
+
+Link.displayName = "Link";
 
 export default Link;
