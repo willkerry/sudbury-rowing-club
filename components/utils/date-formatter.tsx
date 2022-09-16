@@ -11,7 +11,7 @@ type DateFormatPresets =
 type Props = {
   dateString: string | Date;
   format?: DateFormatPresets;
-};
+} & React.HTMLAttributes<HTMLTimeElement>;
 
 const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
   new Map([
@@ -35,10 +35,10 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
     ["year", { year: "numeric" }],
   ]);
 
-const DateFormatter = ({ dateString, format }: Props) => {
+const DateFormatter = ({ dateString, format, ...props }: Props) => {
   const [dateObj] = useState(new Date(dateString));
   return (
-    <time dateTime={dateObj.toString()}>
+    <time dateTime={dateObj.toString()} {...props}>
       {dateObj.toLocaleDateString(
         "en-GB",
         defaultOptions.get(format || "default")
