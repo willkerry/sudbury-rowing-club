@@ -2,7 +2,6 @@ import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
 import Link from "@/components/stour/link";
 import TextPage from "@/components/layouts/text-page";
-import { Download } from "react-feather";
 
 type MinuteType = {
   _id: string;
@@ -32,9 +31,8 @@ const Minutes = ({ minutes }: Props) => (
             </td>
             <td className="text-gray-700">{minute.committee}</td>
             <td>
-              <Link href={minute.file}>
+              <Link href={minute.file} download>
                 Download
-                <Download size="1em" className="inline-flex mb-0.5 ml-1" />
               </Link>
             </td>
           </tr>
@@ -59,14 +57,13 @@ export const getStaticProps = async () => {
   const minutes = data.map((item: any) => {
     return {
       ...item,
+      committee: item.committee.split(" ")[0],
       date: new Date(item.date).toLocaleDateString("en-GB", {
         day: "numeric",
-        month: "long",
+        month: "short",
         year: "numeric",
       }),
     };
   });
-  return {
-    props: { minutes },
-  };
+  return { props: { minutes } };
 };
