@@ -13,7 +13,7 @@ const postFields = `
     title,
     excerpt,
     date,
-    author {"firstName": @->firstName, "surname": @->surname},
+    author {"firstName": @->firstName, "surname": @->surname, "_id": @->_id},
     body[]{
         ...,
         _type == "figure" => {

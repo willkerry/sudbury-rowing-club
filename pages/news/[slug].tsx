@@ -20,6 +20,8 @@ import { urlFor } from "@/lib/sanity";
 
 import type Post from "@/types/post";
 import { GetStaticPaths, GetStaticProps } from "next/types";
+import Link from "@/components/stour/link";
+import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 export default function Post({ post }: { post: Post }) {
   const router = useRouter();
@@ -84,6 +86,9 @@ export default function Post({ post }: { post: Post }) {
                   <Label className="text-xs">Author</Label>
                   <div className="text-sm font-medium">
                     {`${post.author?.firstName} ${post.author?.surname}`}
+                    <Link href={`/news/author/${post.author?._id}`}>
+                      <ArrowUpRightIcon className="inline w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
               )}
