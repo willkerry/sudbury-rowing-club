@@ -27,8 +27,8 @@ export const AuthorArchive: React.FC<{ author: Author; feed: any[] }> = ({
 }) => (
   <Layout>
     <NextSeo
-      title={`Archive: ${author.firstName} ${author.surname}`}
-      description={`Archive of all posts by ${author.firstName} ${author.surname}`}
+      title={`Archive: ${author?.firstName} ${author?.surname}`}
+      description={`Archive of all posts by ${author?.firstName} ${author?.surname}`}
     />
     <div className="flex items-center py-6 border-t border-b">
       <Container>
@@ -36,13 +36,13 @@ export const AuthorArchive: React.FC<{ author: Author; feed: any[] }> = ({
           <Label className="max-w-prose">Author Archive</Label>
         </h1>
         <p className="flex justify-between">
-          <span>{`${author.firstName} ${author.surname}`}</span>
+          <span>{`${author?.firstName} ${author?.surname}`}</span>
         </p>
       </Container>
     </div>
     <Container>
       <ul className="my-8">
-        {feed.map((item) => (
+        {feed?.map((item) => (
           <li key={item._id} className="grid mb-2">
             <Link href={`/news/${item.slug.current}`}>{item.title}</Link>
             <Label className="text-xs">
@@ -59,7 +59,7 @@ export default AuthorArchive;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const author: Author = await sanityClient.fetch(
-    groq`*[_type == "author" && _id == $id][0]`,
+    groq`*[_type == "author" && _id == $id][0]{firstName, surname}`,
     { id: params?.id }
   );
   const feed = await sanityClient.fetch(
@@ -70,8 +70,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(groq`*[_type == "author"]`);
-
+  const paths = await sanityClient.fetch(groq`*[_type == "author"]{_id}`);
   const ids: string[] = paths.map((author: Author) => author._id);
   return {
     paths: ids.map((id: string) => ({ params: { id } })),
