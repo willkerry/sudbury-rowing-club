@@ -1,7 +1,7 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import ImageComposite from "@/components/regatta/landing-page/image-composite";
-import Link from "@/components/stour/link";
 import { type TicketItem } from "@/types/ticket-item";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { Link as ScrollLink } from "react-scroll";
 
 type Props = {
   ticketItems: TicketItem[];
@@ -17,10 +17,15 @@ const RegattaHero = ({ ticketItems, subtitle }: Props) => (
     </h1>
     <p className="text-xl text-gray-800">
       {subtitle}{" "}
-      <Link href="/">
+      <ScrollLink
+        to="regatta-body"
+        offset={-175}
+        smooth
+        className="text-blue-500 hover:cursor-pointer hover:text-gray-600"
+      >
         Learn more
         <ChevronRightIcon className="inline-flex w-5 h-5 mb-px" />
-      </Link>
+      </ScrollLink>
     </p>
   </div>
 );
