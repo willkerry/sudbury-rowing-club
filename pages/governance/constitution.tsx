@@ -303,7 +303,7 @@ const Constitution = () => (
     <ul>
       <li>Adrian Ablitt</li>
       <li>Andrew Blit</li>
-      <li>Robert Howard</li>
+      <li>Patricia Fincham</li>
       <li>Antony Moule</li>
       <li>Simon White</li>
     </ul>
