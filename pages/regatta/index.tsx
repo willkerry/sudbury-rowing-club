@@ -200,7 +200,7 @@ const RegattaPage = ({
           subtitle={page.landingPage.heroImage.subheading}
         />
       </Container>
-      <Container className="my-24 max-w-prose">
+      <Container className="my-24 max-w-prose" id="regatta-body">
         <Text portableText={page.landingPage.description} />
         <div className="h-5" />
         <Details items={accordion} />
