@@ -19,7 +19,6 @@ import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 
 import type { DetailProps } from "@/components/regatta/landing-page/details";
-import type { NoteProps } from "@/components/stour/note/note";
 import type { Testimonial } from "@/types/testimonial";
 import { PortableTextProps } from "@portabletext/react";
 import type { GetStaticProps } from "next";
