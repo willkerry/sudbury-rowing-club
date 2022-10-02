@@ -1,4 +1,3 @@
-import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 
@@ -8,152 +7,133 @@ const ClubKit = () => (
       Are you are thinking of racing this year? If so you will need to get some
       SRC kit so please read on.
     </p>
-
+    <h3>Our suppliers</h3>
+    <ul>
+      <li>
+        <a href="https://rivalkit.com/collections/sudbury-rowing-club">
+          Rival Kit
+        </a>
+      </li>
+      <li>CSS Rugby</li>
+      <li>Big Bobble Hats Ltd.</li>
+      <li>Perry Blazers</li>
+    </ul>
     <h3>Why do I need SRC kit to race?</h3>
-
     <p>
       British Rowing rules of racing state that competitors must wear clothing
-      in club colours and that the clothing worn by the crew in a boat should
-      look similar. Although clubs are more relaxed about this rule during the
-      winter head season they do enforce it during the summer regatta season.
-      You must be wearing appropriate kit in club colours or else you can be
-      disqualified.
+      in club colours and that the all members of the crew should be wearing
+      similar or the same kit.
     </p>
-
     <p>
-      A crew also gets a strong sense of belonging and togetherness when they
-      are all wearing the same kit (and it looks good on photos too!) and it is
-      one way that we represent our club at these events in a united front.
-      Please be aware that if you do not wear the appropriate kit you may be
-      unable to race.
+      Although clubs are more relaxed about this in the winter head season, and
+      it is more enforced in the summer regatta season, it is always good to be
+      wearing club kit when racing. If you are not wearing appropriate club kit
+      you could be at risk of being disqualified.
     </p>
-
+    <p>
+      It also instills a sense of belonging and togetherness when everyone is
+      wearing the same kit, as well as looking good in photos!
+    </p>
     <h3>What is SRC kit?</h3>
-
     <p>
-      Our club colours are navy and white and our club kit normally consists of
-      the following items:
+      Our club colours are navy blue and white, and rowing kit usually consists
+      of the following:
     </p>
-
     <ul>
       <li>
-        <strong>All In One</strong> (the one piece lycra) — price range
-        typically £40-£50
+        <strong>All-in-one</strong> (unisuit lycra). Usually priced £45-£65.
       </li>
+
       <li>
-        <strong>Technical training tops</strong> (short sleeved and long
-        sleeved) — price range typically £25-£35
+        <strong>Baselayers and technical training tops</strong> (short or long
+        sleeved). Usually priced £20-£35.
       </li>
+
       <li>
-        <strong>Splash top</strong> — price range typically £65-£79
+        <strong>Splash tops</strong>. Usually priced £60-£80.
       </li>
     </ul>
-
     <p>
-      We get our race kit from rowing clothing suppliers (Godfrey, JL/Crewroom,
-      Stitch and CSS) and it is custom made for us. Rowing kit is designed to be
-      close fitting (so it doesn’t get in the way of your hands/ oars) and is
-      made using technical fabrics (to ‘wick’ away moisture in order to keep you
-      dry and warm). Prices of the various items of kit vary due to discounts
-      applied on the volume of our order.
+      We get our racing kit from rowing clothing suppliers Rival Kit, and local
+      sportswear supplier CSS Rugby, where it is all custom made for us.
     </p>
-
+    <p>
+      Rowing kit is design to be tight fitting (for safety, so it doesn’t get in
+      your way), and is made from technical sportswear fabrics to wick away
+      moisture and keep you dry and warm.
+    </p>
     <h3>What kit do I need to buy in order to race?</h3>
+    <p>As a minimum anyone racing must wear an SRC racing all-in-one. </p>
+    <p>
+      Most SRC rowers also have white base layers in both long and short sleeved
+      to wear underneath their all-in-one for winter and summer respectively.
+    </p>
+    <h3>What do I do now?</h3>
+    <p>
+      Our supplier{" "}
+      <a href="https://rivalkit.com/collections/sudbury-rowing-club">
+        Rival Kit
+      </a>
+      , has a website which works as an online shop, allowing individuals to buy
+      the kit they want and have it delivered straight to their door, with
+      shorter lead times and no bulk order windows. This makes the kit buying
+      process much easier for all involved!
+    </p>
+    <h3>What if I am going to race before my SRC kit arrives?</h3>
+    <p>
+      Please be aware that the lead times on most items are between 3-6 weeks,
+      so make sure you are ordering in plenty of time before your first race! If
+      the kit does not arrive in time please speak to me (Amelia Moule) or your
+      Vice-Captain, who can advise you on what to wear instead.
+    </p>
+    <h3>What about training kit?</h3>
 
     <p>
-      As a minimum anyone racing in J15 and upwards (so that includes novice,
-      intermediate or veteran) must have an SRC all in one for racing.
+      Rowers always need training kit and you will soon learn you can never have
+      too much!
     </p>
-
     <p>
-      It may be difficult to get all in ones for our younger juniors, due to
-      their size, so anyone racing in the J10-J14 age groups are not required to
-      have an all in one BUT we do suggest you consider purchasing a SRC
-      ‘training’ all in one. When racing these younger juniors will still need
-      to be wearing club colours and co-ordinated with the rest of the crew so
-      we are asking that they race in SRC technical tops (or other suitable tops
-      in the correct colour).
+      Rival Kit sell a wide range of SRC and general training kit such as base
+      layers, splash tops, leggings and all-in-ones. Other rowing specific
+      brands selling general rowing kit include Stitch, Crewroom, JL, Powerhouse
+      Sport, Five57, and Godfrey. General sports clothing is also ideal for
+      training.
     </p>
-
     <p>
-      Most Sudbury rowers have both white and navy tops in both short and long
-      sleeves in their kit bags, this allows them to cater for every
-      eventuality.
+      Although you can choose whatever colour you like for training, we do
+      advise that single scullers and those in the bow seat should wear a hi-vis
+      top so they can be seen easily by other river users. (Rival Kit have a
+      good range of hi-vis items!) Also if you buy training kit in navy blue or
+      white it can also be used for racing – bonus!
     </p>
-
-    <h3>Okay, I know what I want to buy — what do I do now?</h3>
-
     <p>
-      I am already aware of some requests for all in ones, tech tops and splash
-      tops but for me to negotiate the best deal I need to know who else out
-      there wants kit. So, please email me (
-      <Obfuscate email="kit@sudburyrowingclub.org.uk">Amelia Moule</Obfuscate>)
-      back and let me know what you are after. At this stage I do not require
-      any size information or money.
+      There may also be bulk orders for additional items throughout the year for
+      items such as club blazers etc. We are also supplied with bobble hats from
+      Big Bobble Hats Ltd. and sell these internally. If you would like to buy a
+      bobble hat please let me know.
     </p>
-
     <p>
-      If anyone is after any other items of kit not mentioned above such as
-      gilets, leggings or baseball caps please also let me know and I can
-      enquire about whether discounts are available. Because the kit is custom
-      made it can take between 4-8 weeks to arrive.
+      If you have any questions about kit, or any suggestions for new items
+      please do not hesitate to{" "}
+      <Obfuscate email="kit@sudburyrowingclub.org.uk">contact me</Obfuscate>!
     </p>
 
-    <h3>What if I am going to race before the SRC kit arrives?</h3>
-
-    <p>
-      Talk to your vice captains in plenty of time and we can advise you on what
-      is best. You will need to wear clothing in club colours and we will need
-      to ensure that you co-ordinate with the rest of your crew.
-    </p>
-
-    <h3>What about kit for training in?</h3>
-
-    <p>
-      Rowers always need training kit, you soon learn you can never have too
-      much!
-    </p>
-
-    <p>
-      You can add to your own selection of training kit by purchasing items
-      direct from rowing clothing suppliers mentioned below but you can also
-      find items such as technical tops, leggings and shorts at any sports shop
-      (try to get ones that have a longer back so you don’t get a cold patch
-      when rocking over).
-    </p>
-
-    <p>
-      Although you can choose whatever colour kit you like for training in we do
-      advise that single scullers and those in the bow seat of a un-coxed boat
-      should wear white (or hi-vis) tops so they can be seen. Also, if you get
-      getting training kit in navy or white it means you may be able to use it
-      when racing — bonus!
-    </p>
-
-    <ul>
-      <li>
-        <Link href="http://www.css-rugby.co.uk/Sudbury-Rowing-Club">
-          CSS Rugby
-        </Link>
-      </li>
-      <li>
-        <Link href="https://www.stitchrowing.com/">Stitch</Link>
-      </li>
-      <li>
-        <Link href="https://rivalkit.com/collections/sudbury-rowing-club">
-          RivalKit
-        </Link>
-      </li>
-    </ul>
-
-    <p>If you have any further questions please ask!</p>
-
-    <div className="pt-16 text-sm text-gray-500">
-      <p>
-        Written by Katherine Cass in 2010.
-        <br />
-        Updated 2021.
-      </p>
+    <div className="text-sm bg-gray-100 rounded p-4 grid grid-cols-2 sm:grid-cols-4">
+      <span className="font-semibold text-gray-700 inline-block mb-1 col-span-2 sm:col-span-4">
+        Useful links
+      </span>
+      <a href="https://rivalkit.com/">Rival Kit</a>
+      <a href="https://stitchrowing.com/">Stitch Rowing</a>
+      <a href="https://www.crewroom.co.uk/">Crewroom</a>
+      <a href=" https://jlathletics.com/en-gb/collections/rowing-1">
+        JL Athletics
+      </a>
+      <a href="https://www.powerhousesport.com/">Powerhouse Sport</a>
+      <a href="https://www.five57sportsgear.com/">Five57</a>
+      <a href="https://www.godfrey.co.uk/">Godfrey</a>
+    </div>
+    <div className="pt-16 text-xs text-gray-500">
+      <p>Updated by Amelia Moule 2022.</p>
     </div>
   </TextPage>
 );
