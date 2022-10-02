@@ -39,7 +39,8 @@ const ClubKit = () => (
       Our club colours are navy blue and white, and rowing kit usually consists
       of the following:
     </p>
-    <ul>
+
+    <ul className="text-sm">
       <li>
         <strong>All-in-one</strong> (unisuit lycra). Usually priced £45-£65.
       </li>
