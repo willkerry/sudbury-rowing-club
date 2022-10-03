@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import PropTypes from "prop-types";
 import ErrorPage from "next/error";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Container from "@/components/layouts/container";
@@ -21,7 +20,7 @@ import { urlFor } from "@/lib/sanity";
 import type Post from "@/types/post";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import Link from "@/components/stour/link";
-import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
+import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 
 export default function Post({ post }: { post: Post }) {
   const router = useRouter();
@@ -80,24 +79,32 @@ export default function Post({ post }: { post: Post }) {
             />
             {post.body && <PostBody content={post.body} />}
 
-            <div className="flex flex-wrap px-5 pt-3 pb-4 mx-auto my-12 space-x-8 border rounded max-w-prose">
-              {post.author && (
+            <div className="flex justify-between px-5 pt-3 pb-4 mx-auto my-12 border rounded max-w-prose">
+              <div className="flex gap-8">
+                {post.author && (
+                  <div>
+                    <Label className="text-xs">Author</Label>
+                    <div className="text-sm font-medium">
+                      {`${post.author?.firstName} ${post.author?.surname}`}
+                      <Link href={`/news/author/${post.author?._id}`}>
+                        <ArrowUpRightIcon className="inline w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                )}
                 <div>
-                  <Label className="text-xs">Author</Label>
+                  <Label className="text-xs">Published</Label>
                   <div className="text-sm font-medium">
-                    {`${post.author?.firstName} ${post.author?.surname}`}
-                    <Link href={`/news/author/${post.author?._id}`}>
-                      <ArrowUpRightIcon className="inline w-4 h-4" />
-                    </Link>
+                    <DateFormatter dateString={post.date} />
                   </div>
                 </div>
-              )}
-              <div>
-                <Label className="text-xs">Published</Label>
-                <div className="text-sm font-medium">
-                  <DateFormatter dateString={post.date} />
-                </div>
               </div>
+              <Link
+                href={`https://edit.sudburyrowingclub.org.uk/desk/news;${post._id}`}
+              >
+                <span className="sr-only">Edit this article</span>
+                <PencilSquareIcon className="inline w-4 h-4" />
+              </Link>
             </div>
           </article>
         )}
