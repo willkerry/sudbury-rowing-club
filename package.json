@@ -61,7 +61,7 @@
     "eslint-plugin-next": "latest",
     "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.17",
     "prettier": "^2.7.1",
     "sib-api-v3-sdk": "^8.4.2",
     "sib-api-v3-typescript": "^2.2.2",
