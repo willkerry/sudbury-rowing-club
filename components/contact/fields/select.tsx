@@ -16,6 +16,11 @@ type Props = {
   pristine: boolean;
 };
 
+/**
+ * Provides a simple select field with automatic best-practice label syntax and
+ * array-based options. Intended for compatibility with the `Field` component
+ * from `react-final-form`.
+ */
 const Select = ({
   input,
   meta,

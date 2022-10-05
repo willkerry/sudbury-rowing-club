@@ -14,6 +14,10 @@ type Props = {
   type: string;
 };
 
+/**
+ * Provides a simple input field with automatic best-practice labels. Intended for
+ * compatibility with the `Field` component from `react-final-form`.
+ */
 const Input = ({
   input,
   meta,

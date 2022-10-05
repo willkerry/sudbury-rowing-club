@@ -1,5 +1,11 @@
 import { SVGProps } from "react";
 
+/**
+ * Renders the website 'logo' in inlined SVG format. This is the club crest with
+ * a wordmark to its right, intended for the header of the website. Be cautious
+ * not to use this component in a way that would cause it to be unnecessarily
+ * re-rendered.
+ */
 const Logo = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
   <svg
     viewBox="0 0 302 50"

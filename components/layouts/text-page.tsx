@@ -4,14 +4,16 @@ import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import { BASE_URL } from "@/lib/constants";
 
-type Props = {
+/**
+ * A 'root'-level comonent for rendering simple pages with a title and some
+ * HTML-like content. **Do not** wrap this component in a `Layout` component.
+ */
+const TextPage: React.FC<{
   title: string;
   description?: string;
   ogImage?: string;
   children: React.ReactNode;
-};
-
-const TextPage = ({ children, title, description, ogImage }: Props) => (
+}> = ({ children, title, description, ogImage }) => (
   <Layout>
     <NextSeo
       title={title}
