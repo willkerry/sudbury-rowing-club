@@ -7,7 +7,9 @@
 //   "lqip": @.image.asset->metadata.lqip,
 // },`;
 
-const postFields = `
+import groq from "groq";
+
+export const postFields = groq`
     _id,
     "slug": slug.current,
     title,
@@ -27,6 +29,7 @@ const postFields = `
     featuredImage {
         alt, 
         caption,
+        "url": @.image.asset->url,
         "_id": @.image.asset->_id, 
         "lqip": @.image.asset->metadata.lqip, 
         "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio,
