@@ -140,8 +140,8 @@ const PrivacyPolicy = () => (
     </p>
     <p>
       Note that the club does not currently have a dedicated ‘Data Protection
-      Officer’, but this role is currently being fulfilled by the Chairman of
-      the club.
+      Officer’, but this role is currently being fulfilled by the Chair of the
+      club.
     </p>
     <h3>What rights do you have in relation to the data we hold about you ?</h3>
     <p>

@@ -61,7 +61,7 @@ const GrievancePolicy = () => (
     <p>
       If any of these officers are involved in the grievance, or the volunteer
       does not wish to confide in them, they should involve the Captain or the
-      Chairman instead.
+      Chair instead.
     </p>
 
     <p>
@@ -74,7 +74,7 @@ const GrievancePolicy = () => (
 
     <p>
       If a volunteer wishes to raise a formal grievance, they must do so in
-      writing, addressed to the Chairman, as soon as possible after, but no more
+      writing, addressed to the Chair, as soon as possible after, but no more
       than one month following the incident which gives rise to the complaint.
     </p>
 
@@ -86,7 +86,7 @@ const GrievancePolicy = () => (
     </p>
 
     <p>
-      The volunteer will be invited to attend a meeting with the Chairman to
+      The volunteer will be invited to attend a meeting with the Chair to
       discuss the grievance, at which they will be entitled to be accompanied by
       a fellow member of the club of their choosing.
     </p>
@@ -98,15 +98,15 @@ const GrievancePolicy = () => (
     </p>
 
     <p>
-      The Chairman may ask another volunteer to attend the meeting to take a
-      note of what is said.
+      The Chair may ask another volunteer to attend the meeting to take a note
+      of what is said.
     </p>
 
     <p>The procedure will be as follows:</p>
 
     <ul>
       <li>
-        The Chairman opens by reading the grievance, asking the volunteer to
+        The Chair opens by reading the grievance, asking the volunteer to
         confirm it is correct, and seek clarification of anything that is
         unclear.
       </li>
@@ -116,7 +116,7 @@ const GrievancePolicy = () => (
         or call other volunteers referred to in their grievance as witnesses.
       </li>
       <li>
-        The Chairman may ask questions of the volunteer or any witnesses called.
+        The Chair may ask questions of the volunteer or any witnesses called.
       </li>
       <li>
         The volunteer will have the opportunity to summarise their case, but not
@@ -125,7 +125,7 @@ const GrievancePolicy = () => (
     </ul>
 
     <p>
-      The Chairman will adjourn the meeting to consider the grievance. The
+      The Chair will adjourn the meeting to consider the grievance. The
       volunteer who is the subject of the grievance will be contacted, and given
       the same opportunity to hear the grievance, and put forward their own
       case.
@@ -133,13 +133,13 @@ const GrievancePolicy = () => (
 
     <p>
       If he considers it necessary to carry out further investigations, the
-      Chairman may call further meetings, either separately, or with all parties
+      Chair may call further meetings, either separately, or with all parties
       present.
     </p>
 
     <p>
-      The Chairman will give his decision in writing within one week of any
-      final investigatory meeting.
+      The Chair will give his decision in writing within one week of any final
+      investigatory meeting.
     </p>
 
     <p>
@@ -156,7 +156,7 @@ const GrievancePolicy = () => (
       If, despite informal or formal discussions, the conduct or performance
       still does not meet acceptable standards, the volunteer may, following an
       appropriate disciplinary meeting, be given a formal verbal warning by the
-      Chairman. The volunteer will be told: the reason for the warning what the
+      Chair. The volunteer will be told: the reason for the warning what the
       volunteer needs to do to improve the situation a time frame within which
       the conduct or performance needs to be improved any support or training
       that Sudbury Rowing Club might provide to support the volunteer that the
@@ -170,7 +170,7 @@ const GrievancePolicy = () => (
     <p>
       If there is no improvement in standards within the prescribed time, or if
       a further offence occurs, the volunteer will receive a letter from the
-      Chairman. The letter will contain:
+      Chair. The letter will contain:
     </p>
 
     <ul>
@@ -179,7 +179,7 @@ const GrievancePolicy = () => (
         the reason why the current behaviour or performance is unacceptable
       </li>
       <li>
-        an invitation to attend a disciplinary meeting with the Chairman and
+        an invitation to attend a disciplinary meeting with the Chair and
         management representatives at which the problems can be discussed
       </li>
       <li>
@@ -334,7 +334,7 @@ const GrievancePolicy = () => (
     <p>
       If a volunteer wishes to appeal against any disciplinary decision, they
       must appeal, in writing within one week of the decision being communicated
-      to them, to the Chairman.
+      to them, to the Chair.
     </p>
 
     <p>
@@ -348,8 +348,8 @@ const GrievancePolicy = () => (
     </p>
 
     <p>
-      The Chairman will not form part of the Appeal Sub Committee and the
-      decision of the Appeal Sub Committee will be final.
+      The Chair will not form part of the Appeal Sub Committee and the decision
+      of the Appeal Sub Committee will be final.
     </p>
   </TextPage>
 );

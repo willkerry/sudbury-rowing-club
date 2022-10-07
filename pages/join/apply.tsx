@@ -25,7 +25,7 @@ const LearnToRowApplicationForm = () => (
       {/* Contact the Learn to Row coordinator for{" "}
         <Link href="/contact">help with this form</Link>. If you’d like to find
         out a little more about the club before applying, the{" "}
-        <Link href="/contact">chairman and captain</Link> will be happy to help.
+        <Link href="/contact">chair and captain</Link> will be happy to help.
         Visit British Rowing for{" "}
         <Link href="https://www.britishrowing.org/go-rowing/learn-to-row/adults/">
           more background on Learn to Row
