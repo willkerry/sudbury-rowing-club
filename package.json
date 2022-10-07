@@ -17,7 +17,7 @@
     "@sanity/image-url": "^1.0.1",
     "@south-paw/react-obfuscate-ts": "^1.0.2",
     "algoliasearch": "^4.14.2",
-    "axios": "^0.27.2",
+    "axios": "^1.1.0",
     "classnames": "^2.3.2",
     "color": "^4.2.3",
     "final-form": "^4.20.7",
