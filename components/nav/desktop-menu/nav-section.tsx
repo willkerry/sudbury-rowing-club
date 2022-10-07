@@ -12,7 +12,7 @@ import { type IconNavItemType } from "@/types/nav-item";
 import { useRouter } from "next/router";
 
 export const navLinkClasses =
-  "group transition duration-200 inline-flex px-3 py-2.5 text-sm hover:text-black focus:outline-none hover:bg-gray-50 hover:border-gray-100 border border-transparent rounded-md";
+  "group transition duration-200 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black focus:outline-none hover:bg-gray-50 hover:border-gray-100 border border-transparent rounded-md";
 export const navLinkColor = "text-gray-500";
 export const navLinkActive = "text-black font-medium";
 
@@ -85,22 +85,22 @@ const NavSection = ({
                   : " max-w-sm right-0"
               )}
             >
-              <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="overflow-hidden rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
                 {compact ? (
                   <div className="relative grid gap-4 p-4 bg-white">
                     <CompactNavItemList items={navData} />
                   </div>
                 ) : (
-                  <div className="relative grid gap-5 px-5 py-6 bg-white sm:gap-7 sm:p-5">
+                  <div className="relative grid gap-5 p-4 bg-white">
                     <NavItemList items={navData} />
                   </div>
                 )}
                 {compact ? (
-                  <div className="py-4 pl-3 pr-4 space-y-4 bg-gray-200 bg-opacity-75 rounded-b shadow-inner backdrop-blur backdrop-saturate-200">
+                  <div className="py-4 pl-3 pr-4 space-y-4 bg-gray-200 bg-opacity-75 shadow-inner rounded-b-md backdrop-blur backdrop-saturate-200">
                     <CompactCTAList CTAs={ctaData} />
                   </div>
                 ) : (
-                  <div className="px-5 py-5 space-y-6 bg-gray-200 bg-opacity-75 rounded-b shadow-inner backdrop-blur backdrop-saturate-200 sm:flex sm:space-y-0 sm:space-x-6 sm:px-5">
+                  <div className="flex p-4 space-x-6 space-y-0 bg-gray-200 bg-opacity-75 shadow-inner rounded-b-md backdrop-blur backdrop-saturate-200 ">
                     <CTAList CTAs={ctaData} />
                   </div>
                 )}

@@ -15,12 +15,13 @@ import {
 } from "./nav-data";
 
 const Nav = () => {
-  const [navbarBorder, setNavbarBorder] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 50) setNavbarBorder(true);
-      else setNavbarBorder(false);
+      if (scrollTop > 50) setScrolled(true);
+      else setScrolled(false);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -30,17 +31,17 @@ const Nav = () => {
     <Popover
       className={cn(
         "sticky top-0 z-20 text-gray-900 transition bg-white",
-        navbarBorder && "border-b"
+        scrolled && "border-b"
       )}
       id="navbar"
     >
       {({ open }) => (
         <>
           <div className="max-w-screen-lg px-4 mx-auto sm:px-6">
-            <div className="flex items-center justify-between py-6 ">
+            <div className="flex items-center justify-between py-3 xs:py-4 md:py-6 ">
               <NavLogo />
               <MobileMenuButton />
-              <Popover.Group as="nav" className="hidden md:flex">
+              <Popover.Group as="nav" className="hidden sm:flex">
                 <NavSection label="About" navData={about} ctaData={aboutCTAs} />
                 <NavLink href="/news">News</NavLink>
                 <NavSection
@@ -51,7 +52,7 @@ const Nav = () => {
               </Popover.Group>
               <Popover.Group
                 as="nav"
-                className="items-center justify-end hidden md:flex lg:w-0 lg:flex-1"
+                className="items-center justify-end hidden sm:flex lg:w-0 lg:flex-1"
               >
                 <NavLink href="/join">Join</NavLink>
                 <NavSection

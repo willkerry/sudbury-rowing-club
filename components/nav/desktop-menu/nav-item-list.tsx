@@ -10,7 +10,7 @@ const NavItemList = ({ items }: Props) => {
         (item) =>
           !item.mobileOnly && (
             <Link key={item.href} href={item.href} passHref>
-              <a className="flex items-start p-3 -m-3 transition border border-transparent rounded hover:bg-gray-50 hover:border-gray-100">
+              <a className="flex items-start p-2.5 -m-2.5 transition border border-transparent rounded hover:bg-gray-50 hover:border-gray-100">
                 {item.icon && (
                   <item.icon
                     className="flex-shrink-0 w-6 h-6 text-blue-700"
@@ -22,9 +22,7 @@ const NavItemList = ({ items }: Props) => {
                     {item.name}
                   </p>
                   {item.description && (
-                    <p className="mt-1 text-sm text-gray-500">
-                      {item.description}
-                    </p>
+                    <p className="text-sm text-gray-500">{item.description}</p>
                   )}
                 </div>
               </a>

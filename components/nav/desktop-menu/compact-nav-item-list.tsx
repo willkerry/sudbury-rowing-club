@@ -8,7 +8,7 @@ const CompactNavItemList = ({ items }: Props) => {
     <>
       {items.map((item) => (
         <Link key={item.href} href={item.href} passHref>
-          <a className="flex items-start p-2 -m-2 text-sm font-medium text-gray-900 transition border border-transparent rounded hover:bg-gray-50 hover:border-gray-100">
+          <a className="flex items-start p-2.5 -m-2.5 text-sm font-medium text-gray-900 transition border border-transparent rounded hover:bg-gray-50 hover:border-gray-100">
             <div className="whitespace-nowrap">{item.name}</div>
           </a>
         </Link>
