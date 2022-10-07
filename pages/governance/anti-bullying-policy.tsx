@@ -171,11 +171,11 @@ const AntiBullying = () => (
         apology solves the problem.
       </li>
       <li>
-        If this fails, or is not appropriate, a small panel (Made up from
-        Chairman, Club Welfare Officer, Secretary or committee members) should
-        meet with the member (and parent/s where necessary) alleging bullying to
-        get details of the allegation. Minutes should be taken for clarity,
-        which should be agreed by all as a true account.
+        If this fails, or is not appropriate, a small panel (Made up from Chair,
+        Club Welfare Officer, Secretary or committee members) should meet with
+        the member (and parent/s where necessary) alleging bullying to get
+        details of the allegation. Minutes should be taken for clarity, which
+        should be agreed by all as a true account.
       </li>
       <li>
         The same 3 persons should meet with the alleged bully (and parent/s) and
