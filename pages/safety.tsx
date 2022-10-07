@@ -1,5 +1,4 @@
 import { Download, ExternalLink } from "react-feather";
-import PropTypes from "prop-types";
 import { NextSeo } from "next-seo";
 import { BASE_URL } from "lib/constants";
 import groq from "groq";
@@ -50,7 +49,7 @@ const Safety = ({ safety, safetyStatus }: Props) => (
         images: [{ url: `${BASE_URL}/assets/og/safety.png` }],
       }}
     />
-    
+
     <HeroTitle prose title="Safety" />
 
     <Container className="mx-auto my-12 space-y-16 max-w-prose">
