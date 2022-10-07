@@ -13,6 +13,7 @@ import {
   socials,
   misc,
 } from "@/components/nav/nav-data";
+import Link from "../stour/link";
 
 const footerAbout = [...about, ...aboutCTAs];
 const footerRegatta = [...regatta, ...regattaCTAs];
@@ -50,7 +51,10 @@ export default function Footer() {
                     ? null
                     : window.location.pathname
                 }
-              />
+              />{" "}
+              <Link href="https://github.com/willkerry/sudbury-rowing-club">
+                Our website is an open source software project.
+              </Link>
             </div>
             <div className="flex flex-row mt-2">
               <SocialIcons data={socials} />
