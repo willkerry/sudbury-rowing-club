@@ -67,8 +67,10 @@ const NavSection = ({
           <Popover.Panel
             static
             className={cn(
-              "absolute z-20 px-2 mt-3 transform -translate-x-1/2 left-1/2 sm:px-0",
-              !compact ? "w-screen max-w-sm" : " max-w-xs"
+              "absolute z-20 px-2 mt-3 transform sm:px-0",
+              !compact
+                ? "w-screen max-w-xs -translate-x-1/2 left-1/2"
+                : " max-w-sm right-0"
             )}
           >
             <div className="overflow-hidden rounded shadow-lg ring-1 ring-black ring-opacity-5">
@@ -77,16 +79,16 @@ const NavSection = ({
                   <CompactNavItemList items={navData} />
                 </div>
               ) : (
-                <div className="relative grid gap-6 px-5 py-6 bg-white sm:gap-8 sm:p-8">
+                <div className="relative grid gap-5 px-5 py-6 bg-white sm:gap-7 sm:p-5">
                   <NavItemList items={navData} />
                 </div>
               )}
               {compact ? (
-                <div className="px-4 py-4 space-y-5 bg-gray-100">
+                <div className="px-4 py-4 space-y-4 backdrop-blur rounded-b bg-opacity-75 bg-gray-200 backdrop-saturate-200 shadow-inner">
                   <CompactCTAList CTAs={ctaData} />
                 </div>
               ) : (
-                <div className="px-5 py-5 space-y-6 bg-gray-50 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
+                <div className="px-5 py-5 space-y-6 backdrop-blur rounded-b bg-opacity-75 bg-gray-200 backdrop-saturate-200 shadow-inner sm:flex sm:space-y-0 sm:space-x-6 sm:px-5">
                   <CTAList CTAs={ctaData} />
                 </div>
               )}

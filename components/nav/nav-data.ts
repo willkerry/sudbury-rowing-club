@@ -59,8 +59,7 @@ export const aboutCTAs: IconNavItemType[] = [
     icon: MapPinIcon,
   },
   {
-    name: "Contact us",
-    shortName: "Contact",
+    name: "Contact",
     href: "/contact",
     icon: EnvelopeIcon,
   },

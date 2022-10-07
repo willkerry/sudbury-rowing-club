@@ -9,9 +9,9 @@ const CompactCTAList = ({ CTAs }: Props) => {
       {CTAs.map((cta) => (
         <div key={cta.href} className="flow-root">
           <Link href={cta.href}>
-            <a className="flex items-center p-2 -m-2 text-sm font-medium text-gray-900 rounded hover:bg-gray-200">
+            <a className="group flex items-center p-2 -m-2 text-sm font-medium text-gray-700 hover:text-gray-900 rounded-l-xl rounded-r-sm hover:bg-black hover:bg-opacity-5 hover:shadow-inner">
               <cta.icon
-                className="flex-shrink-0 w-6 h-6 p-1 text-gray-600 bg-white border rounded-lg shadow-sm"
+                className="flex-shrink-0 w-6 h-6 p-1 backdrop-brightness-125 text-gray-500 group-hover:text-gray-800 rounded-md shadow-sm"
                 aria-hidden="true"
               />
               <span className="ml-1.5">{cta.name}</span>

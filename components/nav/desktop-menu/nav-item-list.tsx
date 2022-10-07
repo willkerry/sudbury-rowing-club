@@ -30,7 +30,7 @@ const NavItemList = ({ items }: Props) => {
               </a>
             </Link>
           )
-      )}{" "}
+      )}
     </>
   );
 };
