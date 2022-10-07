@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 export const navLinkClasses =
   "group transition duration-200 inline-flex px-3 py-2.5 text-sm hover:text-black focus:outline-none hover:bg-gray-50 hover:border-gray-100 border border-transparent rounded-md";
 export const navLinkColor = "text-gray-500";
-export const navLinkActiveColor = "text-black font-medium";
+export const navLinkActive = "text-black font-medium";
 
 type Props = {
   icon?: React.ReactElement;
@@ -37,16 +37,19 @@ const NavSection = ({
 
   let isActive = false;
 
-  [...navData, ...ctaData].forEach((item) => {
-    if (router.pathname === item.href && !item.mobileOnly) isActive = true;
-  });
+  [...navData, ...ctaData]
+    .filter((item) => !item.mobileOnly)
+    .forEach((item) => {
+      if (router.pathname === item.href) isActive = true;
+      return;
+    });
 
   return (
     <Popover className="relative">
       {({ open }) => (
         <>
           <Popover.Button
-            className={cn((open || isActive) && navLinkActiveColor, [
+            className={cn(isActive && navLinkActive, open && "text-black", [
               navLinkColor,
               navLinkClasses,
               "items-center",
@@ -57,9 +60,8 @@ const NavSection = ({
               {icon}
               {altLabel && <span className="sr-only">{altLabel}</span>}
               <ChevronDownIcon
-                className={cn(
-                  "w-3 h-3 ml-0.5 -mb-px transition group-hover:text-gray-800 text-gray-400"
-                )}
+                className={`"w-3 h-3 ml-0.5 -mb-px transition group-hover:text-gray-800 text-gray-400",
+                  ${isActive && "text-gray-700 stroke-current"}`}
                 aria-hidden="true"
               />
             </>

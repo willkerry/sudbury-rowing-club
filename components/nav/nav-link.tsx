@@ -2,7 +2,7 @@ import cn from "classnames";
 import Link, { type LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import {
-  navLinkActiveColor,
+  navLinkActive,
   navLinkClasses,
   navLinkColor,
 } from "./desktop-menu/nav-section";
@@ -17,7 +17,7 @@ const NavLink = ({ href, children }: Props) => {
     <Link href={href} passHref>
       <a
         className={cn(
-          router.asPath == href && navLinkActiveColor,
+          router.asPath == href && navLinkActive,
           navLinkClasses,
           navLinkColor
         )}
