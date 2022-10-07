@@ -1,12 +1,3 @@
-// const portableTextFields = `
-// ...,
-// _type == "figure" => {
-//   "_id": @.image.asset->_id,
-//   "altText": @.image.asset->altText,
-//   "description": @.image.asset->description,
-//   "lqip": @.image.asset->metadata.lqip,
-// },`;
-
 import groq from "groq";
 
 export const postFields = groq`
@@ -38,21 +29,21 @@ export const postFields = groq`
     }
 `;
 
-export const indexQuery = `
+export const indexQuery = groq`
 *[_type == "post"] | order(date desc, _updatedAt desc) {
   ${postFields}
 }`;
 
-export const postQuery = `
+export const postQuery = groq`
 *[_type == "news" && slug.current == $slug][0] {
     ${postFields}
 }`;
 
-export const postSlugsQuery = `
+export const postSlugsQuery = groq`
 *[_type == "news" && defined(slug.current)][].slug.current
 `;
 
-export const postBySlugQuery = `
+export const postBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0] {
   ${postFields}
 }`;

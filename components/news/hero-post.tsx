@@ -6,7 +6,7 @@ import type Post from "../../types/post";
 
 const HeroPost = ({ post }: { post: Post }) => (
   <Link as={`/news/${post.slug}`} href="/news/[slug]">
-    <a className="grid mb-12 overflow-hidden transition duration-200 border rounded md:grid-cols-3 md:gap-x-8 group hover:border-blue-400">
+    <a className="grid mb-4 overflow-hidden transition duration-200 border rounded md:grid-cols-3 md:gap-x-2 group hover:border-blue-400">
       <div
         className={`relative border-b md:border-b-0 md:border-r md:col-span-2 ${
           !post.featuredImage ? "h-60 sm:h-96" : "flex"
@@ -16,13 +16,13 @@ const HeroPost = ({ post }: { post: Post }) => (
           <CoverImage
             title={post.title}
             src={urlFor(post.featuredImage._id)
-              .width(1286)
+              .width(1304)
               .height(772)
               .fit("crop")
               .crop("entropy")
               .url()}
             height={386}
-            width={643}
+            width={652}
             alt={post.featuredImage.alt}
             blurDataURL={post.featuredImage.lqip}
           />
@@ -32,7 +32,7 @@ const HeroPost = ({ post }: { post: Post }) => (
           </div>
         )}
       </div>
-      <div className="flex flex-col m-4 md:my-8 md:mr-8 place-content-between">
+      <div className="flex flex-col m-4 md:my-6 md:mr-8 place-content-between">
         <p className="mb-10 text-gray-500 transition duration-200 group-hover:text-blue-300 md:mb-0">
           {post.excerpt}
         </p>
