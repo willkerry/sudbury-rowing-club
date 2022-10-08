@@ -33,7 +33,7 @@ async function fetchEAWarning(): Promise<EAWarning | void> {
   url.search = new URLSearchParams({
     lat: String(CLUB_LOCATION[0]),
     long: String(CLUB_LOCATION[1]),
-    dist: String(1000),
+    dist: String(3),
   }).toString();
 
   try {
