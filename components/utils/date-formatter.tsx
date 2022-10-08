@@ -6,7 +6,10 @@ type DateFormatPresets =
   | "short"
   | "numeric"
   | "time"
-  | "year";
+  | "year"
+  | "month"
+  | "weekday"
+  | "shortWeekday";
 
 type Props = {
   dateString: string | Date;
@@ -33,6 +36,9 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
       },
     ],
     ["year", { year: "numeric" }],
+    ["month", { month: "long" }],
+    ["weekday", { weekday: "long" }],
+    ["shortWeekday", { weekday: "short" }],
   ]);
 
 const DateFormatter = ({ dateString, format, ...props }: Props) => {
