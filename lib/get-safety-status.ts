@@ -84,7 +84,7 @@ function round(n: number): number {
 /**
  * Assembles a string describing the current water level at the club's monitoring station
  */
-function formatDescritionString(
+function formatDescriptionString(
   stationName: string,
   level: number,
   ceil: number,
@@ -143,7 +143,7 @@ const getSafetyStatus: () => Promise<SafetyComponentProps | void> =
 
       return {
         status,
-        description: formatDescritionString(
+        description: formatDescriptionString(
           station.label,
           value,
           typicalRangeHigh,
