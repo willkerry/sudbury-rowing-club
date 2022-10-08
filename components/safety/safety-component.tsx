@@ -23,13 +23,13 @@ const SafetyComponent: React.FC<SafetyComponentProps> = ({
 }) => {
   return (
     <div className="divide-y">
-      <div className="p-4">
+      <div className="p-3 sm:p-4">
         <Label as="h2">River Safety Status</Label>
       </div>
 
       <SeveritySection status={status} message={statusMessage} />
 
-      <div className="p-4">
+      <div className="p-3 sm:p-4">
         {source ? <QuotedWarning {...{ description, source }} /> : description}
         {date && (
           <div className="mt-6 text-xs text-gray-600">

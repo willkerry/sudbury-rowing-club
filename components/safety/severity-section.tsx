@@ -16,11 +16,12 @@ const SeveritySection: React.FC<SeveritySectionProps> = ({
     [Severity.green]: "text-green-500 bg-green-50",
     [Severity.neutral]: "text-gray-500 bg-gray-50",
   };
+
   return (
     <div
-      className={`${severityClasses[status]} flex items-center justify-between h-24 p-4 text-4xl font-bold tracking-tight capitalize`}
+      className={`${severityClasses[status]} line-clamp-1 flex items-center justify-between h-12 sm:h-16 p-3 sm:p-4 text-2xl md:text-3xl font-bold tracking-tight `}
     >
-      {message || status}
+      {message || status.charAt(0).toUpperCase() + status.slice(1)}
 
       {status === Severity.red || status === Severity.amber ? (
         <div className="relative w-6 h-6">
