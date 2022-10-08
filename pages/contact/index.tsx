@@ -34,7 +34,6 @@ const Contact = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
   const initialValues = router.query as Message;
-  console.log(initialValues);
   return (
     <Layout>
       <NextSeo
