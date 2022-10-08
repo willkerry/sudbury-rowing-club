@@ -3,13 +3,15 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import { EnvironmentAgency, MetOffice } from "../icons";
 import Label from "../stour/label";
 import DateFormatter from "../utils/date-formatter";
+import QuotedWarning, { WarningSourceEnum } from "./quoted-warning";
 import SeveritySection from "./severity-section";
 
 export type SafetyComponentProps = {
-  description: string | React.ReactNode;
+  description: string;
   date?: Date;
   status: Severity;
   statusMessage: string;
+  source?: WarningSourceEnum;
 };
 
 const SafetyComponent: React.FC<SafetyComponentProps> = ({
@@ -17,6 +19,7 @@ const SafetyComponent: React.FC<SafetyComponentProps> = ({
   date,
   status,
   statusMessage,
+  source,
 }) => {
   return (
     <div className="divide-y">
@@ -27,7 +30,7 @@ const SafetyComponent: React.FC<SafetyComponentProps> = ({
       <SeveritySection status={status} message={statusMessage} />
 
       <div className="p-4">
-        {description}
+        {source ? <QuotedWarning {...{ description, source }} /> : description}
         {date && (
           <div className="mt-6 text-xs text-gray-600">
             Updated <DateFormatter dateString={date} format="time" />
