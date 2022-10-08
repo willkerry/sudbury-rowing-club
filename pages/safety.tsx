@@ -2,7 +2,7 @@ import { Download, ExternalLink } from "react-feather";
 import { NextSeo } from "next-seo";
 import { BASE_URL } from "lib/constants";
 import groq from "groq";
-import SafetyPopup from "@/components/safety";
+import SafetyCard from "@/components/safety";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
@@ -26,19 +26,12 @@ type SafetyItem = {
     url: string;
   };
 };
-type SafetyStatus = {
-  _updatedAt: string;
-  description: string;
-  display: boolean;
-  status: string;
-};
 
 type Props = {
   safety: SafetyItem[];
-  safetyStatus: SafetyStatus;
 };
 
-const Safety = ({ safety, safetyStatus }: Props) => (
+const Safety = ({ safety }: Props) => (
   <Layout>
     <NextSeo
       title="Safety | Sudbury Rowing Club"
@@ -53,15 +46,8 @@ const Safety = ({ safety, safetyStatus }: Props) => (
     <HeroTitle prose title="Safety" />
 
     <Container className="mx-auto my-12 space-y-16 max-w-prose">
-      {safetyStatus.display && (
-        <div className="overflow-hidden border rounded">
-          <SafetyPopup
-            description={safetyStatus.description}
-            date={safetyStatus._updatedAt}
-            status={safetyStatus.status}
-          />
-        </div>
-      )}
+      <SafetyCard />
+
       {safety.map((item) => (
         <div
           key={item._id}
@@ -130,19 +116,12 @@ export const getStaticProps: GetStaticProps = async () => {
           },
         },
         link != null => { link },
-      },
-      "safetyStatus": *[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
-        _updatedAt,
-        description,
-        display,
-        status
-      } 
+      }
     }`
   );
   return {
     props: {
       safety: data.safety,
-      safetyStatus: data.safetyStatus,
     },
   };
 };
