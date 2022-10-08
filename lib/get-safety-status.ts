@@ -150,7 +150,7 @@ const getSafetyStatus: () => Promise<SafetyComponentProps | void> =
           typicalRangeLow
         ),
         date: station.measures.latestReading.dateTime,
-        statusMessage: "No flood warnings in the area",
+        statusMessage: "Monitoring station",
       };
     }
 
