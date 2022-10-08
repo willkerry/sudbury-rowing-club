@@ -1,6 +1,5 @@
 import { EAWarning } from "@/types/ea-warning";
 import { EnvironmentAgency } from "../icons";
-import Label from "../stour/label";
 import DateFormatter from "../utils/date-formatter";
 
 type EAStatusProps = {
