@@ -1,4 +1,4 @@
-import { type WarningSourceEnum } from "@/components/safety/quoted-warning";
+import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import { type SafetyComponentProps } from "@/components/safety/safety-component";
 import { type EAStationResponse } from "@/types/ea-station-respose";
 import { type EAWarning } from "@/types/ea-warning";
