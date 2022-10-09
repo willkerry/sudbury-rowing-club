@@ -55,8 +55,10 @@ export const NoticeBody = ({
         <div className="flex py-2.5 text-sm bg-gray-50">
           {meta.map((item) => (
             <div className="px-4" key={item._key}>
-              <Label className="text-xs select-none">{`${item.label} : `}</Label>
-              <Label className="text-xs !text-gray-800">{item.value}</Label>
+              <Label className="text-xs select-none">{`${item.label}: `}</Label>
+              <span className="text-xs font-medium disambiguate !text-gray-800">
+                {item.value}
+              </span>
             </div>
           ))}
         </div>
@@ -74,7 +76,7 @@ export const NoticeBody = ({
             <DateFormatter
               dateString={created}
               format="short"
-              className="text-gray-700"
+              className="text-gray-700 disambiguate"
             />
           </span>
           <span>
@@ -82,13 +84,16 @@ export const NoticeBody = ({
             <DateFormatter
               dateString={updated}
               format="time"
-              className="text-gray-700"
+              className="text-gray-700 disambiguate"
             />
           </span>
         </div>
         {link && (
           <Link href={link} passHref>
-            <a className="transition-colors hover:text-black" title="Open permalink">
+            <a
+              className="transition-colors hover:text-black"
+              title="Open permalink"
+            >
               <LinkIcon className="w-4 h-4" />
             </a>
           </Link>
