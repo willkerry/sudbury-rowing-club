@@ -45,7 +45,9 @@ const Events = ({ data }: { data: Event[] }) => (
             <Row
               label="Boat Classes"
               value={item.boatClasses.map((w, index) => (
-                <span key={w}>{(index ? ", " : "") + w}</span>
+                <span key={w} className="disambiguate">
+                  {(index ? ", " : "") + w}
+                </span>
               ))}
             />
             <Row label="Prizes" value={item.prizes} />

@@ -2,6 +2,7 @@
 
 html {
   @apply antialiased selection:bg-green-100;
+  font-feature-settings: "cv06" 1, "ss03" 1; 
 }
 
 @tailwind components;
@@ -75,6 +76,10 @@ label {
     break-inside: avoid;
   }
   .disambiguate {
-    font-feature-settings: "ss01" 1, "ss01" 1;
+    font-feature-settings: "ss01" 1, "ss02" 1;
+  }
+
+  .uppercase {
+    font-feature-settings: "case" 1, "cpsp" 1, "cv08" 1;
   }
 }

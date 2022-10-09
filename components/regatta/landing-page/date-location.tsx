@@ -15,7 +15,7 @@ const DateLocation = ({ date, location }: Props) => (
     </div>
     <div className="flex items-center">
       <MapIcon className="inline-flex w-4 h-4 mr-1.5 text-gray-400" />
-      <span className="text-sm text-gray-800">
+      <span className="text-sm text-gray-800 disambiguate">
         <Link href="/contact/how-to-find-us">{location}</Link>
       </span>
     </div>

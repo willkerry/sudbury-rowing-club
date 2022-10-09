@@ -33,7 +33,7 @@ const SafetyComponent: React.FC<SafetyComponentProps> = ({
       <div className="p-3 sm:p-4">
         {source ? <QuotedWarning {...{ description, source }} /> : description}
         {date && (
-          <div className="mt-6 text-xs text-gray-600">
+          <div className="mt-6 text-xs text-gray-600 disambiguate">
             Updated <DateFormatter dateString={date} format="time" />
           </div>
         )}

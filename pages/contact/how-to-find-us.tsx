@@ -90,9 +90,9 @@ const FindUs = () => (
           <Note label="Find the Regatta">
             Our Regatta takes place on Friars Meadow, barely 100m from the
             boathouse but cut off from it by waterways. Access to the meadow is
-            from Edgworth Road (CO10 2TL). During the regatta, the routes are
-            signposted. We provide parking for spectators, trailers and
-            competitors on Friars Meadow.
+            from Edgworth Road (<span className="disambiguate">CO10 2TL</span>).
+            During the regatta, the routes are signposted. We provide parking
+            for spectators, trailers and competitors on Friars Meadow.
           </Note>
 
           <div className="grid lg:grid-cols-2">
@@ -108,7 +108,7 @@ const FindUs = () => (
                 <br />
                 Sudbury
                 <br />
-                Suffolk CO10 2AN
+                Suffolk <span className="disambiguate">CO10 2AN</span>
               </p>
               <div className="flex my-4 space-x-3 text-sm">
                 {openInApp.map((item) => (
@@ -144,7 +144,7 @@ const FindUs = () => (
                 <br />
                 Sudbury
                 <br />
-                Suffolk CO10 2TL
+                Suffolk <span className="disambiguate">CO10 2TL</span>
               </p>
               <div className="flex my-4 space-x-3 text-sm">
                 {openInApp.map((item) => (
