@@ -6,7 +6,7 @@ import {
 import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import Note from "@/components/stour/note";
-import config from "./config";
+import config from "./sanity.server";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { type PortableTextProps } from "@portabletext/react";
 
