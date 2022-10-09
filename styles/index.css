@@ -74,4 +74,7 @@ label {
   .break-inside {
     break-inside: avoid;
   }
+  .disambiguate {
+    font-feature-settings: "ss01" 1, "ss01" 1;
+  }
 }
