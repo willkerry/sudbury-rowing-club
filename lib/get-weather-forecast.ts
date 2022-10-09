@@ -67,51 +67,51 @@ interface ForecastResponse {
  * Fetches the weather forecast for the club location.
  */
 const fetchWeatherForecast = async () => {
-  let url = [`https://api.open-meteo.com/v1/forecast`];
-  url.push(`?latitude=${CLUB_LOCATION[0]}`);
-  url.push(`&longitude=${CLUB_LOCATION[1]}`);
-  url.push(
-    `&daily=weathercode,temperature_2m_max,windspeed_10m_max,winddirection_10m_dominant`
-  );
-  url.push(`&timezone=Europe/London`);
-
+  const url = "https://api.open-meteo.com/v1/forecast";
+  const params = {
+    latitude: CLUB_LOCATION[0],
+    longitude: CLUB_LOCATION[1],
+    daily:
+      "weathercode,temperature_2m_max,windspeed_10m_max,winddirection_10m_dominant",
+    timezone: "Europe/London",
+  };
   const response = await axios
-    .get<ForecastResponse>(url.join(""))
+    .get<ForecastResponse>(url, { params })
     .then((res) => res.data);
-  console.log(response);
   return response;
 };
 
 /**
  * Converts mph windspeeds to the Beaufort scale, clumsily.
  */
-const mphToBeaufort = (mph: number) => {
-  if (mph < 1) {
-    return 0;
-  } else if (mph < 4) {
-    return 1;
-  } else if (mph < 8) {
-    return 2;
-  } else if (mph < 13) {
-    return 3;
-  } else if (mph < 19) {
-    return 4;
-  } else if (mph < 25) {
-    return 5;
-  } else if (mph < 32) {
-    return 6;
-  } else if (mph < 39) {
-    return 7;
-  } else if (mph < 47) {
-    return 8;
-  } else if (mph < 55) {
-    return 9;
-  } else if (mph < 64) {
-    return 10;
-  } else if (mph < 74) {
-    return 11;
-  } else {
-    return 12;
+const kphToBeaufort = (kph: number) => {
+  switch (true) {
+    case kph < 1:
+      return 0;
+    case kph < 6:
+      return 1;
+    case kph < 12:
+      return 2;
+    case kph < 20:
+      return 3;
+    case kph < 29:
+      return 4;
+    case kph < 39:
+      return 5;
+    case kph < 50:
+      return 6;
+    case kph < 62:
+      return 7;
+    case kph < 75:
+      return 8;
+    case kph < 89:
+      return 9;
+    case kph < 103:
+      return 10;
+    case kph < 118:
+      return 11;
+    default:
+      return 12;
   }
 };
 
@@ -158,7 +158,12 @@ export interface Forecast {
  */
 const getWeatherForecast: () => Promise<Forecast[]> = async () => {
   const response = await fetchWeatherForecast();
-  console.log(response);
+
+  if (!response) {
+    throw new Error("No response from Open Meteo API");
+  }
+
+  console.log("Fetcher Ran", { response });
   const {
     time,
     weathercode,
@@ -176,7 +181,7 @@ const getWeatherForecast: () => Promise<Forecast[]> = async () => {
       windSpeed: Math.round(wind[i]),
       windDirection: windDir[i],
       windDirectionText: degreesToCardinal(windDir[i]),
-      beaufort: mphToBeaufort(wind[i]),
+      beaufort: kphToBeaufort(wind[i]),
       date: time[i],
     });
   }
@@ -185,3 +190,8 @@ const getWeatherForecast: () => Promise<Forecast[]> = async () => {
 };
 
 export default getWeatherForecast;
+
+export const getYRURL = (date: Date) => {
+  let dayIndex = new Date(date).getDay();
+  return `https://www.yr.no/en/forecast/hourly-table/2-2636564/Great%20Britain/England/Suffolk/Sudbury?i=${dayIndex}`;
+};

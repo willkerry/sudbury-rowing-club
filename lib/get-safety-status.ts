@@ -49,17 +49,12 @@ async function fetchEAWarning(): Promise<EAWarning | void> {
 /**
  * Fetches monitoring station data from the Environment Agency API
  */
-async function fetchEAStation(): Promise<EAStationResponse | void> {
-  try {
-    const res = await fetch(
-      "https://environment.data.gov.uk/flood-monitoring/id/stations/E21856"
-    );
-    const { items } = await res.json();
-    return items;
-  } catch (e) {
-    console.error(e);
-    return;
-  }
+async function fetchEAStation(): Promise<EAStationResponse> {
+  const res = await fetch(
+    "https://environment.data.gov.uk/flood-monitoring/id/stations/E21856"
+  );
+  const { items } = await res.json();
+  return items;
 }
 
 /**
@@ -106,55 +101,58 @@ function formatDescriptionString(
  * Fetches safety status data from a series of different APIs, stopping as soon
  * as it finds a reason to display a warning.
  */
-const getSafetyStatus: () => Promise<SafetyComponentProps | void> =
-  async () => {
-    const sanityStatus = await fetchSanityStatus();
+const getSafetyStatus: () => Promise<SafetyComponentProps> = async () => {
+  const sanityStatus = await fetchSanityStatus();
 
-    if (sanityStatus.display) {
-      return {
-        status: sanityStatus.status as Severity,
-        description: sanityStatus.description,
-        date: sanityStatus._updatedAt,
-        statusMessage: sanityStatus.status as string,
-      };
-    }
+  if (sanityStatus.display) {
+    return {
+      status: sanityStatus.status as Severity,
+      description: sanityStatus.description,
+      date: sanityStatus._updatedAt,
+      statusMessage: sanityStatus.status as string,
+    };
+  }
 
-    const eaWarning = await fetchEAWarning();
+  const eaWarning = await fetchEAWarning();
 
-    if (eaWarning) {
-      const { severity, severityLevel, message, timeRaised } = eaWarning;
-      return {
-        status: getEquivalentSeverity(severityLevel),
-        description: message as string,
-        date: timeRaised,
-        statusMessage: severity as string,
-        source: WarningSourceEnum.environmentAgency,
-      };
-    }
+  if (eaWarning) {
+    const { severity, severityLevel, message, timeRaised } = eaWarning;
+    return {
+      status: getEquivalentSeverity(severityLevel),
+      description: message as string,
+      date: timeRaised,
+      statusMessage: severity as string,
+      source: WarningSourceEnum.environmentAgency,
+    };
+  }
 
-    const station = await fetchEAStation();
+  const station: EAStationResponse = await fetchEAStation();
 
-    if (station) {
-      const { value } = station.measures.latestReading;
-      const { typicalRangeHigh, typicalRangeLow } = station.stageScale;
-      const mean = (typicalRangeHigh + typicalRangeLow) / 2;
+  if (station) {
+    const { value } = station.measures.latestReading;
+    const { typicalRangeHigh, typicalRangeLow } = station.stageScale;
+    const mean = (typicalRangeHigh + typicalRangeLow) / 2;
 
-      let status = value >= mean ? Severity.amber : Severity.neutral;
+    let status = value >= mean ? Severity.amber : Severity.neutral;
 
-      return {
-        status,
-        description: formatDescriptionString(
-          station.label,
-          value,
-          typicalRangeHigh,
-          typicalRangeLow
-        ),
-        date: station.measures.latestReading.dateTime,
-        statusMessage: "Monitoring station",
-      };
-    }
-
-    return;
+    return {
+      status,
+      description: formatDescriptionString(
+        station.label,
+        value,
+        typicalRangeHigh,
+        typicalRangeLow
+      ),
+      date: station.measures.latestReading.dateTime,
+      statusMessage: "Monitoring station",
+    };
+  }
+  return {
+    status: Severity.neutral,
+    description: "No data available",
+    date: new Date(),
+    statusMessage: "No data available",
   };
+};
 
 export default getSafetyStatus;
