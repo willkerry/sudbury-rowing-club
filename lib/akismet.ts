@@ -1,8 +1,14 @@
 import url from "url";
 import axios from "axios";
 
-export default async function checkForSpam(userIp: string, userAgent: string, referer: string, commentAuthor: string, commentAuthorEmail: string, commentContent: string) {
-
+export default async function checkForSpam(
+  userIp: string,
+  userAgent: string,
+  referer: string,
+  commentAuthor: string,
+  commentAuthorEmail: string,
+  commentContent: string
+) {
   const query = new url.URLSearchParams({
     blog: "https://sudburyrowingclub.org.uk/",
     user_ip: userIp,
