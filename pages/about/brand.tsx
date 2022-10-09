@@ -2,6 +2,7 @@ import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 import Crest from "@/components/logo/crest";
 import Social from "@/components/logo/social";
+import Copy from "@/components/stour/copy";
 import Link from "@/components/stour/link";
 import combineURLs from "@/lib/helpers/combineURLs";
 import Color from "color";
@@ -117,9 +118,9 @@ function ColorIndicator({
   if (type === "rgb") print = newColor.rgb().string();
   if (type === "hsl") print = newColor.hsl().round().string();
   return (
-    <span className="flex flex-row items-center uppercase">
+    <span className="flex flex-row items-center text-xs">
       <Circle className="h-4 text-gray-200" fill={color} />
-      <code>{print}</code>
+      <Copy value={print.toUpperCase()} />
     </span>
   );
 }
