@@ -76,7 +76,7 @@ label {
     break-inside: avoid;
   }
   .disambiguate {
-    font-feature-settings: "ss01" 1, "ss02" 1;
+    font-feature-settings: "ss01" 1, "ss04" 1;
   }
 
   .uppercase {
