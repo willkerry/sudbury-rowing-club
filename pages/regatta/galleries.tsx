@@ -8,6 +8,7 @@ import { BASE_URL } from "@/lib/constants";
 import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
+import Copy from "@/components/stour/copy";
 
 export interface Gallery {
   _key: string;
@@ -78,7 +79,7 @@ export default function Photography({
                             <span className="hidden select-none sm:inline">
                               Password:{" "}
                             </span>
-                            <code>{gallery.password}</code>
+                            <Copy value={gallery.password} />
                           </>
                         )
                     )}
