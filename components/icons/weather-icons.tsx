@@ -32,7 +32,7 @@ import {
 import { WeatherCodeNumber } from "@/lib/get-weather-forecast";
 
 const svgProps = {
-  className: "w-9 h-9",
+  className: "w-7 h-7",
 };
 
 export const weatherIcons: Record<WeatherCodeNumber, React.ReactNode> = {
@@ -66,18 +66,22 @@ export const weatherIcons: Record<WeatherCodeNumber, React.ReactNode> = {
   99: <WiThunderstorm {...svgProps} />,
 };
 
+const windSvgProps = {
+  className: "w-8 h-8",
+};
+
 export const windIcons: Record<string, React.ReactNode> = {
-  0: <WiWindBeaufort0 {...svgProps} />,
-  1: <WiWindBeaufort1 {...svgProps} />,
-  2: <WiWindBeaufort2 {...svgProps} />,
-  3: <WiWindBeaufort3 {...svgProps} />,
-  4: <WiWindBeaufort4 {...svgProps} />,
-  5: <WiWindBeaufort5 {...svgProps} />,
-  6: <WiWindBeaufort6 {...svgProps} />,
-  7: <WiWindBeaufort7 {...svgProps} />,
-  8: <WiWindBeaufort8 {...svgProps} />,
-  9: <WiWindBeaufort9 {...svgProps} />,
-  10: <WiWindBeaufort10 {...svgProps} />,
-  11: <WiWindBeaufort11 {...svgProps} />,
-  12: <WiWindBeaufort12 {...svgProps} />,
+  0: <WiWindBeaufort0 {...windSvgProps} />,
+  1: <WiWindBeaufort1 {...windSvgProps} />,
+  2: <WiWindBeaufort2 {...windSvgProps} />,
+  3: <WiWindBeaufort3 {...windSvgProps} />,
+  4: <WiWindBeaufort4 {...windSvgProps} />,
+  5: <WiWindBeaufort5 {...windSvgProps} />,
+  6: <WiWindBeaufort6 {...windSvgProps} />,
+  7: <WiWindBeaufort7 {...windSvgProps} />,
+  8: <WiWindBeaufort8 {...windSvgProps} />,
+  9: <WiWindBeaufort9 {...windSvgProps} />,
+  10: <WiWindBeaufort10 {...windSvgProps} />,
+  11: <WiWindBeaufort11 {...windSvgProps} />,
+  12: <WiWindBeaufort12 {...windSvgProps} />,
 };

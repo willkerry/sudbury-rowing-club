@@ -4,7 +4,7 @@ import getWeatherForecast, {
 } from "@/lib/get-weather-forecast";
 import { Severity } from "@/types/severity";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
-import { ArrowLongUpIcon } from "@heroicons/react/24/outline";
+import { ArrowLongDownIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { EnvironmentAgency, MetOffice } from "../icons";
 import { weatherIcons, windIcons } from "../icons/weather-icons";
@@ -53,35 +53,37 @@ const SafetyComponent: React.FC<SafetyComponentProps> = ({
           </div>
         )}
       </div>
-      <div className="w-full p-3 bg-green-50 sm:px-4">
+      <div className="w-full p-3 bg-gray-100 sm:px-4">
         <Loading visible={forecast.length === 0}>
-          <div className="grid w-full grid-cols-7 pb-2">
+          <div className="grid w-full grid-cols-7">
             {forecast.map((f, i) => (
               <div key={i} className="flex flex-col items-center">
-                <div className="text-xs font-medium tracking-widest text-green-600 uppercase">
+                <div className="text-xs font-medium tracking-widest text-gray-600 uppercase">
                   <DateFormatter dateString={f.date} format="shortWeekday" />
                 </div>
+
                 <div
-                  className="flex items-center justify-center h-full text-xs text-green-700"
+                  className="flex items-center justify-center h-full text-xs text-gray-700"
                   title={weatherCodes[f.code]}
                 >
                   {weatherIcons[f.code]}
                 </div>
-                <div className="text-xs font-semibold text-green-600 uppercase">
-                  {f.maxTemp}℃
-                </div>
-                <div className="flex flex-col items-center gap-px mt-2 mb-1 text-green-400 border-2 border-green-200 rounded-full">
-                  <ArrowLongUpIcon
-                    className="w-6 h-6 m-px"
-                    style={{
-                      transform: `rotate(${f.windDirection}deg)`,
-                    }}
-                  />
-                </div>
-                <div className="flex items-center text-xs italic font-bold text-green-400">
-                  <span className="invisible sm:visible">FORCE</span>
-                  <span className="visible sm:invisible">B</span>
-                  {f.beaufort}
+
+                <div
+                  className="flex items-center "
+                  title={`Force ${f.beaufort}, ${f.windDirectionText}`}
+                >
+                  <div className="flex flex-col items-center text-gray-100 bg-gray-400 rounded-full">
+                    <ArrowLongDownIcon
+                      className="w-2.5 h-2.5 m-px stroke-[3px]"
+                      style={{
+                        transform: `rotate(${f.windDirection}deg)`,
+                      }}
+                    />
+                  </div>
+                  <div className="pt-1 -my-1.5 text-sm font-semibold text-gray-400 ">
+                    {windIcons[f.beaufort]}
+                  </div>
                 </div>
               </div>
             ))}

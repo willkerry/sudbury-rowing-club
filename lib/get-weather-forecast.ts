@@ -115,11 +115,39 @@ const mphToBeaufort = (mph: number) => {
   }
 };
 
+/**
+ * Converts a wind direction in degrees to a compass direction.
+ */
+const degreesToCardinal = (degrees: number) => {
+  const directions = [
+    "N",
+    "NNE",
+    "NE",
+    "ENE",
+    "E",
+    "ESE",
+    "SE",
+    "SSE",
+    "S",
+    "SSW",
+    "SW",
+    "WSW",
+    "W",
+    "WNW",
+    "NW",
+    "NNW",
+    "N",
+  ];
+  const index = Math.round(degrees / 22.5);
+  return directions[index];
+};
+
 export interface Forecast {
   beaufort: number;
   code: WeatherCodeNumber;
   maxTemp: number;
   windDirection: number;
+  windDirectionText: string;
   windSpeed: number;
   date: Date;
 }
@@ -147,6 +175,7 @@ const getWeatherForecast: () => Promise<Forecast[]> = async () => {
       maxTemp: Math.round(temp[i]),
       windSpeed: Math.round(wind[i]),
       windDirection: windDir[i],
+      windDirectionText: degreesToCardinal(windDir[i]),
       beaufort: mphToBeaufort(wind[i]),
       date: time[i],
     });
