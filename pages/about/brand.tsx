@@ -164,20 +164,13 @@ const Brand = ({ blue }: { blue: string }) => {
     >
       <h2>Crest</h2>
       <p>
-        This version of our crest is intended to work well on screens, is based
-        on all the locatable extinct and extant crests, and is optimised as a
-        tiny 6&nbsp;KB SVG string.
-      </p>
-      <p>
-        If you can’t find what you need,{" "}
-        <Link
-          href={`/contact?to=5b54081d-46f0-485b-83c2-691e086fdf19&message=Crest Support Group: `}
-        >
-          <a className="transition hover:text-black">
-            Will might be able to help
-          </a>
-        </Link>
-        .
+        This is a somewhat simplified version of our crest, based on
+        characterful twentieth century hand-drawn versions, and intended
+        specifically for use on screens. It is a vector graphic, so it can be
+        scaled to any size without loss of quality, and is distributed as a
+        near-optimal <span className="disambiguate">6&nbsp;KB</span> SVG string.
+        Signficantly more detailed versions of the crest are available for
+        print, embroidery, and other purposes.
       </p>
       {brandAssets.map((item, i) => (
         <section key={i}>
