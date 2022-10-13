@@ -169,8 +169,8 @@ const Brand = ({ blue }: { blue: string }) => {
         specifically for use on screens. It is a vector graphic, so it can be
         scaled to any size without loss of quality, and is distributed as a
         near-optimal <span className="disambiguate">6&nbsp;KB</span> SVG string.
-        Signficantly more detailed versions of the crest are available for
-        print, embroidery, and other purposes.
+        For other applications (e.g. embroidery), completely different versions
+        of the crest are available.
       </p>
       {brandAssets.map((item, i) => (
         <section key={i}>
