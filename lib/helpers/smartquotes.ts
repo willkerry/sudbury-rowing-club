@@ -1,11 +1,14 @@
-// Convert straight quotes to contextually appropriate smart quotes.
+/**
+ * Converts straight quotes to curly quotes in a fairly naïve way.
+ */
 const smartQuotes = (text: string): string => {
+  const output = text
     // Replace double quotes first.
-    text = text.replace(/"([^"]*)"/g, '&ldquo;$1&rdquo;');
+    .replace(/"([^"]*)"/g, "&ldquo;$1&rdquo;")
     // Replace single quotes.
-    text = text.replace(/'([^']*)'/g, '&lsquo;$1&rsquo;');
+    .replace(/'([^']*)'/g, "&lsquo;$1&rsquo;")
     // Fix apostrophes.
-    text = text.replace(/([^\s])\'/g, '$1&rsquo;');
-    return text;
-}
+    .replace(/([^\s])'/g, "$1&rsquo;");
+  return output;
+};
 export default smartQuotes;
