@@ -11,8 +11,8 @@ const useGroqQuery = <T>(query: string, params?: any) => {
       try {
         const result: T = await sanityClient.fetch(query, params);
         setData(result);
-      } catch (error) {
-        setError(error);
+      } catch (e) {
+        setError(e);
       } finally {
         setLoading(false);
       }
