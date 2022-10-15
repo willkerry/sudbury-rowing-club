@@ -13,6 +13,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { PortableTextProps } from "@portabletext/react";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import { FC } from "react";
 
 export interface Meta {
   _key: string;
@@ -31,7 +32,7 @@ export interface NoticeProps {
   slug: { current: string };
 }
 
-const Notice: React.FC<{ notice: NoticeProps }> = ({
+const Notice: FC<{ notice: NoticeProps }> = ({
   notice,
 }: {
   notice: NoticeProps;

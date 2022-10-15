@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 
-function Highlight(props: { children: React.ReactNode }) {
+function Highlight(props: { children: ReactNode }) {
   return (
     <em
       {...props}
@@ -9,7 +10,7 @@ function Highlight(props: { children: React.ReactNode }) {
     />
   );
 }
-function BlockHighlight(props: { children: React.ReactNode }) {
+function BlockHighlight(props: { children: ReactNode }) {
   return (
     <div
       {...props}
