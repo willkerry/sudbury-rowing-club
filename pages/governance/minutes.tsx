@@ -54,16 +54,14 @@ export const getStaticProps = async () => {
       "committee": committee->title
     }`
   );
-  const minutes = data.map((item: any) => {
-    return {
-      ...item,
-      committee: item.committee.split(" ")[0],
-      date: new Date(item.date).toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      }),
-    };
-  });
+  const minutes = data.map((item: any) => ({
+    ...item,
+    committee: item.committee.split(" ")[0],
+    date: new Date(item.date).toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }),
+  }));
   return { props: { minutes } };
 };

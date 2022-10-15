@@ -172,8 +172,8 @@ const Brand = ({ blue }: { blue: string }) => {
         For other applications (e.g. embroidery), completely different versions
         of the crest are available.
       </p>
-      {brandAssets.map((item, i) => (
-        <section key={i}>
+      {brandAssets.map((item) => (
+        <section key={item.files.toString()}>
           <figure>
             <item.Illustration
               className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
@@ -193,8 +193,8 @@ const Brand = ({ blue }: { blue: string }) => {
               </tr>
             </thead>
             <tbody>
-              {item.files.map((file, i) => (
-                <tr key={i}>
+              {item.files.map((file) => (
+                <tr key={file.href}>
                   <td>
                     <ColorIndicator color={item.color} type="hex" />
                   </td>

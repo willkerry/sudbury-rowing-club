@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import NewsList from "@/components/news/news-list";
@@ -12,7 +13,13 @@ import { NextSeo } from "next-seo";
 import type Post from "@/types/post";
 import { type GetStaticProps } from "next/types";
 import Button from "@/components/stour/button";
-import { FormEventHandler, useCallback, useEffect, useState } from "react";
+import {
+  FormEventHandler,
+  useCallback,
+  useEffect,
+  useId,
+  useState,
+} from "react";
 import { useRouter } from "next/router";
 import { type SearchResponse } from "@algolia/client-search";
 import { postFields } from "@/lib/queries";
@@ -58,10 +65,10 @@ export const getStaticProps: GetStaticProps = async () => {
   if (sanityTotal !== algoliaTotal) {
     const query = groq`*[_type == "news" && !(_id in path("drafts.**"))]{${postFields}}`;
 
-    sanityClient.fetch(query).then((data) => {
+    sanityClient.fetch(query).then((results) => {
       // It's **essential** to assign the post _id to the Algolia objectID here,
       // otherwise Algolia will create thousands of duplicate records.
-      const records = data.map((p: any) => ({ ...p, objectID: p._id }));
+      const records = results.map((p: any) => ({ ...p, objectID: p._id }));
       serverIndex.saveObjects(records);
     });
   }
@@ -79,6 +86,7 @@ const News = ({ data }: Props) => {
   const [activeSearchTerm, setActiveSearchTerm] = useState("");
   const [dirty, setDirty] = useState(false);
   const [results, setResults] = useState<SearchResponse<any>["hits"]>([]);
+  const searchInputId = useId();
 
   const search = useCallback(async () => {
     if (!dirty) setDirty(true);
@@ -132,14 +140,15 @@ const News = ({ data }: Props) => {
         }}
       />
       <div className="flex items-center py-6 border-t border-b">
-        <Container className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-between items-center gap-4">
-          <div className="md:col-span-2 flex items-center">
+        <Container className="grid items-center justify-between grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          <div className="flex items-center md:col-span-2">
             {activeSearchTerm && (
               <button
+                type="button"
                 className="py-3 pr-4 text-gray-400 hover:text-blue-600"
                 onClick={() => cancelSearch()}
               >
-                <ArrowUturnLeftIcon className="h-5 w-5" />
+                <ArrowUturnLeftIcon className="w-5 h-5" />
               </button>
             )}
             <div>
@@ -153,12 +162,13 @@ const News = ({ data }: Props) => {
                   <>
                     Showing results for{" "}
                     <button
+                      type="button"
                       className={`transition-colors relative group inline-block hover:border-red-200 
                         hover:bg-red-50 hover:text-red-200 rounded border mb-px border-blue-200 
                         bg-blue-50 font-bold tracking-widest px-0.5 text-blue-400 uppercase text-xs`}
                       onClick={() => cancelSearch()}
                     >
-                      <XMarkIcon className="ransition-opacity h-4 w-4 absolute left-0 mx-auto right-0 text-red-600 stroke-red-600 opacity-0 group-hover:opacity-100" />
+                      <XMarkIcon className="absolute left-0 right-0 w-4 h-4 mx-auto text-red-600 transition-opacity opacity-0 stroke-red-600 group-hover:opacity-100" />
                       {activeSearchTerm}
                     </button>
                   </>
@@ -175,27 +185,28 @@ const News = ({ data }: Props) => {
             </div>
           </div>
           <form
-            className="flex items-center justify-center mt-4 w-full"
+            className="flex items-center justify-center w-full mt-4"
             onSubmit={(e) => handleSubmit(e)}
           >
-            <label htmlFor="q" className="sr-only">
+            <label htmlFor={searchInputId} className="sr-only">
               Search
             </label>
             <input
+              id={searchInputId}
               type="search"
               name="q"
-              className="h-10 rounded-r-none pl-3 w-full m-0 outline-none"
+              className="w-full h-10 pl-3 m-0 rounded-r-none outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Button
               type="submit"
-              className="h-10 rounded-l-none border-l -ml-px z-0"
+              className="z-0 h-10 -ml-px border-l rounded-l-none"
               shadow={Boolean(searchTerm && searchTerm !== activeSearchTerm)}
               disabled={!searchTerm}
             >
               <span className="sr-only">Search</span>
-              <MagnifyingGlassIcon className="h-4 w-4" />
+              <MagnifyingGlassIcon className="w-4 h-4" />
             </Button>
           </form>
         </Container>
@@ -203,14 +214,11 @@ const News = ({ data }: Props) => {
       <Container className="my-10">
         <NewsList
           posts={activeSearchTerm ? results : data}
-          hero={activeSearchTerm ? false : true}
-          // Nasty nested ternaries: Only 3 options:
-          // - Empty string if search is active, else
-          // - Empty string if fewer than 30 posts overall
-          // - The more link if more than 30 posts overall
-          more={
-            !activeSearchTerm ? (data?.length === 30 ? "/news/p/2" : "") : ""
-          }
+          hero={!activeSearchTerm}
+          // Nasty ternary: Only 2 options:
+          // - Empty string if search is active or fewer than 30 posts
+          // - The more link if more than 30 posts
+          more={activeSearchTerm || data?.length < 30 ? "" : "/news/p/2"}
         />
       </Container>
     </Layout>

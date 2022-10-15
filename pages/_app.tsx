@@ -1,11 +1,11 @@
 import { DefaultSeo } from "next-seo";
 import "../styles/index.css";
 import Router from "next/router";
+import { AppProps } from "next/app";
 import ProgressBar from "@badrap/bar-of-progress";
 import SEO from "../next-seo.config";
 import "inter-ui/inter.css";
 import "@fontsource/jetbrains-mono/variable.css";
-import { AppProps } from "next/app";
 
 const progress = new ProgressBar({
   size: 2,

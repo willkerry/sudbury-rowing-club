@@ -2,13 +2,13 @@ import Image from "next/image";
 import {
   PortableText as BlockContent,
   PortableTextComponents,
+  type PortableTextProps,
 } from "@portabletext/react";
 import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import Note from "@/components/stour/note";
-import config from "./sanity.server";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { type PortableTextProps } from "@portabletext/react";
+import { config } from "./sanity.server";
 
 export const urlFor = (source: SanityImageSource) =>
   imageUrlBuilder(config).image(source);
@@ -77,13 +77,21 @@ type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
 };
 
-export function PortableText(props: WrappedPortableTextProps) {
-  if (props.value) {
+export function PortableText({
+  value,
+  className,
+  ...rest
+}: WrappedPortableTextProps) {
+  if (value) {
     return (
-      <div className={props.className}>
-        <BlockContent components={components} {...config} {...props} />
+      <div {...{ className }}>
+        <BlockContent {...{ components, value }} {...config} {...rest} />
       </div>
     );
   }
   return null;
 }
+
+PortableText.defaultProps = {
+  className: "",
+};

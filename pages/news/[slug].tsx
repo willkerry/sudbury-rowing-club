@@ -17,17 +17,17 @@ import sanityClient from "@/lib/sanity.server";
 import { postQuery, postSlugsQuery } from "@/lib/queries";
 import { urlFor } from "@/lib/sanity";
 
-import type Post from "@/types/post";
+import type PostType from "@/types/post";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 
-export default function Post({ post }: { post: Post }) {
+export default function Post({ post }: { post: PostType }) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  const CoverImage = (image: Post["featuredImage"]) => {
+  const CoverImage = (image: PostType["featuredImage"]) => {
     if (!image) return HOME_OG_IMAGE_URL;
     return urlFor(image).width(1200).url();
   };
