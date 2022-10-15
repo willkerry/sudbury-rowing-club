@@ -4,6 +4,7 @@ import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
+import Image from "next/image";
 
 const Custom404 = () => (
   <Layout>
@@ -11,6 +12,16 @@ const Custom404 = () => (
       <title>Error 404</title>
     </Head>
     <HeroTitle prose title="404 Page not found." transparent />
+
+    <div className="flex justify-center">
+      <Image
+        alt="The time the river ran dry."
+        className="rounded-sm"
+        height={144}
+        src="/assets/error/trouble-at-tmill.jpg"
+        width={192}
+      />
+    </div>
 
     <Container className="mt-12 prose max-w-prose">
       <p>
