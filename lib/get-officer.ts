@@ -19,9 +19,8 @@ export default async function getOfficer(id: string) {
   } else if (data.length > 1) {
     throw new Error("Multiple officers found with that ID");
   }
-  const result = {
+  return {
     name: data[0].name,
     email: data[0].email,
   };
-  return result;
 }

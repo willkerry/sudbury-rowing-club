@@ -19,8 +19,7 @@ type SanityStatus = {
  */
 async function fetchSanityStatus(): Promise<SanityStatus> {
   const query = groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{_updatedAt,description,display,status}`;
-  const data = await sanityClient.fetch<SanityStatus>(query);
-  return data;
+  return await sanityClient.fetch<SanityStatus>(query);
 }
 
 /**
