@@ -41,7 +41,6 @@ const NavSection = ({
     .filter((item) => !item.mobileOnly)
     .forEach((item) => {
       if (router.pathname === item.href) isActive = true;
-      return;
     });
 
   return (
