@@ -16,6 +16,7 @@ import {
   Officer,
 } from "@/types/governance";
 import groq from "groq";
+import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 
 type Props = {
@@ -26,13 +27,13 @@ type Props = {
   documents: DocumentGroup[];
 };
 
-const Governance = ({
+const Governance: NextPage<Props> = ({
   officers,
   committees,
   vicePresidents,
   trustees,
   documents,
-}: Props) => (
+}) => (
   <Layout>
     <NextSeo
       openGraph={{

@@ -6,7 +6,7 @@ import Container from "@/components/layouts/container";
 import EventsComponent from "@/components/regatta/events";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
 const og = {
   title: "Event Information",
@@ -35,24 +35,24 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export default function EventsPage({
+const EventsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   events,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  return (
-    <Layout>
-      <NextSeo
-        title={`${og.title} | Sudbury Regatta`}
-        description={og.description}
-        openGraph={{
-          title: og.title,
-          description: og.description,
-          images: [{ url: `${BASE_URL}/assets/og/events.png` }],
-        }}
-      />
-      <HeroTitle title={og.title} breadcrumbs prose />
-      <Container className="my-12">
-        <EventsComponent data={events} />
-      </Container>
-    </Layout>
-  );
-}
+}) => (
+  <Layout>
+    <NextSeo
+      title={`${og.title} | Sudbury Regatta`}
+      description={og.description}
+      openGraph={{
+        title: og.title,
+        description: og.description,
+        images: [{ url: `${BASE_URL}/assets/og/events.png` }],
+      }}
+    />
+    <HeroTitle title={og.title} breadcrumbs prose />
+    <Container className="my-12">
+      <EventsComponent data={events} />
+    </Container>
+  </Layout>
+);
+
+export default EventsPage;

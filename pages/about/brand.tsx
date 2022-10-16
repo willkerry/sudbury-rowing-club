@@ -6,7 +6,7 @@ import Copy from "@/components/stour/copy";
 import Link from "@/components/stour/link";
 import combineURLs from "@/lib/helpers/combineURLs";
 import Color from "color";
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
 import tailwindConfig from "../../tailwind.config.js";
@@ -138,7 +138,7 @@ function FileExtensionWidget({ href }: { href: string }) {
   );
 }
 
-const Brand = ({ blue }: { blue: string }) => {
+const Brand: NextPage<{ blue: string }> = ({ blue }) => {
   const brandColors = [
     {
       color: blue[900],

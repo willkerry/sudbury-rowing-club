@@ -10,7 +10,7 @@ import { NextSeo } from "next-seo";
 import Paginate from "@/components/news/paginate";
 import DateFormatter from "@/components/utils/date-formatter";
 import type Post from "@/types/post";
-import { GetStaticPaths, type GetStaticProps } from "next/types";
+import { GetStaticPaths, NextPage, type GetStaticProps } from "next/types";
 
 type Props = { data: Post[]; page: number; pages: number };
 
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return { props: { data, page: params?.page, pages } };
 };
 
-const News = ({ data, page, pages }: Props) => {
+const News: NextPage<Props> = ({ data, page, pages }) => {
   const showPrev = Number(page) > 1;
   const showNext = pages > Number(page);
   const previous = `/news/p/${Number(page) - 1}`;

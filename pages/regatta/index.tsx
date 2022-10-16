@@ -21,7 +21,7 @@ import dynamic from "next/dynamic";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import type { Testimonial } from "@/types/testimonial";
 import { PortableTextProps } from "@portabletext/react";
-import type { GetStaticProps } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import type { CompetitorInformation } from "./competitor-information";
 import type { Entries } from "./entries";
 import type { Event } from "./events";
@@ -88,15 +88,13 @@ export interface Page {
   title: string;
 }
 
-const RegattaPage = ({
-  page,
-  testimonials,
-  results,
-}: {
+type Props = {
   page: Page;
   testimonials: Testimonial[];
   results: Result[];
-}) => {
+};
+
+const RegattaPage: NextPage<Props> = ({ page, testimonials, results }) => {
   const regattaDate = <DateFormatter dateString={page.date} format="long" />;
   const ticketItems = [
     {

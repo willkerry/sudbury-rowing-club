@@ -12,11 +12,12 @@ import Link from "@/components/stour/link";
 import Note from "@/components/stour/note";
 import { l2rStages, overview } from "@/data/join/";
 import { BASE_URL } from "@/lib/constants";
+import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { ThumbsUp } from "react-feather";
 
-const Join = () => (
+const Join: NextPage = () => (
   <Layout>
     <NextSeo
       description="Everything you need to know about getting rowing."

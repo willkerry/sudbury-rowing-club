@@ -2,6 +2,7 @@ import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
 import Link from "@/components/stour/link";
 import TextPage from "@/components/layouts/text-page";
+import { NextPage } from "next";
 
 type MinuteType = {
   _id: string;
@@ -13,7 +14,7 @@ type Props = {
   minutes: MinuteType[];
 };
 
-const Minutes = ({ minutes }: Props) => (
+const Minutes: NextPage<Props> = ({ minutes }) => (
   <TextPage title="Minutes">
     <table>
       <thead>

@@ -1,7 +1,8 @@
 import TextPage from "@/components/layouts/text-page";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import { NextPage } from "next";
 
-const ClubKit = () => (
+const ClubKit: NextPage = () => (
   <TextPage title="Club Kit" ogImage="/assets/og/club-kit.png">
     <p className="lead">
       Are you are thinking of racing this year? If so you will need to get some
@@ -119,8 +120,8 @@ const ClubKit = () => (
       <Obfuscate email="kit@sudburyrowingclub.org.uk">contact me</Obfuscate>!
     </p>
 
-    <div className="text-sm bg-gray-100 rounded p-4 grid grid-cols-2 sm:grid-cols-4">
-      <span className="font-semibold text-gray-700 inline-block mb-1 col-span-2 sm:col-span-4">
+    <div className="grid grid-cols-2 p-4 text-sm bg-gray-100 rounded sm:grid-cols-4">
+      <span className="inline-block col-span-2 mb-1 font-semibold text-gray-700 sm:col-span-4">
         Useful links
       </span>
       <a href="https://rivalkit.com/">Rival Kit</a>

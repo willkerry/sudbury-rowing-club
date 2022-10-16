@@ -1,25 +1,23 @@
-import { ReactNode } from "react";
+import { FC, ReactNode } from "react";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
+import { NextPage } from "next";
 
-function Highlight(props: { children: ReactNode }) {
-  return (
-    <em
-      {...props}
-      className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded"
-    />
-  );
-}
-function BlockHighlight(props: { children: ReactNode }) {
-  return (
-    <div
-      {...props}
-      className="pl-2 pr-2 border-l-2 border-green-300 rounded bg-green-50"
-    />
-  );
-}
+const Highlight: FC<{ children: ReactNode }> = (props) => (
+  <em
+    {...props}
+    className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded"
+  />
+);
 
-const Constitution = () => (
+const BlockHighlight: FC<{ children: ReactNode }> = (props) => (
+  <div
+    {...props}
+    className="pl-2 pr-2 border-l-2 border-green-300 rounded bg-green-50"
+  />
+);
+
+const Constitution: NextPage = () => (
   <TextPage title="Club Constitution" ogImage="/assets/og/constitution.png">
     <p className="block-emphasis">
       The Secretary shall retain each member’s signed declaration.

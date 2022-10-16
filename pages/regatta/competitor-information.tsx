@@ -6,6 +6,7 @@ import Layout from "@/components/layouts/layout";
 import CompetitorInformation from "@/components/regatta/competitor-information";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
+import { NextPage } from "next";
 
 export type CompetitorInformation = {
   description: string;
@@ -17,7 +18,7 @@ export type CompetitorInformation = {
   }[];
 };
 
-const CompetitorInformationPage = (props: CompetitorInformation) => (
+const CompetitorInformationPage: NextPage<CompetitorInformation> = (props) => (
   <Layout>
     <NextSeo
       title="Competitor Information | Sudbury Regatta"

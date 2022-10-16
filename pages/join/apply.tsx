@@ -3,8 +3,9 @@ import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import Loading from "@/components/stour/loading";
+import { NextPage } from "next";
 
-const LearnToRowApplicationForm = () => (
+const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row" ogImage="/assets/og/apply.png">
     <Note label="Course Dates" type="success" size="small">
       We’re running two Learn to Row courses this Spring. Both run 13:00 to
@@ -22,15 +23,6 @@ const LearnToRowApplicationForm = () => (
       session.
     </p>
     <p className="prose-sm">
-      {/* Contact the Learn to Row coordinator for{" "}
-        <Link href="/contact">help with this form</Link>. If you’d like to find
-        out a little more about the club before applying, the{" "}
-        <Link href="/contact">chair and captain</Link> will be happy to help.
-        Visit British Rowing for{" "}
-        <Link href="https://www.britishrowing.org/go-rowing/learn-to-row/adults/">
-          more background on Learn to Row
-        </Link>
-        . */}
       Alternatively, contact the Learn to Row coordinator directly at{" "}
       <Obfuscate email="l2r@sudburyrowingclub.org.uk" />.
     </p>

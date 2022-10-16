@@ -32,11 +32,7 @@ export interface NoticeProps {
   slug: { current: string };
 }
 
-const Notice: FC<{ notice: NoticeProps }> = ({
-  notice,
-}: {
-  notice: NoticeProps;
-}) => (
+const Notice: FC<{ notice: NoticeProps }> = ({ notice }) => (
   <Layout>
     <Head>
       <title>{notice?.title}</title>
