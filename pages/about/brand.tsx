@@ -13,93 +13,93 @@ import tailwindConfig from "../../tailwind.config.js";
 
 const brandAssets = [
   {
-    name: "Primary",
-    description: "Crest in Oxford Blue",
     Illustration: Crest,
     color: "#002147",
+    description: "Crest in Oxford Blue",
     files: [
       {
-        w: "",
         href: "/assets/about/brand/primary/primary.svg",
-      },
-      {
         w: "",
+      },
+      {
         href: "/assets/about/brand/primary/primary.pdf",
+        w: "",
       },
       {
-        w: "1280",
         href: "/assets/about/brand/primary/primary@1280w.png",
+        w: "1280",
       },
       {
-        w: "640",
         href: "/assets/about/brand/primary/primary@640w.png",
+        w: "640",
       },
     ],
+    name: "Primary",
   },
   {
-    name: "White",
-    description: "Crest in white",
     Illustration: Crest,
     color: "#FFF",
+    description: "Crest in white",
     files: [
       {
-        w: "",
         href: "/assets/about/brand/white/white.svg",
-      },
-      {
         w: "",
+      },
+      {
         href: "/assets/about/brand/white/white.pdf",
+        w: "",
       },
       {
-        w: "1280",
         href: "/assets/about/brand/white/white@1280w.png",
+        w: "1280",
       },
       {
-        w: "640",
         href: "/assets/about/brand/white/white@640w.png",
+        w: "640",
       },
     ],
+    name: "White",
   },
   {
-    name: "Primary with text",
-    description: "A composited logo that contains both crest and wordmark.",
     Illustration: Logo,
     color: "#002147",
+    description: "A composited logo that contains both crest and wordmark.",
     files: [
       {
         format: "SVG",
-        w: "",
         href: "/",
+        w: "",
       },
       {
         format: "PDF",
+        href: "/",
         w: "",
-        href: "/",
       },
       {
         format: "PNG",
+        href: "/",
         w: "1280",
-        href: "/",
       },
       {
         format: "PNG",
-        w: "640",
         href: "/",
+        w: "640",
       },
     ],
+    name: "Primary with text",
   },
   {
-    name: "Social",
-    description:
-      "A square image with a background, for use on platforms that require profile pictures.",
     Illustration: Social,
     color: "#003B80",
+    description:
+      "A square image with a background, for use on platforms that require profile pictures.",
     files: [
       {
-        w: "1024",
         href: "/assets/about/brand/social/social@1024w.png",
+        w: "1024",
       },
     ],
+    name: "Social",
   },
 ];
 
@@ -141,20 +141,20 @@ function FileExtensionWidget({ href }: { href: string }) {
 const Brand = ({ blue }: { blue: string }) => {
   const brandColors = [
     {
-      id: "900",
       color: blue[900],
+      id: "900",
       library: "Pantone 282",
       name: "Oxford Blue",
     },
-    { id: "800", color: blue[800] },
-    { id: "700", color: blue[700] },
-    { id: "600", color: blue[600] },
-    { id: "500", color: blue[500] },
-    { id: "400", color: blue[400] },
-    { id: "300", color: blue[300] },
-    { id: "200", color: blue[200] },
-    { id: "100", color: blue[100] },
-    { id: "50", color: blue[50] },
+    { color: blue[800], id: "800" },
+    { color: blue[700], id: "700" },
+    { color: blue[600], id: "600" },
+    { color: blue[500], id: "500" },
+    { color: blue[400], id: "400" },
+    { color: blue[300], id: "300" },
+    { color: blue[200], id: "200" },
+    { color: blue[100], id: "100" },
+    { color: blue[50], id: "50" },
   ];
   return (
     <TextPage
@@ -301,11 +301,11 @@ export default Brand;
 export const getStaticProps: GetStaticProps = async () => ({
   props: {
     blue: {
-      50: tailwindConfig.theme.extend.colors.blue[50],
       100: tailwindConfig.theme.extend.colors.blue[100],
       200: tailwindConfig.theme.extend.colors.blue[200],
       300: tailwindConfig.theme.extend.colors.blue[300],
       400: tailwindConfig.theme.extend.colors.blue[400],
+      50: tailwindConfig.theme.extend.colors.blue[50],
       500: tailwindConfig.theme.extend.colors.blue[500],
       600: tailwindConfig.theme.extend.colors.blue[600],
       700: tailwindConfig.theme.extend.colors.blue[700],

@@ -58,8 +58,8 @@ const Home = ({
       title={landingPage.title}
       description={landingPage.tagline}
       openGraph={{
-        title: `${landingPage.title}`,
         description: `${landingPage.tagline}`,
+        title: `${landingPage.title}`,
       }}
     />
     <Container>

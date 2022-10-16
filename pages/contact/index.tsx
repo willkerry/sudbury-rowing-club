@@ -39,9 +39,9 @@ const Contact = ({
       <NextSeo
         description="Get in touch"
         openGraph={{
-          title: "Contact Sudbury Rowing Club",
           description: "Get in touch",
           images: [{ url: `${BASE_URL}/assets/og/contact.png` }],
+          title: "Contact Sudbury Rowing Club",
         }}
         title="Contact Sudbury Rowing Club"
       />

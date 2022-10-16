@@ -18,21 +18,21 @@ type Props = {
 
 const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
   new Map([
-    ["default", { year: "numeric", month: "long", day: "numeric" }],
+    ["default", { day: "numeric", month: "long", year: "numeric" }],
     [
       "long",
-      { year: "numeric", month: "long", day: "numeric", weekday: "long" },
+      { day: "numeric", month: "long", weekday: "long", year: "numeric" },
     ],
-    ["short", { year: "numeric", month: "short", day: "numeric" }],
-    ["numeric", { year: "numeric", month: "numeric", day: "numeric" }],
+    ["short", { day: "numeric", month: "short", year: "numeric" }],
+    ["numeric", { day: "numeric", month: "numeric", year: "numeric" }],
     [
       "time",
       {
-        year: "numeric",
-        month: "short",
         day: "numeric",
         hour: "numeric",
         minute: "numeric",
+        month: "short",
+        year: "numeric",
       },
     ],
     ["year", { year: "numeric" }],
