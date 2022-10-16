@@ -21,9 +21,9 @@ const Join = () => (
     <NextSeo
       description="Everything you need to know about getting rowing."
       openGraph={{
-        title: "Start rowing at Sudbury Rowing Club",
         description: "Everything you need to know about getting rowing.",
         images: [{ url: `${BASE_URL}/assets/og/join.png` }],
+        title: "Start rowing at Sudbury Rowing Club",
       }}
       title="Start rowing at Sudbury Rowing Club"
     />
@@ -36,7 +36,7 @@ const Join = () => (
       </h1>
       <div
         className="z-0 flex mx-auto overflow-hidden rounded shadow-xl -rotate-2"
-        style={{ maxWidth: 240, maxHeight: 160 }}
+        style={{ maxHeight: 160, maxWidth: 240 }}
       >
         <Image
           alt="Trainee rowers on the water during on learn to row course."

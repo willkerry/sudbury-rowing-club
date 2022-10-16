@@ -34,7 +34,7 @@ export default async function Send(req: any, res: any): Promise<void> {
     const mailSubject = `${name} via SRC Contact`;
     const mailReplyTo: NameEmail = { email, name };
     const mailTo: NameEmail[] = [
-      { name: addressee.name, email: addressee.email },
+      { email: addressee.email, name: addressee.name },
     ];
     const mailContent = `<html><body>${snarkdown(
       cleanMessage
@@ -51,13 +51,13 @@ export default async function Send(req: any, res: any): Promise<void> {
     }
 
     res.status(200).json({
-      status: "success",
       message: "Message sent",
+      status: "success",
     });
   } catch (error: any) {
     res.status(500).json({
-      status: "error",
       message: error.message,
+      status: "error",
     });
   }
 }

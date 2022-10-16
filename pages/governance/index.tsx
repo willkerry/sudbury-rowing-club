@@ -36,8 +36,8 @@ const Governance = ({
   <Layout>
     <NextSeo
       openGraph={{
-        title: "Governance",
         images: [{ url: `${BASE_URL}/assets/og/goverance.png` }],
+        title: "Governance",
       }}
       title="Governance"
     />
@@ -92,11 +92,11 @@ export const getStaticProps = async () => {
   );
   return {
     props: {
-      officers: data.officers,
       committees: data.committees,
-      vicePresidents: data.vicePresidents,
-      trustees: data.trustees,
       documents: data.documents,
+      officers: data.officers,
+      trustees: data.trustees,
+      vicePresidents: data.vicePresidents,
     },
   };
 };

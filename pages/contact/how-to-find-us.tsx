@@ -18,22 +18,22 @@ import {
 
 const openInApp = [
   {
-    name: "Google Maps",
     href: `${MAPPING_APIS.google}${CLUB_LOCATION_STRING}`,
     hrefregatta: `${MAPPING_APIS.google}${REGATTA_LOCATION_STRING}`,
     icon: "/assets/contact/how-to-find-us/google-maps.png",
+    name: "Google Maps",
   },
   {
-    name: "Waze",
     href: `${MAPPING_APIS.waze}${CLUB_LOCATION_STRING}`,
     hrefregatta: `${MAPPING_APIS.waze}${REGATTA_LOCATION_STRING}`,
     icon: "/assets/contact/how-to-find-us/waze.png",
+    name: "Waze",
   },
   {
-    name: "Apple Maps",
     href: `${MAPPING_APIS.apple}${CLUB_LOCATION_STRING}`,
     hrefregatta: `${MAPPING_APIS.apple}${REGATTA_LOCATION_STRING}`,
     icon: "/assets/contact/how-to-find-us/apple-maps.png",
+    name: "Apple Maps",
   },
 ];
 
@@ -47,9 +47,9 @@ const FindUs = () => (
     <NextSeo
       description="Directions to our club and to our regatta"
       openGraph={{
-        title: "How to find us",
         description: "Directions to our club and to our regatta",
         images: [{ url: `${BASE_URL}/assets/og/how-to-find-us.png` }],
+        title: "How to find us",
       }}
       title="How to find us"
     />

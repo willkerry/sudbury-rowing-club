@@ -8,10 +8,10 @@ import "inter-ui/inter.css";
 import "@fontsource/jetbrains-mono/variable.css";
 
 const progress = new ProgressBar({
-  size: 2,
-  color: "#00418D",
   className: "prog-bar",
+  color: "#00418D",
   delay: 100,
+  size: 2,
 });
 if (typeof window !== "undefined") {
   progress.start();
