@@ -7,7 +7,7 @@ import sanityClient from "@/lib/sanity.server";
 import type { Officer } from "@/types/governance";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import groq from "groq";
-import type { GetStaticProps } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import type { Message } from "@/components/contact/contactForm";
@@ -29,9 +29,9 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Contact = ({
+const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   officers,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+}) => {
   const router = useRouter();
   const initialValues = router.query as Message;
   return (

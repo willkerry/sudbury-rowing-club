@@ -9,7 +9,7 @@ import Layout from "@/components/layouts/layout";
 import sanityClient from "@/lib/sanity.server";
 import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
-import { GetStaticProps } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { PortableTextProps } from "@portabletext/react";
 
 type SafetyItem = {
@@ -31,7 +31,7 @@ type Props = {
   safety: SafetyItem[];
 };
 
-const Safety = ({ safety }: Props) => (
+const Safety: NextPage<Props> = ({ safety }) => (
   <Layout>
     <NextSeo
       title="Safety | Sudbury Rowing Club"

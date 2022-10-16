@@ -1,7 +1,8 @@
 import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
+import { NextPage } from "next";
 
-const AntiBullying = () => (
+const AntiBullying: NextPage = () => (
   <TextPage
     title="Anti-Bullying Policy"
     ogImage="/assets/og/anti-bullying-policy.png"

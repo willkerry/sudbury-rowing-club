@@ -5,9 +5,8 @@ import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
-import { FC } from "react";
 
 export interface Author {
   _createdAt: string;
@@ -19,7 +18,7 @@ export interface Author {
   surname: string;
 }
 
-export const AuthorArchive: FC<{ author: Author; feed: any[] }> = ({
+export const AuthorArchive: NextPage<{ author: Author; feed: any[] }> = ({
   author,
   feed,
 }: {

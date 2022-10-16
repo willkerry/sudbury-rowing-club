@@ -7,6 +7,7 @@ import Link from "@/components/stour/link";
 import sanityClient from "@/lib/sanity.server";
 import type { PortableTextProps } from "@portabletext/react";
 import type { Event } from "./events";
+import { NextPage } from "next";
 
 export type Entries = {
   caption?: string;
@@ -15,13 +16,10 @@ export type Entries = {
   waves: string[][];
 };
 
-export default function Entries({
-  entries,
-  events,
-}: {
+const Entries: NextPage<{
   entries: Entries;
   events: Event[];
-}) {
+}> = ({ entries, events }) => {
   return (
     <TextPage
       title="Entry Information"
@@ -43,7 +41,7 @@ export default function Entries({
       </EntriesComponent>
     </TextPage>
   );
-}
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
@@ -61,3 +59,5 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+export default Entries;

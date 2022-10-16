@@ -8,7 +8,7 @@ import type Post from "@/types/post";
 import { type PortableTextProps } from "@portabletext/react";
 import groq from "groq";
 import { NextSeo } from "next-seo";
-import { type GetStaticProps } from "next/types";
+import { NextPage, type GetStaticProps } from "next/types";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
@@ -46,12 +46,9 @@ export type LandingPageProps = {
   }[];
 };
 
-const Home = ({
+const Home: NextPage<{ news: Post[]; landingPage: LandingPageProps }> = ({
   news,
   landingPage,
-}: {
-  news: Post[];
-  landingPage: LandingPageProps;
 }) => (
   <Layout>
     <NextSeo

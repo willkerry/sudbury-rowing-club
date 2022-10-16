@@ -6,8 +6,9 @@ import Layout from "@/components/layouts/layout";
 import sanityClient from "@/lib/sanity.server";
 import CollapsibleCard from "@/components/stour/collapsible-card";
 import type { NoticeProps } from "./[slug]";
+import { FC } from "react";
 
-export default function Notices({ data }: { data: NoticeProps[] }) {
+const Notices: FC<{ data: NoticeProps[] }> = ({ data }) => {
   return (
     <Layout>
       <Head>
@@ -30,7 +31,7 @@ export default function Notices({ data }: { data: NoticeProps[] }) {
       </Container>
     </Layout>
   );
-}
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
@@ -64,3 +65,5 @@ export const getStaticProps = async () => {
   );
   return { props: { data }, revalidate: 60 };
 };
+
+export default Notices;

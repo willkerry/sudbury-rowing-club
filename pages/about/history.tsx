@@ -1,4 +1,5 @@
 import TextPage from "@/components/layouts/text-page";
+import { NextPage } from "next";
 import Image from "next/image";
 import regatta1888Image from "public/assets/history/1888-regatta.jpg";
 import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";
@@ -8,7 +9,7 @@ import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
 import reachPreWw1Image from "public/assets/history/reach.jpg";
 
-const History = () => (
+const History: NextPage = () => (
   <TextPage
     title="Club History"
     description="Rowing in Sudbury for more than 150 years."

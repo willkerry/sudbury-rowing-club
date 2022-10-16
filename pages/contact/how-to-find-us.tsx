@@ -15,6 +15,7 @@ import {
   CLUB_LOCATION_STRING,
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
+import { NextPage } from "next";
 
 const openInApp = [
   {
@@ -42,7 +43,7 @@ const maptilerProvider = maptiler(
   "uk-openzoomstack-road"
 );
 
-const FindUs = () => (
+const FindUs: NextPage = () => (
   <Layout>
     <NextSeo
       description="Directions to our club and to our regatta"

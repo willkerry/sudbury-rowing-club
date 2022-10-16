@@ -7,7 +7,7 @@ import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import type { PortableTextProps } from "@portabletext/react";
 import groq from "groq";
-import { InferGetStaticPropsType } from "next";
+import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 
 export interface Result {
@@ -41,25 +41,25 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function ResultsPage({
+const ResultsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   results,
   other,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  return (
-    <Layout>
-      <NextSeo
-        title="Regatta Results | Sudbury Rowing Club"
-        openGraph={{
-          title: "Regatta Results",
-          images: [{ url: `${BASE_URL}/assets/og/results.png` }],
-        }}
-      />
-      <HeroTitle title="Regatta results" breadcrumbs />
-      <Container className="py-16">
-        <Results results={results} records={other.records}>
-          <Text lead portableText={other.description} />
-        </Results>
-      </Container>
-    </Layout>
-  );
-}
+}) => (
+  <Layout>
+    <NextSeo
+      title="Regatta Results | Sudbury Rowing Club"
+      openGraph={{
+        title: "Regatta Results",
+        images: [{ url: `${BASE_URL}/assets/og/results.png` }],
+      }}
+    />
+    <HeroTitle title="Regatta results" breadcrumbs />
+    <Container className="py-16">
+      <Results results={results} records={other.records}>
+        <Text lead portableText={other.description} />
+      </Results>
+    </Container>
+  </Layout>
+);
+
+export default ResultsPage;

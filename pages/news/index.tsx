@@ -11,7 +11,7 @@ import groq from "groq";
 import { NextSeo } from "next-seo";
 
 import type Post from "@/types/post";
-import { type GetStaticProps } from "next/types";
+import { NextPage, type GetStaticProps } from "next/types";
 import Button from "@/components/stour/button";
 import {
   FormEventHandler,
@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const News = ({ data }: Props) => {
+const News: NextPage<Props> = ({ data }) => {
   const router = useRouter();
   const { q } = router.query;
 

@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import ErrorPage from "next/error";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import Container from "@/components/layouts/container";
 import PostBody from "@/components/news/post-body";
@@ -21,11 +20,12 @@ import type PostType from "@/types/post";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
+import CustomError from "pages/_error";
 
 export default function Post({ post }: { post: PostType }) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />;
+    return <CustomError statusCode={404} />;
   }
   const CoverImage = (image: PostType["featuredImage"]) => {
     if (!image) return HOME_OG_IMAGE_URL;

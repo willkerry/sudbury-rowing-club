@@ -9,6 +9,7 @@ import Button from "@/components/stour/button";
 import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import { urlFor } from "@/lib/sanity";
+import { NextPage } from "next";
 
 type Props = {
   heading: string;
@@ -21,7 +22,7 @@ type Props = {
   };
 };
 
-export default function Photography(props: Props) {
+const Coursemap: NextPage<Props> = (props) => {
   return (
     <Layout>
       <NextSeo
@@ -57,7 +58,7 @@ export default function Photography(props: Props) {
       </Container>
     </Layout>
   );
-}
+};
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
@@ -78,3 +79,5 @@ export const getStaticProps = async () => {
     props: data as Props,
   };
 };
+
+export default Coursemap;

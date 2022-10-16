@@ -7,7 +7,7 @@ import Link from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
 import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Copy from "@/components/stour/copy";
 
 export interface Gallery {
@@ -37,69 +37,69 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default function Photography({
+const Photography: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   regattas,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  return (
-    <Layout>
-      <NextSeo
-        title="Official Photography | Sudbury Regatta"
-        description="Professional photography from the Sudbury Regatta."
-        openGraph={{
-          title: "Official Photography",
-          description: "Professional photography from the Sudbury Regatta.",
-          images: [{ url: `${BASE_URL}/assets/og/photography.png` }],
-        }}
-      />
-      <HeroTitle title="Official regatta photography" breadcrumbs />
-      <Container>
-        <div className="py-16 prose prose-lg max-w-none">
-          <table>
-            <thead>
-              <tr>
-                <th>Year</th>
+}) => (
+  <Layout>
+    <NextSeo
+      title="Official Photography | Sudbury Regatta"
+      description="Professional photography from the Sudbury Regatta."
+      openGraph={{
+        title: "Official Photography",
+        description: "Professional photography from the Sudbury Regatta.",
+        images: [{ url: `${BASE_URL}/assets/og/photography.png` }],
+      }}
+    />
+    <HeroTitle title="Official regatta photography" breadcrumbs />
+    <Container>
+      <div className="py-16 prose prose-lg max-w-none">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>
+                <span className="sm:hidden">Password</span>
+              </th>
+              <th>Providers</th>
+            </tr>
+          </thead>
+          <tbody>
+            {regattas.map((regatta: Regatta) => (
+              <tr key={regatta._id}>
                 <th>
-                  <span className="sm:hidden">Password</span>
+                  <DateFormatter dateString={regatta.date} format="year" />
+                  <span className="hidden sm:inline"> Regatta</span>
                 </th>
-                <th>Providers</th>
+                <td className="!align-middle">
+                  {regatta.galleries.map(
+                    (gallery: Gallery) =>
+                      gallery.password && (
+                        <>
+                          <span className="hidden select-none sm:inline">
+                            Password:{" "}
+                          </span>
+                          <Copy value={gallery.password} />
+                        </>
+                      )
+                  )}
+                </td>
+                <td className="flex gap-6">
+                  {regatta.galleries.map((gallery: Gallery) => {
+                    if (gallery.url)
+                      return (
+                        <Link key={gallery.url} href={gallery.url} external>
+                          {gallery.name}
+                        </Link>
+                      );
+                  })}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {regattas.map((regatta: Regatta) => (
-                <tr key={regatta._id}>
-                  <th>
-                    <DateFormatter dateString={regatta.date} format="year" />
-                    <span className="hidden sm:inline"> Regatta</span>
-                  </th>
-                  <td className="!align-middle">
-                    {regatta.galleries.map(
-                      (gallery: Gallery) =>
-                        gallery.password && (
-                          <>
-                            <span className="hidden select-none sm:inline">
-                              Password:{" "}
-                            </span>
-                            <Copy value={gallery.password} />
-                          </>
-                        )
-                    )}
-                  </td>
-                  <td className="flex gap-6">
-                    {regatta.galleries.map((gallery: Gallery) => {
-                      if (gallery.url)
-                        return (
-                          <Link key={gallery.url} href={gallery.url} external>
-                            {gallery.name}
-                          </Link>
-                        );
-                    })}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Container>
-    </Layout>
-  );
-}
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </Layout>
+);
+
+export default Photography;
