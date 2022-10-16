@@ -1,7 +1,11 @@
 {
+  "plugins": ["sonarjs", "react-hooks", "sort-keys-fix"],
   "extends": [
-    "next",
-    // airbnb", "airbnb/hooks",
+    "plugin:sonarjs/recommended",
+    "plugin:react-hooks/recommended",
+    // "airbnb",
+    // "airbnb/hooks",
+    "next/core-web-vitals",
     "prettier"
   ],
   "env": {
@@ -10,47 +14,26 @@
     "es6": true,
     "node": true
   },
-
-  // "parserOptions": {
-  //   "requireConfigFile": false,
-  //   // "allowImportExportEverywhere": true,
-  //   "sourceType": "module",
-  //   "ecmaFeatures": {
-  //     "jsx": true
-  //   }
-  // },
-  // "settings": {
-  //   "react": {
-  //     "version": "detect"
-  //   },
-  //   "import/resolver": {
-  //     "node": {
-  //       "extensions": [".js", ".jsx", ".ts", ".tsx"]
-  //     }
-  //   },
-  //   "import/internal-regex": "^next/"
-  // },
+  "globals": {
+    "React": true,
+    "JSX": true
+  },
 
   "rules": {
+    "react/require-default-props": "off",
+    "sort-keys-fix/sort-keys-fix": 0, // switch on in order to enable auto-sort of keys
     "react/react-in-jsx-scope": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "import/extensions": 0,
     "import/no-unresolved": 0,
     "react/jsx-filename-extension": [
       "error",
-      {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
-    // "react/function-component-definition": [
-    //   1,
-    //   {
-    //     "namedComponents": "function-declaration"
-    //   }
-    // ],
     "react/function-component-definition": 0,
     "no-underscore-dangle": 0,
     "react/jsx-props-no-spreading": 0,
-    "no-use-before-define": ["error", { "functions": false, "classes": false }]
+    "no-use-before-define": ["error", { "functions": false, "classes": false }],
+    "import/no-cycle": 0
   }
 }
