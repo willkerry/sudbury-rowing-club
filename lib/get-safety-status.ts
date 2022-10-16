@@ -90,10 +90,11 @@ function formatDescriptionString(
 
   const [l, c, f, m] = [level, ceil, floor, mean].map(round);
 
-  return `The water level at the ${stationName} measuring station is ${l} metres. This is 
-      ${inRange ? "within" : "outside"} the typical range of
-      ${f} to ${c} metres and ${above ? "above" : "below"}
-      the mean of ${m} metres.`;
+  return `The water level at the ${stationName} measuring station is ${l} metres. This is ${
+    inRange ? "within" : "outside"
+  } the typical range of ${f} to ${c} metres and ${
+    above ? "above" : "below"
+  } the mean of ${m} metres.`;
 }
 
 /**
