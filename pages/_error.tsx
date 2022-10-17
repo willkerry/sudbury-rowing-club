@@ -13,12 +13,14 @@ type Props = {
 
 const CustomError: NextPage<Props> = ({ statusCode }) => {
   const message = http.STATUS_CODES[statusCode || 404] || "Error";
+  const title = `${statusCode} ${message}`;
+
   return (
     <Layout>
       <Head>
-        <title>Error 404</title>
+        <title>{title}</title>
       </Head>
-      <HeroTitle prose title={`${statusCode} ${message}`} transparent />
+      <HeroTitle prose title={title} transparent />
       <ErrorImage />
       <Container className="mt-12 prose max-w-prose">
         {statusCode === 404 && <CallToAction404 />}
@@ -28,7 +30,13 @@ const CustomError: NextPage<Props> = ({ statusCode }) => {
 };
 
 CustomError.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+  let statusCode = 404;
+  if (res?.statusCode) {
+    statusCode = res.statusCode;
+  } else if (err?.statusCode) {
+    statusCode = err.statusCode;
+  }
+
   return { statusCode };
 };
 
