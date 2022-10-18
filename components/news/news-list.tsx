@@ -19,10 +19,19 @@ const NewsList = ({ posts, hero, more }: Props) => {
       </div>
     );
 
+  if (hero) {
+    return (
+      <>
+        <HeroPost post={posts[0]} />
+        <MoreStories posts={posts.slice(1)} {...{ more }} />
+      </>
+    );
+  }
+
   return (
     <>
-      {hero && <HeroPost post={posts[0]} />}
-      <MoreStories posts={posts.slice(hero ? 1 : 0)} {...{ more }} />
+      <HeroPost post={posts[0]} />
+      <MoreStories {...{ more, posts }} />
     </>
   );
 };
