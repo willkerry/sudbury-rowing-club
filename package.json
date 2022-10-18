@@ -14,7 +14,7 @@
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
     "@portabletext/react": "^1.0.6",
-    "@radix-ui/react-slot": "^1.0.0",
+    "@radix-ui/react-slot": "^1.0.1",
     "@sanity/image-url": "^1.0.1",
     "@south-paw/react-obfuscate-ts": "^1.0.2",
     "algoliasearch": "^4.14.2",
