@@ -12,6 +12,16 @@ const config = {
   async redirects() {
     return [
       {
+        source: "/wp-admin",
+        destination: "https://edit.sudburyrowingclub.org.uk/",
+        permanent: true,
+      },
+      {
+        source: "/admin",
+        destination: "https://edit.sudburyrowingclub.org.uk/",
+        permanent: true,
+      },
+      {
         source: "/results",
         destination: "/regatta/results",
         permanent: true,
