@@ -4,7 +4,7 @@ import getWeatherForecast, {
   weatherCodes,
 } from "@/lib/get-weather-forecast";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import useSWR from "swr";
 import { weatherIcons, windIcons } from "../icons/weather-icons";
 import Loading from "../stour/loading";
@@ -37,13 +37,13 @@ const ForecastComponent = () => {
               </div>
 
               <div
-                className="flex items-center justify-center h-full text-xs text-gray-700"
+                className="grid items-center justify-center h-full text-xs text-gray-700"
                 title={weatherCodes[f.code]}
               >
-                <span className="transition duration-300 opacity-100 group-hover:opacity-0">
+                <div className="col-start-1 row-start-1 transition duration-300 opacity-100 group-hover:opacity-0">
                   {weatherIcons[f.code]}
-                </span>
-                <ArrowTopRightOnSquareIcon className="absolute w-5 h-5 text-blue-600 transition duration-300 opacity-0 group-hover:opacity-100" />
+                </div>
+                <ArrowTopRightOnSquareIcon className="w-4 h-4 col-start-1 row-start-1 mx-auto text-blue-400 transition duration-300 opacity-0 group-hover:opacity-100" />
               </div>
 
               <div
