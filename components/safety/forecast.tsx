@@ -27,7 +27,7 @@ const ForecastComponent = () => {
           {forecast?.map((f, i) => (
             <a
               key={i}
-              className="relative flex flex-col items-center group"
+              className="relative flex flex-col items-center gap-1 group"
               href={getYRURL(f.date)}
               target="_blank"
               rel="noopener noreferrer"
@@ -48,7 +48,7 @@ const ForecastComponent = () => {
 
               <div
                 className={cn(
-                  "flex items-center justify-center h-full text-xs font-semibold disambiguate transition",
+                  "flex items-center justify-center h-full text-xs font-semibold disambiguate transition leading-none",
                   f.maxTemp > 30
                     ? "text-red-600 group-hover:text-red-700"
                     : f.maxTemp < 5
