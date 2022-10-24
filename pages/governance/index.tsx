@@ -61,6 +61,7 @@ export const getStaticProps = async () => {
         role,
         vacant,
         description,
+        "hasEmail": email != null,
       },
       "committees": *[_type == "committees" && !(_id in path("drafts.**"))] | order(title desc){
         _id,
