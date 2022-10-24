@@ -64,7 +64,7 @@ const Officers = ({ officers }: Props) => (
           <div className="font-semibold text-gray-800 tracking-snug">
             {officer.vacant ? (
               <>&nbsp;</>
-            ) : (
+            ) : officer.hasEmail ? (
               <NextLink
                 href={{
                   pathname: "contact",
@@ -76,6 +76,7 @@ const Officers = ({ officers }: Props) => (
                   title={`Contact ${officer.name}`}
                 >
                   {officer.name}
+
                   <MessageCircle
                     size="1em"
                     strokeWidth="0.15em"
@@ -83,6 +84,8 @@ const Officers = ({ officers }: Props) => (
                   />
                 </a>
               </NextLink>
+            ) : (
+              officer.name
             )}
           </div>
           <Description>{officer.role}</Description>
