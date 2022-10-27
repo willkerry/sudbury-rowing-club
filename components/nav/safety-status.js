@@ -24,26 +24,27 @@ function StatusShell({ grade, text }) {
     "bg-gray-900 group-hover:bg-gray-200": grade === null,
   };
   return (
-    <Link href="/safety" passHref>
-      <a
+    (<Link
+      href="/safety"
+      passHref
+      className={cn(
+        "flex items-center ml-1 px-2 py-1 rounded-full font-medium text-xs border group transition duration-300",
+        bgClass
+      )}
+      title={`River safety status: ${text}`}>
+
+      <div
         className={cn(
-          "flex items-center ml-1 px-2 py-1 rounded-full font-medium text-xs border group transition duration-300",
-          bgClass
+          "w-2.5 h-2.5 mr-1.5 rounded-full duration-300",
+          dotClass
         )}
-        title={`River safety status: ${text}`}
-      >
-        <div
-          className={cn(
-            "w-2.5 h-2.5 mr-1.5 rounded-full duration-300",
-            dotClass
-          )}
-        />
-        <span className="font-medium transition duration-300 group-hover:text-white">
-          <span className="sr-only">River safety status:</span>
-          <span className="capitalize">{text}</span>
-        </span>
-      </a>
-    </Link>
+      />
+      <span className="font-medium transition duration-300 group-hover:text-white">
+        <span className="sr-only">River safety status:</span>
+        <span className="capitalize">{text}</span>
+      </span>
+
+    </Link>)
   );
 }
 StatusShell.propTypes = {

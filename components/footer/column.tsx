@@ -15,11 +15,15 @@ const FooterColumn = ({ heading, data }: Props) => (
       {heading}
     </div>
     {data.map((item) => (
-      <Link key={item.href} href={item.href} passHref>
-        <a className="block my-3 text-sm text-gray-500 duration-100 hover:text-black">
-          {item.shortName ? item.shortName : item.name}
-        </a>
-      </Link>
+      (<Link
+        key={item.href}
+        href={item.href}
+        passHref
+        className="block my-3 text-sm text-gray-500 duration-100 hover:text-black">
+
+        {item.shortName ? item.shortName : item.name}
+
+      </Link>)
     ))}
   </div>
 );

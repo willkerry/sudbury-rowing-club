@@ -37,8 +37,8 @@ const Sponsors = () => (
   <ul className="flex flex-wrap items-center justify-center gap-8 my-12 space-between">
     {SponsorLogos.map(({ logo, href, name }) => (
       <li key={`${href}${name}`}>
-        <Link href={href}>
-          <a aria-label={name}>{logo}</a>
+        <Link href={href} aria-label={name}>
+          {logo}
         </Link>
       </li>
     ))}

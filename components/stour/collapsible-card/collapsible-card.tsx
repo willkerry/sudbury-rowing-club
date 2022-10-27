@@ -48,59 +48,58 @@ export const NoticeBody = ({
       setSplitItemCount(Math.ceil(items.length / 2));
     }
   }, [items]);
-  return (
-    <>
-      {body && <Text portableText={body} className="p-4" />}
-      {meta && (
-        <div className="flex py-2.5 text-sm bg-gray-50">
-          {meta.map((item) => (
-            <div className="px-4" key={item._key}>
-              <Label className="text-xs select-none">{`${item.label}: `}</Label>
-              <span className="text-xs font-medium disambiguate !text-gray-800">
-                {item.value}
-              </span>
-            </div>
-          ))}
-        </div>
-      )}
-      {items && (
-        <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
-          <FileGroup fileItems={items.slice(0, splitItemCount)} />
-          <FileGroup fileItems={items.slice(splitItemCount)} />
-        </div>
-      )}
-      <div className="flex justify-between gap-4 px-4 py-3 text-xs font-medium text-gray-500 bg-gray-100">
-        <div className="flex flex-wrap gap-x-4 gap-y-1">
-          <span>
-            Created:{" "}
-            <DateFormatter
-              dateString={created}
-              format="short"
-              className="text-gray-700 disambiguate"
-            />
-          </span>
-          <span>
-            Updated:{" "}
-            <DateFormatter
-              dateString={updated}
-              format="time"
-              className="text-gray-700 disambiguate"
-            />
-          </span>
-        </div>
-        {link && (
-          <Link href={link} passHref>
-            <a
-              className="transition-colors hover:text-black"
-              title="Open permalink"
-            >
-              <LinkIcon className="w-4 h-4" />
-            </a>
-          </Link>
-        )}
+  return <>
+    {body && <Text portableText={body} className="p-4" />}
+    {meta && (
+      <div className="flex py-2.5 text-sm bg-gray-50">
+        {meta.map((item) => (
+          <div className="px-4" key={item._key}>
+            <Label className="text-xs select-none">{`${item.label}: `}</Label>
+            <span className="text-xs font-medium disambiguate !text-gray-800">
+              {item.value}
+            </span>
+          </div>
+        ))}
       </div>
-    </>
-  );
+    )}
+    {items && (
+      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
+        <FileGroup fileItems={items.slice(0, splitItemCount)} />
+        <FileGroup fileItems={items.slice(splitItemCount)} />
+      </div>
+    )}
+    <div className="flex justify-between gap-4 px-4 py-3 text-xs font-medium text-gray-500 bg-gray-100">
+      <div className="flex flex-wrap gap-x-4 gap-y-1">
+        <span>
+          Created:{" "}
+          <DateFormatter
+            dateString={created}
+            format="short"
+            className="text-gray-700 disambiguate"
+          />
+        </span>
+        <span>
+          Updated:{" "}
+          <DateFormatter
+            dateString={updated}
+            format="time"
+            className="text-gray-700 disambiguate"
+          />
+        </span>
+      </div>
+      {link && (
+        (<Link
+          href={link}
+          passHref
+          className="transition-colors hover:text-black"
+          title="Open permalink">
+
+          <LinkIcon className="w-4 h-4" />
+
+        </Link>)
+      )}
+    </div>
+  </>;
 };
 
 const CollapsibleCard = ({
