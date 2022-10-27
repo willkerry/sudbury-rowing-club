@@ -43,23 +43,24 @@ const Link: React.FC<Props> = ({
   const RightIcon = assignIcon(external, download, arrow);
 
   return (
-    <NextLink href={href} passHref>
-      <a
-        className={`transition whitespace-nowrap ${
-          dark
-            ? "text-blue-100 hover:text-white"
-            : "text-blue-500 hover:text-blue-300"
-        } ${className !== undefined ? className : ""}`}
-      >
-        {children}
-        {extension && (
-          <span className="px-1 ml-1 text-xs font-medium text-gray-400 uppercase transition border rounded-full">
-            {extension}
-          </span>
-        )}
-        {hasIcon && <RightIcon className="inline mb-0.5 ml-1 w-4 h-4" />}
-      </a>
-    </NextLink>
+    (<NextLink
+      href={href}
+      passHref
+      className={`transition whitespace-nowrap ${
+        dark
+          ? "text-blue-100 hover:text-white"
+          : "text-blue-500 hover:text-blue-300"
+      } ${className !== undefined ? className : ""}`}>
+
+      {children}
+      {extension && (
+        <span className="px-1 ml-1 text-xs font-medium text-gray-400 uppercase transition border rounded-full">
+          {extension}
+        </span>
+      )}
+      {hasIcon && <RightIcon className="inline mb-0.5 ml-1 w-4 h-4" />}
+
+    </NextLink>)
   );
 };
 

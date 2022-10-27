@@ -7,7 +7,7 @@ import type Post from "../../types/post";
 const PostPreview = ({ post }: { post: Post }) => (
   <li>
     <article id={post.slug}>
-      <Link as={`/news/${post.slug}`} href="/news/[slug]">
+      <Link as={`/news/${post.slug}`} href="/news/[slug]" legacyBehavior>
         <a className="flex flex-col overflow-hidden transition bg-white border divide-y rounded hover:border-blue-400 group">
           {post.featuredImage ? (
             <div className="relative">
