@@ -125,7 +125,6 @@ const FindUs: NextPage = () => (
                       alt={item.name}
                       className="border rounded-lg"
                       height={24}
-                      layout="fixed"
                       src={item.icon}
                       width={24}
                     />
@@ -161,7 +160,6 @@ const FindUs: NextPage = () => (
                       alt={item.name}
                       className="border rounded-lg"
                       height={24}
-                      layout="fixed"
                       src={item.icon}
                       width={24}
                     />

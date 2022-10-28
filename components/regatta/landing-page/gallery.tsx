@@ -28,7 +28,7 @@ const Gallery = ({ images }: { images: Image[] }) => (
             height={200}
             placeholder="blur"
             blurDataURL={image.lqip}
-            alt={image.caption}
+            alt={image.caption || ""}
           />
         </div>
         <figcaption className="flex items-center mt-1 text-sm text-gray-600">
