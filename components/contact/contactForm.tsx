@@ -36,7 +36,7 @@ type Props = {
 /**
  * Renders the contact form. Intended for use on the contact page. So long as
  * valid recipients are provided, will render a fully-functional form.
- * 
+ *
  * @param disabled Whether or not the form should be disabled. Defaults to
  * false. Disabled state is intended for exceptional use (i.e. when a
  * dependency, such as the mail server, is down).

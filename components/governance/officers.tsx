@@ -65,22 +65,21 @@ const Officers = ({ officers }: Props) => (
             {officer.vacant ? (
               <>&nbsp;</>
             ) : officer.hasEmail ? (
-              (<NextLink
+              <NextLink
                 href={{
                   pathname: "contact",
                   query: { to: officer._id },
                 }}
                 className="flex items-center gap-1.5 group"
-                title={`Contact ${officer.name}`}>
-
+                title={`Contact ${officer.name}`}
+              >
                 {officer.name}
                 <MessageCircle
                   size="1em"
                   strokeWidth="0.15em"
                   className="text-blue-500 transition group-hover:text-gray-600"
                 />
-
-              </NextLink>)
+              </NextLink>
             ) : (
               officer.name
             )}

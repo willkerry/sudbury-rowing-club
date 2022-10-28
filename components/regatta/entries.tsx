@@ -47,12 +47,11 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
               <tr key={wave[0]}>
                 <th>{wave[0]}</th>
                 {wave.slice(1).map((entry, i) => (
-                  <td
-                    key={i}
-                    className="text-center"
-                  >
+                  <td key={i} className="text-center">
                     <div
-                      className={`font-medium rounded-lg px-0.5 ${getWaveColor(entry)}
+                      className={`font-medium rounded-lg px-0.5 ${getWaveColor(
+                        entry
+                      )}
                       `}
                     >
                       {entry}

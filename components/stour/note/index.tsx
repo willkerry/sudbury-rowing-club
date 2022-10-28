@@ -1,2 +1,2 @@
-import Note from './note';
+import Note from "./note";
 export default Note;

@@ -7,12 +7,12 @@ import Officers from "./officers";
 import SectionTitle from "./section-title";
 import SubTitle from "./subtitle";
 export {
-    Committees,
-    Description,
-    Documents,
-    GovGrid,
-    NonExec,
-    Officers,
-    SectionTitle,
-    SubTitle
+  Committees,
+  Description,
+  Documents,
+  GovGrid,
+  NonExec,
+  Officers,
+  SectionTitle,
+  SubTitle,
 };
