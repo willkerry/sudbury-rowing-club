@@ -115,7 +115,7 @@ const FindUs: NextPage = () => (
                 {openInApp.map((item) => (
                   <a
                     key={item.name}
-                    className="flex p-px bg-gray-200 rounded-lg"
+                    className="flex p-px rounded-lg"
                     href={item.href}
                     rel="noreferrer"
                     target="_blank"
@@ -123,7 +123,7 @@ const FindUs: NextPage = () => (
                   >
                     <Image
                       alt={item.name}
-                      className="border rounded-lg"
+                      className="m-0 border rounded-lg"
                       height={24}
                       src={item.icon}
                       width={24}
