@@ -15,7 +15,6 @@ const SocialIcons = ({ data }: Props) => (
       <Link
         key={item.href}
         href={item.href}
-        passHref
         className="mr-4 text-gray-400 transition hover:text-black"
       >
         <>

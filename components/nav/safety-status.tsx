@@ -1,5 +1,4 @@
 import cn from "classnames";
-import PropTypes from "prop-types";
 import Link from "next/link";
 import useSWR from "swr";
 import groq from "groq";
@@ -8,7 +7,12 @@ import Loading from "../stour/loading";
 
 const grades = ["neutral", "green", "amber", "red"];
 
-function StatusShell({ grade, text }) {
+type StatusShellProps = {
+  grade: 0 | 1 | 2 | 3 | null;
+  text: string | React.ReactNode;
+};
+
+const StatusShell: React.FC<StatusShellProps> = ({ grade, text }) => {
   const bgClass = {
     "hover:bg-red-600 hover:border-red-600 text-red-600": grade === 3,
     "hover:bg-yellow-600 hover:border-yellow-600 text-yellow-600": grade === 2,
@@ -24,51 +28,54 @@ function StatusShell({ grade, text }) {
     "bg-gray-900 group-hover:bg-gray-200": grade === null,
   };
   return (
-    (<Link
+    <Link
       href="/safety"
-      passHref
       className={cn(
         "flex items-center ml-1 px-2 py-1 rounded-full font-medium text-xs border group transition duration-300",
         bgClass
       )}
-      title={`River safety status: ${text}`}>
-
-      <div
-        className={cn(
-          "w-2.5 h-2.5 mr-1.5 rounded-full duration-300",
-          dotClass
-        )}
-      />
-      <span className="font-medium transition duration-300 group-hover:text-white">
-        <span className="sr-only">River safety status:</span>
-        <span className="capitalize">{text}</span>
-      </span>
-
-    </Link>)
+      title={`River safety status: ${text}`}
+    >
+      <>
+        <div
+          className={cn(
+            "w-2.5 h-2.5 mr-1.5 rounded-full duration-300",
+            dotClass
+          )}
+        />
+        <span className="font-medium transition duration-300 group-hover:text-white">
+          <span className="sr-only">River safety status:</span>
+          <span className="capitalize">{text}</span>
+        </span>
+      </>
+    </Link>
   );
-}
-StatusShell.propTypes = {
-  grade: PropTypes.number,
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };
+
 StatusShell.defaultProps = {
   grade: null,
   text: "",
 };
 
-function StatusIndicator() {
+const StatusIndicator: React.FC = () => {
   const { data, error } = useSWR(
     groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{display, status}`,
     (query) => sanityClient.fetch(query)
   );
   if (error) return <div>Unavailable</div>;
-  if (!data) return <StatusShell status={null} text={Loading()} />;
+  if (!data) return <StatusShell grade={null} text={<Loading />} />;
+
   const { status, display } = data;
   const statusIndex = grades.indexOf(status);
-  if (display)
-    return <StatusShell grade={statusIndex} text={grades[statusIndex]} />;
+
+  const grade =
+    statusIndex < 0 || statusIndex > 3
+      ? null
+      : (statusIndex as 0 | 1 | 2 | 3 | null);
+
+  if (display) return <StatusShell {...{ grade }} text={grades[statusIndex]} />;
   return null;
-}
+};
 
 export default function SafetyStatus() {
   return <StatusIndicator />;
