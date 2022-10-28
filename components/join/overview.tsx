@@ -17,7 +17,7 @@ interface OverviewProps {
   items: OverviewType[];
 }
 
-const Overview = ({ items }: OverviewProps) => (
+const Overview: React.FC<OverviewProps> = ({ items }) => (
   <div className="gap-16 my-24 sm:grid sm:grid-cols-12">
     <div className="hidden sm:col-span-4 sm:block">
       <ul className="sticky space-y-4 md:space-y-6 top-36">
@@ -45,12 +45,13 @@ const Overview = ({ items }: OverviewProps) => (
       {items.map(({ title, content, image }, i) => (
         <div key={i} id={title}>
           {image && (
-            <div className="flex overflow-hidden rounded shadow">
+            <div className="flex overflow-hidden">
               <Image
                 alt={image.alt}
                 height={(635 / image.width) * image.height}
                 src={image.src}
                 width={635}
+                className="rounded shadow"
               />
             </div>
           )}
