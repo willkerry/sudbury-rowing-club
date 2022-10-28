@@ -1,12 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# Lint and format (undo commit if failed)
-yarn lint || exit 1
-yarn format || exit 1
-
-
-echo "Lint and format done"
-
-
-echo "pre-commit done"
+# Lint, format and type checkx
+yarn lint:fix & yarn format & yarn type-check
