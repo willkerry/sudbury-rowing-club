@@ -51,7 +51,7 @@
     "@tailwindcss/typography": "^0.5.7",
     "@types/color": "^3.0.3",
     "@types/node": "^18.11.7",
-    "@types/react": "^18.0.21",
+    "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@types/react-scroll": "^1.8.4",
     "@types/sharp": "^0.31.0",
