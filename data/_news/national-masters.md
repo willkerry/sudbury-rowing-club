@@ -1,7 +1,7 @@
 ---
 title: "National Masters"
 date: "2018-06-24"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/P1050047-scaled.jpg"

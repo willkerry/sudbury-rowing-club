@@ -1,7 +1,7 @@
 ---
 title: "RowTV Footage"
 date: "2013-08-06"
-categories: 
+categories:
   - "news"
 ---
 

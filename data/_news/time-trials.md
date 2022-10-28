@@ -1,7 +1,7 @@
 ---
 title: "Time Trials"
 date: "2002-11-09"
-categories: 
+categories:
   - "news"
 ---
 

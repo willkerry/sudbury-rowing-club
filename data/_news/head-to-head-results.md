@@ -1,7 +1,7 @@
 ---
 title: "Head to Head Results"
 date: "2013-01-13"
-categories: 
+categories:
   - "news"
 ---
 

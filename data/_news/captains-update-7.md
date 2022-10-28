@@ -1,9 +1,9 @@
 ---
 title: "Captain's Update"
 date: "2013-12-03"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "captains-update"
 coverImage: "/assets/news/images/2012-08-25-at-11-25-53-X3.jpg"
 ---

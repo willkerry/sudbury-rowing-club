@@ -1,7 +1,7 @@
 ---
 title: "Henley Royal Regatta (Qualifiers)"
 date: "2003-06-27"
-categories: 
+categories:
   - "news"
 ---
 

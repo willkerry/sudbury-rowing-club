@@ -1,7 +1,7 @@
 ---
 title: "Farewell Ted Deed"
 date: "2012-02-06"
-categories: 
+categories:
   - "news"
 ---
 

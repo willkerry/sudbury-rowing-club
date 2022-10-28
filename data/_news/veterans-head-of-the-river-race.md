@@ -2,7 +2,7 @@
 title: "Veterans' Head of the River Race"
 date: "2018-03-26"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Hammersmith.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "Women's Quad takes on the Thames"
 date: "2008-11-12"
-categories: 
+categories:
   - "news"
 ---
 

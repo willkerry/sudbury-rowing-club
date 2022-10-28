@@ -2,7 +2,7 @@
 title: "Ball Cup 2016"
 date: "2016-05-11"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 

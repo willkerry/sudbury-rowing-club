@@ -1,9 +1,9 @@
 ---
 title: "Pudding Races 2013"
 date: "2013-12-10"
-categories: 
+categories:
   - "events"
-tags: 
+tags:
   - "pudding-races"
 ---
 

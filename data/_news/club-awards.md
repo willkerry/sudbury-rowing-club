@@ -1,7 +1,7 @@
 ---
 title: "Club Awards"
 date: "2012-11-07"
-categories: 
+categories:
   - "news"
 ---
 

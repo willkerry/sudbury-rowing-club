@@ -1,7 +1,7 @@
 ---
 title: "Team Building Day"
 date: "2017-09-28"
-categories: 
+categories:
   - "events"
   - "news"
 coverImage: "/assets/news/images/Gregory-1.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "Learn to Row Autumn"
 date: "2008-11-03"
-categories: 
+categories:
   - "news"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Richmond Regatta: Late Victory is Highlight of Sunny Day"
 date: "2006-06-24"
-categories: 
+categories:
   - "news"
 ---
 

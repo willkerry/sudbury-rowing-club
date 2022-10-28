@@ -1,7 +1,7 @@
 ---
 title: "Club unveils new equipment !"
 date: "2016-02-04"
-categories: 
+categories:
   - "news"
 ---
 

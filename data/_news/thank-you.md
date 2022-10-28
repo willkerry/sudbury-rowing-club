@@ -1,10 +1,10 @@
 ---
 title: "Thank you !"
 date: "2019-07-22"
-categories: 
+categories:
   - "events"
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Richard-Kemp-3-scaled.jpg"
 ---

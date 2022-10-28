@@ -1,7 +1,7 @@
 ---
 title: "Maidstone Small Boats Head"
 date: "2002-12-09"
-categories: 
+categories:
   - "news"
 ---
 
@@ -21,6 +21,6 @@ The coxless pair of Aidan Dunn & Sam Hogsbjerg raced at Open class & were the fa
 
 There were various issues with the organisation of the event, not least the absence of a defined finishing line. The cold weather also contributed to feelings of dissatisfaction with the event.
 
-One plea though - everyone would do well to learn from Robert's experience and _always_ take spare clothes. This is applicable to a gentle paddle on a lazy summer afternoon in the warmth at Sudbury, but is **PARTICULARLY** so for a competition of two divisions in the winter. There are a number of people who regularly appear inappropriately dressed/equipped, you know who you are!
+One plea though - everyone would do well to learn from Robert's experience and *always* take spare clothes. This is applicable to a gentle paddle on a lazy summer afternoon in the warmth at Sudbury, but is **PARTICULARLY** so for a competition of two divisions in the winter. There are a number of people who regularly appear inappropriately dressed/equipped, you know who you are!
 
 At the time of writing the full results are not available, they will be updated here when they are known.

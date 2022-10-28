@@ -1,7 +1,7 @@
 ---
 title: "Great Ouse Marathon"
 date: "2017-09-08"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/IMG_5821.jpg"

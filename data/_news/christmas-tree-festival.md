@@ -1,10 +1,10 @@
 ---
 title: "Christmas Tree Festival"
 date: "2018-12-09"
-categories: 
+categories:
   - "events"
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Tree-1-scaled.jpg"
 ---

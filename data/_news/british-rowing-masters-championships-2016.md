@@ -2,7 +2,7 @@
 title: "British Rowing Masters Championships (2016)"
 date: "2016-06-15"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 
@@ -22,7 +22,7 @@ Sudbury will be competing again this weekend at St. Ives Regatta.
 
 Susie Moule
 
- 
+
 
 ![FullSizeRender](/assets/news/images/FullSizeRender.jpg)
 

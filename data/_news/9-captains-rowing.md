@@ -1,7 +1,7 @@
 ---
 title: "9 Captain's rowing..."
 date: "2016-12-26"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/Captains.jpg"
 ---

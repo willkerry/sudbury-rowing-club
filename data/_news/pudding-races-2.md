@@ -1,7 +1,7 @@
 ---
 title: "Pudding Races"
 date: "2017-11-17"
-categories: 
+categories:
   - "events"
   - "news"
 coverImage: "/assets/news/images/SRC-pudding-races-2017-small.jpg"

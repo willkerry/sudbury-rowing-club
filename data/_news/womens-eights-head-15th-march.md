@@ -1,7 +1,7 @@
 ---
 title: "Women's Eights Head, 15th March"
 date: "2003-03-15"
-categories: 
+categories:
   - "racing"
 ---
 

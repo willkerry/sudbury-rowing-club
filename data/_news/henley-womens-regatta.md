@@ -1,7 +1,7 @@
 ---
 title: "Henley Women's Regatta"
 date: "2003-06-22"
-categories: 
+categories:
   - "news"
 ---
 

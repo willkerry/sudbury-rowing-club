@@ -1,9 +1,9 @@
 ---
 title: "Vet's Head of the River Race"
 date: "2019-04-02"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/IMG_6894.jpg"
 ---

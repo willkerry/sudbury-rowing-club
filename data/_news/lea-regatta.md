@@ -1,7 +1,7 @@
 ---
 title: "Lea Regatta"
 date: "2010-05-19"
-categories: 
+categories:
   - "news"
 ---
 

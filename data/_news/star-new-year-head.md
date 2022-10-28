@@ -1,7 +1,7 @@
 ---
 title: "Star New Year Head"
 date: "2018-01-16"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Star-1.jpg"

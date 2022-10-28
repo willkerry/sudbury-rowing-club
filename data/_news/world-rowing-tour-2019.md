@@ -1,10 +1,10 @@
 ---
 title: "World Rowing Tour (2019)"
 date: "2019-08-18"
-categories: 
+categories:
   - "events"
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Finland-2019-1.jpg"
 ---
@@ -19,7 +19,7 @@ Traditional Finnish Church Boats are used, which have sliding seats, sweep oars 
 
 Maria Vigneau said, “It was a unique opportunity to enjoy rowing with others from all over the world and share experiences. Many friendships were made as well as plans to visit other rowing clubs in the future. It was a true honour to have been selected to participate in a World Tour”.
 
-The World Rowing Federation, FISA, is the governing body of the sport of rowing. It is empowered by its 155 member National Rowing Federations, the National Olympic Committees and the International Olympic Committee, to govern the sport of rowing. 
+The World Rowing Federation, FISA, is the governing body of the sport of rowing. It is empowered by its 155 member National Rowing Federations, the National Olympic Committees and the International Olympic Committee, to govern the sport of rowing.
 
 ![](/assets/news/images/Finland-2019-2.jpg)
 

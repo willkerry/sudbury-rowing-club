@@ -1,7 +1,7 @@
 ---
 title: "Annual Dinner 2015"
 date: "2015-08-31"
-categories: 
+categories:
   - "events"
 ---
 

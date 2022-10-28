@@ -2,7 +2,7 @@
 title: "Vesta Veterans Head"
 date: "2016-03-21"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 

@@ -2,7 +2,7 @@
 title: "Norfolk Long Distance Sculls (2015)"
 date: "2015-11-02"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 

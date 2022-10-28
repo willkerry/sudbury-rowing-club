@@ -1,7 +1,7 @@
 ---
 title: "Pudding Races"
 date: "2012-11-25"
-categories: 
+categories:
   - "news"
 ---
 

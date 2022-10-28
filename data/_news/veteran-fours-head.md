@@ -1,10 +1,10 @@
 ---
 title: "Veteran Fours Head"
 date: "2018-11-11"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Vet-4s-HORR-2018-Gang-scaled.jpg"
 ---

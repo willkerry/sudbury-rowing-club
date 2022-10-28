@@ -1,7 +1,7 @@
 ---
 title: "Peterborough Spring Regatta"
 date: "2017-06-10"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/IMG_0771-scaled.jpg"

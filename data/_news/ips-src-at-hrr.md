@@ -1,9 +1,9 @@
 ---
 title: "IPS/SRC at HRR"
 date: "2019-06-29"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/HWR-2019-Small.jpg"
 ---

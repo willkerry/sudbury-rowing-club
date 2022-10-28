@@ -1,7 +1,7 @@
 ---
 title: "La vie est belle..."
 date: "2018-02-17"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/DSC3202-2048.jpg"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Sudbury go to Henley"
 date: "2018-05-02"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Phyllis-Court-3.jpg"

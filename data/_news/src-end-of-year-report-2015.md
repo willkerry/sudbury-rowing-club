@@ -1,7 +1,7 @@
 ---
 title: "SRC 'End of Year' report 2015"
 date: "2015-10-29"
-categories: 
+categories:
   - "news"
 ---
 

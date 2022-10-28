@@ -1,7 +1,7 @@
 ---
 title: "Peterborough Spring Regatta: More Success for SRC"
 date: "2006-06-05"
-categories: 
+categories:
   - "news"
 ---
 

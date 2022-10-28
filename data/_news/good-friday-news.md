@@ -2,7 +2,7 @@
 title: "Good (Friday) News"
 date: "2018-04-05"
 author: "Susie Moule"
-categories: 
+categories:
   - "events"
   - "news"
 coverImage: "/assets/news/images/Good-Friday-2.jpg"

@@ -2,7 +2,7 @@
 title: "Good Friday Opening"
 date: "2014-04-16"
 author: "Tim Hysom"
-categories: 
+categories:
   - "events"
 ---
 

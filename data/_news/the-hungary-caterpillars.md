@@ -1,10 +1,10 @@
 ---
 title: "‘The Hungary Caterpillars’!"
 date: "2019-09-30"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/promo-hungary-scaled.jpeg"
 ---

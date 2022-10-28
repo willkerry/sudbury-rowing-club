@@ -2,7 +2,7 @@
 title: "End of Year Report"
 date: "2016-11-04"
 author: "Susie Moule"
-categories: 
+categories:
   - "events"
   - "news"
 coverImage: "/assets/news/images/Annual-Dinner-1.jpeg"

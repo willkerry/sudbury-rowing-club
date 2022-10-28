@@ -1,7 +1,7 @@
 ---
 title: "Kenneth J Mills"
 date: "2004-08-07"
-categories: 
+categories:
   - "news"
 ---
 

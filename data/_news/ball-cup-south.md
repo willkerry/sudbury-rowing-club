@@ -1,9 +1,9 @@
 ---
 title: "Ball Cup (South)"
 date: "2019-05-20"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Ball-Cup-2019.jpg"
 ---

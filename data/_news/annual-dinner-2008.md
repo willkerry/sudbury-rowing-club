@@ -1,7 +1,7 @@
 ---
 title: "Annual Dinner"
 date: "2008-11-03"
-categories: 
+categories:
   - "news"
 ---
 

@@ -2,7 +2,7 @@
 title: "School's Head 2018"
 date: "2018-03-18"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Schools-Head-2018.jpg"

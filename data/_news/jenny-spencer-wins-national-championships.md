@@ -1,7 +1,7 @@
 ---
 title: "Jenny Spencer Wins National Championships"
 date: "2006-07-16"
-categories: 
+categories:
   - "news"
 ---
 

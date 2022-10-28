@@ -1,7 +1,7 @@
 ---
 title: "Head of the River"
 date: "2012-03-19"
-categories: 
+categories:
   - "news"
 ---
 

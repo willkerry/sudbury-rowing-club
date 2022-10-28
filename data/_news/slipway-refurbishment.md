@@ -1,7 +1,7 @@
 ---
 title: "Slipway Refurbishment"
 date: "2017-10-01"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/cid_3F68973E-17BD-41AB-BF75-8A5A16E03102-scaled.jpg"
 ---

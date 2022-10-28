@@ -1,7 +1,7 @@
 ---
 title: "Maidstone Small Boats Head"
 date: "2005-12-04"
-categories: 
+categories:
   - "news"
 ---
 

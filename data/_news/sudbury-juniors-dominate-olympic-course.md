@@ -1,7 +1,7 @@
 ---
 title: "Sudbury Juniors Dominate Olympic Course"
 date: "2013-06-04"
-categories: 
+categories:
   - "news"
 ---
 

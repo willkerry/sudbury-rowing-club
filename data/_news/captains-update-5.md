@@ -2,7 +2,7 @@
 title: "Captain’s Update"
 date: "2013-03-25"
 author: "Keith Paxman"
-categories: 
+categories:
   - "news"
 ---
 

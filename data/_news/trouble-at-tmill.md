@@ -1,7 +1,7 @@
 ---
 title: "Trouble at t' Mill - Resolved !"
 date: "2016-11-28"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/20161124_083339-scaled.jpg"
 ---

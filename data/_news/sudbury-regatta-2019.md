@@ -1,11 +1,11 @@
 ---
 title: "Sudbury Regatta 2019"
 date: "2019-08-05"
-categories: 
+categories:
   - "events"
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Regatta-2019-1-1-scaled.jpg"
 ---
@@ -22,13 +22,13 @@ One of Sudbury’s new categories, the Parent and Child event saw a great win fr
 
 The Adult squads also gave great performances and set several course records. Callum Power and Lucy Freeman (UTS) won the Mx.1 2x, setting a new course record, by 1 length in a time of 03:01. Mx MasE 2x of Sean Moriarty and Sarah Stirling won by 2 lengths in 02:44, with S. Stirling going on to win the W MasE 1x race by 1ft in a time of 03:01 and setting a new course record.
 
-Robin King and Simon White won the Op MasD/E 2x in 02:30 by half a length (setting a new course record) and Sophie Lovegrove and Jen Ward continued their successes with a win in the W MasD 2x in 02:55 by one and a half lengths. 
+Robin King and Simon White won the Op MasD/E 2x in 02:30 by half a length (setting a new course record) and Sophie Lovegrove and Jen Ward continued their successes with a win in the W MasD 2x in 02:55 by one and a half lengths.
 
 The Op. MasD/E 4+ of cox Tricia Fincham; Lee Adams; Stephen Nichols; Tim Hysom and Paul Adams also took a very well deserved win in 02:21 by 2 lengths.
 
 The Sudbury Men’s 8 wowed the crowds with their stunning performance in the Sprint Eights. Expertly coxed by Tricia Fincham they took an excellent racing line just pulling ahead at the halfway point with the other crew then pulling almost level again and racing side by side down the second half of the course.
 
-The bank of spectators waited with baited breath to hear from the umpire that, (from bow) Tim Wallace; Robin King; Mark Tyrie; Pete Donovan; Tim Hysom; Stephen Nichols; Paul Adams and Lee Adams had indeed seized their triumph in a time of 01:04, winning by a nail biting quarter of a length! 
+The bank of spectators waited with baited breath to hear from the umpire that, (from bow) Tim Wallace; Robin King; Mark Tyrie; Pete Donovan; Tim Hysom; Stephen Nichols; Paul Adams and Lee Adams had indeed seized their triumph in a time of 01:04, winning by a nail biting quarter of a length!
 
 Sudbury Regatta was once again a tremendously pleasurable and successful event. The club members worked tirelessly over 3 days to ensure that all visiting club’s rowers, spectators and Sudbury Town had an entertaining and memorable event to visit and watch. We thank all of the visiting clubs and rowers for their participation, enthusiasm and brilliant rowing, who helped to make the event such a delightful one and a fantastic day of racing was enjoyed by everyone!
 

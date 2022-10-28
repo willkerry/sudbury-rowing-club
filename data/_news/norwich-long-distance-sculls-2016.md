@@ -2,7 +2,7 @@
 title: "Norwich Long Distance Sculls (2016)"
 date: "2016-11-04"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 ---

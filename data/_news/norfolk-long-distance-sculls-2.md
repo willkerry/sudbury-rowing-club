@@ -2,10 +2,10 @@
 title: "A Busy October"
 date: "2018-10-27"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/MasEG-4x-2018-scaled.jpg"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Tideway Eights, Vets Head GReat Success and a Grand Day Out"
 date: "2006-04-09"
-categories: 
+categories:
   - "news"
 ---
 

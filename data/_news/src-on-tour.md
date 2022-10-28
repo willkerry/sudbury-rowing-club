@@ -1,7 +1,7 @@
 ---
 title: "SRC on Tour..."
 date: "2017-10-23"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Gazebo.jpg"

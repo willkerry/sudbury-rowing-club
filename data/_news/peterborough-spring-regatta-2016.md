@@ -2,7 +2,7 @@
 title: "Peterborough Spring Regatta (2016)"
 date: "2016-06-06"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 

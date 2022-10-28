@@ -2,9 +2,9 @@
 title: "Bedford Small Boats Head"
 date: "2019-04-23"
 author: "Amanda Ashton"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/2019-04-14-Bedford-SBH-1-scaled.jpg"
 ---
@@ -37,5 +37,4 @@ Amanda Ashton
 
 ![](/assets/news/images/2019-04-14-Bedford-SBH-2.jpg)
 
-  
 Women’s Junior 15 Coxed Quad of Amelia Moule (cox); Grace Power; Evie Prager; Emilie Larkin and Amy Wallace

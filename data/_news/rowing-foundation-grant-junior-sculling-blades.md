@@ -1,7 +1,7 @@
 ---
 title: "Rowing Foundation Grant - Junior Sculling Blades"
 date: "2016-09-24"
-categories: 
+categories:
   - "news"
 ---
 

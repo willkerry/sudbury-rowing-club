@@ -1,7 +1,7 @@
 ---
 title: "'The Best Little Regatta in the World'"
 date: "2006-08-05"
-categories: 
+categories:
   - "news"
 ---
 

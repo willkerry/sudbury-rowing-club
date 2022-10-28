@@ -1,9 +1,9 @@
 ---
 title: "Nottingham Masters"
 date: "2019-05-14"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/IMG_0290-Cropped-scaled.jpg"
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Star New Year Head"
 date: "2019-01-30"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Star-2019-2.jpg"
 ---

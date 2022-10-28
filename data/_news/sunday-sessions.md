@@ -1,7 +1,7 @@
 ---
 title: "Sunday Sessions"
 date: "2008-11-11"
-categories: 
+categories:
   - "news"
 ---
 

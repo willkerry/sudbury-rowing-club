@@ -1,7 +1,7 @@
 ---
 title: "New Boats"
 date: "2004-05-23"
-categories: 
+categories:
   - "news"
 ---
 

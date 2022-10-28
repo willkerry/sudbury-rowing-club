@@ -1,7 +1,7 @@
 ---
 title: "Sudbury Triumphant in Distant Leicester"
 date: "2006-05-07"
-categories: 
+categories:
   - "news"
 ---
 

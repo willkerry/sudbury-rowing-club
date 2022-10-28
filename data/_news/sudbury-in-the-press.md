@@ -1,15 +1,15 @@
 ---
 title: "Sudbury in the Press"
 date: "2012-08-02"
-categories: 
+categories:
   - "news"
 ---
 
-In the run up to this year’s regatta, the club has warranted many a radio, magazine and newspaper appearance. First, a _Rowing & Regatta_ cover story, then another in _Suffolk and Norfolk Life_ (by our own Pippa Kerry), and now the grand appearance of the inimitable Messrs Blit and Arnott, Ellie and Pippa on BBC Radio Suffolk.
+In the run up to this year’s regatta, the club has warranted many a radio, magazine and newspaper appearance. First, a _Rowing & Regatta_ cover story, then another in *Suffolk and Norfolk Life* (by our own Pippa Kerry), and now the grand appearance of the inimitable Messrs Blit and Arnott, Ellie and Pippa on BBC Radio Suffolk.
 
 ## Ellie, Pippa and Mike on BBC Suffolk
 
- [Play: BBC Suffolk - Sudbury Regatta](http://sudburyrowingclub.org.uk/wp-content/uploads/2012/02/sudbury-bbc-128.mp3)
+[Play: BBC Suffolk - Sudbury Regatta](http://sudburyrowingclub.org.uk/wp-content/uploads/2012/02/sudbury-bbc-128.mp3)
 
 ## Rowing & Regatta Article
 

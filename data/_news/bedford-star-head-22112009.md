@@ -1,7 +1,7 @@
 ---
 title: "Bedford Star Head"
 date: "2009-11-23"
-categories: 
+categories:
   - "news"
 ---
 

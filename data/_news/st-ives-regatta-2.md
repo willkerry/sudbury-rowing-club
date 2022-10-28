@@ -2,7 +2,7 @@
 title: "St. Ives Regatta"
 date: "2017-06-26"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/crest-1big.png"

@@ -1,7 +1,7 @@
 ---
 title: "A Sunny and Successful Weekend at St Neots Regatta"
 date: "2006-07-23"
-categories: 
+categories:
   - "news"
 ---
 
@@ -11,5 +11,5 @@ Sunday also saw the debut of Helen and Louisa as a Women’s Novice Double scull
 
 Jenny competed at WS4 in a 5 boat field. This was an appropriate level of competition for her and her opponents gave her a good fight in each round, but Jenny eventually won her final, and her 1st Senior point, by 1 length.
 
-Our other entrants at this regatta, Dan and Oli, faced fields of 12 and 13 respectively. At it turned out each of Dan’s races was close and well-fought, with Dan losing only by a few seconds in the Final (and to the Captain of Broxbourne RC, who then went on to win S4 1x on the Sunday – why did he not attend our regatta??) 
+Our other entrants at this regatta, Dan and Oli, faced fields of 12 and 13 respectively. At it turned out each of Dan’s races was close and well-fought, with Dan losing only by a few seconds in the Final (and to the Captain of Broxbourne RC, who then went on to win S4 1x on the Sunday – why did he not attend our regatta??)
 . Oli’s progress was altogether more serene and it was a great pleasure to see him romp home in the Final by 4 lengths.

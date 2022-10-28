@@ -1,9 +1,9 @@
 ---
 title: "Lock Lintel Article"
 date: "2019-05-30"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Lock-Lintel.jpg"
 ---

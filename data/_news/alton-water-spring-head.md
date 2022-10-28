@@ -1,7 +1,7 @@
 ---
 title: "Alton Water Spring Head"
 date: "2014-03-23"
-categories: 
+categories:
   - "events"
 ---
 

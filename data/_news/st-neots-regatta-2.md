@@ -2,7 +2,7 @@
 title: "St. Neots Regatta"
 date: "2017-07-28"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Jen-and-Bev.jpg"

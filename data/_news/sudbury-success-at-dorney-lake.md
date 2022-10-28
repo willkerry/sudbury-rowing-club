@@ -1,9 +1,9 @@
 ---
 title: "Sudbury Success at Dorney Lake"
 date: "2019-05-08"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Juniors-2019.jpg"
 ---

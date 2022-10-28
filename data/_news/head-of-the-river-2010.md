@@ -1,7 +1,7 @@
 ---
 title: "Head of the River"
 date: "2010-05-19"
-categories: 
+categories:
   - "news"
 ---
 
