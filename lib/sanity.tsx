@@ -17,11 +17,7 @@ const WIDTH = 650;
 
 const components: PortableTextComponents = {
   marks: {
-    link: ({ value, children }) => (
-      <Link href={value?.href} passHref>
-        <a>{children}</a>
-      </Link>
-    ),
+    link: ({ value, children }) => <Link href={value?.href}>{children}</Link>,
   },
   types: {
     code: ({ value }) => (
