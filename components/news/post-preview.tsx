@@ -13,8 +13,8 @@ const PostPreview = ({ post }: { post: Post }) => (
             <div className="relative">
               <Image
                 src={urlFor(post.featuredImage._id)
-                  .width(610)
-                  .height(376)
+                  .width(630)
+                  .height(388)
                   .fit("crop")
                   .crop("entropy")
                   .url()}
@@ -22,8 +22,8 @@ const PostPreview = ({ post }: { post: Post }) => (
                 placeholder="blur"
                 blurDataURL={post.featuredImage.lqip}
                 quality={30}
-                width={305}
-                height={188}
+                width={315}
+                height={194}
                 className="z-0 bg-gradient-to-r from-gray-200 to-white"
               />
             </div>
