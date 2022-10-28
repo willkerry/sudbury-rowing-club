@@ -2,7 +2,7 @@ import { SVGProps } from "react";
 
 /**
  * Renders the square 'social' profile picture version of the crest in inlined SVG.
- * 
+ *
  * @deprecated This component is deprecated and will be removed in the next major version.
  */
 const Social = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (

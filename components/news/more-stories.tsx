@@ -19,10 +19,10 @@ const MoreStories = ({ posts, more }: Props) => (
         <li>
           <Link
             href={more}
-            className="flex items-center justify-center h-56 gap-1 font-medium text-gray-500 transition border rounded group hover:border-blue-400 hover:text-black">
+            className="flex items-center justify-center h-56 gap-1 font-medium text-gray-500 transition border rounded group hover:border-blue-400 hover:text-black"
+          >
             See more{" "}
             <ArrowLongRightIcon className="w-6 h-6 transition group-hover:translate-x-2 group-hover:text-blue-500" />
-
           </Link>
         </li>
       )}

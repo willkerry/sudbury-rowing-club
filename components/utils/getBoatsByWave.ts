@@ -1,33 +1,36 @@
 type OutputMap = {
-    [key: string]: { x: string, y: string }[];
-}
+  [key: string]: { x: string; y: string }[];
+};
 
 /**
  * Takes a matrix with headers and returns header value pairs for agglomerated value pairs.
- * @param matrix 
- * @param exclude 
+ * @param matrix
+ * @param exclude
  * @returns OutputMap
  */
 function getBoatsByWave(matrix: string[][], exclude?: string): OutputMap {
-    const categories: string[] = matrix.map((value) => value[0]);
-    const boats: string[] = matrix[0];
-    const outputMap: OutputMap = {};
-    matrix.forEach((row, x) => {
-        if (!x) return;
-        row.forEach((value, y) => {
-            if (!y || !value || value === exclude) return;
-            if (!outputMap[value]) outputMap[value] = [];
-            outputMap[value].push({ x: categories[x].toString(), y: boats[y].toString() });
-        });
+  const categories: string[] = matrix.map((value) => value[0]);
+  const boats: string[] = matrix[0];
+  const outputMap: OutputMap = {};
+  matrix.forEach((row, x) => {
+    if (!x) return;
+    row.forEach((value, y) => {
+      if (!y || !value || value === exclude) return;
+      if (!outputMap[value]) outputMap[value] = [];
+      outputMap[value].push({
+        x: categories[x].toString(),
+        y: boats[y].toString(),
+      });
     });
-    Object.keys(outputMap).forEach((key) => {
-        outputMap[key].sort((a, b) => {
-            if (a.y < b.y) return -1;
-            if (a.y > b.y) return 1;
-            return 0;
-        });
+  });
+  Object.keys(outputMap).forEach((key) => {
+    outputMap[key].sort((a, b) => {
+      if (a.y < b.y) return -1;
+      if (a.y > b.y) return 1;
+      return 0;
     });
-    return outputMap;
+  });
+  return outputMap;
 }
 
 export default getBoatsByWave;

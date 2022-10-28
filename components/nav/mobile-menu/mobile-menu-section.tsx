@@ -46,7 +46,9 @@ const SectionWrapper: React.FC<SectionWrapperProps> = (
               className={cn(title, "flex justify-between w-full py-4 -my-4")}
             >
               {props.title}
-              <ChevronDownIcon className={cn("w-4 h-4", open && "rotate-180")} />
+              <ChevronDownIcon
+                className={cn("w-4 h-4", open && "rotate-180")}
+              />
             </Disclosure.Button>
             <Disclosure.Panel className={panel}>{inner}</Disclosure.Panel>
           </div>

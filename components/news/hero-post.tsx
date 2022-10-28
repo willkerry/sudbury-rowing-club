@@ -5,11 +5,11 @@ import CoverImage from "./cover-image";
 import type Post from "../../types/post";
 
 const HeroPost = ({ post }: { post: Post }) => (
-  (<Link
+  <Link
     as={`/news/${post.slug}`}
     href="/news/[slug]"
-    className="grid mb-4 overflow-hidden transition duration-200 border rounded md:grid-cols-3 md:gap-x-2 group hover:border-blue-400">
-
+    className="grid mb-4 overflow-hidden transition duration-200 border rounded md:grid-cols-3 md:gap-x-2 group hover:border-blue-400"
+  >
     <div
       className={`relative border-b md:border-b-0 md:border-r md:col-span-2 ${
         !post.featuredImage ? "h-60 sm:h-96" : "flex"
@@ -48,8 +48,7 @@ const HeroPost = ({ post }: { post: Post }) => (
         </h3>
       </div>
     </div>
-
-  </Link>)
+  </Link>
 );
 
 export default HeroPost;

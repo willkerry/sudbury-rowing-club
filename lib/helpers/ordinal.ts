@@ -10,7 +10,7 @@ const indicator = (i: number): "st" | "nd" | "rd" | "th" => {
   if (dec === 2) return "nd";
   if (dec === 3) return "rd";
   return "th";
-}
+};
 
 /**
  * Returns the given number with an appropriate ordinal suffix. e.g. 1 &rarr; 1st, 2 &rarr; 2nd
@@ -20,6 +20,6 @@ const ordinal = (i: number): string => {
     throw new TypeError(`Expected number, got ${typeof i} ${i}`);
   if (!Number.isFinite(i)) return i.toString();
   return i + indicator(i);
-}
+};
 
 export default ordinal;
