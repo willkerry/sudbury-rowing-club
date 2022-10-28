@@ -9,6 +9,7 @@ const config = {
     domains: ["cdn.sanity.io"],
   },
   swcMinify: true,
+  experimental: { appDir: true },
   async redirects() {
     return [
       {

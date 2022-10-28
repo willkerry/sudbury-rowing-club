@@ -21,5 +21,6 @@
     "commandCenter.border": "#e7e7e799"
   },
   "eslint.alwaysShowStatus": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

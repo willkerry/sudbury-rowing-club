@@ -1,3 +1,5 @@
+"use client";
+
 import { NavLink, NavLogo, NavSection } from "@/components/nav";
 import { MobileMenu, MobileMenuButton } from "@/components/nav/mobile-menu";
 import { Popover, Transition } from "@headlessui/react";
@@ -40,7 +42,7 @@ const Nav = () => {
           <div className="max-w-screen-lg px-4 mx-auto sm:px-6">
             <div className="flex items-center justify-between py-3 xs:py-4 md:py-6 ">
               <NavLogo />
-              <MobileMenuButton />
+              {/* <MobileMenuButton />
               <Popover.Group as="nav" className="hidden sm:flex">
                 <NavSection label="About" navData={about} ctaData={aboutCTAs} />
                 <NavLink href="/news">News</NavLink>
@@ -62,11 +64,11 @@ const Nav = () => {
                   navData={members as IconNavItemType[]}
                   ctaData={memberCTAs}
                 />
-              </Popover.Group>
+              </Popover.Group> */}
             </div>
           </div>
 
-          <Transition
+          {/* <Transition
             show={open}
             as={Fragment}
             enter="duration-200 ease-out"
@@ -77,7 +79,7 @@ const Nav = () => {
             leaveTo="opacity-0 scale-95"
           >
             {MobileMenu()}
-          </Transition>
+          </Transition> */}
         </>
       )}
     </Popover>

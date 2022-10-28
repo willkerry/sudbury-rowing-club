@@ -9,7 +9,7 @@ import {
   NavItemList,
 } from "./index";
 import { type IconNavItemType } from "@/types/nav-item";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export const navLinkClasses =
   "group transition duration-200 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black focus:outline-none hover:bg-gray-50 hover:border-gray-100 border border-transparent rounded-md";
@@ -33,14 +33,14 @@ const NavSection = ({
   navData,
   ctaData,
 }: Props) => {
-  const router = useRouter();
+  const path = usePathname();
 
   let isActive = false;
 
   [...navData, ...ctaData]
     .filter((item) => !item.mobileOnly)
     .forEach((item) => {
-      if (router.pathname === item.href) isActive = true;
+      if (path === item.href) isActive = true;
     });
 
   return (

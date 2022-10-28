@@ -45,9 +45,7 @@ const Breadcrumbs = ({
     <nav aria-label="breadcrumbs">
       <ol className={listClassName}>
         <li className={inactiveItemClassName}>
-          <Link href="/" legacyBehavior>
-            {rootLabel}
-          </Link>
+          <Link href="/">{rootLabel}</Link>
         </li>
 
         {breadcrumbs.map((breadcrumb, i) =>

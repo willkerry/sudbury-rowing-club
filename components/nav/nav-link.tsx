@@ -1,6 +1,6 @@
 import cn from "classnames";
 import Link, { type LinkProps } from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import {
   navLinkActive,
   navLinkClasses,
@@ -12,12 +12,12 @@ type Props = LinkProps & {
 };
 
 const NavLink = ({ href, children }: Props) => {
-  const router = useRouter();
+  const path = usePathname();
   return (
     <Link
       href={href}
       className={cn(
-        router.asPath == href && navLinkActive,
+        path === href && navLinkActive,
         navLinkClasses,
         navLinkColor
       )}

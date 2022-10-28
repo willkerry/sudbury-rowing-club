@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 type DateFormatPresets =
   | "default"
   | "long"
@@ -42,7 +40,7 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
   ]);
 
 const DateFormatter = ({ dateString, format, ...props }: Props) => {
-  const [dateObj] = useState(new Date(dateString));
+  const dateObj = new Date(dateString);
   return (
     <time dateTime={dateObj.toString()} {...props}>
       {dateObj.toLocaleDateString(
