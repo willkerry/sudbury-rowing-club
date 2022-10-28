@@ -85,7 +85,7 @@ const Join: NextPage = () => (
                 <ul>
                   <li>Course 1: 12 Mar to 2 Apr 2022</li>
                   <li>Course 2: 23 Apr to 14 May 2022</li>
-                </ul>{" "}
+                </ul>
                 Please <Link href="join/apply">apply now.</Link>
               </Note>
             </div>
