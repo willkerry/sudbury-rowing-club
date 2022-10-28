@@ -39,7 +39,7 @@ const PostHeader = ({
             `}</style>
             <Image
               src={urlFor(featuredImage._id).width(1536).fit("max").url()}
-              alt={alt}
+              alt={alt || title}
               width={768}
               height={768 / featuredImage.aspectRatio}
               quality={50}
