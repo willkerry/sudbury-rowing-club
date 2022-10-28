@@ -1,7 +1,7 @@
 ---
 title: "Annual Dinner and Other Stories"
 date: "2017-10-16"
-categories: 
+categories:
   - "events"
   - "news"
   - "racing"

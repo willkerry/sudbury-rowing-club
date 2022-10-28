@@ -1,7 +1,7 @@
 ---
 title: "Junior Inter-Regional Regatta"
 date: "2014-04-22"
-categories: 
+categories:
   - "news"
 ---
 

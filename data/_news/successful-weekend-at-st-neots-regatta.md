@@ -1,7 +1,7 @@
 ---
 title: "Successful Weekend at St Neots Regatta"
 date: "2003-07-28"
-categories: 
+categories:
   - "news"
 ---
 

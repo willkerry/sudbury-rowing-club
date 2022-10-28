@@ -1,7 +1,7 @@
 ---
 title: "Sudbury Regatta 2017"
 date: "2017-08-02"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/Regatta-Specflue.png"
 ---

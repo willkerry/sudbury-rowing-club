@@ -1,7 +1,7 @@
 ---
 title: "132nd Regatta on Film"
 date: "2012-09-26"
-categories: 
+categories:
   - "news"
 ---
 

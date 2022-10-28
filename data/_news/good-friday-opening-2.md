@@ -1,10 +1,10 @@
 ---
 title: "Good Friday Opening"
 date: "2019-04-19"
-categories: 
+categories:
   - "events"
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/IMG_20190419_115843.jpg"
 ---

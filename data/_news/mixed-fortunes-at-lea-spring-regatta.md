@@ -1,7 +1,7 @@
 ---
 title: "Mixed Fortunes at Lea Spring Regatta"
 date: "2006-04-23"
-categories: 
+categories:
   - "news"
 ---
 

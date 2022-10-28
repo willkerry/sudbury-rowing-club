@@ -1,7 +1,7 @@
 ---
 title: "Peterborough Summer Regatta"
 date: "2006-08-13"
-categories: 
+categories:
   - "news"
 ---
 

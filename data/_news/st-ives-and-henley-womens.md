@@ -1,7 +1,7 @@
 ---
 title: "St. Ives and Henley Women's"
 date: "2018-07-01"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/St-Ives-Poppy-and-Jackie-2.jpg"

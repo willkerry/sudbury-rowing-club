@@ -1,10 +1,10 @@
 ---
 title: "Gt. Ouse Marathon"
 date: "2019-09-05"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Ely-2019-Cropped.jpg"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "HORR and Vet's Head"
 date: "2014-04-04"
-categories: 
+categories:
   - "events"
   - "news"
 coverImage: "/assets/news/images/2.3-scaled.jpeg"

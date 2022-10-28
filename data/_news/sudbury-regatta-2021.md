@@ -20,13 +20,13 @@ Saturday was a fantastic day despite the weather delivering alternating bouts of
 
 Racing got underway at 9am and although Sudbury crews were limited to just one event, the club saw some good results, with competitors delivering some excellent racing and race wins along with a couple of new course records.
 
-In the Women’s 1x Amelia Maskell won her final  by two and a half lengths in a time of 2:48. 
+In the Women’s 1x Amelia Maskell won her final by two and a half lengths in a time of 2:48.
 
-The Women’s Masters D/E double of Sophie Lovegrove and Jen Ward also won their final race very convincingly. The Women’s Junior18 2x of Antonia Mitchell and Elodie Nicholson won their final by 1 length in a time of 2:48. 
+The Women’s Masters D/E double of Sophie Lovegrove and Jen Ward also won their final race very convincingly. The Women’s Junior18 2x of Antonia Mitchell and Elodie Nicholson won their final by 1 length in a time of 2:48.
 
-Sudbury had several novice crews enter their  very first race. The Women’s novice Coxed quad of Debbie Nott, Amanda Ashton, Rachel Bassett and Jess Brown (coxed by Pippa Kerry) won their qualifier easily in a time of 2:59 and in the Open 1x, Karl Hillman won his qualifier easily in a time of 03:29. 
+Sudbury had several novice crews enter their very first race. The Women’s novice Coxed quad of Debbie Nott, Amanda Ashton, Rachel Bassett and Jess Brown (coxed by Pippa Kerry) won their qualifier easily in a time of 2:59 and in the Open 1x, Karl Hillman won his qualifier easily in a time of 03:29.
 
-Good qualifying wins were also seen from Jessica Wilby and Emily Norfolk in the Women’s Junior 16 2x; Byron Bullen in the Op1x and Harry Moule in the Op.J16 1x. 
+Good qualifying wins were also seen from Jessica Wilby and Emily Norfolk in the Women’s Junior 16 2x; Byron Bullen in the Op1x and Harry Moule in the Op.J16 1x.
 
 <figure>
     <blockquote>

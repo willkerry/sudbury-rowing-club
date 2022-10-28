@@ -1,7 +1,7 @@
 ---
 title: "Bob Howard, 1935-2020"
 date: "2020-08-02"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/image001.jpg"
 excerpt: "For over twenty-five years Bob Howard has been a consistent presence at Sudbury Rowing Club."
@@ -29,7 +29,7 @@ Over recent days a number of former junior and adult rowers have commented how i
 
 Bob loved the Sudbury ‘International’ Regatta and for many years assisted in building the temporary landing stages as part of the preparation. On the day he would position himself on the bend so he could see most of the racing with his friends Ray and Colin and take immense pride in our Regatta and that his club could organise such a great event.
 
- Bob was a great friend of Sudbury Rowing Club and he had many great friends at the club who loved him, and we will miss him. Many of us will continue to see him in the corner of our eye as we row past the Regatta finish landing stage where he would stand every Saturday.
+Bob was a great friend of Sudbury Rowing Club and he had many great friends at the club who loved him, and we will miss him. Many of us will continue to see him in the corner of our eye as we row past the Regatta finish landing stage where he would stand every Saturday.
 
 Perhaps the older generation of club oarsmen who would turn up in all weathers, not worried about equipment or facilities, has passed, as it has in many sports, but Bob was one of them.
 

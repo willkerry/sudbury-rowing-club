@@ -2,7 +2,7 @@
 title: "Heads we win!"
 date: "2017-11-06"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/2017-10-29-Huntingdon-Head.jpg"

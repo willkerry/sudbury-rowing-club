@@ -1,10 +1,10 @@
 ---
 title: "BR Junior Champs"
 date: "2019-07-26"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/BRJC19-1-1.jpg"
 ---

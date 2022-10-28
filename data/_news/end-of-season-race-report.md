@@ -1,7 +1,7 @@
 ---
 title: "End of Season Race Report"
 date: "2017-09-14"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/2017-09-14-image4.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "Sudbury Competes at The Head of the River Fours"
 date: "2006-11-18"
-categories: 
+categories:
   - "news"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Sudbury Regatta 2017"
 date: "2017-07-25"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/DSC_8521.jpg"
 ---

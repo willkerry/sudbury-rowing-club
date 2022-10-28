@@ -1,7 +1,7 @@
 ---
 title: "Bedford Small Boats Head"
 date: "2009-10-16"
-categories: 
+categories:
   - "news"
 ---
 

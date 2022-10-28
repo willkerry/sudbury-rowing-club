@@ -2,7 +2,7 @@
 title: "Ball Cup 2018"
 date: "2018-05-20"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/image4.png"

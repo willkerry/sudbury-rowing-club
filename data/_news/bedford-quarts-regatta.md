@@ -1,7 +1,7 @@
 ---
 title: "Bedford Quarts Regatta"
 date: "2003-07-13"
-categories: 
+categories:
   - "news"
 ---
 

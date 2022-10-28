@@ -1,7 +1,7 @@
 ---
 title: "Peterborough Summer Regatta (2016)"
 date: "2016-08-15"
-categories: 
+categories:
   - "news"
 ---
 

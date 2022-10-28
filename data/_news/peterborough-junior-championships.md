@@ -2,7 +2,7 @@
 title: "Peterborough Junior Championships"
 date: "2016-06-28"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 

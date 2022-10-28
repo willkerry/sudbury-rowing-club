@@ -1,7 +1,7 @@
 ---
 title: "Rowing from the air..."
 date: "2016-06-11"
-categories: 
+categories:
   - "news"
 ---
 

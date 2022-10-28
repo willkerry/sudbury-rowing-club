@@ -1,10 +1,10 @@
 ---
 title: "Ely Small Boats Head"
 date: "2018-11-26"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/IMG_20181111_172349_837-Short.jpg"
 ---

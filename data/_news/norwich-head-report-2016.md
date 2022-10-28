@@ -2,7 +2,7 @@
 title: "Norwich Head Report (2016)"
 date: "2016-03-03"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 

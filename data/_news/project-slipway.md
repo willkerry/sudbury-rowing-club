@@ -1,7 +1,7 @@
 ---
 title: "Project Slipway"
 date: "2017-08-02"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/Artboard-4slipway.jpg"
 ---

@@ -2,10 +2,10 @@
 title: "Sudbury Rowers Set Record and Win at Ely"
 date: "2018-09-06"
 author: "Andrew Blit"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/20180902_154440-scaled.jpg"
 ---

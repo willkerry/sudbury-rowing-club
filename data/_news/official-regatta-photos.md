@@ -1,7 +1,7 @@
 ---
 title: "Official Regatta Photos"
 date: "2014-08-04"
-categories: 
+categories:
   - "news"
 ---
 

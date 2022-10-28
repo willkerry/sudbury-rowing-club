@@ -1,7 +1,7 @@
 ---
 title: "Pairs Head of the River Race"
 date: "2017-10-29"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Pairs-Head-1-of-3-Cropped.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "Members in the News at Henley Royal Regatta"
 date: "2004-07-07"
-categories: 
+categories:
   - "news"
 ---
 

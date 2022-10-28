@@ -1,9 +1,9 @@
 ---
 title: "Peterborough Regatta"
 date: "2019-06-14"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Amelia-2019-Landscape-scaled.jpg"
 ---
@@ -12,7 +12,7 @@ Peterborough Regatta, held over the weekend of the 1st and 2nd of June saw Sudbu
 
 Amelia Moule won the Women’s Junior 18 single sculls, equalling the course record with a time of 4:01. Byron Bullen and Sam McLoughlin won the Junior 18 double sculls event, breaking the course record with a time of 3:21. A tremendous achievement for Amelia, Byron and Sam.
 
-Both Bullen and McLoughlin gained places in the final of the J18 single sculls event, with Bullen finishing second in 3:40 and McLoughlin finishing third in 3:46. Fergus Grant and Harry Moule competed in the J15 double through two heats to get into the final, where they finished second in a time of 3:38, less than 3 seconds behind the winner. 
+Both Bullen and McLoughlin gained places in the final of the J18 single sculls event, with Bullen finishing second in 3:40 and McLoughlin finishing third in 3:46. Fergus Grant and Harry Moule competed in the J15 double through two heats to get into the final, where they finished second in a time of 3:38, less than 3 seconds behind the winner.
 
 In the J14 singles, H Moule went on to win his heat, finishing second in the final in a time of 3:55, only 4 seconds behind the winner, with Grant finishing third in 4:08 in the J15 singles semi final. More good performances were seen by Amelia Maskell and Helena Griffiths in the Women’s double sculls band 1, coming second with a time of 4:05. Maskell also raced in the Women’s single sculls event, finishing 3rd in a time of 4:27.
 

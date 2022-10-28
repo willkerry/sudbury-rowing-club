@@ -1,7 +1,7 @@
 ---
 title: "Playing with the Big Boys at Bedford Amateur Regatta"
 date: "2006-05-13"
-categories: 
+categories:
   - "news"
 ---
 

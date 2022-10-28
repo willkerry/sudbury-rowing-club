@@ -1,7 +1,7 @@
 ---
 title: "Antony Moule: Coaches of 2002 Award"
 date: "2002-12-13"
-categories: 
+categories:
   - "news"
 ---
 

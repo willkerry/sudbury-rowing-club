@@ -2,7 +2,7 @@
 title: "Junior Inter-Regional Regatta"
 date: "2018-04-30"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/JIRR-Martha-and-Amelia.jpg"

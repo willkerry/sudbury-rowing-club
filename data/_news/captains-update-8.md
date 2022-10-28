@@ -2,9 +2,9 @@
 title: "Captain’s Update"
 date: "2014-09-05"
 author: "Tim Hysom"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "captains-update"
 coverImage: "/assets/news/images/DSC_8543.jpg"
 ---

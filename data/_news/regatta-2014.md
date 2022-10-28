@@ -1,7 +1,7 @@
 ---
 title: "Thank You, Sudbury"
 date: "2014-08-02"
-categories: 
+categories:
   - "events"
 coverImage: "/assets/news/images/2012-08-04-at-15-10-51-X3.jpg"
 ---

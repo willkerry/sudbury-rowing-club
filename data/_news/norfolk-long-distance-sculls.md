@@ -1,7 +1,7 @@
 ---
 title: "Norfolk Long Distance Sculls"
 date: "2009-11-02"
-categories: 
+categories:
   - "news"
 ---
 

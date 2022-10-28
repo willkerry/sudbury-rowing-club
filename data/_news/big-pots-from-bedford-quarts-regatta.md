@@ -1,7 +1,7 @@
 ---
 title: "Big Pots from Bedford Quarts Regatta"
 date: "2006-07-09"
-categories: 
+categories:
   - "news"
 ---
 

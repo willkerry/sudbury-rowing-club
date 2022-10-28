@@ -2,7 +2,7 @@
 title: "Cambridge Winter Head"
 date: "2017-11-27"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Cambridge-3.jpg"

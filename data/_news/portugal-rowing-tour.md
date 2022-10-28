@@ -1,10 +1,10 @@
 ---
 title: "Portugal Rowing Tour"
 date: "2019-08-27"
-categories: 
+categories:
   - "events"
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/Portugal-3-1-scaled.jpg"
 ---

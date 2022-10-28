@@ -1,7 +1,7 @@
 ---
 title: "2008/09 Committee"
 date: "2008-11-03"
-categories: 
+categories:
   - "news"
 ---
 

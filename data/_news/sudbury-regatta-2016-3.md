@@ -2,7 +2,7 @@
 title: "Sudbury Regatta (2016)"
 date: "2016-08-07"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
 ---
 

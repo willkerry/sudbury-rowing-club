@@ -1,7 +1,7 @@
 ---
 title: "Cambridge Winter League"
 date: "2006-03-20"
-categories: 
+categories:
   - "news"
 ---
 

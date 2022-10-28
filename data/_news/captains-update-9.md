@@ -15,22 +15,21 @@ Welcome to your latest Captains’ Update. With the great improvement in whether
 
 [Text extracted from PDF](http://sudburyrowingclub.org.uk/wp-content/uploads/2018/06/SRC-Captains-Update-June-2018.pdf)
 
-
 ## Recent events
 
-### 13th May – Ball Cup. 
+### 13th May – Ball Cup.
 
 The Junior Squad put in some great performances yet again at the event at which the Squad has been so successful in the past. Congratulations to Martha Bullen, Amelia Maskell and Amelia Moule for winning gold medals. The girls also picked up silver medals along with Freya Evans, Byron Bullen, Henry Tullin and Gareth Moriarty. There were also some positive performances from other members of the Junior Squad some of whom were at their first competitive race.
 
-### 27th May – Nottingham City. 
+### 27th May – Nottingham City.
 
 Jen Titterington (SRC) and Bev Goodchild (IPS) claimed another victory at Holmes Pierrepoint on the last Sunday in May. This was fresh from winning the previous weekend at Wallingford Regatta where thanks to the stipulations of the organisers, the ladies rowed as an Ipswich crew as composite entries were not permitted. The conditions in the afternoon in particular were not dis-similar to the Orwell on a windy day with a ship going into Ipswich port. Well done ladies.
 
-### 27th May – National Schools Regatta. 
+### 27th May – National Schools Regatta.
 
 Our Junior Squad girls quad of the two Amelias, Martha and Helena Griffiths competed at this national event competing as a very young J18. Special mention must go to Helena for stepping in so admirably as a last minute substitute following injury to Freya Evans. Thanks to the wonders of YouTube some of the rest of us were able to watch the girls final live back at the Clubhouse. The girls rowed well against some very strong crews, finished ahead of regional opposition from the Isle of Ely in their C final and came away ranked 16th out of 39 crews who competed.
 
-### 2nd/3rd June – Peterborough Spring. 
+### 2nd/3rd June – Peterborough Spring.
 
 Good weather and reasonable conditions made for two days of enjoyable racing for both Junior and Senior Squads. Saturday brought another win for our Junior girls quad fresh from National Schools but this time going one step further and competing at W.4x- level. The best individual performance came from Byron Bullen in winning J.18.1x beating off some very strong regional competition. The MasC.4+ won their event on Sunday and there was an extremely close finish for the MasD.8+ in the final, with side by side racing against York for the full 1,000m only to get pipped on the line.
 

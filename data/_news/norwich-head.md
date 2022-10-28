@@ -2,7 +2,7 @@
 title: "Norwich Head"
 date: "2018-02-25"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/Norwich-Head-2018-scaled.jpg"

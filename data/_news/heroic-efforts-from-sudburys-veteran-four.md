@@ -1,7 +1,7 @@
 ---
 title: "Heroic Efforts from Sudbury's Veteran Four"
 date: "2008-11-11"
-categories: 
+categories:
   - "news"
 ---
 

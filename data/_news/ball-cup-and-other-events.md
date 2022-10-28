@@ -2,7 +2,7 @@
 title: "Ball Cup and other Events"
 date: "2017-05-08"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/18358777_10156090045039097_744269112436286288_o.jpg"

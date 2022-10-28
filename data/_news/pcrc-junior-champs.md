@@ -1,9 +1,9 @@
 ---
 title: "PCRC Junior Champs"
 date: "2019-07-09"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/PCRC-Junior-Champs.jpg"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Sudbury Regatta 2016"
 date: "2016-07-29"
-categories: 
+categories:
   - "news"
 ---
 

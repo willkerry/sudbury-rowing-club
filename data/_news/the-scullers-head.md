@@ -2,7 +2,7 @@
 title: "The Scullers Head"
 date: "2017-12-04"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/IMG_1976-2.jpg"

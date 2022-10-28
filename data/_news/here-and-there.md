@@ -1,10 +1,10 @@
 ---
 title: "Here and There..."
 date: "2019-09-27"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/2019-09-08-Juniors.jpeg"
 ---

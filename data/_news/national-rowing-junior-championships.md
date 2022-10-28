@@ -2,7 +2,7 @@
 title: "British Rowing Junior Championships"
 date: "2018-07-24"
 author: "Susie Moule"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/BRJC-1.png"

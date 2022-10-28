@@ -1,10 +1,10 @@
 ---
 title: "Norwich Head and Head of the East"
 date: "2019-03-11"
-categories: 
+categories:
   - "news"
   - "racing"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/St-Neots-2019-2.jpg"
 ---
@@ -57,8 +57,7 @@ Amanda Ashton.
 
 ![](/assets/news/images/St-Neots-2019-1-890x1024.jpg)
 
-  
-Mixed MasB double of Tim Wallace and Poppy Grosch  
+Mixed MasB double of Tim Wallace and Poppy Grosch
 
 ![](/assets/news/images/St-Neots-2019-3-1024x625.jpg)
 

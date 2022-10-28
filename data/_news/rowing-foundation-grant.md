@@ -1,9 +1,9 @@
 ---
 title: "The Rowing Foundation"
 date: "2019-01-06"
-categories: 
+categories:
   - "news"
-tags: 
+tags:
   - "sliding"
 coverImage: "/assets/news/images/20190106_110401-scaled.jpg"
 ---

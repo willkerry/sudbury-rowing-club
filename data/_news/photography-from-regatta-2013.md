@@ -1,7 +1,7 @@
 ---
 title: "Photography from Regatta 2013"
 date: "2013-08-04"
-categories: 
+categories:
   - "news"
 coverImage: "/assets/news/images/british_rowing_sudbury_regatta_06_08_11_0664001.jpg"
 ---

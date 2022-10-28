@@ -1,7 +1,7 @@
 ---
 title: "Masters Head of the River Race"
 date: "2017-04-02"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/image1.jpeg"
@@ -25,8 +25,8 @@ Susie Moule.
 
 Men's Masters C Crew
 
-\[caption id="attachment\_2045" align="aligncenter" width="640"\][![](/assets/news/images/image2.jpg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2017/04/image2.jpg) OLYMPUS DIGITAL CAMERA\[/caption\]
+\[caption id="attachment_2045" align="aligncenter" width="640"\][![](/assets/news/images/image2.jpg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2017/04/image2.jpg) OLYMPUS DIGITAL CAMERA\[/caption\]
 
 Back row - Mens Masters E Crew Front row - Women's Masters D Crew.
 
-\[caption id="attachment\_2046" align="aligncenter" width="640"\][![](/assets/news/images/image1.jpeg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2017/04/image1.jpeg) OLYMPUS DIGITAL CAMERA\[/caption\]
+\[caption id="attachment_2046" align="aligncenter" width="640"\][![](/assets/news/images/image1.jpeg)](http://sudburyrowingclub.org.uk/wp-content/uploads/2017/04/image1.jpeg) OLYMPUS DIGITAL CAMERA\[/caption\]

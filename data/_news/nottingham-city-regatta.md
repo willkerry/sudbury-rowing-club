@@ -1,7 +1,7 @@
 ---
 title: "Nottingham City Regatta"
 date: "2018-05-27"
-categories: 
+categories:
   - "news"
   - "racing"
 coverImage: "/assets/news/images/20180526_155641-scaled.jpg"

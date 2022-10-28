@@ -1,7 +1,7 @@
 ---
 title: "St Neots Regatta"
 date: "2009-07-28"
-categories: 
+categories:
   - "news"
 ---
 
