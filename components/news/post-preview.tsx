@@ -25,7 +25,6 @@ const PostPreview = ({ post }: { post: Post }) => (
                 width={305}
                 height={188}
                 className="z-0 bg-gradient-to-r from-gray-200 to-white"
-                layout="responsive"
               />
             </div>
           ) : (
