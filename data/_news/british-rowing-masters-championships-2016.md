@@ -22,8 +22,6 @@ Sudbury will be competing again this weekend at St. Ives Regatta.
 
 Susie Moule
 
-
-
 ![FullSizeRender](/assets/news/images/FullSizeRender.jpg)
 
 Rosemary Hogsbjerg and Sara Watts with their silver medals at the 2016 British Rowing Masters Championships in Nottingham.
