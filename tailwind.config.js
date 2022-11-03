@@ -83,6 +83,12 @@ module.exports = {
             "h2, h3": {
               lineHeight: theme("lineHeight.snug"),
             },
+
+            "h1, h2, h3, h4, h5, h6": {
+              fontWeight: theme("fontWeight.semibold"),
+              letterSpacing: theme("letterSpacing.smug"),
+            },
+
             blockquote: {
               fontWeight: null,
               color: theme("colors.gray.600"),
