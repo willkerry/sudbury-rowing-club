@@ -28,12 +28,7 @@ const NewsList = ({ posts, hero, more }: Props) => {
     );
   }
 
-  return (
-    <>
-      <HeroPost post={posts[0]} />
-      <MoreStories {...{ more, posts }} />
-    </>
-  );
+  return <MoreStories {...{ more, posts }} />;
 };
 
 export default NewsList;
