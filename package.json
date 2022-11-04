@@ -16,7 +16,7 @@
     "@algolia/client-search": "^4.14.2",
     "@badrap/bar-of-progress": "^0.2.2",
     "@fontsource/jetbrains-mono": "^4.5.11",
-    "@headlessui/react": "^1.7.3",
+    "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.12",
     "@portabletext/react": "^1.0.6",
     "@radix-ui/react-slot": "^1.0.1",
