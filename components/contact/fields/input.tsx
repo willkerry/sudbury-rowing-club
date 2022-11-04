@@ -1,17 +1,19 @@
+import { InputHTMLAttributes, LabelHTMLAttributes } from "react";
+
 type Props = {
-  disabled?: boolean;
-  id: string;
+  disabled?: InputHTMLAttributes<HTMLInputElement>["disabled"];
+  id: InputHTMLAttributes<HTMLInputElement>["id"];
   input: {
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    value: string;
+    onChange: InputHTMLAttributes<HTMLInputElement>["onChange"];
+    value: InputHTMLAttributes<HTMLInputElement>["value"];
   };
-  label: string;
+  label: LabelHTMLAttributes<HTMLLabelElement>["children"];
   meta?: {
     invalid?: boolean;
     touched?: boolean;
   };
-  placeholder?: string;
-  type: string;
+  placeholder?: InputHTMLAttributes<HTMLInputElement>["placeholder"];
+  type: InputHTMLAttributes<HTMLInputElement>["type"];
 };
 
 /**
