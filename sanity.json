@@ -14,10 +14,10 @@
     "@sanity/default-login",
     "@sanity/desk-tool",
     "@sanity/vision",
-    "order-documents",
     "table",
     "vercel-deploy",
-    "@sanity/dashboard"
+    "@sanity/dashboard",
+    "@sanity/orderable-document-list"
   ],
   "env": {
     "development": {

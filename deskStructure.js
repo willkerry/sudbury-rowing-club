@@ -1,4 +1,6 @@
 import S from "@sanity/desk-tool/structure-builder";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
+import { MdPeople } from "react-icons/md";
 
 export default () =>
   S.list()
@@ -21,10 +23,18 @@ export default () =>
             .schemaType("regattaSettings")
             .documentId("1af70bac-279d-486d-9c87-cfb4de0b6964")
         ),
+      orderableDocumentListDeskItem({
+        type: "officers",
+        title: "Club Officers",
+        icon: MdPeople,
+      }),
       ...S.documentTypeListItems().filter(
         (listItem) =>
-          !["safetyStatus", "regattaSettings", "siteSettings"].includes(
-            listItem.getId()
-          )
+          ![
+            "safetyStatus",
+            "regattaSettings",
+            "siteSettings",
+            "officers",
+          ].includes(listItem.getId())
       ),
     ]);
