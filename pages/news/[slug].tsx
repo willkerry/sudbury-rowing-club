@@ -20,15 +20,19 @@ import type PostType from "@/types/post";
 import { GetStaticPaths, GetStaticProps } from "next/types";
 import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
-import CustomError from "pages/_error";
 
 export default function Post({ post }: { post: PostType }) {
   const router = useRouter();
-  if (!router.isFallback && !post?.slug) {
-    return <CustomError statusCode={404} />;
-  }
+  if (!router.isFallback && !post?.slug)
+    <Layout>
+      <Container>
+        <h1>404 - Page Not Found</h1>
+      </Container>
+    </Layout>;
+
   const CoverImage = (image: PostType["featuredImage"]) => {
     if (!image) return HOME_OG_IMAGE_URL;
+
     return urlFor(image).width(1200).url();
   };
   return post === undefined ? (
