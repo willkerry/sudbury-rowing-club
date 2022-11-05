@@ -55,7 +55,7 @@ const Governance: NextPage<Props> = ({
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(
     groq`{
-      "officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(order asc){
+      "officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(orderRank){
         _id,
         name,
         role,

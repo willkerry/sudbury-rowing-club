@@ -7,7 +7,7 @@ export default async function getOfficer(id: string) {
   }
   const data = await sanityClient.fetch(
     groq`
-          *[_id == $id && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
+          *[_id == $id && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""]{
             name,
             email
           }

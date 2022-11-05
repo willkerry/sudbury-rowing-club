@@ -16,7 +16,7 @@ import { InferGetStaticPropsType } from "next";
 export const getStaticProps: GetStaticProps = async () => {
   const officers: Officer[] = await sanityClient.fetch(
     groq`
-      *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(order asc){
+      *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(orderRank){
         _id,
         name,
         role
