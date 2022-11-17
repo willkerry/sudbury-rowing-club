@@ -13,7 +13,14 @@ const SafetyCard: React.FC = () => {
       {safetyComponentProps ? (
         <SafetyComponent {...safetyComponentProps} />
       ) : (
-        <Loading />
+        <div>
+          <Loading />
+          <style jsx>{`
+            div {
+              padding: 1rem 0;
+            }
+          `}</style>
+        </div>
       )}
     </div>
   );
