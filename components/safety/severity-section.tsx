@@ -19,7 +19,7 @@ const SeveritySection: React.FC<SeveritySectionProps> = ({
 
   return (
     <div
-      className={`${severityClasses[status]} line-clamp-1 flex items-center justify-between h-12 sm:h-16 p-3 sm:p-4 text-2xl md:text-3xl font-bold tracking-tight `}
+      className={`${severityClasses[status]}  flex items-center justify-between h-12 sm:h-16 p-3 sm:p-4 text-2xl md:text-3xl font-bold tracking-tight `}
     >
       {message || status.charAt(0).toUpperCase() + status.slice(1)}
 
