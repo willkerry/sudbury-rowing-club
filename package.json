@@ -41,7 +41,7 @@
     "react-final-form": "^6.5.9",
     "react-icons": "^4.6.0",
     "react-scroll": "^1.8.7",
-    "react-textarea-autosize": "^8.3.4",
+    "react-textarea-autosize": "^8.4.0",
     "react-youtube": "^10.0.0",
     "sharp": "^0.31.1",
     "snarkdown": "^2.0.0",
