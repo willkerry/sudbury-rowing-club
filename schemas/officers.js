@@ -2,13 +2,13 @@ import {
   orderRankField,
   orderRankOrdering,
 } from "@sanity/orderable-document-list";
-import { MdPeople } from "react-icons/md";
+import { UsersIcon } from "@sanity/icons";
 
 export default {
   name: "officers",
   type: "document",
   title: "Club Officers",
-  icon: MdPeople,
+  icon: UsersIcon,
   fields: [
     { name: "role", type: "string", title: "Role" },
     { name: "name", type: "string", title: "Name" },

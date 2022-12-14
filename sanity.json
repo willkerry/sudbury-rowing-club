@@ -1,11 +1,11 @@
 {
   "root": true,
-  "project": {
-    "name": "Sudbury Rowing Club"
-  },
   "api": {
     "projectId": "gvxge7ps",
     "dataset": "production"
+  },
+  "project": {
+    "name": "Sudbury Rowing Club"
   },
   "plugins": [
     "@sanity/base",

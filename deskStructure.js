@@ -1,8 +1,7 @@
-import S from "@sanity/desk-tool/structure-builder";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { MdPeople } from "react-icons/md";
 
-export default () =>
+export default (S) =>
   S.list()
     .title("Content")
     .items([

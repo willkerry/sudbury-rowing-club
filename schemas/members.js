@@ -20,7 +20,7 @@ export default {
       name: "meta",
       type: "array",
       options: {
-        editModal: "popover",
+        modal: "popover",
       },
       of: [
         {

@@ -2,7 +2,6 @@ export default {
   name: "regattaSettings",
   type: "document",
   title: "Regatta Settings",
-  // __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
   fields: [
     {
       name: "title",
@@ -50,9 +49,6 @@ export default {
                   name: "caption",
                   type: "string",
                   title: "Caption",
-                  options: {
-                    isHighlighted: true,
-                  },
                 },
               ],
             },
@@ -68,8 +64,9 @@ export default {
       fields: [
         { name: "display", type: "boolean" },
         {
-          name: "text", type: 'array',
-          of: [{ type: 'block' }]
+          name: "text",
+          type: "array",
+          of: [{ type: "block" }],
         },
         {
           name: "type",

@@ -3,6 +3,7 @@ import { MdEdit } from "react-icons/md";
 export default {
   name: "author",
   type: "document",
+  title: "Author",
   icon: MdEdit,
   fields: [
     { name: "firstName", type: "string", title: "First Name" },
