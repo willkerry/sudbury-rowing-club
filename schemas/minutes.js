@@ -1,5 +1,4 @@
 import { MdSummarize } from "react-icons/md";
-import {format} from 'date-fns';
 
 export default {
   name: "minutes",
@@ -26,8 +25,11 @@ export default {
     },
     prepare(selection) {
       const { title, date } = selection;
-      const dateObject = new Date(date);
-      const dateString = format(dateObject, "d MMMM yyyy");
+      const dateString = new Date(date).toLocaleDateString("en-GB", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
 
       return {
         title: title,
