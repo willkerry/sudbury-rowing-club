@@ -1,4 +1,4 @@
-import { IoImageOutline, IoChatboxOutline, IoInformationCircleOutline } from "react-icons/io5";
+import { ImageIcon, BlockquoteIcon, InfoOutlineIcon } from "@sanity/icons";
 
 export default {
   name: "richText",
@@ -6,8 +6,8 @@ export default {
   type: "array",
   of: [
     { type: "block" },
-    { type: "figure", icon: IoImageOutline },
-    { type: "quote", icon: IoChatboxOutline },
-    { type: "note", icon: IoInformationCircleOutline },
+    { type: "figure", icon: ImageIcon },
+    { type: "quote", icon: BlockquoteIcon },
+    { type: "note", icon: InfoOutlineIcon },
   ],
 };

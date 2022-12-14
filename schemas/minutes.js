@@ -1,10 +1,10 @@
-import { MdSummarize } from "react-icons/md";
+import { DocumentTextIcon } from "@sanity/icons";
 
 export default {
   name: "minutes",
   type: "document",
   title: "Minutes",
-  icon: MdSummarize,
+  icon: DocumentTextIcon,
   fields: [
     { name: "date", type: "datetime", title: "Date" },
     { name: "file", type: "file", title: "File" },

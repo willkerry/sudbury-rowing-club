@@ -1,10 +1,10 @@
-import { HiOutlineSupport } from "react-icons/hi";
+import { DropIcon } from "@sanity/icons";
 
 export default {
   name: "safety",
   type: "document",
   title: "Safety",
-  icon: HiOutlineSupport,
+  icon: DropIcon,
   fields: [
     { name: "title", type: "string", title: "Title" },
     { name: "body", type: "richText", title: "Body" },

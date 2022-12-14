@@ -1,11 +1,11 @@
-import { MdTraffic } from "react-icons/md";
+import { WarningOutlineIcon } from "@sanity/icons";
 
 export default {
   name: "safetyStatus",
   type: "document",
   title: "Safety Status",
-  icon: MdTraffic,
-  __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'], 
+  icon: WarningOutlineIcon,
+  __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
   fields: [
     {
       name: "status",
@@ -22,6 +22,10 @@ export default {
       },
     },
     { name: "description", type: "text" },
-    { name: "display", type: "boolean", description: "Display the safety widget" },
+    {
+      name: "display",
+      type: "boolean",
+      description: "Display the safety widget",
+    },
   ],
 };

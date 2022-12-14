@@ -1,10 +1,10 @@
-import { MdEdit } from "react-icons/md";
+import { EditIcon } from "@sanity/icons";
 
 export default {
   name: "author",
   type: "document",
   title: "Author",
-  icon: MdEdit,
+  icon: EditIcon,
   fields: [
     { name: "firstName", type: "string", title: "First Name" },
     { name: "surname", type: "string" },

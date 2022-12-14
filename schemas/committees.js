@@ -1,10 +1,10 @@
-import { MdQuestionAnswer} from "react-icons/md";
+import { CommentIcon } from "@sanity/icons";
 
 export default {
   name: "committees",
   type: "document",
   title: "Committees",
-  icon: MdQuestionAnswer,
+  icon: CommentIcon,
   fields: [
     { name: "title", type: "string", title: "Title" },
     { name: "description", type: "text", title: "Description", rows: 2 },

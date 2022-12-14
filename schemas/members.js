@@ -1,10 +1,10 @@
-import { MdSpeakerNotes } from "react-icons/md";
+import { BillIcon } from "@sanity/icons";
 
 export default {
   name: "members",
   type: "document",
   title: "Members’ Notices",
-  icon: MdSpeakerNotes,
+  icon: BillIcon,
   fields: [
     { name: "title", type: "string", required: true },
     {

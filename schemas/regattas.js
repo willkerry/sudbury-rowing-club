@@ -1,10 +1,10 @@
-import { MdEvent } from "react-icons/md";
+import { CalendarIcon } from "@sanity/icons";
 
 export default {
   name: "regattas",
   title: "Regattas",
   type: "document",
-  icon: MdEvent,
+  icon: CalendarIcon,
   fields: [
     { name: "date", title: "Date", type: "date", required: true },
     { name: "number", title: "Number", type: "number", required: true },

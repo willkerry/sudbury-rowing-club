@@ -1,7 +1,10 @@
+import { CogIcon } from "@sanity/icons";
+
 export default {
   name: "regattaSettings",
   type: "document",
   title: "Regatta Settings",
+  icon: CogIcon,
   fields: [
     {
       name: "title",

@@ -14,8 +14,6 @@ specifiers:
   '@sanity/vision': ^3.0.6
   react: ^18.2.0
   react-dom: ^18.2.0
-  react-feather: ^2.0.10
-  react-icons: ^4.4.0
   sanity: ^3.0.6
   sanity-plugin-dashboard-widget-vercel: ^2.0.1
   sanity-plugin-vercel-deploy: ^2.1.6
@@ -35,8 +33,6 @@ dependencies:
   '@sanity/vision': 3.0.6_5fa2ds2vygxoxxyvi4nzoryufu
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-feather: 2.0.10_react@18.2.0
-  react-icons: 4.7.1_react@18.2.0
   sanity: 3.0.6_2zpt4ilzykmne4yndyzrqd4gdm
   sanity-plugin-dashboard-widget-vercel: 2.0.1_2u5fxbdhenkt3sswrsxooec4xu
   sanity-plugin-vercel-deploy: 2.1.6_2zpt4ilzykmne4yndyzrqd4gdm
@@ -3988,15 +3984,6 @@ packages:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
 
-  /react-feather/2.0.10_react@18.2.0:
-    resolution: {integrity: sha512-BLhukwJ+Z92Nmdcs+EMw6dy1Z/VLiJTzEQACDUEnWMClhYnFykJCGWQx+NmwP/qQHGX/5CzQ+TGi8ofg2+HzVQ==}
-    peerDependencies:
-      react: '>=16.8.6'
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
-    dev: false
-
   /react-focus-lock/2.9.2_react@18.2.0:
     resolution: {integrity: sha512-5JfrsOKyA5Zn3h958mk7bAcfphr24jPoMoznJ8vaJF6fUrPQ8zrtEd3ILLOK8P5jvGxdMd96OxWNjDzATfR2qw==}
     peerDependencies:
@@ -4019,14 +4006,6 @@ packages:
     resolution: {integrity: sha512-prq82ofMbnRyj5wqDe8hsTRcdR25jQ+B8KtCS7BLCzjFHAwNuCjRwzPuP4eYLsEBjEIeYd6try+pdLdw0kPkpg==}
     peerDependencies:
       react: ^16.8.0 || ^17
-    dependencies:
-      react: 18.2.0
-    dev: false
-
-  /react-icons/4.7.1_react@18.2.0:
-    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
-    peerDependencies:
-      react: '*'
     dependencies:
       react: 18.2.0
     dev: false

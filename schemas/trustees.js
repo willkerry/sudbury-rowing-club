@@ -1,10 +1,10 @@
-import { MdSupervisorAccount } from "react-icons/md";
+import { UsersIcon } from "@sanity/icons";
 
 export default {
   name: "trustees",
   type: "document",
   title: "Trustees",
-  icon: MdSupervisorAccount,
+  icon: UsersIcon,
   fields: [
     { name: "firstName", type: "string", title: "First Name" },
     { name: "surname", type: "string", title: "Surname" },

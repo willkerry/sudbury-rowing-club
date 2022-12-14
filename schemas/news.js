@@ -1,10 +1,10 @@
-import { MdRssFeed } from "react-icons/md/";
+import { BookIcon } from "@sanity/icons";
 
 export default {
   name: "news",
   type: "document",
   title: "News",
-  icon: MdRssFeed,
+  icon: BookIcon,
   fields: [
     {
       name: "title",
