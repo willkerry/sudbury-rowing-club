@@ -1,7 +1,9 @@
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import Link from "@/components/stour/link";
+import { urlFor } from "@/lib/sanity";
 import { Officer } from "@/types/governance";
 import { Popover, Transition } from "@headlessui/react";
+import Image from "next/image";
 import NextLink from "next/link";
 import {
   HelpCircle,
@@ -25,6 +27,18 @@ const Officers = ({ officers }: Props) => (
               <div className="font-bold tracking-widest text-gray-400 uppercase">
                 TBA
               </div>
+            ) : officer.image ? (
+              <Image
+                src={urlFor(officer.image._id)
+                  .crop("entropy")
+                  .fit("clip")
+                  .size(500, 500)
+                  .sharpen(30)
+                  .url()}
+                fill
+                className="object-cover"
+                alt={officer.name || ""}
+              />
             ) : (
               <ImageIcon className="text-gray-400" />
             )}

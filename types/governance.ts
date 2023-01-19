@@ -5,6 +5,10 @@ export type Officer = {
   vacant?: boolean;
   description?: string;
   hasEmail?: boolean;
+  image?: {
+    _id: string;
+    lqip: string;
+  };
 };
 
 export type Committee = {

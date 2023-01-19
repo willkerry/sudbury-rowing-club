@@ -62,6 +62,10 @@ export const getStaticProps = async () => {
         vacant,
         description,
         "hasEmail": email != null,
+        "image": image.image {
+          "_id": asset->_id,
+          "lqip": asset->metadata.lqip,
+        }
       },
       "committees": *[_type == "committees" && !(_id in path("drafts.**"))] | order(title desc){
         _id,
@@ -92,6 +96,7 @@ export const getStaticProps = async () => {
 		  } 
     }`
   );
+
   return {
     props: {
       committees: data.committees,
