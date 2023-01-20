@@ -8,6 +8,7 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { BASE_URL } from "@/lib/constants";
+import { urlFor } from "@/lib/sanity";
 import sanityClient from "@/lib/sanity.server";
 import {
   Committee,
@@ -16,44 +17,17 @@ import {
   Officer,
 } from "@/types/governance";
 import groq from "groq";
-import { NextPage } from "next";
+import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 
-type Props = {
-  officers: Officer[];
-  vicePresidents: NonExecutiveOfficer[];
-  trustees: NonExecutiveOfficer[];
-  committees: Committee[];
-  documents: DocumentGroup[];
-};
-
-const Governance: NextPage<Props> = ({
-  officers,
-  committees,
-  vicePresidents,
-  trustees,
-  documents,
-}) => (
-  <Layout>
-    <NextSeo
-      openGraph={{
-        images: [{ url: `${BASE_URL}/assets/og/goverance.png` }],
-        title: "Governance",
-      }}
-      title="Governance"
-    />
-    <HeroTitle prose title="Governance" />
-    <Container className="my-16">
-      <Officers officers={officers} />
-      <Committees committees={committees} />
-      <NonExec trustees={trustees} vicePresidents={vicePresidents} />
-      <Documents documents={documents} />
-    </Container>
-  </Layout>
-);
-
 export const getStaticProps = async () => {
-  const data = await sanityClient.fetch(
+  const data = await sanityClient.fetch<{
+    officers: Officer[];
+    committees: Committee[];
+    vicePresidents: NonExecutiveOfficer[];
+    trustees: NonExecutiveOfficer[];
+    documents: DocumentGroup[];
+  }>(
     groq`{
       "officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(orderRank){
         _id,
@@ -97,15 +71,45 @@ export const getStaticProps = async () => {
     }`
   );
 
+  data.officers.forEach((officer) => {
+    if (officer.image) {
+      officer.image.url = urlFor(officer.image._id)
+        .crop("entropy")
+        .fit("clip")
+        .size(500, 500)
+        .sharpen(30)
+        .url();
+    }
+  });
+
   return {
-    props: {
-      committees: data.committees,
-      documents: data.documents,
-      officers: data.officers,
-      trustees: data.trustees,
-      vicePresidents: data.vicePresidents,
-    },
+    props: data,
   };
 };
+
+const Governance: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  officers,
+  committees,
+  vicePresidents,
+  trustees,
+  documents,
+}) => (
+  <Layout>
+    <NextSeo
+      openGraph={{
+        images: [{ url: `${BASE_URL}/assets/og/goverance.png` }],
+        title: "Governance",
+      }}
+      title="Governance"
+    />
+    <HeroTitle prose title="Governance" />
+    <Container className="my-16">
+      <Officers officers={officers} />
+      <Committees committees={committees} />
+      <NonExec trustees={trustees} vicePresidents={vicePresidents} />
+      <Documents documents={documents} />
+    </Container>
+  </Layout>
+);
 
 export default Governance;

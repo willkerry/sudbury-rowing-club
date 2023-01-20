@@ -29,13 +29,10 @@ const Officers = ({ officers }: Props) => (
               </div>
             ) : officer.image ? (
               <Image
-                src={urlFor(officer.image._id)
-                  .crop("entropy")
-                  .fit("clip")
-                  .size(500, 500)
-                  .sharpen(30)
-                  .url()}
+                src={officer.image.url}
                 fill
+                placeholder="blur"
+                blurDataURL={officer.image.lqip}
                 className="object-cover"
                 alt={officer.name || ""}
               />

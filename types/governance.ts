@@ -8,6 +8,7 @@ export type Officer = {
   image?: {
     _id: string;
     lqip: string;
+    url: string;
   };
 };
 
