@@ -1,4 +1,4 @@
-import { Committee } from "@/types/governance";
+import type { Governance } from "@/lib/queries/fetch-governance";
 import {
   Description,
   GovGrid,
@@ -7,7 +7,7 @@ import {
 } from "@/components/governance";
 
 type Props = {
-  committees: Committee[];
+  committees: Governance["committees"];
 };
 
 const Committees = ({ committees }: Props) => (

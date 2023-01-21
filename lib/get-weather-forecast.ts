@@ -1,21 +1,12 @@
-import axios from "axios";
-import { CLUB_LOCATION } from "./constants";
+import fetchWeatherForecast, {
+  WeatherCodeNumber,
+} from "@/lib/queries/fetch-forecast";
 
-// prettier-ignore
-export type WeatherCodeNumber = 0 |  1 |  2 |  3 |
-                                                   45 |           48 |
-                                    51 |      53 | 55 | 56 | 57 |
-                                    61 |      63 | 65 | 66 | 67 |
-                                    71 |      73 | 75 |      77 |
-                               80 | 81 | 82 |      85 | 86 |
-                                                   95 | 96 |           99;
-
-// prettier-ignore
 export const weatherCodes: Record<WeatherCodeNumber, string> = {
-   0: "Clear",
-   1: "Mainly clear",
-   2: "Partly cloudy",
-   3: "Overcast",
+  0: "Clear",
+  1: "Mainly clear",
+  2: "Partly cloudy",
+  3: "Overcast",
   45: "Fog",
   48: "Depositing rime fog",
   51: "Light drizzle",
@@ -42,43 +33,24 @@ export const weatherCodes: Record<WeatherCodeNumber, string> = {
   99: "Thunderstorm",
 };
 
-interface ForecastResponse {
-  latitude: number;
-  longitude: number;
-  generationtime_ms: number;
-  utc_offset_seconds: number;
-  timezone: string;
-  timezone_abbreviation: string;
-  elevation: number;
-  daily_units: {
-    time: string;
-    weathercode: string;
-  };
-  daily: {
-    temperature_2m_max: number[];
-    time: Date[];
-    weathercode: WeatherCodeNumber[];
-    windspeed_10m_max: number[];
-    winddirection_10m_dominant: number[];
-  };
+enum CardinalDirection {
+  N,
+  NNE,
+  NE,
+  ENE,
+  E,
+  ESE,
+  SE,
+  SSE,
+  S,
+  SSW,
+  SW,
+  WSW,
+  W,
+  WNW,
+  NW,
+  NNW,
 }
-
-/**
- * Fetches the weather forecast for the club location.
- */
-const fetchWeatherForecast = async () => {
-  const url = "https://api.open-meteo.com/v1/forecast";
-  const params = {
-    latitude: CLUB_LOCATION[0],
-    longitude: CLUB_LOCATION[1],
-    daily:
-      "weathercode,temperature_2m_max,windspeed_10m_max,winddirection_10m_dominant",
-    timezone: "Europe/London",
-  };
-  return await axios
-    .get<ForecastResponse>(url, { params })
-    .then((res) => res.data);
-};
 
 /**
  * Converts mph windspeeds to the Beaufort scale, clumsily.
@@ -114,78 +86,50 @@ const kphToBeaufort = (kph: number) => {
   }
 };
 
+const degreesToInt = (degrees: number) => {
+  const int = Math.round(degrees / 22.5);
+  return int === 16 ? 0 : int;
+};
+
+const intToCardinal = (int: number): CardinalDirection => {
+  if (int < 0 || int > 15) throw new Error("Invalid integer");
+  return CardinalDirection[Math.round(int)] as unknown as CardinalDirection;
+};
+
 /**
  * Converts a wind direction in degrees to a compass direction.
  */
 const degreesToCardinal = (degrees: number) => {
-  const directions = [
-    "N",
-    "NNE",
-    "NE",
-    "ENE",
-    "E",
-    "ESE",
-    "SE",
-    "SSE",
-    "S",
-    "SSW",
-    "SW",
-    "WSW",
-    "W",
-    "WNW",
-    "NW",
-    "NNW",
-    "N",
-  ];
-  const index = Math.round(degrees / 22.5);
-  return directions[index];
+  const int = degreesToInt(degrees);
+  return intToCardinal(int);
 };
-
-export interface Forecast {
-  beaufort: number;
-  code: WeatherCodeNumber;
-  maxTemp: number;
-  windDirection: number;
-  windDirectionText: string;
-  windSpeed: number;
-  date: Date;
-}
 
 /**
  * Fetches the weather forecast for the club location and returns a Forecast
  * array for the next 7 days.
  */
-const getWeatherForecast: () => Promise<Forecast[]> = async () => {
+const getWeatherForecast = async () => {
   const response = await fetchWeatherForecast();
 
   if (!response) {
     throw new Error("No response from Open Meteo API");
   }
 
-  console.log("Fetcher Ran", { response });
-  const {
-    time,
-    weathercode,
-    temperature_2m_max: temp,
-    windspeed_10m_max: wind,
-    winddirection_10m_dominant: windDir,
-  } = response.daily;
+  const { daily } = response;
 
-  const forecast: Forecast[] = [];
-
-  for (let i = 0; i < time.length; i++) {
-    forecast.push({
-      code: weathercode[i],
-      maxTemp: Math.round(temp[i]),
-      windSpeed: Math.round(wind[i]),
-      windDirection: windDir[i],
-      windDirectionText: degreesToCardinal(windDir[i]),
-      beaufort: kphToBeaufort(wind[i]),
-      date: time[i],
-    });
-  }
-
-  return forecast;
+  return daily.time.map((time, index) => {
+    return {
+      code: daily.weathercode[index],
+      maxTemp: daily.temperature_2m_max[index],
+      windSpeed: daily.windspeed_10m_max[index],
+      windDirection: daily.winddirection_10m_dominant[index],
+      windDirectionText: degreesToCardinal(
+        daily.winddirection_10m_dominant[index]
+      ),
+      beaufort: kphToBeaufort(daily.windspeed_10m_max[index]),
+      date: time,
+    };
+  });
 };
 
 export default getWeatherForecast;

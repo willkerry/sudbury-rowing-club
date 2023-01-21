@@ -1,7 +1,7 @@
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import Link from "@/components/stour/link";
 import { urlFor } from "@/lib/sanity";
-import { Officer } from "@/types/governance";
+import type { Governance } from "@/lib/queries/fetch-governance";
 import { Popover, Transition } from "@headlessui/react";
 import Image from "next/image";
 import NextLink from "next/link";
@@ -13,7 +13,7 @@ import {
 } from "react-feather";
 
 type Props = {
-  officers: Officer[];
+  officers: Governance["officers"];
 };
 
 const Officers = ({ officers }: Props) => (
@@ -29,7 +29,12 @@ const Officers = ({ officers }: Props) => (
               </div>
             ) : officer.image ? (
               <Image
-                src={officer.image.url}
+                src={urlFor(officer.image._id)
+                  .crop("entropy")
+                  .fit("clip")
+                  .size(500, 500)
+                  .sharpen(30)
+                  .url()}
                 fill
                 placeholder="blur"
                 blurDataURL={officer.image.lqip}

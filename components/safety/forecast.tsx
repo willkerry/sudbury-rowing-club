@@ -1,5 +1,4 @@
 import getWeatherForecast, {
-  Forecast,
   getYRURL,
   weatherCodes,
 } from "@/lib/get-weather-forecast";
@@ -12,13 +11,9 @@ import DateFormatter from "../utils/date-formatter";
 import cn from "classnames";
 
 const ForecastComponent = () => {
-  const fetcher = () => getWeatherForecast();
-
-  const { data: forecast } = useSWR<Forecast[]>("getWeatherForecast", fetcher, {
-    suspense: true,
-    refreshInterval: 0,
-    dedupingInterval: 20000,
-  });
+  const { data: forecast } = useSWR("getWeatherForecast", () =>
+    getWeatherForecast()
+  );
 
   return (
     <div className="w-full p-3 bg-gray-100 sm:px-4">

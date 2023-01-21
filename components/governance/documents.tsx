@@ -1,10 +1,10 @@
 import { SectionTitle, SubTitle } from "@/components/governance";
 import Link from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
-import { DocumentGroup } from "@/types/governance";
+import type { Governance } from "@/lib/queries/fetch-governance";
 
 type Props = {
-  documents: DocumentGroup[];
+  documents: Governance["documents"];
 };
 
 const Documents = ({ documents }: Props) => (

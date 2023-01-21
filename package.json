@@ -21,6 +21,7 @@
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
     "@portabletext/react": "^2.0.0",
+    "@portabletext/types": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.1",
     "@sanity/image-url": "^1.0.2",
     "@south-paw/react-obfuscate-ts": "^1.0.2",
@@ -47,7 +48,8 @@
     "sharp": "^0.31.3",
     "snarkdown": "^2.0.0",
     "styled-components": "^5.3.6",
-    "swr": "^2.0.1"
+    "swr": "^2.0.1",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.1.2",
