@@ -1,37 +1,28 @@
 import { Download, ExternalLink } from "react-feather";
 import { NextSeo } from "next-seo";
 import { BASE_URL } from "lib/constants";
-import groq from "groq";
 import SafetyCard from "@/components/safety";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
-import sanityClient from "@/lib/sanity.server";
 import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
-import { GetStaticProps, NextPage } from "next";
-import { PortableTextProps } from "@portabletext/react";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import fetchSafety from "@/lib/queries/fetch-safety";
 
-type SafetyItem = {
-  _id: string;
-  _updatedAt: string;
-  title: string;
-  body: PortableTextProps["value"];
-  document: {
-    title: string;
-    url: string;
-  };
-  link: {
-    title: string;
-    url: string;
+export const getStaticProps: GetStaticProps<{
+  safety: Awaited<ReturnType<typeof fetchSafety>>;
+}> = async () => {
+  return {
+    props: {
+      safety: await fetchSafety(),
+    },
   };
 };
 
-type Props = {
-  safety: SafetyItem[];
-};
-
-const Safety: NextPage<Props> = ({ safety }) => (
+const Safety: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  safety,
+}) => (
   <Layout>
     <NextSeo
       title="Safety | Sudbury Rowing Club"
@@ -90,38 +81,3 @@ const Safety: NextPage<Props> = ({ safety }) => (
 );
 
 export default Safety;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await sanityClient.fetch(
-    groq`{
-      "safety": *[_type == "safety" && !(_id in path("drafts.**"))] | order(_updatedAt asc){
-        _updatedAt,
-        _id,
-        title,
-        body[]{
-          ...,
-          _type == "figure" => {
-            "_id": @.image.asset->_id,       
-            "altText": @.image.asset->altText,
-            "description": @.image.asset->description,   
-            "lqip": @.image.asset->metadata.lqip,
-            "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio, 
-          },
-        },
-        document != null => {
-          document {
-            title,
-            "url": asset->url,
-            "extension": asset->extension,
-          },
-        },
-        link != null => { link },
-      }
-    }`
-  );
-  return {
-    props: {
-      safety: data.safety,
-    },
-  };
-};
