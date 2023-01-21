@@ -3,51 +3,32 @@ import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
-import { PortableTextProps } from "@portabletext/react";
 import cn from "classnames";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import FileGroup from "./file-group";
+import type { Notice } from "@/lib/queries/fetch-notices";
 
-export type FileGroupProps = {
-  fileItems: {
-    title: string;
-    documents: {
-      _key: string;
-      title: string;
-      url: string;
-    }[];
-  }[];
-};
+type Props = { notice: Notice };
 
-export type CollapsibleCardProps = {
-  title: string;
-  body: PortableTextProps["value"];
-  updated: string;
-  created: string;
-  items: FileGroupProps["fileItems"];
-  meta: {
-    _key: string;
-    label: string;
-    value: string;
-  }[];
-  slug?: string;
-};
+export const NoticeBody = ({ notice }: Props) => {
+  const {
+    body,
+    documents: items,
+    meta,
+    _createdAt: created,
+    _updatedAt: updated,
+    slug,
+  } = notice;
 
-export const NoticeBody = ({
-  body,
-  items,
-  meta,
-  updated,
-  created,
-  link,
-}: Omit<CollapsibleCardProps, "title"> & { link?: string }) => {
   const [splitItemCount, setSplitItemCount] = useState(0);
+
   useEffect(() => {
     if (items) {
       setSplitItemCount(Math.ceil(items.length / 2));
     }
   }, [items]);
+
   return (
     <>
       {body && <Text portableText={body} className="p-4" />}
@@ -88,33 +69,23 @@ export const NoticeBody = ({
             />
           </span>
         </div>
-        {link && (
-          <Link
-            href={link}
-            className="transition-colors hover:text-black"
-            title="Open permalink"
-          >
-            <LinkIcon className="w-4 h-4" />
-          </Link>
-        )}
+        <Link
+          href={`../members/${slug}`}
+          className="transition-colors hover:text-black"
+          title="Open permalink"
+        >
+          <LinkIcon className="w-4 h-4" />
+        </Link>
       </div>
     </>
   );
 };
 
-const CollapsibleCard = ({
-  title,
-  body,
-  items,
-  meta,
-  updated,
-  created,
-  slug,
-}: CollapsibleCardProps) => (
+const CollapsibleCard = ({ notice }: Props) => (
   <Disclosure
     as="div"
     className="overflow-hidden border divide-y rounded"
-    id={slug}
+    id={notice.slug}
   >
     {({ open }) => (
       <>
@@ -127,7 +98,7 @@ const CollapsibleCard = ({
             className="transition duration-300 group-hover:text-black"
             as="h2"
           >
-            {title}
+            {notice.title}
           </Label>
           <ChevronDownIcon
             className={cn(
@@ -145,14 +116,7 @@ const CollapsibleCard = ({
           leaveTo="opacity-0"
         >
           <Disclosure.Panel className="divide-y">
-            <NoticeBody
-              body={body}
-              items={items}
-              meta={meta}
-              created={created}
-              updated={updated}
-              link={`../members/${slug}`}
-            />
+            <NoticeBody {...{ notice }} />
           </Disclosure.Panel>
         </Transition>
       </>

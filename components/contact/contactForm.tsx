@@ -10,15 +10,10 @@ import Button from "@/components/stour/button";
 import Center from "@/components/stour/center";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
 import onSubmit from "./onSubmit";
+import type { OfficerResponse } from "@/lib/queries/fetch-officer-names";
 
 const mailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-export type Contact = {
-  _id: string;
-  name: string;
-  role: string;
-};
 
 export type Message = {
   to: string;
@@ -29,7 +24,7 @@ export type Message = {
 
 type Props = {
   disabled?: boolean;
-  contacts: Contact[];
+  contacts: OfficerResponse[];
   initialValues: Message;
 };
 

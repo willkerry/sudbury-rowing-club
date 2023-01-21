@@ -9,6 +9,8 @@ import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import fetchSafety from "@/lib/queries/fetch-safety";
+import { useEffect, useState } from "react";
+import { fetchAll } from "@/lib/queries/sanity-fetch";
 
 export const getStaticProps: GetStaticProps<{
   safety: Awaited<ReturnType<typeof fetchSafety>>;

@@ -1,38 +1,39 @@
-import groq from "groq";
 import Head from "next/head";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
-import sanityClient from "@/lib/sanity.server";
+import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
 import {
-  FileGroupProps,
-  NoticeBody,
-} from "@/components/stour/collapsible-card/collapsible-card";
-import { GetStaticPaths, GetStaticProps } from "next";
-
-import { PortableTextProps } from "@portabletext/react";
+  type GetStaticPaths,
+  type GetStaticProps,
+  type InferGetStaticPropsType,
+  type NextPage,
+} from "next";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
-import { FC } from "react";
+import {
+  fetchNoticeSlugs,
+  fetchOneNotice,
+  type Notice,
+} from "@/lib/queries/fetch-notices";
 
-export interface Meta {
-  _key: string;
-  label: string;
-  value: string;
-}
+export const getStaticPaths: GetStaticPaths = async () => {
+  const slugs = await fetchNoticeSlugs();
+  const paths = slugs.map(({ slug }) => ({ params: { slug } }));
 
-export interface NoticeProps {
-  _createdAt: string;
-  _id: string;
-  _updatedAt: string;
-  body: PortableTextProps["value"];
-  documents: FileGroupProps["fileItems"];
-  meta: Meta[];
-  title: string;
-  slug: { current: string };
-}
+  return { paths, fallback: true };
+};
 
-const Notice: FC<{ notice: NoticeProps }> = ({ notice }) => (
+export const getStaticProps: GetStaticProps<{
+  notice: Notice;
+}> = async ({ params }) => {
+  const notice = await fetchOneNotice(params?.slug as string);
+  return { props: { notice }, revalidate: 60 };
+};
+
+const Notice: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  notice,
+}) => (
   <Layout>
     <Head>
       <title>{notice?.title}</title>
@@ -46,57 +47,10 @@ const Notice: FC<{ notice: NoticeProps }> = ({ notice }) => (
     </HeroTitle>
     <Container className="my-12 space-y-6 max-w-prose">
       <div className="overflow-hidden border divide-y rounded">
-        <NoticeBody
-          body={notice.body}
-          items={notice.documents}
-          meta={notice.meta}
-          created={notice._createdAt}
-          updated={notice._updatedAt}
-        />
+        <NoticeBody {...{ notice }} />
       </div>
     </Container>
   </Layout>
 );
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await sanityClient.fetch(
-    groq`*[_type == "members" && !(_id in path("drafts.**"))]{slug}`
-  );
-  const paths = data.map((item: { slug: { current: string } }) => ({
-    params: { slug: item.slug.current },
-  }));
-  return { paths, fallback: "blocking" };
-};
-
-export const getStaticProps: GetStaticProps<{
-  notice: NoticeProps;
-}> = async ({ params }) => {
-  const notice = await sanityClient.fetch(
-    groq`*[_type == "members" && !(_id in path("drafts.**")) && slug.current == $slug][0]{
-      _id,
-      _updatedAt,
-      _createdAt,
-      title,
-      body[]{
-          ...,
-          _type == "figure" => {
-             "_id": @.image.asset->_id,       
-             "altText": @.image.asset->altText,
-             "description": @.image.asset->description,   
-             "lqip": @.image.asset->metadata.lqip,
-             "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio, 
-          },
-      },
-      meta,
-      documents[] {
-        _key, 
-        title, 
-        documents[] { _key, title, "url": asset->url }
-      } 
-    }`,
-    { slug: params?.slug }
-  );
-  return { props: { notice }, revalidate: 60 };
-};
 
 export default Notice;

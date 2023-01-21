@@ -1,20 +1,17 @@
-import sanityClient from "@/lib/sanity.server";
-import groq from "groq";
 import Link from "@/components/stour/link";
 import TextPage from "@/components/layouts/text-page";
-import { NextPage } from "next";
+import { InferGetStaticPropsType, NextPage } from "next";
+import fetchMinutes from "@/lib/queries/fetch-minutes";
 
-type MinuteType = {
-  _id: string;
-  committee: string;
-  date: string;
-  file: string;
-};
-type Props = {
-  minutes: MinuteType[];
+export const getStaticProps = async () => {
+  const minutes = await fetchMinutes();
+
+  return { props: { minutes } };
 };
 
-const Minutes: NextPage<Props> = ({ minutes }) => (
+const Minutes: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  minutes,
+}) => (
   <TextPage title="Minutes">
     <table>
       <thead>
@@ -44,25 +41,3 @@ const Minutes: NextPage<Props> = ({ minutes }) => (
 );
 
 export default Minutes;
-
-export const getStaticProps = async () => {
-  const data = await sanityClient.fetch(
-    groq`*[_type == "minutes" && !(_id in path("drafts.**"))] | order(date desc)
-    {
-      _id,
-      date,
-      "file": file.asset->url,
-      "committee": committee->title
-    }`
-  );
-  const minutes = data.map((item: any) => ({
-    ...item,
-    committee: item.committee.split(" ")[0],
-    date: new Date(item.date).toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-    }),
-  }));
-  return { props: { minutes } };
-};
