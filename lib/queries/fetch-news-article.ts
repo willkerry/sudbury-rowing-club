@@ -1,8 +1,7 @@
 import groq from "groq";
 import { z } from "zod";
 import sanityClient from "../sanity.server";
-// @ts-ignore
-import type { TypedObject } from "@portabletext/types";
+import { ZTypedObject } from "./typed-object";
 
 export const articleFields = groq`
   _id,
@@ -51,21 +50,6 @@ const articleSummaryFields = groq`
   },
 `;
 
-const schemaForType =
-  <T>() =>
-  <S extends z.ZodType<T, any, any>>(arg: S) => {
-    return arg;
-  };
-
-const baseTypedObjectZ = z
-  .object({
-    _type: z.string(),
-    _key: z.string(),
-  })
-  .passthrough();
-
-export const typedObjectZ = schemaForType<TypedObject>()(baseTypedObjectZ);
-
 const ZArticle = z.object({
   _id: z.string(),
   slug: z.string(),
@@ -79,7 +63,7 @@ const ZArticle = z.object({
       _id: z.string(),
     })
     .nullable(),
-  body: z.array(typedObjectZ).nullable(),
+  body: z.array(ZTypedObject).nullable(),
   featuredImage: z
     .object({
       alt: z.string().nullable(),
