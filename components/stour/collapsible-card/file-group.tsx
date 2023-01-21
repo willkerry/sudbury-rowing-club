@@ -1,24 +1,27 @@
 import Link from "@/components/stour/link";
-import { type FileGroupProps } from "./collapsible-card";
+import type { Notice } from "@/lib/queries/fetch-notices";
 
-const FileGroup = ({ fileItems }: FileGroupProps) => (
-  <div className="space-y-4">
-    {fileItems.map(
-      (item, i) =>
-        item.documents && (
-          <div key={i} className="flex flex-col">
-            {item.title && (
-              <h3 className="font-medium text-gray-700">{item.title}</h3>
-            )}
-            {item.documents.map((doc) => (
-              <Link key={doc._key} href={`${doc.url}?dl=`} download>
-                {doc.title}
-              </Link>
-            ))}
-          </div>
-        )
-    )}
-  </div>
-);
+type FileGroupProps = {
+  fileItems: Notice["documents"];
+};
+
+const FileGroup = ({ fileItems }: FileGroupProps) => {
+  if (!fileItems) return null;
+
+  return (
+    <div className="space-y-4">
+      {fileItems.map(({ _key, title, documents }) => (
+        <div key={_key} className="flex flex-col">
+          {title && <h3 className="font-medium text-gray-700">{title}</h3>}
+          {documents.map(({ _key, url, title }) => (
+            <Link key={_key} href={`${url}?dl=`} download>
+              {title}
+            </Link>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default FileGroup;

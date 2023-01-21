@@ -81,7 +81,7 @@ export const NoticeBody = ({ notice }: Props) => {
   );
 };
 
-const CollapsibleCard = ({ notice }: Props) => (
+export const CollapsibleCard = ({ notice }: Props) => (
   <Disclosure
     as="div"
     className="overflow-hidden border divide-y rounded"
