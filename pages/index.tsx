@@ -4,11 +4,11 @@ import Layout from "@/components/layouts/layout";
 import Notice from "@/components/regatta/notice";
 import { type NoteProps } from "@/components/stour/note/note";
 import sanityClient from "@/lib/sanity.server";
-import type Post from "@/types/post";
 import { type PortableTextProps } from "@portabletext/react";
 import groq from "groq";
 import { NextSeo } from "next-seo";
 import { NextPage, type GetStaticProps } from "next/types";
+import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
@@ -46,10 +46,10 @@ export type LandingPageProps = {
   }[];
 };
 
-const Home: NextPage<{ news: Post[]; landingPage: LandingPageProps }> = ({
-  news,
-  landingPage,
-}) => (
+const Home: NextPage<{
+  news: ArticleSummary[];
+  landingPage: LandingPageProps;
+}> = ({ news, landingPage }) => (
   <Layout>
     <NextSeo
       title={landingPage.title}

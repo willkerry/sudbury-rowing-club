@@ -19,10 +19,14 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
                 color: ${featuredImage.foreground};
               }
             `}</style>
+
             <Image
               src={urlFor(featuredImage._id).width(1536).fit("max").url()}
               alt={featuredImage.lqip}
+              width={768}
+              height={768 / featuredImage.aspectRatio}
             />
+
             {featuredImage.caption && (
               <Caption caption={featuredImage.caption} />
             )}
@@ -30,6 +34,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
         </div>
       </>
     );
+
   if (featuredImage)
     return (
       <div className="flex-row items-center max-w-3xl gap-8 mx-auto mb-8 sm:flex md:mb-16">

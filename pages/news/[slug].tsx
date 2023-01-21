@@ -13,7 +13,6 @@ import {
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
-import { postSlugsQuery } from "@/lib/queries";
 import { urlFor } from "@/lib/sanity";
 import type {
   GetStaticPaths,
@@ -22,7 +21,10 @@ import type {
 } from "next/types";
 import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
-import fetchOneArticle, { Article } from "@/lib/queries/fetch-news-article";
+import fetchOneArticle, {
+  Article,
+  fetchAllSlugs,
+} from "@/lib/queries/fetch-news-article";
 import { ParsedUrlQuery } from "querystring";
 
 export const getStaticProps = async ({
@@ -34,7 +36,7 @@ export const getStaticProps = async ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(postSlugsQuery);
+  const paths = await fetchAllSlugs();
   return {
     paths: paths.map((slug: string) => ({ params: { slug } })),
     fallback: true,

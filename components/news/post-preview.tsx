@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import DateFormatter from "../utils/date-formatter";
-import type Post from "../../types/post";
+import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 
-const PostPreview = ({ post }: { post: Post }) => (
+const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li>
     <article id={post.slug}>
       <Link as={`/news/${post.slug}`} href="/news/[slug]" legacyBehavior>
@@ -18,7 +18,7 @@ const PostPreview = ({ post }: { post: Post }) => (
                   .fit("crop")
                   .crop("entropy")
                   .url()}
-                alt={post.featuredImage.alt}
+                alt={post.featuredImage.alt || post.title}
                 placeholder="blur"
                 blurDataURL={post.featuredImage.lqip}
                 quality={30}
