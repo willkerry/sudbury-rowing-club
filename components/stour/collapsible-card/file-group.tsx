@@ -13,6 +13,7 @@ const FileGroup = ({ fileItems }: FileGroupProps) => {
       {fileItems.map(({ _key, title, documents }) => (
         <div key={_key} className="flex flex-col">
           {title && <h3 className="font-medium text-gray-700">{title}</h3>}
+
           {documents.map(({ _key, url, title }) => (
             <Link key={_key} href={`${url}?dl=`} download>
               {title}

@@ -40,14 +40,14 @@ const Notice: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     </Head>
     <HeroTitle prose title={notice?.title} transparent>
       <div className="h-2" />
-      <Label>Members’ Notices</Label>{" "}
+      <Label>Members’ Notices</Label>
       <Link href="/members" arrow className="text-sm font-medium">
         View all
       </Link>
     </HeroTitle>
     <Container className="my-12 space-y-6 max-w-prose">
       <div className="overflow-hidden border divide-y rounded">
-        <NoticeBody {...{ notice }} />
+        <NoticeBody notice={notice} />
       </div>
     </Container>
   </Layout>

@@ -12,29 +12,22 @@ import type { Notice } from "@/lib/queries/fetch-notices";
 type Props = { notice: Notice };
 
 export const NoticeBody = ({ notice }: Props) => {
-  const {
-    body,
-    documents: items,
-    meta,
-    _createdAt: created,
-    _updatedAt: updated,
-    slug,
-  } = notice;
-
   const [splitItemCount, setSplitItemCount] = useState(0);
 
   useEffect(() => {
-    if (items) {
-      setSplitItemCount(Math.ceil(items.length / 2));
+    if (notice.documents) {
+      setSplitItemCount(Math.ceil(notice.documents.length / 2));
     }
-  }, [items]);
+  }, [notice]);
+
+  if (!notice) return null;
 
   return (
     <>
-      {body && <Text portableText={body} className="p-4" />}
-      {meta && (
+      {notice.body && <Text portableText={notice.body} className="p-4" />}
+      {notice.meta && (
         <div className="flex py-2.5 text-sm bg-gray-50">
-          {meta.map((item) => (
+          {notice.meta.map((item) => (
             <div className="px-4" key={item._key}>
               <Label className="text-xs select-none">{`${item.label}: `}</Label>
               <span className="text-xs font-medium disambiguate !text-gray-800">
@@ -44,10 +37,10 @@ export const NoticeBody = ({ notice }: Props) => {
           ))}
         </div>
       )}
-      {items && (
+      {notice.documents && (
         <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
-          <FileGroup fileItems={items.slice(0, splitItemCount)} />
-          <FileGroup fileItems={items.slice(splitItemCount)} />
+          <FileGroup fileItems={notice.documents.slice(0, splitItemCount)} />
+          <FileGroup fileItems={notice.documents.slice(splitItemCount)} />
         </div>
       )}
       <div className="flex justify-between gap-4 px-4 py-3 text-xs font-medium text-gray-500 bg-gray-100">
@@ -55,7 +48,7 @@ export const NoticeBody = ({ notice }: Props) => {
           <span>
             Created:{" "}
             <DateFormatter
-              dateString={created}
+              dateString={notice._createdAt}
               format="short"
               className="text-gray-700 disambiguate"
             />
@@ -63,14 +56,14 @@ export const NoticeBody = ({ notice }: Props) => {
           <span>
             Updated:{" "}
             <DateFormatter
-              dateString={updated}
+              dateString={notice._updatedAt}
               format="time"
               className="text-gray-700 disambiguate"
             />
           </span>
         </div>
         <Link
-          href={`../members/${slug}`}
+          href={`../members/${notice.slug}`}
           className="transition-colors hover:text-black"
           title="Open permalink"
         >
