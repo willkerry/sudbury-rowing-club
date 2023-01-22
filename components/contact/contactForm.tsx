@@ -1,7 +1,6 @@
 import { Form, Field } from "react-final-form";
 import { FORM_ERROR } from "final-form";
 import TextareaAutosize from "react-textarea-autosize";
-import getRandomName from "@/lib/random-name";
 import Input from "@/components/contact/fields/input";
 import Select from "@/components/contact/fields/select";
 import Error from "@/components/contact/views/error";
@@ -11,6 +10,7 @@ import Center from "@/components/stour/center";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
 import onSubmit from "./onSubmit";
 import type { OfficerResponse } from "@/lib/queries/fetch-officer-names";
+import { getWodehouseFullDetails } from "get-wodehouse-name";
 
 const mailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -44,7 +44,7 @@ type Props = {
  */
 const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const localDisabled = disabled;
-  const randomName = getRandomName();
+  const randomName = getWodehouseFullDetails();
   const optionArray = contacts.map((contact) => ({
     value: contact._id,
     label: `${contact.name} (${contact.role})`,
@@ -98,7 +98,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                   input={input}
                   label="Your name"
                   meta={meta}
-                  placeholder={randomName[0]}
+                  placeholder={randomName.firstName + " " + randomName.lastName}
                   type="text"
                 />
               )}
@@ -111,7 +111,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                   input={input}
                   label="Your email"
                   meta={meta}
-                  placeholder={randomName[1]}
+                  placeholder={randomName.email}
                   type="email"
                 />
               )}
