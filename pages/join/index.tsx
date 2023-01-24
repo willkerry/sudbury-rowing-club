@@ -78,7 +78,7 @@ const Join: NextPage = () => (
                 weeks.
               </p>
             </div>
-            <div className="max-w-md">
+            {/* <div className="max-w-md">
               <Note label="Course Dates" type="success">
                 We’re running two Learn to Row courses this Spring. Both run
                 13:00 to 16:00 on Saturday afternoons.
@@ -88,7 +88,7 @@ const Join: NextPage = () => (
                 </ul>
                 Please <Link href="join/apply">apply now.</Link>
               </Note>
-            </div>
+            </div> */}
           </div>
           <div className="prose">
             <p>

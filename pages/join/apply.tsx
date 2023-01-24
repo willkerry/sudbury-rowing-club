@@ -7,7 +7,7 @@ import { NextPage } from "next";
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row" ogImage="/assets/og/apply.png">
-    <Note label="Course Dates" type="success" size="small">
+    {/* <Note label="Course Dates" type="success" size="small">
       We’re running two Learn to Row courses this Spring. Both run 13:00 to
       16:00 on Saturday afternoons.
       <ul>
@@ -15,7 +15,7 @@ const LearnToRowApplicationForm: NextPage = () => (
         <li>Course 2: 23 Apr to 14 May 2022</li>
       </ul>{" "}
       Please <Link href="join/apply">apply now.</Link>
-    </Note>
+    </Note> */}
 
     <p>
       What’s the next step? After we receive your application, the Learn to Row
