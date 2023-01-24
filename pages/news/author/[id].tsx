@@ -9,6 +9,7 @@ import { NextSeo } from "next-seo";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await fetchAllAuthors();
+
   return {
     paths: paths.map(({ _id }) => ({
       params: {
@@ -37,7 +38,7 @@ export const getStaticProps = async ({
 
 export const AuthorArchive: NextPage<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ author }) => (
+> = ({ author = null }) => (
   <Layout>
     <NextSeo
       title={`Archive: ${author?.firstName} ${author?.surname}`}
@@ -55,7 +56,7 @@ export const AuthorArchive: NextPage<
     </div>
     <Container>
       <ul className="my-8">
-        {author.articles?.map(({ _id, slug, title, date }) => (
+        {author?.articles?.map(({ _id, slug, title, date }) => (
           <li key={_id} className="grid mb-2">
             <Link href={`/news/${slug}`}>{title}</Link>
             <Label className="text-xs">

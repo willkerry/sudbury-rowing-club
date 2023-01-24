@@ -41,14 +41,12 @@ const ZAllAuthorsResponse = ZAuthorResponse.pick({
 type Author = z.infer<typeof ZAuthorResponse>;
 type AuthorsResponse = z.infer<typeof ZAllAuthorsResponse>;
 
-const fetchAuthor = async <T extends string>(id: T) => {
+const fetchAuthor = async (id: string) => {
   const response = await sanityClient.fetch(authorQuery, {
     id,
   });
 
-  return ZAuthorResponse.parse(response) as Author & {
-    _id: T;
-  };
+  return ZAuthorResponse.parse(response);
 };
 
 const fetchAllAuthors = async () => {
