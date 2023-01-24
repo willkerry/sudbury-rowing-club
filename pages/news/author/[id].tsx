@@ -3,28 +3,41 @@ import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import sanityClient from "@/lib/sanity.server";
-import groq from "groq";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import fetchAuthor, { fetchAllAuthors } from "@/lib/queries/fetch-authors";
+import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 
-export interface Author {
-  _createdAt: string;
-  _id: string;
-  _rev: string;
-  _type: string;
-  _updatedAt: string;
-  firstName: string;
-  surname: string;
-}
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await fetchAllAuthors();
+  return {
+    paths: paths.map(({ _id }) => ({
+      params: {
+        id: _id,
+      },
+    })),
+    fallback: true,
+  };
+};
 
-export const AuthorArchive: NextPage<{ author: Author; feed: any[] }> = ({
-  author,
-  feed,
+export const getStaticProps = async ({
+  params,
 }: {
-  author: Author;
-  feed: any[];
-}) => (
+  params: {
+    id: string;
+  };
+}) => {
+  const author = await fetchAuthor(params?.id);
+
+  return {
+    props: {
+      author,
+    },
+  };
+};
+
+export const AuthorArchive: NextPage<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = ({ author }) => (
   <Layout>
     <NextSeo
       title={`Archive: ${author?.firstName} ${author?.surname}`}
@@ -42,11 +55,11 @@ export const AuthorArchive: NextPage<{ author: Author; feed: any[] }> = ({
     </div>
     <Container>
       <ul className="my-8">
-        {feed?.map((item) => (
-          <li key={item._id} className="grid mb-2">
-            <Link href={`/news/${item.slug.current}`}>{item.title}</Link>
+        {author.articles?.map(({ _id, slug, title, date }) => (
+          <li key={_id} className="grid mb-2">
+            <Link href={`/news/${slug}`}>{title}</Link>
             <Label className="text-xs">
-              <DateFormatter dateString={item.date} format="short" />
+              <DateFormatter dateString={date} format="short" />
             </Label>
           </li>
         ))}
@@ -56,24 +69,3 @@ export const AuthorArchive: NextPage<{ author: Author; feed: any[] }> = ({
 );
 
 export default AuthorArchive;
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const author: Author = await sanityClient.fetch(
-    groq`*[_type == "author" && _id == $id][0]{firstName, surname}`,
-    { id: params?.id }
-  );
-  const feed = await sanityClient.fetch(
-    groq`*[_type == "news" && references($id)] | order(date desc) {_id,title,date,slug} `,
-    { id: params?.id }
-  );
-  return { props: { author, feed } };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(groq`*[_type == "author"]{_id}`);
-  const ids: string[] = paths.map((author: Author) => author._id);
-  return {
-    paths: ids.map((id: string) => ({ params: { id } })),
-    fallback: true,
-  };
-};
