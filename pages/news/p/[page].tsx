@@ -6,12 +6,16 @@ import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
 import Paginate from "@/components/news/paginate";
 import DateFormatter from "@/components/utils/date-formatter";
-import { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next/types";
+import type {
+  GetStaticPaths,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next/types";
 import {
   fetchArticleCount,
   fetchNArticles,
 } from "@/lib/queries/fetch-news-article";
-import { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "querystring";
 
 const POSTS_PER_PAGE = 30;
 
