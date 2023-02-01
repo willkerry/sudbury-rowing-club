@@ -68,7 +68,8 @@ const Join: NextPage = () => (
           label="Our Learn to Row course"
           title="Getting started in rowing couldn’t be easier"
         />
-        <div className="grid gap-12 md:grid-cols-2">
+
+        <div className="grid gap-12 md:grid-cols-2 mb-20">
           <div>
             <div className="prose">
               <p className="lead">
@@ -77,34 +78,63 @@ const Join: NextPage = () => (
                 sweep oar rowing (one oar for both hands) over a period of 6-8
                 weeks.
               </p>
-            </div>
-            <div className="max-w-md">
-              <Note label="Course Dates" type="success">
-                We’re running two Learn to Row courses this Spring. Both run
-                13:00 to 16:00 on Saturday afternoons.
-                <ul>
-                  <li>Course 1: 12 Mar to 2 Apr 2022</li>
-                  <li>Course 2: 23 Apr to 14 May 2022</li>
-                </ul>
-                Please <Link href="join/apply">apply now.</Link>
-              </Note>
+              <p>
+                We plan to run the Learn to Row programme on a group basis for
+                adults over the next year and after your taster session you will
+                be allocated a start date along with a number of other
+                participants at a similar level. Juniors (under 18) will be
+                separately invited to programmed courses.
+              </p>
             </div>
           </div>
-          <div className="prose">
+          <div>
             <p>
-              We plan to run the Learn to Row programme on a group basis for
-              adults over the next year and after your taster session you will
-              be allocated a start date along with a number of other
-              participants at a similar level. Juniors (under 18) will be
-              separately invited to programmed courses.
-            </p>
-            <p>
-              The programme costs £100. For its duration, you’ll be a club
-              member, and at the end you’ll be given the option to continue your
-              membership at the current adult rate of £32 per month.
+              The programme costs £130 and for its duration, you’ll be a club
+              member. The programme fee includes your first month’s adult
+              membership to the club after which you will be given the option
+              continue your membership at the adult rate of £32 per month
+              thereafter.
             </p>
           </div>
         </div>
+
+        <Note label="Course Dates">
+          The next two adult Learn to Row courses will be held this spring 2023.
+          These will be run on consecutive Saturday afternoons between 1pm and
+          4pm at Sudbury Rowing Club in Quay Lane, Sudbury (although please see
+          note below about the Coronation weekend). Dates will be as follows:
+          <p>
+            <strong>Two taster sessions</strong>
+            <div>12:30 on Saturday 4 February 2023</div>
+            <div>12:30 on Saturday 11 February 2023</div>
+          </p>
+          <p>Followed by two separate courses:</p>
+          <div className="grid md:grid-cols-2 gap-4 py-2">
+            <div>
+              <strong>Course 1</strong>
+              <div>4 March 2023</div>
+              <div>11 March 2023</div>
+              <div>18 March 2023</div>
+              <div>25 March 2023</div>
+            </div>
+
+            <div>
+              <strong>Course 2</strong>
+              <div>15 April 2023</div>
+              <div>22 April 2023</div>
+              <div>29 April 2023</div>
+              <div>7 or 8 May 2023 (Coronation weekend)</div>
+            </div>
+          </div>
+          <p>
+            Please <Link href="join/apply">apply now</Link> or{" "}
+            <Link href="/contact?to=KKEVTdAyelAe2LPMRqxXjF">
+              contact Sean Moriarty
+            </Link>{" "}
+            for further information and booking instructions.
+          </p>
+        </Note>
+
         <L2RStages stages={l2rStages} />
         <L2RCallToAction />
       </Container>
