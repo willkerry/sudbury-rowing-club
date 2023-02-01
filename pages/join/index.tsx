@@ -85,55 +85,62 @@ const Join: NextPage = () => (
                 participants at a similar level. Juniors (under 18) will be
                 separately invited to programmed courses.
               </p>
+              <p>
+                The programme costs £130 and for its duration, you’ll be a club
+                member. The programme fee includes your first month’s adult
+                membership to the club after which you will be given the option
+                continue your membership at the adult rate of £32 per month
+                thereafter.
+              </p>
             </div>
           </div>
-          <div>
+          <div className="prose border-green-200 border-2 rounded px-2 -mx-2 pb-1 -mb-1">
+            <h3 className="mb-1 mt-2 text-base flex items-center gap-1">
+              Course Dates
+              <span className="rounded-full mt-0.5 bg-green-500 text-white text-xs px-1 py-0.5 uppercase tracking-wider font-semibold">
+                New
+              </span>
+            </h3>
+
             <p>
-              The programme costs £130 and for its duration, you’ll be a club
-              member. The programme fee includes your first month’s adult
-              membership to the club after which you will be given the option
-              continue your membership at the adult rate of £32 per month
-              thereafter.
+              The next two adult Learn to Row courses will be held this spring
+              2023. These will be run on consecutive Saturday afternoons between
+              1pm and 4pm at Sudbury Rowing Club in Quay Lane, Sudbury (although
+              please see note below about the Coronation weekend). Dates will be
+              as follows:
+            </p>
+            <p>
+              We’re holding two Saturday <strong>taster sessions</strong>:
+              <div>4 February 2023, 12:30</div>
+              <div>11 February 2023, 12:30</div>
+            </p>
+            <p className="mb-0">Followed by two separate courses:</p>
+            <div className="grid md:grid-cols-2 gap-4 py-0">
+              <div>
+                <strong>Course 1</strong>
+                <div>4 March 2023</div>
+                <div>11 March 2023</div>
+                <div>18 March 2023</div>
+                <div>25 March 2023</div>
+              </div>
+
+              <div>
+                <strong>Course 2</strong>
+                <div>15 April 2023</div>
+                <div>22 April 2023</div>
+                <div>29 April 2023</div>
+                <div>7 or 8 May 2023 (Coronation weekend)</div>
+              </div>
+            </div>
+            <p>
+              Please <Link href="join/apply">apply now</Link> or{" "}
+              <Link href="/contact?to=KKEVTdAyelAe2LPMRqxXjF">
+                contact Sean Moriarty
+              </Link>{" "}
+              for further information and booking instructions.
             </p>
           </div>
         </div>
-
-        <Note label="Course Dates">
-          The next two adult Learn to Row courses will be held this spring 2023.
-          These will be run on consecutive Saturday afternoons between 1pm and
-          4pm at Sudbury Rowing Club in Quay Lane, Sudbury (although please see
-          note below about the Coronation weekend). Dates will be as follows:
-          <p>
-            <strong>Two taster sessions</strong>
-            <div>12:30 on Saturday 4 February 2023</div>
-            <div>12:30 on Saturday 11 February 2023</div>
-          </p>
-          <p>Followed by two separate courses:</p>
-          <div className="grid md:grid-cols-2 gap-4 py-2">
-            <div>
-              <strong>Course 1</strong>
-              <div>4 March 2023</div>
-              <div>11 March 2023</div>
-              <div>18 March 2023</div>
-              <div>25 March 2023</div>
-            </div>
-
-            <div>
-              <strong>Course 2</strong>
-              <div>15 April 2023</div>
-              <div>22 April 2023</div>
-              <div>29 April 2023</div>
-              <div>7 or 8 May 2023 (Coronation weekend)</div>
-            </div>
-          </div>
-          <p>
-            Please <Link href="join/apply">apply now</Link> or{" "}
-            <Link href="/contact?to=KKEVTdAyelAe2LPMRqxXjF">
-              contact Sean Moriarty
-            </Link>{" "}
-            for further information and booking instructions.
-          </p>
-        </Note>
 
         <L2RStages stages={l2rStages} />
         <L2RCallToAction />
