@@ -3,24 +3,26 @@ import Layout from "@/components/layouts/layout";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
 import { BASE_URL } from "@/lib/constants";
-import sanityClient from "@/lib/sanity.server";
-import groq from "groq";
 import { NextSeo } from "next-seo";
-
 import Paginate from "@/components/news/paginate";
 import DateFormatter from "@/components/utils/date-formatter";
-import type Post from "@/types/post";
-import { GetStaticPaths, NextPage, type GetStaticProps } from "next/types";
+import type {
+  GetStaticPaths,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next/types";
+import {
+  fetchArticleCount,
+  fetchNArticles,
+} from "@/lib/queries/fetch-news-article";
+import type { ParsedUrlQuery } from "querystring";
 
-type Props = { data: Post[]; page: number; pages: number };
-
-const posts = 30;
+const POSTS_PER_PAGE = 30;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const count = await sanityClient.fetch(
-    groq`count(*[_type == "news" && !(_id in path("drafts.**"))])`
-  );
-  const length = Math.ceil(count / posts);
+  const articleCount = await fetchArticleCount();
+  const length = Math.ceil(articleCount / POSTS_PER_PAGE);
+
   return {
     paths: Array.from({ length }, (_, i) => ({
       params: { page: String(i + 1) },
@@ -29,38 +31,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const pages = Math.ceil(
-    (await sanityClient.fetch(
-      groq`count(*[_type == "news" && !(_id in path("drafts.**"))])`
-    )) / posts
+export const getStaticProps = async ({
+  params,
+}: {
+  params: ParsedUrlQuery;
+}) => {
+  const articleCount = await fetchArticleCount();
+  const pages = Math.ceil(articleCount / POSTS_PER_PAGE);
+
+  const page = Number(params?.page);
+
+  const firstArticleNumber = page * POSTS_PER_PAGE - POSTS_PER_PAGE;
+  const lastArticleNumber = page * POSTS_PER_PAGE;
+
+  const pageOfArticles = await fetchNArticles(
+    firstArticleNumber,
+    lastArticleNumber
   );
-  const data = await sanityClient.fetch(
-    groq`
-    *[_type == "news" && !(_id in path("drafts.**"))] | order(date desc){
-        _id,
-        "slug": slug.current,
-        title,
-        excerpt,
-        date,
-        featuredImage {
-          alt, 
-          caption,
-          "_id": @.image.asset->_id, 
-          "lqip": @.image.asset->metadata.lqip, 
-          "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio
-        },
-      }[$first...$last]
-   `,
-    {
-      first: Number(params?.page) * posts - posts,
-      last: Number(params?.page) * posts,
-    }
-  );
-  return { props: { data, page: params?.page, pages } };
+
+  return { props: { data: pageOfArticles, page: params?.page, pages } };
 };
 
-const News: NextPage<Props> = ({ data, page, pages }) => {
+const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  data,
+  page,
+  pages,
+}) => {
   const showPrev = Number(page) > 1;
   const showNext = pages > Number(page);
   const previous = `/news/p/${Number(page) - 1}`;

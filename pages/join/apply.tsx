@@ -11,7 +11,6 @@ const LearnToRowApplicationForm: NextPage = () => (
     <Note>
       <NextCourse />
     </Note>
-
     <p>
       What’s the next step? After we receive your application, the Learn to Row
       coordinator will contact you ahead of the next course to arrange a taster

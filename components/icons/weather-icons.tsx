@@ -29,7 +29,7 @@ import {
   WiWindBeaufort8,
   WiWindBeaufort9,
 } from "react-icons/wi";
-import { WeatherCodeNumber } from "@/lib/get-weather-forecast";
+import { WeatherCodeNumber } from "@/lib/queries/fetch-forecast";
 
 const svgProps = {
   className: "w-7 h-7",

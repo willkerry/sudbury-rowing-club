@@ -2,29 +2,11 @@ import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 import PostTitle from "./title";
 import Caption from "./caption";
+import { Article } from "@/lib/queries/fetch-news-article";
 
-type Props = {
-  title: string;
-  date: string;
-  featuredImage?: {
-    _id: string;
-    aspectRatio: number;
-    background: string;
-    foreground: string;
-  };
-  alt?: string;
-  caption?: string;
-  lqip?: string;
-};
+type Props = Pick<Article, "title" | "date" | "featuredImage">;
 
-const PostHeader = ({
-  title,
-  date,
-  featuredImage,
-  alt,
-  caption,
-  lqip,
-}: Props) => {
+const PostHeader = ({ title, date, featuredImage }: Props) => {
   if (featuredImage && featuredImage.aspectRatio > 1)
     return (
       <>
@@ -37,20 +19,22 @@ const PostHeader = ({
                 color: ${featuredImage.foreground};
               }
             `}</style>
+
             <Image
               src={urlFor(featuredImage._id).width(1536).fit("max").url()}
-              alt={alt || title}
+              alt={featuredImage.lqip}
               width={768}
               height={768 / featuredImage.aspectRatio}
-              quality={50}
-              placeholder="blur"
-              blurDataURL={lqip}
             />
-            {caption && <Caption caption={caption} />}
+
+            {featuredImage.caption && (
+              <Caption caption={featuredImage.caption} />
+            )}
           </figure>
         </div>
       </>
     );
+
   if (featuredImage)
     return (
       <div className="flex-row items-center max-w-3xl gap-8 mx-auto mb-8 sm:flex md:mb-16">
@@ -74,9 +58,11 @@ const PostHeader = ({
               quality={50}
               className="bg-gray-50"
               placeholder="blur"
-              blurDataURL={lqip}
+              blurDataURL={featuredImage.lqip}
             />
-            {caption && <Caption caption={caption} />}
+            {featuredImage.caption && (
+              <Caption caption={featuredImage.caption} />
+            )}
           </figure>
         </div>
       </div>

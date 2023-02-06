@@ -5,13 +5,11 @@ import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
-import sanityClient from "@/lib/sanity.server";
 import { serverIndex, browserIndex } from "@/lib/algolia";
-import groq from "groq";
 import { NextSeo } from "next-seo";
 
 import type Post from "@/types/post";
-import { NextPage, type GetStaticProps } from "next/types";
+import { InferGetStaticPropsType, NextPage } from "next/types";
 import Button from "@/components/stour/button";
 import {
   FormEventHandler,
@@ -22,37 +20,21 @@ import {
 } from "react";
 import { useRouter } from "next/router";
 import { type SearchResponse } from "@algolia/client-search";
-import { postFields } from "@/lib/queries";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import {
+  fetchArticleCount,
+  fetchNArticles,
+} from "@/lib/queries/fetch-news-article";
 
 type Props = {
   data: Post[];
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  // Get the latest 30 posts for static generation
-  const data = await sanityClient.fetch(groq`
-    *[_type == "news" && !(_id in path("drafts.**"))] | order(date desc){
-        _id,
-        "slug": slug.current,
-        title,
-        excerpt,
-        date,
-        featuredImage {
-          alt, 
-          caption,
-          "_id": @.image.asset->_id, 
-          "lqip": @.image.asset->metadata.lqip, 
-          "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio
-        },
-      }[0...30]
-   `);
+export const getStaticProps = async () => {
+  const data = await fetchNArticles(0, 30);
 
-  // Also, fetch the total number of posts from Sanity
-  const sanityTotal = await sanityClient.fetch(groq`
-    count(*[_type == "news" && !(_id in path("drafts.**"))])
-  `);
+  const sanityTotal = await fetchArticleCount();
 
   // Then fetch the number of posts on Algolia
   const algoliaTotal = await serverIndex
@@ -63,9 +45,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // Algolia, reindex. (Obviously, this is not fault-proof, but it should ensure
   // that reindexing happens fairly regularly.)
   if (sanityTotal !== algoliaTotal) {
-    const query = groq`*[_type == "news" && !(_id in path("drafts.**"))]{${postFields}}`;
-
-    sanityClient.fetch(query).then((results) => {
+    fetchNArticles(0, sanityTotal).then((results) => {
       // It's **essential** to assign the post _id to the Algolia objectID here,
       // otherwise Algolia will create thousands of duplicate records.
       const records = results.map((p: any) => ({ ...p, objectID: p._id }));
@@ -78,7 +58,9 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const News: NextPage<Props> = ({ data }) => {
+const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  data,
+}) => {
   const router = useRouter();
   const { q } = router.query;
 
@@ -215,10 +197,7 @@ const News: NextPage<Props> = ({ data }) => {
         <NewsList
           posts={activeSearchTerm ? results : data}
           hero={!activeSearchTerm}
-          // Nasty ternary: Only 2 options:
-          // - Empty string if search is active or fewer than 30 posts
-          // - The more link if more than 30 posts
-          more={activeSearchTerm || data?.length < 30 ? "" : "/news/p/2"}
+          more={getMoreUrl(activeSearchTerm, data)}
         />
       </Container>
     </Layout>
@@ -226,3 +205,13 @@ const News: NextPage<Props> = ({ data }) => {
 };
 
 export default News;
+
+function getMoreUrl(activeSearchTerm: string, data: any[]) {
+  if (activeSearchTerm) {
+    return "";
+  }
+  if (data.length < 30) {
+    return "";
+  }
+  return "/news/p/2";
+}

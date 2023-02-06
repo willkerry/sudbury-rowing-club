@@ -1,11 +1,10 @@
-// import smartQuotes from "@/lib/helpers/smartquotes";
 import PostPreview from "./post-preview";
-import type Post from "../../types/post";
+import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 import Link from "next/link";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 
 type Props = {
-  posts: Post[];
+  posts: ArticleSummary[];
   more?: string;
 };
 

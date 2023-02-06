@@ -2,10 +2,9 @@ import Container from "@/components/layouts/container";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import NewsList from "@/components/news/news-list";
+import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 
-import type Post from "@/types/post";
-
-const LatestNews = ({ news }: { news: Post[] }) => (
+const LatestNews = ({ news }: { news: ArticleSummary[] }) => (
   <section className="my-16">
     <Container>
       <h2>

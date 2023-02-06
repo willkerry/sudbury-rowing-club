@@ -13,15 +13,45 @@ import {
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
-import { postQuery, postSlugsQuery } from "@/lib/queries";
 import { urlFor } from "@/lib/sanity";
-
-import type PostType from "@/types/post";
-import { GetStaticPaths, GetStaticProps } from "next/types";
+import type {
+  GetStaticPaths,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next/types";
 import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
+import fetchOneArticle, {
+  Article,
+  fetchAllSlugs,
+} from "@/lib/queries/fetch-news-article";
+import { ParsedUrlQuery } from "querystring";
 
-export default function Post({ post }: { post: PostType }) {
+export const getStaticProps = async ({
+  params,
+}: {
+  params: ParsedUrlQuery;
+}) => {
+  return { props: { post: await fetchOneArticle(params?.slug as string) } };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await fetchAllSlugs();
+  return {
+    paths: paths.map((slug: string) => ({ params: { slug } })),
+    fallback: true,
+  };
+};
+
+const coverImage = (image: Article["featuredImage"]) => {
+  if (!image) return HOME_OG_IMAGE_URL;
+
+  return urlFor(image).width(1200).url();
+};
+
+const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  post,
+}) => {
   const router = useRouter();
   if (!router.isFallback && !post?.slug)
     <Layout>
@@ -30,14 +60,7 @@ export default function Post({ post }: { post: PostType }) {
       </Container>
     </Layout>;
 
-  const CoverImage = (image: PostType["featuredImage"]) => {
-    if (!image) return HOME_OG_IMAGE_URL;
-
-    return urlFor(image).width(1200).url();
-  };
-  return post === undefined ? (
-    "Loading..."
-  ) : (
+  return (
     <Layout>
       <Container>
         {router.isFallback ? (
@@ -46,10 +69,10 @@ export default function Post({ post }: { post: PostType }) {
           <article className="mb-32">
             <NextSeo
               title={post.title}
-              description={post.excerpt}
+              description={post.excerpt || ""}
               openGraph={{
                 title: post.title,
-                description: post.excerpt,
+                description: post.excerpt || "",
                 url: BASE_URL + router.asPath,
                 type: "article",
                 article: {
@@ -57,7 +80,7 @@ export default function Post({ post }: { post: PostType }) {
                 },
                 images: [
                   {
-                    url: CoverImage(post.featuredImage),
+                    url: coverImage(post.featuredImage),
                   },
                 ],
               }}
@@ -66,20 +89,17 @@ export default function Post({ post }: { post: PostType }) {
               url={BASE_URL + router.asPath}
               title={post.title}
               authorName={`${post.author?.firstName} ${post.author?.surname}`}
-              images={[CoverImage(post.featuredImage)]}
+              images={[coverImage(post.featuredImage)]}
               datePublished={post.date}
               publisherName={PROJECT_NAME}
               publisherLogo={LOGO}
-              description={post.excerpt}
+              description={post.excerpt || ""}
             />
 
             <PostHeader
               title={post.title}
               featuredImage={post.featuredImage}
               date={post.date}
-              alt={post.featuredImage?.alt}
-              caption={post.featuredImage?.caption}
-              lqip={post.featuredImage?.lqip}
             />
             {post.body && <PostBody content={post.body} />}
 
@@ -115,19 +135,6 @@ export default function Post({ post }: { post: PostType }) {
       </Container>
     </Layout>
   );
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = await sanityClient.fetch(postQuery, {
-    slug: params?.slug,
-  });
-  return { props: { post } };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await sanityClient.fetch(postSlugsQuery);
-  return {
-    paths: paths.map((slug: string) => ({ params: { slug } })),
-    fallback: true,
-  };
-};
+export default Post;

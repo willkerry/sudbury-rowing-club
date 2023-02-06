@@ -3,25 +3,16 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { BASE_URL } from "@/lib/constants";
-import sanityClient from "@/lib/sanity.server";
-import type { Officer } from "@/types/governance";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import groq from "groq";
-import type { GetStaticProps, NextPage } from "next";
+import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import type { Message } from "@/components/contact/contactForm";
 import { InferGetStaticPropsType } from "next";
+import fetchOfficerNames from "@/lib/queries/fetch-officer-names";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const officers: Officer[] = await sanityClient.fetch(
-    groq`
-      *[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(orderRank){
-        _id,
-        name,
-        role
-      }`
-  );
+export const getStaticProps = async () => {
+  const officers = await fetchOfficerNames();
   return {
     props: {
       officers,

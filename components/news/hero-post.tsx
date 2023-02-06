@@ -2,9 +2,9 @@ import Link from "next/link";
 import { urlFor } from "@/lib/sanity";
 import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
-import type Post from "../../types/post";
+import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 
-const HeroPost = ({ post }: { post: Post }) => (
+const HeroPost = ({ post }: { post: ArticleSummary }) => (
   <Link
     as={`/news/${post.slug}`}
     href="/news/[slug]"
@@ -26,7 +26,7 @@ const HeroPost = ({ post }: { post: Post }) => (
             .url()}
           height={386}
           width={652}
-          alt={post.featuredImage.alt}
+          alt={post.featuredImage.alt || post.title}
           blurDataURL={post.featuredImage.lqip}
         />
       ) : (
