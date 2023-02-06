@@ -4,19 +4,13 @@ import Note from "@/components/stour/note";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import Loading from "@/components/stour/loading";
 import { NextPage } from "next";
+import { NextCourse } from ".";
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row" ogImage="/assets/og/apply.png">
-    {/* <Note label="Course Dates" type="success" size="small">
-      We’re running two Learn to Row courses this Spring. Both run 13:00 to
-      16:00 on Saturday afternoons.
-      <ul>
-        <li>Course 1: 12 Mar to 2 Apr 2022</li>
-        <li>Course 2: 23 Apr to 14 May 2022</li>
-      </ul>{" "}
-      Please <Link href="join/apply">apply now.</Link>
-    </Note> */}
-
+    <Note>
+      <NextCourse />
+    </Note>
     <p>
       What’s the next step? After we receive your application, the Learn to Row
       coordinator will contact you ahead of the next course to arrange a taster
