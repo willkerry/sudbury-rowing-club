@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Notice from "@/components/regatta/notice";
+import Feed from "@/components/landing/feed";
 import { type NoteProps } from "@/components/stour/note/note";
 import sanityClient from "@/lib/sanity.server";
 import { type PortableTextProps } from "@portabletext/react";
@@ -85,6 +86,9 @@ const Home: NextPage<{
     <Introduction description={landingPage.description} />
     <Gallery images={landingPage.images} />
     <LatestNews news={news} />
+    <Container>
+      <Feed />
+    </Container>
   </Layout>
 );
 
