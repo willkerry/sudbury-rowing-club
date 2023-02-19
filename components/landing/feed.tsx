@@ -6,6 +6,7 @@ import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
 import cn from "classnames";
 import Link from "@/components/stour/link";
+import Result from "../stour/result";
 
 const BRArticle = ({ article }: { article?: BRArticle }) => (
   <a
@@ -47,14 +48,23 @@ const Feed = () => {
         The latest updates from{" "}
         <Link href="https://britishrowing.org/">British Rowing</Link>.
       </p>
-      <div className="mb-12 grid grid-cols-2 lg:grid-cols-3 gap-4">
-        {error && <div>Failed to load</div>}
-        {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
+      {!error ? (
+        <div className="mb-12 grid grid-cols-2 lg:grid-cols-3 gap-4">
+          {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
 
-        {articles?.map((article) => (
-          <BRArticle key={article.id} {...{ article }} />
-        ))}
-      </div>
+          {articles?.map((article) => (
+            <BRArticle key={article.id} {...{ article }} />
+          ))}
+        </div>
+      ) : (
+        <div className="border rounded px-4 py-8 mb-12">
+          <Result
+            title="Unable to retrieve stories from British Rowing."
+            message={error}
+            variant="error"
+          />
+        </div>
+      )}
     </>
   );
 };
