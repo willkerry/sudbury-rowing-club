@@ -1,13 +1,12 @@
 name: Build and deploy to GitHub Pages
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
-jobs: 
+jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -15,18 +14,42 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
-      - run: pnpm install --frozen-lockfile
+          node-version: "18.x"
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
       - run: pnpm build
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
-        with: 
+        with:
           path: .output
-  
-  deploy: 
+
+  deploy:
     needs: build
 
-    permissions: 
+    permissions:
       pages: write
       id-token: write
 
