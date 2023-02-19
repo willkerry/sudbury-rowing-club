@@ -22,7 +22,7 @@ function assignIcon(
   external: boolean,
   download: boolean,
   arrow: boolean
-): (props: ComponentProps<"svg">) => JSX.Element {
+): typeof ArrowRightIcon {
   if (external) return ArrowUpRightIcon;
   if (download) return ArrowDownIcon;
   if (arrow) return ArrowRightIcon;
