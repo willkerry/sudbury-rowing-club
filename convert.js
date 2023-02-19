@@ -141,7 +141,7 @@ fs.readdirSync(INPUT_DIR).forEach((folder) => {
       file.endsWith(".HTM")
     ) {
       output = regCharClean(output);
-      output = regTidy(output)
+      output = regTidy(output);
       output = regAddLink(output);
       output = regAddVieportMetaTag(output);
       output = regMinify(output);
