@@ -1,5 +1,5 @@
-/* This is a build function that loads the contents of every file in every 
- * folder in the src directory, converts it from ISO-8859-1 to UTF-8 using 
+/* This is a build function that loads the contents of every file in every
+ * folder in the src directory, converts it from ISO-8859-1 to UTF-8 using
  * iconv-lite, and then saves them to the output directory.
  */
 
@@ -21,8 +21,7 @@ const _DIRNAME = path.dirname(_FILENAME);
 const INPUT_DIR = path.join(_DIRNAME, "src");
 const OUTPUT_DIR = path.join(_DIRNAME, ".output");
 const VIEWPORT_TAG = `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
-const RETURN_LINK_HTML =
-  `<a style="
+const RETURN_LINK_HTML = `<a style="
     position: fixed;
     top: 0;
     left: 0
@@ -37,7 +36,6 @@ const CLEAN_CSS_OPTIONS = {
 };
 const progress = new cliProgress.SingleBar({}, cliProgress.Presets.legacy);
 
-
 /*
  * HELPER FUNCTIONS
  */
@@ -48,8 +46,8 @@ function regCharClean(str) {
   return str.replace(/charset=iso-8859-1/g, "charset=utf-8").replace(/ï¿/g, "");
 }
 
-/** Apply HTML5 Tidy 
- * 
+/** Apply HTML5 Tidy
+ *
  * @param {string} str - The HTML to tidy
  * @returns {string} - The tidied HTML
  */
@@ -89,7 +87,6 @@ function regMinify(str) {
   });
 }
 
-
 /** Minify the CSS */
 function regMinifyCSS(str) {
   if (!str) throw new Error("Input is empty");
@@ -108,9 +105,13 @@ if (fs.existsSync(OUTPUT_DIR)) {
 // Create the output directory.
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+const paths = [];
+
 // Read the contents of the src directory and loop through subdirectory.
 fs.readdirSync(INPUT_DIR).forEach((folder) => {
   process.stdout.write(`Processing ${folder}...\n`);
+
+  paths.push(folder);
 
   // Loop through the files in the subdirectory.
   fs.readdirSync(path.join(INPUT_DIR, folder)).forEach((file) => {
@@ -118,7 +119,9 @@ fs.readdirSync(INPUT_DIR).forEach((folder) => {
     const outputFile = path.join(OUTPUT_DIR, folder, file);
 
     // Sequence number of file in files
-    const fileNumber = fs.readdirSync(path.join(INPUT_DIR, folder)).indexOf(file);
+    const fileNumber = fs
+      .readdirSync(path.join(INPUT_DIR, folder))
+      .indexOf(file);
     const fileCount = fs.readdirSync(path.join(INPUT_DIR, folder)).length;
     progress.start(fileCount, fileNumber);
     progress.increment();
@@ -127,7 +130,9 @@ fs.readdirSync(INPUT_DIR).forEach((folder) => {
     const input = fs.readFileSync(inputFile);
 
     // Decode the file contents.
-    let output = iconv.decode(Buffer.from(input), "iso-8859-1", { stripBOM: true, });
+    let output = iconv.decode(Buffer.from(input), "iso-8859-1", {
+      stripBOM: true,
+    });
 
     // If the output directory doesn't exist, create it.
     if (!fs.existsSync(path.dirname(outputFile))) {
@@ -152,8 +157,52 @@ fs.readdirSync(INPUT_DIR).forEach((folder) => {
     }
 
     fs.writeFileSync(outputFile, output);
-
   });
   progress.stop();
   process.stdout.write(`\n`);
 });
+
+// Finally, generate an index.html file that links to the items in the paths array.
+const indexItems = paths
+  .map((path) => `<li><a href="${path}/index.html">${path}</a></li>`)
+  .join("\r");
+
+const indexHTML = `<DOCTYPE html>
+<html>
+  <head>
+    <title>Regatta Results</title>
+    <style type="text/css">
+        body {
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+            sans-serif;
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+        li {
+          margin: 0.5em 0;
+        }
+        li a {
+          text-decoration: none;
+          color: #000;
+        }
+        li a:hover {
+          text-decoration: underline;
+        }
+        li::before {
+          content: "📁";
+          margin-right: 0.5em;
+        }
+      </style>
+  </head>
+  <body>
+    <h1>Regatta Results</h1>
+    <ul>
+      ${indexItems}
+    </ul>
+  </body>
+</html>`;
+
+fs.writeFileSync(path.join(OUTPUT_DIR, "index.html"), indexHTML);
