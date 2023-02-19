@@ -1,5 +1,4 @@
 import NextLink from "next/link";
-import { ComponentProps } from "react";
 import {
   ArrowDownIcon,
   ArrowRightIcon,
@@ -18,18 +17,18 @@ type Props = {
 };
 
 // Ridiculous hack because I set up an awful component API
-function assignIcon(
+const assignIcon = (
   external: boolean,
   download: boolean,
   arrow: boolean
-): typeof ArrowRightIcon {
+): typeof ArrowRightIcon => {
   if (external) return ArrowUpRightIcon;
   if (download) return ArrowDownIcon;
   if (arrow) return ArrowRightIcon;
   return ArrowRightIcon;
-}
+};
 
-const Link: React.FC<Props> = ({
+const Link = ({
   href,
   children,
   dark = false,
@@ -63,14 +62,5 @@ const Link: React.FC<Props> = ({
     </NextLink>
   );
 };
-
-Link.defaultProps = {
-  dark: false,
-  external: false,
-  download: false,
-  arrow: false,
-};
-
-Link.displayName = "Link";
 
 export default Link;
