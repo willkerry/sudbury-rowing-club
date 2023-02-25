@@ -43,7 +43,7 @@ specifiers:
   groq: ^3.5.0
   husky: ^8.0.3
   inter-ui: ^3.19.3
-  isomorphic-dompurify: ^0.26.0
+  isomorphic-dompurify: ^1.0.0
   next: ^13.2.1
   next-seo: ^5.15.0
   picosanity: ^4.0.0
@@ -88,7 +88,7 @@ dependencies:
   final-form: 4.20.9
   get-wodehouse-name: 0.2.0
   inter-ui: 3.19.3
-  isomorphic-dompurify: 0.26.0
+  isomorphic-dompurify: 1.0.0
   next: 13.2.1_biqbaboplfbrettd7655fr4n2y
   next-seo: 5.15.0_qgtcjgzkkjtbiyvnx7d32fl5vu
   picosanity: 4.0.0
@@ -1761,8 +1761,8 @@ packages:
       webidl-conversions: 7.0.0
     dev: false
 
-  /dompurify/2.4.4:
-    resolution: {integrity: sha512-1e2SpqHiRx4DPvmRuXU5J0di3iQACwJM+mFGE2HAkkK7Tbnfk9WcghcAmyWc9CRrjyRRUpmuhPUH6LphQQR3EQ==}
+  /dompurify/3.0.0:
+    resolution: {integrity: sha512-0g/yr2IJn4nTbxwL785YxS7/AvvgGFJw6LLWP+BzWzB1+BYOqPUT9Hy0rXrZh5HLdHnxH72aDdzvC9SdTjsuaA==}
     dev: false
 
   /duplexer/0.1.2:
@@ -3055,11 +3055,11 @@ packages:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
     dev: true
 
-  /isomorphic-dompurify/0.26.0:
-    resolution: {integrity: sha512-70gPadd/NJPTBuTtM5PsWimmc7S4fcBENzOFMHfBtIPacaygUvI9n63qFkUTc91WDDC9yB68mtmluW9/NhhTJw==}
+  /isomorphic-dompurify/1.0.0:
+    resolution: {integrity: sha512-rxkJ2b2rwsgN/uvtaW+Z2JGfD9CYcixYMj0eTIa4V2hG47VDRMiehtUypi4lkpuwW41UrnOR65Dy0POiH3Lbjg==}
     dependencies:
       '@types/dompurify': 2.4.0
-      dompurify: 2.4.4
+      dompurify: 3.0.0
       jsdom: 21.1.0
     transitivePeerDependencies:
       - bufferutil
