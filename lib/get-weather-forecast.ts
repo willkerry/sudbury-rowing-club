@@ -57,6 +57,10 @@ enum CardinalDirection {
  */
 const kphToBeaufort = (kph: number) => {
   switch (true) {
+    case isNaN(kph):
+      throw new Error("kph is not a number");
+    case kph < 0:
+      throw new Error("kph is negative");
     case kph < 1:
       return 0;
     case kph < 6:
@@ -87,8 +91,10 @@ const kphToBeaufort = (kph: number) => {
 };
 
 const degreesToInt = (degrees: number) => {
-  const int = Math.round(degrees / 22.5);
-  return int === 16 ? 0 : int;
+  if (degrees < 0 || degrees >= 360) {
+    throw new Error("degrees must be in the range [0, 360)");
+  }
+  return Math.round(degrees / 22.5) % 16;
 };
 
 const intToCardinal = (int: number): CardinalDirection => {
@@ -104,37 +110,55 @@ const degreesToCardinal = (degrees: number) => {
   return intToCardinal(int);
 };
 
+type Forecast = {
+  code: WeatherCodeNumber;
+  maxTemp: number;
+  windSpeed: number;
+  windDirection: number;
+  windDirectionText: CardinalDirection;
+  beaufort: number;
+  date: Date;
+};
+
 /**
  * Fetches the weather forecast for the club location and returns a Forecast
  * array for the next 7 days.
  */
-const getWeatherForecast = async () => {
-  const response = await fetchWeatherForecast();
+const getWeatherForecast = async (): Promise<Forecast[]> => {
+  try {
+    const { daily } = await fetchWeatherForecast();
 
-  if (!response) {
-    throw new Error("No response from Open Meteo API");
+    return daily.time.map((time, index) => {
+      return {
+        code: daily.weathercode[index],
+        maxTemp: daily.temperature_2m_max[index],
+        windSpeed: daily.windspeed_10m_max[index],
+        windDirection: daily.winddirection_10m_dominant[index],
+        windDirectionText: degreesToCardinal(
+          daily.winddirection_10m_dominant[index]
+        ),
+        beaufort: kphToBeaufort(daily.windspeed_10m_max[index]),
+        date: time,
+      };
+    });
+  } catch (err) {
+    console.error(err);
+    return [];
   }
-
-  const { daily } = response;
-
-  return daily.time.map((time, index) => {
-    return {
-      code: daily.weathercode[index],
-      maxTemp: daily.temperature_2m_max[index],
-      windSpeed: daily.windspeed_10m_max[index],
-      windDirection: daily.winddirection_10m_dominant[index],
-      windDirectionText: degreesToCardinal(
-        daily.winddirection_10m_dominant[index]
-      ),
-      beaufort: kphToBeaufort(daily.windspeed_10m_max[index]),
-      date: time,
-    };
-  });
 };
 
 export default getWeatherForecast;
 
+const BASE_URL = "https://www.yr.no/";
+
 export const getYRURL = (date: Date) => {
-  let dayIndex = new Date(date).getDay();
-  return `https://www.yr.no/en/forecast/hourly-table/2-2636564/Great%20Britain/England/Suffolk/Sudbury?i=${dayIndex}`;
+  let i = new Date(date).getDay() + 1;
+  if (i === 7) i = 0;
+
+  const url = new URL(BASE_URL);
+  url.pathname =
+    "en/forecast/hourly-table/2-2636564/Great%20Britain/England/Suffolk/Sudbury";
+  url.searchParams.append("i", i.toString());
+
+  return url.toString();
 };
