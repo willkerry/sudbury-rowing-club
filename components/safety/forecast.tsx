@@ -32,22 +32,19 @@ const ForecastComponent = () => {
               </div>
 
               <div
-                className="grid items-center justify-center h-full text-xs text-gray-700"
                 title={weatherCodes[f.code]}
+                className="group-hover:text-blue-500 text-gray-600 transition"
               >
-                <div className="col-start-1 row-start-1 transition duration-300 opacity-100 group-hover:opacity-0">
-                  {weatherIcons[f.code]}
-                </div>
-                <ArrowTopRightOnSquareIcon className="w-4 h-4 col-start-1 row-start-1 mx-auto text-blue-400 transition duration-300 opacity-0 group-hover:opacity-100" />
+                {weatherIcons[f.code]}
               </div>
 
               <div
                 className={cn(
                   "flex items-center justify-center h-full text-xs font-semibold disambiguate transition leading-none",
                   f.maxTemp > 30
-                    ? "text-red-600 group-hover:text-red-700"
-                    : f.maxTemp < 5
-                    ? "text-blue-500 group-hover:text-blue-600"
+                    ? "text-red-600 group-hover:text-red-700 underline underline-offset-2 decoration-red-200 group-hover:decoration-red-600"
+                    : f.maxTemp < 4
+                    ? "text-blue-500 group-hover:text-blue-600 underline underline-offset-2 decoration-blue-200 group-hover:decoration-blue-600"
                     : "text-gray-700 group-hover:text-blue-500"
                 )}
               >
@@ -59,7 +56,7 @@ const ForecastComponent = () => {
                   "flex items-center transition",
                   f.beaufort >= 8
                     ? "text-red-500 group-hover:text-red-400"
-                    : f.beaufort >= 7
+                    : f.beaufort >= 6
                     ? "text-amber-500 group-hover:text-amber-400"
                     : "text-gray-400 group-hover:text-blue-400"
                 )}
