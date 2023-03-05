@@ -16,7 +16,54 @@ export const navLinkClasses =
 export const navLinkColor = "text-gray-500";
 export const navLinkActive = "text-black font-medium";
 
-type Props = {
+const POPOVER_PANEL_CLASSES = new Map<boolean, string>([
+  [true, "max-w-sm right-0"],
+  [false, "w-screen max-w-xs -translate-x-1/2 left-1/2"],
+]);
+
+const PrimaryNavPanel = ({
+  navData,
+  compact,
+}: {
+  navData: IconNavItemType[];
+  compact: boolean;
+}) => {
+  const className = cn(
+    "relative grid p-4 bg-white",
+    compact ? "gap-4" : "gap-5"
+  );
+
+  const Component = compact ? CompactNavItemList : NavItemList;
+
+  return (
+    <div {...{ className }}>
+      <Component items={navData} />
+    </div>
+  );
+};
+
+const CTANavPanel = ({
+  ctaData,
+  compact,
+}: {
+  ctaData: IconNavItemType[];
+  compact: boolean;
+}) => {
+  const className = cn(
+    "bg-gray-200 bg-opacity-75 shadow-inner rounded-b-md backdrop-blur backdrop-saturate-200",
+    compact ? "py-4 pl-3 pr-4 space-y-4" : "flex p-4 space-x-6 space-y-0"
+  );
+
+  const Component = compact ? CompactCTAList : CTAList;
+
+  return (
+    <div {...{ className }}>
+      <Component CTAs={ctaData} />
+    </div>
+  );
+};
+
+type NavSectionProps = {
   icon?: React.ReactElement;
   label?: string;
   altLabel?: string;
@@ -29,18 +76,20 @@ const NavSection = ({
   label,
   icon,
   altLabel,
-  compact,
+  compact = false,
   navData,
   ctaData,
-}: Props) => {
-  const router = useRouter();
+}: NavSectionProps) => {
+  const { pathname } = useRouter();
 
   let isActive = false;
 
   [...navData, ...ctaData]
-    .filter((item) => !item.mobileOnly)
-    .forEach((item) => {
-      if (router.pathname === item.href) isActive = true;
+    .filter(({ mobileOnly }) => !mobileOnly)
+    .forEach(({ href }) => {
+      if (pathname === href) {
+        isActive = true;
+      }
     });
 
   return (
@@ -79,30 +128,12 @@ const NavSection = ({
               static
               className={cn(
                 "absolute z-20 px-2 mt-3 transform sm:px-0",
-                !compact
-                  ? "w-screen max-w-xs -translate-x-1/2 left-1/2"
-                  : " max-w-sm right-0"
+                POPOVER_PANEL_CLASSES.get(compact)
               )}
             >
               <div className="overflow-hidden rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                {compact ? (
-                  <div className="relative grid gap-4 p-4 bg-white">
-                    <CompactNavItemList items={navData} />
-                  </div>
-                ) : (
-                  <div className="relative grid gap-5 p-4 bg-white">
-                    <NavItemList items={navData} />
-                  </div>
-                )}
-                {compact ? (
-                  <div className="py-4 pl-3 pr-4 space-y-4 bg-gray-200 bg-opacity-75 shadow-inner rounded-b-md backdrop-blur backdrop-saturate-200">
-                    <CompactCTAList CTAs={ctaData} />
-                  </div>
-                ) : (
-                  <div className="flex p-4 space-x-6 space-y-0 bg-gray-200 bg-opacity-75 shadow-inner rounded-b-md backdrop-blur backdrop-saturate-200 ">
-                    <CTAList CTAs={ctaData} />
-                  </div>
-                )}
+                <PrimaryNavPanel navData={navData} compact={compact} />
+                <CTANavPanel ctaData={ctaData} compact={compact} />
               </div>
             </Popover.Panel>
           </Transition>
