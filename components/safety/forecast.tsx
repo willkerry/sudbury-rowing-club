@@ -41,10 +41,8 @@ const ForecastComponent = () => {
               <div
                 className={cn(
                   "flex items-center justify-center h-full text-xs font-semibold disambiguate transition leading-none",
-                  f.maxTemp > 30
-                    ? "text-red-600 group-hover:text-red-700 underline underline-offset-2 decoration-red-200 group-hover:decoration-red-600"
-                    : f.maxTemp < 4
-                    ? "text-blue-500 group-hover:text-blue-600 underline underline-offset-2 decoration-blue-200 group-hover:decoration-blue-600"
+                  f.maxTemp > 30 || f.maxTemp < 4
+                    ? "text-red-600 group-hover:bg-white rounded-sm p-1 -m-1 underline font-bold underline-offset-2 decoration-red-300 "
                     : "text-gray-700 group-hover:text-blue-500"
                 )}
               >
@@ -54,10 +52,8 @@ const ForecastComponent = () => {
               <div
                 className={cn(
                   "flex items-center transition",
-                  f.beaufort >= 8
-                    ? "text-red-500 group-hover:text-red-400"
-                    : f.beaufort >= 6
-                    ? "text-amber-500 group-hover:text-amber-400"
+                  f.beaufort >= 6
+                    ? "text-red-600 group-hover:bg-white rounded pl-1 -ml-1"
                     : "text-gray-400 group-hover:text-blue-400"
                 )}
                 title={`Force ${f.beaufort}, ${f.windDirectionText}`}
