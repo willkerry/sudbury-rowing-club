@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   PortableText as BlockContent,
   PortableTextComponents,
@@ -9,11 +8,10 @@ import Link from "next/link";
 import Note from "@/components/stour/note";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { config } from "./sanity.server";
+import Figure from "@/components/stour/figure";
 
 export const urlFor = (source: SanityImageSource) =>
   imageUrlBuilder(config).image(source);
-
-const WIDTH = 650;
 
 const components: PortableTextComponents = {
   marks: {
@@ -38,34 +36,7 @@ const components: PortableTextComponents = {
         {value?.note}
       </Note>
     ),
-    figure: ({ value }) => {
-      const { caption, image, altText, lqip, aspectRatio, description } = value;
-      const alt = altText || caption;
-      const captionText = caption || description || "";
-      const width = aspectRatio < 1 ? WIDTH * 0.6 : WIDTH * aspectRatio;
-      const height = width / aspectRatio;
-      return (
-        <figure>
-          <Image
-            src={
-              aspectRatio
-                ? urlFor(image).width(1300).fit("max").url()
-                : urlFor(image)
-                    .width(width * 2)
-                    .height(height * 2)
-                    .fit("min")
-                    .url()
-            }
-            width={width}
-            placeholder="blur"
-            blurDataURL={lqip}
-            height={height}
-            alt={alt}
-          />
-          {captionText !== null && <figcaption>{captionText}</figcaption>}
-        </figure>
-      );
-    },
+    figure: Figure,
   },
 };
 
