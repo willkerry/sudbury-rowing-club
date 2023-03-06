@@ -18,7 +18,10 @@ const authorQuery = groq`
 const allAuthorsQuery = groq`
 *[_type == "author"]{
     _id,
-}`;
+    firstName,
+    surname,
+    "articleCount": count(*[_type == "news" && references(^._id)])
+} | order(articleCount desc, lastName asc, firstName asc)`;
 
 const ZAuthorResponse = z.object({
   _id: z.string(),
@@ -36,7 +39,11 @@ const ZAuthorResponse = z.object({
 
 const ZAllAuthorsResponse = ZAuthorResponse.pick({
   _id: true,
-}).array();
+  firstName: true,
+  surname: true,
+})
+  .and(z.object({ articleCount: z.number() }))
+  .array();
 
 type Author = z.infer<typeof ZAuthorResponse>;
 type AuthorsResponse = z.infer<typeof ZAllAuthorsResponse>;
