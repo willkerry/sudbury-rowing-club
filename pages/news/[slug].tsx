@@ -12,7 +12,6 @@ import {
 } from "@/lib/constants";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
-import sanityClient from "@/lib/sanity.server";
 import { urlFor } from "@/lib/sanity";
 import type {
   GetStaticPaths,
@@ -103,7 +102,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             />
             {post.body && <PostBody content={post.body} />}
 
-            <div className="flex justify-between px-5 pt-3 pb-4 mx-auto my-12 border rounded max-w-prose">
+            <div className="flex justify-between px-3 pt-2 pb-3 mx-auto my-12 bg-gray-50 border rounded max-w-prose">
               <div className="flex gap-8">
                 {post.author && (
                   <div>
