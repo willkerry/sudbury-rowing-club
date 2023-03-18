@@ -11,6 +11,7 @@ const Rower = (
     strokeLinecap="round"
     {...props}
   >
+    <title>Rower</title>
     <path d="M4 8h8l5 8-6.5-4.5L5 17m16 0H5m14 3H3" />
     <path strokeLinecap="butt" d="M7.5 11.5L4 8" />
     <circle cx={11} cy={4} r={1} />

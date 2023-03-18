@@ -13,6 +13,7 @@ const UserDropdown = (
     strokeLinejoin="round"
     {...props}
   >
+    <title>User Dropdown</title>
     <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8" />
     <circle cx="5" cy="19" r=".4" />
     <circle cx="9" cy="19" r=".4" />
