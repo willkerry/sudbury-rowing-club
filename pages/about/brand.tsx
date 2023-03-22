@@ -9,7 +9,7 @@ import Color from "color";
 import { GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
-import tailwindConfig from "../../tailwind.config.js";
+import tailwindConfig from "../../tailwind.config.cjs";
 
 const brandAssets = [
   {
@@ -298,19 +298,13 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
 
 export default Brand;
 
-export const getStaticProps: GetStaticProps = async () => ({
-  props: {
-    blue: {
-      100: tailwindConfig.theme.extend.colors.blue[100],
-      200: tailwindConfig.theme.extend.colors.blue[200],
-      300: tailwindConfig.theme.extend.colors.blue[300],
-      400: tailwindConfig.theme.extend.colors.blue[400],
-      50: tailwindConfig.theme.extend.colors.blue[50],
-      500: tailwindConfig.theme.extend.colors.blue[500],
-      600: tailwindConfig.theme.extend.colors.blue[600],
-      700: tailwindConfig.theme.extend.colors.blue[700],
-      800: tailwindConfig.theme.extend.colors.blue[800],
-      900: tailwindConfig.theme.extend.colors.blue[900],
+export const getStaticProps: GetStaticProps = async () => {
+  // @ts-ignore
+  const blue = tailwindConfig.theme?.extend?.colors?.blue;
+
+  return {
+    props: {
+      blue,
     },
-  },
-});
+  };
+};

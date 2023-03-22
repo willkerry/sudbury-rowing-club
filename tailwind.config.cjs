@@ -1,9 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable global-require */
-/* eslint-disable import/no-extraneous-dependencies */
-const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
+// @ts-check
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
@@ -12,12 +9,7 @@ module.exports = {
     require("@tailwindcss/line-clamp"),
   ],
   mode: "jit",
-  content: [
-    "./components/**/*.js",
-    "./pages/**/*.js",
-    "./components/**/*.tsx",
-    "./pages/**/*.tsx",
-  ],
+  content: ["./components/**/*.[jt]s?(x)", "./pages/**/*.[jt]s?(x)"],
   theme: {
     extend: {
       colors: {
@@ -81,6 +73,7 @@ module.exports = {
           "2xl": "1024px",
         },
       },
+      // @ts-ignore
       typography: (theme) => ({
         DEFAULT: {
           css: {
