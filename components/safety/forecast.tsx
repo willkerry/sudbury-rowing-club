@@ -3,7 +3,6 @@ import getWeatherForecast, {
   weatherCodes,
 } from "@/lib/get-weather-forecast";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import useSWR from "swr";
 import { weatherIcons, windIcons } from "../icons/weather-icons";
 import Loading from "../stour/loading";
@@ -11,9 +10,10 @@ import DateFormatter from "../utils/date-formatter";
 import cn from "classnames";
 
 const ForecastComponent = () => {
-  const { data: forecast } = useSWR("getWeatherForecast", () =>
-    getWeatherForecast()
-  );
+  const fetcher: typeof getWeatherForecast = () =>
+    fetch("/api/weather").then((res) => res.json());
+
+  const { data: forecast } = useSWR("getWeatherForecast", fetcher);
 
   return (
     <div className="w-full p-3 bg-gray-100 sm:px-4">

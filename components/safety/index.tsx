@@ -4,7 +4,8 @@ import getSafetyStatus from "@/lib/get-safety-status";
 import useSWR from "swr";
 
 const SafetyCard: React.FC = () => {
-  const fetcher = () => getSafetyStatus();
+  const fetcher: typeof getSafetyStatus = () =>
+    fetch("/api/safety").then((res) => res.json());
 
   const { data: safetyComponentProps } = useSWR("getSafetyStatus", fetcher);
 
