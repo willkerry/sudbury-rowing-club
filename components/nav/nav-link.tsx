@@ -17,7 +17,7 @@ const NavLink = ({ href, children }: Props) => {
     <Link
       href={href}
       className={cn(
-        router.asPath == href && navLinkActive,
+        router.asPath === href && navLinkActive,
         navLinkClasses,
         navLinkColor
       )}
