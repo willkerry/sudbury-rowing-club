@@ -12,7 +12,7 @@ import { type IconNavItemType } from "@/types/nav-item";
 import { useRouter } from "next/router";
 
 export const navLinkClasses =
-  "group transition duration-200 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black focus:outline-none hover:bg-gray-50 hover:border-gray-100 border border-transparent rounded-md";
+  "group transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black hover:bg-gray-50 hover:border-gray-100 border border-transparent rounded-md";
 export const navLinkColor = "text-gray-500";
 export const navLinkActive = "text-black font-medium";
 
