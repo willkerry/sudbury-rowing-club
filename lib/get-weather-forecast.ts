@@ -150,15 +150,17 @@ const getWeatherForecast = async (): Promise<Forecast[]> => {
 export default getWeatherForecast;
 
 const BASE_URL = "https://www.yr.no/";
+const PATH =
+  "en/forecast/hourly-table/2-2636564/Great%20Britain/England/Suffolk/Sudbury";
 
 export const getYRURL = (date: Date) => {
-  let i = new Date(date).getDay() + 1;
-  if (i === 7) i = 0;
+  const today = new Date().setHours(0, 0, 0, 0);
+  const difference = new Date(date).getTime() - today;
+  const daysInFuture = Math.round(difference / 86400000);
 
   const url = new URL(BASE_URL);
-  url.pathname =
-    "en/forecast/hourly-table/2-2636564/Great%20Britain/England/Suffolk/Sudbury";
-  url.searchParams.append("i", i.toString());
+  url.pathname = PATH;
+  url.searchParams.append("i", daysInFuture.toString());
 
   return url.toString();
 };
