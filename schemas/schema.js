@@ -15,6 +15,7 @@ import quote from "./quote";
 import note from "./note";
 import minutes from "./minutes";
 import siteSettings from "./siteSettings";
+import forwarders from "./forwarders";
 
 export default [
   news,
@@ -34,4 +35,5 @@ export default [
   note,
   minutes,
   siteSettings,
+  forwarders,
 ];

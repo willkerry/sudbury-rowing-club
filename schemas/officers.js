@@ -23,14 +23,8 @@ export default {
     },
     { name: "image", type: "figure" },
     orderRankField({ type: "officers" }),
-    // { name: "order", type: "number", title: "Sort Order", hidden: false },
   ],
   orderings: [orderRankOrdering],
-  // {
-  //   title: "Display Order",
-  //   name: "orderAsc",
-  //   by: [{ field: "order", direction: "asc" }],
-  // },
 
   preview: {
     select: {
