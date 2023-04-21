@@ -1,7 +1,6 @@
 import { urlFor } from "@/lib/sanity";
 import Image from "next/image";
-import { useToggle } from "@mantine/hooks";
-import LightBox from "@/components/stour/lightbox";
+import { useLightBox } from "@/components/stour/lightbox";
 
 const WIDTH = 650;
 
@@ -24,22 +23,19 @@ const Figure = ({
   const width = aspectRatio < 1 ? WIDTH * 0.6 : WIDTH * aspectRatio;
   const height = width / aspectRatio;
 
-  const [isExpanded, toggleExpanded] = useToggle();
+  const { toggle, LightBox } = useLightBox({
+    aspectRatio,
+    src: urlFor(image).url(),
+    lqip,
+    alt,
+  });
 
   return (
     <>
-      <LightBox
-        src={urlFor(image).url()}
-        open={isExpanded}
-        toggle={toggleExpanded}
-        {...{ aspectRatio, alt, lqip }}
-      />
+      <LightBox />
 
       <figure>
-        <button
-          onClick={() => toggleExpanded()}
-          className="hover:cursor-zoom-in"
-        >
+        <button onClick={() => toggle()} className="hover:cursor-zoom-in">
           <Image
             src={
               aspectRatio
