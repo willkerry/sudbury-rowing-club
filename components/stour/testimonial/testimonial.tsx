@@ -3,17 +3,7 @@ import Anonymous from "./anonymous";
 import type TestimonialType from "../../../types/testimonial";
 
 const Testimonial = ({ name, club, text }: TestimonialType) => (
-  <figure>
-    <style jsx>{`
-      figure {
-        display: inline-block;
-        padding: 1.5em;
-        margin-bottom: 2.5em;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        border-radius: 0.75rem;
-        break-inside: avoid;
-      }
-    `}</style>
+  <figure className="inline-block border rounded-lg mb-10 p-6 break-inside-avoid">
     <blockquote
       className={cn(
         "space-y-4 leading-snug",
