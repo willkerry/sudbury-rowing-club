@@ -1,7 +1,6 @@
-// @ts-check
+import type { Config } from "tailwindcss";
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
@@ -34,7 +33,7 @@ module.exports = {
         tighter: "-.04em",
       },
       lineHeight: {
-        tight: 1.2,
+        tight: "1.2",
       },
 
       fontFamily: {
@@ -141,4 +140,4 @@ module.exports = {
       }),
     },
   },
-};
+} satisfies Config;
