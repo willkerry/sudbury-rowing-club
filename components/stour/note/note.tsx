@@ -9,11 +9,12 @@ export type NoteProps = {
   label?: string;
 };
 
-const SIZE_MAPS = {
+const SIZE_MAP = {
   small: "py-2 px-3 prose-sm my-5",
   large: "py-3 px-5 prose my-5",
 };
-const VARIANT_MAPS = {
+
+const VARIANT_MAP = {
   primary: "text-black",
   secondary: "text-gray-500",
   success: "text-green-700 border-green-500",
@@ -28,19 +29,25 @@ const Note = ({
   size = "large",
   centered = false,
   label,
-}: NoteProps) => (
-  <div
-    className={cn(
-      "border rounded-md max-w-prose prose",
-      centered ? "mx-auto max-w-prose" : "max-w-none",
-      VARIANT_MAPS[type],
-      SIZE_MAPS[size],
-      className
-    )}
-  >
-    {label && <span className="pr-1.5 font-semibold">{label}:</span>}
-    {children}
-  </div>
-);
+}: NoteProps) => {
+  const variantClassNames = VARIANT_MAP[type];
+  const sizeClassNames = SIZE_MAP[size];
+  const centeredClassNames = centered ? "mx-auto max-w-prose" : "max-w-none";
+
+  const noteClasses = cn(
+    "border rounded-md max-w-prose prose",
+    centeredClassNames,
+    variantClassNames,
+    sizeClassNames,
+    className
+  );
+
+  return (
+    <div className={noteClasses}>
+      {label && <span className="pr-1.5 font-semibold">{label}:</span>}
+      {children}
+    </div>
+  );
+};
 
 export default Note;
