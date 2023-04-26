@@ -14,6 +14,7 @@ type Props = {
   external?: boolean;
   extension?: string;
   className?: string;
+  unstyled?: boolean;
 };
 
 // Ridiculous hack because I set up an awful component API
@@ -37,18 +38,26 @@ const Link = ({
   arrow = false,
   extension,
   className,
+  unstyled = false,
 }: Props) => {
   const hasIcon = external || download || arrow;
   const RightIcon = assignIcon(external, download, arrow);
 
+  const isExternal = (href: string) => href.startsWith("http");
+  const LinkComponent = isExternal(href) ? "a" : NextLink;
+
   return (
-    <NextLink
+    <LinkComponent
       href={href}
-      className={`transition whitespace-nowrap ${
-        dark
-          ? "text-blue-100 hover:text-white"
-          : "text-blue-500 hover:text-blue-300"
-      } ${className !== undefined ? className : ""}`}
+      className={
+        !unstyled
+          ? `transition whitespace-nowrap ${
+              dark
+                ? "text-blue-100 hover:text-white"
+                : "text-blue-500 hover:text-blue-300"
+            } ${className !== undefined ? className : ""}`
+          : "stour-link"
+      }
     >
       <>
         {children}
@@ -59,7 +68,7 @@ const Link = ({
         )}
         {hasIcon && <RightIcon className="inline mb-0.5 ml-1 w-4 h-4" />}
       </>
-    </NextLink>
+    </LinkComponent>
   );
 };
 
