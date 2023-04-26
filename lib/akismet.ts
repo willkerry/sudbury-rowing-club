@@ -20,9 +20,11 @@ export default async function checkForSpam(
     comment_content: commentContent,
     blog_lang: "en_gb",
   });
+
   const isSpam = await axios.post(
     "https://6c80e09f5c4d.rest.akismet.com/1.1/comment-check",
     query
   );
+
   return isSpam.data;
 }
