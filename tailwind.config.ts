@@ -1,12 +1,11 @@
 import type { Config } from "tailwindcss";
 
+import typography from "@tailwindcss/typography";
+import aspectRatio from "@tailwindcss/aspect-ratio";
+import forms from "@tailwindcss/forms";
+
 export default {
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/line-clamp"),
-  ],
+  plugins: [typography, aspectRatio, forms],
   mode: "jit",
   content: ["./components/**/*.[jt]s?(x)", "./pages/**/*.[jt]s?(x)"],
   theme: {
