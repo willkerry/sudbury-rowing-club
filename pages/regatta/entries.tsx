@@ -4,9 +4,11 @@ import { CompactEvents } from "@/components/regatta/events";
 import Text from "@/components/stour/text";
 import Link from "@/components/stour/link";
 import type { InferGetStaticPropsType, NextPage } from "next";
-import fetchEntries from "@/lib/queries/fetch-entries";
+import fetchRegattaSettings from "@/lib/queries/fetch-regatta-settings";
 
-export const getStaticProps = async () => ({ props: await fetchEntries() });
+export const getStaticProps = async () => ({
+  props: await fetchRegattaSettings(),
+});
 
 const Entries: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   entries,
@@ -21,7 +23,7 @@ const Entries: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       ogImage="/assets/og/entries.png"
       description="Details for competetive entry to the Sudbury Regatta."
     >
-      <CompactEvents data={events.events} />
+      <CompactEvents data={events} />
       <div className="space-x-4">
         <Link href="/regatta/events">More on events</Link>
         <Link href="/regatta/course">Course Map</Link>

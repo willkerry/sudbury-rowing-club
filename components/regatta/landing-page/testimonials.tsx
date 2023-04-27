@@ -3,20 +3,11 @@ import Masonry from "@/components/stour/masonry";
 import DateFormatter from "@/components/utils/date-formatter";
 import Testimonial from "@/components/stour/testimonial";
 import ordinal from "@/lib/helpers/ordinal";
-import type TestimonialType from "../../../types/testimonial";
+import { type Regatta } from "@/lib/queries/fetch-regattas";
 
-type Props = {
-  data: {
-    _id: string;
-    date: string;
-    number: number;
-    testimonials: TestimonialType[];
-  }[];
-};
-
-const Testimonials = ({ data }: Props) => (
+const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
   <>
-    {data.map(
+    {regattas.map(
       (year) =>
         year.testimonials && (
           <div key={year._id} className="mb-24">
@@ -29,13 +20,8 @@ const Testimonials = ({ data }: Props) => (
                   <DateFormatter dateString={year.date} format="long" />
                 </Label>
               </div>
-              {year.testimonials.map((testimonial, i) => (
-                <Testimonial
-                  key={i}
-                  name={testimonial.name}
-                  club={testimonial.club}
-                  text={testimonial.text}
-                />
+              {year.testimonials.map((testimonial) => (
+                <Testimonial key={testimonial._key} {...testimonial} />
               ))}
             </Masonry>
           </div>

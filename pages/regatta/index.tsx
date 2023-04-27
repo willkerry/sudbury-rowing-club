@@ -13,20 +13,15 @@ import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
 import { BASE_URL } from "@/lib/constants";
-import sanityClient from "@/lib/sanity.server";
-import groq from "groq";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
+import Notice from "@/components/regatta/notice";
+import fetchRegattas from "@/lib/queries/fetch-regattas";
+import fetchRegattaSettings from "@/lib/queries/fetch-regatta-settings";
 
 import type { DetailProps } from "@/components/regatta/landing-page/details";
-import type { Testimonial } from "@/types/testimonial";
-import { PortableTextProps } from "@portabletext/react";
-import type { GetStaticProps, NextPage } from "next";
+import type { InferGetStaticPropsType, NextPage } from "next";
 import type { CompetitorInformation } from "./competitor-information";
-import type { Entries } from "./entries";
-import type { Event } from "./events";
-import type { Result } from "./results";
-import Notice from "@/components/regatta/notice";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
@@ -57,49 +52,30 @@ const CompetitorInformation = dynamic(
   () => import("@/components/regatta/competitor-information"),
   { loading: () => <Loading /> }
 );
-interface ImageElement {
-  _id: string;
-  aspectRatio: number;
-  bgColor?: null | string;
-  caption?: string;
-  color?: null | string;
-  lqip?: string;
-}
-interface LandingPage {
-  description: PortableTextProps["value"];
-  heroImage: {
-    heading: string;
-    image: ImageElement;
-    subheading: string;
-  };
-  images: ImageElement[];
-  tagline: string;
-}
-export interface Page {
-  competitorInformation: CompetitorInformation;
-  date: Date;
-  entries: Entries;
-  events: Event[];
-  landingPage: LandingPage;
-  results: {
-    description: PortableTextProps["value"];
-    records: string;
-  };
-  title: string;
-}
 
-type Props = {
-  page: Page;
-  testimonials: Testimonial[];
-  results: Result[];
-};
+export const getStaticProps = async () => ({
+  props: {
+    ...(await fetchRegattaSettings()),
+    regattas: await fetchRegattas(),
+  },
+});
 
-const RegattaPage: NextPage<Props> = ({ page, testimonials, results }) => {
-  const regattaDate = <DateFormatter dateString={page.date} format="long" />;
+const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  competitorInformation,
+  date,
+  entries,
+  events,
+  landingPage,
+  results,
+  title,
+  regattas,
+}) => {
+  const regattaDate = <DateFormatter dateString={date} format="long" />;
+
   const ticketItems = [
     {
       label: "Event",
-      value: page.title,
+      value: title,
     },
     {
       label: "Date",
@@ -114,18 +90,22 @@ const RegattaPage: NextPage<Props> = ({ page, testimonials, results }) => {
     {
       summary: "Events",
       icon: <EventsIcon />,
-      children: <Events data={page.events} />,
+      children: <Events data={events} />,
     },
     {
       summary: "Entries",
       icon: <EntriesIcon />,
       children: (
         <Entries
-          table={page.entries.waves}
-          caption={page.entries.caption}
-          waveNames={page.entries.waveNames}
+          table={
+            entries.waves?.rows.map((row) => row.cells.map((cell) => cell)) || [
+              [],
+            ]
+          }
+          caption={entries.wavesCaption}
+          waveNames={entries.waveNames}
         >
-          <Text portableText={page.entries.description} />
+          <Text portableText={entries.description || []} />
         </Entries>
       ),
     },
@@ -133,8 +113,19 @@ const RegattaPage: NextPage<Props> = ({ page, testimonials, results }) => {
       summary: "Results",
       icon: <ResultsIcon />,
       children: (
-        <Results results={results} records={page.results.records} tab>
-          <Text portableText={page.results.description} />
+        <Results
+          results={
+            regattas.map(({ _id, date, number, results }) => ({
+              _id,
+              date: new Date(date),
+              number,
+              results,
+            })) || []
+          }
+          records={results.records}
+          tab
+        >
+          <Text portableText={results.description || []} />
         </Results>
       ),
     },
@@ -144,8 +135,8 @@ const RegattaPage: NextPage<Props> = ({ page, testimonials, results }) => {
       children: (
         <CompetitorInformation
           tab
-          description={page.competitorInformation.description}
-          items={page.competitorInformation.documents}
+          description={competitorInformation.description}
+          items={competitorInformation.documents}
         />
       ),
     },
@@ -162,9 +153,9 @@ const RegattaPage: NextPage<Props> = ({ page, testimonials, results }) => {
         }}
       />
       <EventJsonLd
-        name={page.title}
-        startDate={page.date.toString()}
-        endDate={page.date.toString()}
+        name={title}
+        startDate={date}
+        endDate={date}
         location={{
           name: "Friars Meadow",
           address: {
@@ -181,100 +172,40 @@ const RegattaPage: NextPage<Props> = ({ page, testimonials, results }) => {
       />
       <Container>
         <Notice />
-        <RegattaHero
-          ticketItems={ticketItems}
-          subtitle={page.landingPage.tagline}
-        />
+        <RegattaHero ticketItems={ticketItems} subtitle={landingPage.tagline} />
         <DateLocation
           date={regattaDate}
           location="Friars Meadow, Sudbury, CO10 2TL"
         />
         <RegattaHeroImage
-          aspectRatio={page.landingPage.heroImage.image.aspectRatio}
-          src={page.landingPage.heroImage.image._id}
-          blurDataURL={page.landingPage.heroImage.image.lqip}
-          title={page.landingPage.heroImage.heading}
-          subtitle={page.landingPage.heroImage.subheading}
+          aspectRatio={landingPage.heroImage.image.aspectRatio || 1}
+          src={landingPage.heroImage.image._id}
+          blurDataURL={landingPage.heroImage.image.lqip || ""}
+          title={landingPage.heroImage.heading}
+          subtitle={landingPage.heroImage.subheading}
         />
       </Container>
       <Container className="my-24 max-w-prose" id="regatta-body">
-        <Text portableText={page.landingPage.description} />
+        <Text portableText={landingPage.description || []} />
         <div className="h-5" />
         <Details items={accordion} />
       </Container>
-      <Gallery images={page.landingPage.images} />
+
+      <Gallery images={landingPage.images} />
+
       <div id="feedback">
         <Hero
           title="Some of the people who’ve come to our regatta have said lovely things about it"
           label="Feedback"
           fullwidth
         />
+
         <Container>
-          <Testimonials data={testimonials} />
+          <Testimonials {...{ regattas }} />
         </Container>
       </div>
     </Layout>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  const page = await sanityClient.fetch(groq`
-  {"page": *[_type == "regattaSettings"][0] {
-    title,
-    date,
-    landingPage {
-      description,
-      heroImage {
-        heading,
-        subheading,
-          image {
-            '_id': asset->_id,
-            'aspectRatio': asset->metadata.dimensions.aspectRatio,
-            'lqip': asset->metadata.lqip
-          }
-      },
-      images[] {
-        "_id": asset->_id,
-        "aspectRatio": asset->metadata.dimensions.aspectRatio,
-        "lqip": asset->metadata.lqip,
-        "bgColor": asset->metadata.palette.darkMuted.background,
-        "color": asset->metadata.palette.darkMuted.foreground,
-        caption 
-      },
-      tagline
-    },
-    competitorInformation {
-      description,
-      documents[] { 
-        title, 
-        "extension": asset->extension,
-        "url": asset->url,
-        "_id": asset->_id
-      }
-    },
-    entries,
-    results,
-    "events": events.events,
-  }} +
-  {"testimonials": *[_type == "regattas" && testimonials != null && !(_id in path("drafts.**"))] | order(date desc) {
-    _id, date, testimonials, number
-  }} +
-  {"results": *[_type == "regattas" && results != "" && !(_id in path("drafts.**")) ] | order(date desc) {
-    _id, date, results, number
-   }}`);
-  return {
-    props: {
-      page: {
-        ...page.page,
-        entries: {
-          ...page.page.entries,
-          waves: page.page.entries.waves.rows.map((row: any) => row.cells),
-        },
-      },
-      testimonials: page.testimonials,
-      results: page.results,
-    },
-  };
 };
 
 export default RegattaPage;
