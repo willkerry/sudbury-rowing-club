@@ -20,3 +20,22 @@ export const SENDER = {
   email: "noreply@sudburyrowingclub.org.uk",
   name: "Sudbury Rowing Club",
 };
+
+export namespace REGATTA {
+  export const EVENT_NAME_LONG =
+    "Sudbury Rowing Club Regatta, the ’International’";
+  export const EVENT_TAGLINE = "The best little regatta in the world.";
+
+  export const OG_IMAGE_URL = `${BASE_URL}/assets/og/regatta.png`;
+  export const CANONICAL_URL = `${BASE_URL}/regatta`;
+
+  export const VENUE = "Friars Meadow";
+  export const STREET = "Edgeworth Road";
+  export const TOWN = "Sudbury";
+  export const COUNTY = "Suffolk";
+  export const POSTCODE = "CO10 2TL";
+
+  export const TESTIMONIAL_TITLE = "Feedack";
+  export const TESTIMONIAL_DESCRIPTION =
+    "Some of the people who’ve come to our regatta have said lovely things about it";
+}

@@ -4,9 +4,12 @@ import cupImage from "../../../public/assets/regatta/landing/cup.png";
 import victoriaImage from "../../../public/assets/regatta/landing/victoria.png";
 import bladeImage from "../../../public/assets/regatta/landing/blade.png";
 import buntingImage from "../../../public/assets/regatta/landing/bunting.png";
-import { type TicketItem } from "@/types/ticket-item";
 
-const ImageComposite = ({ ticketItems }: { ticketItems: TicketItem[] }) => (
+const ImageComposite = ({
+  ticketItems,
+}: {
+  ticketItems: [string, string | JSX.Element][];
+}) => (
   <div className="relative w-64 mx-auto h-96">
     <div className="absolute z-10 bottom-12 left-10">
       <Ticket items={ticketItems} />

@@ -1,10 +1,9 @@
 import ImageComposite from "@/components/regatta/landing-page/image-composite";
-import { type TicketItem } from "@/types/ticket-item";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Link as ScrollLink } from "react-scroll";
 
 type Props = {
-  ticketItems: TicketItem[];
+  ticketItems: [string, string | JSX.Element][];
   subtitle: string;
 };
 

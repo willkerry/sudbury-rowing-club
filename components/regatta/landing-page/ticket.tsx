@@ -1,10 +1,4 @@
-import type TicketItem from "@/types/ticket-item";
-
-type Props = {
-  items: TicketItem[];
-};
-
-const Ticket = ({ items }: Props) => (
+const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
   <div
     className="relative rounded-lg bg-gradient-to-tr from-gray-300 to-white drop-shadow-2xl -rotate-6"
     style={{
@@ -25,12 +19,12 @@ const Ticket = ({ items }: Props) => (
     />
     <div className="px-3 py-3 space-y-1.5">
       {items.map((item) => (
-        <div key={item.label.toString()}>
+        <div key={item[0].toString()}>
           <div className="font-bold uppercase text-[9px] tracking-widest text-gray-500">
-            {item.label}
+            {item[0]}
           </div>
           <div className="font-mono text-[11px] font-medium whitespace-pre-line">
-            {item.value}
+            {item[1]}
           </div>
         </div>
       ))}

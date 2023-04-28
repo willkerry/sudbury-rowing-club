@@ -12,7 +12,7 @@ import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
-import { BASE_URL } from "@/lib/constants";
+import { REGATTA } from "@/lib/constants";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 import Notice from "@/components/regatta/notice";
@@ -60,6 +60,20 @@ export const getStaticProps = async () => ({
   },
 });
 
+const {
+  EVENT_NAME_LONG,
+  EVENT_TAGLINE,
+  OG_IMAGE_URL,
+  CANONICAL_URL,
+  VENUE,
+  STREET,
+  TOWN,
+  COUNTY,
+  POSTCODE,
+  TESTIMONIAL_TITLE,
+  TESTIMONIAL_DESCRIPTION,
+} = REGATTA;
+
 const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   competitorInformation,
   date,
@@ -72,20 +86,12 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   const regattaDate = <DateFormatter dateString={date} format="long" />;
 
-  const ticketItems = [
-    {
-      label: "Event",
-      value: title,
-    },
-    {
-      label: "Date",
-      value: regattaDate,
-    },
-    {
-      label: "Location",
-      value: "Friars Meadow, \nSudbury CO10 2TL",
-    },
+  const ticketItems: [string, string | JSX.Element][] = [
+    ["Event", title],
+    ["Date", regattaDate],
+    ["Location", `${VENUE},\n${TOWN} ${POSTCODE}`],
   ];
+
   const accordion: DetailProps[] = [
     {
       summary: "Events",
@@ -141,15 +147,16 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       ),
     },
   ];
+
   return (
     <Layout>
       <NextSeo
-        title="Sudbury Rowing Club Regatta, the ’International’"
-        description="The best little regatta in the world."
+        title={EVENT_NAME_LONG}
+        description={EVENT_TAGLINE}
         openGraph={{
-          title: "Sudbury Rowing Club Regatta, the ’International’",
-          description: "The best little regatta in the world.",
-          images: [{ url: `${BASE_URL}/assets/og/regatta.png` }],
+          title: EVENT_NAME_LONG,
+          description: EVENT_TAGLINE,
+          images: [{ url: OG_IMAGE_URL }],
         }}
       />
       <EventJsonLd
@@ -157,25 +164,25 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         startDate={date}
         endDate={date}
         location={{
-          name: "Friars Meadow",
+          name: VENUE,
           address: {
-            streetAddress: "Friars Meadow, Edgeworth Road",
-            addressLocality: "Sudbury",
-            addressRegion: "Suffolk",
-            postalCode: "CO10 2TL",
+            streetAddress: `${VENUE}, ${STREET}`,
+            addressLocality: TOWN,
+            addressRegion: COUNTY,
+            postalCode: POSTCODE,
             addressCountry: "UK",
           },
         }}
-        url="https://sudburyrowingclub.org.uk/regatta"
-        images={[`${BASE_URL}/assets/og/regatta.png`]}
-        description="The best little regatta in the world."
+        url={CANONICAL_URL}
+        images={[OG_IMAGE_URL]}
+        description={EVENT_TAGLINE}
       />
       <Container>
         <Notice />
-        <RegattaHero ticketItems={ticketItems} subtitle={landingPage.tagline} />
+        <RegattaHero {...{ ticketItems }} subtitle={landingPage.tagline} />
         <DateLocation
           date={regattaDate}
-          location="Friars Meadow, Sudbury, CO10 2TL"
+          location={`${VENUE}, ${TOWN}, ${POSTCODE}`}
         />
         <RegattaHeroImage
           aspectRatio={landingPage.heroImage.image.aspectRatio || 1}
@@ -195,8 +202,8 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
       <div id="feedback">
         <Hero
-          title="Some of the people who’ve come to our regatta have said lovely things about it"
-          label="Feedback"
+          title={TESTIMONIAL_DESCRIPTION}
+          label={TESTIMONIAL_TITLE}
           fullwidth
         />
 
