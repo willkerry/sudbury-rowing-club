@@ -7,11 +7,15 @@ import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import Note from "@/components/stour/note";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { config } from "./sanity.server";
 import Figure from "@/components/stour/figure";
+import { config } from "./sanity.server";
 
 export const urlFor = (source: SanityImageSource) =>
   imageUrlBuilder(config).image(source);
+
+type WrappedPortableTextProps = PortableTextProps & {
+  className?: string;
+};
 
 const components: PortableTextComponents = {
   marks: {
@@ -26,6 +30,7 @@ const components: PortableTextComponents = {
     quote: ({ value }) => (
       <figure>
         <blockquote>
+          {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
           <PortableText value={value?.quote} />
         </blockquote>
         <figcaption>{value?.attribution}</figcaption>
@@ -40,13 +45,9 @@ const components: PortableTextComponents = {
   },
 };
 
-type WrappedPortableTextProps = PortableTextProps & {
-  className?: string;
-};
-
 export function PortableText({
   value,
-  className,
+  className = "",
   ...rest
 }: WrappedPortableTextProps) {
   if (value) {
@@ -58,7 +59,3 @@ export function PortableText({
   }
   return null;
 }
-
-PortableText.defaultProps = {
-  className: "",
-};

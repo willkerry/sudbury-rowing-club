@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 
-type Image = {
+type ImageType = {
   _id: string;
   caption?: string;
   lqip?: string;
   aspectRatio: number;
 };
 
-const Gallery = ({ images }: { images: Image[] }) => (
+const Gallery = ({ images }: { images: ImageType[] }) => (
   <div className="relative flex w-full gap-6 overflow-x-auto snap-x pb-14">
     <div className="snap-center shrink-0">
       <div className="w-4 shrink-0 sm:w-48" />

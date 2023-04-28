@@ -12,13 +12,11 @@ import fetchSafety from "@/lib/queries/fetch-safety";
 
 export const getStaticProps: GetStaticProps<{
   safety: Awaited<ReturnType<typeof fetchSafety>>;
-}> = async () => {
-  return {
-    props: {
-      safety: await fetchSafety(),
-    },
-  };
-};
+}> = async () => ({
+  props: {
+    safety: await fetchSafety(),
+  },
+});
 
 const Safety: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   safety,

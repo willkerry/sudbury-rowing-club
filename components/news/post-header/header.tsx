@@ -1,36 +1,44 @@
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
-import PostTitle from "./title";
-import Caption from "./caption";
 import { Article } from "@/lib/queries/fetch-news-article";
 import LightBox from "@/components/stour/lightbox";
 import { useToggle } from "@mantine/hooks";
+import Caption from "./caption";
+import PostTitle from "./title";
 
 type Props = Pick<Article, "title" | "date" | "featuredImage">;
 
+const HeaderLightBox = ({
+  featuredImage,
+  title,
+  open,
+  toggleOpen,
+}: Pick<Props, "featuredImage" | "title"> & {
+  open: boolean;
+  toggleOpen: () => void;
+}) => {
+  if (!featuredImage) return null;
+  return (
+    <LightBox
+      src={urlFor(featuredImage._id).url()}
+      alt={featuredImage.alt || featuredImage.caption || title}
+      aspectRatio={featuredImage.aspectRatio}
+      lqip={featuredImage.lqip}
+      open={open}
+      toggle={toggleOpen}
+    />
+  );
+};
+
 const PostHeader = ({ title, date, featuredImage }: Props) => {
   const [open, toggleOpen] = useToggle();
-
-  const HeaderLightBox = () => {
-    if (!featuredImage) return null;
-    return (
-      <LightBox
-        src={urlFor(featuredImage._id).url()}
-        alt={featuredImage.alt || featuredImage.caption || title}
-        aspectRatio={featuredImage.aspectRatio}
-        lqip={featuredImage.lqip}
-        open={open}
-        toggle={toggleOpen}
-      />
-    );
-  };
 
   if (featuredImage && featuredImage.aspectRatio > 1)
     return (
       <>
         <PostTitle date={date} title={title} center />
         <div className="mb-8 md:mb-16 sm:mx-0">
-          <HeaderLightBox />
+          <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />
           <figure className="relative flex flex-col max-w-3xl mx-auto overflow-hidden text-gray-600 bg-gray-200 rounded">
             <style jsx>{`
               figure {
@@ -40,6 +48,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
             `}</style>
 
             <button
+              type="button"
               onClick={() => toggleOpen()}
               className="hover:cursor-zoom-in"
             >
@@ -63,7 +72,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
       <div className="flex-row items-center max-w-3xl gap-8 mx-auto mb-8 sm:flex md:mb-16">
         <PostTitle date={date} title={title} />
         <div className="relative flex-none">
-          <HeaderLightBox />
+          <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />
           <figure
             className="flex flex-col overflow-hidden rounded shadow-lg"
             style={{ maxWidth: 512 * featuredImage.aspectRatio }}
@@ -76,6 +85,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
             `}</style>
 
             <button
+              type="button"
               onClick={() => toggleOpen()}
               className="hover:cursor-zoom-in"
             >

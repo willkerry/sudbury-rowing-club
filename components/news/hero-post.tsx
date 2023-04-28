@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { urlFor } from "@/lib/sanity";
+import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
-import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 
 const HeroPost = ({ post }: { post: ArticleSummary }) => (
   <Link

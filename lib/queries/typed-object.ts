@@ -1,12 +1,10 @@
-// @ts-ignore
 import type { TypedObject } from "@portabletext/types";
 import { z } from "zod";
 
 const schemaForType =
   <T>() =>
-  <S extends z.ZodType<T, any, any>>(arg: S) => {
-    return arg;
-  };
+  <S extends z.ZodType<T, any, any>>(arg: S) =>
+    arg;
 
 const baseTypedObjectZ = z
   .object({
@@ -16,3 +14,5 @@ const baseTypedObjectZ = z
   .passthrough();
 
 export const ZTypedObject = schemaForType<TypedObject>()(baseTypedObjectZ);
+
+export default ZTypedObject;

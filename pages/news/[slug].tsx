@@ -30,9 +30,7 @@ export const getStaticProps = async ({
   params,
 }: {
   params: ParsedUrlQuery;
-}) => {
-  return { props: { post: await fetchOneArticle(params?.slug as string) } };
-};
+}) => ({ props: { post: await fetchOneArticle(params?.slug as string) } });
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await fetchAllSlugs();

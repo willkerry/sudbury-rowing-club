@@ -8,7 +8,7 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { BASE_URL } from "@/lib/constants";
-import fetchGovernance from "@/lib/queries/fetch-governance";
+import { fetchGovernance } from "@/lib/queries/fetch-governance";
 import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 

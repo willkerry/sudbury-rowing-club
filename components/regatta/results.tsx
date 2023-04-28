@@ -4,7 +4,6 @@ import ordinal from "@/lib/helpers/ordinal";
 import DateFormatter from "@/components/utils/date-formatter";
 import Link from "@/components/stour/link";
 import Button from "@/components/stour/button";
-import Note from "@/components/stour/note";
 
 type Result = {
   _id: string;

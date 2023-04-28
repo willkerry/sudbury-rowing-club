@@ -21,31 +21,38 @@ type SectionWrapperProps = {
   collapse?: boolean;
 };
 
-const SectionWrapper: React.FC<SectionWrapperProps> = (
-  props: SectionWrapperProps
-) => {
+const SectionWrapper: React.FC<SectionWrapperProps> = ({
+  title,
+  compact = false,
+  children,
+  collapse = false,
+}: SectionWrapperProps) => {
   const outer: string = "px-5 py-4";
-  const title = "text-xs font-semibold tracking-wider text-gray-500 uppercase";
+  const titleClasses =
+    "text-xs font-semibold tracking-wider text-gray-500 uppercase";
   const panel = "mt-3";
   const inner = (
     <nav
       className={cn(
         "grid grid-cols-2 sm:grid-cols-3 gap-x-6",
-        props.compact ? "gap-y-1" : "gap-y-4"
+        compact ? "gap-y-1" : "gap-y-4"
       )}
     >
-      {props.children}
+      {children}
     </nav>
   );
-  if (props.collapse)
+  if (collapse)
     return (
       <Disclosure>
         {({ open }) => (
           <div className={outer}>
             <Disclosure.Button
-              className={cn(title, "flex justify-between w-full py-4 -my-4")}
+              className={cn(
+                titleClasses,
+                "flex justify-between w-full py-4 -my-4"
+              )}
             >
-              {props.title}
+              {title}
               <ChevronDownIcon
                 className={cn("w-4 h-4", open && "rotate-180")}
               />
@@ -57,28 +64,31 @@ const SectionWrapper: React.FC<SectionWrapperProps> = (
     );
   return (
     <div className={outer}>
-      <div className={title}>{props.title}</div>
+      <div className={titleClasses}>{title}</div>
       <div className={panel}>{inner}</div>
     </div>
   );
 };
 
-export const MobileMenuSection: React.FC<SectionProps> = (
-  props: SectionProps
-) => (
-  <SectionWrapper title={props.title} compact={false} collapse={props.collapse}>
-    {props.data.map((item, i) => (
-      <MobileMenuItem data={item} key={i} />
+export const MobileMenuSection: React.FC<SectionProps> = ({
+  title,
+  data,
+  collapse = false,
+}: SectionProps) => (
+  <SectionWrapper title={title} compact={false} collapse={collapse}>
+    {data.map((item) => (
+      <MobileMenuItem data={item} key={item.href} />
     ))}
   </SectionWrapper>
 );
 
-export const CompactMobileMenuSection: React.FC<CompactSectionProps> = (
-  props: CompactSectionProps
-) => (
-  <SectionWrapper title={props.title} compact={true}>
-    {props.data.map((item, i) => (
-      <CompactMobileMenuItem data={item} key={i} />
+export const CompactMobileMenuSection: React.FC<CompactSectionProps> = ({
+  title,
+  data,
+}: CompactSectionProps) => (
+  <SectionWrapper title={title} compact>
+    {data.map((item) => (
+      <CompactMobileMenuItem data={item} key={item.href} />
     ))}
   </SectionWrapper>
 );

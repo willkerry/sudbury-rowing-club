@@ -39,8 +39,8 @@ const L2RStages = ({ stages }: Props) => (
           color: inherit;
         }
       `}</style>
-      {stages.map((stage, i) => (
-        <li key={i} className="ml-8 lg:ml-0">
+      {stages.map((stage) => (
+        <li key={stage.name} className="ml-8 lg:ml-0">
           <div className="text-lg font-semibold leading-tight tracking-tight text-gray-700">
             {stage.name}
           </div>

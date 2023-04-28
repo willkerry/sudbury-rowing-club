@@ -8,7 +8,7 @@ import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import { NextPage } from "next";
 
-export type CompetitorInformation = {
+export type CompetitorInformationType = {
   description: string;
   documents: {
     _id: string;
@@ -18,7 +18,10 @@ export type CompetitorInformation = {
   }[];
 };
 
-const CompetitorInformationPage: NextPage<CompetitorInformation> = (props) => (
+const CompetitorInformationPage: NextPage<CompetitorInformationType> = ({
+  description,
+  documents,
+}) => (
   <Layout>
     <NextSeo
       title="Competitor Information | Sudbury Regatta"
@@ -32,10 +35,7 @@ const CompetitorInformationPage: NextPage<CompetitorInformation> = (props) => (
     />
     <HeroTitle title="Competitor Information" breadcrumbs />
     <Container className="py-16">
-      <CompetitorInformation
-        description={props.description}
-        items={props.documents}
-      />
+      <CompetitorInformation {...{ description }} items={documents} />
     </Container>
   </Layout>
 );

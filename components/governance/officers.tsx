@@ -16,6 +16,70 @@ type Props = {
   officers: Governance["officers"];
 };
 
+const OfficerPhotographOrPlaceholder = ({
+  officer,
+}: {
+  officer: Governance["officers"][0];
+}) => {
+  if (officer.vacant) {
+    return (
+      <div className="font-bold tracking-widest text-gray-400 uppercase">
+        TBA
+      </div>
+    );
+  }
+
+  if (officer.image) {
+    return (
+      <Image
+        src={urlFor(officer.image._id)
+          .crop("entropy")
+          .fit("clip")
+          .size(500, 500)
+          .sharpen(30)
+          .url()}
+        fill
+        placeholder="blur"
+        blurDataURL={officer.image.lqip}
+        className="object-cover"
+        alt={officer.name || ""}
+      />
+    );
+  }
+
+  return <ImageIcon className="text-gray-400" />;
+};
+
+const OfficerNameOrPlaceholder = ({
+  officer,
+}: {
+  officer: Governance["officers"][0];
+}) => {
+  if (officer.vacant) {
+    return <>&nbsp;</>;
+  }
+
+  if (officer.hasEmail) {
+    <NextLink
+      href={{
+        pathname: "contact",
+        query: { to: officer._id },
+      }}
+      className="flex items-center gap-1.5 group"
+      title={`Contact ${officer.name}`}
+    >
+      {officer.name}
+      <MessageCircle
+        size="1em"
+        strokeWidth="0.15em"
+        className="text-blue-500 transition group-hover:text-gray-600"
+      />
+    </NextLink>;
+  }
+
+  return <span>{officer.name}</span>;
+};
+
 const Officers = ({ officers }: Props) => (
   <section id="officers">
     <SectionTitle>Club Officers</SectionTitle>
@@ -23,27 +87,7 @@ const Officers = ({ officers }: Props) => (
       {officers.map((officer) => (
         <div key={officer._id}>
           <div className="relative flex items-center justify-center w-full mb-2 overflow-hidden rounded h-36 bg-gradient-to-b from-gray-200 to-gray-100">
-            {officer.vacant ? (
-              <div className="font-bold tracking-widest text-gray-400 uppercase">
-                TBA
-              </div>
-            ) : officer.image ? (
-              <Image
-                src={urlFor(officer.image._id)
-                  .crop("entropy")
-                  .fit("clip")
-                  .size(500, 500)
-                  .sharpen(30)
-                  .url()}
-                fill
-                placeholder="blur"
-                blurDataURL={officer.image.lqip}
-                className="object-cover"
-                alt={officer.name || ""}
-              />
-            ) : (
-              <ImageIcon className="text-gray-400" />
-            )}
+            <OfficerPhotographOrPlaceholder {...{ officer }} />
             {officer.description && (
               <Popover>
                 <Popover.Button>
@@ -78,27 +122,7 @@ const Officers = ({ officers }: Props) => (
             )}
           </div>
           <div className="font-semibold text-gray-800 tracking-snug">
-            {officer.vacant ? (
-              <>&nbsp;</>
-            ) : officer.hasEmail ? (
-              <NextLink
-                href={{
-                  pathname: "contact",
-                  query: { to: officer._id },
-                }}
-                className="flex items-center gap-1.5 group"
-                title={`Contact ${officer.name}`}
-              >
-                {officer.name}
-                <MessageCircle
-                  size="1em"
-                  strokeWidth="0.15em"
-                  className="text-blue-500 transition group-hover:text-gray-600"
-                />
-              </NextLink>
-            ) : (
-              officer.name
-            )}
+            <OfficerNameOrPlaceholder {...{ officer }} />
           </div>
           <Description>{officer.role}</Description>
         </div>

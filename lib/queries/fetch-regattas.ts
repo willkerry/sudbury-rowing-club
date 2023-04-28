@@ -27,9 +27,8 @@ const ZRegatta = z.object({
   testimonials: z.array(ZTestimonial).nullable(),
 });
 
-const fetchRegattas = async () => {
-  return z.array(ZRegatta).parse(await sanityClient.fetch(regattasQuery));
-};
+const fetchRegattas = async () =>
+  z.array(ZRegatta).parse(await sanityClient.fetch(regattasQuery));
 
 type Regatta = z.infer<typeof ZRegatta>;
 type Testimonial = z.infer<typeof ZTestimonial>;

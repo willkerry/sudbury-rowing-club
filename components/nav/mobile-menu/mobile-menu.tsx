@@ -4,11 +4,11 @@ import {
   memberCTAs,
   members,
   regatta,
+  regattaCTAs,
 } from "@/components/nav/nav-data";
 import { Popover } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-import { regattaCTAs } from "../nav-data";
 import {
   CompactMobileMenuSection,
   MobileMenuSection,

@@ -1,5 +1,5 @@
-import Text from "../stour/text";
 import { PortableTextProps } from "@portabletext/react";
+import Text from "../stour/text";
 
 type Props = {
   content: PortableTextProps["value"];

@@ -35,7 +35,11 @@ const Figure = ({
       <LightBox />
 
       <figure>
-        <button onClick={() => toggle()} className="hover:cursor-zoom-in">
+        <button
+          type="button"
+          onClick={() => toggle()}
+          className="hover:cursor-zoom-in"
+        >
           <Image
             src={
               aspectRatio

@@ -1,5 +1,5 @@
-import Button from "../stour/button";
 import { Home, Search } from "react-feather";
+import Button from "../stour/button";
 
 const CallToAction404 = () => (
   <>

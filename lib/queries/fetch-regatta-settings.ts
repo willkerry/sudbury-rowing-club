@@ -124,9 +124,8 @@ const ZRegattaSettings = z.object({
   results: ZResults,
 });
 
-const fetchRegattaSettings = async () => {
-  return ZRegattaSettings.parse(await sanityClient.fetch(regattaSettingsQuery));
-};
+const fetchRegattaSettings = async () =>
+  ZRegattaSettings.parse(await sanityClient.fetch(regattaSettingsQuery));
 
 type RegattaSettings = z.infer<typeof ZRegattaSettings>;
 

@@ -22,43 +22,46 @@ type Props = {
   };
 };
 
-const Coursemap: NextPage<Props> = (props) => {
-  return (
-    <Layout>
-      <NextSeo
-        title="Coursemap | Sudbury Regatta"
-        description="Sudbury’s challenging regatta course."
-        openGraph={{
-          title: "Coursemap",
-          description: "The Sudbury Regatta’s challenging regatta course.",
-          images: [{ url: `${BASE_URL}/assets/og/course.png` }],
-        }}
-      />
-      <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
-      <Container className="mb-16">
-        <div className="my-16 prose">
-          <p className="lead">{props.heading}</p>
-          <p>{props.description}</p>
-          <Button href={`${props.map}?dl=`} icon={<Download />} as="a">
-            Download the PDF
-          </Button>
-        </div>
-        <div className="flex overflow-hidden border rounded shadow-xl">
-          <Image
-            src={urlFor(props.mapImage.id)
-              .width(982 * 2)
-              .url()}
-            width={982}
-            height={982 / props.mapImage.aspectRatio}
-            placeholder="blur"
-            blurDataURL={props.mapImage.lqip}
-            alt=""
-          />
-        </div>
-      </Container>
-    </Layout>
-  );
-};
+const Coursemap: NextPage<Props> = ({
+  heading,
+  description,
+  map,
+  mapImage,
+}) => (
+  <Layout>
+    <NextSeo
+      title="Coursemap | Sudbury Regatta"
+      description="Sudbury’s challenging regatta course."
+      openGraph={{
+        title: "Coursemap",
+        description: "The Sudbury Regatta’s challenging regatta course.",
+        images: [{ url: `${BASE_URL}/assets/og/course.png` }],
+      }}
+    />
+    <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
+    <Container className="mb-16">
+      <div className="my-16 prose">
+        <p className="lead">{heading}</p>
+        <p>{description}</p>
+        <Button href={`${map}?dl=`} icon={<Download />} as="a">
+          Download the PDF
+        </Button>
+      </div>
+      <div className="flex overflow-hidden border rounded shadow-xl">
+        <Image
+          src={urlFor(mapImage.id)
+            .width(982 * 2)
+            .url()}
+          width={982}
+          height={982 / mapImage.aspectRatio}
+          placeholder="blur"
+          blurDataURL={mapImage.lqip}
+          alt=""
+        />
+      </div>
+    </Container>
+  </Layout>
+);
 
 export const getStaticProps = async () => {
   const data = await sanityClient.fetch(

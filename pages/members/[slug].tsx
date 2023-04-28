@@ -14,7 +14,7 @@ import Link from "@/components/stour/link";
 import {
   fetchNoticeSlugs,
   fetchOneNotice,
-  type Notice,
+  type Notice as NoticeType,
 } from "@/lib/queries/fetch-notices";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -25,7 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<{
-  notice: Notice;
+  notice: NoticeType;
 }> = async ({ params }) => {
   const notice = await fetchOneNotice(params?.slug as string);
   return { props: { notice }, revalidate: 60 };

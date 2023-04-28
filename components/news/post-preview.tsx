@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
-import DateFormatter from "../utils/date-formatter";
 import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
+import DateFormatter from "../utils/date-formatter";
 
 const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li>

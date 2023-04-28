@@ -24,7 +24,7 @@ export type Event = {
   prizes: string;
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   const { events }: { events: { events: Event[] } } = await sanityClient.fetch(
     groq`*[_type == "regattaSettings"][0]{events}`
   );

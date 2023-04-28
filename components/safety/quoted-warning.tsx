@@ -10,6 +10,10 @@ type QuotedWarningProps = {
   source?: WarningSourceEnum;
 };
 
+let AgencyIcon: React.FC<{ className: string }> = () => null;
+let agencyName: string = "";
+let agencyColors: string = "";
+
 const QuotedWarning: React.FC<QuotedWarningProps> = ({
   description,
   source,
@@ -17,20 +21,20 @@ const QuotedWarning: React.FC<QuotedWarningProps> = ({
   if (!description) return null;
   if (!source) return null;
 
-  let agencyName: string = "";
-  let AgencyIcon: React.FC<{ className: string }> = () => <></>;
-  let agencyColors: string = "";
-
   switch (source) {
     case WarningSourceEnum.environmentAgency:
       agencyName = "Environment Agency";
       AgencyIcon = EnvironmentAgency;
       agencyColors = "bg-green-600 text-green-50";
       break;
+
     case WarningSourceEnum.metoffice:
       agencyName = "Met Office";
       AgencyIcon = MetOffice;
       agencyColors = "bg-gray-700 text-lime-400";
+      break;
+
+    default:
       break;
   }
 

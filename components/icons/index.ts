@@ -9,9 +9,10 @@ import Spond from "./spond";
 import UserDropdown from "./user-dropdown";
 import Facebook from "./socials/facebook";
 import Instragram from "./socials/instagram";
-import Twitter from "./socials/instagram";
+import Twitter from "./socials/twitter";
 import EnvironmentAgency from "./organisations/environment-agency";
 import MetOffice from "./organisations/met-office";
+
 export {
   Events,
   Safety,

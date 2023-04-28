@@ -14,6 +14,8 @@ const Copy: React.FC<{ value: string }> = ({ value }) => {
       const timeout = setTimeout(() => setCopied(false), 1000);
       return () => clearTimeout(timeout);
     }
+
+    return () => {};
   }, [copied]);
 
   const copy = () => {
@@ -23,6 +25,7 @@ const Copy: React.FC<{ value: string }> = ({ value }) => {
 
   return (
     <button
+      type="button"
       className="inline-flex items-center gap-1 group"
       onClick={() => copy()}
     >

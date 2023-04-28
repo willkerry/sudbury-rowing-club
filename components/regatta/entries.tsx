@@ -1,4 +1,3 @@
-import cn from "classnames";
 import getBoatsByWave from "../utils/getBoatsByWave";
 
 type Props = {
@@ -35,8 +34,8 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
         <table>
           <thead>
             <tr>
-              {table[0].map((entry, i) => (
-                <th key={i} className="text-center">
+              {table[0].map((entry) => (
+                <th key={entry} className="text-center">
                   {entry}
                 </th>
               ))}
@@ -46,8 +45,8 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
             {table.slice(1).map((wave) => (
               <tr key={wave[0]}>
                 <th>{wave[0]}</th>
-                {wave.slice(1).map((entry, i) => (
-                  <td key={i} className="text-center">
+                {wave.slice(1).map((entry) => (
+                  <td key={entry} className="text-center">
                     <div
                       className={`font-medium rounded-lg px-0.5 ${getWaveColor(
                         entry
@@ -71,7 +70,7 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
           {boatsByWave[wave].map((boat, i) => {
             const full = `${boat.x} ${boat.y}`;
             return (
-              <span key={i} className="inline-block pr-2">
+              <span key={boat.x} className="inline-block pr-2">
                 {full}
                 {i < boatsByWave[wave].length - 1 && ", "}
               </span>

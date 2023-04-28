@@ -1,7 +1,7 @@
-import Loading from "../stour/loading";
-import SafetyComponent from "./safety-component";
 import getSafetyStatus from "@/lib/get-safety-status";
 import useSWR from "swr";
+import Loading from "../stour/loading";
+import SafetyComponent from "./safety-component";
 
 const SafetyCard: React.FC = () => {
   const fetcher: typeof getSafetyStatus = () =>

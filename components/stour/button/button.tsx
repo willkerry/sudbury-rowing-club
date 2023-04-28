@@ -7,8 +7,8 @@ import type {
 
 import cn from "classnames";
 import { Slot } from "@radix-ui/react-slot";
-import Loading from "../loading";
 import Link from "next/link";
+import Loading from "../loading";
 
 type Size = "auto" | "mini" | "small" | "medium" | "large";
 type Variant =

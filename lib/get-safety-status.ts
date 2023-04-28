@@ -19,7 +19,7 @@ type SanityStatus = {
  */
 async function fetchSanityStatus(): Promise<SanityStatus> {
   const query = groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{_updatedAt,description,display,status}`;
-  return await sanityClient.fetch<SanityStatus>(query);
+  return sanityClient.fetch<SanityStatus>(query);
 }
 
 /**
@@ -41,8 +41,9 @@ async function fetchEAWarning(): Promise<EAWarning | void> {
     return data.items[0];
   } catch (e) {
     console.error(e);
-    return;
   }
+
+  return undefined;
 }
 
 /**
@@ -133,7 +134,7 @@ const getSafetyStatus: () => Promise<SafetyComponentProps> = async () => {
     const { typicalRangeHigh, typicalRangeLow } = station.stageScale;
     const mean = (typicalRangeHigh + typicalRangeLow) / 2;
 
-    let status = value >= mean ? Severity.amber : Severity.neutral;
+    const status = value >= mean ? Severity.amber : Severity.neutral;
 
     return {
       status,

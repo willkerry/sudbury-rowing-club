@@ -69,8 +69,8 @@ export const CompactEvents = ({ data }: { data: Event[] }) => (
       </tr>
     </thead>
     <tbody>
-      {data.map((item, i) => (
-        <tr key={i}>
+      {data.map((item) => (
+        <tr key={item._key}>
           <td className="font-bold">{item.course}</td>
           <td>{item.categories}</td>
           <td>

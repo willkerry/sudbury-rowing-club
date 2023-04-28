@@ -1,6 +1,6 @@
 import DateFormatter from "@/components/utils/date-formatter";
 import useBritishRowingFeed, {
-  type BRArticle,
+  type BRArticle as BRArticleType,
 } from "@/hooks/useBritishRowingFeed";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
@@ -8,7 +8,7 @@ import cn from "classnames";
 import Link from "@/components/stour/link";
 import Result from "../stour/result";
 
-const BRArticle = ({ article }: { article?: BRArticle }) => (
+const BRArticle = ({ article }: { article?: BRArticleType }) => (
   <a
     href={article && article.link}
     target="_blank"
@@ -50,6 +50,7 @@ const Feed = () => {
       </p>
       {!error ? (
         <div className="mb-12 grid grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* eslint-disable-next-line react/no-array-index-key */}
           {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
 
           {articles?.map((article) => (

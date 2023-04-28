@@ -57,7 +57,7 @@ enum CardinalDirection {
  */
 const kphToBeaufort = (kph: number) => {
   switch (true) {
-    case isNaN(kph):
+    case Number.isNaN(kph):
       throw new Error("kph is not a number");
     case kph < 0:
       throw new Error("kph is negative");
@@ -128,19 +128,17 @@ const getWeatherForecast = async (): Promise<Forecast[]> => {
   try {
     const { daily } = await fetchWeatherForecast();
 
-    return daily.time.map((time, index) => {
-      return {
-        code: daily.weathercode[index],
-        maxTemp: Math.round(daily.temperature_2m_max[index]),
-        windSpeed: daily.windspeed_10m_max[index],
-        windDirection: daily.winddirection_10m_dominant[index],
-        windDirectionText: degreesToCardinal(
-          daily.winddirection_10m_dominant[index]
-        ),
-        beaufort: kphToBeaufort(daily.windspeed_10m_max[index]),
-        date: time,
-      };
-    });
+    return daily.time.map((time, index) => ({
+      code: daily.weathercode[index],
+      maxTemp: Math.round(daily.temperature_2m_max[index]),
+      windSpeed: daily.windspeed_10m_max[index],
+      windDirection: daily.winddirection_10m_dominant[index],
+      windDirectionText: degreesToCardinal(
+        daily.winddirection_10m_dominant[index]
+      ),
+      beaufort: kphToBeaufort(daily.windspeed_10m_max[index]),
+      date: time,
+    }));
   } catch (err) {
     console.error(err);
     return [];

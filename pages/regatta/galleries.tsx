@@ -84,13 +84,15 @@ const Photography: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   )}
                 </td>
                 <td className="flex gap-6">
-                  {regatta.galleries.map((gallery: Gallery) => {
-                    if (gallery.url)
+                  {regatta.galleries.map(({ url, name }: Gallery) => {
+                    if (url)
                       return (
-                        <Link key={gallery.url} href={gallery.url} external>
-                          {gallery.name}
+                        <Link key={url} href={url} external>
+                          {name}
                         </Link>
                       );
+
+                    return null;
                   })}
                 </td>
               </tr>

@@ -1,7 +1,7 @@
-import PostPreview from "./post-preview";
 import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 import Link from "next/link";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
+import PostPreview from "./post-preview";
 
 type Props = {
   posts: ArticleSummary[];

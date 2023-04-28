@@ -21,7 +21,6 @@ import fetchRegattaSettings from "@/lib/queries/fetch-regatta-settings";
 
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import type { InferGetStaticPropsType, NextPage } from "next";
-import type { CompetitorInformation } from "./competitor-information";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),

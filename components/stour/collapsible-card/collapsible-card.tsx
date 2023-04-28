@@ -6,8 +6,8 @@ import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
 import cn from "classnames";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import FileGroup from "./file-group";
 import type { Notice } from "@/lib/queries/fetch-notices";
+import FileGroup from "./file-group";
 
 type Props = { notice: Notice };
 

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Form, Field } from "react-final-form";
 import { FORM_ERROR } from "final-form";
 import TextareaAutosize from "react-textarea-autosize";
@@ -8,9 +9,9 @@ import Success from "@/components/contact/views/success";
 import Button from "@/components/stour/button";
 import Center from "@/components/stour/center";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
-import onSubmit from "./onSubmit";
 import type { OfficerResponse } from "@/lib/queries/fetch-officer-names";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
+import onSubmit from "./onSubmit";
 
 const mailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -98,7 +99,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                   input={input}
                   label="Your name"
                   meta={meta}
-                  placeholder={randomName.firstName + " " + randomName.lastName}
+                  placeholder={`${randomName.firstName} ${randomName.lastName}`}
                   type="text"
                 />
               )}

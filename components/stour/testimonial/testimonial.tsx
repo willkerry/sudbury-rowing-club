@@ -1,8 +1,8 @@
 import cn from "classnames";
+import { type Testimonial as TestimonialType } from "@/lib/queries/fetch-regattas";
 import Anonymous from "./anonymous";
-import { type Testimonial } from "@/lib/queries/fetch-regattas";
 
-const Testimonial = ({ name, club, text }: Testimonial) => (
+const Testimonial = ({ name, club, text }: TestimonialType) => (
   <figure className="inline-block border rounded-lg mb-10 p-6 break-inside-avoid">
     <blockquote
       className={cn(

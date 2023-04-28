@@ -1,8 +1,12 @@
 import { Component } from "react";
 
-class RegattaIcon extends Component {
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>;
-  paths: React.ReactElement;
+class RegattaIcon extends Component<
+  JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+> {
+  props;
+
+  paths;
+
   constructor(
     props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
     paths: React.ReactElement
@@ -11,6 +15,7 @@ class RegattaIcon extends Component {
     this.props = props;
     this.paths = paths;
   }
+
   render() {
     return (
       <svg

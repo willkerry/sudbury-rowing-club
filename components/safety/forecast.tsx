@@ -4,10 +4,10 @@ import getWeatherForecast, {
 } from "@/lib/get-weather-forecast";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import useSWR from "swr";
+import cn from "classnames";
 import { weatherIcons, windIcons } from "../icons/weather-icons";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
-import cn from "classnames";
 
 const ForecastComponent = () => {
   const fetcher: typeof getWeatherForecast = () =>
@@ -19,9 +19,9 @@ const ForecastComponent = () => {
     <div className="w-full p-3 bg-gray-100 sm:px-4">
       <Loading visible={forecast?.length === 0}>
         <div className="grid w-full grid-cols-7">
-          {forecast?.map((f, i) => (
+          {forecast?.map((f) => (
             <a
-              key={i}
+              key={String(f.date)}
               className="relative flex flex-col items-center gap-1 group"
               href={getYRURL(f.date)}
               target="_blank"

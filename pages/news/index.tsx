@@ -8,7 +8,6 @@ import { BASE_URL } from "@/lib/constants";
 import { serverIndex, browserIndex } from "@/lib/algolia";
 import { NextSeo } from "next-seo";
 
-import type Post from "@/types/post";
 import { InferGetStaticPropsType, NextPage } from "next/types";
 import Button from "@/components/stour/button";
 import {
@@ -27,9 +26,15 @@ import {
   fetchNArticles,
 } from "@/lib/queries/fetch-news-article";
 
-type Props = {
-  data: Post[];
-};
+function getMoreUrl(activeSearchTerm: string, data: any[]) {
+  if (activeSearchTerm) {
+    return "";
+  }
+  if (data.length < 30) {
+    return "";
+  }
+  return "/news/p/2";
+}
 
 export const getStaticProps = async () => {
   const data = await fetchNArticles(0, 30);
@@ -205,13 +210,3 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 };
 
 export default News;
-
-function getMoreUrl(activeSearchTerm: string, data: any[]) {
-  if (activeSearchTerm) {
-    return "";
-  }
-  if (data.length < 30) {
-    return "";
-  }
-  return "/news/p/2";
-}

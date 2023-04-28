@@ -1,4 +1,3 @@
-import groq from "groq";
 import Head from "next/head";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
@@ -14,20 +13,18 @@ export const getStaticProps = async () => {
 
 const Notices: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   notices,
-}) => {
-  return (
-    <Layout>
-      <Head>
-        <title>Members’ Notices</title>
-      </Head>
-      <HeroTitle prose title="Notices" transparent />
-      <Container className="my-12 space-y-6 max-w-prose">
-        {notices.map((notice) => (
-          <CollapsibleCard key={notice._id} {...{ notice }} />
-        ))}
-      </Container>
-    </Layout>
-  );
-};
+}) => (
+  <Layout>
+    <Head>
+      <title>Members’ Notices</title>
+    </Head>
+    <HeroTitle prose title="Notices" transparent />
+    <Container className="my-12 space-y-6 max-w-prose">
+      {notices.map((notice) => (
+        <CollapsibleCard key={notice._id} {...{ notice }} />
+      ))}
+    </Container>
+  </Layout>
+);
 
 export default Notices;

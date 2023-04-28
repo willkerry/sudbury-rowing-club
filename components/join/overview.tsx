@@ -21,8 +21,8 @@ const Overview: React.FC<OverviewProps> = ({ items }) => (
   <div className="gap-16 my-24 sm:grid sm:grid-cols-12">
     <div className="hidden sm:col-span-4 sm:block">
       <ul className="sticky space-y-4 md:space-y-6 top-36">
-        {items.map(({ title, subtitle }, i) => (
-          <li key={i}>
+        {items.map(({ title, subtitle }) => (
+          <li key={title}>
             <ScrollLink
               activeClass="!text-blue-500 font-semibold"
               className="font-medium text-gray-700 transition hover:text-gray-900 hover:cursor-pointer"
@@ -42,8 +42,8 @@ const Overview: React.FC<OverviewProps> = ({ items }) => (
       </ul>
     </div>
     <div className="col-span-8 prose">
-      {items.map(({ title, content, image }, i) => (
-        <div key={i} id={title}>
+      {items.map(({ title, content, image }) => (
+        <div key={title} id={title}>
           {image && (
             <div className="flex overflow-hidden">
               <Image

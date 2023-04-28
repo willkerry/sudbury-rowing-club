@@ -1,6 +1,6 @@
 import { SENDER } from "./constants";
+
 const SibApiV3Sdk = require("sib-api-v3-typescript");
-// import SibApiV3Sdk from "sib-api-v3-typescript";
 
 export type NameEmail = { email: string; name: string };
 

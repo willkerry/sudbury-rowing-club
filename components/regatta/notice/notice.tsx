@@ -9,9 +9,9 @@ const Notice = () => {
     groq`*[_type == "regattaSettings"][0]{note}`,
     (query) => sanityClient.fetch(query)
   );
-  if (error) return <></>;
-  if (!data) return <></>;
-  if (!data?.note?.display) return <></>;
+  if (error) return null;
+  if (!data) return null;
+  if (!data?.note?.display) return null;
   return (
     <Note centered className="mb-6" type={data?.note?.type}>
       <PortableText value={data?.note?.text} />

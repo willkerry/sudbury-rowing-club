@@ -1,9 +1,5 @@
 import Container from "@/components/layouts/container";
 import Crest from "@/components/logo/crest";
-import FooterColumn from "./column";
-import SocialIcons from "./socialIcons";
-import Address from "./address";
-import ReportABug from "./reportABug";
 import {
   about,
   aboutCTAs,
@@ -13,6 +9,10 @@ import {
   socials,
   misc,
 } from "@/components/nav/nav-data";
+import FooterColumn from "./column";
+import SocialIcons from "./socialIcons";
+import Address from "./address";
+import ReportABug from "./reportABug";
 
 const footerAbout = [...about, ...aboutCTAs];
 const footerRegatta = [...regatta, ...regattaCTAs];

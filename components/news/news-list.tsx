@@ -1,6 +1,6 @@
+import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 import HeroPost from "./hero-post";
 import MoreStories from "./more-stories";
-import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
 
 type Props = {
   posts: ArticleSummary[];

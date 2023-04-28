@@ -1,13 +1,11 @@
 import Loading from "@/components/stour/loading";
 
-const Test = () => {
-  return (
-    <div className="m-10">
-      <h1>Test</h1>
+const Test = () => (
+  <div className="m-10">
+    <h1>Test</h1>
 
-      <Loading />
-    </div>
-  );
-};
+    <Loading />
+  </div>
+);
 
 export default Test;

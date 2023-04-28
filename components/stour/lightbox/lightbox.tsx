@@ -11,70 +11,6 @@ type LightBoxProps = {
   toggle: (value?: SetStateAction<boolean>) => void;
 };
 
-const LightBox = ({
-  aspectRatio,
-  src,
-  lqip,
-  alt,
-  open,
-  toggle,
-}: LightBoxProps) => {
-  const { width, height, viewportWidth, viewportHeight } =
-    useLightBoxSize(aspectRatio);
-
-  return (
-    <>
-      <Transition
-        show={open}
-        enter="transition"
-        enterFrom="transform scale-50 opacity-0"
-        enterTo="transform scale-100 opacity-100"
-        leave="transition"
-        leaveFrom="transform scale-100 opacity-100"
-        leaveTo="transform scale-50 opacity-0"
-        as={Fragment}
-      >
-        <Dialog
-          className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-10 backdrop-blur cursor-zoom-out"
-          open={open}
-          onClose={() => toggle()}
-          onClick={() => toggle()}
-        >
-          <img
-            {...{ alt, width, height, src }}
-            className="rounded shadow-lg"
-            style={{
-              maxWidth: viewportWidth,
-              maxHeight: viewportHeight,
-              backgroundImage: `url(${lqip})`,
-              backgroundSize: "cover",
-            }}
-          />
-        </Dialog>
-      </Transition>
-    </>
-  );
-};
-
-const useLightBox = ({
-  aspectRatio,
-  src,
-  lqip,
-  alt,
-}: Omit<LightBoxProps, "open" | "toggle">) => {
-  const [isOpen, toggle] = useToggle();
-
-  return {
-    toggle,
-    LightBox: () => (
-      <LightBox {...{ aspectRatio, src, lqip, alt, open: isOpen, toggle }} />
-    ),
-  };
-};
-
-export default LightBox;
-export { useLightBox };
-
 function calculateImageSize(
   windowWidth: number,
   windowHeight: number,
@@ -106,3 +42,65 @@ function useLightBoxSize(aspectRatio: number) {
 
   return { width, height, viewportWidth, viewportHeight };
 }
+
+const LightBox = ({
+  aspectRatio,
+  src,
+  lqip,
+  alt,
+  open,
+  toggle,
+}: LightBoxProps) => {
+  const { width, height, viewportWidth, viewportHeight } =
+    useLightBoxSize(aspectRatio);
+
+  return (
+    <Transition
+      show={open}
+      enter="transition"
+      enterFrom="transform scale-50 opacity-0"
+      enterTo="transform scale-100 opacity-100"
+      leave="transition"
+      leaveFrom="transform scale-100 opacity-100"
+      leaveTo="transform scale-50 opacity-0"
+      as={Fragment}
+    >
+      <Dialog
+        className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-10 backdrop-blur cursor-zoom-out"
+        open={open}
+        onClose={() => toggle()}
+        onClick={() => toggle()}
+      >
+        <img
+          {...{ alt, width, height, src }}
+          className="rounded shadow-lg"
+          style={{
+            maxWidth: viewportWidth,
+            maxHeight: viewportHeight,
+            backgroundImage: `url(${lqip})`,
+            backgroundSize: "cover",
+          }}
+        />
+      </Dialog>
+    </Transition>
+  );
+};
+
+const useLightBox = ({
+  aspectRatio,
+  src,
+  lqip,
+  alt,
+}: Omit<LightBoxProps, "open" | "toggle">) => {
+  const [isOpen, toggle] = useToggle();
+
+  return {
+    toggle,
+    LightBox: () => (
+      <LightBox {...{ aspectRatio, src, lqip, alt, open: isOpen, toggle }} />
+    ),
+  };
+};
+
+export default LightBox;
+export { useLightBox };

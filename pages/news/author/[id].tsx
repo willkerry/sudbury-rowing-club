@@ -3,7 +3,7 @@ import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import fetchAuthor, { fetchAllAuthors } from "@/lib/queries/fetch-authors";
+import { fetchAuthor, fetchAllAuthors } from "@/lib/queries/fetch-authors";
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 

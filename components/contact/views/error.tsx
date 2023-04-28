@@ -9,7 +9,11 @@ interface Props {
 
 const Error = ({ error, message }: Props) => {
   const mailto = new URLSearchParams(EMAIL);
-  message && mailto.append("body", message);
+
+  if (message) {
+    mailto.append("body", message);
+  }
+
   return (
     <Note label="Error" type="error">
       We were unable to send your message. Please try again later or{" "}
