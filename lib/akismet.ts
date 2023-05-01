@@ -4,7 +4,7 @@ import axios from "axios";
 export default async function checkForSpam(
   userIp: string,
   userAgent: string,
-  referer: string,
+  referrer: string,
   commentAuthor: string,
   commentAuthorEmail: string,
   commentContent: string
@@ -13,7 +13,7 @@ export default async function checkForSpam(
     blog: "https://sudburyrowingclub.org.uk/",
     user_ip: userIp,
     user_agent: userAgent,
-    referrer: referer,
+    referrer,
     comment_type: "contact-form",
     comment_author: commentAuthor,
     comment_author_email: commentAuthorEmail,
