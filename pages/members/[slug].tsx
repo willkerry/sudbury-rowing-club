@@ -19,17 +19,19 @@ import {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await fetchNoticeSlugs();
-  const paths = slugs.map(({ slug }) => ({ params: { slug } }));
 
-  return { paths, fallback: true };
+  return {
+    paths: slugs.map(({ slug }) => ({ params: { slug } })),
+    fallback: true,
+  };
 };
 
 export const getStaticProps: GetStaticProps<{
   notice: NoticeType;
-}> = async ({ params }) => {
-  const notice = await fetchOneNotice(params?.slug as string);
-  return { props: { notice }, revalidate: 60 };
-};
+}> = async ({ params }) => ({
+  props: { notice: await fetchOneNotice(params?.slug as string) },
+  revalidate: 60,
+});
 
 const Notice: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   notice,

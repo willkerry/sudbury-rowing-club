@@ -6,10 +6,10 @@ import CollapsibleCard from "@/components/stour/collapsible-card";
 import fetchNotices from "@/lib/queries/fetch-notices";
 import { InferGetStaticPropsType, NextPage } from "next";
 
-export const getStaticProps = async () => {
-  const notices = await fetchNotices();
-  return { props: { notices }, revalidate: 60 };
-};
+export const getStaticProps = async () => ({
+  props: { notices: await fetchNotices() },
+  revalidate: 60,
+});
 
 const Notices: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   notices,
