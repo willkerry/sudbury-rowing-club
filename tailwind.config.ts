@@ -7,7 +7,10 @@ import forms from "@tailwindcss/forms";
 export default {
   plugins: [typography, aspectRatio, forms],
   mode: "jit",
-  content: ["./components/**/*.[jt]s?(x)", "./pages/**/*.[jt]s?(x)"],
+  content: [
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       colors: {

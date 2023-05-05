@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "packageManager": "pnpm",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -52,14 +52,14 @@
     "sib-api-v3-typescript": "^2.2.2",
     "snarkdown": "^2.0.0",
     "styled-components": "^5.3.10",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
     "swr": "^2.1.5",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.0",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/typography": "^0.5.9",
     "@types/color": "^3.0.3",
     "@types/node": "^18.16.3",
     "@types/react": "^18.2.5",
