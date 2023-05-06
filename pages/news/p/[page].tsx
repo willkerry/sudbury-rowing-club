@@ -11,16 +11,13 @@ import type {
   InferGetStaticPropsType,
   NextPage,
 } from "next/types";
-import {
-  fetchArticleCount,
-  fetchNArticles,
-} from "@/lib/queries/fetch-news-article";
 import type { ParsedUrlQuery } from "querystring";
+import { getArticleCount, getNArticles } from "@/lib/queries/cached-fetch-news";
 
 const POSTS_PER_PAGE = 30;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articleCount = await fetchArticleCount();
+  const articleCount = await getArticleCount();
   const length = Math.ceil(articleCount / POSTS_PER_PAGE);
 
   return {
@@ -36,7 +33,7 @@ export const getStaticProps = async ({
 }: {
   params: ParsedUrlQuery;
 }) => {
-  const articleCount = await fetchArticleCount();
+  const articleCount = await getArticleCount();
   const pages = Math.ceil(articleCount / POSTS_PER_PAGE);
 
   const page = Number(params?.page);
@@ -44,7 +41,7 @@ export const getStaticProps = async ({
   const firstArticleNumber = page * POSTS_PER_PAGE - POSTS_PER_PAGE;
   const lastArticleNumber = page * POSTS_PER_PAGE;
 
-  const pageOfArticles = await fetchNArticles(
+  const pageOfArticles = await getNArticles(
     firstArticleNumber,
     lastArticleNumber
   );
