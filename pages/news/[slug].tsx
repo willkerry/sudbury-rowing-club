@@ -20,20 +20,20 @@ import type {
 } from "next/types";
 import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
-import fetchOneArticle, {
-  Article,
-  fetchAllSlugs,
-} from "@/lib/queries/fetch-news-article";
+import { Article } from "@/lib/queries/fetch-news-article";
 import { ParsedUrlQuery } from "querystring";
+import { getAllSlugs, getArticleBySlug } from "@/lib/queries/cached-fetch-news";
 
 export const getStaticProps = async ({
   params,
 }: {
   params: ParsedUrlQuery;
-}) => ({ props: { post: await fetchOneArticle(params?.slug as string) } });
+}) => ({
+  props: { post: await getArticleBySlug(params?.slug as string) },
+});
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await fetchAllSlugs();
+  const paths = await getAllSlugs();
   return {
     paths: paths.map((slug: string) => ({ params: { slug } })),
     fallback: true,

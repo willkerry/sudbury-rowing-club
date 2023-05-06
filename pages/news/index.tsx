@@ -21,10 +21,8 @@ import { useRouter } from "next/router";
 import { type SearchResponse } from "@algolia/client-search";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import {
-  fetchArticleCount,
-  fetchNArticles,
-} from "@/lib/queries/fetch-news-article";
+import { fetchNArticles } from "@/lib/queries/fetch-news-article";
+import { getArticleCount, getNArticles } from "@/lib/queries/cached-fetch-news";
 
 function getMoreUrl(activeSearchTerm: string, data: any[]) {
   if (activeSearchTerm) {
@@ -37,9 +35,9 @@ function getMoreUrl(activeSearchTerm: string, data: any[]) {
 }
 
 export const getStaticProps = async () => {
-  const data = await fetchNArticles(0, 30);
+  const data = await getNArticles(0, 30);
 
-  const sanityTotal = await fetchArticleCount();
+  const sanityTotal = await getArticleCount();
 
   // Then fetch the number of posts on Algolia
   const algoliaTotal = await serverIndex

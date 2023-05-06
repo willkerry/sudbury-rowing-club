@@ -122,7 +122,23 @@ const fetchAllSlugs = async () => {
   return z.array(z.string()).parse(await sanityClient.fetch(query));
 };
 
+const fetchAllArticles = async () => {
+  const query = groq`*[_type == "news" && !(_id in path("drafts.**"))] | order(date desc) {
+    ${articleFields}
+  }`;
+  const articles = await sanityClient.fetch(query);
+
+  return z.array(ZArticle).parse(articles);
+};
+
 export default fetchOneArticle;
-export { fetchNArticles, fetchArticleCount, fetchAllSlugs };
+export {
+  fetchNArticles,
+  fetchAllArticles,
+  fetchArticleCount,
+  fetchAllSlugs,
+  ZArticle,
+  ZArticleSummary,
+};
 export type Article = z.infer<typeof ZArticle>;
 export type ArticleSummary = z.infer<typeof ZArticleSummary>;
