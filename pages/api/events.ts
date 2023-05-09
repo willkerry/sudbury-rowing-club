@@ -75,8 +75,8 @@ const coerceEmptyStringToNull = (value: string) => {
 const sanitiseAndRename = (events: BREvent[]): SRCEvent[] =>
   z.array(ZSRCEvent).parse(
     events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
-      // Hash the competition name and date to create a unique ID
       id: `${stripHTML(Competition)}-${StartDate}`.replace(/[^a-zA-Z0-9]/g, ""),
+
       competition: stripHTML(Competition),
       url: extractURL(Competition),
       status: StatusId,

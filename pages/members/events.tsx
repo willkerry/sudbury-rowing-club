@@ -108,8 +108,7 @@ const EventCalendar = () => {
               competition calendar
             </a>{" "}
             and are updated twice a day. If in any doubt, consider British
-            Rowing the definitive source of information. Needless to say,
-            Sudbury will only enter some of these events.
+            Rowing the definitive source of information.
           </p>
         </div>
 
