@@ -107,8 +107,7 @@ const EventCalendar = () => {
             <a href="https://www.britishrowing.org/competition-calendar/">
               competition calendar
             </a>{" "}
-            and are updated twice a day. If in any doubt, consider British
-            Rowing the definitive source of information.
+            and are updated twice a day.
           </p>
         </div>
 
