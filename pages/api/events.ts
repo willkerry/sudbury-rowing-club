@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import DOMPurify from "isomorphic-dompurify";
+import he from "he";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 
@@ -33,10 +34,12 @@ export const ZSRCEvent = z.object({
 type SRCEvent = z.infer<typeof ZSRCEvent>;
 
 const stripHTML = (html: string) =>
-  DOMPurify.sanitize(html, {
-    ALLOWED_TAGS: [],
-    ALLOWED_ATTR: [],
-  });
+  he.decode(
+    DOMPurify.sanitize(html, {
+      ALLOWED_TAGS: [],
+      ALLOWED_ATTR: [],
+    })
+  );
 
 const illegalCharacters = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
 const stripIllegalCharacters = (url: string) => {

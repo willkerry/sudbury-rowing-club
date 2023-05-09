@@ -43,6 +43,9 @@ dependencies:
   '@tailwindcss/typography':
     specifier: ^0.5.9
     version: 0.5.9(tailwindcss@3.3.2)
+  '@types/he':
+    specifier: ^1.2.0
+    version: 1.2.0
   algoliasearch:
     specifier: ^4.17.0
     version: 4.17.0
@@ -64,6 +67,9 @@ dependencies:
   groq:
     specifier: ^3.10.0
     version: 3.10.0
+  he:
+    specifier: ^1.2.0
+    version: 1.2.0
   inter-ui:
     specifier: ^3.19.3
     version: 3.19.3
@@ -834,6 +840,10 @@ packages:
     resolution: {integrity: sha512-YBL4ziFebbbfQfH5mlC+QTJsvh0oJUrWbmxKMyEdL7emlHJqGR2Qb34TEFKj+VCayBvjKy3xczMFNhugThUsfQ==}
     dependencies:
       '@types/trusted-types': 2.0.3
+    dev: false
+
+  /@types/he@1.2.0:
+    resolution: {integrity: sha512-uH2smqTN4uGReAiKedIVzoLUAXIYLBTbSofhx3hbNqj74Ua6KqFsLYszduTrLCMEAEAozF73DbGi/SC1bzQq4g==}
     dev: false
 
   /@types/json-schema@7.0.11:
@@ -2833,6 +2843,11 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
+
+  /he@1.2.0:
+    resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
+    hasBin: true
+    dev: false
 
   /hexoid@1.0.0:
     resolution: {integrity: sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==}

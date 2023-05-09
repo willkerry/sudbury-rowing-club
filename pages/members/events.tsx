@@ -36,10 +36,7 @@ const EventCard = ({
     key={competition}
     className={`py-1.5 px-2 grid bg-white ${status === 8 ? "opacity-50" : ""}`}
   >
-    <h3
-      dangerouslySetInnerHTML={{ __html: competition }}
-      className="text-sm font-semibold line-clamp-1 mb-0.5"
-    />
+    <h3 className="text-sm font-semibold line-clamp-1 mb-0.5">{competition}</h3>
     <DateFormatter
       dateString={startDate}
       className="text-xs font-semibold text-gray-500 leading-none block mb-2"
