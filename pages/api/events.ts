@@ -82,7 +82,7 @@ const events = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate");
+  res.setHeader("Cache-Control", "s-maxage=21600");
 
   try {
     const brCalendarResponse = await fetch(EVENT_CALENDAR_API);
