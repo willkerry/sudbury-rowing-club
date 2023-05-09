@@ -26,32 +26,32 @@ const Tag = ({ children }: { children: React.ReactNode }) => (
   </span>
 );
 
-const EventCard = ({ event }: { event: Event }) => (
+const EventCard = ({
+  event: { competition, startDate, notes, region, status, url },
+}: {
+  event: Event;
+}) => (
   <li
-    key={event.competition}
-    className={`py-1.5 px-2 grid bg-white ${
-      event.status === 8 ? "opacity-50" : ""
-    }`}
+    key={competition}
+    className={`py-1.5 px-2 grid bg-white ${status === 8 ? "opacity-50" : ""}`}
   >
     <h3
-      dangerouslySetInnerHTML={{ __html: event.competition }}
+      dangerouslySetInnerHTML={{ __html: competition }}
       className="text-sm font-semibold line-clamp-1 mb-0.5"
     />
     <DateFormatter
-      dateString={event.startDate}
+      dateString={startDate}
       className="text-xs font-semibold text-gray-500 leading-none block mb-2"
     />
-    <div className="text-xs font-semibold mb-2 text-orange-600">
-      {event.notes}
-    </div>
+    <div className="text-xs font-semibold mb-2 text-orange-600">{notes}</div>
 
     <div className="flex flex-wrap gap-2">
-      <Tag>{event.region}</Tag>
-      {event.status === 8 && <Tag>{BR_EVENT_STATUS[event.status]}</Tag>}
+      <Tag>{region}</Tag>
+      {status === 8 && <Tag>{BR_EVENT_STATUS[status]}</Tag>}
 
-      {event.url && (
-        <Link href={event.url} external className="text-xs font-semibold">
-          {new URL(event.url).hostname.replace("www.", "")}
+      {url && (
+        <Link href={url} external className="text-xs font-semibold">
+          {new URL(url).hostname.replace("www.", "")}
         </Link>
       )}
     </div>
