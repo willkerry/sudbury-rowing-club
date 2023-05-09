@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import DOMPurify from "isomorphic-dompurify";
 import he from "he";
+import emojiRegex from "emoji-regex";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 
@@ -34,14 +35,18 @@ export const ZSRCEvent = z.object({
 type SRCEvent = z.infer<typeof ZSRCEvent>;
 
 const stripHTML = (html: string) =>
-  he.decode(
-    DOMPurify.sanitize(html, {
-      ALLOWED_TAGS: [],
-      ALLOWED_ATTR: [],
-    })
-  );
+  he
+    .decode(
+      DOMPurify.sanitize(html, {
+        ALLOWED_TAGS: [],
+        ALLOWED_ATTR: [],
+      })
+    )
+    .replace(emojiRegex(), "")
+    .trim();
 
 const illegalCharacters = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+
 const stripIllegalCharacters = (url: string) => {
   let stripped = url;
 
@@ -69,7 +74,7 @@ const coerceEmptyStringToNull = (value: string) => {
 const sanitiseAndRename = (events: BREvent[]): SRCEvent[] =>
   z.array(ZSRCEvent).parse(
     events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
-      competition: stripHTML(Competition).split("&nbsp;🌍")[0],
+      competition: stripHTML(Competition),
       url: extractURL(Competition),
       status: StatusId,
       notes: coerceEmptyStringToNull(stripHTML(Notes)),

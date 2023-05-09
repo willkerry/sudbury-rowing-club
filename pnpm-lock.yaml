@@ -55,6 +55,9 @@ dependencies:
   color:
     specifier: ^4.2.3
     version: 4.2.3
+  emoji-regex:
+    specifier: ^10.2.1
+    version: 10.2.1
   final-form:
     specifier: ^4.20.9
     version: 4.20.9
@@ -1919,6 +1922,10 @@ packages:
   /electron-to-chromium@1.4.385:
     resolution: {integrity: sha512-L9zlje9bIw0h+CwPQumiuVlfMcV4boxRjFIWDcLfFqTZNbkwOExBzfmswytHawObQX4OUhtNv8gIiB21kOurIg==}
     dev: true
+
+  /emoji-regex@10.2.1:
+    resolution: {integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==}
+    dev: false
 
   /emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
