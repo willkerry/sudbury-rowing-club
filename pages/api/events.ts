@@ -21,15 +21,10 @@ const ZBREvent = z.object({
 type BREvent = z.infer<typeof ZBREvent>;
 
 export const ZSRCEvent = z.object({
-  date: z.string(),
   competition: z.string(),
   url: z.string().nullable(),
   status: z.number(),
   notes: z.string().optional(),
-
-  meetClass: z.string(),
-  compClass: z.string(),
-  noteClass: z.string(),
 
   startDate: z.string(),
   region: z.string(),
@@ -63,32 +58,15 @@ const extractURL = (html: string) => {
 };
 
 const sanitiseAndRename = (events: BREvent[]): SRCEvent[] =>
-  events.map(
-    ({
-      MeetingDate,
-      Competition,
-      StatusId,
-      Notes,
-      MeetClass,
-      CompClass,
-      NoteClass,
-      StartDate,
-      Region,
-    }) => ({
-      date: stripHTML(MeetingDate),
-      competition: stripHTML(Competition).split("&nbsp;🌍")[0],
-      url: extractURL(Competition),
-      status: StatusId,
-      notes: stripHTML(Notes),
+  events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
+    competition: stripHTML(Competition).split("&nbsp;🌍")[0],
+    url: extractURL(Competition),
+    status: StatusId,
+    notes: stripHTML(Notes),
 
-      meetClass: MeetClass,
-      compClass: CompClass,
-      noteClass: NoteClass,
-
-      startDate: stripHTML(StartDate),
-      region: stripHTML(Region),
-    })
-  );
+    startDate: stripHTML(StartDate),
+    region: stripHTML(Region),
+  }));
 
 const events = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
