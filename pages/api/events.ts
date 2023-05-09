@@ -24,9 +24,9 @@ export const ZSRCEvent = z.object({
   competition: z.string(),
   url: z.string().nullable(),
   status: z.number(),
-  notes: z.string().optional(),
+  notes: z.string().nullable(),
 
-  startDate: z.string(),
+  startDate: z.string().transform((date) => new Date(date).toISOString()),
   region: z.string(),
 });
 
@@ -57,16 +57,24 @@ const extractURL = (html: string) => {
   return null;
 };
 
-const sanitiseAndRename = (events: BREvent[]): SRCEvent[] =>
-  events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
-    competition: stripHTML(Competition).split("&nbsp;🌍")[0],
-    url: extractURL(Competition),
-    status: StatusId,
-    notes: stripHTML(Notes),
+const coerceEmptyStringToNull = (value: string) => {
+  if (value.trim() === "") return null;
 
-    startDate: stripHTML(StartDate),
-    region: stripHTML(Region),
-  }));
+  return value;
+};
+
+const sanitiseAndRename = (events: BREvent[]): SRCEvent[] =>
+  z.array(ZSRCEvent).parse(
+    events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
+      competition: stripHTML(Competition).split("&nbsp;🌍")[0],
+      url: extractURL(Competition),
+      status: StatusId,
+      notes: coerceEmptyStringToNull(stripHTML(Notes)),
+
+      startDate: stripHTML(StartDate),
+      region: stripHTML(Region),
+    }))
+  );
 
 const events = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
