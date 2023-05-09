@@ -28,12 +28,13 @@ const Tag = ({ children }: { children: React.ReactNode }) => (
 );
 
 const EventCard = ({
-  event: { competition, startDate, notes, region, status, url },
+  event: { id, competition, startDate, notes, region, status, url },
 }: {
   event: Event;
 }) => (
   <li
-    key={competition}
+    {...{ id }}
+    key={id}
     className={`py-1.5 px-2 grid bg-white ${status === 8 ? "opacity-50" : ""}`}
   >
     <h3 className="text-sm font-semibold line-clamp-1 mb-0.5">{competition}</h3>
@@ -92,7 +93,7 @@ const EventCalendar = () => {
     <Layout>
       <NextSeo
         title="Competition Calendar"
-        description="This calendar shows competitions for the current season, as recorded by British Rowing in their competition calendar."
+        description="This calendar shows competitions for the current season, as recorded by British Rowing."
       />
 
       <HeroTitle prose title="Competition Calendar" transparent />
@@ -100,14 +101,15 @@ const EventCalendar = () => {
       <Container>
         <div className="prose mx-auto mb-12">
           <p>
-            This calendar shows competitions for the current season, as recorded
-            by British Rowing in their{" "}
+            This calendar is provided as an ergonomic way for Sudbury members to
+            check the dates of upcoming events and competitions. The data
+            displayed here are drawn from the British Rowing{" "}
             <a href="https://www.britishrowing.org/competition-calendar/">
               competition calendar
-            </a>
-            . Our calendar reflects theirs as closely as possible, but please
-            don’t consider it authoritative. The inclusion of an event on this
-            calendar does not indicate that SRC intends to enter it.
+            </a>{" "}
+            and are updated twice a day. If in any doubt, consider British
+            Rowing the definitive source of information. Needless to say,
+            Sudbury will only enter some of these events.
           </p>
         </div>
 
@@ -149,6 +151,7 @@ const EventCalendar = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-50 border rounded ">
             {groupByMonth(filteredEvents).map(({ month, events }) => (
               <div
+                id={`month-${month + 1}`}
                 key={month}
                 className="border-r border-b md:border-b-0 overflow-hidden"
               >
@@ -161,7 +164,7 @@ const EventCalendar = () => {
 
                 <ul className="grid divide-y border-y mb-8">
                   {events.map((event) => (
-                    <EventCard {...{ event }} key={event.competition} />
+                    <EventCard {...{ event }} key={event.id} />
                   ))}
                 </ul>
               </div>
