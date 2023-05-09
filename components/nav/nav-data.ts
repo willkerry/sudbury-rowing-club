@@ -118,6 +118,10 @@ export const members: NavItemType[] = [
     href: "/members",
   },
   {
+    name: "Competition Calendar",
+    href: "/members/events",
+  },
+  {
     name: "Minutes",
     href: "/governance/minutes",
   },
