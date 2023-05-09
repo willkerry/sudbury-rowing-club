@@ -3,11 +3,12 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import useEventCalendar from "@/hooks/useEventCalendar";
 import DateFormatter from "@/components/utils/date-formatter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Label from "@/components/stour/label";
 import { HeroTitle } from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Link from "@/components/stour/link";
+import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
 
 const BR_EVENT_STATUS = {
@@ -57,25 +58,6 @@ const EventCard = ({
     </div>
   </li>
 );
-
-const useFilter = <T extends Object>(
-  arrayOfObjects: T[],
-  key: keyof T,
-  value: string
-) => {
-  const [filteredArray, setFilteredArray] = useState<T[]>(arrayOfObjects);
-
-  useEffect(() => {
-    if (value === "") setFilteredArray(arrayOfObjects);
-    else {
-      setFilteredArray(
-        arrayOfObjects.filter((object) => object[key] === value)
-      );
-    }
-  }, [arrayOfObjects, key, value]);
-
-  return filteredArray;
-};
 
 const groupByMonth = (
   events: Event[]
