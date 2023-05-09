@@ -8,6 +8,7 @@ import Label from "@/components/stour/label";
 import { HeroTitle } from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Link from "@/components/stour/link";
+import { NextSeo } from "next-seo";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -110,7 +111,12 @@ const EventCalendar = () => {
 
   return (
     <Layout>
-      <HeroTitle prose title="Event Calendar" transparent />
+      <NextSeo
+        title="Competition Calendar"
+        description="This calendar shows competitions for the current season, as recorded by British Rowing in their competition calendar."
+      />
+
+      <HeroTitle prose title="Competition Calendar" transparent />
 
       <Container>
         <div className="prose mx-auto mb-12">
@@ -121,7 +127,8 @@ const EventCalendar = () => {
               competition calendar
             </a>
             . Our calendar reflects theirs as closely as possible, but please
-            don’t consider it authoritative.
+            don’t consider it authoritative. The inclusion of an event on this
+            calendar does not indicate that SRC intends to enter it.
           </p>
         </div>
 
