@@ -25,13 +25,16 @@ import { z } from "zod";
 const useZodSWR = <T extends z.ZodType<any, any>>(
   schema: T,
   key: Key,
-  fetcher: Fetcher<z.infer<T>>,
+  fetcher: Fetcher<z.infer<T>> = (url: string) =>
+    fetch(url).then((res) => res.json()),
   config?: SWRConfiguration<z.infer<T>, any>
 ) => {
   const { data, error } = useSWR(key, fetcher, config);
 
-  if (data && !schema.safeParse(data).success) {
-    throw new Error("Data does not match schema");
+  const parse = schema.safeParse(data);
+
+  if (data && parse.success === false) {
+    throw new Error(`Date does not match the schema. ${parse.error}`);
   }
 
   return { data, error };
