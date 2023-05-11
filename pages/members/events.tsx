@@ -11,7 +11,6 @@ import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
 import { clientSideFetchCompetitions } from "@/lib/queries/fetch-competions";
 import useSWR from "swr";
-import { BASE_URL } from "@/lib/constants";
 
 const BR_EVENT_STATUS = {
   2: "",
