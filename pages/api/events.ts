@@ -5,11 +5,11 @@ import {
 import kv from "@vercel/kv";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const cachedCompetitionFetch = async () => {
-  const KEY = "events";
-  const TTL_SECONDS = 60 * 60 * 12; // 12 hours
+const CACHE_KEY = "events";
+const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours
 
-  const cached = await kv.get<SRCEvent[]>(KEY);
+const cachedCompetitionFetch = async () => {
+  const cached = await kv.get<SRCEvent[]>(CACHE_KEY);
 
   if (cached) {
     console.log(new Date(), "Events API hit cache");
@@ -17,7 +17,7 @@ const cachedCompetitionFetch = async () => {
   }
 
   const events = await serversideFetchCompetitions();
-  await kv.set(KEY, events, { ex: TTL_SECONDS });
+  await kv.set(CACHE_KEY, events, { ex: CACHE_TTL_SECONDS });
   console.log(new Date(), "Events cold start");
 
   return events;

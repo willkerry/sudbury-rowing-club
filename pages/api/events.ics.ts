@@ -3,20 +3,20 @@ import { serversideFetchCompetitions } from "@/lib/queries/fetch-competions";
 import kv from "@vercel/kv";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const cachedTransformToICS = async () => {
-  const KEY = "events-ics";
-  const TTL_SECONDS = 60 * 60 * 12; // 12 hours
+const CACHE_KEY = "events-ics";
+const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours
 
-  const cached = await kv.get<string>(KEY);
+const cachedTransformToICS = async () => {
+  const cached = await kv.get<string>(CACHE_KEY);
 
   if (cached) {
-    console.log(new Date(), "Events API hit cache");
+    console.log(new Date(), "iCal feed hit cache");
     return cached;
   }
 
   const icsString = generateICSString(await serversideFetchCompetitions(true));
-  await kv.set(KEY, icsString, { ex: TTL_SECONDS });
-  console.log(new Date(), "Events cold start");
+  await kv.set(CACHE_KEY, icsString, { ex: CACHE_TTL_SECONDS });
+  console.log(new Date(), "iCal feed cold start");
 
   return icsString;
 };
