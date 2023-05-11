@@ -11,6 +11,7 @@ import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
 import { clientSideFetchCompetitions } from "@/lib/queries/fetch-competions";
 import useSWR from "swr";
+import { HOSTNAME } from "@/lib/constants";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -147,10 +148,7 @@ const EventCalendar = () => {
           </div>
           <div className="hidden sm:block" />
           <div className="pt-3">
-            <Link
-              href={`webcal://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/events.ics`}
-              external
-            >
+            <Link href={`webcal://${HOSTNAME}/api/events.ics`} external>
               Subscribe to iCal feed
             </Link>
           </div>
