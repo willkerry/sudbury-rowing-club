@@ -78,16 +78,11 @@ const groupByMonth = (
 };
 
 const EventCalendar = () => {
-  // const { data: events, isLoading, isError } = useEventCalendar();
   const {
     data: events,
     isLoading,
     error: isError,
-  } = useSWR("competition-calendar", clientSideFetchCompetitions) || {
-    data: undefined,
-    isLoading: true,
-    isError: false,
-  };
+  } = useSWR("competition-calendar", clientSideFetchCompetitions);
 
   const regions = new Set(events?.map((event) => event.region));
   const [selectedRegion, setSelectedRegion] = useState<string | null>(
@@ -146,8 +141,10 @@ const EventCalendar = () => {
               )}
             </select>
           </div>
+
           <div className="hidden sm:block" />
-          <div className="pt-3">
+
+          <div className="pt-3 justify-end flex">
             <Link href={`webcal://${HOSTNAME}/api/events.ics`} external>
               Subscribe to iCal feed
             </Link>
@@ -163,7 +160,7 @@ const EventCalendar = () => {
         {isError && <p>Error loading calendar.</p>}
 
         {events && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-50 border rounded ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-50 border rounded">
             {groupByMonth(filteredEvents).map(({ month, events }) => (
               <div
                 id={`month-${month + 1}`}
