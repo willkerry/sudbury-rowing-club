@@ -43,7 +43,7 @@ const Link = ({
   const hasIcon = external || download || arrow;
   const RightIcon = assignIcon(external, download, arrow);
 
-  const isExternal = (href: string) => href.startsWith("http");
+  const isExternal = (href: string) => href.startsWith("http") || external;
   const LinkComponent = isExternal(href) ? "a" : NextLink;
 
   return (
