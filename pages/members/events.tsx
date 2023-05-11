@@ -148,7 +148,10 @@ const EventCalendar = () => {
           </div>
           <div className="hidden sm:block" />
           <div className="pt-3">
-            <Link href={`webcal://${BASE_URL}/api/events.ics`} external>
+            <Link
+              href={`webcal://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/events.ics`}
+              external
+            >
               Subscribe to iCal feed
             </Link>
           </div>
