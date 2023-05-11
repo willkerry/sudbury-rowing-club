@@ -80,6 +80,18 @@ const filterOutOldEvents = (events: BREvent[]) => {
   return events.filter((event) => new Date(event.StartDate) >= maxAge);
 };
 
+const REGION_REPLACEMENT_TABLE = new Map<string, string>([
+  ["Thames SouthEast", "Thames Southeast"],
+]);
+
+const replaceUglyRegionNames = (region: string) => {
+  if (REGION_REPLACEMENT_TABLE.has(region)) {
+    return REGION_REPLACEMENT_TABLE.get(region);
+  }
+
+  return region;
+};
+
 const transformCompetions = (events: BREvent[]) =>
   z.array(ZSRCEvent).parse(
     events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
@@ -91,7 +103,7 @@ const transformCompetions = (events: BREvent[]) =>
       notes: coerceEmptyStringToNull(sanitise(Notes)),
 
       startDate: sanitise(StartDate),
-      region: sanitise(Region),
+      region: replaceUglyRegionNames(sanitise(Region)),
     }))
   );
 
