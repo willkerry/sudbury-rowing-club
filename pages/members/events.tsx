@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import useEventCalendar from "@/hooks/useEventCalendar";
 import DateFormatter from "@/components/utils/date-formatter";
 import { useState } from "react";
 import Label from "@/components/stour/label";
@@ -10,6 +9,9 @@ import Loading from "@/components/stour/loading";
 import Link from "@/components/stour/link";
 import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
+import { clientSideFetchCompetitions } from "@/lib/queries/fetch-competions";
+import useSWR from "swr";
+import { BASE_URL } from "@/lib/constants";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -18,8 +20,8 @@ const BR_EVENT_STATUS = {
 
 type NeverUndefined<T> = T extends undefined ? never : T;
 type Event = NeverUndefined<
-  ReturnType<typeof useEventCalendar>["data"]
->[number];
+  Awaited<ReturnType<typeof clientSideFetchCompetitions>>[number]
+>;
 
 const Tag = ({ children }: { children: React.ReactNode }) => (
   <span className="text-xs font-semibold bg-gray-50 text-gray-400 leading-none border rounded-sm p-0.5 first-of-type:-ml-0.5">
@@ -76,7 +78,16 @@ const groupByMonth = (
 };
 
 const EventCalendar = () => {
-  const { data: events, isLoading, isError } = useEventCalendar();
+  // const { data: events, isLoading, isError } = useEventCalendar();
+  const {
+    data: events,
+    isLoading,
+    error: isError,
+  } = useSWR("competition-calendar", clientSideFetchCompetitions) || {
+    data: undefined,
+    isLoading: true,
+    isError: false,
+  };
 
   const regions = new Set(events?.map((event) => event.region));
   const [selectedRegion, setSelectedRegion] = useState<string | null>(
@@ -111,7 +122,7 @@ const EventCalendar = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-4 items-end">
           <div>
             <label htmlFor="region">Filter by region</label>
             <select
@@ -134,6 +145,12 @@ const EventCalendar = () => {
                 </>
               )}
             </select>
+          </div>
+          <div className="hidden sm:block" />
+          <div className="pt-3">
+            <Link href={`webcal://${BASE_URL}/api/events.ics`} external>
+              Subscribe to iCal feed
+            </Link>
           </div>
         </div>
 
