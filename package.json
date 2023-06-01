@@ -32,6 +32,7 @@
     "@vercel/kv": "^0.1.2",
     "algoliasearch": "^4.17.0",
     "axios": "^1.4.0",
+    "class-variance-authority": "^0.6.0",
     "classnames": "^2.3.2",
     "color": "^4.2.3",
     "emoji-regex": "^10.2.1",
