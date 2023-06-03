@@ -5,6 +5,7 @@ import {
   SectionTitle,
   SubTitle,
 } from "@/components/governance";
+import cn from "@/lib/cn";
 
 type Props = {
   committees: Governance["committees"];
@@ -21,29 +22,20 @@ const Committees = ({ committees }: Props) => (
           <div className="h-4" />
           <ul>
             {committee.members !== null &&
-              committee.members.map((member) => (
-                <li
-                  className="relative mb-3 ml-4 text-gray-800 first:before:text-gray-400 committee-member"
-                  key={member._id}
-                >
-                  <div className="text-sm font-medium text-gray-700">
+              committee.members.map((member, i) => (
+                <li className="relative mb-3 text-gray-800" key={member._id}>
+                  <div
+                    className={cn(
+                      !i &&
+                        "after:block after:text-xs after:font-semibold after:uppercase after:tracking-wider after:text-gray-400 after:content-['Committee_Chair']",
+                      "text-sm font-medium text-gray-700"
+                    )}
+                  >
                     {member.role}
                   </div>
-                  <div className="text-xs text-gray-500">{member.name}</div>
-                  <style jsx>{`
-                    .committee-member:first-child::before {
-                      writing-mode: vertical-rl;
-                      font-weight: 600;
-                      content: "Chair";
-                      letter-spacing: 0.1em;
-                      text-transform: uppercase;
-                      font-size: 0.5rem;
-                      line-height: 1;
-                      position: absolute;
-                      left: -1rem;
-                      top: 0.3rem;
-                    }
-                  `}</style>
+                  <div className="text-xs font-medium text-gray-500">
+                    {member.name}
+                  </div>
                 </li>
               ))}
           </ul>

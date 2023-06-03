@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 
 export type NoteProps = {
   children: React.ReactNode;

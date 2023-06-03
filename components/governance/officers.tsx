@@ -23,7 +23,7 @@ const OfficerPhotographOrPlaceholder = ({
 }) => {
   if (officer.vacant) {
     return (
-      <div className="font-bold tracking-widest text-gray-400 uppercase">
+      <div className="font-bold uppercase tracking-widest text-gray-400">
         TBA
       </div>
     );
@@ -65,7 +65,7 @@ const OfficerNameOrPlaceholder = ({
         pathname: "contact",
         query: { to: officer._id },
       }}
-      className="flex items-center gap-1.5 group"
+      className="group flex items-center gap-1.5"
       title={`Contact ${officer.name}`}
     >
       {officer.name}
@@ -86,13 +86,13 @@ const Officers = ({ officers }: Props) => (
     <GovGrid>
       {officers.map((officer) => (
         <div key={officer._id}>
-          <div className="relative flex items-center justify-center w-full mb-2 overflow-hidden rounded h-36 bg-gradient-to-b from-gray-200 to-gray-100">
+          <div className="relative mb-2 flex h-36 w-full items-center justify-center overflow-hidden rounded bg-gradient-to-b from-gray-200 to-gray-100">
             <OfficerPhotographOrPlaceholder {...{ officer }} />
             {officer.description && (
               <Popover>
                 <Popover.Button>
                   <HelpCircle
-                    className="absolute text-blue-500 transition right-2 bottom-2 hover:text-gray-700"
+                    className="absolute bottom-2 right-2 text-blue-500 transition hover:text-gray-700"
                     size="1em"
                     strokeWidth="0.15em"
                   />
@@ -105,13 +105,13 @@ const Officers = ({ officers }: Props) => (
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Popover.Panel className="absolute top-0 left-0 w-full h-full p-4 bg-white bg-opacity-50 rounded backdrop-blur">
+                  <Popover.Panel className="absolute left-0 top-0 h-full w-full rounded bg-white bg-opacity-50 p-4 backdrop-blur">
                     <div className="text-xs font-medium text-gray-600">
                       <p>{officer.description}</p>
                     </div>
                     <Popover.Button>
                       <XCircle
-                        className="absolute text-gray-500 transition hover:text-gray-700 right-2 bottom-2"
+                        className="absolute bottom-2 right-2 text-gray-500 transition hover:text-gray-700"
                         size="1em"
                         strokeWidth="0.15em"
                       />
@@ -121,7 +121,7 @@ const Officers = ({ officers }: Props) => (
               </Popover>
             )}
           </div>
-          <div className="font-semibold text-gray-800 tracking-snug">
+          <div className="tracking-snug font-semibold text-gray-800">
             <OfficerNameOrPlaceholder {...{ officer }} />
           </div>
           <Description>{officer.role}</Description>

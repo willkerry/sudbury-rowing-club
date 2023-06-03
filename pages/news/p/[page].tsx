@@ -70,7 +70,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           images: [{ url: `${BASE_URL}/assets/og/news.png` }],
         }}
       />
-      <div className="flex items-center py-6 border-t border-b">
+      <div className="flex items-center border-b border-t py-6">
         <Container>
           <h1>
             <Label className="max-w-prose">News Archive</Label>
@@ -84,7 +84,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 </>
               )}
             </span>
-            <span className="text-sm font-medium tracking-wider text-gray-600 uppercase">
+            <span className="text-sm font-medium uppercase tracking-wider text-gray-600">
               Page {page} of {pages}
             </span>
           </p>

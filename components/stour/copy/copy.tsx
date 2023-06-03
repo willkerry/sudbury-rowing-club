@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import cn from "classnames";
+import cn from "@/lib/cn";
 import {
   ClipboardDocumentCheckIcon,
   ClipboardDocumentListIcon,
@@ -26,27 +26,27 @@ const Copy: React.FC<{ value: string }> = ({ value }) => {
   return (
     <button
       type="button"
-      className="inline-flex items-center gap-1 group"
+      className="group inline-flex items-center gap-1"
       onClick={() => copy()}
     >
-      <span className="font-medium tracking-wider text-black select-all disambiguate">
+      <span className="disambiguate select-all font-medium tracking-wider text-black">
         {value}
       </span>
-      <span className="relative items-center hidden text-xs font-semibold text-blue-500 transition opacity-0 select-none md:flex group-hover:opacity-100">
+      <span className="relative hidden select-none items-center text-xs font-semibold text-blue-500 opacity-0 transition group-hover:opacity-100 md:flex">
         <ClipboardDocumentListIcon
           className={cn(
-            "w-4 h-4 absolute transition",
+            "absolute h-4 w-4 transition",
             copied ? "opacity-0" : "opacity-100"
           )}
         />
         <ClipboardDocumentCheckIcon
           className={cn(
-            "w-4 h-4 absolute transition",
+            "absolute h-4 w-4 transition",
             copied ? "opacity-100" : "opacity-0"
           )}
         />
         {copied && (
-          <div className="absolute w-4 h-4 bg-blue-500 rounded-full animate-ping" />
+          <div className="absolute h-4 w-4 animate-ping rounded-full bg-blue-500" />
         )}
       </span>
     </button>

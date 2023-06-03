@@ -25,7 +25,7 @@ const CompactMobileMenuItem = ({ data }: { data: NavItemType }) => (
   <Link
     key={data.name}
     href={data.href}
-    className="flex items-center p-2 -m-2 rounded-md hover:bg-gray-100"
+    className="-m-2 flex items-center rounded-md p-2 hover:bg-gray-100"
   >
     <span className="text-sm font-medium text-gray-700">
       {data.shortName ? data.shortName : data.name}

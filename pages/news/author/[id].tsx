@@ -44,7 +44,7 @@ export const AuthorArchive: NextPage<
       title={`Archive: ${author?.firstName} ${author?.surname}`}
       description={`Archive of all posts by ${author?.firstName} ${author?.surname}`}
     />
-    <div className="flex items-center py-6 border-t border-b">
+    <div className="flex items-center border-b border-t py-6">
       <Container>
         <h1>
           <Label className="max-w-prose">Author Archive</Label>
@@ -57,7 +57,7 @@ export const AuthorArchive: NextPage<
     <Container>
       <ul className="my-8">
         {author?.articles?.map(({ _id, slug, title, date }) => (
-          <li key={_id} className="grid mb-2">
+          <li key={_id} className="mb-2 grid">
             <Link href={`/news/${slug}`}>{title}</Link>
             <Label className="text-xs">
               <DateFormatter dateString={date} format="short" />

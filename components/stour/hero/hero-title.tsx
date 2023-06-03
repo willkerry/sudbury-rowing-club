@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 import Container from "../../layouts/container";
 import Breadcrumbs from "../breadcrumbs";
 
@@ -63,12 +63,12 @@ const HeroTitle: React.FC<Props> = ({
     <>
       <div
         className={cn(
-          "relative flex flex-wrap content-center h-48 min-h-[48]",
+          "relative flex h-48 min-h-[48] flex-wrap content-center",
           colorClasses?.hero
         )}
       >
         <Container>
-          <div className={cn(prose && "max-w-prose mx-auto text-center")}>
+          <div className={cn(prose && "mx-auto max-w-prose text-center")}>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
               {title}
             </h1>

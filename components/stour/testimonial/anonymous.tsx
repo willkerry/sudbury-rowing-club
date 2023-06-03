@@ -2,8 +2,8 @@ import { ShieldCheckIcon } from "@heroicons/react/20/solid";
 
 const Anonymous = () => (
   <div className="flex">
-    <ShieldCheckIcon className="inline-flex w-4 h-4 mr-1 text-gray-300" />
-    <div className="inline-flex mt-o.5 text-xs tracking-wider text-gray-600 uppercase">
+    <ShieldCheckIcon className="mr-1 inline-flex h-4 w-4 text-gray-300" />
+    <div className="mt-0.5 inline-flex text-xs uppercase tracking-wider text-gray-600">
       Anonymous
     </div>
   </div>

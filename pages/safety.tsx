@@ -34,7 +34,7 @@ const Safety: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
     <HeroTitle prose title="Safety" />
 
-    <Container className="mx-auto my-12 space-y-16 max-w-prose">
+    <Container className="mx-auto my-12 max-w-prose space-y-16">
       <SafetyCard />
 
       {safety.map((item) => (

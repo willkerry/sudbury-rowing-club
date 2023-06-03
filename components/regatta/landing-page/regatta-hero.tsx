@@ -8,9 +8,9 @@ type Props = {
 };
 
 const RegattaHero = ({ ticketItems, subtitle }: Props) => (
-  <div className="max-w-lg mx-auto my-12 text-center">
+  <div className="mx-auto my-12 max-w-lg text-center">
     <ImageComposite ticketItems={ticketItems} />
-    <h1 className="pb-12 text-5xl font-extrabold tracking-tighter text-transparent sm:text-7xl md:text-7xl bg-clip-text bg-gradient-to-br from-blue-400 to-blue-900">
+    <h1 className="bg-gradient-to-br from-blue-400 to-blue-900 bg-clip-text pb-12 text-5xl font-extrabold tracking-tighter text-transparent sm:text-7xl md:text-7xl">
       Sudbury <span className="font-light text-gray-900">‘International’</span>{" "}
       Regatta
     </h1>
@@ -23,7 +23,7 @@ const RegattaHero = ({ ticketItems, subtitle }: Props) => (
         className="text-blue-500 hover:cursor-pointer hover:text-gray-600"
       >
         Learn more
-        <ChevronRightIcon className="inline-flex w-5 h-5 mb-px" />
+        <ChevronRightIcon className="mb-px inline-flex h-5 w-5" />
       </ScrollLink>
     </p>
   </div>

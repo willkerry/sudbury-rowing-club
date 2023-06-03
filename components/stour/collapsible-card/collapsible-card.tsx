@@ -3,7 +3,7 @@ import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
-import cn from "classnames";
+import cn from "@/lib/cn";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Notice } from "@/lib/queries/fetch-notices";
@@ -26,11 +26,11 @@ export const NoticeBody = ({ notice }: Props) => {
     <>
       {notice.body && <Text portableText={notice.body} className="p-4" />}
       {notice.meta && (
-        <div className="flex py-2.5 text-sm bg-gray-50">
+        <div className="flex bg-gray-50 py-2.5 text-sm">
           {notice.meta.map((item) => (
             <div className="px-4" key={item._key}>
-              <Label className="text-xs select-none">{`${item.label}: `}</Label>
-              <span className="text-xs font-medium disambiguate !text-gray-800">
+              <Label className="select-none text-xs">{`${item.label}: `}</Label>
+              <span className="disambiguate text-xs font-medium !text-gray-800">
                 {item.value}
               </span>
             </div>
@@ -43,14 +43,14 @@ export const NoticeBody = ({ notice }: Props) => {
           <FileGroup fileItems={notice.documents.slice(splitItemCount)} />
         </div>
       )}
-      <div className="flex justify-between gap-4 px-4 py-3 text-xs font-medium text-gray-500 bg-gray-100">
+      <div className="flex justify-between gap-4 bg-gray-100 px-4 py-3 text-xs font-medium text-gray-500">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           <span>
             Created:{" "}
             <DateFormatter
               dateString={notice._createdAt}
               format="short"
-              className="text-gray-700 disambiguate"
+              className="disambiguate text-gray-700"
             />
           </span>
           <span>
@@ -58,7 +58,7 @@ export const NoticeBody = ({ notice }: Props) => {
             <DateFormatter
               dateString={notice._updatedAt}
               format="time"
-              className="text-gray-700 disambiguate"
+              className="disambiguate text-gray-700"
             />
           </span>
         </div>
@@ -67,7 +67,7 @@ export const NoticeBody = ({ notice }: Props) => {
           className="transition-colors hover:text-black"
           title="Open permalink"
         >
-          <LinkIcon className="w-4 h-4" />
+          <LinkIcon className="h-4 w-4" />
         </Link>
       </div>
     </>
@@ -77,13 +77,13 @@ export const NoticeBody = ({ notice }: Props) => {
 const CollapsibleCard = ({ notice }: Props) => (
   <Disclosure
     as="div"
-    className="overflow-hidden border divide-y rounded"
+    className="divide-y overflow-hidden rounded border"
     id={notice.slug}
   >
     {({ open }) => (
       <>
         <Disclosure.Button
-          className={`flex items-center justify-between w-full px-4 text-left h-14 group hover:bg-gray-50 transition ${
+          className={`group flex h-14 w-full items-center justify-between px-4 text-left transition hover:bg-gray-50 ${
             open && "bg-gray-50"
           }`}
         >
@@ -95,8 +95,8 @@ const CollapsibleCard = ({ notice }: Props) => (
           </Label>
           <ChevronDownIcon
             className={cn(
-              "w-6 h-6 text-gray-400 transition duration-300 opacity-0 group-hover:opacity-100",
-              open ? "transform -rotate-180" : ""
+              "h-6 w-6 text-gray-400 opacity-0 transition duration-300 group-hover:opacity-100",
+              open ? "-rotate-180 transform" : ""
             )}
           />
         </Disclosure.Button>

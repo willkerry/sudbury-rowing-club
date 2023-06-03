@@ -3,7 +3,7 @@ import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import Link from "next/link";
 import { fetchAllAuthors } from "@/lib/queries/fetch-authors";
-import cn from "classnames";
+import cn from "@/lib/cn";
 import { type InferGetStaticPropsType, type NextPage } from "next";
 import { NextSeo } from "next-seo";
 
@@ -35,7 +35,7 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => (
   <Layout>
     <NextSeo title="Authors" description="List of contributing authors" />
-    <div className="flex items-center py-6 border-t border-b">
+    <div className="flex items-center border-b border-t py-6">
       <Container>
         <h1>
           <Label className="max-w-prose">Author Archive</Label>
@@ -43,7 +43,7 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       </Container>
     </div>
     <Container>
-      <ul className="mt-8 mb-16">
+      <ul className="mb-16 mt-8">
         {authors.map(
           ({ _id, firstName, surname, articleCount, rank }, index) => {
             const authorName = `${firstName} ${surname}`;
@@ -54,20 +54,20 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             return (
               <li
                 key={_id}
-                className={cn("flex mb-4 text-lg", firstOfRank && "pt-2")}
+                className={cn("mb-4 flex text-lg", firstOfRank && "pt-2")}
               >
                 <div className="relative w-8">
                   {firstOfRank && (
-                    <span className="absolute inset-0 text-center leading-none font-medium disambiguate text-blue-500">
+                    <span className="disambiguate absolute inset-0 text-center font-medium leading-none text-blue-500">
                       {rank}
                     </span>
                   )}
                 </div>
                 <Link {...{ href }} className="group leading-none">
-                  <span className="transition text-gray-900 group-hover:text-blue-500">
+                  <span className="text-gray-900 transition group-hover:text-blue-500">
                     {authorName}
                   </span>
-                  <span className="uppercase ml-3 text-gray-500 font-bold tracking-widest text-xs group-hover:text-gray-400 transition">
+                  <span className="ml-3 text-xs font-bold uppercase tracking-widest text-gray-500 transition group-hover:text-gray-400">
                     {articleCount}
                   </span>
                 </Link>

@@ -51,7 +51,7 @@ const Link = ({
       href={href}
       className={
         !unstyled
-          ? `transition whitespace-nowrap ${
+          ? `whitespace-nowrap transition ${
               dark
                 ? "text-blue-100 hover:text-white"
                 : "text-blue-500 hover:text-blue-300"
@@ -62,11 +62,11 @@ const Link = ({
       <>
         {children}
         {extension && (
-          <span className="px-1 ml-1 text-xs font-medium text-gray-400 uppercase transition border rounded-full">
+          <span className="ml-1 rounded-full border px-1 text-xs font-medium uppercase text-gray-400 transition">
             {extension}
           </span>
         )}
-        {hasIcon && <RightIcon className="inline mb-0.5 ml-1 w-4 h-4" />}
+        {hasIcon && <RightIcon className="mb-0.5 ml-1 inline h-4 w-4" />}
       </>
     </LinkComponent>
   );

@@ -26,9 +26,9 @@ const Player = ({ youTubeId, youTubeStart }: Props) => {
         onClick={() => setIsOpen(!isOpen)}
         type="button"
         title="Open video"
-        className="absolute text-white bottom-3 right-3 sm:bottom-7 sm:right-7"
+        className="absolute bottom-3 right-3 text-white sm:bottom-7 sm:right-7"
       >
-        <PlayIcon className="w-8 h-8 md:w-10 md:h-10" />
+        <PlayIcon className="h-8 w-8 md:h-10 md:w-10" />
       </button>
 
       <Transition
@@ -46,11 +46,11 @@ const Player = ({ youTubeId, youTubeStart }: Props) => {
           className="fixed inset-0 z-40 overflow-y-auto"
         >
           <Dialog.Overlay className="absolute inset-0 bg-black opacity-70 backdrop-blur" />
-          <div className="flex items-center justify-center w-full h-full p-2 sm:p-10 md:p-20 lg:p-40 xl:p-60">
+          <div className="flex h-full w-full items-center justify-center p-2 sm:p-10 md:p-20 lg:p-40 xl:p-60">
             <YouTube
               videoId={youTubeId}
               opts={options(youTubeStart)}
-              className="z-50 w-full overflow-hidden bg-white rounded-lg shadow-xl aspect-w-16 aspect-h-9"
+              className="aspect-h-9 aspect-w-16 z-50 w-full overflow-hidden rounded-lg bg-white shadow-xl"
             />
           </div>
         </Dialog>

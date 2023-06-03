@@ -18,14 +18,14 @@ interface OverviewProps {
 }
 
 const Overview: React.FC<OverviewProps> = ({ items }) => (
-  <div className="gap-16 my-24 sm:grid sm:grid-cols-12">
+  <div className="my-24 gap-16 sm:grid sm:grid-cols-12">
     <div className="hidden sm:col-span-4 sm:block">
-      <ul className="sticky space-y-4 md:space-y-6 top-36">
+      <ul className="sticky top-36 space-y-4 md:space-y-6">
         {items.map(({ title, subtitle }) => (
           <li key={title}>
             <ScrollLink
               activeClass="!text-blue-500 font-semibold"
-              className="font-medium text-gray-700 transition hover:text-gray-900 hover:cursor-pointer"
+              className="font-medium text-gray-700 transition hover:cursor-pointer hover:text-gray-900"
               duration={200}
               offset={-30}
               smooth
@@ -41,7 +41,7 @@ const Overview: React.FC<OverviewProps> = ({ items }) => (
         ))}
       </ul>
     </div>
-    <div className="col-span-8 prose">
+    <div className="prose col-span-8">
       {items.map(({ title, content, image }) => (
         <div key={title} id={title}>
           {image && (

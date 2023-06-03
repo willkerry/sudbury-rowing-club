@@ -40,14 +40,14 @@ const Coursemap: NextPage<Props> = ({
     />
     <HeroTitle title="Sudbury Regatta Course" breadcrumbs />
     <Container className="mb-16">
-      <div className="my-16 prose">
+      <div className="prose my-16">
         <p className="lead">{heading}</p>
         <p>{description}</p>
         <Button href={`${map}?dl=`} icon={<Download />} as="a">
           Download the PDF
         </Button>
       </div>
-      <div className="flex overflow-hidden border rounded shadow-xl">
+      <div className="flex overflow-hidden rounded border shadow-xl">
         <Image
           src={urlFor(mapImage.id)
             .width(982 * 2)

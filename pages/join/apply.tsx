@@ -28,7 +28,7 @@ const LearnToRowApplicationForm: NextPage = () => (
       frameBorder={0}
       marginHeight={0}
       marginWidth={0}
-      className="overflow-hidden border rounded shadow-inner"
+      className="overflow-hidden rounded border shadow-inner"
     >
       <Loading />
     </iframe>

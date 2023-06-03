@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 import Link from "@/components/stour/link";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 const CompetitorInformation = ({ tab = false, description, items }: Props) => (
   <div className={cn(tab && "mx-auto", "prose")}>
     {description}
-    <div className="py-6 prose">
+    <div className="prose py-6">
       <ul>
         {items?.map((item) => (
           <li key={item._id}>

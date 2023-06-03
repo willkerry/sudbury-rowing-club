@@ -52,7 +52,7 @@ const Photography: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     />
     <HeroTitle title="Official regatta photography" breadcrumbs />
     <Container>
-      <div className="py-16 prose prose-lg max-w-none">
+      <div className="prose prose-lg max-w-none py-16">
         <table>
           <thead>
             <tr>

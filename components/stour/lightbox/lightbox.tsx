@@ -66,7 +66,7 @@ const LightBox = ({
       as={Fragment}
     >
       <Dialog
-        className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-10 backdrop-blur cursor-zoom-out"
+        className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-white bg-opacity-10 backdrop-blur"
         open={open}
         onClose={() => toggle()}
         onClick={() => toggle()}

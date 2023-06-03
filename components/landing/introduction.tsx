@@ -17,7 +17,7 @@ const Introduction = ({ description }: IntroductionProps) => (
     <Container className="my-16">
       <div className="mx-auto ">
         <Text portableText={description} className="mx-auto" />
-        <CommitteeSignature className="w-48 py-16 mx-auto" />
+        <CommitteeSignature className="mx-auto w-48 py-16" />
         <span className="sr-only">The Committee</span>
       </div>
       <Sponsors />

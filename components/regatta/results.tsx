@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 import { Download } from "react-feather";
 import ordinal from "@/lib/helpers/ordinal";
 import DateFormatter from "@/components/utils/date-formatter";

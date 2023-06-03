@@ -8,7 +8,7 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li>
     <article id={post.slug}>
       <Link as={`/news/${post.slug}`} href="/news/[slug]" legacyBehavior>
-        <a className="flex flex-col overflow-hidden transition bg-white border divide-y rounded hover:border-blue-400 group">
+        <a className="group flex flex-col divide-y overflow-hidden rounded border bg-white transition hover:border-blue-400">
           {post.featuredImage ? (
             <div className="relative">
               <Image
@@ -28,15 +28,9 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
               />
             </div>
           ) : (
-            <div className="relative overflow-hidden text-6xl font-bold tracking-tighter text-gray-300 transition select-none bg-gray-50 group-hover:text-blue-100">
-              <div className="box-border relative block m-0 overflow-hidden">
-                <div className="px-2.5 pt-1.5 pseudo-img">
-                  <style jsx>{`
-                    .pseudo-img {
-                      width: 305px;
-                      height: 188px;
-                    }
-                  `}</style>
+            <div className="relative select-none overflow-hidden bg-gray-50 text-6xl font-bold tracking-tighter text-gray-300 transition group-hover:text-blue-100">
+              <div className="relative m-0 box-border block overflow-hidden">
+                <div className="h-[188px] w-[305px] px-2.5 pt-1.5">
                   {post.title}
                 </div>
               </div>

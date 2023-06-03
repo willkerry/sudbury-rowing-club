@@ -11,8 +11,8 @@ type Props = {
 const NewsList = ({ posts, hero, more }: Props) => {
   if (posts.length === 0)
     return (
-      <div className="flex flex-col items-center justify-center w-full h-48">
-        <p className="text-lg font-semibold text-center text-gray-500">
+      <div className="flex h-48 w-full flex-col items-center justify-center">
+        <p className="text-center text-lg font-semibold text-gray-500">
           Nothing found
         </p>
       </div>

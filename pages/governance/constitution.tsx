@@ -6,14 +6,14 @@ import { NextPage } from "next";
 const Highlight: FC<{ children: ReactNode }> = (props) => (
   <em
     {...props}
-    className="py-0.5 -my-0.5 not-italic px-0.5 mx-0.5 border border-green-300 bg-green-50 rounded"
+    className="-my-0.5 mx-0.5 rounded border border-green-300 bg-green-50 px-0.5 py-0.5 not-italic"
   />
 );
 
 const BlockHighlight: FC<{ children: ReactNode }> = (props) => (
   <div
     {...props}
-    className="pl-2 pr-2 border-l-2 border-green-300 rounded bg-green-50"
+    className="rounded border-l-2 border-green-300 bg-green-50 pl-2 pr-2"
   />
 );
 
@@ -404,12 +404,12 @@ const Constitution: NextPage = () => (
     </p>
     <h2>26. Declaration</h2>
     <p>Each member upon joining shall sign the following declaration:</p>
-    <div className="px-24 pb-12 font-serif text-xl text-black border rounded shadow-xl">
+    <div className="rounded border px-24 pb-12 font-serif text-xl text-black shadow-xl">
       <p className="flex justify-center">
         <Logo className="w-1/2" />
       </p>
       <p>
-        Name: <span className="inline-block -mb-1 border-b border-black w-36" />
+        Name: <span className="-mb-1 inline-block w-36 border-b border-black" />
       </p>
       <p>
         Upon acceptance into membership of the Sudbury Rowing Club I understand
@@ -423,11 +423,11 @@ const Constitution: NextPage = () => (
       <p>I also confirm that I am able to swim a minimum of 50 metres.</p>
       <p>
         Signed:{" "}
-        <span className="inline-block -mb-1 border-b border-black w-36" />
+        <span className="-mb-1 inline-block w-36 border-b border-black" />
       </p>
       <p>
         Parent/Guardian (if under 18):{" "}
-        <span className="inline-block -mb-1 border-b border-black w-36" />
+        <span className="-mb-1 inline-block w-36 border-b border-black" />
       </p>
       <div className="text-lg">
         <p>

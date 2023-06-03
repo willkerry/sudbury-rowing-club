@@ -10,7 +10,7 @@ const SafetyCard: React.FC = () => {
   const { data: safetyComponentProps } = useSWR("getSafetyStatus", fetcher);
 
   return (
-    <div className="overflow-hidden border rounded">
+    <div className="overflow-hidden rounded border">
       {safetyComponentProps ? (
         <SafetyComponent {...safetyComponentProps} />
       ) : (

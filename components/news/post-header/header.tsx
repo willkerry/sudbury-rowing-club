@@ -37,16 +37,15 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
     return (
       <>
         <PostTitle date={date} title={title} center />
-        <div className="mb-8 md:mb-16 sm:mx-0">
+        <div className="mb-8 sm:mx-0 md:mb-16">
           <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />
-          <figure className="relative flex flex-col max-w-3xl mx-auto overflow-hidden text-gray-600 bg-gray-200 rounded">
-            <style jsx>{`
-              figure {
-                background-color: ${featuredImage.background};
-                color: ${featuredImage.foreground};
-              }
-            `}</style>
-
+          <figure
+            className="relative mx-auto flex max-w-3xl flex-col overflow-hidden rounded bg-gray-200 text-gray-600"
+            style={{
+              backgroundColor: featuredImage.background || "transparent",
+              color: featuredImage.foreground || "inherit",
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleOpen()}
@@ -69,7 +68,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
 
   if (featuredImage)
     return (
-      <div className="flex-row items-center max-w-3xl gap-8 mx-auto mb-8 sm:flex md:mb-16">
+      <div className="mx-auto mb-8 max-w-3xl flex-row items-center gap-8 sm:flex md:mb-16">
         <PostTitle date={date} title={title} />
         <div className="relative flex-none">
           <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />

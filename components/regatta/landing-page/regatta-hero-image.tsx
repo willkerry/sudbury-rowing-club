@@ -20,7 +20,7 @@ const RegattaHeroImage = ({
   const imageWidth = 984;
   const imageHeight = imageWidth / aspectRatio;
   return (
-    <div className="relative flex overflow-hidden shadow-lg rounded-xl">
+    <div className="relative flex overflow-hidden rounded-xl shadow-lg">
       <Image
         src={urlFor(src)
           .width(2 * imageWidth)
@@ -32,14 +32,14 @@ const RegattaHeroImage = ({
         width={imageWidth}
         height={imageHeight}
       />
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-tr from-black via-transparent to-transparent" />
-      <div className="absolute top-0 left-0 flex items-end w-full h-full p-6 md:p-12">
+      <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-tr from-black via-transparent to-transparent" />
+      <div className="absolute left-0 top-0 flex h-full w-full items-end p-6 md:p-12">
         <div className="hidden w-2/3 sm:block">
-          <div className="max-w-sm text-4xl font-bold tracking-tighter text-white md:text-6xl leading-tighter drop-shadow">
+          <div className="leading-tighter max-w-sm text-4xl font-bold tracking-tighter text-white drop-shadow md:text-6xl">
             {title}
           </div>
           <div className="font-medium text-white opacity-75">
-            <ArrowUpIcon className="inline-flex w-4 h-4 mb-px" /> {subtitle}
+            <ArrowUpIcon className="mb-px inline-flex h-4 w-4" /> {subtitle}
           </div>
         </div>
       </div>

@@ -18,9 +18,9 @@ import { ThumbsUp } from "react-feather";
 
 export const NextCourse = () => (
   <>
-    <h3 className="mb-1 mt-2 text-base flex items-center gap-1">
+    <h3 className="mb-1 mt-2 flex items-center gap-1 text-base">
       Course Dates
-      <span className="rounded-full mt-0.5 bg-green-500 text-white text-xs px-1 py-0.5 uppercase tracking-wider font-semibold">
+      <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
         New
       </span>
     </h3>
@@ -36,7 +36,7 @@ export const NextCourse = () => (
       <div>11 February 2023, 12:30</div>
     </p>
     <p className="mb-0">Followed by two separate courses:</p>
-    <div className="grid md:grid-cols-2 gap-4 py-0">
+    <div className="grid gap-4 py-0 md:grid-cols-2">
       <div>
         <strong>Course 1</strong>
         <div>4 March 2023</div>
@@ -77,12 +77,12 @@ const Join: NextPage = () => (
     {/* Big hero */}
     <Container className="py-16 text-center text-gray-900 sm:py-24" id="hero">
       <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
-      <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 sm:text-8xl drop-shadow-xl">
+      <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 drop-shadow-xl sm:text-8xl">
         Start rowing with us{" "}
-        <ThumbsUp className="inline w-12 h-12 text-blue-400 sm:w-16 sm:h-16 rotate-3" />
+        <ThumbsUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
       </h1>
       <div
-        className="z-0 flex mx-auto overflow-hidden rounded shadow-xl -rotate-2"
+        className="z-0 mx-auto flex -rotate-2 overflow-hidden rounded shadow-xl"
         style={{ maxHeight: 160, maxWidth: 240 }}
       >
         <Image
@@ -92,7 +92,7 @@ const Join: NextPage = () => (
           width={240}
         />
       </div>
-      <div className="max-w-xl mx-auto mt-12 mb-16 prose text-left">
+      <div className="prose mx-auto mb-16 mt-12 max-w-xl text-left">
         <p className="lead">
           Sudbury Rowing Club welcomes new members
           <span className="whitespace-nowrap"> –</span> whether you’ve never
@@ -115,7 +115,7 @@ const Join: NextPage = () => (
           title="Getting started in rowing couldn’t be easier"
         />
 
-        <div className="grid gap-12 md:grid-cols-2 mb-20">
+        <div className="mb-20 grid gap-12 md:grid-cols-2">
           <div>
             <div className="prose">
               <p className="lead">
@@ -140,7 +140,7 @@ const Join: NextPage = () => (
               </p>
             </div>
           </div>
-          <div className="prose border-green-200 border-2 rounded px-2 -mx-2 pb-1 -mb-1">
+          <div className="prose -mx-2 -mb-1 rounded border-2 border-green-200 px-2 pb-1">
             <NextCourse />
           </div>
         </div>

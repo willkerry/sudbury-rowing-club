@@ -24,7 +24,7 @@ const Minutes: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <tbody>
         {minutes.map((minute) => (
           <tr key={minute._id} className="hover:bg-gray-50">
-            <td className="text-xs font-medium tracking-wider text-gray-600 uppercase">
+            <td className="text-xs font-medium uppercase tracking-wider text-gray-600">
               {minute.date}
             </td>
             <td className="text-gray-700">{minute.committee}</td>

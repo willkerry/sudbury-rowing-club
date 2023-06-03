@@ -5,7 +5,7 @@ import type {
   ReactNode,
 } from "react";
 import { type VariantProps, cva } from "class-variance-authority";
-import cn from "classnames";
+import cn from "@/lib/cn";
 import { Slot } from "@radix-ui/react-slot";
 import Link from "next/link";
 import Loading from "../loading";
@@ -68,7 +68,7 @@ type ButtonProps = BaseButtonProps &
 
 const getIcon = (icon: ReactNode) => {
   if (!icon) return null;
-  return <Slot className="flex w-4 mr-2">{icon}</Slot>;
+  return <Slot className="mr-2 flex w-4">{icon}</Slot>;
 };
 
 const Button = ({
@@ -99,7 +99,7 @@ const Button = ({
         ...rest,
       }}
     >
-      <div className="flex items-center justify-center w-full h-full">
+      <div className="flex h-full w-full items-center justify-center">
         {getIcon(icon)}
         {isLoading ? <Loading /> : children}
       </div>

@@ -38,7 +38,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       />
       <HeroTitle prose title="Contact a club officer" />
       <Container className="max-w-lg py-12">
-        <div className="pb-10 mx-auto prose">
+        <div className="prose mx-auto pb-10">
           <p>
             We’re a volunteer-run club that provides a safe and fun way to row,
             but we also need your help. Since we don’t have a full-time staff to
@@ -47,7 +47,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           </p>
         </div>
         <ContactForm contacts={officers} initialValues={initialValues} />
-        <div className="mt-16 text-sm prose text-gray-500">
+        <div className="prose mt-16 text-sm text-gray-500">
           Alternatively, mail{" "}
           <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general
           enquiries, or <Obfuscate email="regatta@sudburyrowingclub.org.uk" />{" "}

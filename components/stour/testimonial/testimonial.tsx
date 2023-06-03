@@ -1,13 +1,13 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 import { type Testimonial as TestimonialType } from "@/lib/queries/fetch-regattas";
 import Anonymous from "./anonymous";
 
 const Testimonial = ({ name, club, text }: TestimonialType) => (
-  <figure className="inline-block border rounded-lg mb-10 p-6 break-inside-avoid">
+  <figure className="mb-10 inline-block break-inside-avoid rounded-lg border p-6">
     <blockquote
       className={cn(
         "space-y-4 leading-snug",
-        { "text-sm text-gray-800 hyphens-auto": text?.length > 250 },
+        { "hyphens-auto text-sm text-gray-800": text?.length > 250 },
         { "text-lg font-light text-black": text?.length < 250 }
       )}
     >

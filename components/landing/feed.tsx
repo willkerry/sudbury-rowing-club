@@ -4,7 +4,7 @@ import useBritishRowingFeed, {
 } from "@/hooks/useBritishRowingFeed";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
-import cn from "classnames";
+import cn from "@/lib/cn";
 import Link from "@/components/stour/link";
 import Result from "../stour/result";
 
@@ -14,8 +14,8 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "border hover:border-blue-500 transition p-2 rounded grid gap-1.5 group",
-      !article && "animate-pulse h-16 bg-gray-50"
+      "group grid gap-1.5 rounded border p-2 transition hover:border-blue-500",
+      !article && "h-16 animate-pulse bg-gray-50"
     )}
   >
     {article && (
@@ -24,9 +24,9 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
           {article.title.rendered}
         </h3>
 
-        <div className="flex gap-1 justify-between items-end">
+        <div className="flex items-end justify-between gap-1">
           <DateFormatter
-            className="text-xs font-medium text-gray-500 leading-none"
+            className="text-xs font-medium leading-none text-gray-500"
             dateString={article.date}
           />
           <BritishRowing className="h-4" />
@@ -49,7 +49,7 @@ const Feed = () => {
         <Link href="https://britishrowing.org/">British Rowing</Link>.
       </p>
       {!error ? (
-        <div className="mb-12 grid grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="mb-12 grid grid-cols-2 gap-4 lg:grid-cols-3">
           {/* eslint-disable-next-line react/no-array-index-key */}
           {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
 
@@ -58,7 +58,7 @@ const Feed = () => {
           ))}
         </div>
       ) : (
-        <div className="border rounded px-4 py-8 mb-12">
+        <div className="mb-12 rounded border px-4 py-8">
           <Result
             title="Unable to retrieve stories from British Rowing."
             message={error}

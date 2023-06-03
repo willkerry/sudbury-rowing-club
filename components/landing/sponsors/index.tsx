@@ -12,29 +12,29 @@ interface SponsorLogo {
 
 const SponsorLogos: SponsorLogo[] = [
   {
-    logo: <Specflue className="w-full max-h-7" />,
+    logo: <Specflue className="max-h-7 w-full" />,
     href: "https://specflue.com/",
     name: "Specflue",
   },
   {
-    logo: <Rowperfect className="w-full max-h-4" />,
+    logo: <Rowperfect className="max-h-4 w-full" />,
     href: "https://www.rowperfect.co.uk/",
     name: "Rowperfect",
   },
   {
-    logo: <BritishRowing className="w-full max-h-8" />,
+    logo: <BritishRowing className="max-h-8 w-full" />,
     href: "https://britishrowing.org/",
     name: "British Rowing",
   },
   {
-    logo: <Errc className="w-full max-h-7" />,
+    logo: <Errc className="max-h-7 w-full" />,
     href: "http://easternregionrowing.org.uk/",
     name: "Easter Region Rowing Council",
   },
 ];
 
 const Sponsors = () => (
-  <ul className="flex flex-wrap items-center justify-center gap-8 my-12 space-between">
+  <ul className="space-between my-12 flex flex-wrap items-center justify-center gap-8">
     {SponsorLogos.map(({ logo, href, name }) => (
       <li key={`${href}${name}`}>
         <Link href={href} aria-label={name}>

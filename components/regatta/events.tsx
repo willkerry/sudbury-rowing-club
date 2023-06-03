@@ -15,7 +15,7 @@ type Event = {
 };
 
 const Row = ({ label, value }: { label: string; value: React.ReactNode }) => (
-  <div className="flex flex-col py-2 border-t">
+  <div className="flex flex-col border-t py-2">
     <dd>
       <Label className="text-xs">{label}</Label>
     </dd>
@@ -35,8 +35,8 @@ const Events = ({ data }: { data: Event[] }) => (
               item.course === "350m" ? "short" : "long"
             } regatta course.`}
           />
-          <h4 className="pt-6 pb-1 text-xl font-bold">{item.title}</h4>
-          <p className="pb-6 text-sm text-gray-500 h-14">{item.description}</p>
+          <h4 className="pb-1 pt-6 text-xl font-bold">{item.title}</h4>
+          <p className="h-14 pb-6 text-sm text-gray-500">{item.description}</p>
         </div>
         <div className="w-full">
           <dl>

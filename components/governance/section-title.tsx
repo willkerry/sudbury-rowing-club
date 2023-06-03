@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 
 type Props = {
   children: React.ReactNode;
@@ -8,7 +8,7 @@ type Props = {
 const SectionTitle = ({ className, children }: Props) => (
   <h2
     className={cn(
-      "mt-16 mb-6 text-2xl font-bold tracking-tight text-gray-800",
+      "mb-6 mt-16 text-2xl font-bold tracking-tight text-gray-800",
       className
     )}
   >

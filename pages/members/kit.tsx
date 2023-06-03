@@ -120,8 +120,8 @@ const ClubKit: NextPage = () => (
       <Obfuscate email="kit@sudburyrowingclub.org.uk">contact me</Obfuscate>!
     </p>
 
-    <div className="grid grid-cols-2 p-4 text-sm bg-gray-100 rounded sm:grid-cols-4">
-      <span className="inline-block col-span-2 mb-1 font-semibold text-gray-700 sm:col-span-4">
+    <div className="grid grid-cols-2 rounded bg-gray-100 p-4 text-sm sm:grid-cols-4">
+      <span className="col-span-2 mb-1 inline-block font-semibold text-gray-700 sm:col-span-4">
         Useful links
       </span>
       <a href="https://rivalkit.com/">Rival Kit</a>

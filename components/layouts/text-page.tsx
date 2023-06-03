@@ -26,7 +26,7 @@ const TextPage: React.FC<{
     />
     <HeroTitle title={title} prose breadcrumbs />
     <Container>
-      <div className="mx-auto my-16 prose">{children}</div>
+      <div className="prose mx-auto my-16">{children}</div>
     </Container>
   </Layout>
 );

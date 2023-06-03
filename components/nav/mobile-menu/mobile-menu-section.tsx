@@ -1,7 +1,7 @@
 import { IconNavItemType, NavItemType } from "@/types/nav-item";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import cn from "classnames";
+import cn from "@/lib/cn";
 
 import { CompactMobileMenuItem, MobileMenuItem } from "./mobile-menu-item";
 
@@ -34,7 +34,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
   const inner = (
     <nav
       className={cn(
-        "grid grid-cols-2 sm:grid-cols-3 gap-x-6",
+        "grid grid-cols-2 gap-x-6 sm:grid-cols-3",
         compact ? "gap-y-1" : "gap-y-4"
       )}
     >
@@ -49,12 +49,12 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
             <Disclosure.Button
               className={cn(
                 titleClasses,
-                "flex justify-between w-full py-4 -my-4"
+                "-my-4 flex w-full justify-between py-4"
               )}
             >
               {title}
               <ChevronDownIcon
-                className={cn("w-4 h-4", open && "rotate-180")}
+                className={cn("h-4 w-4", open && "rotate-180")}
               />
             </Disclosure.Button>
             <Disclosure.Panel className={panel}>{inner}</Disclosure.Panel>

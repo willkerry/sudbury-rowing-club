@@ -19,7 +19,7 @@ const Notices: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <title>Members’ Notices</title>
     </Head>
     <HeroTitle prose title="Notices" transparent />
-    <Container className="my-12 space-y-6 max-w-prose">
+    <Container className="my-12 max-w-prose space-y-6">
       {notices.map((notice) => (
         <CollapsibleCard key={notice._id} {...{ notice }} />
       ))}

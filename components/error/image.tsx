@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const ErrorImage = () => (
-  <div className="flex justify-center rotate-1">
+  <div className="flex rotate-1 justify-center">
     <Image
       alt="The time the river ran dry."
       className="rounded-sm"

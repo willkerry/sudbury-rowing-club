@@ -12,7 +12,7 @@ const LandingCTA = () => {
 
   return (
     <Container>
-      <div className="flex items-center justify-center pt-16 space-x-3 text-white">
+      <div className="flex items-center justify-center space-x-3 pt-16 text-white">
         <Button shadow size="large" onClick={scrollToIntro}>
           Discover<span className="hidden sm:inline">&nbsp;more</span>
         </Button>

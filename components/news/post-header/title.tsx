@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 
@@ -9,11 +9,11 @@ type Props = {
 };
 
 const PostTitle = ({ title, date, center }: Props) => (
-  <div className={cn("max-w-2xl mx-auto my-12", center && "text-center")}>
+  <div className={cn("mx-auto my-12 max-w-2xl", center && "text-center")}>
     <Label>
       <DateFormatter dateString={date} />
     </Label>
-    <h1 className="mt-2 mb-10 text-3xl font-semibold leading-tight tracking-tighter text-gray-800 md:text-5xl lg:text-6xl md:leading-none">
+    <h1 className="mb-10 mt-2 text-3xl font-semibold leading-tight tracking-tighter text-gray-800 md:text-5xl md:leading-none lg:text-6xl">
       {title}
     </h1>
   </div>

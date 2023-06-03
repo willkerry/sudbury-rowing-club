@@ -124,8 +124,8 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           images: [{ url: `${BASE_URL}/assets/og/news.png` }],
         }}
       />
-      <div className="flex items-center py-6 border-t border-b">
-        <Container className="grid items-center justify-between grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="flex items-center border-b border-t py-6">
+        <Container className="grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2 md:grid-cols-3">
           <div className="flex items-center md:col-span-2">
             {activeSearchTerm && (
               <button
@@ -133,7 +133,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 className="py-3 pr-4 text-gray-400 hover:text-blue-600"
                 onClick={() => cancelSearch()}
               >
-                <ArrowUturnLeftIcon className="w-5 h-5" />
+                <ArrowUturnLeftIcon className="h-5 w-5" />
               </button>
             )}
             <div>
@@ -148,12 +148,12 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                     Showing results for{" "}
                     <button
                       type="button"
-                      className={`transition-colors relative group inline-block hover:border-red-200 
-                        hover:bg-red-50 hover:text-red-200 rounded border mb-px border-blue-200 
-                        bg-blue-50 font-bold tracking-widest px-0.5 text-blue-400 uppercase text-xs`}
+                      className={`group relative mb-px inline-block rounded 
+                        border border-blue-200 bg-blue-50 px-0.5 text-xs font-bold 
+                        uppercase tracking-widest text-blue-400 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-200`}
                       onClick={() => cancelSearch()}
                     >
-                      <XMarkIcon className="absolute left-0 right-0 w-4 h-4 mx-auto text-red-600 transition-opacity opacity-0 stroke-red-600 group-hover:opacity-100" />
+                      <XMarkIcon className="absolute left-0 right-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100" />
                       {activeSearchTerm}
                     </button>
                   </>
@@ -170,7 +170,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             </div>
           </div>
           <form
-            className="flex items-center justify-center w-full mt-4"
+            className="mt-4 flex w-full items-center justify-center"
             onSubmit={(e) => handleSubmit(e)}
           >
             <label htmlFor={searchInputId} className="sr-only">
@@ -180,18 +180,18 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               id={searchInputId}
               type="search"
               name="q"
-              className="w-full h-10 pl-3 m-0 rounded-r-none outline-none"
+              className="m-0 h-10 w-full rounded-r-none pl-3 outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Button
               type="submit"
-              className="z-0 h-10 -ml-px border-l rounded-l-none"
+              className="z-0 -ml-px h-10 rounded-l-none border-l"
               shadow={Boolean(searchTerm && searchTerm !== activeSearchTerm)}
               disabled={!searchTerm}
             >
               <span className="sr-only">Search</span>
-              <MagnifyingGlassIcon className="w-4 h-4" />
+              <MagnifyingGlassIcon className="h-4 w-4" />
             </Button>
           </form>
         </Container>

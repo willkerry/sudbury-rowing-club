@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Paginate = ({ showPrev, showNext, previous, next }: Props) => (
-  <div className="flex items-center justify-between gap-4 my-10">
+  <div className="my-10 flex items-center justify-between gap-4">
     <div>
       {showPrev && (
         <Link href={previous} passHref legacyBehavior>

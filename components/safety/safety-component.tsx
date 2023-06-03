@@ -32,7 +32,7 @@ const SafetyComponent: React.FC<SafetyComponentProps> = ({
     <div className="p-3 sm:p-4">
       {source ? <QuotedWarning {...{ description, source }} /> : description}
       {date && (
-        <div className="mt-4 text-sm font-medium text-gray-500 disambiguate">
+        <div className="disambiguate mt-4 text-sm font-medium text-gray-500">
           Updated <DateFormatter dateString={date} format="time" />
         </div>
       )}
@@ -43,21 +43,21 @@ const SafetyComponent: React.FC<SafetyComponentProps> = ({
     <div className="grid grid-flow-col grid-cols-2 divide-x">
       <a
         href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
-        className="flex items-center justify-between px-4 text-sm text-gray-500 transition duration-300 h-14 bg-gray-50 hover:text-black hover:bg-white group"
+        className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-sm text-gray-500 transition duration-300 hover:bg-white hover:text-black"
       >
-        <EnvironmentAgency className="w-4 h-4" />
+        <EnvironmentAgency className="h-4 w-4" />
         EA Floods
-        <ArrowTopRightOnSquareIcon className="w-4 h-4 transition duration-300 opacity-30 group-hover:opacity-70" />
+        <ArrowTopRightOnSquareIcon className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70" />
       </a>
       <a
         href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
-        className="flex items-center justify-between px-4 text-sm text-gray-500 transition duration-300 h-14 bg-gray-50 hover:text-black hover:bg-white group"
+        className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-sm text-gray-500 transition duration-300 hover:bg-white hover:text-black"
       >
         <div className="w-0">
-          <MetOffice className="w-4 h-4" />
+          <MetOffice className="h-4 w-4" />
         </div>
         Met Office
-        <ArrowTopRightOnSquareIcon className="w-4 h-4 transition duration-300 opacity-30 group-hover:opacity-70" />
+        <ArrowTopRightOnSquareIcon className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70" />
       </a>
     </div>
   </div>

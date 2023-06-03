@@ -100,7 +100,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             />
             {post.body && <PostBody content={post.body} />}
 
-            <div className="flex justify-between px-3 pt-2 pb-3 mx-auto my-12 bg-gray-50 border rounded max-w-prose">
+            <div className="mx-auto my-12 flex max-w-prose justify-between rounded border bg-gray-50 px-3 pb-3 pt-2">
               <div className="flex gap-8">
                 {post.author && (
                   <div>
@@ -108,7 +108,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                     <div className="text-sm font-medium">
                       {`${post.author?.firstName} ${post.author?.surname}`}
                       <Link href={`/news/author/${post.author?._id}`}>
-                        <ArrowUpRightIcon className="inline w-4 h-4" />
+                        <ArrowUpRightIcon className="inline h-4 w-4" />
                       </Link>
                     </div>
                   </div>
@@ -124,7 +124,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 href={`https://edit.sudburyrowingclub.org.uk/desk/news;${post._id}`}
               >
                 <span className="sr-only">Edit this article</span>
-                <PencilSquareIcon className="inline w-4 h-4" />
+                <PencilSquareIcon className="inline h-4 w-4" />
               </Link>
             </div>
           </article>

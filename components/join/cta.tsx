@@ -3,7 +3,7 @@ import Button from "@/components/stour/button";
 import Link from "@/components/stour/link";
 
 const JoinCTA = () => (
-  <div className="grid gap-12 p-12 bg-gray-100 border rounded shadow-lg md:grid-cols-2">
+  <div className="grid gap-12 rounded border bg-gray-100 p-12 shadow-lg md:grid-cols-2">
     <div>
       <p className="text-center">
         <span className="text-xl font-medium text-gray-800">

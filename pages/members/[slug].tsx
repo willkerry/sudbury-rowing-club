@@ -47,8 +47,8 @@ const Notice: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         View all
       </Link>
     </HeroTitle>
-    <Container className="my-12 space-y-6 max-w-prose">
-      <div className="overflow-hidden border divide-y rounded">
+    <Container className="my-12 max-w-prose space-y-6">
+      <div className="divide-y overflow-hidden rounded border">
         <NoticeBody notice={notice} />
       </div>
     </Container>

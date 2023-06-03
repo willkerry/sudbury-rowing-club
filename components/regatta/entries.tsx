@@ -7,30 +7,23 @@ type Props = {
   caption?: string;
 };
 
+const WAVE_COLORS = [
+  "bg-red-500 text-white",
+  "bg-green-600 text-white",
+  "bg-blue-500 text-white",
+  "bg-yellow-500 text-white",
+  "bg-purple-500 text-white",
+  "bg-pink-500 text-white",
+];
+
 const Entries = ({ children, table, waveNames, caption }: Props) => {
   const boatsByWave = getBoatsByWave(table, "Any");
-  const getWaveColor = (entry: string) => {
-    switch (entry) {
-      case waveNames[0]:
-        return "bg-red-500 text-white";
-      case waveNames[1]:
-        return "bg-green-600 text-white";
-      case waveNames[2]:
-        return "bg-blue-500 text-white";
-      case waveNames[3]:
-        return "bg-yellow-500 text-white";
-      case waveNames[4]:
-        return "bg-purple-500 text-white";
-      case waveNames[5]:
-        return "bg-pink-500 text-white";
-      default:
-        return "bg-gray-100";
-    }
-  };
+  const getWaveColor = (entry: string) =>
+    WAVE_COLORS[waveNames.indexOf(entry)] || "bg-gray-100";
   return (
     <div className="mx-auto">
       {children}
-      <figure className="my-12 text-xs prose sm:text-sm lg:text-base">
+      <figure className="prose my-12 text-xs sm:text-sm lg:text-base">
         <table>
           <thead>
             <tr>
@@ -48,7 +41,7 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
                 {wave.slice(1).map((entry) => (
                   <td key={entry} className="text-center">
                     <div
-                      className={`font-medium rounded-lg px-0.5 ${getWaveColor(
+                      className={`rounded-lg px-0.5 font-medium ${getWaveColor(
                         entry
                       )}
                       `}

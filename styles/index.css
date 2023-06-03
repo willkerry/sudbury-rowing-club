@@ -22,10 +22,10 @@ html {
 [multiple],
 textarea,
 select {
-  @apply w-full mt-1 transition border-gray-200 rounded-md focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50;
+  @apply mt-1 w-full rounded-md border-gray-200 transition focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50;
 }
 select {
-  @apply cursor-pointer hover:border-blue-600 hover:ring-blue-200 hover:ring hover:ring-opacity-50;
+  @apply cursor-pointer hover:border-blue-600 hover:ring hover:ring-blue-200 hover:ring-opacity-50;
 }
 [type="checkbox"] {
   @apply mx-2 rounded hover:cursor-pointer;
@@ -33,13 +33,13 @@ select {
 input:disabled,
 select:disabled,
 textarea:disabled {
-  @apply text-gray-300 cursor-not-allowed bg-gray-50 hover:ring-0 placeholder:text-gray-300 hover:border-inherit;
+  @apply cursor-not-allowed bg-gray-50 text-gray-300 placeholder:text-gray-300 hover:border-inherit hover:ring-0;
 }
 
 input.invalid,
 select.invalid,
 textarea.invalid {
-  @apply border-red-500 cursor-pointer ring-red-200 ring-2 hover:ring-4 focus:ring-4;
+  @apply cursor-pointer border-red-500 ring-2 ring-red-200 hover:ring-4 focus:ring-4;
 }
 
 input:invalid:before {
@@ -49,7 +49,7 @@ input:invalid:before {
 }
 
 label {
-  @apply block text-xs font-medium tracking-wider text-gray-600 uppercase;
+  @apply block text-xs font-medium uppercase tracking-wider text-gray-600;
 }
 
 @tailwind utilities;

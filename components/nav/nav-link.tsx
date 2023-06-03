@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 import Link, { type LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import {

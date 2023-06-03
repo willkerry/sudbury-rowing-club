@@ -24,7 +24,7 @@ const Custom500 = () => (
       />
     </div>
 
-    <Container className="mt-12 prose max-w-prose">
+    <Container className="prose mt-12 max-w-prose">
       <div className="flex flex-col gap-4">
         <Button
           as="a"

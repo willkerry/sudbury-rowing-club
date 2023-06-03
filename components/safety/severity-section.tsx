@@ -19,15 +19,15 @@ const SeveritySection: React.FC<SeveritySectionProps> = ({
 
   return (
     <div
-      className={`${severityClasses[status]}  flex items-center justify-between h-12 sm:h-16 p-3 sm:p-4 text-2xl md:text-3xl font-bold tracking-tight `}
+      className={`${severityClasses[status]}  flex h-12 items-center justify-between p-3 text-2xl font-bold tracking-tight sm:h-16 sm:p-4 md:text-3xl `}
     >
       {message || status.charAt(0).toUpperCase() + status.slice(1)}
 
       {status === Severity.red || status === Severity.amber ? (
-        <div className="relative w-6 h-6">
-          <div className="absolute z-0 w-5 h-5 bg-current rounded-full inset-0.5 animate-ping" />
-          <div className="absolute z-0 w-4 h-4 bg-white rounded-full inset-1 " />
-          <ExclamationCircleIcon className="absolute z-10 w-6 h-6" />
+        <div className="relative h-6 w-6">
+          <div className="absolute inset-0.5 z-0 h-5 w-5 animate-ping rounded-full bg-current" />
+          <div className="absolute inset-1 z-0 h-4 w-4 rounded-full bg-white " />
+          <ExclamationCircleIcon className="absolute z-10 h-6 w-6" />
         </div>
       ) : null}
     </div>

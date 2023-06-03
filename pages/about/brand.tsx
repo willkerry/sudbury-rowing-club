@@ -132,7 +132,7 @@ function FileExtensionWidget({ href }: { href: string }) {
     <span className="flex flex-row items-center gap-1">
       <code className="uppercase">{getExtension}</code>
       <Link href={combineURLs(fileInfo, getExtension)}>
-        <HelpCircle className="w-4 h-4" />
+        <HelpCircle className="h-4 w-4" />
       </Link>
     </span>
   );
@@ -239,7 +239,7 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
       </p>
       <figure>
         <div
-          className="w-full h-16 bg-blue-900 rounded shadow"
+          className="h-16 w-full rounded bg-blue-900 shadow"
           style={{
             background: `linear-gradient(to right, ${brandColors.map(
               (a) => a.color

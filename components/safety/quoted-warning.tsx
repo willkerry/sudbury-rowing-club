@@ -39,15 +39,15 @@ const QuotedWarning: React.FC<QuotedWarningProps> = ({
   }
 
   return (
-    <div className="prose prose-blockquote:text-sm prose-blockquote:p-4 prose-p:my-0">
+    <div className="prose prose-p:my-0 prose-blockquote:p-4 prose-blockquote:text-sm">
       {agencyName && <p>The {agencyName} has issued the following warning:</p>}
 
       <blockquote className="relative overflow-hidden">
         {source && (
           <div
-            className={`${agencyColors} absolute top-0 right-0 flex items-center justify-center p-1 rounded-bl`}
+            className={`${agencyColors} absolute right-0 top-0 flex items-center justify-center rounded-bl p-1`}
           >
-            <AgencyIcon className="w-4 h-4" />
+            <AgencyIcon className="h-4 w-4" />
           </div>
         )}
         <p>{description}</p>

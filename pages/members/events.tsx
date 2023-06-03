@@ -24,7 +24,7 @@ type Event = NeverUndefined<
 >;
 
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="text-xs font-semibold bg-gray-50 text-gray-400 leading-none border rounded-sm p-0.5 first-of-type:-ml-0.5">
+  <span className="rounded-sm border bg-gray-50 p-0.5 text-xs font-semibold leading-none text-gray-400 first-of-type:-ml-0.5">
     {children}
   </span>
 );
@@ -37,14 +37,14 @@ const EventCard = ({
   <li
     {...{ id }}
     key={id}
-    className={`py-1.5 px-2 grid bg-white ${status === 8 ? "opacity-50" : ""}`}
+    className={`grid bg-white px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
   >
-    <h3 className="text-sm font-semibold line-clamp-1 mb-0.5">{competition}</h3>
+    <h3 className="mb-0.5 line-clamp-1 text-sm font-semibold">{competition}</h3>
     <DateFormatter
       dateString={startDate}
-      className="text-xs font-semibold text-gray-500 leading-none block mb-2"
+      className="mb-2 block text-xs font-semibold leading-none text-gray-500"
     />
-    <div className="text-xs font-semibold mb-2 text-orange-600">{notes}</div>
+    <div className="mb-2 text-xs font-semibold text-orange-600">{notes}</div>
 
     <div className="flex flex-wrap gap-2">
       <Tag>{region}</Tag>
@@ -117,7 +117,7 @@ const EventCalendar = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-4 items-end">
+        <div className="mb-4 grid grid-cols-1 items-end md:grid-cols-2 lg:grid-cols-3">
           <div>
             <label htmlFor="region">Filter by region</label>
             <select
@@ -144,7 +144,7 @@ const EventCalendar = () => {
 
           <div className="hidden sm:block" />
 
-          <div className="pt-3 justify-end flex">
+          <div className="flex justify-end pt-3">
             <Link href={`webcal://${HOSTNAME}/api/events.ics`} external>
               Subscribe to iCal feed
             </Link>
@@ -152,7 +152,7 @@ const EventCalendar = () => {
         </div>
 
         {isLoading && (
-          <div className="bg-gray-50 border rounded h-96">
+          <div className="h-96 rounded border bg-gray-50">
             <Loading />
           </div>
         )}
@@ -160,21 +160,21 @@ const EventCalendar = () => {
         {isError && <p>Error loading calendar.</p>}
 
         {events && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 bg-gray-50 border rounded">
+          <div className="grid grid-cols-1 rounded border bg-gray-50 md:grid-cols-2 lg:grid-cols-3">
             {groupByMonth(filteredEvents).map(({ month, events }) => (
               <div
                 id={`month-${month + 1}`}
                 key={month}
-                className="border-r border-b md:border-b-0 overflow-hidden"
+                className="overflow-hidden border-b border-r md:border-b-0"
               >
-                <Label as="h2" className="mb-2 text-xs p-2">
+                <Label as="h2" className="mb-2 p-2 text-xs">
                   {new Date(events[0].startDate).toLocaleString("default", {
                     month: "long",
                     year: "numeric",
                   })}
                 </Label>
 
-                <ul className="grid divide-y border-y mb-8">
+                <ul className="mb-8 grid divide-y border-y">
                   {events.map((event) => (
                     <EventCard {...{ event }} key={event.id} />
                   ))}

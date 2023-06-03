@@ -1,4 +1,4 @@
-import cn from "classnames";
+import cn from "@/lib/cn";
 import Link from "next/link";
 import useSWR from "swr";
 import groq from "groq";
@@ -31,7 +31,7 @@ const StatusShell: React.FC<StatusShellProps> = ({ grade, text }) => {
     <Link
       href="/safety"
       className={cn(
-        "flex items-center ml-1 px-2 py-1 rounded-full font-medium text-xs border group transition duration-300",
+        "group ml-1 flex items-center rounded-full border px-2 py-1 text-xs font-medium transition duration-300",
         bgClass
       )}
       title={`River safety status: ${text}`}
@@ -39,7 +39,7 @@ const StatusShell: React.FC<StatusShellProps> = ({ grade, text }) => {
       <>
         <div
           className={cn(
-            "w-2.5 h-2.5 mr-1.5 rounded-full duration-300",
+            "mr-1.5 h-2.5 w-2.5 rounded-full duration-300",
             dotClass
           )}
         />

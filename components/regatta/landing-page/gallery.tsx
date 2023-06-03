@@ -9,14 +9,14 @@ type ImageType = {
 };
 
 const Gallery = ({ images }: { images: ImageType[] }) => (
-  <div className="relative flex w-full gap-6 overflow-x-auto snap-x pb-14">
-    <div className="snap-center shrink-0">
+  <div className="relative flex w-full snap-x gap-6 overflow-x-auto pb-14">
+    <div className="shrink-0 snap-center">
       <div className="w-4 shrink-0 sm:w-48" />
     </div>
     {images.map((image) => (
       <figure
         key={image._id}
-        className="relative flex-none overflow-hidden snap-center shrink-0 first:pl-8 last:pr-8"
+        className="relative flex-none shrink-0 snap-center overflow-hidden first:pl-8 last:pr-8"
         style={{
           width: 200 * image.aspectRatio,
         }}
@@ -31,12 +31,12 @@ const Gallery = ({ images }: { images: ImageType[] }) => (
             alt={image.caption || ""}
           />
         </div>
-        <figcaption className="flex items-center mt-1 text-sm text-gray-600">
+        <figcaption className="mt-1 flex items-center text-sm text-gray-600">
           {image.caption}
         </figcaption>
       </figure>
     ))}
-    <div className="snap-center shrink-0">
+    <div className="shrink-0 snap-center">
       <div className="w-4 shrink-0 sm:w-48" />
     </div>
   </div>

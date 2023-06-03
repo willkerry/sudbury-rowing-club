@@ -59,7 +59,7 @@ const FindUs: NextPage = () => (
     <Container>
       <div className="grid grid-cols-1 gap-16 py-10 md:grid-cols-2">
         <div>
-          <div className="relative z-10 flex overflow-hidden border rounded">
+          <div className="relative z-10 flex overflow-hidden rounded border">
             <Map
               attribution={false}
               defaultCenter={CLUB_LOCATION as [number, number]}
@@ -82,7 +82,7 @@ const FindUs: NextPage = () => (
           </div>
         </div>
 
-        <div className="self-center prose">
+        <div className="prose self-center">
           <p className="text-lg">
             The club is located at the end of Quay Lane, a few minutes from the
             centre of Sudbury, and next-door to the Quay Theatre. Parking is
@@ -99,7 +99,7 @@ const FindUs: NextPage = () => (
           <div className="grid lg:grid-cols-2">
             <div>
               <h4>
-                <MapPinIcon className="inline-flex w-6 h-6 mb-0.5 text-blue-500" />
+                <MapPinIcon className="mb-0.5 inline-flex h-6 w-6 text-blue-500" />
                 Club
               </h4>
               <p>
@@ -111,11 +111,11 @@ const FindUs: NextPage = () => (
                 <br />
                 Suffolk <span className="disambiguate">CO10 2AN</span>
               </p>
-              <div className="flex my-4 space-x-3 text-sm">
+              <div className="my-4 flex space-x-3 text-sm">
                 {openInApp.map((item) => (
                   <a
                     key={item.name}
-                    className="flex p-px rounded-lg"
+                    className="flex rounded-lg p-px"
                     href={item.href}
                     rel="noreferrer"
                     target="_blank"
@@ -123,7 +123,7 @@ const FindUs: NextPage = () => (
                   >
                     <Image
                       alt={item.name}
-                      className="m-0 border rounded-lg"
+                      className="m-0 rounded-lg border"
                       height={24}
                       src={item.icon}
                       width={24}
@@ -134,7 +134,7 @@ const FindUs: NextPage = () => (
             </div>
             <div>
               <h4>
-                <MapPinIcon className="inline-flex w-6 h-6 mb-0.5 text-green-500" />
+                <MapPinIcon className="mb-0.5 inline-flex h-6 w-6 text-green-500" />
                 Regatta
               </h4>
               <p>
@@ -146,11 +146,11 @@ const FindUs: NextPage = () => (
                 <br />
                 Suffolk <span className="disambiguate">CO10 2TL</span>
               </p>
-              <div className="flex my-4 space-x-3 text-sm">
+              <div className="my-4 flex space-x-3 text-sm">
                 {openInApp.map((item) => (
                   <a
                     key={item.name}
-                    className="flex p-px rounded-lg"
+                    className="flex rounded-lg p-px"
                     href={item.hrefregatta}
                     rel="noreferrer"
                     target="_blank"
@@ -158,7 +158,7 @@ const FindUs: NextPage = () => (
                   >
                     <Image
                       alt={item.name}
-                      className="m-0 border rounded-lg"
+                      className="m-0 rounded-lg border"
                       height={24}
                       src={item.icon}
                       width={24}

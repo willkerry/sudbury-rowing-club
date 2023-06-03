@@ -4,7 +4,7 @@ import getWeatherForecast, {
 } from "@/lib/get-weather-forecast";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import useSWR from "swr";
-import cn from "classnames";
+import cn from "@/lib/cn";
 import { weatherIcons, windIcons } from "../icons/weather-icons";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
@@ -16,33 +16,33 @@ const ForecastComponent = () => {
   const { data: forecast } = useSWR("getWeatherForecast", fetcher);
 
   return (
-    <div className="w-full p-3 bg-gray-100 sm:px-4">
+    <div className="w-full bg-gray-100 p-3 sm:px-4">
       <Loading visible={forecast?.length === 0}>
         <div className="grid w-full grid-cols-7">
           {forecast?.map((f) => (
             <a
               key={String(f.date)}
-              className="relative flex flex-col items-center gap-1 group"
+              className="group relative flex flex-col items-center gap-1"
               href={getYRURL(f.date)}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="text-xs font-semibold tracking-widest text-gray-500 uppercase transition group-hover:text-blue-500">
+              <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 transition group-hover:text-blue-500">
                 <DateFormatter dateString={f.date} format="shortWeekday" />
               </div>
 
               <div
                 title={weatherCodes[f.code]}
-                className="group-hover:text-blue-500 text-gray-600 transition"
+                className="text-gray-600 transition group-hover:text-blue-500"
               >
                 {weatherIcons[f.code]}
               </div>
 
               <div
                 className={cn(
-                  "flex items-center justify-center h-full text-xs font-semibold disambiguate transition leading-none",
+                  "disambiguate flex h-full items-center justify-center text-xs font-semibold leading-none transition",
                   f.maxTemp > 30 || f.maxTemp < 4
-                    ? "text-red-600 group-hover:bg-white rounded-sm p-1 -m-1 underline font-bold underline-offset-2 decoration-red-300 "
+                    ? "-m-1 rounded-sm p-1 font-bold text-red-600 underline decoration-red-300 underline-offset-2 group-hover:bg-white "
                     : "text-gray-700 group-hover:text-blue-500"
                 )}
               >
@@ -53,20 +53,20 @@ const ForecastComponent = () => {
                 className={cn(
                   "flex items-center transition",
                   f.beaufort >= 6
-                    ? "text-red-600 group-hover:bg-white rounded pl-1 -ml-1"
+                    ? "-ml-1 rounded pl-1 text-red-600 group-hover:bg-white"
                     : "text-gray-400 group-hover:text-blue-400"
                 )}
                 title={`Force ${f.beaufort}, ${f.windDirectionText}`}
               >
-                <div className="flex flex-col items-center bg-current rounded-full">
+                <div className="flex flex-col items-center rounded-full bg-current">
                   <ArrowDownIcon
-                    className="w-2.5 h-2.5 m-px stroke-[3px] text-gray-100"
+                    className="m-px h-2.5 w-2.5 stroke-[3px] text-gray-100"
                     style={{
                       transform: `rotate(${f.windDirection}deg)`,
                     }}
                   />
                 </div>
-                <div className="pt-1 -my-1.5 text-sm font-semibold">
+                <div className="-my-1.5 pt-1 text-sm font-semibold">
                   {windIcons[f.beaufort]}
                 </div>
               </div>

@@ -23,7 +23,7 @@ const Custom404 = () => (
       />
     </div>
 
-    <Container className="mt-12 prose max-w-prose">
+    <Container className="prose mt-12 max-w-prose">
       <p>
         The page you are looking for might have been removed, or might have just
         moved.
