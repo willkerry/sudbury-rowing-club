@@ -83,10 +83,7 @@ const NavSection = ({
   items,
 }: NavSectionProps) => {
   const { pathname } = useRouter();
-
   const isActive = items.some(({ href }) => pathname.includes(href));
-
-  console.log({ pathname, isActive });
 
   const [primaryItems, ctaItems] = partition(items, ({ cta }) => !cta);
 
