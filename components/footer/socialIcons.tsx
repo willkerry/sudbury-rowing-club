@@ -1,28 +1,24 @@
 import Link from "next/link";
-import { Icon } from "react-feather";
 
-type Props = {
-  data: {
-    href: string;
-    icon: Icon;
-    name: string;
-  }[];
-};
+import { socials } from "@/components/nav/nav-data";
+import { Fragment } from "react";
 
-const SocialIcons = ({ data }: Props) => (
+const SocialIcons = () => (
   <>
-    {data.map((item) => (
-      <Link
-        key={item.href}
-        href={item.href}
-        className="mr-4 text-gray-400 transition hover:text-black"
-      >
-        <>
+    {socials.map((item) => {
+      const Icon = item.icon || Fragment;
+
+      return (
+        <Link
+          key={item.href}
+          href={item.href}
+          className="mr-4 text-gray-400 transition hover:text-black"
+        >
           <span className="sr-only">{item.name}</span>
-          <item.icon size={18} strokeWidth={1.5} />
-        </>
-      </Link>
-    ))}
+          <Icon size={18} strokeWidth={1.5} aria-hidden />
+        </Link>
+      );
+    })}
   </>
 );
 
