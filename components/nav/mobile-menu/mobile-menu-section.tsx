@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { IconNavItemType } from "@/types/nav-item";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -76,7 +75,7 @@ export const MobileMenuSection = ({
 }: SectionProps) => (
   <SectionWrapper {...{ title, collapse, compact }}>
     {data.map((item) => {
-      const Icon = item.icon || Fragment;
+      const Icon = item.icon || null;
 
       return (
         <Link
@@ -84,7 +83,7 @@ export const MobileMenuSection = ({
           href={item.href}
           className="-m-2 flex items-center rounded-md p-2 hover:bg-gray-100"
         >
-          {!compact && (
+          {!compact && Icon && (
             <Icon
               className="mr-1.5 h-5 w-5 flex-shrink-0 text-blue-700"
               aria-hidden="true"

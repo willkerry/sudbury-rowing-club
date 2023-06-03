@@ -29,7 +29,7 @@ const ListItem = ({
 }: IconNavItemType) => {
   if (mobileOnly) return null;
 
-  const Icon = icon || Fragment;
+  const Icon = icon || null;
 
   return (
     <Link
@@ -40,7 +40,7 @@ const ListItem = ({
         description ? "items-start" : "items-center"
       )}
     >
-      {icon && (
+      {Icon && (
         <Icon
           className="mr-2.5 h-6 w-6 flex-shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
           aria-hidden

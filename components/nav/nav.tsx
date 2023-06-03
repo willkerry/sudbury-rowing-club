@@ -63,12 +63,14 @@ const Nav = () => {
                 className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
               >
                 {secondaryNavigationGroups.map(({ title, items, icon }) => {
-                  const Icon = icon || Fragment;
+                  const Icon = icon || null;
                   return (
                     <NavSection
                       key={title}
                       label={title}
-                      icon={<Icon className="flex h-4 w-4" />}
+                      icon={
+                        Icon ? <Icon className="flex h-4 w-4" /> : undefined
+                      }
                       compact={!!icon}
                       {...{ items }}
                     />
