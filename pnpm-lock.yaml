@@ -8,9 +8,6 @@ dependencies:
   '@algolia/client-search':
     specifier: ^4.17.1
     version: 4.17.1
-  '@badrap/bar-of-progress':
-    specifier: ^0.2.2
-    version: 0.2.2
   '@fontsource/jetbrains-mono':
     specifier: ^4.5.12
     version: 4.5.12
@@ -469,10 +466,6 @@ packages:
       '@babel/helper-string-parser': 7.21.5
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
-    dev: false
-
-  /@badrap/bar-of-progress@0.2.2:
-    resolution: {integrity: sha512-Ig7MdFQM3OA7Ror5UB1ZutXNZFwxh6YExZvcd6EZloOgcXUR8PKNLH2wUVoeh92NMPnPWr6J/l9Mp+f3z7O7MQ==}
     dev: false
 
   /@emotion/is-prop-valid@1.2.1:

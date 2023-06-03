@@ -1,29 +1,9 @@
 import { DefaultSeo } from "next-seo";
 import "../styles/index.css";
-import Router from "next/router";
 import { AppProps } from "next/app";
-import ProgressBar from "@badrap/bar-of-progress";
 import SEO from "../next-seo.config";
 import "inter-ui/inter.css";
 import "@fontsource/jetbrains-mono/variable.css";
-
-const progress = new ProgressBar({
-  className: "prog-bar",
-  color: "#00418D",
-  delay: 100,
-  size: 2,
-});
-if (typeof window !== "undefined") {
-  progress.start();
-  progress.finish();
-}
-
-Router.events.on("routeChangeStart", progress.start);
-Router.events.on("routeChangeComplete", () => {
-  progress.finish();
-  window.scrollTo(0, 0);
-});
-Router.events.on("routeChangeError", progress.finish);
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
