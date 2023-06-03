@@ -4,7 +4,7 @@ import { Fragment } from "react";
 import { type IconNavItemType } from "@/types/nav-item";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { partition } from "lodash";
+import partition from "lodash/partition";
 
 import cn from "@/lib/cn";
 

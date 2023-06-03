@@ -9,18 +9,25 @@ import Loading from "@/components/stour/loading";
 import Link from "@/components/stour/link";
 import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
-import { clientSideFetchCompetitions } from "@/lib/queries/fetch-competions";
 import useSWR from "swr";
 import { HOSTNAME } from "@/lib/constants";
+import { z } from "zod";
+import { ZSRCEvent } from "@/lib/queries/fetch-competions";
 
 const BR_EVENT_STATUS = {
   2: "",
   8: "Cancelled",
 } as const;
 
+const fetchCompetitions = async () => {
+  const competitions = await fetch("/api/events");
+
+  return z.array(ZSRCEvent).parse(await competitions.json());
+};
+
 type NeverUndefined<T> = T extends undefined ? never : T;
 type Event = NeverUndefined<
-  Awaited<ReturnType<typeof clientSideFetchCompetitions>>[number]
+  Awaited<ReturnType<typeof fetchCompetitions>>[number]
 >;
 
 const Tag = ({ children }: { children: React.ReactNode }) => (
@@ -82,7 +89,7 @@ const EventCalendar = () => {
     data: events,
     isLoading,
     error: isError,
-  } = useSWR("competition-calendar", clientSideFetchCompetitions);
+  } = useSWR("competition-calendar", fetchCompetitions);
 
   const regions = new Set(events?.map((event) => event.region));
   const [selectedRegion, setSelectedRegion] = useState<string | null>(

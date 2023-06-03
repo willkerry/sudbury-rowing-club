@@ -5,8 +5,8 @@ import {
 } from "@/components/nav/mobile-menu";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { partition } from "lodash";
+import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
+import partition from "lodash/partition";
 import { navigationGroups, secondaryNavigationGroups } from "./nav-data";
 
 const extractSingletonGroups = (

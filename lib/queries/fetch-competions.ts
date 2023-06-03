@@ -1,7 +1,4 @@
 import { z } from "zod";
-import DOMPurify from "isomorphic-dompurify";
-import he from "he";
-import emojiRegex from "emoji-regex";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 const MAX_COMPETITION_AGE_DAYS = 14;
@@ -34,16 +31,31 @@ const ZSRCEvent = z.object({
 export type BREvent = z.infer<typeof ZBREvent>;
 export type SRCEvent = z.infer<typeof ZSRCEvent>;
 
-const sanitise = (html: string) =>
-  he
-    .decode(
-      DOMPurify.sanitize(html, {
-        ALLOWED_TAGS: [],
-        ALLOWED_ATTR: [],
-      })
-    )
-    .replace(emojiRegex(), "")
-    .trim();
+const sanitise = (html: string) => {
+  // ...to prevent he and DOMPurify being bundled in the client bundle
+  if (typeof window === "undefined") {
+    // eslint-disable-next-line global-require
+    const he = require("he");
+    // eslint-disable-next-line global-require
+    const emojiRegex = require("emoji-regex");
+    // eslint-disable-next-line global-require
+    const DOMPurify = require("isomorphic-dompurify");
+
+    const sanitised = he
+      .decode(
+        DOMPurify.sanitize(html, {
+          ALLOWED_TAGS: [],
+          ALLOWED_ATTR: [],
+        })
+      )
+      .replace(emojiRegex(), "")
+      .trim();
+
+    return sanitised.toString();
+  }
+
+  return html;
+};
 
 const removeWhitespace = (url: string) => {
   const WHITESPACE = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
@@ -121,10 +133,4 @@ const serversideFetchCompetitions = async (includeOldEvents?: boolean) =>
       : filterOutOldEvents(await serverSideFetchCompetitionsFromBR())
   );
 
-const clientSideFetchCompetitions = async () => {
-  const competitions = await fetch("/api/events");
-
-  return z.array(ZSRCEvent).parse(await competitions.json());
-};
-
-export { serversideFetchCompetitions, clientSideFetchCompetitions };
+export { serversideFetchCompetitions, ZSRCEvent };
