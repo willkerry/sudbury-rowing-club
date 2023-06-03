@@ -2,21 +2,17 @@ import Container from "@/components/layouts/container";
 import Crest from "@/components/logo/crest";
 import {
   about,
-  aboutCTAs,
-  memberCTAs,
   regatta,
-  regattaCTAs,
   socials,
   misc,
+  members,
 } from "@/components/nav/nav-data";
 import FooterColumn from "./column";
 import SocialIcons from "./socialIcons";
 import Address from "./address";
 import ReportABug from "./reportABug";
 
-const footerAbout = [...about, ...aboutCTAs];
-const footerRegatta = [...regatta, ...regattaCTAs];
-const communityFooter = [...memberCTAs, ...socials];
+const communityFooter = [...members.filter((item) => item.cta), ...socials];
 
 export default function Footer() {
   const date = new Date();
@@ -30,8 +26,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="justify-left mb-12 flex flex-wrap">
-          <FooterColumn heading="About" data={footerAbout} />
-          <FooterColumn heading="Regatta" data={footerRegatta} />
+          <FooterColumn heading="About" data={about} />
+          <FooterColumn heading="Regatta" data={regatta} />
           <FooterColumn heading="Community" data={communityFooter} />
           <FooterColumn heading="Miscellany" data={misc} />
         </div>

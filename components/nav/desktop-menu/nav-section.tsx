@@ -70,7 +70,6 @@ const ListItem = ({
 type NavSectionProps = {
   icon?: React.ReactElement;
   label?: string;
-  altLabel?: string;
   compact?: boolean;
   items: IconNavItemType[];
 };
@@ -78,12 +77,23 @@ type NavSectionProps = {
 const NavSection = ({
   label,
   icon,
-  altLabel,
   compact = false,
   items,
 }: NavSectionProps) => {
   const { pathname } = useRouter();
-  const isActive = items.some(({ href }) => pathname.includes(href));
+  const isActive = items.some(({ href }) => pathname === href);
+
+  if (items.length === 1) {
+    const { href, name } = items[0];
+    return (
+      <Link
+        href={href}
+        className={cn(isActive ? navLinkActive : navLinkColor, navLinkClasses)}
+      >
+        {name}
+      </Link>
+    );
+  }
 
   const [primaryItems, ctaItems] = partition(items, ({ cta }) => !cta);
 
@@ -99,9 +109,8 @@ const NavSection = ({
             )}
           >
             <>
-              {label}
+              <span className={cn(icon && "sr-only")}>{label}</span>
               {icon}
-              {altLabel && <span className="sr-only">{altLabel}</span>}
 
               <ChevronDownIcon
                 className={cn(

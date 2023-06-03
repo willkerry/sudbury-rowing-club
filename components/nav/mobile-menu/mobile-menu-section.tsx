@@ -1,19 +1,17 @@
-import { IconNavItemType, NavItemType } from "@/types/nav-item";
+import { Fragment } from "react";
+import { IconNavItemType } from "@/types/nav-item";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import cn from "@/lib/cn";
+import Link from "next/link";
 
-import { CompactMobileMenuItem, MobileMenuItem } from "./mobile-menu-item";
-
-type CompactSectionProps = {
-  title: string;
-  data: NavItemType[];
-};
 type SectionProps = {
   title: string;
   data: IconNavItemType[];
   collapse?: boolean;
+  compact?: boolean;
 };
+
 type SectionWrapperProps = {
   title: string;
   compact?: boolean;
@@ -21,7 +19,7 @@ type SectionWrapperProps = {
   collapse?: boolean;
 };
 
-const SectionWrapper: React.FC<SectionWrapperProps> = ({
+const SectionWrapper = ({
   title,
   compact = false,
   children,
@@ -70,25 +68,35 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
   );
 };
 
-export const MobileMenuSection: React.FC<SectionProps> = ({
+export const MobileMenuSection = ({
   title,
   data,
   collapse = false,
+  compact = false,
 }: SectionProps) => (
-  <SectionWrapper title={title} compact={false} collapse={collapse}>
-    {data.map((item) => (
-      <MobileMenuItem data={item} key={item.href} />
-    ))}
+  <SectionWrapper {...{ title, collapse, compact }}>
+    {data.map((item) => {
+      const Icon = item.icon || Fragment;
+
+      return (
+        <Link
+          key={item.name}
+          href={item.href}
+          className="-m-2 flex items-center rounded-md p-2 hover:bg-gray-100"
+        >
+          {!compact && (
+            <Icon
+              className="mr-1.5 h-5 w-5 flex-shrink-0 text-blue-700"
+              aria-hidden="true"
+            />
+          )}
+          <span className="font-medium text-gray-900">
+            {item.shortName ? item.shortName : item.name}
+          </span>
+        </Link>
+      );
+    })}
   </SectionWrapper>
 );
 
-export const CompactMobileMenuSection: React.FC<CompactSectionProps> = ({
-  title,
-  data,
-}: CompactSectionProps) => (
-  <SectionWrapper title={title} compact>
-    {data.map((item) => (
-      <CompactMobileMenuItem data={item} key={item.href} />
-    ))}
-  </SectionWrapper>
-);
+export default MobileMenuSection;
