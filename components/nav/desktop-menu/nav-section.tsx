@@ -1,65 +1,69 @@
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import cn from "classnames";
 import { Fragment } from "react";
 import { type IconNavItemType } from "@/types/nav-item";
 import { useRouter } from "next/router";
-import {
-  CompactCTAList,
-  CompactNavItemList,
-  CTAList,
-  NavItemList,
-} from "./index";
+import Link from "next/link";
+import { partition } from "lodash";
 
-export const navLinkClasses =
-  "group transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black hover:bg-gray-50 hover:border-gray-100 border border-transparent rounded-md";
-export const navLinkColor = "text-gray-500";
-export const navLinkActive = "text-black font-medium";
+import cn from "@/lib/cn";
+
+export const navLinkClasses = cn(
+  "group transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md"
+);
+export const navLinkColor = "text-gray-500 font-medium";
+export const navLinkActive = "text-black font-semibold";
 
 const POPOVER_PANEL_CLASSES = new Map<boolean, string>([
   [true, "max-w-sm right-0"],
   [false, "w-screen max-w-xs -translate-x-1/2 left-1/2"],
 ]);
 
-const PrimaryNavPanel = ({
-  navData,
-  compact,
-}: {
-  navData: IconNavItemType[];
-  compact: boolean;
-}) => {
-  const className = cn(
-    "relative grid p-4 bg-white",
-    compact ? "gap-4" : "gap-5"
-  );
+const ListItem = ({
+  href,
+  name,
+  description,
+  icon,
+  mobileOnly,
+  cta,
+}: IconNavItemType) => {
+  if (mobileOnly) return null;
 
-  const Component = compact ? CompactNavItemList : NavItemList;
+  const Icon = icon || Fragment;
 
   return (
-    <div {...{ className }}>
-      <Component items={navData} />
-    </div>
-  );
-};
-
-const CTANavPanel = ({
-  ctaData,
-  compact,
-}: {
-  ctaData: IconNavItemType[];
-  compact: boolean;
-}) => {
-  const className = cn(
-    "bg-gray-200 bg-opacity-75 shadow-inner rounded-b-md backdrop-blur backdrop-saturate-200",
-    compact ? "py-4 pl-3 pr-4 space-y-4" : "flex p-4 space-x-6 space-y-0"
-  );
-
-  const Component = compact ? CompactCTAList : CTAList;
-
-  return (
-    <div {...{ className }}>
-      <Component CTAs={ctaData} />
-    </div>
+    <Link
+      key={href}
+      href={href}
+      className={cn(
+        "group flex rounded transition focus:bg-blue-50",
+        description ? "items-start" : "items-center"
+      )}
+    >
+      {icon && (
+        <Icon
+          className="mr-2.5 h-6 w-6 flex-shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
+          aria-hidden
+        />
+      )}
+      <div className="flex flex-col">
+        <p
+          className={cn(
+            "py-0.5 text-sm font-semibold leading-none transition-colors group-hover:text-gray-900",
+            cta
+              ? "text-gray-900 group-hover:text-gray-500"
+              : "text-gray-600 group-hover:text-gray-900"
+          )}
+        >
+          {name}
+        </p>
+        {description && (
+          <p className="text-xs font-medium text-gray-500 transition-colors group-hover:text-gray-700">
+            {description}
+          </p>
+        )}
+      </div>
+    </Link>
   );
 };
 
@@ -68,8 +72,7 @@ type NavSectionProps = {
   label?: string;
   altLabel?: string;
   compact?: boolean;
-  navData: IconNavItemType[];
-  ctaData: IconNavItemType[];
+  items: IconNavItemType[];
 };
 
 const NavSection = ({
@@ -77,39 +80,37 @@ const NavSection = ({
   icon,
   altLabel,
   compact = false,
-  navData,
-  ctaData,
+  items,
 }: NavSectionProps) => {
   const { pathname } = useRouter();
 
-  let isActive = false;
+  const isActive = items.some(({ href }) => pathname.includes(href));
 
-  [...navData, ...ctaData]
-    .filter(({ mobileOnly }) => !mobileOnly)
-    .forEach(({ href }) => {
-      if (pathname === href) {
-        isActive = true;
-      }
-    });
+  console.log({ pathname, isActive });
+
+  const [primaryItems, ctaItems] = partition(items, ({ cta }) => !cta);
 
   return (
     <Popover className="relative">
       {({ open }) => (
         <>
           <Popover.Button
-            className={cn(isActive && navLinkActive, open && "text-black", [
-              navLinkColor,
+            className={cn(
+              isActive || open ? navLinkActive : navLinkColor,
               navLinkClasses,
-              "items-center",
-            ])}
+              "items-center"
+            )}
           >
             <>
               {label}
               {icon}
               {altLabel && <span className="sr-only">{altLabel}</span>}
+
               <ChevronDownIcon
-                className={`"w-3 h-3 ml-0.5 -mb-px transition group-hover:text-gray-800 text-gray-400",
-                  ${isActive && "text-gray-700 stroke-current"}`}
+                className={cn(
+                  isActive ? "stroke-current text-gray-700" : "text-gray-400",
+                  "-mb-px ml-0.5 h-3 w-3 transition group-hover:text-gray-800"
+                )}
                 aria-hidden="true"
               />
             </>
@@ -127,13 +128,28 @@ const NavSection = ({
             <Popover.Panel
               static
               className={cn(
-                "absolute z-20 px-2 mt-3 transform sm:px-0",
+                "absolute z-20 mt-3 transform px-2 sm:px-0",
                 POPOVER_PANEL_CLASSES.get(compact)
               )}
             >
               <div className="overflow-hidden rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                <PrimaryNavPanel navData={navData} compact={compact} />
-                <CTANavPanel ctaData={ctaData} compact={compact} />
+                <div className="relative grid gap-4 bg-white p-4">
+                  {primaryItems.map((item) => (
+                    <ListItem key={item.href} {...item} />
+                  ))}
+                </div>
+                <div
+                  className={cn(
+                    "rounded-b-md bg-gray-200 bg-opacity-75 shadow-inner backdrop-blur backdrop-saturate-200",
+                    compact
+                      ? "space-y-4 py-4 pl-3 pr-4"
+                      : "flex space-x-6 space-y-0 px-4 py-3"
+                  )}
+                >
+                  {ctaItems.map((item) => (
+                    <ListItem key={item.href} {...item} />
+                  ))}
+                </div>
               </div>
             </Popover.Panel>
           </Transition>

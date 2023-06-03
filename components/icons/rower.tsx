@@ -7,7 +7,7 @@ const Rower = (
     fill="none"
     strokeLinejoin="round"
     stroke="currentColor"
-    strokeWidth={2}
+    strokeWidth={1.5}
     strokeLinecap="round"
     {...props}
   >

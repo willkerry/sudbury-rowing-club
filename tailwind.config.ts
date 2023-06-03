@@ -3,9 +3,11 @@ import type { Config } from "tailwindcss";
 import typography from "@tailwindcss/typography";
 import aspectRatio from "@tailwindcss/aspect-ratio";
 import forms from "@tailwindcss/forms";
+// @ts-ignore
+import animate from "tailwindcss-animate";
 
 export default {
-  plugins: [typography, aspectRatio, forms],
+  plugins: [animate, typography, aspectRatio, forms],
   mode: "jit",
   content: [
     "./components/**/*.{js,ts,jsx,tsx,mdx}",

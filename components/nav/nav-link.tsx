@@ -13,13 +13,13 @@ type Props = LinkProps & {
 
 const NavLink = ({ href, children }: Props) => {
   const router = useRouter();
+
   return (
     <Link
       href={href}
       className={cn(
-        router.asPath === href && navLinkActive,
-        navLinkClasses,
-        navLinkColor
+        router.asPath === href ? navLinkActive : navLinkColor,
+        navLinkClasses
       )}
     >
       {children}

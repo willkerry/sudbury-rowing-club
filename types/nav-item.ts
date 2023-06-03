@@ -6,9 +6,10 @@ export type NavItemType = {
   shortName?: string;
   href: string;
   mobileOnly?: boolean;
+  cta?: boolean;
 };
 
 export interface IconNavItemType extends NavItemType {
-  icon: Icon;
+  icon?: Icon;
 }
 export default NavItemType;

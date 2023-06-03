@@ -59,11 +59,13 @@ export const aboutCTAs: IconNavItemType[] = [
     shortName: "Find us",
     href: "/contact/how-to-find-us",
     icon: MapPinIcon,
+    cta: true,
   },
   {
     name: "Contact",
     href: "/contact",
     icon: EnvelopeIcon,
+    cta: true,
   },
 ];
 export const regatta: IconNavItemType[] = [
@@ -110,6 +112,7 @@ export const regattaCTAs: IconNavItemType[] = [
     shortName: "Find",
     href: "/contact/how-to-find-us",
     icon: MapPinIcon,
+    cta: true,
   },
 ];
 export const members: NavItemType[] = [
@@ -135,16 +138,19 @@ export const memberCTAs: IconNavItemType[] = [
     name: "Squadlist",
     href: "https://sudbury.squadlist.app",
     icon: CalendarIcon,
+    cta: true,
   },
   {
     name: "myClubhouse",
     href: "https://sudburyrowingclub.myclubhouse.co.uk",
     icon: MyClubhouse,
+    cta: true,
   },
   {
     name: "Spond",
     href: "https://spond.com/login",
     icon: Spond,
+    cta: true,
   },
 ];
 export const socials: IconNavItemType[] = [
