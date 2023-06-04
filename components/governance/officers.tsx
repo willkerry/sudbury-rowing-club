@@ -17,11 +17,11 @@ type Props = {
 };
 
 const OfficerPhotographOrPlaceholder = ({
-  officer,
+  officer: { image, vacant, name },
 }: {
   officer: Governance["officers"][0];
 }) => {
-  if (officer.vacant) {
+  if (vacant) {
     return (
       <div className="font-bold uppercase tracking-widest text-gray-400">
         TBA
@@ -29,10 +29,10 @@ const OfficerPhotographOrPlaceholder = ({
     );
   }
 
-  if (officer.image) {
+  if (image) {
     return (
       <Image
-        src={urlFor(officer.image._id)
+        src={urlFor(image._id)
           .crop("entropy")
           .fit("clip")
           .size(500, 500)
@@ -40,9 +40,9 @@ const OfficerPhotographOrPlaceholder = ({
           .url()}
         fill
         placeholder="blur"
-        blurDataURL={officer.image.lqip}
+        blurDataURL={image.lqip}
         className="object-cover"
-        alt={officer.name || ""}
+        alt={name || ""}
       />
     );
   }
@@ -51,24 +51,24 @@ const OfficerPhotographOrPlaceholder = ({
 };
 
 const OfficerNameOrPlaceholder = ({
-  officer,
+  officer: { _id, name, vacant, hasEmail },
 }: {
   officer: Governance["officers"][0];
 }) => {
-  if (officer.vacant) {
+  if (vacant) {
     return <>&nbsp;</>;
   }
 
-  if (officer.hasEmail) {
+  if (hasEmail) {
     <NextLink
       href={{
         pathname: "contact",
-        query: { to: officer._id },
+        query: { to: _id },
       }}
       className="group flex items-center gap-1.5"
-      title={`Contact ${officer.name}`}
+      title={`Contact ${name}`}
     >
-      {officer.name}
+      {name}
       <MessageCircle
         size="1em"
         strokeWidth="0.15em"
@@ -77,7 +77,7 @@ const OfficerNameOrPlaceholder = ({
     </NextLink>;
   }
 
-  return <span>{officer.name}</span>;
+  return <span>{name}</span>;
 };
 
 const Officers = ({ officers }: Props) => (
@@ -128,6 +128,7 @@ const Officers = ({ officers }: Props) => (
         </div>
       ))}
     </GovGrid>
+
     <p className="py-12 text-sm text-gray-500">
       The role descriptions provided above are abbreviated and for illustrative
       purposes only. Please refer to the{" "}

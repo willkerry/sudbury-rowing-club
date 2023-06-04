@@ -21,19 +21,18 @@ const NonExec = ({ vicePresidents, trustees }: Props) => (
           By convention, the mayor of Sudbury is invited to be club president.
         </Description>
       </div>
-      <div className="">
+      <div>
         <SubTitle>Vice-Presidents</SubTitle>
         <Description>
           New vice-presidents may be elected each year at the AGM.
         </Description>
         <div className="h-4" />
         <ul className="space-y-1 text-sm font-medium text-gray-900 ">
-          {vicePresidents !== null &&
-            vicePresidents.map((vicePresident) => (
-              <li key={vicePresident._id}>
-                {vicePresident.firstName} {vicePresident.surname}
-              </li>
-            ))}
+          {vicePresidents?.map(({ _id, firstName, surname }) => (
+            <li key={_id}>
+              {firstName} {surname}
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -44,12 +43,11 @@ const NonExec = ({ vicePresidents, trustees }: Props) => (
         </Description>
         <div className="h-4" />
         <ul className="space-y-1 text-sm font-medium text-gray-900 ">
-          {trustees !== null &&
-            trustees.map((trustee) => (
-              <li key={trustee._id}>
-                {trustee.firstName} {trustee.surname}
-              </li>
-            ))}
+          {trustees?.map(({ _id, firstName, surname }) => (
+            <li key={_id}>
+              {firstName} {surname}
+            </li>
+          ))}
         </ul>
       </div>
     </GovGrid>

@@ -21,23 +21,22 @@ const Committees = ({ committees }: Props) => (
           <Description>{committee.description}</Description>
           <div className="h-4" />
           <ul>
-            {committee.members !== null &&
-              committee.members.map((member, i) => (
-                <li className="relative mb-3 text-gray-800" key={member._id}>
-                  <div
-                    className={cn(
-                      !i &&
-                        "after:block after:text-xs after:font-semibold after:uppercase after:tracking-wider after:text-gray-400 after:content-['Committee_Chair']",
-                      "text-sm font-medium text-gray-700"
-                    )}
-                  >
-                    {member.role}
-                  </div>
-                  <div className="text-xs font-medium text-gray-500">
-                    {member.name}
-                  </div>
-                </li>
-              ))}
+            {committee.members?.map((member, i) => (
+              <li className="relative mb-3 text-gray-800" key={member._id}>
+                <div
+                  className={cn(
+                    !i &&
+                      "after:block after:text-xs after:font-semibold after:uppercase after:tracking-wider after:text-gray-400 after:content-['Committee_Chair']",
+                    "text-sm font-medium text-gray-700"
+                  )}
+                >
+                  {member.role}
+                </div>
+                <div className="text-xs font-medium text-gray-500">
+                  {member.name}
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       ))}
