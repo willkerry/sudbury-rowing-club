@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import prettifyBreadcrumb from "./prettifyBreadcrumb";
@@ -10,10 +9,22 @@ type Props = {
   rootLabel?: string;
 };
 
-type Crumbs = {
+type Crumb = {
   breadcrumb: string;
   href: string;
-}[];
+};
+
+const getBreadcrumbs = (pathname: string) => {
+  const linkPath = pathname.split("/");
+  linkPath.shift();
+
+  const pathArray: Crumb[] = linkPath.map((path, i) => ({
+    breadcrumb: path,
+    href: `/${linkPath.slice(0, i + 1).join("/")}`,
+  }));
+
+  return pathArray;
+};
 
 const Breadcrumbs = ({
   listClassName,
@@ -21,23 +32,8 @@ const Breadcrumbs = ({
   inactiveItemClassName,
   rootLabel = "Home",
 }: Props) => {
-  const router = useRouter();
-
-  const [breadcrumbs, setBreadcrumbs] = useState<Crumbs>([]);
-
-  useEffect(() => {
-    if (router) {
-      const linkPath = router.asPath.split("/");
-      linkPath.shift();
-
-      const pathArray = linkPath.map((path, i) => ({
-        breadcrumb: path,
-        href: `/${linkPath.slice(0, i + 1).join("/")}`,
-      }));
-
-      setBreadcrumbs(pathArray);
-    }
-  }, [router]);
+  const { asPath } = useRouter();
+  const breadcrumbs = getBreadcrumbs(asPath);
 
   if (!breadcrumbs) return null;
 
