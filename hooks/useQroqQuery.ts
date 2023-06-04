@@ -1,27 +1,7 @@
 import sanityClient from "@/lib/sanity.server";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 
-const useGroqQuery = <T>(query: string, params?: any) => {
-  const [data, setData] = useState<T>();
-  const [error, setError] = useState<any>();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result: T = await sanityClient.fetch(query, params);
-        setData(result);
-      } catch (e) {
-        setError(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [query, params]);
-
-  return { data, error, loading };
-};
+const useGroqQuery = <T>(query: string, params?: any) =>
+  useSWR(query, async () => await sanityClient.fetch<T>(query, params));
 
 export default useGroqQuery;

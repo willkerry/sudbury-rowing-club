@@ -10,7 +10,7 @@ type SafetyStatus = {
 };
 
 const useSafetyStatus = () => {
-  const { data, error, loading } = useGroqQuery<SafetyStatus>(
+  const { data, error, isLoading } = useGroqQuery<SafetyStatus>(
     groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
             _updatedAt,
             description,
@@ -19,7 +19,7 @@ const useSafetyStatus = () => {
         }`
   );
 
-  return { data, error, loading };
+  return { data, error, loading: isLoading };
 };
 
 export default useSafetyStatus;
