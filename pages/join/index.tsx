@@ -21,13 +21,12 @@ export const NextCourse = () => {
   const EXPIRY = new Date(2023, 4, 8);
 
   const seasonStartDates: Record<string, Date> = {
-    spring: new Date("2023-03-01"),
-    summer: new Date("2023-06-01"),
-    autumn: new Date("2023-09-01"),
-    winter: new Date("2023-12-01"),
+    spring: new Date("2023-03-15"),
+    summer: new Date("2023-06-15"),
+    autumn: new Date("2023-09-15"),
+    winter: new Date("2023-12-15"),
   };
 
-  // What season is Expiry in? (i.e. occurs after the start of which season)
   const expirySeason = Object.entries(seasonStartDates).find(
     ([, seasonStartDate]) => EXPIRY.getTime() > seasonStartDate.getTime()
   )?.[0];
