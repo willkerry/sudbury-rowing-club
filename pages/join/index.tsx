@@ -9,6 +9,7 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import Note from "@/components/stour/note";
 import { l2rStages, overview } from "@/data/join/";
 import { BASE_URL } from "@/lib/constants";
 import { NextPage } from "next";
@@ -16,52 +17,81 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { ThumbsUp } from "react-feather";
 
-export const NextCourse = () => (
-  <>
-    <h3 className="mb-1 mt-2 flex items-center gap-1 text-base">
-      Course Dates
-      <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
-        New
-      </span>
-    </h3>
-    <p>
-      The next two adult Learn to Row courses will be held this spring 2023.
-      These will be run on consecutive Saturday afternoons between 1pm and 4pm
-      at Sudbury Rowing Club in Quay Lane, Sudbury (although please see note
-      below about the Coronation weekend). Dates will be as follows:
-    </p>
-    <p>
-      We’re holding two Saturday <strong>taster sessions</strong>:
-      <div>4 February 2023, 12:30</div>
-      <div>11 February 2023, 12:30</div>
-    </p>
-    <p className="mb-0">Followed by two separate courses:</p>
-    <div className="grid gap-4 py-0 md:grid-cols-2">
-      <div>
-        <strong>Course 1</strong>
-        <div>4 March 2023</div>
-        <div>11 March 2023</div>
-        <div>18 March 2023</div>
-        <div>25 March 2023</div>
-      </div>
+export const NextCourse = ({ expiry }: { expiry: Date }) => {
+  const seasonStartDates: Record<string, Date> = {
+    spring: new Date("2023-03-01"),
+    summer: new Date("2023-06-01"),
+    autumn: new Date("2023-09-01"),
+    winter: new Date("2023-12-01"),
+  };
 
-      <div>
-        <strong>Course 2</strong>
-        <div>15 April 2023</div>
-        <div>22 April 2023</div>
-        <div>29 April 2023</div>
-        <div>7 or 8 May 2023 (Coronation weekend)</div>
+  // What season is Expiry in? (i.e. occurs after the start of which season)
+  const expirySeason = Object.entries(seasonStartDates).find(
+    ([, seasonStartDate]) => expiry.getTime() > seasonStartDate.getTime()
+  )?.[0];
+
+  if (expiry.getTime() < Date.now()) {
+    return (
+      <div className="absolute inset-0 flex items-center justify-center bg-green-50">
+        <Note
+          className="m-4 bg-white"
+          type="success"
+          label={`Our ${expirySeason} course has finished`}
+        >
+          Check back soon for details of our next course. Register your interest
+          and be notified when the next course is announced.
+        </Note>
       </div>
-    </div>
-    <p>
-      Please <Link href="join/apply">apply now</Link> or{" "}
-      <Link href="/contact?to=KKEVTdAyelAe2LPMRqxXjF">
-        contact Sean Moriarty
-      </Link>{" "}
-      for further information and booking instructions.
-    </p>
-  </>
-);
+    );
+  }
+
+  return (
+    <>
+      <h3 className="mb-1 mt-2 flex items-center gap-1 text-base">
+        Course Dates
+        <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
+          New
+        </span>
+      </h3>
+      <p>
+        The next two adult Learn to Row courses will be held this spring 2023.
+        These will be run on consecutive Saturday afternoons between 1pm and 4pm
+        at Sudbury Rowing Club in Quay Lane, Sudbury (although please see note
+        below about the Coronation weekend). Dates will be as follows:
+      </p>
+      <p>
+        We’re holding two Saturday <strong>taster sessions</strong>:
+        <div>4 February 2023, 12:30</div>
+        <div>11 February 2023, 12:30</div>
+      </p>
+      <p className="mb-0">Followed by two separate courses:</p>
+      <div className="grid gap-4 py-0 md:grid-cols-2">
+        <div>
+          <strong>Course 1</strong>
+          <div>4 March 2023</div>
+          <div>11 March 2023</div>
+          <div>18 March 2023</div>
+          <div>25 March 2023</div>
+        </div>
+
+        <div>
+          <strong>Course 2</strong>
+          <div>15 April 2023</div>
+          <div>22 April 2023</div>
+          <div>29 April 2023</div>
+          <div>7 or 8 May 2023 (Coronation weekend)</div>
+        </div>
+      </div>
+      <p>
+        Please <Link href="join/apply">apply now</Link> or{" "}
+        <Link href="/contact?to=KKEVTdAyelAe2LPMRqxXjF">
+          contact Sean Moriarty
+        </Link>{" "}
+        for further information and booking instructions.
+      </p>
+    </>
+  );
+};
 
 const Join: NextPage = () => (
   <Layout>
@@ -140,8 +170,8 @@ const Join: NextPage = () => (
               </p>
             </div>
           </div>
-          <div className="prose -mx-2 -mb-1 rounded border-2 border-green-200 px-2 pb-1">
-            <NextCourse />
+          <div className="prose relative -mx-2 -mb-1 rounded border-2 border-green-200 px-2 pb-1">
+            <NextCourse expiry={new Date(2023, 4, 8)} />
           </div>
         </div>
 
