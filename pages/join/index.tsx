@@ -17,7 +17,9 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { ThumbsUp } from "react-feather";
 
-export const NextCourse = ({ expiry }: { expiry: Date }) => {
+export const NextCourse = () => {
+  const EXPIRY = new Date(2023, 4, 8);
+
   const seasonStartDates: Record<string, Date> = {
     spring: new Date("2023-03-01"),
     summer: new Date("2023-06-01"),
@@ -27,10 +29,10 @@ export const NextCourse = ({ expiry }: { expiry: Date }) => {
 
   // What season is Expiry in? (i.e. occurs after the start of which season)
   const expirySeason = Object.entries(seasonStartDates).find(
-    ([, seasonStartDate]) => expiry.getTime() > seasonStartDate.getTime()
+    ([, seasonStartDate]) => EXPIRY.getTime() > seasonStartDate.getTime()
   )?.[0];
 
-  if (expiry.getTime() < Date.now()) {
+  if (EXPIRY.getTime() < Date.now()) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-green-50">
         <Note
@@ -171,7 +173,7 @@ const Join: NextPage = () => (
             </div>
           </div>
           <div className="prose relative -mx-2 -mb-1 rounded border-2 border-green-200 px-2 pb-1">
-            <NextCourse expiry={new Date(2023, 4, 8)} />
+            <NextCourse />
           </div>
         </div>
 
