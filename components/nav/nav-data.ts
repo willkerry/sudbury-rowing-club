@@ -6,6 +6,7 @@ import {
   Safety,
   Spond,
 } from "@/components/icons";
+import { SOCIALS } from "@/lib/constants";
 import { IconNavItemType } from "@/types/nav-item";
 import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
@@ -177,23 +178,22 @@ const secondaryNavigationGroups: NavigationGroup[] = [
   },
 ];
 
-export const socials: IconNavItemType[] = [
-  {
-    name: "Instagram",
-    href: "https://www.instagram.com/sudburyrowingclubuk",
-    icon: Instagram,
-  },
-  {
-    name: "Facebook",
-    href: "https://facebook.com/sudburyrowing",
-    icon: Facebook,
-  },
-  {
-    name: "Twitter",
-    href: "https://twitter.com/sudbury_rowing",
-    icon: Twitter,
-  },
-];
+const availableLogos: Record<
+  (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
+  Icon
+> = {
+  instagram: Instagram,
+  facebook: Facebook,
+  twitter: Twitter,
+};
+
+export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
+  ([key, { href, name }]) => ({
+    name,
+    href,
+    icon: availableLogos[key],
+  })
+);
 
 export const misc = [
   {

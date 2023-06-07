@@ -22,6 +22,29 @@ export const SENDER = {
   name: "Sudbury Rowing Club",
 };
 
+export const SUPPORTED_SOCIALS = ["instagram", "facebook", "twitter"] as const;
+
+export const SOCIALS: Record<
+  (typeof SUPPORTED_SOCIALS)[number],
+  { name: string; href: string; handle: string }
+> = {
+  instagram: {
+    name: "Instagram",
+    href: "https://www.instagram.com/sudburyrowingclubuk",
+    handle: "@sudburyrowingclubuk",
+  },
+  facebook: {
+    name: "Facebook",
+    href: "https://facebook.com/sudburyrowing",
+    handle: "@sudburyrowing",
+  },
+  twitter: {
+    name: "Twitter",
+    href: "https://twitter.com/sudbury_rowing",
+    handle: "@sudbury_rowing",
+  },
+};
+
 export namespace REGATTA {
   export const EVENT_NAME_LONG =
     "Sudbury Rowing Club Regatta, the ’International’";

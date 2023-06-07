@@ -10,6 +10,7 @@ import groq from "groq";
 import { NextSeo } from "next-seo";
 import { NextPage, type GetStaticProps } from "next/types";
 import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
+import Socials from "@/components/landing/socials";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
@@ -83,6 +84,9 @@ const Home: NextPage<{
       imageLqip={landingPage.heroImage.image.lqip}
     />
     <LandingCTA />
+    <div className="my-12">
+      <Socials />
+    </div>
     <Introduction description={landingPage.description} />
     <Gallery images={landingPage.images} />
     <LatestNews news={news} />
