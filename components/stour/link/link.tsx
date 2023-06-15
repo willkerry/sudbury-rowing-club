@@ -43,8 +43,8 @@ const Link = ({
   const hasIcon = external || download || arrow;
   const RightIcon = assignIcon(external, download, arrow);
 
-  const isExternal = (href: string) => href.startsWith("http") || external;
-  const LinkComponent = isExternal(href) ? "a" : NextLink;
+  const isExternal = href.startsWith("http") || external;
+  const LinkComponent = isExternal ? "a" : NextLink;
 
   return (
     <LinkComponent
@@ -58,6 +58,10 @@ const Link = ({
             } ${className !== undefined ? className : ""}`
           : "stour-link"
       }
+      {...(isExternal && {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      })}
     >
       <>
         {children}
