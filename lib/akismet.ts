@@ -1,5 +1,4 @@
-import url from "url";
-import axios from "axios";
+const API_KEY = "6c80e09f5c4d";
 
 export default async function checkForSpam(
   userIp: string,
@@ -9,20 +8,28 @@ export default async function checkForSpam(
   commentAuthorEmail: string,
   commentContent: string
 ): Promise<boolean> {
-  const isSpam = await axios.post(
-    "https://6c80e09f5c4d.rest.akismet.com/1.1/comment-check",
-    new url.URLSearchParams({
-      blog: "https://sudburyrowingclub.org.uk/",
-      user_ip: userIp,
-      user_agent: userAgent,
-      referrer,
-      comment_type: "contact-form",
-      comment_author: commentAuthor,
-      comment_author_email: commentAuthorEmail,
-      comment_content: commentContent,
-      blog_lang: "en_gb",
-    })
-  );
+  const body = new URLSearchParams({
+    api_key: API_KEY,
+    blog: "https://sudburyrowingclub.org.uk/",
+    user_ip: userIp,
+    user_agent: userAgent,
+    referrer,
+    comment_type: "contact-form",
+    comment_author: commentAuthor,
+    comment_author_email: commentAuthorEmail,
+    comment_content: commentContent,
+    blog_lang: "en_gb",
+  });
 
-  return isSpam.data;
+  const headers = new Headers({
+    "Content-Type": "application/x-www-form-urlencoded",
+  });
+
+  const isSpam = await fetch("https://rest.akismet.com/1.1/comment-check", {
+    method: "POST",
+    headers,
+    body,
+  }).then((res) => res.text());
+
+  return isSpam === "true";
 }
