@@ -1,63 +1,119 @@
-import snarkdown from "snarkdown";
-import sendMail from "@/lib/sendMail";
+import { Resend } from "resend";
 import checkForSpam from "@/lib/akismet";
 import getOfficer from "@/lib/get-officer";
 import DOMPurify from "isomorphic-dompurify";
-import type { NameEmail } from "@/lib/sendMail";
+import { z } from "zod";
+import { ContactFormEmail } from "emails/contact-form";
+import { SENDER } from "@/lib/constants";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-const footerText: string =
-  "Sent via the contact form on the Sudbury Rowing Club website. If you believe you’ve received this message in error, or are receiving excessive spam, please contact will@willkerry.com.";
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-export default async function Send(req: any, res: any): Promise<void> {
+const formatName = (email: string, name: string) => {
+  if (name) return `${name} <${email}>`;
+
+  return email;
+};
+
+const RequestSchema = z.object({
+  email: z.string().email(),
+  name: z.string(),
+  to: z.string(),
+  message: z.string(),
+});
+
+class ResponseError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
+
+const validateRequest = (req: NextApiRequest) => {
   try {
-    const { email, name, to, message } = req.body;
-    if (!email || !name || !to || !message) {
-      throw new Error("Missing required fields");
+    const request = RequestSchema.parse(req.body);
+
+    return {
+      fromEmail: request.email,
+      fromName: request.name,
+      toID: request.to,
+      message: request.message,
+    };
+  } catch (error) {
+    console.error(error);
+
+    throw new ResponseError(JSON.stringify(error), 400);
+  }
+};
+
+const spamCheck = async (
+  req: NextApiRequest,
+  name: string,
+  email: string,
+  message: string
+) => {
+  const isSpam = await checkForSpam(
+    req.headers["x-forwarded-for"]?.toString() || "",
+    req.headers["user-agent"] || "",
+    req.headers.referer || "",
+    name,
+    email,
+    message
+  ).catch(() => {
+    throw new ResponseError("Could not connect to Akismet", 500);
+  });
+
+  if (isSpam) throw new ResponseError("Message rejected as spam", 400);
+};
+
+const findRecipient = async (id: string) => {
+  try {
+    return await getOfficer(id);
+  } catch (error) {
+    throw new ResponseError("No recipient found", 500);
+  }
+};
+
+export default async function Send(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    if (req.method !== "POST") {
+      throw new ResponseError("Method not allowed", 405);
     }
-    const isSpam = await checkForSpam(
-      req.ip,
-      req.headers["user-agent"],
-      req.headers.referer,
-      name,
-      email,
-      message
-    );
-    if (isSpam) {
-      throw new Error("Message rejected as spam.");
-    }
 
-    const addressee = await getOfficer(to);
-    if (!addressee) {
-      throw new Error("No officer found with that ID");
-    }
-    const cleanMessage = DOMPurify.sanitize(message);
-    const mailSubject = `${name} via SRC Contact`;
-    const mailReplyTo: NameEmail = { email, name };
-    const mailTo: NameEmail[] = [
-      { email: addressee.email, name: addressee.name },
-    ];
-    const mailContent = `<html><body>${snarkdown(
-      cleanMessage
-    )}<hr/><p>Sent on behalf of: ${mailReplyTo.name} ${
-      mailReplyTo.email
-    }</p><small><p>${footerText}</p></small></body></html>`;
+    const { fromEmail, fromName, toID, message } = validateRequest(req);
 
-    const mail = await sendMail(mailSubject, mailReplyTo, mailTo, mailContent);
+    await spamCheck(req, fromName, fromEmail, message);
 
-    console.log("mail", mail);
+    const {
+      name: toName,
+      email: toEmail,
+      role: toRole,
+    } = await findRecipient(toID);
 
-    if (mail !== "success") {
-      throw new Error("Could not connect to mail API");
-    }
-
-    res.status(200).json({
-      message: "Message sent",
-      status: "success",
-    });
+    await resend.emails
+      .send({
+        from: formatName(SENDER.email, SENDER.name),
+        to: formatName(toEmail, toName),
+        reply_to: formatName(fromEmail, fromName),
+        subject: `${fromName} via SRC Contact`,
+        react: ContactFormEmail({
+          toName,
+          toEmail,
+          toRole,
+          fromName,
+          fromEmail,
+          message: DOMPurify.sanitize(message),
+        }),
+      })
+      .catch((error) => {
+        throw new ResponseError(error.message, 500);
+      })
+      .then(() => {
+        res.status(200).json("Message sent");
+      });
   } catch (error: any) {
-    res.status(500).json({
-      message: error.message,
-      status: "error",
-    });
+    res.status(error.status || 500).json(error.message);
   }
 }

@@ -1,5 +1,12 @@
 import sanityClient from "@/lib/sanity.server";
 import groq from "groq";
+import { z } from "zod";
+
+const GetOfficerSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  role: z.string(),
+});
 
 export default async function getOfficer(id: string) {
   if (!id) {
@@ -9,18 +16,12 @@ export default async function getOfficer(id: string) {
     groq`
           *[_id == $id && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""]{
             name,
-            email
-          }
+            email,
+            role
+          }[0]
         `,
     { id }
   );
-  if (data.length === 0) {
-    throw new Error("No officer found with that ID");
-  } else if (data.length > 1) {
-    throw new Error("Multiple officers found with that ID");
-  }
-  return {
-    name: data[0].name,
-    email: data[0].email,
-  };
+
+  return GetOfficerSchema.parse(data);
 }
