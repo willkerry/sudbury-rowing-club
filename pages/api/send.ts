@@ -22,73 +22,90 @@ const RequestSchema = z.object({
   message: z.string(),
 });
 
-export default async function Send(req: NextApiRequest, res: NextApiResponse) {
-  // Only allow POST requests
-  if (req.method !== "POST") {
-    return res.status(405).json({
-      message: "Method not allowed",
-      status: "error",
-    });
+class ResponseError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
   }
+}
 
-  // Try to catch uncaught errors too
+const validateRequest = (req: NextApiRequest) => {
   try {
-    let fromEmail: string;
-    let fromName: string;
-    let toID: string;
+    const request = RequestSchema.parse(req.body);
 
-    let message: string;
+    return {
+      fromEmail: request.email,
+      fromName: request.name,
+      toID: request.to,
+      message: request.message,
+    };
+  } catch (error) {
+    console.error(error);
 
-    // Validate the request body using `zod`
-    try {
-      const request = RequestSchema.parse(req.body);
-      fromEmail = request.email;
-      fromName = request.name;
-      toID = request.to;
-      message = request.message;
-    } catch (error) {
-      return res.status(400).json({
-        message: JSON.stringify(error),
-        status: "error",
-      });
+    throw new ResponseError(JSON.stringify(error), 400);
+  }
+};
+
+const spamCheck = async (
+  req: NextApiRequest,
+  name: string,
+  email: string,
+  message: string
+) => {
+  const ip = req.headers["x-forwarded-for"]?.toString() || "";
+  const userAgent = req.headers["user-agent"] || "";
+  const referer = req.headers.referer || "";
+
+  console.log("Checking for spam");
+  console.log({ userAgent, referer, name, email, message });
+
+  const isSpam = await checkForSpam(
+    ip,
+    userAgent,
+    referer,
+    name,
+    email,
+    message
+  ).catch((error) => {
+    console.error(error);
+
+    throw new ResponseError("Could not connect to Akismet", 500);
+  });
+
+  if (isSpam) {
+    console.error("Message rejected as spam");
+
+    throw new ResponseError("Message rejected as spam", 400);
+  }
+};
+
+const findRecipient = async (id: string) => {
+  try {
+    return await getOfficer(id);
+  } catch (error) {
+    console.error(error);
+
+    throw new ResponseError("No recipient found", 500);
+  }
+};
+
+export default async function Send(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    if (req.method !== "POST") {
+      throw new ResponseError("Method not allowed", 405);
     }
 
-    // Check for spam
-    if (
-      await checkForSpam(
-        req.headers["x-real-ip"]?.toString() || req.socket.remoteAddress || "",
-        req.headers["user-agent"] || "",
-        req.headers.referer || "",
-        fromName,
-        fromEmail,
-        message
-      )
-    ) {
-      return res.status(400).json({
-        message: "Message rejected as spam.",
-        status: "error",
-      });
-    }
+    const { fromEmail, fromName, toID, message } = validateRequest(req);
 
-    // Get the officer's email address
-    const recipient = await getOfficer(toID).catch((error) => {
-      console.error(error);
+    await spamCheck(req, fromName, fromEmail, message);
 
-      return res.status(500).json({
-        message: "Could not connect to database",
-        raw: error,
-        status: "error",
-      });
-    });
-
-    // Fail if no officer found
-    if (!recipient)
-      return res.status(400).json({
-        message: "No officer found with that ID",
-        status: "error",
-      });
-
-    const { name: toName, email: toEmail, role: toRole } = recipient;
+    const {
+      name: toName,
+      email: toEmail,
+      role: toRole,
+    } = await findRecipient(toID);
 
     resend.emails
       .send({
@@ -106,22 +123,23 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
         }),
       })
       .catch((error) => {
-        console.error(error);
-        return res.status(500).json({
-          message: "Could not connect to email server",
-          raw: error,
-          status: "error",
+        throw new ResponseError(error.message, 500);
+      })
+      .then(() => {
+        console.log("Message sent");
+
+        res.status(200).json({
+          message: "Message sent",
+          status: "success",
         });
       });
 
-    res.status(200).json({
-      message: "Message sent",
-      status: "success",
-    });
+    return res;
   } catch (error: any) {
-    res.status(500).json({
+    res.status(error.status || 500).json({
       message: error.message,
       status: "error",
+      raw: error.raw || error,
     });
   }
 }
