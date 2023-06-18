@@ -89,6 +89,33 @@ const brandAssets = [
     name: "Primary with text",
   },
   {
+    color: "#FFF",
+    description: "A composited logo that contains both crest and wordmark.",
+    files: [
+      {
+        format: "SVG",
+        href: "/assets/about/brand/logo/logo-white.svg",
+        w: "",
+      },
+      {
+        format: "PDF",
+        href: "/assets/about/brand/logo/logo-white.pdf",
+        w: "",
+      },
+      {
+        format: "PNG",
+        href: "/assets/about/brand/logo/logo-white@2560w.png",
+        w: "2560",
+      },
+      {
+        format: "PNG",
+        href: "/assets/about/brand/logo/logo-white@2560w.png",
+        w: "1280",
+      },
+    ],
+    name: "Primary in white with text",
+  },
+  {
     Illustration: Social,
     color: "#003B80",
     description:
@@ -175,10 +202,12 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
       {brandAssets.map((item) => (
         <section key={item.files.toString()}>
           <figure>
-            <item.Illustration
-              className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
-              fill={item.color}
-            />
+            {item.Illustration && (
+              <item.Illustration
+                className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
+                fill={item.color}
+              />
+            )}
             <figcaption>
               <h4 className="inline">{item.name}:</h4> {item.description}
             </figcaption>
