@@ -1,54 +1,109 @@
-import snarkdown from "snarkdown";
-import sendMail from "@/lib/sendMail";
+import { Resend } from "resend";
 import checkForSpam from "@/lib/akismet";
 import getOfficer from "@/lib/get-officer";
 import DOMPurify from "isomorphic-dompurify";
-import type { NameEmail } from "@/lib/sendMail";
+import { z } from "zod";
+import { ContactFormEmail } from "emails/contact-form";
+import { SENDER } from "@/lib/constants";
 
-const footerText: string =
-  "Sent via the contact form on the Sudbury Rowing Club website. If you believe you’ve received this message in error, or are receiving excessive spam, please contact will@willkerry.com.";
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const formatName = (email: string, name: string) => {
+  if (name) return `${name} <${email}>`;
+
+  return email;
+};
+
+const RequestSchema = z.object({
+  email: z.string().email(),
+  name: z.string(),
+  to: z.string(),
+  message: z.string(),
+});
 
 export default async function Send(req: any, res: any): Promise<void> {
+  // Try to catch uncaught errors too
   try {
-    const { email, name, to, message } = req.body;
-    if (!email || !name || !to || !message) {
-      throw new Error("Missing required fields");
-    }
-    const isSpam = await checkForSpam(
-      req.ip,
-      req.headers["user-agent"],
-      req.headers.referer,
-      name,
-      email,
-      message
-    );
-    if (isSpam) {
-      throw new Error("Message rejected as spam.");
+    let fromEmail: string;
+    let fromName: string;
+    let toID: string;
+
+    let message: string;
+
+    // Validate the request body using `zod`
+    try {
+      const request = RequestSchema.parse(req.body);
+      fromEmail = request.email;
+      fromName = request.name;
+      toID = request.to;
+      message = request.message;
+    } catch (error) {
+      return res.status(400).json({
+        message: JSON.stringify(error),
+        status: "error",
+      });
     }
 
-    const addressee = await getOfficer(to);
-    if (!addressee) {
-      throw new Error("No officer found with that ID");
+    // Check for spam
+    if (
+      await checkForSpam(
+        req.ip,
+        req.headers["user-agent"],
+        req.headers.referer,
+        fromName,
+        fromEmail,
+        message
+      )
+    ) {
+      return res.status(400).json({
+        message: "Message rejected as spam.",
+        status: "error",
+      });
     }
-    const cleanMessage = DOMPurify.sanitize(message);
-    const mailSubject = `${name} via SRC Contact`;
-    const mailReplyTo: NameEmail = { email, name };
-    const mailTo: NameEmail[] = [
-      { email: addressee.email, name: addressee.name },
-    ];
-    const mailContent = `<html><body>${snarkdown(
-      cleanMessage
-    )}<hr/><p>Sent on behalf of: ${mailReplyTo.name} ${
-      mailReplyTo.email
-    }</p><small><p>${footerText}</p></small></body></html>`;
 
-    const mail = await sendMail(mailSubject, mailReplyTo, mailTo, mailContent);
+    // Get the officer's email address
+    const recipient = await getOfficer(toID).catch((error) => {
+      console.error(error);
 
-    console.log("mail", mail);
+      return res.status(500).json({
+        message: "Could not connect to database",
+        raw: error,
+        status: "error",
+      });
+    });
 
-    if (mail !== "success") {
-      throw new Error("Could not connect to mail API");
-    }
+    // Fail if no officer found
+    if (!recipient)
+      return res.status(400).json({
+        message: "No officer found with that ID",
+        status: "error",
+      });
+
+    const { name: toName, email: toEmail, role: toRole } = recipient;
+
+    resend.emails
+      .send({
+        from: formatName(SENDER.email, SENDER.name),
+        to: formatName(toEmail, toName),
+        reply_to: formatName(fromEmail, fromName),
+        subject: `${fromName} via SRC Contact`,
+        react: ContactFormEmail({
+          toName,
+          toEmail,
+          toRole,
+          fromName,
+          fromEmail,
+          message: DOMPurify.sanitize(message),
+        }),
+      })
+      .catch((error) => {
+        console.error(error);
+        return res.status(500).json({
+          message: "Could not connect to email server",
+          raw: error,
+          status: "error",
+        });
+      });
 
     res.status(200).json({
       message: "Message sent",
