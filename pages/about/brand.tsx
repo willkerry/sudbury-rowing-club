@@ -67,23 +67,23 @@ const brandAssets = [
     files: [
       {
         format: "SVG",
-        href: "/",
+        href: "/assets/about/brand/logo/logo.svg",
         w: "",
       },
       {
         format: "PDF",
-        href: "/",
+        href: "/assets/about/brand/logo/logo.pdf",
         w: "",
       },
       {
         format: "PNG",
-        href: "/",
-        w: "1280",
+        href: "/assets/about/brand/logo/logo@2560w.png",
+        w: "2560",
       },
       {
         format: "PNG",
-        href: "/",
-        w: "640",
+        href: "/assets/about/brand/logo/logo@2560w.png",
+        w: "1280",
       },
     ],
     name: "Primary with text",
