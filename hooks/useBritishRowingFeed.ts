@@ -15,13 +15,8 @@ const schema = z.array(
     link: z.string(),
   })
 );
-
-const fetcher = async () => {
-  const response = await fetch(QUERY_URL);
-  return await response.json();
-};
-
-const useBritishRowingFeed = () => useZodSWR(schema, KEY, fetcher);
+const useBritishRowingFeed = () =>
+  useZodSWR(schema, KEY, async () => (await fetch(QUERY_URL)).json());
 
 export type BRArticle = z.infer<typeof schema>[number];
 
