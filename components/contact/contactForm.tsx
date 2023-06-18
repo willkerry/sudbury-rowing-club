@@ -71,17 +71,26 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         submitError,
         hasValidationErrors,
         values,
-      }) => (
-        <>
-          {submitFailed && (
-            <Error error={submitError} message={values.message} />
-          )}
-          {submitSucceeded && <Success />}
+      }) => {
+        if (submitFailed)
+          return <Error error={submitError} message={values.message} />;
+
+        if (submitSucceeded) return <Success />;
+
+        const disableSubmission =
+          pristine ||
+          submitting ||
+          localDisabled ||
+          submitSucceeded ||
+          hasValidationErrors;
+        const disableFields = submitting || localDisabled || submitSucceeded;
+
+        return (
           <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit}>
             <Field defaultValue="default" name="to">
               {({ input, meta }) => (
                 <Select
-                  disabled={submitting || localDisabled || submitSucceeded}
+                  disabled={disableFields}
                   id="to"
                   input={input}
                   label="Who would you like to contact?"
@@ -91,10 +100,11 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                 />
               )}
             </Field>
+
             <Field name="name">
               {({ input, meta }) => (
                 <Input
-                  disabled={submitting || localDisabled || submitSucceeded}
+                  disabled={disableFields}
                   id="name"
                   input={input}
                   label="Your name"
@@ -104,10 +114,11 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                 />
               )}
             </Field>
+
             <Field name="email">
               {({ input, meta }) => (
                 <Input
-                  disabled={submitting || localDisabled || submitSucceeded}
+                  disabled={disableFields}
                   id="email"
                   input={input}
                   label="Your email"
@@ -117,6 +128,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                 />
               )}
             </Field>
+
             <Field name="message">
               {({ input, meta }) => (
                 <div className="col-span-2">
@@ -124,7 +136,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                   <TextareaAutosize
                     {...input}
                     className={meta.invalid && meta.touched ? "invalid" : ""}
-                    disabled={submitting || localDisabled || submitSucceeded}
+                    disabled={disableFields}
                     id="message"
                     minRows={3}
                     required
@@ -132,17 +144,12 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                 </div>
               )}
             </Field>
+
             <Center className="col-span-2">
               <Button
                 id="message"
                 as="button"
-                disabled={
-                  pristine ||
-                  submitting ||
-                  localDisabled ||
-                  submitSucceeded ||
-                  hasValidationErrors
-                }
+                disabled={disableSubmission}
                 isLoading={submitting}
                 size="large"
                 type="submit"
@@ -151,8 +158,8 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               </Button>
             </Center>
           </form>
-        </>
-      )}
+        );
+      }}
       validate={(values) => {
         const errors: any = {};
         if (values.to === "default") errors.to = "Required";
