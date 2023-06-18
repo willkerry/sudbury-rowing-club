@@ -46,18 +46,22 @@ type Props = {
 const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const localDisabled = disabled;
   const randomName = getWodehouseFullDetails();
+
   const optionArray = contacts.map((contact) => ({
     value: contact._id,
     label: `${contact.name} (${contact.role})`,
   }));
+
   const submitHandler = async (values: Message) => {
-    try {
-      await onSubmit(values);
-      return true;
-    } catch (error: any) {
-      return { [FORM_ERROR]: error.message };
-    }
+    const submissionErrors = await onSubmit(values);
+    if (submissionErrors)
+      return {
+        [FORM_ERROR]: `${submissionErrors.status} ${submissionErrors.message}`,
+      };
+
+    return undefined;
   };
+
   const form = (
     <Form
       initialValues={initialValues}

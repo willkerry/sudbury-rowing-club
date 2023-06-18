@@ -54,31 +54,18 @@ const spamCheck = async (
   email: string,
   message: string
 ) => {
-  const ip = req.headers["x-forwarded-for"]?.toString() || "";
-  const userAgent = req.headers["user-agent"] || "";
-  const referer = req.headers.referer || "";
-
-  console.log("Checking for spam");
-  console.log({ userAgent, referer, name, email, message });
-
   const isSpam = await checkForSpam(
-    ip,
-    userAgent,
-    referer,
+    req.headers["x-forwarded-for"]?.toString() || "",
+    req.headers["user-agent"] || "",
+    req.headers.referer || "",
     name,
     email,
     message
-  ).catch((error) => {
-    console.error(error);
-
+  ).catch(() => {
     throw new ResponseError("Could not connect to Akismet", 500);
   });
 
-  if (isSpam) {
-    console.error("Message rejected as spam");
-
-    throw new ResponseError("Message rejected as spam", 400);
-  }
+  if (isSpam) throw new ResponseError("Message rejected as spam", 400);
 };
 
 const findRecipient = async (id: string) => {
@@ -126,20 +113,9 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
         throw new ResponseError(error.message, 500);
       })
       .then(() => {
-        console.log("Message sent");
-
-        res.status(200).json({
-          message: "Message sent",
-          status: "success",
-        });
+        res.status(200).json("Message sent");
       });
-
-    return res;
   } catch (error: any) {
-    res.status(error.status || 500).json({
-      message: error.message,
-      status: "error",
-      raw: error.raw || error,
-    });
+    res.status(error.status || 500).json(error.message);
   }
 }
