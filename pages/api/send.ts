@@ -5,6 +5,7 @@ import DOMPurify from "isomorphic-dompurify";
 import { z } from "zod";
 import { ContactFormEmail } from "emails/contact-form";
 import { SENDER } from "@/lib/constants";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -21,7 +22,15 @@ const RequestSchema = z.object({
   message: z.string(),
 });
 
-export default async function Send(req: any, res: any): Promise<void> {
+export default async function Send(req: NextApiRequest, res: NextApiResponse) {
+  // Only allow POST requests
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      message: "Method not allowed",
+      status: "error",
+    });
+  }
+
   // Try to catch uncaught errors too
   try {
     let fromEmail: string;
@@ -47,9 +56,9 @@ export default async function Send(req: any, res: any): Promise<void> {
     // Check for spam
     if (
       await checkForSpam(
-        req.ip,
-        req.headers["user-agent"],
-        req.headers.referer,
+        req.headers["x-real-ip"]?.toString() || req.socket.remoteAddress || "",
+        req.headers["user-agent"] || "",
+        req.headers.referer || "",
         fromName,
         fromEmail,
         message
