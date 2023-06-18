@@ -72,8 +72,6 @@ const findRecipient = async (id: string) => {
   try {
     return await getOfficer(id);
   } catch (error) {
-    console.error(error);
-
     throw new ResponseError("No recipient found", 500);
   }
 };
@@ -94,7 +92,7 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
       role: toRole,
     } = await findRecipient(toID);
 
-    resend.emails
+    await resend.emails
       .send({
         from: formatName(SENDER.email, SENDER.name),
         to: formatName(toEmail, toName),
