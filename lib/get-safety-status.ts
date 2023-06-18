@@ -1,31 +1,36 @@
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import { type SafetyComponentProps } from "@/components/safety/safety-component";
-import { type EAStationResponse } from "@/types/ea-station-respose";
-import { type EAWarning } from "@/types/ea-warning";
+import { EAStationResponseSchema } from "@/types/ea-station-respose";
+import { EAWarningSchema } from "@/types/ea-warning";
 import { Severity } from "@/types/severity";
 import groq from "groq";
+import { z } from "zod";
 import { CLUB_LOCATION } from "./constants";
 import sanityClient from "./sanity.server";
 
-type SanityStatus = {
-  _updatedAt: Date;
-  description: string;
-  display: boolean;
-  status: Severity;
-};
+const SanityStatusSchema = z.object({
+  _updatedAt: z.string().transform((date) => new Date(date)),
+  description: z.string(),
+  display: z.boolean(),
+  status: z.nativeEnum(Severity),
+});
 
-/**
- * Fetches the latest safety status from the content management system
- */
-async function fetchSanityStatus(): Promise<SanityStatus> {
-  const query = groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{_updatedAt,description,display,status}`;
-  return sanityClient.fetch<SanityStatus>(query);
-}
+/** Fetches the latest safety status from the content management system */
+const fetchSanityStatus = async () =>
+  SanityStatusSchema.parse(
+    await sanityClient.fetch(
+      groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
+        _updatedAt,
+        description,
+        display,
+        status
+      }`
+    )
+  );
 
-/**
- * Fetches the latest flood warning from the Environment Agency API, using the club's location
- */
-async function fetchEAWarning(): Promise<EAWarning | void> {
+/** Fetches the latest flood warning from the Environment Agency API, using the
+ * club's location */
+async function fetchEAWarning() {
   const url = new URL(
     "https://environment.data.gov.uk/flood-monitoring/id/floods"
   );
@@ -36,9 +41,9 @@ async function fetchEAWarning(): Promise<EAWarning | void> {
   }).toString();
 
   try {
-    const res = await fetch(url);
-    const data = await res.json();
-    return data.items[0];
+    const res = await fetch(url).then((res) => res.json());
+
+    return EAWarningSchema.parse(res.items[0]);
   } catch (e) {
     console.error(e);
   }
@@ -46,88 +51,75 @@ async function fetchEAWarning(): Promise<EAWarning | void> {
   return undefined;
 }
 
-/**
- * Fetches monitoring station data from the Environment Agency API
- */
-async function fetchEAStation(): Promise<EAStationResponse> {
+/** Fetches monitoring station data from the Environment Agency API */
+async function fetchEAStation() {
   const res = await fetch(
     "https://environment.data.gov.uk/flood-monitoring/id/stations/E21856"
   );
   const { items } = await res.json();
-  return items;
+
+  return EAStationResponseSchema.parse(items);
 }
 
-/**
- * Maps the EA's 1-4 severity levels to our traffic light Severity enum
- */
-function getEquivalentSeverity(severityLevel: 1 | 2 | 3 | 4): Severity {
-  return {
-    1: Severity.red,
-    2: Severity.red,
-    3: Severity.amber,
-    4: Severity.neutral,
-  }[severityLevel];
-}
+/** Maps the EA's 1-4 severity levels to our traffic light Severity enum */
+const numericSeverityMap: Record<1 | 2 | 3 | 4, Severity> = {
+  1: Severity.red,
+  2: Severity.red,
+  3: Severity.amber,
+  4: Severity.neutral,
+};
 
-/**
- * Rounds to 2 decimal places
- */
-function round(n: number): number {
-  return Math.round(n * 10) / 10;
-}
+/** Rounds to 2 decimal places */
+const round = (n: number) => (Math.round(n * 100) * 0.01).toFixed(2);
 
-/**
- * Assembles a string describing the current water level at the club's monitoring station
- */
+/** Assembles a string describing the current water level at the club's monitoring station */
 function formatDescriptionString(
-  stationName: string,
+  name: string,
   level: number,
   ceil: number,
   floor: number
 ): string {
-  const mean = (ceil + floor) / 2;
-  const inRange = level > floor && level < ceil;
-  const above = level >= mean;
+  const rangeWord = () => {
+    if (level < floor) return "below";
+    if (level > ceil) return "above";
+    return "within";
+  };
 
-  const [l, c, f, m] = [level, ceil, floor, mean].map(round);
+  const [l, c, f] = [level, ceil, floor].map(round);
 
-  return `The water level at the ${stationName} measuring station is ${l} metres. This is ${
-    inRange ? "within" : "outside"
-  } the typical range of ${f} to ${c} metres and ${
-    above ? "above" : "below"
-  } the mean of ${m} metres.`;
+  return `The water level at the ${name} measuring station is ${l} metres. This is ${rangeWord()} the typical range of ${f} to ${c} metres.`;
 }
 
 /**
  * Fetches safety status data from a series of different APIs, stopping as soon
  * as it finds a reason to display a warning.
  */
-const getSafetyStatus: () => Promise<SafetyComponentProps> = async () => {
-  const sanityStatus = await fetchSanityStatus();
+const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
+  const [sanityStatus, eaWarning, station] = await Promise.all([
+    fetchSanityStatus(),
+    fetchEAWarning(),
+    fetchEAStation(),
+  ]);
 
   if (sanityStatus.display) {
     return {
-      status: sanityStatus.status as Severity,
+      status: sanityStatus.status,
       description: sanityStatus.description,
       date: sanityStatus._updatedAt,
-      statusMessage: sanityStatus.status as string,
+      statusMessage: sanityStatus.status.toString(),
     };
   }
-
-  const eaWarning = await fetchEAWarning();
 
   if (eaWarning) {
     const { severity, severityLevel, message, timeRaised } = eaWarning;
     return {
-      status: getEquivalentSeverity(severityLevel),
-      description: message as string,
+      status: numericSeverityMap[severityLevel],
+      description: message || "",
       date: timeRaised,
-      statusMessage: severity as string,
+      statusMessage: severity,
       source: WarningSourceEnum.environmentAgency,
     };
   }
-
-  const station: EAStationResponse = await fetchEAStation();
 
   if (station) {
     const { value } = station.measures.latestReading;
@@ -148,6 +140,7 @@ const getSafetyStatus: () => Promise<SafetyComponentProps> = async () => {
       statusMessage: "Monitoring station",
     };
   }
+
   return {
     status: Severity.neutral,
     description: "No data available",
