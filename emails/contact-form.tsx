@@ -33,14 +33,16 @@ const Value = ({ children }: { children: React.ReactNode }) => (
   <span className="block text-sm font-medium text-gray-900">{children}</span>
 );
 
-const InlineValue = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-block rounded border border-solid border-gray-200 bg-gray-100 px-1 text-sm font-medium text-gray-800">
-    {children}
-  </span>
-);
-
 const LT = () => <span className="text-gray-400">&lt;</span>;
 const GT = () => <span className="text-gray-400">&gt;</span>;
+const RightArrow = () => <span className="text-gray-400">&rarr;</span>;
+const Quote = ({ value }: { value: string }) => (
+  <>
+    <span className="text-gray-400">&lsquo;</span>
+    {value}
+    <span className="text-gray-400">&rsquo;</span>
+  </>
+);
 
 export const ContactFormEmail = ({
   toName = "Per Person",
@@ -57,8 +59,7 @@ export const ContactFormEmail = ({
       <Body className="mx-auto my-auto bg-white py-4 font-sans ">
         <Container>
           <Heading className="text-lg font-normal text-black">
-            You have received a message from{" "}
-            <InlineValue>{fromName}</InlineValue>
+            You have received a message via SRC Contact
           </Heading>
 
           <Section>
@@ -77,7 +78,7 @@ export const ContactFormEmail = ({
             <Text>
               <Label>To: </Label>
               <Value>
-                {toRole} ({toName}){" "}
+                <Quote value={toRole} /> <RightArrow /> {toName}{" "}
                 <span>
                   <LT />
                   {toEmail}
