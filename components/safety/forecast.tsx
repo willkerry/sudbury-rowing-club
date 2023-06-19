@@ -13,11 +13,11 @@ const ForecastComponent = () => {
   const fetcher: typeof getWeatherForecast = () =>
     fetch("/api/weather").then((res) => res.json());
 
-  const { data: forecast } = useSWR("getWeatherForecast", fetcher);
+  const { data: forecast, isLoading } = useSWR("getWeatherForecast", fetcher);
 
   return (
     <div className="w-full bg-gray-100 p-3 sm:px-4">
-      <Loading visible={forecast?.length === 0}>
+      <Loading visible={isLoading}>
         <div className="grid w-full grid-cols-7">
           {forecast?.map((f) => (
             <a
