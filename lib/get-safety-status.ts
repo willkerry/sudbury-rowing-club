@@ -16,9 +16,9 @@ const SanityStatusSchema = z.object({
 });
 
 /** Fetches the latest safety status from the content management system */
-const fetchSanityStatus = async () =>
-  SanityStatusSchema.parse(
-    await sanityClient.fetch(
+const fetchSanityStatus = () =>
+  sanityClient
+    .fetch(
       groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
         _updatedAt,
         description,
@@ -26,40 +26,30 @@ const fetchSanityStatus = async () =>
         status
       }`
     )
-  );
+    .then(SanityStatusSchema.parse);
 
-/** Fetches the latest flood warning from the Environment Agency API, using the
- * club's location */
-async function fetchEAWarning() {
-  const url = new URL(
-    "https://environment.data.gov.uk/flood-monitoring/id/floods"
-  );
-  url.search = new URLSearchParams({
+const EA_WARNING_URL =
+  `https://environment.data.gov.uk/flood-monitoring/id/floods` +
+  `?${new URLSearchParams({
     lat: String(CLUB_LOCATION[0]),
     long: String(CLUB_LOCATION[1]),
     dist: String(3),
-  }).toString();
+  }).toString()}`;
 
-  try {
-    const res = await fetch(url).then((res) => res.json());
-
-    return EAWarningSchema.parse(res.items[0]);
-  } catch (e) {
-    console.error(e);
-  }
-
-  return undefined;
-}
+/** Fetches the latest flood warning from the Environment Agency API, using the
+ * club's location */
+const fetchEAWarning = () =>
+  fetch(EA_WARNING_URL)
+    .then((res) => res.json())
+    .then((res) => res.items[0])
+    .then(EAWarningSchema.parse);
 
 /** Fetches monitoring station data from the Environment Agency API */
-async function fetchEAStation() {
-  const res = await fetch(
-    "https://environment.data.gov.uk/flood-monitoring/id/stations/E21856"
-  );
-  const { items } = await res.json();
-
-  return EAStationResponseSchema.parse(items);
-}
+const fetchEAStation = () =>
+  fetch("https://environment.data.gov.uk/flood-monitoring/id/stations/E21856")
+    .then((res) => res.json())
+    .then((res) => res.items)
+    .then(EAStationResponseSchema.parse);
 
 /** Maps the EA's 1-4 severity levels to our traffic light Severity enum */
 const numericSeverityMap: Record<1 | 2 | 3 | 4, Severity> = {
