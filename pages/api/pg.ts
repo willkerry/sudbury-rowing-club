@@ -7,7 +7,7 @@ const wodehouse = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate");
+  res.setHeader("Cache-Control", "public, s-maxage=60");
 
   try {
     const status = getWodehouseFullDetails();

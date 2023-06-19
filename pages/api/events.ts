@@ -29,7 +29,7 @@ const events = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  res.setHeader("Cache-Control", "s-maxage=21600");
+  res.setHeader("Cache-Control", "public, s-maxage=21600");
 
   try {
     res.status(200).json(await cachedCompetitionFetch());
