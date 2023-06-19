@@ -7,7 +7,7 @@ const safety = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
 
-  res.setHeader("Cache-Control", "s-maxage=30, stale-while-revalidate");
+  res.setHeader("Cache-Control", "public, s-maxage=3600");
 
   try {
     const status = await getSafetyStatus();
