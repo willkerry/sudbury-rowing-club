@@ -2,7 +2,7 @@ import { NextSeo } from "next-seo";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
-import { BASE_URL } from "@/lib/constants";
+import { makeShareImageURL } from "@/lib/og-image";
 
 /**
  * A 'root'-level comonent for rendering simple pages with a title and some
@@ -11,9 +11,8 @@ import { BASE_URL } from "@/lib/constants";
 const TextPage: React.FC<{
   title: string;
   description?: string;
-  ogImage?: string;
   children: React.ReactNode;
-}> = ({ children, title, description, ogImage }) => (
+}> = ({ children, title, description }) => (
   <Layout>
     <NextSeo
       title={title}
@@ -21,7 +20,7 @@ const TextPage: React.FC<{
       openGraph={{
         title,
         description,
-        images: [{ url: BASE_URL + ogImage }],
+        images: [{ url: makeShareImageURL(title, true) }],
       }}
     />
     <HeroTitle title={title} prose breadcrumbs />

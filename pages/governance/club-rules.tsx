@@ -2,7 +2,7 @@ import TextPage from "@/components/layouts/text-page";
 import { NextPage } from "next";
 
 const Rules: NextPage = () => (
-  <TextPage title="Club Rules" ogImage="/assets/og/club-rules.png">
+  <TextPage title="Club Rules">
     <p>
       (Ratified AGM <time dateTime="2005-12-18">18 December 2005</time>.)
     </p>

@@ -18,7 +18,7 @@ const BlockHighlight: FC<{ children: ReactNode }> = (props) => (
 );
 
 const Constitution: NextPage = () => (
-  <TextPage title="Club Constitution" ogImage="/assets/og/constitution.png">
+  <TextPage title="Club Constitution">
     <p className="block-emphasis">
       The Secretary shall retain each member’s signed declaration.
     </p>

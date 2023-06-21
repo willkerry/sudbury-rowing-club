@@ -3,10 +3,7 @@ import Note from "@/components/stour/note";
 import { NextPage } from "next";
 
 const AntiBullying: NextPage = () => (
-  <TextPage
-    title="Anti-Bullying Policy"
-    ogImage="/assets/og/anti-bullying-policy.png"
-  >
+  <TextPage title="Anti-Bullying Policy">
     <h3>Introduction</h3>
     <p className="lead">
       This policy is based on the British Rowing Welfare Guidance document WG

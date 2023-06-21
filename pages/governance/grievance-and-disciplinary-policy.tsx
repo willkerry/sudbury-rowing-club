@@ -2,10 +2,7 @@ import TextPage from "@/components/layouts/text-page";
 import { NextPage } from "next";
 
 const GrievancePolicy: NextPage = () => (
-  <TextPage
-    title="Grievance and Disciplinary Policy"
-    ogImage="/assets/og/grievance-and-disciplinary-policy.png"
-  >
+  <TextPage title="Grievance and Disciplinary Policy">
     <h3>1. Introduction and Purpose</h3>
 
     <p>

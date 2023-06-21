@@ -7,7 +7,7 @@ import { NextPage } from "next";
 import { NextCourse } from ".";
 
 const LearnToRowApplicationForm: NextPage = () => (
-  <TextPage title="Apply for Learn to Row" ogImage="/assets/og/apply.png">
+  <TextPage title="Apply for Learn to Row">
     <Note>
       <NextCourse />
     </Note>

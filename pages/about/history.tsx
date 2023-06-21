@@ -13,7 +13,6 @@ const History: NextPage = () => (
   <TextPage
     title="Club History"
     description="Rowing in Sudbury for more than 150 years."
-    ogImage="/assets/og/history.png"
   >
     <p className="lead">
       Although early records have been lost, it is known that Sudbury RC,

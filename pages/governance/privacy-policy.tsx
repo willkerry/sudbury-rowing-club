@@ -2,7 +2,7 @@ import TextPage from "@/components/layouts/text-page";
 import { NextPage } from "next";
 
 const PrivacyPolicy: NextPage = () => (
-  <TextPage title="Privacy Policy" ogImage="/assets/og/privacy-policy.png">
+  <TextPage title="Privacy Policy">
     <p>
       Updated <time dateTime="2018-08-24">24 August 2018</time>
     </p>

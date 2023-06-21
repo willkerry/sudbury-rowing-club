@@ -20,7 +20,6 @@ const Entries: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <TextPage
       title="Entry Information"
-      ogImage="/assets/og/entries.png"
       description="Details for competetive entry to the Sudbury Regatta."
     >
       <CompactEvents data={events} />
