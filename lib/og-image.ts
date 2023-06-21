@@ -9,8 +9,8 @@ const getAbsolutePath = () => {
 };
 
 export const makeShareImageURL = (title: string, absolute: boolean = false) => {
-  const url = new URL(absolute ? getAbsolutePath() : BASE_PATH);
-  url.search = new URLSearchParams({ title }).toString();
+  const searchParams = new URLSearchParams({ title }).toString();
+  const path = absolute ? getAbsolutePath() : BASE_PATH;
 
-  return url.toString();
+  return `${path}?${searchParams}`;
 };
