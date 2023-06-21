@@ -9,6 +9,7 @@ import Color from "color";
 import { GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
+import { makeShareImageURL } from "@/lib/og-image";
 import tailwindConfig from "../../tailwind.config";
 
 const brandAssets = [
@@ -187,7 +188,7 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
     <TextPage
       title="Brand Assets"
       description="Some handy resources for building things for Sudbury RC."
-      ogImage="/assets/og/brand.png"
+      ogImage={makeShareImageURL("Brand Assets")}
     >
       <h2>Crest</h2>
       <p>
