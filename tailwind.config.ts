@@ -5,6 +5,7 @@ import aspectRatio from "@tailwindcss/aspect-ratio";
 import forms from "@tailwindcss/forms";
 // @ts-ignore
 import animate from "tailwindcss-animate";
+import { blue } from "./blue";
 
 export default {
   plugins: [animate, typography, aspectRatio, forms],
@@ -17,18 +18,7 @@ export default {
     extend: {
       colors: {
         cyan: "#79FFE1",
-        blue: {
-          50: "#DAEBFF",
-          100: "#C0DDFF",
-          200: "#8DC2FF",
-          300: "#5AA6FF",
-          400: "#278BFF",
-          500: "#0070F3",
-          600: "#0058C0",
-          700: "#00418D",
-          800: "#00295A",
-          900: "#002147",
-        },
+        blue,
       },
       spacing: {
         28: "7rem",

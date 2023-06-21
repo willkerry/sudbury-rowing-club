@@ -2,7 +2,7 @@ import { type NextRequest } from "next/server";
 import { ImageResponse } from "@vercel/og";
 import { z } from "zod";
 import Logo from "@/components/logo";
-import tailwindConfig from "../../tailwind.config";
+import { blue } from "../../blue";
 
 export const config = {
   runtime: "edge",
@@ -70,7 +70,7 @@ const og = async (request: NextRequest): Promise<ImageResponse> => {
           width: "100%",
           height: "100%",
           display: "flex",
-          backgroundColor: tailwindConfig.theme.extend.colors.blue[900],
+          backgroundColor: blue[900],
           color: "#fff",
           position: "relative",
           padding: 100,
@@ -97,7 +97,7 @@ const og = async (request: NextRequest): Promise<ImageResponse> => {
             style={{
               fontSize: 72,
               fontWeight: 600,
-              color: tailwindConfig.theme.extend.colors.blue[100],
+              color: blue[100],
               margin: "10px auto",
               letterSpacing: -1,
               width: "100%",
