@@ -1,10 +1,8 @@
-import { HOME_OG_IMAGE_URL, BASE_URL } from "./lib/constants";
+import { HOME_OG_IMAGE_URL } from "./lib/constants";
 
 const SEO = {
   openGraph: {
-    type: "website",
     locale: "en_GB",
-    url: BASE_URL,
     site_name: "Sudbury Rowing Club",
     images: [
       {
