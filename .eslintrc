@@ -44,6 +44,7 @@
     "@next/next/no-img-element": 0,
     "@typescript-eslint/no-shadow": 0,
     "no-console": 0,
-    "no-irregular-whitespace": 0
+    "no-irregular-whitespace": 0,
+    "import/prefer-default-export": 0
   }
 }
