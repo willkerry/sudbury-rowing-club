@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest } from "next/server";
 import { ImageResponse } from "@vercel/og";
 import { z } from "zod";
 import Logo from "@/components/logo";
@@ -43,10 +43,7 @@ const searchParamsSchema = z.object({
   title: z.string(),
 });
 
-const og = async (
-  request: NextRequest,
-  response: NextResponse
-): Promise<ImageResponse> => {
+const og = async (request: NextRequest): Promise<ImageResponse> => {
   const { method } = request;
 
   if (method !== "GET") return ErrorResponse("Invalid method");
@@ -65,8 +62,6 @@ const og = async (
   const title = hasTitle ? searchParams.get("title") : "Sudbury Rowing Club";
 
   const fontData = await font;
-
-  response.headers.set("Cache-Control", "public, s-maxage=31536000");
 
   return new ImageResponse(
     (
