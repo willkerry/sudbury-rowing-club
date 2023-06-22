@@ -78,12 +78,12 @@ const query = groq`{"officers": *[_type == "officers" && !(_id in path("drafts.*
     description,
     members[]-> {_id, role, name}
 },
-"vicePresidents": *[_type == "vicePresidents" && !(_id in path("drafts.**"))] | order(surname asc){
+"vicePresidents": *[_type == "vicePresidents" && !(_id in path("drafts.**"))] | order(surname asc, firstName asc){
     _id,
     firstName,
     surname
 },
-"trustees": *[_type == "trustees" && !(_id in path("drafts.**"))] | order(surname asc){
+"trustees": *[_type == "trustees" && !(_id in path("drafts.**"))] | order(surname asc, firstName asc){
     _id,
     firstName,
     surname
