@@ -6,7 +6,8 @@
       "@/data/*": ["data/*"],
       "@/hooks/*": ["hooks/*"],
       "@/lib/*": ["lib/*"],
-      "@/types/*": ["types/*"]
+      "@/types/*": ["types/*"],
+      "@/pages/*": ["pages/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
