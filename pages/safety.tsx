@@ -9,6 +9,7 @@ import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import fetchSafety from "@/lib/queries/fetch-safety";
+import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps: GetStaticProps<{
   safety: Awaited<ReturnType<typeof fetchSafety>>;
@@ -28,7 +29,7 @@ const Safety: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       openGraph={{
         title: "Safety",
         description: "Rowing safely at Sudbury Rowing Club.",
-        images: [{ url: `${BASE_URL}/assets/og/safety.png` }],
+        images: [{ url: makeShareImageURL("Safety 🛟", true) }],
       }}
     />
 
