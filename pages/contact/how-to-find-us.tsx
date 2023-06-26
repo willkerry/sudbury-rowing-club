@@ -13,7 +13,6 @@ import {
   MAPPING_APIS,
   CLUB_LOCATION_STRING,
   REGATTA_LOCATION_STRING,
-  BASE_URL,
 } from "@/lib/constants";
 import { NextPage } from "next";
 import { makeShareImageURL } from "@/lib/og-image";
