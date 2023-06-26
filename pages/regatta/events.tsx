@@ -4,9 +4,9 @@ import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Container from "@/components/layouts/container";
 import EventsComponent from "@/components/regatta/events";
-import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { makeShareImageURL } from "@/lib/og-image";
 
 const og = {
   title: "Event Information",
@@ -45,7 +45,7 @@ const EventsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       openGraph={{
         title: og.title,
         description: og.description,
-        images: [{ url: `${BASE_URL}/assets/og/events.png` }],
+        images: [{ url: makeShareImageURL(og.title, true) }],
       }}
     />
     <HeroTitle title={og.title} breadcrumbs prose />

@@ -2,7 +2,6 @@ import ContactForm from "@/components/contact";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
-import { BASE_URL } from "@/lib/constants";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
@@ -10,6 +9,7 @@ import { useRouter } from "next/router";
 import type { Message } from "@/components/contact/contactForm";
 import { InferGetStaticPropsType } from "next";
 import fetchOfficerNames from "@/lib/queries/fetch-officer-names";
+import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps = async () => {
   const officers = await fetchOfficerNames();
@@ -31,7 +31,9 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         description="Get in touch"
         openGraph={{
           description: "Get in touch",
-          images: [{ url: `${BASE_URL}/assets/og/contact.png` }],
+          images: [
+            { url: makeShareImageURL("Contact Sudbury Rowing Club", true) },
+          ],
           title: "Contact Sudbury Rowing Club",
         }}
         title="Contact Sudbury Rowing Club"

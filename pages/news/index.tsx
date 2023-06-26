@@ -4,7 +4,6 @@ import Layout from "@/components/layouts/layout";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
-import { BASE_URL } from "@/lib/constants";
 import { serverIndex, browserIndex } from "@/lib/algolia";
 import { NextSeo } from "next-seo";
 
@@ -23,6 +22,7 @@ import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { fetchNArticles } from "@/lib/queries/fetch-news-article";
 import { getArticleCount, getNArticles } from "@/lib/queries/cached-fetch-news";
+import { makeShareImageURL } from "@/lib/og-image";
 
 function getMoreUrl(activeSearchTerm: string, data: any[]) {
   if (activeSearchTerm) {
@@ -121,7 +121,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         openGraph={{
           title: "Latest News",
           description: "Latest news from Sudbury Rowing Club.",
-          images: [{ url: `${BASE_URL}/assets/og/news.png` }],
+          images: [{ url: makeShareImageURL("News", true) }],
         }}
       />
       <div className="flex items-center border-b border-t py-6">

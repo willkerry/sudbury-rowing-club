@@ -23,6 +23,7 @@ import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 import { Article } from "@/lib/queries/fetch-news-article";
 import { ParsedUrlQuery } from "querystring";
 import { getAllSlugs, getArticleBySlug } from "@/lib/queries/cached-fetch-news";
+import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps = async ({
   params,
@@ -77,7 +78,19 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 },
                 images: [
                   {
-                    url: coverImage(post.featuredImage),
+                    url: post.featuredImage
+                      ? coverImage(post.featuredImage)
+                      : makeShareImageURL(post.title, true, {
+                          variant: "light",
+                          subtitle: new Date(post.date).toLocaleDateString(
+                            "en-GB",
+                            {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            }
+                          ),
+                        }),
                   },
                 ],
               }}

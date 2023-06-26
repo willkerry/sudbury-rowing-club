@@ -13,6 +13,7 @@ import useSWR from "swr";
 import { HOSTNAME } from "@/lib/constants";
 import { z } from "zod";
 import { ZSRCEvent } from "@/lib/queries/fetch-competions";
+import { makeShareImageURL } from "@/lib/og-image";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -107,6 +108,12 @@ const EventCalendar = () => {
       <NextSeo
         title="Competition Calendar"
         description="This calendar shows competitions for the current season, as recorded by British Rowing."
+        openGraph={{
+          title: "Competition Calendar",
+          description:
+            "This calendar shows competitions for the current season, as recorded by British Rowing.",
+          images: [{ url: makeShareImageURL("Competition Calendar 🗓️", true) }],
+        }}
       />
 
       <HeroTitle prose title="Competition Calendar" transparent />

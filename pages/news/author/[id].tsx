@@ -3,6 +3,7 @@ import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
+import { makeShareImageURL } from "@/lib/og-image";
 import { fetchAuthor, fetchAllAuthors } from "@/lib/queries/fetch-authors";
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
@@ -43,6 +44,11 @@ export const AuthorArchive: NextPage<
     <NextSeo
       title={`Archive: ${author?.firstName} ${author?.surname}`}
       description={`Archive of all posts by ${author?.firstName} ${author?.surname}`}
+      openGraph={{
+        title: `Archive: ${author?.firstName} ${author?.surname}`,
+        description: `Archive of all posts by ${author?.firstName} ${author?.surname}`,
+        images: [{ url: makeShareImageURL("Author archive", true) }],
+      }}
     />
     <div className="flex items-center border-b border-t py-6">
       <Container>

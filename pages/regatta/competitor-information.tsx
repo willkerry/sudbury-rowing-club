@@ -4,9 +4,9 @@ import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import CompetitorInformation from "@/components/regatta/competitor-information";
-import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import { NextPage } from "next";
+import { makeShareImageURL } from "@/lib/og-image";
 
 export type CompetitorInformationType = {
   description: string;
@@ -30,7 +30,7 @@ const CompetitorInformationPage: NextPage<CompetitorInformationType> = ({
         title: "Competitor Information",
         description:
           "Essential information for competitors at the Sudbury Regatta.",
-        images: [{ url: `${BASE_URL}/assets/og/competitor-information.png` }],
+        images: [{ url: makeShareImageURL("Competitor Information", true) }],
       }}
     />
     <HeroTitle title="Competitor Information" breadcrumbs />

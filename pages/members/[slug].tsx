@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
@@ -16,6 +15,8 @@ import {
   fetchOneNotice,
   type Notice as NoticeType,
 } from "@/lib/queries/fetch-notices";
+import { NextSeo } from "next-seo";
+import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await fetchNoticeSlugs();
@@ -37,9 +38,14 @@ const Notice: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   notice,
 }) => (
   <Layout>
-    <Head>
-      <title>{notice?.title}</title>
-    </Head>
+    <NextSeo
+      title={notice?.title}
+      openGraph={{
+        images: [{ url: makeShareImageURL(notice?.title, true) }],
+        title: notice?.title,
+      }}
+    />
+
     <HeroTitle prose title={notice?.title} transparent>
       <div className="h-2" />
       <Label>Members’ Notices</Label>{" "}

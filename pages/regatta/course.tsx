@@ -6,10 +6,10 @@ import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
-import { BASE_URL } from "@/lib/constants";
 import sanityClient from "@/lib/sanity.server";
 import { urlFor } from "@/lib/sanity";
 import { NextPage } from "next";
+import { makeShareImageURL } from "@/lib/og-image";
 
 type Props = {
   heading: string;
@@ -35,7 +35,7 @@ const Coursemap: NextPage<Props> = ({
       openGraph={{
         title: "Coursemap",
         description: "The Sudbury Regatta’s challenging regatta course.",
-        images: [{ url: `${BASE_URL}/assets/og/course.png` }],
+        images: [{ url: makeShareImageURL("Coursemap", true) }],
       }}
     />
     <HeroTitle title="Sudbury Regatta Course" breadcrumbs />

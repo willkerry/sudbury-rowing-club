@@ -8,14 +8,15 @@ import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Note from "@/components/stour/note";
 import {
-  BASE_URL,
   CLUB_LOCATION,
   REGATTA_LOCATION,
   MAPPING_APIS,
   CLUB_LOCATION_STRING,
   REGATTA_LOCATION_STRING,
+  BASE_URL,
 } from "@/lib/constants";
 import { NextPage } from "next";
+import { makeShareImageURL } from "@/lib/og-image";
 
 const openInApp = [
   {
@@ -49,7 +50,7 @@ const FindUs: NextPage = () => (
       description="Directions to our club and to our regatta"
       openGraph={{
         description: "Directions to our club and to our regatta",
-        images: [{ url: `${BASE_URL}/assets/og/how-to-find-us.png` }],
+        images: [{ url: makeShareImageURL("How to find us", true) }],
         title: "How to find us",
       }}
       title="How to find us"

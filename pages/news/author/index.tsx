@@ -6,6 +6,7 @@ import { fetchAllAuthors } from "@/lib/queries/fetch-authors";
 import cn from "@/lib/cn";
 import { type InferGetStaticPropsType, type NextPage } from "next";
 import { NextSeo } from "next-seo";
+import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps = async () => {
   const authors = await fetchAllAuthors();
@@ -34,7 +35,15 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   authors = [],
 }) => (
   <Layout>
-    <NextSeo title="Authors" description="List of contributing authors" />
+    <NextSeo
+      title="Authors"
+      description="List of contributing authors"
+      openGraph={{
+        title: "Authors",
+        description: "List of contributing authors",
+        images: [{ url: makeShareImageURL("Our authors", true) }],
+      }}
+    />
     <div className="flex items-center border-b border-t py-6">
       <Container>
         <h1>

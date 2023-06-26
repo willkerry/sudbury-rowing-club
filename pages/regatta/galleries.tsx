@@ -4,11 +4,11 @@ import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Link from "@/components/stour/link";
-import { BASE_URL } from "@/lib/constants";
 import DateFormatter from "@/components/utils/date-formatter";
 import sanityClient from "@/lib/sanity.server";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Copy from "@/components/stour/copy";
+import { makeShareImageURL } from "@/lib/og-image";
 
 export interface Gallery {
   _key: string;
@@ -47,7 +47,7 @@ const Photography: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       openGraph={{
         title: "Official Photography",
         description: "Professional photography from the Sudbury Regatta.",
-        images: [{ url: `${BASE_URL}/assets/og/photography.png` }],
+        images: [{ url: makeShareImageURL("Official Photography", true) }],
       }}
     />
     <HeroTitle title="Official regatta photography" breadcrumbs />

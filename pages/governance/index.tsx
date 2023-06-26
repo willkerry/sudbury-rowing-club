@@ -7,7 +7,7 @@ import {
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
-import { BASE_URL } from "@/lib/constants";
+import { makeShareImageURL } from "@/lib/og-image";
 import { fetchGovernance } from "@/lib/queries/fetch-governance";
 import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
@@ -28,7 +28,7 @@ const Governance: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   <Layout>
     <NextSeo
       openGraph={{
-        images: [{ url: `${BASE_URL}/assets/og/goverance.png` }],
+        images: [{ url: makeShareImageURL("Governance", true) }],
         title: "Governance",
       }}
       title="Governance"

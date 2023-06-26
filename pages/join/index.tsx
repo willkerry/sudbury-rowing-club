@@ -11,7 +11,7 @@ import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Note from "@/components/stour/note";
 import { l2rStages, overview } from "@/data/join/";
-import { BASE_URL } from "@/lib/constants";
+import { makeShareImageURL } from "@/lib/og-image";
 import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
@@ -100,7 +100,7 @@ const Join: NextPage = () => (
       description="Everything you need to know about getting rowing."
       openGraph={{
         description: "Everything you need to know about getting rowing.",
-        images: [{ url: `${BASE_URL}/assets/og/join.png` }],
+        images: [{ url: makeShareImageURL("Start rowing 👍", true) }],
         title: "Start rowing at Sudbury Rowing Club",
       }}
       title="Start rowing at Sudbury Rowing Club"

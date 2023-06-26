@@ -2,7 +2,6 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
-import { BASE_URL } from "@/lib/constants";
 import { NextSeo } from "next-seo";
 import Paginate from "@/components/news/paginate";
 import DateFormatter from "@/components/utils/date-formatter";
@@ -13,6 +12,7 @@ import type {
 } from "next/types";
 import type { ParsedUrlQuery } from "querystring";
 import { getArticleCount, getNArticles } from "@/lib/queries/cached-fetch-news";
+import { makeShareImageURL } from "@/lib/og-image";
 
 const POSTS_PER_PAGE = 30;
 
@@ -67,7 +67,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         openGraph={{
           title: `News | Page ${page} | Sudbury Rowing Club`,
           description: "News from Sudbury Rowing Club.",
-          images: [{ url: `${BASE_URL}/assets/og/news.png` }],
+          images: [{ url: makeShareImageURL("News", true) }],
         }}
       />
       <div className="flex items-center border-b border-t py-6">

@@ -3,7 +3,7 @@ import Layout from "@/components/layouts/layout";
 import Results from "@/components/regatta/results";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Text from "@/components/stour/text";
-import { BASE_URL } from "@/lib/constants";
+import { makeShareImageURL } from "@/lib/og-image";
 import sanityClient from "@/lib/sanity.server";
 import type { PortableTextProps } from "@portabletext/react";
 import groq from "groq";
@@ -50,7 +50,7 @@ const ResultsPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       title="Regatta Results | Sudbury Rowing Club"
       openGraph={{
         title: "Regatta Results",
-        images: [{ url: `${BASE_URL}/assets/og/results.png` }],
+        images: [{ url: makeShareImageURL("Regatta Results", true) }],
       }}
     />
     <HeroTitle title="Regatta results" breadcrumbs />
