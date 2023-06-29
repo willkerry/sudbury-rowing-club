@@ -110,11 +110,16 @@ const SharePlayground = () => {
       </div>
 
       <div className="flex justify-end gap-1 md:col-span-2">
-        <Button href={imageRef.current?.src} size="small">
+        <Button
+          disabled={!imageRef.current?.src}
+          href={imageRef.current?.src || ""}
+          size="small"
+        >
           Download
         </Button>
 
         <Button
+          disabled={!imageRef.current?.src}
           onClick={() => {
             navigator.clipboard.writeText(imageRef.current?.src || "");
           }}
