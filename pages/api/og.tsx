@@ -98,6 +98,8 @@ const variants: Record<
   },
 };
 
+export const variantsList = Object.keys(variants) as ShareImage["variant"][];
+
 const og = async (request: NextRequest): Promise<ImageResponse> => {
   const { method } = request;
 

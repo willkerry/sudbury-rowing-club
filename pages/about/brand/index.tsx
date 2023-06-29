@@ -4,12 +4,13 @@ import Crest from "@/components/logo/crest";
 import Social from "@/components/logo/social";
 import Copy from "@/components/stour/copy";
 import Link from "@/components/stour/link";
+import SharePlayground from "@/components/about/share-playground";
 import combineURLs from "@/lib/helpers/combineURLs";
 import Color from "color";
 import { GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
-import tailwindConfig from "../../tailwind.config";
+import tailwindConfig from "../../../tailwind.config";
 
 const brandAssets = [
   {
@@ -320,6 +321,58 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
           ))}
         </tbody>
       </table>
+
+      <h2>Fonts</h2>
+
+      <p>The club has no official typeface, but the typefaces used here are:</p>
+
+      <ul>
+        <li>
+          <a href="https://rsms.me/inter/">
+            <strong>Inter</strong>
+          </a>{" "}
+          by Rasmus Andersson, for pretty much everything. It’s a great typeface
+          for user interfaces, provided ‘free’ to the world by a very
+          well-respected software designer.
+        </li>
+
+        <li>
+          <a href="https://www.myfonts.com/fonts/positype/sweet-sans-pro/">
+            <strong>Sweet Sans Pro</strong>
+          </a>{" "}
+          by Neil Summerour, for the logo. This is a commercial typeface,
+          licensed only for the logo design. It was chosen for its resemblance
+          to the lettering pressed into an early 20th-century set of club
+          Christmas cards.
+        </li>
+
+        <li>
+          <span className="font-mono font-bold">
+            <a href="https://jetbrains.com/mono">JetBrains Mono</a>
+          </span>
+          , for code and monospaced text. This is a free and open-source
+          typeface by JetBrains, the makers of some cool developer tools. It was
+          chosen for its legibility.
+        </li>
+      </ul>
+
+      <p>
+        The clubhouse door paint signage (which frequently appears on the
+        homepage) is hand-painted each time it is repainted. We use a rough
+        vector graphic based on how it appeared in 2018.
+      </p>
+
+      <h2>Share images</h2>
+
+      <p>
+        We programmatically generate share images for the less-scintillating
+        pages on this website. Should you need a generic share image for
+        something, the little tool below will generate one for you.
+      </p>
+
+      <div className="not-prose">
+        <SharePlayground />
+      </div>
     </TextPage>
   );
 };
