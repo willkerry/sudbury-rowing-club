@@ -111,15 +111,22 @@ const SharePlayground = () => {
 
       <div className="flex justify-end gap-1 md:col-span-2">
         <Button
-          disabled={!imageRef.current?.src}
-          href={imageRef.current?.src || ""}
+          onClick={(e) => {
+            if (!imageRef.current) return;
+            e.preventDefault();
+
+            const link = document.createElement("a");
+            link.href = `${imageRef.current.src}`;
+            link.download = "share-image.png";
+            link.click();
+            link.remove();
+          }}
           size="small"
         >
           Download
         </Button>
 
         <Button
-          disabled={!imageRef.current?.src}
           onClick={() => {
             navigator.clipboard.writeText(imageRef.current?.src || "");
           }}
