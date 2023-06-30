@@ -39,43 +39,48 @@ export const getStaticProps = async ({
 
 export const AuthorArchive: NextPage<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ author = null }) => (
-  <Layout>
-    <NextSeo
-      title={`Archive: ${author?.firstName} ${author?.surname}`}
-      description={`Archive of all posts by ${author?.firstName} ${author?.surname}`}
-      openGraph={{
-        title: `Archive: ${author?.firstName} ${author?.surname}`,
-        description: `Archive of all posts by ${author?.firstName} ${author?.surname}`,
-        images: [{ url: makeShareImageURL("Author archive", true) }],
-      }}
-    />
-    <div className="flex items-center border-b border-t py-6">
-      <Container>
-        <h1>
-          <Label className="max-w-prose">Author Archive</Label>
-        </h1>
-        <p className="flex justify-between">
-          <span>{`${author?.firstName} ${author?.surname}`}</span>
-        </p>
-      </Container>
-    </div>
+> = ({ author = null }) => {
+  const title = `${author?.firstName} ${author?.surname}`;
+  const description = `Archive of all posts by ${author?.firstName} ${author?.surname}`;
 
-    <Container>
-      <div className="prose my-6 mr-auto">
-        <ul className="pl-0">
-          {author?.articles?.map(({ _id, slug, title, date }) => (
-            <li key={_id} className="list-none pl-0 leading-tight">
-              <Link href={`/news/${slug}`}>{title}</Link>
-              <Label className="mt-1 block text-xs">
-                <DateFormatter dateString={date} format="short" />
-              </Label>
-            </li>
-          ))}
-        </ul>
+  return (
+    <Layout>
+      <NextSeo
+        {...{ title, description }}
+        openGraph={{
+          title,
+          description,
+          images: [{ url: makeShareImageURL("Author archive", true) }],
+        }}
+      />
+
+      <div className="flex items-center border-b border-t py-6">
+        <Container>
+          <h1>
+            <Label className="max-w-prose">Author Archive</Label>
+          </h1>
+          <p className="flex justify-between">
+            <span>{`${author?.firstName} ${author?.surname}`}</span>
+          </p>
+        </Container>
       </div>
-    </Container>
-  </Layout>
-);
+
+      <Container>
+        <div className="prose my-6 mr-auto">
+          <ul className="pl-0">
+            {author?.articles?.map(({ _id, slug, title, date }) => (
+              <li key={_id} className="list-none pl-0 leading-tight">
+                <Link href={`/news/${slug}`}>{title}</Link>
+                <Label className="mt-1 block text-xs">
+                  <DateFormatter dateString={date} format="short" />
+                </Label>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Container>
+    </Layout>
+  );
+};
 
 export default AuthorArchive;
