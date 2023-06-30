@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 type DateFormatPresets =
   | "default"
   | "long"
@@ -42,13 +40,16 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
   ]);
 
 const DateFormatter = ({ dateString, format, ...props }: Props) => {
-  const [dateObj] = useState(new Date(dateString));
+  const date = new Date(dateString);
+
+  const formattedDate = date.toLocaleDateString(
+    "en-GB",
+    defaultOptions.get(format || "default")
+  );
+
   return (
-    <time dateTime={dateObj.toString()} {...props}>
-      {dateObj.toLocaleDateString(
-        "en-GB",
-        defaultOptions.get(format || "default")
-      )}
+    <time dateTime={date.toString()} {...props}>
+      {formattedDate}
     </time>
   );
 };
