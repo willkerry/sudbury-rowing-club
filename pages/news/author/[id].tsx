@@ -51,7 +51,14 @@ export const AuthorArchive: NextPage<
         openGraph={{
           title,
           description,
-          images: [{ url: makeShareImageURL("Author archive", true) }],
+          images: [
+            {
+              url: makeShareImageURL(name, true, {
+                subtitle: "Author Archive",
+                variant: "light",
+              }),
+            },
+          ],
         }}
       />
 
