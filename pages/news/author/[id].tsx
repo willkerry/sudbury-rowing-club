@@ -60,17 +60,20 @@ export const AuthorArchive: NextPage<
         </p>
       </Container>
     </div>
-    <Container className="prose my-6">
-      <ul className="pl-0">
-        {author?.articles?.map(({ _id, slug, title, date }) => (
-          <li key={_id} className="list-none pl-0 leading-tight">
-            <Link href={`/news/${slug}`}>{title}</Link>
-            <Label className="mt-1 block text-xs">
-              <DateFormatter dateString={date} format="short" />
-            </Label>
-          </li>
-        ))}
-      </ul>
+
+    <Container>
+      <div className="prose my-6 mr-auto">
+        <ul className="pl-0">
+          {author?.articles?.map(({ _id, slug, title, date }) => (
+            <li key={_id} className="list-none pl-0 leading-tight">
+              <Link href={`/news/${slug}`}>{title}</Link>
+              <Label className="mt-1 block text-xs">
+                <DateFormatter dateString={date} format="short" />
+              </Label>
+            </li>
+          ))}
+        </ul>
+      </div>
     </Container>
   </Layout>
 );
