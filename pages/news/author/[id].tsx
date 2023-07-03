@@ -39,10 +39,9 @@ export const getStaticProps = async ({
 
 export const AuthorArchive: NextPage<
   InferGetStaticPropsType<typeof getStaticProps>
-> = ({ author: { firstName, surname, articles } }) => {
-  const name = `${firstName} ${surname}`;
-  const title = `Author archive: ${name}`;
-  const description = `Archive of all posts by ${name}`;
+> = ({ author = null }) => {
+  const title = `${author?.firstName} ${author?.surname}`;
+  const description = `Archive of all posts by ${author?.firstName} ${author?.surname}`;
 
   return (
     <Layout>
@@ -53,7 +52,7 @@ export const AuthorArchive: NextPage<
           description,
           images: [
             {
-              url: makeShareImageURL(name, true, {
+              url: makeShareImageURL(title, true, {
                 subtitle: "Author Archive",
                 variant: "light",
               }),
@@ -68,7 +67,7 @@ export const AuthorArchive: NextPage<
             <Label className="max-w-prose">Author Archive</Label>
           </h1>
           <p className="flex justify-between">
-            <span>{name}</span>
+            <span>{`${author?.firstName} ${author?.surname}`}</span>
           </p>
         </Container>
       </div>
@@ -76,7 +75,7 @@ export const AuthorArchive: NextPage<
       <Container>
         <div className="prose my-6 mr-auto">
           <ul className="pl-0">
-            {articles?.map(({ _id, slug, title, date }) => (
+            {author?.articles?.map(({ _id, slug, title, date }) => (
               <li key={_id} className="list-none pl-0 leading-tight">
                 <Link href={`/news/${slug}`}>{title}</Link>
                 <Label className="mt-1 block text-xs">
