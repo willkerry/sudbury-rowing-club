@@ -4,13 +4,14 @@
   "description": "",
   "packageManager": "pnpm@8.6.2",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "turbo build",
+    "dev": "turbo dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sudbury-rowing-club-web-app": "*",
+    "stour-web-app": "*",
     "stour-blue": "*"
   }
 }

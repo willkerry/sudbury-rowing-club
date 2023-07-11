@@ -11,7 +11,7 @@ importers:
       stour-blue:
         specifier: '*'
         version: link:packages/blue
-      sudbury-rowing-club-web-app:
+      stour-web-app:
         specifier: '*'
         version: link:apps/web
 

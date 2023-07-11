@@ -1,6 +1,6 @@
 {
   "schema": "https://json.schemastore.org/package",
-  "name": "sudbury-rowing-club-web-app",
+  "name": "stour-web-app",
   "version": "1.0.0",
   "packageManager": "pnpm",
   "scripts": {
