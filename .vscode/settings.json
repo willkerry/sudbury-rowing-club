@@ -4,5 +4,6 @@
     "activityBar.foreground": "#fff",
     "activityBar.inactiveForeground": "#ffffff55"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "eslint.workingDirectories": ["./apps/web"]
 }

@@ -1,4 +1,5 @@
 {
+  "@schema": "https://json.schemastore.org/eslintrc",
   "plugins": ["sonarjs", "react-hooks", "sort-keys-fix"],
   "extends": [
     "plugin:sonarjs/recommended",
@@ -11,7 +12,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "tsconfig.json"
+    "project": "./tsconfig.json"
   },
   "env": {
     "browser": true,
