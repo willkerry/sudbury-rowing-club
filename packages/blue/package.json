@@ -1,0 +1,16 @@
+{
+  "name": "stour-blue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup index.ts --format cjs,esm --dts --minify --clean --sourcemap --legacy-output",
+    "dev": "tsup index.ts --format cjs,esm --dts --watch --clean --sourcemap --legacy-output"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tsup": "^7.1.0"
+  }
+}
