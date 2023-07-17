@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "stour-web-app": "*",
-    "stour-blue": "*"
+    "stour-blue": "*",
+    "eslint-config-stour": "*"
   }
 }
