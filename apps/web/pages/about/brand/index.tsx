@@ -10,7 +10,7 @@ import Color from "color";
 import { GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
-import { blue } from "stour-blue";
+import { blue } from "@sudburyrc/blue";
 
 const brandAssets = [
   {

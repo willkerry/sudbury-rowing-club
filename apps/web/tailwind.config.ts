@@ -5,7 +5,7 @@ import aspectRatio from "@tailwindcss/aspect-ratio";
 import forms from "@tailwindcss/forms";
 // @ts-ignore
 import animate from "tailwindcss-animate";
-import { blue } from "stour-blue";
+import { blue } from "@sudburyrc/blue";
 
 export default {
   plugins: [animate, typography, aspectRatio, forms],

@@ -2,7 +2,7 @@ import { type NextRequest } from "next/server";
 import { ImageResponse } from "@vercel/og";
 import { z } from "zod";
 import Logo from "@/components/logo";
-import { blue } from "stour-blue";
+import { blue } from "@sudburyrc/blue";
 
 export const config = {
   runtime: "edge",
