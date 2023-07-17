@@ -1,5 +1,5 @@
 {
-  "name": "stour-monorepo",
+  "name": "@sudburyrc/monorepo",
   "version": "1.0.0",
   "description": "",
   "packageManager": "pnpm@8.6.2",
@@ -11,8 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "stour-web-app": "*",
-    "stour-blue": "*",
+    "@sudburyrc/web": "*",
+    "@sudburyrc/blue": "*",
+    "@sudburyrc/cn": "*",
     "eslint-config-stour": "*"
   }
 }

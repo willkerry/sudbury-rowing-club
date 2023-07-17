@@ -8,15 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@sudburyrc/blue':
+        specifier: '*'
+        version: link:packages/blue
+      '@sudburyrc/cn':
+        specifier: '*'
+        version: link:packages/cn
+      '@sudburyrc/web':
+        specifier: '*'
+        version: link:apps/web
       eslint-config-stour:
         specifier: '*'
         version: link:packages/eslint-config-stour
-      stour-blue:
-        specifier: '*'
-        version: link:packages/blue
-      stour-web-app:
-        specifier: '*'
-        version: link:apps/web
 
   apps/web:
     dependencies:
@@ -53,6 +56,9 @@ importers:
       '@south-paw/react-obfuscate-ts':
         specifier: ^1.0.2
         version: 1.0.2(react@18.2.0)(styled-components@5.3.11)
+      '@sudburyrc/blue':
+        specifier: workspace:*
+        version: link:../../packages/blue
       '@tailwindcss/aspect-ratio':
         specifier: ^0.4.2
         version: 0.4.2(tailwindcss@3.3.2)
@@ -158,9 +164,6 @@ importers:
       snarkdown:
         specifier: ^2.0.0
         version: 2.0.0
-      stour-blue:
-        specifier: workspace:*
-        version: link:../../packages/blue
       styled-components:
         specifier: ^5.3.11
         version: 5.3.11(@babel/core@7.22.8)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)
@@ -240,6 +243,18 @@ importers:
 
   packages/blue:
     dependencies:
+      '@sudburyrc/cn':
+        specifier: '*'
+        version: link:../cn
+      tsup:
+        specifier: ^7.1.0
+        version: 7.1.0
+
+  packages/cn:
+    dependencies:
+      clsx:
+        specifier: ^1.2.1
+        version: 1.2.1
       tsup:
         specifier: ^7.1.0
         version: 7.1.0
