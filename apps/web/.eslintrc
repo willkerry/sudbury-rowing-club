@@ -1,4 +1,5 @@
 {
+  "@schema": "https://json.schemastore.org/eslintrc",
   "plugins": ["sonarjs", "react-hooks", "sort-keys-fix"],
   "extends": [
     "plugin:sonarjs/recommended",

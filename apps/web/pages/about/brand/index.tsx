@@ -10,7 +10,7 @@ import Color from "color";
 import { GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import { Circle, HelpCircle } from "react-feather";
-import tailwindConfig from "../../../tailwind.config";
+import { blue } from "stour-blue";
 
 const brandAssets = [
   {
@@ -379,12 +379,8 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
 
 export default Brand;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const blue = tailwindConfig.theme?.extend?.colors?.blue;
-
-  return {
-    props: {
-      blue,
-    },
-  };
-};
+export const getStaticProps: GetStaticProps = async () => ({
+  props: {
+    blue,
+  },
+});

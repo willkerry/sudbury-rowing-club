@@ -46,6 +46,3 @@ tsconfig.tsbuildinfo
 # react-email
 .react-email
 .env*.local
-
-# turbo
-.turbo
