@@ -1,4 +1,4 @@
-import cn from "@/lib/cn";
+import cn from "@sudburyrc/cn";
 import { PortableText } from "@/lib/sanity";
 import { PortableTextProps } from "@portabletext/react";
 

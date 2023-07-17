@@ -1,4 +1,4 @@
-import cn from "@/lib/cn";
+import cn from "@sudburyrc/cn";
 import Link from "@/components/stour/link";
 
 type Props = {

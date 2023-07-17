@@ -1,4 +1,4 @@
-import cn from "@/lib/cn";
+import cn from "@sudburyrc/cn";
 import Link from "next/link";
 import useSWR from "swr";
 import groq from "groq";

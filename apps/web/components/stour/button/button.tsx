@@ -5,7 +5,7 @@ import type {
   ReactNode,
 } from "react";
 import { type VariantProps, cva } from "class-variance-authority";
-import cn from "@/lib/cn";
+import cn from "@sudburyrc/cn";
 import { Slot } from "@radix-ui/react-slot";
 import Link from "next/link";
 import Loading from "../loading";

@@ -1,6 +1,6 @@
 import Button from "@/components/stour/button";
 import Link from "@/components/stour/link";
-import cn from "@/lib/cn";
+import cn from "@sudburyrc/cn";
 
 const L2RCallToAction = () => {
   const classes =

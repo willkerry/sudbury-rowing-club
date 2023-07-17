@@ -1,4 +1,4 @@
-import cn from "@/lib/cn";
+import cn from "@sudburyrc/cn";
 import Label from "@/components/stour/label";
 import Container from "../../layouts/container";
 
