@@ -14,6 +14,8 @@
     "@sudburyrc/web": "*",
     "@sudburyrc/blue": "*",
     "@sudburyrc/cn": "*",
-    "eslint-config-stour": "*"
+    "eslint-config-stour": "*",
+    "tailwind-config": "*",
+    "tsconfig": "*"
   }
 }

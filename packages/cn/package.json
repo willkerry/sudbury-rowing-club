@@ -4,14 +4,27 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --minify --clean --sourcemap",
-    "dev": "tsup index.ts --format cjs,esm --watch --clean --sourcemap"
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "tsup": {
+    "dts": true,
+    "sourcemap": true,
+    "clean": true,
+    "entryPoints": [
+      "index.ts"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "clsx": "^1.2.1",
+    "tsconfig": "workspace:*",
     "tsup": "^7.1.0"
   }
 }

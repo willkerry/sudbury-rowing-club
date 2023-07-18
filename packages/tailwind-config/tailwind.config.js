@@ -1,12 +1,10 @@
-import type { Config } from "tailwindcss";
-
 import typography from "@tailwindcss/typography";
 import aspectRatio from "@tailwindcss/aspect-ratio";
 import forms from "@tailwindcss/forms";
-// @ts-ignore
 import animate from "tailwindcss-animate";
 import { blue } from "@sudburyrc/blue";
 
+/** @type {import('tailwindcss').Config} */
 export default {
   plugins: [animate, typography, aspectRatio, forms],
   mode: "jit",
@@ -66,7 +64,6 @@ export default {
           "2xl": "1024px",
         },
       },
-      // @ts-ignore
       typography: (theme) => ({
         DEFAULT: {
           css: {
@@ -134,4 +131,4 @@ export default {
       }),
     },
   },
-} satisfies Config;
+};

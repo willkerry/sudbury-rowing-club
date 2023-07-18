@@ -4,14 +4,27 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsup index.ts --format cjs,esm --dts --minify --clean --sourcemap --legacy-output",
-    "dev": "tsup index.ts --format cjs,esm --dts --watch --clean --sourcemap --legacy-output"
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "tsup": {
+    "dts": true,
+    "sourcemap": true,
+    "clean": true,
+    "entryPoints": [
+      "index.ts"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sudburyrc/cn": "*",
-    "tsup": "^7.1.0"
+    "@sudburyrc/cn": "workspace:*",
+    "tsup": "^7.1.0",
+    "tsconfig": "workspace:*"
   }
 }
