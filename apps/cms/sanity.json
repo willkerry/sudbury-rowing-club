@@ -1,0 +1,39 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "gvxge7ps",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "Sudbury Rowing Club"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "@sanity/vision",
+    "table",
+    "vercel-deploy",
+    "@sanity/dashboard",
+    "@sanity/orderable-document-list"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "@sanity/vision"
+      ]
+    }
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
+    }
+  ]
+}
