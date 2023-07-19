@@ -13,6 +13,7 @@
   "dependencies": {
     "@sudburyrc/web": "*",
     "@sudburyrc/blue": "*",
+    "@sudburyrc/cms": "*",
     "@sudburyrc/cn": "*",
     "eslint-config-stour": "*",
     "tailwind-config": "*",

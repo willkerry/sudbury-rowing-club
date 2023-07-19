@@ -1,10 +1,9 @@
 {
-  "name": "sudbury-sanity",
+  "name": "@sudburyrc/cms",
   "version": "2.0.0",
   "description": "",
   "main": "package.json",
   "author": "Will Kerry <webmaster@sudburyrowingclub.org.uk>",
-  "packageManager": "npm",
   "scripts": {
     "start": "sanity start",
     "build": "sanity build public -y",
