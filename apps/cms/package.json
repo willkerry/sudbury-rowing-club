@@ -6,7 +6,7 @@
   "author": "Will Kerry <webmaster@sudburyrowingclub.org.uk>",
   "scripts": {
     "start": "sanity start",
-    "build": "sanity build public -y",
+    "build": "sanity build -y",
     "dev": "sanity dev",
     "sanity:upgrade": "sanity upgrade"
   },
