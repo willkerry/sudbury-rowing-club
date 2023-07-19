@@ -1,9 +1,0 @@
-{
-  "workbench.colorCustomizations": {
-    "activityBar.background": "#002147",
-    "activityBar.foreground": "#fff",
-    "activityBar.inactiveForeground": "#ffffff55"
-  },
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.workingDirectories": ["./apps/web"]
-}
