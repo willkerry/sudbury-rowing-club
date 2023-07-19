@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import Link from "@/components/stour/link";
 
 type Props = {

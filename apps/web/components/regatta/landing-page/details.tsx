@@ -1,6 +1,6 @@
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import Label from "@/components/stour/label";
 
 export type DetailProps = {

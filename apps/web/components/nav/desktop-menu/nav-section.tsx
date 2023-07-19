@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import partition from "lodash/partition";
 
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 
 export const navLinkClasses = cn(
   "group transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md"

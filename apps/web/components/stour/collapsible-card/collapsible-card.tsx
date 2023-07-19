@@ -3,7 +3,7 @@ import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Notice } from "@/lib/queries/fetch-notices";

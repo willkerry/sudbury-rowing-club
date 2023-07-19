@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import Container from "../../layouts/container";
 import Breadcrumbs from "../breadcrumbs";
 

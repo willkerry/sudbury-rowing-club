@@ -5,7 +5,7 @@ import {
   SectionTitle,
   SubTitle,
 } from "@/components/governance";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 
 type Props = {
   committees: Governance["committees"];

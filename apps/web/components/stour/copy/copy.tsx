@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import {
   ClipboardDocumentCheckIcon,
   ClipboardDocumentListIcon,

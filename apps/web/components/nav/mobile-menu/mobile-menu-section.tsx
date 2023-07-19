@@ -1,7 +1,7 @@
 import { IconNavItemType } from "@/types/nav-item";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import Link from "next/link";
 
 type SectionProps = {

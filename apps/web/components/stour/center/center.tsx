@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 
 type Props = {
   children: React.ReactNode;

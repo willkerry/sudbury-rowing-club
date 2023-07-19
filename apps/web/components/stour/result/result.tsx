@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,

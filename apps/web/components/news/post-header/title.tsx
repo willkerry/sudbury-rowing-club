@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 

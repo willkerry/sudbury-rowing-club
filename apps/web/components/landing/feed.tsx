@@ -4,7 +4,7 @@ import useBritishRowingFeed, {
 } from "@/hooks/useBritishRowingFeed";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import Link from "@/components/stour/link";
 import Result from "../stour/result";
 

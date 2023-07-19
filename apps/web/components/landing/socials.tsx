@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import { SOCIALS, SUPPORTED_SOCIALS } from "@/lib/constants";
 import Facebook from "@/components/icons/socials/facebook";
 import Instagram from "@/components/icons/socials/instagram";

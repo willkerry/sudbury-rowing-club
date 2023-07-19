@@ -4,7 +4,7 @@ import getWeatherForecast, {
 } from "@/lib/get-weather-forecast";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import useSWR from "swr";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import { weatherIcons, windIcons } from "../icons/weather-icons";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";

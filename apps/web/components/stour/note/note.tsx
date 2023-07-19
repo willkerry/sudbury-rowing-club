@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 
 export type NoteProps = {
   children: React.ReactNode;

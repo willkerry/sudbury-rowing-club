@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import { type Testimonial as TestimonialType } from "@/lib/queries/fetch-regattas";
 import Anonymous from "./anonymous";
 

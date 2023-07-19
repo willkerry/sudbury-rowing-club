@@ -3,7 +3,7 @@ import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import Link from "next/link";
 import { fetchAllAuthors } from "@/lib/queries/fetch-authors";
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import { type InferGetStaticPropsType, type NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { makeShareImageURL } from "@/lib/og-image";

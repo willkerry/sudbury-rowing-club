@@ -1,4 +1,4 @@
-import cn from "@sudburyrc/cn";
+import cn from "clsx";
 import { Download } from "react-feather";
 import ordinal from "@/lib/helpers/ordinal";
 import DateFormatter from "@/components/utils/date-formatter";

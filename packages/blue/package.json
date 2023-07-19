@@ -23,7 +23,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sudburyrc/cn": "workspace:*",
     "tsup": "^7.1.0",
     "tsconfig": "workspace:*"
   }
