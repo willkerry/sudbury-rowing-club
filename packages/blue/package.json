@@ -24,6 +24,6 @@
   "license": "ISC",
   "dependencies": {
     "tsup": "^7.1.0",
-    "tsconfig": "workspace:*"
+    "@sudburyrc/tsconfig": "workspace:*"
   }
 }
