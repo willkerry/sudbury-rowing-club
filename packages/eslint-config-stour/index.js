@@ -1,3 +1,4 @@
+/** @type {import("@types/eslint".ESLint.ConfigData)} */
 module.exports = {
   plugins: ["sonarjs", "react-hooks", "sort-keys-fix"],
   extends: [
