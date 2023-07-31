@@ -17,7 +17,7 @@ const useNotice = () =>
     z.object({
       display: z.boolean(),
       label: z.string(),
-      text: z.array(ZTypedObject),
+      text: z.array(ZTypedObject).optional(),
       type: z.enum(noticeVariants),
       link: z.string().optional(),
       date: z
