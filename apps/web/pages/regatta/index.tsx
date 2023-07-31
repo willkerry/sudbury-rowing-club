@@ -15,7 +15,6 @@ import DateFormatter from "@/components/utils/date-formatter";
 import { REGATTA } from "@/lib/constants";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-import Notice from "@/components/regatta/notice";
 import fetchRegattas from "@/lib/queries/fetch-regattas";
 import fetchRegattaSettings from "@/lib/queries/fetch-regatta-settings";
 
@@ -177,7 +176,6 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         description={EVENT_TAGLINE}
       />
       <Container>
-        <Notice />
         <RegattaHero {...{ ticketItems }} subtitle={landingPage.tagline} />
         <DateLocation
           date={regattaDate}

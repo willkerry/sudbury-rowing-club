@@ -1,5 +1,6 @@
 import { CogIcon } from "@sanity/icons";
 
+/** @type {import('@sanity/types').DocumentDefinition} */
 export default {
   name: "regattaSettings",
   type: "document",
@@ -63,9 +64,24 @@ export default {
       name: "note",
       type: "object",
       description:
-        "A optional note, displayed near the top of the regatta landing page.",
+        "A optional note, displayed near the top of the regatta landing page and homepage.",
       fields: [
-        { name: "display", type: "boolean" },
+        {
+          name: "display",
+          type: "boolean",
+          description: "If set to false, the note will not be displayed.",
+        },
+        {
+          name: "label",
+          type: "string",
+          description: "Displayed in bold",
+        },
+        {
+          name: "link",
+          type: "url",
+          description:
+            "If set, no text will be displayed and the banner will link to this URL (useful, for example, for linking to the draw).",
+        },
         {
           name: "text",
           type: "array",
@@ -78,6 +94,14 @@ export default {
           options: {
             list: ["primary", "secondary", "success", "warning", "error"],
           },
+          description:
+            "The type of note to display: primary is suitable for most, secondary is bad or sad, success is green, warning is yellow, and error is red.",
+        },
+        {
+          name: "date",
+          type: "date",
+          description:
+            "If text is set and this date is not blank, it will be displated below the text. Acts as a 'last updated' date.",
         },
       ],
       options: {

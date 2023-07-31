@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Notice from "@/components/regatta/notice";
 import Feed from "@/components/landing/feed";
 import { type NoteProps } from "@/components/stour/note/note";
 import sanityClient from "@/lib/sanity.server";
@@ -61,9 +60,7 @@ const Home: NextPage<{
         title: `${landingPage.title}`,
       }}
     />
-    <Container>
-      <Notice />
-    </Container>
+
     {landingPage.note.display && (
       <Container>
         <Note

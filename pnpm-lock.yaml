@@ -53,6 +53,9 @@ importers:
       '@sanity/table':
         specifier: ^1.0.1
         version: 1.0.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.14.3)(styled-components@5.3.11)
+      '@sanity/types':
+        specifier: ^3.14.4
+        version: 3.14.4
       '@sanity/ui':
         specifier: ^1.7.3
         version: 1.7.3(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@5.3.11)
@@ -2776,6 +2779,15 @@ packages:
 
   /@sanity/types@3.14.3:
     resolution: {integrity: sha512-hpXleCTw+ktIkTBLdrEWNnQj9XsHCIq29ylUQeG9PhabOCZsHXeB1kzLg5Djg7Ujqzo3ggdV6o6RJIyD6TTf2w==}
+    dependencies:
+      '@sanity/client': 6.1.7
+      '@types/react': 18.2.15
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@sanity/types@3.14.4:
+    resolution: {integrity: sha512-0fC3EgPjxRn8ugwRKXZWvjhcHKU1na59GjbS2ME5U2wCqRBNwCYs5fT8SQh19EGHi/NoiTs/mlfcL19B4XF25Q==}
     dependencies:
       '@sanity/client': 6.1.7
       '@types/react': 18.2.15

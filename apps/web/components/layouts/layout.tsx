@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
 import Meta from "@/components/layouts/meta";
 import { Nav } from "@/components/nav";
+import Banner from "@/components/banner";
 
 type Props = {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ const Layout: React.FC<Props> = ({ children }: Props) => (
   <>
     <Meta />
     <div className="min-h-screen">
+      <Banner />
       <Nav />
       <main>{children}</main>
     </div>
