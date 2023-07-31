@@ -6,24 +6,24 @@ import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";
 import Container from "../layouts/container";
 
-const BannerVariants = cva(noticeVariants, {
+const bannerVariants = cva(noticeVariants, {
   variants: {
     bg: {
-      primary: "bg-gray-200",
+      primary: "bg-blue-700",
       secondary: "bg-black",
       success: "bg-green-800",
       warning: "bg-amber-500",
       error: "bg-red-700",
     },
     text: {
-      primary: "text-gray-900",
+      primary: "text-blue-50",
       secondary: "text-gray-200",
       success: "text-green-200",
       warning: "text-gray-950",
       error: "text-red-50",
     },
     textHover: {
-      primary: "group-hover:text-blue-600",
+      primary: "group-hover:text-blue-200",
       secondary: "group-hover:text-blue-300",
       success: "group-hover:text-green-400",
       warning: "group-hover:text-yellow-900",
@@ -60,7 +60,12 @@ const ButtonOrAnchor = ({
       </button>
     ),
     a: (
-      <a className={className} {...props}>
+      <a
+        className={className}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
         {children}
       </a>
     ),
@@ -83,38 +88,57 @@ const Banner = () => {
 
   if (error || !data || !data.display) return null;
 
-  const type = (() => {
+  const controlTypes = ["button", "a"] as const;
+  const controlType: (typeof controlTypes)[number] = (() => {
     if (data.link?.match(/^(https?|mailto):\/\//)) return "a";
     if (data.link?.match(/^\/[a-z0-9-]+/)) return "a";
     return "button";
   })();
+
+  const controlVariants: Record<
+    (typeof controlTypes)[number],
+    {
+      text: string;
+      className: string;
+    }
+  > = {
+    button: {
+      text: "Read more",
+      className: cn([
+        "group-hover:rotate-90",
+        expanded && "rotate-90 group-hover:-rotate-90",
+      ]),
+    },
+    a: {
+      text: "Go",
+      className: "group-hover:translate-x-0.5",
+    },
+  };
+
+  const { text, className } = controlVariants[controlType];
 
   return (
     <>
       <ButtonOrAnchor
         className={cn(
           "group z-50 flex w-full items-center py-2 text-sm",
-          BannerVariants({ bg: data?.type, text: data?.type }),
+          bannerVariants({ bg: data?.type, text: data?.type }),
           expanded && "shadow-2xl"
         )}
-        type={type}
+        type={controlType}
         href={data.link || "#"}
         onClick={() => setExpanded((prev) => !prev)}
       >
         <Container className="text-left">
           <span className="font-semibold">{data?.label}</span>{" "}
           <span
-            className={cn(BannerVariants({ textHover: data?.type }), "ml-1")}
+            className={cn(bannerVariants({ textHover: data?.type }), "ml-1")}
           >
-            Read more{" "}
+            {text}{" "}
             <span
               className={cn(
                 "inline-block transform transition-transform",
-                type === "button" && [
-                  "group-hover:rotate-90",
-                  expanded && "rotate-90 group-hover:-rotate-90",
-                ],
-                type === "a" && "group-hover:translate-x-0.5"
+                className
               )}
             >
               &rarr;
