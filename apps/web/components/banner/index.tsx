@@ -40,6 +40,26 @@ const bannerVariants: Record<
   },
 };
 
+const controlTypes = ["button", "a"] as const;
+const controlVariants: Record<
+  (typeof controlTypes)[number],
+  {
+    text: string;
+    className: string;
+    classNameExpanded?: string;
+  }
+> = {
+  button: {
+    text: "Read more",
+    className: "group-hover:rotate-90",
+    classNameExpanded: "rotate-90 group-hover:-rotate-90",
+  },
+  a: {
+    text: "Go",
+    className: "group-hover:translate-x-0.5 group-active:translate-x-1.5",
+  },
+};
+
 type BaseButtonOrAnchorProps = {
   className?: string;
   children: React.ReactNode;
@@ -96,31 +116,11 @@ const Banner = () => {
 
   if (error || !data || !data.display) return null;
 
-  const controlTypes = ["button", "a"] as const;
   const controlType: (typeof controlTypes)[number] = (() => {
     if (data.link?.match(/^(https?|mailto):\/\//)) return "a";
     if (data.link?.match(/^\/[a-z0-9-]+/)) return "a";
     return "button";
   })();
-
-  const controlVariants: Record<
-    (typeof controlTypes)[number],
-    {
-      text: string;
-      className: string;
-      classNameExpanded?: string;
-    }
-  > = {
-    button: {
-      text: "Read more",
-      className: "group-hover:rotate-90",
-      classNameExpanded: "rotate-90 group-hover:-rotate-90",
-    },
-    a: {
-      text: "Go",
-      className: "group-hover:translate-x-0.5 group-active:translate-x-1.5",
-    },
-  };
 
   const { text, className, classNameExpanded } = controlVariants[controlType];
   const { bgColor, textColor, textHover } =
