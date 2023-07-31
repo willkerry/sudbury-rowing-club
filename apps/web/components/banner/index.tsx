@@ -1,4 +1,3 @@
-import { cva } from "class-variance-authority";
 import cn from "clsx";
 import useNotice, { noticeVariants } from "@/hooks/useNotice";
 import { useEffect, useRef, useState } from "react";
@@ -6,31 +5,40 @@ import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";
 import Container from "../layouts/container";
 
-const bannerVariants = cva(noticeVariants, {
-  variants: {
-    bg: {
-      primary: "bg-blue-700",
-      secondary: "bg-black",
-      success: "bg-green-800",
-      warning: "bg-amber-500",
-      error: "bg-red-700",
-    },
-    text: {
-      primary: "text-blue-50",
-      secondary: "text-gray-200",
-      success: "text-green-200",
-      warning: "text-gray-950",
-      error: "text-red-50",
-    },
-    textHover: {
-      primary: "group-hover:text-blue-200",
-      secondary: "group-hover:text-blue-300",
-      success: "group-hover:text-green-400",
-      warning: "group-hover:text-yellow-900",
-      error: "group-hover:text-red-300",
-    },
+const bannerVariants: Record<
+  (typeof noticeVariants)[number],
+  {
+    bgColor: string;
+    textColor: string;
+    textHover: string;
+  }
+> = {
+  primary: {
+    bgColor: "bg-blue-700",
+    textColor: "text-blue-50",
+    textHover: "group-hover:text-blue-200",
   },
-});
+  secondary: {
+    bgColor: "bg-black",
+    textColor: "text-gray-200",
+    textHover: "group-hover:text-blue-300",
+  },
+  success: {
+    bgColor: "bg-green-800",
+    textColor: "text-green-200",
+    textHover: "group-hover:text-green-400",
+  },
+  warning: {
+    bgColor: "bg-amber-500",
+    textColor: "text-gray-950",
+    textHover: "group-hover:text-yellow-900",
+  },
+  error: {
+    bgColor: "bg-red-700",
+    textColor: "text-red-50",
+    textHover: "group-hover:text-red-300",
+  },
+};
 
 type BaseButtonOrAnchorProps = {
   className?: string;
@@ -100,30 +108,31 @@ const Banner = () => {
     {
       text: string;
       className: string;
+      classNameExpanded?: string;
     }
   > = {
     button: {
       text: "Read more",
-      className: cn([
-        "group-hover:rotate-90",
-        expanded && "rotate-90 group-hover:-rotate-90",
-      ]),
+      className: "group-hover:rotate-90",
+      classNameExpanded: "rotate-90 group-hover:-rotate-90",
     },
     a: {
       text: "Go",
-      className:
-        "group-hover:translate-x-0.5 group-active:translate-x-1.5 ease-in-out",
+      className: "group-hover:translate-x-0.5 group-active:translate-x-1.5",
     },
   };
 
-  const { text, className } = controlVariants[controlType];
+  const { text, className, classNameExpanded } = controlVariants[controlType];
+  const { bgColor, textColor, textHover } =
+    bannerVariants[data?.type || "primary"];
 
   return (
     <>
       <ButtonOrAnchor
         className={cn(
           "group z-50 flex w-full items-center py-2 text-sm",
-          bannerVariants({ bg: data?.type, text: data?.type }),
+          bgColor,
+          textColor,
           expanded && "shadow-2xl"
         )}
         type={controlType}
@@ -132,14 +141,13 @@ const Banner = () => {
       >
         <Container className="text-left">
           <span className="font-semibold">{data?.label}</span>{" "}
-          <span
-            className={cn(bannerVariants({ textHover: data?.type }), "ml-1")}
-          >
+          <span className={cn(textHover, "ml-1")}>
             {text}{" "}
             <span
               className={cn(
                 "inline-block transform transition-transform",
-                className
+                className,
+                expanded && classNameExpanded
               )}
             >
               &rarr;
