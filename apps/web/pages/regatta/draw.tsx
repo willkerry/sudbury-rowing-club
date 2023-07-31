@@ -47,6 +47,34 @@ export const getStaticProps = async () => {
   };
 };
 
+type State = "placeholder" | "draw" | "results";
+
+const getStateText = (state: State, date: Date) =>
+  ({
+    placeholder: {
+      paragraph: (
+        <>
+          This year that is expected to be approximately{" "}
+          <DateFormatter timeZone="utc" dateString={date} format="long" />.
+        </>
+      ),
+      button: "View last year’s draw",
+    },
+    draw: {
+      paragraph: (
+        <>
+          This year’s draw is now available. Over the course of the regatta, the
+          draw will be updated with results after each division.
+        </>
+      ),
+      button: "View this year’s draw",
+    },
+    results: {
+      paragraph: <>This year’s draw is now populated with results.</>,
+      button: "View this year’s results",
+    },
+  }[state]);
+
 const Draw = ({
   showDrawFrom,
   showResultsFrom,
@@ -56,35 +84,14 @@ const Draw = ({
   const date = new Date();
   const now = date.getTime();
 
-  const state = (() => {
+  const state: State = (() => {
     if (now < showDrawFrom && !thisYearsDrawIsPublished) return "placeholder";
     if (now < showDrawFrom && thisYearsDrawIsPublished) return "draw";
     if (now < showResultsFrom) return "results";
     return "results";
   })();
 
-  const stateText: Record<typeof state, React.ReactNode> = {
-    placeholder: (
-      <>
-        This year that is expected to be approximately{" "}
-        <DateFormatter timeZone="utc" dateString={showDrawFrom} format="long" />
-        .
-      </>
-    ),
-    draw: (
-      <>
-        This year’s draw is now available. Over the course of the regatta, the
-        draw will be updated with results after each division.
-      </>
-    ),
-    results: <>This year’s draw is now populated with results.</>,
-  };
-
-  const buttonText: Record<typeof state, string> = {
-    placeholder: "View last year’s draw",
-    draw: "View this year’s draw",
-    results: "View this year’s results",
-  };
+  const { paragraph, button } = getStateText(state, date);
 
   return (
     <TextPage
@@ -98,10 +105,10 @@ const Draw = ({
         </a>{" "}
         the week before the regatta.
       </p>
-      <p>{stateText[state]}</p>
+      <p>{paragraph}</p>
       <p className="flex justify-center py-4">
         <Button href={DRAW_URL} shadow size="large">
-          {buttonText[state]}
+          {button}
         </Button>
       </p>
     </TextPage>
