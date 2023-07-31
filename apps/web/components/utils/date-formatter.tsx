@@ -10,8 +10,9 @@ type DateFormatPresets =
   | "shortWeekday";
 
 type Props = {
-  dateString: string | Date;
+  dateString: string | number | Date;
   format?: DateFormatPresets;
+  timeZone?: Intl.DateTimeFormatOptions["timeZone"];
 } & React.HTMLAttributes<HTMLTimeElement>;
 
 const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
@@ -39,20 +40,19 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
     ["shortWeekday", { weekday: "short" }],
   ]);
 
-const DateFormatter = ({ dateString, format, ...props }: Props) => {
-  const date = new Date(dateString);
-
-  const formattedDate = date.toLocaleDateString(
-    "en-GB",
-    defaultOptions.get(format || "default")
-  );
-
-  return (
-    <time dateTime={date.toString()} {...props}>
-      {formattedDate}
-    </time>
-  );
-};
+const DateFormatter = ({
+  dateString,
+  format,
+  timeZone = Intl?.DateTimeFormat().resolvedOptions().timeZone,
+  ...props
+}: Props) => (
+  <time dateTime={dateString.toString()} {...props}>
+    {Intl.DateTimeFormat("en-GB", {
+      timeZone,
+      ...defaultOptions.get(format || "default"),
+    }).format(new Date(dateString))}
+  </time>
+);
 
 DateFormatter.defaultProps = {
   format: "default",
