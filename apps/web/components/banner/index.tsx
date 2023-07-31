@@ -111,7 +111,8 @@ const Banner = () => {
     },
     a: {
       text: "Go",
-      className: "group-hover:translate-x-0.5",
+      className:
+        "group-hover:translate-x-0.5 group-active:translate-x-1.5 ease-in-out",
     },
   };
 
