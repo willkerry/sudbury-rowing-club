@@ -2,7 +2,6 @@ import cn from "clsx";
 import { SOCIALS, SUPPORTED_SOCIALS } from "@/lib/constants";
 import Facebook from "@/components/icons/socials/facebook";
 import Instagram from "@/components/icons/socials/instagram";
-import Twitter from "@/components/icons/socials/twitter";
 
 type AvailableSocials = (typeof SUPPORTED_SOCIALS)[number];
 
@@ -12,13 +11,11 @@ const ICONS: Record<
 > = {
   facebook: Facebook,
   instagram: Instagram,
-  twitter: Twitter,
 };
 
-const COLORS: Record<(typeof SOCIALS)[keyof typeof SOCIALS]["name"], string> = {
+const COLORS: Record<AvailableSocials, string> = {
   facebook: "text-blue-600",
   instagram: "text-pink-500",
-  twitter: "text-blue-400",
 };
 
 const Socials = () => (
@@ -36,7 +33,7 @@ const Socials = () => (
           <Icon
             className={cn(
               "h-8 w-8 transition group-hover:-translate-y-1 group-hover:rotate-12 group-hover:scale-110 group-hover:drop-shadow-lg",
-              COLORS[key]
+              COLORS[key as AvailableSocials]
             )}
             aria-hidden
           />

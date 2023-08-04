@@ -22,7 +22,7 @@ export const SENDER = {
   name: "Sudbury Rowing Club",
 };
 
-export const SUPPORTED_SOCIALS = ["instagram", "facebook", "twitter"] as const;
+export const SUPPORTED_SOCIALS = ["instagram", "facebook"] as const;
 
 export const SOCIALS: Record<
   (typeof SUPPORTED_SOCIALS)[number],
@@ -37,11 +37,6 @@ export const SOCIALS: Record<
     name: "Facebook",
     href: "https://facebook.com/sudburyrowing",
     handle: "@sudburyrowing",
-  },
-  twitter: {
-    name: "Twitter",
-    href: "https://twitter.com/sudbury_rowing",
-    handle: "@sudbury_rowing",
   },
 };
 
