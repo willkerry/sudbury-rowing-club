@@ -20,9 +20,11 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
   >
     {article && (
       <>
-        <h3 className="text-sm font-medium leading-tight group-hover:text-blue-600">
-          {article.title.rendered}
-        </h3>
+        <h3
+          className="text-sm font-medium leading-tight group-hover:text-blue-600"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: article.title.rendered }}
+        />
 
         <div className="flex items-end justify-between gap-1">
           <DateFormatter
