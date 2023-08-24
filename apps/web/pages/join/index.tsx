@@ -39,8 +39,8 @@ export const NextCourse = () => {
           type="success"
           label={`Our ${expirySeason} course has finished`}
         >
-          Check back soon for details of our next course. Register your interest
-          and be notified when the next course is announced.
+          Check back soon for details of our next course. Apply now to register
+          your interest and be notified when the next course is announced.
         </Note>
       </div>
     );
