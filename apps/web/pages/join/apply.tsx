@@ -1,16 +1,11 @@
 import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
-import Note from "@/components/stour/note";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import Loading from "@/components/stour/loading";
 import { NextPage } from "next";
-import { NextCourse } from ".";
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row">
-    <Note className="relative">
-      <NextCourse />
-    </Note>
     <p>
       What’s the next step? After we receive your application, the Learn to Row
       coordinator will contact you ahead of the next course to arrange a taster
