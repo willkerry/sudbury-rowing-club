@@ -8,7 +8,7 @@ import { NextCourse } from ".";
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row">
-    <Note>
+    <Note className="relative">
       <NextCourse />
     </Note>
     <p>
