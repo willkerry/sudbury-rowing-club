@@ -35,6 +35,8 @@ const validateRequest = (req: NextApiRequest) => {
   try {
     const request = RequestSchema.parse(req.body);
 
+    console.log("Validating request", request);
+
     return {
       fromEmail: request.email,
       fromName: request.name,
@@ -62,8 +64,12 @@ const spamCheck = async (
     email,
     message
   ).catch(() => {
+    console.error("Could not connect to Akismet");
+
     throw new ResponseError("Could not connect to Akismet", 500);
   });
+
+  console.log("Spam check", isSpam);
 
   if (isSpam) throw new ResponseError("Message rejected as spam", 400);
 };
@@ -79,6 +85,7 @@ const findRecipient = async (id: string) => {
 export default async function Send(req: NextApiRequest, res: NextApiResponse) {
   try {
     if (req.method !== "POST") {
+      console.error("Method not allowed", req.method);
       throw new ResponseError("Method not allowed", 405);
     }
 
@@ -108,6 +115,7 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
         }),
       })
       .catch((error) => {
+        console.error("error sending email", error);
         throw new ResponseError(error.message, 500);
       })
       .then(() => {
