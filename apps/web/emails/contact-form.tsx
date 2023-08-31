@@ -90,8 +90,9 @@ export const ContactFormEmail = ({
             <Row>
               <Column>
                 <Label>Message:</Label>
-                <Text
+                <div
                   className="m-0  rounded border border-solid border-gray-200 bg-gray-50 p-2 text-sm text-gray-900"
+                  // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{ __html: snarkdown(message) }}
                 />
               </Column>
@@ -104,7 +105,7 @@ export const ContactFormEmail = ({
               Sent using the{" "}
               <Link
                 className="text-blue-500"
-                href="https://sudburyrowingclub.org.uk/"
+                href="https://sudburyrowingclub.org.uk/contact"
               >
                 contact form
               </Link>{" "}
