@@ -31,9 +31,6 @@ class ResponseError extends Error {
   }
 }
 
-const testError = new Error("Something has gone wrong");
-testError.message = "Test error";
-
 const validateRequest = (req: NextApiRequest) => {
   try {
     const request = RequestSchema.parse(req.body);
