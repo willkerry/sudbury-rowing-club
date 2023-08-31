@@ -31,6 +31,9 @@ class ResponseError extends Error {
   }
 }
 
+const testError = new Error("Something has gone wrong");
+testError.message = "Test error";
+
 const validateRequest = (req: NextApiRequest) => {
   try {
     const request = RequestSchema.parse(req.body);
@@ -66,19 +69,26 @@ const spamCheck = async (
   ).catch(() => {
     console.error("Could not connect to Akismet");
 
-    throw new ResponseError("Could not connect to Akismet", 500);
+    throw new ResponseError("Could not connect to spam checking service.", 500);
   });
 
   console.log("Spam check", isSpam);
 
-  if (isSpam) throw new ResponseError("Message rejected as spam", 400);
+  if (isSpam)
+    throw new ResponseError(
+      "Your message has been flagged as spam. If you believe this is an error, please contact us directly.",
+      403
+    );
 };
 
 const findRecipient = async (id: string) => {
   try {
     return await getOfficer(id);
   } catch (error) {
-    throw new ResponseError("No recipient found", 500);
+    throw new ResponseError(
+      "Could not find recipient. This is likely a temporary error. Please try again later or contact us directly.",
+      404
+    );
   }
 };
 
@@ -86,7 +96,7 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
   try {
     if (req.method !== "POST") {
       console.error("Method not allowed", req.method);
-      throw new ResponseError("Method not allowed", 405);
+      throw new ResponseError(`Method ${req.method} not allowed.`, 405);
     }
 
     const { fromEmail, fromName, toID, message } = validateRequest(req);
@@ -116,7 +126,10 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
       })
       .catch((error) => {
         console.error("error sending email", error);
-        throw new ResponseError(error.message, 500);
+        throw new ResponseError(
+          `A third party service returned an error: ${error.message}`,
+          502
+        );
       })
       .then(() => {
         res.status(200).json("Message sent");

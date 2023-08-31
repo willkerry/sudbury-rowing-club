@@ -18,7 +18,9 @@ const Error = ({ error, message }: Props) => {
     <Note label="Error" type="error">
       We were unable to send your message. Please try again later or{" "}
       <Obfuscate email={mailto.toString()}>email us</Obfuscate>.{" "}
-      <code>{error}</code>
+      <pre className="mb-0 mt-2 bg-transparent p-0 font-medium text-black">
+        <code>{error}</code>
+      </pre>
     </Note>
   );
 };
