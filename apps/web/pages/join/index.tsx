@@ -33,22 +33,20 @@ export const NextCourse = () => {
 
   if (EXPIRY.getTime() < Date.now()) {
     return (
-      <div className="absolute inset-0 flex items-center justify-center bg-green-50">
-        <Note
-          className="m-4 bg-white"
-          type="success"
-          label={`Our ${expirySeason} course has finished`}
-        >
-          Check back soon for details of our next course. Apply now to register
-          your interest and be notified when the next course is announced.
-        </Note>
-      </div>
+      <Note
+        className="m-4 bg-white"
+        type="success"
+        label={`Our ${expirySeason} course has finished`}
+      >
+        Check back soon for details of our next course. Apply now to register
+        your interest and be notified when the next course is announced.
+      </Note>
     );
   }
 
   return (
-    <>
-      <h3 className="mb-1 mt-2 flex items-center gap-1 text-base">
+    <div className="prose-sm prose-green mx-2 mb-2">
+      <h3 className="mb-1 mt-2 flex items-center gap-1 text-base font-semibold">
         Course Dates
         <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
           New
@@ -90,7 +88,7 @@ export const NextCourse = () => {
         </Link>{" "}
         for further information and booking instructions.
       </p>
-    </>
+    </div>
   );
 };
 
@@ -147,31 +145,28 @@ const Join: NextPage = () => (
         />
 
         <div className="mb-20 grid gap-12 md:grid-cols-2">
-          <div>
-            <div className="prose">
-              <p className="lead">
-                Our Learn to Row programme starts with a ‘taster session’ and
-                teaches you the basics of sculling (an oar in each hand) and
-                sweep oar rowing (one oar for both hands) over a period of 6-8
-                weeks.
-              </p>
-              <p>
-                We plan to run the Learn to Row programme on a group basis for
-                adults over the next year and after your taster session you will
-                be allocated a start date along with a number of other
-                participants at a similar level. Juniors (under 18) will be
-                separately invited to programmed courses.
-              </p>
-              <p>
-                The programme costs £130 and for its duration, you’ll be a club
-                member. The programme fee includes your first month’s adult
-                membership to the club after which you will be given the option
-                continue your membership at the adult rate of £32 per month
-                thereafter.
-              </p>
-            </div>
+          <div className="prose">
+            <p className="lead">
+              Our Learn to Row programme starts with a ‘taster session’ and
+              teaches you the basics of sculling (an oar in each hand) and sweep
+              oar rowing (one oar for both hands) over a period of 6-8 weeks.
+            </p>
+            <p>
+              We plan to run the Learn to Row programme on a group basis for
+              adults over the next year and after your taster session you will
+              be allocated a start date along with a number of other
+              participants at a similar level. Juniors (under 18) will be
+              separately invited to programmed courses.
+            </p>
+            <p>
+              The programme costs £130 and for its duration, you’ll be a club
+              member. The programme fee includes your first month’s adult
+              membership to the club after which you will be given the option
+              continue your membership at the adult rate of £32 per month
+              thereafter.
+            </p>
           </div>
-          <div className="prose relative -mx-2 -mb-1 rounded border-2 border-green-200 px-2 pb-1">
+          <div className="flex items-center rounded border border-green-200 bg-green-50">
             <NextCourse />
           </div>
         </div>
