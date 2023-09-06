@@ -11,11 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sudburyrc/web": "*",
-    "@sudburyrc/blue": "*",
-    "@sudburyrc/cms": "*",
-    "eslint-config-stour": "*",
-    "@sudburyrc/tailwind-config": "*",
-    "@sudburyrc/tsconfig": "*"
+    "@sudburyrc/blue": "^1.0.0",
+    "@sudburyrc/cms": "^2.0.0",
+    "@sudburyrc/tailwind-config": "^0.0.0",
+    "@sudburyrc/tsconfig": "^0.0.0",
+    "@sudburyrc/web": "^1.0.0",
+    "eslint-config-stour": "^1.0.0"
   }
 }
