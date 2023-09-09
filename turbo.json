@@ -3,12 +3,17 @@
   "globalDependencies": ["**/.env.*local"],
 
   "pipeline": {
+    "type-check": {
+      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+    },
+
     "build": {
+      "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
       "outputMode": "new-only"
     },
     "dev": {
-      "cache": false,
+      "cache": true,
       "persistent": true
     }
   }
