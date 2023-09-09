@@ -1,5 +1,5 @@
 import generateICSString from "@/lib/generateICSString";
-import { serversideFetchCompetitions } from "@/lib/queries/fetch-competions";
+import { serversideFetchCompetitions } from "@sudburyrc/api";
 import kv from "@vercel/kv";
 import { NextApiRequest, NextApiResponse } from "next";
 

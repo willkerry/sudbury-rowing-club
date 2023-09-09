@@ -11,8 +11,7 @@ import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
 import useSWR from "swr";
 import { HOSTNAME } from "@/lib/constants";
-import { z } from "zod";
-import { ZSRCEvent } from "@/lib/queries/fetch-competions";
+import { type SRCEvent } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 
 const BR_EVENT_STATUS = {
@@ -23,7 +22,7 @@ const BR_EVENT_STATUS = {
 const fetchCompetitions = async () => {
   const competitions = await fetch("/api/events");
 
-  return z.array(ZSRCEvent).parse(await competitions.json());
+  return competitions.json() as Promise<SRCEvent[]>;
 };
 
 type NeverUndefined<T> = T extends undefined ? never : T;

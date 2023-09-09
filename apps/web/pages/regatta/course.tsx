@@ -6,8 +6,7 @@ import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
-import sanityClient from "@/lib/sanity.server";
-import { urlFor } from "@/lib/sanity";
+import { sanityClient, urlFor } from "@sudburyrc/api";
 import { NextPage } from "next";
 import { makeShareImageURL } from "@/lib/og-image";
 

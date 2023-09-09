@@ -3,12 +3,11 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Feed from "@/components/landing/feed";
 import { type NoteProps } from "@/components/stour/note/note";
-import sanityClient from "@/lib/sanity.server";
 import { type PortableTextProps } from "@portabletext/react";
 import groq from "groq";
 import { NextSeo } from "next-seo";
 import { NextPage, type GetStaticProps } from "next/types";
-import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
+import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
 import Socials from "@/components/landing/socials";
 
 const Note = dynamic(() => import("@/components/stour/note"));

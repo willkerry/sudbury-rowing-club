@@ -1,6 +1,5 @@
-import fetchWeatherForecast, {
-  WeatherCodeNumber,
-} from "@/lib/queries/fetch-forecast";
+import { fetchWeatherForecast } from "@sudburyrc/api";
+import { type WeatherCodeNumber } from "@sudburyrc/api";
 
 export const weatherCodes: Record<WeatherCodeNumber, string> = {
   0: "Clear",

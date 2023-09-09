@@ -4,7 +4,7 @@ import { CompactEvents } from "@/components/regatta/events";
 import Text from "@/components/stour/text";
 import Link from "@/components/stour/link";
 import type { InferGetStaticPropsType, NextPage } from "next";
-import fetchRegattaSettings from "@/lib/queries/fetch-regatta-settings";
+import { fetchRegattaSettings } from "@sudburyrc/api";
 
 export const getStaticProps = async () => ({
   props: await fetchRegattaSettings(),

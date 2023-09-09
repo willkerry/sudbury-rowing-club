@@ -8,7 +8,7 @@ import Layout from "@/components/layouts/layout";
 import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import fetchSafety from "@/lib/queries/fetch-safety";
+import { fetchSafety } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps: GetStaticProps<{

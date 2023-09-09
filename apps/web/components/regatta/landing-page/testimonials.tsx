@@ -3,7 +3,7 @@ import Masonry from "@/components/stour/masonry";
 import DateFormatter from "@/components/utils/date-formatter";
 import Testimonial from "@/components/stour/testimonial";
 import ordinal from "@/lib/helpers/ordinal";
-import { type Regatta } from "@/lib/queries/fetch-regattas";
+import { type Regatta } from "@sudburyrc/api";
 
 const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
   <>

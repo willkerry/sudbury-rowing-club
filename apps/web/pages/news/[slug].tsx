@@ -12,7 +12,6 @@ import {
 } from "@/lib/constants";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
-import { urlFor } from "@/lib/sanity";
 import type {
   GetStaticPaths,
   InferGetStaticPropsType,
@@ -20,9 +19,13 @@ import type {
 } from "next/types";
 import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
-import { Article } from "@/lib/queries/fetch-news-article";
 import { ParsedUrlQuery } from "querystring";
-import { getAllSlugs, getArticleBySlug } from "@/lib/queries/cached-fetch-news";
+import {
+  serverGetAllSlugs,
+  serverGetArticleBySlug,
+  urlFor,
+  type Article,
+} from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps = async ({
@@ -30,11 +33,11 @@ export const getStaticProps = async ({
 }: {
   params: ParsedUrlQuery;
 }) => ({
-  props: { post: await getArticleBySlug(params?.slug as string) },
+  props: { post: await serverGetArticleBySlug(params?.slug as string) },
 });
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllSlugs();
+  const paths = await serverGetAllSlugs();
   return {
     paths: paths.map((slug: string) => ({ params: { slug } })),
     fallback: true,

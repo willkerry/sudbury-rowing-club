@@ -4,7 +4,7 @@ import Results from "@/components/regatta/results";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Text from "@/components/stour/text";
 import { makeShareImageURL } from "@/lib/og-image";
-import sanityClient from "@/lib/sanity.server";
+import { sanityClient } from "@sudburyrc/api";
 import type { PortableTextProps } from "@portabletext/react";
 import groq from "groq";
 import { InferGetStaticPropsType, NextPage } from "next";

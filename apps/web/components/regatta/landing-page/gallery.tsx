@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
+import { urlFor } from "@sudburyrc/api";
 
 type ImageType = {
   _id: string;

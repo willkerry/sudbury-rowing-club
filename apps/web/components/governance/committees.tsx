@@ -1,4 +1,4 @@
-import type { Governance } from "@/lib/queries/fetch-governance";
+import type { Governance } from "@sudburyrc/api";
 import {
   Description,
   GovGrid,

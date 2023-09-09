@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
-import { Article } from "@/lib/queries/fetch-news-article";
+import { urlFor, Article } from "@sudburyrc/api";
 import LightBox from "@/components/stour/lightbox";
 import { useToggle } from "@mantine/hooks";
 import Caption from "./caption";

@@ -8,7 +8,7 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { makeShareImageURL } from "@/lib/og-image";
-import { fetchGovernance } from "@/lib/queries/fetch-governance";
+import { fetchGovernance } from "@sudburyrc/api";
 import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 
