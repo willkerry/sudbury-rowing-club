@@ -1,4 +1,4 @@
-import { SRCEvent } from "./queries/fetch-competions";
+import { SRCEvent } from "@sudburyrc/api";
 
 const dateToiCalDayFormat = (date: Date) =>
   date.toISOString().replace(/T.*/, "").replace(/-/g, "");

@@ -1,7 +1,7 @@
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import Link from "@/components/stour/link";
-import { urlFor } from "@/lib/sanity";
-import type { Governance } from "@/lib/queries/fetch-governance";
+import { urlFor } from "@sudburyrc/api";
+import type { Governance } from "@sudburyrc/api";
 import { Popover, Transition } from "@headlessui/react";
 import Image from "next/image";
 import NextLink from "next/link";

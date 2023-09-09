@@ -15,8 +15,7 @@ import DateFormatter from "@/components/utils/date-formatter";
 import { REGATTA } from "@/lib/constants";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-import fetchRegattas from "@/lib/queries/fetch-regattas";
-import fetchRegattaSettings from "@/lib/queries/fetch-regatta-settings";
+import { fetchRegattas, fetchRegattaSettings } from "@sudburyrc/api";
 
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import type { InferGetStaticPropsType, NextPage } from "next";

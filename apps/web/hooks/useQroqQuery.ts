@@ -1,4 +1,4 @@
-import sanityClient from "@/lib/sanity.server";
+import { sanityClient } from "@sudburyrc/api";
 import useSWR from "swr";
 
 const useGroqQuery = <T>(query: string, params?: any) =>

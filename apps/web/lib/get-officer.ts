@@ -1,4 +1,4 @@
-import sanityClient from "@/lib/sanity.server";
+import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
 import { z } from "zod";
 

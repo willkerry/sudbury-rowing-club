@@ -1,6 +1,6 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { urlFor } from "@/lib/sanity";
+import { urlFor } from "@sudburyrc/api";
 import BoathouseDoor from "@/components/landing/boathouse-door";
 
 const Player = dynamic(() => import("@/components/landing/player"));

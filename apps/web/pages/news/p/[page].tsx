@@ -11,13 +11,13 @@ import type {
   NextPage,
 } from "next/types";
 import type { ParsedUrlQuery } from "querystring";
-import { getArticleCount, getNArticles } from "@/lib/queries/cached-fetch-news";
+import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 
 const POSTS_PER_PAGE = 30;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articleCount = await getArticleCount();
+  const articleCount = await fetchArticleCount();
   const length = Math.ceil(articleCount / POSTS_PER_PAGE);
 
   return {
@@ -33,7 +33,7 @@ export const getStaticProps = async ({
 }: {
   params: ParsedUrlQuery;
 }) => {
-  const articleCount = await getArticleCount();
+  const articleCount = await fetchArticleCount();
   const pages = Math.ceil(articleCount / POSTS_PER_PAGE);
 
   const page = Number(params?.page);
@@ -41,7 +41,7 @@ export const getStaticProps = async ({
   const firstArticleNumber = page * POSTS_PER_PAGE - POSTS_PER_PAGE;
   const lastArticleNumber = page * POSTS_PER_PAGE;
 
-  const pageOfArticles = await getNArticles(
+  const pageOfArticles = await serverGetNArticles(
     firstArticleNumber,
     lastArticleNumber
   );

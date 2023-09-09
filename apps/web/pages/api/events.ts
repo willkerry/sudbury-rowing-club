@@ -1,7 +1,4 @@
-import {
-  type SRCEvent,
-  serversideFetchCompetitions,
-} from "@/lib/queries/fetch-competions";
+import { type SRCEvent, serversideFetchCompetitions } from "@sudburyrc/api";
 import kv from "@vercel/kv";
 import { NextApiRequest, NextApiResponse } from "next";
 

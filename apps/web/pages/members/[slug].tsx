@@ -14,7 +14,7 @@ import {
   fetchNoticeSlugs,
   fetchOneNotice,
   type Notice as NoticeType,
-} from "@/lib/queries/fetch-notices";
+} from "@sudburyrc/api";
 import { NextSeo } from "next-seo";
 import { makeShareImageURL } from "@/lib/og-image";
 

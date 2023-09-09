@@ -3,15 +3,9 @@ import {
   PortableTextComponents,
   type PortableTextProps,
 } from "@portabletext/react";
-import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import Note from "@/components/stour/note";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import Figure from "@/components/stour/figure";
-import { config } from "./sanity.server";
-
-export const urlFor = (source: SanityImageSource) =>
-  imageUrlBuilder(config).image(source);
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
@@ -53,7 +47,7 @@ export function PortableText({
   if (value) {
     return (
       <div {...{ className }}>
-        <BlockContent {...{ components, value }} {...config} {...rest} />
+        <BlockContent {...{ components, value }} {...rest} />
       </div>
     );
   }

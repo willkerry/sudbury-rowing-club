@@ -4,7 +4,7 @@ import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Container from "@/components/layouts/container";
 import EventsComponent from "@/components/regatta/events";
-import sanityClient from "@/lib/sanity.server";
+import { sanityClient } from "@sudburyrc/api";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import { makeShareImageURL } from "@/lib/og-image";
 

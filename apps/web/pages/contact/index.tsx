@@ -8,7 +8,7 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import type { Message } from "@/components/contact/contactForm";
 import { InferGetStaticPropsType } from "next";
-import fetchOfficerNames from "@/lib/queries/fetch-officer-names";
+import { fetchOfficerNames } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps = async () => {

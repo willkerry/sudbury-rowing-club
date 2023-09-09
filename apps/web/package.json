@@ -26,6 +26,7 @@
     "@react-email/components": "^0.0.7",
     "@sanity/image-url": "^1.0.2",
     "@south-paw/react-obfuscate-ts": "^1.0.2",
+    "@sudburyrc/api": "workspace:*",
     "@sudburyrc/blue": "workspace:*",
     "@sudburyrc/tailwind-config": "workspace:*",
     "@vercel/kv": "^0.1.2",

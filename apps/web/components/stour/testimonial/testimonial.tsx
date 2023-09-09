@@ -1,5 +1,5 @@
 import cn from "clsx";
-import { type Testimonial as TestimonialType } from "@/lib/queries/fetch-regattas";
+import { type Testimonial as TestimonialType } from "@sudburyrc/api";
 import Anonymous from "./anonymous";
 
 const Testimonial = ({ name, club, text }: TestimonialType) => (

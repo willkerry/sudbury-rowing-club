@@ -2,7 +2,7 @@ import cn from "clsx";
 import Link from "next/link";
 import useSWR from "swr";
 import groq from "groq";
-import sanityClient from "@/lib/sanity.server";
+import { sanityClient } from "@sudburyrc/api";
 import Loading from "../stour/loading";
 
 const grades = ["neutral", "green", "amber", "red"];

@@ -5,7 +5,7 @@ import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import sanityClient from "@/lib/sanity.server";
+import { sanityClient } from "@sudburyrc/api";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Copy from "@/components/stour/copy";
 import { makeShareImageURL } from "@/lib/og-image";

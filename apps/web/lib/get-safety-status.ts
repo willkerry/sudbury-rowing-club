@@ -5,8 +5,8 @@ import { EAWarningSchema } from "@/types/ea-warning";
 import { Severity } from "@/types/severity";
 import groq from "groq";
 import { z } from "zod";
+import { sanityClient } from "@sudburyrc/api";
 import { CLUB_LOCATION } from "./constants";
-import sanityClient from "./sanity.server";
 
 const SanityStatusSchema = z.object({
   _updatedAt: z.string().transform((date) => new Date(date)),

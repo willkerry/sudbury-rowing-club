@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpIcon } from "@heroicons/react/20/solid";
-import { urlFor } from "@/lib/sanity";
+import { urlFor } from "@sudburyrc/api";
 
 type Props = {
   title: string;

@@ -2,7 +2,7 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import Link from "next/link";
-import { fetchAllAuthors } from "@/lib/queries/fetch-authors";
+import { fetchAllAuthors } from "@sudburyrc/api";
 import cn from "clsx";
 import { type InferGetStaticPropsType, type NextPage } from "next";
 import { NextSeo } from "next-seo";

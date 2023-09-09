@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { urlFor } from "@/lib/sanity";
-import type { ArticleSummary } from "@/lib/queries/fetch-news-article";
+import { urlFor } from "@sudburyrc/api";
+import type { ArticleSummary } from "@sudburyrc/api";
 import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
 

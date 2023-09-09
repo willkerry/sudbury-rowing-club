@@ -3,7 +3,7 @@ import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 import { makeShareImageURL } from "@/lib/og-image";
-import { fetchAuthor, fetchAllAuthors } from "@/lib/queries/fetch-authors";
+import { fetchAuthor, fetchAllAuthors } from "@sudburyrc/api";
 import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Link from "next/link";

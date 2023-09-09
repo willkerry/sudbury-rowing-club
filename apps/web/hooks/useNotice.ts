@@ -1,6 +1,6 @@
 import groq from "groq";
 import { z } from "zod";
-import { ZTypedObject } from "@/lib/queries/typed-object";
+import { ZTypedObject } from "@sudburyrc/api";
 import useValidatedZodQuery from "./useValidatedZodQuery";
 
 export const noticeVariants = [

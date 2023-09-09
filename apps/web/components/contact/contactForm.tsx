@@ -9,7 +9,7 @@ import Success from "@/components/contact/views/success";
 import Button from "@/components/stour/button";
 import Center from "@/components/stour/center";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
-import type { OfficerResponse } from "@/lib/queries/fetch-officer-names";
+import type { OfficerResponse } from "@sudburyrc/api";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
 import onSubmit from "./onSubmit";
 

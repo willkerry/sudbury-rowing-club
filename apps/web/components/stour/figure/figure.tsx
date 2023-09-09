@@ -1,4 +1,4 @@
-import { urlFor } from "@/lib/sanity";
+import { urlFor } from "@sudburyrc/api";
 import Image from "next/image";
 import { useLightBox } from "@/components/stour/lightbox";
 
