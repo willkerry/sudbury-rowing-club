@@ -1,5 +1,4 @@
 import TextPage from "@/components/layouts/text-page";
-import Button from "@/components/stour/button";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 import { fetchMinutes } from "@sudburyrc/api";
