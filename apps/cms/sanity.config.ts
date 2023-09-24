@@ -47,6 +47,7 @@ export default defineConfig({
               S,
               context,
             }),
+
             ...S.documentTypeListItems().filter(
               (listItem) =>
                 ![
@@ -54,7 +55,7 @@ export default defineConfig({
                   "regattaSettings",
                   "siteSettings",
                   "officers",
-                ].includes(listItem.getId())
+                ].includes(listItem.getId() as string)
             ),
           ]);
       },
@@ -68,6 +69,6 @@ export default defineConfig({
   ],
 
   schema: {
-    types: schemas,
+    types: schemas as any,
   },
 });
