@@ -5,7 +5,11 @@ import { sanityClient } from "../sanity/client";
 const query = groq`*[_type == "minutes" && !(_id in path("drafts.**"))] | order(date desc){
   _id,
   date,
-  "file": file.asset->url,
+  "public": defined(public),
+  "file": select(
+    public => file.asset->url,
+    null
+  ),
   "committee": committee->title
 }`;
 
@@ -27,9 +31,14 @@ const ZMinutes = z.object({
   ),
 
   /**
+   * Whether the minutes are public or not
+   */
+  public: z.boolean(),
+
+  /**
    * Must be an absolute URL, generally to a PDF file
    */
-  file: z.string().url(),
+  file: z.string().url().nullable(),
 
   /**
    * The name of the committee that the minutes are for
