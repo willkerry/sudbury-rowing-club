@@ -92,8 +92,8 @@ const Officers = ({ officers }: Props) => (
               <Popover>
                 <Popover.Button>
                   <HelpCircle
-                    className="absolute bottom-2 right-2 text-blue-500 transition hover:text-gray-700"
-                    size="1em"
+                    className="absolute bottom-2 right-2  fill-white text-blue-500 transition hover:text-gray-700"
+                    size="1.15em"
                     strokeWidth="0.15em"
                   />
                 </Popover.Button>
@@ -105,8 +105,8 @@ const Officers = ({ officers }: Props) => (
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Popover.Panel className="absolute left-0 top-0 h-full w-full rounded bg-white bg-opacity-50 p-4 backdrop-blur">
-                    <div className="text-xs font-medium text-gray-600">
+                  <Popover.Panel className="absolute left-0 top-0 h-full w-full rounded border border-gray-400 bg-white p-2">
+                    <div className="text-sm font-medium text-black">
                       <p>{officer.description}</p>
                     </div>
                     <Popover.Button>
