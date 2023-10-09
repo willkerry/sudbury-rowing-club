@@ -238,7 +238,7 @@ const PrivacyPolicy: NextPage = () => (
 
     <Note label="October 2023 update on analytics">
       We now run a self-hosted instance of the privacy-focussed analytics tool,{" "}
-      <a href="https://plausible.io/">Plausible</a> to collect anonymised usage
+      <a href="https://plausible.io/">Plausible</a>, to collect anonymised usage
       statistics of the types described above.
       <p>
         The Plausible tool does not use cookies, so it cannot track visitors
