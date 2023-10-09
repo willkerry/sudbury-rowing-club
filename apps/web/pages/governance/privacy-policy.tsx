@@ -1,11 +1,9 @@
 import TextPage from "@/components/layouts/text-page";
+import Note from "@/components/stour/note";
 import { NextPage } from "next";
 
 const PrivacyPolicy: NextPage = () => (
   <TextPage title="Privacy Policy">
-    <p>
-      Updated <time dateTime="2018-08-24">24 August 2018</time>
-    </p>
     <h3>What does this policy cover?</h3>
     <p>
       Sudbury Rowing Club is committed to protecting your personal data at all
@@ -237,16 +235,30 @@ const PrivacyPolicy: NextPage = () => (
         downloaded and download errors.
       </li>
     </ul>
-    <p>
-      We do not operate any analytics services and we do not track our visitors.
-    </p>
+
+    <Note label="October 2023 update on analytics">
+      We now run a self-hosted instance of the privacy-focussed analytics tool,{" "}
+      <a href="https://plausible.io/">Plausible</a> to collect anonymised usage
+      statistics of the types described above.
+      <p>
+        The Plausible tool does not use cookies, so it cannot track visitors
+        over extended periods of time or between websites. Visitors are
+        identified by an anonymised hash composed of a randomly-generated daily
+        salt, the website domain, the visitor’s IP address, and their user agent
+        string. It is impossible to ’unbake’ the hash to identify its component
+        parts.
+      </p>
+      <p>
+        Our Plausible instance is hosted on the EU-based cloud provider{" "}
+        <a href="https://www.ovhcloud.com/en-gb/">OVH SAS</a>. Your data are
+        stored on databases that we control on OVH hardware in France, and are
+        not shared with any third parties (inluding Plausible).
+      </p>
+    </Note>
+
     <h3>Cookies</h3>
-    <p>
-      Our website may use cookies to distinguish you from other users of our
-      website. This helps us to provide you with a good experience when you
-      browse our website and also allows us to improve our site.
-    </p>
-    <p>Currently (2020&#8211;07&#8211;01) our website does not use cookies</p>
+
+    <p>We do not use cookies.</p>
 
     <h3>How we may use the information we collect</h3>
 
@@ -264,10 +276,7 @@ const PrivacyPolicy: NextPage = () => (
 
     <h4>Information we automatically collect about you</h4>
 
-    <p>
-      We do not currently automatically collect any information about you, buy
-      we may in future collect and use such information:
-    </p>
+    <p>Any information automatically collected is used to:</p>
 
     <ul>
       <li>
