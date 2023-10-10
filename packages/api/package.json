@@ -23,7 +23,7 @@
     "isomorphic-dompurify": "^1.8.0",
     "picosanity": "^4.0.0",
     "tsup": "^7.1.0",
-    "zod": "^3.21.4"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",

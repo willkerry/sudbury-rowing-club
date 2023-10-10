@@ -63,7 +63,7 @@
     "snarkdown": "^2.0.0",
     "styled-components": "^5.3.11",
     "swr": "^2.2.0",
-    "zod": "^3.21.4"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.10",
