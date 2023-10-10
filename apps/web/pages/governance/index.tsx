@@ -12,11 +12,7 @@ import { fetchGovernance } from "@sudburyrc/api";
 import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 
-export const getStaticProps = async () => {
-  const props = await fetchGovernance();
-
-  return { props };
-};
+export const getStaticProps = async () => ({ props: await fetchGovernance() });
 
 const Governance: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   officers,
