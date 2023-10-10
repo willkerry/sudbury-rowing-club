@@ -82,7 +82,7 @@
     "eslint": "^8.45.0",
     "eslint-config-stour": "workspace:*",
     "husky": "^8.0.3",
-    "postcss": "^8.4.26",
+    "postcss": "^8.4.31",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "superagent": "^8.0.9",
