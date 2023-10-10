@@ -31,8 +31,8 @@ const Minutes = ({
             <td className="capitalize text-gray-700">{minute.committee}</td>
             <td>
               {minute.public && minute.file ? (
-                <Link href={minute.file} extension="PDF">
-                  Download &darr;
+                <Link href={minute.file} extension="PDF" download>
+                  Download
                 </Link>
               ) : (
                 <span className="select-none text-gray-400">
