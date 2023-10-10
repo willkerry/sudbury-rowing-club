@@ -60,21 +60,25 @@ const OfficerNameOrPlaceholder = ({
   }
 
   if (hasEmail) {
-    <NextLink
-      href={{
-        pathname: "contact",
-        query: { to: _id },
-      }}
-      className="group flex items-center gap-1.5"
-      title={`Contact ${name}`}
-    >
-      {name}
-      <MessageCircle
-        size="1em"
-        strokeWidth="0.15em"
-        className="text-blue-500 transition group-hover:text-gray-600"
-      />
-    </NextLink>;
+    return (
+      <NextLink
+        href={{
+          pathname: "contact",
+          query: { to: _id },
+        }}
+        className="group flex items-center gap-1.5"
+        title={`Contact ${name}`}
+      >
+        {name}
+        <span className="sr-only">(Contact {name})</span>
+        <MessageCircle
+          size="1em"
+          strokeWidth="0.15em"
+          className="text-blue-500 transition group-hover:text-gray-600"
+          aria-hidden
+        />
+      </NextLink>
+    );
   }
 
   return <span>{name}</span>;
@@ -95,7 +99,9 @@ const Officers = ({ officers }: Props) => (
                     className="absolute bottom-2 right-2  fill-white text-blue-500 transition hover:text-gray-700"
                     size="1.15em"
                     strokeWidth="0.15em"
+                    aria-hidden
                   />
+                  <span className="sr-only">Show description</span>
                 </Popover.Button>
                 <Transition
                   enter="transition-opacity duration-150 ease-in-out"
@@ -105,7 +111,7 @@ const Officers = ({ officers }: Props) => (
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Popover.Panel className="absolute left-0 top-0 h-full w-full rounded border border-gray-400 bg-white p-2">
+                  <Popover.Panel className="bg-opacity- absolute left-0 top-0 h-full w-full rounded border border-gray-300 bg-white p-2 backdrop-blur">
                     <div className="text-sm font-medium text-black">
                       <p>{officer.description}</p>
                     </div>
