@@ -8,7 +8,6 @@ import groq from "groq";
 import { NextSeo } from "next-seo";
 import { NextPage, type GetStaticProps } from "next/types";
 import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
-import Socials from "@/components/landing/socials";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
