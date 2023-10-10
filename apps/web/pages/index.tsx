@@ -80,9 +80,6 @@ const Home: NextPage<{
       imageLqip={landingPage.heroImage.image.lqip}
     />
     <LandingCTA />
-    <div className="my-12">
-      <Socials />
-    </div>
     <Introduction description={landingPage.description} />
     <Gallery images={landingPage.images} />
     <LatestNews news={news} />
