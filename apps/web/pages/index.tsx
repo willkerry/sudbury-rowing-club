@@ -48,39 +48,38 @@ export type LandingPageProps = {
 const Home: NextPage<{
   news: ArticleSummary[];
   landingPage: LandingPageProps;
-}> = ({ news, landingPage }) => (
+}> = ({
+  news,
+  landingPage: { description, heroImage, images, note, tagline, title },
+}) => (
   <Layout>
     <NextSeo
-      title={landingPage.title}
-      description={landingPage.tagline}
+      title={title}
+      description={tagline}
       openGraph={{
-        description: `${landingPage.tagline}`,
-        title: `${landingPage.title}`,
+        description: tagline,
+        title,
       }}
     />
 
-    {landingPage.note.display && (
+    {note.display && (
       <Container>
-        <Note
-          centered
-          label={landingPage.note.label}
-          type={landingPage.note.type}
-        >
-          {landingPage.note.text}
+        <Note centered label={note.label} type={note.type}>
+          {note.text}
         </Note>
       </Container>
     )}
     <LandingHero
-      slogan={landingPage.tagline}
-      youTubeId={landingPage.heroImage.youtubeId}
-      youTubeStart={landingPage.heroImage.youtubeStartOffset}
-      imageId={landingPage.heroImage.image._id}
-      imageAspectRatio={landingPage.heroImage.image.aspectRatio}
-      imageLqip={landingPage.heroImage.image.lqip}
+      slogan={tagline}
+      youTubeId={heroImage.youtubeId}
+      youTubeStart={heroImage.youtubeStartOffset}
+      imageId={heroImage.image._id}
+      imageAspectRatio={heroImage.image.aspectRatio}
+      imageLqip={heroImage.image.lqip}
     />
     <LandingCTA />
-    <Introduction description={landingPage.description} />
-    <Gallery images={landingPage.images} />
+    <Introduction description={description} />
+    <Gallery images={images} />
     <LatestNews news={news} />
     <Container>
       <Feed />
