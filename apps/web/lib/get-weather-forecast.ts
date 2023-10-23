@@ -32,6 +32,46 @@ export const weatherCodes: Record<WeatherCodeNumber, string> = {
   99: "Thunderstorm",
 };
 
+const CLEAR = "Clear";
+const OVERCAST = "Overcast";
+const FOG = "Fog";
+const DRIZZLE = "Drizzle";
+const RAIN = "Rain";
+const SNOW = "Snow";
+const SHOWERS = "Showers";
+const THUNDER = "Thunder";
+
+export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
+  0: CLEAR,
+  1: CLEAR,
+  2: CLEAR,
+  3: OVERCAST,
+  45: FOG,
+  48: FOG,
+  51: DRIZZLE,
+  53: DRIZZLE,
+  55: DRIZZLE,
+  56: DRIZZLE,
+  57: DRIZZLE,
+  61: RAIN,
+  63: RAIN,
+  65: RAIN,
+  66: RAIN,
+  67: RAIN,
+  71: SNOW,
+  73: SNOW,
+  75: SNOW,
+  77: SNOW,
+  80: SHOWERS,
+  81: SHOWERS,
+  82: SHOWERS,
+  85: `${SNOW} ${SHOWERS}`,
+  86: `${SNOW} ${SHOWERS}`,
+  95: THUNDER,
+  96: THUNDER,
+  99: THUNDER,
+};
+
 enum CardinalDirection {
   N,
   NNE,
