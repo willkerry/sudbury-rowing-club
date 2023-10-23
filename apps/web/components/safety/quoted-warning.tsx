@@ -42,7 +42,7 @@ const QuotedWarning: React.FC<QuotedWarningProps> = ({
     <div className="prose prose-p:my-0 prose-blockquote:p-4 prose-blockquote:text-sm">
       {agencyName && <p>The {agencyName} has issued the following warning:</p>}
 
-      <blockquote className="relative overflow-hidden">
+      <blockquote className="relative mt-3 overflow-hidden">
         {source && (
           <div
             className={`${agencyColors} absolute right-0 top-0 flex items-center justify-center rounded-bl p-1`}
