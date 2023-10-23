@@ -39,6 +39,7 @@ const DRIZZLE = "Drizzle";
 const RAIN = "Rain";
 const SNOW = "Snow";
 const SHOWERS = "Showers";
+const SNOW_SHOWERS = `${SNOW} ${SHOWERS}`;
 const THUNDER = "Thunder";
 
 export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
@@ -65,8 +66,8 @@ export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
   80: SHOWERS,
   81: SHOWERS,
   82: SHOWERS,
-  85: `${SNOW} ${SHOWERS}`,
-  86: `${SNOW} ${SHOWERS}`,
+  85: SNOW_SHOWERS,
+  86: SNOW_SHOWERS,
   95: THUNDER,
   96: THUNDER,
   99: THUNDER,
