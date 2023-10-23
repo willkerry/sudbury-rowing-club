@@ -24,13 +24,6 @@ const FloodAreaSchema = z.object({
   riverOrSea: z.string().optional(),
 });
 
-const SeveritySchema = z.union([
-  z.literal("Severe Flood Warning"),
-  z.literal("Flood Warning"),
-  z.literal("Flood Alert"),
-  z.literal("Warning no Longer in Force"),
-]);
-
 const SeverityLevelSchema = z.union([
   z.literal(1),
   z.literal(2),
@@ -48,7 +41,7 @@ export const EAWarningSchema = z
     floodAreaID: z.string(),
     isTidal: z.boolean(),
     message: z.string().optional(),
-    severity: SeveritySchema,
+    severity: z.string(),
     severityLevel: SeverityLevelSchema,
     timeMessageChanged: z.string().transform((date) => new Date(date)),
     timeRaised: z.string().transform((date) => new Date(date)),
