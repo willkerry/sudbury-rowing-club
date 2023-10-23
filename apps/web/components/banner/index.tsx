@@ -1,9 +1,9 @@
-import cn from "clsx";
 import useNotice, { noticeVariants } from "@/hooks/useNotice";
+import cn from "clsx";
 import { useEffect, useRef, useState } from "react";
+import Container from "../layouts/container";
 import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";
-import Container from "../layouts/container";
 
 const bannerVariants: Record<
   (typeof noticeVariants)[number],
@@ -67,13 +67,13 @@ type BaseButtonOrAnchorProps = {
 
 type ButtonOrAnchorProps =
   | (BaseButtonOrAnchorProps & {
-      type: "button";
-      onClick?: () => void;
-    })
+    type: "button";
+    onClick?: () => void;
+  })
   | (BaseButtonOrAnchorProps & {
-      type: "a";
-      href: string;
-    });
+    type: "a";
+    href: string;
+  });
 
 const ButtonOrAnchor = ({
   type,
@@ -81,23 +81,23 @@ const ButtonOrAnchor = ({
   children,
   ...props
 }: ButtonOrAnchorProps) =>
-  ({
-    button: (
-      <button type="button" className={className} {...props}>
-        {children}
-      </button>
-    ),
-    a: (
-      <a
-        className={className}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...props}
-      >
-        {children}
-      </a>
-    ),
-  }[type]);
+({
+  button: (
+    <button type="button" className={className} {...props}>
+      {children}
+    </button>
+  ),
+  a: (
+    <a
+      className={className}
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
+      {children}
+    </a>
+  ),
+}[type]);
 
 const Banner = () => {
   const { data, error } = useNotice();
