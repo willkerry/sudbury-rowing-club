@@ -11,6 +11,8 @@ type LightBoxProps = {
   toggle: (value?: SetStateAction<boolean>) => void;
 };
 
+const PADDING = 16;
+
 function calculateImageSize(
   windowWidth: number,
   windowHeight: number,
@@ -20,14 +22,14 @@ function calculateImageSize(
 
   if (windowAspectRatio > aspectRatio) {
     return {
-      width: (windowHeight - 32) * aspectRatio,
-      height: windowHeight - 32,
+      width: (windowHeight - PADDING * 2) * aspectRatio,
+      height: windowHeight - PADDING * 2,
     };
   }
 
   return {
-    width: windowWidth - 32,
-    height: (windowWidth - 32) / aspectRatio,
+    width: windowWidth - PADDING * 2,
+    height: (windowWidth - PADDING * 2) / aspectRatio,
   };
 }
 
