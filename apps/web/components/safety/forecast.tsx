@@ -17,7 +17,7 @@ const ForecastComponent = () => {
     <div className="w-full bg-gray-100 p-3 sm:px-4">
       <Loading visible={isLoading}>
         <div className="grid w-full grid-cols-7 gap-1">
-          {forecast?.map(({ beaufort, code, date, maxTemp }) => (
+          {forecast?.map(({ beaufort, code, date, maxTemp, minTemp }) => (
             <a
               key={String(date)}
               className="group mb-2 text-center"
@@ -36,12 +36,12 @@ const ForecastComponent = () => {
               <div
                 className={cn(
                   "disambiguate mb-0.5 text-xs font-semibold transition",
-                  maxTemp > 30 || maxTemp < 4
+                  maxTemp > 30 || minTemp < 4
                     ? "font-bold text-red-600 underline decoration-red-300 underline-offset-2"
                     : "text-gray-700 group-hover:text-blue-500"
                 )}
               >
-                {maxTemp}℃
+                {minTemp}&thinsp;-&thinsp;{maxTemp}℃
               </div>
 
               <div

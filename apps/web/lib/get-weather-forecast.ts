@@ -152,6 +152,7 @@ const degreesToCardinal = (degrees: number) => {
 type Forecast = {
   code: WeatherCodeNumber;
   maxTemp: number;
+  minTemp: number;
   windSpeed: number;
   windDirection: number;
   windDirectionText: CardinalDirection;
@@ -170,6 +171,7 @@ const getWeatherForecast = async (): Promise<Forecast[]> => {
     return daily.time.map((time, index) => ({
       code: daily.weathercode[index],
       maxTemp: Math.round(daily.temperature_2m_max[index]),
+      minTemp: Math.round(daily.temperature_2m_min[index]),
       windSpeed: daily.windspeed_10m_max[index],
       windDirection: daily.winddirection_10m_dominant[index],
       windDirectionText: degreesToCardinal(
