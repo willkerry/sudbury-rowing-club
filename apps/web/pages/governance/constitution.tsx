@@ -1,20 +1,34 @@
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 import { NextPage } from "next";
 
-const Highlight: FC<{ children: ReactNode }> = (props) => (
+const COLORS = {
+  1: "bg-green-50 border-green-300",
+  2: "bg-red-50 border-red-300",
+} as const;
+
+const Highlight = ({
+  set = 1,
+  ...props
+}: {
+  children: ReactNode;
+  set?: keyof typeof COLORS;
+}) => (
   <em
     {...props}
-    className="-my-0.5 mx-0.5 rounded border border-green-300 bg-green-50 px-0.5 py-0.5 not-italic"
+    className={`-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 not-italic ${COLORS[set]}`}
   />
 );
 
-const BlockHighlight: FC<{ children: ReactNode }> = (props) => (
-  <div
-    {...props}
-    className="rounded border-l-2 border-green-300 bg-green-50 pl-2 pr-2"
-  />
+const BlockHighlight = ({
+  set = 1,
+  ...props
+}: {
+  children: ReactNode;
+  set?: keyof typeof COLORS;
+}) => (
+  <div {...props} className={`rounded border-l-2 pl-2 pr-2 ${COLORS[set]}`} />
 );
 
 const Constitution: NextPage = () => (
@@ -27,6 +41,11 @@ const Constitution: NextPage = () => (
       <time dateTime="2019-02-25">25 Feb 2019</time>,{" "}
       <time dateTime="2019-06-04">4 June 2019</time>) are
       <Highlight>highlighted</Highlight>.
+    </p>
+    <p>
+      Amendments ratified at the AGM (
+      <time dateTime="2023-10-24">24 Oct 2023</time>) are
+      <Highlight set={2}>highlighted in a different colour</Highlight>.
     </p>
     <h2>1. Name</h2>
     <p>
@@ -158,7 +177,11 @@ const Constitution: NextPage = () => (
       <h2>9. Anti-Bullying Policy</h2>
       <p>
         The Club has a clear Anti-Bullying Policy, and all members are required
-        to behave with care and courtesy to others at all times.
+        to
+        <Highlight set={2}>
+          behave with care and courtesy to others, in all circumstances and at
+          all times.
+        </Highlight>
       </p>
     </BlockHighlight>
     <h2>10. Grievance and Disciplinary Procedures</h2>
@@ -167,8 +190,9 @@ const Constitution: NextPage = () => (
       should set out their grievance, in the first instance to the Club
       Chairman. The Club will seek to deal with complaints in a fair and timely
       manner
-      <Highlight>
-        , with reference to its published Grievance and Disciplinary Policy.
+      <Highlight set={2}>
+        and will adopt and follow the British Rowing Grievance and Disciplinary
+        Policy.
       </Highlight>
     </p>
     <h2>11. Child Protection Procedures</h2>
