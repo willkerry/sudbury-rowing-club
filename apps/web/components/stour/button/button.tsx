@@ -20,7 +20,7 @@ const buttonVariants = cva(
         secondary:
           "!text-white border-gray-900 bg-gray-900 hover:!text-gray-900 hover:bg-white focus:ring-blue-100 focus:!text-gray-900 focus:bg-white",
         brand:
-          "!text-white border-blue-700 bg-blue-700 hover:!text-blue-700 hover:bg-white focus:ring-blue-100 focus:!text-blue-700 focus:bg-white",
+          "!text-blue-500 border-blue-200 hover:border-black hover:!text-black focus:ring-blue-100 focus:border-black focus:!text-black",
         success:
           "!text-white border-green-600 bg-green-600 hover:!text-green-700 hover:bg-white focus:ring-blue-100 focus:!text-green-700 focus:bg-white",
         error:
