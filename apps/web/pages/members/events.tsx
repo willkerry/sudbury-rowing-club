@@ -22,6 +22,10 @@ const BR_EVENT_STATUS = {
 const fetchCompetitions = async () => {
   const competitions = await fetch("/api/events");
 
+  if (competitions.status !== 200) {
+    throw new Error("Failed to fetch competition calendar.");
+  }
+
   return competitions.json() as Promise<SRCEvent[]>;
 };
 

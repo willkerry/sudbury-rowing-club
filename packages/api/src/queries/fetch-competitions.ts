@@ -1,7 +1,7 @@
 import { z } from "zod";
-// import he from "he";
-// import emojiRegex from "emoji-regex";
-// import DOMPurify from "isomorphic-dompurify";
+import he from "he";
+import emojiRegex from "emoji-regex";
+import DOMPurify from "isomorphic-dompurify";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 const MAX_COMPETITION_AGE_DAYS = 14;
@@ -35,22 +35,17 @@ export type BREvent = z.infer<typeof ZBREvent>;
 export type SRCEvent = z.infer<typeof ZSRCEvent>;
 
 const sanitise = (html: string) => {
-  // ...to prevent he and DOMPurify being bundled in the client bundle
-  // if (typeof window === "undefined") {
-  //   const sanitised = he
-  //     .decode(
-  //       DOMPurify.sanitize(html, {
-  //         ALLOWED_TAGS: [],
-  //         ALLOWED_ATTR: [],
-  //       })
-  //     )
-  //     .replace(emojiRegex(), "")
-  //     .trim();
+  const sanitised = he
+    .decode(
+      DOMPurify.sanitize(html, {
+        ALLOWED_TAGS: [],
+        ALLOWED_ATTR: [],
+      })
+    )
+    .replace(emojiRegex(), "")
+    .trim();
 
-  //   return sanitised.toString();
-  // }
-
-  return html;
+  return sanitised.toString();
 };
 
 const removeWhitespace = (url: string) => {
