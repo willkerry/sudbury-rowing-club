@@ -22,7 +22,7 @@ SUMMARY:${event.competition}
 DESCRIPTION:${event.notes || ""}
 LOCATION:${event.region}
 URL:${event.url || ""}
-STATUS: ${
+STATUS:${
         event.notes?.toLowerCase().includes("cancelled")
           ? "CANCELLED"
           : "CONFIRMED"
