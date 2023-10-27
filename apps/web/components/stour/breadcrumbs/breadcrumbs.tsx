@@ -7,6 +7,7 @@ type Props = {
   activeItemClassName?: string;
   inactiveItemClassName?: string;
   rootLabel?: string;
+  currentLabel?: string;
 };
 
 type Crumb = {
@@ -14,7 +15,7 @@ type Crumb = {
   href: string;
 };
 
-const getBreadcrumbs = (pathname: string) => {
+const getBreadcrumbs = (pathname: string, overrideLastItem?: string) => {
   const linkPath = pathname.split("/");
   linkPath.shift();
 
@@ -22,6 +23,14 @@ const getBreadcrumbs = (pathname: string) => {
     breadcrumb: path,
     href: `/${linkPath.slice(0, i + 1).join("/")}`,
   }));
+
+  if (overrideLastItem) {
+    pathArray.pop();
+    pathArray.push({
+      breadcrumb: overrideLastItem,
+      href: pathname,
+    });
+  }
 
   return pathArray;
 };
@@ -31,9 +40,10 @@ const Breadcrumbs = ({
   activeItemClassName,
   inactiveItemClassName,
   rootLabel = "Home",
+  currentLabel,
 }: Props) => {
   const { asPath } = useRouter();
-  const breadcrumbs = getBreadcrumbs(asPath);
+  const breadcrumbs = getBreadcrumbs(asPath, currentLabel);
 
   if (!breadcrumbs) return null;
 

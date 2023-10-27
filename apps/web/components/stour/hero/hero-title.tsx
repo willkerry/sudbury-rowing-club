@@ -90,6 +90,7 @@ const HeroTitle: React.FC<Props> = ({
                 colorClasses?.item
               )}
               activeItemClassName="whitespace-nowrap font-medium capitalize"
+              currentLabel={title}
             />
           </Container>
         </div>
