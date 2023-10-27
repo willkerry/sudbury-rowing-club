@@ -20,7 +20,13 @@ DTSTAMP:${new Date(event.startDate).toISOString().replace(/[-:]/g, "")}
 DTSTART:${dateToiCalDayFormat(new Date(event.startDate))}
 SUMMARY:${event.competition}
 DESCRIPTION:${event.notes || ""}
+LOCATION:${event.region}
 URL:${event.url || ""}
+STATUS: ${
+        event.notes?.toLowerCase().includes("cancelled")
+          ? "CANCELLED"
+          : "CONFIRMED"
+      }
 END:VEVENT
 `,
     preamble
