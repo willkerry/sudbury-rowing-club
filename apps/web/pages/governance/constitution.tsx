@@ -2,33 +2,58 @@ import { ReactNode } from "react";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 import { NextPage } from "next";
+import DateFormatter from "@/components/utils/date-formatter";
 
 const COLORS = {
   1: "bg-green-50 border-green-300",
-  2: "bg-red-50 border-red-300",
+  2: "bg-amber-50 border-amber-300",
+} as const;
+
+const FOREGROUND_COLORS = {
+  1: "text-green-700",
+  2: "text-amber-700",
+} as const;
+
+const AMENDEMENTS = {
+  1: new Date("2019-02-25"),
+  2: new Date("2023-10-24"),
 } as const;
 
 const Highlight = ({
   set = 1,
-  ...props
+  children,
 }: {
   children: ReactNode;
   set?: keyof typeof COLORS;
 }) => (
   <em
-    {...props}
     className={`-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 not-italic ${COLORS[set]}`}
-  />
+  >
+    {children}
+    <span className={`px-1 text-sm font-semibold ${FOREGROUND_COLORS[set]}`}>
+      <span className="sr-only">Amendment ratified in </span>
+      <DateFormatter format="year" dateString={AMENDEMENTS[set]} />
+    </span>
+  </em>
 );
 
 const BlockHighlight = ({
   set = 1,
-  ...props
+  children,
 }: {
   children: ReactNode;
   set?: keyof typeof COLORS;
 }) => (
-  <div {...props} className={`rounded border-l-2 pl-2 pr-2 ${COLORS[set]}`} />
+  <div className={`rounded border-l-2 pl-2 pr-2 ${COLORS[set]}`}>
+    {children}
+
+    <div
+      className={`-mt-4 pb-1 text-right text-sm font-semibold ${FOREGROUND_COLORS[set]}`}
+    >
+      <span className="sr-only">Amendment ratified in </span>
+      <DateFormatter format="year" dateString={AMENDEMENTS[set]} />
+    </div>
+  </div>
 );
 
 const Constitution: NextPage = () => (
@@ -39,12 +64,12 @@ const Constitution: NextPage = () => (
     <p>
       Amendments ratified at the EGM (
       <time dateTime="2019-02-25">25 Feb 2019</time>,{" "}
-      <time dateTime="2019-06-04">4 June 2019</time>) are
+      <time dateTime="2019-06-04">4 Jun 2019</time>) are
       <Highlight>highlighted</Highlight>.
     </p>
     <p>
-      Amendments ratified at the AGM (
-      <time dateTime="2023-10-24">24 Oct 2023</time>) are
+      Amendments ratified at the AGM on{" "}
+      <time dateTime="2023-10-24">24 Oct 2023</time> are
       <Highlight set={2}>highlighted in a different colour</Highlight>.
     </p>
     <h2>1. Name</h2>
@@ -177,11 +202,8 @@ const Constitution: NextPage = () => (
       <h2>9. Anti-Bullying Policy</h2>
       <p>
         The Club has a clear Anti-Bullying Policy, and all members are required
-        to
-        <Highlight set={2}>
-          behave with care and courtesy to others, in all circumstances and at
-          all times.
-        </Highlight>
+        to behave with care and courtesy to others
+        <Highlight set={2}>, in all circumstances and at all times.</Highlight>
       </p>
     </BlockHighlight>
     <h2>10. Grievance and Disciplinary Procedures</h2>
