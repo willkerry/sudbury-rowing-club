@@ -19,6 +19,17 @@ const AMENDEMENTS = {
   2: new Date("2023-10-24"),
 } as const;
 
+const AmendmentDate = ({ set }: { set: keyof typeof COLORS }) => (
+  <>
+    <span className="sr-only">Amendment ratified in </span>
+    <DateFormatter
+      className="disambiguate text-xs font-semibold"
+      format="year"
+      dateString={AMENDEMENTS[set]}
+    />
+  </>
+);
+
 const Highlight = ({
   set = 1,
   children,
@@ -30,9 +41,8 @@ const Highlight = ({
     className={`-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 not-italic ${COLORS[set]}`}
   >
     {children}
-    <span className={`px-1 text-sm font-semibold ${FOREGROUND_COLORS[set]}`}>
-      <span className="sr-only">Amendment ratified in </span>
-      <DateFormatter format="year" dateString={AMENDEMENTS[set]} />
+    <span className={`px-1 ${FOREGROUND_COLORS[set]}`}>
+      <AmendmentDate set={set} />
     </span>
   </em>
 );
@@ -47,11 +57,8 @@ const BlockHighlight = ({
   <div className={`rounded border-l-2 pl-2 pr-2 ${COLORS[set]}`}>
     {children}
 
-    <div
-      className={`-mt-4 pb-1 text-right text-sm font-semibold ${FOREGROUND_COLORS[set]}`}
-    >
-      <span className="sr-only">Amendment ratified in </span>
-      <DateFormatter format="year" dateString={AMENDEMENTS[set]} />
+    <div className={`-mt-7 pb-1 text-right ${FOREGROUND_COLORS[set]}`}>
+      <AmendmentDate set={set} />
     </div>
   </div>
 );
