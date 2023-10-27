@@ -51,7 +51,7 @@ const Link = ({
       href={href}
       className={
         !unstyled
-          ? `whitespace-nowrap transition ${
+          ? `break-words transition ${
               dark
                 ? "text-blue-100 hover:text-white"
                 : "text-blue-500 hover:text-blue-300"
