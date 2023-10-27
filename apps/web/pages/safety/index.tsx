@@ -54,15 +54,17 @@ const Safety: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   Updated on <DateFormatter dateString={item._updatedAt} />
                 </div>
 
-                <h2 className="line-clamp-1 font-semibold leading-tight tracking-tight text-gray-800 md:pr-6">
+                <h2 className="mb-2 line-clamp-1 font-semibold leading-tight tracking-tight text-gray-800 md:pr-6">
                   {item.title}
                 </h2>
+
                 {item.body && (
                   <Text
                     portableText={item.body.slice(0, 1)}
-                    className="prose-sm mb-4 mt-2"
+                    className="prose-sm mb-4"
                   />
                 )}
+
                 <div className="space-y-2">
                   {item.link && (
                     <Button
