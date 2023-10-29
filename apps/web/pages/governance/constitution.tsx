@@ -205,12 +205,12 @@ const Constitution: NextPage = () => (
         that effect.
       </p>
     </BlockHighlight>
-    <BlockHighlight>
+    <BlockHighlight set={2}>
       <h2>9. Anti-Bullying Policy</h2>
       <p>
-        The Club has a clear Anti-Bullying Policy, and all members are required
-        to behave with care and courtesy to others
-        <Highlight set={2}>, in all circumstances and at all times.</Highlight>
+        The club adopts the British Rowing Anti-bullying Policy, and all members
+        are required to behave with care and courtesy to others, in all
+        circumstances and at all times.
       </p>
     </BlockHighlight>
     <h2>10. Grievance and Disciplinary Procedures</h2>
