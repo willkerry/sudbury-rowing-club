@@ -149,10 +149,6 @@ const secondaryNavigationGroups: NavigationGroup[] = [
         href: "/members/events",
       },
       {
-        name: "Minutes",
-        href: "/governance/minutes",
-      },
-      {
         name: "Kit",
         href: "/members/kit",
       },
