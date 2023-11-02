@@ -10,5 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "@sudburyrc/cms": "workspace:^"
+  }
 }
