@@ -12,7 +12,7 @@ export const navLinkClasses = cn(
   "group transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md"
 );
 export const navLinkColor = "text-gray-500 font-medium";
-export const navLinkActive = "text-black font-semibold";
+export const navLinkActive = "text-black font-medium";
 
 const POPOVER_PANEL_CLASSES = new Map<boolean, string>([
   [true, "max-w-sm right-0"],
