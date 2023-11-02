@@ -71,7 +71,7 @@ const Nav = () => {
                       icon={
                         Icon ? <Icon className="flex h-4 w-4" /> : undefined
                       }
-                      compact={!!icon}
+                      compact
                       {...{ items }}
                     />
                   );
