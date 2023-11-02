@@ -73,15 +73,12 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
           <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />
           <figure
             className="flex flex-col overflow-hidden rounded shadow-lg"
-            style={{ maxWidth: 512 * featuredImage.aspectRatio }}
+            style={{
+              maxWidth: 512 * featuredImage.aspectRatio,
+              backgroundColor: featuredImage.background || undefined,
+              color: featuredImage.foreground || undefined,
+            }}
           >
-            <style jsx>{`
-              figure {
-                background-color: ${featuredImage.background};
-                color: ${featuredImage.foreground};
-              }
-            `}</style>
-
             <button
               type="button"
               onClick={() => toggleOpen()}
