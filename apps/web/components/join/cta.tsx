@@ -1,45 +1,68 @@
 import { Link as ScrollLink } from "react-scroll";
 import Button from "@/components/stour/button";
+import { ComponentProps } from "react";
+
+type CTALinkProps = {
+  to: string;
+  variant?: ComponentProps<typeof Button>["variant"];
+  children: React.ReactNode;
+};
+type CTATextProps = { first: string; second: string };
+
+const CTALink = ({ to, variant, children }: CTALinkProps) => (
+  <div className="flex justify-center">
+    <ScrollLink duration={300} offset={-30} smooth spy to={to}>
+      <Button size="large" variant={variant}>
+        {children}
+      </Button>
+    </ScrollLink>
+  </div>
+);
+
+const CTAText = ({ first, second }: CTATextProps) => (
+  <p className="text-center">
+    <span className="text-xl font-medium text-gray-800">{first}</span>
+    <br />
+    <span className="text-gray-500">{second}</span>
+  </p>
+);
+
+const CTADivider = () => <span className="block h-6" />;
+
+const CTASection = ({
+  to,
+  variant,
+  first,
+  second,
+  children,
+}: CTALinkProps & CTATextProps) => (
+  <div>
+    <CTAText first={first} second={second} />
+    <CTADivider />
+    <CTALink to={to} variant={variant}>
+      {children}
+    </CTALink>
+  </div>
+);
 
 const JoinCTA = () => (
   <div className="grid gap-12 rounded border bg-gray-100 p-12 shadow-lg md:grid-cols-2">
-    <div>
-      <p className="text-center">
-        <span className="text-xl font-medium text-gray-800">
-          New to the sport?
-        </span>
-        <br />
-        <span className="text-gray-500">
-          Our Learn to Row programme is for you.
-        </span>
-      </p>
-      <span className="block h-6" />
-      <div className="flex justify-center">
-        <ScrollLink duration={300} offset={-30} smooth spy to="l2r">
-          <Button size="large" variant="secondary">
-            Learn to Row
-          </Button>
-        </ScrollLink>
-      </div>
-    </div>
-    <div>
-      <p className="text-center">
-        <span className="text-xl font-medium text-gray-800">
-          Already an active rower?
-        </span>
-        <br />
-        <span className="text-gray-500">
-          Contact a vice-captain for more information.
-        </span>
-      </p>
+    <CTASection
+      to="l2r"
+      variant="secondary"
+      first="New to the sport?"
+      second="Our Learn to Row programme is for you."
+    >
+      Learn to Row
+    </CTASection>
 
-      <span className="block h-6" />
-      <div className="flex justify-center">
-        <ScrollLink duration={300} offset={-30} smooth spy to="experienced">
-          <Button size="large">How to join</Button>
-        </ScrollLink>
-      </div>
-    </div>
+    <CTASection
+      to="experienced"
+      first="Already an active rower?"
+      second="Contact a vice-captain for more information."
+    >
+      How to join
+    </CTASection>
   </div>
 );
 
