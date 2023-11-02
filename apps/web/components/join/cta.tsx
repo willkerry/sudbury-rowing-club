@@ -1,6 +1,5 @@
 import { Link as ScrollLink } from "react-scroll";
 import Button from "@/components/stour/button";
-import Link from "@/components/stour/link";
 
 const JoinCTA = () => (
   <div className="grid gap-12 rounded border bg-gray-100 p-12 shadow-lg md:grid-cols-2">
@@ -36,9 +35,9 @@ const JoinCTA = () => (
 
       <span className="block h-6" />
       <div className="flex justify-center">
-        <Button as={Link} href="/contact" size="large">
-          Contact a Vice-Captain
-        </Button>
+        <ScrollLink duration={300} offset={-30} smooth spy to="experienced">
+          <Button size="large">How to join</Button>
+        </ScrollLink>
       </div>
     </div>
   </div>

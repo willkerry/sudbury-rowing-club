@@ -7,6 +7,7 @@ import {
 } from "@/components/join";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
+import Button from "@/components/stour/button";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Note from "@/components/stour/note";
@@ -134,6 +135,51 @@ const Join: NextPage = () => (
         </p>
       </div>
       <JoinCTA />
+    </Container>
+
+    <Container id="experienced">
+      <SectionHeading
+        label="Join as an experienced rower"
+        title="Have you rowed before?"
+      />
+      <div className="mb-20 grid gap-12 md:grid-cols-2">
+        <div className="prose">
+          <p className="lead">
+            If you’ve rowed before, you can join the club immediately.
+          </p>
+          <p>
+            You’ll need to complete a short application form on our membership
+            portal. We offer a considerable variety of membership rates (e.g.
+            short term, student, family, etc.) and you can find out more about
+            these{" "}
+            <a href="https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories">
+              on our membership page
+            </a>
+            .
+          </p>
+          <p className="font-medium">
+            Your first step should be to contact the club captain.
+          </p>
+        </div>
+        <div className="flex items-center rounded border border-gray-200 bg-gray-50 p-4 text-center">
+          <div className="w-full">
+            <div className="mb-2 text-lg font-medium">
+              Contact the club captain
+            </div>
+            <Button
+              size="large"
+              href="/contact?to=KKEVTdAyelAe2LPMRqxXjF"
+              className="bg-white"
+            >
+              Contact
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+
+    <Container className="my-40 text-center text-2xl font-semibold text-gray-400">
+      Or&hellip;
     </Container>
 
     {/* About the L2R course */}
