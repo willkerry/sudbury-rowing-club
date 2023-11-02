@@ -20,7 +20,7 @@ import {
   TicketIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
-import { type Icon, Facebook, Instagram, Twitter, Users } from "react-feather";
+import { type Icon, Facebook, Instagram } from "react-feather";
 
 type NavigationGroup = {
   title: string;
@@ -138,7 +138,6 @@ const secondaryNavigationGroups: NavigationGroup[] = [
   },
   {
     title: "Members",
-    icon: Users,
     items: [
       {
         name: "Notices",
@@ -180,7 +179,6 @@ const availableLogos: Record<
 > = {
   instagram: Instagram,
   facebook: Facebook,
-  twitter: Twitter,
 };
 
 export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
