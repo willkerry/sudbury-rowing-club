@@ -14,13 +14,8 @@ const SafetyCard: React.FC = () => {
       {safetyComponentProps ? (
         <SafetyComponent {...safetyComponentProps} />
       ) : (
-        <div>
+        <div className="px-4">
           <Loading />
-          <style jsx>{`
-            div {
-              padding: 1rem 0;
-            }
-          `}</style>
         </div>
       )}
     </div>
