@@ -1,8 +1,7 @@
-// @ts-check
 import React from "react";
+import { DocumentDefinition } from "sanity";
 
-/** @type {import('@sanity/types').DocumentDefinition} */
-const forwarders = {
+const forwarders: DocumentDefinition = {
   name: "forwarders",
   type: "document",
   title: "Forwarders",
@@ -83,11 +82,6 @@ const forwarders = {
 
       const totalRecipients = otherRecipients.length + recipients.length;
 
-      const makePlural = (base, number) => {
-        if (number === 1) return base;
-        return `${base}s`;
-      };
-
       return {
         title,
         subtitle: `${totalRecipients} ${makePlural(
@@ -100,3 +94,9 @@ const forwarders = {
 };
 
 export default forwarders;
+
+function makePlural(base: string, number: number) {
+  if (number === 1) return base;
+
+  return `${base}s`;
+}
