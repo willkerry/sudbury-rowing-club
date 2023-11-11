@@ -29,7 +29,7 @@ export const NextCourse = () => {
   };
 
   const expirySeason = Object.entries(seasonStartDates).find(
-    ([, seasonStartDate]) => EXPIRY.getTime() > seasonStartDate.getTime()
+    ([, seasonStartDate]) => EXPIRY.getTime() > seasonStartDate.getTime(),
   )?.[0];
 
   if (EXPIRY.getTime() < Date.now()) {
@@ -84,10 +84,8 @@ export const NextCourse = () => {
       </div>
       <p>
         Please <Link href="join/apply">apply now</Link> or{" "}
-        <Link href="/contact?to=KKEVTdAyelAe2LPMRqxXjF">
-          contact Sean Moriarty
-        </Link>{" "}
-        for further information and booking instructions.
+        <Link href="/contact?q=learntorow">contact Sean Moriarty</Link> for
+        further information and booking instructions.
       </p>
     </div>
   );
@@ -166,11 +164,7 @@ const Join: NextPage = () => (
             <div className="mb-2 text-lg font-medium">
               Contact the club captain
             </div>
-            <Button
-              size="large"
-              href="/contact?to=KKEVTdAyelAe2LPMRqxXjF"
-              className="bg-white"
-            >
+            <Button size="large" href="/contact?q=captain" className="bg-white">
               Contact
             </Button>
           </div>
