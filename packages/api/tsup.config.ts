@@ -6,6 +6,7 @@ const outputFilePath = "dist/index.mjs"; // Replace with your output
 export default defineConfig({
   entry: ["src/index.ts"],
   dts: true,
+  sourcemap: true,
   splitting: true,
   minify: true,
   minifyIdentifiers: true,
