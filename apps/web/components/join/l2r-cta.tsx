@@ -17,7 +17,7 @@ const L2RCallToAction = () => {
         <span className="tracking-snug">
           Contact the Learn to Row coordinator
         </span>
-        <Button as={Link} href="/contact">
+        <Button as={Link} href="/contact?q=learn2row">
           Contact
         </Button>
       </div>
