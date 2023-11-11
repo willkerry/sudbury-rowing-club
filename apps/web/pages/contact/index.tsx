@@ -10,6 +10,7 @@ import type { Message } from "@/components/contact/contactForm";
 import { InferGetStaticPropsType } from "next";
 import { fetchOfficerNames } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
+import { useFuzzyFindOfficer } from "@/hooks/useFuzzyFindOfficer";
 
 export const getStaticProps = async () => {
   const officers = await fetchOfficerNames();
@@ -24,7 +25,11 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   officers,
 }) => {
   const router = useRouter();
-  const initialValues = router.query as Message;
+  const { q, ...initialValues } = router.query as Message & { q?: string };
+  const { data: guessedRecipient } = useFuzzyFindOfficer(q);
+
+  if (guessedRecipient) initialValues.to = guessedRecipient._id;
+
   return (
     <Layout>
       <NextSeo

@@ -36,6 +36,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "color": "^4.2.3",
+    "dice-coefficient": "^2.1.1",
     "emoji-regex": "^10.3.0",
     "final-form": "^4.20.10",
     "get-wodehouse-name": "^0.2.0",
