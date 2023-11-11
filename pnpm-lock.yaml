@@ -157,7 +157,7 @@ importers:
         specifier: ^10.3.0
         version: 10.3.0
       final-form:
-        specifier: ^4.20.10
+        specifier: ^4.20.9
         version: 4.20.10
       get-wodehouse-name:
         specifier: ^0.2.0
