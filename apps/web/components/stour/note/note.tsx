@@ -10,8 +10,8 @@ export type NoteProps = {
 };
 
 const SIZE_MAP = {
-  small: "py-2 px-3 prose-sm my-5",
-  large: "py-3 px-5 prose my-5",
+  small: "py-1.5 px-2.5 prose-sm my-5",
+  large: "py-1.5 px-3 prose my-5",
 };
 
 const VARIANT_MAP = {
@@ -39,7 +39,7 @@ const Note = ({
     centeredClassNames,
     variantClassNames,
     sizeClassNames,
-    className
+    className,
   );
 
   return (
