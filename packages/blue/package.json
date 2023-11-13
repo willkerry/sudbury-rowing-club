@@ -7,18 +7,6 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
-  "tsup": {
-    "dts": true,
-    "sourcemap": true,
-    "clean": true,
-    "entryPoints": [
-      "index.ts"
-    ],
-    "format": [
-      "cjs",
-      "esm"
-    ]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
