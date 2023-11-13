@@ -2,7 +2,8 @@
   "name": "@sudburyrc/blue",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch"
