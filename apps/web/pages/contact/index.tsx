@@ -10,10 +10,16 @@ import type { Message } from "@/components/contact/contactForm";
 import { InferGetStaticPropsType } from "next";
 import { fetchOfficerNames } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
-import { useFuzzyFindOfficer } from "@/hooks/useFuzzyFindOfficer";
+import { serverIndexOfficers, browserIndexOfficers } from "@/lib/algolia";
+import useSWR from "swr";
 
 export const getStaticProps = async () => {
   const officers = await fetchOfficerNames();
+
+  serverIndexOfficers.replaceAllObjects(
+    officers.map((o) => ({ ...o, objectID: o._id })),
+  );
+
   return {
     props: {
       officers,
@@ -26,7 +32,13 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   const router = useRouter();
   const { q, ...initialValues } = router.query as Message & { q?: string };
-  const { data: guessedRecipient } = useFuzzyFindOfficer(q);
+  const { data: guessedRecipient } = useSWR(q || "", () =>
+    browserIndexOfficers
+      .search<
+        InferGetStaticPropsType<typeof getStaticProps>["officers"][number]
+      >(q || "")
+      .then((r) => r.hits[0]),
+  );
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
 

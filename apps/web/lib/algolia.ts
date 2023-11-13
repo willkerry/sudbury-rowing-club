@@ -16,16 +16,21 @@ if (!process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME)
 
 export const serverClient: SearchClient = algoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
-  process.env.ALGOLIA_API_KEY as string
+  process.env.ALGOLIA_API_KEY as string,
 );
 export const browserClient: BrowserSearchClient = litealgoliasearch(
   process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY as string
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY as string,
 );
 
 export const serverIndex: SearchIndex = serverClient.initIndex(
-  process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME as string
+  process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME as string,
 );
 export const browserIndex: BrowserSearchIndex = browserClient.initIndex(
-  process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME as string
+  process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME as string,
 );
+
+export const serverIndexOfficers: SearchIndex =
+  serverClient.initIndex("officers");
+export const browserIndexOfficers: BrowserSearchIndex =
+  browserClient.initIndex("officers");
