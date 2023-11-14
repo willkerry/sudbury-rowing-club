@@ -13,9 +13,6 @@ import type { OfficerResponse } from "@sudburyrc/api";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
 import onSubmit from "./onSubmit";
 
-const mailRegex =
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 export type Message = {
   to: string;
   name: string;
@@ -169,8 +166,6 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         if (values.to === "default") errors.to = "Required";
         if (!values.name) errors.name = "Required";
         if (!values.email) errors.email = "Required";
-        if (!mailRegex.test(values.email))
-          errors.email = "Invalid email address";
         if (!values.message) errors.message = "Required";
         return Object.keys(errors).length ? errors : undefined;
       }}
