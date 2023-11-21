@@ -258,10 +258,6 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
         and identify Oxford blue as <strong>Pantone 282</strong>.
       </p>
       <p>
-        White is undefined. On the web, SRC has used `#fff` and `white` since
-        the mid-nineties, so we use it now on someone else’s conscience.
-      </p>
-      <p>
         This website’s design system includes a ten-step shade graduation based
         on Pantone 282. This allows us to use visually congruent lighter blues
         in interface design.
@@ -271,7 +267,7 @@ const Brand: NextPage<{ blue: string }> = ({ blue }) => {
           className="h-16 w-full rounded bg-blue-900 shadow"
           style={{
             background: `linear-gradient(to right, ${brandColors.map(
-              (a) => a.color
+              (a) => a.color,
             )})`,
           }}
         />
