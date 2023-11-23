@@ -11,7 +11,7 @@ type Props = {
  * A zero-config layout component that renders page fluff. Use the `Meta` component
  * to override the default meta tags.
  */
-const Layout: React.FC<Props> = ({ children }: Props) => (
+const Layout = ({ children }: Props) => (
   <>
     <Meta />
     <div className="min-h-screen">

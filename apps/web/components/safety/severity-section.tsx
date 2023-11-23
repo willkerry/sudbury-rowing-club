@@ -6,10 +6,7 @@ type SeveritySectionProps = {
   message?: string;
 };
 
-const SeveritySection: React.FC<SeveritySectionProps> = ({
-  status,
-  message,
-}) => {
+const SeveritySection = ({ status, message }: SeveritySectionProps) => {
   const severityClasses = {
     [Severity.red]: "text-red-500 bg-red-50",
     [Severity.amber]: "text-yellow-500 bg-yellow-50",

@@ -3,7 +3,7 @@ import useSWR from "swr";
 import Loading from "../stour/loading";
 import SafetyComponent from "./safety-component";
 
-const SafetyCard: React.FC = () => {
+const SafetyCard = () => {
   const fetcher: typeof getSafetyStatus = () =>
     fetch("/api/safety").then((res) => res.json());
 

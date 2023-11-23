@@ -3,7 +3,7 @@ import Head from "next/head";
 /**
  * Provides boring meta tags for the page.
  */
-const Meta: React.FC = () => (
+const Meta = () => (
   <Head>
     <link
       rel="apple-touch-icon"

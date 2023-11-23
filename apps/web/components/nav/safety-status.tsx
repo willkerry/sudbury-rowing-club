@@ -12,7 +12,7 @@ type StatusShellProps = {
   text: string | React.ReactNode;
 };
 
-const StatusShell: React.FC<StatusShellProps> = ({ grade, text }) => {
+const StatusShell = ({ grade, text }: StatusShellProps) => {
   const bgClass = {
     "hover:bg-red-600 hover:border-red-600 text-red-600": grade === 3,
     "hover:bg-yellow-600 hover:border-yellow-600 text-yellow-600": grade === 2,
@@ -32,7 +32,7 @@ const StatusShell: React.FC<StatusShellProps> = ({ grade, text }) => {
       href="/safety"
       className={cn(
         "group ml-1 flex items-center rounded-full border px-2 py-1 text-xs font-medium transition duration-300",
-        bgClass
+        bgClass,
       )}
       title={`River safety status: ${text}`}
     >
@@ -40,7 +40,7 @@ const StatusShell: React.FC<StatusShellProps> = ({ grade, text }) => {
         <div
           className={cn(
             "mr-1.5 h-2.5 w-2.5 rounded-full duration-300",
-            dotClass
+            dotClass,
           )}
         />
         <span className="font-medium transition duration-300 group-hover:text-white">
@@ -52,15 +52,10 @@ const StatusShell: React.FC<StatusShellProps> = ({ grade, text }) => {
   );
 };
 
-StatusShell.defaultProps = {
-  grade: null,
-  text: "",
-};
-
-const StatusIndicator: React.FC = () => {
+const StatusIndicator = () => {
   const { data, error } = useSWR(
     groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{display, status}`,
-    (query) => sanityClient.fetch(query)
+    (query) => sanityClient.fetch(query),
   );
   if (error) return <div>Unavailable</div>;
   if (!data) return <StatusShell grade={null} text={<Loading />} />;

@@ -5,7 +5,7 @@ import {
   ClipboardDocumentListIcon,
 } from "@heroicons/react/20/solid";
 
-const Copy: React.FC<{ value: string }> = ({ value }) => {
+const Copy = ({ value }: { value: string }) => {
   const [copied, setCopied] = useState(false);
 
   // When copied is set to true, set it back to false after 2 seconds
@@ -36,13 +36,13 @@ const Copy: React.FC<{ value: string }> = ({ value }) => {
         <ClipboardDocumentListIcon
           className={cn(
             "absolute h-4 w-4 transition",
-            copied ? "opacity-0" : "opacity-100"
+            copied ? "opacity-0" : "opacity-100",
           )}
         />
         <ClipboardDocumentCheckIcon
           className={cn(
             "absolute h-4 w-4 transition",
-            copied ? "opacity-100" : "opacity-0"
+            copied ? "opacity-100" : "opacity-0",
           )}
         />
         {copied && (

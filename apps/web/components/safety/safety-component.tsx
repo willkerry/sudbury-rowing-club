@@ -15,13 +15,13 @@ export type SafetyComponentProps = {
   source?: WarningSourceEnum;
 };
 
-const SafetyComponent: React.FC<SafetyComponentProps> = ({
+const SafetyComponent = ({
   description,
   date,
   status,
   statusMessage,
   source,
-}) => (
+}: SafetyComponentProps) => (
   <div className="divide-y">
     <div className="p-3 sm:p-4">
       <Label as="h2">River Safety Status</Label>
