@@ -46,14 +46,14 @@ const COLOR_MAP = new Map<
   ],
 ]);
 
-const HeroTitle: React.FC<Props> = ({
+const HeroTitle = ({
   title,
   children,
   prose = false,
   breadcrumbs = false,
   color = "blue",
   transparent = false,
-}) => {
+}: Props) => {
   let localColor = color;
   if (transparent) localColor = "transparent";
 
@@ -64,7 +64,7 @@ const HeroTitle: React.FC<Props> = ({
       <div
         className={cn(
           "relative flex h-48 min-h-[48] flex-wrap content-center",
-          colorClasses?.hero
+          colorClasses?.hero,
         )}
       >
         <Container>
@@ -82,12 +82,12 @@ const HeroTitle: React.FC<Props> = ({
             <Breadcrumbs
               listClassName={cn(
                 "flex text-sm",
-                prose && "max-w-min mx-auto justify-center"
+                prose && "max-w-min mx-auto justify-center",
               )}
               rootLabel="Home"
               inactiveItemClassName={cn(
                 "whitespace-nowrap after:content-['→'] after:px-2 after:text-gray-400 capitalize transition",
-                colorClasses?.item
+                colorClasses?.item,
               )}
               activeItemClassName="whitespace-nowrap font-medium capitalize"
               currentLabel={title}

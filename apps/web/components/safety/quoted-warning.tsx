@@ -14,10 +14,7 @@ let AgencyIcon: React.FC<{ className: string }> = () => null;
 let agencyName: string = "";
 let agencyColors: string = "";
 
-const QuotedWarning: React.FC<QuotedWarningProps> = ({
-  description,
-  source,
-}) => {
+const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
   if (!description) return null;
   if (!source) return null;
 

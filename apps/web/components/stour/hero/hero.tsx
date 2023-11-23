@@ -20,13 +20,13 @@ const Text = ({ title, description, label }: Props) => (
   </>
 );
 
-const Hero: React.FC<Props> = ({
+const Hero = ({
   title,
   label,
   description,
   dark = false,
   fullwidth = false,
-}) => {
+}: Props) => {
   if (!fullwidth) {
     return <Text title={title} label={label} description={description} />;
   }

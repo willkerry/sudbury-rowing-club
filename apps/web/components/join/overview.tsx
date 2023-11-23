@@ -17,7 +17,7 @@ interface OverviewProps {
   items: OverviewType[];
 }
 
-const Overview: React.FC<OverviewProps> = ({ items }) => (
+const Overview = ({ items }: OverviewProps) => (
   <div className="my-24 gap-16 sm:grid sm:grid-cols-12">
     <div className="hidden sm:col-span-4 sm:block">
       <ul className="sticky top-36 space-y-4 md:space-y-6">

@@ -20,7 +20,7 @@ type Props = {
  * Provides a simple input field with automatic best-practice labels. Intended for
  * compatibility with the `Field` component from `react-final-form`.
  */
-const Input: React.FC<Props> = ({
+const Input = ({
   input,
   meta,
   label,
@@ -28,7 +28,7 @@ const Input: React.FC<Props> = ({
   type,
   placeholder,
   disabled,
-}) => (
+}: Props) => (
   <div className="col-span-2 sm:col-span-1">
     <label htmlFor={id}>{label}</label>
     <input

@@ -8,11 +8,15 @@ import { makeShareImageURL } from "@/lib/og-image";
  * A 'root'-level comonent for rendering simple pages with a title and some
  * HTML-like content. **Do not** wrap this component in a `Layout` component.
  */
-const TextPage: React.FC<{
+const TextPage = ({
+  children,
+  title,
+  description,
+}: {
   title: string;
   description?: string;
   children: React.ReactNode;
-}> = ({ children, title, description }) => (
+}) => (
   <Layout>
     <NextSeo
       title={title}
