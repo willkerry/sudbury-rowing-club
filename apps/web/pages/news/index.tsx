@@ -78,7 +78,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   const search = useCallback(async () => {
     if (!dirty) setDirty(true);
-    router.push(`/news?q=${searchTerm}`, undefined, {
+    router.push(`/news?q=${encodeURIComponent(searchTerm)}`, undefined, {
       shallow: true,
     });
     setActiveSearchTerm(searchTerm);
