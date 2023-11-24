@@ -33,7 +33,7 @@
     "@vercel/kv": "^0.1.2",
     "@vercel/og": "^0.5.20",
     "algoliasearch": "^4.20.0",
-    "axios": "^1.6.0",
+    "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "color": "^4.2.3",
