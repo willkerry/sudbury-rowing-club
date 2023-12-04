@@ -3,7 +3,12 @@
 /** @type {import('next').NextConfig} */
 const config = {
   images: {
-    domains: ["cdn.sanity.io"],
+    remotePatterns: [
+      {
+        hostname: "cdn.sanity.io",
+        protocol: "https",
+      },
+    ],
   },
   swcMinify: true,
   async redirects() {
