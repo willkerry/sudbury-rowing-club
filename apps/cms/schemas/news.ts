@@ -1,4 +1,17 @@
+import { defineField } from "sanity";
 import { BookIcon } from "@sanity/icons";
+
+/*
+ * Query for news articles with 'author' field populated with a reference to the
+ * 'author' document type.
+
+*[_type == "news" && defined(author) && author->_type == "author"] {
+  title,
+  "surname": author->surname,
+  "author_type": author->_type
+}
+ */
+
 
 export default {
   name: "news",
@@ -6,29 +19,37 @@ export default {
   title: "News",
   icon: BookIcon,
   fields: [
-    {
+    defineField({
       name: "title",
       type: "string",
       title: "Title",
       validation: (Rule) => Rule.required(),
-    },
-    {
+    }),
+    defineField({
       name: "slug",
       type: "slug",
       title: "Slug",
       options: { source: "title" },
       validation: (Rule) => Rule.required(),
-    },
-    { name: "author", type: "reference", to: [{ type: "author" }] },
-    { name: "excerpt", type: "text", title: "Excerpt", rows: 3 },
-    {
+    }),
+    defineField({
+      name: "author",
+      type: "reference",
+      to: [{ type: "author" }, { type: "person" }],
+    }),
+    defineField({ name: "excerpt", type: "text", title: "Excerpt", rows: 3 }),
+    defineField({
       name: "date",
       type: "date",
       title: "Original publication date",
       validation: (Rule) => Rule.required(),
-    },
-    { name: "body", type: "richText", title: "Body" },
-    { name: "featuredImage", type: "figure", title: "Featured image" },
+    }),
+    defineField({ name: "body", type: "richText", title: "Body" }),
+    defineField({
+      name: "featuredImage",
+      type: "figure",
+      title: "Featured image",
+    }),
   ],
   preview: {
     select: {

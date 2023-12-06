@@ -16,6 +16,7 @@ import note from "./note";
 import minutes from "./minutes";
 import siteSettings from "./siteSettings";
 import forwarders from "./forwarders";
+import person from "./person";
 
 export default [
   news,
@@ -36,4 +37,5 @@ export default [
   minutes,
   siteSettings,
   forwarders,
+  person,
 ];

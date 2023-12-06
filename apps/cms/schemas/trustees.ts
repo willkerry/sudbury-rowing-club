@@ -1,4 +1,5 @@
 import { UsersIcon } from "@sanity/icons";
+import { defineField } from "sanity";
 
 export default {
   name: "trustees",
@@ -6,18 +7,26 @@ export default {
   title: "Trustees",
   icon: UsersIcon,
   fields: [
-    { name: "firstName", type: "string", title: "First Name" },
-    { name: "surname", type: "string", title: "Surname" },
+    defineField({ name: "firstName", type: "string", title: "First Name" }),
+    defineField({ name: "surname", type: "string", title: "Surname" }),
+    defineField({
+      name: "reference",
+      type: "reference",
+      to: [{ type: "person" }],
+    }),
   ],
   preview: {
     select: {
-      name: "firstName",
-      surname: "surname",
+      firstName: "reference.firstName",
+      surname: "reference.surname",
+      media: "reference.image.image",
     },
-    prepare(selection) {
-      const { name, surname } = selection;
+    prepare(selection: { firstName: string; surname: string; media: any }) {
+      const { firstName, surname, media } = selection;
+
       return {
-        title: name + " " + surname,
+        title: firstName + " " + surname,
+        media,
       };
     },
   },
