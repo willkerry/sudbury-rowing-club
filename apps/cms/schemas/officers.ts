@@ -2,6 +2,7 @@ import {
   orderRankField,
   orderRankOrdering,
 } from "@sanity/orderable-document-list";
+import { defineField } from "sanity";
 import { UsersIcon } from "@sanity/icons";
 
 export default {
@@ -10,18 +11,29 @@ export default {
   title: "Club Officers",
   icon: UsersIcon,
   fields: [
-    { name: "role", type: "string", title: "Role" },
-    { name: "name", type: "string", title: "Name" },
-    { name: "email", type: "string", title: "Email" },
-    { name: "vacant", type: "boolean", title: "Is this position vacant?" },
-    {
+    defineField({ name: "role", type: "string", title: "Role" }),
+    defineField({ name: "name", type: "string", title: "Name" }),
+    defineField({ name: "email", type: "string", title: "Email" }),
+
+    defineField({
+      name: "occupant",
+      type: "reference",
+      to: [{ type: "person" }],
+    }),
+
+    defineField({
+      name: "vacant",
+      type: "boolean",
+      title: "Is this position vacant?",
+    }),
+    defineField({
       name: "description",
       type: "text",
       title: "Role description",
       rows: 2,
       validation: (Rule) => Rule.max(175),
-    },
-    { name: "image", type: "figure" },
+    }),
+    defineField({ name: "image", type: "figure" }),
     orderRankField({ type: "officers" }),
   ],
   orderings: [orderRankOrdering],
@@ -29,7 +41,33 @@ export default {
   preview: {
     select: {
       title: "role",
-      subtitle: "name",
+      name: "occupant.firstName",
+      surname: "occupant.surname",
+      media: "occupant.image.image",
+      override: "override",
+      overrideName: "name",
+      vacant: "vacant",
+    },
+    prepare(selection: {
+      title: string;
+      name: string;
+      surname: string;
+      media: any;
+      vacant: boolean;
+    }) {
+      const { title, name, surname, media, vacant } = selection;
+
+      const makeSubtitle = () => {
+        if (vacant) return "Vacant";
+
+        return name + " " + surname;
+      };
+
+      return {
+        title: title,
+        subtitle: makeSubtitle(),
+        media,
+      };
     },
   },
 };

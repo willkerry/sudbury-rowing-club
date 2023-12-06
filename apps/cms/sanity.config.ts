@@ -19,42 +19,142 @@ export default defineConfig({
           .title("Content")
           .items([
             S.listItem()
-              .title("Safety Status")
+              .title("News")
               .child(
-                S.document()
-                  .schemaType("safetyStatus")
-                  .documentId("safetyStatus")
+                S.list()
+                  .title("News")
+                  .items([
+                    S.listItem()
+                      .title("News")
+                      .child(S.documentTypeList("news").title("News")),
+                    S.listItem()
+                      .title("Member’s notices")
+                      .child(
+                        S.documentTypeList("members").title("Member’s notices")
+                      ),
+                    S.listItem()
+                      .title("Authors")
+                      .child(S.documentTypeList("author").title("Authors")),
+                  ])
               ),
 
             S.listItem()
-              .title("Site Settings")
+              .title("Governance")
               .child(
-                S.document()
-                  .schemaType("siteSettings")
-                  .documentId("siteSettings")
+                S.list()
+                  .title("Governance")
+                  .items([
+                    orderableDocumentListDeskItem({
+                      type: "officers",
+                      title: "Club Officers",
+                      icon: UsersIcon,
+                      S,
+                      context,
+                    }),
+                    S.listItem()
+                      .title("Vice presidents")
+                      .child(
+                        S.documentTypeList("vicePresidents").title(
+                          "Vice presidents"
+                        )
+                      ),
+                    S.listItem()
+                      .title("Trustees")
+                      .child(S.documentTypeList("trustees").title("Trustees")),
+                    S.listItem()
+                      .title("Committees")
+                      .child(
+                        S.documentTypeList("committees").title("Committees")
+                      ),
+
+                    S.listItem()
+                      .title("Minutes")
+                      .child(S.documentTypeList("minutes").title("Minutes")),
+                  ])
               ),
+
             S.listItem()
-              .title("Regatta Settings")
+              .title("Regatta")
               .child(
-                S.document()
-                  .schemaType("regattaSettings")
-                  .documentId("1af70bac-279d-486d-9c87-cfb4de0b6964")
+                S.list()
+                  .title("Regatta")
+                  .items([
+                    S.listItem()
+                      .title("Regatta Settings")
+                      .child(
+                        S.document()
+                          .schemaType("regattaSettings")
+                          .documentId("1af70bac-279d-486d-9c87-cfb4de0b6964")
+                      ),
+                    S.listItem()
+                      .title("Regattas")
+                      .child(S.documentTypeList("regattas").title("Regattas")),
+                  ])
               ),
-            orderableDocumentListDeskItem({
-              type: "officers",
-              title: "Club Officers",
-              icon: UsersIcon,
-              S,
-              context,
-            }),
+
+            S.listItem()
+              .title("Safety")
+              .child(
+                S.list()
+                  .title("Safety")
+                  .id("safety_list")
+                  .items([
+                    S.listItem()
+                      .title("Safety Status")
+                      .child(
+                        S.document()
+                          .schemaType("safetyStatus")
+                          .documentId("safetyStatus")
+                      ),
+                    S.listItem()
+                      .title("Safety")
+                      .id("safety_documents")
+                      .child(S.documentTypeList("safety").title("Safety")),
+                  ])
+              ),
+
+            S.listItem()
+              .title("Meta")
+              .child(
+                S.list()
+                  .title("Meta")
+                  .items([
+                    S.listItem()
+                      .title("Site Settings")
+                      .child(
+                        S.document()
+                          .schemaType("siteSettings")
+                          .documentId("siteSettings")
+                      ),
+                    S.listItem()
+                      .title("People")
+                      .child(S.documentTypeList("person").title("People")),
+                    S.listItem()
+                      .title("Forwarders")
+                      .child(
+                        S.documentTypeList("forwarders").title("Forwarders")
+                      ),
+                  ])
+              ),
 
             ...S.documentTypeListItems().filter(
               (listItem) =>
                 ![
-                  "safetyStatus",
-                  "regattaSettings",
-                  "siteSettings",
+                  "author",
+                  "committees",
+                  "forwarders",
+                  "minutes",
+                  "members",
+                  "news",
                   "officers",
+                  "regattas",
+                  "regattaSettings",
+                  "person",
+                  "safety",
+                  "safetyStatus",
+                  "siteSettings",
+                  "trustees",
+                  "vicePresidents",
                 ].includes(listItem.getId() as string)
             ),
           ]);

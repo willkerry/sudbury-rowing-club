@@ -1,12 +1,12 @@
 import React from "react";
-import { DocumentDefinition } from "sanity";
+import { defineField, DocumentDefinition } from "sanity";
 
 const forwarders: DocumentDefinition = {
   name: "forwarders",
   type: "document",
   title: "Forwarders",
   fields: [
-    {
+    defineField({
       name: "alias",
       type: "slug",
       title: "Email Alias",
@@ -18,17 +18,15 @@ const forwarders: DocumentDefinition = {
         </p>
       ),
       validation: (Rule) => Rule.required(),
-    },
+    }),
     {
       name: "recipients",
       type: "array",
       title: "Recipients",
-
       of: [
         {
           type: "reference",
           to: [{ type: "officers" }],
-          //
         },
       ],
     },
