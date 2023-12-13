@@ -11,25 +11,25 @@
     "sanity:upgrade": "sanity upgrade"
   },
   "dependencies": {
-    "@sanity/client": "^6.9.1",
+    "@sanity/client": "^6.10.0",
     "@sanity/color": "^2.2.5",
     "@sanity/dashboard": "^3.1.6",
-    "@sanity/icons": "^2.7.0",
+    "@sanity/icons": "^2.8.0",
     "@sanity/orderable-document-list": "^1.1.0",
     "@sanity/table": "^1.0.1",
-    "@sanity/types": "^3.20.2",
+    "@sanity/types": "^3.21.3",
     "@sanity/ui": "^1.9.3",
     "@sanity/uuid": "^3.0.2",
-    "@sanity/vision": "^3.20.2",
+    "@sanity/vision": "^3.21.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sanity": "^3.20.2",
+    "sanity": "^3.21.3",
     "sanity-plugin-dashboard-widget-vercel": "^2.0.1",
     "styled-components": "^5.2 || ^6",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@sanity/cli": "^3.20.2",
-    "@types/react": "^18.2.41"
+    "@sanity/cli": "^3.21.3",
+    "@types/react": "^18.2.45"
   }
 }

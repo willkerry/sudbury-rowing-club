@@ -18,9 +18,9 @@
     "@sanity/image-url": "^1.0.2",
     "@sudburyrc/tsconfig": "workspace:*",
     "emoji-regex": "^10.3.0",
-    "groq": "^3.20.2",
+    "groq": "^3.21.3",
     "he": "^1.2.0",
-    "isomorphic-dompurify": "^1.11.0",
+    "isomorphic-dompurify": "^1.12.0",
     "picosanity": "^4.1.1",
     "tsup": "^8.0.1",
     "zod": "^3.22.4"
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "^1.2.3",
-    "@types/node": "^20.10.3",
+    "@types/node": "^20.10.4",
     "eslint-config-stour": "workspace:*"
   },
   "browser": {
