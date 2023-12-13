@@ -1,4 +1,5 @@
 import { InputHTMLAttributes, LabelHTMLAttributes } from "react";
+import cn from "clsx";
 
 type Props = {
   disabled?: InputHTMLAttributes<HTMLInputElement>["disabled"];
@@ -14,6 +15,9 @@ type Props = {
   };
   placeholder?: InputHTMLAttributes<HTMLInputElement>["placeholder"];
   type: InputHTMLAttributes<HTMLInputElement>["type"];
+  inputClassName?: string;
+  instruction?: string;
+  hint?: string;
 };
 
 /**
@@ -28,18 +32,29 @@ const Input = ({
   type,
   placeholder,
   disabled,
+  inputClassName,
+  instruction,
+  hint,
 }: Props) => (
   <div className="col-span-2 sm:col-span-1">
     <label htmlFor={id}>{label}</label>
+
+    {instruction && <p className="my-1 text-sm text-gray-900">{instruction}</p>}
+
     <input
       {...input}
-      className={meta?.invalid && meta?.touched ? "invalid" : ""}
+      className={cn(
+        inputClassName,
+        meta?.invalid && meta?.touched ? "invalid" : "",
+      )}
       disabled={disabled}
       id={id}
       placeholder={placeholder}
       required
       type={type}
     />
+
+    {hint && <p className="my-1 text-xs text-gray-700">{hint}</p>}
   </div>
 );
 

@@ -34,19 +34,7 @@ export default function Footer() {
         <div className="pt-2">
           <div className="m-auto flex justify-between py-5 text-sm text-gray-500 md:flex-row">
             <div className="mt-2">
-              © Sudbury Rowing Club {date.getFullYear()}.{" "}
-              <ReportABug
-                userAgent={
-                  typeof window === "undefined"
-                    ? null
-                    : window.navigator.userAgent
-                }
-                currentPath={
-                  typeof window === "undefined"
-                    ? null
-                    : window.location.pathname
-                }
-              />
+              © Sudbury Rowing Club {date.getFullYear()}. <ReportABug />
             </div>
             <div className="mt-2 flex flex-row">
               <SocialIcons />
