@@ -1,4 +1,4 @@
-import { Disclosure, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import cn from "clsx";
 import Label from "@/components/stour/label";
@@ -24,24 +24,15 @@ const Detail = ({ summary, icon, children }: DetailProps) => (
             <ChevronDownIcon
               className={cn(
                 "h-6 w-6 text-gray-400 opacity-0 transition duration-300 group-hover:opacity-100",
-                open ? "-rotate-180 transform" : ""
+                open && "-rotate-180 transform",
               )}
             />
           </div>
         </Disclosure.Button>
         <div className="overflow-hidden">
-          <Transition
-            enter="transition delay-50 duration-300 ease-in-out"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition duration-300 delay-50 ease-in-out"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Disclosure.Panel className="border-t p-4">
-              {children}
-            </Disclosure.Panel>
-          </Transition>
+          <Disclosure.Panel className="border-t p-4">
+            {children}
+          </Disclosure.Panel>
         </div>
       </>
     )}
