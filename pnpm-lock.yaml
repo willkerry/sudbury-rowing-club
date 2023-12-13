@@ -129,6 +129,9 @@ importers:
       axios:
         specifier: ^1.6.2
         version: 1.6.2
+      bowser:
+        specifier: ^2.11.0
+        version: 2.11.0
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -3919,6 +3922,10 @@ packages:
 
   /bluebird@3.7.2:
     resolution: {integrity: sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==}
+    dev: false
+
+  /bowser@2.11.0:
+    resolution: {integrity: sha512-AlcaJBi/pqqJBIQ8U9Mcpc9i8Aqxn88Skv5d+xBX006BY5u8N3mGLHa5Lgppa7L/HfwgwLgZ6NYs+Ag6uUmJRA==}
     dev: false
 
   /brace-expansion@1.1.11:
