@@ -3,9 +3,16 @@ import { SENDER } from "@/lib/constants";
 import Bowser from "bowser";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Resend } from "resend";
-import snarkdown from "snarkdown";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+const parseToJSON = (value: string) => {
+  try {
+    return JSON.parse(value);
+  } catch (e) {
+    return value;
+  }
+};
 
 export type BugReport = {
   name: string;
@@ -49,12 +56,18 @@ export default async function ReportBug(
     reply_to: `${name} <${email}>`,
     to: `Bug Report <${SENDER.email}>`,
     subject: "Bug Report from sudburyrowingclub.org.uk",
-    text: `DESCRIPTION: ${description}\n\nREPORTER: ${name} <${SENDER.email}>\n\nDATA: ${JSON.stringify({
-      description,
-      userAgent,
-      parsedUserAgent: Bowser.parse(userAgent),
-      additionalInformation: parseToJSON(additionalInformation || ""),
-    }, null, 2)}`,
+    text: `DESCRIPTION: ${description}\n\nREPORTER: ${name} <${
+      SENDER.email
+    }>\n\nDATA: ${JSON.stringify(
+      {
+        description,
+        userAgent,
+        parsedUserAgent: Bowser.parse(userAgent),
+        additionalInformation: parseToJSON(additionalInformation || ""),
+      },
+      null,
+      2,
+    )}`,
   });
 
   if (response.error) {
@@ -66,12 +79,4 @@ export default async function ReportBug(
   }
 
   res.status(200).send("Bug report sent successfully.");
-}
-
-function parseToJSON(value: string) {
-  try {
-    return JSON.parse(value);
-  } catch (e) {
-    return value;
-  }
 }
