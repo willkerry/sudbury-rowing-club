@@ -18,9 +18,9 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { ThumbsUp } from "react-feather";
 
-export const NextCourse = () => {
-  const EXPIRY = new Date(2023, 4, 8);
+const HIDE_COURSE_AFTER_DATE = new Date(2024, 4, 28);
 
+export const NextCourse = () => {
   const seasonStartDates: Record<string, Date> = {
     spring: new Date("2023-03-15"),
     summer: new Date("2023-06-15"),
@@ -29,10 +29,11 @@ export const NextCourse = () => {
   };
 
   const expirySeason = Object.entries(seasonStartDates).find(
-    ([, seasonStartDate]) => EXPIRY.getTime() > seasonStartDate.getTime(),
+    ([, seasonStartDate]) =>
+      HIDE_COURSE_AFTER_DATE.getTime() > seasonStartDate.getTime(),
   )?.[0];
 
-  if (EXPIRY.getTime() < Date.now()) {
+  if (HIDE_COURSE_AFTER_DATE.getTime() < Date.now()) {
     return (
       <Note
         className="m-4 bg-white"
@@ -54,39 +55,39 @@ export const NextCourse = () => {
         </span>
       </h3>
       <p>
-        The next two adult Learn to Row courses will be held this spring 2023.
-        These will be run on consecutive Saturday afternoons between 1pm and 4pm
-        at Sudbury Rowing Club in Quay Lane, Sudbury (although please see note
-        below about the Coronation weekend). Dates will be as follows:
+        Please <Link href="join/apply">register your interest</Link> for the
+        Learn to Row course dates for 2024.
       </p>
       <p>
-        We’re holding two Saturday <strong>taster sessions</strong>:
-        <div>4 February 2023, 12:30</div>
-        <div>11 February 2023, 12:30</div>
+        First <strong>taster sessions</strong> being held:
+        <div>3 February 2024, 11:30-13:00</div>
+        <div>10 February 2024, 11:30-13:00</div>
       </p>
       <p className="mb-0">Followed by two separate courses:</p>
       <div className="grid gap-4 py-0 md:grid-cols-2">
         <div>
           <strong>Course 1</strong>
-          <div>4 March 2023</div>
-          <div>11 March 2023</div>
-          <div>18 March 2023</div>
-          <div>25 March 2023</div>
+          <div>2 March 2023</div>
+          <div>9 March 2023</div>
+          <div>16 March 2023</div>
+          <div>23 March 2023</div>
         </div>
 
         <div>
           <strong>Course 2</strong>
-          <div>15 April 2023</div>
-          <div>22 April 2023</div>
-          <div>29 April 2023</div>
-          <div>7 or 8 May 2023 (Coronation weekend)</div>
+          <div>6 April 2023</div>
+          <div>13 April 2023</div>
+          <div>20 April 2023</div>
+          <div>27 April 2023</div>
         </div>
       </div>
       <p>
-        Please <Link href="join/apply">apply now</Link> or{" "}
+        <Link href="join/apply">Register your interest</Link> now or{" "}
         <Link href="/contact?q=learntorow">contact Sean Moriarty</Link> for
-        further information and booking instructions.
+        further information.
       </p>
+
+      <p>We look forward to welcoming you to the club.</p>
     </div>
   );
 };
@@ -187,9 +188,13 @@ const Join: NextPage = () => (
         <div className="mb-20 grid gap-12 md:grid-cols-2">
           <div className="prose">
             <p className="lead">
-              Our Learn to Row programme starts with a ‘taster session’ and
+              {/* Our Learn to Row programme starts with a ‘taster session’ and
               teaches you the basics of sculling (an oar in each hand) and sweep
-              oar rowing (one oar for both hands) over a period of 6-8 weeks.
+              oar rowing (one oar for both hands) over a period of 6-8 weeks. */}
+              Our Learn to Row progamme starts with a ‘taster session’ after
+              which you will be invited to join one of our courses during which
+              you will learn the basics of sculling (an oar in each hand) over
+              approximately 4 × 3-hour sessions.
             </p>
             <p>
               We plan to run the Learn to Row programme on a group basis for
