@@ -66,7 +66,7 @@ export const NextCourse = () => {
       <p className="mb-0">Followed by two separate courses:</p>
       <div className="grid gap-4 py-0 md:grid-cols-2">
         <div>
-          <strong>Course 1</strong>
+          <strong>Course 1 (Saturday 13:00-16:00)</strong>
           <div>2 March 2023</div>
           <div>9 March 2023</div>
           <div>16 March 2023</div>
@@ -74,7 +74,7 @@ export const NextCourse = () => {
         </div>
 
         <div>
-          <strong>Course 2</strong>
+          <strong>Course 2 (Saturday 13:00-16:00)</strong>
           <div>6 April 2023</div>
           <div>13 April 2023</div>
           <div>20 April 2023</div>
