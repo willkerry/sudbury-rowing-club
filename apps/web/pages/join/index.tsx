@@ -188,20 +188,21 @@ const Join: NextPage = () => (
         <div className="mb-20 grid gap-12 md:grid-cols-2">
           <div className="prose">
             <p className="lead">
-              {/* Our Learn to Row programme starts with a ‘taster session’ and
-              teaches you the basics of sculling (an oar in each hand) and sweep
-              oar rowing (one oar for both hands) over a period of 6-8 weeks. */}
               Our Learn to Row progamme starts with a ‘taster session’ after
-              which you will be invited to join one of our courses during which
+              which you can apply for a place on one of our courses during which
               you will learn the basics of sculling (an oar in each hand) over
               approximately 4 × 3-hour sessions.
             </p>
             <p>
               We plan to run the Learn to Row programme on a group basis for
-              adults over the next year and after your taster session you will
-              be allocated a start date along with a number of other
-              participants at a similar level. Juniors (under 18) will be
-              separately invited to programmed courses.
+              adults over the next year. Attending a taster session is an
+              opportunity to find out about rowing and the course. You don’t
+              have to make a commitment to the course until after the taster
+              session when you can apply for a place on one of the upcoming
+              courses. Subject to availability you will be allocated a start
+              date along with a number of other participants at a similar level.
+              Juniors (under 18) will be separately invited to programmed
+              courses.
             </p>
             <p>
               The programme costs £130 and for its duration, you’ll be a club
