@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.21.1",
-    "@fontsource-variable/inter": "^5.0.16",
     "@fontsource/jetbrains-mono": "^4.5.12",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
@@ -43,6 +42,7 @@
     "get-wodehouse-name": "^0.2.0",
     "groq": "^3.21.3",
     "he": "^1.2.0",
+    "inter-ui": "^4.0.1",
     "isomorphic-dompurify": "^1.12.0",
     "lodash": "^4.17.21",
     "next": "^14.0.4",

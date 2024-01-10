@@ -29,7 +29,7 @@ export default {
       },
 
       fontFamily: {
-        sans: ["Inter Variable", "Inter", "system-ui", "sans-serif"],
+        sans: ["InterVariable", "Inter", "system-ui", "sans-serif"],
         mono: [
           "JetBrains MonoVariable",
           "ui-monospace",
