@@ -2,7 +2,6 @@
   "schema": "https://json.schemastore.org/package",
   "name": "@sudburyrc/web",
   "version": "1.0.0",
-  "packageManager": "pnpm",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
