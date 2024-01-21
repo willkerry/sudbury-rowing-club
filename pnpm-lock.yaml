@@ -18,8 +18,8 @@ importers:
         specifier: ^6.11.1
         version: 6.11.1
       '@sanity/color':
-        specifier: ^2.2.5
-        version: 2.2.5
+        specifier: ^3.0.0
+        version: 3.0.0
       '@sanity/dashboard':
         specifier: ^3.1.6
         version: 3.1.6(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.25.0)(styled-components@6.1.8)
@@ -4310,6 +4310,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
