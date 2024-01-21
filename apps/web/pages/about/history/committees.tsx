@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import TextPage from "@/components/layouts/text-page";
 import committees from "@/data/officer-archive.json";
 
@@ -41,7 +42,7 @@ const Archive = () => (
       if (!Object.values(committee).some((x) => x.length)) return null;
 
       return (
-        <>
+        <Fragment key={season[0]}>
           <a href={`#season-${season[0]}`}>
             <h2 id={`season-${season[0]}`}>{season[0]}</h2>
           </a>
@@ -70,7 +71,7 @@ const Archive = () => (
               );
             })}
           </ul>
-        </>
+        </Fragment>
       );
     })}
   </TextPage>
