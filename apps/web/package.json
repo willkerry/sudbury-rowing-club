@@ -22,7 +22,7 @@
     "@portabletext/react": "^3.0.11",
     "@portabletext/types": "^2.0.8",
     "@radix-ui/react-slot": "^1.0.2",
-    "@react-email/components": "^0.0.12",
+    "@react-email/components": "^0.0.14",
     "@sanity/image-url": "^1.0.2",
     "@south-paw/react-obfuscate-ts": "^2.0.0",
     "@sudburyrc/api": "workspace:*",
