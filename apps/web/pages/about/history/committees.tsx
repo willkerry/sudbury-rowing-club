@@ -57,7 +57,7 @@ const Archive = () => (
                 : POSITION_NAMES[position as Position].singular;
 
               return (
-                <li className="my-0 pl-0">
+                <li className="my-0 pl-0" key={position}>
                   <span className="block text-xs font-semibold uppercase tracking-wider text-gray-500">
                     {positionName}
                   </span>
