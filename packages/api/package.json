@@ -20,7 +20,7 @@
     "emoji-regex": "^10.3.0",
     "groq": "^3.25.0",
     "he": "^1.2.0",
-    "isomorphic-dompurify": "^1.13.0",
+    "isomorphic-dompurify": "^2.2.0",
     "picosanity": "^4.1.1",
     "tsup": "^8.0.1",
     "zod": "^3.22.4"
