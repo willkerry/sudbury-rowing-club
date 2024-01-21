@@ -42,7 +42,7 @@
     "groq": "^3.25.0",
     "he": "^1.2.0",
     "inter-ui": "^4.0.1",
-    "isomorphic-dompurify": "^1.13.0",
+    "isomorphic-dompurify": "^2.2.0",
     "lodash": "^4.17.21",
     "next": "^14.1.0",
     "next-seo": "^6.4.0",
