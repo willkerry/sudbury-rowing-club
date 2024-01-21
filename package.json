@@ -2,7 +2,7 @@
   "name": "@sudburyrc/monorepo",
   "version": "1.0.0",
   "description": "",
-  "packageManager": "bun@1.0.11",
+  "packageManager": "pnpm@8.14.1",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev"
@@ -10,10 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
   "dependencies": {
     "turbo": "latest"
   }
