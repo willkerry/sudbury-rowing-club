@@ -76,8 +76,8 @@ importers:
         specifier: ^4.22.1
         version: 4.22.1
       '@fontsource/jetbrains-mono':
-        specifier: ^4.5.12
-        version: 4.5.12
+        specifier: ^5.0.18
+        version: 5.0.18
       '@headlessui/react':
         specifier: ^1.7.18
         version: 1.7.18(react-dom@18.2.0)(react@18.2.0)
@@ -1364,8 +1364,8 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: false
 
-  /@fontsource/jetbrains-mono@4.5.12:
-    resolution: {integrity: sha512-LJF1ala1/u+wXZmESFqIk08FA9yGX4/uAAleCHmXUMgEjvNAYFHUQQ7eK5hQQoBOwh99cU5suTrqYqEkgzwzPA==}
+  /@fontsource/jetbrains-mono@5.0.18:
+    resolution: {integrity: sha512-0+YDAaAnCdXjirHFO3NfHLUW8xtKCT5rlm23Q0qG3TpZp3QBrZh5r9ikUxh3ufHc2+fVnk4Y6GWNEnVIfB7u/g==}
     dev: false
 
   /@headlessui/react@1.7.18(react-dom@18.2.0)(react@18.2.0):

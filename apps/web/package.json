@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.22.1",
-    "@fontsource/jetbrains-mono": "^4.5.12",
+    "@fontsource/jetbrains-mono": "^5.0.18",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@mantine/hooks": "^7.4.2",
