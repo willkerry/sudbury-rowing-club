@@ -1,7 +1,7 @@
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { urlFor } from "@sudburyrc/api";
 import BoathouseDoor from "@/components/landing/boathouse-door";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 const Player = dynamic(() => import("@/components/landing/player"));
 
@@ -25,7 +25,7 @@ const LandingHero = ({
   <div className="container max-w-screen-lg md:mx-auto md:px-5">
     <div className="group relative flex overflow-hidden shadow-lg md:rounded-xl">
       <Image
-        src={urlFor(imageId).url()}
+        {...useSanityImageProps(imageId)}
         width={984}
         height={984 / imageAspectRatio}
         alt="Aerial photograph of a Sudbury crew training."

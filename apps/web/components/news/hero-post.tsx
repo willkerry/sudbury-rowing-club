@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { urlFor } from "@sudburyrc/api";
 import type { ArticleSummary } from "@sudburyrc/api";
 import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
@@ -10,22 +9,11 @@ const HeroPost = ({ post }: { post: ArticleSummary }) => (
     href="/news/[slug]"
     className="group mb-4 grid overflow-hidden rounded border transition duration-200 hover:border-blue-400 md:grid-cols-3 md:gap-x-2"
   >
-    <div
-      className={`relative border-b md:col-span-2 md:border-b-0 md:border-r ${
-        !post.featuredImage ? "h-60 sm:h-96" : "flex"
-      }`}
-    >
+    <div className="relative h-60 border-b sm:h-96 md:col-span-2 md:border-b-0 md:border-r">
       {post.featuredImage ? (
         <CoverImage
           title={post.title}
-          src={urlFor(post.featuredImage._id)
-            .width(1304)
-            .height(772)
-            .fit("crop")
-            .crop("entropy")
-            .url()}
-          height={386}
-          width={652}
+          id={post.featuredImage._id}
           alt={post.featuredImage.alt || post.title}
           blurDataURL={post.featuredImage.lqip}
         />

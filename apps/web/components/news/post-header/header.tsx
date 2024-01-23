@@ -2,6 +2,7 @@ import Image from "next/image";
 import { urlFor, Article } from "@sudburyrc/api";
 import LightBox from "@/components/stour/lightbox";
 import { useToggle } from "@mantine/hooks";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import Caption from "./caption";
 import PostTitle from "./title";
 
@@ -17,6 +18,7 @@ const HeaderLightBox = ({
   toggleOpen: () => void;
 }) => {
   if (!featuredImage) return null;
+
   return (
     <LightBox
       src={urlFor(featuredImage._id).url()}
@@ -26,6 +28,68 @@ const HeaderLightBox = ({
       open={open}
       toggle={toggleOpen}
     />
+  );
+};
+
+const PostHeaderImage = ({
+  alt,
+  id,
+  lqip,
+  ...rest
+}: {
+  id: string;
+  alt: string;
+  lqip: string;
+  width: number;
+  height: number;
+}) => (
+  <Image
+    {...useSanityImageProps(id)}
+    placeholder="blur"
+    blurDataURL={lqip}
+    alt={alt}
+    {...rest}
+  />
+);
+
+const PortraitOrLandscapeImage = ({
+  featuredImage,
+  onClick,
+  orientation,
+  title,
+}: Pick<Article, "featuredImage"> & {
+  onClick: () => void;
+  orientation: "portrait" | "landscape";
+  title: string;
+}) => {
+  if (!featuredImage) return null;
+
+  const { width, height } = {
+    portrait: {
+      width: 512 * featuredImage.aspectRatio,
+      height: 512,
+    },
+    landscape: {
+      width: 768,
+      height: 768 / featuredImage.aspectRatio,
+    },
+  }[orientation];
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="hover:cursor-zoom-in"
+      aria-label={`View the '${title}' image in lightbox`}
+    >
+      <PostHeaderImage
+        id={featuredImage._id}
+        alt={featuredImage.alt || featuredImage.caption || title}
+        lqip={featuredImage.lqip}
+        width={width}
+        height={height}
+      />
+    </button>
   );
 };
 
@@ -45,18 +109,12 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
               color: featuredImage.foreground || "inherit",
             }}
           >
-            <button
-              type="button"
+            <PortraitOrLandscapeImage
+              featuredImage={featuredImage}
               onClick={() => toggleOpen()}
-              className="hover:cursor-zoom-in"
-            >
-              <Image
-                src={urlFor(featuredImage._id).width(1536).fit("max").url()}
-                alt={featuredImage.lqip}
-                width={768}
-                height={768 / featuredImage.aspectRatio}
-              />
-            </button>
+              orientation="landscape"
+              title={title}
+            />
             {featuredImage.caption && (
               <Caption caption={featuredImage.caption} />
             )}
@@ -79,22 +137,12 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
               color: featuredImage.foreground || undefined,
             }}
           >
-            <button
-              type="button"
+            <PortraitOrLandscapeImage
+              featuredImage={featuredImage}
               onClick={() => toggleOpen()}
-              className="hover:cursor-zoom-in"
-            >
-              <Image
-                src={urlFor(featuredImage._id).height(1024).fit("max").url()}
-                alt={title}
-                width={512 * featuredImage.aspectRatio}
-                height={512}
-                quality={50}
-                className="bg-gray-50"
-                placeholder="blur"
-                blurDataURL={featuredImage.lqip}
-              />
-            </button>
+              orientation="portrait"
+              title={title}
+            />
             {featuredImage.caption && (
               <Caption caption={featuredImage.caption} />
             )}

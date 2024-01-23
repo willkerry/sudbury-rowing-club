@@ -1,6 +1,7 @@
 import { urlFor } from "@sudburyrc/api";
 import Image from "next/image";
 import { useLightBox } from "@/components/stour/lightbox";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 const WIDTH = 650;
 
@@ -20,8 +21,8 @@ const Figure = ({
 }) => {
   const alt = altText || caption;
   const captionText = caption || description || "";
-  const width = aspectRatio < 1 ? WIDTH * 0.6 : WIDTH * aspectRatio;
-  const height = width / aspectRatio;
+  const width = Math.round(aspectRatio < 1 ? WIDTH * 0.6 : WIDTH * aspectRatio);
+  const height = Math.round(width / aspectRatio);
 
   const { toggle, LightBox } = useLightBox({
     aspectRatio,
@@ -39,22 +40,16 @@ const Figure = ({
           type="button"
           onClick={() => toggle()}
           className="hover:cursor-zoom-in"
+          aria-label={`View the '${alt}' image in lightbox`}
         >
           <Image
-            src={
-              aspectRatio
-                ? urlFor(image).width(1300).fit("max").url()
-                : urlFor(image)
-                    .width(width * 2)
-                    .height(height * 2)
-                    .fit("min")
-                    .url()
-            }
+            {...useSanityImageProps(image)}
             width={width}
             placeholder="blur"
             blurDataURL={lqip}
             height={height}
             alt={alt}
+            className="mx-auto"
           />
           {captionText !== null && <figcaption>{captionText}</figcaption>}
         </button>

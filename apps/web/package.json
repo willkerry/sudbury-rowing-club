@@ -23,7 +23,6 @@
     "@portabletext/types": "^2.0.8",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-email/components": "^0.0.14",
-    "@sanity/image-url": "^1.0.2",
     "@south-paw/react-obfuscate-ts": "^2.0.0",
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/blue": "workspace:*",
@@ -45,6 +44,7 @@
     "isomorphic-dompurify": "^2.2.0",
     "lodash": "^4.17.21",
     "next": "^14.1.0",
+    "next-sanity-image": "^6.1.1",
     "next-seo": "^6.4.0",
     "picosanity": "^4.1.1",
     "pigeon-maps": "^0.21.3",
@@ -66,6 +66,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
+    "@sanity/image-url": "^1.0.2",
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/color": "^3.0.6",
     "@types/he": "^1.2.3",

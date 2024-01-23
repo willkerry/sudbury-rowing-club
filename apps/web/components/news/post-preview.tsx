@@ -1,8 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
-import { urlFor } from "@sudburyrc/api";
 import type { ArticleSummary } from "@sudburyrc/api";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import DateFormatter from "../utils/date-formatter";
+
+const PostImage = ({
+  id,
+  alt,
+  lqip,
+}: {
+  id: string;
+  alt: string;
+  lqip: string;
+}) => {
+  const { src, loader } = useSanityImageProps(id);
+
+  return (
+    <Image
+      loader={loader}
+      src={src}
+      alt={alt}
+      placeholder="blur"
+      blurDataURL={lqip}
+      fill
+      quality={20}
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 218px, 316px"
+      className="z-0 bg-gradient-to-r from-gray-200 to-white object-cover"
+    />
+  );
+};
 
 const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li>
@@ -10,21 +36,11 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
       <Link as={`/news/${post.slug}`} href="/news/[slug]" legacyBehavior>
         <a className="group flex flex-col divide-y overflow-hidden rounded border bg-white transition hover:border-blue-400">
           {post.featuredImage ? (
-            <div className="relative">
-              <Image
-                src={urlFor(post.featuredImage._id)
-                  .width(630)
-                  .height(388)
-                  .fit("crop")
-                  .crop("entropy")
-                  .url()}
+            <div className="relative h-48 overflow-hidden">
+              <PostImage
+                id={post.featuredImage._id}
                 alt={post.featuredImage.alt || post.title}
-                placeholder="blur"
-                blurDataURL={post.featuredImage.lqip}
-                quality={30}
-                width={315}
-                height={194}
-                className="z-0 bg-gradient-to-r from-gray-200 to-white"
+                lqip={post.featuredImage.lqip}
               />
             </div>
           ) : (
