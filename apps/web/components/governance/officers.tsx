@@ -61,7 +61,7 @@ const OfficerPhotographOrPlaceholder = ({
     );
   }
 
-  if (image) {
+  if (image && image._id) {
     return (
       <OfficerPhotograph id={image._id} lqip={image.lqip} name={name || ""} />
     );
