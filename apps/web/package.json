@@ -66,6 +66,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
+    "@sanity/image-url": "^1.0.2",
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/color": "^3.0.6",
     "@types/he": "^1.2.3",

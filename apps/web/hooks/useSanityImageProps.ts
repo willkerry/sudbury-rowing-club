@@ -1,5 +1,5 @@
 import {
-  type UseNextSanityImageOptions,
+  UseNextSanityImageOptions,
   useNextSanityImage,
 } from "next-sanity-image";
 import { sanityClient } from "@sudburyrc/api";
