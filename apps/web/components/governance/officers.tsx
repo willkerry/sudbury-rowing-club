@@ -1,6 +1,5 @@
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import Link from "@/components/stour/link";
-import { urlFor } from "@sudburyrc/api";
 import type { Governance } from "@sudburyrc/api";
 import { Popover, Transition } from "@headlessui/react";
 import Image from "next/image";
@@ -11,6 +10,39 @@ import {
   MessageCircle,
   XCircle,
 } from "react-feather";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+
+const OfficerPhotograph = ({
+  id,
+  lqip,
+  name,
+}: {
+  id: string;
+  lqip: string;
+  name: string;
+}) => {
+  const { src, loader } = useSanityImageProps(id, {
+    imageBuilder: (imageUrlBuilder, options) =>
+      imageUrlBuilder
+        .crop("entropy")
+        .fit("clip")
+        .size(options.width || 500, 500)
+        .sharpen(30),
+  });
+
+  return (
+    <Image
+      loader={loader}
+      src={src}
+      fill
+      sizes="(max-width: 768px) 40vw, (max-width: 1024px) 148px, 222px"
+      placeholder="blur"
+      blurDataURL={lqip}
+      className="object-cover"
+      alt={name || ""}
+    />
+  );
+};
 
 type Props = {
   officers: Governance["officers"];
@@ -31,19 +63,7 @@ const OfficerPhotographOrPlaceholder = ({
 
   if (image) {
     return (
-      <Image
-        src={urlFor(image._id)
-          .crop("entropy")
-          .fit("clip")
-          .size(500, 500)
-          .sharpen(30)
-          .url()}
-        fill
-        placeholder="blur"
-        blurDataURL={image.lqip}
-        className="object-cover"
-        alt={name || ""}
-      />
+      <OfficerPhotograph id={image._id} lqip={image.lqip} name={name || ""} />
     );
   }
 

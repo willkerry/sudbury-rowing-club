@@ -99,9 +99,6 @@ importers:
       '@react-email/components':
         specifier: ^0.0.14
         version: 0.0.14(@types/react@18.2.48)(react@18.2.0)
-      '@sanity/image-url':
-        specifier: ^1.0.2
-        version: 1.0.2
       '@south-paw/react-obfuscate-ts':
         specifier: ^2.0.0
         version: 2.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -165,6 +162,9 @@ importers:
       next:
         specifier: ^14.1.0
         version: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+      next-sanity-image:
+        specifier: ^6.1.1
+        version: 6.1.1(@sanity/client@6.11.1)(next@14.1.0)(react@18.2.0)
       next-seo:
         specifier: ^6.4.0
         version: 6.4.0(next@14.1.0)(react-dom@18.2.0)(react@18.2.0)
@@ -7668,6 +7668,19 @@ packages:
 
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+    dev: false
+
+  /next-sanity-image@6.1.1(@sanity/client@6.11.1)(next@14.1.0)(react@18.2.0):
+    resolution: {integrity: sha512-mLRiatJW3TZoD3VlUCci4lOxW9lKOl0bxDsYtk/JRqKZo25QJqPXNV7aoD+lmjEFf6RO2eW7uJ57QeI20mPhOA==}
+    peerDependencies:
+      '@sanity/client': ^5.0.0 || ^6.0.0
+      next: ^13.0.0 || ^14.0.0
+      react: ^18.0.0
+    dependencies:
+      '@sanity/client': 6.11.1
+      '@sanity/image-url': 1.0.2
+      next: 14.1.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
     dev: false
 
   /next-seo@6.4.0(next@14.1.0)(react-dom@18.2.0)(react@18.2.0):

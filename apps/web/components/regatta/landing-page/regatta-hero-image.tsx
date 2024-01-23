@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpIcon } from "@heroicons/react/20/solid";
-import { urlFor } from "@sudburyrc/api";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 type Props = {
   title: string;
@@ -22,10 +22,7 @@ const RegattaHeroImage = ({
   return (
     <div className="relative flex overflow-hidden rounded-xl shadow-lg">
       <Image
-        src={urlFor(src)
-          .width(2 * imageWidth)
-          .height(2 * imageHeight)
-          .url()}
+        {...useSanityImageProps(src)}
         placeholder="blur"
         alt=""
         blurDataURL={blurDataURL}

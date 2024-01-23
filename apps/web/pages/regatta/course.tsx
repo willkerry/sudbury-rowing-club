@@ -6,9 +6,10 @@ import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
-import { sanityClient, urlFor } from "@sudburyrc/api";
+import { sanityClient } from "@sudburyrc/api";
 import { NextPage } from "next";
 import { makeShareImageURL } from "@/lib/og-image";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 type Props = {
   heading: string;
@@ -48,9 +49,7 @@ const Coursemap: NextPage<Props> = ({
       </div>
       <div className="flex overflow-hidden rounded border shadow-xl">
         <Image
-          src={urlFor(mapImage.id)
-            .width(982 * 2)
-            .url()}
+          {...useSanityImageProps(mapImage.id)}
           width={982}
           height={982 / mapImage.aspectRatio}
           placeholder="blur"
@@ -75,7 +74,7 @@ export const getStaticProps = async () => {
         'aspectRatio': courseMap.mapImage.asset->metadata.dimensions.aspectRatio,
         'lqip': courseMap.mapImage.asset->metadata.lqip
       }
-    }`
+    }`,
   );
   return {
     props: data as Props,
