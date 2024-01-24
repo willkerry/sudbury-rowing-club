@@ -2,7 +2,7 @@
 
 html {
   @apply antialiased selection:bg-green-100;
-  font-feature-settings: "cv06" 1, "ss03" 1;
+  font-feature-settings: "ss03" 1;
 }
 
 @tailwind components;
@@ -24,12 +24,15 @@ textarea,
 select {
   @apply mt-1 w-full rounded-md border-gray-200 transition focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50;
 }
+
 select {
   @apply cursor-pointer hover:border-blue-600 hover:ring hover:ring-blue-200 hover:ring-opacity-50;
 }
+
 [type="checkbox"] {
   @apply mx-2 rounded hover:cursor-pointer;
 }
+
 input:disabled,
 select:disabled,
 textarea:disabled {
@@ -53,32 +56,45 @@ label {
 }
 
 @tailwind utilities;
+
 @layer utilities {
   .hyphens-auto {
     hyphens: auto;
   }
+
   .auto-lead > :first-child {
     @apply text-xl font-medium tracking-tight;
   }
+
   .masonry-4-col {
     column-count: 4;
     column-gap: 2em;
   }
+
   .masonry-3-col {
     column-count: 3;
     column-gap: 2em;
   }
+
   .masonry-2-col {
     column-count: 2;
     column-gap: 2em;
   }
+
   .break-inside {
     break-inside: avoid;
   }
+
   .disambiguate {
-    font-feature-settings: "ss01" 1, "ss04" 1;
+    font-feature-settings:
+      "ss01" 1,
+      "ss04" 1;
   }
+
   .uppercase {
-    font-feature-settings: "case" 1, "cpsp" 1, "cv08" 1;
+    font-feature-settings:
+      "case" 1,
+      "cpsp" 1,
+      "cv08" 1;
   }
 }
