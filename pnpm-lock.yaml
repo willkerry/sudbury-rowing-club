@@ -75,9 +75,9 @@ importers:
       '@algolia/client-search':
         specifier: ^4.22.1
         version: 4.22.1
-      '@fontsource/jetbrains-mono':
-        specifier: ^4.5.12
-        version: 4.5.12
+      '@fontsource-variable/jetbrains-mono':
+        specifier: ^5.0.19
+        version: 5.0.19
       '@headlessui/react':
         specifier: ^1.7.18
         version: 1.7.18(react-dom@18.2.0)(react@18.2.0)
@@ -1574,8 +1574,8 @@ packages:
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
     dev: false
 
-  /@fontsource/jetbrains-mono@4.5.12:
-    resolution: {integrity: sha512-LJF1ala1/u+wXZmESFqIk08FA9yGX4/uAAleCHmXUMgEjvNAYFHUQQ7eK5hQQoBOwh99cU5suTrqYqEkgzwzPA==}
+  /@fontsource-variable/jetbrains-mono@5.0.19:
+    resolution: {integrity: sha512-7PTG1Kp3B/FgoNVPT8da4humj5JxQYxTtO08ZPS2IfanS37Yb/WShbgScnG/iupuFwiRnHVkIuC/2czxItxmyg==}
     dev: false
 
   /@headlessui/react@1.7.18(react-dom@18.2.0)(react@18.2.0):

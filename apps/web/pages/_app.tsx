@@ -4,7 +4,7 @@ import "../styles/index.css";
 import { AppProps } from "next/app";
 import SEO from "../next-seo.config";
 import "inter-ui/inter-variable.css";
-import "@fontsource/jetbrains-mono/variable.css";
+import "@fontsource-variable/jetbrains-mono/index.css";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
