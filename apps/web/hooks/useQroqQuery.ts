@@ -1,7 +1,11 @@
 import { sanityClient } from "@sudburyrc/api";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
-const useGroqQuery = <T>(query: string, params?: any) =>
+const useGroqQuery = <T>(
+  query: string,
+  params: Parameters<typeof sanityClient.fetch>[1] = {},
+  options?: Omit<UseQueryOptions<T>, "queryFn" | "queryKey">,
+) =>
   useQuery({
     queryKey: [query, params],
     queryFn: async () => sanityClient.fetch<T>(query, params),
@@ -9,6 +13,7 @@ const useGroqQuery = <T>(query: string, params?: any) =>
     refetchOnMount: false,
     refetchOnReconnect: false,
     staleTime: 5 * 60 * 1000,
+    ...options,
   });
 
 export default useGroqQuery;
