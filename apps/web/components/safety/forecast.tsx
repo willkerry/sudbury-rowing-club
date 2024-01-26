@@ -11,14 +11,16 @@ const fetcher: typeof getWeatherForecast = () =>
   fetch("/api/weather").then((res) => res.json());
 
 const ForecastComponent = () => {
-  const { data: forecast, isPending: isLoading } = useQuery({
-    queryKey: ["getWeatherForecast"],
+  const { data: forecast, status } = useQuery({
+    queryKey: ["/api/weather"],
     queryFn: fetcher,
   });
 
+  if (status === "error") return null;
+
   return (
     <div className="w-full bg-gray-100 p-3 sm:px-4">
-      <Loading visible={isLoading}>
+      <Loading visible={status === "pending"}>
         <div className="grid w-full grid-cols-7 gap-1">
           {forecast?.map(({ beaufort, code, date, maxTemp, minTemp }) => (
             <a
