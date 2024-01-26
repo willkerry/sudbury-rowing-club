@@ -93,6 +93,7 @@ const EventCalendar = () => {
   const { data: events, status } = useQuery({
     queryKey: ["competition-calendar"],
     queryFn: fetchCompetitions,
+    staleTime: 10 * 60 * 1000,
   });
 
   const regions = new Set(events?.map((event) => event.region));
