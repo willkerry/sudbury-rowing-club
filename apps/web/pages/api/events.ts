@@ -1,5 +1,5 @@
 import { type SRCEvent, serversideFetchCompetitions } from "@sudburyrc/api";
-import kv from "@vercel/kv";
+import { kv } from "@vercel/kv";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const CACHE_KEY = "events";
@@ -9,13 +9,13 @@ const cachedCompetitionFetch = async () => {
   const cached = await kv.get<SRCEvent[]>(CACHE_KEY);
 
   if (cached) {
-    console.log(new Date(), "Events API hit cache");
+    console.log("Events API hit cache");
     return cached;
   }
 
   const events = await serversideFetchCompetitions();
   await kv.set(CACHE_KEY, events, { ex: CACHE_TTL_SECONDS });
-  console.log(new Date(), "Events cold start");
+  console.log("Events cold start");
 
   return events;
 };
