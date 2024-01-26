@@ -13,6 +13,7 @@ import useSWR from "swr";
 import { HOSTNAME } from "@/lib/constants";
 import { type SRCEvent } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
+import { getHostname } from "@/lib/helpers/getHostname";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -63,7 +64,7 @@ const EventCard = ({
 
       {url && (
         <Link href={url} external className="text-xs font-semibold">
-          {new URL(url).hostname.replace("www.", "")}
+          {getHostname(url)}
         </Link>
       )}
     </div>
@@ -71,19 +72,19 @@ const EventCard = ({
 );
 
 const groupByMonth = (
-  events: Event[]
+  events: Event[],
 ): {
   month: number;
   events: Event[];
 }[] => {
   const months = new Set(
-    events.map((event) => new Date(event.startDate).getMonth())
+    events.map((event) => new Date(event.startDate).getMonth()),
   );
 
   return Array.from(months).map((month) => ({
     month,
     events: events.filter(
-      (event) => new Date(event.startDate).getMonth() === month
+      (event) => new Date(event.startDate).getMonth() === month,
     ),
   }));
 };
@@ -97,13 +98,13 @@ const EventCalendar = () => {
 
   const regions = new Set(events?.map((event) => event.region));
   const [selectedRegion, setSelectedRegion] = useState<string | null>(
-    "Eastern"
+    "Eastern",
   );
 
   const filteredEvents = useFilter(
     events || [],
     "region",
-    selectedRegion || ""
+    selectedRegion || "",
   );
 
   return (
