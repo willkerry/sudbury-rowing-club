@@ -28,6 +28,7 @@
     "@sudburyrc/blue": "workspace:*",
     "@sudburyrc/tailwind-config": "workspace:*",
     "@tanstack/react-query": "^5.17.19",
+    "@tanstack/react-query-devtools": "^5.17.21",
     "@vercel/kv": "^1.0.1",
     "@vercel/og": "^0.6.2",
     "algoliasearch": "^4.22.1",
