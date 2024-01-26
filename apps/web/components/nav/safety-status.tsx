@@ -1,6 +1,6 @@
 import cn from "clsx";
 import Link from "next/link";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 import groq from "groq";
 import { sanityClient } from "@sudburyrc/api";
 import Loading from "../stour/loading";
@@ -53,12 +53,17 @@ const StatusShell = ({ grade, text }: StatusShellProps) => {
 };
 
 const StatusIndicator = () => {
-  const { data, error } = useSWR(
-    groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{display, status}`,
-    (query) => sanityClient.fetch(query),
-  );
-  if (error) return <div>Unavailable</div>;
-  if (!data) return <StatusShell grade={null} text={<Loading />} />;
+  const { data, status: queryStatus } = useQuery({
+    queryKey: ["safetyStatus"],
+    queryFn: () =>
+      sanityClient.fetch(
+        groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{display, status}`,
+      ),
+  });
+
+  if (queryStatus === "error") return <div>Unavailable</div>;
+  if (queryStatus === "pending")
+    return <StatusShell grade={null} text={<Loading />} />;
 
   const { status, display } = data;
   const statusIndex = grades.indexOf(status);

@@ -2,16 +2,19 @@ import getWeatherForecast, {
   briefWeatherCodes,
   getYRURL,
 } from "@/lib/get-weather-forecast";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
 
-const ForecastComponent = () => {
-  const fetcher: typeof getWeatherForecast = () =>
-    fetch("/api/weather").then((res) => res.json());
+const fetcher: typeof getWeatherForecast = () =>
+  fetch("/api/weather").then((res) => res.json());
 
-  const { data: forecast, isLoading } = useSWR("getWeatherForecast", fetcher);
+const ForecastComponent = () => {
+  const { data: forecast, isPending: isLoading } = useQuery({
+    queryKey: ["getWeatherForecast"],
+    queryFn: fetcher,
+  });
 
   return (
     <div className="w-full bg-gray-100 p-3 sm:px-4">
@@ -38,7 +41,7 @@ const ForecastComponent = () => {
                   "disambiguate mb-0.5 text-xs font-semibold transition",
                   maxTemp > 30 || minTemp < 4
                     ? "font-bold text-red-600 underline decoration-red-300 underline-offset-2"
-                    : "text-gray-700 group-hover:text-blue-500"
+                    : "text-gray-700 group-hover:text-blue-500",
                 )}
               >
                 {minTemp}&thinsp;-&thinsp;{maxTemp}℃
@@ -49,7 +52,7 @@ const ForecastComponent = () => {
                   "disambiguate text-xs transition",
                   beaufort >= 6
                     ? "font-bold text-red-600"
-                    : "font-semibold text-gray-600 group-hover:text-blue-400"
+                    : "font-semibold text-gray-600 group-hover:text-blue-400",
                 )}
               >
                 <span className="font-medium">Force</span> {beaufort}{" "}

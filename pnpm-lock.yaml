@@ -111,6 +111,9 @@ importers:
       '@sudburyrc/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
+      '@tanstack/react-query':
+        specifier: ^5.17.19
+        version: 5.17.19(react@18.2.0)
       '@vercel/kv':
         specifier: ^1.0.1
         version: 1.0.1
@@ -213,9 +216,6 @@ importers:
       snarkdown:
         specifier: ^2.0.0
         version: 2.0.0
-      swr:
-        specifier: ^2.2.4
-        version: 2.2.4(react@18.2.0)
       zod:
         specifier: ^3.22.4
         version: 3.22.4
@@ -3698,6 +3698,19 @@ packages:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.4.1
+    dev: false
+
+  /@tanstack/query-core@5.17.19:
+    resolution: {integrity: sha512-Lzw8FUtnLCc9Jwz0sw9xOjZB+/mCCmJev38v2wHMUl/ioXNIhnNWeMxu0NKUjIhAd62IRB3eAtvxAGDJ55UkyA==}
+    dev: false
+
+  /@tanstack/react-query@5.17.19(react@18.2.0):
+    resolution: {integrity: sha512-qaQENB6/03Gj3dFZGvdmUoqeUGlGm7P1p0RmaR04Bf1Ib1T9lLGimcC9T3oCFbrx0b2ZF21ngjFZNjj9uPJMcg==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-core': 5.17.19
+      react: 18.2.0
     dev: false
 
   /@tanstack/react-virtual@3.0.0-beta.54(react@18.2.0):
@@ -10233,16 +10246,6 @@ packages:
       react: '>=17.0'
     dependencies:
       react: 18.2.0
-    dev: false
-
-  /swr@2.2.4(react@18.2.0):
-    resolution: {integrity: sha512-njiZ/4RiIhoOlAaLYDqwz5qH/KZXVilRLvomrx83HjzCWTfa+InyfAjv05PSFxnmLzZkNO9ZfvgoqzAaEI4sGQ==}
-    peerDependencies:
-      react: ^16.11.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      client-only: 0.0.1
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
   /symbol-tree@3.2.4:

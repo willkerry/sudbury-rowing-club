@@ -9,7 +9,7 @@ import Loading from "@/components/stour/loading";
 import Link from "@/components/stour/link";
 import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 import { HOSTNAME } from "@/lib/constants";
 import { type SRCEvent } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
@@ -90,11 +90,10 @@ const groupByMonth = (
 };
 
 const EventCalendar = () => {
-  const {
-    data: events,
-    isLoading,
-    error: isError,
-  } = useSWR("competition-calendar", fetchCompetitions);
+  const { data: events, status } = useQuery({
+    queryKey: ["competition-calendar"],
+    queryFn: fetchCompetitions,
+  });
 
   const regions = new Set(events?.map((event) => event.region));
   const [selectedRegion, setSelectedRegion] = useState<string | null>(
@@ -143,8 +142,10 @@ const EventCalendar = () => {
               value={selectedRegion || ""}
               onChange={(e) => setSelectedRegion(e.target.value)}
             >
-              {isLoading && <option value="">Loading...</option>}
-              {isError && <option value="">Error loading regions.</option>}
+              {status === "pending" && <option value="">Loading...</option>}
+              {status === "error" && (
+                <option value="">Error loading regions.</option>
+              )}
               {!regions ? (
                 <option value="">No regions found.</option>
               ) : (
@@ -169,13 +170,13 @@ const EventCalendar = () => {
           </div>
         </div>
 
-        {isLoading && (
+        {status === "pending" && (
           <div className="h-96 rounded border bg-gray-50">
             <Loading />
           </div>
         )}
 
-        {isError && <p>Error loading calendar.</p>}
+        {status === "error" && <p>Error loading calendar.</p>}
 
         {events && (
           <div className="grid grid-cols-1 rounded border bg-gray-50 md:grid-cols-2 lg:grid-cols-3">

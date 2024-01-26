@@ -27,6 +27,7 @@
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/blue": "workspace:*",
     "@sudburyrc/tailwind-config": "workspace:*",
+    "@tanstack/react-query": "^5.17.19",
     "@vercel/kv": "^1.0.1",
     "@vercel/og": "^0.6.2",
     "algoliasearch": "^4.22.1",
@@ -61,7 +62,6 @@
     "resend": "^2.1.0",
     "sharp": "^0.33.2",
     "snarkdown": "^2.0.0",
-    "swr": "^2.2.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {

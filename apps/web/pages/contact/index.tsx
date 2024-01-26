@@ -11,7 +11,7 @@ import { InferGetStaticPropsType } from "next";
 import { fetchOfficerNames } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import { serverIndexOfficers, browserIndexOfficers } from "@/lib/algolia";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 
 export const getStaticProps = async () => {
   const officers = await fetchOfficerNames();
@@ -32,13 +32,18 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 }) => {
   const router = useRouter();
   const { q, ...initialValues } = router.query as Message & { q?: string };
-  const { data: guessedRecipient } = useSWR(q || "", () =>
-    browserIndexOfficers
-      .search<
-        InferGetStaticPropsType<typeof getStaticProps>["officers"][number]
-      >(q || "")
-      .then((r) => r.hits[0]),
-  );
+
+  const { data: guessedRecipient } = useQuery({
+    queryKey: ["officers", q],
+    queryFn: () =>
+      browserIndexOfficers
+        .search<
+          InferGetStaticPropsType<typeof getStaticProps>["officers"][number]
+        >(q || "")
+        .then((r) => r.hits[0]),
+    enabled: !!q,
+    staleTime: Infinity,
+  });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
 

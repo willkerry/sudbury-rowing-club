@@ -15,7 +15,7 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
     rel="noopener noreferrer"
     className={cn(
       "group grid gap-1.5 rounded border p-2 transition hover:border-blue-500",
-      !article && "h-16 animate-pulse bg-gray-50"
+      !article && "h-16 animate-pulse bg-gray-50",
     )}
   >
     {article && (
@@ -63,7 +63,7 @@ const Feed = () => {
         <div className="mb-12 rounded border px-4 py-8">
           <Result
             title="Unable to retrieve stories from British Rowing."
-            message={error}
+            message={error.message}
             variant="error"
           />
         </div>

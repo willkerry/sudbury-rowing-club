@@ -13,10 +13,10 @@ const schema = z.array(
     }),
     date: z.string().transform((date) => new Date(date)),
     link: z.string(),
-  })
+  }),
 );
 const useBritishRowingFeed = () =>
-  useZodSWR(schema, KEY, async () => (await fetch(QUERY_URL)).json());
+  useZodSWR(schema, [KEY], async () => (await fetch(QUERY_URL)).json());
 
 export type BRArticle = z.infer<typeof schema>[number];
 
