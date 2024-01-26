@@ -7,8 +7,10 @@ import SEO from "../next-seo.config";
 import "inter-ui/inter-variable.css";
 import "@fontsource-variable/jetbrains-mono/index.css";
 
+const queryClient = new QueryClient();
+
 const App = ({ Component, pageProps }: AppProps) => (
-  <QueryClientProvider client={new QueryClient()}>
+  <QueryClientProvider client={queryClient}>
     <DefaultSeo {...SEO} />
     <Script
       defer
