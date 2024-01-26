@@ -3,31 +3,44 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "../stour/loading";
 import SafetyComponent from "./safety-component";
 
+const SafetyBorder = ({ children }: { children: React.ReactNode }) => (
+  <div className="overflow-hidden rounded border">{children}</div>
+);
+
 const SafetyCard = () => {
   const { data: safetyComponentProps, status } = useQuery<
     Awaited<ReturnType<typeof getSafetyStatus>>
   >({
-    queryKey: ["getSafetyStatus"],
+    queryKey: ["/api/safety"],
     queryFn: () => fetch("/api/safety").then((res) => res.json()),
   });
 
-  return (
-    <div className="overflow-hidden rounded border">
-      {status === "pending" && (
-        <div className="p-4">
-          <Loading />
-        </div>
-      )}
+  switch (status) {
+    case "error":
+      return (
+        <SafetyBorder>
+          <div className="mx-auto flex h-96 items-center justify-center p-4 text-sm font-medium">
+            Failed to load river safety status.
+          </div>
+        </SafetyBorder>
+      );
 
-      {status === "success" && <SafetyComponent {...safetyComponentProps} />}
+    case "success":
+      return (
+        <SafetyBorder>
+          <SafetyComponent {...safetyComponentProps} />
+        </SafetyBorder>
+      );
 
-      {status === "error" && (
-        <div className="mx-auto p-4 text-sm">
-          <p>Sorry, we couldn’t load the river safety status.</p>
-        </div>
-      )}
-    </div>
-  );
+    default:
+      return (
+        <SafetyBorder>
+          <div className="h-96">
+            <Loading />
+          </div>
+        </SafetyBorder>
+      );
+  }
 };
 
 export default SafetyCard;
