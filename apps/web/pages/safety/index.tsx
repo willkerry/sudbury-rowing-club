@@ -7,22 +7,16 @@ import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Text from "@/components/stour/text";
 import Button from "@/components/stour/button";
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { InferGetStaticPropsType } from "next";
 import { fetchSafety } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import DateFormatter from "@/components/utils/date-formatter";
 
-export const getStaticProps: GetStaticProps<{
-  safety: Awaited<ReturnType<typeof fetchSafety>>;
-}> = async () => ({
-  props: {
-    safety: await fetchSafety(),
-  },
+export const getStaticProps = async () => ({
+  props: { safety: await fetchSafety() },
 });
 
-const Safety: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  safety,
-}) => (
+const Safety = ({ safety }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <Layout>
     <NextSeo
       title="Safety | Sudbury Rowing Club"
