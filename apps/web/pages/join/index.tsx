@@ -173,8 +173,10 @@ const Join: NextPage = () => (
       </div>
     </Container>
 
-    <Container className="my-40 text-center text-2xl font-semibold text-gray-400">
-      Or&hellip;
+    <Container className="my-40 flex items-center">
+      <div className="flex-grow border-t border-gray-300" />
+      <div className="mb-px px-4 text-lg font-medium leading-none">or</div>
+      <div className="flex-grow border-t border-gray-300" />
     </Container>
 
     {/* About the L2R course */}
