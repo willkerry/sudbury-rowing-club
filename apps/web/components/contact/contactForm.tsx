@@ -11,7 +11,7 @@ import Center from "@/components/stour/center";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
-import onSubmit from "./onSubmit";
+import { useMutation } from "@tanstack/react-query";
 
 export type Message = {
   to: string;
@@ -29,40 +29,37 @@ type Props = {
 /**
  * Renders the contact form. Intended for use on the contact page. So long as
  * valid recipients are provided, will render a fully-functional form.
- *
- * @param disabled Whether or not the form should be disabled. Defaults to
- * false. Disabled state is intended for exceptional use (i.e. when a
- * dependency, such as the mail server, is down).
- * @param contacts An array of contacts to populate the select field with. Their
- * `_id` must correspond to an officer ID in the database, or the form will
- * silently fail.
- * @param initialValues The initial values for the form. Defaults to an empty
- * object. Initial use pre-populates the form with a recipient using a URL query
- * parameter.
  */
 const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const localDisabled = disabled;
   const randomName = getWodehouseFullDetails();
+
+  const { mutateAsync } = useMutation({
+    mutationFn: async (values: Record<string, any>) => {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const status = response?.status;
+      if (status === 200) return undefined;
+
+      return { [FORM_ERROR]: `${status} ${await response?.text()}` };
+    },
+  });
 
   const optionArray = contacts.map((contact) => ({
     value: contact._id,
     label: `${contact.name} (${contact.role})`,
   }));
 
-  const submitHandler = async (values: Message) => {
-    const submissionErrors = await onSubmit(values);
-    if (submissionErrors)
-      return {
-        [FORM_ERROR]: `${submissionErrors.status} ${submissionErrors.message}`,
-      };
-
-    return undefined;
-  };
-
   const form = (
     <Form
       initialValues={initialValues}
-      onSubmit={submitHandler}
+      onSubmit={(v) => mutateAsync(v)}
       render={({
         handleSubmit,
         submitting,
