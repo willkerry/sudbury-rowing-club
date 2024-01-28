@@ -12,10 +12,12 @@ const TextPage = ({
   children,
   title,
   description,
+  color,
 }: {
   title: string;
   description?: string;
   children: React.ReactNode;
+  color?: Parameters<typeof HeroTitle>[0]["color"];
 }) => (
   <Layout>
     <NextSeo
@@ -27,7 +29,7 @@ const TextPage = ({
         images: [{ url: makeShareImageURL(title, true) }],
       }}
     />
-    <HeroTitle title={title} prose breadcrumbs />
+    <HeroTitle title={title} prose breadcrumbs {...{ color }} />
     <Container>
       <div className="prose mx-auto my-16">{children}</div>
     </Container>

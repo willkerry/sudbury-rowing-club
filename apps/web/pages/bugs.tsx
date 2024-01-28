@@ -53,7 +53,7 @@ const Contact = () => {
         }}
         title="Report a bug"
       />
-      <HeroTitle prose title="Report a bug 💩" />
+      <HeroTitle prose title="Report a bug 💩" color="transparent" />
       <Container className="max-w-lg py-12">
         <div className="prose mx-auto pb-10">
           <p>

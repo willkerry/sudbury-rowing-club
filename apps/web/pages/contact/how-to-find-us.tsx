@@ -40,7 +40,7 @@ const openInApp = [
 
 const maptilerProvider = maptiler(
   "q3gbdmFDPGft7ylWLC6u",
-  "uk-openzoomstack-road"
+  "uk-openzoomstack-road",
 );
 
 const FindUs: NextPage = () => (
@@ -54,7 +54,7 @@ const FindUs: NextPage = () => (
       }}
       title="How to find us"
     />
-    <HeroTitle title="How to find us" />
+    <HeroTitle title="How to find us" color="transparent" />
 
     <Container>
       <div className="grid grid-cols-1 gap-16 py-10 md:grid-cols-2">

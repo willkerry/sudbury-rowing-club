@@ -60,7 +60,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         }}
         title="Contact Sudbury Rowing Club"
       />
-      <HeroTitle prose title="Contact a club officer" />
+      <HeroTitle prose title="Contact a club officer" color="transparent" />
       <Container className="max-w-lg py-12">
         <div className="prose mx-auto pb-10">
           <p>

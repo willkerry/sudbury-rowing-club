@@ -14,7 +14,7 @@ export const getStaticProps = async ({
 }) => {
   const allSafetyItems = await fetchSafety();
   const thisSpecificSafetyItem = allSafetyItems.find(
-    ({ _id }) => _id === params?.slug
+    ({ _id }) => _id === params?.slug,
   );
 
   return {
@@ -38,7 +38,11 @@ const SafetyItem: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   if (!item) return null;
 
   return (
-    <TextPage title={item.title} description="A safety page">
+    <TextPage
+      title={item.title}
+      description="A safety page"
+      color="transparent"
+    >
       <Text className="mb-12" portableText={item.body || []} />
 
       {item.link && (

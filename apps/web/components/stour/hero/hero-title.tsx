@@ -16,6 +16,7 @@ const COLOR_MAP = new Map<
   NonNullable<Props["color"]>,
   {
     container: string;
+    heading: string;
     hero: string;
     item: string;
   }
@@ -24,6 +25,7 @@ const COLOR_MAP = new Map<
     "blue",
     {
       container: "bg-blue-50",
+      heading: "font-bold",
       hero: "bg-blue-900 text-blue-50",
       item: "text-blue-500 hover:text-blue-300",
     },
@@ -31,7 +33,8 @@ const COLOR_MAP = new Map<
   [
     "gray",
     {
-      container: "bg-gray-50",
+      container: "border-b bg-gray-100",
+      heading: "font-semibold",
       hero: "bg-gray-900 text-gray-50",
       item: "text-gray-500 hover:text-gray-300",
     },
@@ -39,9 +42,10 @@ const COLOR_MAP = new Map<
   [
     "transparent",
     {
-      container: "bg-transparent",
+      container: "bg-gray-50 border",
+      heading: "font-semibold",
       hero: "bg-transparent text-gray-900",
-      item: "text-gray-800 hover:text-gray-600",
+      item: "text-gray-800 hover:text-gray-600 transition hover:text-blue-500",
     },
   ],
 ]);
@@ -54,8 +58,8 @@ const HeroTitle = ({
   color = "blue",
   transparent = false,
 }: Props) => {
-  let localColor = color;
-  if (transparent) localColor = "transparent";
+  // For back compatibility with the old `transparent` prop
+  const localColor = transparent ? "transparent" : color;
 
   const colorClasses = COLOR_MAP.get(localColor);
 
@@ -69,7 +73,12 @@ const HeroTitle = ({
       >
         <Container>
           <div className={cn(prose && "mx-auto max-w-prose text-center")}>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <h1
+              className={cn(
+                "text-4xl sm:text-5xl md:text-6xl",
+                colorClasses?.heading,
+              )}
+            >
               {title}
             </h1>
             {children}
@@ -77,7 +86,15 @@ const HeroTitle = ({
         </Container>
       </div>
       {breadcrumbs && (
-        <div className={cn("py-2", colorClasses?.container)}>
+        <div
+          className={cn(
+            "py-2",
+            colorClasses?.container,
+            prose && color === "transparent"
+              ? "mx-auto w-min rounded-full border"
+              : "border-y",
+          )}
+        >
           <Container>
             <Breadcrumbs
               listClassName={cn(
@@ -88,6 +105,7 @@ const HeroTitle = ({
               inactiveItemClassName={cn(
                 "whitespace-nowrap after:content-['→'] after:px-2 after:text-gray-400 capitalize transition",
                 colorClasses?.item,
+                prose && color === "transparent" && "mx-auto",
               )}
               activeItemClassName="whitespace-nowrap font-medium capitalize"
               currentLabel={title}
