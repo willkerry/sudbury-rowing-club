@@ -11,7 +11,7 @@ import Link from "next/link";
 import Loading from "../loading";
 
 const buttonVariants = cva(
-  "rounded transition duration-300 border inline-block border-box focus:ring-4 focus:outline-none select-none whitespace-nowrap relative text-center leading-none disabled:hover:!text-inherit disabled:hover:border-inherit",
+  "rounded-sm transition duration-300 border inline-block border-box focus:ring-4 focus:outline-none select-none whitespace-nowrap relative text-center leading-none disabled:hover:!text-inherit disabled:hover:border-inherit",
   {
     variants: {
       variant: {
@@ -40,7 +40,7 @@ const buttonVariants = cva(
         false: "cursor-pointer",
       },
       shadow: {
-        true: "shadow-lg hover:shadow",
+        true: "shadow-lg shadow-gray-100 hover:shadow-sm",
         false: "",
       },
     },
@@ -50,7 +50,7 @@ const buttonVariants = cva(
       disabled: false,
       shadow: false,
     },
-  }
+  },
 );
 
 type BaseButtonProps = VariantProps<typeof buttonVariants> & {

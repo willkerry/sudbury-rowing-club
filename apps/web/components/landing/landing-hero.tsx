@@ -23,7 +23,7 @@ const LandingHero = ({
   youTubeStart,
 }: Props) => (
   <div className="container max-w-screen-lg md:mx-auto md:px-5">
-    <div className="group relative flex overflow-hidden shadow-lg md:rounded-xl">
+    <div className="group relative flex overflow-hidden shadow md:rounded">
       <Image
         {...useSanityImageProps(imageId)}
         width={984}
