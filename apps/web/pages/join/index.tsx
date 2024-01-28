@@ -181,7 +181,7 @@ const Join: NextPage = () => (
     <div className="my-24" id="l2r">
       <Container>
         <SectionHeading
-          label="Our Learn to Row course"
+          label="Learn to row with us"
           title="Getting started in rowing couldn’t be easier"
         />
 
