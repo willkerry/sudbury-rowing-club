@@ -26,6 +26,11 @@ export default async function ReportBug(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  if (!process.env.BUG_RECIPIENT_EMAIL) {
+    res.status(500).send("BUG_RECIPIENT_EMAIL not set.");
+    return;
+  }
+
   const { name, email, description, userAgent, additionalInformation } =
     req.body as BugReport;
   console.log("Bug report", { name, email, description, userAgent });
@@ -54,7 +59,7 @@ export default async function ReportBug(
   const response = await resend.emails.send({
     from: `${name} <${SENDER.email}>`,
     reply_to: `${name} <${email}>`,
-    to: `Bug Report <${SENDER.email}>`,
+    to: process.env.BUG_RECIPIENT_EMAIL,
     subject: "Bug Report from sudburyrowingclub.org.uk",
     text: `DESCRIPTION: ${description}\n\nREPORTER: ${name} <${
       SENDER.email
