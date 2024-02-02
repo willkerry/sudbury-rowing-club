@@ -9,7 +9,11 @@ const articleFields = groq`
   title,
   excerpt,
   date,
-  author {"firstName": @->firstName, "surname": @->surname, "_id": @->_id},
+  author {
+    "firstName": @->firstName,
+    "surname": @->surname,
+    "_id": @->_id
+  },
   body[]{
     ...,
     _type == "figure" => {
