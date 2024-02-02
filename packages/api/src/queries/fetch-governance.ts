@@ -18,6 +18,7 @@ const ZDocument = z.object({
 
 const ZOfficer = z.object({
   _id: z.string(),
+  occupantId: z.string().nullable(),
   name: z.string().nullable(),
   role: z.string(),
   vacant: z.boolean(),
@@ -39,6 +40,7 @@ const ZCommittee = z.object({
     .array(
       z.object({
         _id: z.string(),
+        occupantId: z.string().nullable(),
         role: z.string(),
         name: z.string().nullable(),
       })
@@ -60,44 +62,51 @@ const ZGovernance = z.object({
   documents: z.array(ZDocumentGroup),
 });
 
-const query = groq`{"officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(orderRank){
-    _id,
-    name,
-    role,
-    vacant,
-    description,
-    "hasEmail": email != null,
-    "image": image.image {
-        "_id": asset->_id,
-        "lqip": asset->metadata.lqip,
-    }
+const query = groq`{
+"officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(orderRank){
+  _id,
+  "occupantId": occupant->_id,
+  "name": occupant->firstName + " " + occupant->surname,
+  role,
+  vacant,
+  description,
+  "hasEmail": email != null,
+  "image": image.image {
+      "_id": asset->_id,
+      "lqip": asset->metadata.lqip,
+  }
 },
 "committees": *[_type == "committees" && !(_id in path("drafts.**"))] | order(title desc){
-    _id,
-    title,
-    description,
-    members[]-> {_id, role, name}
+  _id,
+  title,
+  description,
+  members[]-> {
+    _id, 
+    "occupantId": occupant->_id,
+    role, 
+    "name": occupant->firstName + " " + occupant->surname,
+  }
 },
-"vicePresidents": *[_type == "vicePresidents" && !(_id in path("drafts.**"))] | order(surname asc, firstName asc){
-    _id,
-    firstName,
-    surname
+"vicePresidents": *[_type == "vicePresidents" && !(_id in path("drafts.**"))] | order(reference->surname asc, reference->firstName asc).reference->{
+  _id,
+  firstName,
+  surname
 },
-"trustees": *[_type == "trustees" && !(_id in path("drafts.**"))] | order(surname asc, firstName asc){
-    _id,
-    firstName,
-    surname
+"trustees": *[_type == "trustees" && !(_id in path("drafts.**"))] | order(reference->surname asc, reference->firstName asc).reference->{
+  _id,
+  firstName,
+  surname
 },
 "documents": *[_id == "siteSettings" && !(_id in path("drafts.**"))][0].governanceResources[] {
-    _key,
-    groupTitle,
-    resources[] {
-        _key,
-        name,
-        url,
-        "file": file.asset->url,
-        fileOrLink
-    }
+  _key,
+  groupTitle,
+  resources[] {
+      _key,
+      name,
+      url,
+      "file": file.asset->url,
+      fileOrLink
+  }
 }}`;
 
 export type Governance = z.infer<typeof ZGovernance>;
