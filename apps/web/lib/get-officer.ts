@@ -3,6 +3,8 @@ import groq from "groq";
 import { z } from "zod";
 
 const GetOfficerSchema = z.object({
+  _id: z.string(),
+  occupantID: z.string(),
   name: z.string(),
   email: z.string().email(),
   role: z.string(),
@@ -15,12 +17,14 @@ export default async function getOfficer(id: string) {
   const data = await sanityClient.fetch(
     groq`
           *[_id == $id && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""]{
-            name,
-            email,
+            _id,
+            "occupantID": occupant->_id,
+            "name": occupant->firstName + " " + occupant->surname,
+            "email": occupant->email,
             role
           }[0]
         `,
-    { id }
+    { id },
   );
 
   return GetOfficerSchema.parse(data);
