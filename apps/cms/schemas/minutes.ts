@@ -1,7 +1,7 @@
 import { DocumentTextIcon } from "@sanity/icons";
-import { defineField } from "sanity";
+import { defineField, defineType } from "sanity";
 
-export default {
+const Minutes = defineType({
   name: "minutes",
   type: "document",
   title: "Minutes",
@@ -46,4 +46,6 @@ export default {
       };
     },
   },
-};
+});
+
+export default Minutes;

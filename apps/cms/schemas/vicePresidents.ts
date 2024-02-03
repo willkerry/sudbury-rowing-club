@@ -1,7 +1,7 @@
 import { UsersIcon } from "@sanity/icons";
-import { defineField } from "sanity";
+import { defineField, defineType } from "sanity";
 
-export default {
+const VicePresidents = defineType({
   name: "vicePresidents",
   type: "document",
   title: "Vice-Presidents",
@@ -34,4 +34,6 @@ export default {
       };
     },
   },
-};
+});
+
+export default VicePresidents;

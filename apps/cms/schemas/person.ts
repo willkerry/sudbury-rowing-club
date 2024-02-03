@@ -1,6 +1,6 @@
-import { defineField } from "sanity";
+import { defineField, defineType } from "sanity";
 
-export default {
+const Person = defineType({
   name: "person",
   type: "document",
   title: "Person",
@@ -31,4 +31,6 @@ export default {
       };
     },
   },
-};
+});
+
+export default Person;

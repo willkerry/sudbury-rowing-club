@@ -1,7 +1,7 @@
-import { defineField } from "sanity";
+import { defineField, defineType } from "sanity";
 import { BookIcon } from "@sanity/icons";
 
-export default {
+const News = defineType({
   name: "news",
   type: "document",
   title: "News",
@@ -58,4 +58,6 @@ export default {
       by: [{ field: "slug", direction: "desc" }],
     },
   ],
-};
+});
+
+export default News;

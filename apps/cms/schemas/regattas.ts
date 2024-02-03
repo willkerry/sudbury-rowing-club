@@ -1,20 +1,32 @@
 import { CalendarIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
-export default {
+const Regattas = defineType({
   name: "regattas",
   title: "Regattas",
   type: "document",
   icon: CalendarIcon,
   fields: [
-    { name: "date", title: "Date", type: "date", required: true },
-    { name: "number", title: "Number", type: "number", required: true },
-    { name: "results", title: "Link to results", type: "url" },
-    {
+    defineField({
+      name: "date",
+      title: "Date",
+      type: "date",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "number",
+      title: "Number",
+      type: "number",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({ name: "results", title: "Link to results", type: "url" }),
+    defineField({
       name: "galleries",
       title: "Links to photos",
       type: "array",
+
       of: [
-        {
+        defineArrayMember({
           name: "gallery",
           title: "Photo provider",
           type: "object",
@@ -23,30 +35,30 @@ export default {
               name: "name",
               type: "string",
               title: "Provider name",
-              required: true,
+              validation: (Rule) => Rule.required(),
             },
             {
               name: "url",
               type: "url",
               title: "URL to photo provider",
-              required: true,
+              validation: (Rule) => Rule.required(),
             },
             {
               name: "password",
               type: "string",
               title: "Password",
-              required: false,
+              description: "Leave blank if not required.",
             },
           ],
-        },
+        }),
       ],
-    },
-    {
+    }),
+    defineField({
       name: "testimonials",
       title: "Praise for the regatta",
       type: "array",
       of: [
-        {
+        defineArrayMember({
           name: "testimonial",
           title: "Testimonial",
           type: "object",
@@ -55,7 +67,7 @@ export default {
               name: "text",
               type: "text",
               title: "Text",
-              required: true,
+              validation: (Rule) => Rule.required(),
             },
             {
               name: "name",
@@ -69,9 +81,9 @@ export default {
               title: "Club",
             },
           ],
-        },
+        }),
       ],
-    },
+    }),
   ],
   preview: {
     select: {
@@ -79,4 +91,6 @@ export default {
       subtitle: "date",
     },
   },
-};
+});
+
+export default Regattas;

@@ -1,7 +1,7 @@
 import React from "react";
-import { defineField, DocumentDefinition } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
-const forwarders: DocumentDefinition = {
+const forwarders = defineType({
   name: "forwarders",
   type: "document",
   title: "Forwarders",
@@ -19,31 +19,31 @@ const forwarders: DocumentDefinition = {
       ),
       validation: (Rule) => Rule.required(),
     }),
-    {
+    defineField({
       name: "recipients",
       type: "array",
       title: "Recipients",
       of: [
-        {
+        defineArrayMember({
           type: "reference",
           to: [{ type: "officers" }],
-        },
+        }),
       ],
-    },
-    {
+    }),
+    defineField({
       name: "otherRecipients",
       type: "array",
       title: "Other Recipients",
       description:
         "If you need to forward to an email address that isn't in the 'officers' list, enter it here.",
       of: [
-        {
+        defineArrayMember({
           type: "string",
           title: "Email Address",
           validation: (Rule) => Rule.email(),
-        },
+        }),
       ],
-    },
+    }),
   ],
 
   orderings: [
@@ -89,7 +89,7 @@ const forwarders: DocumentDefinition = {
       };
     },
   },
-};
+});
 
 export default forwarders;
 

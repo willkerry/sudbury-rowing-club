@@ -18,7 +18,7 @@ import siteSettings from "./siteSettings";
 import forwarders from "./forwarders";
 import person from "./person";
 
-export default [
+const schemas = [
   news,
   officers,
   richText,
@@ -39,3 +39,5 @@ export default [
   forwarders,
   person,
 ];
+
+export default schemas;

@@ -1,29 +1,37 @@
 import { BillIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
-export default {
+const Members = defineType({
   name: "members",
   type: "document",
   title: "Members’ Notices",
   icon: BillIcon,
   fields: [
-    { name: "title", type: "string", required: true },
-    {
+    defineField({
+      name: "title",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "slug",
       type: "slug",
-      required: true,
       options: {
         source: "title",
         maxLength: 96,
       },
-    },
-    {
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "meta",
       type: "array",
       options: {
-        modal: "popover",
+        modal: {
+          type: "popover",
+        },
       },
+
       of: [
-        {
+        defineArrayMember({
           type: "object",
           options: {
             columns: 2,
@@ -32,11 +40,11 @@ export default {
             { name: "label", type: "string" },
             { name: "value", type: "string" },
           ],
-        },
+        }),
       ],
-    },
-    { name: "body", type: "richText", title: "Body" },
-    {
+    }),
+    defineField({ name: "body", type: "richText", title: "Body" }),
+    defineField({
       name: "documents",
       type: "array",
       of: [
@@ -73,6 +81,8 @@ export default {
           ],
         },
       ],
-    },
+    }),
   ],
-};
+});
+
+export default Members;
