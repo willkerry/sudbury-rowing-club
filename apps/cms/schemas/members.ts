@@ -37,8 +37,8 @@ const Members = defineType({
             columns: 2,
           },
           fields: [
-            { name: "label", type: "string" },
-            { name: "value", type: "string" },
+            defineField({ name: "label", type: "string" }),
+            defineField({ name: "value", type: "string" }),
           ],
         }),
       ],
@@ -48,38 +48,38 @@ const Members = defineType({
       name: "documents",
       type: "array",
       of: [
-        {
+        defineArrayMember({
           name: "group",
           type: "object",
           options: {
             columns: 2,
           },
           fields: [
-            {
+            defineField({
               name: "title",
               type: "string",
               title: "Title",
-            },
-            {
+            }),
+            defineField({
               name: "documents",
               type: "array",
               of: [
-                {
+                defineArrayMember({
                   name: "documents",
                   type: "file",
                   title: "Documents",
                   fields: [
-                    {
+                    defineField({
                       name: "title",
                       type: "string",
                       title: "Title",
-                    },
+                    }),
                   ],
-                },
+                }),
               ],
-            },
+            }),
           ],
-        },
+        }),
       ],
     }),
   ],

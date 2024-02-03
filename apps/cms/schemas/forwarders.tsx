@@ -26,7 +26,7 @@ const forwarders = defineType({
       of: [
         defineArrayMember({
           type: "reference",
-          to: [{ type: "officers" }],
+          to: [{ type: "officers" } as const],
         }),
       ],
     }),

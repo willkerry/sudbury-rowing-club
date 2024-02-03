@@ -23,7 +23,7 @@ const News = defineType({
     defineField({
       name: "author",
       type: "reference",
-      to: [{ type: "author" }],
+      to: [{ type: "author" } as const],
     }),
     defineField({ name: "excerpt", type: "text", title: "Excerpt", rows: 3 }),
     defineField({

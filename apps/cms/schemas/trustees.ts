@@ -12,7 +12,7 @@ const Trustees = defineType({
     defineField({
       name: "reference",
       type: "reference",
-      to: [{ type: "person" }],
+      to: [{ type: "person" } as const],
     }),
   ],
   preview: {
@@ -21,7 +21,7 @@ const Trustees = defineType({
       surname: "reference.surname",
       media: "reference.image.image",
     },
-    prepare(selection: { firstName: string; surname: string; media: any }) {
+    prepare(selection) {
       const { firstName, surname, media } = selection;
 
       return {
