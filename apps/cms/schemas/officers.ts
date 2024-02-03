@@ -2,10 +2,10 @@ import {
   orderRankField,
   orderRankOrdering,
 } from "@sanity/orderable-document-list";
-import { defineField } from "sanity";
+import { defineField, defineType } from "sanity";
 import { UsersIcon } from "@sanity/icons";
 
-export default {
+const Officers = defineType({
   name: "officers",
   type: "document",
   title: "Club Officers",
@@ -70,4 +70,6 @@ export default {
       };
     },
   },
-};
+});
+
+export default Officers;

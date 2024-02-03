@@ -1,7 +1,7 @@
 import { UsersIcon } from "@sanity/icons";
-import { defineField } from "sanity";
+import { defineField, defineType } from "sanity";
 
-export default {
+const Trustees = defineType({
   name: "trustees",
   type: "document",
   title: "Trustees",
@@ -30,4 +30,6 @@ export default {
       };
     },
   },
-};
+});
+
+export default Trustees;

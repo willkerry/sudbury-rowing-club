@@ -1,24 +1,17 @@
 import { EditIcon } from "@sanity/icons";
-import { defineField, DocumentDefinition } from "sanity";
+import { defineField, defineType } from "sanity";
 
-const Author: DocumentDefinition = {
+const Author = defineType({
   name: "author",
   type: "document",
   title: "Author",
   icon: EditIcon,
-  deprecated: {
-    reason: "News pieces can now be directly accredited to Person records.",
-  },
   fields: [
-    // Reading comments in Sanity’s declaration files, it seems that narrowing
-    // based on the type property doesn’t work in VS Code.
-    {
+    defineField({
       name: "person",
-      description:
-        "Deprecated Author records must be linked to a Person record.",
       type: "reference",
       to: [{ type: "person" }],
-    },
+    } as const),
     defineField({
       name: "firstName",
       type: "string",
@@ -49,6 +42,6 @@ const Author: DocumentDefinition = {
       };
     },
   },
-};
+});
 
 export default Author;
