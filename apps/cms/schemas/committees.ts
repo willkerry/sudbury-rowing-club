@@ -21,7 +21,7 @@ const Committee = defineType({
       of: [
         defineArrayMember({
           type: "reference",
-          to: [{ type: "officers" }],
+          to: [{ type: "officers" } as const],
         }),
       ],
     }),

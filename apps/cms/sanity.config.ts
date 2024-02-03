@@ -8,7 +8,7 @@ import { UsersIcon } from "@sanity/icons";
 import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { dashboardTool } from "@sanity/dashboard";
 
-export default defineConfig({
+const config = defineConfig({
   title: "Sudbury Rowing Club",
   projectId: "gvxge7ps",
   dataset: "production",
@@ -169,6 +169,8 @@ export default defineConfig({
   ],
 
   schema: {
-    types: schemas as any,
+    types: schemas,
   },
 });
+
+export default config;

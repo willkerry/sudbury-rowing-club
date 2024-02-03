@@ -18,7 +18,7 @@ const Officers = defineType({
     defineField({
       name: "occupant",
       type: "reference",
-      to: [{ type: "person" }],
+      to: [{ type: "person" } as const],
     }),
 
     defineField({
@@ -34,7 +34,7 @@ const Officers = defineType({
       validation: (Rule) => Rule.max(175),
     }),
     defineField({ name: "image", type: "figure" }),
-    orderRankField({ type: "officers" }),
+    orderRankField({ type: "officers" }) as any,
   ],
   orderings: [orderRankOrdering],
 
@@ -48,13 +48,7 @@ const Officers = defineType({
       overrideName: "name",
       vacant: "vacant",
     },
-    prepare(selection: {
-      title: string;
-      name: string;
-      surname: string;
-      media: any;
-      vacant: boolean;
-    }) {
+    prepare(selection) {
       const { title, name, surname, media, vacant } = selection;
 
       const makeSubtitle = () => {

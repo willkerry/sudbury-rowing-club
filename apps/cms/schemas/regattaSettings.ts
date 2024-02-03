@@ -198,8 +198,8 @@ const RegattaSettings = defineType({
       },
     }),
     defineField({
-      name: "results",
       type: "object",
+      name: "results",
       description: "Control how regatta results are displayed.",
       fields: [
         defineField({ name: "description", type: "richText" }),

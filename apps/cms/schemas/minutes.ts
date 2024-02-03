@@ -21,7 +21,7 @@ const Minutes = defineType({
       name: "committee",
       type: "reference",
       title: "Committee",
-      to: [{ type: "committees" }],
+      to: [{ type: "committees" } as const],
       options: {
         disableNew: true,
       },
@@ -32,7 +32,7 @@ const Minutes = defineType({
       title: "committee.title",
       date: "date",
     },
-    prepare(selection: { title: string; date: string }) {
+    prepare(selection) {
       const { title, date } = selection;
       const dateString = new Date(date).toLocaleDateString("en-GB", {
         year: "numeric",
