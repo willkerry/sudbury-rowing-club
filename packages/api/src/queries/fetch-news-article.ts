@@ -10,9 +10,9 @@ const articleFields = groq`
   excerpt,
   date,
   author {
-    "firstName": @->firstName,
-    "surname": @->surname,
-    "_id": @->_id
+    "firstName": coalesce(@->person->firstName, @->firstName),
+    "surname": coalesce(@->person->surname, @->surname),
+    "_id": @->_id,
   },
   body[]{
     ...,
