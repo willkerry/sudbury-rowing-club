@@ -3,11 +3,11 @@ import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 
 const authorQuery = groq`
-*[_type == "author" && _id == $id][0]{
-    _id,
-    firstName, 
-    surname, 
-    "articles": *[_type == "news" && references(^._id)] | order(date desc) {
+*[_id == $id][0] {
+  _id,
+  firstName,
+  surname,
+  "articles": *[_type == "news" && references(^._id)] | order(date desc) {
         _id,
         title,
         date,
@@ -16,12 +16,14 @@ const authorQuery = groq`
 }`;
 
 const allAuthorsQuery = groq`
-*[_type == "author"]{
-    _id,
-    firstName,
-    surname,
-    "articleCount": count(*[_type == "news" && references(^._id)])
-} | order(articleCount desc, lastName asc, firstName asc)`;
+*[_type in ["author"] 
+  && count(*[_type == "news" && references(^._id)]) > 0]
+  {
+  _id,
+  "firstName": person->firstName,
+  "surname": person->surname,
+  "articleCount": count(*[_type == "news" && references(^._id)]),
+} | order(articleCount desc)`;
 
 const ZArticleMeta = z.object({
   _id: z.string(),

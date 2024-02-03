@@ -1,18 +1,6 @@
 import { defineField } from "sanity";
 import { BookIcon } from "@sanity/icons";
 
-/*
- * Query for news articles with 'author' field populated with a reference to the
- * 'author' document type.
-
-*[_type == "news" && defined(author) && author->_type == "author"] {
-  title,
-  "surname": author->surname,
-  "author_type": author->_type
-}
- */
-
-
 export default {
   name: "news",
   type: "document",
@@ -35,7 +23,7 @@ export default {
     defineField({
       name: "author",
       type: "reference",
-      to: [{ type: "author" }, { type: "person" }],
+      to: [{ type: "author" }],
     }),
     defineField({ name: "excerpt", type: "text", title: "Excerpt", rows: 3 }),
     defineField({
