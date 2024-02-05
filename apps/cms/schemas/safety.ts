@@ -9,6 +9,7 @@ const Safety = defineType({
   fields: [
     defineField({ name: "title", type: "string", title: "Title" }),
     defineField({ name: "body", type: "richText", title: "Body" }),
+    defineField({ name: "pin", type: "boolean", title: "Pin to top" }),
     defineField({
       name: "document",
       type: "file",

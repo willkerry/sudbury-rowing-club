@@ -19,7 +19,7 @@ const ZDocument = z.object({
 const ZOfficer = z.object({
   _id: z.string(),
   occupantId: z.string().nullable(),
-  name: z.string().nullable(),
+  name: z.string().optional(),
   role: z.string(),
   vacant: z.boolean(),
   description: z.string().nullable(),

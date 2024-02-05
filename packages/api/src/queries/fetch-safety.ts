@@ -7,6 +7,7 @@ const safetyQuery = groq`*[_type == "safety" && !(_id in path("drafts.**"))] | o
 _updatedAt,
 _id,
 title,
+pin,
 body[]{
     ...,
     _type == "figure" => {
@@ -32,6 +33,7 @@ const ZSafetyResponse = z.object({
   _id: z.string(),
   title: z.string(),
   body: z.array(ZTypedObject).nullable(),
+  pin: z.boolean().nullable().default(false),
   document: z
     .object({
       title: z.string(),

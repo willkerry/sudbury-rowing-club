@@ -11,10 +11,18 @@ import { InferGetStaticPropsType } from "next";
 import { fetchSafety } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import DateFormatter from "@/components/utils/date-formatter";
+import Link from "@/components/stour/link";
 
-export const getStaticProps = async () => ({
-  props: { safety: await fetchSafety() },
-});
+export const getStaticProps = async () => {
+  const safetyItems = await fetchSafety();
+
+  const pinned = safetyItems.filter((item) => item.pin);
+  const unpinned = safetyItems.filter((item) => !item.pin);
+
+  return {
+    props: { safety: [...pinned, ...unpinned] },
+  };
+};
 
 const Safety = ({ safety }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <Layout>
@@ -48,9 +56,14 @@ const Safety = ({ safety }: InferGetStaticPropsType<typeof getStaticProps>) => (
                   Updated on <DateFormatter dateString={item._updatedAt} />
                 </div>
 
-                <h2 className="mb-2 line-clamp-1 font-semibold leading-tight tracking-tight text-gray-800 md:pr-6">
-                  {item.title}
-                </h2>
+                <Link
+                  href={`safety/${item._id}`}
+                  className="text-gray-900 transition hover:text-blue-500 hover:underline"
+                >
+                  <h2 className="tracking-tightmd:pr-6 mb-2 line-clamp-1 font-semibold leading-tight">
+                    {item.title}
+                  </h2>
+                </Link>
 
                 {item.body && (
                   <Text
@@ -86,17 +99,6 @@ const Safety = ({ safety }: InferGetStaticPropsType<typeof getStaticProps>) => (
                       size="small"
                     >
                       {item.document.title}
-                    </Button>
-                  )}
-                  {(item.body?.length || 0) > 0 && (
-                    <Button
-                      as="a"
-                      href={`safety/${item._id}`}
-                      size="mini"
-                      variant={isEmergency ? "error" : "brand"}
-                      className="w-full"
-                    >
-                      Read more
                     </Button>
                   )}
                 </div>
