@@ -71,7 +71,7 @@ const query = groq`{
   vacant,
   description,
   "hasEmail": email != null,
-  "image": image.image {
+  "image": occupant->image.image {
       "_id": asset->_id,
       "lqip": asset->metadata.lqip,
   }

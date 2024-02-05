@@ -4,13 +4,9 @@ import type { Governance } from "@sudburyrc/api";
 import { Popover, Transition } from "@headlessui/react";
 import Image from "next/image";
 import NextLink from "next/link";
-import {
-  HelpCircle,
-  Image as ImageIcon,
-  MessageCircle,
-  XCircle,
-} from "react-feather";
+import { HelpCircle, MessageCircle, XCircle } from "react-feather";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import Crest from "../logo/crest";
 
 type Props = {
   officers: Governance["officers"];
@@ -59,7 +55,7 @@ const OfficerPhotographOrPlaceholder = ({
     );
   }
 
-  return <ImageIcon className="text-gray-400" />;
+  return <Crest className="w-12 text-gray-400" />;
 };
 
 const OfficerNameOrPlaceholder = ({
