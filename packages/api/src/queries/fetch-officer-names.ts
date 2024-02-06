@@ -6,7 +6,8 @@ const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacan
   _id,
   "occupantId": occupant->_id,
   "name": occupant->firstName + " " + occupant->surname,
-  role
+  role,
+  description,
 }`;
 
 const ZOfficerResponse = z.object({
@@ -14,6 +15,7 @@ const ZOfficerResponse = z.object({
   occupantId: z.string(),
   name: z.string(),
   role: z.string(),
+  description: z.string().optional().nullable(),
 });
 
 const fetchOfficerNames = async () => {
