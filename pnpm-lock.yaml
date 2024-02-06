@@ -27,8 +27,8 @@ importers:
         specifier: ^2.10.0
         version: 2.10.0(react@18.2.0)
       '@sanity/orderable-document-list':
-        specifier: ^1.1.0
-        version: 1.2.0(@sanity/ui@2.0.1)(@types/react@18.2.48)(react-dom@18.2.0)(react-fast-compare@3.2.2)(react@18.2.0)(rxjs@7.8.1)(sanity@3.27.1)(styled-components@6.1.8)
+        specifier: ^1.2.1
+        version: 1.2.1(@sanity/ui@2.0.1)(@types/react@18.2.48)(react-dom@18.2.0)(react-fast-compare@3.2.2)(react@18.2.0)(rxjs@7.8.1)(sanity@3.27.1)(styled-components@6.1.8)
       '@sanity/table':
         specifier: ^1.1.2
         version: 1.1.2(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.27.1)(styled-components@6.1.8)
@@ -1613,7 +1613,7 @@ packages:
       react: ^16.8.5 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.5 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': 7.23.8
+      '@babel/runtime': 7.23.9
       css-box-model: 1.2.1
       memoize-one: 6.0.0
       raf-schd: 4.0.3
@@ -3342,8 +3342,8 @@ packages:
       - supports-color
     dev: false
 
-  /@sanity/orderable-document-list@1.2.0(@sanity/ui@2.0.1)(@types/react@18.2.48)(react-dom@18.2.0)(react-fast-compare@3.2.2)(react@18.2.0)(rxjs@7.8.1)(sanity@3.27.1)(styled-components@6.1.8):
-    resolution: {integrity: sha512-e9CmMiNLn1EMkpNC8uut4P6LiXR06E+TC89fqOHNnNWlxzvnSXd2bmbfPLOBEboRKtuHlBvufOlBmV6RfcIYzw==}
+  /@sanity/orderable-document-list@1.2.1(@sanity/ui@2.0.1)(@types/react@18.2.48)(react-dom@18.2.0)(react-fast-compare@3.2.2)(react@18.2.0)(rxjs@7.8.1)(sanity@3.27.1)(styled-components@6.1.8):
+    resolution: {integrity: sha512-ZjbNuAI9TUbc+q3HbKjC1S43ywXwv5Ft1GihyBmIOeIl9wiTT9T8E543VuvIU0IcBGOGNUHag7IIs03TdcqWLQ==}
     engines: {node: '>=14'}
     peerDependencies:
       '@sanity/ui': ^1.0 || ^2.0
@@ -5345,6 +5345,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -9170,7 +9171,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.8
+      '@babel/runtime': 7.23.9
       broadcast-channel: 3.7.0
       match-sorter: 6.3.3
       react: 18.2.0
@@ -11067,7 +11068,7 @@ packages:
     peerDependencies:
       react: '>=16.13'
     dependencies:
-      '@babel/runtime': 7.23.8
+      '@babel/runtime': 7.23.9
       dequal: 2.0.3
       react: 18.2.0
     dev: false
@@ -11569,7 +11570,7 @@ packages:
     resolution: {integrity: sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==}
     engines: {node: '>=10'}
     dependencies:
-      '@babel/runtime': 7.23.8
+      '@babel/runtime': 7.23.9
       '@types/lodash': 4.14.202
       lodash: 4.17.21
       lodash-es: 4.17.21
