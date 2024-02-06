@@ -27,7 +27,10 @@ const GalleryFigure = ({ _id, caption, lqip, aspectRatio }: ImageType) => {
           alt={caption || ""}
         />
       </div>
-      <figcaption className="mt-1 flex items-center text-sm text-gray-600">
+      <figcaption
+        aria-hidden
+        className="mt-1 flex items-center text-sm text-gray-600"
+      >
         {caption}
       </figcaption>
     </figure>

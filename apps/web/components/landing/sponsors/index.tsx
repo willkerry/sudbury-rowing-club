@@ -12,24 +12,24 @@ interface SponsorLogo {
 
 const SponsorLogos: SponsorLogo[] = [
   {
-    logo: <Specflue className="h-7" />,
+    logo: <Specflue aria-hidden className="h-7" />,
     href: "https://specflue.com/",
     name: "Specflue",
   },
   {
-    logo: <Rowperfect className="h-4" />,
+    logo: <Rowperfect aria-hidden className="h-4" />,
     href: "https://www.rowperfect.co.uk/",
     name: "Rowperfect",
   },
   {
-    logo: <BritishRowing className="h-8" />,
+    logo: <BritishRowing aria-hidden className="h-8" />,
     href: "https://britishrowing.org/",
     name: "British Rowing",
   },
   {
-    logo: <Errc className="h-7" />,
+    logo: <Errc aria-hidden className="h-7" />,
     href: "http://easternregionrowing.org.uk/",
-    name: "Easter Region Rowing Council",
+    name: "Eastern Region Rowing Council",
   },
 ];
 

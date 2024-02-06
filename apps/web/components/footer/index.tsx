@@ -19,9 +19,10 @@ export default function Footer() {
   return (
     <footer className="border-t">
       <Container>
+        <h2 className="sr-only">Footer</h2>
         <div className="justify-left flex flex-wrap py-16">
           <div className="w-1/2 sm:w-4/12 md:w-3/12">
-            <Crest className="mb-6 h-12 text-gray-600 md:h-16" />
+            <Crest aria-hidden className="mb-6 h-12 text-gray-600 md:h-16" />
             <Address />
           </div>
         </div>

@@ -11,9 +11,9 @@ type Props = {
 
 const FooterColumn = ({ heading, data }: Props) => (
   <div className="mb-12 w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
-    <div className="mb-4 select-none text-xs font-semibold uppercase tracking-widest">
+    <h3 className="mb-4 select-none text-xs font-semibold uppercase tracking-widest">
       {heading}
-    </div>
+    </h3>
     {data.map((item) => (
       <Link
         key={item.href}

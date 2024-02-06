@@ -4,7 +4,7 @@ import { PortableTextProps } from "@portabletext/react";
 import dynamic from "next/dynamic";
 
 const CommitteeSignature = dynamic(
-  () => import("@/components/landing/committee-signature")
+  () => import("@/components/landing/committee-signature"),
 );
 const Sponsors = dynamic(() => import("@/components/landing/sponsors"));
 
@@ -17,7 +17,7 @@ const Introduction = ({ description }: IntroductionProps) => (
     <Container className="my-16">
       <div className="mx-auto ">
         <Text portableText={description} className="mx-auto" />
-        <CommitteeSignature className="mx-auto w-48 py-16" />
+        <CommitteeSignature aria-hidden className="mx-auto w-48 py-16" />
         <span className="sr-only">The Committee</span>
       </div>
       <Sponsors />
