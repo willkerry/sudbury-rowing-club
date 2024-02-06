@@ -2,7 +2,7 @@ import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 
-const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""] | order(orderRank){
+const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && defined(occupant->email)] | order(orderRank){
   _id,
   "occupantId": occupant->_id,
   "name": occupant->firstName + " " + occupant->surname,

@@ -70,7 +70,7 @@ const query = groq`{
   role,
   vacant,
   description,
-  "hasEmail": email != null,
+  "hasEmail": defined(occupant->email),
   "image": occupant->image.image {
       "_id": asset->_id,
       "lqip": asset->metadata.lqip,
