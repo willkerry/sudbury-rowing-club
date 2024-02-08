@@ -50,7 +50,11 @@ export {
   fetchRegattaSettings,
   type RegattaSettings,
 } from "./queries/fetch-regatta-settings";
-export { fetchSafety, type SafetyResponse } from "./queries/fetch-safety";
+export {
+  fetchSafety,
+  fetchSafetyById,
+  type SafetyResponse,
+} from "./queries/fetch-safety";
 export { ZTypedObject } from "./queries/typed-object";
 
 export { getSanityConfig, sanityClient } from "./sanity/client";

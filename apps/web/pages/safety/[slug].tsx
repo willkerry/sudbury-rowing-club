@@ -1,5 +1,5 @@
 import TextPage from "@/components/layouts/text-page";
-import { fetchSafety } from "@sudburyrc/api";
+import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
 import { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
 import Text from "@/components/stour/text";
@@ -11,21 +11,15 @@ export const getStaticProps = async ({
   params,
 }: {
   params: ParsedUrlQuery;
-}) => {
-  const allSafetyItems = await fetchSafety();
-  const thisSpecificSafetyItem = allSafetyItems.find(
-    ({ _id }) => _id === params?.slug,
-  );
-
-  return {
-    props: {
-      item: thisSpecificSafetyItem,
-    },
-  };
-};
+}) => ({
+  props: {
+    item: await fetchSafetyById(params.slug as string),
+  },
+});
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await fetchSafety();
+
   return {
     paths: paths.map(({ _id }) => ({ params: { slug: _id } })),
     fallback: true,

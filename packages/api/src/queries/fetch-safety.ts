@@ -3,7 +3,7 @@ import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 import { ZTypedObject } from "./typed-object";
 
-const safetyQuery = groq`*[_type == "safety" && !(_id in path("drafts.**"))] | order(_updatedAt asc){
+const fields = groq`
 _updatedAt,
 _id,
 title,
@@ -25,8 +25,16 @@ document != null => {
     "extension": asset->extension,
     },
 },
-link != null => { link },
+link != null => { link }`;
+
+const safetyQuery = groq`*[
+    _type == "safety" && 
+    !(_id in path("drafts.**"))
+  ] | order(_updatedAt asc) {
+  ${fields}
 }`;
+
+const safetyQueryById = groq`*[_id == $id][0]{${fields}}`;
 
 const ZSafetyResponse = z.object({
   _updatedAt: z.string(),
@@ -55,7 +63,13 @@ const fetchSafety = async () => {
   return z.array(ZSafetyResponse).parse(response);
 };
 
+const fetchSafetyById = async (id: string) => {
+  const response = await sanityClient.fetch(safetyQueryById, { id });
+
+  return ZSafetyResponse.parse(response);
+};
+
 type SafetyResponse = z.infer<typeof ZSafetyResponse>;
 
-export { fetchSafety };
+export { fetchSafety, fetchSafetyById };
 export type { SafetyResponse };
