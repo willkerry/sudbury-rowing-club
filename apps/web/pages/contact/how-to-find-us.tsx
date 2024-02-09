@@ -16,6 +16,7 @@ import {
 } from "@/lib/constants";
 import { NextPage } from "next";
 import { makeShareImageURL } from "@/lib/og-image";
+import clsx from "clsx";
 
 const openInApp = [
   {
@@ -41,6 +42,71 @@ const openInApp = [
 const maptilerProvider = maptiler(
   "q3gbdmFDPGft7ylWLC6u",
   "uk-openzoomstack-road",
+);
+
+type Address = {
+  name: "Club" | "Regatta";
+  address: string[];
+  postcode: string;
+};
+
+const addresses: Address[] = [
+  {
+    name: "Club",
+    address: ["Sudbury Rowing Club", "Quay Lane", "Sudbury", "Suffolk"],
+    postcode: "CO10 2AN",
+  },
+  {
+    name: "Regatta",
+    address: ["Friars Meadow", "Edgeworth Road", "Sudbury", "Suffolk"],
+    postcode: "CO10 2TL",
+  },
+];
+
+const FindUsAddress = ({ name, address, postcode }: Address) => (
+  <div>
+    <h4 className="mb-1">
+      <MapPinIcon
+        className={clsx(
+          "-ml-0.5 mb-[0.17em] mr-0.5 inline-flex h-6 w-6 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5",
+          { Club: "text-blue-500", Regatta: "text-green-500" }[name],
+        )}
+      />
+      {name}
+    </h4>
+    <p>
+      <address className="not-italic">
+        {address.map((line, i) => (
+          <span key={line}>
+            {line}
+            {i < address.length - 1 ? <br /> : " "}
+          </span>
+        ))}
+        <span className="disambiguate">{postcode}</span>
+      </address>
+    </p>
+
+    <div className="my-4 flex space-x-3 text-sm">
+      {openInApp.map((item) => (
+        <a
+          key={item.name}
+          className="flex rounded-lg p-px"
+          href={name === "Club" ? item.href : item.hrefregatta}
+          rel="noreferrer"
+          target="_blank"
+          aria-label={`Open in ${item.name}`}
+        >
+          <Image
+            alt=""
+            className="m-0 rounded-lg border"
+            height={24}
+            src={item.icon}
+            width={24}
+          />
+        </a>
+      ))}
+    </div>
+  </div>
 );
 
 const FindUs: NextPage = () => (
@@ -96,77 +162,10 @@ const FindUs: NextPage = () => (
             for spectators, trailers and competitors on Friars Meadow.
           </Note>
 
-          <div className="grid lg:grid-cols-2">
-            <div>
-              <h4>
-                <MapPinIcon className="mb-0.5 inline-flex h-6 w-6 text-blue-500" />
-                Club
-              </h4>
-              <p>
-                Sudbury Rowing Club
-                <br />
-                Quay Lane
-                <br />
-                Sudbury
-                <br />
-                Suffolk <span className="disambiguate">CO10 2AN</span>
-              </p>
-              <div className="my-4 flex space-x-3 text-sm">
-                {openInApp.map((item) => (
-                  <a
-                    key={item.name}
-                    className="flex rounded-lg p-px"
-                    href={item.href}
-                    rel="noreferrer"
-                    target="_blank"
-                    title={`Open in ${item.name}`}
-                  >
-                    <Image
-                      alt={item.name}
-                      className="m-0 rounded-lg border"
-                      height={24}
-                      src={item.icon}
-                      width={24}
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4>
-                <MapPinIcon className="mb-0.5 inline-flex h-6 w-6 text-green-500" />
-                Regatta
-              </h4>
-              <p>
-                Friars Meadow
-                <br />
-                Edgeworth Road
-                <br />
-                Sudbury
-                <br />
-                Suffolk <span className="disambiguate">CO10 2TL</span>
-              </p>
-              <div className="my-4 flex space-x-3 text-sm">
-                {openInApp.map((item) => (
-                  <a
-                    key={item.name}
-                    className="flex rounded-lg p-px"
-                    href={item.hrefregatta}
-                    rel="noreferrer"
-                    target="_blank"
-                    title={`Open in ${item.name}`}
-                  >
-                    <Image
-                      alt={item.name}
-                      className="m-0 rounded-lg border"
-                      height={24}
-                      src={item.icon}
-                      width={24}
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+            {addresses.map((address) => (
+              <FindUsAddress key={address.name} {...address} />
+            ))}
           </div>
         </div>
       </div>
