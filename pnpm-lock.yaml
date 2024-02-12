@@ -33,8 +33,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(sanity@3.27.1)(styled-components@6.1.8)
       '@sanity/types':
-        specifier: ^3.26.1
-        version: 3.26.1
+        specifier: ^3.28.0
+        version: 3.28.0
       '@sanity/ui':
         specifier: ^2.0.1
         version: 2.0.1(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(styled-components@6.1.8)
@@ -3472,17 +3472,17 @@ packages:
       rxjs: 7.8.1
       typeid-js: 0.3.0
 
-  /@sanity/types@3.26.1:
-    resolution: {integrity: sha512-aNeaXS82JAJyZKc33QiL+z0vIHCOL6VpEVf5SixhHaCkoGCzt+gRupoi8dWP7Fk4JbvRQoHuoXnNXGLXVN6eOg==}
+  /@sanity/types@3.27.1:
+    resolution: {integrity: sha512-NkUfz8BraO8BgE1exWUftvkr5WTzwJXV2lr4kMv2pIhDql3+lMczlCQwXa3WyAq6lLYApXjqU4s7SnhRef/I7A==}
     dependencies:
-      '@sanity/client': 6.12.1
+      '@sanity/client': 6.12.3
       '@types/react': 18.2.48
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@sanity/types@3.27.1:
-    resolution: {integrity: sha512-NkUfz8BraO8BgE1exWUftvkr5WTzwJXV2lr4kMv2pIhDql3+lMczlCQwXa3WyAq6lLYApXjqU4s7SnhRef/I7A==}
+  /@sanity/types@3.28.0:
+    resolution: {integrity: sha512-k3y7mD9QLN4PQVla5kkRKUu/JcEzByYhAAp8kFYRyZPBpJO3/BWZQVufWzbIfmyHrH5fu+O0XDP/MVATyYwoGQ==}
     dependencies:
       '@sanity/client': 6.12.3
       '@types/react': 18.2.48
@@ -5345,6 +5345,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
