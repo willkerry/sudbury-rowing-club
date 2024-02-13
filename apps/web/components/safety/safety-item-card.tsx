@@ -118,9 +118,7 @@ export const SafetyItemCard = ({
         <SafetyItemUpdatedAt date={_updatedAt} />
         <SafetyItemTitle href={permalink}>{title}</SafetyItemTitle>
 
-        {body && (
-          <Text portableText={firstParagraph} className="prose-sm mb-4" />
-        )}
+        <Text portableText={firstParagraph} className="prose-sm mb-4" />
 
         <div className="space-y-2">
           {hasMultipleParagraphs && (
@@ -133,11 +131,13 @@ export const SafetyItemCard = ({
               More
             </Button>
           )}
+
           {link && (
             <SafetyItemLinkButton href={link.url} isEmergency={isAnUrgentItem}>
               {link.title}
             </SafetyItemLinkButton>
           )}
+
           {document && (
             <SafetyItemDownloadButton
               href={document.url}
