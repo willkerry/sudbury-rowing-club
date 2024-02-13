@@ -6,7 +6,7 @@ import DateFormatter from "@/components/utils/date-formatter";
 import Link from "@/components/stour/link";
 import { SafetyResponse } from "@sudburyrc/api";
 
-const URGENT_WORDS = ["emergency", "urgent", "important", "critical", "danger"];
+const URGENT_WORDS = ["emergency", "urgent", "critical"];
 
 const containsUrgentWords = (title: string) =>
   URGENT_WORDS.some((word) => title.toLowerCase().includes(word));
