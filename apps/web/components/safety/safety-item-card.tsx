@@ -5,6 +5,7 @@ import Button from "@/components/stour/button";
 import DateFormatter from "@/components/utils/date-formatter";
 import Link from "@/components/stour/link";
 import { SafetyResponse } from "@sudburyrc/api";
+import { first, isArray } from "lodash";
 
 const URGENT_WORDS = ["emergency", "urgent", "critical"];
 
@@ -53,16 +54,25 @@ const SafetyItemUpdatedAt = ({ date }: { date: string }) => (
 const SafetyItemLinkButton = ({
   href,
   children,
+  isEmergency,
 }: {
   href: string;
   children: React.ReactNode;
+  isEmergency: boolean;
 }) => (
   <Button
     href={href}
     as="a"
-    size="small"
+    size="mini"
+    variant={isEmergency ? "error" : "primary"}
     className="w-full"
-    icon={href.includes(BASE_URL) ? <Download /> : <ExternalLink />}
+    icon={
+      href.includes(BASE_URL) ? (
+        <Download className="h-3 w-3" />
+      ) : (
+        <ExternalLink className="h-3 w-3" />
+      )
+    }
   >
     {children}
   </Button>
@@ -71,16 +81,19 @@ const SafetyItemLinkButton = ({
 const SafetyItemDownloadButton = ({
   href,
   children,
+  isEmergency,
 }: {
   href: string;
   children: React.ReactNode;
+  isEmergency: boolean;
 }) => (
   <Button
     as="a"
     href={`${href}?dl=`}
-    icon={<Download />}
+    icon={<Download className="h-3 w-3" />}
     className="w-full"
-    size="small"
+    size="mini"
+    variant={isEmergency ? "error" : "primary"}
   >
     {children}
   </Button>
@@ -93,28 +106,48 @@ export const SafetyItemCard = ({
   body,
   link,
   document,
-}: SafetyResponse) => (
-  <div key={_id} id={_id} data-updated-at={_updatedAt}>
-    <SafetyItemBorder isEmergency={containsUrgentWords(title)}>
-      <SafetyItemUpdatedAt date={_updatedAt} />
-      <SafetyItemTitle href={`safety/${_id}`}>{title}</SafetyItemTitle>
+}: SafetyResponse) => {
+  const permalink = `safety/${_id}`;
+  const firstParagraph = first(body);
+  const hasMultipleParagraphs = isArray(body) && body.length > 1;
+  const isAnUrgentItem = containsUrgentWords(title);
 
-      {body && (
-        <Text portableText={body.slice(0, 1)} className="prose-sm mb-4" />
-      )}
+  return (
+    <div key={_id} id={_id} data-updated-at={_updatedAt}>
+      <SafetyItemBorder isEmergency={isAnUrgentItem}>
+        <SafetyItemUpdatedAt date={_updatedAt} />
+        <SafetyItemTitle href={permalink}>{title}</SafetyItemTitle>
 
-      <div className="space-y-2">
-        {link && (
-          <SafetyItemLinkButton href={link.url}>
-            {link.title}
-          </SafetyItemLinkButton>
+        {body && (
+          <Text portableText={firstParagraph} className="prose-sm mb-4" />
         )}
-        {document && (
-          <SafetyItemDownloadButton href={document.url}>
-            {document.title}
-          </SafetyItemDownloadButton>
-        )}
-      </div>
-    </SafetyItemBorder>
-  </div>
-);
+
+        <div className="space-y-2">
+          {hasMultipleParagraphs && (
+            <Button
+              as={Link}
+              href={permalink}
+              variant="brand"
+              className="w-full"
+            >
+              More
+            </Button>
+          )}
+          {link && (
+            <SafetyItemLinkButton href={link.url} isEmergency={isAnUrgentItem}>
+              {link.title}
+            </SafetyItemLinkButton>
+          )}
+          {document && (
+            <SafetyItemDownloadButton
+              href={document.url}
+              isEmergency={isAnUrgentItem}
+            >
+              {document.title}
+            </SafetyItemDownloadButton>
+          )}
+        </div>
+      </SafetyItemBorder>
+    </div>
+  );
+};
