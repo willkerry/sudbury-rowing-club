@@ -1,19 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
-import DateFormatter from "@/components/utils/date-formatter";
 import { useState } from "react";
-import Label from "@/components/stour/label";
-import { HeroTitle } from "@/components/stour/hero";
-import Loading from "@/components/stour/loading";
-import Link from "@/components/stour/link";
-import useFilter from "@/hooks/useFilter";
 import { NextSeo } from "next-seo";
 import { useQuery } from "@tanstack/react-query";
-import { HOSTNAME } from "@/lib/constants";
 import { type SRCEvent } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
+import { HOSTNAME } from "@/lib/constants";
 import { getHostname } from "@/lib/helpers/getHostname";
+import { makeShareImageURL } from "@/lib/og-image";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import { HeroTitle } from "@/components/stour/hero";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
+import Loading from "@/components/stour/loading";
+import DateFormatter from "@/components/utils/date-formatter";
+import useFilter from "@/hooks/useFilter";
 
 const BR_EVENT_STATUS = {
   2: "",

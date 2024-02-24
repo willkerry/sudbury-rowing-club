@@ -1,5 +1,5 @@
-import { Dialog } from "@headlessui/react";
 import { ComponentProps, ReactNode } from "react";
+import { Dialog } from "@headlessui/react";
 import Button from "../button";
 
 type ModalProps = {

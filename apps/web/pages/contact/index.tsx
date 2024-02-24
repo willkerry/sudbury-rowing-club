@@ -1,17 +1,17 @@
+import type { NextPage } from "next";
+import { InferGetStaticPropsType } from "next";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import { useQuery } from "@tanstack/react-query";
+import { fetchOfficerNames } from "@sudburyrc/api";
+import { browserIndexOfficers, serverIndexOfficers } from "@/lib/algolia";
+import { makeShareImageURL } from "@/lib/og-image";
 import ContactForm from "@/components/contact";
+import type { Message } from "@/components/contact/contactForm";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import type { NextPage } from "next";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import type { Message } from "@/components/contact/contactForm";
-import { InferGetStaticPropsType } from "next";
-import { fetchOfficerNames } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
-import { serverIndexOfficers, browserIndexOfficers } from "@/lib/algolia";
-import { useQuery } from "@tanstack/react-query";
 
 export const getStaticProps = async () => {
   const officers = await fetchOfficerNames();

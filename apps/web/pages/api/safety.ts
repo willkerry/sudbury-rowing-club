@@ -1,5 +1,5 @@
-import getSafetyStatus from "@/lib/get-safety-status";
 import { NextApiRequest, NextApiResponse } from "next";
+import getSafetyStatus from "@/lib/get-safety-status";
 
 const safety = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {

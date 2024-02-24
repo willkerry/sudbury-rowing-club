@@ -1,12 +1,12 @@
-import Script from "next/script";
-import dynamic from "next/dynamic";
 import { DefaultSeo } from "next-seo";
-import "../styles/index.css";
 import { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import SEO from "../next-seo.config";
-import "inter-ui/inter-variable.css";
+import dynamic from "next/dynamic";
+import Script from "next/script";
 import "@fontsource-variable/jetbrains-mono/index.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "inter-ui/inter-variable.css";
+import SEO from "../next-seo.config";
+import "../styles/index.css";
 
 const ReactQueryDevtools = dynamic(
   () =>

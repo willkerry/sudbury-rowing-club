@@ -1,6 +1,6 @@
-import useNotice, { noticeVariants } from "@/hooks/useNotice";
-import cn from "clsx";
 import { useEffect, useRef, useState } from "react";
+import cn from "clsx";
+import useNotice, { noticeVariants } from "@/hooks/useNotice";
 import Container from "../layouts/container";
 import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";
@@ -67,13 +67,13 @@ type BaseButtonOrAnchorProps = {
 
 type ButtonOrAnchorProps =
   | (BaseButtonOrAnchorProps & {
-    type: "button";
-    onClick?: () => void;
-  })
+      type: "button";
+      onClick?: () => void;
+    })
   | (BaseButtonOrAnchorProps & {
-    type: "a";
-    href: string;
-  });
+      type: "a";
+      href: string;
+    });
 
 const ButtonOrAnchor = ({
   type,
@@ -81,23 +81,23 @@ const ButtonOrAnchor = ({
   children,
   ...props
 }: ButtonOrAnchorProps) =>
-({
-  button: (
-    <button type="button" className={className} {...props}>
-      {children}
-    </button>
-  ),
-  a: (
-    <a
-      className={className}
-      target="_blank"
-      rel="noopener noreferrer"
-      {...props}
-    >
-      {children}
-    </a>
-  ),
-}[type]);
+  ({
+    button: (
+      <button type="button" className={className} {...props}>
+        {children}
+      </button>
+    ),
+    a: (
+      <a
+        className={className}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
+        {children}
+      </a>
+    ),
+  })[type];
 
 const Banner = () => {
   const { data, error } = useNotice();
@@ -133,7 +133,7 @@ const Banner = () => {
           "group z-50 flex w-full items-center py-2 text-sm",
           bgColor,
           textColor,
-          expanded && "shadow-2xl"
+          expanded && "shadow-2xl",
         )}
         type={controlType}
         href={data.link || "#"}
@@ -147,7 +147,7 @@ const Banner = () => {
               className={cn(
                 "inline-block transform transition-transform",
                 className,
-                expanded && classNameExpanded
+                expanded && classNameExpanded,
               )}
             >
               &rarr;

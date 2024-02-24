@@ -1,7 +1,7 @@
 import JoinCTA from "./cta";
-import Overview from "./overview";
 import L2RCallToAction from "./l2r-cta";
-import L2RStages from "./stages";
+import Overview from "./overview";
 import SectionHeading from "./section-heading";
+import L2RStages from "./stages";
 
 export { Overview, JoinCTA, L2RCallToAction, L2RStages, SectionHeading };

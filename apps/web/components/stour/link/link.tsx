@@ -21,7 +21,7 @@ type Props = {
 const assignIcon = (
   external: boolean,
   download: boolean,
-  arrow: boolean
+  arrow: boolean,
 ): typeof ArrowRightIcon => {
   if (external) return ArrowUpRightIcon;
   if (download) return ArrowDownIcon;

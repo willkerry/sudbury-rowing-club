@@ -1,6 +1,6 @@
+import { NextPage } from "next";
 import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
-import { NextPage } from "next";
 
 const PrivacyPolicy: NextPage = () => (
   <TextPage title="Privacy Policy">

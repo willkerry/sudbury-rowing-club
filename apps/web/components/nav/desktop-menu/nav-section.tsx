@@ -1,15 +1,14 @@
+import { Fragment } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Fragment } from "react";
-import { type IconNavItemType } from "@/types/nav-item";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import partition from "lodash/partition";
-
 import cn from "clsx";
+import partition from "lodash/partition";
+import { type IconNavItemType } from "@/types/nav-item";
 
 export const navLinkClasses = cn(
-  "group transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md"
+  "group transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md",
 );
 export const navLinkColor = "text-gray-500 font-medium";
 export const navLinkActive = "text-black font-medium";
@@ -37,7 +36,7 @@ const ListItem = ({
       href={href}
       className={cn(
         "group flex rounded transition focus:bg-blue-50",
-        description ? "items-start" : "items-center"
+        description ? "items-start" : "items-center",
       )}
     >
       {Icon && (
@@ -52,7 +51,7 @@ const ListItem = ({
             "py-0.5 text-sm font-semibold leading-none transition-colors group-hover:text-gray-900",
             cta
               ? "text-gray-900 group-hover:text-gray-500"
-              : "text-gray-600 group-hover:text-gray-900"
+              : "text-gray-600 group-hover:text-gray-900",
           )}
         >
           {name}
@@ -105,7 +104,7 @@ const NavSection = ({
             className={cn(
               isActive || open ? navLinkActive : navLinkColor,
               navLinkClasses,
-              "items-center"
+              "items-center",
             )}
           >
             <>
@@ -115,7 +114,7 @@ const NavSection = ({
               <ChevronDownIcon
                 className={cn(
                   isActive ? "stroke-current text-gray-700" : "text-gray-400",
-                  "-mb-px ml-0.5 h-3 w-3 transition group-hover:text-gray-800"
+                  "-mb-px ml-0.5 h-3 w-3 transition group-hover:text-gray-800",
                 )}
                 aria-hidden="true"
               />
@@ -135,7 +134,7 @@ const NavSection = ({
               static
               className={cn(
                 "absolute z-20 mt-3 transform px-2 sm:px-0",
-                POPOVER_PANEL_CLASSES.get(compact)
+                POPOVER_PANEL_CLASSES.get(compact),
               )}
             >
               <div className="overflow-hidden rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
@@ -149,7 +148,7 @@ const NavSection = ({
                     "rounded-b-md bg-gray-200 bg-opacity-75 shadow-inner backdrop-blur backdrop-saturate-200",
                     compact
                       ? "space-y-4 py-4 pl-3 pr-4"
-                      : "flex space-x-6 space-y-0 px-4 py-3"
+                      : "flex space-x-6 space-y-0 px-4 py-3",
                   )}
                 >
                   {ctaItems.map((item) => (

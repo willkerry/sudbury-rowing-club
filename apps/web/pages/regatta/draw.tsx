@@ -1,7 +1,7 @@
+import { InferGetStaticPropsType } from "next";
 import TextPage from "@/components/layouts/text-page";
 import Button from "@/components/stour/button";
 import DateFormatter from "@/components/utils/date-formatter";
-import { InferGetStaticPropsType } from "next";
 
 const DRAW_URL = "https://live.sudburyrowingclub.org.uk/";
 
@@ -13,17 +13,17 @@ export const getStaticProps = async () => {
     const firstDayInAugust = new Date(year, 7, 1);
     return new Date(
       firstDayInAugust.setDate(
-        firstDayInAugust.getDate() + (6 - firstDayInAugust.getDay())
-      )
+        firstDayInAugust.getDate() + (6 - firstDayInAugust.getDay()),
+      ),
     );
   })(thisYear);
 
   const mondayBeforeFirstSaturdayInAugust = new Date(
-    firstSaturdayInAugust
+    firstSaturdayInAugust,
   ).setDate(firstSaturdayInAugust.getDate() - 4);
 
   const tenAMOnFirstSaturdayInAugustInBST = new Date(
-    firstSaturdayInAugust
+    firstSaturdayInAugust,
   ).setHours(10);
 
   const draw = await (async () => {
@@ -73,7 +73,7 @@ const getStateText = (state: State, date: Date) =>
       paragraph: <>This year’s draw is now populated with results.</>,
       button: "View this year’s results",
     },
-  }[state]);
+  })[state];
 
 const Draw = ({
   showDrawFrom,

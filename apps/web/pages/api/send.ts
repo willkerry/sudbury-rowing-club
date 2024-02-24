@@ -1,11 +1,11 @@
-import { Resend } from "resend";
-import checkForSpam from "@/lib/akismet";
-import getOfficer from "@/lib/get-officer";
-import DOMPurify from "isomorphic-dompurify";
-import { z } from "zod";
-import { ContactFormEmail } from "emails/contact-form";
-import { SENDER } from "@/lib/constants";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { ContactFormEmail } from "emails/contact-form";
+import DOMPurify from "isomorphic-dompurify";
+import { Resend } from "resend";
+import { z } from "zod";
+import checkForSpam from "@/lib/akismet";
+import { SENDER } from "@/lib/constants";
+import getOfficer from "@/lib/get-officer";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -54,7 +54,7 @@ const spamCheck = async (
   req: NextApiRequest,
   name: string,
   email: string,
-  message: string
+  message: string,
 ) => {
   const isSpam = await checkForSpam(
     req.headers["x-forwarded-for"]?.toString() || "",
@@ -62,7 +62,7 @@ const spamCheck = async (
     req.headers.referer || "",
     name,
     email,
-    message
+    message,
   ).catch(() => {
     console.error("Could not connect to Akismet");
 
@@ -74,7 +74,7 @@ const spamCheck = async (
   if (isSpam)
     throw new ResponseError(
       "Your message has been flagged as spam. If you believe this is an error, please contact us directly.",
-      403
+      403,
     );
 };
 
@@ -84,7 +84,7 @@ const findRecipient = async (id: string) => {
   } catch (error) {
     throw new ResponseError(
       "Could not find recipient. This is likely a temporary error. Please try again later or contact us directly.",
-      404
+      404,
     );
   }
 };
@@ -125,7 +125,7 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
         console.error("error sending email", error);
         throw new ResponseError(
           `A third party service returned an error: ${error.message}`,
-          502
+          502,
         );
       })
       .then(() => {

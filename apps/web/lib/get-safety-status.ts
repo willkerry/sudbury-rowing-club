@@ -1,11 +1,11 @@
+import groq from "groq";
+import { z } from "zod";
+import { sanityClient } from "@sudburyrc/api";
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import { type SafetyComponentProps } from "@/components/safety/safety-component";
 import { EAStationResponseSchema } from "@/types/ea-station-respose";
 import { EAWarningSchema } from "@/types/ea-warning";
 import { Severity } from "@/types/severity";
-import groq from "groq";
-import { z } from "zod";
-import { sanityClient } from "@sudburyrc/api";
 import { CLUB_LOCATION } from "./constants";
 
 const SanityStatusSchema = z.object({
@@ -24,7 +24,7 @@ const fetchSanityStatus = () =>
         description,
         display,
         status
-      }`
+      }`,
     )
     .then(SanityStatusSchema.parse);
 
@@ -67,7 +67,7 @@ function formatDescriptionString(
   name: string,
   level: number,
   ceil: number,
-  floor: number
+  floor: number,
 ): string {
   const rangeWord = () => {
     if (level < floor) return "below";
@@ -127,7 +127,7 @@ const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
         station.label,
         value,
         typicalRangeHigh,
-        typicalRangeLow
+        typicalRangeLow,
       ),
       date: station.measures.latestReading.dateTime,
       statusMessage: "Monitoring station",

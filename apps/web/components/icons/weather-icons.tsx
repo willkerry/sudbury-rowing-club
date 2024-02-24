@@ -11,15 +11,12 @@ import {
   WiShowers,
   WiSleet,
   WiSnow,
-  WiSnowflakeCold,
   WiSnowWind,
+  WiSnowflakeCold,
   WiSprinkle,
   WiThunderstorm,
   WiWindBeaufort0,
   WiWindBeaufort1,
-  WiWindBeaufort10,
-  WiWindBeaufort11,
-  WiWindBeaufort12,
   WiWindBeaufort2,
   WiWindBeaufort3,
   WiWindBeaufort4,
@@ -28,6 +25,9 @@ import {
   WiWindBeaufort7,
   WiWindBeaufort8,
   WiWindBeaufort9,
+  WiWindBeaufort10,
+  WiWindBeaufort11,
+  WiWindBeaufort12,
 } from "react-icons/wi";
 import { WeatherCodeNumber } from "@sudburyrc/api";
 

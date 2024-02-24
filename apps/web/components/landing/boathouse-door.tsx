@@ -1,7 +1,7 @@
 import { SVGProps } from "react";
 
 const BoathouseDoor = (
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 337" {...props}>
     <path

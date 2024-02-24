@@ -1,5 +1,5 @@
-import getWeatherForecast from "@/lib/get-weather-forecast";
 import { NextApiRequest, NextApiResponse } from "next";
+import getWeatherForecast from "@/lib/get-weather-forecast";
 
 const weather = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {

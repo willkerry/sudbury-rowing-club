@@ -6,7 +6,7 @@ export default async function checkForSpam(
   referrer: string,
   commentAuthor: string,
   commentAuthorEmail: string,
-  commentContent: string
+  commentContent: string,
 ): Promise<boolean> {
   const body = new URLSearchParams({
     api_key: API_KEY,

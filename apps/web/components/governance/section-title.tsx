@@ -9,7 +9,7 @@ const SectionTitle = ({ className, children }: Props) => (
   <h2
     className={cn(
       "mb-6 mt-16 text-2xl font-bold tracking-tight text-gray-800",
-      className
+      className,
     )}
   >
     {children}

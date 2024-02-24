@@ -1,6 +1,6 @@
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import Note from "@/components/stour/note";
 import { EMAIL } from "@/lib/constants";
+import Note from "@/components/stour/note";
 
 interface Props {
   error: string;

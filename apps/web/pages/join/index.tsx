@@ -1,3 +1,8 @@
+import { ThumbsUp } from "react-feather";
+import { NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Image from "next/image";
+import { makeShareImageURL } from "@/lib/og-image";
 import {
   JoinCTA,
   L2RCallToAction,
@@ -12,11 +17,6 @@ import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Note from "@/components/stour/note";
 import { l2rStages, overview } from "@/data/join/";
-import { makeShareImageURL } from "@/lib/og-image";
-import { NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Image from "next/image";
-import { ThumbsUp } from "react-feather";
 
 const HIDE_COURSE_AFTER_DATE = new Date(2024, 4, 28);
 

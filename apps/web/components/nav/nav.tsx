@@ -1,25 +1,25 @@
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
+import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
+import partition from "lodash/partition";
 import { NavLogo, NavSection } from "@/components/nav";
 import {
   MobileMenuButton,
   MobileMenuSection,
 } from "@/components/nav/mobile-menu";
-import { Popover, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
-import partition from "lodash/partition";
 import { navigationGroups, secondaryNavigationGroups } from "./nav-data";
 
 const extractSingletonGroups = (
   primary: typeof navigationGroups,
-  secondary: typeof secondaryNavigationGroups
+  secondary: typeof secondaryNavigationGroups,
 ) => {
   const [primarySingletons, primaryGroups] = partition(
     primary,
-    ({ items }) => items.length === 1
+    ({ items }) => items.length === 1,
   );
   const [secondarySingletons, secondaryGroups] = partition(
     secondary,
-    ({ items }) => items.length === 1
+    ({ items }) => items.length === 1,
   );
 
   return {
@@ -40,7 +40,7 @@ const extractSingletonGroups = (
 const Nav = () => {
   const { primaryGroups, secondaryGroups } = extractSingletonGroups(
     navigationGroups,
-    secondaryNavigationGroups
+    secondaryNavigationGroups,
   );
 
   return (

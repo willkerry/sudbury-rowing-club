@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
 import YouTube from "react-youtube";
+import { Dialog, Transition } from "@headlessui/react";
 import { PlayIcon } from "@heroicons/react/20/solid";
 
 type Props = {

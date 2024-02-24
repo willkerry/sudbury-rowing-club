@@ -1,14 +1,4 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
-import NewsList from "@/components/news/news-list";
-import Label from "@/components/stour/label";
-import Link from "@/components/stour/link";
-import { serverIndex, browserIndex } from "@/lib/algolia";
-import { NextSeo } from "next-seo";
-
-import { InferGetStaticPropsType, NextPage } from "next/types";
-import Button from "@/components/stour/button";
 import {
   FormEventHandler,
   useCallback,
@@ -16,16 +6,25 @@ import {
   useId,
   useState,
 } from "react";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
+import { InferGetStaticPropsType, NextPage } from "next/types";
 import { type SearchResponse } from "@algolia/client-search";
-import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import {
-  fetchNArticles,
   fetchArticleCount,
+  fetchNArticles,
   serverGetNArticles,
 } from "@sudburyrc/api";
+import { browserIndex, serverIndex } from "@/lib/algolia";
 import { makeShareImageURL } from "@/lib/og-image";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import NewsList from "@/components/news/news-list";
+import Button from "@/components/stour/button";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
 
 function getMoreUrl(activeSearchTerm: string, data: any[]) {
   if (activeSearchTerm) {

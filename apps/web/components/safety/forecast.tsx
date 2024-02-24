@@ -1,9 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
+import cn from "clsx";
 import getWeatherForecast, {
   briefWeatherCodes,
   getYRURL,
 } from "@/lib/get-weather-forecast";
-import { useQuery } from "@tanstack/react-query";
-import cn from "clsx";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
 

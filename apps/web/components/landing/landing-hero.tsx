@@ -1,5 +1,5 @@
-import Image from "next/image";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import BoathouseDoor from "@/components/landing/boathouse-door";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 

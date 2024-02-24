@@ -1,8 +1,8 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+import Bowser from "bowser";
+import { Resend } from "resend";
 import checkForSpam from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
-import Bowser from "bowser";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 

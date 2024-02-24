@@ -1,7 +1,7 @@
-import { AlertCircle } from "react-feather";
-import { EMAIL } from "@/lib/constants";
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { ReactNode } from "react";
+import { AlertCircle } from "react-feather";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import { EMAIL } from "@/lib/constants";
 
 const DisabledOverlay = ({ form }: { form: ReactNode }) => (
   <div className="relative">

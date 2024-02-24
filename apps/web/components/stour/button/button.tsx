@@ -4,10 +4,10 @@ import type {
   ElementType,
   ReactNode,
 } from "react";
+import Link from "next/link";
+import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import cn from "clsx";
-import { Slot } from "@radix-ui/react-slot";
-import Link from "next/link";
 import Loading from "../loading";
 
 const buttonVariants = cva(

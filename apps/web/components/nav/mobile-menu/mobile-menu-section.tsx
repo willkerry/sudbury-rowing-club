@@ -1,8 +1,8 @@
-import { IconNavItemType } from "@/types/nav-item";
+import Link from "next/link";
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import cn from "clsx";
-import Link from "next/link";
+import { IconNavItemType } from "@/types/nav-item";
 
 type SectionProps = {
   title: string;
@@ -32,7 +32,7 @@ const SectionWrapper = ({
     <nav
       className={cn(
         "grid grid-cols-2 gap-x-6 sm:grid-cols-3",
-        compact ? "gap-y-1" : "gap-y-4"
+        compact ? "gap-y-1" : "gap-y-4",
       )}
     >
       {children}
@@ -46,7 +46,7 @@ const SectionWrapper = ({
             <Disclosure.Button
               className={cn(
                 titleClasses,
-                "-my-4 flex w-full justify-between py-4"
+                "-my-4 flex w-full justify-between py-4",
               )}
             >
               {title}

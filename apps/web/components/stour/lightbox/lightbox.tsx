@@ -1,6 +1,6 @@
+import { Fragment, SetStateAction } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useToggle, useViewportSize } from "@mantine/hooks";
-import { Fragment, SetStateAction } from "react";
 
 type LightBoxProps = {
   aspectRatio: number;
@@ -16,7 +16,7 @@ const PADDING = 16;
 function calculateImageSize(
   windowWidth: number,
   windowHeight: number,
-  aspectRatio: number
+  aspectRatio: number,
 ) {
   const windowAspectRatio = windowWidth / windowHeight;
 
@@ -39,7 +39,7 @@ function useLightBoxSize(aspectRatio: number) {
   const { width, height } = calculateImageSize(
     viewportWidth,
     viewportHeight,
-    aspectRatio
+    aspectRatio,
   );
 
   return { width, height, viewportWidth, viewportHeight };

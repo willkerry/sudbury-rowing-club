@@ -29,7 +29,7 @@ STATUS:${
       }
 END:VEVENT
 `,
-    preamble
+    preamble,
   );
 
   return `${icsString}END:VCALENDAR`;

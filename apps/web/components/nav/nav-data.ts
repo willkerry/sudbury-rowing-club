@@ -1,13 +1,4 @@
-import {
-  Governance,
-  History,
-  MyClubhouse,
-  Results,
-  Safety,
-  Spond,
-} from "@/components/icons";
-import { SOCIALS } from "@/lib/constants";
-import { IconNavItemType } from "@/types/nav-item";
+import { Facebook, type Icon, Instagram } from "react-feather";
 import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
   EnvelopeIcon,
@@ -20,7 +11,16 @@ import {
   TicketIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
-import { type Icon, Facebook, Instagram } from "react-feather";
+import { SOCIALS } from "@/lib/constants";
+import {
+  Governance,
+  History,
+  MyClubhouse,
+  Results,
+  Safety,
+  Spond,
+} from "@/components/icons";
+import { IconNavItemType } from "@/types/nav-item";
 
 type NavigationGroup = {
   title: string;
@@ -186,7 +186,7 @@ export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
     name,
     href,
     icon: availableLogos[key],
-  })
+  }),
 );
 
 export const misc = [

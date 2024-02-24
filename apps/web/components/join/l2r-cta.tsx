@@ -1,6 +1,6 @@
+import cn from "clsx";
 import Button from "@/components/stour/button";
 import Link from "@/components/stour/link";
-import cn from "clsx";
 
 const L2RCallToAction = () => {
   const classes =

@@ -1,10 +1,10 @@
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { fetchRegattaSettings } from "@sudburyrc/api";
 import TextPage from "@/components/layouts/text-page";
 import EntriesComponent from "@/components/regatta/entries";
 import { CompactEvents } from "@/components/regatta/events";
-import Text from "@/components/stour/text";
 import Link from "@/components/stour/link";
-import type { InferGetStaticPropsType, NextPage } from "next";
-import { fetchRegattaSettings } from "@sudburyrc/api";
+import Text from "@/components/stour/text";
 
 export const getStaticProps = async () => ({
   props: await fetchRegattaSettings(),

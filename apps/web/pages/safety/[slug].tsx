@@ -1,11 +1,11 @@
-import TextPage from "@/components/layouts/text-page";
-import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
+import { Download, ExternalLink } from "react-feather";
 import { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
-import Text from "@/components/stour/text";
-import { Download, ExternalLink } from "react-feather";
-import Button from "@/components/stour/button";
+import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
 import { BASE_URL } from "@/lib/constants";
+import TextPage from "@/components/layouts/text-page";
+import Button from "@/components/stour/button";
+import Text from "@/components/stour/text";
 
 export const getStaticProps = async ({
   params,

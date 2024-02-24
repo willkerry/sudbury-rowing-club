@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { UseQueryOptions } from "@tanstack/react-query";
+import { z } from "zod";
 import useGroqQuery from "./useQroqQuery";
 
 const useValidatedZodQuery = <T, U extends z.ZodTypeDef>(

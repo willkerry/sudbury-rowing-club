@@ -1,14 +1,14 @@
+import { Download } from "react-feather";
+import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import { Download } from "react-feather";
 import groq from "groq";
+import { sanityClient } from "@sudburyrc/api";
+import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
-import { sanityClient } from "@sudburyrc/api";
-import { NextPage } from "next";
-import { makeShareImageURL } from "@/lib/og-image";
+import HeroTitle from "@/components/stour/hero/hero-title";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 type Props = {

@@ -1,16 +1,16 @@
+import { Circle, HelpCircle } from "react-feather";
+import { GetStaticProps, NextPage } from "next";
+import NextLink from "next/link";
+import Color from "color";
+import { blue } from "@sudburyrc/blue";
+import combineURLs from "@/lib/helpers/combineURLs";
+import SharePlayground from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 import Crest from "@/components/logo/crest";
 import Social from "@/components/logo/social";
 import Copy from "@/components/stour/copy";
 import Link from "@/components/stour/link";
-import SharePlayground from "@/components/about/share-playground";
-import combineURLs from "@/lib/helpers/combineURLs";
-import Color from "color";
-import { GetStaticProps, NextPage } from "next";
-import NextLink from "next/link";
-import { Circle, HelpCircle } from "react-feather";
-import { blue } from "@sudburyrc/blue";
 
 const brandAssets = [
   {

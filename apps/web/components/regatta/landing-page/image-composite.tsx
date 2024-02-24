@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Ticket from "@/components/regatta/landing-page/ticket";
-import cupImage from "../../../public/assets/regatta/landing/cup.png";
-import victoriaImage from "../../../public/assets/regatta/landing/victoria.png";
 import bladeImage from "../../../public/assets/regatta/landing/blade.png";
 import buntingImage from "../../../public/assets/regatta/landing/bunting.png";
+import cupImage from "../../../public/assets/regatta/landing/cup.png";
+import victoriaImage from "../../../public/assets/regatta/landing/victoria.png";
 
 const ImageComposite = ({
   ticketItems,

@@ -1,6 +1,6 @@
-import cn from "clsx";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import cn from "clsx";
 import groq from "groq";
 import { sanityClient } from "@sudburyrc/api";
 import Loading from "../stour/loading";

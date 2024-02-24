@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import cn from "clsx";
 import {
   ClipboardDocumentCheckIcon,
   ClipboardDocumentListIcon,
 } from "@heroicons/react/20/solid";
+import cn from "clsx";
 
 const Copy = ({ value }: { value: string }) => {
   const [copied, setCopied] = useState(false);

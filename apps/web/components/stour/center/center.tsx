@@ -12,7 +12,7 @@ const Center = ({ h = true, v = false, children, className }: Props) => {
     "flex flex-col justify-center items-center",
     h && `h-full`,
     v && `v-full`,
-    className
+    className,
   );
   return <div className={classes}>{children}</div>;
 };

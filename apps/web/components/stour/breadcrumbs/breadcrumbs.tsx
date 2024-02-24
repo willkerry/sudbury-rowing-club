@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import prettifyBreadcrumb from "./prettifyBreadcrumb";
 
 type Props = {
@@ -67,7 +67,7 @@ const Breadcrumbs = ({
                 {prettifyBreadcrumb(breadcrumb.breadcrumb)}
               </Link>
             </li>
-          )
+          ),
         )}
       </ol>
     </nav>

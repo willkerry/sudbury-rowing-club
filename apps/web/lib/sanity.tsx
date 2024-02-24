@@ -1,11 +1,11 @@
+import Link from "next/link";
 import {
   PortableText as BlockContent,
   PortableTextComponents,
   type PortableTextProps,
 } from "@portabletext/react";
-import Link from "next/link";
-import Note from "@/components/stour/note";
 import Figure from "@/components/stour/figure";
+import Note from "@/components/stour/note";
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;

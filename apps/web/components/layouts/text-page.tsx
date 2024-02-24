@@ -1,8 +1,8 @@
 import { NextSeo } from "next-seo";
-import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Layout from "@/components/layouts/layout";
 import { makeShareImageURL } from "@/lib/og-image";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import HeroTitle from "@/components/stour/hero/hero-title";
 
 /**
  * A 'root'-level comonent for rendering simple pages with a title and some

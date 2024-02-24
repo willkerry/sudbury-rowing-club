@@ -8,13 +8,13 @@ const absoluteUrl = `${BASE_URL}${BASE_PATH}`;
 type MakeShareImageURL = (
   title: ShareImage["title"],
   absolute?: boolean,
-  options?: Partial<Omit<ShareImage, "title">>
+  options?: Partial<Omit<ShareImage, "title">>,
 ) => string;
 
 export const makeShareImageURL: MakeShareImageURL = (
   title,
   absolute,
-  options
+  options,
 ) => {
   const searchParams = new URLSearchParams({ title, ...options }).toString();
   const path = absolute ? absoluteUrl : BASE_PATH;

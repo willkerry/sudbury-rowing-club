@@ -1,5 +1,5 @@
-import getSafetyStatus from "@/lib/get-safety-status";
 import { useQuery } from "@tanstack/react-query";
+import getSafetyStatus from "@/lib/get-safety-status";
 import Loading from "../stour/loading";
 import SafetyComponent from "./safety-component";
 

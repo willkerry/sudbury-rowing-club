@@ -1,7 +1,7 @@
+import Banner from "@/components/banner";
 import Footer from "@/components/footer";
 import Meta from "@/components/layouts/meta";
 import { Nav } from "@/components/nav";
-import Banner from "@/components/banner";
 
 type Props = {
   children: React.ReactNode;

@@ -1,11 +1,11 @@
 import { Download, ExternalLink } from "react-feather";
 import { BASE_URL } from "lib/constants";
-import Text from "@/components/stour/text";
-import Button from "@/components/stour/button";
-import DateFormatter from "@/components/utils/date-formatter";
-import Link from "@/components/stour/link";
-import { SafetyResponse } from "@sudburyrc/api";
 import { first, isArray } from "lodash";
+import { SafetyResponse } from "@sudburyrc/api";
+import Button from "@/components/stour/button";
+import Link from "@/components/stour/link";
+import Text from "@/components/stour/text";
+import DateFormatter from "@/components/utils/date-formatter";
 
 const URGENT_WORDS = ["emergency", "urgent", "critical"];
 

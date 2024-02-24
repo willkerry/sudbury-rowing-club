@@ -1,12 +1,12 @@
-import Label from "@/components/stour/label";
-import Text from "@/components/stour/text";
-import DateFormatter from "@/components/utils/date-formatter";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Disclosure, Transition } from "@headlessui/react";
 import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
 import cn from "clsx";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import type { Notice } from "@sudburyrc/api";
+import Label from "@/components/stour/label";
+import Text from "@/components/stour/text";
+import DateFormatter from "@/components/utils/date-formatter";
 import FileGroup from "./file-group";
 
 type Props = { notice: Notice };
@@ -96,7 +96,7 @@ const CollapsibleCard = ({ notice }: Props) => (
           <ChevronDownIcon
             className={cn(
               "h-6 w-6 text-gray-400 opacity-0 transition duration-300 group-hover:opacity-100",
-              open ? "-rotate-180 transform" : ""
+              open ? "-rotate-180 transform" : "",
             )}
           />
         </Disclosure.Button>

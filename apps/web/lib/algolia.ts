@@ -1,10 +1,10 @@
 import algoliasearch, {
-  type SearchIndex,
   type SearchClient,
+  type SearchIndex,
 } from "algoliasearch";
 import litealgoliasearch, {
-  type SearchIndex as BrowserSearchIndex,
   type SearchClient as BrowserSearchClient,
+  type SearchIndex as BrowserSearchIndex,
 } from "algoliasearch/lite";
 
 if (!process.env.NEXT_PUBLIC_ALGOLIA_APP_ID)

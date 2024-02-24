@@ -1,32 +1,32 @@
-import { useRouter } from "next/router";
 import { ArticleJsonLd, NextSeo } from "next-seo";
-import Container from "@/components/layouts/container";
-import PostBody from "@/components/news/post-body";
-import PostHeader from "@/components/news/post-header";
-import Layout from "@/components/layouts/layout";
-import {
-  BASE_URL,
-  LOGO,
-  PROJECT_NAME,
-  HOME_OG_IMAGE_URL,
-} from "@/lib/constants";
-import Label from "@/components/stour/label";
-import DateFormatter from "@/components/utils/date-formatter";
+import { useRouter } from "next/router";
 import type {
   GetStaticPaths,
   InferGetStaticPropsType,
   NextPage,
 } from "next/types";
-import Link from "@/components/stour/link";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 import { ParsedUrlQuery } from "querystring";
 import {
+  type Article,
   serverGetAllSlugs,
   serverGetArticleBySlug,
   urlFor,
-  type Article,
 } from "@sudburyrc/api";
+import {
+  BASE_URL,
+  HOME_OG_IMAGE_URL,
+  LOGO,
+  PROJECT_NAME,
+} from "@/lib/constants";
 import { makeShareImageURL } from "@/lib/og-image";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import PostBody from "@/components/news/post-body";
+import PostHeader from "@/components/news/post-header";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
+import DateFormatter from "@/components/utils/date-formatter";
 
 export const getStaticProps = async ({
   params,
@@ -91,7 +91,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                               year: "numeric",
                               month: "long",
                               day: "numeric",
-                            }
+                            },
                           ),
                         }),
                   },

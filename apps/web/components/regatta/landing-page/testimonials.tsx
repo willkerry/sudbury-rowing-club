@@ -1,9 +1,9 @@
+import { type Regatta } from "@sudburyrc/api";
+import ordinal from "@/lib/helpers/ordinal";
 import Label from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
-import DateFormatter from "@/components/utils/date-formatter";
 import Testimonial from "@/components/stour/testimonial";
-import ordinal from "@/lib/helpers/ordinal";
-import { type Regatta } from "@sudburyrc/api";
+import DateFormatter from "@/components/utils/date-formatter";
 
 const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
   <>
@@ -25,7 +25,7 @@ const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
               ))}
             </Masonry>
           </div>
-        )
+        ),
     )}
   </>
 );

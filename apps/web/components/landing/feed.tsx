@@ -1,11 +1,11 @@
+import cn from "clsx";
+import BritishRowing from "@/components/landing/sponsors/british-rowing";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 import useBritishRowingFeed, {
   type BRArticle as BRArticleType,
 } from "@/hooks/useBritishRowingFeed";
-import BritishRowing from "@/components/landing/sponsors/british-rowing";
-import Label from "@/components/stour/label";
-import cn from "clsx";
-import Link from "@/components/stour/link";
 import Result from "../stour/result";
 
 const BRArticle = ({ article }: { article?: BRArticleType }) => (

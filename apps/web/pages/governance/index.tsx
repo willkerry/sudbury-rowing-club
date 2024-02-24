@@ -1,3 +1,7 @@
+import { InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
+import { fetchGovernance } from "@sudburyrc/api";
+import { makeShareImageURL } from "@/lib/og-image";
 import {
   Committees,
   Documents,
@@ -7,10 +11,6 @@ import {
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
-import { makeShareImageURL } from "@/lib/og-image";
-import { fetchGovernance } from "@sudburyrc/api";
-import { InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
 
 export const getStaticProps = async () => ({ props: await fetchGovernance() });
 

@@ -1,9 +1,9 @@
-import { makeShareImageURL } from "@/lib/og-image";
 import { useRef } from "react";
-import { type ShareImage } from "@/pages/api/og";
-import Label from "@/components/stour/label";
+import { makeShareImageURL } from "@/lib/og-image";
 import Button from "@/components/stour/button";
+import Label from "@/components/stour/label";
 import Loading from "@/components/stour/loading";
+import { type ShareImage } from "@/pages/api/og";
 
 const DEFAULT_TITLE = "Share Image Playground 🎉";
 const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {

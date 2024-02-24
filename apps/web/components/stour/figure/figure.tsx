@@ -1,5 +1,5 @@
-import { urlFor } from "@sudburyrc/api";
 import Image from "next/image";
+import { urlFor } from "@sudburyrc/api";
 import { useLightBox } from "@/components/stour/lightbox";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 

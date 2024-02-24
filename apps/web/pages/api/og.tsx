@@ -1,18 +1,18 @@
 import { type NextRequest } from "next/server";
 import { ImageResponse } from "@vercel/og";
 import { z } from "zod";
-import Logo from "@/components/logo";
 import { blue } from "@sudburyrc/blue";
+import Logo from "@/components/logo";
 
 export const config = {
   runtime: "edge",
 };
 
 const semiboldFont = fetch(
-  new URL("../../public/Inter-Bold.ttf", import.meta.url)
+  new URL("../../public/Inter-Bold.ttf", import.meta.url),
 ).then((res) => res.arrayBuffer());
 const mediumFont = fetch(
-  new URL("../../public/Inter-Medium.ttf", import.meta.url)
+  new URL("../../public/Inter-Medium.ttf", import.meta.url),
 ).then((res) => res.arrayBuffer());
 
 const ErrorResponse = (message: string) =>
@@ -39,7 +39,7 @@ const ErrorResponse = (message: string) =>
     {
       width: 120,
       height: 120,
-    }
+    },
   );
 
 const ShareImageSchema = z.object({
@@ -116,7 +116,7 @@ const og = async (request: NextRequest): Promise<ImageResponse> => {
   }
 
   const { title, subtitle, variant } = ShareImageSchema.parse(
-    Object.fromEntries(searchParams.entries())
+    Object.fromEntries(searchParams.entries()),
   );
 
   const fontData = await Promise.all([semiboldFont, mediumFont]);
@@ -203,7 +203,7 @@ const og = async (request: NextRequest): Promise<ImageResponse> => {
           weight: 500,
         },
       ],
-    }
+    },
   );
 };
 

@@ -1,22 +1,22 @@
-import { MapPinIcon } from "@heroicons/react/24/solid";
+import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
+import { MapPinIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
 import { Map, Marker } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
-import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Layout from "@/components/layouts/layout";
-import Note from "@/components/stour/note";
 import {
   CLUB_LOCATION,
-  REGATTA_LOCATION,
-  MAPPING_APIS,
   CLUB_LOCATION_STRING,
+  MAPPING_APIS,
+  REGATTA_LOCATION,
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
-import { NextPage } from "next";
 import { makeShareImageURL } from "@/lib/og-image";
-import clsx from "clsx";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Note from "@/components/stour/note";
 
 const openInApp = [
   {

@@ -1,17 +1,17 @@
+import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
-import Feed from "@/components/landing/feed";
-import { type NoteProps } from "@/components/stour/note/note";
+import { type GetStaticProps, NextPage } from "next/types";
 import { type PortableTextProps } from "@portabletext/react";
 import groq from "groq";
-import { NextSeo } from "next-seo";
-import { NextPage, type GetStaticProps } from "next/types";
 import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
+import Feed from "@/components/landing/feed";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import { type NoteProps } from "@/components/stour/note/note";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
-  () => import("@/components/regatta/landing-page/gallery")
+  () => import("@/components/regatta/landing-page/gallery"),
 );
 const LandingCTA = dynamic(() => import("@/components/landing/cta"));
 const Introduction = dynamic(() => import("@/components/landing/introduction"));

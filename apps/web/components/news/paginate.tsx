@@ -1,5 +1,5 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import Button from "../stour/button";
 
 type Props = {

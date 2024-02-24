@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
+import { NextPage } from "next";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
-import { NextPage } from "next";
 import DateFormatter from "@/components/utils/date-formatter";
 
 const COLORS = {

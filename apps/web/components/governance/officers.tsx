@@ -1,10 +1,10 @@
-import { Description, GovGrid, SectionTitle } from "@/components/governance";
-import Link from "@/components/stour/link";
-import type { Governance } from "@sudburyrc/api";
-import { Popover, Transition } from "@headlessui/react";
+import { HelpCircle, MessageCircle, XCircle } from "react-feather";
 import Image from "next/image";
 import NextLink from "next/link";
-import { HelpCircle, MessageCircle, XCircle } from "react-feather";
+import { Popover, Transition } from "@headlessui/react";
+import type { Governance } from "@sudburyrc/api";
+import { Description, GovGrid, SectionTitle } from "@/components/governance";
+import Link from "@/components/stour/link";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import Crest from "../logo/crest";
 

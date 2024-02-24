@@ -1,6 +1,6 @@
+import { ComponentProps } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import Button from "@/components/stour/button";
-import { ComponentProps } from "react";
 
 type CTALinkProps = {
   to: string;

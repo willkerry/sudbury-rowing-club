@@ -42,7 +42,7 @@ const Entries = ({ children, table, waveNames, caption }: Props) => {
                   <td key={entry} className="text-center">
                     <div
                       className={`rounded-lg px-0.5 font-medium ${getWaveColor(
-                        entry
+                        entry,
                       )}
                       `}
                     >

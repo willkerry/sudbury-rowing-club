@@ -1,22 +1,22 @@
-import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Layout from "@/components/layouts/layout";
-import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
 import {
   type GetStaticPaths,
   type GetStaticProps,
   type InferGetStaticPropsType,
   type NextPage,
 } from "next";
-import Label from "@/components/stour/label";
-import Link from "@/components/stour/link";
+import { NextSeo } from "next-seo";
 import {
+  type Notice as NoticeType,
   fetchNoticeSlugs,
   fetchOneNotice,
-  type Notice as NoticeType,
 } from "@sudburyrc/api";
-import { NextSeo } from "next-seo";
 import { makeShareImageURL } from "@/lib/og-image";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await fetchNoticeSlugs();

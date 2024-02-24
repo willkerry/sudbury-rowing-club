@@ -1,6 +1,6 @@
+import { PortableTextProps } from "@portabletext/react";
 import cn from "clsx";
 import { PortableText } from "@/lib/sanity";
-import { PortableTextProps } from "@portabletext/react";
 
 type Props = {
   type?: "default" | "invert" | "secondary";
@@ -35,7 +35,7 @@ const Text = ({
     VARIANT_MAPS[type],
     SIZE_MAPS[size],
     className,
-    lead && "auto-lead"
+    lead && "auto-lead",
   );
   return portableText ? (
     <PortableText className={classes} value={portableText} />

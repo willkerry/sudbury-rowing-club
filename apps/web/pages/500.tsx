@@ -1,10 +1,10 @@
-import Head from "next/head";
 import { Home, Search } from "react-feather";
+import Head from "next/head";
+import Image from "next/image";
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import Button from "@/components/stour/button";
-import Image from "next/image";
+import HeroTitle from "@/components/stour/hero/hero-title";
 
 const Custom500 = () => (
   <Layout>

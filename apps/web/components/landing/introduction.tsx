@@ -1,7 +1,7 @@
+import dynamic from "next/dynamic";
+import { PortableTextProps } from "@portabletext/react";
 import Container from "@/components/layouts/container";
 import Text from "@/components/stour/text";
-import { PortableTextProps } from "@portabletext/react";
-import dynamic from "next/dynamic";
 
 const CommitteeSignature = dynamic(
   () => import("@/components/landing/committee-signature"),

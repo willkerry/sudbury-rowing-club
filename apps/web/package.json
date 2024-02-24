@@ -1,17 +1,18 @@
 {
-  "schema": "https://json.schemastore.org/package",
+  "$schema": "https://json.schemastore.org/package",
   "name": "@sudburyrc/web",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "dev": "next dev",
+    "email-dev": "email dev",
+    "format": "prettier --write . --ignore-path .gitignore --ignore-path .prettierignore",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "start": "next start",
     "test": "next test",
-    "format": "prettier --write . --ignore-path .gitignore --ignore-path .prettierignore",
-    "type-check": "tsc",
-    "email-dev": "email dev"
+    "type-check": "tsc"
   },
   "dependencies": {
     "@algolia/client-search": "^4.22.1",
@@ -69,6 +70,7 @@
     "@next/bundle-analyzer": "^14.1.0",
     "@sanity/image-url": "^1.0.2",
     "@sudburyrc/tsconfig": "workspace:*",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/color": "^3.0.6",
     "@types/he": "^1.2.3",
     "@types/lodash": "^4.14.202",
@@ -83,10 +85,10 @@
     "eslint-config-stour": "workspace:*",
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
+    "prettier-plugin-packagejson": "^2.4.12",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "superagent": "^8.1.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
-  },
-  "license": "MIT"
+  }
 }

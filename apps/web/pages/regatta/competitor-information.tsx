@@ -1,12 +1,12 @@
-import groq from "groq";
+import { NextPage } from "next";
 import { NextSeo } from "next-seo";
+import groq from "groq";
+import { sanityClient } from "@sudburyrc/api";
+import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
 import CompetitorInformation from "@/components/regatta/competitor-information";
-import { sanityClient } from "@sudburyrc/api";
-import { NextPage } from "next";
-import { makeShareImageURL } from "@/lib/og-image";
+import HeroTitle from "@/components/stour/hero/hero-title";
 
 export type CompetitorInformationType = {
   description: string;

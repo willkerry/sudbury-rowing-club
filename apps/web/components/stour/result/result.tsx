@@ -1,9 +1,9 @@
-import cn from "clsx";
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
+import cn from "clsx";
 
 const Variants = ["success", "error", "warning", "empty"] as const;
 

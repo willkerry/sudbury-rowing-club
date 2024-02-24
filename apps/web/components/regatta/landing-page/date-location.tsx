@@ -1,6 +1,6 @@
+import { ReactNode } from "react";
 import { CalendarIcon, MapIcon } from "@heroicons/react/20/solid";
 import Link from "@/components/stour/link";
-import { ReactNode } from "react";
 
 type Props = {
   date: ReactNode;

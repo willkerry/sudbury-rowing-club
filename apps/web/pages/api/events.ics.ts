@@ -1,7 +1,7 @@
-import generateICSString from "@/lib/generateICSString";
-import { serversideFetchCompetitions } from "@sudburyrc/api";
-import kv from "@vercel/kv";
 import { NextApiRequest, NextApiResponse } from "next";
+import kv from "@vercel/kv";
+import { serversideFetchCompetitions } from "@sudburyrc/api";
+import generateICSString from "@/lib/generateICSString";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours

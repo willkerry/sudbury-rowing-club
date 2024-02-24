@@ -1,6 +1,6 @@
-import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
 import { z } from "zod";
+import { sanityClient } from "@sudburyrc/api";
 
 const GetOfficerSchema = z.object({
   _id: z.string(),

@@ -1,12 +1,12 @@
+import { type InferGetStaticPropsType, type NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Link from "next/link";
+import cn from "clsx";
+import { fetchAllAuthors } from "@sudburyrc/api";
+import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
-import Link from "next/link";
-import { fetchAllAuthors } from "@sudburyrc/api";
-import cn from "clsx";
-import { type InferGetStaticPropsType, type NextPage } from "next";
-import { NextSeo } from "next-seo";
-import { makeShareImageURL } from "@/lib/og-image";
 
 export const getStaticProps = async () => {
   const authors = await fetchAllAuthors();
@@ -82,7 +82,7 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 </Link>
               </li>
             );
-          }
+          },
         )}
       </ul>
     </Container>

@@ -1,5 +1,5 @@
-import { Severity } from "@/types/severity";
 import groq from "groq";
+import { Severity } from "@/types/severity";
 import useGroqQuery from "./useQroqQuery";
 
 type SafetyStatus = {
@@ -16,7 +16,7 @@ const useSafetyStatus = () => {
             description,
             display,
             status
-        }`
+        }`,
   );
 
   return { data, error, loading: isLoading };

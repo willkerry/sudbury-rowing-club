@@ -1,3 +1,4 @@
+import cn from "clsx";
 import type { Governance } from "@sudburyrc/api";
 import {
   Description,
@@ -5,7 +6,6 @@ import {
   SectionTitle,
   SubTitle,
 } from "@/components/governance";
-import cn from "clsx";
 
 type Props = {
   committees: Governance["committees"];
@@ -27,7 +27,7 @@ const Committees = ({ committees }: Props) => (
                   className={cn(
                     !i &&
                       "after:block after:text-xs after:font-semibold after:uppercase after:tracking-wider after:text-gray-400 after:content-['Committee_Chair']",
-                    "text-sm font-medium text-gray-700"
+                    "text-sm font-medium text-gray-700",
                   )}
                 >
                   {member.role}

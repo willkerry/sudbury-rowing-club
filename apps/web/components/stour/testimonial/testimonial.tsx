@@ -8,7 +8,7 @@ const Testimonial = ({ name, club, text }: TestimonialType) => (
       className={cn(
         "space-y-4 leading-snug",
         { "hyphens-auto text-sm text-gray-800": text?.length > 250 },
-        { "text-lg font-light text-black": text?.length < 250 }
+        { "text-lg font-light text-black": text?.length < 250 },
       )}
     >
       {text}

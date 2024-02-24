@@ -1,5 +1,5 @@
-import { Severity } from "@/types/severity";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
+import { Severity } from "@/types/severity";
 import { EnvironmentAgency, MetOffice } from "../icons";
 import Label from "../stour/label";
 import DateFormatter from "../utils/date-formatter";

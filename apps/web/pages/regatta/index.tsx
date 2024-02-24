@@ -1,3 +1,8 @@
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { EventJsonLd, NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
+import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
+import { REGATTA } from "@/lib/constants";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import {
@@ -7,34 +12,28 @@ import {
   ResultsIcon,
 } from "@/components/regatta/icons";
 import DateLocation from "@/components/regatta/landing-page/date-location";
+import type { DetailProps } from "@/components/regatta/landing-page/details";
 import Testimonials from "@/components/regatta/landing-page/testimonials";
 import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
-import { REGATTA } from "@/lib/constants";
-import { EventJsonLd, NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
-import { fetchRegattas, fetchRegattaSettings } from "@sudburyrc/api";
-
-import type { DetailProps } from "@/components/regatta/landing-page/details";
-import type { InferGetStaticPropsType, NextPage } from "next";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
-  { loading: () => <Loading /> }
+  { loading: () => <Loading /> },
 );
 const Details = dynamic(
   () => import("@/components/regatta/landing-page/details"),
-  { loading: () => <Loading /> }
+  { loading: () => <Loading /> },
 );
 const RegattaHero = dynamic(
   () => import("@/components/regatta/landing-page/regatta-hero"),
-  { loading: () => <Loading /> }
+  { loading: () => <Loading /> },
 );
 const RegattaHeroImage = dynamic(
   () => import("@/components/regatta/landing-page/regatta-hero-image"),
-  { loading: () => <Loading /> }
+  { loading: () => <Loading /> },
 );
 const Results = dynamic(() => import("@/components/regatta/results"), {
   loading: () => <Loading />,
@@ -47,7 +46,7 @@ const Events = dynamic(() => import("@/components/regatta/events"), {
 });
 const CompetitorInformation = dynamic(
   () => import("@/components/regatta/competitor-information"),
-  { loading: () => <Loading /> }
+  { loading: () => <Loading /> },
 );
 
 export const getStaticProps = async () => ({

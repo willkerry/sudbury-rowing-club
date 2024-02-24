@@ -176,7 +176,7 @@ const getWeatherForecast = async (): Promise<Forecast[]> => {
       windSpeed: daily.windspeed_10m_max[index],
       windDirection: daily.winddirection_10m_dominant[index],
       windDirectionText: degreesToCardinal(
-        daily.winddirection_10m_dominant[index]
+        daily.winddirection_10m_dominant[index],
       ),
       beaufort: kphToBeaufort(daily.windspeed_10m_max[index]),
       date: time,

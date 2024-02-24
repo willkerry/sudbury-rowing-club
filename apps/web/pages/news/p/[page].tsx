@@ -1,10 +1,4 @@
-import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
-import NewsList from "@/components/news/news-list";
-import Label from "@/components/stour/label";
 import { NextSeo } from "next-seo";
-import Paginate from "@/components/news/paginate";
-import DateFormatter from "@/components/utils/date-formatter";
 import type {
   GetStaticPaths,
   InferGetStaticPropsType,
@@ -13,6 +7,12 @@ import type {
 import type { ParsedUrlQuery } from "querystring";
 import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import NewsList from "@/components/news/news-list";
+import Paginate from "@/components/news/paginate";
+import Label from "@/components/stour/label";
+import DateFormatter from "@/components/utils/date-formatter";
 
 const POSTS_PER_PAGE = 30;
 
@@ -43,7 +43,7 @@ export const getStaticProps = async ({
 
   const pageOfArticles = await serverGetNArticles(
     firstArticleNumber,
-    lastArticleNumber
+    lastArticleNumber,
   );
 
   return { props: { data: pageOfArticles, page: params?.page, pages } };

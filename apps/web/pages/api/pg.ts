@@ -1,5 +1,5 @@
-import { getWodehouseFullDetails } from "get-wodehouse-name";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getWodehouseFullDetails } from "get-wodehouse-name";
 
 const wodehouse = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {

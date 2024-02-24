@@ -1,8 +1,8 @@
-import Link from "next/link";
-import TextPage from "@/components/layouts/text-page";
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import Loading from "@/components/stour/loading";
 import { NextPage } from "next";
+import Link from "next/link";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import TextPage from "@/components/layouts/text-page";
+import Loading from "@/components/stour/loading";
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row">

@@ -1,5 +1,5 @@
+import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { sanityClient } from "@sudburyrc/api";
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 
 const useGroqQuery = <T>(
   query: string,

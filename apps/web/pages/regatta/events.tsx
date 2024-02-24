@@ -1,12 +1,12 @@
-import groq from "groq";
-import { NextSeo } from "next-seo";
-import Layout from "@/components/layouts/layout";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Container from "@/components/layouts/container";
-import EventsComponent from "@/components/regatta/events";
-import { sanityClient } from "@sudburyrc/api";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
+import groq from "groq";
+import { sanityClient } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import EventsComponent from "@/components/regatta/events";
+import HeroTitle from "@/components/stour/hero/hero-title";
 
 const og = {
   title: "Event Information",
@@ -26,7 +26,7 @@ export type Event = {
 
 export const getStaticProps: GetStaticProps = async () => {
   const { events }: { events: { events: Event[] } } = await sanityClient.fetch(
-    groq`*[_type == "regattaSettings"][0]{events}`
+    groq`*[_type == "regattaSettings"][0]{events}`,
   );
   return {
     props: {

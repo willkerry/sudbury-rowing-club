@@ -1,14 +1,14 @@
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import groq from "groq";
+import { sanityClient } from "@sudburyrc/api";
+import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
 import Layout from "@/components/layouts/layout";
+import Copy from "@/components/stour/copy";
+import HeroTitle from "@/components/stour/hero/hero-title";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import { sanityClient } from "@sudburyrc/api";
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import Copy from "@/components/stour/copy";
-import { makeShareImageURL } from "@/lib/og-image";
 
 export interface Gallery {
   _key: string;
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async () => {
           _id,
           date, 
           galleries
-      }`
+      }`,
   );
   return {
     props: { regattas },
@@ -80,7 +80,7 @@ const Photography: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                           </span>
                           <Copy value={gallery.password} />
                         </>
-                      )
+                      ),
                   )}
                 </td>
                 <td className="flex gap-6">

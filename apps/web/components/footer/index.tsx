@@ -2,15 +2,15 @@ import Container from "@/components/layouts/container";
 import Crest from "@/components/logo/crest";
 import {
   about,
+  members,
+  misc,
   regatta,
   socials,
-  misc,
-  members,
 } from "@/components/nav/nav-data";
-import FooterColumn from "./column";
-import SocialIcons from "./socialIcons";
 import Address from "./address";
+import FooterColumn from "./column";
 import ReportABug from "./reportABug";
+import SocialIcons from "./socialIcons";
 
 const communityFooter = [...members.filter((item) => item.cta), ...socials];
 

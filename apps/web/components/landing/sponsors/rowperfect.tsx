@@ -1,5 +1,5 @@
 const Rowperfect = (
-  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg viewBox="0 0 281 29" xmlns="http://www.w3.org/2000/svg" {...props}>
     <g fill="#00b4d5">
