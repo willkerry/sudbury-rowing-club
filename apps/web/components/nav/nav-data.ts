@@ -10,7 +10,7 @@ import {
   TicketIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
-import { Facebook, type IconNode, Instagram } from "lucide-react";
+import { Facebook, Instagram } from "lucide-react";
 import { SOCIALS } from "@/lib/constants";
 import {
   Governance,
@@ -24,7 +24,7 @@ import { IconNavItemType } from "@/types/nav-item";
 
 type NavigationGroup = {
   title: string;
-  icon?: IconNode;
+  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
   items: IconNavItemType[];
 };
 
