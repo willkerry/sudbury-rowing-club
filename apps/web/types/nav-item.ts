@@ -1,4 +1,5 @@
-import { Icon } from "react-feather";
+import React from "react";
+import { type IconNode } from "lucide-react";
 
 export type NavItemType = {
   name: string;
@@ -10,6 +11,14 @@ export type NavItemType = {
 };
 
 export interface IconNavItemType extends NavItemType {
-  icon?: Icon;
+  icon?:
+    | React.FC<React.SVGProps<SVGSVGElement>>
+    | IconNode
+    | React.ForwardRefExoticComponent<
+        React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
+          title?: string;
+          titleId?: string;
+        } & React.RefAttributes<SVGSVGElement>
+      >;
 }
 export default NavItemType;

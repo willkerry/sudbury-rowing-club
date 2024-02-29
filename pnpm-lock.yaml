@@ -195,9 +195,6 @@ importers:
       react-email:
         specifier: ^2.1.0
         version: 2.1.0(eslint@8.57.0)
-      react-feather:
-        specifier: ^2.0.10
-        version: 2.0.10(react@18.2.0)
       react-final-form:
         specifier: ^6.5.9
         version: 6.5.9(final-form@4.20.10)(react@18.2.0)
@@ -9313,15 +9310,6 @@ packages:
 
   /react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
-    dev: false
-
-  /react-feather@2.0.10(react@18.2.0):
-    resolution: {integrity: sha512-BLhukwJ+Z92Nmdcs+EMw6dy1Z/VLiJTzEQACDUEnWMClhYnFykJCGWQx+NmwP/qQHGX/5CzQ+TGi8ofg2+HzVQ==}
-    peerDependencies:
-      react: '>=16.8.6'
-    dependencies:
-      prop-types: 15.8.1
-      react: 18.2.0
     dev: false
 
   /react-final-form@6.5.9(final-form@4.20.10)(react@18.2.0):

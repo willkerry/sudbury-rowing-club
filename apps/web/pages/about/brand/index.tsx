@@ -1,7 +1,7 @@
-import { Circle, HelpCircle } from "react-feather";
 import { GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import Color from "color";
+import { Circle, HelpCircle } from "lucide-react";
 import { blue } from "@sudburyrc/blue";
 import combineURLs from "@/lib/helpers/combineURLs";
 import SharePlayground from "@/components/about/share-playground";

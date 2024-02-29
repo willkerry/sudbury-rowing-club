@@ -1,7 +1,7 @@
-import { HelpCircle, MessageCircle, XCircle } from "react-feather";
 import Image from "next/image";
 import NextLink from "next/link";
 import { Popover, Transition } from "@headlessui/react";
+import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
 import type { Governance } from "@sudburyrc/api";
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import Link from "@/components/stour/link";

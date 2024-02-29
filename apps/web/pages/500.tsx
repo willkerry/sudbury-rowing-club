@@ -1,7 +1,7 @@
-import { Home, Search } from "react-feather";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { Home, Search } from "lucide-react";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";

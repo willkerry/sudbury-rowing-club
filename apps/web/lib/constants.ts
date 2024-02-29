@@ -38,7 +38,7 @@ export const SOCIALS: Record<
     href: "https://facebook.com/sudburyrowing",
     handle: "@sudburyrowing",
   },
-};
+} as const;
 
 export namespace REGATTA {
   export const EVENT_NAME_LONG =

@@ -1,8 +1,8 @@
-import { ThumbsUp } from "react-feather";
 import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import NextLink from "next/link";
+import { ThumbsUp } from "lucide-react";
 import { makeShareImageURL } from "@/lib/og-image";
 import {
   JoinCTA,

@@ -1,5 +1,5 @@
-import { Download, ExternalLink } from "react-feather";
 import { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
+import { Download, ExternalLink } from "lucide-react";
 import { ParsedUrlQuery } from "querystring";
 import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
 import { BASE_URL } from "@/lib/constants";

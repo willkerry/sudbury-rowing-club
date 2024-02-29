@@ -1,8 +1,8 @@
-import { Download } from "react-feather";
 import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import groq from "groq";
+import { Download } from "lucide-react";
 import { sanityClient } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";

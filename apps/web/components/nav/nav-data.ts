@@ -1,4 +1,3 @@
-import { Facebook, type Icon, Instagram } from "react-feather";
 import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
   EnvelopeIcon,
@@ -11,6 +10,7 @@ import {
   TicketIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
+import { Facebook, type IconNode, Instagram } from "lucide-react";
 import { SOCIALS } from "@/lib/constants";
 import {
   Governance,
@@ -24,7 +24,7 @@ import { IconNavItemType } from "@/types/nav-item";
 
 type NavigationGroup = {
   title: string;
-  icon?: Icon;
+  icon?: IconNode;
   items: IconNavItemType[];
 };
 
@@ -175,7 +175,7 @@ const secondaryNavigationGroups: NavigationGroup[] = [
 
 const availableLogos: Record<
   (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
-  Icon
+  typeof Instagram
 > = {
   instagram: Instagram,
   facebook: Facebook,
