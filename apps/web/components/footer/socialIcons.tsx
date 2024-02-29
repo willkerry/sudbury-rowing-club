@@ -10,7 +10,7 @@ const SocialIcons = () => (
         className="mr-4 text-gray-400 transition hover:text-black"
       >
         <span className="sr-only">{item.name}</span>
-        {item.icon && <item.icon size={18} strokeWidth={1.5} aria-hidden />}
+        {item.icon && <item.icon aria-hidden className="w-4 stroke-[1.5px]" />}
       </Link>
     ))}
   </>
