@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
-import Button from "../stour/button";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   page: number;
@@ -14,20 +14,21 @@ const Paginate = ({ showPrev, showNext, previous, next }: Props) => (
   <div className="my-10 flex items-center justify-between gap-4">
     <div>
       {showPrev && (
-        <Link href={previous} passHref legacyBehavior>
-          <Button asChild icon={<ArrowLeftIcon />}>
-            Newer
-          </Button>
-        </Link>
+        <Button asChild>
+          <Link href={previous}>
+            <ArrowLeftIcon aria-hidden className="w-4 mr-2" /> Newer
+          </Link>
+        </Button>
       )}
     </div>
     <div>
       {showNext && (
-        <Link href={next} passHref legacyBehavior>
-          <Button asChild icon={<ArrowRightIcon />}>
+        <Button asChild>
+          <Link href={next}>
             Older
-          </Button>
-        </Link>
+            <ArrowRightIcon aria-hidden className="w-4 ml-2" />
+          </Link>
+        </Button>
       )}
     </div>
   </div>
