@@ -1,5 +1,4 @@
 import React from "react";
-import { type IconNode } from "lucide-react";
 
 export type NavItemType = {
   name: string;
@@ -13,7 +12,6 @@ export type NavItemType = {
 export interface IconNavItemType extends NavItemType {
   icon?:
     | React.FC<React.SVGProps<SVGSVGElement>>
-    | IconNode
     | React.ForwardRefExoticComponent<
         React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
           title?: string;
