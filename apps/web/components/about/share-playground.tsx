@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import { useClipboard } from "@mantine/hooks";
+import { toast } from "sonner";
 import { makeShareImageURL } from "@/lib/og-image";
 import Label from "@/components/stour/label";
 import Loading from "@/components/stour/loading";
@@ -20,6 +22,8 @@ const SharePlayground = () => {
   const variantInputRef = useRef<HTMLSelectElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const loadingRef = useRef<HTMLDivElement>(null);
+
+  const { copy, error } = useClipboard();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,7 +92,7 @@ const SharePlayground = () => {
 
       <Button type="submit">Generate</Button>
 
-      <div className="relative mt-6 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
+      <div className="relative mt-6 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2 aspect-w-16 aspect-h-8">
         <div
           className="absolute inset-0 hidden items-center justify-center"
           ref={loadingRef}
@@ -108,26 +112,27 @@ const SharePlayground = () => {
       </div>
 
       <div className="flex justify-end gap-1 md:col-span-2">
-        <Button
-          onClick={(e) => {
-            if (!imageRef.current) return;
-            e.preventDefault();
-
-            const link = document.createElement("a");
-            link.href = `${imageRef.current.src}`;
-            link.download = "share-image.png";
-            link.click();
-            link.remove();
-          }}
-          size="sm"
-          variant="secondary"
-        >
-          Download
+        <Button asChild size="sm" variant="secondary">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={imageRef.current?.src}
+            download="share-image.png"
+          >
+            Download
+          </a>
         </Button>
 
         <Button
           onClick={() => {
-            navigator.clipboard.writeText(imageRef.current?.src || "");
+            copy(imageRef.current?.src);
+
+            if (error) {
+              toast.error("Failed to copy URL to clipboard");
+              return;
+            }
+
+            toast.success("URL copied to clipboard");
           }}
           size="sm"
           variant="ghost"

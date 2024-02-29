@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Disclosure, Transition } from "@headlessui/react";
-import { ChevronDownIcon, LinkIcon } from "@heroicons/react/20/solid";
-import cn from "clsx";
+import { AccordionHeader } from "@radix-ui/react-accordion";
+import { LinkIcon } from "lucide-react";
 import type { Notice } from "@sudburyrc/api";
 import Label from "@/components/stour/label";
 import Text from "@/components/stour/text";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import DateFormatter from "@/components/utils/date-formatter";
 import FileGroup from "./file-group";
 
@@ -25,6 +30,7 @@ export const NoticeBody = ({ notice }: Props) => {
   return (
     <>
       {notice.body && <Text portableText={notice.body} className="p-4" />}
+
       {notice.meta && (
         <div className="flex bg-gray-50 py-2.5 text-sm">
           {notice.meta.map((item) => (
@@ -37,12 +43,14 @@ export const NoticeBody = ({ notice }: Props) => {
           ))}
         </div>
       )}
+
       {notice.documents && (
         <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2">
           <FileGroup fileItems={notice.documents.slice(0, splitItemCount)} />
           <FileGroup fileItems={notice.documents.slice(splitItemCount)} />
         </div>
       )}
+
       <div className="flex justify-between gap-4 bg-gray-100 px-4 py-3 text-xs font-medium text-gray-500">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           <span>
@@ -62,12 +70,13 @@ export const NoticeBody = ({ notice }: Props) => {
             />
           </span>
         </div>
+
         <Link
           href={`../members/${notice.slug}`}
           className="transition-colors hover:text-black"
-          title="Open permalink"
         >
-          <LinkIcon className="h-4 w-4" />
+          <span className="sr-only">Open permalink</span>
+          <LinkIcon aria-hidden className="h-4 w-4" />
         </Link>
       </div>
     </>
@@ -75,46 +84,28 @@ export const NoticeBody = ({ notice }: Props) => {
 };
 
 const CollapsibleCard = ({ notice }: Props) => (
-  <Disclosure
-    as="div"
+  <Accordion
+    type="single"
     className="divide-y overflow-hidden rounded border"
     id={notice.slug}
+    collapsible
   >
-    {({ open }) => (
-      <>
-        <Disclosure.Button
-          className={`group flex h-14 w-full items-center justify-between px-4 text-left transition hover:bg-gray-50 ${
-            open && "bg-gray-50"
-          }`}
-        >
+    <AccordionItem value={notice.title}>
+      <AccordionHeader>
+        <AccordionTrigger className="group flex h-14 w-full items-center justify-between px-4 text-left transition hover:bg-gray-50 data-[state=open]:bg-gray-50">
           <Label
             className="transition duration-300 group-hover:text-black"
             as="h2"
           >
             {notice.title}
           </Label>
-          <ChevronDownIcon
-            className={cn(
-              "h-6 w-6 text-gray-400 opacity-0 transition duration-300 group-hover:opacity-100",
-              open ? "-rotate-180 transform" : "",
-            )}
-          />
-        </Disclosure.Button>
-        <Transition
-          enter="transition delay-50 duration-300 ease-in-out"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="transition duration-300 delay-50 ease-in-out"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <Disclosure.Panel className="divide-y">
-            <NoticeBody {...{ notice }} />
-          </Disclosure.Panel>
-        </Transition>
-      </>
-    )}
-  </Disclosure>
+        </AccordionTrigger>
+      </AccordionHeader>
+      <AccordionContent className="divide-y p-0 border-t">
+        <NoticeBody {...{ notice }} />
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
 );
 
 export default CollapsibleCard;

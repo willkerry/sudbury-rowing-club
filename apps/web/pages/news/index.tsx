@@ -136,6 +136,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 onClick={() => cancelSearch()}
               >
                 <ArrowUturnLeftIcon className="h-5 w-5" />
+                <span className="sr-only">Cancel search</span>
               </button>
             )}
             <div>

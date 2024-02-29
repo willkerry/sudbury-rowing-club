@@ -1,53 +1,40 @@
-import { useEffect, useState } from "react";
-import {
-  ClipboardDocumentCheckIcon,
-  ClipboardDocumentListIcon,
-} from "@heroicons/react/20/solid";
+import { useClipboard } from "@mantine/hooks";
 import cn from "clsx";
+import { Clipboard, ClipboardCheck } from "lucide-react";
+import { toast } from "sonner";
 
 const Copy = ({ value }: { value: string }) => {
-  const [copied, setCopied] = useState(false);
+  const { copy, copied, error } = useClipboard();
 
-  // When copied is set to true, set it back to false after 2 seconds
-  useEffect(() => {
-    if (copied) {
-      const timeout = setTimeout(() => setCopied(false), 1000);
-      return () => clearTimeout(timeout);
+  const handleClick = () => {
+    copy(value);
+
+    if (!error) {
+      toast.success("Copied to clipboard");
+      return;
     }
 
-    return () => {};
-  }, [copied]);
-
-  const copy = () => {
-    navigator.clipboard.writeText(value);
-    setCopied(true);
+    toast.error("Failed to copy to clipboard");
   };
 
   return (
     <button
       type="button"
       className="group inline-flex items-center gap-1"
-      onClick={() => copy()}
+      onClick={handleClick}
     >
       <span className="disambiguate select-all font-medium tracking-wider text-black">
         {value}
       </span>
       <span className="relative hidden select-none items-center text-xs font-semibold text-blue-500 opacity-0 transition group-hover:opacity-100 md:flex">
-        <ClipboardDocumentListIcon
+        <Clipboard aria-hidden className="absolute h-4 w-4" />
+        <ClipboardCheck
+          aria-hidden
           className={cn(
-            "absolute h-4 w-4 transition",
-            copied ? "opacity-0" : "opacity-100",
-          )}
-        />
-        <ClipboardDocumentCheckIcon
-          className={cn(
-            "absolute h-4 w-4 transition",
+            "absolute h-4 w-4 transition-opacity ease-in-out duration-300",
             copied ? "opacity-100" : "opacity-0",
           )}
         />
-        {copied && (
-          <div className="absolute h-4 w-4 animate-ping rounded-full bg-blue-500" />
-        )}
       </span>
     </button>
   );

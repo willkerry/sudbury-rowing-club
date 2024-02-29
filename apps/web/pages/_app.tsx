@@ -5,6 +5,7 @@ import Script from "next/script";
 import "@fontsource-variable/jetbrains-mono/index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "inter-ui/inter-variable.css";
+import { Toaster } from "@/components/ui/sonner";
 import SEO from "../next-seo.config";
 import "../styles/index.css";
 
@@ -29,6 +30,8 @@ const App = ({ Component, pageProps }: AppProps) => (
     />
 
     <Component {...pageProps} />
+
+    <Toaster />
 
     {process.env.NODE_ENV === "development" && (
       <ReactQueryDevtools initialIsOpen={false} />

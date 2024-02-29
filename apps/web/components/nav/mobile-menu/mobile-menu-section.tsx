@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import cn from "clsx";
+import * as Accordion from "@radix-ui/react-accordion";
+import { cn } from "@/lib/utils";
 import { IconNavItemType } from "@/types/nav-item";
 
 type SectionProps = {
@@ -38,26 +38,33 @@ const SectionWrapper = ({
       {children}
     </nav>
   );
+
   if (collapse)
     return (
-      <Disclosure>
-        {({ open }) => (
-          <div className={outer}>
-            <Disclosure.Button
-              className={cn(
-                titleClasses,
-                "-my-4 flex w-full justify-between py-4",
-              )}
-            >
-              {title}
-              <ChevronDownIcon
-                className={cn("h-4 w-4", open && "rotate-180")}
-              />
-            </Disclosure.Button>
-            <Disclosure.Panel className={panel}>{inner}</Disclosure.Panel>
-          </div>
-        )}
-      </Disclosure>
+      <Accordion.Root type="single" collapsible>
+        <Accordion.Item className={outer} value={title}>
+          <Accordion.Trigger
+            className={cn(
+              titleClasses,
+              "-my-4 flex w-full justify-between py-4 [&[data-state=open]>svg]:-rotate-180",
+            )}
+          >
+            {title}
+            <ChevronDownIcon
+              aria-hidden
+              className="h-4 w-4 transition-transform duration-200"
+            />
+          </Accordion.Trigger>
+          <Accordion.Content
+            className={cn(
+              panel,
+              "transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:opacity-0 data-[state=open]::opacity-100",
+            )}
+          >
+            {inner}
+          </Accordion.Content>
+        </Accordion.Item>
+      </Accordion.Root>
     );
   return (
     <div className={outer}>
