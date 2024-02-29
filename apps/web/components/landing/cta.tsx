@@ -1,6 +1,6 @@
+import Link from "next/link";
 import Container from "@/components/layouts/container";
-import Button from "@/components/stour/button";
-import Link from "@/components/stour/link";
+import { Button } from "@/components/ui/button";
 
 const LandingCTA = () => {
   const scrollToIntro = () => {
@@ -13,11 +13,11 @@ const LandingCTA = () => {
   return (
     <Container>
       <div className="flex items-center justify-center space-x-3 pt-16 text-white">
-        <Button shadow size="large" onClick={scrollToIntro}>
+        <Button shadow size="lg" onClick={scrollToIntro}>
           Discover<span className="hidden sm:inline">&nbsp;more</span>
         </Button>
-        <Button as={Link} href="/join" variant="secondary" shadow size="large">
-          Join us
+        <Button asChild shadow variant="secondary" size="lg">
+          <Link href="/join">Join us</Link>
         </Button>
       </div>
     </Container>

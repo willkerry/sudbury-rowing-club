@@ -1,10 +1,11 @@
-import { Download, ExternalLink } from "react-feather";
+import NextLink from "next/link";
 import { BASE_URL } from "lib/constants";
 import { first, isArray } from "lodash";
+import { Download, ExternalLink } from "lucide-react";
 import { SafetyResponse } from "@sudburyrc/api";
-import Button from "@/components/stour/button";
 import Link from "@/components/stour/link";
 import Text from "@/components/stour/text";
+import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
 
 const URGENT_WORDS = ["emergency", "urgent", "critical"];
@@ -61,10 +62,9 @@ const SafetyItemLinkButton = ({
   isEmergency: boolean;
 }) => (
   <Button
-    href={href}
-    as="a"
-    size="mini"
-    variant={isEmergency ? "error" : "primary"}
+    asChild
+    size="xs"
+    variant={isEmergency ? "destructive" : "tertiary"}
     className="w-full"
     icon={
       href.includes(BASE_URL) ? (
@@ -74,7 +74,9 @@ const SafetyItemLinkButton = ({
       )
     }
   >
-    {children}
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
   </Button>
 );
 
@@ -88,14 +90,14 @@ const SafetyItemDownloadButton = ({
   isEmergency: boolean;
 }) => (
   <Button
-    as="a"
-    href={`${href}?dl=`}
     icon={<Download className="h-3 w-3" />}
     className="w-full"
-    size="mini"
-    variant={isEmergency ? "error" : "primary"}
+    size="xs"
+    variant={isEmergency ? "destructive" : "tertiary"}
   >
-    {children}
+    <a href={`${href}?dl=`} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
   </Button>
 );
 
@@ -122,13 +124,8 @@ export const SafetyItemCard = ({
 
         <div className="space-y-2">
           {hasMultipleParagraphs && (
-            <Button
-              as={Link}
-              href={permalink}
-              variant="brand"
-              className="w-full"
-            >
-              More
+            <Button variant="secondary" className="w-full">
+              <NextLink href={permalink}>More</NextLink>
             </Button>
           )}
 

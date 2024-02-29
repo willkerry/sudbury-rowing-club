@@ -10,8 +10,8 @@ import Select from "@/components/contact/fields/select";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
 import Error from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
-import Button from "@/components/stour/button";
 import Center from "@/components/stour/center";
+import { Button } from "@/components/ui/button";
 
 export type Message = {
   to: string;
@@ -146,11 +146,12 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             <Center className="col-span-2">
               <Button
                 id="message"
-                as="button"
                 disabled={disableSubmission}
-                isLoading={submitting}
-                size="large"
+                loading={submitting}
+                size="lg"
                 type="submit"
+                className="w-full"
+                variant="secondary"
               >
                 Send
               </Button>

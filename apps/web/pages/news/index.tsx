@@ -22,9 +22,9 @@ import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import NewsList from "@/components/news/news-list";
-import Button from "@/components/stour/button";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import { Button } from "@/components/ui/button";
 
 function getMoreUrl(activeSearchTerm: string, data: any[]) {
   if (activeSearchTerm) {
@@ -188,6 +188,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             />
             <Button
               type="submit"
+              variant="secondary"
               className="z-0 -ml-px h-10 rounded-l-none border-l"
               shadow={Boolean(searchTerm && searchTerm !== activeSearchTerm)}
               disabled={!searchTerm}

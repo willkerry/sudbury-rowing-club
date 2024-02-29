@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { makeShareImageURL } from "@/lib/og-image";
-import Button from "@/components/stour/button";
 import Label from "@/components/stour/label";
 import Loading from "@/components/stour/loading";
+import { Button } from "@/components/ui/button";
 import { type ShareImage } from "@/pages/api/og";
 
 const DEFAULT_TITLE = "Share Image Playground 🎉";
@@ -86,9 +86,7 @@ const SharePlayground = () => {
         </select>
       </label>
 
-      <Button variant="secondary" type="submit">
-        Generate
-      </Button>
+      <Button type="submit">Generate</Button>
 
       <div className="relative mt-6 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
         <div
@@ -121,7 +119,8 @@ const SharePlayground = () => {
             link.click();
             link.remove();
           }}
-          size="small"
+          size="sm"
+          variant="secondary"
         >
           Download
         </Button>
@@ -130,7 +129,8 @@ const SharePlayground = () => {
           onClick={() => {
             navigator.clipboard.writeText(imageRef.current?.src || "");
           }}
-          size="small"
+          size="sm"
+          variant="ghost"
         >
           Copy URL
         </Button>

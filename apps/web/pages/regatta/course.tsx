@@ -7,8 +7,8 @@ import { sanityClient } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Button from "@/components/stour/button";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { Button } from "@/components/ui/button";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 type Props = {
@@ -43,8 +43,8 @@ const Coursemap: NextPage<Props> = ({
       <div className="prose my-16">
         <p className="lead">{heading}</p>
         <p>{description}</p>
-        <Button href={`${map}?dl=`} icon={<Download />} as="a">
-          Download the PDF
+        <Button icon={<Download />} asChild>
+          <a href={`${map}?dl=`}>Download the PDF</a>
         </Button>
       </div>
       <div className="flex overflow-hidden rounded border shadow-xl">

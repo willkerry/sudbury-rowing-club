@@ -2,6 +2,7 @@ import { ThumbsUp } from "react-feather";
 import { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
+import NextLink from "next/link";
 import { makeShareImageURL } from "@/lib/og-image";
 import {
   JoinCTA,
@@ -12,10 +13,10 @@ import {
 } from "@/components/join";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Button from "@/components/stour/button";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Note from "@/components/stour/note";
+import { Button } from "@/components/ui/button";
 import { l2rStages, overview } from "@/data/join/";
 
 const HIDE_COURSE_AFTER_DATE = new Date(2024, 4, 28);
@@ -165,8 +166,8 @@ const Join: NextPage = () => (
             <div className="mb-2 text-lg font-medium">
               Contact the club captain
             </div>
-            <Button size="large" href="/contact?q=captain" className="bg-white">
-              Contact
+            <Button asChild size="lg">
+              <NextLink href="/contact?q=captain">Contact</NextLink>
             </Button>
           </div>
         </div>

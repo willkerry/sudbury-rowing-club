@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import styles from "./loading.module.css";
 
 type LoadingProps = {
@@ -14,7 +15,10 @@ const Dot = () => (
 
 const Loading = ({ className, children, visible = true }: LoadingProps) => (
   <div
-    className={`relative inline-flex h-full min-h-[1em] w-full min-w-[48px] items-center text-base ${className}`}
+    className={cn(
+      "relative inline-flex h-full min-h-[1em] w-full min-w-[48px] items-center text-base",
+      className,
+    )}
   >
     <div className={`${visible ? "hidden" : "visible"} w-full`}>{children}</div>
     <span

@@ -4,8 +4,8 @@ import { ParsedUrlQuery } from "querystring";
 import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
 import { BASE_URL } from "@/lib/constants";
 import TextPage from "@/components/layouts/text-page";
-import Button from "@/components/stour/button";
 import Text from "@/components/stour/text";
+import { Button } from "@/components/ui/button";
 
 export const getStaticProps = async ({
   params,
@@ -41,18 +41,17 @@ const SafetyItem: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
       {item.link && (
         <Button
-          href={item.link.url}
-          as="a"
+          asChild
           icon={
             item.link.url.includes(BASE_URL) ? <Download /> : <ExternalLink />
           }
         >
-          {item.link.title}
+          <a href={item.link.url}>{item.link.title}</a>
         </Button>
       )}
       {item.document && (
-        <Button as="a" href={`${item.document.url}?dl=`} icon={<Download />}>
-          {item.document.title}
+        <Button asChild icon={<Download />}>
+          <a href={`${item.document.url}?dl=`}>{item.document.title}</a>
         </Button>
       )}
     </TextPage>

@@ -1,8 +1,8 @@
-import { Download } from "react-feather";
 import cn from "clsx";
+import { Download } from "lucide-react";
 import ordinal from "@/lib/helpers/ordinal";
-import Button from "@/components/stour/button";
 import Link from "@/components/stour/link";
+import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
 
 type Result = {
@@ -24,8 +24,8 @@ const Results = ({ tab = false, children, records, results }: Props) => (
     <div className={cn(tab && "mx-auto", "mb-12 space-y-12")}>
       {children}
       {records && (
-        <Button href={`${records}?dl=`} icon={<Download />} as="a">
-          Course records
+        <Button icon={<Download />}>
+          <a href={`${records}?dl=`}>Course records</a>
         </Button>
       )}
     </div>

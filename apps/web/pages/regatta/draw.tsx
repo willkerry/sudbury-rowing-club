@@ -1,6 +1,6 @@
 import { InferGetStaticPropsType } from "next";
 import TextPage from "@/components/layouts/text-page";
-import Button from "@/components/stour/button";
+import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
 
 const DRAW_URL = "https://live.sudburyrowingclub.org.uk/";
@@ -107,8 +107,10 @@ const Draw = ({
       </p>
       <p>{paragraph}</p>
       <p className="flex justify-center py-4">
-        <Button href={DRAW_URL} shadow size="large">
-          {button}
+        <Button shadow size="lg" asChild>
+          <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
+            {button}
+          </a>
         </Button>
       </p>
     </TextPage>

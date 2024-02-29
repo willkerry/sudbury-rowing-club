@@ -1,10 +1,11 @@
-import { Home, Search } from "react-feather";
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
+import { Home, Search } from "lucide-react";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Button from "@/components/stour/button";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { Button } from "@/components/ui/button";
 
 const Custom404 = () => (
   <Layout>
@@ -29,16 +30,13 @@ const Custom404 = () => (
         moved.
       </p>
       <div className="flex flex-col gap-4">
-        <Button
-          as="a"
-          href="https://www.google.com/search?q=site%3Asudburyrowingclub.org.uk"
-          icon={<Search />}
-          variant="brand"
-        >
-          Search our site with Google
+        <Button asChild icon={<Search />}>
+          <a href="https://www.google.com/search?q=site%3Asudburyrowingclub.org.uk">
+            Search our site with Google
+          </a>
         </Button>
-        <Button as="a" href="/" icon={<Home />}>
-          Return to the homepage
+        <Button asChild icon={<Home />} variant="secondary">
+          <Link href="/">Return to the homepage</Link>
         </Button>
       </div>
     </Container>

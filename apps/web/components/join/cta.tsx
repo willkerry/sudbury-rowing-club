@@ -1,6 +1,6 @@
 import { ComponentProps } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import Button from "@/components/stour/button";
+import { Button } from "@/components/ui/button";
 
 type CTALinkProps = {
   to: string;
@@ -12,7 +12,7 @@ type CTATextProps = { first: string; second: string };
 const CTALink = ({ to, variant, children }: CTALinkProps) => (
   <div className="flex justify-center">
     <ScrollLink duration={300} offset={-30} smooth spy to={to}>
-      <Button size="large" variant={variant}>
+      <Button size="lg" variant={variant}>
         {children}
       </Button>
     </ScrollLink>

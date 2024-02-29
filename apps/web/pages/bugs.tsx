@@ -11,9 +11,9 @@ import Error from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Button from "@/components/stour/button";
 import Center from "@/components/stour/center";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { Button } from "@/components/ui/button";
 import { type BugReport } from "./api/bug";
 
 const getUserAgent = () => {
@@ -211,11 +211,11 @@ const Contact = () => {
                 <Center className="col-span-2">
                   <Button
                     id="message"
-                    as="button"
                     disabled={disableSubmission}
-                    isLoading={submitting}
-                    size="large"
+                    loading={submitting}
+                    size="lg"
                     type="submit"
+                    variant="secondary"
                   >
                     Send
                   </Button>
