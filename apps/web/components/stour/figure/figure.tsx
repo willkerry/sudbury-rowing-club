@@ -6,24 +6,53 @@ import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 const WIDTH = 650;
 
 type FigureProps = {
+  _id?: string;
+  _key?: string;
   caption: string;
   image: string;
-  altText: string;
+  alt: string;
+  /** @deprecated */
+  altText?: string;
   lqip: string;
   aspectRatio: number;
   description: string;
 };
 
+type Orientation = "landscape" | "portrait" | "square";
+
+const getOrientation = (aspectRatio: number): Orientation => {
+  if (aspectRatio < 1.1 && aspectRatio > 0.9) {
+    return "square";
+  }
+
+  if (aspectRatio > 1) return "landscape";
+  return "portrait";
+};
+
+const ORIENTATION_WIDTH_MODIFIERS: Record<Orientation, number> = {
+  landscape: 1,
+  portrait: 0.6,
+  square: 1,
+};
+
 const Figure = ({
-  value: { caption, image, altText, lqip, aspectRatio, description },
+  value: {
+    caption,
+    image,
+    alt: newAlt,
+    altText,
+    lqip,
+    aspectRatio,
+    description,
+  },
 }: {
   value: FigureProps;
 }) => {
-  const orientation = aspectRatio < 1 ? "portrait" : "landscape";
+  const orientation = getOrientation(aspectRatio);
 
-  const alt = altText || caption;
+  const alt = newAlt || altText || caption;
   const captionText = caption || description || "";
-  const width = Math.round(orientation === "portrait" ? WIDTH * 0.6 : WIDTH);
+  const width = Math.round(WIDTH * ORIENTATION_WIDTH_MODIFIERS[orientation]);
   const height = Math.round(width / aspectRatio);
 
   const { toggle, LightBox } = useLightBox({
@@ -37,7 +66,7 @@ const Figure = ({
     <>
       <LightBox />
 
-      <figure>
+      <figure className={orientation}>
         <button
           type="button"
           onClick={() => toggle()}
