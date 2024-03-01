@@ -19,9 +19,11 @@ const Figure = ({
 }: {
   value: FigureProps;
 }) => {
+  const orientation = aspectRatio < 1 ? "portrait" : "landscape";
+
   const alt = altText || caption;
   const captionText = caption || description || "";
-  const width = Math.round(aspectRatio < 1 ? WIDTH * 0.6 : WIDTH * aspectRatio);
+  const width = Math.round(orientation === "portrait" ? WIDTH * 0.6 : WIDTH);
   const height = Math.round(width / aspectRatio);
 
   const { toggle, LightBox } = useLightBox({
@@ -39,17 +41,17 @@ const Figure = ({
         <button
           type="button"
           onClick={() => toggle()}
-          className="hover:cursor-zoom-in"
+          className="hover:cursor-zoom-in mx-auto block"
           aria-label={`View the '${alt}' image in lightbox`}
         >
           <Image
             {...useSanityImageProps(image)}
             width={width}
+            height={height}
             placeholder="blur"
             blurDataURL={lqip}
-            height={height}
             alt={alt}
-            className="mx-auto"
+            sizes={`(max-width: ${WIDTH}px) 80vw, ${width}px`}
           />
           {captionText !== null && <figcaption>{captionText}</figcaption>}
         </button>
