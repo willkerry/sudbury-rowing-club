@@ -3,12 +3,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import cn from "clsx";
 import partition from "lodash/partition";
+import { cn } from "@/lib/utils";
 import { type IconNavItemType } from "@/types/nav-item";
 
 export const navLinkClasses = cn(
-  "group transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md",
+  "group transition inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md",
 );
 export const navLinkColor = "text-gray-500 font-medium";
 export const navLinkActive = "text-black font-medium";
@@ -35,7 +35,7 @@ const ListItem = ({
       key={href}
       href={href}
       className={cn(
-        "group flex rounded transition focus:bg-blue-50",
+        "group flex rounded transition",
         description ? "items-start" : "items-center",
       )}
     >
@@ -50,7 +50,7 @@ const ListItem = ({
           className={cn(
             "py-0.5 text-sm font-semibold leading-none transition-colors group-hover:text-gray-900",
             cta
-              ? "text-gray-900 group-hover:text-gray-500"
+              ? "text-gray-900 group-hover:text-gray-700"
               : "text-gray-600 group-hover:text-gray-900",
           )}
         >
@@ -67,17 +67,17 @@ const ListItem = ({
 };
 
 type NavSectionProps = {
-  icon?: React.ReactElement;
-  label?: string;
   compact?: boolean;
+  icon?: React.ReactElement;
   items: IconNavItemType[];
+  label?: string;
 };
 
 const NavSection = ({
-  label,
-  icon,
   compact = false,
+  icon,
   items,
+  label,
 }: NavSectionProps) => {
   const { pathname } = useRouter();
   const isActive = items.some(({ href }) => pathname === href);
@@ -137,12 +137,13 @@ const NavSection = ({
                 POPOVER_PANEL_CLASSES.get(compact),
               )}
             >
-              <div className="overflow-hidden rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="overflow-hidden rounded-md shadow-lg">
                 <div className="relative grid gap-4 bg-white p-4">
                   {primaryItems.map((item) => (
                     <ListItem key={item.href} {...item} />
                   ))}
                 </div>
+
                 <div
                   className={cn(
                     "rounded-b-md bg-gray-200 bg-opacity-75 shadow-inner backdrop-blur backdrop-saturate-200",
