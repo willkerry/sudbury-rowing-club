@@ -8,7 +8,7 @@ type Props = {
 const Masonry = ({ children, className }: Props) => (
   <div
     className={cn(
-      "md:masonry-2-col lg:masonry-3-col before:box-inherit after:box-inherit mx-auto box-border",
+      "sm:masonry-2-col lg:masonry-3-col before:box-inherit after:box-inherit mx-auto box-border",
       className,
     )}
   >

@@ -12,7 +12,7 @@ const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
         year.testimonials && (
           <div key={year._id} className="mb-24">
             <Masonry>
-              <div className="py-24">
+              <div className="py-8 sm:py-24">
                 <h3 className="text-xl font-medium">
                   Praise for the {ordinal(year.number)} regatta
                 </h3>
