@@ -20,7 +20,7 @@ const GalleryFigure = ({ _id, caption, lqip }: ImageType) => (
     <Image
       {...useSanityImageProps(_id, {
         imageBuilder: (builder) =>
-          builder.size(720, 480).fit("clip").auto("format"),
+          builder.size(720, 480).fit("clip").quality(25).auto("format"),
       })}
       quality={30}
       placeholder="blur"
