@@ -1,4 +1,11 @@
 import Image from "next/image";
+import { useReducedMotion } from "@mantine/hooks";
+import AutoScroll from "embla-carousel-auto-scroll";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 type ImageType = {
@@ -8,47 +15,59 @@ type ImageType = {
   aspectRatio: number;
 };
 
-const GalleryFigure = ({ _id, caption, lqip, aspectRatio }: ImageType) => {
-  const width = Math.round(200 * aspectRatio);
+const GalleryFigure = ({ _id, caption, lqip }: ImageType) => (
+  <figure>
+    <Image
+      {...useSanityImageProps(_id, {
+        imageBuilder: (builder) =>
+          builder.size(720, 480).fit("clip").auto("format"),
+      })}
+      quality={30}
+      placeholder="blur"
+      blurDataURL={lqip}
+      alt={caption || ""}
+      sizes="(min-width: 640px) 100vw, 30vw"
+      className="rounded"
+    />
+
+    <figcaption
+      aria-hidden
+      className="mt-1 flex items-center text-sm text-gray-600"
+    >
+      {caption}
+    </figcaption>
+  </figure>
+);
+
+const Gallery = ({ images }: { images: ImageType[] }) => {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <figure
-      className="relative flex-none shrink-0 snap-center overflow-hidden first:pl-8 last:pr-8"
-      style={{ width }}
+    <Carousel
+      className="relative"
+      opts={{
+        loop: true,
+      }}
+      plugins={[
+        AutoScroll({
+          speed: 0.25,
+          active: !reduceMotion,
+        }),
+      ]}
     >
-      <div className="relative flex overflow-hidden rounded">
-        <Image
-          {...useSanityImageProps(_id)}
-          width={width}
-          height={200}
-          quality={30}
-          placeholder="blur"
-          blurDataURL={lqip}
-          alt={caption || ""}
-        />
-      </div>
-      <figcaption
-        aria-hidden
-        className="mt-1 flex items-center text-sm text-gray-600"
-      >
-        {caption}
-      </figcaption>
-    </figure>
+      <CarouselContent className="mx-4">
+        {images.map((image) => (
+          <CarouselItem
+            key={image._id}
+            id={image._id}
+            className="basis-[80%] sm:basis-1/2 md:1/3 lg:basis-1/4"
+          >
+            <GalleryFigure {...image} />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
   );
 };
-
-const Gallery = ({ images }: { images: ImageType[] }) => (
-  <div className="relative flex w-full snap-x gap-6 overflow-x-auto pb-14">
-    <div className="shrink-0 snap-center">
-      <div className="w-4 shrink-0 sm:w-48" />
-    </div>
-    {images.map((image) => (
-      <GalleryFigure {...image} key={image._id} />
-    ))}
-    <div className="shrink-0 snap-center">
-      <div className="w-4 shrink-0 sm:w-48" />
-    </div>
-  </div>
-);
 
 export default Gallery;
