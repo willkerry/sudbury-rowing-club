@@ -52,8 +52,9 @@ const Gallery = ({ images }: { images: ImageType[] }) => {
       }}
       plugins={[
         AutoScroll({
-          speed: 0.25,
           active: !reduceMotion,
+          speed: 0.25,
+          stopOnInteraction: false,
         }),
       ]}
     >
