@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import shortCourse from "@/components/regatta/events/350.svg";
 import longCourse from "@/components/regatta/events/650.svg";
 import Label from "../stour/label";
@@ -23,8 +24,14 @@ const Row = ({ label, value }: { label: string; value: React.ReactNode }) => (
   </div>
 );
 
-const Events = ({ data }: { data: Event[] }) => (
-  <div className="grid gap-8 md:grid-cols-2">
+const Events = ({
+  data,
+  compact = false,
+}: {
+  data: Event[];
+  compact?: boolean;
+}) => (
+  <div className={cn("grid gap-8 md:grid-cols-2", compact && "gap-4")}>
     {data.map((item) => (
       <section key={item._key}>
         <div className="text-center">
