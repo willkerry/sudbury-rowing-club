@@ -31,7 +31,7 @@ const components: PortableTextComponents = {
       </figure>
     ),
     note: ({ value }) => (
-      <Note label={value?.label} type={value?.type}>
+      <Note size="small" label={value?.label} type={value?.type}>
         {value?.note}
       </Note>
     ),
