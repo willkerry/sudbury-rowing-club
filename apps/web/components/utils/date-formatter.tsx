@@ -46,7 +46,7 @@ const DateFormatter = ({
   timeZone = Intl?.DateTimeFormat().resolvedOptions().timeZone,
   ...props
 }: Props) => (
-  <time dateTime={dateString.toString()} {...props}>
+  <time dateTime={dateString.toString()} {...props} suppressHydrationWarning>
     {Intl.DateTimeFormat("en-GB", {
       timeZone,
       ...defaultOptions.get(format || "default"),
