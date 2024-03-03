@@ -10,8 +10,10 @@ type DateFormatPresets =
   | "shortWeekday";
 
 type Props = {
+  className?: React.HTMLAttributes<HTMLTimeElement>["className"];
   dateString: string | number | Date;
   format?: DateFormatPresets;
+  locale?: Intl.ResolvedDateTimeFormatOptions["locale"];
   timeZone?: Intl.DateTimeFormatOptions["timeZone"];
 } & React.HTMLAttributes<HTMLTimeElement>;
 
@@ -41,18 +43,32 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
   ]);
 
 const DateFormatter = ({
+  className,
   dateString,
   format,
+  locale = "en-GB",
   timeZone = Intl?.DateTimeFormat().resolvedOptions().timeZone,
   ...props
-}: Props) => (
-  <time dateTime={dateString.toString()} {...props} suppressHydrationWarning>
-    {Intl.DateTimeFormat("en-GB", {
-      timeZone,
-      ...defaultOptions.get(format || "default"),
-    }).format(new Date(dateString))}
-  </time>
-);
+}: Props) => {
+  const isNonGbClient = timeZone !== "Europe/London";
+  const selectedFormatIncludesTime = format?.includes("time");
+
+  return (
+    <time
+      className={className}
+      dateTime={dateString.toString()}
+      suppressHydrationWarning
+      {...props}
+    >
+      {Intl.DateTimeFormat(locale, {
+        timeZone: "Europe/London",
+        ...defaultOptions.get(format || "default"),
+      }).format(new Date(dateString))}
+
+      {isNonGbClient && selectedFormatIncludesTime && " (UK time)"}
+    </time>
+  );
+};
 
 DateFormatter.defaultProps = {
   format: "default",
