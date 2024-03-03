@@ -6,12 +6,6 @@ import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { REGATTA } from "@/lib/constants";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import {
-  EntriesIcon,
-  EventsIcon,
-  InfoIcon,
-  ResultsIcon,
-} from "@/components/regatta/icons";
 import DateLocation from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import Testimonials from "@/components/regatta/landing-page/testimonials";
