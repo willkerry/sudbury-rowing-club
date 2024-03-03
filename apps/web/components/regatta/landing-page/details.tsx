@@ -24,7 +24,9 @@ const Details = ({ items }: { items: DetailProps[] }) => (
             {summary}
           </div>
         </AccordionTrigger>
-        <AccordionContent>{children}</AccordionContent>
+        <AccordionContent className="h-96 border-t pt-2 overflow-y-auto resize-y">
+          {children}
+        </AccordionContent>
       </AccordionItem>
     ))}
   </Accordion>
