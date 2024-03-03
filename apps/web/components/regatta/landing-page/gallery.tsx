@@ -22,6 +22,8 @@ const GalleryFigure = ({ _id, caption, lqip }: ImageType) => (
         imageBuilder: (builder) =>
           builder.size(720, 480).fit("clip").quality(25).auto("format"),
       })}
+      width={720}
+      height={480}
       quality={30}
       placeholder="blur"
       blurDataURL={lqip}
