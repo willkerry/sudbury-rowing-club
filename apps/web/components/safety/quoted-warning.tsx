@@ -44,7 +44,7 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
           <div
             className={`${agencyColors} absolute right-0 top-0 flex items-center justify-center rounded-bl p-1`}
           >
-            <AgencyIcon className="h-4 w-4" />
+            <AgencyIcon aria-hidden className="h-4 w-4" />
           </div>
         )}
         <p>{description}</p>

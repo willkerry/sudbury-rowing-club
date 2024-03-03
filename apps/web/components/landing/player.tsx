@@ -25,10 +25,10 @@ const Player = ({ youTubeId, youTubeStart }: Props) => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         type="button"
-        title="Open video"
         className="absolute bottom-3 right-3 text-white sm:bottom-7 sm:right-7"
       >
-        <PlayIcon className="h-8 w-8 md:h-10 md:w-10" />
+        <PlayIcon aria-hidden className="h-8 w-8 md:h-10 md:w-10" />
+        <div className="sr-only">Play video</div>
       </button>
 
       <Transition

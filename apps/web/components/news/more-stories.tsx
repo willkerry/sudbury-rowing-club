@@ -21,7 +21,10 @@ const MoreStories = ({ posts, more }: Props) => (
             className="group flex h-56 items-center justify-center gap-1 rounded border font-medium text-gray-500 transition hover:border-blue-400 hover:text-black"
           >
             See more{" "}
-            <ArrowLongRightIcon className="h-6 w-6 transition group-hover:translate-x-2 group-hover:text-blue-500" />
+            <ArrowLongRightIcon
+              aria-hidden
+              className="h-6 w-6 transition group-hover:translate-x-2 group-hover:text-blue-500"
+            />
           </Link>
         </li>
       )}

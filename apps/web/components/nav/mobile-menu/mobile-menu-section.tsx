@@ -93,7 +93,7 @@ export const MobileMenuSection = ({
           {!compact && Icon && (
             <Icon
               className="mr-1.5 h-5 w-5 flex-shrink-0 text-blue-700"
-              aria-hidden="true"
+              aria-hidden
             />
           )}
           <span className="font-medium text-gray-900">

@@ -116,7 +116,7 @@ const NavSection = ({
                   isActive ? "stroke-current text-gray-700" : "text-gray-400",
                   "-mb-px ml-0.5 h-3 w-3 transition group-hover:text-gray-800",
                 )}
-                aria-hidden="true"
+                aria-hidden
               />
             </>
           </Popover.Button>

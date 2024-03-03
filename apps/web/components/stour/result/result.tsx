@@ -19,17 +19,23 @@ const ICON_MAP = new Map<(typeof Variants)[number], React.ReactNode>([
   [
     "success",
     <CheckCircleIcon
+      aria-hidden
       key={0}
       className={cn([ICON_CLASSES, "text-green-400"])}
     />,
   ],
   [
     "error",
-    <XCircleIcon key={1} className={cn([ICON_CLASSES, "text-red-400"])} />,
+    <XCircleIcon
+      aria-hidden
+      key={1}
+      className={cn([ICON_CLASSES, "text-red-400"])}
+    />,
   ],
   [
     "warning",
     <ExclamationCircleIcon
+      aria-hidden
       key={2}
       className={cn([ICON_CLASSES, "text-yellow-400"])}
     />,
@@ -37,6 +43,7 @@ const ICON_MAP = new Map<(typeof Variants)[number], React.ReactNode>([
   [
     "empty",
     <ExclamationCircleIcon
+      aria-hidden
       key={3}
       className={cn([ICON_CLASSES, "text-gray-400"])}
     />,

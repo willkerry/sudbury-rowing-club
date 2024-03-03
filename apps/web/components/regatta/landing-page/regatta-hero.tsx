@@ -23,7 +23,7 @@ const RegattaHero = ({ ticketItems, subtitle }: Props) => (
         className="text-blue-500 hover:cursor-pointer hover:text-gray-600"
       >
         Learn more
-        <ChevronRightIcon className="mb-px inline-flex h-5 w-5" />
+        <ChevronRightIcon aria-hidden className="mb-px inline-flex h-5 w-5" />
       </ScrollLink>
     </p>
   </div>

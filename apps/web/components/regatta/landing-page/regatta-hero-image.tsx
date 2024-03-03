@@ -36,7 +36,8 @@ const RegattaHeroImage = ({
             {title}
           </div>
           <div className="font-medium text-white opacity-75">
-            <ArrowUpIcon className="mb-px inline-flex h-4 w-4" /> {subtitle}
+            <ArrowUpIcon aria-hidden className="mb-px inline-flex h-4 w-4" />{" "}
+            {subtitle}
           </div>
         </div>
       </div>

@@ -69,7 +69,9 @@ const Nav = () => {
                       key={title}
                       label={title}
                       icon={
-                        Icon ? <Icon className="flex h-4 w-4" /> : undefined
+                        Icon ? (
+                          <Icon aria-hidden className="flex h-4 w-4" />
+                        ) : undefined
                       }
                       compact
                       {...{ items }}
@@ -117,7 +119,7 @@ const Nav = () => {
               <div className="absolute right-3 top-3">
                 <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
                   <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                  <XMarkIcon className="h-6 w-6" aria-hidden />
                 </Popover.Button>
               </div>
             </Popover.Panel>

@@ -70,7 +70,9 @@ const Link = ({
             {extension}
           </span>
         )}
-        {hasIcon && <RightIcon className="mb-0.5 ml-1 inline h-4 w-4" />}
+        {hasIcon && (
+          <RightIcon aria-hidden className="mb-0.5 ml-1 inline h-4 w-4" />
+        )}
       </>
     </LinkComponent>
   );

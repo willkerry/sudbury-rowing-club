@@ -124,7 +124,14 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                     <div className="text-sm font-medium">
                       {`${post.author?.firstName} ${post.author?.surname}`}
                       <Link href={`/news/author/${post.author?._id}`}>
-                        <ArrowUpRightIcon className="inline h-4 w-4" />
+                        <ArrowUpRightIcon
+                          aria-hidden
+                          className="inline h-4 w-4"
+                        />
+                        <span className="sr-only">
+                          View all articles by {post.author?.firstName}{" "}
+                          {post.author?.surname}
+                        </span>
                       </Link>
                     </div>
                   </div>
@@ -140,7 +147,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 href={`https://edit.sudburyrowingclub.org.uk/desk/news;${post._id}`}
               >
                 <span className="sr-only">Edit this article</span>
-                <PencilSquareIcon className="inline h-4 w-4" />
+                <PencilSquareIcon aria-hidden className="inline h-4 w-4" />
               </Link>
             </div>
           </article>

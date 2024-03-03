@@ -135,7 +135,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 className="py-3 pr-4 text-gray-400 hover:text-blue-600"
                 onClick={() => cancelSearch()}
               >
-                <ArrowUturnLeftIcon className="h-5 w-5" />
+                <ArrowUturnLeftIcon aria-hidden className="h-5 w-5" />
                 <span className="sr-only">Cancel search</span>
               </button>
             )}

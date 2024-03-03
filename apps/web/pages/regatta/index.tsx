@@ -91,12 +91,12 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const accordion: DetailProps[] = [
     {
       summary: "Events",
-      icon: <EventsIcon />,
+      icon: <EventsIcon aria-hidden />,
       children: <Events data={events} />,
     },
     {
       summary: "Entries",
-      icon: <EntriesIcon />,
+      icon: <EntriesIcon aria-hidden />,
       children: (
         <Entries
           table={
@@ -113,7 +113,7 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     },
     {
       summary: "Results",
-      icon: <ResultsIcon />,
+      icon: <ResultsIcon aria-hidden />,
       children: (
         <Results
           results={
@@ -133,7 +133,7 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     },
     {
       summary: "Important",
-      icon: <InfoIcon />,
+      icon: <InfoIcon aria-hidden />,
       children: (
         <CompetitorInformation
           tab

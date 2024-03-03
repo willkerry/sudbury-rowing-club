@@ -45,19 +45,25 @@ const SafetyComponent = ({
         href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
         className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-sm text-gray-500 transition duration-300 hover:bg-white hover:text-black"
       >
-        <EnvironmentAgency className="h-4 w-4" />
+        <EnvironmentAgency aria-hidden className="h-4 w-4" />
         EA Floods
-        <ArrowTopRightOnSquareIcon className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70" />
+        <ArrowTopRightOnSquareIcon
+          aria-hidden
+          className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70"
+        />
       </a>
       <a
         href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
         className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-sm text-gray-500 transition duration-300 hover:bg-white hover:text-black"
       >
         <div className="w-0">
-          <MetOffice className="h-4 w-4" />
+          <MetOffice aria-hidden className="h-4 w-4" />
         </div>
         Met Office
-        <ArrowTopRightOnSquareIcon className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70" />
+        <ArrowTopRightOnSquareIcon
+          aria-hidden
+          className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70"
+        />
       </a>
     </div>
   </div>
