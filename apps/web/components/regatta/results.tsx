@@ -1,6 +1,6 @@
-import cn from "clsx";
 import { Download } from "lucide-react";
 import ordinal from "@/lib/helpers/ordinal";
+import { cn } from "@/lib/utils";
 import Link from "@/components/stour/link";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
@@ -21,7 +21,7 @@ type Props = {
 
 const Results = ({ tab = false, children, records, results }: Props) => (
   <>
-    <div className={cn(tab && "mx-auto", "mb-12 space-y-12")}>
+    <div className={cn(tab ? "mx-auto mb-6" : "mb-12", "space-y-12")}>
       {children}
       {records && (
         <Button icon={<Download />}>
@@ -29,7 +29,7 @@ const Results = ({ tab = false, children, records, results }: Props) => (
         </Button>
       )}
     </div>
-    <div className="prose prose-lg max-w-none">
+    <div className={cn("prose max-w-none", tab ? "prose-sm" : "prose-lg")}>
       <table>
         <thead>
           <tr>
@@ -41,7 +41,7 @@ const Results = ({ tab = false, children, records, results }: Props) => (
         <tbody>
           {results.map(({ results: resultsLink, date, number, _id }) => (
             <tr key={_id} className="hover:bg-gray-50">
-              <td className="">
+              <td className={cn(tab && "py-1")}>
                 <span className="font-semibold">
                   {number
                     ? ordinal(number)
@@ -51,13 +51,13 @@ const Results = ({ tab = false, children, records, results }: Props) => (
                   <span className="hidden lg:inline"> Sudbury Regatta</span>
                 </span>
               </td>
-              <td>
+              <td className={cn(tab && "py-1")}>
                 <span className="tabular-nums">
                   <DateFormatter dateString={date} />
                 </span>
               </td>
 
-              <td>
+              <td className={cn(tab && "py-1")}>
                 {resultsLink ? (
                   <Link
                     href={resultsLink}

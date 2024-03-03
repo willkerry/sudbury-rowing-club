@@ -1,4 +1,4 @@
-import cn from "clsx";
+import { cn } from "@/lib/utils";
 import Link from "@/components/stour/link";
 
 type Props = {
@@ -8,24 +8,23 @@ type Props = {
 };
 
 const CompetitorInformation = ({ tab = false, description, items }: Props) => (
-  <div className={cn(tab && "mx-auto", "prose")}>
-    {description}
-    <div className="prose py-6">
-      <ul>
-        {items?.map((item) => (
-          <li key={item._id}>
-            <Link
-              href={`${item.url}?dl=`}
-              download
-              aria-label={`Download ${item.title}`}
-              extension={item.extension}
-            >
-              {item.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+  <div className={cn("prose", tab && "mx-auto prose-sm")}>
+    <p>{description}</p>
+
+    <ul>
+      {items?.map((item) => (
+        <li key={item._id}>
+          <Link
+            href={`${item.url}?dl=`}
+            download
+            aria-label={`Download ${item.title}`}
+            extension={item.extension}
+          >
+            {item.title}
+          </Link>
+        </li>
+      ))}
+    </ul>
   </div>
 );
 

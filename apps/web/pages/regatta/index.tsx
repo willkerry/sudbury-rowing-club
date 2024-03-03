@@ -1,6 +1,7 @@
 import type { InferGetStaticPropsType, NextPage } from "next";
 import { EventJsonLd, NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
+import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { REGATTA } from "@/lib/constants";
 import Container from "@/components/layouts/container";
@@ -91,12 +92,12 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const accordion: DetailProps[] = [
     {
       summary: "Events",
-      icon: <EventsIcon aria-hidden />,
-      children: <Events data={events} />,
+      icon: <Award aria-hidden />,
+      children: <Events compact data={events} />,
     },
     {
       summary: "Entries",
-      icon: <EntriesIcon aria-hidden />,
+      icon: <TicketIcon aria-hidden />,
       children: (
         <Entries
           table={
@@ -106,14 +107,15 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           }
           caption={entries.wavesCaption}
           waveNames={entries.waveNames}
+          compact
         >
-          <Text portableText={entries.description || []} />
+          <Text size="small" portableText={entries.description || []} />
         </Entries>
       ),
     },
     {
       summary: "Results",
-      icon: <ResultsIcon aria-hidden />,
+      icon: <Timer aria-hidden />,
       children: (
         <Results
           results={
@@ -127,13 +129,13 @@ const RegattaPage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           records={results.records}
           tab
         >
-          <Text portableText={results.description || []} />
+          <Text size="small" portableText={results.description || []} />
         </Results>
       ),
     },
     {
       summary: "Important",
-      icon: <InfoIcon aria-hidden />,
+      icon: <BadgeAlert aria-hidden />,
       children: (
         <CompetitorInformation
           tab

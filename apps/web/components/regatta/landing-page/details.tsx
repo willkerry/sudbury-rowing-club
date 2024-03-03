@@ -1,3 +1,4 @@
+import { Slot } from "@radix-ui/react-slot";
 import {
   Accordion,
   AccordionContent,
@@ -17,9 +18,9 @@ const Details = ({ items }: { items: DetailProps[] }) => (
       <AccordionItem key={summary} value={summary}>
         <AccordionTrigger>
           <div className="flex items-center justify-between gap-x-2">
-            <div aria-hidden className="h-6 w-6 text-gray-400">
+            <Slot aria-hidden className="h-6 w-6 stroke-[1.5px] text-gray-400">
               {icon}
-            </div>
+            </Slot>
             {summary}
           </div>
         </AccordionTrigger>
