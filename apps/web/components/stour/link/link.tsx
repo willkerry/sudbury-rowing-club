@@ -1,9 +1,6 @@
 import NextLink from "next/link";
-import {
-  ArrowDownIcon,
-  ArrowRightIcon,
-  ArrowUpRightIcon,
-} from "@heroicons/react/20/solid";
+import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type Props = {
   href: string;
@@ -49,15 +46,17 @@ const Link = ({
   return (
     <LinkComponent
       href={href}
-      className={
-        !unstyled
-          ? `break-words transition ${
+      className={cn(
+        unstyled
+          ? "stour-link"
+          : [
+              "group break-words transition",
               dark
                 ? "text-blue-100 hover:text-white"
-                : "text-blue-500 hover:text-blue-300"
-            } ${className !== undefined ? className : ""}`
-          : "stour-link"
-      }
+                : "text-blue-500 hover:text-blue-300",
+            ],
+        className,
+      )}
       {...(isExternal && {
         target: "_blank",
         rel: "noopener noreferrer",
@@ -71,7 +70,15 @@ const Link = ({
           </span>
         )}
         {hasIcon && (
-          <RightIcon aria-hidden className="mb-0.5 ml-1 inline h-4 w-4" />
+          <RightIcon
+            aria-hidden
+            className={cn(
+              "mb-0.5 ml-0.5 inline h-4 w-4 transition",
+              arrow && "group-hover:translate-x-[0.05rem]",
+              external && "group-hover:rotate-45",
+              download && "group-hover:translate-y-[0.05rem]",
+            )}
+          />
         )}
       </>
     </LinkComponent>
