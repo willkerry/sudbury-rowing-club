@@ -172,7 +172,7 @@ const Contact = () => {
                           meta={meta}
                           type="text"
                           inputClassName="text-xs p-1.5 font-mono disabled:text-gray-500"
-                          hint="Your browser always supplies it’s name, version number, and your operating system to us. Every website you visit has access to this information."
+                          hint="Your browser always supplies it’s name, version number, and your operating system to us."
                         />
                       </div>
                     )}
