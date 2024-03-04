@@ -101,14 +101,14 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
         className={cn(
           "prose",
           "overflow-x-auto",
-          compact ? "my-6 prose-sm" : "my-12 text-xs sm:text-sm lg:text-base",
+          compact ? "prose-sm my-6" : "my-12 text-xs sm:text-sm lg:text-base",
         )}
       >
         <table>
           <thead>
             <tr>
               {table[0].map((entry) => (
-                <th key={entry} className="text-center px-pt sm:px-1">
+                <th key={entry} className="px-pt text-center sm:px-1">
                   {entry}
                 </th>
               ))}
@@ -119,10 +119,10 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
               <tr key={wave[0]}>
                 <th>{wave[0]}</th>
                 {wave.slice(1).map((entry, boatClass) => {
-                  if (!entry) return <td />;
+                  if (!entry) return <td key={entry} />;
 
                   return (
-                    <td key={entry} className="text-center px-0.5 sm:px-1">
+                    <td key={entry} className="px-0.5 text-center sm:px-1">
                       <Chip
                         id={indicesToBoatName(category, boatClass)}
                         location="table"
@@ -143,7 +143,7 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
 
       {Object.keys(boatsByWave).map((wave) => (
         <div className="prose prose-sm text-sm" key={wave}>
-          <h4 className="inline-block mb-0 pr-2">Wave {wave}: </h4>
+          <h4 className="mb-0 inline-block pr-2">Wave {wave}: </h4>
 
           {boatsByWave[wave].map((boat, i) => {
             const full = `${boat.x} ${boat.y}`;
@@ -156,7 +156,7 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
                   location="list"
                   color={getWaveColor(wave)}
                   key={full}
-                  className={cn("text-xs px-1", isLast && "mb-2")}
+                  className={cn("px-1 text-xs", isLast && "mb-2")}
                 >
                   {full}
                 </Chip>
