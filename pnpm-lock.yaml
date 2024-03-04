@@ -118,8 +118,8 @@ importers:
         specifier: ^5.22.2
         version: 5.22.2(react@18.2.0)
       '@tanstack/react-query-devtools':
-        specifier: ^5.24.0
-        version: 5.24.0(@tanstack/react-query@5.22.2)(react@18.2.0)
+        specifier: ^5.24.7
+        version: 5.24.7(@tanstack/react-query@5.22.2)(react@18.2.0)
       '@vercel/kv':
         specifier: ^1.0.1
         version: 1.0.1
@@ -3829,10 +3829,10 @@ packages:
     resolution: {integrity: sha512-pThim455t69zrZaQKa7IRkEIK8UBTS+gHVAdNfhO72Xh4rWpMc63ovRje5/n6iw63+d6QiJzVadsJVdPoodSeQ==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.24.0(@tanstack/react-query@5.22.2)(react@18.2.0):
-    resolution: {integrity: sha512-ae3TSg9hKSicLP6TZMj4hglLsLBaS8O3ex/mgHZNQ8yKCDLnVoLO1a9EqYWPzw2k+uaK5uMCKBAVbLVBLx93oA==}
+  /@tanstack/react-query-devtools@5.24.7(@tanstack/react-query@5.22.2)(react@18.2.0):
+    resolution: {integrity: sha512-aNh9bGtHSNedpcc/WVxporY0ZLqO4fx7PLOFmhtP5PcHbvtuQlG6q8s2By8Juk/BqXJWGz9FhDHrRjepcQjqQQ==}
     peerDependencies:
-      '@tanstack/react-query': ^5.22.2
+      '@tanstack/react-query': ^5.24.7
       react: ^18.0.0
     dependencies:
       '@tanstack/query-devtools': 5.24.0
@@ -5459,6 +5459,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
