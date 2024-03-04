@@ -58,7 +58,11 @@ const Breadcrumbs = ({
 
         {breadcrumbs.map((breadcrumb, i) =>
           i === breadcrumbs.length - 1 ? (
-            <li key={breadcrumb.href} className={activeItemClassName}>
+            <li
+              key={breadcrumb.href}
+              aria-current="page"
+              className={activeItemClassName}
+            >
               {prettifyBreadcrumb(breadcrumb.breadcrumb)}
             </li>
           ) : (

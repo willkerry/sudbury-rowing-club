@@ -106,6 +106,7 @@ const NavSection = ({
               navLinkClasses,
               "items-center",
             )}
+            aria-current={isActive ? "page" : undefined}
           >
             <>
               <span className={cn(icon && "sr-only")}>{label}</span>
