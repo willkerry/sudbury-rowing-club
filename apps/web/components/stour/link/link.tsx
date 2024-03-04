@@ -73,9 +73,10 @@ const Link = ({
           <RightIcon
             aria-hidden
             className={cn(
-              "mb-0.5 ml-0.5 inline h-4 w-4 transition",
+              "ml-0.5 inline h-[1em] w-[1em] transition",
               arrow && "group-hover:translate-x-[0.05rem]",
-              external && "group-hover:rotate-45",
+              external &&
+                "group-hover:translate-x-[0.05rem] group-hover:translate-y-[-0.05rem]",
               download && "group-hover:translate-y-[0.05rem]",
             )}
           />
