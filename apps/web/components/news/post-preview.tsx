@@ -46,7 +46,7 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
           ) : (
             <div className="relative select-none overflow-hidden bg-gray-50 text-6xl font-bold tracking-tighter text-gray-300 transition group-hover:text-blue-100">
               <div className="relative m-0 box-border block overflow-hidden">
-                <div className="h-[188px] w-[305px] px-2.5 pt-1.5">
+                <div aria-hidden className="h-[188px] w-[305px] px-2.5 pt-1.5">
                   {post.title}
                 </div>
               </div>
