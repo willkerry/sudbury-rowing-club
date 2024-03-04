@@ -19,6 +19,15 @@ const AMENDEMENTS = {
   2: new Date("2023-10-24"),
 } as const;
 
+const DottedLine = () => (
+  <span
+    className="ml-2 flex grow border-b-2 border-dotted border-gray-400"
+    aria-hidden
+  >
+    &nbsp;
+  </span>
+);
+
 const AmendmentDate = ({ set }: { set: keyof typeof COLORS }) => (
   <>
     <span className="sr-only">Amendment ratified in </span>
@@ -457,12 +466,13 @@ const Constitution: NextPage = () => (
     </p>
     <h2>26. Declaration</h2>
     <p>Each member upon joining shall sign the following declaration:</p>
-    <div className="rounded border px-24 pb-12 font-serif text-xl text-black shadow-xl">
+
+    <div className="rounded px-6 py-8 text-black shadow sm:px-28 sm:pb-24 sm:pt-14">
       <p className="flex justify-center">
-        <Logo className="w-1/2" />
+        <Logo className="mb-5 w-1/2 text-blue-800" />
       </p>
-      <p>
-        Name: <span className="-mb-1 inline-block w-36 border-b border-black" />
+      <p className="flex">
+        Name: <DottedLine />
       </p>
       <p>
         Upon acceptance into membership of the Sudbury Rowing Club I understand
@@ -471,21 +481,22 @@ const Constitution: NextPage = () => (
       <p>
         I confirm that I do not suffer from any disability or medical condition
         which may render me unfit for strenuous exercise.
-        <span className="px-px font-semibold">*</span>
+        <span className="font-semibold">*</span>
       </p>
-      <p>I also confirm that I am able to swim a minimum of 50 metres.</p>
-      <p>
-        Signed:{" "}
-        <span className="-mb-1 inline-block w-36 border-b border-black" />
+      <p>I also confirm that I am able to swim a minimum of 50&nbsp;metres.</p>
+      <p className="flex">
+        Signed: <DottedLine />
       </p>
-      <p>
-        Parent/Guardian (if under 18):{" "}
-        <span className="-mb-1 inline-block w-36 border-b border-black" />
+      <p className="flex">
+        Parent/Guardian (if under 18): <DottedLine />
       </p>
-      <div className="text-lg">
+
+      <br className="mb-6" />
+
+      <div className="text-sm text-gray-700">
         <p>
-          <span className="px-px font-semibold">*</span>
           <em>
+            <span className="font-semibold">*</span>
             Should a medical condition exist, this will not necessarily preclude
             you from membership/participation, but it must be declared.
           </em>
