@@ -94,6 +94,7 @@ const SafetyItemDownloadButton = ({
     className="w-full"
     size="xs"
     variant={isEmergency ? "destructive" : "tertiary"}
+    asChild
   >
     <a href={`${href}?dl=`} target="_blank" rel="noopener noreferrer">
       {children}
@@ -124,7 +125,7 @@ export const SafetyItemCard = ({
 
         <div className="space-y-2">
           {hasMultipleParagraphs && (
-            <Button variant="secondary" className="w-full">
+            <Button asChild variant="secondary" className="w-full">
               <NextLink href={permalink}>More</NextLink>
             </Button>
           )}
