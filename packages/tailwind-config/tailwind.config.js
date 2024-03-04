@@ -119,7 +119,7 @@ export default {
             },
             "figure img": {
               borderRadius: theme("borderRadius.lg"),
-              backgroundColor: theme("colors.gray.50"),
+              backgroundColor: theme("colors.gray.200"),
             },
             "code::before": {
               content: null,
