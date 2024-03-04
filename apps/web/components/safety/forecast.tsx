@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import getWeatherForecast, {
   briefWeatherCodes,
-  getYRURL,
+  getMetOfficeURL,
 } from "@/lib/get-weather-forecast";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
@@ -26,7 +26,7 @@ const ForecastComponent = () => {
             <a
               key={String(date)}
               className="group mb-2 text-center"
-              href={getYRURL(date)}
+              href={getMetOfficeURL(date)}
               target="_blank"
               rel="noopener noreferrer"
             >

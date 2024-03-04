@@ -189,18 +189,10 @@ const getWeatherForecast = async (): Promise<Forecast[]> => {
 
 export default getWeatherForecast;
 
-const BASE_URL = "https://www.yr.no/";
-const PATH =
-  "en/forecast/hourly-table/2-2636564/Great%20Britain/England/Suffolk/Sudbury";
+const MET_OFFICE_BASE_URL =
+  "https://www.metoffice.gov.uk/weather/forecast/u12809dqk#";
 
-export const getYRURL = (date: Date) => {
-  const today = new Date().setHours(0, 0, 0, 0);
-  const difference = new Date(date).getTime() - today;
-  const daysInFuture = Math.round(difference / 86400000);
-
-  const url = new URL(BASE_URL);
-  url.pathname = PATH;
-  url.searchParams.append("i", daysInFuture.toString());
-
-  return url.toString();
-};
+export const getMetOfficeURL = (date: Date) =>
+  new URL(
+    `${MET_OFFICE_BASE_URL}?date=${new Date(date).toISOString().slice(0, 10)}`,
+  ).toString();
