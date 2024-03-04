@@ -91,11 +91,6 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </Container>
       </div>
       <Container className="my-10">
-        <Paginate
-          page={Number(page)}
-          {...{ showPrev, showNext, previous, next }}
-        />
-
         {data.length > 0 ? (
           <NewsList posts={data} />
         ) : (
@@ -104,6 +99,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
         <Paginate
           page={Number(page)}
+          pages={pages}
           {...{ showPrev, showNext, previous, next }}
         />
       </Container>

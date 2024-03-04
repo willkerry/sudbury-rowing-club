@@ -1,37 +1,79 @@
-import Link from "next/link";
-import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "@/components/ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 type Props = {
   page: number;
+  pages: number;
   showPrev: boolean;
   showNext: boolean;
   previous: string;
   next: string;
 };
 
-const Paginate = ({ showPrev, showNext, previous, next }: Props) => (
-  <div className="my-10 flex items-center justify-between gap-4">
-    <div>
+const Paginate = ({
+  page,
+  pages,
+  showPrev,
+  showNext,
+  previous,
+  next,
+}: Props) => (
+  <Pagination className="my-12">
+    <PaginationContent>
       {showPrev && (
-        <Button asChild>
-          <Link href={previous}>
-            <ArrowLeftIcon aria-hidden className="w-4 mr-2" /> Newer
-          </Link>
-        </Button>
+        <PaginationItem>
+          <PaginationPrevious href={previous} aria-disabled={!showPrev} />
+        </PaginationItem>
       )}
-    </div>
-    <div>
+
+      {page - 1 > 1 && (
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+      )}
+
+      {showPrev && (
+        <PaginationItem>
+          <PaginationLink href={`/news/p/${page - 1}`}>
+            {page - 1}
+          </PaginationLink>
+        </PaginationItem>
+      )}
+
+      <PaginationItem>
+        <PaginationLink isActive href={`/news/p/${page}`}>
+          {page}
+        </PaginationLink>
+      </PaginationItem>
+
       {showNext && (
-        <Button asChild>
-          <Link href={next}>
-            Older
-            <ArrowRightIcon aria-hidden className="w-4 ml-2" />
-          </Link>
-        </Button>
+        <PaginationItem>
+          <PaginationLink href={`/news/p/${page + 1}`}>
+            {page + 1}
+          </PaginationLink>
+        </PaginationItem>
       )}
-    </div>
-  </div>
+
+      {page + 1 < pages && (
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+      )}
+
+      {showNext && (
+        <PaginationItem>
+          <PaginationNext href={next} aria-disabled={!showNext} />
+        </PaginationItem>
+      )}
+    </PaginationContent>
+  </Pagination>
 );
 
 export default Paginate;
