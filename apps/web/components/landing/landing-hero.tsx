@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import BoathouseDoor from "@/components/landing/boathouse-door";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import Container from "../layouts/container";
 
 const Player = dynamic(() => import("@/components/landing/player"));
 
@@ -22,8 +23,8 @@ const LandingHero = ({
   youTubeId,
   youTubeStart,
 }: Props) => (
-  <div className="container max-w-screen-lg px-0 md:mx-auto md:px-5">
-    <div className="group relative flex overflow-hidden shadow md:rounded">
+  <Container>
+    <div className="group relative flex overflow-hidden rounded shadow">
       <Image
         {...useSanityImageProps(imageId)}
         width={984}
@@ -44,6 +45,6 @@ const LandingHero = ({
       </div>
       <Player youTubeId={youTubeId} youTubeStart={youTubeStart} />
     </div>
-  </div>
+  </Container>
 );
 export default LandingHero;
