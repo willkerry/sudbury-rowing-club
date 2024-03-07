@@ -14,21 +14,21 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
     target="_blank"
     rel="noopener noreferrer"
     className={cn(
-      "group grid gap-1.5 rounded border p-2 transition hover:border-blue-500",
+      "group grid gap-1.5 rounded border p-2 transition-colors hover:border-blue-500",
       !article && "h-16 animate-pulse bg-gray-50",
     )}
   >
     {article && (
       <>
         <h3
-          className="text-sm font-medium leading-tight group-hover:text-blue-600"
+          className="text-sm font-medium leading-tight transition-colors group-hover:text-blue-500"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: article.title.rendered }}
         />
 
         <div className="flex items-end justify-between gap-1">
           <DateFormatter
-            className="text-xs font-medium leading-none text-gray-500"
+            className="text-xs font-medium leading-none text-gray-500 transition-colors group-hover:text-gray-800"
             dateString={article.date}
           />
           <BritishRowing className="h-4" />
@@ -51,7 +51,7 @@ const Feed = () => {
         <Link href="https://britishrowing.org/">British Rowing</Link>.
       </p>
       {!error ? (
-        <div className="mb-12 grid grid-cols-2 gap-4 lg:grid-cols-3">
+        <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* eslint-disable-next-line react/no-array-index-key */}
           {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
 
