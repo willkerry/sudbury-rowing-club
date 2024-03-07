@@ -206,7 +206,7 @@ const Brand = () => (
         <figure>
           {item.Illustration && (
             <item.Illustration
-              className="h-32 max-w-full bg-gray-100 bg-indicate-transparency"
+              className="max-h-32 max-w-full bg-gray-100 bg-indicate-transparency"
               fill={item.color}
             />
           )}
@@ -294,9 +294,12 @@ const Brand = () => (
     <table>
       <thead>
         <tr>
-          <th className="text-right">Identifier</th>
+          <th className="text-right">
+            <span className="hidden sm:inline">Identifier</span>
+            <span className="inline sm:hidden">ID</span>
+          </th>
           <th>Name</th>
-          <th>RGB</th>
+          <th className="hidden sm:table-cell">RGB</th>
           <th>Hex</th>
         </tr>
       </thead>
@@ -312,7 +315,7 @@ const Brand = () => (
                 {item.name} {item.library}
               </span>
             </td>
-            <td>
+            <td className="hidden sm:table-cell">
               <ColorIndicator color={item.color} type="rgb" />
             </td>
             <td>
