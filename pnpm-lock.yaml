@@ -156,6 +156,9 @@ importers:
       final-form:
         specifier: ^4.20.10
         version: 4.20.10
+      framer-motion:
+        specifier: ^11.0.8
+        version: 11.0.8(react-dom@18.2.0)(react@18.2.0)
       get-wodehouse-name:
         specifier: ^0.2.0
         version: 0.2.0
