@@ -121,15 +121,32 @@ const NavSection = ({
               />
             </>
           </Popover.Button>
+
           <Transition
             show={open}
             as={Fragment}
-            enter="transition ease-out duration-200"
-            enterFrom="opacity-0 translate-y-1"
+            enter="transition ease-out delay-50 duration-200"
+            enterFrom="translate-y-8"
+            enterTo="translate-y-0"
+            leave="transition ease-in duration-50"
+            leaveFrom="translate-y-0"
+            leaveTo="translate-y-8"
+          >
+            <div
+              aria-hidden
+              className="absolute right-1/2 top-12 h-6 w-6 rotate-45 rounded-sm bg-gray-200 bg-opacity-75 shadow backdrop-blur"
+            />
+          </Transition>
+
+          <Transition
+            show={open}
+            as={Fragment}
+            enter="transition ease-out duration-50"
+            enterFrom="opacity-0 -translate-y-1"
             enterTo="opacity-100 translate-y-0"
-            leave="transition ease-in duration-150"
+            leave="transition delay-50 ease-in duration-50"
             leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 translate-y-1"
+            leaveTo="opacity-0 -translate-y-1"
           >
             <Popover.Panel
               static
@@ -138,8 +155,8 @@ const NavSection = ({
                 POPOVER_PANEL_CLASSES.get(compact),
               )}
             >
-              <div className="overflow-hidden rounded-md shadow-lg">
-                <div className="relative grid gap-4 bg-white p-4">
+              <div className="overflow-hidden rounded-md bg-gray-200 bg-opacity-75 p-1 shadow-lg backdrop-blur">
+                <div className="relative grid gap-4 rounded-sm bg-white p-2 shadow">
                   {primaryItems.map((item) => (
                     <ListItem key={item.href} {...item} />
                   ))}
@@ -147,10 +164,10 @@ const NavSection = ({
 
                 <div
                   className={cn(
-                    "rounded-b-md bg-gray-200 bg-opacity-75 shadow-inner backdrop-blur backdrop-saturate-200",
+                    "pb-2 pt-3",
                     compact
-                      ? "space-y-4 py-4 pl-3 pr-4"
-                      : "flex space-x-6 space-y-0 px-4 py-3",
+                      ? "space-y-4 pl-3 pr-4"
+                      : "flex space-x-6 space-y-0 px-2",
                   )}
                 >
                   {ctaItems.map((item) => (
