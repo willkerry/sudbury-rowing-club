@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { Home, Search } from "lucide-react";
+import { Home } from "lucide-react";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
+import { SiteSearch } from "@/components/search";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { Button } from "@/components/ui/button";
 
@@ -27,11 +28,7 @@ const Custom500 = () => (
 
     <Container className="prose mt-12 max-w-prose">
       <div className="flex flex-col gap-4">
-        <Button asChild icon={<Search />}>
-          <a href="https://www.google.com/search?q=site%3Asudburyrowingclub.org.uk">
-            Search our site with Google
-          </a>
-        </Button>
+        <SiteSearch />
         <Button asChild icon={<Home />} variant="secondary">
           <Link href="/">Return to the homepage</Link>
         </Button>
