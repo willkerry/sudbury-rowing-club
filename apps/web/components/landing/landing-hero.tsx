@@ -37,10 +37,8 @@ const LandingHero = ({
       />
       <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-3 p-6 sm:gap-8 sm:p-12 md:gap-12 md:p-24 lg:gap-14">
         <BoathouseDoor aria-hidden className="w-full text-white" />
-        <span className="rounded-full bg-white px-1 py-0.5 text-xs font-medium sm:text-sm md:px-3 md:py-1 md:text-base">
-          <span className="bg-gradient-to-r from-blue-800 via-green-700 to-yellow-700 bg-clip-text text-transparent">
-            {slogan}
-          </span>
+        <span className="rounded-full bg-white px-1 py-0.5 text-xs font-medium text-black mix-blend-screen shadow backdrop-blur sm:text-sm md:px-3 md:py-1 md:text-base">
+          {slogan}
         </span>
       </div>
       <Player youTubeId={youTubeId} youTubeStart={youTubeStart} />
