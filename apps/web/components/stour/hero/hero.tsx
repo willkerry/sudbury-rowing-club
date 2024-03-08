@@ -13,9 +13,7 @@ interface Props {
 const Text = ({ title, description, label }: Props) => (
   <>
     {label && <Label className="ml-1">{label}</Label>}
-    <h2 className="pb-6 pt-3 text-4xl font-semibold tracking-tighter">
-      {title}
-    </h2>
+    <h2 className="pb-6 pt-3 text-4xl font-semibold">{title}</h2>
     {description && <div className="font-medium opacity-80">{description}</div>}
   </>
 );

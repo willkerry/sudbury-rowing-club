@@ -63,7 +63,7 @@ label {
   }
 
   .auto-lead > :first-child {
-    @apply text-xl font-medium tracking-tight;
+    @apply text-xl font-medium;
   }
 
   .masonry-4-col {

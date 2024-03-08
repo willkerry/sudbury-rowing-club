@@ -40,7 +40,7 @@ const SafetyItemTitle = ({
     href={href}
     className="text-gray-900 transition hover:text-blue-500 hover:underline"
   >
-    <h2 className="tracking-tightmd:pr-6 mb-2 line-clamp-1 font-semibold leading-tight">
+    <h2 className="mb-2 line-clamp-1 font-semibold leading-tight">
       {children}
     </h2>
   </Link>

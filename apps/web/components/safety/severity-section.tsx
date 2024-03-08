@@ -16,7 +16,7 @@ const SeveritySection = ({ status, message }: SeveritySectionProps) => {
 
   return (
     <div
-      className={`${severityClasses[status]}  flex h-12 items-center justify-between p-3 text-2xl font-bold tracking-tight sm:h-16 sm:p-4 md:text-3xl `}
+      className={`${severityClasses[status]}  flex h-12 items-center justify-between p-3 text-2xl font-bold sm:h-16 sm:p-4 md:text-3xl `}
     >
       {message || status.charAt(0).toUpperCase() + status.slice(1)}
 

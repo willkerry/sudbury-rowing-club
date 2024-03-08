@@ -70,7 +70,6 @@ export default {
             '[class~="lead"]': {
               color: theme("colors.gray.900"),
               fontWeight: theme("fontWeight.medium"),
-              letterSpacing: theme("letterSpacing.tight"),
             },
             "h2, h3": {
               lineHeight: theme("lineHeight.snug"),

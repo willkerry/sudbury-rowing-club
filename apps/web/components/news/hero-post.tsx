@@ -18,7 +18,7 @@ const HeroPost = ({ post }: { post: ArticleSummary }) => (
           blurDataURL={post.featuredImage.lqip}
         />
       ) : (
-        <div className="relative h-full select-none overflow-hidden bg-white px-2.5 pt-1 text-8xl font-bold tracking-tighter text-gray-100 transition group-hover:text-blue-50">
+        <div className="relative h-full select-none overflow-hidden bg-white px-2.5 pt-1 text-8xl font-bold text-gray-100 transition group-hover:text-blue-50">
           {post.title}
         </div>
       )}
@@ -28,10 +28,10 @@ const HeroPost = ({ post }: { post: ArticleSummary }) => (
         {post.excerpt}
       </p>
       <div>
-        <div className="text-sm font-medium text-gray-700">
+        <div className="mb-1 text-xs font-medium text-gray-700">
           <DateFormatter dateString={post.date} />
         </div>
-        <h3 className="leading-tighter text-2xl font-bold tracking-tighter text-gray-900 transition duration-200 group-hover:text-blue-500 lg:text-2xl">
+        <h3 className="leading-tighter text-2xl font-semibold tracking-tight text-gray-900 transition duration-200 group-hover:text-blue-500 lg:text-2xl">
           {post.title}
         </h3>
       </div>

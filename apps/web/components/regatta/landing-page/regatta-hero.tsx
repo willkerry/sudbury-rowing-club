@@ -10,7 +10,7 @@ type Props = {
 const RegattaHero = ({ ticketItems, subtitle }: Props) => (
   <div className="mx-auto my-12 max-w-lg text-center">
     <ImageComposite ticketItems={ticketItems} />
-    <h1 className="bg-gradient-to-br from-blue-400 to-blue-900 bg-clip-text pb-12 text-5xl font-extrabold tracking-tighter text-transparent sm:text-7xl md:text-7xl">
+    <h1 className="bg-gradient-to-br from-blue-400 to-blue-900 bg-clip-text pb-12 text-5xl font-bold tracking-tight text-transparent sm:text-7xl md:text-7xl">
       Sudbury <span className="font-light text-gray-900">‘International’</span>{" "}
       Regatta
     </h1>
