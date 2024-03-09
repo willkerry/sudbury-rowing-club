@@ -15,6 +15,7 @@ type Props = {
   showNext: boolean;
   previous: string;
   next: string;
+  template?: string;
 };
 
 const Paginate = ({
@@ -24,6 +25,7 @@ const Paginate = ({
   showNext,
   previous,
   next,
+  template = "/news/p/",
 }: Props) => (
   <Pagination className="my-12">
     <PaginationContent>
@@ -41,21 +43,21 @@ const Paginate = ({
 
       {showPrev && (
         <PaginationItem>
-          <PaginationLink href={`/news/p/${page - 1}`}>
+          <PaginationLink href={`${template}${page - 1}`}>
             {page - 1}
           </PaginationLink>
         </PaginationItem>
       )}
 
       <PaginationItem>
-        <PaginationLink isActive href={`/news/p/${page}`}>
+        <PaginationLink isActive href={`${template}${page}`}>
           {page}
         </PaginationLink>
       </PaginationItem>
 
       {showNext && (
         <PaginationItem>
-          <PaginationLink href={`/news/p/${page + 1}`}>
+          <PaginationLink href={`${template}${page + 1}`}>
             {page + 1}
           </PaginationLink>
         </PaginationItem>
