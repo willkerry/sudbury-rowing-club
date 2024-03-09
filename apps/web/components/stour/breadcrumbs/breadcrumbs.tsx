@@ -16,7 +16,9 @@ type Crumb = {
 };
 
 const getBreadcrumbs = (pathname: string, overrideLastItem?: string) => {
-  const linkPath = pathname.split("/");
+  const [cleanPathname] = pathname.split("?");
+
+  const linkPath = cleanPathname.split("/");
   linkPath.shift();
 
   const pathArray: Crumb[] = linkPath.map((path, i) => ({
