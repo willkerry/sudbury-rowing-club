@@ -101,7 +101,7 @@ const CollapsibleCard = ({ notice }: Props) => (
           </Label>
         </AccordionTrigger>
       </AccordionHeader>
-      <AccordionContent className="divide-y p-0 border-t">
+      <AccordionContent className="divide-y border-t p-0">
         <NoticeBody {...{ notice }} />
       </AccordionContent>
     </AccordionItem>

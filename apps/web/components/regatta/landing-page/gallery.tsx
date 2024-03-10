@@ -63,7 +63,7 @@ const Gallery = ({ images }: { images: ImageType[] }) => {
           <CarouselItem
             key={image._id}
             id={image._id}
-            className="basis-[80%] sm:basis-1/2 md:1/3 lg:basis-1/4"
+            className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
           >
             <GalleryFigure {...image} />
           </CarouselItem>

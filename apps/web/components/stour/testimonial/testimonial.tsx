@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import Anonymous from "./anonymous";
 
 const Testimonial = ({ name, club, text }: TestimonialType) => (
-  <figure className="mb-4 sm:mb-10 inline-block break-inside-avoid rounded-lg border p-4 w-full">
+  <figure className="mb-4 inline-block w-full break-inside-avoid rounded-lg border p-4 sm:mb-10">
     <blockquote
       className={cn(
         "space-y-4 leading-snug",

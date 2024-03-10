@@ -8,7 +8,7 @@ type Props = {
 };
 
 const CompetitorInformation = ({ tab = false, description, items }: Props) => (
-  <div className={cn("prose", tab && "mx-auto prose-sm")}>
+  <div className={cn("prose", tab && "prose-sm mx-auto")}>
     <p>{description}</p>
 
     <ul>

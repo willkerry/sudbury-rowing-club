@@ -92,7 +92,7 @@ const SharePlayground = () => {
 
       <Button type="submit">Generate</Button>
 
-      <div className="relative mt-6 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2 aspect-w-16 aspect-h-8">
+      <div className="aspect-h-8 aspect-w-16 relative mt-6 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
         <div
           className="absolute inset-0 hidden items-center justify-center"
           ref={loadingRef}

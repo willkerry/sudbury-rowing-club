@@ -70,7 +70,7 @@ const Figure = ({
         <button
           type="button"
           onClick={() => toggle()}
-          className="hover:cursor-zoom-in mx-auto block"
+          className="mx-auto block hover:cursor-zoom-in"
           aria-label={`View the '${alt}' image in lightbox`}
         >
           <Image

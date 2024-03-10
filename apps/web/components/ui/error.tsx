@@ -20,10 +20,10 @@ export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
       ref={ref}
       aria-atomic
       role="alert"
-      className="text-red-600 font-medium text-sm flex items-center"
+      className="flex items-center text-sm font-medium text-red-600"
       {...props}
     >
-      <AlertOctagon aria-hidden className="w-4 h-4 mr-1" />
+      <AlertOctagon aria-hidden className="mr-1 h-4 w-4" />
 
       {label && <span className="mr-1 font-semibold">{label}</span>}
 
@@ -31,11 +31,11 @@ export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
         <p>
           {error.message}{" "}
           <a
-            className="underline font-semibold inline-flex items-center"
+            className="inline-flex items-center font-semibold underline"
             href={error.link}
           >
             {error.action}
-            <ArrowUpRight aria-hidden className="w-4 h-4" />
+            <ArrowUpRight aria-hidden className="h-4 w-4" />
           </a>
           .
         </p>
