@@ -48,7 +48,7 @@ export const NextCourse = () => {
   }
 
   return (
-    <div className="prose-sm prose-green mx-2 mb-2">
+    <div className="prose-sm rounded border border-green-200 bg-green-50 px-2 pb-1">
       <h3 className="mb-1 mt-2 flex items-center gap-1 text-base font-semibold">
         Course Dates
         <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
@@ -215,7 +215,7 @@ const Join: NextPage = () => (
               thereafter.
             </p>
           </div>
-          <div className="flex items-center rounded border border-green-200 bg-green-50">
+          <div className="flex items-center">
             <NextCourse />
           </div>
         </div>
