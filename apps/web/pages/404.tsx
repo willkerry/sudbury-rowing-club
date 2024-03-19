@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { Home } from "lucide-react";
+import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import { SiteSearch } from "@/components/search";
@@ -20,7 +21,7 @@ const Custom404 = () => (
         alt="The time the river ran dry."
         className="rounded-sm"
         height={144}
-        src="/assets/error/trouble-at-tmill.jpg"
+        src={TroubleAtTMill}
         width={192}
       />
     </div>
