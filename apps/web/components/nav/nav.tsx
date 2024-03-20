@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
-import partition from "lodash/partition";
+import { fork } from "radash";
 import { NavLogo, NavSection } from "@/components/nav";
 import {
   MobileMenuButton,
@@ -13,11 +13,11 @@ const extractSingletonGroups = (
   primary: typeof navigationGroups,
   secondary: typeof secondaryNavigationGroups,
 ) => {
-  const [primarySingletons, primaryGroups] = partition(
+  const [primarySingletons, primaryGroups] = fork(
     primary,
     ({ items }) => items.length === 1,
   );
-  const [secondarySingletons, secondaryGroups] = partition(
+  const [secondarySingletons, secondaryGroups] = fork(
     secondary,
     ({ items }) => items.length === 1,
   );

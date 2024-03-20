@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import partition from "lodash/partition";
+import { fork } from "radash";
 import { cn } from "@/lib/utils";
 import { type IconNavItemType } from "@/types/nav-item";
 
@@ -94,7 +94,7 @@ const NavSection = ({
     );
   }
 
-  const [primaryItems, ctaItems] = partition(items, ({ cta }) => !cta);
+  const [primaryItems, ctaItems] = fork(items, ({ cta }) => !cta);
 
   return (
     <Popover className="relative">

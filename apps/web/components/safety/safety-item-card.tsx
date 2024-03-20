@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { BASE_URL } from "lib/constants";
-import { first, isArray } from "lodash";
 import { Download, ExternalLink } from "lucide-react";
+import { first, isArray } from "radash";
 import { SafetyResponse } from "@sudburyrc/api";
 import Link from "@/components/stour/link";
 import Text from "@/components/stour/text";
@@ -111,7 +111,7 @@ export const SafetyItemCard = ({
   document,
 }: SafetyResponse) => {
   const permalink = `safety/${_id}`;
-  const firstParagraph = first(body);
+  const firstParagraph = body ? first(body) : null;
   const hasMultipleParagraphs = isArray(body) && body.length > 1;
   const isAnUrgentItem = containsUrgentWords(title);
 
@@ -121,7 +121,9 @@ export const SafetyItemCard = ({
         <SafetyItemUpdatedAt date={_updatedAt} />
         <SafetyItemTitle href={permalink}>{title}</SafetyItemTitle>
 
-        <Text portableText={firstParagraph} className="prose-sm mb-4" />
+        {firstParagraph && (
+          <Text portableText={firstParagraph} className="prose-sm mb-4" />
+        )}
 
         <div className="space-y-2">
           {hasMultipleParagraphs && (
