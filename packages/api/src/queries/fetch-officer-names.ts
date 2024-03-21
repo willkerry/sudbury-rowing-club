@@ -8,6 +8,7 @@ const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacan
   "name": occupant->firstName + " " + occupant->surname,
   role,
   description,
+  "avatar": (occupant->image).image.asset->{ _id, url, "lqip": metadata.lqip }
 }`;
 
 const ZOfficerResponse = z.object({
@@ -16,6 +17,13 @@ const ZOfficerResponse = z.object({
   name: z.string(),
   role: z.string(),
   description: z.string().optional().nullable(),
+  avatar: z
+    .object({
+      _id: z.string(),
+      url: z.string(),
+      lqip: z.string(),
+    })
+    .nullable(),
 });
 
 const fetchOfficerNames = async () => {

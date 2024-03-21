@@ -4,6 +4,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import { useMutation } from "@tanstack/react-query";
 import { FORM_ERROR } from "final-form";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
+import { shake } from "radash";
 import type { OfficerResponse } from "@sudburyrc/api";
 import Input from "@/components/contact/fields/input";
 import Select from "@/components/contact/fields/select";
@@ -12,6 +13,7 @@ import Error from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
+import { FromAndTo } from "./fromAndTo";
 
 export type Message = {
   to: string;
@@ -53,7 +55,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
 
   const optionArray = contacts.map((contact) => ({
     value: contact._id,
-    label: `${contact.name} (${contact.role})`,
+    label: `${contact.role} (${contact.name})`,
   }));
 
   const form = (
@@ -83,6 +85,8 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
           hasValidationErrors;
         const disableFields = submitting || localDisabled || submitSucceeded;
 
+        const selectedContact = contacts.find((o) => o._id === values.to);
+
         return (
           <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit}>
             <Field defaultValue="default" name="to">
@@ -99,33 +103,49 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               )}
             </Field>
 
-            <Field name="name">
-              {({ input, meta }) => (
-                <Input
-                  disabled={disableFields}
-                  id="name"
-                  input={input}
-                  label="Your name"
-                  meta={meta}
-                  placeholder={`${randomName.firstName} ${randomName.lastName}`}
-                  type="text"
-                />
-              )}
-            </Field>
+            <div className="col-span-2 -mb-4 grid gap-x-4 sm:grid-cols-2">
+              <Field name="name">
+                {({ input, meta }) => (
+                  <Input
+                    disabled={disableFields}
+                    id="name"
+                    input={input}
+                    label="Your name"
+                    meta={meta}
+                    placeholder={`${randomName.firstName} ${randomName.lastName}`}
+                    type="text"
+                    inputClassName="mb-4"
+                  />
+                )}
+              </Field>
 
-            <Field name="email">
-              {({ input, meta }) => (
-                <Input
-                  disabled={disableFields}
-                  id="email"
-                  input={input}
-                  label="Your email"
-                  meta={meta}
-                  placeholder={randomName.email}
-                  type="email"
-                />
-              )}
-            </Field>
+              <Field name="email">
+                {({ input, meta }) => (
+                  <Input
+                    disabled={disableFields}
+                    id="email"
+                    input={input}
+                    label="Your email"
+                    meta={meta}
+                    placeholder={randomName.email}
+                    type="email"
+                    inputClassName="mb-4"
+                  />
+                )}
+              </Field>
+            </div>
+
+            <FromAndTo
+              isOpen={values.to !== "default"}
+              from={{
+                name:
+                  values.name ||
+                  `${randomName.firstName} ${randomName.lastName}`,
+                email: values.email || "Placeholder",
+                isPlaceholder: !values.name || !values.email,
+              }}
+              to={shake(selectedContact)}
+            />
 
             <Field name="message">
               {({ input, meta }) => (
