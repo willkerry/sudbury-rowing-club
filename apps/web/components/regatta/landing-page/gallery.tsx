@@ -8,6 +8,9 @@ import {
 } from "@/components/ui/carousel";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
+const WIDTH = 720;
+const HEIGHT = 480;
+
 type ImageType = {
   _id: string;
   caption?: string;
@@ -15,31 +18,37 @@ type ImageType = {
   aspectRatio: number;
 };
 
-const GalleryFigure = ({ _id, caption, lqip }: ImageType) => (
-  <figure>
-    <Image
-      {...useSanityImageProps(_id, {
-        imageBuilder: (builder) =>
-          builder.size(720, 480).fit("clip").quality(25).auto("format"),
-      })}
-      width={720}
-      height={480}
-      quality={30}
-      placeholder="blur"
-      blurDataURL={lqip}
-      alt={caption || ""}
-      sizes="(min-width: 640px) 100vw, 30vw"
-      className="rounded"
-    />
+const GalleryFigure = ({ _id, caption, lqip }: ImageType) => {
+  const { loader, src } = useSanityImageProps(_id, {
+    imageBuilder: (builder) =>
+      builder.size(WIDTH, HEIGHT).fit("clip").quality(25).auto("format"),
+  });
 
-    <figcaption
-      aria-hidden
-      className="mt-1 flex items-center text-sm text-gray-600"
-    >
-      {caption}
-    </figcaption>
-  </figure>
-);
+  return (
+    <figure>
+      <Image
+        loader={loader}
+        src={src}
+        width={WIDTH}
+        height={HEIGHT}
+        unoptimized
+        quality={30}
+        placeholder="blur"
+        blurDataURL={lqip}
+        alt={caption || ""}
+        sizes="(min-width: 640px) 100vw, 30vw"
+        className="rounded"
+      />
+
+      <figcaption
+        aria-hidden
+        className="mt-1 flex items-center text-sm text-gray-600"
+      >
+        {caption}
+      </figcaption>
+    </figure>
+  );
+};
 
 const Gallery = ({ images }: { images: ImageType[] }) => {
   const reduceMotion = useReducedMotion();
