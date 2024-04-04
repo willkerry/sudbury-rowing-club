@@ -1,43 +1,45 @@
-import news from "./news";
-import officers from "./officers";
-import richText from "./richText";
-import figure from "./figure";
-import committees from "./committees";
-import vicePresidents from "./vicePresidents";
-import trustees from "./trustees";
-import safety from "./safety";
-import regattas from "./regattas";
-import members from "./members";
+import archive from "./archive";
 import authors from "./author";
-import safetyStatus from "./safety-status";
-import regattaSettings from "./regattaSettings";
-import quote from "./quote";
-import note from "./note";
-import minutes from "./minutes";
-import siteSettings from "./siteSettings";
+import committees from "./committees";
+import figure from "./figure";
 import forwarders from "./forwarders";
+import members from "./members";
+import minutes from "./minutes";
+import news from "./news";
+import note from "./note";
+import officers from "./officers";
 import person from "./person";
+import quote from "./quote";
+import regattas from "./regattas";
+import regattaSettings from "./regattaSettings";
+import richText from "./richText";
+import safety from "./safety";
+import safetyStatus from "./safety-status";
+import siteSettings from "./siteSettings";
+import trustees from "./trustees";
+import vicePresidents from "./vicePresidents";
 
 const schemas = [
-  news,
-  officers,
-  richText,
-  figure,
-  committees,
-  vicePresidents,
-  trustees,
-  safety,
-  regattas,
-  members,
+  archive,
   authors,
-  safetyStatus,
-  regattaSettings,
-  quote,
-  note,
-  minutes,
-  siteSettings,
+  committees,
+  figure,
   forwarders,
+  members,
+  minutes,
+  news,
+  note,
+  officers,
   person,
+  quote,
+  regattas,
+  regattaSettings,
+  richText,
+  safety,
+  safetyStatus,
+  siteSettings,
+  trustees,
+  vicePresidents,
 ];
 
 export default schemas;
