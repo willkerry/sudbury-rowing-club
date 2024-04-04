@@ -66,6 +66,21 @@ const Join = () => (
         </div>
       </Container>
     </div>
+
+    <Container className="my-24">
+      <div className="prose mx-auto rounded border p-4">
+        <h2 className="text-lg">Contribute</h2>
+        <p>
+          We are collecting stories, photos, and memories from our members, past
+          and present. If you have something you would like to contribute,
+          please let us know.
+        </p>
+
+        <Button asChild>
+          <Link href="contact?q=will">Message us</Link>
+        </Button>
+      </div>
+    </Container>
   </Layout>
 );
 
