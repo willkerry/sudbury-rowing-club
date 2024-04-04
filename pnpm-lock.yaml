@@ -75,6 +75,9 @@ importers:
       '@algolia/client-search':
         specifier: ^4.22.1
         version: 4.22.1
+      '@fireworks-js/react':
+        specifier: ^2.10.7
+        version: 2.10.7(@types/react@18.2.64)(react@18.2.0)
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.0.20
         version: 5.0.20
@@ -1612,6 +1615,17 @@ packages:
   /@eslint/js@8.57.0:
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  /@fireworks-js/react@2.10.7(@types/react@18.2.64)(react@18.2.0):
+    resolution: {integrity: sha512-hxfEB0vRUX7nNznhc5SEw0W8jamgF32oUiMvd5c8dOAFZgkidF8qylRw/V1Xp6In1QsjUQXnv/gvOKCe2o8JOg==}
+    peerDependencies:
+      '@types/react': '>=16.8.0'
+      react: '>=16.8.0'
+    dependencies:
+      '@types/react': 18.2.64
+      fireworks-js: 2.10.7
+      react: 18.2.0
+    dev: false
 
   /@floating-ui/core@1.6.0:
     resolution: {integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==}
@@ -6969,6 +6983,10 @@ packages:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
+
+  /fireworks-js@2.10.7:
+    resolution: {integrity: sha512-FyRNiqlgu9ZeFCjfN0UiGUlj5dUWNYLyFaWN/Q8sOMf0E+KGA4dMROaBZpCtym85fChgCspoa3jHoLTRZiy74A==}
+    dev: false
 
   /flat-cache@3.2.0:
     resolution: {integrity: sha512-CYcENa+FtcUKLmhhqyctpclsq7QF38pKjZHsGNiSQF5r4FtoKDWabFDl3hzaEQMvT1LHEysw5twgLvpYYb4vbw==}
