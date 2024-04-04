@@ -5,7 +5,6 @@ import { ArchiveImage } from "@/components/anniversary/archive-image-lightbox";
 import { Banner } from "@/components/anniversary/banner";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Label from "@/components/stour/label";
 import { formatYear } from ".";
 
 export const getStaticPaths = async () => {
