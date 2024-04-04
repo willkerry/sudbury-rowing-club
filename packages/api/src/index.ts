@@ -5,6 +5,11 @@ export {
   serverGetNArticles,
 } from "./queries/cached-fetch-news";
 export {
+  fetchArchives,
+  fetchArchiveById,
+  type Archive,
+} from "./queries/fetch-archives";
+export {
   fetchAuthor,
   fetchAllAuthors,
   type Author,
