@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^4.22.1",
+    "@fireworks-js/react": "^2.10.7",
     "@fontsource-variable/jetbrains-mono": "^5.0.20",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
