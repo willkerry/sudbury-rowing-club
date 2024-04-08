@@ -181,8 +181,8 @@ importers:
         specifier: ^2.4.0
         version: 2.4.0
       lucide-react:
-        specifier: ^0.343.0
-        version: 0.343.0(react@18.2.0)
+        specifier: ^0.365.0
+        version: 0.365.0(react@18.2.0)
       next:
         specifier: ^14.1.3
         version: 14.1.3(react-dom@18.2.0)(react@18.2.0)
@@ -5667,6 +5667,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -8388,8 +8389,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-react@0.343.0(react@18.2.0):
-    resolution: {integrity: sha512-zDjzr5OlS86DJZNSy5igMx18T423LfEyZ6lxo82KpjCi8m5DPddl/OPLRDHyfs/TqZPh7C1ySPw4D6matfm6bQ==}
+  /lucide-react@0.365.0(react@18.2.0):
+    resolution: {integrity: sha512-sJYpPyyzGHI4B3pys+XSFnE4qtSWc68rFnDLxbNNKjkLST5XSx9DNn5+1Z3eFgFiw39PphNRiVBSVb+AL3oKwA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
