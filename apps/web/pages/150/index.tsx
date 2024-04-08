@@ -1,8 +1,11 @@
+import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
+import { fetchArchives } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import { HundredAndFiftyContactButton } from "@/components/anniversary/150-contact-button";
 import { HundredAndFiftyFireworks } from "@/components/anniversary/150-fireworks";
+import { HundredAndFiftyGallery } from "@/components/anniversary/150-gallery";
 import { HundredAndFiftyGradient } from "@/components/anniversary/150-gradient";
 import { HundredAndFiftyLogo } from "@/components/anniversary/150-logo";
 import Container from "@/components/layouts/container";
@@ -12,7 +15,13 @@ import { Button } from "@/components/ui/button";
 const TITLE = "150 Years of Rowing in Sudbury";
 const DESCRIPTION = "Join us in celebrating 150 years of rowing in Sudbury";
 
-const Join = () => (
+export const getStaticProps = async () => ({
+  props: { archives: await fetchArchives() },
+});
+
+const Join: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  archives,
+}) => (
   <Layout>
     <NextSeo
       description={DESCRIPTION}
@@ -57,6 +66,10 @@ const Join = () => (
           </Button>
         </div>
       </Container>
+    </div>
+
+    <div className="-mt-6">
+      <HundredAndFiftyGallery archives={archives} />
     </div>
 
     <Container className="py-24">

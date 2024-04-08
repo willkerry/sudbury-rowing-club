@@ -37,7 +37,7 @@ const GalleryFigure = ({ _id, caption, lqip }: ImageType) => {
         blurDataURL={lqip}
         alt={caption || ""}
         sizes="(min-width: 640px) 100vw, 30vw"
-        className="rounded"
+        className="rounded shadow"
       />
 
       <figcaption

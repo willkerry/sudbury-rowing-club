@@ -1,5 +1,6 @@
 import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
+  CakeIcon,
   EnvelopeIcon,
   FlagIcon,
   InformationCircleIcon,
@@ -33,6 +34,12 @@ const navigationGroups: NavigationGroup[] = [
     title: "About",
     items: [
       {
+        name: "150th anniversary",
+        description: "Celebrate 150 years’ rowing in Sudbury.",
+        href: "/150",
+        icon: CakeIcon,
+      },
+      {
         name: "History",
         description: "Rowing in Sudbury since 1874.",
         href: "/about/history",
@@ -50,6 +57,7 @@ const navigationGroups: NavigationGroup[] = [
         href: "/governance",
         icon: Governance,
       },
+
       {
         name: "How to find us",
         shortName: "Find us",
