@@ -1,7 +1,7 @@
-import Fireworks from "@fireworks-js/react";
 import { ArrowRight } from "lucide-react";
 import Link from "../stour/link";
 import { Button } from "../ui/button";
+import { HundredAndFiftyFireworks } from "./150-fireworks";
 import { HundredAndFiftyGradient } from "./150-gradient";
 import { HundredAndFiftyLogo } from "./150-logo";
 
@@ -9,14 +9,7 @@ export const HundredAndFiftyCta = () => (
   <div className="relative isolate grid grid-cols-1 items-center overflow-hidden rounded-lg border bg-gray-900 text-white shadow md:grid-cols-3">
     <div className="mt-12 flex h-full items-center justify-center md:relative md:mt-0">
       <HundredAndFiftyLogo block={false} />
-      <Fireworks
-        className="absolute inset-0"
-        options={{
-          sound: { enabled: false },
-          hue: { min: 190, max: 220 },
-          intensity: 3.5,
-        }}
-      />
+      <HundredAndFiftyFireworks />
     </div>
 
     <HundredAndFiftyGradient />

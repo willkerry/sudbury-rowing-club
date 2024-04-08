@@ -1,8 +1,8 @@
 import { NextSeo } from "next-seo";
 import Link from "next/link";
-import Fireworks from "@fireworks-js/react";
 import { makeShareImageURL } from "@/lib/og-image";
 import { HundredAndFiftyContactButton } from "@/components/anniversary/150-contact-button";
+import { HundredAndFiftyFireworks } from "@/components/anniversary/150-fireworks";
 import { HundredAndFiftyGradient } from "@/components/anniversary/150-gradient";
 import { HundredAndFiftyLogo } from "@/components/anniversary/150-logo";
 import Container from "@/components/layouts/container";
@@ -31,15 +31,7 @@ const Join = () => (
     />
 
     <div className="relative isolate overflow-hidden bg-gray-900 py-4 text-white">
-      <Fireworks
-        className="absolute inset-0"
-        options={{
-          hue: { min: 205, max: 220 },
-          sound: { enabled: false },
-          intensity: 5,
-        }}
-      />
-
+      <HundredAndFiftyFireworks />
       <HundredAndFiftyGradient size="lg" />
 
       <Container className="my-16">
