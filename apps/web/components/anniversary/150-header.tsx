@@ -2,7 +2,7 @@ import Link from "next/link";
 import Container from "../layouts/container";
 import Label from "../stour/label";
 
-export const ArchiveHeader = ({
+export const HundredAndFiftyHeader = ({
   title,
   href,
 }: {

@@ -3,9 +3,9 @@ import { NextSeo } from "next-seo";
 import { group } from "radash";
 import { fetchArchives } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
-import { ArchiveHeader } from "@/components/anniversary/archive-header";
-import { ArchiveItem } from "@/components/anniversary/archive-item";
-import { Banner } from "@/components/anniversary/banner";
+import { ArchiveItem } from "@/components/anniversary/150-archive-item";
+import { HundredAndFiftyBanner } from "@/components/anniversary/150-banner";
+import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 
@@ -75,8 +75,8 @@ const Join: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       title={TITLE}
     />
 
-    <Banner />
-    <ArchiveHeader title="Anniversary gallery" href="/150" />
+    <HundredAndFiftyBanner />
+    <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
 
     <Container className="p-4">
       {archives.map(({ decade, archives }) => (

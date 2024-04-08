@@ -1,8 +1,8 @@
 import { InferGetStaticPropsType, NextPage } from "next";
 import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
-import { ArchiveHeader } from "@/components/anniversary/archive-header";
-import { ArchiveImage } from "@/components/anniversary/archive-image-lightbox";
-import { Banner } from "@/components/anniversary/banner";
+import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
+import { HundredAndFiftyBanner } from "@/components/anniversary/150-banner";
+import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import { formatYear } from ".";
@@ -27,8 +27,8 @@ const Archive: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   archive,
 }) => (
   <Layout>
-    <Banner />
-    <ArchiveHeader title="Archive resource" href="/150/gallery" />
+    <HundredAndFiftyBanner />
+    <HundredAndFiftyHeader title="Archive resource" href="/150/gallery" />
 
     <Container>
       <ArchiveImage image={archive.image} alt={archive.alt || ""} />
