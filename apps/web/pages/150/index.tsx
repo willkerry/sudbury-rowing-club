@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import Fireworks from "@fireworks-js/react";
 import { makeShareImageURL } from "@/lib/og-image";
+import { HundredAndFiftyContactButton } from "@/components/anniversary/150-contact-button";
 import { HundredAndFiftyGradient } from "@/components/anniversary/150-gradient";
 import { HundredAndFiftyLogo } from "@/components/anniversary/150-logo";
 import Container from "@/components/layouts/container";
@@ -75,9 +76,7 @@ const Join = () => (
           please let us know.
         </p>
 
-        <Button asChild>
-          <Link href="contact?q=will">Message us</Link>
-        </Button>
+        <HundredAndFiftyContactButton />
       </div>
     </Container>
   </Layout>
