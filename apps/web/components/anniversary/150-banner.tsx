@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "../layouts/container";
 import { HundredAndFiftyFireworks } from "./150-fireworks";
 import { HundredAndFiftyGradient } from "./150-gradient";
@@ -9,7 +10,9 @@ export const HundredAndFiftyBanner = () => (
     <HundredAndFiftyGradient size="sm" />
 
     <Container>
-      <HundredAndFiftyLogo />
+      <Link href="/150">
+        <HundredAndFiftyLogo />
+      </Link>
     </Container>
   </div>
 );
