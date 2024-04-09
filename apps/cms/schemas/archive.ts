@@ -46,6 +46,47 @@ const Archive = defineType({
       title: "Location",
     }),
   ],
+  orderings: [
+    {
+      name: "yearDesc",
+      title: "Latest",
+      by: [{ field: "year", direction: "desc" }],
+    },
+    {
+      name: "yearAsc",
+      title: "Earliest",
+      by: [{ field: "year", direction: "asc" }],
+    },
+  ],
+  preview: {
+    select: {
+      title: "title",
+      year: "year",
+      range: "range",
+      media: "image",
+    },
+    prepare({ title, year, range, media }) {
+      const midYear = new Date(year).getFullYear();
+      const startYear = midYear - range;
+      const endYear = midYear + range;
+
+      const hasRange = range > 0;
+      const hasYear = year;
+
+      const subtitle =
+        hasYear && hasRange
+          ? `c. ${startYear}-${endYear}`
+          : hasYear
+            ? `${midYear}`
+            : "No year";
+
+      return {
+        title,
+        subtitle,
+        media,
+      };
+    },
+  },
 });
 
 export default Archive;
