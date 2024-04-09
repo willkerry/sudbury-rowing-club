@@ -141,6 +141,11 @@ const SiteSettings = defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: "landingPage.title",
+    },
+  },
 });
 
 export default SiteSettings;
