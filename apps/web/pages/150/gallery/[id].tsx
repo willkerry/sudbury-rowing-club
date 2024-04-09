@@ -14,6 +14,30 @@ import { formatYear } from ".";
 const getGeohackURL = (lat: number, lng: number, title: string) =>
   `https://geohack.toolforge.org/geohack.php?params=${lat};${lng}_globe:earth_type:camera&title=${title}`;
 
+const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;
+
+const formatYearsAgo = (date: string, hasRange: boolean) => {
+  const ago = new Date().getFullYear() - new Date(date).getFullYear();
+
+  if (hasRange) return `around ${roundToNearestFive(ago)} years ago`;
+
+  return `${ago} years ago`;
+};
+
+const ArchiveDate = ({
+  children,
+  range,
+  date,
+}: {
+  children: string;
+  range: number | null;
+  date: string;
+}) => (
+  <div>
+    <span className="tracking-wider">{children}</span> (
+    {formatYearsAgo(date, !!range)})
+  </div>
+);
 export const getStaticPaths = async () => {
   const archives = await fetchArchives();
 
@@ -56,9 +80,11 @@ const Archive: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <div className="max-w-prose pb-8 text-sm text-gray-800">
         <p>{archive.description}</p>
 
-        <p className="mb-6 mt-4 text-xs font-medium tracking-wider text-gray-600">
+        <p className="mb-6 mt-4 text-xs font-medium text-gray-600">
           {archive.year ? (
-            formatYear(archive.year, archive.range)
+            <ArchiveDate date={archive.year} range={archive.range}>
+              {formatYear(archive.year, archive.range)}
+            </ArchiveDate>
           ) : (
             <span className="tracking-normal">Date unknown</span>
           )}
@@ -81,9 +107,20 @@ const Archive: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             </Button>
           )}
 
+          <Button asChild size="xs" variant="secondary">
+            <a
+              href={archive.image.url}
+              rel="noreferrer"
+              target="_blank"
+              download
+            >
+              Download full size image
+            </a>
+          </Button>
+
           <HundredAndFiftyContactButton
             size="xs"
-            variant="secondary"
+            variant="link"
             message={`I would like to help identify or date the photo '${archive.title}', (ID ${archive._id}).\n\nMy message: `}
           >
             Help identify this photo
