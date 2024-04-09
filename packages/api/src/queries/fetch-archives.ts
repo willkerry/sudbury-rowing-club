@@ -9,7 +9,8 @@ const archiveFields = `
   year,
   range,
   alt,
-  "image": image.asset->{url, _id, metadata}`;
+  "image": image.asset->{url, _id, metadata},
+  location`;
 
 const query = groq`*[_type == "archive"] | order(year desc){${archiveFields}}`;
 const queryById = groq`*[_type == "archive" && _id == $id]{${archiveFields}}[0]`;
@@ -56,6 +57,11 @@ const ZImage = z.object({
   metadata: ZMetadata,
 });
 
+const ZLocation = z.object({
+  lat: z.number(),
+  lng: z.number(),
+});
+
 export const ZArchive = z.object({
   title: z.string(),
   description: z.string().nullable(),
@@ -64,6 +70,7 @@ export const ZArchive = z.object({
   alt: z.string().nullable(),
   image: ZImage,
   _id: z.string(),
+  location: ZLocation.nullable(),
 });
 export type Archive = z.infer<typeof ZArchive>;
 
