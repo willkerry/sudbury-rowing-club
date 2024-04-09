@@ -65,7 +65,13 @@ const Join: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Link href="/150/gallery">View the gallery</Link>
           </Button>
 
-          <HundredAndFiftyContactButton />
+          <HundredAndFiftyContactButton
+            variant="link"
+            className="text-white"
+            message={`I'd like to contribute to the 150th anniversary gallery.\n\nNOTE: It isn't possible to attach images to this form: we'll provide a secure way to share them after you send this message.\n\nYour message: `}
+          >
+            Contribute
+          </HundredAndFiftyContactButton>
         </div>
       </Container>
     </div>
