@@ -39,7 +39,7 @@ const Join: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       title={TITLE}
     />
 
-    <div className="relative isolate overflow-hidden bg-gray-900 py-4 text-white">
+    <div className="relative isolate overflow-hidden bg-gray-900 py-4 text-white shadow-lg">
       <HundredAndFiftyFireworks />
       <HundredAndFiftyGradient size="lg" />
 
@@ -64,6 +64,8 @@ const Join: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <Button asChild variant="secondary">
             <Link href="/150/gallery">View the gallery</Link>
           </Button>
+
+          <HundredAndFiftyContactButton />
         </div>
       </Container>
     </div>
