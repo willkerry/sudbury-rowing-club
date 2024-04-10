@@ -36,6 +36,8 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const localDisabled = disabled;
   const randomName = getWodehouseFullDetails();
 
+  const recipientWasProvided = !!initialValues.to;
+
   const { mutateAsync } = useMutation({
     mutationFn: async (values: Record<string, any>) => {
       const response = await fetch("/api/send", {
@@ -99,6 +101,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                   meta={meta}
                   options={optionArray}
                   pristine={pristine}
+                  hidden={recipientWasProvided}
                 />
               )}
             </Field>

@@ -36,7 +36,7 @@ select {
 input:disabled,
 select:disabled,
 textarea:disabled {
-  @apply cursor-not-allowed bg-gray-50 text-gray-300 placeholder:text-gray-300 hover:border-inherit hover:ring-0;
+  @apply cursor-not-allowed bg-gray-50 text-gray-500 placeholder:text-gray-300 hover:border-inherit hover:ring-0;
 }
 
 input.invalid,

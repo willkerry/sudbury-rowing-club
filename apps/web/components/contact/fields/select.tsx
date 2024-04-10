@@ -14,6 +14,7 @@ type Props = {
   }[];
   placeholder?: string;
   pristine: boolean;
+  hidden: boolean;
 };
 
 /**
@@ -29,6 +30,7 @@ const Select = ({
   options,
   disabled,
   pristine,
+  hidden,
 }: Props) => {
   const optionsIterated = options.map((option) => (
     <option key={option.value} value={option.value}>
@@ -36,7 +38,7 @@ const Select = ({
     </option>
   ));
   return (
-    <div className="col-span-2">
+    <div className="col-span-2" hidden={hidden}>
       <label htmlFor={id}>{label}</label>
       <select
         {...input}
