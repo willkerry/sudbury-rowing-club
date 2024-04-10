@@ -11,8 +11,14 @@ import Layout from "@/components/layouts/layout";
 import { Button } from "@/components/ui/button";
 import { formatYear } from ".";
 
-const getGeohackURL = (lat: number, lng: number, title: string) =>
-  `https://geohack.toolforge.org/geohack.php?params=${lat};${lng}_globe:earth_type:camera&title=${title}`;
+const getGeohackURL = (lat: number, lng: number, title: string) => {
+  const url = new URL("https://geohack.toolforge.org/geohack.php");
+
+  url.searchParams.set("params", `${lat};${lng}_globe:earth_type:camera`);
+  url.searchParams.set("title", title);
+
+  return url.toString();
+};
 
 const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;
 
