@@ -1,6 +1,7 @@
 import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
-import { group } from "radash";
+import { useRouter } from "next/router";
+import { dash, group } from "radash";
 import { fetchArchives } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import { ArchiveItem } from "@/components/anniversary/150-archive-item";
@@ -8,6 +9,7 @@ import { HundredAndFiftyBanner } from "@/components/anniversary/150-banner";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
+import Link from "@/components/stour/link";
 
 const TITLE = "150th Anniversary Gallery";
 const DESCRIPTION = "Join us in celebrating 150 years of rowing in Sudbury";
@@ -33,64 +35,79 @@ const formatNextHalfCentury = (year: number | string) => {
 };
 
 export const getStaticProps = async () => {
-  const archives = await fetchArchives();
+  const archivesGroupedByHalfCentury = group(
+    await fetchArchives(),
+    (archive) => {
+      if (!archive.year) return "Unknown";
 
-  const groupedByHalfCentury = group(archives, (archive) => {
-    if (!archive.year) return "Unknown";
-
-    const year = new Date(archive.year)?.getFullYear();
-    return Math.floor(year / 50) * 50;
-  });
-
-  const archivedGroupedByHalfCentury = Object.entries(groupedByHalfCentury).map(
-    ([halfCentury, archives]) => ({
-      decade:
-        halfCentury === "Unknown"
-          ? halfCentury
-          : formatNextHalfCentury(halfCentury),
-      archives,
-    }),
+      const year = new Date(archive.year)?.getFullYear();
+      return Math.floor(year / 50) * 50;
+    },
   );
 
-  return { props: { archives: archivedGroupedByHalfCentury } };
+  return {
+    props: {
+      archives: Object.entries(archivesGroupedByHalfCentury).map(
+        ([halfCentury, archives]) => {
+          const decade = formatNextHalfCentury(halfCentury);
+          const slug = dash(decade).toLowerCase();
+
+          return { decade, slug, archives };
+        },
+      ),
+    },
+  };
 };
 
-const Join: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  archives,
-}) => (
-  <Layout>
-    <NextSeo
-      description={DESCRIPTION}
-      openGraph={{
-        description: DESCRIPTION,
-        images: [
-          {
-            url: makeShareImageURL(TITLE, true, {
-              subtitle: "1874–2024",
-            }),
-          },
-        ],
-        title: TITLE,
-      }}
-      title={TITLE}
-    />
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-    <HundredAndFiftyBanner />
-    <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
+const Join: NextPage<Props> = ({ archives }) => {
+  const router = useRouter();
 
-    <Container className="p-4">
-      {archives.map(({ decade, archives }) => (
-        <div key={decade} className="mb-8">
-          <h2 className="mb-2 text-xl font-medium text-gray-900">{decade}</h2>
-          <div className="sm:masonry-2-col gap-4">
-            {archives?.map((archive) => (
-              <ArchiveItem key={archive._id} {...archive} />
-            ))}
+  return (
+    <Layout>
+      <NextSeo
+        description={DESCRIPTION}
+        openGraph={{
+          description: DESCRIPTION,
+          images: [
+            {
+              url: makeShareImageURL(TITLE, true, {
+                subtitle: "1874–2024",
+              }),
+            },
+          ],
+          title: TITLE,
+        }}
+        title={TITLE}
+      />
+      <HundredAndFiftyBanner />
+      <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
+
+      <Container>
+        <ul className="mb-8 flex flex-wrap gap-x-4">
+          {archives.map(({ decade, slug }) => (
+            <li key={slug}>
+              <Link href={`#${slug}`}>{decade}</Link>
+            </li>
+          ))}
+        </ul>
+
+        {archives.map(({ decade, slug, archives }) => (
+          <div key={slug} className="mb-8">
+            <h2 id={slug} className="mb-2 text-xl font-medium text-gray-900">
+              {decade}
+            </h2>
+            <div className="sm:masonry-2-col gap-4">
+              {archives?.map((archive) => (
+                <ArchiveItem key={archive._id} {...archive} />
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
-    </Container>
-  </Layout>
-);
+        ))}
+      </Container>
+    </Layout>
+  );
+};
 
 export default Join;
