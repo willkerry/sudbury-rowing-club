@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
 import { dash, group } from "radash";
-import { fetchArchives } from "@sudburyrc/api";
+import { Archive, fetchArchives } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import { ArchiveItem } from "@/components/anniversary/150-archive-item";
 import { HundredAndFiftyBanner } from "@/components/anniversary/150-banner";
@@ -10,8 +10,12 @@ import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Link from "@/components/stour/link";
 
-const TITLE = "150th Anniversary Gallery";
-const DESCRIPTION = "Join us in celebrating 150 years of rowing in Sudbury";
+const TITLE = "150th Anniversary Gallery" as const;
+const DESCRIPTION =
+  "Join us in celebrating 150 years of rowing in Sudbury" as const;
+const UNKNOWN = "Unknown" as const;
+
+const ERA = 25;
 
 export const formatYear = (dateString: string | null, range: number | null) => {
   if (!dateString) return "";
@@ -22,10 +26,10 @@ export const formatYear = (dateString: string | null, range: number | null) => {
   return String(year);
 };
 
-const formatNextHalfCentury = (year: number | string) => {
-  if (year === "Unknown") return year;
+const formatEra = (year: number | string) => {
+  if (year === UNKNOWN) return year;
 
-  const limit = Number(year) + 49;
+  const limit = Number(year) + ERA - 1;
 
   const limitLimitedToPresent =
     limit > new Date().getFullYear() ? "present" : limit;
@@ -33,27 +37,27 @@ const formatNextHalfCentury = (year: number | string) => {
   return `${year} to ${limitLimitedToPresent}`;
 };
 
-export const getStaticProps = async () => {
-  const archivesGroupedByHalfCentury = group(
-    await fetchArchives(),
-    (archive) => {
-      if (!archive.year) return "Unknown";
+const discriminateByEra = (archive: Archive) => {
+  if (!archive.year) return UNKNOWN;
 
-      const year = new Date(archive.year)?.getFullYear();
-      return Math.floor(year / 50) * 50;
-    },
-  );
+  const year = new Date(archive.year)?.getFullYear();
+  return Math.floor(year / ERA) * ERA;
+};
+
+const transformArchives = (archives: Partial<Record<string, Archive[]>>) =>
+  Object.entries(archives).map(([era, archives]) => {
+    const formattedEra = formatEra(era);
+    const slug = dash(formattedEra).toLowerCase();
+
+    return { era: formattedEra, slug, archives };
+  });
+
+export const getStaticProps = async () => {
+  const archivesGroupedByEra = group(await fetchArchives(), discriminateByEra);
 
   return {
     props: {
-      archives: Object.entries(archivesGroupedByHalfCentury).map(
-        ([halfCentury, archives]) => {
-          const decade = formatNextHalfCentury(halfCentury);
-          const slug = dash(decade).toLowerCase();
-
-          return { decade, slug, archives };
-        },
-      ),
+      archives: transformArchives(archivesGroupedByEra),
     },
   };
 };
@@ -82,17 +86,17 @@ const Join: NextPage<Props> = ({ archives }) => (
 
     <Container>
       <ul className="mb-8 flex flex-wrap gap-x-4">
-        {archives.map(({ decade, slug }) => (
+        {archives.map(({ era, slug }) => (
           <li key={slug}>
-            <Link href={`#${slug}`}>{decade}</Link>
+            <Link href={`#${slug}`}>{era}</Link>
           </li>
         ))}
       </ul>
 
-      {archives.map(({ decade, slug, archives }) => (
+      {archives.map(({ era, slug, archives }) => (
         <div key={slug} className="mb-8">
           <h2 id={slug} className="mb-2 text-xl font-medium text-gray-900">
-            {decade}
+            {era}
           </h2>
           <div className="sm:masonry-2-col gap-4">
             {archives?.map((archive) => (
