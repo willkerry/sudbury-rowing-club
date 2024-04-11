@@ -1,6 +1,5 @@
 import { InferGetStaticPropsType, NextPage } from "next";
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
 import { dash, group } from "radash";
 import { fetchArchives } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
@@ -61,53 +60,49 @@ export const getStaticProps = async () => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Join: NextPage<Props> = ({ archives }) => {
-  const router = useRouter();
+const Join: NextPage<Props> = ({ archives }) => (
+  <Layout>
+    <NextSeo
+      description={DESCRIPTION}
+      openGraph={{
+        description: DESCRIPTION,
+        images: [
+          {
+            url: makeShareImageURL(TITLE, true, {
+              subtitle: "1874–2024",
+            }),
+          },
+        ],
+        title: TITLE,
+      }}
+      title={TITLE}
+    />
+    <HundredAndFiftyBanner />
+    <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
 
-  return (
-    <Layout>
-      <NextSeo
-        description={DESCRIPTION}
-        openGraph={{
-          description: DESCRIPTION,
-          images: [
-            {
-              url: makeShareImageURL(TITLE, true, {
-                subtitle: "1874–2024",
-              }),
-            },
-          ],
-          title: TITLE,
-        }}
-        title={TITLE}
-      />
-      <HundredAndFiftyBanner />
-      <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
-
-      <Container>
-        <ul className="mb-8 flex flex-wrap gap-x-4">
-          {archives.map(({ decade, slug }) => (
-            <li key={slug}>
-              <Link href={`#${slug}`}>{decade}</Link>
-            </li>
-          ))}
-        </ul>
-
-        {archives.map(({ decade, slug, archives }) => (
-          <div key={slug} className="mb-8">
-            <h2 id={slug} className="mb-2 text-xl font-medium text-gray-900">
-              {decade}
-            </h2>
-            <div className="sm:masonry-2-col gap-4">
-              {archives?.map((archive) => (
-                <ArchiveItem key={archive._id} {...archive} />
-              ))}
-            </div>
-          </div>
+    <Container>
+      <ul className="mb-8 flex flex-wrap gap-x-4">
+        {archives.map(({ decade, slug }) => (
+          <li key={slug}>
+            <Link href={`#${slug}`}>{decade}</Link>
+          </li>
         ))}
-      </Container>
-    </Layout>
-  );
-};
+      </ul>
+
+      {archives.map(({ decade, slug, archives }) => (
+        <div key={slug} className="mb-8">
+          <h2 id={slug} className="mb-2 text-xl font-medium text-gray-900">
+            {decade}
+          </h2>
+          <div className="sm:masonry-2-col gap-4">
+            {archives?.map((archive) => (
+              <ArchiveItem key={archive._id} {...archive} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </Container>
+  </Layout>
+);
 
 export default Join;
