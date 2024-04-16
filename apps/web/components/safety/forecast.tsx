@@ -19,9 +19,9 @@ const ForecastComponent = () => {
   if (status === "error") return null;
 
   return (
-    <div className="w-full bg-gray-100 p-3 sm:px-4">
+    <div className="overflow-x-scroll bg-gray-100">
       <Loading visible={status === "pending"}>
-        <div className="grid w-full grid-cols-7 gap-1">
+        <div className="grid w-full min-w-[30rem] grid-cols-7 gap-1 p-3">
           {forecast?.map(({ beaufort, code, date, maxTemp, minTemp }) => (
             <a
               key={String(date)}
@@ -40,7 +40,7 @@ const ForecastComponent = () => {
 
               <div
                 className={cn(
-                  "disambiguate mb-0.5 text-xs font-semibold transition",
+                  "disambiguate mb-0.5 whitespace-nowrap text-xs font-semibold transition",
                   maxTemp > 30 || minTemp < 4
                     ? "font-bold text-red-600 underline decoration-red-300 underline-offset-2"
                     : "text-gray-700 group-hover:text-blue-500",
