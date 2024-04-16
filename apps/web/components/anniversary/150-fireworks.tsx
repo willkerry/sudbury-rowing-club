@@ -7,8 +7,8 @@ export const HundredAndFiftyFireworks = () => (
     className="absolute inset-0"
     options={{
       hue: { min: 205, max: 220 },
-      sound: { enabled: false },
       intensity: 5,
+      mouse: { click: true, move: false },
     }}
   />
 );
