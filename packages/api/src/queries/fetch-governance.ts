@@ -14,6 +14,9 @@ const ZDocument = z.object({
   url: z.string().nullable(),
   file: z.string().nullable(),
   fileOrLink: z.string(),
+  mimeType: z.string().nullable(),
+  /** in bytes */
+  size: z.number().nullable(),
 });
 
 const ZOfficer = z.object({
@@ -105,6 +108,8 @@ const query = groq`{
       name,
       url,
       "file": file.asset->url,
+      "mimeType": file.asset->mimeType,
+      "size": file.asset->size,
       fileOrLink
   }
 }}`;
