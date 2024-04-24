@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { shuffle } from "radash";
 import { cn } from "@/lib/utils";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
@@ -86,14 +87,23 @@ const LogoList = ({
   </ul>
 );
 
-const sponsorLogos = shuffle(logos.filter(({ type }) => type === "sponsor"));
+const sponsorLogos = logos.filter(({ type }) => type === "sponsor");
 const affiliateLogos = logos.filter(({ type }) => type === "affiliate");
 
-const Sponsors = () => (
-  <>
-    <LogoList logos={sponsorLogos} />
-    <LogoList logos={affiliateLogos} className="md:justify-center md:gap-8" />
-  </>
-);
+const Sponsors = () => {
+  const [shuffledSponsorLogos, setShuffledSponsorLogos] =
+    useState(sponsorLogos);
+
+  useEffect(() => {
+    setShuffledSponsorLogos(shuffle(sponsorLogos));
+  }, []);
+
+  return (
+    <>
+      <LogoList logos={shuffledSponsorLogos} />
+      <LogoList logos={affiliateLogos} className="md:justify-center md:gap-8" />
+    </>
+  );
+};
 
 export default Sponsors;
