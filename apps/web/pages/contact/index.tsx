@@ -47,6 +47,10 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
 
+  const initialRecipientName =
+    guessedRecipient?.name ||
+    officers.find((o) => o._id === initialValues.to)?.name;
+
   return (
     <Layout>
       <NextSeo
@@ -64,7 +68,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         prose
         title={
           initialValues.to
-            ? `Contact ${guessedRecipient?.name}`
+            ? `Contact ${initialRecipientName}`
             : "Contact a club officer"
         }
         color="transparent"
