@@ -1,3 +1,4 @@
+import { shuffle } from "radash";
 import { cn } from "@/lib/utils";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Errc from "@/components/landing/sponsors/errc";
@@ -85,7 +86,7 @@ const LogoList = ({
   </ul>
 );
 
-const sponsorLogos = logos.filter(({ type }) => type === "sponsor");
+const sponsorLogos = shuffle(logos.filter(({ type }) => type === "sponsor"));
 const affiliateLogos = logos.filter(({ type }) => type === "affiliate");
 
 const Sponsors = () => (
