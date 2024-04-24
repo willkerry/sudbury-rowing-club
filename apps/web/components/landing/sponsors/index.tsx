@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Errc from "@/components/landing/sponsors/errc";
@@ -61,9 +60,9 @@ const logos: SponsorLogo[] = [
 ];
 const LogoListItem = ({ logo, href, name }: SponsorLogo) => (
   <li key={`${href}${name}`}>
-    <Link href={href} aria-label={name}>
+    <a href={href} aria-label={name} target="_blank" rel="noopener noreferrer">
       {logo}
-    </Link>
+    </a>
   </li>
 );
 
