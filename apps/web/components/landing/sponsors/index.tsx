@@ -89,7 +89,7 @@ const logos: SponsorLogo[] = [
         src={britishRowing}
         alt=""
         aria-hidden
-        className="h-8 w-auto select-none lg:h-4"
+        className="h-8 w-auto select-none"
       />
     ),
     href: "https://britishrowing.org/",
