@@ -90,7 +90,7 @@ const LogoList = ({
 const sponsorLogos = logos.filter(({ type }) => type === "sponsor");
 const affiliateLogos = logos.filter(({ type }) => type === "affiliate");
 
-const Sponsors = () => {
+const Sponsors = ({ excludeAffiliates = false }) => {
   const [shuffledSponsorLogos, setShuffledSponsorLogos] =
     useState(sponsorLogos);
 
@@ -101,7 +101,12 @@ const Sponsors = () => {
   return (
     <>
       <LogoList logos={shuffledSponsorLogos} />
-      <LogoList logos={affiliateLogos} className="md:justify-center md:gap-8" />
+      {!excludeAffiliates && (
+        <LogoList
+          logos={affiliateLogos}
+          className="md:justify-center md:gap-8"
+        />
+      )}{" "}
     </>
   );
 };
