@@ -1,10 +1,12 @@
 import { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
-import { fetchOfficerNames } from "@sudburyrc/api";
+import groq from "groq";
+import { fetchOfficerNames, sanityClient } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
+import Gallery from "@/components/regatta/landing-page/gallery";
 import { SponsorshipHero } from "@/components/sponsorship/sponsorship-hero";
 import { SponsorshipTiers } from "@/components/sponsorship/sponsorship-tiers";
 import Hero from "@/components/stour/hero";
@@ -76,15 +78,31 @@ export const getStaticProps = async () => {
     role.toLowerCase().includes("sponsor"),
   );
 
+  const images: {
+    _id: string;
+    caption: string;
+    lqip: string;
+    aspectRatio: number;
+  }[] = await sanityClient.fetch(groq`
+  *[_id == "siteSettings" && !(_id in path("drafts.**"))][0].landingPage.images[] {
+        caption,
+        "_id": asset->_id,
+        "lqip": asset->metadata.lqip,
+        "aspectRatio": asset->metadata.dimensions.aspectRatio
+      }
+  `);
+
   return {
     props: {
       sponsorshipOfficer,
+      images,
     },
   };
 };
 
 const SponsorshipPage = ({
   sponsorshipOfficer,
+  images,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <Layout>
     <NextSeo
@@ -122,6 +140,10 @@ const SponsorshipPage = ({
         </p>
       </div>
     </Container>
+
+    <div className="py-24">
+      <Gallery images={images} />
+    </div>
 
     <Container className="mb-24 mt-12">
       <Hero label="The need" title="Why do we need sponsors?" />
