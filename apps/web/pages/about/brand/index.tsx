@@ -344,9 +344,9 @@ const Brand = () => (
         <a href="https://fonts.adobe.com/fonts/sweet-sans-pro">
           <strong>Sweet Sans Pro</strong>
         </a>{" "}
-        by Neil Summerour, for the logo. This is a commercial typeface, licensed
-        only for the logo design. It was chosen for its resemblance to the
-        lettering pressed into an early 20th-century set of club Christmas
+        by Mark van Bronkhorst, for the logo. This is a commercial typeface,
+        licensed only for the logo design. It was chosen for its resemblance to
+        the lettering pressed into an early 20th-century set of club Christmas
         cards.
       </li>
 
