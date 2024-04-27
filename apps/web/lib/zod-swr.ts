@@ -15,7 +15,7 @@ const useZodSWR = <T extends z.ZodType<any, any>>(
   fetcher: QueryFunction<z.infer<T>>,
   config?: UndefinedInitialDataOptions<z.infer<T>>,
 ) => {
-  const { data, error } = useQuery({
+  const { data, error, ...rest } = useQuery({
     queryKey: key,
     queryFn: fetcher,
     ...config,
@@ -27,7 +27,7 @@ const useZodSWR = <T extends z.ZodType<any, any>>(
     throw new Error(`Data do not match the schema. ${parse.error}`);
   }
 
-  return { data, error };
+  return { data, error, ...rest };
 };
 
 export default useZodSWR;
