@@ -50,7 +50,6 @@ const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
       {status === "success" ? (
         <img
           src={base64Image}
-          security="anonymous"
           alt={post.alt || ""}
           width={post.dimensionsWidth}
           height={post.dimensionsHeight}
