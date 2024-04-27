@@ -18,14 +18,17 @@ const useZodSWR = <T extends z.ZodType<any, any>>(
   const { data, error, ...rest } = useQuery({
     queryKey: key,
     queryFn: fetcher,
+    select: (data) => {
+      const parse = schema.safeParse(data);
+
+      if (data && parse.success === false) {
+        throw new Error(`Data do not match the schema.`);
+      }
+
+      return data;
+    },
     ...config,
   });
-
-  const parse = schema.safeParse(data);
-
-  if (data && parse.success === false) {
-    throw new Error(`Data do not match the schema. ${parse.error}`);
-  }
 
   return { data, error, ...rest };
 };
