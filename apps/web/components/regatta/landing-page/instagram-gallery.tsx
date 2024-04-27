@@ -63,7 +63,7 @@ const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
         </div>
       )}
 
-      <figcaption className="p-2 text-xs hover:cursor-pointer">
+      <figcaption className="p-2 text-xs">
         <p className="whitespace-pre-wrap leading-tight">
           <div className="line-clamp-6">
             <span className="font-semibold">{post.ownerUsername}</span>{" "}
