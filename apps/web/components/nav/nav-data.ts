@@ -162,7 +162,7 @@ const secondaryNavigationGroups: NavigationGroup[] = [
       },
       {
         name: "Rates",
-        href: "/members/rates",
+        href: "/members/membership-rates",
       },
       {
         name: "Squadlist",

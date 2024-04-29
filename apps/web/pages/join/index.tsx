@@ -152,9 +152,7 @@ const Join: NextPage = () => (
             portal. We offer a considerable variety of membership rates (e.g.
             short term, student, family, etc.) and you can find out more about
             these{" "}
-            <a href="https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories">
-              on our membership page
-            </a>
+            <Link href="/members/membership-rates">on our membership page</Link>
             .
           </p>
           <p className="font-medium">
