@@ -27,8 +27,8 @@ const LandingHero = ({
     <div className="group relative flex overflow-hidden rounded shadow">
       <Image
         {...useSanityImageProps(imageId)}
-        width={984}
-        height={984 / imageAspectRatio}
+        width={992}
+        height={992 / imageAspectRatio}
         alt="Aerial photograph of a Sudbury crew training."
         quality={30}
         placeholder="blur"
