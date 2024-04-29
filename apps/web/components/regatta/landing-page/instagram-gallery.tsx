@@ -1,8 +1,5 @@
-import {
-  useDebouncedValue,
-  useInViewport,
-  useReducedMotion,
-} from "@mantine/hooks";
+import { useEffect, useState } from "react";
+import { useInViewport, useReducedMotion } from "@mantine/hooks";
 import AutoScroll from "embla-carousel-auto-scroll";
 import Instagram from "@/components/icons/socials/instagram";
 import Container from "@/components/layouts/container";
@@ -25,10 +22,17 @@ const PLACEHOLDER = `█████████\n\n█████████ 
 
 const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
   const { ref, inViewport } = useInViewport();
-  const [throttledInViewport] = useDebouncedValue(inViewport, 500);
+  const [latchedInViewport, setLatchedInViewport] = useState(inViewport);
+
+  useEffect(() => {
+    if (inViewport) {
+      setLatchedInViewport(true);
+    }
+  }, [inViewport]);
+
   return (
     <figure className="relative overflow-hidden rounded border" ref={ref}>
-      {throttledInViewport ? (
+      {latchedInViewport ? (
         <img
           src={post.displayUrl}
           alt={post.alt || ""}
