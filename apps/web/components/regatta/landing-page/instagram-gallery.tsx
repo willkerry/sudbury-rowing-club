@@ -1,7 +1,6 @@
 import {
   useDebouncedValue,
   useInViewport,
-  useLogger,
   useReducedMotion,
 } from "@mantine/hooks";
 import AutoScroll from "embla-carousel-auto-scroll";
@@ -27,8 +26,6 @@ const PLACEHOLDER = `█████████\n\n█████████ 
 const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
   const { ref, inViewport } = useInViewport();
   const [throttledInViewport] = useDebouncedValue(inViewport, 500);
-  useLogger("InstagramFullPost", [{ inViewport }, { throttledInViewport }]);
-
   return (
     <figure className="relative overflow-hidden rounded border" ref={ref}>
       {throttledInViewport ? (
