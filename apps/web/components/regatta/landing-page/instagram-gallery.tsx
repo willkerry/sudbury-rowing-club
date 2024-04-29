@@ -1,5 +1,9 @@
-import { useInViewport, useReducedMotion } from "@mantine/hooks";
-import { useQuery } from "@tanstack/react-query";
+import {
+  useDebouncedValue,
+  useInViewport,
+  useLogger,
+  useReducedMotion,
+} from "@mantine/hooks";
 import AutoScroll from "embla-carousel-auto-scroll";
 import Instagram from "@/components/icons/socials/instagram";
 import Container from "@/components/layouts/container";
@@ -15,49 +19,30 @@ import useInstagramPosts, {
   type InstagramPost,
 } from "@/hooks/useInstagramPosts";
 
-const CORS_PROXY = "https://corsproxy.io/?";
+const IMAGE_CLASS_NAME =
+  "h-48 w-full border-b bg-gray-100 object-cover sm:h-64";
 
-const proxy = (url: string) => `${CORS_PROXY}${encodeURIComponent(url)}`;
+const PLACEHOLDER = `█████████\n\n█████████ ███ ██████ ███ ███\n█ ██████ ██ █████ █ ███ ███ ███ █████████\n\n██████  █████  █████`;
 
 const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
   const { ref, inViewport } = useInViewport();
-
-  const { data: base64Image, status } = useQuery({
-    queryKey: ["base64Image", post.displayUrl],
-    queryFn: async () => {
-      const response = await fetch(proxy(post.displayUrl));
-      const blob = await response.blob();
-      const reader = new FileReader();
-
-      return new Promise<string>((resolve, reject) => {
-        reader.onloadend = () => {
-          resolve(reader.result as string);
-        };
-
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    },
-    staleTime: Infinity,
-    enabled: inViewport,
-  });
-
-  const imageClassName =
-    "h-48 w-full border-b bg-gray-100 object-cover sm:h-64";
+  const [throttledInViewport] = useDebouncedValue(inViewport, 500);
+  useLogger("InstagramFullPost", [{ inViewport }, { throttledInViewport }]);
 
   return (
     <figure className="relative overflow-hidden rounded border" ref={ref}>
-      {status === "success" ? (
+      {throttledInViewport ? (
         <img
-          src={base64Image}
+          src={post.displayUrl}
           alt={post.alt || ""}
           width={post.dimensionsWidth}
           height={post.dimensionsHeight}
-          className={imageClassName}
+          className={IMAGE_CLASS_NAME}
           ref={ref}
+          loading="lazy"
         />
       ) : (
-        <div className={imageClassName}>
+        <div className={IMAGE_CLASS_NAME}>
           <Loading />
         </div>
       )}
@@ -106,15 +91,17 @@ export const InstagramGallery = () => {
     >
       <CarouselContent className="mx-4">
         {status === "success" &&
-          posts?.map((post) => (
-            <CarouselItem
-              key={post.id}
-              id={post.id}
-              className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
-            >
-              <InstagramFullPost post={post} />
-            </CarouselItem>
-          ))}
+          posts
+            ?.filter((post) => post.type === "Image" || post.type === "Sidecar")
+            .map((post) => (
+              <CarouselItem
+                key={post.id}
+                id={post.id}
+                className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
+              >
+                <InstagramFullPost post={post} />
+              </CarouselItem>
+            ))}
 
         {status === "pending" &&
           new Array(6).fill(null).map((_, index) => (
@@ -123,9 +110,12 @@ export const InstagramGallery = () => {
               key={index}
               className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
             >
-              <figure className="divide-y overflow-hidden rounded border">
-                <div className="h-48 w-full bg-gray-100 object-cover sm:h-64">
+              <figure className="overflow-hidden rounded border">
+                <div className={IMAGE_CLASS_NAME}>
                   <Loading />
+                </div>
+                <div className="whitespace-pre-wrap p-2 text-xs text-gray-300 blur">
+                  <p>{PLACEHOLDER}</p>
                 </div>
               </figure>
             </CarouselItem>
