@@ -109,13 +109,14 @@ export const InstagramGallery = () => {
             <CarouselItem
               // eslint-disable-next-line react/no-array-index-key
               key={index}
-              className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
+              className="basis-[80%] animate-pulse sm:basis-1/2 lg:basis-1/4"
             >
               <figure className="overflow-hidden rounded border">
-                <div className={IMAGE_CLASS_NAME}>
-                  <Loading />
-                </div>
-                <div className="whitespace-pre-wrap p-2 text-xs text-gray-300 blur">
+                <div className={IMAGE_CLASS_NAME} />
+                <div
+                  className="whitespace-pre-wrap p-2 text-xs opacity-0"
+                  aria-hidden
+                >
                   <p>{PLACEHOLDER}</p>
                 </div>
               </figure>
