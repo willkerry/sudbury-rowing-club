@@ -161,6 +161,10 @@ const secondaryNavigationGroups: NavigationGroup[] = [
         href: "/members/kit",
       },
       {
+        name: "Rates",
+        href: "/members/rates",
+      },
+      {
         name: "Squadlist",
         href: "https://sudbury.squadlist.app",
         icon: CalendarIcon,
