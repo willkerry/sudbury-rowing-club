@@ -16,7 +16,7 @@ import useInstagramPosts, {
 } from "@/hooks/useInstagramPosts";
 
 const IMAGE_CLASS_NAME =
-  "h-48 w-full border-b bg-gray-100 object-cover sm:h-64";
+  "h-48 w-full border-b bg-gray-100 object-cover sm:h-80";
 
 const PLACEHOLDER = `█████████\n\n█████████ ███ ██████ ███ ███\n█ ██████ ██ █████ █ ███ ███ ███ █████████\n\n██████  █████  █████`;
 
