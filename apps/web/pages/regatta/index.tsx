@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { REGATTA } from "@/lib/constants";
+import { getClub } from "@/lib/getClub";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import DateLocation from "@/components/regatta/landing-page/date-location";
@@ -44,12 +45,37 @@ const CompetitorInformation = dynamic(
   { loading: () => <Loading /> },
 );
 
-export const getStaticProps = async () => ({
-  props: {
-    ...(await fetchRegattaSettings()),
-    regattas: await fetchRegattas(),
-  },
-});
+export const getStaticProps = async () => {
+  const regattaSettings = await fetchRegattaSettings();
+  const regattas = await fetchRegattas();
+
+  const regattasWithTestimonials = regattas.map((regatta) => ({
+    ...regatta,
+    testimonials:
+      regatta?.testimonials?.map((testimonial) => {
+        const name = testimonial.club || testimonial.name;
+
+        const probableClubName = name.split(", ")[1] || name;
+        const club = getClub(probableClubName);
+
+        if (!club) return testimonial;
+
+        return {
+          ...testimonial,
+          clubBladeUrl: club.bladeUrl,
+          clubHref: club.href,
+          clubName: club.name,
+        };
+      }) || null,
+  }));
+
+  return {
+    props: {
+      ...regattaSettings,
+      regattas: regattasWithTestimonials,
+    },
+  };
+};
 
 const {
   EVENT_NAME_LONG,

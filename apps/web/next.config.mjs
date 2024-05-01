@@ -8,6 +8,10 @@ const config = {
         hostname: "cdn.sanity.io",
         protocol: "https",
       },
+      {
+        hostname: "clubimages.britishrowing.org",
+        protocol: "https",
+      },
     ],
   },
   swcMinify: true,

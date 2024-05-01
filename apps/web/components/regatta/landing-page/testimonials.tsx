@@ -1,9 +1,17 @@
-import { type Regatta } from "@sudburyrc/api";
 import ordinal from "@/lib/helpers/ordinal";
 import Label from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
-import Testimonial from "@/components/stour/testimonial";
+import Testimonial, {
+  type TestimonialType,
+} from "@/components/stour/testimonial/testimonial";
 import DateFormatter from "@/components/utils/date-formatter";
+
+type Regatta = {
+  _id: string;
+  number: number;
+  date: string;
+  testimonials: TestimonialType[] | null;
+};
 
 const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
   <>
