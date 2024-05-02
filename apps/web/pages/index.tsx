@@ -8,8 +8,6 @@ import { HundredAndFiftyCta } from "@/components/anniversary/150-cta";
 import Feed from "@/components/landing/feed";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Label from "@/components/stour/label";
-import Link from "@/components/stour/link";
 import { type NoteProps } from "@/components/stour/note/note";
 
 const Note = dynamic(() => import("@/components/stour/note"));
@@ -20,11 +18,6 @@ const LandingCTA = dynamic(() => import("@/components/landing/cta"));
 const Introduction = dynamic(() => import("@/components/landing/introduction"));
 const LatestNews = dynamic(() => import("@/components/landing/latest-news"));
 const LandingHero = dynamic(() => import("@/components/landing/landing-hero"));
-const InstagramGallery = dynamic(() =>
-  import("@/components/regatta/landing-page/instagram-gallery").then(
-    (mod) => mod.InstagramGallery,
-  ),
-);
 
 export type LandingPageProps = {
   description: PortableTextProps["value"];
@@ -94,23 +87,6 @@ const Home: NextPage<{
 
     <Gallery images={images} />
     <LatestNews news={news} />
-
-    <div>
-      <Container>
-        <h2>
-          <Label>Latest Instagram posts</Label>
-        </h2>
-        <p className="mb-8">
-          Follow us on{" "}
-          <Link href="https://www.instagram.com/sudburyrowingclubuk/">
-            Instagram
-          </Link>{" "}
-          for more updates.
-        </p>
-      </Container>
-
-      <InstagramGallery />
-    </div>
 
     <Container>
       <Feed />
