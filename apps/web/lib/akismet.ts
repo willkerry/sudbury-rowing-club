@@ -1,3 +1,5 @@
+import { BASE_URL } from "./constants";
+
 const API_KEY = "6c80e09f5c4d";
 
 export default async function checkForSpam(
@@ -10,7 +12,7 @@ export default async function checkForSpam(
 ): Promise<boolean> {
   const body = new URLSearchParams({
     api_key: API_KEY,
-    blog: "https://sudburyrowingclub.org.uk/",
+    blog: BASE_URL,
     user_ip: userIp,
     user_agent: userAgent,
     referrer,
