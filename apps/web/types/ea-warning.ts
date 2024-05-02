@@ -43,9 +43,9 @@ export const EAWarningSchema = z
     message: z.string().optional(),
     severity: z.string(),
     severityLevel: SeverityLevelSchema,
-    timeMessageChanged: z.string().transform((date) => new Date(date)),
-    timeRaised: z.string().transform((date) => new Date(date)),
-    timeSeverityChanged: z.string().transform((date) => new Date(date)),
+    timeMessageChanged: z.coerce.date(),
+    timeRaised: z.coerce.date(),
+    timeSeverityChanged: z.coerce.date(),
   })
   .optional();
 

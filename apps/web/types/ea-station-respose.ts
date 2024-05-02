@@ -2,7 +2,7 @@ import * as z from "zod";
 
 const HighestRecentSchema = z.object({
   "@id": z.string(),
-  dateTime: z.string().transform((date) => new Date(date)),
+  dateTime: z.coerce.date(),
   value: z.number(),
 });
 
@@ -19,8 +19,8 @@ const StageScaleSchema = z.object({
 
 const LatestReadingSchema = z.object({
   "@id": z.string(),
-  date: z.string().transform((date) => new Date(date)),
-  dateTime: z.string().transform((date) => new Date(date)),
+  date: z.coerce.date(),
+  dateTime: z.coerce.date(),
   measure: z.string(),
   value: z.number(),
 });
@@ -47,7 +47,7 @@ export const EAStationResponseSchema = z.object({
   "@id": z.string(),
   RLOIid: z.string(),
   catchmentName: z.string(),
-  dateOpened: z.string().transform((date) => new Date(date)),
+  dateOpened: z.coerce.date(),
   datumOffset: z.number(),
   eaAreaName: z.string(),
   eaRegionName: z.string(),

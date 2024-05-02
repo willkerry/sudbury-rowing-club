@@ -40,7 +40,7 @@ const ZForecastResponse = z.object({
     temperature_2m_max: z.array(z.number()),
     temperature_2m_min: z.array(z.number()),
     /** Will be in form 2023-01-10, but is transformed to Date by Zod */
-    time: z.array(z.string().transform((s) => new Date(s))),
+    time: z.array(z.coerce.date()),
     windspeed_10m_max: z.array(z.number()),
     winddirection_10m_dominant: z.array(z.number()),
   }),

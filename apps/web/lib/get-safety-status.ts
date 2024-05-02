@@ -9,7 +9,7 @@ import { Severity } from "@/types/severity";
 import { CLUB_LOCATION } from "./constants";
 
 const SanityStatusSchema = z.object({
-  _updatedAt: z.string().transform((date) => new Date(date)),
+  _updatedAt: z.coerce.date(),
   description: z.string(),
   display: z.boolean(),
   status: z.nativeEnum(Severity),

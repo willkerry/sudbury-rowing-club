@@ -11,7 +11,7 @@ const schema = z.array(
     title: z.object({
       rendered: z.string(),
     }),
-    date: z.string().transform((date) => new Date(date)),
+    date: z.coerce.date(),
     link: z.string(),
   }),
 );
