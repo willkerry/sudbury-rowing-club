@@ -186,8 +186,6 @@ const MYCLUBHOUSE_RATES_URL =
   "https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories";
 
 const scrapeMembershipData = async () => {
-  console.log("scrapeMembershipData");
-
   const dom = await JSDOM.fromURL(MYCLUBHOUSE_RATES_URL);
   const { window } = dom;
   const { document } = window;
