@@ -203,7 +203,5 @@ const scrapeMembershipData = async () => {
 export const scrapeRatesTable = async () => {
   const membershipData = await scrapeMembershipData();
 
-  console.log(membershipData.Groups[0].Memberships);
-
   return membershipData.Groups[0].Memberships;
 };
