@@ -36,8 +36,8 @@ const LandingHero = ({
         priority
       />
       <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-3 p-6 sm:gap-8 sm:p-12 md:gap-12 md:p-24 lg:gap-14">
-        <BoathouseDoor aria-hidden className="w-full text-white" />
-        <span className="rounded-full bg-white px-1 py-0.5 text-xs font-medium text-black mix-blend-screen shadow backdrop-blur sm:text-sm md:px-3 md:py-1 md:text-base">
+        <BoathouseDoor aria-hidden className="z-10 w-full text-white" />
+        <span className="z-10 rounded-full bg-white px-1 py-0.5 text-xs font-medium text-black mix-blend-screen shadow backdrop-blur sm:text-sm md:px-3 md:py-1 md:text-base">
           {slogan}
         </span>
       </div>

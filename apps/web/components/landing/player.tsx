@@ -1,61 +1,99 @@
-import { useState } from "react";
-import YouTube from "react-youtube";
-import { Dialog, Transition } from "@headlessui/react";
-import { PlayIcon } from "@heroicons/react/20/solid";
+import { useRef, useState } from "react";
+import {
+  EllipsisHorizontalCircleIcon,
+  ExclamationCircleIcon,
+  PauseCircleIcon,
+  PlayCircleIcon,
+} from "@heroicons/react/24/solid";
 
 type Props = {
   youTubeId: string;
   youTubeStart: number;
 };
 
-const options = (startTime: number) => ({
-  playerVars: {
-    autoplay: 1,
-    controls: 0,
-    modestbranding: 1,
-    start: startTime,
-    mute: 1,
-  },
-});
+type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 
-const Player = ({ youTubeId, youTubeStart }: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+const controlIcons: Record<PlayerState, typeof PlayCircleIcon> = {
+  idle: PlayCircleIcon,
+  loading: EllipsisHorizontalCircleIcon,
+  paused: PauseCircleIcon,
+  playing: PauseCircleIcon,
+  error: ExclamationCircleIcon,
+};
+
+const controlText: Record<PlayerState, string> = {
+  idle: "Play video",
+  loading: "Loading video",
+  paused: "Pause video",
+  playing: "Pause video",
+  error: "Error",
+};
+
+const Player = ({ youTubeId: _, youTubeStart: __ }: Props) => {
+  const [playerState, setPlayerState] = useState<PlayerState>("idle");
+
+  const ref = useRef<HTMLVideoElement>(null);
+
+  const setError = () => setPlayerState("error");
+  const setIdle = () => setPlayerState("idle");
+  const setLoading = () => setPlayerState("loading");
+  const setPaused = () => setPlayerState("paused");
+  const setPlaying = () => setPlayerState("playing");
+
+  const clickHandlers: Record<PlayerState, () => void> = {
+    error: setError,
+    idle: setLoading,
+    loading: setPaused,
+    paused: () => {
+      setPlaying();
+      ref.current?.play();
+    },
+    playing: () => {
+      setPaused();
+      ref.current?.pause();
+    },
+  };
+
+  const handleClick = () => clickHandlers[playerState]();
+
+  const Icon = controlIcons[playerState];
+  const text = controlText[playerState];
+
   return (
-    <>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        type="button"
-        className="absolute bottom-3 right-3 text-white sm:bottom-7 sm:right-7"
-      >
-        <PlayIcon aria-hidden className="h-8 w-8 md:h-10 md:w-10" />
-        <div className="sr-only">Play video</div>
-      </button>
-
-      <Transition
-        show={isOpen}
-        enter="transition duration-100 ease-out"
-        enterFrom="transform scale-95 opacity-0"
-        enterTo="transform scale-100 opacity-100"
-        leave="transition duration-75 ease-out"
-        leaveFrom="transform scale-100 opacity-100"
-        leaveTo="transform scale-95 opacity-0"
-      >
-        <Dialog
-          open={isOpen}
-          onClose={() => setIsOpen(false)}
-          className="fixed inset-0 z-40 overflow-y-auto"
+    <div className="absolute inset-0 w-full">
+      {playerState !== "idle" && (
+        <video
+          ref={ref}
+          className="aspect-h-9 aspect-w-16 absolute inset-0 z-0 w-full"
+          autoPlay
+          muted
+          onPlaying={setPlaying}
+          onEnded={setIdle}
+          onError={setError}
         >
-          <Dialog.Overlay className="absolute inset-0 bg-black opacity-70 backdrop-blur" />
-          <div className="flex h-full w-full items-center justify-center p-2 sm:p-10 md:p-20 lg:p-40 xl:p-60">
-            <YouTube
-              videoId={youTubeId}
-              opts={options(youTubeStart)}
-              className="aspect-h-9 aspect-w-16 z-50 w-full overflow-hidden rounded-lg bg-white shadow-xl"
-            />
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+          <source
+            src="https://cdn.sudburyrowingclub.org.uk/media%2Flanding_page_h265.mp4"
+            type="video/mp4"
+          />
+          <source
+            src="https://cdn.sudburyrowingclub.org.uk/media%2Flanding_page_h264.mp4"
+            type="video/mp4"
+          />
+        </video>
+      )}
+
+      <button
+        disabled={playerState === "loading"}
+        onClick={handleClick}
+        type="button"
+        className="absolute bottom-3 right-3 z-10 text-white"
+      >
+        <>
+          <Icon aria-hidden className="h-6 w-6" />
+          <div className="sr-only">{text}</div>
+        </>
+      </button>
+    </div>
   );
 };
 
