@@ -30,7 +30,12 @@ module.exports = {
     "sort-keys-fix/sort-keys-fix": 0, // switch on in order to enable auto-sort of keys
     "react/react-in-jsx-scope": 0,
     "jsx-a11y/anchor-is-valid": 0,
+
+    /* These two try to enforce something that’s crucial, but they somehow nearly
+     * always flag errors in compliant code. */
     "jsx-a11y/control-has-associated-label": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+
     "import/extensions": 0,
     "import/no-unresolved": 1,
     "react/jsx-filename-extension": [
