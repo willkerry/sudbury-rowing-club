@@ -1,12 +1,10 @@
 import { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
-import groq from "groq";
-import { fetchOfficerNames, sanityClient } from "@sudburyrc/api";
+import { fetchOfficerNames } from "@sudburyrc/api";
 import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import Gallery from "@/components/regatta/landing-page/gallery";
 import { SponsorshipHero } from "@/components/sponsorship/sponsorship-hero";
 import { SponsorshipTiers } from "@/components/sponsorship/sponsorship-tiers";
 import Hero from "@/components/stour/hero";
@@ -69,8 +67,6 @@ const SPONSORSHIP_TIERS = {
   }
 >;
 
-const EMPHASISED_INDEX = 2;
-
 export const getStaticProps = async () => {
   const officers = await fetchOfficerNames();
 
@@ -78,31 +74,15 @@ export const getStaticProps = async () => {
     role.toLowerCase().includes("sponsor"),
   );
 
-  const images: {
-    _id: string;
-    caption: string;
-    lqip: string;
-    aspectRatio: number;
-  }[] = await sanityClient.fetch(groq`
-  *[_id == "siteSettings" && !(_id in path("drafts.**"))][0].landingPage.images[] {
-        caption,
-        "_id": asset->_id,
-        "lqip": asset->metadata.lqip,
-        "aspectRatio": asset->metadata.dimensions.aspectRatio
-      }
-  `);
-
   return {
     props: {
       sponsorshipOfficer,
-      images,
     },
   };
 };
 
 const SponsorshipPage = ({
   sponsorshipOfficer,
-  images,
 }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <Layout>
     <NextSeo
@@ -120,30 +100,6 @@ const SponsorshipPage = ({
       description={`Sudbury Rowing Club is looking for sponsors to help support the club and
         its members. ${DESCRIPTION}`}
     />
-
-    <Container className="mb-24 mt-12">
-      <Hero label="The club" title="Who are we?" />
-      <div className="prose">
-        <p className="lead">
-          Sudbury Rowing Club was founded in 1874 and is a thriving sports club
-          at the heart of the local community.
-        </p>
-        <p>
-          We aim to provide a platform for people of all backgrounds, ages and
-          abilities to achieve their ambitions, whether these at the highest
-          level, or simply to enjoy rowing on our lovely river.
-        </p>
-        <p>
-          We are proud to be a family club, invest in and support adaptive
-          athletes and to have rowers aged from 12 to 80 competing at regional
-          and national events.
-        </p>
-      </div>
-    </Container>
-
-    <div className="py-24">
-      <Gallery images={images} />
-    </div>
 
     <Container className="mb-24 mt-12">
       <Hero label="The need" title="Why do we need sponsors?" />
@@ -194,10 +150,7 @@ const SponsorshipPage = ({
         </p>
       </div>
 
-      <SponsorshipTiers
-        tiers={SPONSORSHIP_TIERS}
-        emphasisedIndex={EMPHASISED_INDEX}
-      />
+      <SponsorshipTiers tiers={SPONSORSHIP_TIERS} />
     </Container>
 
     <Container className="mb-24 mt-12">
