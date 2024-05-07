@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { shuffle } from "radash";
 import { cn } from "@/lib/utils";
+import Label from "@/components/stour/label";
 import abglass from "../../../public/assets/logos/ab-glass-home-improvement.svg";
 import ashtons from "../../../public/assets/logos/ashtons.svg";
 import britishRowing from "../../../public/assets/logos/british-rowing.svg";
@@ -24,12 +25,12 @@ const logos: SponsorLogo[] = [
         src={rowperfect}
         alt=""
         aria-hidden
-        className="h-3 w-auto select-none lg:h-4"
+        className="h-3 w-auto select-none lg:h-3.5"
       />
     ),
     href: "https://www.rowperfect.co.uk/",
     name: "Rowperfect",
-    type: "sponsor",
+    type: "affiliate",
   },
   {
     logo: (
@@ -122,7 +123,7 @@ const LogoList = ({
 }) => (
   <ul
     className={cn(
-      "space-between my-12 flex flex-wrap items-center justify-center gap-10 md:justify-between md:gap-4",
+      "space-between mb-12 flex flex-wrap items-center justify-center gap-10 md:justify-between md:gap-4",
       className,
     )}
   >
@@ -145,13 +146,18 @@ const Sponsors = ({ excludeAffiliates = false }) => {
 
   return (
     <>
+      {excludeAffiliates && (
+        <Label as="h3" className="mb-4 mt-10 text-center">
+          Sponsors
+        </Label>
+      )}
       <LogoList logos={shuffledSponsorLogos} />
       {!excludeAffiliates && (
         <LogoList
           logos={affiliateLogos}
           className="md:justify-center md:gap-8"
         />
-      )}{" "}
+      )}
     </>
   );
 };
