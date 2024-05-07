@@ -146,18 +146,18 @@ const Sponsors = ({ excludeAffiliates = false }) => {
 
   return (
     <>
-      {excludeAffiliates && (
-        <Label as="h3" className="mb-4 mt-10 text-center">
-          Sponsors
-        </Label>
-      )}
-      <LogoList logos={shuffledSponsorLogos} />
       {!excludeAffiliates && (
         <LogoList
           logos={affiliateLogos}
           className="md:justify-center md:gap-8"
         />
       )}
+      {!excludeAffiliates && (
+        <Label as="h3" className="mb-4 mt-10 text-center">
+          Sponsors
+        </Label>
+      )}
+      <LogoList logos={shuffledSponsorLogos} />
     </>
   );
 };
