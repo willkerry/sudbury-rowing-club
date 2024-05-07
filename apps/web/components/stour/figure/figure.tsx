@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { urlFor } from "@sudburyrc/api";
+import { cn } from "@/lib/utils";
 import { useLightBox } from "@/components/stour/lightbox";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
@@ -81,6 +82,7 @@ const Figure = ({
             blurDataURL={lqip}
             alt={alt}
             sizes={`(max-width: ${WIDTH}px) 80vw, ${width}px`}
+            className={cn(captionText && "mb-0")}
           />
           {captionText !== null && <figcaption>{captionText}</figcaption>}
         </button>
