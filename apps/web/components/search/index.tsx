@@ -9,6 +9,9 @@ export const SiteSearch = () => (
     className="flex items-center"
   >
     <input type="hidden" name="q" value={`site:${HOSTNAME}`} />
+    <label htmlFor="search" className="sr-only">
+      Search our site with Google
+    </label>
     <input
       name="q"
       placeholder="Search our site with Google"
