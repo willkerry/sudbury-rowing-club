@@ -22,19 +22,6 @@ const logos: SponsorLogo[] = [
   {
     logo: (
       <Image
-        src={rowperfect}
-        alt=""
-        aria-hidden
-        className="h-3 w-auto select-none lg:h-3.5"
-      />
-    ),
-    href: "https://www.rowperfect.co.uk/",
-    name: "Rowperfect",
-    type: "affiliate",
-  },
-  {
-    logo: (
-      <Image
         src={abglass}
         alt=""
         aria-hidden
@@ -103,6 +90,19 @@ const logos: SponsorLogo[] = [
     ),
     href: "http://easternregionrowing.org.uk/",
     name: "Eastern Region Rowing Council",
+    type: "affiliate",
+  },
+  {
+    logo: (
+      <Image
+        src={rowperfect}
+        alt=""
+        aria-hidden
+        className="h-3 w-auto select-none lg:h-3.5"
+      />
+    ),
+    href: "https://www.rowperfect.co.uk/",
+    name: "Rowperfect",
     type: "affiliate",
   },
 ];
