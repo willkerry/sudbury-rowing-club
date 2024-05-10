@@ -8,7 +8,6 @@ import ashtons from "../../../public/assets/logos/ashtons.svg";
 import britishRowing from "../../../public/assets/logos/british-rowing.svg";
 import errc from "../../../public/assets/logos/errc.svg";
 import mooreGreen from "../../../public/assets/logos/moore-green.svg";
-import rowperfect from "../../../public/assets/logos/rowperfect.svg";
 import swan from "../../../public/assets/logos/swan-at-lavenham.svg";
 
 interface SponsorLogo {
@@ -77,7 +76,7 @@ const logos: SponsorLogo[] = [
         src={britishRowing}
         alt=""
         aria-hidden
-        className="h-8 w-auto select-none"
+        className="h-6 w-auto select-none"
       />
     ),
     href: "https://britishrowing.org/",
@@ -86,31 +85,27 @@ const logos: SponsorLogo[] = [
   },
   {
     logo: (
-      <Image src={errc} alt="" aria-hidden className="h-7 w-auto select-none" />
+      <Image src={errc} alt="" aria-hidden className="h-5 w-auto select-none" />
     ),
     href: "http://easternregionrowing.org.uk/",
     name: "Eastern Region Rowing Council",
     type: "affiliate",
   },
-  {
-    logo: (
-      <Image
-        src={rowperfect}
-        alt=""
-        aria-hidden
-        className="h-3 w-auto select-none lg:h-3.5"
-      />
-    ),
-    href: "https://www.rowperfect.co.uk/",
-    name: "Rowperfect",
-    type: "affiliate",
-  },
 ];
 const LogoListItem = ({ logo, href, name }: SponsorLogo) => (
   <li key={`${href}${name}`}>
-    <a href={href} aria-label={name} target="_blank" rel="noopener noreferrer">
-      {logo}
-    </a>
+    {href ? (
+      <a
+        href={href}
+        aria-label={name}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {logo}
+      </a>
+    ) : (
+      logo
+    )}
   </li>
 );
 
@@ -123,7 +118,7 @@ const LogoList = ({
 }) => (
   <ul
     className={cn(
-      "space-between mb-12 flex flex-wrap items-center justify-center gap-10 md:justify-between md:gap-4",
+      "flex flex-wrap items-center justify-center gap-10 md:justify-between md:gap-4",
       className,
     )}
   >
@@ -136,7 +131,37 @@ const LogoList = ({
 const sponsorLogos = logos.filter(({ type }) => type === "sponsor");
 const affiliateLogos = logos.filter(({ type }) => type === "affiliate");
 
-const Sponsors = ({ excludeAffiliates = false }) => {
+export const Affiliates = ({ className }: { className?: string }) => (
+  <LogoList
+    logos={[
+      {
+        logo: (
+          <div className="flex items-center pt-1 text-xs font-medium leading-none text-gray-500">
+            Affiliated with{" "}
+          </div>
+        ),
+        href: "",
+        name: "",
+        type: "affiliate",
+      },
+      ...affiliateLogos,
+    ]}
+    className={cn(
+      "mx-auto my-6 flex justify-center gap-6 md:justify-center md:gap-6",
+      className,
+    )}
+  />
+);
+
+const Sponsors = ({
+  className,
+  includeAffiliates = false,
+  heading,
+}: {
+  className?: string;
+  includeAffiliates?: boolean;
+  heading?: string;
+}) => {
   const [shuffledSponsorLogos, setShuffledSponsorLogos] =
     useState(sponsorLogos);
 
@@ -145,20 +170,20 @@ const Sponsors = ({ excludeAffiliates = false }) => {
   }, []);
 
   return (
-    <>
-      {!excludeAffiliates && (
+    <div className={className}>
+      {includeAffiliates && (
         <LogoList
           logos={affiliateLogos}
           className="md:justify-center md:gap-8"
         />
       )}
-      {!excludeAffiliates && (
-        <Label as="h3" className="mb-4 mt-10 text-center">
-          Sponsors
-        </Label>
+      {heading && (
+        <h3 className="mb-4 text-center text-sm font-medium text-gray-500">
+          {heading}
+        </h3>
       )}
       <LogoList logos={shuffledSponsorLogos} />
-    </>
+    </div>
   );
 };
 

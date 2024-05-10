@@ -40,6 +40,6 @@ export const SponsorshipHero = ({
       </Button>
     </div>
 
-    <Sponsors excludeAffiliates />
+    <Sponsors />
   </Container>
 );

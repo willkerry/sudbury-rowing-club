@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { PortableTextProps } from "@portabletext/react";
+import { Affiliates } from "@/components/landing/sponsors";
 import Container from "@/components/layouts/container";
 import Text from "@/components/stour/text";
 
@@ -15,12 +16,13 @@ type IntroductionProps = {
 const Introduction = ({ description }: IntroductionProps) => (
   <section id="intro">
     <Container className="my-16">
-      <div className="mx-auto ">
-        <Text portableText={description} className="mx-auto" />
-        <CommitteeSignature aria-hidden className="mx-auto w-48 py-16" />
+      <div className="mx-auto my-16">
+        <Text portableText={description} className="mx-auto my-16" />
         <span className="sr-only">The Committee</span>
+        <CommitteeSignature aria-hidden className="mx-auto w-48" />
+        <Affiliates />
       </div>
-      <Sponsors />
+      <Sponsors heading="Sponsored by" className="mb-24" />
     </Container>
   </section>
 );
