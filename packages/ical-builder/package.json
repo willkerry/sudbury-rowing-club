@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "@sudburyrc/ical-builder",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@sudburyrc/api": "workspace:*",
+    "@sudburyrc/tsconfig": "workspace:*",
+    "eslint-config-stour": "workspace:*",
+    "tsup": "^8.0.2"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  }
+}

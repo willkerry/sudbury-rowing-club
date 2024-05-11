@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import kv from "@vercel/kv";
+import { kv } from "@vercel/kv";
 import { serversideFetchCompetitions } from "@sudburyrc/api";
-import generateICSString from "@/lib/generateICSString";
+import IcalBuilder from "@sudburyrc/ical-builder";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours
@@ -14,13 +14,23 @@ const cachedTransformToICS = async () => {
     return cached;
   }
 
-  const icsString = generateICSString(await serversideFetchCompetitions(true));
-  await kv.set(CACHE_KEY, icsString, { ex: CACHE_TTL_SECONDS });
   console.log(new Date(), "iCal feed cold start");
+
+  const events = await serversideFetchCompetitions(true);
+
+  const calendar = new IcalBuilder(
+    "SRC Events",
+    "Europe/London",
+    "Events from the British Rowing Calendar",
+  );
+
+  calendar.set(events);
+
+  const icsString = calendar.stringify();
+  await kv.set(CACHE_KEY, icsString, { ex: CACHE_TTL_SECONDS });
 
   return icsString;
 };
-
 const events = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
     res.status(405);
@@ -38,6 +48,7 @@ const events = async (req: NextApiRequest, res: NextApiResponse) => {
     res.end();
     return;
   } catch (error: any) {
+    console.error(error);
     res.status(500).json({ error: error.message });
   }
 
