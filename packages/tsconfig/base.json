@@ -12,7 +12,9 @@
     "moduleResolution": "node",
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext"
   },
   "exclude": ["node_modules"]
 }
