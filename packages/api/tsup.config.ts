@@ -4,7 +4,24 @@ import { defineConfig } from "tsup";
 const outputFilePath = "dist/index.mjs"; // Replace with your output
 
 export default defineConfig({
-  entry: ["src/index.ts"],
+  entry: [
+    "src/index.ts",
+    "src/sanity/image-url-builder.ts",
+    "src/sanity/client.ts",
+    "src/queries/cached-fetch-news.ts",
+    "src/queries/fetch-archives.ts",
+    "src/queries/fetch-authors.ts",
+    "src/queries/fetch-competitions.ts",
+    "src/queries/fetch-forecast.ts",
+    "src/queries/fetch-governance.ts",
+    "src/queries/fetch-minutes.ts",
+    "src/queries/fetch-news-article.ts",
+    "src/queries/fetch-notices.ts",
+    "src/queries/fetch-officer-names.ts",
+    "src/queries/fetch-regatta-settings.ts",
+    "src/queries/fetch-regattas.ts",
+    "src/queries/fetch-safety.ts",
+  ],
   dts: true,
   sourcemap: true,
   splitting: true,
@@ -21,7 +38,7 @@ export default defineConfig({
       .replace(
         /`([^`]+)`/g,
         // Replace all newlines with spaces
-        (_, p1) => "`" + p1.replace(/\n/g, " ") + "`"
+        (_, p1) => "`" + p1.replace(/\n/g, " ") + "`",
         // Any time more than one space is found, replace with a single space
       )
       .replace(/ +/g, " ");
