@@ -44,27 +44,27 @@ export default class IcalBuilder {
   private events: IcalEvent[] = [];
 
   constructor(name: string, timezone: string, description: string) {
-    this.document.PRODID = IcalBuilder.formatId(name);
+    this.document.PRODID = IcalBuilder._formatId(name);
     this.document.X_WR_CALNAME = name;
     this.document.X_WR_TIMEZONE = timezone;
     this.document.X_WR_CALDESC = description;
   }
 
-  private static formatProperty(key: string, value: string | number): string {
+  private static _formatProperty(key: string, value: string | number): string {
     return `${key.replace(/_/g, "-")}:${value}`;
   }
 
-  private static formatDay(date: Date): string {
-    const dateString = this.formatDate(date);
+  private static _formatDay(date: Date): string {
+    const dateString = this._formatDate(date);
 
     return dateString.split("T")[0];
   }
 
-  private static formatDate(date: Date) {
+  private static _formatDate(date: Date): string {
     return date.toISOString().replace(/[-:]/g, "");
   }
 
-  private static formatId(input: string): string {
+  private static _formatId(input: string): string {
     const prefix = `-${IcalBuilder.SEPARATOR}`;
     const id = input.replace(/\s/g, IcalBuilder.SEPARATOR);
     const suffix = `${IcalBuilder.SEPARATOR}EN`;
@@ -80,7 +80,7 @@ export default class IcalBuilder {
       .map(([key, value]) => {
         if (key === "eventSlot") return events;
 
-        return IcalBuilder.formatProperty(key, value);
+        return IcalBuilder._formatProperty(key, value);
       })
       .join("\n");
   }
@@ -89,8 +89,8 @@ export default class IcalBuilder {
     this.events.push({
       BEGIN: "VEVENT",
       UID: event.id,
-      DTSTAMP: IcalBuilder.formatDate(new Date(event.startDate)),
-      DTSTART: IcalBuilder.formatDay(new Date(event.startDate)),
+      DTSTAMP: IcalBuilder._formatDate(new Date(event.startDate)),
+      DTSTART: IcalBuilder._formatDay(new Date(event.startDate)),
       SUMMARY: event.competition,
       DESCRIPTION: event.notes || "",
       LOCATION: event.region,
