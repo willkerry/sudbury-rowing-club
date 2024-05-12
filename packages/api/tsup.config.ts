@@ -2,7 +2,6 @@ import * as fs from "fs";
 import { defineConfig } from "tsup";
 import * as path from "path";
 
-// const outputFilePath = "dist/index.mjs"; // Replace with your output
 const outpurDirectory = "dist";
 export default defineConfig({
   entry: [
@@ -33,38 +32,24 @@ export default defineConfig({
   format: ["esm"],
 
   onSuccess: async () => {
-    // Find the paths of all .mjs files in the output directory (recursively)
     const outputFiles = await fs.promises.readdir(outpurDirectory);
     const mjsFiles = outputFiles.filter((file) => file.endsWith(".mjs"));
 
-    // Loop through each .mjs file and modify its contents
     for (const mjsFile of mjsFiles) {
       const outputFilePath = path.join(outpurDirectory, mjsFile);
-
       const sourceCode = fs.readFileSync(outputFilePath, "utf-8");
-
-      // find old file size
-      const oldFileSizeInBytes = fs.statSync(outputFilePath).size;
-      const oldFileSizeInKilobytes = oldFileSizeInBytes / 1000.0;
+      const oldFileSize = fs.statSync(outputFilePath).size / 1000.0;
 
       const modifiedCode = sourceCode
-        .replace(
-          /`([^`]+)`/g,
-          // Replace all newlines with spaces
-          (_, p1) => "`" + p1.replace(/\n/g, " ") + "`",
-          // Any time more than one space is found, replace with a single space
-        )
+        .replace(/`([^`]+)`/g, (_, p1) => "`" + p1.replace(/\n/g, " ") + "`")
         .replace(/ +/g, " ");
 
       fs.writeFileSync(outputFilePath, modifiedCode, "utf-8");
 
-      // Find new file size
-      const stats = fs.statSync(outputFilePath);
-      const fileSizeInBytes = stats.size;
-      const fileSizeInKilobytes = fileSizeInBytes / 1000.0;
+      const newFileSize = fs.statSync(outputFilePath).size / 1000.0;
 
       console.log(
-        `File: ${outputFilePath}: ${oldFileSizeInKilobytes} KB -> ${fileSizeInKilobytes} KB`,
+        `File: ${outputFilePath}: ${oldFileSize} KB -> ${newFileSize} KB`,
       );
     }
 
