@@ -32,7 +32,7 @@ export const getStaticProps = async () => {
   })();
 
   const thisYearsDrawIsPublished = (() => {
-    const drawYear = draw.match(/20\d\d/)?.[0];
+    const drawYear = /20\d\d/.exec(draw)?.[0];
     return drawYear === thisYear.toString();
   })();
 

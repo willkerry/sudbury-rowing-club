@@ -11,7 +11,7 @@ export const getInitials = (name?: string): string => {
   const words = trimmed.split(" ");
 
   return words
-    .map((word) => word.match(LETTER_PATTERN)?.[0])
+    .map((word) => LETTER_PATTERN.exec(word)?.[0])
     .filter(Boolean)
     .join("")
     .toUpperCase();

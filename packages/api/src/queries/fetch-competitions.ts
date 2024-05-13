@@ -61,7 +61,7 @@ const removeWhitespace = (url: string) => {
 };
 
 const extractURL = (html: string) => {
-  const match = html.match(/href=['"]([^'"]*)['"]/);
+  const match = /href=['"]([^'"]*)['"]/.exec(html);
 
   if (match) return removeWhitespace(match[1]);
 
