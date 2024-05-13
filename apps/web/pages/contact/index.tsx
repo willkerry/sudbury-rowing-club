@@ -39,7 +39,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       browserIndexOfficers
         .search<
           InferGetStaticPropsType<typeof getStaticProps>["officers"][number]
-        >(q || "")
+        >(q ?? "")
         .then((r) => r.hits[0]),
     enabled: !!q,
     staleTime: Infinity,
@@ -48,7 +48,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
 
   const initialRecipientName =
-    guessedRecipient?.name ||
+    guessedRecipient?.name ??
     officers.find((o) => o._id === initialValues.to)?.name;
 
   return (

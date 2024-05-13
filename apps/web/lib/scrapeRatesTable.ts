@@ -196,7 +196,7 @@ const scrapeMembershipData = async () => {
   }
 
   return MyClubhouseMembershipSchema.parse(
-    JSON.parse(membershipData.textContent || ""),
+    JSON.parse(membershipData.textContent ?? ""),
   );
 };
 

@@ -62,7 +62,7 @@ const DateFormatter = ({
     >
       {Intl.DateTimeFormat(locale, {
         timeZone: "Europe/London",
-        ...defaultOptions.get(format || "default"),
+        ...defaultOptions.get(format ?? "default"),
       }).format(new Date(dateString))}
 
       {isNonGbClient && selectedFormatIncludesTime && " (UK time)"}

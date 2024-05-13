@@ -42,9 +42,9 @@ export default async function ReportBug(
   }
 
   const isSpam = await checkForSpam(
-    req.headers["x-forwarded-for"]?.toString() || "",
-    req.headers["user-agent"] || "",
-    req.headers.referer || "",
+    req.headers["x-forwarded-for"]?.toString() ?? "",
+    req.headers["user-agent"] ?? "",
+    req.headers.referer ?? "",
     name,
     email,
     description,
@@ -68,7 +68,7 @@ export default async function ReportBug(
         description,
         userAgent,
         parsedUserAgent: Bowser.parse(userAgent),
-        additionalInformation: parseToJSON(additionalInformation || ""),
+        additionalInformation: parseToJSON(additionalInformation ?? ""),
       },
       null,
       2,

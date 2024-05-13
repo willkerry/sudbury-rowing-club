@@ -92,9 +92,9 @@ export default class IcalBuilder {
       DTSTAMP: IcalBuilder._formatDate(new Date(event.startDate)),
       DTSTART: IcalBuilder._formatDay(new Date(event.startDate)),
       SUMMARY: event.competition,
-      DESCRIPTION: event.notes || "",
+      DESCRIPTION: event.notes ?? "",
       LOCATION: event.region,
-      URL: event.url || "",
+      URL: event.url ?? "",
       STATUS: event.notes?.toLowerCase().includes("cancelled")
         ? "CANCELLED"
         : "CONFIRMED",

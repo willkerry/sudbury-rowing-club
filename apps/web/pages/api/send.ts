@@ -57,9 +57,9 @@ const spamCheck = async (
   message: string,
 ) => {
   const isSpam = await checkForSpam(
-    req.headers["x-forwarded-for"]?.toString() || "",
-    req.headers["user-agent"] || "",
-    req.headers.referer || "",
+    req.headers["x-forwarded-for"]?.toString() ?? "",
+    req.headers["user-agent"] ?? "",
+    req.headers.referer ?? "",
     name,
     email,
     message,
