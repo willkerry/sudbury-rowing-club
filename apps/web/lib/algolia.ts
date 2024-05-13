@@ -9,25 +9,34 @@ import litealgoliasearch, {
 
 if (!process.env.NEXT_PUBLIC_ALGOLIA_APP_ID)
   throw new Error("Missing Algolia App ID environment variable");
-if (!process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY)
-  throw new Error("Missing Algolia search key environment variable");
 if (!process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME)
   throw new Error("Missing Algolia index name environment variable");
+if (!process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY)
+  throw new Error("Missing Algolia search key environment variable");
+if (!process.env.ALGOLIA_API_KEY)
+  throw new Error("Missing Algolia API key environment variable");
+
+const {
+  NEXT_PUBLIC_ALGOLIA_APP_ID,
+  NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
+  NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
+  ALGOLIA_API_KEY,
+} = process.env;
 
 export const serverClient: SearchClient = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
-  process.env.ALGOLIA_API_KEY as string,
+  NEXT_PUBLIC_ALGOLIA_APP_ID,
+  ALGOLIA_API_KEY,
 );
 export const browserClient: BrowserSearchClient = litealgoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string,
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY as string,
+  NEXT_PUBLIC_ALGOLIA_APP_ID,
+  NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
 );
 
 export const serverIndex: SearchIndex = serverClient.initIndex(
-  process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME as string,
+  NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
 );
 export const browserIndex: BrowserSearchIndex = browserClient.initIndex(
-  process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME as string,
+  NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
 );
 
 export const serverIndexOfficers: SearchIndex =
