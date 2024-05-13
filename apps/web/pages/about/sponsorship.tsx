@@ -132,11 +132,12 @@ const SponsorshipPage = ({
           generate increased brand exposure for sponsors.
         </p>
         <p>
-          The Sudbury Regatta takes place on the first Saturday of August each
-          year, attracting crews and spectators from across the region. This,
-          combined with our location near to Friars Meadow and active social
-          media following, provides brand exposure for sponsors, which the club
-          can tailor to meet an organisation’s individual needs.
+          The <Link href="/regatta">Sudbury Regatta</Link> takes place on the
+          first Saturday of August each year, attracting crews and spectators
+          from across the region. This, combined with our location near to
+          Friars Meadow and active social media following, provides brand
+          exposure for sponsors, which the club can tailor to meet an
+          organisation’s individual needs.
         </p>
       </div>
     </Container>
