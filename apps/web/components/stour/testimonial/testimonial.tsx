@@ -28,7 +28,7 @@ const ClubImage = ({
         width={32}
         height={16}
         alt={alt}
-        className="ml-2 inline-block h-4 w-8"
+        className="mb-0.5 ml-2 inline-block h-4 w-8"
       />
     </a>
   );
