@@ -8,16 +8,19 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
+    "test": "vitest",
     "type-check": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/tsconfig": "workspace:*",
     "eslint-config-stour": "workspace:*",
-    "tsup": "^8.0.2"
+    "tsup": "^8.0.2",
+    "vitest": "^1.6.0"
   },
   "browser": {
     "fs": false,
