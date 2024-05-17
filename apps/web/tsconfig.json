@@ -3,14 +3,35 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/data/*": ["data/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"],
-      "@/types/*": ["types/*"],
-      "@/pages/*": ["pages/*"]
-    }
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/data/*": [
+        "data/*"
+      ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ]
+    },
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tailwind.config.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "tailwind.config.js",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

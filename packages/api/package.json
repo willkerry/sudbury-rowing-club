@@ -21,6 +21,7 @@
     "groq": "^3.41.1",
     "he": "^1.2.0",
     "isomorphic-dompurify": "^2.9.0",
+    "next-sanity": "^9.0.20",
     "picosanity": "^4.1.1",
     "tsup": "^8.0.2",
     "zod": "^3.23.8"

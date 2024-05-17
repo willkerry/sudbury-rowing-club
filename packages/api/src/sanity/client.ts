@@ -1,4 +1,4 @@
-import PicoSanity from "picosanity";
+import { createClient } from "next-sanity";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
@@ -15,4 +15,4 @@ export const getSanityConfig = () => {
   };
 };
 
-export const sanityClient = new PicoSanity(getSanityConfig());
+export const sanityClient = createClient(getSanityConfig());
