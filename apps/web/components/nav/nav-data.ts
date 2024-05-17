@@ -8,6 +8,7 @@ import {
   NewspaperIcon,
   PhotoIcon,
   ShieldCheckIcon,
+  SparklesIcon,
   TicketIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
@@ -34,13 +35,6 @@ const navigationGroups: NavigationGroup[] = [
     title: "About",
     items: [
       {
-        name: "150th anniversary",
-        shortName: "150 years",
-        description: "Celebrate 150 years’ rowing in Sudbury.",
-        href: "/150",
-        icon: CakeIcon,
-      },
-      {
         name: "History",
         description: "Rowing in Sudbury since 1874.",
         href: "/about/history",
@@ -58,7 +52,19 @@ const navigationGroups: NavigationGroup[] = [
         href: "/governance",
         icon: Governance,
       },
-
+      {
+        name: "Sponsorship",
+        description: "Discover the benefits of sponsorship.",
+        href: "/about/sponsorship",
+        icon: SparklesIcon,
+      },
+      {
+        name: "150th anniversary",
+        shortName: "150 years",
+        description: "Celebrate 150 years’ rowing in Sudbury.",
+        href: "/150",
+        icon: CakeIcon,
+      },
       {
         name: "How to find us",
         shortName: "Find us",
