@@ -37,12 +37,12 @@ export const HundredAndFiftyGradient = ({
         cy="512"
         r="512"
         fill={`url(#${id})`}
-        fill-opacity="0.7"
+        fillOpacity="0.7"
       />
       <defs>
         <radialGradient id={id}>
-          <stop stop-color={blue[500]} />
-          <stop offset="1" stop-color={blue[700]} />
+          <stop stopColor={blue[500]} />
+          <stop offset="1" stopColor={blue[700]} />
         </radialGradient>
       </defs>
     </svg>
