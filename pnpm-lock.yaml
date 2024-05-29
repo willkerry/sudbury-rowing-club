@@ -187,8 +187,8 @@ importers:
         specifier: ^24.1.0
         version: 24.1.0
       lucide-react:
-        specifier: ^0.343.0
-        version: 0.343.0(react@18.3.1)
+        specifier: ^0.379.0
+        version: 0.379.0(react@18.3.1)
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
@@ -351,7 +351,7 @@ importers:
         version: 2.11.0
       next-sanity:
         specifier: ^9.3.8
-        version: 9.3.8(@sanity/client@6.19.1)(@sanity/icons@3.0.0)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11)
+        version: 9.3.8(@sanity/client@6.19.1)(@sanity/icons@2.11.8)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11)
       picosanity:
         specifier: ^4.1.1
         version: 4.1.1
@@ -7465,6 +7465,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -10531,8 +10532,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /lucide-react@0.343.0(react@18.3.1):
-    resolution: {integrity: sha512-zDjzr5OlS86DJZNSy5igMx18T423LfEyZ6lxo82KpjCi8m5DPddl/OPLRDHyfs/TqZPh7C1ySPw4D6matfm6bQ==}
+  /lucide-react@0.379.0(react@18.3.1):
+    resolution: {integrity: sha512-KcdeVPqmhRldldAAgptb8FjIunM2x2Zy26ZBh1RsEUcdLIvsEmbcw7KpzFYUy5BbpGeWhPu9Z9J5YXfStiXwhg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
@@ -10865,7 +10866,7 @@ packages:
       react: 18.3.1
     dev: false
 
-  /next-sanity@9.3.8(@sanity/client@6.19.1)(@sanity/icons@3.0.0)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11):
+  /next-sanity@9.3.8(@sanity/client@6.19.1)(@sanity/icons@2.11.8)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11):
     resolution: {integrity: sha512-yT2M2TytG4MhrrVBSm9eYrtqYepyScziB99JxCzYAmIwGBjhlRsMmlrpiALiyCG7RTwFNvadOBgfBINqcHLoEQ==}
     engines: {node: '>=18.17'}
     peerDependencies:
@@ -10880,7 +10881,7 @@ packages:
     dependencies:
       '@portabletext/react': 3.1.0(react@18.3.1)
       '@sanity/client': 6.19.1
-      '@sanity/icons': 3.0.0(react@18.3.1)
+      '@sanity/icons': 2.11.8(react@18.3.1)
       '@sanity/preview-kit': 5.0.61(@sanity/client@6.19.1)(react@18.3.1)
       '@sanity/types': 3.44.0
       '@sanity/ui': 2.1.14(react-dom@18.3.1)(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11)
