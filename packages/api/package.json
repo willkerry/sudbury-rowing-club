@@ -18,10 +18,10 @@
     "@sanity/image-url": "^1.0.2",
     "@sudburyrc/tsconfig": "workspace:*",
     "emoji-regex": "^10.3.0",
-    "groq": "^3.41.1",
+    "groq": "^3.44.0",
     "he": "^1.2.0",
-    "isomorphic-dompurify": "^2.9.0",
-    "next-sanity": "^9.0.20",
+    "isomorphic-dompurify": "^2.11.0",
+    "next-sanity": "^9.3.8",
     "picosanity": "^4.1.1",
     "tsup": "^8.0.2",
     "zod": "^3.23.8"
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "^1.2.3",
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.12.13",
     "eslint-config-stour": "workspace:*"
   },
   "browser": {
