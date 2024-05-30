@@ -5,6 +5,8 @@
   "packageManager": "pnpm@8.14.1",
   "scripts": {
     "build": "turbo build",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
     "dev": "turbo dev"
   },
   "keywords": [],

@@ -351,13 +351,13 @@ importers:
         version: 2.11.0
       next-sanity:
         specifier: ^9.3.8
-        version: 9.3.8(@sanity/client@6.19.1)(@sanity/icons@3.0.0)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11)
+        version: 9.3.8(@sanity/client@6.19.1)(@sanity/icons@2.11.8)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11)
       picosanity:
         specifier: ^4.1.1
         version: 4.1.1
       tsup:
         specifier: ^8.0.2
-        version: 8.0.2
+        version: 8.0.2(typescript@5.4.5)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -371,6 +371,9 @@ importers:
       eslint-config-stour:
         specifier: workspace:*
         version: link:../eslint-config-stour
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
 
   packages/blue:
     dependencies:
@@ -379,7 +382,7 @@ importers:
         version: link:../tsconfig
       tsup:
         specifier: ^8.0.2
-        version: 8.0.2
+        version: 8.0.2(typescript@5.4.5)
 
   packages/eslint-config-stour:
     dependencies:
@@ -442,7 +445,10 @@ importers:
         version: link:../eslint-config-stour
       tsup:
         specifier: ^8.0.2
-        version: 8.0.2
+        version: 8.0.2(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
       vitest:
         specifier: ^1.6.0
         version: 1.6.0
@@ -5123,7 +5129,7 @@ packages:
     peerDependencies:
       '@sanity/client': ^6.19.0
     dependencies:
-      '@sanity/client': 6.19.1(debug@4.3.4)
+      '@sanity/client': 6.19.1
       '@sanity/uuid': 3.0.2
     dev: false
 
@@ -10865,7 +10871,7 @@ packages:
       react: 18.3.1
     dev: false
 
-  /next-sanity@9.3.8(@sanity/client@6.19.1)(@sanity/icons@3.0.0)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11):
+  /next-sanity@9.3.8(@sanity/client@6.19.1)(@sanity/icons@2.11.8)(@sanity/types@3.44.0)(@sanity/ui@2.1.14)(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)(sanity@3.44.0)(styled-components@6.1.11):
     resolution: {integrity: sha512-yT2M2TytG4MhrrVBSm9eYrtqYepyScziB99JxCzYAmIwGBjhlRsMmlrpiALiyCG7RTwFNvadOBgfBINqcHLoEQ==}
     engines: {node: '>=18.17'}
     peerDependencies:
@@ -10880,7 +10886,7 @@ packages:
     dependencies:
       '@portabletext/react': 3.1.0(react@18.3.1)
       '@sanity/client': 6.19.1
-      '@sanity/icons': 3.0.0(react@18.3.1)
+      '@sanity/icons': 2.11.8(react@18.3.1)
       '@sanity/preview-kit': 5.0.61(@sanity/client@6.19.1)(react@18.3.1)
       '@sanity/types': 3.44.0
       '@sanity/ui': 2.1.14(react-dom@18.3.1)(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11)
@@ -13912,7 +13918,7 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /tsup@8.0.2:
+  /tsup@8.0.2(typescript@5.4.5):
     resolution: {integrity: sha512-NY8xtQXdH7hDUAZwcQdY/Vzlw9johQsaqf7iwZ6g1DOUlFYQ5/AtVAjTvihhEyeRlGo4dLRVHtrRaL35M1daqQ==}
     engines: {node: '>=18'}
     hasBin: true
@@ -13945,6 +13951,7 @@ packages:
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tree-kill: 1.2.2
+      typescript: 5.4.5
     transitivePeerDependencies:
       - supports-color
       - ts-node

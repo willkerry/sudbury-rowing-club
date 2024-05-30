@@ -6,7 +6,10 @@
     "type-check": {
       "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
     },
-
+    "test": {
+      "dependsOn": ["type-check"],
+      "outputs": []
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
