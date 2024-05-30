@@ -48,4 +48,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - run: pnpm test
+      - name: Build
+        run: pnpm build
+
+      - name: Type check
+        run: pnpm type-check
