@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { kv } from "@vercel/kv";
 import { type SRCEvent, serversideFetchCompetitions } from "@sudburyrc/api";
+import { kv } from "@vercel/kv";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const CACHE_KEY = "events";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours

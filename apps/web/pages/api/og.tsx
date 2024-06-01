@@ -1,8 +1,8 @@
-import { type NextRequest } from "next/server";
-import { ImageResponse } from "@vercel/og";
-import { z } from "zod";
-import { blue } from "@sudburyrc/blue";
 import Logo from "@/components/logo";
+import { blue } from "@sudburyrc/blue";
+import { ImageResponse } from "@vercel/og";
+import type { NextRequest } from "next/server";
+import { z } from "zod";
 
 export const config = {
   runtime: "edge",
@@ -17,25 +17,23 @@ const mediumFont = fetch(
 
 const ErrorResponse = (message: string) =>
   new ImageResponse(
-    (
-      <div
-        style={{
-          fontSize: 24,
-          background: "#000",
-          color: "#fff",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 1,
-        }}
-      >
-        {message}
-      </div>
-    ),
+    <div
+      style={{
+        fontSize: 24,
+        background: "#000",
+        color: "#fff",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 1,
+      }}
+    >
+      {message}
+    </div>,
     {
       width: 120,
       height: 120,
@@ -124,70 +122,68 @@ const og = async (request: NextRequest): Promise<ImageResponse> => {
   const { bg, mg, fg, g1, g2, weight, spacing } = variants[variant];
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        backgroundColor: bg,
+        color: fg,
+        padding: 100,
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
-          backgroundColor: bg,
-          color: fg,
-          padding: 100,
+          flexDirection: "column",
+          alignSelf: "center",
+          width: "100%",
         }}
       >
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            alignSelf: "center",
-            width: "100%",
+            alignItems: "center",
           }}
         >
-          <div
+          <Logo
+            suppressTitle
             style={{
-              display: "flex",
-              alignItems: "center",
+              width: 400,
+              height: (400 * 50) / 302,
             }}
-          >
-            <Logo
-              suppressTitle
+          />
+
+          {subtitle && (
+            <div
               style={{
-                width: 400,
-                height: (400 * 50) / 302,
+                fontSize: 23,
+                color: mg,
+                letterSpacing: 2,
+                textTransform: "uppercase",
+                margin: "3.7px 0 0 32px",
               }}
-            />
+            >
+              {subtitle}
+            </div>
+          )}
+        </div>
 
-            {subtitle && (
-              <div
-                style={{
-                  fontSize: 23,
-                  color: mg,
-                  letterSpacing: 2,
-                  textTransform: "uppercase",
-                  margin: "3.7px 0 0 32px",
-                }}
-              >
-                {subtitle}
-              </div>
-            )}
-          </div>
-
-          <div
-            style={{
-              fontSize: 72,
-              fontWeight: weight,
-              backgroundClip: "text",
-              color: "transparent",
-              background: `linear-gradient(90deg, ${g1} 0%, ${g2} 100%)`,
-              margin: "10px 0",
-              letterSpacing: spacing,
-            }}
-          >
-            {title}
-          </div>
+        <div
+          style={{
+            fontSize: 72,
+            fontWeight: weight,
+            backgroundClip: "text",
+            color: "transparent",
+            background: `linear-gradient(90deg, ${g1} 0%, ${g2} 100%)`,
+            margin: "10px 0",
+            letterSpacing: spacing,
+          }}
+        >
+          {title}
         </div>
       </div>
-    ),
+    </div>,
     {
       width: 1200,
       height: 600,

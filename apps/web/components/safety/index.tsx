@@ -1,5 +1,5 @@
+import type getSafetyStatus from "@/lib/get-safety-status";
 import { useQuery } from "@tanstack/react-query";
-import getSafetyStatus from "@/lib/get-safety-status";
 import Loading from "../stour/loading";
 import SafetyComponent from "./safety-component";
 
@@ -19,7 +19,7 @@ const SafetyCard = () => {
     case "error":
       return (
         <SafetyBorder>
-          <div className="mx-auto flex h-96 items-center justify-center p-4 text-sm font-medium">
+          <div className="mx-auto flex h-96 items-center justify-center p-4 font-medium text-sm">
             Failed to load river safety status.
           </div>
         </SafetyBorder>

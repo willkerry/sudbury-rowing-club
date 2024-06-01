@@ -1,4 +1,4 @@
-import { Archive } from "@sudburyrc/api";
+import type { Archive } from "@sudburyrc/api";
 import { Button } from "../ui/button";
 import { HundredAndFiftyContactButton } from "./150-contact-button";
 

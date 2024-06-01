@@ -14,7 +14,7 @@ function getBoatsByWave(matrix: string[][], exclude?: string): OutputMap {
     if (!x) return;
 
     row.forEach((value, y) => {
-      if (!y || !value || value === exclude) return;
+      if (!(y && value) || value === exclude) return;
 
       if (!outputMap[value]) outputMap[value] = [];
 
@@ -25,14 +25,14 @@ function getBoatsByWave(matrix: string[][], exclude?: string): OutputMap {
     });
   });
 
-  Object.keys(outputMap).forEach((key) => {
+  for (const key in outputMap) {
     outputMap[key].sort((a, b) => {
       if (a.y < b.y) return -1;
       if (a.y > b.y) return 1;
 
       return 0;
     });
-  });
+  }
 
   return outputMap;
 }

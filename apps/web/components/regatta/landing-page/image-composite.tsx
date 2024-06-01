@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Ticket from "@/components/regatta/landing-page/ticket";
+import Image from "next/image";
 import bladeImage from "../../../public/assets/regatta/landing/blade.png";
 import buntingImage from "../../../public/assets/regatta/landing/bunting.png";
 import cupImage from "../../../public/assets/regatta/landing/cup.png";
@@ -14,10 +14,10 @@ const ImageComposite = ({
     <div className="absolute bottom-12 left-10 z-10">
       <Ticket items={ticketItems} />
     </div>
-    <div className="absolute bottom-8 right-0 z-10 rotate-3 drop-shadow-lg">
+    <div className="absolute right-0 bottom-8 z-10 rotate-3 drop-shadow-lg">
       <Image src={cupImage} placeholder="blur" alt="" width="90" height="100" />
     </div>
-    <div className="absolute left-0 right-0 top-6 z-0 drop-shadow-lg">
+    <div className="absolute top-6 right-0 left-0 z-0 drop-shadow-lg">
       <Image
         src={buntingImage}
         placeholder="blur"
@@ -26,7 +26,7 @@ const ImageComposite = ({
         height="28"
       />
     </div>
-    <div className="absolute bottom-3 left-0 z-10 -rotate-2 drop-shadow-lg">
+    <div className="-rotate-2 absolute bottom-3 left-0 z-10 drop-shadow-lg">
       <Image
         src={victoriaImage}
         placeholder="blur"
@@ -44,7 +44,7 @@ const ImageComposite = ({
         height="425"
       />
     </div>
-    <div className="absolute bottom-0 right-28 z-0 -rotate-45 scale-x-[-1] drop-shadow-2xl">
+    <div className="-rotate-45 absolute right-28 bottom-0 z-0 scale-x-[-1] drop-shadow-2xl">
       <Image
         src={bladeImage}
         placeholder="blur"

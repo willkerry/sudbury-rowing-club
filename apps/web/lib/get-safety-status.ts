@@ -1,11 +1,11 @@
-import groq from "groq";
-import { z } from "zod";
-import { sanityClient } from "@sudburyrc/api";
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";
-import { type SafetyComponentProps } from "@/components/safety/safety-component";
+import type { SafetyComponentProps } from "@/components/safety/safety-component";
 import { EAStationResponseSchema } from "@/types/ea-station-respose";
 import { EAWarningSchema } from "@/types/ea-warning";
 import { Severity } from "@/types/severity";
+import { sanityClient } from "@sudburyrc/api";
+import groq from "groq";
+import { z } from "zod";
 import { CLUB_LOCATION } from "./constants";
 
 const SanityStatusSchema = z.object({
@@ -28,13 +28,13 @@ const fetchSanityStatus = () =>
     )
     .then(SanityStatusSchema.parse);
 
-const EA_WARNING_URL =
-  `https://environment.data.gov.uk/flood-monitoring/id/floods` +
-  `?${new URLSearchParams({
+const EA_WARNING_URL = `https://environment.data.gov.uk/flood-monitoring/id/floods?${new URLSearchParams(
+  {
     lat: String(CLUB_LOCATION[0]),
     long: String(CLUB_LOCATION[1]),
     dist: String(3),
-  }).toString()}`;
+  },
+).toString()}`;
 
 /** Fetches the latest flood warning from the Environment Agency API, using the
  * club's location */

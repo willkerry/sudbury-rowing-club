@@ -1,8 +1,8 @@
-import { forwardRef } from "react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { forwardRef } from "react";
 
 const IdentityImage = forwardRef<
   React.ElementRef<typeof AvatarImage>,
@@ -12,7 +12,7 @@ const IdentityImage = forwardRef<
     imageBuilder: (builder) => builder.width(80).height(80).fit("crop"),
   });
 
-  if (!imageProps?.src || !id) return null;
+  if (!(imageProps?.src && id)) return null;
 
   return (
     <AvatarImage ref={ref} asChild src={imageProps.src} {...props}>
@@ -46,10 +46,10 @@ export const Identity = ({
       <AvatarFallback>{fallback}</AvatarFallback>
     </Avatar>
     <div>
-      <p className="text-xs font-semibold leading-snug text-gray-800">{name}</p>
+      <p className="font-semibold text-gray-800 text-xs leading-snug">{name}</p>
       <p
         className={cn(
-          "text-xs font-medium leading-snug text-gray-500",
+          "font-medium text-gray-500 text-xs leading-snug",
           highlightDescription &&
             "underline decoration-red-600 decoration-wavy",
         )}

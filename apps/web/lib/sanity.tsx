@@ -1,11 +1,11 @@
-import Link from "next/link";
-import {
-  PortableText as BlockContent,
-  PortableTextComponents,
-  type PortableTextProps,
-} from "@portabletext/react";
 import Figure from "@/components/stour/figure";
 import Note from "@/components/stour/note";
+import {
+  PortableText as BlockContent,
+  type PortableTextComponents,
+  type PortableTextProps,
+} from "@portabletext/react";
+import Link from "next/link";
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
@@ -24,7 +24,6 @@ const components: PortableTextComponents = {
     quote: ({ value }) => (
       <figure>
         <blockquote>
-          {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
           <PortableText value={value?.quote} />
         </blockquote>
         <figcaption>{value?.attribution}</figcaption>

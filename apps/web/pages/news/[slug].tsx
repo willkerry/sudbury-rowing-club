@@ -1,25 +1,4 @@
-import { ArticleJsonLd, NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import type {
-  GetStaticPaths,
-  InferGetStaticPropsType,
-  NextPage,
-} from "next/types";
-import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
-import { ParsedUrlQuery } from "querystring";
-import {
-  type Article,
-  serverGetAllSlugs,
-  serverGetArticleBySlug,
-  urlFor,
-} from "@sudburyrc/api";
-import {
-  BASE_URL,
-  HOME_OG_IMAGE_URL,
-  LOGO,
-  PROJECT_NAME,
-} from "@/lib/constants";
-import { makeShareImageURL } from "@/lib/og-image";
+import type { ParsedUrlQuery } from "node:querystring";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import PostBody from "@/components/news/post-body";
@@ -27,6 +6,27 @@ import PostHeader from "@/components/news/post-header";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
+import {
+  BASE_URL,
+  HOME_OG_IMAGE_URL,
+  LOGO,
+  PROJECT_NAME,
+} from "@/lib/constants";
+import { makeShareImageURL } from "@/lib/og-image";
+import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
+import {
+  type Article,
+  serverGetAllSlugs,
+  serverGetArticleBySlug,
+  urlFor,
+} from "@sudburyrc/api";
+import { ArticleJsonLd, NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+import type {
+  GetStaticPaths,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next/types";
 
 export const getStaticProps = async ({
   params,
@@ -54,7 +54,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   post,
 }) => {
   const router = useRouter();
-  if (!router.isFallback && !post?.slug)
+  if (!(router.isFallback || post?.slug))
     <Layout>
       <Container>
         <h1>404 - Page Not Found</h1>
@@ -116,12 +116,12 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             />
             {post.body && <PostBody content={post.body} />}
 
-            <div className="mx-auto my-12 flex max-w-prose justify-between rounded border bg-gray-50 px-3 pb-3 pt-2">
+            <div className="mx-auto my-12 flex max-w-prose justify-between rounded border bg-gray-50 px-3 pt-2 pb-3">
               <div className="flex gap-8">
                 {post.author && (
                   <div>
                     <Label className="text-xs">Author</Label>
-                    <div className="text-sm font-medium">
+                    <div className="font-medium text-sm">
                       {`${post.author?.firstName} ${post.author?.surname}`}
                       <Link href={`/news/author/${post.author?._id}`}>
                         <ArrowUpRightIcon
@@ -138,7 +138,7 @@ const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 )}
                 <div>
                   <Label className="text-xs">Published</Label>
-                  <div className="text-sm font-medium">
+                  <div className="font-medium text-sm">
                     <DateFormatter dateString={post.date} />
                   </div>
                 </div>

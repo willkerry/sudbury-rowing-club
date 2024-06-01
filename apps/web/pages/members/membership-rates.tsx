@@ -1,8 +1,8 @@
-import { InferGetStaticPropsType } from "next";
-import { AlertTriangle } from "lucide-react";
-import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
+import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
+import { AlertTriangle } from "lucide-react";
+import type { InferGetStaticPropsType } from "next";
 
 export const getStaticProps = async () => {
   try {
@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
         rates,
       },
     };
-  } catch (error) {
+  } catch (_error) {
     return {
       props: {
         rates: null,
@@ -57,17 +57,17 @@ const MembershipRates = ({
                 <div className="text-xs">{rate.Category.Description}</div>
 
                 {rate.Category.Restrictions && (
-                  <div className="mt-1 flex items-center gap-1 text-xs font-medium text-red-700">
+                  <div className="mt-1 flex items-center gap-1 font-medium text-red-700 text-xs">
                     <AlertTriangle className="inline-block h-3 w-3" />
                     {rate.Category.Restrictions}
                   </div>
                 )}
               </td>
               <td>
-                <div className="disambiguate text-sm font-medium tabular-nums leading-6">
+                <div className="disambiguate font-medium text-sm tabular-nums leading-6">
                   {rate.Cost.Formatted}
                 </div>
-                <div className="text-xs font-medium text-gray-500">
+                <div className="font-medium text-gray-500 text-xs">
                   {rate.DurationDescription}
                 </div>
 
@@ -76,7 +76,7 @@ const MembershipRates = ({
                     <div className="disambiguate mt-2 font-medium tabular-nums">
                       {rate.EarlyPaymentCost.Formatted}
                     </div>
-                    <div className="text-xs font-medium text-gray-500">
+                    <div className="font-medium text-gray-500 text-xs">
                       if paid within {rate.EarlyPaymentDeadlineDaysAbs} days of
                       season start
                     </div>

@@ -1,6 +1,6 @@
+import { ZTypedObject } from "@sudburyrc/api";
 import groq from "groq";
 import { z } from "zod";
-import { ZTypedObject } from "@sudburyrc/api";
 import useValidatedZodQuery from "./useValidatedZodQuery";
 
 export const noticeVariants = [
@@ -23,7 +23,7 @@ const useNotice = () =>
       date: z
         .string()
         .optional()
-        .refine((s) => !s || !Number.isNaN(Date.parse(s))),
+        .refine((s) => !(s && Number.isNaN(Date.parse(s)))),
     }),
     {},
     { staleTime: 5 * 60 * 1000 },

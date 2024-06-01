@@ -26,7 +26,7 @@ const Person = defineType({
     prepare(selection) {
       const { name, surname, media } = selection;
       return {
-        title: name + " " + surname,
+        title: `${name} ${surname}`,
         media,
       };
     },

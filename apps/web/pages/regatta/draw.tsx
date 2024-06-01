@@ -1,7 +1,7 @@
-import { InferGetStaticPropsType } from "next";
 import TextPage from "@/components/layouts/text-page";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
+import type { InferGetStaticPropsType } from "next";
 
 const DRAW_URL = "https://live.sudburyrowingclub.org.uk/";
 

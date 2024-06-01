@@ -53,8 +53,8 @@ const ICON_MAP = new Map<(typeof Variants)[number], React.ReactNode>([
 const Result = ({ title, message, variant }: ResultProps) => (
   <div className="grid grid-cols-1 items-center justify-center gap-2 text-center">
     {ICON_MAP.get(variant)}
-    <h3 className="text-xl font-medium text-gray-400">{title}</h3>
-    {message && <p className="text-xs font-medium text-gray-600">{message}</p>}
+    <h3 className="font-medium text-gray-400 text-xl">{title}</h3>
+    {message && <p className="font-medium text-gray-600 text-xs">{message}</p>}
   </div>
 );
 

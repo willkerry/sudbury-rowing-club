@@ -1,7 +1,7 @@
-import { useState } from "react";
+import TextPage from "@/components/layouts/text-page";
 import { useDebouncedValue } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
-import TextPage from "@/components/layouts/text-page";
+import { useState } from "react";
 
 const getClubs = () => import("@/data/clubs.json").then((mod) => mod.default);
 
@@ -30,7 +30,7 @@ const ClubSearchResults = ({ clubs }: { clubs?: Club[] }) => {
         >
           {club.name}
           {clubs.length < 10 && club.bladeUrl && (
-            <div className="absolute bottom-0 right-2 top-0 flex items-center">
+            <div className="absolute top-0 right-2 bottom-0 flex items-center">
               <img
                 className="h-6 w-12"
                 src={club.bladeUrl}
@@ -52,7 +52,7 @@ const Clubs = () => {
   const { data: clubs } = useQuery({
     queryKey: ["clubs"],
     queryFn: getClubs,
-    staleTime: Infinity,
+    staleTime: Number.POSITIVE_INFINITY,
   });
 
   const filteredClubs = clubs?.filter((club) =>

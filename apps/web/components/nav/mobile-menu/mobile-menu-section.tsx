@@ -1,8 +1,8 @@
-import Link from "next/link";
+import { cn } from "@/lib/utils";
+import type { IconNavItemType } from "@/types/nav-item";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import * as Accordion from "@radix-ui/react-accordion";
-import { cn } from "@/lib/utils";
-import { IconNavItemType } from "@/types/nav-item";
+import Link from "next/link";
 
 type SectionProps = {
   title: string;
@@ -46,7 +46,7 @@ const SectionWrapper = ({
           <Accordion.Trigger
             className={cn(
               titleClasses,
-              "-my-4 flex w-full justify-between py-4 [&[data-state=open]>svg]:-rotate-180",
+              "-my-4 [&[data-state=open]>svg]:-rotate-180 flex w-full justify-between py-4",
             )}
           >
             {title}

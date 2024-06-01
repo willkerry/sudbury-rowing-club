@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { kv } from "@vercel/kv";
 import { serversideFetchCompetitions } from "@sudburyrc/api";
 import IcalBuilder from "@sudburyrc/ical-builder";
+import { kv } from "@vercel/kv";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours

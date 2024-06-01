@@ -1,15 +1,15 @@
-import { NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Image from "next/image";
-import groq from "groq";
-import { Download } from "lucide-react";
-import { sanityClient } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { Button } from "@/components/ui/button";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { makeShareImageURL } from "@/lib/og-image";
+import { sanityClient } from "@sudburyrc/api";
+import groq from "groq";
+import { Download } from "lucide-react";
+import type { NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Image from "next/image";
 
 type Props = {
   heading: string;

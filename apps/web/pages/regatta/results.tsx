@@ -1,14 +1,14 @@
-import { InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
-import type { PortableTextProps } from "@portabletext/react";
-import groq from "groq";
-import { sanityClient } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Results from "@/components/regatta/results";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Text from "@/components/stour/text";
+import { makeShareImageURL } from "@/lib/og-image";
+import type { PortableTextProps } from "@portabletext/react";
+import { sanityClient } from "@sudburyrc/api";
+import groq from "groq";
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
 
 export interface Result {
   _id: string;

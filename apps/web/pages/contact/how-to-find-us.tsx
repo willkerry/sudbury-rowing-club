@@ -1,10 +1,7 @@
-import { NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Image from "next/image";
-import { MapPinIcon } from "@heroicons/react/24/solid";
-import clsx from "clsx";
-import { Map, Marker } from "pigeon-maps";
-import { maptiler } from "pigeon-maps/providers";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Note from "@/components/stour/note";
 import {
   CLUB_LOCATION,
   CLUB_LOCATION_STRING,
@@ -13,10 +10,13 @@ import {
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
 import { makeShareImageURL } from "@/lib/og-image";
-import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Note from "@/components/stour/note";
+import { MapPinIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
+import type { NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Image from "next/image";
+import { Map, Marker } from "pigeon-maps";
+import { maptiler } from "pigeon-maps/providers";
 
 const openInApp = [
   {
@@ -69,7 +69,7 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
       <MapPinIcon
         aria-hidden
         className={clsx(
-          "-ml-0.5 mb-[0.17em] mr-0.5 inline-flex h-6 w-6 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5",
+          "-ml-0.5 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5 mr-0.5 mb-[0.17em] inline-flex h-6 w-6",
           { Club: "text-blue-500", Regatta: "text-green-500" }[name],
         )}
       />
@@ -163,7 +163,7 @@ const FindUs: NextPage = () => (
             for spectators, trailers and competitors on Friars Meadow.
           </Note>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+          <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-2">
             {addresses.map((address) => (
               <FindUsAddress key={address.name} {...address} />
             ))}

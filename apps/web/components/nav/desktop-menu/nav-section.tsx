@@ -1,11 +1,11 @@
-import { Fragment } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { cn } from "@/lib/utils";
+import type { IconNavItemType } from "@/types/nav-item";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { fork } from "radash";
-import { cn } from "@/lib/utils";
-import { type IconNavItemType } from "@/types/nav-item";
+import { Fragment } from "react";
 
 export const navLinkClasses = cn(
   "group transition inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md",
@@ -48,7 +48,7 @@ const ListItem = ({
       <div className="flex flex-col">
         <p
           className={cn(
-            "py-0.5 text-sm font-semibold leading-none transition-colors group-hover:text-gray-900",
+            "py-0.5 font-semibold text-sm leading-none transition-colors group-hover:text-gray-900",
             cta
               ? "text-gray-900 group-hover:text-gray-700"
               : "text-gray-600 group-hover:text-gray-900",
@@ -57,7 +57,7 @@ const ListItem = ({
           {name}
         </p>
         {description && (
-          <p className="text-xs font-medium text-gray-500 transition-colors group-hover:text-gray-700">
+          <p className="font-medium text-gray-500 text-xs transition-colors group-hover:text-gray-700">
             {description}
           </p>
         )}
@@ -134,7 +134,7 @@ const NavSection = ({
           >
             <div
               aria-hidden
-              className="absolute right-1/2 top-12 h-6 w-6 rotate-45 rounded-sm bg-gray-200 bg-opacity-75 shadow backdrop-blur"
+              className="absolute top-12 right-1/2 h-6 w-6 rotate-45 rounded-sm bg-gray-200 bg-opacity-75 shadow backdrop-blur"
             />
           </Transition>
 
@@ -164,9 +164,9 @@ const NavSection = ({
 
                 <div
                   className={cn(
-                    "pb-2 pt-3",
+                    "pt-3 pb-2",
                     compact
-                      ? "space-y-4 pl-3 pr-4"
+                      ? "space-y-4 pr-4 pl-3"
                       : "flex space-x-6 space-y-0 px-2",
                   )}
                 >

@@ -10,8 +10,8 @@ type Props = {
 const Center = ({ h = true, v = false, children, className }: Props) => {
   const classes = cn(
     "flex flex-col justify-center items-center",
-    h && `h-full`,
-    v && `v-full`,
+    h && "h-full",
+    v && "v-full",
     className,
   );
   return <div className={classes}>{children}</div>;

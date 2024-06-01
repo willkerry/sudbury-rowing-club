@@ -1,17 +1,17 @@
-import type { NextPage } from "next";
-import { InferGetStaticPropsType } from "next";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import { useQuery } from "@tanstack/react-query";
-import { fetchOfficerNames } from "@sudburyrc/api";
-import { browserIndexOfficers, serverIndexOfficers } from "@/lib/algolia";
-import { makeShareImageURL } from "@/lib/og-image";
 import ContactForm from "@/components/contact";
 import type { Message } from "@/components/contact/contactForm";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { browserIndexOfficers, serverIndexOfficers } from "@/lib/algolia";
+import { makeShareImageURL } from "@/lib/og-image";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import { fetchOfficerNames } from "@sudburyrc/api";
+import { useQuery } from "@tanstack/react-query";
+import type { NextPage } from "next";
+import type { InferGetStaticPropsType } from "next";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
 
 export const getStaticProps = async () => {
   const officers = await fetchOfficerNames();
@@ -42,7 +42,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         >(q ?? "")
         .then((r) => r.hits[0]),
     enabled: !!q,
-    staleTime: Infinity,
+    staleTime: Number.POSITIVE_INFINITY,
   });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
@@ -75,17 +75,17 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       />
       <Container className="max-w-lg py-12">
         <div className="prose mx-auto pb-10">
-          {!guessedRecipient ? (
+          {guessedRecipient ? null : (
             <p>
               We’re a volunteer-run club that provides a safe and fun way to
               row, but we also need your help. Since we don’t have a full-time
               staff to respond to enquiries, we ask that you select an
               appropriate recipient for your enquiry.
             </p>
-          ) : null}
+          )}
         </div>
         <ContactForm contacts={officers} initialValues={initialValues} />
-        <div className="prose mt-16 text-sm text-gray-500">
+        <div className="prose mt-16 text-gray-500 text-sm">
           Alternatively, mail{" "}
           <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general
           enquiries, or <Obfuscate email="regatta@sudburyrowingclub.org.uk" />{" "}

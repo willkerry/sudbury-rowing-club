@@ -1,8 +1,3 @@
-import NextLink from "next/link";
-import Color from "color";
-import { Circle, HelpCircle } from "lucide-react";
-import { blue } from "@sudburyrc/blue";
-import combineURLs from "@/lib/helpers/combineURLs";
 import SharePlayground from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
@@ -10,6 +5,11 @@ import Crest from "@/components/logo/crest";
 import Social from "@/components/logo/social";
 import Copy from "@/components/stour/copy";
 import Link from "@/components/stour/link";
+import combineURLs from "@/lib/helpers/combineURLs";
+import { blue } from "@sudburyrc/blue";
+import Color from "color";
+import { Circle, HelpCircle } from "lucide-react";
+import NextLink from "next/link";
 
 const brandAssets = [
   {
@@ -311,7 +311,7 @@ const Brand = () => (
               <code>{item.id}</code>
             </td>
             <td>
-              <span className="text-sm font-medium">
+              <span className="font-medium text-sm">
                 {item.name} {item.library}
               </span>
             </td>
@@ -351,7 +351,7 @@ const Brand = () => (
       </li>
 
       <li>
-        <span className="font-mono font-bold">
+        <span className="font-bold font-mono">
           <a href="https://jetbrains.com/mono">JetBrains Mono</a>
         </span>
         , for code and monospaced text. This is a free and open-source typeface

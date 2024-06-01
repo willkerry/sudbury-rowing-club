@@ -25,7 +25,7 @@ const Trustees = defineType({
       const { firstName, surname, media } = selection;
 
       return {
-        title: firstName + " " + surname,
+        title: `${firstName} ${surname}`,
         media,
       };
     },

@@ -1,14 +1,14 @@
-import { InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
-import { dash, group } from "radash";
-import { Archive, fetchArchives } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import { ArchiveItem } from "@/components/anniversary/150-archive-item";
 import { HundredAndFiftyBanner } from "@/components/anniversary/150-banner";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Link from "@/components/stour/link";
+import { makeShareImageURL } from "@/lib/og-image";
+import { type Archive, fetchArchives } from "@sudburyrc/api";
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
+import { dash, group } from "radash";
 
 const TITLE = "150th Anniversary Gallery" as const;
 const DESCRIPTION =
@@ -95,7 +95,7 @@ const Join: NextPage<Props> = ({ archives }) => (
 
       {archives.map(({ era, slug, archives }) => (
         <div key={slug} className="mb-8">
-          <h2 id={slug} className="mb-2 text-xl font-medium text-gray-900">
+          <h2 id={slug} className="mb-2 font-medium text-gray-900 text-xl">
             {era}
           </h2>
           <div className="sm:masonry-2-col gap-4">

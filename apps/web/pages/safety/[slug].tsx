@@ -1,11 +1,11 @@
-import { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
-import { Download, ExternalLink } from "lucide-react";
-import { ParsedUrlQuery } from "querystring";
-import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
-import { BASE_URL } from "@/lib/constants";
+import type { ParsedUrlQuery } from "node:querystring";
 import TextPage from "@/components/layouts/text-page";
 import Text from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
+import { BASE_URL } from "@/lib/constants";
+import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
+import { Download, ExternalLink } from "lucide-react";
+import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
 
 export const getStaticProps = async ({
   params,

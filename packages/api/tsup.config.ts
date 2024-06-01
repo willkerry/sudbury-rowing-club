@@ -1,6 +1,6 @@
-import * as fs from "fs";
+import fs from "node:fs";
+import path from "node:path";
 import { defineConfig } from "tsup";
-import * as path from "path";
 
 const outpurDirectory = "dist";
 export default defineConfig({
@@ -37,20 +37,24 @@ export default defineConfig({
 
     for (const mjsFile of mjsFiles) {
       const outputFilePath = path.join(outpurDirectory, mjsFile);
-      const sourceCode = fs.readFileSync(outputFilePath, "utf-8");
       const oldFileSize = fs.statSync(outputFilePath).size / 1000.0;
+      const sourceCode = fs.readFileSync(outputFilePath, "utf-8");
 
       const modifiedCode = sourceCode
-        .replace(/`([^`]+)`/g, (_, p1) => "`" + p1.replace(/\n/g, " ") + "`")
+        .replace(/`([^`]+)`/g, (_, p1) => `\`${p1.replace(/\n/g, " ")}\``)
         .replace(/ +/g, " ");
 
       fs.writeFileSync(outputFilePath, modifiedCode, "utf-8");
 
       const newFileSize = fs.statSync(outputFilePath).size / 1000.0;
 
-      console.log(
-        `File: ${outputFilePath}: ${oldFileSize} KB -> ${newFileSize} KB`,
-      );
+      if (newFileSize < oldFileSize) {
+        console.log(
+          `File: ${mjsFile} GROQ minifcation – ${String(
+            oldFileSize,
+          )}KB -> ${String(newFileSize)}KB`,
+        );
+      }
     }
 
     return new Promise((resolve) => resolve());

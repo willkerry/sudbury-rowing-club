@@ -27,7 +27,7 @@ const ZMinutes = z.object({
       day: "numeric",
       month: "short",
       year: "numeric",
-    })
+    }),
   ),
 
   /**

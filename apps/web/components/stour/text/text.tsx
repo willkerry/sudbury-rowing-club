@@ -1,6 +1,6 @@
-import { PortableTextProps } from "@portabletext/react";
-import cn from "clsx";
 import { PortableText } from "@/lib/sanity";
+import type { PortableTextProps } from "@portabletext/react";
+import cn from "clsx";
 
 type Props = {
   type?: "default" | "invert" | "secondary";

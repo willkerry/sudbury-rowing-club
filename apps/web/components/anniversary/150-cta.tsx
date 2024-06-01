@@ -15,8 +15,8 @@ export const HundredAndFiftyCta = () => (
     <HundredAndFiftyGradient />
 
     <div className="col-span-2 px-8 py-16">
-      <p className="mb-1 text-lg font-medium text-sky-200">150th Anniversary</p>
-      <h2 className="mb-6 text-3xl font-bold">Celebrating 150 years</h2>
+      <p className="mb-1 font-medium text-lg text-sky-200">150th Anniversary</p>
+      <h2 className="mb-6 font-bold text-3xl">Celebrating 150 years</h2>
       <p className="mb-10 opacity-70">
         This year, in celebration of the 150th anniversary of our foundation, we
         have created a space to share our history, our stories, and our

@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { useReducedMotion } from "@mantine/hooks";
-import AutoScroll from "embla-carousel-auto-scroll";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { useReducedMotion } from "@mantine/hooks";
+import AutoScroll from "embla-carousel-auto-scroll";
+import Image from "next/image";
 
 const WIDTH = 720;
 const HEIGHT = 480;
@@ -42,7 +42,7 @@ const GalleryFigure = ({ _id, caption, lqip }: ImageType) => {
 
       <figcaption
         aria-hidden
-        className="mt-1 flex items-center text-sm text-gray-600"
+        className="mt-1 flex items-center text-gray-600 text-sm"
       >
         {caption}
       </figcaption>
@@ -72,7 +72,7 @@ const Gallery = ({ images }: { images: ImageType[] }) => {
           <CarouselItem
             key={image._id}
             id={image._id}
-            className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
+            className="basis-[80%] lg:basis-1/4 sm:basis-1/2"
           >
             <GalleryFigure {...image} />
           </CarouselItem>

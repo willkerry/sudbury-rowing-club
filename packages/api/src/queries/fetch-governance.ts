@@ -46,7 +46,7 @@ const ZCommittee = z.object({
         occupantId: z.string().nullable(),
         role: z.string(),
         name: z.string().nullable(),
-      })
+      }),
     )
     .nullable(),
 });

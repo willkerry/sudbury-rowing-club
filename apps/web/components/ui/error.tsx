@@ -1,5 +1,5 @@
-import React from "react";
 import { AlertOctagon, ArrowUpRight } from "lucide-react";
+import React from "react";
 
 type ErrorProps = React.HTMLAttributes<HTMLDivElement> & {
   label?: string;
@@ -20,7 +20,7 @@ export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
       ref={ref}
       aria-atomic
       role="alert"
-      className="flex items-center text-sm font-medium text-red-600"
+      className="flex items-center font-medium text-red-600 text-sm"
       {...props}
     >
       <AlertOctagon aria-hidden className="mr-1 h-4 w-4" />

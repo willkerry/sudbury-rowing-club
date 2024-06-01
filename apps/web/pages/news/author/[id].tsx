@@ -1,12 +1,12 @@
-import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
+import type { GetStaticPaths, InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await fetchAllAuthors();
@@ -61,7 +61,7 @@ export const AuthorArchive: NextPage<
         }}
       />
 
-      <div className="flex items-center border-b border-t py-6">
+      <div className="flex items-center border-t border-b py-6">
         <Container>
           <h1>
             <Label className="max-w-prose">Author Archive</Label>

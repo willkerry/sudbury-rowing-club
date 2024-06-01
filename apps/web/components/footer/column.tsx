@@ -10,15 +10,15 @@ type Props = {
 };
 
 const FooterColumn = ({ heading, data }: Props) => (
-  <div className="mb-12 w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
-    <h3 className="mb-4 select-none text-xs font-semibold uppercase tracking-widest">
+  <div className="mb-12 w-1/2 text-gray-700 md:w-3/12 sm:w-4/12">
+    <h3 className="mb-4 select-none font-semibold text-xs uppercase tracking-widest">
       {heading}
     </h3>
     {data.map((item) => (
       <Link
         key={item.href}
         href={item.href}
-        className="my-3 block text-sm text-gray-500 duration-100 hover:text-black"
+        className="my-3 block text-gray-500 text-sm duration-100 hover:text-black"
       >
         {item.shortName ? item.shortName : item.name}
       </Link>

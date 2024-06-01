@@ -1,14 +1,14 @@
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
-import groq from "groq";
-import { sanityClient } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Copy from "@/components/stour/copy";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
+import { makeShareImageURL } from "@/lib/og-image";
+import { sanityClient } from "@sudburyrc/api";
+import groq from "groq";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
 
 export interface Gallery {
   _key: string;

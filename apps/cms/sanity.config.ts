@@ -1,12 +1,12 @@
-import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
-import { visionTool } from "@sanity/vision";
-import { table } from "@sanity/table";
-import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import schemas from "./schemas/schema";
-import { UsersIcon } from "@sanity/icons";
-import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { dashboardTool } from "@sanity/dashboard";
+import { UsersIcon } from "@sanity/icons";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
+import { table } from "@sanity/table";
+import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
+import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
+import { deskTool } from "sanity/desk";
+import schemas from "./schemas/schema";
 
 const config = defineConfig({
   title: "Sudbury Rowing Club",
@@ -30,12 +30,12 @@ const config = defineConfig({
                     S.listItem()
                       .title("Member’s notices")
                       .child(
-                        S.documentTypeList("members").title("Member’s notices")
+                        S.documentTypeList("members").title("Member’s notices"),
                       ),
                     S.listItem()
                       .title("Authors")
                       .child(S.documentTypeList("author").title("Authors")),
-                  ])
+                  ]),
               ),
 
             S.listItem()
@@ -55,8 +55,8 @@ const config = defineConfig({
                       .title("Vice presidents")
                       .child(
                         S.documentTypeList("vicePresidents").title(
-                          "Vice presidents"
-                        )
+                          "Vice presidents",
+                        ),
                       ),
                     S.listItem()
                       .title("Trustees")
@@ -64,13 +64,13 @@ const config = defineConfig({
                     S.listItem()
                       .title("Committees")
                       .child(
-                        S.documentTypeList("committees").title("Committees")
+                        S.documentTypeList("committees").title("Committees"),
                       ),
 
                     S.listItem()
                       .title("Minutes")
                       .child(S.documentTypeList("minutes").title("Minutes")),
-                  ])
+                  ]),
               ),
 
             S.listItem()
@@ -84,12 +84,12 @@ const config = defineConfig({
                       .child(
                         S.document()
                           .schemaType("regattaSettings")
-                          .documentId("1af70bac-279d-486d-9c87-cfb4de0b6964")
+                          .documentId("1af70bac-279d-486d-9c87-cfb4de0b6964"),
                       ),
                     S.listItem()
                       .title("Regattas")
                       .child(S.documentTypeList("regattas").title("Regattas")),
-                  ])
+                  ]),
               ),
 
             S.listItem()
@@ -104,13 +104,13 @@ const config = defineConfig({
                       .child(
                         S.document()
                           .schemaType("safetyStatus")
-                          .documentId("safetyStatus")
+                          .documentId("safetyStatus"),
                       ),
                     S.listItem()
                       .title("Safety")
                       .id("safety_documents")
                       .child(S.documentTypeList("safety").title("Safety")),
-                  ])
+                  ]),
               ),
 
             S.listItem()
@@ -124,7 +124,7 @@ const config = defineConfig({
                       .child(
                         S.document()
                           .schemaType("siteSettings")
-                          .documentId("siteSettings")
+                          .documentId("siteSettings"),
                       ),
                     S.listItem()
                       .title("People")
@@ -132,9 +132,9 @@ const config = defineConfig({
                     S.listItem()
                       .title("Forwarders")
                       .child(
-                        S.documentTypeList("forwarders").title("Forwarders")
+                        S.documentTypeList("forwarders").title("Forwarders"),
                       ),
-                  ])
+                  ]),
               ),
 
             ...S.documentTypeListItems().filter(
@@ -155,7 +155,7 @@ const config = defineConfig({
                   "siteSettings",
                   "trustees",
                   "vicePresidents",
-                ].includes(listItem.getId() as string)
+                ].includes(listItem.getId() as string),
             ),
           ]);
       },

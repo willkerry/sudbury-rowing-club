@@ -1,14 +1,14 @@
-import { InferGetStaticPropsType } from "next";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import { fetchOfficerNames } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import { SponsorshipHero } from "@/components/sponsorship/sponsorship-hero";
 import { SponsorshipTiers } from "@/components/sponsorship/sponsorship-tiers";
 import Hero from "@/components/stour/hero";
 import { Button } from "@/components/ui/button";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchOfficerNames } from "@sudburyrc/api";
+import type { InferGetStaticPropsType } from "next";
+import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 const TITLE = "Sponsorship";
 const DESCRIPTION = "Partner with us and discover the benefits of sponsorship.";
@@ -101,7 +101,7 @@ const SponsorshipPage = ({
         its members. ${DESCRIPTION}`}
     />
 
-    <Container className="mb-24 mt-12">
+    <Container className="mt-12 mb-24">
       <Hero label="The need" title="Why do we need sponsors?" />
       <div className="prose">
         <p className="lead">
@@ -122,7 +122,7 @@ const SponsorshipPage = ({
       </div>
     </Container>
 
-    <Container className="mb-24 mt-12">
+    <Container className="mt-12 mb-24">
       <Hero label="The benefits" title="How does sponsorship benefit you?" />
       <div className="prose">
         <p>
@@ -142,7 +142,7 @@ const SponsorshipPage = ({
       </div>
     </Container>
 
-    <Container className="mb-24 mt-12">
+    <Container className="mt-12 mb-24">
       <Hero label="Sponsorship tiers" title="What can you sponsor?" />
       <div className="prose">
         <p>
@@ -155,7 +155,7 @@ const SponsorshipPage = ({
       <SponsorshipTiers tiers={SPONSORSHIP_TIERS} />
     </Container>
 
-    <Container className="mb-24 mt-12">
+    <Container className="mt-12 mb-24">
       <Hero label="Speak to us" title="Want to find out more?" />
       <div className="prose mb-6">
         <p>

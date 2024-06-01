@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import type { ArticleSummary } from "@sudburyrc/api";
+import Link from "next/link";
 import PostPreview from "./post-preview";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 
 const MoreStories = ({ posts, more }: Props) => (
   <section>
-    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+    <ul className="grid grid-cols-1 gap-4 md:grid-cols-3 sm:grid-cols-2">
       {posts.map((post) => (
         <PostPreview key={post._id} post={post} />
       ))}

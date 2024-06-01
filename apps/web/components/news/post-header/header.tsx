@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { useToggle } from "@mantine/hooks";
-import { Article, urlFor } from "@sudburyrc/api";
 import LightBox from "@/components/stour/lightbox";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { useToggle } from "@mantine/hooks";
+import { type Article, urlFor } from "@sudburyrc/api";
+import Image from "next/image";
 import Caption from "./caption";
 import PostTitle from "./title";
 
@@ -125,7 +125,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
 
   if (featuredImage)
     return (
-      <div className="mx-auto mb-8 max-w-3xl flex-row items-center gap-8 sm:flex md:mb-16">
+      <div className="mx-auto mb-8 max-w-3xl flex-row items-center gap-8 md:mb-16 sm:flex">
         <PostTitle date={date} title={title} />
         <div className="relative flex-none">
           <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />

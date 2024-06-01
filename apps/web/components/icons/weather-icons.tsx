@@ -1,3 +1,4 @@
+import type { WeatherCodeNumber } from "@sudburyrc/api";
 import {
   WiCloudy,
   WiDayCloudy,
@@ -29,7 +30,6 @@ import {
   WiWindBeaufort11,
   WiWindBeaufort12,
 } from "react-icons/wi";
-import { WeatherCodeNumber } from "@sudburyrc/api";
 
 const svgProps = {
   className: "w-7 h-7",

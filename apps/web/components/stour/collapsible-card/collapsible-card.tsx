@@ -1,8 +1,3 @@
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { AccordionHeader } from "@radix-ui/react-accordion";
-import { LinkIcon } from "lucide-react";
-import type { Notice } from "@sudburyrc/api";
 import Label from "@/components/stour/label";
 import Text from "@/components/stour/text";
 import {
@@ -12,6 +7,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import DateFormatter from "@/components/utils/date-formatter";
+import { AccordionHeader } from "@radix-ui/react-accordion";
+import type { Notice } from "@sudburyrc/api";
+import { LinkIcon } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import FileGroup from "./file-group";
 
 type Props = { notice: Notice };
@@ -36,7 +36,7 @@ export const NoticeBody = ({ notice }: Props) => {
           {notice.meta.map((item) => (
             <div className="px-4" key={item._key}>
               <Label className="select-none text-xs">{`${item.label}: `}</Label>
-              <span className="disambiguate text-xs font-medium !text-gray-800">
+              <span className="disambiguate !text-gray-800 font-medium text-xs">
                 {item.value}
               </span>
             </div>
@@ -51,7 +51,7 @@ export const NoticeBody = ({ notice }: Props) => {
         </div>
       )}
 
-      <div className="flex justify-between gap-4 bg-gray-100 px-4 py-3 text-xs font-medium text-gray-500">
+      <div className="flex justify-between gap-4 bg-gray-100 px-4 py-3 font-medium text-gray-500 text-xs">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           <span>
             Created:{" "}
@@ -92,7 +92,7 @@ const CollapsibleCard = ({ notice }: Props) => (
   >
     <AccordionItem value={notice.title}>
       <AccordionHeader>
-        <AccordionTrigger className="group flex h-14 w-full items-center justify-between px-4 text-left transition hover:bg-gray-50 data-[state=open]:bg-gray-50">
+        <AccordionTrigger className="group flex h-14 w-full items-center justify-between px-4 text-left transition data-[state=open]:bg-gray-50 hover:bg-gray-50">
           <Label
             className="transition duration-300 group-hover:text-black"
             as="h2"

@@ -1,9 +1,7 @@
+import type getWeatherForecast from "@/lib/get-weather-forecast";
+import { briefWeatherCodes, getMetOfficeURL } from "@/lib/get-weather-forecast";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
-import getWeatherForecast, {
-  briefWeatherCodes,
-  getMetOfficeURL,
-} from "@/lib/get-weather-forecast";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
 
@@ -30,17 +28,17 @@ const ForecastComponent = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <h3 className="mb-1 text-xs font-semibold uppercase tracking-wider text-gray-600">
+              <h3 className="mb-1 font-semibold text-gray-600 text-xs uppercase tracking-wider">
                 <DateFormatter dateString={date} format="shortWeekday" />
               </h3>
 
-              <div className="mb-0.5 text-xs font-semibold text-gray-500 group-hover:text-blue-400">
+              <div className="mb-0.5 font-semibold text-gray-500 text-xs group-hover:text-blue-400">
                 {briefWeatherCodes[code]}
               </div>
 
               <div
                 className={cn(
-                  "disambiguate mb-0.5 whitespace-nowrap text-xs font-semibold transition",
+                  "disambiguate mb-0.5 whitespace-nowrap font-semibold text-xs transition",
                   maxTemp > 30 || minTemp < 4
                     ? "font-bold text-red-600 underline decoration-red-300 underline-offset-2"
                     : "text-gray-700 group-hover:text-blue-500",

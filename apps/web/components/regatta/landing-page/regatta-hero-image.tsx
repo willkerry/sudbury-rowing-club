@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { ArrowUpIcon } from "@heroicons/react/20/solid";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { ArrowUpIcon } from "@heroicons/react/20/solid";
+import Image from "next/image";
 
 type Props = {
   title: string;
@@ -29,10 +29,10 @@ const RegattaHeroImage = ({
         width={imageWidth}
         height={imageHeight}
       />
-      <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-tr from-black via-transparent to-transparent" />
-      <div className="absolute left-0 top-0 flex h-full w-full items-end p-6 md:p-12">
+      <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-tr from-black via-transparent to-transparent" />
+      <div className="absolute top-0 left-0 flex h-full w-full items-end p-6 md:p-12">
         <div className="hidden w-2/3 sm:block">
-          <div className="leading-tighter max-w-sm text-4xl font-bold text-white drop-shadow md:text-6xl">
+          <div className="max-w-sm font-bold text-4xl text-white leading-tighter drop-shadow md:text-6xl">
             {title}
           </div>
           <div className="font-medium text-white opacity-75">

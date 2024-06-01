@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { ContactFormEmail } from "emails/contact-form";
-import DOMPurify from "isomorphic-dompurify";
-import { Resend } from "resend";
-import { z } from "zod";
 import checkForSpam from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import getOfficer from "@/lib/get-officer";
+import { ContactFormEmail } from "emails/contact-form";
+import DOMPurify from "isomorphic-dompurify";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { Resend } from "resend";
+import { z } from "zod";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -81,7 +81,7 @@ const spamCheck = async (
 const findRecipient = async (id: string) => {
   try {
     return await getOfficer(id);
-  } catch (error) {
+  } catch (_error) {
     throw new ResponseError(
       "Could not find recipient. This is likely a temporary error. Please try again later or contact us directly.",
       404,

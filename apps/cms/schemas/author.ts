@@ -38,7 +38,7 @@ const Author = defineType({
     prepare(selection) {
       const { name, surname } = selection;
       return {
-        title: name + " " + surname,
+        title: `${name} ${surname}`,
       };
     },
   },

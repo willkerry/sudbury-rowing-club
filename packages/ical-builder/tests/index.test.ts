@@ -1,5 +1,5 @@
-import { SRCEvent } from "@sudburyrc/api";
 import { fakerEN_GB as faker } from "@faker-js/faker";
+import type { SRCEvent } from "@sudburyrc/api";
 import { expect, test } from "vitest";
 import IcalBuilder from "../src/index";
 
@@ -24,7 +24,7 @@ const events: SRCEvent[] = new Array(NUMBER_OF_EVENTS)
       id: faker.commerce.isbn(),
       startDate: date,
       endDate: date,
-      competition: faker.location.city() + " Regatta",
+      competition: `${faker.location.city()} Regatta`,
       region: faker.location.county(),
       notes: faker.lorem.sentence(),
       url: faker.internet.url(),

@@ -1,7 +1,7 @@
-import { useId } from "react";
-import { VariantProps, cva } from "class-variance-authority";
-import { blue } from "@sudburyrc/blue";
 import { cn } from "@/lib/utils";
+import { blue } from "@sudburyrc/blue";
+import { type VariantProps, cva } from "class-variance-authority";
+import { useId } from "react";
 
 const variants = cva(
   cn([

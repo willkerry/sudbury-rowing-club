@@ -12,7 +12,7 @@ const NewsList = ({ posts, hero, more }: Props) => {
   if (posts.length === 0)
     return (
       <div className="flex h-48 w-full flex-col items-center justify-center">
-        <p className="text-center text-lg font-semibold text-gray-500">
+        <p className="text-center font-semibold text-gray-500 text-lg">
           Nothing found
         </p>
       </div>

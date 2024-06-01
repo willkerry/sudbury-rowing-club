@@ -1,5 +1,5 @@
+import type { Severity } from "@/types/severity";
 import groq from "groq";
-import { Severity } from "@/types/severity";
 import useGroqQuery from "./useQroqQuery";
 
 type SafetyStatus = {

@@ -1,6 +1,6 @@
-import { Archive } from "@sudburyrc/api";
 import Gallery from "@/components/regatta/landing-page/gallery";
 import { formatYear } from "@/pages/150/gallery";
+import type { Archive } from "@sudburyrc/api";
 
 const appendAFullStop = (str: string) => {
   const trimmed = str.trim();

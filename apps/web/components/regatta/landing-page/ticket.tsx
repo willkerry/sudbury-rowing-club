@@ -1,6 +1,6 @@
 const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
   <div
-    className="relative -rotate-6 rounded-lg bg-gradient-to-tr from-gray-300 to-white drop-shadow-2xl"
+    className="-rotate-6 relative rounded-lg bg-gradient-to-tr from-gray-300 to-white drop-shadow-2xl"
     style={{
       clipPath:
         "path('M159 0a15 15 0 0115 15v185a15 15 0 000 30v57a15 15 0 01-14 15l-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6h-1a15 15 0 01-15-15v-57a15 15 0 000-30V15A15 15 0 0115 0l6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6z')",
@@ -8,11 +8,11 @@ const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
       height: 302,
     }}
   >
-    <div className="-m-1 border-b bg-blue-900 px-2 pb-0.5 pt-3 text-center text-[11px] font-bold uppercase tracking-wider text-white">
+    <div className="-m-1 border-b bg-blue-900 px-2 pt-3 pb-0.5 text-center font-bold text-[11px] text-white uppercase tracking-wider">
       Sudbury Rowing Club
     </div>
     <div
-      className="absolute bottom-0 left-0 right-0 bg-blue-900"
+      className="absolute right-0 bottom-0 left-0 bg-blue-900"
       style={{
         height: 10,
       }}
@@ -20,10 +20,10 @@ const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
     <div className="space-y-1.5 px-3 py-3">
       {items.map((item) => (
         <div key={item[0].toString()}>
-          <div className="text-[9px] font-bold uppercase tracking-widest text-gray-500">
+          <div className="font-bold text-[9px] text-gray-500 uppercase tracking-widest">
             {item[0]}
           </div>
-          <div className="whitespace-pre-line font-mono text-[11px] font-medium">
+          <div className="whitespace-pre-line font-medium font-mono text-[11px]">
             {item[1]}
           </div>
         </div>
