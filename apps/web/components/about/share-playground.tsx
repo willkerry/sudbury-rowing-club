@@ -1,11 +1,11 @@
-import { useRef } from "react";
-import { useClipboard } from "@mantine/hooks";
-import { toast } from "sonner";
-import { makeShareImageURL } from "@/lib/og-image";
 import Label from "@/components/stour/label";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
-import { type ShareImage } from "@/pages/api/og";
+import { makeShareImageURL } from "@/lib/og-image";
+import type { ShareImage } from "@/pages/api/og";
+import { useClipboard } from "@mantine/hooks";
+import { useRef } from "react";
+import { toast } from "sonner";
 
 const DEFAULT_TITLE = "Share Image Playground 🎉";
 const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
@@ -57,7 +57,7 @@ const SharePlayground = () => {
 
   return (
     <form
-      className="grid grid-cols-1 items-end gap-3 pb-12 pt-4 md:grid-cols-2"
+      className="grid grid-cols-1 items-end gap-3 pt-4 pb-12 md:grid-cols-2"
       onSubmit={onSubmit}
     >
       <label htmlFor="title">
@@ -92,7 +92,7 @@ const SharePlayground = () => {
 
       <Button type="submit">Generate</Button>
 
-      <div className="aspect-h-8 aspect-w-16 relative mt-6 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
+      <div className="relative mt-6 aspect-h-8 aspect-w-16 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
         <div
           className="absolute inset-0 hidden items-center justify-center"
           ref={loadingRef}

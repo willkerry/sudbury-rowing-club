@@ -1,12 +1,12 @@
-import { Fragment } from "react";
-import { Popover, Transition } from "@headlessui/react";
-import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
-import { fork } from "radash";
 import { NavLogo, NavSection } from "@/components/nav";
 import {
   MobileMenuButton,
   MobileMenuSection,
 } from "@/components/nav/mobile-menu";
+import { Popover, Transition } from "@headlessui/react";
+import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
+import { fork } from "radash";
+import { Fragment } from "react";
 import { navigationGroups, secondaryNavigationGroups } from "./nav-data";
 
 const extractSingletonGroups = (
@@ -48,7 +48,7 @@ const Nav = () => {
       {({ open }) => (
         <>
           <div className="mx-auto max-w-screen-lg px-4 sm:px-6">
-            <div className="xs:py-4 flex items-center justify-between py-3 md:py-6 ">
+            <div className="flex items-center justify-between py-3 md:py-6 xs:py-4">
               <NavLogo />
               <MobileMenuButton />
 
@@ -60,7 +60,7 @@ const Nav = () => {
 
               <Popover.Group
                 as="nav"
-                className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
+                className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1"
               >
                 {secondaryNavigationGroups.map(({ title, items, icon }) => {
                   const Icon = icon || null;
@@ -116,7 +116,7 @@ const Nav = () => {
                   />
                 ))}
               </div>
-              <div className="absolute right-3 top-3">
+              <div className="absolute top-3 right-3">
                 <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
                   <span className="sr-only">Close menu</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden />

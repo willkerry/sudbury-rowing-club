@@ -39,17 +39,17 @@ const getElementsByBoatName = (boatName: string) =>
 const highlightBoat = (boatName: string) => {
   const boatElements = getElementsByBoatName(boatName);
 
-  boatElements.forEach((boatElement) => {
+  for (const boatElement of boatElements) {
     boatElement.classList.add("ring-2");
-  });
+  }
 };
 
 const unhighlightBoat = (boatName: string) => {
   const boatElements = getElementsByBoatName(boatName);
 
-  boatElements.forEach((boatElement) => {
+  for (const boatElement of boatElements) {
     boatElement.classList.remove("ring-2");
-  });
+  }
 };
 
 const Chip = ({
@@ -101,7 +101,7 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
         className={cn(
           "prose",
           "overflow-x-auto",
-          compact ? "prose-sm my-6" : "my-12 text-xs sm:text-sm lg:text-base",
+          compact ? "prose-sm my-6" : "my-12 text-xs lg:text-base sm:text-sm",
         )}
       >
         <table>

@@ -9,7 +9,7 @@ type Props = {
 const Label = ({ children, className, as: Component = "span" }: Props) => (
   <Component
     className={cn(
-      "text-sm font-medium uppercase tracking-widest text-gray-600",
+      "font-medium text-gray-600 text-sm uppercase tracking-widest",
       className,
     )}
   >

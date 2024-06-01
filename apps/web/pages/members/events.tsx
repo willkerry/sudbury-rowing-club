@@ -1,11 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState } from "react";
-import { NextSeo } from "next-seo";
-import { useQuery } from "@tanstack/react-query";
-import { type SRCEvent } from "@sudburyrc/api";
-import { HOSTNAME } from "@/lib/constants";
-import { getHostname } from "@/lib/helpers/getHostname";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import { HeroTitle } from "@/components/stour/hero";
@@ -14,6 +6,15 @@ import Link from "@/components/stour/link";
 import Loading from "@/components/stour/loading";
 import DateFormatter from "@/components/utils/date-formatter";
 import useFilter from "@/hooks/useFilter";
+import { HOSTNAME } from "@/lib/constants";
+import { getHostname } from "@/lib/helpers/getHostname";
+import { makeShareImageURL } from "@/lib/og-image";
+import { cn } from "@/lib/utils";
+import type { SRCEvent } from "@sudburyrc/api";
+import { useQuery } from "@tanstack/react-query";
+import { NextSeo } from "next-seo";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { useState } from "react";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -36,7 +37,7 @@ type Event = NeverUndefined<
 >;
 
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="rounded-sm border bg-gray-50 p-0.5 text-xs font-semibold leading-none text-gray-400 first-of-type:-ml-0.5">
+  <span className="first-of-type:-ml-0.5 rounded-sm border bg-gray-50 p-0.5 font-semibold text-gray-400 text-xs leading-none">
     {children}
   </span>
 );
@@ -49,21 +50,21 @@ const EventCard = ({
   <li
     {...{ id }}
     key={id}
-    className={`grid bg-white px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
+    className={cn("grid bg-white px-2 py-1.5", status === 8 && "opacity-50")}
   >
-    <h3 className="mb-0.5 line-clamp-1 text-sm font-semibold">{competition}</h3>
+    <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm">{competition}</h3>
     <DateFormatter
       dateString={startDate}
-      className="mb-2 block text-xs font-semibold leading-none text-gray-500"
+      className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
     />
-    <div className="mb-2 text-xs font-semibold text-orange-600">{notes}</div>
+    <div className="mb-2 font-semibold text-orange-600 text-xs">{notes}</div>
 
     <div className="flex flex-wrap gap-2">
       <Tag>{region}</Tag>
       {status === 8 && <Tag>{BR_EVENT_STATUS[status]}</Tag>}
 
       {url && (
-        <Link href={url} external className="text-xs font-semibold">
+        <Link href={url} external className="font-semibold text-xs">
           {getHostname(url)}
         </Link>
       )}
@@ -135,7 +136,7 @@ const EventCalendar = () => {
           </p>
         </div>
 
-        <div className="mb-4 grid grid-cols-1 items-end md:grid-cols-2 lg:grid-cols-3">
+        <div className="mb-4 grid grid-cols-1 items-end lg:grid-cols-3 md:grid-cols-2">
           <div>
             <label htmlFor="region">Filter by region</label>
             <select
@@ -147,9 +148,7 @@ const EventCalendar = () => {
               {status === "error" && (
                 <option value="">Error loading regions.</option>
               )}
-              {!regions ? (
-                <option value="">No regions found.</option>
-              ) : (
+              {regions ? (
                 <>
                   <option value="">All</option>
                   {Array.from(regions).map((region) => (
@@ -158,6 +157,8 @@ const EventCalendar = () => {
                     </option>
                   ))}
                 </>
+              ) : (
+                <option value="">No regions found.</option>
               )}
             </select>
           </div>
@@ -180,12 +181,12 @@ const EventCalendar = () => {
         {status === "error" && <p>Error loading calendar.</p>}
 
         {events && (
-          <div className="grid grid-cols-1 rounded border bg-gray-50 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 rounded border bg-gray-50 lg:grid-cols-3 md:grid-cols-2">
             {groupByMonth(filteredEvents).map(({ month, events }) => (
               <div
                 id={`month-${month + 1}`}
                 key={month}
-                className="overflow-hidden border-b border-r md:border-b-0"
+                className="overflow-hidden border-r border-b md:border-b-0"
               >
                 <Label as="h2" className="mb-2 p-2 text-xs">
                   {new Date(events[0].startDate).toLocaleString("default", {

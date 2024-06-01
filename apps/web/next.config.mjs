@@ -15,7 +15,9 @@ const config = {
     ],
   },
   swcMinify: true,
-  async redirects() {
+  redirects: async () => {
+    const _p = await null;
+
     return [
       {
         source: "/wp-admin",

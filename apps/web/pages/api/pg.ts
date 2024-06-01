@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-const wodehouse = async (req: NextApiRequest, res: NextApiResponse) => {
+const wodehouse = (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
     res.status(405);
     return;
@@ -12,7 +12,7 @@ const wodehouse = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const status = getWodehouseFullDetails();
     res.status(200).json(status);
-  } catch (error: any) {
+  } catch (_error: any) {
     res.status(500);
   }
 };

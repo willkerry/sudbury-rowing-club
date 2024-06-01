@@ -3,16 +3,21 @@
   "name": "@sudburyrc/api",
   "version": "0.0.0",
   "private": true,
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "main": "dist/index.mjs",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "types": "dist/index.d.mts",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "type-check": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@portabletext/types": "^2.0.13",
     "@sanity/image-url": "^1.0.2",
@@ -30,12 +35,6 @@
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "^1.2.3",
     "@types/node": "^20.12.13",
-    "eslint-config-stour": "workspace:*",
     "typescript": "^5.4.5"
-  },
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
   }
 }

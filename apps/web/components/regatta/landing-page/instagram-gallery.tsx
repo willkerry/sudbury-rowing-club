@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { useInViewport, useReducedMotion } from "@mantine/hooks";
-import AutoScroll from "embla-carousel-auto-scroll";
 import Instagram from "@/components/icons/socials/instagram";
 import Container from "@/components/layouts/container";
 import Loading from "@/components/stour/loading";
@@ -14,11 +11,15 @@ import DateFormatter from "@/components/utils/date-formatter";
 import useInstagramPosts, {
   type InstagramPost,
 } from "@/hooks/useInstagramPosts";
+import { useInViewport, useReducedMotion } from "@mantine/hooks";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { useEffect, useState } from "react";
 
 const IMAGE_CLASS_NAME =
   "h-48 w-full border-b bg-gray-100 object-cover sm:h-80";
 
-const PLACEHOLDER = `█████████\n\n█████████ ███ ██████ ███ ███\n█ ██████ ██ █████ █ ███ ███ ███ █████████\n\n██████  █████  █████`;
+const PLACEHOLDER =
+  "█████████\n\n█████████ ███ ██████ ███ ███\n█ ██████ ██ █████ █ ███ ███ ███ █████████\n\n██████  █████  █████";
 
 const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
   const { ref, inViewport } = useInViewport();
@@ -57,7 +58,7 @@ const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
         </p>
 
         <div className="mt-2 flex gap-2 text-gray-600">
-          <span className="text-xs font-semibold">{post.likesCount} likes</span>
+          <span className="font-semibold text-xs">{post.likesCount} likes</span>
           <DateFormatter dateString={post.timestamp} />
           <a
             href={post.url}
@@ -98,7 +99,7 @@ export const InstagramGallery = () => {
               <CarouselItem
                 key={post.id}
                 id={post.id}
-                className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
+                className="basis-[80%] lg:basis-1/4 sm:basis-1/2"
               >
                 <InstagramFullPost post={post} />
               </CarouselItem>
@@ -109,7 +110,7 @@ export const InstagramGallery = () => {
             <CarouselItem
               // eslint-disable-next-line react/no-array-index-key
               key={index}
-              className="basis-[80%] animate-pulse sm:basis-1/2 lg:basis-1/4"
+              className="basis-[80%] animate-pulse lg:basis-1/4 sm:basis-1/2"
             >
               <figure className="overflow-hidden rounded border">
                 <div className={IMAGE_CLASS_NAME} />

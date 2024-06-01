@@ -1,8 +1,8 @@
-import Link from "next/link";
+import { sanityClient } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import groq from "groq";
-import { sanityClient } from "@sudburyrc/api";
+import Link from "next/link";
 import Loading from "../stour/loading";
 
 const grades = ["neutral", "green", "amber", "red"];
@@ -31,7 +31,7 @@ const StatusShell = ({ grade, text }: StatusShellProps) => {
     <Link
       href="/safety"
       className={cn(
-        "group ml-1 flex items-center rounded-full border px-2 py-1 text-xs font-medium transition duration-300",
+        "group ml-1 flex items-center rounded-full border px-2 py-1 font-medium text-xs transition duration-300",
         bgClass,
       )}
       title={`River safety status: ${text}`}

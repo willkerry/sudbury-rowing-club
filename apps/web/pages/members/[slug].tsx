@@ -1,22 +1,22 @@
-import {
-  type GetStaticPaths,
-  type GetStaticProps,
-  type InferGetStaticPropsType,
-  type NextPage,
-} from "next";
-import { NextSeo } from "next-seo";
-import {
-  type Notice as NoticeType,
-  fetchNoticeSlugs,
-  fetchOneNotice,
-} from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import { makeShareImageURL } from "@/lib/og-image";
+import {
+  type Notice as NoticeType,
+  fetchNoticeSlugs,
+  fetchOneNotice,
+} from "@sudburyrc/api";
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
+import { NextSeo } from "next-seo";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await fetchNoticeSlugs();
@@ -49,7 +49,7 @@ const Notice: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <HeroTitle prose title={notice?.title} transparent>
       <div className="h-2" />
       <Label>Members’ Notices</Label>{" "}
-      <Link href="/members" arrow className="text-sm font-medium">
+      <Link href="/members" arrow className="font-medium text-sm">
         View all
       </Link>
     </HeroTitle>

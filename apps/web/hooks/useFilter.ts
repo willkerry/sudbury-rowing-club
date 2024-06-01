@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 
-const useFilter = <TObject extends Object, TKeyInObject extends keyof TObject>(
+const useFilter = <
+  TObject extends Record<string | number, unknown>,
+  TKeyInObject extends keyof TObject,
+>(
   arrayOfObjects: TObject[],
   key: TKeyInObject,
   value: TObject[TKeyInObject],

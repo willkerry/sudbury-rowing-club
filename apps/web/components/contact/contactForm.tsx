@@ -1,11 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { Field, Form } from "react-final-form";
-import TextareaAutosize from "react-textarea-autosize";
-import { useMutation } from "@tanstack/react-query";
-import { FORM_ERROR } from "final-form";
-import { getWodehouseFullDetails } from "get-wodehouse-name";
-import { shake } from "radash";
-import type { OfficerResponse } from "@sudburyrc/api";
 import Input from "@/components/contact/fields/input";
 import Select from "@/components/contact/fields/select";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
@@ -13,6 +5,14 @@ import Error from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
+import type { OfficerResponse } from "@sudburyrc/api";
+import { useMutation } from "@tanstack/react-query";
+import { FORM_ERROR } from "final-form";
+import { getWodehouseFullDetails } from "get-wodehouse-name";
+import { shake } from "radash";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import { Field, Form } from "react-final-form";
+import TextareaAutosize from "react-textarea-autosize";
 import { FromAndTo } from "./fromAndTo";
 
 export type Message = {
@@ -106,7 +106,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               )}
             </Field>
 
-            <div className="col-span-2 -mb-4 grid gap-x-4 sm:grid-cols-2">
+            <div className="-mb-4 col-span-2 grid gap-x-4 sm:grid-cols-2">
               <Field name="name">
                 {({ input, meta }) => (
                   <Input
@@ -145,7 +145,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
                   values.name ||
                   `${randomName.firstName} ${randomName.lastName}`,
                 email: values.email || "Placeholder",
-                isPlaceholder: !values.name || !values.email,
+                isPlaceholder: !(values.name && values.email),
               }}
               to={shake(selectedContact)}
             />

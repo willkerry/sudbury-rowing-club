@@ -1,6 +1,6 @@
-import { ComponentProps } from "react";
-import { Link as ScrollLink } from "react-scroll";
 import { Button } from "@/components/ui/button";
+import type { ComponentProps } from "react";
+import { Link as ScrollLink } from "react-scroll";
 
 type CTALinkProps = {
   to: string;
@@ -21,7 +21,7 @@ const CTALink = ({ to, variant, children }: CTALinkProps) => (
 
 const CTAText = ({ first, second }: CTATextProps) => (
   <p className="text-center">
-    <span className="text-xl font-medium text-gray-800">{first}</span>
+    <span className="font-medium text-gray-800 text-xl">{first}</span>
     <br />
     <span className="text-gray-500">{second}</span>
   </p>

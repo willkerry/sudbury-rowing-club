@@ -1,4 +1,3 @@
-import React from "react";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 const forwarders = defineType({
@@ -68,7 +67,7 @@ const forwarders = defineType({
     prepare({ alias, recipients, otherRecipients }) {
       const title = alias;
 
-      if (!recipients && !otherRecipients) {
+      if (!(recipients || otherRecipients)) {
         return {
           title,
           subtitle: "No recipients",
@@ -84,7 +83,7 @@ const forwarders = defineType({
         title,
         subtitle: `${totalRecipients} ${makePlural(
           "recipient",
-          totalRecipients
+          totalRecipients,
         )}`,
       };
     },

@@ -2,18 +2,24 @@
   "name": "@sudburyrc/monorepo",
   "version": "1.0.0",
   "description": "",
-  "packageManager": "pnpm@8.14.1",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "scripts": {
     "build": "turbo build",
-    "type-check": "turbo type-check",
-    "test": "turbo test",
+    "clean": "pnpx rimraf node_modules && pnpx rimraf packages/*/node_modules && pnpx rimraf apps/*/node_modules",
     "dev": "turbo dev",
-    "clean": "pnpx rimraf node_modules && pnpx rimraf packages/*/node_modules && pnpx rimraf apps/*/node_modules"
+    "format": "biome format .",
+    "lint": "biome lint .",
+    "test": "turbo test",
+    "type-check": "turbo type-check"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "turbo": "latest"
-  }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.7.3",
+    "lefthook": "^1.6.14"
+  },
+  "packageManager": "pnpm@8.14.1"
 }

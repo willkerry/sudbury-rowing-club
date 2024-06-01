@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 /**
  * Renders the square 'social' profile picture version of the crest in inlined SVG.

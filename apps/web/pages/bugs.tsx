@@ -1,11 +1,3 @@
-import { Field, Form } from "react-final-form";
-import TextareaAutosize from "react-textarea-autosize";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import cn from "clsx";
-import { FORM_ERROR } from "final-form";
-import { makeShareImageURL } from "@/lib/og-image";
 import Input from "@/components/contact/fields/input";
 import Error from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
@@ -14,7 +6,15 @@ import Layout from "@/components/layouts/layout";
 import Center from "@/components/stour/center";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { Button } from "@/components/ui/button";
-import { type BugReport } from "./api/bug";
+import { makeShareImageURL } from "@/lib/og-image";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import cn from "clsx";
+import { FORM_ERROR } from "final-form";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+import { Field, Form } from "react-final-form";
+import TextareaAutosize from "react-textarea-autosize";
+import type { BugReport } from "./api/bug";
 
 const getUserAgent = () => {
   if (typeof window === "undefined") return null;
@@ -25,7 +25,7 @@ const getUserAgent = () => {
 const formatIfStringIsParseableJSON = (string: string) => {
   try {
     return JSON.stringify(JSON.parse(string), null, 2);
-  } catch (e) {
+  } catch (_e) {
     return string;
   }
 };
@@ -138,7 +138,7 @@ const Contact = () => {
                     <div className="col-span-2">
                       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                       <label htmlFor="message">Description</label>
-                      <p className="my-1 text-sm text-gray-900">
+                      <p className="my-1 text-gray-900 text-sm">
                         Describe what you were trying to do, what you expected
                         to happen, and what actually happened.
                       </p>
@@ -157,7 +157,7 @@ const Contact = () => {
                 </Field>
 
                 <fieldset className="col-span-2 grid gap-4 rounded border bg-gray-50 p-2">
-                  <legend className="text-xs font-medium text-gray-700">
+                  <legend className="font-medium text-gray-700 text-xs">
                     Included automatically
                   </legend>
 
@@ -189,7 +189,7 @@ const Contact = () => {
                           <TextareaAutosize
                             {...input}
                             className={cn(
-                              "p-1.5 font-mono text-xs text-gray-600",
+                              "p-1.5 font-mono text-gray-600 text-xs",
                               meta.invalid && meta.touched ? "invalid" : "",
                             )}
                             disabled={disableFields}
@@ -197,7 +197,7 @@ const Contact = () => {
                             minRows={3}
                             required
                           />
-                          <p className="text-xs text-gray-700">
+                          <p className="text-gray-700 text-xs">
                             The page you were on when you clicked the “Report a
                             bug” link gave us some additional information.
                             Delete it if you don’t want to include it.
@@ -232,7 +232,7 @@ const Contact = () => {
           }}
         />
 
-        <div className="prose mt-16 text-sm text-gray-500">
+        <div className="prose mt-16 text-gray-500 text-sm">
           Alternatively, mail{" "}
           <Obfuscate email="webmaster@sudburyrowingclub.org.uk" />.
         </div>

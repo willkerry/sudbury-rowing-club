@@ -3,7 +3,7 @@ type Props = {
 };
 
 const Caption = ({ caption }: Props) => (
-  <figcaption className="bg-cover bg-bottom px-3 py-2 text-xs font-medium">
+  <figcaption className="bg-bottom bg-cover px-3 py-2 font-medium text-xs">
     {caption}
   </figcaption>
 );

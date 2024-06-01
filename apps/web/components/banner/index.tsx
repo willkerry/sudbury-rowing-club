@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import useNotice, { type noticeVariants } from "@/hooks/useNotice";
 import cn from "clsx";
-import useNotice, { noticeVariants } from "@/hooks/useNotice";
+import { useEffect, useRef, useState } from "react";
 import Container from "../layouts/container";
 import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";
@@ -167,7 +167,7 @@ const Banner = () => {
               <Text portableText={data?.text} size="small" className="py-4" />
 
               {data.date && (
-                <div className="mb-4 text-xs font-medium text-gray-700">
+                <div className="mb-4 font-medium text-gray-700 text-xs">
                   Updated <DateFormatter dateString={data.date} />
                 </div>
               )}

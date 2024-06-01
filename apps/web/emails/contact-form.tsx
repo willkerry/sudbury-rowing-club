@@ -24,13 +24,13 @@ interface ContactFormEmailProps {
 }
 
 const Label = ({ children }: { children: React.ReactNode }) => (
-  <span className="my-2 block text-sm font-medium text-gray-500">
+  <span className="my-2 block font-medium text-gray-500 text-sm">
     {children}
   </span>
 );
 
 const Value = ({ children }: { children: React.ReactNode }) => (
-  <span className="block text-sm font-medium text-gray-900">{children}</span>
+  <span className="block font-medium text-gray-900 text-sm">{children}</span>
 );
 
 const LT = () => <span className="text-gray-400">&lt;</span>;
@@ -56,9 +56,9 @@ export const ContactFormEmail = ({
     <Head />
 
     <Tailwind>
-      <Body className="mx-auto my-auto bg-white py-4 font-sans ">
+      <Body className="mx-auto my-auto bg-white py-4 font-sans">
         <Container>
-          <Heading className="text-lg font-normal text-black">
+          <Heading className="font-normal text-black text-lg">
             You have received a message via SRC Contact
           </Heading>
 
@@ -91,7 +91,7 @@ export const ContactFormEmail = ({
               <Column>
                 <Label>Message:</Label>
                 <div
-                  className="m-0  rounded border border-solid border-gray-200 bg-gray-50 p-2 text-sm text-gray-900"
+                  className="m-0 rounded border border-gray-200 border-solid bg-gray-50 p-2 text-gray-900 text-sm"
                   // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{ __html: snarkdown(message) }}
                 />
@@ -101,7 +101,7 @@ export const ContactFormEmail = ({
 
           <Section className="mt-8">
             <Hr className="border-gray-200" />
-            <Text className="text-xs font-medium text-gray-600">
+            <Text className="font-medium text-gray-600 text-xs">
               Sent using the{" "}
               <Link
                 className="text-blue-500"

@@ -75,7 +75,7 @@ const HeroTitle = ({
           <div className={cn(prose && "mx-auto max-w-prose text-center")}>
             <h1
               className={cn(
-                "text-4xl sm:text-5xl md:text-6xl",
+                "text-4xl md:text-6xl sm:text-5xl",
                 colorClasses?.heading,
               )}
             >

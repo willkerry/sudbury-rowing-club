@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 /**
  * Renders the website 'logo' in inlined SVG format. This is the club crest with

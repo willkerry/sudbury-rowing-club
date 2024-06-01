@@ -1,15 +1,12 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import {
-  FormEventHandler,
-  useCallback,
-  useEffect,
-  useId,
-  useState,
-} from "react";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
-import { InferGetStaticPropsType, NextPage } from "next/types";
-import { type SearchResponse } from "@algolia/client-search";
+import Container from "@/components/layouts/container";
+import Layout from "@/components/layouts/layout";
+import NewsList from "@/components/news/news-list";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
+import { Button } from "@/components/ui/button";
+import { browserIndex, serverIndex } from "@/lib/algolia";
+import { makeShareImageURL } from "@/lib/og-image";
+import type { SearchResponse } from "@algolia/client-search";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import {
@@ -17,14 +14,17 @@ import {
   fetchNArticles,
   serverGetNArticles,
 } from "@sudburyrc/api";
-import { browserIndex, serverIndex } from "@/lib/algolia";
-import { makeShareImageURL } from "@/lib/og-image";
-import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
-import NewsList from "@/components/news/news-list";
-import Label from "@/components/stour/label";
-import Link from "@/components/stour/link";
-import { Button } from "@/components/ui/button";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+import type { InferGetStaticPropsType, NextPage } from "next/types";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import {
+  type FormEventHandler,
+  useCallback,
+  useEffect,
+  useId,
+  useState,
+} from "react";
 
 function getMoreUrl(activeSearchTerm: string, data: any[]) {
   if (activeSearchTerm) {
@@ -75,7 +75,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const [results, setResults] = useState<SearchResponse<any>["hits"]>([]);
   const searchInputId = useId();
 
-  const search = useCallback(async () => {
+  const search = useCallback(() => {
     if (!dirty) setDirty(true);
     router.push(`/news?q=${encodeURIComponent(searchTerm)}`, undefined, {
       shallow: true,
@@ -126,8 +126,8 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           images: [{ url: makeShareImageURL("News", true) }],
         }}
       />
-      <div className="flex items-center border-b border-t py-6">
-        <Container className="grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="flex items-center border-t border-b py-6">
+        <Container className="grid grid-cols-1 items-center justify-between gap-4 md:grid-cols-3 sm:grid-cols-2">
           <div className="flex items-center md:col-span-2">
             {activeSearchTerm && (
               <button
@@ -151,12 +151,10 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                     Showing results for{" "}
                     <button
                       type="button"
-                      className={`group relative mb-px inline-block rounded 
-                        border border-blue-200 bg-blue-50 px-0.5 text-xs font-bold 
-                        uppercase tracking-widest text-blue-400 transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-200`}
+                      className="group relative mb-px inline-block rounded border border-blue-200 bg-blue-50 px-0.5 font-bold text-blue-400 text-xs uppercase tracking-widest transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-200"
                       onClick={() => cancelSearch()}
                     >
-                      <XMarkIcon className="absolute left-0 right-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                      <XMarkIcon className="absolute right-0 left-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100" />
                       {activeSearchTerm}
                     </button>
                   </>
@@ -190,7 +188,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <Button
               type="submit"
               variant="secondary"
-              className="z-0 -ml-px h-10 rounded-l-none border-l"
+              className="-ml-px z-0 h-10 rounded-l-none border-l"
               shadow={Boolean(searchTerm && searchTerm !== activeSearchTerm)}
               disabled={!searchTerm}
             >

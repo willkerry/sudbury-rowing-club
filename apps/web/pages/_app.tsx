@@ -1,5 +1,5 @@
 import { DefaultSeo } from "next-seo";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import "@fontsource-variable/jetbrains-mono/index.css";

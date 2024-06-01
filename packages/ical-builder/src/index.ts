@@ -1,4 +1,4 @@
-import { SRCEvent } from "@sudburyrc/api";
+import type { SRCEvent } from "@sudburyrc/api";
 
 type IcalEvent = {
   BEGIN: "VEVENT";
@@ -55,7 +55,7 @@ export default class IcalBuilder {
   }
 
   private static _formatDay(date: Date): string {
-    const dateString = this._formatDate(date);
+    const dateString = IcalBuilder._formatDate(date);
 
     return dateString.split("T")[0];
   }

@@ -1,6 +1,6 @@
-import NextLink from "next/link";
-import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
+import NextLink from "next/link";
 
 type Props = {
   href: string;
@@ -65,7 +65,7 @@ const Link = ({
       <>
         {children}
         {extension && (
-          <span className="ml-1 rounded-full border px-1 text-xs font-medium uppercase text-gray-400 transition">
+          <span className="ml-1 rounded-full border px-1 font-medium text-gray-400 text-xs uppercase transition">
             {extension}
           </span>
         )}

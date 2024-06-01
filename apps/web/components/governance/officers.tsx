@@ -1,11 +1,11 @@
-import Image from "next/image";
-import NextLink from "next/link";
-import { Popover, Transition } from "@headlessui/react";
-import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
-import type { Governance } from "@sudburyrc/api";
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import Link from "@/components/stour/link";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { Popover, Transition } from "@headlessui/react";
+import type { Governance } from "@sudburyrc/api";
+import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
+import Image from "next/image";
+import NextLink from "next/link";
 import Crest from "../logo/crest";
 
 type Props = {
@@ -43,7 +43,7 @@ const OfficerPhotographOrPlaceholder = ({
 }) => {
   if (vacant) {
     return (
-      <div className="font-bold uppercase tracking-widest text-gray-400">
+      <div className="font-bold text-gray-400 uppercase tracking-widest">
         TBA
       </div>
     );
@@ -104,7 +104,7 @@ const Officers = ({ officers }: Props) => (
               <Popover>
                 <Popover.Button>
                   <HelpCircle
-                    className="absolute bottom-2 right-2  fill-white text-blue-500 transition hover:text-gray-700"
+                    className="absolute right-2 bottom-2 fill-white text-blue-500 transition hover:text-gray-700"
                     size="1.15em"
                     strokeWidth="0.15em"
                     aria-hidden
@@ -119,13 +119,13 @@ const Officers = ({ officers }: Props) => (
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Popover.Panel className="bg-opacity- absolute left-0 top-0 h-full w-full rounded border border-gray-300 bg-white p-2 backdrop-blur">
-                    <div className="text-sm font-medium text-black">
+                  <Popover.Panel className="absolute top-0 left-0 h-full w-full rounded border border-gray-300 bg-opacity- bg-white p-2 backdrop-blur">
+                    <div className="font-medium text-black text-sm">
                       <p>{officer.description}</p>
                     </div>
                     <Popover.Button>
                       <XCircle
-                        className="absolute bottom-2 right-2 text-gray-500 transition hover:text-gray-700"
+                        className="absolute right-2 bottom-2 text-gray-500 transition hover:text-gray-700"
                         size="1em"
                         strokeWidth="0.15em"
                       />
@@ -135,7 +135,7 @@ const Officers = ({ officers }: Props) => (
               </Popover>
             )}
           </div>
-          <div className="tracking-snug font-semibold text-gray-800">
+          <div className="font-semibold text-gray-800 tracking-snug">
             <OfficerNameOrPlaceholder {...{ officer }} />
           </div>
           <Description>{officer.role}</Description>
@@ -143,7 +143,7 @@ const Officers = ({ officers }: Props) => (
       ))}
     </GovGrid>
 
-    <p className="py-12 text-sm text-gray-500">
+    <p className="py-12 text-gray-500 text-sm">
       The role descriptions provided above are abbreviated and for illustrative
       purposes only. Please refer to the{" "}
       <Link href="/governance/constitution">constitution</Link> for accurate

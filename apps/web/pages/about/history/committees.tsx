@@ -1,6 +1,6 @@
-import { Fragment } from "react";
 import TextPage from "@/components/layouts/text-page";
 import committees from "@/data/officer-archive.json";
+import { Fragment } from "react";
 
 type Position = keyof (typeof committees)[0];
 
@@ -58,7 +58,7 @@ const Archive = () => (
 
               return (
                 <li className="my-0 pl-0" key={position}>
-                  <span className="block text-xs font-semibold uppercase tracking-wider text-gray-500">
+                  <span className="block font-semibold text-gray-500 text-xs uppercase tracking-wider">
                     {positionName}
                   </span>
 

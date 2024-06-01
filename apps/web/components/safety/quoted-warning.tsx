@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { EnvironmentAgency, MetOffice } from "../icons";
 
 export enum WarningSourceEnum {
@@ -11,25 +12,27 @@ type QuotedWarningProps = {
 };
 
 let AgencyIcon: React.FC<{ className: string }> = () => null;
-let agencyName: string = "";
-let agencyColors: string = "";
+let agencyName = "";
+let agencyColors = "";
 
 const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
   if (!description) return null;
   if (!source) return null;
 
   switch (source) {
-    case WarningSourceEnum.environmentAgency:
+    case WarningSourceEnum.environmentAgency: {
       agencyName = "Environment Agency";
       AgencyIcon = EnvironmentAgency;
       agencyColors = "bg-green-600 text-green-50";
       break;
+    }
 
-    case WarningSourceEnum.metoffice:
+    case WarningSourceEnum.metoffice: {
       agencyName = "Met Office";
       AgencyIcon = MetOffice;
       agencyColors = "bg-gray-700 text-lime-400";
       break;
+    }
 
     default:
       break;
@@ -42,7 +45,10 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
       <blockquote className="relative mt-3 overflow-hidden">
         {source && (
           <div
-            className={`${agencyColors} absolute right-0 top-0 flex items-center justify-center rounded-bl p-1`}
+            className={cn(
+              agencyColors,
+              "absolute top-0 right-0 flex items-center justify-center rounded-bl p-1",
+            )}
           >
             <AgencyIcon aria-hidden className="h-4 w-4" />
           </div>

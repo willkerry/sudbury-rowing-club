@@ -1,6 +1,6 @@
-import cn from "clsx";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
+import cn from "clsx";
 
 type Props = {
   title: string;
@@ -13,7 +13,7 @@ const PostTitle = ({ title, date, center }: Props) => (
     <Label>
       <DateFormatter dateString={date} />
     </Label>
-    <h1 className="mb-10 mt-2 text-3xl font-semibold leading-tight text-gray-800 md:text-5xl md:leading-none lg:text-6xl">
+    <h1 className="mt-2 mb-10 font-semibold text-3xl text-gray-800 leading-tight lg:text-6xl md:text-5xl md:leading-none">
       {title}
     </h1>
   </div>

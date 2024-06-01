@@ -1,8 +1,9 @@
-import { ReactNode } from "react";
-import { NextPage } from "next";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 import DateFormatter from "@/components/utils/date-formatter";
+import { cn } from "@/lib/utils";
+import type { NextPage } from "next";
+import type { ReactNode } from "react";
 
 const COLORS = {
   1: "bg-green-50 border-green-300",
@@ -21,7 +22,7 @@ const AMENDEMENTS = {
 
 const DottedLine = () => (
   <span
-    className="ml-2 flex grow border-b-2 border-dotted border-gray-400"
+    className="ml-2 flex grow border-gray-400 border-b-2 border-dotted"
     aria-hidden
   >
     &nbsp;
@@ -32,7 +33,7 @@ const AmendmentDate = ({ set }: { set: keyof typeof COLORS }) => (
   <>
     <span className="sr-only">Amendment ratified in </span>
     <DateFormatter
-      className="disambiguate text-xs font-semibold"
+      className="disambiguate font-semibold text-xs"
       format="year"
       dateString={AMENDEMENTS[set]}
     />
@@ -47,10 +48,13 @@ const Highlight = ({
   set?: keyof typeof COLORS;
 }) => (
   <em
-    className={`-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 not-italic ${COLORS[set]}`}
+    className={cn(
+      "-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 not-italic",
+      COLORS[set],
+    )}
   >
     {children}
-    <span className={`px-1 ${FOREGROUND_COLORS[set]}`}>
+    <span className={cn("px-1", FOREGROUND_COLORS[set])}>
       <AmendmentDate set={set} />
     </span>
   </em>
@@ -63,10 +67,10 @@ const BlockHighlight = ({
   children: ReactNode;
   set?: keyof typeof COLORS;
 }) => (
-  <div className={`rounded border-l-2 pl-2 pr-2 ${COLORS[set]}`}>
+  <div className={cn("rounded border-l-2 pr-2 pl-2", COLORS[set])}>
     {children}
 
-    <div className={`-mt-7 pb-1 text-right ${FOREGROUND_COLORS[set]}`}>
+    <div className={cn("-mt-7 pb-1 text-right", FOREGROUND_COLORS[set])}>
       <AmendmentDate set={set} />
     </div>
   </div>
@@ -467,7 +471,7 @@ const Constitution: NextPage = () => (
     <h2>26. Declaration</h2>
     <p>Each member upon joining shall sign the following declaration:</p>
 
-    <div className="rounded px-6 py-8 text-black shadow sm:px-28 sm:pb-24 sm:pt-14">
+    <div className="rounded px-6 py-8 text-black shadow sm:px-28 sm:pt-14 sm:pb-24">
       <p className="flex justify-center">
         <Logo className="mb-5 w-1/2 text-blue-800" />
       </p>
@@ -493,7 +497,7 @@ const Constitution: NextPage = () => (
 
       <br className="mb-6" />
 
-      <div className="text-sm text-gray-700">
+      <div className="text-gray-700 text-sm">
         <p>
           <em>
             <span className="font-semibold">*</span>

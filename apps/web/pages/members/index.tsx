@@ -1,12 +1,12 @@
-import { InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Head from "next/head";
-import { fetchNotices } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import CollapsibleCard from "@/components/stour/collapsible-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchNotices } from "@sudburyrc/api";
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Head from "next/head";
 
 export const getStaticProps = async () => ({
   props: { notices: await fetchNotices() },

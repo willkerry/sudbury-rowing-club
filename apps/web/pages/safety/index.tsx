@@ -1,13 +1,12 @@
-import React from "react";
-import { type InferGetStaticPropsType } from "next";
-import { NextSeo } from "next-seo";
-import { fetchSafety } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import SafetyCard from "@/components/safety";
 import { SafetyItemCard } from "@/components/safety/safety-item-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchSafety } from "@sudburyrc/api";
+import type { InferGetStaticPropsType } from "next";
+import { NextSeo } from "next-seo";
 
 export const getStaticProps = async () => {
   const safetyItems = await fetchSafety();

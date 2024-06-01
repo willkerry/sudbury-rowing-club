@@ -1,4 +1,5 @@
-import { NextPage } from "next";
+import TextPage from "@/components/layouts/text-page";
+import type { NextPage } from "next";
 import Image from "next/image";
 import regatta1888Image from "public/assets/history/1888-regatta.jpg";
 import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";
@@ -7,7 +8,6 @@ import aerial1936Image from "public/assets/history/1936-aerial.jpg";
 import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
 import reachPreWw1Image from "public/assets/history/reach.jpg";
-import TextPage from "@/components/layouts/text-page";
 
 const History: NextPage = () => (
   <TextPage
@@ -371,7 +371,7 @@ const History: NextPage = () => (
       to race at the event when they competed in the Silver Goblets and Nichols
       Cup for coxless pairs.
     </p>
-    <div className="pt-16 text-sm text-gray-500">
+    <div className="pt-16 text-gray-500 text-sm">
       <p>
         Written by Trevor Chambers in 1996.
         <br />

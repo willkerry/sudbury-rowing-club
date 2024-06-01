@@ -1,5 +1,5 @@
-import { NextPage } from "next";
 import TextPage from "@/components/layouts/text-page";
+import type { NextPage } from "next";
 
 const Rules: NextPage = () => (
   <TextPage title="Club Rules">

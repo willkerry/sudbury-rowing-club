@@ -1,4 +1,5 @@
 import Label from "@/components/stour/label";
+import { cn } from "@/lib/utils";
 import styles from "./stages.module.css";
 
 type Stage = { name: string; content: string };
@@ -12,11 +13,14 @@ const L2RStages = ({ stages }: Props) => (
       How it works
     </Label>
     <ol
-      className={`grid gap-16 text-green-500 sm:grid-cols-2 md:grid-cols-3 ${styles.stages}`}
+      className={cn(
+        "grid gap-16 text-green-500 md:grid-cols-3 sm:grid-cols-2",
+        styles.stages,
+      )}
     >
       {stages.map((stage) => (
         <li key={stage.name} className="ml-8 lg:ml-0">
-          <div className="text-lg font-semibold leading-tight text-gray-700">
+          <div className="font-semibold text-gray-700 text-lg leading-tight">
             {stage.name}
           </div>
           <p className="!text-gray-500">{stage.content}</p>

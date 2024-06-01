@@ -1,13 +1,13 @@
-import { InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
-import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
 import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
 import { HundredAndFiftyBanner } from "@/components/anniversary/150-banner";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
 import { formatYear } from ".";
 
 const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;
@@ -73,10 +73,10 @@ const Archive: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <Container>
       <ArchiveImage image={archive.image} alt={archive.alt || ""} />
 
-      <div className="max-w-prose pb-8 text-sm text-gray-800">
+      <div className="max-w-prose pb-8 text-gray-800 text-sm">
         <p>{archive.description}</p>
 
-        <p className="mb-6 mt-4 text-xs font-medium text-gray-600">
+        <p className="mt-4 mb-6 font-medium text-gray-600 text-xs">
           {archive.year ? (
             <ArchiveDate date={archive.year} range={archive.range}>
               {formatYear(archive.year, archive.range)}

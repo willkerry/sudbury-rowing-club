@@ -1,5 +1,5 @@
-import cn from "clsx";
 import Label from "@/components/stour/label";
+import cn from "clsx";
 import Container from "../../layouts/container";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 const Text = ({ title, description, label }: Props) => (
   <>
     {label && <Label className="ml-1">{label}</Label>}
-    <h2 className="pb-6 pt-3 text-4xl font-semibold">{title}</h2>
+    <h2 className="pt-3 pb-6 font-semibold text-4xl">{title}</h2>
     {description && <div className="font-medium opacity-80">{description}</div>}
   </>
 );

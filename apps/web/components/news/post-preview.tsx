@@ -1,7 +1,7 @@
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import type { ArticleSummary } from "@sudburyrc/api";
 import Image from "next/image";
 import Link from "next/link";
-import type { ArticleSummary } from "@sudburyrc/api";
-import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import DateFormatter from "../utils/date-formatter";
 
 const PostImage = ({
@@ -44,7 +44,7 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
               />
             </div>
           ) : (
-            <div className="relative select-none overflow-hidden bg-gray-50 text-6xl font-bold text-gray-300 transition group-hover:text-blue-100">
+            <div className="relative select-none overflow-hidden bg-gray-50 font-bold text-6xl text-gray-300 transition group-hover:text-blue-100">
               <div className="relative m-0 box-border block overflow-hidden">
                 <div aria-hidden className="h-[188px] w-[305px] px-2.5 pt-1.5">
                   {post.title}
@@ -53,10 +53,10 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
             </div>
           )}
           <div className="p-3">
-            <div className="mb-1 text-xs font-medium text-gray-700">
+            <div className="mb-1 font-medium text-gray-700 text-xs">
               <DateFormatter dateString={post.date} />
             </div>
-            <h3 className="text-xl font-semibold leading-tight transition group-hover:text-blue-500">
+            <h3 className="font-semibold text-xl leading-tight transition group-hover:text-blue-500">
               {post.title}
             </h3>
           </div>

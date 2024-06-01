@@ -1,5 +1,5 @@
-import { Link as ScrollLink } from "react-scroll";
 import Image from "next/image";
+import { Link as ScrollLink } from "react-scroll";
 
 type OverviewType = {
   title: string;
@@ -34,7 +34,7 @@ const Overview = ({ items }: OverviewProps) => (
             >
               {title}
             </ScrollLink>
-            <div className="hidden text-sm text-gray-500 md:block">
+            <div className="hidden text-gray-500 text-sm md:block">
               {subtitle}
             </div>
           </li>

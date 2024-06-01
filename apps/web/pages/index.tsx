@@ -1,14 +1,14 @@
-import { NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
-import { type GetStaticProps, NextPage } from "next/types";
-import { type PortableTextProps } from "@portabletext/react";
-import groq from "groq";
-import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
 import { HundredAndFiftyCta } from "@/components/anniversary/150-cta";
 import Feed from "@/components/landing/feed";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
-import { type NoteProps } from "@/components/stour/note/note";
+import type { NoteProps } from "@/components/stour/note/note";
+import type { PortableTextProps } from "@portabletext/react";
+import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
+import groq from "groq";
+import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
+import type { GetStaticProps, NextPage } from "next/types";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(

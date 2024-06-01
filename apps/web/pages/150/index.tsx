@@ -1,8 +1,3 @@
-import { InferGetStaticPropsType, NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import { fetchArchives } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import { HundredAndFiftyContactButton } from "@/components/anniversary/150-contact-button";
 import { HundredAndFiftyFireworks } from "@/components/anniversary/150-fireworks";
 import { HundredAndFiftyGallery } from "@/components/anniversary/150-gallery";
@@ -11,6 +6,11 @@ import { HundredAndFiftyLogo } from "@/components/anniversary/150-logo";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import { Button } from "@/components/ui/button";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchArchives } from "@sudburyrc/api";
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 const TITLE = "150 Years of Rowing in Sudbury";
 const DESCRIPTION = "Join us in celebrating 150 years of rowing in Sudbury";
@@ -46,7 +46,7 @@ const Join: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Container className="my-16">
         <HundredAndFiftyLogo />
 
-        <h1 className="mx-auto mb-12 mt-20 text-center text-3xl font-semibold text-white md:text-7xl">
+        <h1 className="mx-auto mt-20 mb-12 text-center font-semibold text-3xl text-white md:text-7xl">
           Join us in celebrating 150 years of rowing in Sudbury
         </h1>
 

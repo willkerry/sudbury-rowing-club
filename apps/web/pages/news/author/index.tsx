@@ -1,12 +1,12 @@
-import { type InferGetStaticPropsType, type NextPage } from "next";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import cn from "clsx";
-import { fetchAllAuthors } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import Label from "@/components/stour/label";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchAllAuthors } from "@sudburyrc/api";
+import cn from "clsx";
+import type { InferGetStaticPropsType, NextPage } from "next";
+import { NextSeo } from "next-seo";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
   const authors = await fetchAllAuthors();
@@ -44,7 +44,7 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         images: [{ url: makeShareImageURL("Our authors", true) }],
       }}
     />
-    <div className="flex items-center border-b border-t py-6">
+    <div className="flex items-center border-t border-b py-6">
       <Container>
         <h1>
           <Label className="max-w-prose">Author Archive</Label>
@@ -52,7 +52,7 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       </Container>
     </div>
     <Container>
-      <ul className="mb-16 mt-8">
+      <ul className="mt-8 mb-16">
         {authors.map(
           ({ _id, firstName, surname, articleCount, rank }, index) => {
             const authorName = `${firstName} ${surname}`;
@@ -67,7 +67,7 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
               >
                 <div className="relative w-8">
                   {firstOfRank && (
-                    <span className="disambiguate absolute inset-0 text-center font-medium leading-none text-blue-500">
+                    <span className="disambiguate absolute inset-0 text-center font-medium text-blue-500 leading-none">
                       {rank}
                     </span>
                   )}
@@ -76,7 +76,7 @@ const Authors: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                   <span className="text-gray-900 transition group-hover:text-blue-500">
                     {authorName}
                   </span>
-                  <span className="ml-3 text-xs font-bold uppercase tracking-widest text-gray-500 transition group-hover:text-gray-400">
+                  <span className="ml-3 font-bold text-gray-500 text-xs uppercase tracking-widest transition group-hover:text-gray-400">
                     {articleCount}
                   </span>
                 </Link>

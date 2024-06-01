@@ -1,18 +1,18 @@
-import { NextSeo } from "next-seo";
-import type {
-  GetStaticPaths,
-  InferGetStaticPropsType,
-  NextPage,
-} from "next/types";
-import type { ParsedUrlQuery } from "querystring";
-import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
+import type { ParsedUrlQuery } from "node:querystring";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import NewsList from "@/components/news/news-list";
 import Paginate from "@/components/news/paginate";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
+import { makeShareImageURL } from "@/lib/og-image";
+import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";
+import { NextSeo } from "next-seo";
+import type {
+  GetStaticPaths,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next/types";
 
 const POSTS_PER_PAGE = 30;
 
@@ -70,7 +70,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           images: [{ url: makeShareImageURL("News", true) }],
         }}
       />
-      <div className="flex items-center border-b border-t py-6">
+      <div className="flex items-center border-t border-b py-6">
         <Container>
           <h1>
             <Label className="max-w-prose">News Archive</Label>
@@ -84,7 +84,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 </>
               )}
             </span>
-            <span className="text-sm font-medium uppercase tracking-wider text-gray-600">
+            <span className="font-medium text-gray-600 text-sm uppercase tracking-wider">
               Page {page} of {pages}
             </span>
           </p>
