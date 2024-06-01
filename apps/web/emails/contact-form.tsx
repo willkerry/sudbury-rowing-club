@@ -92,7 +92,6 @@ export const ContactFormEmail = ({
                 <Label>Message:</Label>
                 <div
                   className="m-0 rounded border border-gray-200 border-solid bg-gray-50 p-2 text-gray-900 text-sm"
-                  // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{ __html: snarkdown(message) }}
                 />
               </Column>

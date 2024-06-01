@@ -22,7 +22,6 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
       <>
         <h3
           className="font-medium text-sm leading-tight transition-colors group-hover:text-blue-500"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: article.title.rendered }}
         />
 
@@ -60,7 +59,6 @@ const Feed = () => {
         </div>
       ) : (
         <div className="mb-12 grid gap-4 lg:grid-cols-3 sm:grid-cols-2">
-          {/* eslint-disable-next-line react/no-array-index-key */}
           {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
 
           {articles?.map((article) => (

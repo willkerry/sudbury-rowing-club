@@ -136,7 +136,6 @@ const Contact = () => {
                 <Field name="description">
                   {({ input, meta }) => (
                     <div className="col-span-2">
-                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                       <label htmlFor="message">Description</label>
                       <p className="my-1 text-gray-900 text-sm">
                         Describe what you were trying to do, what you expected
@@ -182,7 +181,6 @@ const Contact = () => {
                     <Field name="additionalInformation">
                       {({ input, meta }) => (
                         <div className="col-span-2">
-                          {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
                           <label htmlFor="additionalInformation">
                             Additional information
                           </label>

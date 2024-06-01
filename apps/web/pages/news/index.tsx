@@ -17,7 +17,6 @@ import {
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import type { InferGetStaticPropsType, NextPage } from "next/types";
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import {
   type FormEventHandler,
   useCallback,

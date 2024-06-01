@@ -10,7 +10,6 @@ import { useMutation } from "@tanstack/react-query";
 import { FORM_ERROR } from "final-form";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
 import { shake } from "radash";
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { Field, Form } from "react-final-form";
 import TextareaAutosize from "react-textarea-autosize";
 import { FromAndTo } from "./fromAndTo";

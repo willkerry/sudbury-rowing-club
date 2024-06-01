@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 import type { SRCEvent } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import { NextSeo } from "next-seo";
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from "react";
 
 const BR_EVENT_STATUS = {
