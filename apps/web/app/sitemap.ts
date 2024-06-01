@@ -235,6 +235,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...noticeDynamicPaths,
     {
+      url: url("/stourtoys"),
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.5,
+    },
+    {
       url: url("/stourtoys/club-lookup"),
       lastModified: new Date(),
       changeFrequency: "daily",
