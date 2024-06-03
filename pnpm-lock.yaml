@@ -187,8 +187,8 @@ importers:
         specifier: ^24.1.0
         version: 24.1.0
       lucide-react:
-        specifier: ^0.343.0
-        version: 0.343.0(react@18.3.1)
+        specifier: ^0.383.0
+        version: 0.383.0(react@18.3.1)
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
@@ -5129,7 +5129,7 @@ packages:
     peerDependencies:
       '@sanity/client': ^6.19.0
     dependencies:
-      '@sanity/client': 6.19.1
+      '@sanity/client': 6.19.1(debug@4.3.4)
       '@sanity/uuid': 3.0.2
     dev: false
 
@@ -7471,6 +7471,7 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
     dev: false
+    bundledDependencies: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -10537,8 +10538,8 @@ packages:
       yallist: 4.0.0
     dev: false
 
-  /lucide-react@0.343.0(react@18.3.1):
-    resolution: {integrity: sha512-zDjzr5OlS86DJZNSy5igMx18T423LfEyZ6lxo82KpjCi8m5DPddl/OPLRDHyfs/TqZPh7C1ySPw4D6matfm6bQ==}
+  /lucide-react@0.383.0(react@18.3.1):
+    resolution: {integrity: sha512-13xlG0CQCJtzjSQYwwJ3WRqMHtRj3EXmLlorrARt7y+IHnxUCp3XyFNL1DfaGySWxHObDvnu1u1dV+0VMKHUSg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
