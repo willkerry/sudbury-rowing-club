@@ -51,9 +51,9 @@ input:invalid:before {
   padding-left: 5px;
 }
 
-label {
+/* label {
   @apply block text-xs font-medium uppercase tracking-wider text-gray-600;
-}
+} */
 
 @tailwind utilities;
 
