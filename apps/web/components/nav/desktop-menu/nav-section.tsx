@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ArrowRightIcon } from "lucide-react";
 import { fork } from "radash";
 import { cn } from "@/lib/utils";
 import { type IconNavItemType } from "@/types/nav-item";
@@ -50,16 +51,24 @@ const ListItem = ({
       <div className="flex flex-col">
         <p
           className={cn(
-            "py-0.5 text-sm font-semibold leading-none transition-colors group-hover:text-gray-900",
+            "flex py-0.5 text-sm font-semibold leading-none transition-colors",
             cta
               ? "text-gray-900 group-hover:text-gray-700"
               : "text-gray-600 group-hover:text-gray-900",
           )}
         >
           {name}
+          {!cta && (
+            <span
+              aria-hidden
+              className="block scale-y-90 opacity-0 transition group-hover:translate-x-1 group-hover:scale-x-110 group-hover:opacity-100"
+            >
+              &rarr;
+            </span>
+          )}
         </p>
         {description && (
-          <p className="text-xs font-medium text-gray-500 transition-colors group-hover:text-gray-700">
+          <p className="text-xs font-medium text-gray-500 transition-colors group-hover:text-gray-900">
             {description}
           </p>
         )}
@@ -127,12 +136,12 @@ const NavSection = ({
           <Transition
             show={open}
             as={Fragment}
-            enter="transition ease-out delay-50 duration-200"
-            enterFrom="translate-y-8"
-            enterTo="translate-y-0"
-            leave="transition ease-in duration-50"
-            leaveFrom="translate-y-0"
-            leaveTo="translate-y-8"
+            enter="transition ease-in-out delay-75 duration-100"
+            enterFrom="translate-y-8 opacity-0"
+            enterTo="translate-y-0 opacity-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="translate-y-0 opacity-100"
+            leaveTo="translate-y-8 opacity-0"
           >
             <div
               aria-hidden
@@ -143,12 +152,12 @@ const NavSection = ({
           <Transition
             show={open}
             as={Fragment}
-            enter="transition ease-out duration-50"
-            enterFrom="opacity-0 -translate-y-1"
+            enter="transition ease-in-out duration-75"
+            enterFrom="opacity-0 -translate-y-10"
             enterTo="opacity-100 translate-y-0"
-            leave="transition delay-50 ease-in duration-50"
+            leave="transition ease-in-out duration-200"
             leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 -translate-y-1"
+            leaveTo="opacity-0 -translate-y-2"
           >
             <Popover.Panel
               static

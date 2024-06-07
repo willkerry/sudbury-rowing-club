@@ -10,7 +10,7 @@ const SafetyLayout = async ({
   status: React.ReactNode;
 }) => (
   <>
-    <HeroTitle prose title="Safety" />
+    <HeroTitle prose title="Safety" color="transparent" />
 
     <Container className="mx-auto my-12 max-w-prose space-y-16">
       <div className="overflow-hidden rounded border">{status}</div>

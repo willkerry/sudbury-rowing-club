@@ -1,45 +1,35 @@
-import type { NextPage } from "next";
-import { InferGetStaticPropsType } from "next";
-import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { useQuery } from "@tanstack/react-query";
 import { fetchOfficerNames } from "@sudburyrc/api";
-import { browserIndexOfficers, serverIndexOfficers } from "@/lib/algolia";
-import { makeShareImageURL } from "@/lib/og-image";
+import { browserIndexOfficers } from "@/lib/algolia";
 import ContactForm from "@/components/contact";
 import type { Message } from "@/components/contact/contactForm";
 import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 
-export const getStaticProps = async () => {
-  const officers = await fetchOfficerNames();
-
-  serverIndexOfficers.replaceAllObjects(
-    officers.map((o) => ({ ...o, objectID: o._id })),
-  );
-
-  return {
-    props: {
-      officers,
-    },
-  };
-};
-
-const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
+const CSRContactPage = ({
   officers,
+}: {
+  officers: Awaited<ReturnType<typeof fetchOfficerNames>>;
 }) => {
-  const router = useRouter();
-  const { q, ...initialValues } = router.query as Message & { q?: string };
+  const searchParams = useSearchParams();
+
+  const q = searchParams?.get("q");
+  const initialValues: Partial<Message> = {
+    to: searchParams?.get("to") ?? undefined,
+    name: searchParams?.get("name") ?? undefined,
+    email: searchParams?.get("email") ?? undefined,
+    message: searchParams?.get("message") ?? undefined,
+  };
 
   const { data: guessedRecipient } = useQuery({
     queryKey: ["officers", q],
     queryFn: () =>
       browserIndexOfficers
-        .search<
-          InferGetStaticPropsType<typeof getStaticProps>["officers"][number]
-        >(q ?? "")
+        .search<(typeof officers)[number]>(q ?? "")
         .then((r) => r.hits[0]),
     enabled: !!q,
     staleTime: Infinity,
@@ -52,18 +42,7 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     officers.find((o) => o._id === initialValues.to)?.name;
 
   return (
-    <Layout>
-      <NextSeo
-        description="Get in touch"
-        openGraph={{
-          description: "Get in touch",
-          images: [
-            { url: makeShareImageURL("Contact Sudbury Rowing Club", true) },
-          ],
-          title: "Contact Sudbury Rowing Club",
-        }}
-        title="Contact Sudbury Rowing Club"
-      />
+    <>
       <HeroTitle
         prose
         title={
@@ -92,8 +71,8 @@ const Contact: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           for regatta-related enquiries.
         </div>
       </Container>
-    </Layout>
+    </>
   );
 };
 
-export default Contact;
+export default CSRContactPage;

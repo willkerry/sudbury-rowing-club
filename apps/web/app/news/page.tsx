@@ -46,8 +46,7 @@ const fetchArticlesAndUpdateSearchIndex = async () => {
 const NewsPage = async () => {
   const articles = await fetchArticlesAndUpdateSearchIndex();
 
-  return <div>Hello</div>;
-  // return <CSRNewsPage articles={articles} />;
+  return <CSRNewsPage articles={articles} />;
 };
 
 export default NewsPage;

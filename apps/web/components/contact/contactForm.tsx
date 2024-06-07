@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { Field, Form } from "react-final-form";
 import TextareaAutosize from "react-textarea-autosize";
@@ -25,7 +27,7 @@ export type Message = {
 type Props = {
   disabled?: boolean;
   contacts: OfficerResponse[];
-  initialValues: Message;
+  initialValues: Partial<Message>;
 };
 
 /**

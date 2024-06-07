@@ -1,10 +1,7 @@
 import { NextPage } from "next";
-import { NextSeo } from "next-seo";
 import Image from "next/image";
 import { MapPinIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
-import { Map, Marker } from "pigeon-maps";
-import { maptiler } from "pigeon-maps/providers";
 import {
   CLUB_LOCATION,
   CLUB_LOCATION_STRING,
@@ -12,11 +9,11 @@ import {
   REGATTA_LOCATION,
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
-import { makeShareImageURL } from "@/lib/og-image";
 import Container from "@/components/layouts/container";
 import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Note from "@/components/stour/note";
+import { LocationMap } from "./location-map";
 
 const openInApp = [
   {
@@ -38,11 +35,6 @@ const openInApp = [
     name: "Apple Maps",
   },
 ];
-
-const maptilerProvider = maptiler(
-  "q3gbdmFDPGft7ylWLC6u",
-  "uk-openzoomstack-road",
-);
 
 type Address = {
   name: "Club" | "Regatta";
@@ -111,8 +103,8 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
 );
 
 const FindUs: NextPage = () => (
-  <Layout>
-    <NextSeo
+  <>
+    {/* <NextSeo
       description="Directions to our club and to our regatta"
       openGraph={{
         description: "Directions to our club and to our regatta",
@@ -120,32 +112,28 @@ const FindUs: NextPage = () => (
         title: "How to find us",
       }}
       title="How to find us"
-    />
+    /> */}
     <HeroTitle title="How to find us" color="transparent" />
 
     <Container>
       <div className="grid grid-cols-1 gap-16 py-10 md:grid-cols-2">
         <div>
           <div className="relative z-10 flex overflow-hidden rounded border">
-            <Map
-              attribution={false}
+            <LocationMap
               defaultCenter={CLUB_LOCATION as [number, number]}
-              defaultZoom={14}
-              dprs={[1, 2]}
-              height={565}
-              provider={maptilerProvider}
-            >
-              <Marker
-                anchor={CLUB_LOCATION as [number, number]}
-                color="#0070F3"
-                width={50}
-              />
-              <Marker
-                anchor={REGATTA_LOCATION as [number, number]}
-                color="rgb(16, 185, 129)"
-                width={30}
-              />
-            </Map>
+              markers={[
+                {
+                  anchor: CLUB_LOCATION as [number, number],
+                  color: "#0070F3",
+                  width: 50,
+                },
+                {
+                  anchor: REGATTA_LOCATION as [number, number],
+                  color: "rgb(16, 185, 129)",
+                  width: 30,
+                },
+              ]}
+            />
           </div>
         </div>
 
@@ -171,7 +159,7 @@ const FindUs: NextPage = () => (
         </div>
       </div>
     </Container>
-  </Layout>
+  </>
 );
 
 export default FindUs;

@@ -3,7 +3,6 @@ import { dash, group } from "radash";
 import { Archive, fetchArchives } from "@sudburyrc/api";
 import { createMetaData } from "@/lib/create-metadata";
 import { ArchiveItem } from "@/components/anniversary/150-archive-item";
-import { HundredAndFiftyBanner } from "@/components/anniversary/150-banner";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import Container from "@/components/layouts/container";
 import Link from "@/components/stour/link";
@@ -67,7 +66,6 @@ const Join = async () => {
 
   return (
     <>
-      <HundredAndFiftyBanner />
       <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
 
       <Container>
