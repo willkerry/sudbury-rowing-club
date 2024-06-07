@@ -1,5 +1,5 @@
-import { Link as ScrollLink } from "react-scroll";
 import Image from "next/image";
+import { ScrollLink } from "@/components/utils/scroll-link";
 
 type OverviewType = {
   title: string;

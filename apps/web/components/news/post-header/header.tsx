@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { useToggle } from "@mantine/hooks";
 import { Article, urlFor } from "@sudburyrc/api";

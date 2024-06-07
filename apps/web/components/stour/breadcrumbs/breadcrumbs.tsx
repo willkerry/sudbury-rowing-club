@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import prettifyBreadcrumb from "./prettifyBreadcrumb";
 
 type Props = {
@@ -44,7 +46,10 @@ const Breadcrumbs = ({
   rootLabel = "Home",
   currentLabel,
 }: Props) => {
-  const { asPath } = useRouter();
+  const asPath = usePathname();
+
+  if (!asPath) return null;
+
   const breadcrumbs = getBreadcrumbs(asPath, currentLabel);
 
   if (!breadcrumbs) return null;

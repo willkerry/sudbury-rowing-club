@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import cn from "clsx";
 import useNotice, { noticeVariants } from "@/hooks/useNotice";

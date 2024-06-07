@@ -1,6 +1,8 @@
+"use client";
+
 import { Fragment } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { fork } from "radash";
@@ -79,7 +81,7 @@ const NavSection = ({
   items,
   label,
 }: NavSectionProps) => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const isActive = items.some(({ href }) => pathname === href);
 
   if (items.length === 1) {

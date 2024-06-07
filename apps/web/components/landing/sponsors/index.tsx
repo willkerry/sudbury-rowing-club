@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { shuffle } from "radash";
 import { cn } from "@/lib/utils";
-import Label from "@/components/stour/label";
 import abglass from "../../../public/assets/logos/ab-glass-home-improvement.svg";
 import ashtons from "../../../public/assets/logos/ashtons.svg";
 import britishRowing from "../../../public/assets/logos/british-rowing.svg";
@@ -161,30 +159,18 @@ const Sponsors = ({
   className?: string;
   includeAffiliates?: boolean;
   heading?: string;
-}) => {
-  const [shuffledSponsorLogos, setShuffledSponsorLogos] =
-    useState(sponsorLogos);
-
-  useEffect(() => {
-    setShuffledSponsorLogos(shuffle(sponsorLogos));
-  }, []);
-
-  return (
-    <div className={className}>
-      {includeAffiliates && (
-        <LogoList
-          logos={affiliateLogos}
-          className="md:justify-center md:gap-8"
-        />
-      )}
-      {heading && (
-        <h3 className="mb-4 text-center text-sm font-medium text-gray-500">
-          {heading}
-        </h3>
-      )}
-      <LogoList logos={shuffledSponsorLogos} />
-    </div>
-  );
-};
+}) => (
+  <div className={className}>
+    {includeAffiliates && (
+      <LogoList logos={affiliateLogos} className="md:justify-center md:gap-8" />
+    )}
+    {heading && (
+      <h3 className="mb-4 text-center text-sm font-medium text-gray-500">
+        {heading}
+      </h3>
+    )}
+    <LogoList logos={shuffle(sponsorLogos)} />
+  </div>
+);
 
 export default Sponsors;

@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { useClipboard } from "@mantine/hooks";
 import { toast } from "sonner";

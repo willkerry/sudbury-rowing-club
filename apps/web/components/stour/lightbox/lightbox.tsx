@@ -1,3 +1,5 @@
+"use client";
+
 import { Fragment, SetStateAction } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useToggle, useViewportSize } from "@mantine/hooks";

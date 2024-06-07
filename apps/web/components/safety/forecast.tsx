@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import getWeatherForecast, {
   briefWeatherCodes,
@@ -7,14 +6,10 @@ import getWeatherForecast, {
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
 
-const fetcher: typeof getWeatherForecast = () =>
-  fetch("/api/weather").then((res) => res.json());
+const ForecastComponent = async () => {
+  const forecast = await getWeatherForecast();
 
-const ForecastComponent = () => {
-  const { data: forecast, status } = useQuery({
-    queryKey: ["/api/weather"],
-    queryFn: fetcher,
-  });
+  const status = "" as any;
 
   if (status === "error") return null;
 
