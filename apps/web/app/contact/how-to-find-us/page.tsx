@@ -143,8 +143,8 @@ const FindUs: NextPage = () => (
             centre of Sudbury, and next-door to the Quay Theatre. Parking is
             available outside the club gates.
           </p>
-          <Note label="Find the Regatta">
-            Our Regatta takes place on Friars Meadow, barely 100m from the
+          <Note label="Find the regatta">
+            Our regatta takes place on Friars Meadow, barely 100m from the
             boathouse but cut off from it by waterways. Access to the meadow is
             from Edgworth Road (<span className="disambiguate">CO10 2TL</span>).
             During the regatta, the routes are signposted. We provide parking
