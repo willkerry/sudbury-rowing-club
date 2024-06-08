@@ -30,8 +30,8 @@ export const createMetaData: CreateMetadata = ({
     typeof image === "string"
       ? image
       : makeShareImageURL(image?.title ?? title, undefined, {
-          subtitle: image?.subtitle ?? author ?? "",
-          variant: image?.color,
+          subtitle: image?.subtitle || author || "",
+          variant: image?.color || "blue",
         });
 
   makeShareImageURL(title, true, {
