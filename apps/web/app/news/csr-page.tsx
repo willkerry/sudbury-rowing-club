@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import {
   FormEventHandler,
+  Suspense,
   useCallback,
   useEffect,
   useId,
@@ -18,6 +19,7 @@ import Container from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 
 function getMoreUrl(activeSearchTerm: string, data: any[]) {
@@ -30,7 +32,7 @@ function getMoreUrl(activeSearchTerm: string, data: any[]) {
   return "/news/p/2";
 }
 
-export const CSRNewsPage = ({
+const NewsPage = ({
   articles,
 }: {
   articles: Awaited<ReturnType<typeof serverGetNArticles>>;
@@ -167,3 +169,13 @@ export const CSRNewsPage = ({
     </>
   );
 };
+
+export const CSRNewsPage = ({
+  articles,
+}: {
+  articles: Awaited<ReturnType<typeof serverGetNArticles>>;
+}) => (
+  <Suspense fallback={<Loading />}>
+    <NewsPage articles={articles} />
+  </Suspense>
+);

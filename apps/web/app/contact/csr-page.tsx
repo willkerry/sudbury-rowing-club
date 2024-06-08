@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { useQuery } from "@tanstack/react-query";
@@ -9,8 +10,9 @@ import ContactForm from "@/components/contact";
 import type { Message } from "@/components/contact/contactForm";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import Loading from "@/components/stour/loading";
 
-const CSRContactPage = ({
+const ContactPage = ({
   officers,
 }: {
   officers: Awaited<ReturnType<typeof fetchOfficerNames>>;
@@ -75,4 +77,12 @@ const CSRContactPage = ({
   );
 };
 
-export default CSRContactPage;
+export const CSRContactPage = ({
+  officers,
+}: {
+  officers: Awaited<ReturnType<typeof fetchOfficerNames>>;
+}) => (
+  <Suspense fallback={<Loading />}>
+    <ContactPage officers={officers} />
+  </Suspense>
+);
