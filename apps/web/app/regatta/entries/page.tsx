@@ -22,6 +22,7 @@ const Entries = async () => {
     <TextPage
       title="Entry Information"
       description="Details for competetive entry to the Sudbury Regatta."
+      color="transparent"
     >
       <CompactEvents data={events} />
       <div className="space-x-4">

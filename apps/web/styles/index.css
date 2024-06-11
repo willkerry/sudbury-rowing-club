@@ -7,7 +7,7 @@ html {
 
 @tailwind components;
 
-[type="text"],
+/* [type="text"],
 [type="email"],
 [type="url"],
 [type="password"],
@@ -53,7 +53,7 @@ input:invalid:before {
 
 label {
   @apply block text-xs font-medium uppercase tracking-wider text-gray-600;
-}
+} */
 
 @tailwind utilities;
 

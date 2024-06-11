@@ -90,7 +90,7 @@ const HeroTitle = ({
           className={cn(
             "py-2",
             colorClasses?.container,
-            prose && color === "transparent"
+            (prose && color === "transparent") || color === "transparent"
               ? "mx-auto w-min rounded-full border"
               : "border-y",
           )}
@@ -105,7 +105,9 @@ const HeroTitle = ({
               inactiveItemClassName={cn(
                 "whitespace-nowrap after:content-['→'] after:px-2 after:text-gray-400 capitalize transition",
                 colorClasses?.item,
-                prose && color === "transparent" && "mx-auto",
+                ((prose && color === "transparent") ||
+                  color === "transparent") &&
+                  "mx-auto",
               )}
               activeItemClassName="whitespace-nowrap font-medium capitalize"
               currentLabel={title}

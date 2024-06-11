@@ -6,7 +6,7 @@ import { blue } from "@sudburyrc/blue";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  plugins: [animate, typography, aspectRatio, forms],
+  plugins: [animate, typography, aspectRatio],
   mode: "jit",
   content: [
     "./components/**/*.{js,ts,jsx,tsx,mdx}",

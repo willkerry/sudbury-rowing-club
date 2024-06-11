@@ -43,8 +43,13 @@ const ResultsPage = async () => {
 
   return (
     <>
-      <HeroTitle title="Regatta results" breadcrumbs />
-      <Container className="py-16">
+      <HeroTitle
+        title="Regatta results"
+        breadcrumbs
+        color="transparent"
+        prose
+      />
+      <Container className="max-w-prose py-16">
         <Results results={results} records={other.records}>
           <Text lead portableText={other.description} />
         </Results>
