@@ -3,7 +3,6 @@
 import { Field, Form } from "react-final-form";
 import { useSearchParams } from "next/navigation";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import cn from "clsx";
 import { FORM_ERROR } from "final-form";
 import Error from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
