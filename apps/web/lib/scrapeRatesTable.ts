@@ -144,9 +144,9 @@ export const MembershipSchema = z.object({
   IsLinked: z.boolean(),
   LinkedCategories: z.array(RoleWhenActiveSchema),
   CanAutoAccept: z.boolean(),
-  AdvertiseFromDate: z.null(),
+  AdvertiseFromDate: z.any(),
   ValidFromDate: z.union([z.null(), z.string()]),
-  ValidUntilDate: z.null(),
+  ValidUntilDate: z.any(),
   ValidRangeDescription: z.union([z.null(), z.string()]),
   HasJoiningFee: z.boolean(),
   HasEarlyPaymentOption: z.boolean(),
@@ -160,8 +160,8 @@ export const MembershipSchema = z.object({
   DurationDescription: z.string(),
   IsSubscriptionEligibleForGiftAid: z.boolean(),
   IsJoiningFeeEligibleForGiftAid: z.boolean(),
-  TokenReward: z.number(),
-  TokenExpiry: z.null(),
+  TokenReward: z.any(),
+  TokenExpiry: z.any(),
 });
 
 export const GroupSchema = z.object({
