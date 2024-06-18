@@ -10,24 +10,29 @@ import {
   InputWrapper,
   inputVariants,
 } from "./input";
-import { Label } from "./label";
 
 export interface TextAreaProps extends TextareaAutosizeProps {
   label?: string;
   error?: string;
   description?: string;
+  inputClassName?: string;
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ className, description, error, id, label, ...props }, ref) => {
-    const inputId = id || useId();
+  (
+    { className, description, error, id, inputClassName, label, ...props },
+    ref,
+  ) => {
+    const fallbackId = useId();
+    const inputId = id || fallbackId;
+
     const descriptionId = `${inputId}-description`;
     const errorId = `${inputId}-error`;
 
     return (
       <InputWrapper className={className}>
         <TextAreaAutosize
-          className={inputVariants()}
+          className={cn(inputVariants(), inputClassName)}
           data-error={!!error}
           ref={ref}
           id={inputId}

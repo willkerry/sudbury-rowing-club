@@ -7,6 +7,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   description?: string;
   error?: string;
+  inputClassName?: string;
 }
 
 export const inputVariants = cva([
@@ -69,32 +70,48 @@ export const InputWrapper = ({
 const Input = forwardRef<
   HTMLInputElement,
   VariantProps<typeof inputVariants> & InputProps
->(({ className, description, error, id, label, type, ...props }, ref) => {
-  const inputId = id || useId();
-  const descriptionId = `${inputId}-description`;
-  const errorId = `${inputId}-error`;
+>(
+  (
+    {
+      className,
+      description,
+      error,
+      id,
+      inputClassName,
+      label,
+      type,
+      ...props
+    },
+    ref,
+  ) => {
+    const fallbackId = useId();
+    const inputId = id || fallbackId;
 
-  return (
-    <InputWrapper className={className}>
-      <input
-        type={type}
-        data-error={!!error}
-        className={cn(inputVariants())}
-        ref={ref}
-        id={inputId}
-        aria-describedby={description && descriptionId}
-        aria-errormessage={error && errorId}
-        aria-invalid={!!error}
-        required
-        {...props}
-      />
+    const descriptionId = `${inputId}-description`;
+    const errorId = `${inputId}-error`;
 
-      <InputLabel id={inputId} label={label} />
-      <InputDescription id={descriptionId} description={description} />
-      <InputError id={errorId} error={error} />
-    </InputWrapper>
-  );
-});
+    return (
+      <InputWrapper className={className}>
+        <input
+          type={type}
+          data-error={!!error}
+          className={cn(inputVariants(), inputClassName)}
+          ref={ref}
+          id={inputId}
+          aria-describedby={description && descriptionId}
+          aria-errormessage={error && errorId}
+          aria-invalid={!!error}
+          required
+          {...props}
+        />
+
+        <InputLabel id={inputId} label={label} />
+        <InputDescription id={descriptionId} description={description} />
+        <InputError id={errorId} error={error} />
+      </InputWrapper>
+    );
+  },
+);
 Input.displayName = "Input";
 
 export { Input };
