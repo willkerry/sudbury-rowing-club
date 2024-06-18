@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     title: PROJECT_NAME,
     creator: PROJECT_NAME,
   },
+  metadataBase: new URL(BASE_URL),
 };
 
 export const viewport: Viewport = {
