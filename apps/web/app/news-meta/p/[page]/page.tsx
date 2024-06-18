@@ -1,14 +1,7 @@
-import { NextSeo } from "next-seo";
-import type {
-  GetStaticPaths,
-  InferGetStaticPropsType,
-  NextPage,
-} from "next/types";
-import type { ParsedUrlQuery } from "querystring";
+import type { Metadata } from "next";
 import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";
-import { makeShareImageURL } from "@/lib/og-image";
+import { createMetaData } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
 import NewsList from "@/components/news/news-list";
 import Paginate from "@/components/news/paginate";
 import Label from "@/components/stour/label";
@@ -16,60 +9,44 @@ import DateFormatter from "@/components/utils/date-formatter";
 
 const POSTS_PER_PAGE = 30;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const articleCount = await fetchArticleCount();
-  const length = Math.ceil(articleCount / POSTS_PER_PAGE);
+const fetchPageCount = async () =>
+  Math.ceil((await fetchArticleCount()) / POSTS_PER_PAGE);
 
-  return {
-    paths: Array.from({ length }, (_, i) => ({
-      params: { page: String(i + 1) },
-    })),
-    fallback: false,
-  };
-};
+export const generateStaticParams = async () =>
+  new Array(await fetchPageCount()).fill(0).map((_, i) => ({
+    page: String(i + 1),
+  }));
 
-export const getStaticProps = async ({
-  params,
+type Params = Awaited<ReturnType<typeof generateStaticParams>>[number];
+
+export const generateMetadata = async ({
+  params: { page },
 }: {
-  params: ParsedUrlQuery;
-}) => {
-  const articleCount = await fetchArticleCount();
-  const pages = Math.ceil(articleCount / POSTS_PER_PAGE);
+  params: Params;
+}): Promise<Metadata> =>
+  createMetaData({
+    title: `News | Page ${page} | Sudbury Rowing Club`,
+    description: "News from Sudbury Rowing Club.",
+  });
 
-  const page = Number(params?.page);
-
+const fetchPagedArticles = async (page: number) => {
   const firstArticleNumber = page * POSTS_PER_PAGE - POSTS_PER_PAGE;
   const lastArticleNumber = page * POSTS_PER_PAGE;
 
-  const pageOfArticles = await serverGetNArticles(
-    firstArticleNumber,
-    lastArticleNumber,
-  );
-
-  return { props: { data: pageOfArticles, page: params?.page, pages } };
+  return serverGetNArticles(firstArticleNumber, lastArticleNumber);
 };
 
-const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  data,
-  page,
-  pages,
-}) => {
+const News = async ({ params: { page } }: { params: Params }) => {
+  const pages = await fetchPageCount();
+  const data = await fetchPagedArticles(Number(page));
+
   const showPrev = Number(page) > 1;
   const showNext = pages > Number(page);
   const previous = `/news/p/${Number(page) - 1}`;
   const next = `/news/p/${Number(page) + 1}`;
 
   return (
-    <Layout>
-      <NextSeo
-        title={`News | Page ${page} | Sudbury Rowing Club`}
-        description="News from Sudbury Rowing Club."
-        openGraph={{
-          title: `News | Page ${page} | Sudbury Rowing Club`,
-          description: "News from Sudbury Rowing Club.",
-          images: [{ url: makeShareImageURL("News", true) }],
-        }}
-      />
+    <>
       <div className="flex items-center border-b border-t py-6">
         <Container>
           <h1>
@@ -103,7 +80,7 @@ const News: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           {...{ showPrev, showNext, previous, next }}
         />
       </Container>
-    </Layout>
+    </>
   );
 };
 

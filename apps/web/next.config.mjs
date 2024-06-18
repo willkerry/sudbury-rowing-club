@@ -18,6 +18,16 @@ const config = {
   async redirects() {
     return [
       {
+        source: "/news/author/:path*",
+        destination: "/news-meta/author/:path*",
+        permanent: true,
+      },
+      {
+        source: "/news/p/:path*",
+        destination: "/news-meta/p/:path*",
+        permanent: true,
+      },
+      {
         source: "/wp-admin",
         destination: "https://edit.sudburyrowingclub.org.uk/",
         permanent: true,
