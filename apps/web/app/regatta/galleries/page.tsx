@@ -38,7 +38,11 @@ const Photography = async () => {
 
   return (
     <>
-      <HeroTitle title="Official regatta photography" breadcrumbs />
+      <HeroTitle
+        title="Official regatta photography"
+        breadcrumbs
+        color="transparent"
+      />
       <Container>
         <div className="prose prose-lg max-w-none py-16">
           <table>
