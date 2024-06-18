@@ -4,10 +4,11 @@ import { useRef } from "react";
 import { useClipboard } from "@mantine/hooks";
 import { toast } from "sonner";
 import { makeShareImageURL } from "@/lib/og-image";
-import Label from "@/components/stour/label";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 import { type ShareImage } from "@/pages/api/og";
+import { Input } from "../ui/input";
+import { Select } from "../ui/select";
 
 const DEFAULT_TITLE = "Share Image Playground 🎉";
 const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
@@ -62,35 +63,30 @@ const SharePlayground = () => {
       className="grid grid-cols-1 items-end gap-3 pb-12 pt-4 md:grid-cols-2"
       onSubmit={onSubmit}
     >
-      <label htmlFor="title">
-        <Label>Title</Label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          ref={titleInputRef}
-          defaultValue={DEFAULT_TITLE}
-        />
-      </label>
+      <Input
+        name="title"
+        ref={titleInputRef}
+        defaultValue={DEFAULT_TITLE}
+        label="Title"
+      />
 
-      <label htmlFor="subtitle">
-        <Label>Subtitle</Label>
-        <input
-          type="text"
-          name="subtitle"
-          ref={subtitleInputRef}
-          defaultValue={DEFAULT_SUBTITLE}
-        />
-      </label>
+      <Input
+        name="subtitle"
+        ref={subtitleInputRef}
+        defaultValue={DEFAULT_SUBTITLE}
+        label="Subtitle"
+      />
 
-      <label htmlFor="variant">
-        <Label>Variant</Label>
-        <select name="variant" ref={variantInputRef} defaultValue="blue">
-          <option value="blue">Blue</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </label>
+      <Select
+        name="variant"
+        ref={variantInputRef}
+        defaultValue="blue"
+        label="Variant"
+      >
+        <option value="blue">Blue</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </Select>
 
       <Button type="submit">Generate</Button>
 
