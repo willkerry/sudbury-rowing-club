@@ -6,7 +6,6 @@ import {
   Suspense,
   useCallback,
   useEffect,
-  useId,
   useState,
 } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -21,6 +20,7 @@ import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 function getMoreUrl(activeSearchTerm: string, data: any[]) {
   if (activeSearchTerm) {
@@ -45,7 +45,6 @@ const NewsPage = ({
   const [activeSearchTerm, setActiveSearchTerm] = useState("");
   const [dirty, setDirty] = useState(false);
   const [results, setResults] = useState<SearchResponse<any>["hits"]>([]);
-  const searchInputId = useId();
 
   const search = useCallback(async () => {
     if (!dirty) setDirty(true);
@@ -135,14 +134,11 @@ const NewsPage = ({
             className="mt-4 flex w-full items-center justify-center"
             onSubmit={(e) => handleSubmit(e)}
           >
-            <label htmlFor={searchInputId} className="sr-only">
-              Search
-            </label>
-            <input
-              id={searchInputId}
+            <Input
               type="search"
               name="q"
-              className="m-0 h-10 w-full rounded-r-none pl-3 outline-none"
+              inputClassName="rounded-r-none"
+              aria-label="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -150,7 +146,6 @@ const NewsPage = ({
               type="submit"
               variant="secondary"
               className="z-0 -ml-px h-10 rounded-l-none border-l"
-              shadow={Boolean(searchTerm && searchTerm !== activeSearchTerm)}
               disabled={!searchTerm}
             >
               <span className="sr-only">Search</span>
