@@ -22,6 +22,7 @@ const Clubs = ({ searchParams }: { searchParams: { q?: string } }) => {
       <Input
         type="search"
         aria-label="Search"
+        className="flex-1"
         placeholder={searchParams.q ?? "Search"}
         name="q"
       />
