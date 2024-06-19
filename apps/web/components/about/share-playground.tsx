@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { makeShareImageURL } from "@/lib/og-image";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
-import { type ShareImage } from "@/pages/api/og";
+import { type ShareImage } from "@/app/api/og/route";
 import { Input } from "../ui/input";
 import { Select } from "../ui/select";
 
