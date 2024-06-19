@@ -42,8 +42,7 @@ const fetchEAWarning = () =>
   fetch(EA_WARNING_URL)
     .then((res) => res.json())
     .then(z.object({ items: z.array(EAWarningSchema) }).parse)
-    .then((res) => res.items[0])
-    .then(EAWarningSchema.parse);
+    .then((res) => res.items[0]);
 
 /** Fetches monitoring station data from the Environment Agency API */
 const fetchEAStation = () =>
