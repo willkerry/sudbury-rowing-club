@@ -10,7 +10,7 @@ import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
-import { type BugReport } from "../../pages/api/bug";
+import { type BugReport } from "@/app/api/bugs/route";
 
 const getUserAgent = () => {
   if (typeof window === "undefined") return null;
