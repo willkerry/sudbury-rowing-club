@@ -1,7 +1,7 @@
 import React from "react";
 import SafetyComponent from "@/components/safety/safety-component";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300; // 5 minutes
 
 const Safety = async () => <SafetyComponent />;
 
