@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import { ContactFormEmail } from "emails/contact-form";
 import DOMPurify from "isomorphic-dompurify";
 import { Resend } from "resend";
@@ -31,9 +31,9 @@ class ResponseError extends Error {
   }
 }
 
-const validateRequest = (req: NextApiRequest) => {
+const validateRequest = async (req: NextRequest) => {
   try {
-    const request = RequestSchema.parse(req.body);
+    const request = RequestSchema.parse(await req.json());
 
     console.log("Validating request", request);
 
@@ -51,15 +51,15 @@ const validateRequest = (req: NextApiRequest) => {
 };
 
 const spamCheck = async (
-  req: NextApiRequest,
+  req: NextRequest,
   name: string,
   email: string,
   message: string,
 ) => {
   const isSpam = await checkForSpam(
-    req.headers["x-forwarded-for"]?.toString() ?? "",
-    req.headers["user-agent"] ?? "",
-    req.headers.referer ?? "",
+    req.headers.get("x-forwarded-for") ?? "",
+    req.headers.get("user-agent") ?? "",
+    req.headers.get("referer") ?? "",
     name,
     email,
     message,
@@ -89,14 +89,9 @@ const findRecipient = async (id: string) => {
   }
 };
 
-export default async function Send(req: NextApiRequest, res: NextApiResponse) {
+export const POST = async (req: NextRequest) => {
   try {
-    if (req.method !== "POST") {
-      console.error("Method not allowed", req.method);
-      throw new ResponseError(`Method ${req.method} not allowed.`, 405);
-    }
-
-    const { fromEmail, fromName, toID, message } = validateRequest(req);
+    const { fromEmail, fromName, toID, message } = await validateRequest(req);
 
     await spamCheck(req, fromName, fromEmail, message);
 
@@ -128,10 +123,20 @@ export default async function Send(req: NextApiRequest, res: NextApiResponse) {
           502,
         );
       })
-      .then(() => {
-        res.status(200).json("Message sent");
-      });
+      .then(
+        () =>
+          new NextResponse("Message sent", {
+            status: 200,
+          }),
+      );
   } catch (error: any) {
-    res.status(error.status || 500).json(error.message);
+    return new NextResponse(error.message, {
+      status: error.status || 500,
+    });
   }
-}
+
+  // If we get here, I’ve lost the plot.
+  return new NextResponse("Message not sent for an unknown reason.", {
+    status: 500,
+  });
+};
