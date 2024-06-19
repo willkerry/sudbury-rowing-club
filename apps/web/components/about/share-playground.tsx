@@ -75,6 +75,7 @@ const SharePlayground = () => {
         ref={subtitleInputRef}
         defaultValue={DEFAULT_SUBTITLE}
         label="Subtitle"
+        required={false}
       />
 
       <Select
@@ -110,16 +111,18 @@ const SharePlayground = () => {
       </div>
 
       <div className="flex justify-end gap-1 md:col-span-2">
-        <Button asChild size="sm" variant="secondary">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={imageRef.current?.src}
-            download="share-image.png"
-          >
-            Download
-          </a>
-        </Button>
+        {imageRef.current?.src && (
+          <Button asChild size="sm" variant="secondary">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={imageRef.current?.src}
+              download="share-image.png"
+            >
+              Download
+            </a>
+          </Button>
+        )}
 
         <Button
           onClick={() => {
