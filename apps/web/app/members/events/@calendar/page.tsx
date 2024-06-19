@@ -6,10 +6,10 @@ import { useQuery } from "@tanstack/react-query";
 import { type SRCEvent } from "@sudburyrc/api";
 import { HOSTNAME } from "@/lib/constants";
 import { getHostname } from "@/lib/helpers/getHostname";
-// import { makeShareImageURL } from "@/lib/og-image";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Loading from "@/components/stour/loading";
+import { Select } from "@/components/ui/select";
 import DateFormatter from "@/components/utils/date-formatter";
 import useFilter from "@/hooks/useFilter";
 
@@ -109,9 +109,9 @@ const EventCalendar = () => {
     <>
       <div className="mb-4 grid grid-cols-1 items-end md:grid-cols-2 lg:grid-cols-3">
         <div>
-          <label htmlFor="region">Filter by region</label>
-          <select
+          <Select
             id="region"
+            aria-label="Filter by region"
             value={selectedRegion || ""}
             onChange={(e) => setSelectedRegion(e.target.value)}
           >
@@ -131,7 +131,7 @@ const EventCalendar = () => {
                 ))}
               </>
             )}
-          </select>
+          </Select>
         </div>
 
         <div className="hidden sm:block" />

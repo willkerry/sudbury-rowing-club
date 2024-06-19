@@ -1,5 +1,5 @@
 import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
-// import { makeShareImageURL } from "@/lib/og-image";
+import { createMetaData } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
@@ -12,18 +12,24 @@ export const generateStaticParams = async () => {
   return paths.map(({ slug }) => ({ slug }));
 };
 
-const Notice = async ({ params }: { params: { slug: string } }) => {
+type Params = {
+  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
+};
+
+export const generateMetadata = async ({ params }: Params) => {
   const notice = await fetchOneNotice(params?.slug);
+
+  return createMetaData({
+    title: notice?.title,
+    description: "Members’ Notices",
+  });
+};
+
+const Notice = async ({ params }: Params) => {
+  const notice = await fetchOneNotice(params?.slug);
+
   return (
     <>
-      {/* <NextSeo
-        title={notice?.title}
-        openGraph={{
-          images: [{ url: makeShareImageURL(notice?.title, true) }],
-          title: notice?.title,
-        }}
-      /> */}
-
       <HeroTitle prose title={notice?.title} transparent>
         <div className="h-2" />
         <Label>Members’ Notices</Label>{" "}

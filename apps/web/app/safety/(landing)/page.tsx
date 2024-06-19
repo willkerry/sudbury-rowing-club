@@ -1,6 +1,12 @@
 import React from "react";
 import { fetchSafety } from "@sudburyrc/api";
+import { createMetaData } from "@/lib/create-metadata";
 import { SafetyItemCard } from "@/components/safety/safety-item-card";
+
+export const metadata = createMetaData({
+  title: "Safety",
+  description: "Safety information from Sudbury Rowing Club.",
+});
 
 const getSafetyItems = async () => {
   const safetyItems = await fetchSafety();
