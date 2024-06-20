@@ -95,12 +95,12 @@ const variants: Record<
 export const variantsList = Object.keys(variants) as ShareImage["variant"][];
 
 export const GET = async (request: NextRequest): Promise<ImageResponse> => {
-  const semiboldFont = await readFile(
-    join(fileURLToPath(import.meta.url), "../../../../public/inter-bold.ttf"),
-  );
-  const mediumFont = await readFile(
-    join(fileURLToPath(import.meta.url), "../../../../public/inter-medium.ttf"),
-  );
+  const semiboldFont = await fetch(
+    new URL("../../../public/inter-bold.ttf", import.meta.url),
+  ).then((res) => res.arrayBuffer());
+  const mediumFont = await fetch(
+    new URL("../../../public/inter-medium.ttf", import.meta.url),
+  ).then((res) => res.arrayBuffer());
 
   const { searchParams } = new URL(request.url);
 
