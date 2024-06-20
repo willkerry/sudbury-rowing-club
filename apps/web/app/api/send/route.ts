@@ -46,7 +46,12 @@ const validateRequest = async (req: NextRequest) => {
   } catch (error) {
     console.error(error);
 
-    throw new ResponseError(JSON.stringify(error), 400);
+    if (error instanceof z.ZodError) {
+      const errors = error.issues.map((issue) => issue.message);
+      throw new ResponseError(errors.join(", "), 400);
+    }
+
+    throw error;
   }
 };
 
@@ -73,7 +78,7 @@ const spamCheck = async (
 
   if (isSpam)
     throw new ResponseError(
-      "Your message has been flagged as spam. If you believe this is an error, please contact us directly.",
+      "Your message has been flagged as spam. Please contact us directly.",
       403,
     );
 };
@@ -101,8 +106,8 @@ export const POST = async (req: NextRequest) => {
       role: toRole,
     } = await findRecipient(toID);
 
-    await resend.emails
-      .send({
+    try {
+      await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),
         to: formatName(toEmail, toName),
         reply_to: formatName(fromEmail, fromName),
@@ -115,28 +120,24 @@ export const POST = async (req: NextRequest) => {
           fromEmail,
           message: DOMPurify.sanitize(message),
         }),
-      })
-      .catch((error) => {
-        console.error("error sending email", error);
+      });
+
+      return new NextResponse("Message sent", {
+        status: 200,
+      });
+    } catch (error) {
+      console.error("error sending email", error);
+
+      if (error instanceof Error) {
         throw new ResponseError(
           `A third party service returned an error: ${error.message}`,
           502,
         );
-      })
-      .then(
-        () =>
-          new NextResponse("Message sent", {
-            status: 200,
-          }),
-      );
+      } else throw error;
+    }
   } catch (error: any) {
-    return new NextResponse(error.message, {
+    return new NextResponse(`Unhandled exception: ${error.message}`, {
       status: error.status || 500,
     });
   }
-
-  // If we get here, I’ve lost the plot.
-  return new NextResponse("Message not sent for an unknown reason.", {
-    status: 500,
-  });
 };
