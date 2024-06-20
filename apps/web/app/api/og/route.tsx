@@ -7,9 +7,7 @@ import { z } from "zod";
 import { blue } from "@sudburyrc/blue";
 import Logo from "@/components/logo";
 
-export const config = {
-  runtime: "edge",
-};
+export const runtime = "edge";
 
 const ErrorResponse = (message: string) =>
   new ImageResponse(
