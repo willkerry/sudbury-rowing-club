@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
 import { serversideFetchCompetitions } from "@sudburyrc/api";
 import IcalBuilder from "@sudburyrc/ical-builder";
@@ -31,28 +31,24 @@ const cachedTransformToICS = async () => {
 
   return icsString;
 };
-const events = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
-    res.status(405);
-    return;
-  }
 
-  res.setHeader("Cache-Control", "public, s-maxage=21600");
-
+export const GET = async () => {
   try {
     const iCalFeed = await cachedTransformToICS();
 
-    res.setHeader("Content-Type", "text/calendar");
-    res.setHeader("Content-Disposition", "attachment; filename=ical.ics");
-    res.write(iCalFeed);
-    res.end();
-    return;
+    return new NextResponse(iCalFeed, {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, s-maxage=21600",
+        "Content-Type": "text/calendar",
+        "Content-Disposition": "attachment; filename=ical.ics",
+      },
+    });
   } catch (error: any) {
     console.error(error);
-    res.status(500).json({ error: error.message });
+
+    return new NextResponse(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
   }
-
-  res.end();
 };
-
-export default events;

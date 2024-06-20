@@ -1,20 +1,21 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
 
-const wodehouse = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method !== "GET") {
-    res.status(405);
-    return;
-  }
+export const revalidate = 60;
 
-  res.setHeader("Cache-Control", "public, s-maxage=60");
-
+export const GET = async () => {
   try {
     const status = getWodehouseFullDetails();
-    res.status(200).json(status);
+
+    return new NextResponse(JSON.stringify(status), {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, s-maxage=60",
+      },
+    });
   } catch (error: any) {
-    res.status(500);
+    return new NextResponse(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
   }
 };
-
-export default wodehouse;
