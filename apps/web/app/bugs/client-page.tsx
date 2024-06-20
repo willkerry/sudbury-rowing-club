@@ -10,7 +10,7 @@ import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
-import { type BugReport } from "@/app/api/bugs/route";
+import { type BugReport } from "@/app/api/bug/route";
 
 const getUserAgent = () => {
   if (typeof window === "undefined") return null;
@@ -96,7 +96,7 @@ export const BugsClientSide = () => {
                     id="name"
                     {...input}
                     label="Your name"
-                    error={meta.error}
+                    error={meta.invalid && meta.touched ? meta.error : ""}
                     type="text"
                   />
                 )}
@@ -109,7 +109,7 @@ export const BugsClientSide = () => {
                     id="email"
                     {...input}
                     label="Your email"
-                    error={meta.error}
+                    error={meta.invalid && meta.touched ? meta.error : ""}
                     type="email"
                   />
                 )}
