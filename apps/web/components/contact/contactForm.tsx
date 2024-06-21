@@ -106,10 +106,9 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       <form.Field name="to" validators={{ onSubmit: MessageToSchema }}>
         {(field) => (
           <Select
-            className="col-span-2"
+            className={cn("col-span-2", recipientWasProvided && "hidden")}
             disabled={disableFields}
             error={field.state.meta.touchedErrors[0]?.toString()}
-            hidden={recipientWasProvided}
             label="Who would you like to contact?"
             value={field.state.value}
             onBlur={field.handleBlur}
