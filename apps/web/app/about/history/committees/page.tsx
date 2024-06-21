@@ -1,6 +1,12 @@
 import { Fragment } from "react";
+import { createMetaData } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import committees from "@/data/officer-archive.json";
+
+export const metadata = createMetaData({
+  title: "Committees",
+  description: "List of Sudbury Rowing Club committees since 1874",
+});
 
 type Position = keyof (typeof committees)[0];
 

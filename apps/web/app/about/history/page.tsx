@@ -7,7 +7,13 @@ import aerial1936Image from "public/assets/history/1936-aerial.jpg";
 import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
 import reachPreWw1Image from "public/assets/history/reach.jpg";
+import { createMetaData } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
+
+export const metadata = createMetaData({
+  title: "History",
+  description: "A history of Sudbury Rowing Club",
+});
 
 const History: NextPage = () => (
   <TextPage title="Club History">
