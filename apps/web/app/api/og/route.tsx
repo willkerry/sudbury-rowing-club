@@ -50,11 +50,11 @@ export type ShareImage = z.infer<typeof ShareImageSchema>;
 
 const getFonts = async () =>
   Promise.all([
-    fetch(new URL("../../../public/inter-bold.ttf", import.meta.url)).then(
-      (res) => res.arrayBuffer(),
+    fetch(new URL("/inter-bold.ttf", process.env.APP_URL)).then((res) =>
+      res.arrayBuffer(),
     ),
-    fetch(new URL("../../../public/inter-medium.ttf", import.meta.url)).then(
-      (res) => res.arrayBuffer(),
+    fetch(new URL("/inter-medium.ttf", process.env.APP_URL)).then((res) =>
+      res.arrayBuffer(),
     ),
   ]);
 
