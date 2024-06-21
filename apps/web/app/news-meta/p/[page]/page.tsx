@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Paginate from "@/components/news/paginate";
@@ -24,7 +24,7 @@ export const generateMetadata = async ({
 }: {
   params: Params;
 }): Promise<Metadata> =>
-  createMetaData({
+  createMetadata({
     title: `News | Page ${page} | Sudbury Rowing Club`,
     description: "News from Sudbury Rowing Club.",
   });

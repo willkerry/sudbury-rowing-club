@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 
 type StourToy = {
@@ -34,7 +34,7 @@ const stourToys: StourToy[] = [
   },
 ];
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "StourToys",
 });
 

@@ -2,7 +2,7 @@ import { type Metadata } from "next";
 import { Download, ExternalLink } from "lucide-react";
 import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
 import { BASE_URL } from "@/lib/constants";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Text from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 
@@ -21,7 +21,7 @@ export const generateMetadata = async ({
 }: Params): Promise<Metadata> => {
   const { title } = await fetchSafetyById(params.slug);
 
-  return createMetaData({ title });
+  return createMetadata({ title });
 };
 
 const SafetyItem = async ({ params }: { params: { slug: string } }) => {

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { HundredAndFiftyContactButton } from "@/components/anniversary/150-contact-button";
 import { HundredAndFiftyFireworks } from "@/components/anniversary/150-fireworks";
 import { HundredAndFiftyGradient } from "@/components/anniversary/150-gradient";
@@ -12,7 +12,7 @@ const TITLE = "150 Years of Rowing in Sudbury";
 const DESCRIPTION = "Join us in celebrating 150 years of rowing in Sudbury";
 
 export const metadata: Metadata = {
-  ...createMetaData({
+  ...createMetadata({
     title: TITLE,
     description: DESCRIPTION,
     image: {

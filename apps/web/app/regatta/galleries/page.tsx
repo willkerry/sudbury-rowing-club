@@ -1,13 +1,13 @@
 import groq from "groq";
 import { sanityClient } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import Copy from "@/components/stour/copy";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Official Photography | Sudbury Regatta",
   description: "Professional photography from the Sudbury Regatta.",
   image: { title: "Official Photography" },

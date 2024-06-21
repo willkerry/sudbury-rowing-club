@@ -1,10 +1,10 @@
 import { Suspense } from "react";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import { HeroTitle } from "@/components/stour/hero";
 import { BugsClientSide } from "./client-page";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Report a bug | Sudbury Rowing Club",
   description: "Report a bug",
   image: { title: "Report a bug 💩" },

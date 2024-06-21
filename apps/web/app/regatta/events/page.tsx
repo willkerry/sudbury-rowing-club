@@ -1,11 +1,11 @@
 import groq from "groq";
 import { sanityClient } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import EventsComponent from "@/components/regatta/events";
 import HeroTitle from "@/components/stour/hero/hero-title";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Event Information | Sudbury Regatta",
   description: "Races at the Sudbury Regatta.",
   image: { title: "Event Information" },

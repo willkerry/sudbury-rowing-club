@@ -1,7 +1,7 @@
 import Image from "next/image";
 import NextLink from "next/link";
 import { ThumbsUp } from "lucide-react";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import {
   JoinCTA,
   L2RCallToAction,
@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { l2rStages, overview } from "@/data/join/";
 import { NextCourse } from "./next-course";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Start rowing at Sudbury Rowing Club",
   description: "Everything you need to know about getting rowing.",
   image: {

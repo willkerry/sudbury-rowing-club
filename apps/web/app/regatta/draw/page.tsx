@@ -1,4 +1,4 @@
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
@@ -6,7 +6,7 @@ import DateFormatter from "@/components/utils/date-formatter";
 const DRAW_URL = "https://live.sudburyrowingclub.org.uk/";
 
 export const revalidate = 86_400;
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: `Regatta Draw ${String(new Date().getFullYear())}`,
   description: "Draw for the Sudbury Regatta",
 });

@@ -1,9 +1,9 @@
 import React from "react";
 import { fetchSafety } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { SafetyItemCard } from "@/components/safety/safety-item-card";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Safety",
   description: "Safety information from Sudbury Rowing Club.",
 });

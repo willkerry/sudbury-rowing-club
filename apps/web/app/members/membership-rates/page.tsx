@@ -1,11 +1,11 @@
 import { AlertTriangle } from "lucide-react";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 import TextPage from "@/components/layouts/text-page";
 
 export const revalidate = 60;
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Membership Rates",
   description: "Membership rates for Sudbury Rowing Club.",
   image: { title: "Membership Rates 💸" },

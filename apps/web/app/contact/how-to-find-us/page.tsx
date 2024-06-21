@@ -9,13 +9,13 @@ import {
   REGATTA_LOCATION,
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Note from "@/components/stour/note";
 import { LocationMap } from "./location-map";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "How to find us",
   description: "Directions to our club and to our regatta",
 });

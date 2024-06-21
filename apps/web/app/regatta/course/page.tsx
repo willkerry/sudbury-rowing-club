@@ -1,13 +1,13 @@
 import groq from "groq";
 import { Download } from "lucide-react";
 import { sanityClient } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { Button } from "@/components/ui/button";
 import CourseMap from "./course-map";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Coursemap | Sudbury Regatta",
   description: "The Sudbury Regatta’s challenging regatta course.",
   image: { title: "Coursemap" },

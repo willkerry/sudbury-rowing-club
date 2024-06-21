@@ -4,10 +4,10 @@ import {
   serverGetNArticles,
 } from "@sudburyrc/api";
 import { serverIndex } from "@/lib/algolia";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { CSRNewsPage } from "./csr-page";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "News | Sudbury Rowing Club",
   description: "Latest news from Sudbury Rowing Club.",
   image: { title: "News" },

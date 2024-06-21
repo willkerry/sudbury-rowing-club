@@ -1,5 +1,5 @@
 import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
@@ -19,7 +19,7 @@ type Params = {
 export const generateMetadata = async ({ params }: Params) => {
   const notice = await fetchOneNotice(params?.slug);
 
-  return createMetaData({
+  return createMetadata({
     title: notice?.title,
     description: "Members’ Notices",
   });

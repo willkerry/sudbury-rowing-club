@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 import DateFormatter from "@/components/utils/date-formatter";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Constitution",
 });
 

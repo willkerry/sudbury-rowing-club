@@ -1,6 +1,6 @@
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Competition Calendar",
   description:
     "This calendar shows competitions for the current season, as recorded by British Rowing.",

@@ -3,7 +3,7 @@ import NextLink from "next/link";
 import Color from "color";
 import { Circle, HelpCircle } from "lucide-react";
 import { blue } from "@sudburyrc/blue";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import combineURLs from "@/lib/helpers/combineURLs";
 import SharePlayground from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
@@ -14,7 +14,7 @@ import Copy from "@/components/stour/copy";
 import Link from "@/components/stour/link";
 
 export const metadata: Metadata = {
-  ...createMetaData({
+  ...createMetadata({
     title: "Brand Assets",
     description: "Some handy resources for building things for Sudbury RC.",
   }),

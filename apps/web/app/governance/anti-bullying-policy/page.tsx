@@ -1,8 +1,8 @@
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Anti-Bullying Policy",
 });
 

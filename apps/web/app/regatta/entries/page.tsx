@@ -1,12 +1,12 @@
 import { fetchRegattaSettings } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import EntriesComponent from "@/components/regatta/entries";
 import { CompactEvents } from "@/components/regatta/events";
 import Link from "@/components/stour/link";
 import Text from "@/components/stour/text";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Entry Information | Sudbury Rowing Club",
   description: "Details for competetive entry to the Sudbury Regatta.",
   image: { title: "Entry Information" },

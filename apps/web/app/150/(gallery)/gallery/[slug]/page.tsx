@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
 import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
 import { formatYear } from "../page";
@@ -47,7 +47,7 @@ export const generateMetadata = async ({
 }: ArchivePageParams): Promise<Metadata> => {
   const archive = await fetchArchiveById(params.slug);
 
-  return createMetaData({
+  return createMetadata({
     title: `150th Anniversary Gallery: ${archive?.title || ""}`,
     description: archive?.description || "",
     image: {

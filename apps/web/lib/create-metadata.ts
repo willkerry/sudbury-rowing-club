@@ -18,7 +18,7 @@ type CreateMetadataOptions = {
 
 type CreateMetadata = (options: CreateMetadataOptions) => Metadata;
 
-export const createMetaData: CreateMetadata = ({
+export const createMetadata: CreateMetadata = ({
   title,
   description,
   image,

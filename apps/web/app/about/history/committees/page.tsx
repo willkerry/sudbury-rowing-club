@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import committees from "@/data/officer-archive.json";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Committees",
   description: "List of Sudbury Rowing Club committees since 1874",
 });

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { dash, group } from "radash";
 import { Archive, fetchArchives } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { ArchiveItem } from "@/components/anniversary/150-archive-item";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import Container from "@/components/layouts/container";
@@ -15,7 +15,7 @@ const UNKNOWN = "Unknown" as const;
 const ERA = 25;
 
 export const metadata: Metadata = {
-  ...createMetaData({
+  ...createMetadata({
     title: TITLE,
     description: DESCRIPTION,
     image: {

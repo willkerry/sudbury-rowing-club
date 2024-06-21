@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
@@ -18,7 +18,7 @@ type Params = {
 export const generateMetadata = async ({ params }: Params) => {
   const author = await fetchAuthor(params?.id);
 
-  return createMetaData({
+  return createMetadata({
     title: `${author?.firstName} ${author?.surname}`,
     description: `Archive of all posts by ${author?.firstName} ${author?.surname}`,
     image: { color: "light" },

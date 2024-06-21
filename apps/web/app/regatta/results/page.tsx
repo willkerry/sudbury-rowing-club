@@ -1,7 +1,7 @@
 import type { PortableTextProps } from "@portabletext/react";
 import groq from "groq";
 import { sanityClient } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import Results from "@/components/regatta/results";
 import HeroTitle from "@/components/stour/hero/hero-title";
@@ -18,7 +18,7 @@ export interface Other {
   records: string;
 }
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Regatta Results | Sudbury Rowing Club",
   description: "Results from the Sudbury Regatta.",
   image: { title: "Regatta Results" },

@@ -1,7 +1,7 @@
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Grievance and Disciplinary Policy",
 });
 

@@ -6,7 +6,7 @@ import {
   serverGetArticleBySlug,
   urlFor,
 } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import PostBody from "@/components/news/post-body";
 import PostHeader from "@/components/news/post-header";
 import Label from "@/components/stour/label";
@@ -35,7 +35,7 @@ export const generateMetadata = async ({
   const post = await serverGetArticleBySlug(params?.slug);
 
   return {
-    ...createMetaData({
+    ...createMetadata({
       title: post.title,
       description: post.excerpt || "",
       ...(post.author && {

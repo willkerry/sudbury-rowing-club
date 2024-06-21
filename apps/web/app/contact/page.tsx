@@ -1,9 +1,9 @@
 import { fetchOfficerNames } from "@sudburyrc/api";
 import { serverIndexOfficers } from "@/lib/algolia";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { CSRContactPage } from "./csr-page";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Contact",
   description: "Get in touch with the Sudbury Rowing Club",
   image: { title: "Contact Sudbury Rowing Club" },

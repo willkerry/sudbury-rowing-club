@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchOfficerNames } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import { SponsorshipHero } from "@/components/sponsorship/sponsorship-hero";
 import { SponsorshipTiers } from "@/components/sponsorship/sponsorship-tiers";
@@ -64,7 +64,7 @@ const SPONSORSHIP_TIERS = {
   }
 >;
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: TITLE,
   description: DESCRIPTION,
 });

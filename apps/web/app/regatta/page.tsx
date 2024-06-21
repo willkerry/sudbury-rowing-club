@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { REGATTA } from "@/lib/constants";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import { getClub } from "@/lib/getClub";
 import Container from "@/components/layouts/container";
 import DateLocation from "@/components/regatta/landing-page/date-location";
@@ -87,7 +87,7 @@ const {
   TESTIMONIAL_DESCRIPTION,
 } = REGATTA;
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: EVENT_NAME_LONG,
   description: EVENT_TAGLINE,
   image: OG_IMAGE_URL,

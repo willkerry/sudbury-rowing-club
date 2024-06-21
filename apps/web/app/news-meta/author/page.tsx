@@ -1,11 +1,11 @@
 import Link from "next/link";
 import cn from "clsx";
 import { fetchAllAuthors } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import Label from "@/components/stour/label";
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Authors",
   description: "List of contributing authors",
   image: { title: "Our authors" },

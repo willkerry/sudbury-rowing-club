@@ -1,12 +1,12 @@
 import { fetchNotices } from "@sudburyrc/api";
-import { createMetaData } from "@/lib/create-metadata";
+import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import CollapsibleCard from "@/components/stour/collapsible-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
 
 export const revalidate = 60;
 
-export const metadata = createMetaData({
+export const metadata = createMetadata({
   title: "Members’ Notices",
   description: "Notices for members of Sudbury Rowing Club.",
   image: { title: "Members’ Notices 📢" },
