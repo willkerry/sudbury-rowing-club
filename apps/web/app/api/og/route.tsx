@@ -48,14 +48,17 @@ const ShareImageSchema = z.object({
 
 export type ShareImage = z.infer<typeof ShareImageSchema>;
 
-export const GET = async (request: NextRequest): Promise<ImageResponse> => {
-  const semiboldFont = await fetch(
-    new URL("../../../public/inter-bold.ttf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
-  const mediumFont = await fetch(
-    new URL("../../../public/inter-medium.ttf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
+const getFonts = async () =>
+  Promise.all([
+    fetch(new URL("../../../public/inter-bold.ttf", import.meta.url)).then(
+      (res) => res.arrayBuffer(),
+    ),
+    fetch(new URL("../../../public/inter-medium.ttf", import.meta.url)).then(
+      (res) => res.arrayBuffer(),
+    ),
+  ]);
 
+export const GET = async (request: NextRequest): Promise<ImageResponse> => {
   const { searchParams } = new URL(request.url);
 
   try {
@@ -71,6 +74,8 @@ export const GET = async (request: NextRequest): Promise<ImageResponse> => {
   );
 
   const { bg, mg, fg, g1, g2, weight, spacing } = variants[variant];
+
+  const [semiboldFont, mediumFont] = await getFonts();
 
   return new ImageResponse(
     (
