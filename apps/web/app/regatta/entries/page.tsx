@@ -19,11 +19,7 @@ const Entries = async () => {
     entries?.waves?.rows?.map((row) => row?.cells?.map((cell) => cell)) || [];
 
   return (
-    <TextPage
-      title="Entry Information"
-      description="Details for competetive entry to the Sudbury Regatta."
-      color="transparent"
-    >
+    <TextPage title="Entry Information" color="transparent">
       <CompactEvents data={events} />
       <div className="space-x-4">
         <Link href="/regatta/events">More on events</Link>

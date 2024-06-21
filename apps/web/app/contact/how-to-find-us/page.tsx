@@ -9,11 +9,16 @@ import {
   REGATTA_LOCATION,
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
+import { createMetaData } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
-import Layout from "@/components/layouts/layout";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Note from "@/components/stour/note";
 import { LocationMap } from "./location-map";
+
+export const metadata = createMetaData({
+  title: "How to find us",
+  description: "Directions to our club and to our regatta",
+});
 
 const openInApp = [
   {
@@ -104,15 +109,6 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
 
 const FindUs: NextPage = () => (
   <>
-    {/* <NextSeo
-      description="Directions to our club and to our regatta"
-      openGraph={{
-        description: "Directions to our club and to our regatta",
-        images: [{ url: makeShareImageURL("How to find us", true) }],
-        title: "How to find us",
-      }}
-      title="How to find us"
-    /> */}
     <HeroTitle title="How to find us" color="transparent" />
 
     <Container>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchOfficerNames } from "@sudburyrc/api";
-// import { makeShareImageURL } from "@/lib/og-image";
+import { createMetaData } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import { SponsorshipHero } from "@/components/sponsorship/sponsorship-hero";
 import { SponsorshipTiers } from "@/components/sponsorship/sponsorship-tiers";
@@ -64,6 +64,11 @@ const SPONSORSHIP_TIERS = {
   }
 >;
 
+export const metadata = createMetaData({
+  title: TITLE,
+  description: DESCRIPTION,
+});
+
 const SponsorshipPage = async () => {
   const officers = await fetchOfficerNames();
 
@@ -73,16 +78,6 @@ const SponsorshipPage = async () => {
 
   return (
     <>
-      {/* <NextSeo
-        title={TITLE}
-        description={DESCRIPTION}
-        openGraph={{
-          title: TITLE,
-          description: DESCRIPTION,
-          images: [{ url: makeShareImageURL(TITLE, true) }],
-        }}
-      /> */}
-
       <SponsorshipHero
         title={TITLE}
         description={`Sudbury Rowing Club is looking for sponsors to help support the club and

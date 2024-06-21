@@ -195,10 +195,7 @@ const brandColors = [
 ];
 
 const Brand = () => (
-  <TextPage
-    title="Brand Assets"
-    description="Some handy resources for building things for Sudbury RC."
-  >
+  <TextPage title="Brand Assets">
     <h2>Crest</h2>
     <p>
       This is a somewhat simplified version of our crest, based on characterful

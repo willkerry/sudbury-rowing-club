@@ -5,7 +5,6 @@ import "inter-ui/inter-variable.css";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
 import Banner from "@/components/banner";
 import Footer from "@/components/footer";
-import Meta from "@/components/layouts/meta";
 import { Nav } from "@/components/nav";
 import "../styles/index.css";
 import Providers from "./providers";
@@ -34,6 +33,21 @@ export const metadata: Metadata = {
     creator: PROJECT_NAME,
   },
   metadataBase: new URL(BASE_URL),
+
+  applicationName: "Sudbury Rowing Club",
+  manifest: "/favicon/site.webmanifest",
+  other: {
+    "msapplication-TileColor": "#00295A",
+    "msapplication-config": "/favicon/browserconfig.xml",
+  },
+  icons: {
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/favicon/safari-pinned-tab.svg",
+      },
+    ],
+  },
 };
 
 export const viewport: Viewport = {
@@ -47,7 +61,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB">
-      <Meta />
+      {/* <Meta /> */}
       <body>
         <Script
           defer

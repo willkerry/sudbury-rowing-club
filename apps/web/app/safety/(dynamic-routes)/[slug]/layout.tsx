@@ -11,7 +11,7 @@ const SafetyItemLayout = async ({
   const { title } = await fetchSafetyById(params.slug);
 
   return (
-    <TextPage title={title} description="A safety page" color="transparent">
+    <TextPage title={title} color="transparent">
       {children}
     </TextPage>
   );

@@ -95,10 +95,7 @@ const Draw = async () => {
   const { paragraph, button } = getStateText(state, new Date(showDrawFrom));
 
   return (
-    <TextPage
-      title={`Regatta draw ${String(thisYear)}`}
-      description="Draw for the Sudbury Regatta"
-    >
+    <TextPage title={`Regatta draw ${String(thisYear)}`}>
       <p className="lead">
         Each year, the Sudbury Regatta draw is published to{" "}
         <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
