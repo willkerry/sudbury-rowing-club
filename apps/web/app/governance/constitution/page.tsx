@@ -1,7 +1,12 @@
 import { ReactNode } from "react";
+import { createMetaData } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import Logo from "@/components/logo";
 import DateFormatter from "@/components/utils/date-formatter";
+
+export const metadata = createMetaData({
+  title: "Constitution",
+});
 
 const COLORS = {
   1: "bg-green-50 border-green-300",

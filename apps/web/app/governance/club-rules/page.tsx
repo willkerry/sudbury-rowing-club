@@ -1,4 +1,9 @@
+import { createMetaData } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
+
+export const metadata = createMetaData({
+  title: "Club Rules",
+});
 
 const Rules = () => (
   <TextPage title="Club Rules">

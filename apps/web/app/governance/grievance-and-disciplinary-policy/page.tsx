@@ -1,4 +1,9 @@
+import { createMetaData } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
+
+export const metadata = createMetaData({
+  title: "Grievance and Disciplinary Policy",
+});
 
 const GrievancePolicy = () => (
   <TextPage title="Grievance and Disciplinary Policy">

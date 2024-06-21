@@ -7,6 +7,8 @@ import {
   NonExec,
   Officers,
 } from "@/components/governance";
+import Container from "@/components/layouts/container";
+import { HeroTitle } from "@/components/stour/hero";
 
 const title = "Governance";
 const description = "How is Sudbury Rowing Club run?";
@@ -27,10 +29,13 @@ const Governance = async () => {
 
   return (
     <>
-      <Officers officers={officers} />
-      <Committees committees={committees} />
-      <NonExec trustees={trustees} vicePresidents={vicePresidents} />
-      <Documents documents={documents} />
+      <HeroTitle prose title="Governance" />
+      <Container className="my-16">
+        <Officers officers={officers} />
+        <Committees committees={committees} />
+        <NonExec trustees={trustees} vicePresidents={vicePresidents} />
+        <Documents documents={documents} />
+      </Container>
     </>
   );
 };

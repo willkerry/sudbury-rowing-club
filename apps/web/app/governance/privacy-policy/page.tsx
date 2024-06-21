@@ -1,5 +1,10 @@
+import { createMetaData } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import Note from "@/components/stour/note";
+
+export const metadata = createMetaData({
+  title: "Privacy Policy",
+});
 
 const PrivacyPolicy = () => (
   <TextPage title="Privacy Policy">
