@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 const useLocale = () => Intl.DateTimeFormat().resolvedOptions().locale;

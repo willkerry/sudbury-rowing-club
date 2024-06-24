@@ -41,15 +41,15 @@ const EA_WARNING_URL =
 const fetchEAWarning = () =>
   fetch(EA_WARNING_URL)
     .then((res) => res.json())
-    .then((res) => res.items[0])
-    .then(EAWarningSchema.parse);
+    .then(z.object({ items: z.array(EAWarningSchema) }).parse)
+    .then((res) => res.items[0]);
 
 /** Fetches monitoring station data from the Environment Agency API */
 const fetchEAStation = () =>
   fetch("https://environment.data.gov.uk/flood-monitoring/id/stations/E21856")
     .then((res) => res.json())
-    .then((res) => res.items)
-    .then(EAStationResponseSchema.parse);
+    .then(z.object({ items: EAStationResponseSchema }).parse)
+    .then((res) => res.items);
 
 /** Maps the EA's 1-4 severity levels to our traffic light Severity enum */
 const numericSeverityMap: Record<1 | 2 | 3 | 4, Severity> = {

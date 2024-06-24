@@ -1,6 +1,6 @@
 import { Archive } from "@sudburyrc/api";
 import Gallery from "@/components/regatta/landing-page/gallery";
-import { formatYear } from "@/pages/150/gallery";
+import { formatYear } from "@/app/150/(gallery)/gallery/page";
 
 const appendAFullStop = (str: string) => {
   const trimmed = str.trim();
@@ -47,6 +47,7 @@ export const HundredAndFiftyGallery = ({
           archive.range,
         ),
         lqip: archive.image.metadata.lqip,
+        href: `/150/gallery/${archive._id}`,
       }))}
   />
 );

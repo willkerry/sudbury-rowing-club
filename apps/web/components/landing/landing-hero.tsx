@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import BoathouseDoor from "@/components/landing/boathouse-door";
@@ -11,8 +13,6 @@ type Props = {
   imageAspectRatio: number;
   imageLqip: string;
   slogan: string;
-  youTubeId: string;
-  youTubeStart: number;
 };
 
 const LandingHero = ({
@@ -20,8 +20,6 @@ const LandingHero = ({
   imageAspectRatio,
   imageLqip,
   slogan,
-  youTubeId,
-  youTubeStart,
 }: Props) => (
   <Container>
     <div className="group relative flex overflow-hidden rounded shadow">
@@ -41,7 +39,7 @@ const LandingHero = ({
           {slogan}
         </span>
       </div>
-      <Player youTubeId={youTubeId} youTubeStart={youTubeStart} />
+      <Player />
     </div>
   </Container>
 );

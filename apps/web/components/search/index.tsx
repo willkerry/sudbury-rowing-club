@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { HOSTNAME } from "@/lib/constants";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 export const SiteSearch = () => (
   <form
@@ -8,15 +9,12 @@ export const SiteSearch = () => (
     method="get"
     className="flex items-center"
   >
-    <input type="hidden" name="q" value={`site:${HOSTNAME}`} />
-    <label htmlFor="search" className="sr-only">
-      Search our site with Google
-    </label>
-    <input
+    <Input
       name="q"
       placeholder="Search our site with Google"
       type="search"
-      className="m-0"
+      className="w-full"
+      aria-label="Search our site with Google"
     />
     <Button type="submit" icon={<Search />} variant="link">
       Search

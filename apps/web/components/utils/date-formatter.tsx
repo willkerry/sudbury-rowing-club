@@ -45,7 +45,7 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
 const DateFormatter = ({
   className,
   dateString,
-  format,
+  format = "default",
   locale = "en-GB",
   timeZone = Intl?.DateTimeFormat().resolvedOptions().timeZone,
   ...props
@@ -68,10 +68,6 @@ const DateFormatter = ({
       {isNonGbClient && selectedFormatIncludesTime && " (UK time)"}
     </time>
   );
-};
-
-DateFormatter.defaultProps = {
-  format: "default",
 };
 
 export default DateFormatter;

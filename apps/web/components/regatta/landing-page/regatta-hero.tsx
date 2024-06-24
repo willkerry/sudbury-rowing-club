@@ -1,6 +1,6 @@
-import { Link as ScrollLink } from "react-scroll";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import ImageComposite from "@/components/regatta/landing-page/image-composite";
+import { ScrollLink } from "@/components/utils/scroll-link";
 
 type Props = {
   ticketItems: [string, string | JSX.Element][];

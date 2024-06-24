@@ -1,5 +1,5 @@
 import { BASE_URL } from "@/lib/constants";
-import { type ShareImage } from "@/pages/api/og";
+import { type ShareImage } from "@/app/api/og/route";
 
 const BASE_PATH = "/api/og";
 

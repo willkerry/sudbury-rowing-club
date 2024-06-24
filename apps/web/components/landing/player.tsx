@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState } from "react";
 import {
   EllipsisHorizontalCircleIcon,
@@ -6,17 +8,12 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/24/solid";
 
-type Props = {
-  youTubeId: string;
-  youTubeStart: number;
-};
-
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 
 const controlIcons: Record<PlayerState, typeof PlayCircleIcon> = {
   idle: PlayCircleIcon,
   loading: EllipsisHorizontalCircleIcon,
-  paused: PauseCircleIcon,
+  paused: PlayCircleIcon,
   playing: PauseCircleIcon,
   error: ExclamationCircleIcon,
 };
@@ -24,12 +21,12 @@ const controlIcons: Record<PlayerState, typeof PlayCircleIcon> = {
 const controlText: Record<PlayerState, string> = {
   idle: "Play video",
   loading: "Loading video",
-  paused: "Pause video",
+  paused: "Play video",
   playing: "Pause video",
   error: "Error",
 };
 
-const Player = ({ youTubeId: _, youTubeStart: __ }: Props) => {
+const Player = () => {
   const [playerState, setPlayerState] = useState<PlayerState>("idle");
 
   const ref = useRef<HTMLVideoElement>(null);
@@ -67,6 +64,7 @@ const Player = ({ youTubeId: _, youTubeStart: __ }: Props) => {
           className="aspect-h-9 aspect-w-16 absolute inset-0 z-0 w-full"
           autoPlay
           muted
+          loop
           onPlaying={setPlaying}
           onEnded={setIdle}
           onError={setError}
@@ -88,10 +86,8 @@ const Player = ({ youTubeId: _, youTubeStart: __ }: Props) => {
         type="button"
         className="absolute bottom-3 right-3 z-10 text-white"
       >
-        <>
-          <Icon aria-hidden className="h-6 w-6" />
-          <div className="sr-only">{text}</div>
-        </>
+        <Icon aria-hidden className="h-6 w-6" />
+        <div className="sr-only">{text}</div>
       </button>
     </div>
   );

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+"use client";
+
 import Link from "next/link";
 import { AccordionHeader } from "@radix-ui/react-accordion";
 import { LinkIcon } from "lucide-react";
@@ -17,13 +18,7 @@ import FileGroup from "./file-group";
 type Props = { notice: Notice };
 
 export const NoticeBody = ({ notice }: Props) => {
-  const [splitItemCount, setSplitItemCount] = useState(0);
-
-  useEffect(() => {
-    if (notice.documents) {
-      setSplitItemCount(Math.ceil(notice.documents.length / 2));
-    }
-  }, [notice]);
+  const splitItemCount = Math.ceil((notice.documents?.length ?? 2) / 2);
 
   if (!notice) return null;
 

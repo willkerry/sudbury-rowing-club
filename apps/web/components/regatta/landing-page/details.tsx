@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { Mouse } from "lucide-react";

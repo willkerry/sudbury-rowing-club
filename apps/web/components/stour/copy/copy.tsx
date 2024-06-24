@@ -1,3 +1,5 @@
+"use client";
+
 import { useClipboard } from "@mantine/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckIcon, Clipboard } from "lucide-react";

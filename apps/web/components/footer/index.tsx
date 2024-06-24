@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "@/components/layouts/container";
 import Crest from "@/components/logo/crest";
 import {

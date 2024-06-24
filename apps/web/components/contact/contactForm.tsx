@@ -1,31 +1,44 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { Field, Form } from "react-final-form";
-import TextareaAutosize from "react-textarea-autosize";
+"use client";
+
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
-import { FORM_ERROR } from "final-form";
+import { zodValidator } from "@tanstack/zod-form-adapter";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
 import { shake } from "radash";
+import { z } from "zod";
 import type { OfficerResponse } from "@sudburyrc/api";
-import Input from "@/components/contact/fields/input";
-import Select from "@/components/contact/fields/select";
+import { cn } from "@/lib/utils";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
-import Error from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { TextArea } from "@/components/ui/textarea";
+import { Error as ErrorComponent } from "../ui/error";
 import { FromAndTo } from "./fromAndTo";
 
-export type Message = {
-  to: string;
-  name: string;
-  email: string;
-  message: string;
-};
+const MessageToSchema = z.string().refine((value) => value !== "default", {
+  message: "Select a recipient",
+});
+const MessageNameSchema = z.string().min(1, "Provide your name");
+const MessageEmailSchema = z.string().min(1, "Provide your email").email();
+const MessageMessageSchema = z.string().trim().min(1, "Provide a message");
+
+const MessageSchema = z.object({
+  to: MessageToSchema,
+  name: MessageNameSchema,
+  email: MessageEmailSchema,
+  message: MessageMessageSchema,
+});
+
+export type Message = z.infer<typeof MessageSchema>;
 
 type Props = {
   disabled?: boolean;
   contacts: OfficerResponse[];
-  initialValues: Message;
+  initialValues: Partial<Message>;
 };
 
 /**
@@ -38,8 +51,8 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
 
   const recipientWasProvided = !!initialValues.to;
 
-  const { mutateAsync } = useMutation({
-    mutationFn: async (values: Record<string, any>) => {
+  const { mutateAsync, status, error } = useMutation({
+    mutationFn: async (values: Message) => {
       const response = await fetch("/api/send", {
         method: "POST",
         body: JSON.stringify(values),
@@ -51,7 +64,9 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       const status = response?.status;
       if (status === 200) return undefined;
 
-      return { [FORM_ERROR]: `${status} ${await response?.text()}` };
+      throw new Error(await response?.text());
+
+      // return { [FORM_ERROR]: `${status} ${await response?.text()}` };
     },
   });
 
@@ -60,140 +75,162 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     label: `${contact.role} (${contact.name})`,
   }));
 
-  const form = (
-    <Form
-      initialValues={initialValues}
-      onSubmit={(v) => mutateAsync(v)}
-      render={({
-        handleSubmit,
-        submitting,
-        pristine,
-        submitSucceeded,
-        submitFailed,
-        submitError,
-        hasValidationErrors,
-        values,
-      }) => {
-        if (submitFailed)
-          return <Error error={submitError} message={values.message} />;
+  const form = useForm({
+    defaultValues: {
+      to: initialValues.to || "default",
+      name: initialValues.name || "",
+      email: initialValues.email || "",
+      message: initialValues.message || "",
+    },
+    onSubmit: ({ value }) => mutateAsync(value),
+    validatorAdapter: zodValidator,
+  });
 
-        if (submitSucceeded) return <Success />;
+  if (localDisabled) return <DisabledOverlay form={<div />} />;
+  if (form.state.isSubmitted) return <Success />;
 
-        const disableSubmission =
-          pristine ||
-          submitting ||
-          localDisabled ||
-          submitSucceeded ||
-          hasValidationErrors;
-        const disableFields = submitting || localDisabled || submitSucceeded;
+  const disableFields =
+    form.state.isSubmitting ||
+    localDisabled ||
+    form.state.isSubmitted ||
+    status === "pending";
 
-        const selectedContact = contacts.find((o) => o._id === values.to);
+  return (
+    <form
+      className="grid grid-cols-2 gap-6"
+      onSubmit={(e) => {
+        e.preventDefault();
+        form.handleSubmit();
+      }}
+    >
+      <form.Field name="to" validators={{ onSubmit: MessageToSchema }}>
+        {(field) => (
+          <Select
+            className={cn("col-span-2", recipientWasProvided && "hidden")}
+            disabled={disableFields}
+            error={field.state.meta.touchedErrors[0]?.toString()}
+            label="Who would you like to contact?"
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(e.target.value)}
+          >
+            <option value="default" disabled />
+            {optionArray.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </Select>
+        )}
+      </form.Field>
 
-        return (
-          <form className="grid grid-cols-2 gap-6" onSubmit={handleSubmit}>
-            <Field defaultValue="default" name="to">
-              {({ input, meta }) => (
-                <Select
-                  disabled={disableFields}
-                  id="to"
-                  input={input}
-                  label="Who would you like to contact?"
-                  meta={meta}
-                  options={optionArray}
-                  pristine={pristine}
-                  hidden={recipientWasProvided}
-                />
-              )}
-            </Field>
-
-            <div className="col-span-2 -mb-4 grid gap-x-4 sm:grid-cols-2">
-              <Field name="name">
-                {({ input, meta }) => (
-                  <Input
-                    disabled={disableFields}
-                    id="name"
-                    input={input}
-                    label="Your name"
-                    meta={meta}
-                    placeholder={`${randomName.firstName} ${randomName.lastName}`}
-                    type="text"
-                    inputClassName="mb-4"
-                  />
-                )}
-              </Field>
-
-              <Field name="email">
-                {({ input, meta }) => (
-                  <Input
-                    disabled={disableFields}
-                    id="email"
-                    input={input}
-                    label="Your email"
-                    meta={meta}
-                    placeholder={randomName.email}
-                    type="email"
-                    inputClassName="mb-4"
-                  />
-                )}
-              </Field>
-            </div>
-
-            <FromAndTo
-              isOpen={values.to !== "default"}
-              from={{
-                name:
-                  values.name ||
-                  `${randomName.firstName} ${randomName.lastName}`,
-                email: values.email || "Placeholder",
-                isPlaceholder: !values.name || !values.email,
-              }}
-              to={shake(selectedContact)}
+      <div className="col-span-2 -mb-4 grid gap-x-4 sm:grid-cols-2">
+        <form.Field name="name" validators={{ onSubmit: MessageNameSchema }}>
+          {(field) => (
+            <Input
+              disabled={disableFields}
+              label="Your name"
+              placeholder={`${randomName.firstName} ${randomName.lastName}`}
+              type="text"
+              className="mb-4"
+              error={field.state.meta.touchedErrors[0]?.toString()}
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(e) => field.handleChange(e.target.value)}
             />
+          )}
+        </form.Field>
 
-            <Field name="message">
-              {({ input, meta }) => (
-                <div className="col-span-2">
-                  <label htmlFor="message">Your message</label>
-                  <TextareaAutosize
-                    {...input}
-                    className={meta.invalid && meta.touched ? "invalid" : ""}
-                    disabled={disableFields}
-                    id="message"
-                    minRows={3}
-                    required
-                  />
-                </div>
-              )}
-            </Field>
+        <form.Field name="email" validators={{ onSubmit: MessageEmailSchema }}>
+          {(field) => {
+            console.log(field.state.meta.touchedErrors);
+            return (
+              <Input
+                disabled={disableFields}
+                label="Your email"
+                placeholder={randomName.email}
+                type="email"
+                className="mb-4"
+                error={
+                  field.state.meta.touchedErrors[0]?.toString().split(",")[0]
+                }
+                value={field.state.value}
+                onBlur={field.handleBlur}
+                onChange={(e) => field.handleChange(e.target.value)}
+              />
+            );
+          }}
+        </form.Field>
+      </div>
 
-            <Center className="col-span-2">
-              <Button
-                id="message"
-                disabled={disableSubmission}
-                loading={submitting}
-                size="lg"
-                type="submit"
-                className="w-full"
-                variant="secondary"
-              >
-                Send
-              </Button>
-            </Center>
-          </form>
-        );
-      }}
-      validate={(values) => {
-        const errors: any = {};
-        if (values.to === "default") errors.to = "Required";
-        if (!values.name) errors.name = "Required";
-        if (!values.email) errors.email = "Required";
-        if (!values.message) errors.message = "Required";
-        return Object.keys(errors).length ? errors : undefined;
-      }}
-    />
+      <form.Subscribe
+        selector={(state) => [
+          state.values.to,
+          state.values.name,
+          state.values.email,
+        ]}
+      >
+        {([to, name, email]) => (
+          <FromAndTo
+            to={shake(contacts.find((o) => o._id === to))}
+            isOpen={to !== "default"}
+            from={{
+              name: name || `${randomName.firstName} ${randomName.lastName}`,
+              email: email || "Placeholder",
+              isPlaceholder: !name || !form.getFieldValue("email"),
+            }}
+          />
+        )}
+      </form.Subscribe>
+
+      <form.Field
+        name="message"
+        validators={{ onSubmit: MessageMessageSchema }}
+      >
+        {(field) => (
+          <TextArea
+            label="Your message"
+            className={cn("col-span-2")}
+            disabled={disableFields}
+            id="message"
+            minRows={3}
+            required
+            error={field.state.meta.touchedErrors[0]?.toString()}
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChange={(e) => field.handleChange(e.target.value)}
+          />
+        )}
+      </form.Field>
+
+      {status === "error" && (
+        <ErrorComponent className="col-span-2" error={error}>
+          Contact us{" "}
+          <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
+            by email
+          </Obfuscate>
+          .
+        </ErrorComponent>
+      )}
+
+      <Center className="col-span-2">
+        <form.Subscribe selector={(state) => state.isSubmitting}>
+          {(isSubmitting) => (
+            <Button
+              id="message"
+              loading={isSubmitting}
+              size="lg"
+              type="submit"
+              className="w-full"
+              variant="secondary"
+            >
+              Send
+            </Button>
+          )}
+        </form.Subscribe>
+      </Center>
+    </form>
   );
-  if (localDisabled) return <DisabledOverlay form={form} />;
-  return form;
 };
 
 export default ContactForm;

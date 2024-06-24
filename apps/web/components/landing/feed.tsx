@@ -1,3 +1,5 @@
+"use client";
+
 import cn from "clsx";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
