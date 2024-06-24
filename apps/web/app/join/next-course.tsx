@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Note from "@/components/stour/note";
 
-const HIDE_COURSE_AFTER_DATE = new Date(2024, 4, 28);
+const HIDE_COURSE_AFTER_DATE = new Date(2024, 9, 15);
 
 export const NextCourse = () => {
   const seasonStartDates: Record<string, Date> = {
@@ -32,7 +32,7 @@ export const NextCourse = () => {
   }
 
   return (
-    <div className="prose-sm rounded border border-green-200 bg-green-50 px-2 pb-1">
+    <div className="prose-sm rounded border border-green-200 bg-green-50 px-2 pb-1 prose-a:underline">
       <h3 className="mb-1 mt-2 flex items-center gap-1 text-base font-semibold">
         Course Dates
         <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
@@ -40,39 +40,19 @@ export const NextCourse = () => {
         </span>
       </h3>
       <p>
-        Please <Link href="join/apply">register your interest</Link> for the
-        Learn to Row course dates for 2024.
-      </p>
-      <p>
-        First <strong>taster sessions</strong> being held:
-        <div>3 February 2024, 11:30-13:00</div>
-        <div>10 February 2024, 11:30-13:00</div>
-      </p>
-      <p className="mb-0">Followed by two separate courses:</p>
-      <div className="grid gap-4 py-0 md:grid-cols-2">
-        <div>
-          <strong>Course 1 (Saturday 13:00-16:00)</strong>
-          <div>2 March 2023</div>
-          <div>9 March 2023</div>
-          <div>16 March 2023</div>
-          <div>23 March 2023</div>
-        </div>
-
-        <div>
-          <strong>Course 2 (Saturday 13:00-16:00)</strong>
-          <div>6 April 2023</div>
-          <div>13 April 2023</div>
-          <div>20 April 2023</div>
-          <div>27 April 2023</div>
-        </div>
-      </div>
-      <p>
-        <Link href="join/apply">Register your interest</Link> now or{" "}
-        <Link href="/contact?q=learntorow">contact Sean Moriarty</Link> for
-        further information.
+        The next and final L2R course for 2024 is to take place over the last
+        two Saturdays in August and first two Saturdays in September.
       </p>
 
-      <p>We look forward to welcoming you to the club.</p>
+      <p>
+        I am holding taster sessions between 11:30 and 13:00 on Saturday 29 June
+        and 6 July.
+      </p>
+
+      <p>
+        Please <Link href="join/apply">register your interest</Link> if you
+        would like to take part in the Learn to Row course.
+      </p>
     </div>
   );
 };
