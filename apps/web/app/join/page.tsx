@@ -87,7 +87,7 @@ const Join = () => (
               Contact the club captain
             </div>
             <Button asChild size="lg">
-              <NextLink href="/contact?q=captain">Contact</NextLink>
+              <NextLink href="./contact?q=captain">Contact</NextLink>
             </Button>
           </div>
         </div>
