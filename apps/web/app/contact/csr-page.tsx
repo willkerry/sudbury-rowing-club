@@ -54,7 +54,7 @@ const ContactPage = ({
         }
         color="transparent"
       />
-      <Container className="max-w-lg py-12">
+      <Container className="max-w-lg pb-12 pt-6 sm:pt-12">
         <div className="prose mx-auto pb-10">
           {!guessedRecipient ? (
             <p>

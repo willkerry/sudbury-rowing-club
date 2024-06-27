@@ -30,7 +30,7 @@ const Governance = async () => {
   return (
     <>
       <HeroTitle prose title="Governance" />
-      <Container className="my-16">
+      <Container className="mb-16 mt-4 sm:my-16">
         <Officers officers={officers} />
         <Committees committees={committees} />
         <NonExec trustees={trustees} vicePresidents={vicePresidents} />

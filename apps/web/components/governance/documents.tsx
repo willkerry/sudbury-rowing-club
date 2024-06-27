@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Documents = ({ documents }: Props) => (
-  <section className="py-12" id="documents">
+  <section className="max-w-lg pb-12 pt-6 sm:pt-12" id="documents">
     <SectionTitle>Documents</SectionTitle>
     {documents.map((group) => (
       <div key={group._key} className="mt-6">

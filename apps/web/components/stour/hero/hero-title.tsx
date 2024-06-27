@@ -67,7 +67,7 @@ const HeroTitle = ({
     <>
       <div
         className={cn(
-          "relative flex h-48 min-h-[48] flex-wrap content-center",
+          "relative flex h-24 flex-wrap content-center sm:h-36 md:h-48",
           colorClasses?.hero,
         )}
       >
@@ -90,7 +90,7 @@ const HeroTitle = ({
           className={cn(
             "py-2",
             colorClasses?.container,
-            (prose && color === "transparent") || color === "transparent"
+            prose && color === "transparent"
               ? "mx-auto w-min rounded-full border"
               : "border-y",
           )}
@@ -98,16 +98,14 @@ const HeroTitle = ({
           <Container>
             <Breadcrumbs
               listClassName={cn(
-                "flex text-sm",
+                "flex text-sm overflow-x-auto",
                 prose && "max-w-min mx-auto justify-center",
               )}
               rootLabel="Home"
               inactiveItemClassName={cn(
                 "whitespace-nowrap after:content-['→'] after:px-2 after:text-gray-400 capitalize transition",
                 colorClasses?.item,
-                ((prose && color === "transparent") ||
-                  color === "transparent") &&
-                  "mx-auto",
+                prose && color === "transparent" && "mx-auto",
               )}
               activeItemClassName="whitespace-nowrap font-medium capitalize"
               currentLabel={title}

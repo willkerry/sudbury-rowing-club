@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ArticleSummary } from "@sudburyrc/api";
+import { cn } from "@/lib/utils";
 import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
 
@@ -24,7 +25,12 @@ const HeroPost = ({ post }: { post: ArticleSummary }) => (
       )}
     </div>
     <div className="m-4 flex flex-col place-content-between md:my-6 md:mr-8">
-      <p className="mb-10 text-gray-500 transition duration-200 group-hover:text-blue-300 md:mb-0">
+      <p
+        className={cn(
+          "mb-10 text-gray-500 transition duration-200 group-hover:text-blue-300 md:mb-0",
+          !post.excerpt && "hidden md:block",
+        )}
+      >
         {post.excerpt}
       </p>
       <div>

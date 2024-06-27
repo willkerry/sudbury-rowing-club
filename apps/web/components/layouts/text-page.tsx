@@ -20,7 +20,7 @@ const TextPage = ({
   <>
     <HeroTitle title={title} prose={!!prose} breadcrumbs {...{ color }} />
     <Container>
-      <div className={cn("mx-auto my-16", prose)}>{children}</div>
+      <div className={cn("mx-auto mb-16 mt-8 sm:my-16", prose)}>{children}</div>
     </Container>
   </>
 );

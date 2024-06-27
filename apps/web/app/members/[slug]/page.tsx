@@ -37,7 +37,7 @@ const Notice = async ({ params }: Params) => {
           View all
         </Link>
       </HeroTitle>
-      <Container className="my-12 max-w-prose space-y-6">
+      <Container className="mb-12 mt-6 max-w-prose  space-y-6 sm:mt-12">
         <div className="divide-y overflow-hidden rounded border">
           <NoticeBody notice={notice} />
         </div>

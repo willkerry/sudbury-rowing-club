@@ -93,6 +93,7 @@ export const BugsClientSide = () => {
                 {({ input, meta }) => (
                   <Input
                     disabled={disableFields}
+                    className="col-span-2 sm:col-span-1"
                     id="name"
                     {...input}
                     label="Your name"
@@ -106,6 +107,7 @@ export const BugsClientSide = () => {
                 {({ input, meta }) => (
                   <Input
                     disabled={disableFields}
+                    className="col-span-2 sm:col-span-1"
                     id="email"
                     {...input}
                     label="Your email"
