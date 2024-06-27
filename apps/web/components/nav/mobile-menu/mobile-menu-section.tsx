@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CloseButton } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import * as Accordion from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
@@ -85,7 +86,8 @@ export const MobileMenuSection = ({
       const Icon = item.icon || null;
 
       return (
-        <Link
+        <CloseButton
+          as={Link}
           key={item.name}
           href={item.href}
           className="-m-2 flex items-center rounded-md p-2 hover:bg-gray-100"
@@ -99,7 +101,7 @@ export const MobileMenuSection = ({
           <span className="font-medium text-gray-900">
             {item.shortName ? item.shortName : item.name}
           </span>
-        </Link>
+        </CloseButton>
       );
     })}
   </SectionWrapper>

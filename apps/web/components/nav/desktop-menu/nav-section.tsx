@@ -3,9 +3,8 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Popover, Transition } from "@headlessui/react";
+import { CloseButton, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { ArrowRightIcon } from "lucide-react";
 import { fork } from "radash";
 import { cn } from "@/lib/utils";
 import { type IconNavItemType } from "@/types/nav-item";
@@ -34,7 +33,8 @@ const ListItem = ({
   const Icon = icon || null;
 
   return (
-    <Link
+    <CloseButton
+      as={Link}
       key={href}
       href={href}
       className={cn(
@@ -73,7 +73,7 @@ const ListItem = ({
           </p>
         )}
       </div>
-    </Link>
+    </CloseButton>
   );
 };
 
