@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Home } from "lucide-react";
@@ -7,11 +8,12 @@ import { SiteSearch } from "@/components/search";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { Button } from "@/components/ui/button";
 
+export const metadata: Metadata = {
+  title: "404 Page not found",
+};
+
 const Custom404 = () => (
   <>
-    {/* <Head>
-      <title>Error 404</title>
-    </Head> */}
     <HeroTitle prose title="404 Page not found." transparent />
 
     <div className="flex justify-center">

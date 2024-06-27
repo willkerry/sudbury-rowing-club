@@ -61,7 +61,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB">
-      {/* <Meta /> */}
       <body>
         <Script
           defer
