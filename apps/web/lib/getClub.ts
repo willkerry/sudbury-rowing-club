@@ -2,8 +2,8 @@ import { unique } from "radash";
 import clubs from "@/data/clubs.json";
 
 const SUFFIX_ALIASES = {
-  "Rowing Club": ["Rowing Club", "RC"],
-  "Boat Club": ["Boat Club", "BC"],
+  " Rowing Club": [" Rowing Club", " RC"],
+  " Boat Club": [" Boat Club", " BC"],
 } as const;
 
 type Club = {
@@ -20,7 +20,7 @@ export const getClub = (name: string): Club | undefined => {
       (acc, [suffix, aliases]) => {
         const containsAliasable = aliases.some((alias) => name.includes(alias));
 
-        if (!containsAliasable) return acc;
+        if (!containsAliasable) return acc.map((v) => v.toLowerCase());
 
         return [
           ...acc,
@@ -28,9 +28,9 @@ export const getClub = (name: string): Club | undefined => {
             const withSuffix = name.replace(alias, suffix);
             const withAlias = name.replace(suffix, alias);
 
-            if (withSuffix !== name) return withSuffix;
-            if (withAlias !== name) return withAlias;
-            return name;
+            if (withSuffix !== name) return withSuffix.toLowerCase();
+            if (withAlias !== name) return withAlias.toLowerCase();
+            return name.toLowerCase();
           }),
         ];
       },
@@ -38,5 +38,7 @@ export const getClub = (name: string): Club | undefined => {
     ),
   );
 
-  return clubs.find((club) => possibleNames.includes(club?.name));
+  console.log(possibleNames);
+
+  return clubs.find((club) => possibleNames.includes(club?.name.toLowerCase()));
 };
