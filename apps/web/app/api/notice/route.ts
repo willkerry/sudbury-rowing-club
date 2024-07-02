@@ -22,11 +22,12 @@ export type Notice = z.infer<typeof NoticeSchema>;
 export const GET = async () => {
   const rawNotice = await sanityClient
     .fetch(groq`*[_type == "regattaSettings"][0].note`)
-    .catch(() => {
-      return new NextResponse("Server error: failed to fetch notice", {
-        status: 500,
-      });
-    });
+    .catch(
+      () =>
+        new NextResponse("Server error: failed to fetch notice", {
+          status: 500,
+        }),
+    );
 
   const notice = NoticeSchema.safeParse(rawNotice);
 
