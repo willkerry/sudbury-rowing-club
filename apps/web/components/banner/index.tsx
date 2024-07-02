@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
-import useNotice, { noticeVariants } from "@/hooks/useNotice";
+import { Notice } from "@/app/api/notice/route";
 import Container from "../layouts/container";
 import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";
 
 const bannerVariants: Record<
-  (typeof noticeVariants)[number],
+  Notice["type"][number],
   {
     bgColor: string;
     textColor: string;
@@ -102,7 +103,12 @@ const ButtonOrAnchor = ({
   })[type];
 
 const Banner = () => {
-  const { data, error } = useNotice();
+  const { data, error } = useQuery<Notice>({
+    queryKey: ["notice"],
+    queryFn: () => fetch("/api/notice").then((res) => res.json()),
+    staleTime: 5 * 60 * 1000,
+  });
+
   const textRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
 
