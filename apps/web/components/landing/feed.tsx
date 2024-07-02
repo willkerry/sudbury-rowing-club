@@ -1,13 +1,12 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import useBritishRowingFeed, {
-  type BRArticle as BRArticleType,
-} from "@/hooks/useBritishRowingFeed";
+import { type BRArticle as BRArticleType } from "@/app/api/br-feed/route";
 import Result from "../stour/result";
 
 const BRArticle = ({ article }: { article?: BRArticleType }) => (
@@ -41,7 +40,10 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
 );
 
 const Feed = () => {
-  const { data: articles, error } = useBritishRowingFeed();
+  const { data: articles, error } = useQuery<BRArticleType[]>({
+    queryKey: ["british-rowing-feed"],
+    queryFn: () => fetch("/api/br-feed").then((res) => res.json()),
+  });
 
   return (
     <>
