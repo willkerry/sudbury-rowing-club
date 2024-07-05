@@ -223,6 +223,8 @@ const RegattaPage = async () => {
 
       <Gallery images={landingPage.images} />
 
+      <Poster />
+
       <div id="feedback">
         <Hero
           title={TESTIMONIAL_DESCRIPTION}
@@ -233,8 +235,6 @@ const RegattaPage = async () => {
         <Container>
           <Testimonials {...{ regattas }} />
         </Container>
-
-        <Poster />
       </div>
     </>
   );
