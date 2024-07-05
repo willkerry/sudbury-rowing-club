@@ -12,6 +12,7 @@ import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
+import { Poster } from "./poster/page";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
@@ -232,6 +233,8 @@ const RegattaPage = async () => {
         <Container>
           <Testimonials {...{ regattas }} />
         </Container>
+
+        <Poster />
       </div>
     </>
   );
