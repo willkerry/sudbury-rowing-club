@@ -351,7 +351,7 @@ importers:
         version: 2.12.0
       next-sanity:
         specifier: ^9.4.2
-        version: 9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.2.0)(@sanity/types@3.48.1)(@sanity/ui@2.6.1)(next@14.2.4)(react-dom@18.3.1)(react@18.3.1)(sanity@3.48.1)(styled-components@6.1.11)
+        version: 9.4.2(@sanity/client@6.20.1)(@sanity/icons@2.11.8)(@sanity/types@3.48.1)(@sanity/ui@2.6.1)(next@14.2.4)(react-dom@18.3.1)(react@18.3.1)(sanity@3.48.1)(styled-components@6.1.11)
       picosanity:
         specifier: ^4.1.1
         version: 4.1.1
@@ -380,6 +380,12 @@ importers:
       '@sudburyrc/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      '@types/react':
+        specifier: ^18.3.3
+        version: 18.3.3
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
       tsup:
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.5.3)
@@ -10945,7 +10951,7 @@ packages:
       react: 18.3.1
     dev: false
 
-  /next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@3.2.0)(@sanity/types@3.48.1)(@sanity/ui@2.6.1)(next@14.2.4)(react-dom@18.3.1)(react@18.3.1)(sanity@3.48.1)(styled-components@6.1.11):
+  /next-sanity@9.4.2(@sanity/client@6.20.1)(@sanity/icons@2.11.8)(@sanity/types@3.48.1)(@sanity/ui@2.6.1)(next@14.2.4)(react-dom@18.3.1)(react@18.3.1)(sanity@3.48.1)(styled-components@6.1.11):
     resolution: {integrity: sha512-v9OGJyV7/0hUukOzSzcRAvpJ0ZGNaUrRrAf7z6j9BoAF8GCoc0Onn/E/cmJZkXOiyoh3gZxPO1P/mysoJYClMw==}
     engines: {node: '>=18.17'}
     peerDependencies:
@@ -10960,7 +10966,7 @@ packages:
     dependencies:
       '@portabletext/react': 3.1.0(react@18.3.1)
       '@sanity/client': 6.20.1
-      '@sanity/icons': 3.2.0(react@18.3.1)
+      '@sanity/icons': 2.11.8(react@18.3.1)
       '@sanity/preview-kit': 5.1.0(@sanity/client@6.20.1)(react@18.3.1)
       '@sanity/types': 3.48.1
       '@sanity/ui': 2.6.1(react-dom@18.3.1)(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.11)

@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Logo from "@/components/logo";
+import { Wordmark } from "@sudburyrc/blue";
 
 const NavLogo = () => (
   <Link href="/" className="flex justify-start text-blue-800 lg:w-0 lg:flex-1">
     <span className="sr-only">Sudbury Rowing Club</span>
-    <Logo className="h-8 w-auto md:h-10" />
+    <Wordmark className="h-8 w-auto md:h-10" />
   </Link>
 );
 

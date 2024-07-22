@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
+import { Wordmark } from "@sudburyrc/blue";
 import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
-import Logo from "@/components/logo";
 import DateFormatter from "@/components/utils/date-formatter";
 
 export const metadata = createMetadata({
@@ -473,7 +473,7 @@ const Constitution = () => (
 
     <div className="rounded px-6 py-8 text-black shadow sm:px-28 sm:pb-24 sm:pt-14">
       <p className="flex justify-center">
-        <Logo className="mb-5 w-1/2 text-blue-800" />
+        <Wordmark className="mb-5 w-1/2 text-blue-800" />
       </p>
       <p className="flex">
         Name: <DottedLine />

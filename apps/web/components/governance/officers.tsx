@@ -5,10 +5,10 @@ import NextLink from "next/link";
 import { Popover, Transition } from "@headlessui/react";
 import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
 import type { Governance } from "@sudburyrc/api";
+import { Crest } from "@sudburyrc/blue";
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import Link from "@/components/stour/link";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
-import Crest from "../logo/crest";
 
 type Props = {
   officers: Governance["officers"];

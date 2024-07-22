@@ -1,7 +1,7 @@
 "use client";
 
+import { Crest } from "@sudburyrc/blue";
 import Container from "@/components/layouts/container";
-import Crest from "@/components/logo/crest";
 import {
   about,
   members,

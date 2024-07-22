@@ -4,7 +4,9 @@ import { SVGProps } from "react";
  * Renders the club crest in inlined SVG. Not terribly efficient, so don't use
  * profligately.
  */
-const Crest = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
+export const Crest = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
@@ -25,5 +27,3 @@ const Crest = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
     <path d="M428 402c-9-6-7-15-7-24a60 60 0 01-56 3c-6 8-3 16-7 25 4 2 7 5 9 8 9-12 70-7 61-12zM213 760c-8-5-16 7-8 12l27 20c7 5 15-7 8-12l-27-20zm382 12c8-6-1-17-8-12l-26 19c-8 6 0 18 8 13l26-20zM420 189c11-24-9-58-36-47-4 6-13 3-19 8-10 9-1 18 11 15-4 5-14 0-19 1s-7-3-9-5c-5 0-2 5 1 7 3 3 8 2 11 2 9-2 5 10 13 9 39-5-6 10-4 40l-3 34c-8 5-30 6-10 16 21 11 30-20 71 6 7-3 14-12 6-16-19-16-20-47-13-70z" />
   </svg>
 );
-
-export default Crest;

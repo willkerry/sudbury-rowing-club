@@ -1,5 +1,5 @@
+import { Crest } from "@sudburyrc/blue";
 import { cn } from "@/lib/utils";
-import Crest from "../logo/crest";
 import { Numeral } from "./150-numeral";
 
 export const HundredAndFiftyLogo = ({ block = true }) => (

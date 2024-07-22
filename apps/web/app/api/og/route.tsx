@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { type NextRequest } from "next/server";
 import { z } from "zod";
-import Logo from "@/components/logo";
+import { Wordmark } from "@sudburyrc/blue";
 import { variants } from "./variants";
 
 export const runtime = "edge";
@@ -103,7 +103,7 @@ export const GET = async (request: NextRequest): Promise<ImageResponse> => {
               alignItems: "center",
             }}
           >
-            <Logo
+            <Wordmark
               suppressTitle
               style={{
                 width: 400,

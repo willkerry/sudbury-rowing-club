@@ -2,13 +2,11 @@ import { Metadata } from "next";
 import NextLink from "next/link";
 import Color from "color";
 import { Circle, HelpCircle } from "lucide-react";
-import { blue } from "@sudburyrc/blue";
+import { Crest, Wordmark, blue } from "@sudburyrc/blue";
 import { createMetadata } from "@/lib/create-metadata";
 import combineURLs from "@/lib/helpers/combineURLs";
 import SharePlayground from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
-import Logo from "@/components/logo";
-import Crest from "@/components/logo/crest";
 import Social from "@/components/logo/social";
 import Copy from "@/components/stour/copy";
 import Link from "@/components/stour/link";
@@ -70,7 +68,7 @@ const brandAssets = [
     name: "White",
   },
   {
-    Illustration: Logo,
+    Illustration: Wordmark,
     color: "#002147",
     description: "A composited logo that contains both crest and wordmark.",
     files: [

@@ -13,6 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
+    "@types/react": "^18.3.3",
     "tsup": "^8.1.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
   }
 }
