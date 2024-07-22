@@ -95,7 +95,7 @@ const Post = async ({ params }: Params) => {
           </div>
         </div>
         <Link
-          href={`https://edit.sudburyrowingclub.org.uk/desk/news;${post._id}`}
+          href={`https://edit.sudburyrowingclub.org.uk/structure/news;news;${post._id}`}
         >
           <span className="sr-only">Edit this article</span>
           <PencilSquareIcon aria-hidden className="inline h-4 w-4" />
