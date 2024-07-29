@@ -144,7 +144,16 @@ const FindUs: NextPage = () => (
             boathouse but cut off from it by waterways. Access to the meadow is
             from Edgworth Road (<span className="disambiguate">CO10 2TL</span>).
             During the regatta, the routes are signposted. We provide parking
-            for spectators, trailers and competitors on Friars Meadow.
+            for spectators, trailers and competitors on Friars Meadow. The
+            What3Words address for the regatta is{" "}
+            <a
+              href="https://w3w.co/craziest.flask.falls"
+              rel="noreferrer"
+              target="_blank"
+            >
+              ///craziest.flask.falls
+            </a>
+            .
           </Note>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
