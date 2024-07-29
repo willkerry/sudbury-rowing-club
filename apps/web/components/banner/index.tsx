@@ -17,7 +17,7 @@ const bannerVariants: Record<
   }
 > = {
   primary: {
-    bgColor: "bg-blue-700",
+    bgColor: "bg-blue-800",
     textColor: "text-blue-50",
     textHover: "group-hover:text-blue-200",
   },
@@ -149,7 +149,7 @@ const Banner = () => {
       >
         <Container className="text-left">
           <span className="font-semibold">{data?.label}</span>{" "}
-          <span className={cn(textHover, "ml-1")}>
+          <span className={cn(textHover, "ml-2")}>
             {text}{" "}
             <span
               className={cn(
