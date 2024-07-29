@@ -42,7 +42,7 @@ export const SOCIALS: Record<
 
 export namespace REGATTA {
   export const EVENT_NAME_LONG =
-    "Sudbury Rowing Club Regatta, the ’International’";
+    "Sudbury Rowing Club Regatta, the ‘International’";
   export const EVENT_TAGLINE = "The best little regatta in the world.";
 
   export const OG_IMAGE_URL = `${BASE_URL}/assets/og/regatta.png`;
