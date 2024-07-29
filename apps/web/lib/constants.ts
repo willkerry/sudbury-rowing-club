@@ -35,7 +35,7 @@ export const SOCIALS: Record<
   },
   facebook: {
     name: "Facebook",
-    href: "https://facebook.com/sudburyrowing",
+    href: "https://www.facebook.com/profile.php?id=61561414559766",
     handle: "@sudburyrowing",
   },
 } as const;
