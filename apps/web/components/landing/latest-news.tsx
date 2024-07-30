@@ -1,4 +1,5 @@
 import type { ArticleSummary } from "@sudburyrc/api";
+import { SOCIALS } from "@/lib/constants";
 import Container from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
@@ -12,7 +13,7 @@ const LatestNews = ({ news }: { news: ArticleSummary[] }) => (
       </h2>
       <p className="mb-12">
         For more updates, follow us on{" "}
-        <Link href="https://facebook.com/sudburyrowing">Facebook</Link>.
+        <Link href={SOCIALS.facebook.href}>{SOCIALS.facebook.name}</Link>.
       </p>
       <NewsList posts={news} hero />
       <div className="h-8" />
