@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import snarkdown from "snarkdown";
 import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
 import { createMetadata } from "@/lib/create-metadata";
 import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
@@ -65,8 +66,13 @@ const Archive = async ({ params }: ArchivePageParams) => {
       <ArchiveImage image={archive.image} alt={archive.alt || ""} />
 
       <div className="max-w-prose pb-8 text-sm text-gray-800">
-        <p>{archive.description}</p>
-
+        <p
+          dangerouslySetInnerHTML={{
+            __html: snarkdown(
+              archive.description?.replaceAll("\n", "<br />") || "",
+            ),
+          }}
+        />
         <p className="mb-6 mt-4 text-xs font-medium text-gray-600">
           {archive.year ? (
             <ArchiveDate date={archive.year} range={archive.range}>
