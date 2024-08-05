@@ -13,6 +13,7 @@ import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import type { serverGetNArticles } from "@sudburyrc/api";
 import { browserIndex } from "@/lib/algolia";
+import { SOCIALS } from "@/lib/constants";
 import Container from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
@@ -120,8 +121,8 @@ const NewsPage = ({
                 ) : (
                   <>
                     For more updates, follow us on{" "}
-                    <Link href="https://facebook.com/sudburyrowing">
-                      Facebook
+                    <Link href={SOCIALS.facebook.href}>
+                      {SOCIALS.facebook.name}
                     </Link>
                     .
                   </>
