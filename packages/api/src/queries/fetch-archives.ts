@@ -12,7 +12,7 @@ const archiveFields = `
   "image": image.asset->{url, _id, metadata},
   location`;
 
-const query = groq`*[_type == "archive"] | order(year desc){${archiveFields}}`;
+const query = groq`*[_type == "archive"] | order(year asc){${archiveFields}}`;
 const queryById = groq`*[_type == "archive" && _id == $id]{${archiveFields}}[0]`;
 
 const ZPalette = z.object({
