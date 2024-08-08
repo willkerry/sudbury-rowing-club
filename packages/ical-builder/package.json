@@ -19,8 +19,8 @@
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/tsconfig": "workspace:*",
     "eslint-config-stour": "workspace:*",
-    "tsup": "^8.1.0",
-    "typescript": "^5.5.3",
+    "tsup": "^8.2.4",
+    "typescript": "^5.5.4",
     "vitest": "^1.6.0"
   },
   "browser": {
