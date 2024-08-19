@@ -11,16 +11,20 @@ const TextPage = ({
   title,
   color,
   prose = "prose",
+  className,
 }: {
   title: string;
   children: React.ReactNode;
   color?: Parameters<typeof HeroTitle>[0]["color"];
   prose?: "max-w-prose" | "prose" | false;
+  className?: Parameters<typeof cn>[0];
 }) => (
   <>
     <HeroTitle title={title} prose={!!prose} breadcrumbs {...{ color }} />
     <Container>
-      <div className={cn("mx-auto mb-16 mt-8 sm:my-16", prose)}>{children}</div>
+      <div className={cn("mx-auto mb-16 mt-8 sm:my-16", prose, className)}>
+        {children}
+      </div>
     </Container>
   </>
 );
