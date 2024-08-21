@@ -99,7 +99,6 @@ const SharePlayground = () => {
           <Loading />
         </div>
 
-        {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
         <img
           src={makeShareImageURL(DEFAULT_TITLE, true, {
             subtitle: DEFAULT_SUBTITLE,

@@ -26,7 +26,6 @@ const components: PortableTextComponents = {
     quote: ({ value }) => (
       <figure>
         <blockquote>
-          {/* eslint-disable-next-line @typescript-eslint/no-use-before-define */}
           <PortableText value={value?.quote} />
         </blockquote>
         <figcaption>{value?.attribution}</figcaption>
