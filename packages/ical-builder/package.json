@@ -18,7 +18,6 @@
     "@faker-js/faker": "^8.4.1",
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/tsconfig": "workspace:*",
-    "eslint-config-stour": "workspace:*",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4",
     "vitest": "^1.6.0"
