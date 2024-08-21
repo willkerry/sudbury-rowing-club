@@ -78,7 +78,6 @@
     "@next/bundle-analyzer": "^14.2.5",
     "@sanity/image-url": "^1.0.2",
     "@sudburyrc/tsconfig": "workspace:*",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/color": "^3.0.6",
     "@types/he": "^1.2.3",
     "@types/jsdom": "^21.1.7",
@@ -88,9 +87,6 @@
     "@types/react-scroll": "^1.8.10",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
-    "prettier": "^3.3.3",
-    "prettier-plugin-packagejson": "^2.5.1",
-    "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4"
   }
