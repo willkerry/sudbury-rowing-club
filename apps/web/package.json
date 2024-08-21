@@ -7,9 +7,6 @@
     "build": "next build",
     "dev": "next dev -p 4321",
     "email-dev": "email dev",
-    "format": "prettier --write . --ignore-path .gitignore --ignore-path .prettierignore",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
     "start": "next start",
     "type-check": "tsc"
   },
