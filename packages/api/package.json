@@ -16,7 +16,6 @@
   "dependencies": {
     "@portabletext/types": "^2.0.13",
     "@sanity/image-url": "^1.0.2",
-    "@sudburyrc/tsconfig": "workspace:*",
     "emoji-regex": "^10.3.0",
     "groq": "^3.54.0",
     "he": "^1.2.0",
@@ -30,7 +29,6 @@
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "^1.2.3",
     "@types/node": "^20.14.15",
-    "eslint-config-stour": "workspace:*",
     "typescript": "^5.5.4"
   },
   "browser": {
