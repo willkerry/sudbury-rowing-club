@@ -1,5 +1,5 @@
-import Link from "next/link";
 import allClubs from "@/data/clubs.json";
+import Link from "next/link";
 
 const ClubSearchResults = ({
   searchParams,

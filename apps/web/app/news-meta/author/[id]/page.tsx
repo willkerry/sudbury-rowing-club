@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
+import { createMetadata } from "@/lib/create-metadata";
+import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
+import Link from "next/link";
 
 export const generateStaticParams = async () => {
   const authors = await fetchAllAuthors();

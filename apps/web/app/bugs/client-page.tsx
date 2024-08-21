@@ -1,16 +1,16 @@
 "use client";
 
-import { Field, Form } from "react-final-form";
-import { useSearchParams } from "next/navigation";
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import { FORM_ERROR } from "final-form";
-import Error from "@/components/contact/views/error";
+import type { BugReport } from "@/app/api/bug/route";
+import ErrorView from "@/components/contact/views/error";
 import Success from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
-import { type BugReport } from "@/app/api/bug/route";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import { FORM_ERROR } from "final-form";
+import { useSearchParams } from "next/navigation";
+import { Field, Form } from "react-final-form";
 
 const getUserAgent = () => {
   if (typeof window === "undefined") return null;
@@ -79,7 +79,8 @@ export const BugsClientSide = () => {
           hasValidationErrors,
           submitErrors,
         }) => {
-          if (submitFailed) return <Error error={submitErrors?.[FORM_ERROR]} />;
+          if (submitFailed)
+            return <ErrorView error={submitErrors?.[FORM_ERROR]} />;
 
           if (submitSucceeded) return <Success />;
 
@@ -189,7 +190,11 @@ export const BugsClientSide = () => {
           );
         }}
         validate={(values) => {
-          const errors: any = {};
+          const errors: {
+            name?: string;
+            email?: string;
+            description?: string;
+          } = {};
           if (!values.name) errors.name = "Required";
           if (!values.email) errors.email = "Required";
           if (!values.description) errors.description = "Required";

@@ -1,12 +1,12 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { createMetadata } from "@/lib/create-metadata";
 import { HundredAndFiftyContactButton } from "@/components/anniversary/150-contact-button";
 import { HundredAndFiftyFireworks } from "@/components/anniversary/150-fireworks";
 import { HundredAndFiftyGradient } from "@/components/anniversary/150-gradient";
 import { HundredAndFiftyLogo } from "@/components/anniversary/150-logo";
 import Container from "@/components/layouts/container";
 import { Button } from "@/components/ui/button";
+import { createMetadata } from "@/lib/create-metadata";
+import type { Metadata } from "next";
+import Link from "next/link";
 
 const TITLE = "150 Years of Rowing in Sudbury";
 const DESCRIPTION = "Join us in celebrating 150 years of rowing in Sudbury";

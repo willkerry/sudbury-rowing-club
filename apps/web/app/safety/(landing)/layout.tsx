@@ -1,6 +1,6 @@
-import React from "react";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import type React from "react";
 
 const SafetyLayout = async ({
   children,

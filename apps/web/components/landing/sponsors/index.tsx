@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { shuffle } from "radash";
-import { cn } from "@/lib/utils";
 import abglass from "../../../public/assets/logos/ab-glass-home-improvement.svg";
 import ashtons from "../../../public/assets/logos/ashtons.svg";
 import britishRowing from "../../../public/assets/logos/british-rowing.svg";
@@ -9,7 +9,7 @@ import mooreGreen from "../../../public/assets/logos/moore-green.svg";
 import swan from "../../../public/assets/logos/swan-at-lavenham.svg";
 
 interface SponsorLogo {
-  logo: any;
+  logo: React.ReactNode;
   href: string;
   name: string;
   type: "sponsor" | "affiliate";

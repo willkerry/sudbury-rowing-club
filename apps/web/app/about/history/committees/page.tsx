@@ -1,7 +1,7 @@
-import { listify } from "radash";
-import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import committees from "@/data/officer-archive.json";
+import { createMetadata } from "@/lib/create-metadata";
+import { listify } from "radash";
 
 export const metadata = createMetadata({
   title: "Committees",

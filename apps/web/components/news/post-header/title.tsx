@@ -1,6 +1,6 @@
-import cn from "clsx";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
+import cn from "clsx";
 
 type Props = {
   title: string;

@@ -1,6 +1,5 @@
 "use client";
 
-import { Crest } from "@sudburyrc/blue";
 import Container from "@/components/layouts/container";
 import {
   about,
@@ -9,6 +8,7 @@ import {
   regatta,
   socials,
 } from "@/components/nav/nav-data";
+import { Crest } from "@sudburyrc/blue";
 import Address from "./address";
 import FooterColumn from "./column";
 import ReportABug from "./reportABug";

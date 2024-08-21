@@ -1,17 +1,17 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import cn from "clsx";
+import type { BRArticle as BRArticleType } from "@/app/api/br-feed/route";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import { type BRArticle as BRArticleType } from "@/app/api/br-feed/route";
+import { useQuery } from "@tanstack/react-query";
+import cn from "clsx";
 import Result from "../stour/result";
 
 const BRArticle = ({ article }: { article?: BRArticleType }) => (
   <a
-    href={article && article.link}
+    href={article?.link}
     target="_blank"
     rel="noopener noreferrer"
     className={cn(

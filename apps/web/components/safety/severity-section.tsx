@@ -1,5 +1,5 @@
-import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import { Severity } from "@/types/severity";
+import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 
 type SeveritySectionProps = {
   status: Severity;

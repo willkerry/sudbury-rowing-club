@@ -1,4 +1,4 @@
-import type { MetadataRoute } from "next";
+import { BASE_URL } from "@/lib/constants";
 import {
   fetchAllAuthors,
   fetchArchives,
@@ -6,7 +6,7 @@ import {
   fetchSafety,
   serverGetAllSlugs,
 } from "@sudburyrc/api";
-import { BASE_URL } from "@/lib/constants";
+import type { MetadataRoute } from "next";
 
 const url = (pathname: string) => `${BASE_URL}${pathname}`;
 

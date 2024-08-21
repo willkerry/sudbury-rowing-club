@@ -1,10 +1,10 @@
-import { type Metadata } from "next";
-import { Download, ExternalLink } from "lucide-react";
-import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
-import { BASE_URL } from "@/lib/constants";
-import { createMetadata } from "@/lib/create-metadata";
 import Text from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
+import { BASE_URL } from "@/lib/constants";
+import { createMetadata } from "@/lib/create-metadata";
+import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
+import { Download, ExternalLink } from "lucide-react";
+import type { Metadata } from "next";
 
 export const generateStaticParams = async () => {
   const paths = await fetchSafety();

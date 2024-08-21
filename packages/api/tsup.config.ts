@@ -1,6 +1,6 @@
-import * as fs from "fs";
+import fs from "node:fs";
+import path from "node:path";
 import { defineConfig } from "tsup";
-import * as path from "path";
 
 const outpurDirectory = "dist";
 export default defineConfig({
@@ -41,7 +41,7 @@ export default defineConfig({
       const oldFileSize = fs.statSync(outputFilePath).size / 1000.0;
 
       const modifiedCode = sourceCode
-        .replace(/`([^`]+)`/g, (_, p1) => "`" + p1.replace(/\n/g, " ") + "`")
+        .replace(/`([^`]+)`/g, (_, p1) => `\`${p1.replace(/\n/g, " ")}\``)
         .replace(/ +/g, " ");
 
       fs.writeFileSync(outputFilePath, modifiedCode, "utf-8");

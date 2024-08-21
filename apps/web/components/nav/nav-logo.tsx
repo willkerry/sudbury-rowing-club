@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Wordmark } from "@sudburyrc/blue";
+import Link from "next/link";
 
 const NavLogo = () => (
   <Link href="/" className="flex justify-start text-blue-800 lg:w-0 lg:flex-1">

@@ -1,9 +1,9 @@
+import { UsersIcon } from "@sanity/icons";
 import {
   orderRankField,
   orderRankOrdering,
 } from "@sanity/orderable-document-list";
 import { defineField, defineType } from "sanity";
-import { UsersIcon } from "@sanity/icons";
 
 const Officers = defineType({
   name: "officers",
@@ -34,7 +34,7 @@ const Officers = defineType({
       validation: (Rule) => Rule.max(175),
     }),
     defineField({ name: "image", type: "figure" }),
-    orderRankField({ type: "officers" }) as any,
+    orderRankField({ type: "officers" }),
   ],
   orderings: [orderRankOrdering],
 
@@ -54,7 +54,7 @@ const Officers = defineType({
       const makeSubtitle = () => {
         if (vacant) return "Vacant";
 
-        return name + " " + surname;
+        return `${name} ${surname}`;
       };
 
       return {

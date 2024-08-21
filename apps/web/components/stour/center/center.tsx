@@ -1,5 +1,5 @@
-import { forwardRef } from "react";
 import cn from "clsx";
+import { forwardRef } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -14,8 +14,8 @@ const Center = forwardRef<HTMLDivElement, Props>(
       ref={ref}
       className={cn(
         "flex min-h-full flex-1 flex-col items-center justify-center",
-        h && `h-full`,
-        v && `v-full`,
+        h && "h-full",
+        v && "v-full",
         className,
       )}
       {...props}

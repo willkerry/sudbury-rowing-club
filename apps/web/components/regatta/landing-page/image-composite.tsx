@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Ticket from "@/components/regatta/landing-page/ticket";
+import Image from "next/image";
 import bladeImage from "../../../public/assets/regatta/landing/blade.png";
 import buntingImage from "../../../public/assets/regatta/landing/bunting.png";
 import cupImage from "../../../public/assets/regatta/landing/cup.png";

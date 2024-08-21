@@ -1,6 +1,6 @@
-import { Suspense } from "react";
-import { serversideFetchCompetitions } from "@sudburyrc/api";
 import Loading from "@/components/stour/loading";
+import { serversideFetchCompetitions } from "@sudburyrc/api";
+import { Suspense } from "react";
 import { EventCalendar } from "./event-calendar";
 
 export const revalidate = 86_400;

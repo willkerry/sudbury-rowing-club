@@ -1,9 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { AccordionHeader } from "@radix-ui/react-accordion";
-import { LinkIcon } from "lucide-react";
-import type { Notice } from "@sudburyrc/api";
 import Label from "@/components/stour/label";
 import Text from "@/components/stour/text";
 import {
@@ -13,6 +9,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import DateFormatter from "@/components/utils/date-formatter";
+import { AccordionHeader } from "@radix-ui/react-accordion";
+import type { Notice } from "@sudburyrc/api";
+import { LinkIcon } from "lucide-react";
+import Link from "next/link";
 import FileGroup from "./file-group";
 
 type Props = { notice: Notice };

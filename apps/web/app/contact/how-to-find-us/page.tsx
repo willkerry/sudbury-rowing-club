@@ -1,7 +1,6 @@
-import { NextPage } from "next";
-import Image from "next/image";
-import { MapPinIcon } from "@heroicons/react/24/solid";
-import clsx from "clsx";
+import Container from "@/components/layouts/container";
+import HeroTitle from "@/components/stour/hero/hero-title";
+import Note from "@/components/stour/note";
 import {
   CLUB_LOCATION,
   CLUB_LOCATION_STRING,
@@ -10,9 +9,10 @@ import {
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
-import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Note from "@/components/stour/note";
+import { MapPinIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
+import type { NextPage } from "next";
+import Image from "next/image";
 import { LocationMap } from "./location-map";
 
 export const metadata = createMetadata({

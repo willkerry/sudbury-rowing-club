@@ -1,5 +1,5 @@
-import { defineField, defineType } from "sanity";
 import { BookIcon } from "@sanity/icons";
+import { defineField, defineType } from "sanity";
 
 const News = defineType({
   name: "news",

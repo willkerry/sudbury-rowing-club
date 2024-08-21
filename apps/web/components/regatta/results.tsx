@@ -1,9 +1,9 @@
-import { Download } from "lucide-react";
-import ordinal from "@/lib/helpers/ordinal";
-import { cn } from "@/lib/utils";
 import Link from "@/components/stour/link";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
+import ordinal from "@/lib/helpers/ordinal";
+import { cn } from "@/lib/utils";
+import { Download } from "lucide-react";
 
 type Result = {
   _id: string;

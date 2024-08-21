@@ -1,11 +1,11 @@
-import type { PortableTextProps } from "@portabletext/react";
-import groq from "groq";
-import { sanityClient } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import Results from "@/components/regatta/results";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Text from "@/components/stour/text";
+import { createMetadata } from "@/lib/create-metadata";
+import type { PortableTextProps } from "@portabletext/react";
+import { sanityClient } from "@sudburyrc/api";
+import groq from "groq";
 
 export interface Result {
   _id: string;

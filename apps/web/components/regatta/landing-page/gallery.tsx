@@ -1,16 +1,16 @@
 "use client";
 
-import type { ComponentProps } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { useReducedMotion } from "@mantine/hooks";
-import AutoScroll from "embla-carousel-auto-scroll";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { useReducedMotion } from "@mantine/hooks";
+import AutoScroll from "embla-carousel-auto-scroll";
+import Image from "next/image";
+import Link from "next/link";
+import type { ComponentProps } from "react";
 
 const WIDTH = 720;
 const HEIGHT = 480;

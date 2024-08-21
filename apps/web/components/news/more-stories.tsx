@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import type { ArticleSummary } from "@sudburyrc/api";
+import Link from "next/link";
 import PostPreview from "./post-preview";
 
 type Props = {

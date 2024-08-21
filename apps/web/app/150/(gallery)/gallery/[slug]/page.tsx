@@ -1,9 +1,9 @@
-import { Metadata } from "next";
-import snarkdown from "snarkdown";
-import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
 import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
 import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
+import { createMetadata } from "@/lib/create-metadata";
+import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
+import type { Metadata } from "next";
+import snarkdown from "snarkdown";
 import { formatYear } from "../page";
 
 const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;

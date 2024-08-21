@@ -1,9 +1,10 @@
-import * as React from "react";
+import type * as React from "react";
 
 const BritishRowing = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 307 54" {...props}>
+    <title>British Rowing</title>
     <g fill="#DB2C28">
       <path d="M70.8 1.7c.5.7 1.6 2 1 2.7-.2.1-2.5 2.6-6 4.8-5.2 3.3-11.4 6-12.8 7L4.3 54s-.4 0-.6-.3c-.2-.2-.3-.6-.2-.7l48.7-37.7c2-1.6 6.6-7.7 9.7-10.4 0 0 3.7-3.5 6.3-4.8 1.2-.6 2.6 1.6 2.6 1.6" />
       <path d="M2.1 1.7c-.5.7-1.6 2-1 2.7.2.1 2.5 2.6 6 4.8 5.2 3.3 11.4 6 12.8 7L68.6 54s.4 0 .6-.3c.2-.2.3-.6.2-.7L20.7 15.3c-2-1.6-6.6-7.7-9.7-10.4C11 5 7.3 1.4 4.7.1 3.5-.5 2 1.7 2 1.7" />

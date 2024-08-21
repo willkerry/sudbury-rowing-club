@@ -1,9 +1,9 @@
-import type { ArticleSummary } from "@sudburyrc/api";
-import { SOCIALS } from "@/lib/constants";
 import Container from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import { SOCIALS } from "@/lib/constants";
+import type { ArticleSummary } from "@sudburyrc/api";
 
 const LatestNews = ({ news }: { news: ArticleSummary[] }) => (
   <section className="my-16">

@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef } from "react";
-import { useClipboard } from "@mantine/hooks";
-import { toast } from "sonner";
-import { makeShareImageURL } from "@/lib/og-image";
+import type { ShareImage } from "@/app/api/og/route";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
-import { type ShareImage } from "@/app/api/og/route";
+import { makeShareImageURL } from "@/lib/og-image";
+import { useClipboard } from "@mantine/hooks";
+import { useRef } from "react";
+import { toast } from "sonner";
 import { Input } from "../ui/input";
 import { Select } from "../ui/select";
 

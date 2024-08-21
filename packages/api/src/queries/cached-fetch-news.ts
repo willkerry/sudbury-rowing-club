@@ -1,9 +1,9 @@
-import * as fs from "fs";
+import fs from "node:fs";
 import { z } from "zod";
 import {
-  fetchAllArticles,
   type Article,
   ZArticleSummary,
+  fetchAllArticles,
 } from "./fetch-news-article";
 
 const TEMP_DIR = "./.tmp";

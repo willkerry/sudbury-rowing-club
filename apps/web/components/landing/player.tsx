@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
 import {
   EllipsisHorizontalCircleIcon,
   ExclamationCircleIcon,
   PauseCircleIcon,
   PlayCircleIcon,
 } from "@heroicons/react/24/solid";
+import { useRef, useState } from "react";
 
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 

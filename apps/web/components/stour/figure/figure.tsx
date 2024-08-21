@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { urlFor } from "@sudburyrc/api";
-import { cn } from "@/lib/utils";
 import { useLightBox } from "@/components/stour/lightbox";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { cn } from "@/lib/utils";
+import { urlFor } from "@sudburyrc/api";
+import Image from "next/image";
 
 const WIDTH = 650;
 

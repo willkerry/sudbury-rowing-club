@@ -1,8 +1,8 @@
-import Link from "next/link";
+import { sanityClient } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import groq from "groq";
-import { sanityClient } from "@sudburyrc/api";
+import Link from "next/link";
 import Loading from "../stour/loading";
 
 const grades = ["neutral", "green", "amber", "red"];

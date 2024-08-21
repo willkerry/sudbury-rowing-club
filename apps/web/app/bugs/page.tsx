@@ -1,7 +1,7 @@
-import { Suspense } from "react";
-import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import { HeroTitle } from "@/components/stour/hero";
+import { createMetadata } from "@/lib/create-metadata";
+import { Suspense } from "react";
 import { BugsClientSide } from "./client-page";
 
 export const metadata = createMetadata({

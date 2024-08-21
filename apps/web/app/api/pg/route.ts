@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
+import { NextResponse } from "next/server";
 
 export const revalidate = 60;
 
@@ -13,9 +13,12 @@ export const GET = async () => {
         "Cache-Control": "public, s-maxage=60",
       },
     });
-  } catch (error: any) {
-    return new NextResponse(JSON.stringify({ error: error.message }), {
-      status: 500,
-    });
+  } catch (error) {
+    return new NextResponse(
+      JSON.stringify({ error: error instanceof Error ? error.message : error }),
+      {
+        status: 500,
+      },
+    );
   }
 };

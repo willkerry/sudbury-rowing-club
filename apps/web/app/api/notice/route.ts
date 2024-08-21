@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import groq from "groq";
-import { z } from "zod";
 import { ZTypedObject, sanityClient } from "@sudburyrc/api";
+import groq from "groq";
+import { NextResponse } from "next/server";
+import { z } from "zod";
 
 export const revalidate = 5 * 60;
 

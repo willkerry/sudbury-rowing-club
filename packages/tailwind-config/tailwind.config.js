@@ -1,8 +1,8 @@
-import typography from "@tailwindcss/typography";
+import { blue } from "@sudburyrc/blue";
 import aspectRatio from "@tailwindcss/aspect-ratio";
 import forms from "@tailwindcss/forms";
+import typography from "@tailwindcss/typography";
 import animate from "tailwindcss-animate";
-import { blue } from "@sudburyrc/blue";
 
 /** @type {import('tailwindcss').Config} */
 export default {

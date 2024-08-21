@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { Home } from "lucide-react";
-import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
 import Container from "@/components/layouts/container";
 import { SiteSearch } from "@/components/search";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { Button } from "@/components/ui/button";
+import { Home } from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
 
 export const metadata: Metadata = {
   title: "404 Page not found",

@@ -1,4 +1,6 @@
-import { NextPage } from "next";
+import TextPage from "@/components/layouts/text-page";
+import { createMetadata } from "@/lib/create-metadata";
+import type { NextPage } from "next";
 import Image from "next/image";
 import regatta1888Image from "public/assets/history/1888-regatta.jpg";
 import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";
@@ -7,8 +9,6 @@ import aerial1936Image from "public/assets/history/1936-aerial.jpg";
 import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
 import reachPreWw1Image from "public/assets/history/reach.jpg";
-import { createMetadata } from "@/lib/create-metadata";
-import TextPage from "@/components/layouts/text-page";
 
 export const metadata = createMetadata({
   title: "History",

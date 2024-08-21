@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { makeShareImageURL } from "./og-image";
 
 type CreateMetadataOptions = {

@@ -1,14 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { Home } from "lucide-react";
-import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
 import Container from "@/components/layouts/container";
 import { SiteSearch } from "@/components/search";
 import { HeroTitle } from "@/components/stour/hero";
 import { Button } from "@/components/ui/button";
-import { Error } from "@/components/ui/error";
+import { Error as ErrorComponent } from "@/components/ui/error";
+import { Home } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
 
 export default function SafetyError({ error }: { error: Error }) {
   return (
@@ -34,11 +34,11 @@ export default function SafetyError({ error }: { error: Error }) {
         </div>
         <div className="h-12" />
 
-        <Error error={error} label={error.name}>
+        <ErrorComponent error={error} label={error.name}>
           <pre className="overflow-hidden rounded bg-red-50 p-2 text-red-600">
             <code>{error.stack}</code>
           </pre>
-        </Error>
+        </ErrorComponent>
       </Container>
     </>
   );

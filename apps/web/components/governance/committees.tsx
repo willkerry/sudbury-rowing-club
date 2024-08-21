@@ -1,11 +1,11 @@
-import cn from "clsx";
-import type { Governance } from "@sudburyrc/api";
 import {
   Description,
   GovGrid,
   SectionTitle,
   SubTitle,
 } from "@/components/governance";
+import type { Governance } from "@sudburyrc/api";
+import cn from "clsx";
 
 type Props = {
   committees: Governance["committees"];

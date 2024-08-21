@@ -1,13 +1,13 @@
-import { Suspense } from "react";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import getSafetyStatus from "@/lib/get-safety-status";
-import { Severity } from "@/types/severity";
+import type { Severity } from "@/types/severity";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
+import { Suspense } from "react";
 import { EnvironmentAgency, MetOffice } from "../icons";
 import Label from "../stour/label";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
 import ForecastComponent from "./forecast";
-import QuotedWarning, { WarningSourceEnum } from "./quoted-warning";
+import QuotedWarning, { type WarningSourceEnum } from "./quoted-warning";
 import SeveritySection from "./severity-section";
 
 export type SafetyComponentProps = {

@@ -1,7 +1,7 @@
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 import shortCourse from "@/components/regatta/events/350.svg";
 import longCourse from "@/components/regatta/events/650.svg";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 import Label from "../stour/label";
 
 type Event = {

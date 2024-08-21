@@ -1,5 +1,5 @@
 import { blue } from "@sudburyrc/blue";
-import { ShareImage } from "./route";
+import type { ShareImage } from "./route";
 
 export const variants: Record<
   ShareImage["variant"],

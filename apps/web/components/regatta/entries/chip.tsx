@@ -23,17 +23,17 @@ const getElementsByBoatName = (boatName: string) =>
 const highlightBoat = (boatName: string) => {
   const boatElements = getElementsByBoatName(boatName);
 
-  boatElements.forEach((boatElement) => {
+  for (const boatElement of boatElements) {
     boatElement.classList.add("ring-2");
-  });
+  }
 };
 
 const unhighlightBoat = (boatName: string) => {
   const boatElements = getElementsByBoatName(boatName);
 
-  boatElements.forEach((boatElement) => {
+  for (const boatElement of boatElements) {
     boatElement.classList.remove("ring-2");
-  });
+  }
 };
 
 export const Chip = ({

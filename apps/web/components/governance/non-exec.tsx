@@ -4,7 +4,7 @@ import {
   SectionTitle,
   SubTitle,
 } from "@/components/governance";
-import { NonExecutiveOfficer } from "@/types/governance";
+import type { NonExecutiveOfficer } from "@/types/governance";
 
 type Props = {
   vicePresidents: NonExecutiveOfficer[];

@@ -1,4 +1,9 @@
-import { Metadata } from "next";
+import PostBody from "@/components/news/post-body";
+import PostHeader from "@/components/news/post-header";
+import Label from "@/components/stour/label";
+import Link from "@/components/stour/link";
+import DateFormatter from "@/components/utils/date-formatter";
+import { createMetadata } from "@/lib/create-metadata";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 import {
   type Article,
@@ -6,12 +11,7 @@ import {
   serverGetArticleBySlug,
   urlFor,
 } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
-import PostBody from "@/components/news/post-body";
-import PostHeader from "@/components/news/post-header";
-import Label from "@/components/stour/label";
-import Link from "@/components/stour/link";
-import DateFormatter from "@/components/utils/date-formatter";
+import type { Metadata } from "next";
 
 export const generateStaticParams = async () => {
   const paths = await serverGetAllSlugs();

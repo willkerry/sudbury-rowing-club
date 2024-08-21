@@ -1,5 +1,5 @@
-import { fetchSafetyById } from "@sudburyrc/api";
 import TextPage from "@/components/layouts/text-page";
+import { fetchSafetyById } from "@sudburyrc/api";
 
 const SafetyItemLayout = async ({
   children,

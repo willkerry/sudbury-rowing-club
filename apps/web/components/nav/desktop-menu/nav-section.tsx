@@ -1,13 +1,13 @@
 "use client";
 
-import { Fragment } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import type { IconNavItemType } from "@/types/nav-item";
 import { CloseButton, Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { fork } from "radash";
-import { cn } from "@/lib/utils";
-import { type IconNavItemType } from "@/types/nav-item";
+import { Fragment } from "react";
 
 export const navLinkClasses = cn(
   "group transition inline-flex px-2 md:px-3 py-2.5 text-sm hover:text-black rounded-md",

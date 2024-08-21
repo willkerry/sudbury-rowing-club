@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import Container from "@/components/layouts/container";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const LandingCTA = () => {
   const scrollToIntro = () => {

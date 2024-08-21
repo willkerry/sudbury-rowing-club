@@ -1,6 +1,6 @@
-import Link from "next/link";
-import type { ArticleSummary } from "@sudburyrc/api";
 import { cn } from "@/lib/utils";
+import type { ArticleSummary } from "@sudburyrc/api";
+import Link from "next/link";
 import DateFormatter from "../utils/date-formatter";
 import CoverImage from "./cover-image";
 

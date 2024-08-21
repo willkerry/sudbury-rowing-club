@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 /**
  * Renders the website wordmark in inlined SVG format. This is the club crest with
@@ -11,11 +11,13 @@ export const Wordmark = ({
   ...props
 }: JSX.IntrinsicAttributes &
   SVGProps<SVGSVGElement> & { suppressTitle?: boolean }) => (
+  // biome-ignore lint/a11y/noSvgWithoutTitle: element is always aria-hidden when title is not present
   <svg
     viewBox="0 0 302 50"
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
+    aria-hidden={suppressTitle}
   >
     {!suppressTitle && <title>Logo</title>}
     <path d="M29.804 29.492c-.03 5.052.9 8.704-4.575 11.075-1.928 1.02-4.106 2-5.125 4.051-1.189-2.06-3.587-3.12-5.625-4.281-5.214-2.221-4.135-6.133-4.215-10.845h19.54zm-10.949 2.01c-.6-.97-1.428.45-2.128.56-.35.461.54.531.83.501a2.84 2.84 0 01-.44.03c-.39-.05-.68.41-.34.2.13-.13.35-.13.53-.1l-.47.1c.57.13.82.06.89.15.02.44-.9 1.771-.14 2.471.02 1-.11 2.942-1.32 2.862-.739.25.65.68.86.3.64-.73.849-3.262 1.858-1.731-.7 1.37.75 1.8 1.748 1.83-.29.14-3.067.26-2.098.721.79.03 2.818-.12 3.137-.8 0-.49 1.559-.43 2.058-1.651.76-.99.32-2.881-1.099-2.361 2.818-.34.24 5.703-2.198 1.34l-.998-1.82c-.64-.88-.44-1.47-.64-2.441l-.04-.16v-.001z" />

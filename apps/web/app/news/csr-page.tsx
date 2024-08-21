@@ -1,19 +1,5 @@
 "use client";
 
-import {
-  FormEventHandler,
-  Suspense,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { type SearchResponse } from "@algolia/client-search";
-import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
-import type { serverGetNArticles } from "@sudburyrc/api";
-import { browserIndex } from "@/lib/algolia";
-import { SOCIALS } from "@/lib/constants";
 import Container from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
@@ -21,8 +7,22 @@ import Link from "@/components/stour/link";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { browserIndex } from "@/lib/algolia";
+import { SOCIALS } from "@/lib/constants";
+import type { SearchResponse } from "@algolia/client-search";
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
+import type { serverGetNArticles } from "@sudburyrc/api";
+import { useRouter, useSearchParams } from "next/navigation";
+import {
+  type FormEventHandler,
+  Suspense,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
-function getMoreUrl(activeSearchTerm: string, data: any[]) {
+function getMoreUrl(activeSearchTerm: string, data: unknown[]) {
   if (activeSearchTerm) {
     return "";
   }
@@ -32,10 +32,12 @@ function getMoreUrl(activeSearchTerm: string, data: any[]) {
   return "/news/p/2";
 }
 
+type MinimalArticle = Awaited<ReturnType<typeof serverGetNArticles>>[number];
+
 const NewsPage = ({
   articles,
 }: {
-  articles: Awaited<ReturnType<typeof serverGetNArticles>>;
+  articles: MinimalArticle[];
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -44,7 +46,9 @@ const NewsPage = ({
   const [searchTerm, setSearchTerm] = useState("");
   const [activeSearchTerm, setActiveSearchTerm] = useState("");
   const [dirty, setDirty] = useState(false);
-  const [results, setResults] = useState<SearchResponse<any>["hits"]>([]);
+  const [results, setResults] = useState<
+    SearchResponse<MinimalArticle>["hits"]
+  >([]);
 
   const search = useCallback(async () => {
     if (!dirty) setDirty(true);
@@ -77,7 +81,7 @@ const NewsPage = ({
   useEffect(() => {
     if (activeSearchTerm) {
       browserIndex
-        .search(activeSearchTerm)
+        .search<MinimalArticle>(activeSearchTerm)
         .then((response) => setResults(response.hits));
     }
   }, [activeSearchTerm]);

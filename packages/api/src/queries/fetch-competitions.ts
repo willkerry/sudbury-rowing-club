@@ -1,7 +1,7 @@
-import { z } from "zod";
-import he from "he";
 import emojiRegex from "emoji-regex";
+import he from "he";
 import DOMPurify from "isomorphic-dompurify";
+import { z } from "zod";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 const MAX_COMPETITION_AGE_DAYS = 14;
@@ -53,9 +53,9 @@ const removeWhitespace = (url: string) => {
 
   let stripped = url;
 
-  WHITESPACE.forEach((character) => {
+  for (const character of WHITESPACE) {
     stripped = stripped.replace(character, "");
-  });
+  }
 
   return stripped;
 };

@@ -1,10 +1,10 @@
-import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
+import { createMetadata } from "@/lib/create-metadata";
+import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
 
 export const generateStaticParams = async () => {
   const paths = await fetchNoticeSlugs();

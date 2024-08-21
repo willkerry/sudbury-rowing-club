@@ -1,4 +1,4 @@
-import { ImageIcon, BlockquoteIcon, InfoOutlineIcon } from "@sanity/icons";
+import { BlockquoteIcon, ImageIcon, InfoOutlineIcon } from "@sanity/icons";
 import { defineArrayMember, defineType } from "sanity";
 
 const RichText = defineType({

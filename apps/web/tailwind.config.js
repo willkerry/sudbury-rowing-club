@@ -1,5 +1,5 @@
-import animate from "tailwindcss-animate";
 import sharedConfig from "@sudburyrc/tailwind-config/tailwind.config.js";
+import animate from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 const config = {

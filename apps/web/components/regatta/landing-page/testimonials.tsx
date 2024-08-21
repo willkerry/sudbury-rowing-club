@@ -1,10 +1,10 @@
-import ordinal from "@/lib/helpers/ordinal";
 import Label from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
 import Testimonial, {
   type TestimonialType,
 } from "@/components/stour/testimonial/testimonial";
 import DateFormatter from "@/components/utils/date-formatter";
+import ordinal from "@/lib/helpers/ordinal";
 
 type Regatta = {
   _id: string;

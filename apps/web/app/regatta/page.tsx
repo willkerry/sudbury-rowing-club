@@ -1,9 +1,3 @@
-import dynamic from "next/dynamic";
-import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
-import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
-import { REGATTA } from "@/lib/constants";
-import { createMetadata } from "@/lib/create-metadata";
-import { getClub } from "@/lib/getClub";
 import Container from "@/components/layouts/container";
 import DateLocation from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
@@ -12,6 +6,12 @@ import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
+import { REGATTA } from "@/lib/constants";
+import { createMetadata } from "@/lib/create-metadata";
+import { getClub } from "@/lib/getClub";
+import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
+import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
+import dynamic from "next/dynamic";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
