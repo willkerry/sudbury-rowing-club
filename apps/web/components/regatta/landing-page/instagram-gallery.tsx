@@ -107,7 +107,6 @@ export const InstagramGallery = () => {
         {status === "pending" &&
           new Array(6).fill(null).map((_, index) => (
             <CarouselItem
-              // eslint-disable-next-line react/no-array-index-key
               key={index}
               className="basis-[80%] animate-pulse sm:basis-1/2 lg:basis-1/4"
             >
