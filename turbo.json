@@ -2,7 +2,7 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
 
-  "pipeline": {
+  "tasks": {
     "type-check": {
       "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
     },
@@ -11,8 +11,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
-      "outputMode": "new-only"
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"]
     },
     "dev": {
       "cache": true,

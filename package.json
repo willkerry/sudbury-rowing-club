@@ -1,22 +1,23 @@
 {
   "name": "@sudburyrc/monorepo",
   "version": "1.0.0",
+  "author": "",
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3"
+  },
   "description": "",
+  "keywords": [],
+  "license": "ISC",
   "packageManager": "pnpm@8.14.1",
   "scripts": {
     "build": "turbo build",
     "type-check": "turbo type-check",
     "test": "turbo test",
     "dev": "turbo dev",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "clean": "sh scripts/clean.sh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "turbo": "latest"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.8.3"
+    "turbo": "^2.0.14"
   }
 }
