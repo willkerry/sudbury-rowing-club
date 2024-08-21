@@ -1,6 +1,6 @@
-import React from "react";
-import { AlertOctagon, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AlertOctagon, ArrowUpRight } from "lucide-react";
+import React from "react";
 
 type ErrorProps = React.HTMLAttributes<HTMLDivElement> & {
   label?: string;
@@ -15,6 +15,7 @@ type ErrorProps = React.HTMLAttributes<HTMLDivElement> & {
       };
 };
 
+// biome-ignore lint/suspicious/noShadowRestrictedNames: TODO: fix
 export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
   ({ children, error, label, className, ...props }, ref) => (
     <div

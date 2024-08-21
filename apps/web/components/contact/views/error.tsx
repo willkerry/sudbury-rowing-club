@@ -1,13 +1,13 @@
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import { EMAIL } from "@/lib/constants";
 import Note from "@/components/stour/note";
+import { EMAIL } from "@/lib/constants";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 
 interface Props {
   error: string;
   message?: string;
 }
 
-const Error = ({ error, message }: Props) => {
+const ErrorView = ({ error, message }: Props) => {
   const mailto = new URLSearchParams(EMAIL);
 
   if (message) {
@@ -25,4 +25,4 @@ const Error = ({ error, message }: Props) => {
   );
 };
 
-export default Error;
+export default ErrorView;

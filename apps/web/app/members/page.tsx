@@ -1,8 +1,8 @@
-import { fetchNotices } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import CollapsibleCard from "@/components/stour/collapsible-card";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { createMetadata } from "@/lib/create-metadata";
+import { fetchNotices } from "@sudburyrc/api";
 
 export const revalidate = 60;
 

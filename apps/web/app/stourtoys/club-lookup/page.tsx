@@ -1,9 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Clubs = ({ searchParams }: { searchParams: { q?: string } }) => {
   const router = useRouter();

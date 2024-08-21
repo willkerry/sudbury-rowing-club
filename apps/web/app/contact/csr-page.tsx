@@ -1,16 +1,16 @@
 "use client";
 
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import { useQuery } from "@tanstack/react-query";
-import { fetchOfficerNames } from "@sudburyrc/api";
-import { browserIndexOfficers } from "@/lib/algolia";
 import ContactForm from "@/components/contact";
 import type { Message } from "@/components/contact/contactForm";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Loading from "@/components/stour/loading";
+import { browserIndexOfficers } from "@/lib/algolia";
+import { Obfuscate } from "@south-paw/react-obfuscate-ts";
+import type { fetchOfficerNames } from "@sudburyrc/api";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 const ContactPage = ({
   officers,
@@ -34,7 +34,7 @@ const ContactPage = ({
         .search<(typeof officers)[number]>(q ?? "")
         .then((r) => r.hits[0]),
     enabled: !!q,
-    staleTime: Infinity,
+    staleTime: Number.POSITIVE_INFINITY,
   });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;

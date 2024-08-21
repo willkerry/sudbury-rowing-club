@@ -1,5 +1,5 @@
-import type { Notice } from "@sudburyrc/api";
 import Link from "@/components/stour/link";
+import type { Notice } from "@sudburyrc/api";
 
 type FileGroupProps = {
   fileItems: Notice["documents"];

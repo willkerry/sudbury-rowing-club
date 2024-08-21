@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { HeartHandshake } from "lucide-react";
 import { ScrollLink } from "@/components/utils/scroll-link";
+import { HeartHandshake } from "lucide-react";
+import Link from "next/link";
 import Sponsors from "../landing/sponsors";
 import Container from "../layouts/container";
 import Label from "../stour/label";

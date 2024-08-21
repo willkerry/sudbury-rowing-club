@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import { useToggle } from "@mantine/hooks";
-import { Article, urlFor } from "@sudburyrc/api";
 import LightBox from "@/components/stour/lightbox";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { useToggle } from "@mantine/hooks";
+import { type Article, urlFor } from "@sudburyrc/api";
+import Image from "next/image";
 import Caption from "./caption";
 import PostTitle from "./title";
 

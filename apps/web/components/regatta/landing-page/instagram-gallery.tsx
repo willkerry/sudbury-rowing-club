@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import { useInViewport, useReducedMotion } from "@mantine/hooks";
-import AutoScroll from "embla-carousel-auto-scroll";
 import Instagram from "@/components/icons/socials/instagram";
 import Container from "@/components/layouts/container";
 import Loading from "@/components/stour/loading";
@@ -14,11 +11,15 @@ import DateFormatter from "@/components/utils/date-formatter";
 import useInstagramPosts, {
   type InstagramPost,
 } from "@/hooks/useInstagramPosts";
+import { useInViewport, useReducedMotion } from "@mantine/hooks";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { useEffect, useState } from "react";
 
 const IMAGE_CLASS_NAME =
   "h-48 w-full border-b bg-gray-100 object-cover sm:h-80";
 
-const PLACEHOLDER = `█████████\n\n█████████ ███ ██████ ███ ███\n█ ██████ ██ █████ █ ███ ███ ███ █████████\n\n██████  █████  █████`;
+const PLACEHOLDER =
+  "█████████\n\n█████████ ███ ██████ ███ ███\n█ ██████ ██ █████ █ ███ ███ ███ █████████\n\n██████  █████  █████";
 
 const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
   const { ref, inViewport } = useInViewport();

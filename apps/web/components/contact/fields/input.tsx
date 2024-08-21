@@ -1,5 +1,5 @@
-import { InputHTMLAttributes, LabelHTMLAttributes } from "react";
 import cn from "clsx";
+import type { InputHTMLAttributes, LabelHTMLAttributes } from "react";
 
 type Props = {
   disabled?: InputHTMLAttributes<HTMLInputElement>["disabled"];

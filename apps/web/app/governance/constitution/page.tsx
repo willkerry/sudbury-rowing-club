@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
-import { Wordmark } from "@sudburyrc/blue";
-import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import DateFormatter from "@/components/utils/date-formatter";
+import { createMetadata } from "@/lib/create-metadata";
+import { Wordmark } from "@sudburyrc/blue";
+import type { ReactNode } from "react";
 
 export const metadata = createMetadata({
   title: "Constitution",

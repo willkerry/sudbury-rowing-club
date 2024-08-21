@@ -1,7 +1,7 @@
-import React from "react";
-import { fetchSafety } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
 import { SafetyItemCard } from "@/components/safety/safety-item-card";
+import { createMetadata } from "@/lib/create-metadata";
+import { fetchSafety } from "@sudburyrc/api";
+import React from "react";
 
 export const metadata = createMetadata({
   title: "Safety",

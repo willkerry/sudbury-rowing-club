@@ -1,13 +1,13 @@
-import dynamic from "next/dynamic";
-import { type PortableTextProps } from "@portabletext/react";
-import groq from "groq";
-import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
 import { HundredAndFiftyCta } from "@/components/anniversary/150-cta";
 import Feed from "@/components/landing/feed";
 import Introduction from "@/components/landing/introduction";
 import LatestNews from "@/components/landing/latest-news";
 import Container from "@/components/layouts/container";
-import { type NoteProps } from "@/components/stour/note/note";
+import type { NoteProps } from "@/components/stour/note/note";
+import type { PortableTextProps } from "@portabletext/react";
+import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
+import groq from "groq";
+import dynamic from "next/dynamic";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(

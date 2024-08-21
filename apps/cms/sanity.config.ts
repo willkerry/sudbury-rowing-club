@@ -1,12 +1,12 @@
-import { defineConfig } from "sanity";
-import { deskTool } from "sanity/desk";
-import { visionTool } from "@sanity/vision";
-import { table } from "@sanity/table";
-import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import schemas from "./schemas/schema";
-import { UsersIcon } from "@sanity/icons";
-import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { dashboardTool } from "@sanity/dashboard";
+import { UsersIcon } from "@sanity/icons";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
+import { table } from "@sanity/table";
+import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
+import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
+import { deskTool } from "sanity/desk";
+import schemas from "./schemas/schema";
 
 const config = defineConfig({
   title: "Sudbury Rowing Club",

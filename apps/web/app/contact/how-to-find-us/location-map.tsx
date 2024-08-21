@@ -1,8 +1,8 @@
 "use client";
 
-import { ComponentProps } from "react";
-import { Map, Marker, type Point } from "pigeon-maps";
+import { Marker, Map as PigeonMap, type Point } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
+import type { ComponentProps } from "react";
 
 type LocationMapProps = {
   defaultCenter: Point;
@@ -15,7 +15,7 @@ const maptilerProvider = maptiler(
 );
 
 export const LocationMap = ({ defaultCenter, markers }: LocationMapProps) => (
-  <Map
+  <PigeonMap
     attribution={false}
     defaultCenter={defaultCenter}
     defaultZoom={14}
@@ -26,5 +26,5 @@ export const LocationMap = ({ defaultCenter, markers }: LocationMapProps) => (
     {markers.map((marker) => (
       <Marker key={String(marker.anchor)} {...marker} />
     ))}
-  </Map>
+  </PigeonMap>
 );

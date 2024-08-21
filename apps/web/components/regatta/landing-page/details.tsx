@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { Mouse } from "lucide-react";
-import { cn } from "@/lib/utils";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
+import { Slot } from "@radix-ui/react-slot";
+import { Mouse } from "lucide-react";
+import { useState } from "react";
 
 export type DetailProps = {
   summary: string;

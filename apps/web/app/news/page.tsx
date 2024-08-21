@@ -1,10 +1,10 @@
+import { serverIndex } from "@/lib/algolia";
+import { createMetadata } from "@/lib/create-metadata";
 import {
   fetchArticleCount,
   fetchNArticles,
   serverGetNArticles,
 } from "@sudburyrc/api";
-import { serverIndex } from "@/lib/algolia";
-import { createMetadata } from "@/lib/create-metadata";
 import { CSRNewsPage } from "./csr-page";
 
 export const metadata = createMetadata({
@@ -31,13 +31,13 @@ const fetchArticlesAndUpdateSearchIndex = async () => {
       fetchNArticles(0, sanityTotal).then((results) => {
         // It's **essential** to assign the post _id to the Algolia objectID here,
         // otherwise Algolia will create thousands of duplicate records.
-        const records = results.map((p: any) => ({ ...p, objectID: p._id }));
+        const records = results.map((p) => ({ ...p, objectID: p._id }));
         serverIndex.saveObjects(records);
       });
     }
 
     return articles;
-  } catch (error: any) {
+  } catch (error) {
     console.error(error);
     return [];
   }

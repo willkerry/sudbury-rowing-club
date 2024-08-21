@@ -1,7 +1,7 @@
-import { createMetadata } from "@/lib/create-metadata";
 import TextPage from "@/components/layouts/text-page";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
+import { createMetadata } from "@/lib/create-metadata";
 
 const DRAW_URL = "https://live.sudburyrowingclub.org.uk/";
 

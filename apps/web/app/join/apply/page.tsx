@@ -1,8 +1,8 @@
-import { NextPage } from "next";
-import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
 import Loading from "@/components/stour/loading";
 import { Obfuscate } from "@/components/utils/obfuscate";
+import type { NextPage } from "next";
+import Link from "next/link";
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row">

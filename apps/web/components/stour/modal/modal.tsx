@@ -1,6 +1,6 @@
-import { ComponentProps, ReactNode } from "react";
-import { Dialog } from "@headlessui/react";
 import { Button } from "@/components/ui/button";
+import { Dialog } from "@headlessui/react";
+import type { ComponentProps, ReactNode } from "react";
 
 type ModalProps = {
   title: string;

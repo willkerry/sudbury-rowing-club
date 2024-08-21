@@ -1,11 +1,11 @@
-import { Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "@fontsource-variable/jetbrains-mono/index.css";
 import "inter-ui/inter-variable.css";
-import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
 import Banner from "@/components/banner";
 import Footer from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
 import "../styles/index.css";
 import Providers from "./providers";
 

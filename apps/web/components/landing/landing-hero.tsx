@@ -1,9 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import Image from "next/image";
 import BoathouseDoor from "@/components/landing/boathouse-door";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import Container from "../layouts/container";
 
 const Player = dynamic(() => import("@/components/landing/player"));

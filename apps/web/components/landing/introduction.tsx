@@ -1,8 +1,8 @@
-import { PortableTextProps } from "@portabletext/react";
 import CommitteeSignature from "@/components/landing/committee-signature";
 import Sponsors, { Affiliates } from "@/components/landing/sponsors";
 import Container from "@/components/layouts/container";
 import Text from "@/components/stour/text";
+import type { PortableTextProps } from "@portabletext/react";
 
 type IntroductionProps = {
   description: PortableTextProps["value"];

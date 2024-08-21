@@ -1,5 +1,5 @@
-import { z } from "zod";
 import useZodSWR from "@/lib/zod-swr";
+import { z } from "zod";
 
 const KEY = "instagram-posts";
 const QUERY_URL = "https://api.apify.com/v2/datasets/uAnWYUNLDbdXEpikD/items";

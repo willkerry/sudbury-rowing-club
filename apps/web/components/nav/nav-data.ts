@@ -1,5 +1,15 @@
 "use client";
 
+import {
+  Governance,
+  History,
+  MyClubhouse,
+  Results,
+  Safety,
+  Spond,
+} from "@/components/icons";
+import { SOCIALS } from "@/lib/constants";
+import type { IconNavItemType } from "@/types/nav-item";
 import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
   CakeIcon,
@@ -15,16 +25,6 @@ import {
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
 import { Facebook, Instagram } from "lucide-react";
-import { SOCIALS } from "@/lib/constants";
-import {
-  Governance,
-  History,
-  MyClubhouse,
-  Results,
-  Safety,
-  Spond,
-} from "@/components/icons";
-import { IconNavItemType } from "@/types/nav-item";
 
 type NavigationGroup = {
   title: string;

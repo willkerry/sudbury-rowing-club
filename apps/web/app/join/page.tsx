@@ -1,7 +1,3 @@
-import Image from "next/image";
-import NextLink from "next/link";
-import { ThumbsUp } from "lucide-react";
-import { createMetadata } from "@/lib/create-metadata";
 import {
   JoinCTA,
   L2RCallToAction,
@@ -14,6 +10,10 @@ import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { Button } from "@/components/ui/button";
 import { l2rStages, overview } from "@/data/join/";
+import { createMetadata } from "@/lib/create-metadata";
+import { ThumbsUp } from "lucide-react";
+import Image from "next/image";
+import NextLink from "next/link";
 import { NextCourse } from "./next-course";
 
 export const metadata = createMetadata({

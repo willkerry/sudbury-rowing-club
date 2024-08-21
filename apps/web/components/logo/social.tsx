@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 /**
  * Renders the square 'social' profile picture version of the crest in inlined SVG.
@@ -7,6 +7,7 @@ import { SVGProps } from "react";
  */
 const Social = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+    <title>Sudbury Rowing Club crest</title>
     <path fill="#003B80" d="M0 0h512v512H0z" />
     <g fill="#fff">
       <path d="M315.4 283c-.2 30.3 5.4 52.2-27.5 66.4-11.6 6.1-24.7 12-30.9 24.3-7.1-12.4-21.6-18.7-33.8-25.7-31.4-13.3-25-36.8-25.4-65h117.6zm-65.9 12c-3.6-5.8-8.6 2.7-12.8 3.4-2.1 2.7 3.2 3.2 5 3l-2.7.2c-2.3-.3-4 2.4-2 1.2.8-.8 2.1-.8 3.2-.6l-2.8.6c3.4.7 4.9.3 5.3.9.1 2.6-5.4 10.6-.8 14.8 0 6-.7 17.6-8 17.2-4.4 1.5 4 4 5.2 1.8 3.9-4.4 5.1-19.6 11.2-10.4-4.2 8.2 4.5 10.8 10.5 11-1.7.8-18.4 1.5-12.6 4.3 4.7.2 17-.7 18.9-4.8 0-3 9.4-2.6 12.4-10 4.5-5.9 1.9-17.2-6.7-14.1 17-2 1.5 34.2-13.2 8l-6-10.9c-3.9-5.3-2.6-8.8-3.9-14.6l-.2-1z" />

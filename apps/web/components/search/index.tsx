@@ -1,5 +1,5 @@
-import { Search } from "lucide-react";
 import { HOSTNAME } from "@/lib/constants";
+import { Search } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 

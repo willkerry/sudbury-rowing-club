@@ -1,7 +1,7 @@
-import { AlertTriangle } from "lucide-react";
+import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
-import TextPage from "@/components/layouts/text-page";
+import { AlertTriangle } from "lucide-react";
 
 export const revalidate = 60;
 

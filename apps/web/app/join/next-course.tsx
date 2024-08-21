@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Note from "@/components/stour/note";
+import Link from "next/link";
 
 const HIDE_COURSE_AFTER_DATE = new Date(2024, 9, 15);
 

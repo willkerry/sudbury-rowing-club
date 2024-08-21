@@ -1,9 +1,9 @@
-import Link from "next/link";
-import cn from "clsx";
-import { fetchAllAuthors } from "@sudburyrc/api";
-import { createMetadata } from "@/lib/create-metadata";
 import Container from "@/components/layouts/container";
 import Label from "@/components/stour/label";
+import { createMetadata } from "@/lib/create-metadata";
+import { fetchAllAuthors } from "@sudburyrc/api";
+import cn from "clsx";
+import Link from "next/link";
 
 export const metadata = createMetadata({
   title: "Authors",

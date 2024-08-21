@@ -1,8 +1,8 @@
-import { forwardRef } from "react";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { forwardRef } from "react";
 
 const IdentityImage = forwardRef<
   React.ElementRef<typeof AvatarImage>,

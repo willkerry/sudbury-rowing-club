@@ -1,4 +1,4 @@
-import { PortableTextProps } from "@portabletext/react";
+import type { PortableTextProps } from "@portabletext/react";
 import Text from "../stour/text";
 
 type Props = {

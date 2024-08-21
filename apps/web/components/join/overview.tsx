@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { ScrollLink } from "@/components/utils/scroll-link";
+import Image from "next/image";
 
 type OverviewType = {
   title: string;

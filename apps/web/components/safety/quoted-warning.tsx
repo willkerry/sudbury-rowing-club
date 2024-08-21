@@ -11,8 +11,8 @@ type QuotedWarningProps = {
 };
 
 let AgencyIcon: React.FC<{ className: string }> = () => null;
-let agencyName: string = "";
-let agencyColors: string = "";
+let agencyName = "";
+let agencyColors = "";
 
 const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
   if (!description) return null;

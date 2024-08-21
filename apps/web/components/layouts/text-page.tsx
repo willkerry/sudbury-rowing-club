@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import { cn } from "@/lib/utils";
 
 /**
  * A 'root'-level comonent for rendering simple pages with a title and some

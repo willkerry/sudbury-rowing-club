@@ -1,8 +1,8 @@
 "use client";
 
-import { Fragment, SetStateAction } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useToggle, useViewportSize } from "@mantine/hooks";
+import { Fragment, type SetStateAction } from "react";
 
 type LightBoxProps = {
   aspectRatio: number;
@@ -76,7 +76,10 @@ const LightBox = ({
         onClick={() => toggle()}
       >
         <img
-          {...{ alt, width, height, src }}
+          alt={alt}
+          width={width}
+          height={height}
+          src={src}
           className="rounded shadow-lg"
           style={{
             maxWidth: viewportWidth,

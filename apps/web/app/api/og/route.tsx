@@ -1,8 +1,8 @@
-import { ImageResponse } from "next/og";
-import { type NextRequest } from "next/server";
-import { z } from "zod";
-import { Wordmark } from "@sudburyrc/blue";
 import { BASE_URL } from "@/lib/constants";
+import { Wordmark } from "@sudburyrc/blue";
+import { ImageResponse } from "next/og";
+import type { NextRequest } from "next/server";
+import { z } from "zod";
 import { variants } from "./variants";
 
 export const runtime = "edge";

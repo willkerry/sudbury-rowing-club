@@ -1,15 +1,15 @@
-import cn from "clsx";
 import getWeatherForecast, {
   briefWeatherCodes,
   getMetOfficeURL,
 } from "@/lib/get-weather-forecast";
+import cn from "clsx";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
 
 const ForecastComponent = async () => {
   const forecast = await getWeatherForecast();
 
-  const status = "" as any;
+  const status: string = "";
 
   if (status === "error") return null;
 

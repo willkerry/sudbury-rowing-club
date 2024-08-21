@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
+import Link from "next/link";
 import { Button } from "../ui/button";
 
 export const SponsorshipTiers = ({

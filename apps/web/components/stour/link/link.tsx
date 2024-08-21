@@ -1,6 +1,6 @@
-import NextLink from "next/link";
-import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
+import NextLink from "next/link";
 
 type Props = {
   href: string;

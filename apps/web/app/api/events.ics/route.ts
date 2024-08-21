@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { kv } from "@vercel/kv";
 import { serversideFetchCompetitions } from "@sudburyrc/api";
 import IcalBuilder from "@sudburyrc/ical-builder";
+import { kv } from "@vercel/kv";
+import { NextResponse } from "next/server";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours
@@ -44,11 +44,10 @@ export const GET = async () => {
         "Content-Disposition": "attachment; filename=ical.ics",
       },
     });
-  } catch (error: any) {
-    console.error(error);
-
-    return new NextResponse(JSON.stringify({ error: error.message }), {
-      status: 500,
-    });
+  } catch (error) {
+    return new NextResponse(
+      JSON.stringify({ error: error instanceof Error ? error.message : error }),
+      { status: 500 },
+    );
   }
 };

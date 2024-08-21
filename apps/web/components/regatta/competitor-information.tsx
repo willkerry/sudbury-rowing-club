@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import Link from "@/components/stour/link";
+import { cn } from "@/lib/utils";
 
 type Props = {
   tab?: boolean;

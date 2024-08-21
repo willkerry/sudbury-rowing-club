@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { type SRCEvent } from "@sudburyrc/api";
-import { HOSTNAME } from "@/lib/constants";
-import { getHostname } from "@/lib/helpers/getHostname";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { Select } from "@/components/ui/select";
 import DateFormatter from "@/components/utils/date-formatter";
 import useFilter from "@/hooks/useFilter";
+import { HOSTNAME } from "@/lib/constants";
+import { getHostname } from "@/lib/helpers/getHostname";
+import type { SRCEvent } from "@sudburyrc/api";
+import { useState } from "react";
 
 const BR_EVENT_STATUS = {
   2: "",

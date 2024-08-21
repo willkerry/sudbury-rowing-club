@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import type { Notice } from "@/app/api/notice/route";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
-import { Notice } from "@/app/api/notice/route";
+import { useEffect, useRef, useState } from "react";
 import Container from "../layouts/container";
 import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";

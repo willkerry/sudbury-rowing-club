@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { socials } from "@/components/nav/nav-data";
+import Link from "next/link";
 
 const SocialIcons = () => (
   <>
