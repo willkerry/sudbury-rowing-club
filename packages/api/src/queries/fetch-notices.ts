@@ -48,7 +48,7 @@ const ZNotice = z.object({
         _key: z.string(),
         label: z.string(),
         value: z.string(),
-      })
+      }),
     )
     .nullable(),
   documents: z
@@ -61,9 +61,9 @@ const ZNotice = z.object({
             _key: z.string(),
             title: z.string().nullable(),
             url: z.string().nullable(),
-          })
+          }),
         ),
-      })
+      }),
     )
     .nullable(),
 });

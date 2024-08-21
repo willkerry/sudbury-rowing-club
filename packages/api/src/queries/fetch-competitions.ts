@@ -40,7 +40,7 @@ const sanitise = (html: string) => {
       DOMPurify.sanitize(html, {
         ALLOWED_TAGS: [],
         ALLOWED_ATTR: [],
-      })
+      }),
     )
     .replace(emojiRegex(), "")
     .trim();
@@ -77,7 +77,7 @@ const coerceEmptyStringToNull = (value: string) => {
 const filterOutOldEvents = (events: BREvent[]) => {
   const now = new Date();
   const maxAge = new Date(
-    now.getTime() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000
+    now.getTime() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000,
   );
 
   return events.filter((event) => new Date(event.StartDate) >= maxAge);
@@ -107,7 +107,7 @@ const transformCompetions = (events: BREvent[]) =>
 
       startDate: sanitise(StartDate),
       region: replaceUglyRegionNames(sanitise(Region)),
-    }))
+    })),
   );
 
 const serverSideFetchCompetitionsFromBR = async () => {
@@ -121,7 +121,7 @@ const serversideFetchCompetitions = async (includeOldEvents?: boolean) =>
   transformCompetions(
     includeOldEvents
       ? await serverSideFetchCompetitionsFromBR()
-      : filterOutOldEvents(await serverSideFetchCompetitionsFromBR())
+      : filterOutOldEvents(await serverSideFetchCompetitionsFromBR()),
   );
 
 export { serversideFetchCompetitions };

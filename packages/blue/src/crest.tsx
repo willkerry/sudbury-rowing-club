@@ -5,7 +5,7 @@ import { SVGProps } from "react";
  * profligately.
  */
 export const Crest = (
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

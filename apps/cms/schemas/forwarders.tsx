@@ -84,7 +84,7 @@ const forwarders = defineType({
         title,
         subtitle: `${totalRecipients} ${makePlural(
           "recipient",
-          totalRecipients
+          totalRecipients,
         )}`,
       };
     },
