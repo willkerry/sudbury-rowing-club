@@ -110,7 +110,7 @@ export default {
               transitionProperty: theme("transitionProperty.colors"),
               transitionDuration: theme("transitionDuration.200"),
               transitionTimingFunction: theme(
-                "transitionTimingFunction.DEFAULT"
+                "transitionTimingFunction.DEFAULT",
               ),
             },
             "a:hover": {

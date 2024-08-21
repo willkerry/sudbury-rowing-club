@@ -19,13 +19,16 @@ const writeToTempFile = async () => {
   const articles = await fetchAllArticles();
 
   const dateSortedArticles = articles.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
-  const articlesBySlug = dateSortedArticles.reduce((acc, article) => {
-    acc[prependNewsPrefix(article.slug)] = article;
-    return acc;
-  }, {} as Record<string, Article>);
+  const articlesBySlug = dateSortedArticles.reduce(
+    (acc, article) => {
+      acc[prependNewsPrefix(article.slug)] = article;
+      return acc;
+    },
+    {} as Record<string, Article>,
+  );
 
   if (!fs.existsSync(TEMP_DIR)) {
     fs.mkdirSync(TEMP_DIR);
@@ -48,7 +51,7 @@ const readFromTempFile = async () => {
   if (fs.existsSync(`${TEMP_DIR}/fetchTime.txt`)) {
     const fetchTimeContents = fs.readFileSync(
       `${TEMP_DIR}/fetchTime.txt`,
-      "utf-8"
+      "utf-8",
     );
     const fetchTime = new Date(fetchTimeContents);
     const now = new Date();

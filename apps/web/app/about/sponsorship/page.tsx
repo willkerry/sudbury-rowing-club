@@ -144,9 +144,7 @@ const SponsorshipPage = async () => {
         <div className="prose mb-6">
           <p>
             Our sponsorship officer
-            {sponsorshipOfficer?.name
-              ? `, ${sponsorshipOfficer?.name}, `
-              : ""}{" "}
+            {sponsorshipOfficer?.name ? `, ${sponsorshipOfficer?.name}, ` : ""}{" "}
             is available to discuss the various sponsorship opportunities
             available at Sudbury Rowing Club.
           </p>
