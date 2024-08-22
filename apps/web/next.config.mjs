@@ -1,6 +1,7 @@
 // @ts-check
 
-import { redirects } from "./data/redirects.json";
+import redirects from "./data/redirects.json" assert { type: "json" };
+const { redirects: redirectsArray } = redirects;
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -17,7 +18,7 @@ const config = {
     ],
   },
   swcMinify: true,
-  redirects: () => new Promise((resolve) => resolve(redirects)),
+  redirects: () => new Promise((resolve) => resolve(redirectsArray)),
 };
 
 export default config;
