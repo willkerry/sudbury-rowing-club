@@ -64,7 +64,7 @@ export const POST = async (req: NextRequest) => {
 
   const response = await resend.emails.send({
     from: `${name} <${SENDER.email}>`,
-    reply_to: `${name} <${email}>`,
+    replyTo: `${name} <${email}>`,
     to: process.env.BUG_RECIPIENT_EMAIL,
     subject: "Bug Report from sudburyrowingclub.org.uk",
     text: `DESCRIPTION: ${description}\n\nREPORTER: ${name} <${

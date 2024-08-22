@@ -110,7 +110,7 @@ export const POST = async (req: NextRequest) => {
       await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),
         to: formatName(toEmail, toName),
-        reply_to: formatName(fromEmail, fromName),
+        replyTo: formatName(fromEmail, fromName),
         subject: `${fromName} via SRC Contact`,
         react: ContactFormEmail({
           toName,
