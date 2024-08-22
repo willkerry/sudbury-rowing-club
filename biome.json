@@ -48,8 +48,28 @@
     "rules": {
       "recommended": true,
       "a11y": { "noRedundantAlt": "off" },
-      "suspicious": { "noArrayIndexKey": "off" },
-      "security": { "noDangerouslySetInnerHtml": "off" }
+      "complexity": { "noExcessiveCognitiveComplexity": "error" },
+      "correctness": {
+        "noUndeclaredVariables": "error",
+        "useHookAtTopLevel": "error"
+      },
+      "nursery": {
+        "noDuplicateElseIf": "error",
+        "noEvolvingTypes": "error"
+      },
+      "performance": { "noReExportAll": "error" },
+      "suspicious": { "noArrayIndexKey": "off", "useAwait": "error" },
+      "security": { "noDangerouslySetInnerHtml": "off" },
+      "style": {
+        "noNegationElse": "error",
+        "noNonNullAssertion": "error",
+        "useCollapsedElseIf": "error",
+        "useForOf": "error",
+        "useFragmentSyntax": "error",
+        "useShorthandArrayType": "error",
+        "useShorthandAssign": "error",
+        "useSingleCaseStatement": "error"
+      }
     }
   },
   "javascript": {

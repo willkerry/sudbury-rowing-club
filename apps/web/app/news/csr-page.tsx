@@ -50,7 +50,7 @@ const NewsPage = ({
     SearchResponse<MinimalArticle>["hits"]
   >([]);
 
-  const search = useCallback(async () => {
+  const search = useCallback(() => {
     if (!dirty) setDirty(true);
     router.push(`/news?q=${encodeURIComponent(searchTerm)}`);
     setActiveSearchTerm(searchTerm);

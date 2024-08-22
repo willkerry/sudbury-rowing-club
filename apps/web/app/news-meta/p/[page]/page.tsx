@@ -29,7 +29,7 @@ export const generateMetadata = async ({
     description: "News from Sudbury Rowing Club.",
   });
 
-const fetchPagedArticles = async (page: number) => {
+const fetchPagedArticles = (page: number) => {
   const firstArticleNumber = page * POSTS_PER_PAGE - POSTS_PER_PAGE;
   const lastArticleNumber = page * POSTS_PER_PAGE;
 

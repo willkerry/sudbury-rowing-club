@@ -58,14 +58,14 @@ const ContactPage = ({
       />
       <Container className="max-w-lg pb-12 pt-6 sm:pt-12">
         <div className="prose mx-auto pb-10">
-          {!recipientWasProvided ? (
+          {recipientWasProvided ? null : (
             <p>
               We’re a volunteer-run club that provides a safe and fun way to
               row, but we also need your help. Since we don’t have a full-time
               staff to respond to enquiries, we ask that you select an
               appropriate recipient for your enquiry.
             </p>
-          ) : null}
+          )}
         </div>
         <ContactForm contacts={officers} initialValues={initialValues} />
         <div className="prose mt-16 text-sm text-gray-500">

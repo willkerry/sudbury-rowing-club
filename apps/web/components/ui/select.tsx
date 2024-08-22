@@ -20,7 +20,8 @@ const Select = forwardRef<
   HTMLSelectElement,
   VariantProps<typeof inputVariants> & SelectProps
 >(({ className, description, error, id, label, ...props }, ref) => {
-  const inputId = id || useId();
+  const generatedId = useId();
+  const inputId = id || generatedId;
   const descriptionId = `${inputId}-description`;
   const errorId = `${inputId}-error`;
 

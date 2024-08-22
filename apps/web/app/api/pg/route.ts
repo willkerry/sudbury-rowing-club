@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export const revalidate = 60;
 
-export const GET = async () => {
+export const GET = () => {
   try {
     const status = getWodehouseFullDetails();
 

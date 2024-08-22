@@ -99,9 +99,7 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
             value={selectedRegion || ""}
             onChange={(e) => setSelectedRegion(e.target.value)}
           >
-            {!regions ? (
-              <option value="">No regions found.</option>
-            ) : (
+            {regions ? (
               <>
                 <option value="">All</option>
                 {Array.from(regions).map((region) => (
@@ -110,6 +108,8 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
                   </option>
                 ))}
               </>
+            ) : (
+              <option value="">No regions found.</option>
             )}
           </Select>
         </div>

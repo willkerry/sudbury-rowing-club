@@ -19,17 +19,19 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
   if (!source) return null;
 
   switch (source) {
-    case WarningSourceEnum.environmentAgency:
+    case WarningSourceEnum.environmentAgency: {
       agencyName = "Environment Agency";
       AgencyIcon = EnvironmentAgency;
       agencyColors = "bg-green-600 text-green-50";
       break;
+    }
 
-    case WarningSourceEnum.metoffice:
+    case WarningSourceEnum.metoffice: {
       agencyName = "Met Office";
       AgencyIcon = MetOffice;
       agencyColors = "bg-gray-700 text-lime-400";
       break;
+    }
 
     default:
       break;

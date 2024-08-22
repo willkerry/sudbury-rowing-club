@@ -53,21 +53,21 @@ const Feed = () => {
         The latest updates from{" "}
         <Link href="https://britishrowing.org/">British Rowing</Link>.
       </p>
-      {!error ? (
-        <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
-
-          {articles?.map((article) => (
-            <BRArticle key={article.id} {...{ article }} />
-          ))}
-        </div>
-      ) : (
+      {error ? (
         <div className="mb-12 rounded border px-4 py-8">
           <Result
             title="Unable to retrieve stories from British Rowing."
             message={error.message}
             variant="error"
           />
+        </div>
+      ) : (
+        <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
+
+          {articles?.map((article) => (
+            <BRArticle key={article.id} {...{ article }} />
+          ))}
         </div>
       )}
     </>
