@@ -7,14 +7,8 @@ const { redirects: redirectsArray } = redirects;
 const config = {
   images: {
     remotePatterns: [
-      {
-        hostname: "cdn.sanity.io",
-        protocol: "https",
-      },
-      {
-        hostname: "clubimages.britishrowing.org",
-        protocol: "https",
-      },
+      createRemotePattern("cdn.sanity.io", "https"),
+      createRemotePattern("clubimages.britishrowing.org", "https"),
     ],
   },
   swcMinify: true,
@@ -22,3 +16,11 @@ const config = {
 };
 
 export default config;
+
+/**
+ * @param {string} hostname
+ * @param {'http'|'https'} protocol
+ */
+function createRemotePattern(hostname, protocol) {
+  return { hostname, protocol };
+}
