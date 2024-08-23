@@ -92,42 +92,20 @@ enum CardinalDirection {
   NNW = 15,
 }
 
+const THRESHOLDS = [1, 6, 12, 20, 29, 39, 50, 62, 75, 89, 103, 118] as const;
+
 /**
  * Converts mph windspeeds to the Beaufort scale, clumsily.
  */
 const kphToBeaufort = (kph: number) => {
-  switch (true) {
-    case Number.isNaN(kph):
-      throw new Error("kph is not a number");
-    case kph < 0:
-      throw new Error("kph is negative");
-    case kph < 1:
-      return 0;
-    case kph < 6:
-      return 1;
-    case kph < 12:
-      return 2;
-    case kph < 20:
-      return 3;
-    case kph < 29:
-      return 4;
-    case kph < 39:
-      return 5;
-    case kph < 50:
-      return 6;
-    case kph < 62:
-      return 7;
-    case kph < 75:
-      return 8;
-    case kph < 89:
-      return 9;
-    case kph < 103:
-      return 10;
-    case kph < 118:
-      return 11;
-    default:
-      return 12;
+  if (Number.isNaN(kph)) throw new Error("kph is not a number");
+  if (kph < 0) throw new Error("kph is negative");
+
+  for (const threshold of THRESHOLDS) {
+    if (kph < threshold) return THRESHOLDS.indexOf(threshold);
   }
+
+  return THRESHOLDS.length + 1;
 };
 
 const degreesToInt = (degrees: number) => {
