@@ -2,6 +2,7 @@ import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 import { ZTypedObject } from "./typed-object";
+import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
 
 const articleFields = groq`
   _id,
@@ -42,16 +43,7 @@ const articleSummaryFields = groq`
   title,
   excerpt,
   date,
-  featuredImage {
-    alt,
-    caption,
-    "url": @.image.asset->url,
-    "_id": @.image.asset->_id,
-    "lqip": @.image.asset->metadata.lqip,
-    "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio,
-    "background": @.image.asset->metadata.palette.muted.background,
-    "foreground": @.image.asset->metadata.palette.muted.foreground,
-  },
+  featuredImage { ${IMAGE_FIELDS} },
 `;
 
 const ZArticle = z.object({
@@ -68,24 +60,7 @@ const ZArticle = z.object({
     })
     .nullable(),
   body: z.array(ZTypedObject).nullable(),
-  featuredImage: z
-    .object({
-      alt: z.string().nullable(),
-      caption: z.string().nullable(),
-      url: z.string().url(),
-      _id: z.string(),
-      lqip: z.string(),
-      aspectRatio: z.number(),
-      background: z
-        .string()
-        .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)
-        .nullable(),
-      foreground: z
-        .string()
-        .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)
-        .nullable(),
-    })
-    .nullable(),
+  featuredImage: Z_IMAGE_SCHEMA.nullable(),
 });
 
 export const ZArticleSummary = ZArticle.omit({

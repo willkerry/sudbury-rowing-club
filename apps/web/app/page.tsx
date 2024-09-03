@@ -5,8 +5,7 @@ import LatestNews from "@/components/landing/latest-news";
 import Container from "@/components/layouts/container";
 import type { NoteProps } from "@/components/stour/note/note";
 import type { PortableTextProps } from "@portabletext/react";
-import { type ArticleSummary, sanityClient } from "@sudburyrc/api";
-import groq from "groq";
+import { fetchLandingPage } from "@sudburyrc/api";
 import dynamic from "next/dynamic";
 
 const Note = dynamic(() => import("@/components/stour/note"));
@@ -43,57 +42,10 @@ export type LandingPageProps = {
   }[];
 };
 
-async function getLandingPageContent() {
-  const data = await sanityClient.fetch(groq`
-    {
-      "landingPage": *[_id == "siteSettings" && !(_id in path("drafts.**"))][0].landingPage {
-        description,
-        images[] { 
-          caption, 
-          "_id": asset->_id,
-          "lqip": asset->metadata.lqip,
-          "aspectRatio": asset->metadata.dimensions.aspectRatio
-          },
-        heroImage {
-          image {
-            "_id": asset->_id,
-            "lqip": asset->metadata.lqip,
-            "aspectRatio": asset->metadata.dimensions.aspectRatio,
-          }, 
-          youtubeId,
-          youtubeStartOffset
-        },
-        note,
-        tagline,
-        title,
-      },
-      "news": *[_type == "news" && !(_id in path("drafts.**"))] | order(date desc){
-        _id,
-        "slug": slug.current,
-        title,
-        excerpt,
-        date,
-        featuredImage {
-          alt, 
-          caption,
-          "_id": @.image.asset->_id, 
-          "lqip": @.image.asset->metadata.lqip, 
-          "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio
-        },
-      }[0..3]
-    }
-   `);
-
-  return {
-    landingPage: data.landingPage as LandingPageProps,
-    news: data.news as ArticleSummary[],
-  };
-}
-
 export const generateMetadata = async () => {
   const {
     landingPage: { tagline, title },
-  } = await getLandingPageContent();
+  } = await fetchLandingPage();
 
   return {
     title,
@@ -105,7 +57,7 @@ const Home = async () => {
   const {
     news,
     landingPage: { description, heroImage, images, note, tagline },
-  } = await getLandingPageContent();
+  } = await fetchLandingPage();
 
   return (
     <>
