@@ -21,10 +21,9 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
   >
     {article && (
       <>
-        <h3
-          className="text-sm font-medium leading-tight transition-colors group-hover:text-blue-500"
-          dangerouslySetInnerHTML={{ __html: article.title.rendered }}
-        />
+        <h3 className="text-sm font-medium leading-tight transition-colors group-hover:text-blue-500">
+          {article.title.rendered}
+        </h3>
 
         <div className="flex items-end justify-between gap-1">
           <DateFormatter

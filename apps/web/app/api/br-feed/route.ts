@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { decode } from "he";
 
 export const revalidate = 60 * 60 * 24;
 
@@ -28,15 +29,17 @@ export const GET = async () => {
     });
   }
 
-  const json = await response.json();
-
-  const feed = schema.safeParse(json);
+  const feed = schema.safeParse(await response.json());
 
   if (!feed.success) {
     return new NextResponse(
       "Server error: unparseable response provided by BR API",
       { status: 500 },
     );
+  }
+
+  for (const item of feed.data) {
+    item.title.rendered = decode(item.title.rendered);
   }
 
   return new NextResponse(JSON.stringify(feed.data));
