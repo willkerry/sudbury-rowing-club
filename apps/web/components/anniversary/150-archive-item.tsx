@@ -8,9 +8,7 @@ import Link from "next/link";
 const IMAGE_WIDTH = 480;
 
 export const ArchiveItem = ({ _id, alt, image, title }: Archive) => {
-  const imageHeight = Math.round(
-    IMAGE_WIDTH / (image?.metadata.dimensions.aspectRatio || 1),
-  );
+  const imageHeight = Math.round(IMAGE_WIDTH / (image?.aspectRatio || 1));
 
   const props = useSanityImageProps(image._id);
 

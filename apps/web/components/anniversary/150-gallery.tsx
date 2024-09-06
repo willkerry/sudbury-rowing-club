@@ -40,14 +40,15 @@ export const HundredAndFiftyGallery = ({
       ?.filter((archive) => archive.year || archive.description)
       .map((archive) => ({
         _id: archive.image._id,
-        aspectRatio: archive.image.metadata.dimensions.aspectRatio,
+        aspectRatio: archive.image.aspectRatio,
         caption: formatDescriptionOrYear(
           archive.description,
           archive.year,
           archive.range,
         ),
-        lqip: archive.image.metadata.lqip,
+        lqip: archive.image.lqip,
         href: `/150/gallery/${archive._id}`,
+        url: archive.image.url,
       }))}
   />
 );

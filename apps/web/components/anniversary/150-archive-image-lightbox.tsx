@@ -33,16 +33,16 @@ export const ArchiveImage = ({
 
   const props = useSanityImageProps(image._id);
 
-  const { width, height } = getDimensions(
-    image.metadata.dimensions.aspectRatio,
-  );
+  const { width, height } = getDimensions(image.aspectRatio);
+
+  if (!image.url) return null;
 
   return (
     <>
       <LightBox
-        aspectRatio={image.metadata.dimensions.aspectRatio}
+        aspectRatio={image.aspectRatio}
         alt={alt}
-        lqip={image.metadata.lqip}
+        lqip={image.lqip}
         src={image.url}
         open={open}
         toggle={() => toggle()}

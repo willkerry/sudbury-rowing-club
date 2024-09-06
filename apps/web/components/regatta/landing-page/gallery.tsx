@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { useReducedMotion } from "@mantine/hooks";
+import type { SudburyImage } from "@sudburyrc/api";
 import AutoScroll from "embla-carousel-auto-scroll";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,15 +16,12 @@ import type { ComponentProps } from "react";
 const WIDTH = 720;
 const HEIGHT = 480;
 
-type ImageType = {
-  _id: string;
-  caption?: string;
-  lqip?: string;
-  aspectRatio: number;
-  href?: string;
-};
-
-const GalleryFigure = ({ _id, caption, lqip, href }: ImageType) => {
+const GalleryFigure = ({
+  _id,
+  caption,
+  lqip,
+  href,
+}: SudburyImage & { href?: string }) => {
   const { loader, src } = useSanityImageProps(_id, {
     imageBuilder: (builder) =>
       builder.size(WIDTH, HEIGHT).fit("clip").quality(25).auto("format"),
@@ -63,7 +61,7 @@ const GalleryFigure = ({ _id, caption, lqip, href }: ImageType) => {
   );
 };
 
-const Gallery = ({ images }: { images: ImageType[] }) => {
+const Gallery = ({ images }: { images: SudburyImage[] }) => {
   const reduceMotion = useReducedMotion();
 
   return (

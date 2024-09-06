@@ -2,6 +2,11 @@ import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 import { ZTypedObject } from "./typed-object";
+import {
+  IMAGE_FIELDS,
+  NESTED_IMAGE_FIELDS,
+  Z_IMAGE_SCHEMA,
+} from "../shared/image";
 
 const regattaSettingsQuery = groq`
     *[_type == "regattaSettings"][0] {
@@ -23,21 +28,10 @@ const regattaSettingsQuery = groq`
             heroImage {
                 heading,
                 subheading,
-                image {
-                    "_id": asset->_id,
-                    "aspectRatio": asset->metadata.dimensions.aspectRatio,
-                    "lqip": asset->metadata.lqip,
-                    "bgColor": asset->metadata.palette.darkMuted.background,
-                    "color": asset->metadata.palette.darkMuted.foreground,
-                }
+                image { ${NESTED_IMAGE_FIELDS} }
             },
             images[] {
-                "_id": asset->_id,
-                "aspectRatio": asset->metadata.dimensions.aspectRatio,
-                "lqip": asset->metadata.lqip,
-                "bgColor": asset->metadata.palette.darkMuted.background,
-                "color": asset->metadata.palette.darkMuted.foreground,
-                caption 
+              ${NESTED_IMAGE_FIELDS}
             },
             tagline
         },
@@ -45,19 +39,10 @@ const regattaSettingsQuery = groq`
     }
 `;
 
-const ZImage = z.object({
-  _id: z.string(),
-  aspectRatio: z.number().default(1),
-  lqip: z.string().default(""),
-  bgColor: z.string().default("#ffffff00").nullable(),
-  color: z.string().default("#000000").nullable(),
-  caption: z.string().default(""),
-});
-
 const ZHeroImage = z.object({
   heading: z.string(),
   subheading: z.string(),
-  image: ZImage,
+  image: Z_IMAGE_SCHEMA,
 });
 
 const ZDocument = z.object({
@@ -105,7 +90,7 @@ const ZEntries = z.object({
 const ZLandingPage = z.object({
   description: z.array(ZTypedObject).nullable(),
   heroImage: ZHeroImage,
-  images: z.array(ZImage),
+  images: z.array(Z_IMAGE_SCHEMA),
   tagline: z.string(),
 });
 

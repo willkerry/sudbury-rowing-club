@@ -65,6 +65,7 @@ export {
   type SafetyResponse,
 } from "./queries/fetch-safety";
 export { ZTypedObject } from "./queries/typed-object";
+export type { SudburyImage } from "./shared/image";
 
 export { getSanityConfig, sanityClient } from "./sanity/client";
 export { urlFor } from "./sanity/image-url-builder";
