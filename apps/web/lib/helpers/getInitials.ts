@@ -8,7 +8,7 @@ export const getInitials = (name?: string): string => {
   const trimmed = trim(name);
   if (!trimmed) return "";
 
-  const words = trimmed.split(" ");
+  const words = trimmed.replace("-", " ").split(" ");
 
   return words
     .map((word) => LETTER_PATTERN.exec(word)?.[0])
