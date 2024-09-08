@@ -8,6 +8,7 @@
     "start": "sanity start",
     "build": "sanity build -y",
     "dev": "sanity dev",
+    "sanity": "sanity",
     "sanity:upgrade": "sanity upgrade"
   },
   "dependencies": {
