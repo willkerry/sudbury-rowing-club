@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { shuffle } from "radash";
+import { LogoList } from "./LogoList";
 import abglass from "../../../public/assets/logos/ab-glass-home-improvement.svg";
 import ashtons from "../../../public/assets/logos/ashtons.svg";
 import britishRowing from "../../../public/assets/logos/british-rowing.svg";
@@ -8,12 +8,12 @@ import errc from "../../../public/assets/logos/errc.svg";
 import mooreGreen from "../../../public/assets/logos/moore-green.svg";
 import swan from "../../../public/assets/logos/swan-at-lavenham.svg";
 
-interface SponsorLogo {
+export type SponsorLogo = {
   logo: React.ReactNode;
   href: string;
   name: string;
   type: "sponsor" | "affiliate";
-}
+};
 
 const logos: SponsorLogo[] = [
   {
@@ -90,41 +90,6 @@ const logos: SponsorLogo[] = [
     type: "affiliate",
   },
 ];
-const LogoListItem = ({ logo, href, name }: SponsorLogo) => (
-  <li key={`${href}${name}`}>
-    {href ? (
-      <a
-        href={href}
-        aria-label={name}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {logo}
-      </a>
-    ) : (
-      logo
-    )}
-  </li>
-);
-
-const LogoList = ({
-  logos,
-  className,
-}: {
-  logos: SponsorLogo[];
-  className?: string;
-}) => (
-  <ul
-    className={cn(
-      "flex flex-wrap items-center justify-center gap-10 md:justify-between md:gap-4",
-      className,
-    )}
-  >
-    {logos.map((logo) => (
-      <LogoListItem key={logo.name} {...logo} />
-    ))}
-  </ul>
-);
 
 const sponsorLogos = logos.filter(({ type }) => type === "sponsor");
 const affiliateLogos = logos.filter(({ type }) => type === "affiliate");
@@ -169,7 +134,7 @@ const Sponsors = ({
         {heading}
       </h3>
     )}
-    <LogoList logos={shuffle(sponsorLogos)} />
+    <LogoList shuffle logos={sponsorLogos} />
   </div>
 );
 
