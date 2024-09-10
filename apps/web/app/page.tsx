@@ -15,33 +15,6 @@ const Gallery = dynamic(
 const LandingCTA = dynamic(() => import("@/components/landing/cta"));
 const LandingHero = dynamic(() => import("@/components/landing/landing-hero"));
 
-export type LandingPageProps = {
-  description: PortableTextProps["value"];
-  tagline: string;
-  title: string;
-  note: {
-    display: boolean;
-    label: string;
-    type: NoteProps["type"];
-    text: string;
-  };
-  heroImage: {
-    youtubeId: string;
-    youtubeStartOffset: number;
-    image: {
-      _id: string;
-      aspectRatio: number;
-      lqip: string;
-    };
-  };
-  images: {
-    _id: string;
-    caption: string;
-    lqip: string;
-    aspectRatio: number;
-  }[];
-};
-
 export const generateMetadata = async () => {
   const {
     landingPage: { tagline, title },
