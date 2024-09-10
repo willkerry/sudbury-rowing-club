@@ -1,4 +1,4 @@
-import BritishRowing from "@/components/landing/sponsors/british-rowing";
+import BritishRowing from "@/components/landing/sponsors/logos/british-rowing";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
