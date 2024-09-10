@@ -1,10 +1,7 @@
 import { HundredAndFiftyCta } from "@/components/anniversary/150-cta";
-import Feed from "@/components/landing/feed";
 import Introduction from "@/components/landing/introduction";
 import LatestNews from "@/components/landing/latest-news";
 import Container from "@/components/layouts/container";
-import type { NoteProps } from "@/components/stour/note/note";
-import type { PortableTextProps } from "@portabletext/react";
 import { fetchLandingPage } from "@sudburyrc/api";
 import dynamic from "next/dynamic";
 
@@ -56,10 +53,6 @@ const Home = async () => {
 
       <Gallery images={images} />
       <LatestNews news={news} />
-
-      <Container>
-        <Feed />
-      </Container>
     </>
   );
 };

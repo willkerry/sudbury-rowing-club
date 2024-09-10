@@ -1,15 +1,15 @@
-"use client";
-
-import type { BRArticle as BRArticleType } from "@/app/api/br-feed/route";
 import BritishRowing from "@/components/landing/sponsors/british-rowing";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
-import Result from "../stour/result";
+import type { BRArticle } from "@/lib/server/fetchBritishRowingFeed";
 
-const BRArticle = ({ article }: { article?: BRArticleType }) => (
+const BritishRowingArticle = ({
+  article,
+}: {
+  article?: BRArticle;
+}) => (
   <a
     href={article?.link}
     target="_blank"
@@ -37,40 +37,29 @@ const BRArticle = ({ article }: { article?: BRArticleType }) => (
   </a>
 );
 
-const Feed = () => {
-  const { data: articles, error } = useQuery<BRArticleType[]>({
-    queryKey: ["british-rowing-feed"],
-    queryFn: () => fetch("/api/br-feed").then((res) => res.json()),
-  });
+const Feed = async ({
+  articles,
+  skeleton,
+}:
+  | { articles: BRArticle[]; skeleton?: undefined }
+  | { articles?: undefined; skeleton: true }) => (
+  <>
+    <h2>
+      <Label>News from around the country</Label>
+    </h2>
+    <p className="mb-8">
+      The latest updates from{" "}
+      <Link href="https://britishrowing.org/">British Rowing</Link>.
+    </p>
 
-  return (
-    <>
-      <h2>
-        <Label>News from around the country</Label>
-      </h2>
-      <p className="mb-8">
-        The latest updates from{" "}
-        <Link href="https://britishrowing.org/">British Rowing</Link>.
-      </p>
-      {error ? (
-        <div className="mb-12 rounded border px-4 py-8">
-          <Result
-            title="Unable to retrieve stories from British Rowing."
-            message={error.message}
-            variant="error"
-          />
-        </div>
-      ) : (
-        <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {!articles && [...Array(12)].map((_, i) => <BRArticle key={i} />)}
-
-          {articles?.map((article) => (
-            <BRArticle key={article.id} {...{ article }} />
+    <div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {skeleton
+        ? [...Array(12)].map((_, i) => <BritishRowingArticle key={i} />)
+        : articles.map((article) => (
+            <BritishRowingArticle key={article.id} {...{ article }} />
           ))}
-        </div>
-      )}
-    </>
-  );
-};
+    </div>
+  </>
+);
 
 export default Feed;
