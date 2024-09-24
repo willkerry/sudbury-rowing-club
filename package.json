@@ -18,6 +18,6 @@
     "clean": "sh scripts/clean.sh"
   },
   "dependencies": {
-    "turbo": "^2.0.14"
+    "turbo": "^2.1.2"
   }
 }
