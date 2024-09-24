@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import { z } from "zod";
 import {
   type Article,
@@ -6,16 +5,21 @@ import {
   fetchAllArticles,
 } from "./fetch-news-article";
 
-const TEMP_DIR = "./.tmp";
+type Cache = {
+  articles: { [slug: string]: Article };
+  lastFetchTime: number;
+};
+
+const cache: Cache = {
+  articles: {},
+  lastFetchTime: 0,
+};
+const CACHE_DURATION = 1000 * 60 * 15; // 15 minutes
 
 const prependNewsPrefix = (slug: string) => `news-${slug}`;
 const removeNewsPrefix = (slug: string) => slug.replace(/^news-/, "");
 
-const writeToTempFile = async () => {
-  if (typeof window !== "undefined") {
-    return;
-  }
-
+const writeToCache = async () => {
   const articles = await fetchAllArticles();
 
   const dateSortedArticles = articles.sort(
@@ -30,65 +34,45 @@ const writeToTempFile = async () => {
     {} as Record<string, Article>,
   );
 
-  if (!fs.existsSync(TEMP_DIR)) {
-    fs.mkdirSync(TEMP_DIR);
-  }
-
-  fs.writeFileSync(`${TEMP_DIR}/articles.json`, JSON.stringify(articlesBySlug));
-  fs.writeFileSync(`${TEMP_DIR}/fetchTime.txt`, new Date().toISOString());
+  cache.articles = articlesBySlug;
+  cache.lastFetchTime = new Date().getTime();
 };
 
-const readFromTempFile = async () => {
-  if (typeof window !== "undefined") {
-    return {};
+const readFromCache = async () => {
+  const { lastFetchTime } = cache;
+  const now = Date.now();
+
+  if (
+    !lastFetchTime ||
+    now - lastFetchTime > CACHE_DURATION ||
+    process.env.NODE_ENV === "development"
+  ) {
+    await writeToCache();
   }
 
-  // Does the file exist?
-  if (!fs.existsSync(`${TEMP_DIR}/articles.json`)) {
-    await writeToTempFile();
-  }
-
-  if (fs.existsSync(`${TEMP_DIR}/fetchTime.txt`)) {
-    const fetchTimeContents = fs.readFileSync(
-      `${TEMP_DIR}/fetchTime.txt`,
-      "utf-8",
-    );
-    const fetchTime = new Date(fetchTimeContents);
-    const now = new Date();
-    const diff = now.getTime() - fetchTime.getTime();
-
-    const fifteenMinutes = 1000 * 60 * 15;
-
-    if (diff > fifteenMinutes) {
-      await writeToTempFile();
-    }
-  }
-
-  const articles = await fs.readFileSync(`${TEMP_DIR}/articles.json`, "utf-8");
-
-  return JSON.parse(articles) as Record<string, Article>;
+  return cache.articles;
 };
 
 const serverGetArticleBySlug = async (slug: string) => {
-  const articles = await readFromTempFile();
+  const articles = await readFromCache();
 
   return articles[prependNewsPrefix(slug)];
 };
 
 const serverGetArticleCount = async () => {
-  const articles = await readFromTempFile();
+  const articles = await readFromCache();
 
   return Object.keys(articles).length;
 };
 
 const serverGetAllSlugs = async () => {
-  const articles = await readFromTempFile();
+  const articles = await readFromCache();
 
   return Object.keys(articles).map(removeNewsPrefix);
 };
 
 const serverGetNArticles = async (first: number, last: number) => {
-  const articles = await readFromTempFile();
+  const articles = await readFromCache();
 
   return z
     .array(ZArticleSummary)
