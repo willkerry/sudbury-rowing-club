@@ -1,6 +1,16 @@
 import { JSDOM } from "jsdom";
 import { z } from "zod";
 
+const parseAndReformatDates = (input: string): React.ReactNode => {
+  const dateRegex =
+    /(\d{1,2})\/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/g;
+
+  return input.replace(dateRegex, (_, day, month) => {
+    const date = new Date(`${month} ${day}, ${new Date().getFullYear()}`);
+    return date.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  });
+};
+
 export const RoleWhenActiveSchema = z.object({
   ID: z.number(),
   Name: z.string(),
@@ -19,28 +29,32 @@ export const SectionSchema = z.object({
   Label: z.string(),
 });
 
-export const CostExclTaxSchema = z.object({
+const TaxSchema = z.object({
   Value: z.number(),
   Formatted: z.string(),
   FormattedNoSymbol: z.string(),
 });
 
-export const TaxSchema = z.object({
-  Value: z.number(),
+const NullableTaxSchema = z.object({
+  Value: z.number().nullable(),
+  Formatted: z.string().nullable(),
+  FormattedNoSymbol: z.string().nullable(),
+});
+
+const CostSchema = z.object({
+  ExclTax: TaxSchema,
+  Tax: TaxSchema,
+  InclTax: TaxSchema,
+  IsVATRegistered: z.boolean(),
   Formatted: z.string(),
-  FormattedNoSymbol: z.string(),
 });
 
-export const EarlyPaymentCostExclTaxSchema = z.object({
-  Value: z.union([z.number(), z.null()]),
-  Formatted: z.union([z.null(), z.string()]),
-  FormattedNoSymbol: z.union([z.null(), z.string()]),
-});
-
-export const JoiningFeeExclTaxSchema = z.object({
-  Value: z.null(),
-  Formatted: z.null(),
-  FormattedNoSymbol: z.null(),
+const NullableCostSchema = z.object({
+  ExclTax: NullableTaxSchema,
+  Tax: NullableTaxSchema,
+  InclTax: NullableTaxSchema,
+  IsVATRegistered: z.boolean().nullable(),
+  Formatted: z.string().nullable(),
 });
 
 export const RateCalcSchema = z.object({
@@ -80,29 +94,6 @@ export const CoreCategorySchema = z.object({
   Restrictions: z.union([z.null(), z.string()]),
 });
 
-export const CostSchema = z.object({
-  ExclTax: CostExclTaxSchema,
-  Tax: TaxSchema,
-  InclTax: CostExclTaxSchema,
-  IsVATRegistered: z.boolean(),
-  Formatted: z.string(),
-});
-
-export const EarlyPaymentCostSchema = z.object({
-  ExclTax: EarlyPaymentCostExclTaxSchema,
-  Tax: TaxSchema,
-  InclTax: EarlyPaymentCostExclTaxSchema,
-  IsVATRegistered: z.boolean(),
-  Formatted: z.string(),
-});
-export const JoiningFeeSchema = z.object({
-  ExclTax: JoiningFeeExclTaxSchema,
-  Tax: TaxSchema,
-  InclTax: JoiningFeeExclTaxSchema,
-  IsVATRegistered: z.boolean(),
-  Formatted: z.string(),
-});
-
 export const CategorySchema = z.object({
   ID: z.number(),
   Name: z.string(),
@@ -135,7 +126,7 @@ export const CategorySchema = z.object({
   Restrictions: z.union([z.null(), z.string()]),
 });
 
-export const MembershipSchema = z.object({
+const BaseMembershipSchema = z.object({
   ID: z.number(),
   Name: z.string(),
   Description: z.string(),
@@ -149,20 +140,30 @@ export const MembershipSchema = z.object({
   ValidUntilDate: z.any(),
   ValidRangeDescription: z.union([z.null(), z.string()]),
   HasJoiningFee: z.boolean(),
-  HasEarlyPaymentOption: z.boolean(),
-  EarlyPaymentCost: EarlyPaymentCostSchema,
-  EarlyPaymentDeadlineDays: z.union([z.number(), z.null()]),
-  EarlyPaymentDeadlineDaysAbs: z.union([z.number(), z.null()]),
-  EarlyPaymentOnRenewalsOnly: z.boolean(),
-  JoiningFee: JoiningFeeSchema,
+  /** Should be a discriminated union, but the schema is already using the
+   * HasEarlyPaymentOption boolean as a discriminant */
+  JoiningFee: NullableCostSchema,
   Cost: CostSchema,
   RateCalc: RateCalcSchema,
-  DurationDescription: z.string(),
+  DurationDescription: z.string().transform(parseAndReformatDates),
   IsSubscriptionEligibleForGiftAid: z.boolean(),
   IsJoiningFeeEligibleForGiftAid: z.boolean(),
   TokenReward: z.any(),
   TokenExpiry: z.any(),
 });
+
+const MembershipSchema = z.discriminatedUnion("HasEarlyPaymentOption", [
+  BaseMembershipSchema.extend({
+    HasEarlyPaymentOption: z.literal(false),
+  }),
+  BaseMembershipSchema.extend({
+    HasEarlyPaymentOption: z.literal(true),
+    EarlyPaymentCost: CostSchema,
+    EarlyPaymentDeadlineDays: z.number(),
+    EarlyPaymentDeadlineDaysAbs: z.number(),
+    EarlyPaymentOnRenewalsOnly: z.boolean(),
+  }),
+]);
 
 export const GroupSchema = z.object({
   Title: z.string(),

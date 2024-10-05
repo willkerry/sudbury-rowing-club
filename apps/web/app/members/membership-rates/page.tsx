@@ -48,7 +48,10 @@ const MembershipRates = async () => {
               </td>
               <td>
                 <div className="disambiguate text-sm font-medium tabular-nums leading-6">
-                  {rate.Cost.Formatted}
+                  {Intl.NumberFormat("en-GB", {
+                    currency: "GBP",
+                    style: "currency",
+                  }).format(rate.Cost.InclTax.Value)}
                 </div>
                 <div className="text-xs font-medium text-gray-500">
                   {rate.DurationDescription}
@@ -57,11 +60,18 @@ const MembershipRates = async () => {
                 {rate.HasEarlyPaymentOption ? (
                   <>
                     <div className="disambiguate mt-2 font-medium tabular-nums">
-                      {rate.EarlyPaymentCost.Formatted}
+                      {Intl.NumberFormat("en-GB", {
+                        currency: "GBP",
+                        style: "currency",
+                      }).format(rate.EarlyPaymentCost.InclTax.Value)}
                     </div>
                     <div className="text-xs font-medium text-gray-500">
-                      if paid within {rate.EarlyPaymentDeadlineDaysAbs} days of
-                      season start
+                      if paid within {rate.EarlyPaymentDeadlineDaysAbs}
+                      {Intl.NumberFormat("en-GB", {
+                        style: "unit",
+                        unit: "day",
+                      }).format(rate.EarlyPaymentDeadlineDaysAbs)}{" "}
+                      of season start
                     </div>
                   </>
                 ) : null}

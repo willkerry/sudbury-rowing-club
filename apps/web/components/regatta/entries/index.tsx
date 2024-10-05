@@ -19,6 +19,8 @@ const WAVE_COLORS = [
   "bg-pink-500 text-white",
 ];
 
+const listFormatter = new Intl.ListFormat("en-GB");
+
 const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
   const boatsByWave = getBoatsByWave(table, "Any");
   const getWaveColor = (entry: string) =>
@@ -78,26 +80,23 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
         <div className="prose prose-sm text-sm" key={wave}>
           <h4 className="mb-0 inline-block pr-2">Wave {wave}: </h4>
 
-          {boatsByWave[wave].map((boat, i) => {
-            const full = `${boat.x} ${boat.y}`;
-            const isLast = i === boatsByWave[wave].length - 1;
+          {listFormatter
+            .formatToParts(boatsByWave[wave].map(({ x, y }) => `${x} ${y}`))
+            .map(({ type, value }, i) => {
+              if (type === "literal") return <span key={i}>{value}</span>;
 
-            return (
-              <>
+              return (
                 <Chip
-                  id={full}
+                  id={value}
                   location="list"
                   color={getWaveColor(wave)}
-                  key={full}
-                  className={cn("px-1 text-xs", isLast && "mb-2")}
+                  key={value}
+                  className="px-1 text-xs"
                 >
-                  {full}
+                  {value}
                 </Chip>
-
-                {!isLast && ", "}
-              </>
-            );
-          })}
+              );
+            })}
         </div>
       ))}
     </div>

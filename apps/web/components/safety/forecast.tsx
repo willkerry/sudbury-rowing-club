@@ -41,7 +41,10 @@ const ForecastComponent = async () => {
                     : "text-gray-700 group-hover:text-blue-500",
                 )}
               >
-                {minTemp}&thinsp;-&thinsp;{maxTemp}℃
+                {Intl.NumberFormat("en-GB", {
+                  unit: "celsius",
+                  style: "unit",
+                }).formatRange(minTemp, maxTemp)}
               </div>
 
               <div
@@ -52,7 +55,7 @@ const ForecastComponent = async () => {
                     : "font-semibold text-gray-600 group-hover:text-blue-400",
                 )}
               >
-                <span className="font-medium">Force</span> {beaufort}{" "}
+                <span className="font-medium">Force</span> {beaufort}
               </div>
             </a>
           ))}

@@ -78,9 +78,16 @@ function formatDescriptionString(
   const WEIR_WARNING =
     "There is a downstream weir between our piece of river and the monitoring station, so this value is only an indication of true water conditions.";
 
-  const [l, c, f] = [level, ceil, floor].map(round);
+  const [l, c, f] = [level, ceil, floor].map((v) =>
+    Intl.NumberFormat("en-GB", {
+      style: "unit",
+      unit: "centimeter",
+      maximumFractionDigits: 0,
+      signDisplay: "negative",
+    }).format(v * 100),
+  );
 
-  return `The water level at the ${name} measuring station is ${l} metres. This is ${rangeWord()} the typical range of ${f} to ${c} metres. ${WEIR_WARNING}`;
+  return `The water level at the ${name} measuring station is ${l}. This is ${rangeWord()} the typical range of ${f} to ${c}. ${WEIR_WARNING}`;
 }
 
 /**
