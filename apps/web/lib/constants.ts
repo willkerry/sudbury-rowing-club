@@ -1,3 +1,5 @@
+import type { SportsClub, WithContext } from "schema-dts";
+
 export const HOSTNAME = "sudburyrowingclub.org.uk";
 
 export const HOME_OG_IMAGE_URL = `https://${HOSTNAME}/assets/og/og.jpg`;
@@ -58,3 +60,29 @@ export namespace REGATTA {
   export const TESTIMONIAL_DESCRIPTION =
     "Some of the people who’ve come to our regatta have said lovely things about it";
 }
+
+export const ClubJsonLd: WithContext<SportsClub> = {
+  "@context": "https://schema.org",
+  "@type": "SportsClub",
+  "@id": BASE_URL,
+  name: PROJECT_NAME,
+  url: BASE_URL,
+  logo: LOGO,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Quay Lane",
+    addressLocality: "Sudbury",
+    addressRegion: "Suffolk",
+    postalCode: "CO10 2TN",
+    addressCountry: "United Kingdom",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: CLUB_LOCATION[0],
+    longitude: CLUB_LOCATION[1],
+  },
+  hasMap: "https://maps.app.goo.gl/coRAF77w6s6BabJB7",
+  foundingDate: "1874-01-01",
+  email: EMAIL,
+  isicV4: "9312",
+};

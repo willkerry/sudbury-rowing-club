@@ -15,7 +15,7 @@ export type SponsorLogo = {
   type: "sponsor" | "affiliate";
 };
 
-const logos: SponsorLogo[] = [
+export const logos: SponsorLogo[] = [
   {
     logo: (
       <Image

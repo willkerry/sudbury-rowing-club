@@ -6,12 +6,14 @@ import Hero from "@/components/stour/hero";
 import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
-import { REGATTA } from "@/lib/constants";
+import { ClubJsonLd, REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
 import { getClub } from "@/lib/getClub";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import dynamic from "next/dynamic";
+import { logos as sponsors } from "@/components/landing/sponsors";
+import type { SportsEvent, WithContext } from "schema-dts";
 
 const Gallery = dynamic(
   () => import("@/components/regatta/landing-page/gallery"),
@@ -170,9 +172,16 @@ const RegattaPage = async () => {
     },
   ];
 
-  const jsonLd = {
+  const jsonLd: WithContext<SportsEvent> = {
     "@context": "https://schema.org",
-    "@type": "Event",
+    "@type": "SportsEvent",
+    "@id": CANONICAL_URL,
+    isAccessibleForFree: true,
+    sponsor: sponsors.map(({ href, name }) => ({
+      "@type": "Organization",
+      name,
+      url: href,
+    })),
     name: EVENT_NAME_LONG,
     startDate: date,
     endDate: date,
@@ -189,8 +198,11 @@ const RegattaPage = async () => {
       },
     },
     url: CANONICAL_URL,
-    images: [OG_IMAGE_URL],
+    image: OG_IMAGE_URL,
     description: EVENT_TAGLINE,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    organizer: ClubJsonLd,
+    sport: "Rowing",
   };
 
   return (

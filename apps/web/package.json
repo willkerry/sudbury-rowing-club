@@ -84,6 +84,7 @@
     "@types/react-scroll": "^1.8.10",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
+    "schema-dts": "^1.1.2",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2"
   }

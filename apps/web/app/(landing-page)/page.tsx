@@ -2,8 +2,10 @@ import { HundredAndFiftyCta } from "@/components/anniversary/150-cta";
 import Introduction from "@/components/landing/introduction";
 import LatestNews from "@/components/landing/latest-news";
 import Container from "@/components/layouts/container";
+import { ClubJsonLd } from "@/lib/constants";
 import { fetchLandingPage } from "@sudburyrc/api";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
@@ -53,6 +55,14 @@ const Home = async () => {
 
       <Gallery images={images} />
       <LatestNews news={news} />
+
+      <Head>
+        <script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ClubJsonLd) }}
+        />
+      </Head>
     </>
   );
 };
