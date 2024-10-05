@@ -56,35 +56,37 @@ const Photography = async () => {
               </tr>
             </thead>
             <tbody>
-              {regattas.map((regatta: Regatta) => (
-                <tr key={regatta._id}>
+              {regattas.map(({ _id, date, galleries }) => (
+                <tr key={_id}>
                   <th>
-                    <DateFormatter dateString={regatta.date} format="year" />
+                    <DateFormatter dateString={date} format="year" />
                     <span className="hidden sm:inline"> Regatta</span>
                   </th>
-                  <td className="!align-middle">
-                    {regatta.galleries.map(
-                      (gallery: Gallery) =>
-                        gallery.password && (
-                          <>
-                            <span className="hidden select-none sm:inline">
-                              Password:{" "}
-                            </span>
-                            <Copy value={gallery.password} />
-                          </>
-                        ),
-                    )}
-                  </td>
-                  <td className="flex gap-6">
-                    {regatta.galleries.map(({ url, name }: Gallery) => {
-                      if (url)
-                        return (
-                          <Link key={url} href={url} external>
-                            {name}
-                          </Link>
-                        );
 
-                      return null;
+                  <td className="!align-middle">
+                    {galleries.map(({ _key, password }) => {
+                      if (!password) return null;
+
+                      return (
+                        <span id={_key} key={_key}>
+                          <span className="hidden select-none sm:inline">
+                            Password:{" "}
+                          </span>
+                          <Copy value={password} />
+                        </span>
+                      );
+                    })}
+                  </td>
+
+                  <td className="flex gap-6">
+                    {galleries.map(({ url, name, _key }) => {
+                      if (!url) return null;
+
+                      return (
+                        <Link key={_key} href={url} external>
+                          {name}
+                        </Link>
+                      );
                     })}
                   </td>
                 </tr>
