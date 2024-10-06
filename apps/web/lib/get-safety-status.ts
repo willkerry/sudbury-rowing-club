@@ -83,8 +83,7 @@ function formatDescriptionString(
       style: "unit",
       unit: "centimeter",
       maximumFractionDigits: 0,
-      signDisplay: "negative",
-    }).format(v * 100),
+    }).format(Math.max(0, v * 100)),
   );
 
   return `The water level at the ${name} measuring station is ${l}. This is ${rangeWord()} the typical range of ${f} to ${c}. ${WEIR_WARNING}`;
