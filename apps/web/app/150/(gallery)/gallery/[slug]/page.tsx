@@ -1,10 +1,17 @@
 import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
 import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
 import { createMetadata } from "@/lib/create-metadata";
-import { fetchArchiveById, fetchArchives } from "@sudburyrc/api";
+import {
+  type Archive as TArchive,
+  fetchArchiveById,
+  fetchArchives,
+} from "@sudburyrc/api";
 import type { Metadata } from "next";
 import snarkdown from "snarkdown";
 import { formatYear } from "../page";
+import type { WithContext, Photograph } from "schema-dts";
+import { ClubJsonLd } from "@/lib/constants";
+import Script from "next/script";
 
 const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;
 
@@ -58,11 +65,34 @@ export const generateMetadata = async ({
   });
 };
 
+const createArchiveJsonLd = (archive: TArchive): WithContext<Photograph> => ({
+  "@context": "https://schema.org",
+  "@type": "Photograph",
+  "@id": archive._id,
+  dateCreated: archive.year || undefined,
+  name: archive.title,
+  contentLocation: {
+    "@type": "Place",
+    latitude: archive.location?.lat,
+    longitude: archive.location?.lng,
+  },
+  image: archive.image.url,
+  sourceOrganization: ClubJsonLd,
+  description: archive.description || undefined,
+});
+
 const Archive = async ({ params }: ArchivePageParams) => {
   const archive = await fetchArchiveById(params.slug);
 
   return (
     <>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(createArchiveJsonLd(archive)),
+        }}
+      />
+
       <ArchiveImage image={archive.image} alt={archive.alt || ""} />
 
       <div className="max-w-prose pb-8 text-sm text-gray-800">
