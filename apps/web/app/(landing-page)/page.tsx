@@ -5,6 +5,7 @@ import Container from "@/components/layouts/container";
 import { ClubJsonLd } from "@/lib/constants";
 import { fetchLandingPage } from "@sudburyrc/api";
 import dynamic from "next/dynamic";
+import Script from "next/script";
 
 const Note = dynamic(() => import("@/components/stour/note"));
 const Gallery = dynamic(
@@ -55,7 +56,7 @@ const Home = async () => {
       <Gallery images={images} />
       <LatestNews news={news} />
 
-      <script
+      <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ClubJsonLd) }}
       />
