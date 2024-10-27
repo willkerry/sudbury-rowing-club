@@ -1,5 +1,9 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": true,
+  "cleanUrls": true,
+  "outputDirectory": "dist",
+  "buildCommand": "pnpm build",
   "redirects": [
     {
       "source": "/",
