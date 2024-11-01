@@ -142,6 +142,9 @@ importers:
       '@tanstack/zod-form-adapter':
         specifier: ^0.20.3
         version: 0.20.3(zod@3.23.8)
+      '@vercel/analytics':
+        specifier: ^1.3.2
+        version: 1.3.2(next@14.2.13)(react@18.3.1)
       '@vercel/kv':
         specifier: ^1.0.1
         version: 1.0.1
@@ -6220,6 +6223,22 @@ packages:
       crypto-js: 4.2.0
     dev: false
 
+  /@vercel/analytics@1.3.2(next@14.2.13)(react@18.3.1):
+    resolution: {integrity: sha512-n/Ws7skBbW+fUBMeg+jrT30+GP00jTHvCcL4fuVrShuML0uveEV/4vVUdvqEVnDgXIGfLm0GXW5EID2mCcRXhg==}
+    peerDependencies:
+      next: '>= 13'
+      react: ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      next:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      next: 14.2.13(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+      server-only: 0.0.1
+    dev: false
+
   /@vercel/kv@1.0.1:
     resolution: {integrity: sha512-uTKddsqVYS2GRAM/QMNNXCTuw9N742mLoGRXoNDcyECaxEXvIHG0dEY+ZnYISV4Vz534VwJO+64fd9XeSggSKw==}
     engines: {node: '>=14.6'}
@@ -11631,6 +11650,10 @@ packages:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
     dependencies:
       randombytes: 2.1.0
+    dev: false
+
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
     dev: false
 
   /shallow-clone@3.0.1:

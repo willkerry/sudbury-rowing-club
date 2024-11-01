@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 import "@fontsource-variable/jetbrains-mono/index.css";
 import "inter-ui/inter-variable.css";
 import Banner from "@/components/banner";
@@ -62,11 +62,6 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <body>
-        <Script
-          defer
-          data-domain="sudburyrowingclub.org.uk"
-          src="https://analytics.sudburyrowingclub.org.uk/js/script.js"
-        />
         <Providers>
           <main>
             <Banner />
@@ -77,6 +72,8 @@ export default function RootLayout({
             <Footer />
           </main>
         </Providers>
+
+        <Analytics />
       </body>
     </html>
   );

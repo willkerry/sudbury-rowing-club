@@ -1,5 +1,4 @@
 import TextPage from "@/components/layouts/text-page";
-import Note from "@/components/stour/note";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
@@ -239,26 +238,6 @@ const PrivacyPolicy = () => (
         downloaded and download errors.
       </li>
     </ul>
-
-    <Note label="October 2023 update on analytics">
-      We now run a self-hosted instance of the privacy-focussed analytics tool,{" "}
-      <a href="https://github.com/plausible/analytics">Plausible</a>, to collect
-      anonymised usage statistics of the types described above.
-      <p>
-        The Plausible tool does not use cookies, so it cannot track visitors
-        over extended periods of time or between websites. Visitors are
-        identified by an anonymised hash composed of a randomly-generated daily
-        salt, the website domain, the visitor’s IP address, and their user agent
-        string. It is impossible to ’unbake’ the hash to identify its component
-        parts.
-      </p>
-      <p>
-        Our Plausible instance is hosted on the EU-based cloud provider{" "}
-        <a href="https://www.ovhcloud.com/en-gb/">OVH SAS</a>. Your data are
-        stored on databases that we control on OVH hardware in France, and are
-        not shared with any third parties (inluding Plausible).
-      </p>
-    </Note>
 
     <h3>Cookies</h3>
 
