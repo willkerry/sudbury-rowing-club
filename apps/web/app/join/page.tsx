@@ -152,8 +152,8 @@ const Join = async () => (
             <p>
               {templateLearnToRowCourseCost(await getLearnToRowCourseCost())}{" "}
               The programme fee includes your first month’s adult membership to
-              the club after which you will be given the option continue your
-              membership at the adult rate of £32 per month thereafter.
+              the club after which you will be given the option to continue your
+              membership at the adult rate of £32 per month.
             </p>
           </div>
           <div className="flex items-center">
