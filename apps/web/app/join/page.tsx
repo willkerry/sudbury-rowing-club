@@ -15,6 +15,7 @@ import { ThumbsUp } from "lucide-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { NextCourse } from "./next-course";
+import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 
 export const metadata = createMetadata({
   title: "Start rowing at Sudbury Rowing Club",
@@ -24,7 +25,31 @@ export const metadata = createMetadata({
   },
 });
 
-const Join = () => (
+const getLearnToRowCourseCost = async () => {
+  const rates = await scrapeRatesTable();
+
+  const learnToRowCourse = rates?.find((rate) =>
+    rate.Name.toLowerCase().includes("learn"),
+  );
+
+  if (!learnToRowCourse) return null;
+
+  const learnToRowCourseCost = learnToRowCourse.Cost.InclTax.Value;
+
+  if (!learnToRowCourseCost) return null;
+
+  return Intl.NumberFormat("en-GB", {
+    style: "currency",
+    currency: "GBP",
+  }).format(learnToRowCourseCost);
+};
+
+const templateLearnToRowCourseCost = (cost: string | null) =>
+  cost
+    ? `The programme costs ${cost} and for its duration, you’ll be a club member.`
+    : "For the duration of the programme, you’ll be a club member.";
+
+const Join = async () => (
   <>
     {/* Big hero */}
     <Container className="py-16 text-center text-gray-900 sm:py-24" id="hero">
@@ -33,10 +58,7 @@ const Join = () => (
         Start rowing with us{" "}
         <ThumbsUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
       </h1>
-      <div
-        className="z-0 mx-auto flex -rotate-2 overflow-hidden rounded shadow-xl"
-        style={{ maxHeight: 160, maxWidth: 240 }}
-      >
+      <div className="z-0 mx-auto flex -rotate-2 overflow-hidden rounded shadow-xl max-h-[160px] max-w-[240px]">
         <Image
           alt="Trainee rowers on the water during on learn to row course."
           height={160}
@@ -128,11 +150,10 @@ const Join = () => (
               courses.
             </p>
             <p>
-              The programme costs £130 and for its duration, you’ll be a club
-              member. The programme fee includes your first month’s adult
-              membership to the club after which you will be given the option
-              continue your membership at the adult rate of £32 per month
-              thereafter.
+              {templateLearnToRowCourseCost(await getLearnToRowCourseCost())}{" "}
+              The programme fee includes your first month’s adult membership to
+              the club after which you will be given the option continue your
+              membership at the adult rate of £32 per month thereafter.
             </p>
           </div>
           <div className="flex items-center">
