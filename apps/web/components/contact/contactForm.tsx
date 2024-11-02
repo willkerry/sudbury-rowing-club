@@ -11,13 +11,14 @@ import { cn } from "@/lib/utils";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { zodValidator } from "@tanstack/zod-form-adapter";
-import { getWodehouseFullDetails } from "get-wodehouse-name";
+import type { getWodehouseFullDetails } from "get-wodehouse-name";
 import { shake } from "radash";
 import { z } from "zod";
 import { Error as ErrorComponent } from "../ui/error";
 import { FromAndTo } from "./fromAndTo";
+import ky from "ky";
 
 const MessageToSchema = z.string().refine((value) => value !== "default", {
   message: "Select a recipient",
@@ -41,13 +42,29 @@ type Props = {
   initialValues: Partial<Message>;
 };
 
+const usePlaceholder = () => {
+  const { data, ...rest } = useQuery({
+    queryKey: ["/api/pg"],
+    queryFn: () =>
+      ky.get<ReturnType<typeof getWodehouseFullDetails>>("/api/pg").json(),
+  });
+
+  const placeholder = {
+    name: data ? `${data.firstName} ${data.lastName}` : "",
+    email: data?.email ?? "",
+  };
+
+  return { placeholder, ...rest };
+};
+
 /**
  * Renders the contact form. Intended for use on the contact page. So long as
  * valid recipients are provided, will render a fully-functional form.
  */
 const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const localDisabled = disabled;
-  const randomName = getWodehouseFullDetails();
+
+  const { placeholder, isPending } = usePlaceholder();
 
   const recipientWasProvided = !!initialValues.to;
 
@@ -65,8 +82,6 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       if (status === 200) return undefined;
 
       throw new Error(await response?.text());
-
-      // return { [FORM_ERROR]: `${status} ${await response?.text()}` };
     },
   });
 
@@ -128,9 +143,10 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         <form.Field name="name" validators={{ onSubmit: MessageNameSchema }}>
           {(field) => (
             <Input
+              loading={isPending}
               disabled={disableFields}
               label="Your name"
-              placeholder={`${randomName.firstName} ${randomName.lastName}`}
+              placeholder={placeholder.name}
               type="text"
               className="mb-4"
               error={field.state.meta.touchedErrors[0]?.toString()}
@@ -142,24 +158,22 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         </form.Field>
 
         <form.Field name="email" validators={{ onSubmit: MessageEmailSchema }}>
-          {(field) => {
-            console.log(field.state.meta.touchedErrors);
-            return (
-              <Input
-                disabled={disableFields}
-                label="Your email"
-                placeholder={randomName.email}
-                type="email"
-                className="mb-4"
-                error={
-                  field.state.meta.touchedErrors[0]?.toString().split(",")[0]
-                }
-                value={field.state.value}
-                onBlur={field.handleBlur}
-                onChange={(e) => field.handleChange(e.target.value)}
-              />
-            );
-          }}
+          {(field) => (
+            <Input
+              disabled={disableFields}
+              label="Your email"
+              loading={isPending}
+              placeholder={placeholder.email}
+              type="email"
+              className="mb-4"
+              error={
+                field.state.meta.touchedErrors[0]?.toString().split(",")[0]
+              }
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChange={(e) => field.handleChange(e.target.value)}
+            />
+          )}
         </form.Field>
       </div>
 
@@ -175,7 +189,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             to={shake(contacts.find((o) => o._id === to))}
             isOpen={to !== "default"}
             from={{
-              name: name || `${randomName.firstName} ${randomName.lastName}`,
+              name: name || placeholder.name,
               email: email || "Placeholder",
               isPlaceholder: !name || !form.getFieldValue("email"),
             }}
