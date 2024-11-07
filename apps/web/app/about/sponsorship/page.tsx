@@ -150,7 +150,7 @@ const SponsorshipPage = async () => {
           </p>
         </div>
         <Button asChild size="lg">
-          <Link href="/contact?q=sponsorship">Contact us</Link>
+          <Link href="/contact?q=sponsorship,chair">Contact us</Link>
         </Button>
       </Container>
     </>

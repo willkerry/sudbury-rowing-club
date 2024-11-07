@@ -44,7 +44,7 @@ export const SponsorshipTiers = ({
           shadow={i === emphasisedIndex}
           size="xs"
         >
-          <Link href="/contact?q=sponsorship">
+          <Link href="/contact?q=sponsorship,secretary">
             {i === emphasisedIndex ? "Sponsor a boat" : "Enquire"}
           </Link>
         </Button>

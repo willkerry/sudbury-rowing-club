@@ -1,6 +1,5 @@
 import TextPage from "@/components/layouts/text-page";
 import Loading from "@/components/stour/loading";
-import { Obfuscate } from "@/components/utils/obfuscate";
 import type { NextPage } from "next";
 import Link from "next/link";
 
@@ -12,8 +11,11 @@ const LearnToRowApplicationForm: NextPage = () => (
       session.
     </p>
     <p className="prose-sm">
-      Alternatively, contact the Learn to Row coordinator directly at{" "}
-      <Obfuscate email="l2r@sudburyrowingclub.org.uk" />.
+      Alternatively,{" "}
+      <Link href={{ pathname: "/contact", query: { q: "l2r,captain" } }}>
+        contact the Learn to Row coordinator
+      </Link>{" "}
+      directly.
     </p>
     <iframe
       title="Learn to Row application form"

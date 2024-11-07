@@ -42,7 +42,7 @@ const L2RCallToAction = () => (
         Contact the Learn to Row coordinator
       </L2RCallToActionText>
       <Button asChild>
-        <Link href="./contact?q=learn-to-row">Contact</Link>
+        <Link href="./contact?q=l2r,captain">Contact</Link>
       </Button>
     </L2RCallToActionSection>
   </div>

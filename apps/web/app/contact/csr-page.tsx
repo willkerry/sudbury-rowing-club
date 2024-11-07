@@ -19,7 +19,8 @@ const ContactPage = ({
 }) => {
   const searchParams = useSearchParams();
 
-  const q = searchParams?.get("q");
+  const q = searchParams?.get("q")?.split(",") ?? [];
+
   const initialValues: Partial<Message> = {
     to: searchParams?.get("to") ?? undefined,
     name: searchParams?.get("name") ?? undefined,
@@ -30,11 +31,16 @@ const ContactPage = ({
   const { data: guessedRecipient } = useQuery({
     queryKey: ["officers", q],
     queryFn: () =>
-      browserIndexOfficers
-        .search<(typeof officers)[number]>(q ?? "")
-        .then((r) => r.hits[0]),
+      Promise.all(
+        q.map((query) =>
+          browserIndexOfficers
+            .search<(typeof officers)[number]>(query)
+            .then((r) => r.hits[0]),
+        ),
+      ),
     enabled: !!q,
     staleTime: Number.POSITIVE_INFINITY,
+    select: (data) => data.filter((d) => d)[0],
   });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
