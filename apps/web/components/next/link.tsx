@@ -11,7 +11,6 @@ export const Link: typeof NextLink = (({ children, ...props }) => {
   return (
     <NextLink
       ref={linkRef}
-      prefetch={true}
       onMouseDown={(e) => {
         const url = new URL(props.href.toString(), window.location.href);
         if (
