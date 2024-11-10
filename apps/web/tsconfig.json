@@ -10,6 +10,7 @@
       "@/types/*": ["types/*"],
       "@/pages/*": ["pages/*"],
       "@/app/*": ["app/*"],
+      "@/assets/*": ["public/assets/*"],
       "next/link": ["components/next/link"]
     },
     "strictNullChecks": true

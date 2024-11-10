@@ -1,15 +1,13 @@
 import { ScrollLink } from "@/components/utils/scroll-link";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 type OverviewType = {
   title: string;
   subtitle: string;
   content: string[];
   image?: {
-    src: string;
+    src: StaticImageData;
     alt: string;
-    width: number;
-    height: number;
   };
 };
 
@@ -48,7 +46,8 @@ const Overview = ({ items }: OverviewProps) => (
             <div className="flex overflow-hidden">
               <Image
                 alt={image.alt}
-                height={(635 / image.width) * image.height}
+                height={(635 / image.src.width) * image.src.height}
+                placeholder="blur"
                 src={image.src}
                 width={635}
                 className="rounded shadow"

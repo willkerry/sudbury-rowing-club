@@ -17,6 +17,8 @@ import NextLink from "next/link";
 import { NextCourse } from "./next-course";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 
+import JoinImage from "@/assets/join/l2r.jpg";
+
 export const metadata = createMetadata({
   title: "Start rowing at Sudbury Rowing Club",
   description: "Everything you need to know about getting rowing.",
@@ -62,7 +64,8 @@ const Join = async () => (
         <Image
           alt="Trainee rowers on the water during on learn to row course."
           height={160}
-          src="/assets/join/l2r.jpg"
+          placeholder="blur"
+          src={JoinImage}
           width={240}
         />
       </div>

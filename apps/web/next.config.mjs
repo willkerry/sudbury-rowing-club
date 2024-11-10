@@ -6,6 +6,8 @@ const { redirects: redirectsArray } = redirects;
 /** @type {import('next').NextConfig} */
 const config = {
   images: {
+    minimumCacheTTL: 31536000,
+
     remotePatterns: [
       createRemotePattern("cdn.sanity.io", "https"),
       createRemotePattern("clubimages.britishrowing.org", "https"),
