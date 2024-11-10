@@ -2,15 +2,12 @@
 
 import NextLink from "next/dist/client/link";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
 
 export const Link: typeof NextLink = (({ children, ...props }) => {
-  const linkRef = useRef<HTMLAnchorElement>(null);
   const router = useRouter();
 
   return (
     <NextLink
-      ref={linkRef}
       onMouseDown={(e) => {
         const url = new URL(props.href.toString(), window.location.href);
         if (
