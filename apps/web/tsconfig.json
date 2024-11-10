@@ -9,7 +9,8 @@
       "@/lib/*": ["lib/*"],
       "@/types/*": ["types/*"],
       "@/pages/*": ["pages/*"],
-      "@/app/*": ["app/*"]
+      "@/app/*": ["app/*"],
+      "next/link": ["components/next/link"]
     },
     "strictNullChecks": true
   },
