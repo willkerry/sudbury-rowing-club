@@ -26,7 +26,7 @@ const COLOR_MAP = new Map<
     {
       container: "bg-blue-50",
       heading: "font-bold",
-      hero: "bg-blue-900 text-blue-50",
+      hero: "bg-blue-950 text-blue-50",
       item: "text-blue-500 hover:text-blue-300",
     },
   ],

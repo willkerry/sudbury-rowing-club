@@ -8,11 +8,11 @@ const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
       height: 302,
     }}
   >
-    <div className="-m-1 border-b bg-blue-900 px-2 pb-0.5 pt-3 text-center text-[11px] font-bold uppercase tracking-wider text-white">
+    <div className="-m-1 border-b bg-blue-950 px-2 pb-0.5 pt-3 text-center text-[11px] font-bold uppercase tracking-wider text-white">
       Sudbury Rowing Club
     </div>
     <div
-      className="absolute bottom-0 left-0 right-0 bg-blue-900"
+      className="absolute bottom-0 left-0 right-0 bg-blue-950"
       style={{
         height: 10,
       }}

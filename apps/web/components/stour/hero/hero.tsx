@@ -29,7 +29,7 @@ const Hero = ({
     return <Text title={title} label={label} description={description} />;
   }
   return (
-    <div className={cn(dark ? "bg-blue-900 text-white" : "text-gray-900")}>
+    <div className={cn(dark ? "bg-blue-950 text-white" : "text-gray-900")}>
       <Container>
         <div className="justify-content-center flex h-96 max-w-prose flex-col">
           <div className="my-auto">

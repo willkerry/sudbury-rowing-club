@@ -10,6 +10,9 @@ import Color from "color";
 import { Circle, HelpCircle } from "lucide-react";
 import type { Metadata } from "next";
 import NextLink from "next/link";
+import toWords from "num-words";
+import a from "indefinite";
+import { capitalize } from "radash";
 
 export const metadata: Metadata = {
   ...createMetadata({
@@ -174,23 +177,20 @@ function FileExtensionWidget({ href }: { href: string }) {
   );
 }
 
-const brandColors = [
-  {
-    color: blue[900],
-    id: "900",
-    library: "Pantone 282",
-    name: "Oxford Blue",
-  },
-  { color: blue[800], id: "800" },
-  { color: blue[700], id: "700" },
-  { color: blue[600], id: "600" },
-  { color: blue[500], id: "500" },
-  { color: blue[400], id: "400" },
-  { color: blue[300], id: "300" },
-  { color: blue[200], id: "200" },
-  { color: blue[100], id: "100" },
-  { color: blue[50], id: "50" },
-];
+const brandColorCount = Object.keys(blue).length;
+
+const brandColors = Object.entries(blue)
+  .map(([id, color], i) => {
+    const isLast = i === brandColorCount - 1;
+
+    return {
+      color,
+      id,
+      library: isLast ? "Pantone 282" : undefined,
+      name: isLast ? "Oxford Blue" : undefined,
+    };
+  })
+  .reverse();
 
 const Brand = () => (
   <TextPage title="Brand Assets">
@@ -252,7 +252,7 @@ const Brand = () => (
       </section>
     ))}
 
-    <h2>Blues</h2>
+    <h2>{capitalize(toWords(brandColorCount))} blues</h2>
 
     <p>
       The club colours, as{" "}
@@ -267,14 +267,14 @@ const Brand = () => (
     </p>
 
     <p>
-      This website’s design system includes a ten-step shade graduation based on
-      Pantone 282. This allows us to use visually congruent lighter blues in
-      interface design.
+      This website’s design system includes {a(toWords(brandColorCount))}
+      -step shade graduation based on Pantone 282. This allows us to use
+      visually congruent lighter blues in interface design.
     </p>
 
     <figure>
       <div
-        className="h-16 w-full rounded bg-blue-900 shadow"
+        className="h-16 w-full rounded bg-blue-950 shadow"
         style={{
           background: `linear-gradient(to right, ${brandColors.map(
             (a) => a.color,
@@ -350,8 +350,8 @@ const Brand = () => (
         </a>{" "}
         by Mark van Bronkhorst, for the logo. This is a commercial typeface,
         licensed only for the logo design. It was chosen for its resemblance to
-        the lettering pressed into an early 20th-century set of club Christmas
-        cards.
+        the lettering pressed into an early twentieth century set of club
+        Christmas cards.
       </li>
 
       <li>
