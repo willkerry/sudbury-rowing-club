@@ -24,7 +24,7 @@ const GalleryFigure = ({
 }: SudburyImage & { href?: string }) => {
   const { loader, src } = useSanityImageProps(_id, {
     imageBuilder: (builder) =>
-      builder.size(WIDTH, HEIGHT).fit("clip").quality(25).auto("format"),
+      builder.size(WIDTH, HEIGHT).fit("clip").quality(60).auto("format"),
   });
 
   const imageProps: ComponentProps<typeof Image> = {
@@ -33,7 +33,7 @@ const GalleryFigure = ({
     width: WIDTH,
     height: HEIGHT,
     unoptimized: true,
-    quality: 30,
+    quality: 60,
     placeholder: "blur",
     blurDataURL: lqip,
     alt: caption || "",

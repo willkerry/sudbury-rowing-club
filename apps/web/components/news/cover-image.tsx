@@ -19,7 +19,7 @@ const CoverImage = ({ title, id, alt, blurDataURL }: Props) => {
       src={src}
       alt={alt || `Cover Image for ${title}`}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 455px, 651px"
-      quality={20}
+      quality={60}
       fill
       placeholder="blur"
       blurDataURL={blurDataURL}

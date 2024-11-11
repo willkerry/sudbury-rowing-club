@@ -28,7 +28,7 @@ const LandingHero = ({
         width={992}
         height={992 / imageAspectRatio}
         alt="Aerial photograph of a Sudbury crew training."
-        quality={30}
+        quality={60}
         placeholder="blur"
         blurDataURL={imageLqip}
         priority

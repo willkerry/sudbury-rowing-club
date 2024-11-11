@@ -25,7 +25,7 @@ const PostImage = ({
       placeholder="blur"
       blurDataURL={lqip}
       fill
-      quality={20}
+      quality={60}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 218px, 316px"
       className="z-0 bg-gradient-to-r from-gray-200 to-white object-cover"
     />
