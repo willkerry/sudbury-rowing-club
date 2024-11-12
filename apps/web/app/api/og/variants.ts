@@ -14,7 +14,7 @@ export const variants: Record<
   }
 > = {
   blue: {
-    bg: blue[900],
+    bg: blue[950],
     mg: blue[200],
     fg: "#fff",
     g1: "#a1c4fd",
