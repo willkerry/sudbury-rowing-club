@@ -1,6 +1,7 @@
 "use client";
 
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import type { UseNextSanityImageBuilder } from "next-sanity-image";
 import Image from "next/image";
 
 type Props = {
@@ -10,8 +11,19 @@ type Props = {
   blurDataURL?: string;
 };
 
+const imageBuilder: UseNextSanityImageBuilder = (builder, { width }) => {
+  if (!width) return builder.fit("max");
+
+  return builder
+    .width(width)
+    .height(Math.round(0.75 * width))
+    .focalPoint(0.5, 0.382)
+    .fit("crop")
+    .crop("focalpoint");
+};
+
 const CoverImage = ({ title, id, alt, blurDataURL }: Props) => {
-  const { src, loader } = useSanityImageProps(id);
+  const { src, loader } = useSanityImageProps(id, { imageBuilder });
 
   return (
     <Image

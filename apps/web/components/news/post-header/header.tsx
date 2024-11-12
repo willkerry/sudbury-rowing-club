@@ -46,7 +46,10 @@ const PostHeaderImage = ({
   height: number;
 }) => (
   <Image
-    {...useSanityImageProps(id)}
+    {...useSanityImageProps(id, {
+      imageBuilder: (b, o) =>
+        o.width ? b.width(o.width).fit("max") : b.width(256).fit("max"),
+    })}
     placeholder="blur"
     blurDataURL={lqip}
     alt={alt}
@@ -68,12 +71,12 @@ const PortraitOrLandscapeImage = ({
 
   const { width, height } = {
     portrait: {
-      width: 512 * featuredImage.aspectRatio,
+      width: Math.round(512 * featuredImage.aspectRatio),
       height: 512,
     },
     landscape: {
       width: 768,
-      height: 768 / featuredImage.aspectRatio,
+      height: Math.round(768 / featuredImage.aspectRatio),
     },
   }[orientation];
 
