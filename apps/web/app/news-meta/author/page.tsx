@@ -16,16 +16,18 @@ const fetchAndRankAuthors = async () => {
 
   let rank = 0;
 
-  return authors.map((author, index) => {
-    if (author.articleCount !== authors[index - 1]?.articleCount) {
-      rank += 1;
-    }
+  return authors
+    .map((author, index) => {
+      if (author.articleCount !== authors[index - 1]?.articleCount) {
+        rank += 1;
+      }
 
-    return {
-      ...author,
-      rank,
-    };
-  });
+      return {
+        ...author,
+        rank,
+      };
+    })
+    .sort((a, b) => a.rank - b.rank || a.surname.localeCompare(b.surname));
 };
 
 const Authors = async () => {
@@ -40,8 +42,9 @@ const Authors = async () => {
           </h1>
         </Container>
       </div>
+
       <Container>
-        <ul className="mb-16 mt-8">
+        <ul className="pb-16 mt-8">
           {authors.map(
             ({ _id, firstName, surname, articleCount, rank }, index) => {
               const authorName = `${firstName} ${surname}`;
@@ -55,7 +58,7 @@ const Authors = async () => {
                   key={_id}
                   className={cn("mb-4 flex text-lg", firstOfRank && "pt-2")}
                 >
-                  <div className="relative w-8">
+                  <div className="relative w-6">
                     {firstOfRank && (
                       <span className="disambiguate absolute inset-0 text-center font-medium leading-none text-blue-500">
                         {rank}
@@ -66,9 +69,12 @@ const Authors = async () => {
                     <span className="text-gray-900 transition group-hover:text-blue-500">
                       {authorName}
                     </span>
-                    <span className="ml-3 text-xs font-bold uppercase tracking-widest text-gray-500 transition group-hover:text-gray-400">
-                      {articleCount}
-                    </span>
+
+                    {firstOfRank && (
+                      <span className="ml-3 text-sm mb-0.5 font-semibold uppercase tracking-widest text-gray-500 transition group-hover:text-gray-700">
+                        {articleCount}
+                      </span>
+                    )}
                   </Link>
                 </li>
               );
