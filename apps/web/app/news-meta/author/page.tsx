@@ -48,7 +48,7 @@ const Authors = async () => {
           {authors.map(
             ({ _id, firstName, surname, articleCount, rank }, index) => {
               const authorName = `${firstName} ${surname}`;
-              const href = `/news+/author/${_id}`;
+              const href = `/news-meta/author/${_id}`;
 
               const firstOfRank =
                 index === 0 || authors[index - 1].rank !== rank;
