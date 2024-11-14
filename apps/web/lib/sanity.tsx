@@ -1,16 +1,47 @@
 "use client";
 
 import Figure from "@/components/stour/figure";
-import Note from "@/components/stour/note";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   PortableText as BlockContent,
   type PortableTextComponents,
   type PortableTextProps,
 } from "@portabletext/react";
+import {
+  AlertCircle,
+  CheckCircle,
+  HelpCircle,
+  InfoIcon,
+  XCircle,
+} from "lucide-react";
 import Link from "next/link";
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
+};
+
+const NoteIcon = ({
+  type,
+}: { type: "primary" | "secondary" | "success" | "warning" | "error" }) => {
+  const props = {
+    "aria-hidden": true,
+    className: "h-4 w-4",
+  };
+
+  switch (type) {
+    case "primary":
+      return <InfoIcon {...props} />;
+    case "secondary":
+      return <HelpCircle {...props} />;
+    case "success":
+      return <CheckCircle {...props} />;
+    case "warning":
+      return <AlertCircle {...props} />;
+    case "error":
+      return <XCircle {...props} />;
+    default:
+      return <InfoIcon {...props} />;
+  }
 };
 
 const components: PortableTextComponents = {
@@ -32,9 +63,18 @@ const components: PortableTextComponents = {
       </figure>
     ),
     note: ({ value }) => (
-      <Note size="small" label={value?.label} type={value?.type}>
-        {value?.note}
-      </Note>
+      <Alert
+        className="not-prose"
+        variant={
+          value?.type === "warning" || value?.type === "error"
+            ? "destructive"
+            : "default"
+        }
+      >
+        <NoteIcon type={value?.type} />
+        <AlertTitle>{value?.label}</AlertTitle>
+        <AlertDescription>{value?.note}</AlertDescription>
+      </Alert>
     ),
     figure: Figure,
   },
