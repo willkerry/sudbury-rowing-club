@@ -1,72 +1,80 @@
-"use client";
-
-import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import type { ArticleSummary } from "@sudburyrc/api";
-import Image from "next/image";
 import Link from "next/link";
 import DateFormatter from "../utils/date-formatter";
+import { PostPreviewImage } from "./post-preview-image";
+import { cn } from "@/lib/utils";
+import { NewspaperIcon } from "@heroicons/react/24/outline";
 
-const PostImage = ({
-  id,
-  alt,
-  lqip,
-}: {
-  id: string;
-  alt: string;
-  lqip: string;
-}) => {
-  const { src, loader } = useSanityImageProps(id);
+const GRADIENT_DIRECTIONS = [
+  "bg-gradient-to-tr",
+  "bg-gradient-to-br",
+  "bg-gradient-to-bl",
+  "bg-gradient-to-tl",
+];
+const GRADIENT_TO = [
+  "to-blue-100",
+  "to-blue-100",
+  "to-blue-100",
+  "to-sky-200",
+  "to-sky-200",
+  "to-gray-200",
+];
 
-  return (
-    <Image
-      loader={loader}
-      src={src}
-      alt={alt}
-      placeholder="blur"
-      blurDataURL={lqip}
-      fill
-      quality={60}
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 218px, 316px"
-      className="z-0 bg-gradient-to-r from-gray-200 to-white object-cover"
-    />
+const getRandomGradient = () =>
+  cn(
+    GRADIENT_DIRECTIONS[
+      Math.floor(Math.random() * 10) % GRADIENT_DIRECTIONS.length
+    ],
+    "from-blue-50",
+    GRADIENT_TO[Math.floor(Math.random() * 10) % GRADIENT_TO.length],
   );
-};
 
 const PostPreview = ({ post }: { post: ArticleSummary }) => (
-  <li>
-    <article id={post.slug}>
-      <Link
-        as={`/news/${post.slug}`}
-        href="/news/[slug]"
-        className="group flex flex-col divide-y overflow-hidden rounded border bg-white transition hover:border-blue-400"
-      >
-        {post.featuredImage ? (
-          <div className="relative h-48 overflow-hidden">
-            <PostImage
-              id={post.featuredImage._id}
-              alt={post.featuredImage.alt || post.title}
-              lqip={post.featuredImage.lqip}
-            />
-          </div>
-        ) : (
-          <div className="relative select-none overflow-hidden bg-gray-50 text-6xl font-bold text-gray-300 transition group-hover:text-blue-100">
-            <div className="relative m-0 box-border block overflow-hidden">
-              <div aria-hidden className="h-[188px] w-[305px] px-2.5 pt-1.5">
-                {post.title}
-              </div>
-            </div>
-          </div>
-        )}
-        <div className="p-3">
-          <div className="mb-1 text-xs font-medium text-gray-700">
-            <DateFormatter dateString={post.date} />
-          </div>
-          <h3 className="text-xl font-semibold leading-tight transition group-hover:text-blue-500">
-            {post.title}
-          </h3>
+  <li
+    id={post.slug}
+    className="group rounded border bg-white transition overflow-hidden hover:border-blue-400"
+  >
+    <Link href={`/news/${post.slug}`} className="flex flex-col h-full">
+      {post.featuredImage ? (
+        <div className="relative h-48 overflow-hidden border-b">
+          <PostPreviewImage
+            id={post.featuredImage._id}
+            alt={post.featuredImage.alt || post.title}
+            lqip={post.featuredImage.lqip}
+          />
         </div>
-      </Link>
-    </article>
+      ) : (
+        <div
+          className={cn(
+            "relative select-none h-[191px] overflow-hidden border-b",
+            getRandomGradient(),
+            "group-hover:opacity-100 opacity-75 transition-opacity",
+          )}
+        >
+          <div
+            aria-hidden
+            className="mx-2.5 mt-1.5 leading-none text-balance w-96 text-6xl font-bold text-black mix-blend-soft-light transition-all"
+          >
+            {post.title}
+          </div>
+        </div>
+      )}
+
+      <h3 className="text-xl m-2 mb-3 grow line-clamp-3 font-semibold leading-tight text-pretty transition group-hover:text-blue-500">
+        {post.title}
+      </h3>
+
+      {post.excerpt && (
+        <p className="text-xs font-medium text-gray-600 mx-2 line-clamp-3">
+          {post.excerpt}
+        </p>
+      )}
+
+      <DateFormatter
+        dateString={post.date}
+        className="text-xs font-semibold uppercase font-mono text-gray-600 mx-2 my-2"
+      />
+    </Link>
   </li>
 );
 
