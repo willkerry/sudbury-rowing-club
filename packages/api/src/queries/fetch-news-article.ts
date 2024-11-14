@@ -6,12 +6,25 @@ import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
 import sentencize from "@stdlib/nlp-sentencize";
 import { smartQuotes } from "@sudburyrc/helpers";
 
+export const excerptFields = groq`
+  "excerpt": coalesce(excerpt, array::join(string::split(pt::text(body), "")[0...255], "")),
+  "isSyntheticExcerpt": !defined(excerpt)
+`;
+
+export const ZExcerpt = z.object({
+  excerpt: z
+    .string()
+    .nullable()
+    .transform((v) => (v ? sentencize(v)[0] : null))
+    .transform(smartQuotes),
+  isSyntheticExcerpt: z.boolean(),
+});
+
 const articleFields = groq`
   _id,
   "slug": slug.current,
   title,
-  "excerpt": coalesce(excerpt, array::join(string::split(pt::text(body), "")[0...255], "")),
-  "isSyntheticExcerpt": !defined(excerpt),
+  ${excerptFields},
   date,
   author {
     "firstName": coalesce(@->person->firstName, @->firstName),
@@ -44,33 +57,28 @@ const articleSummaryFields = groq`
   _id,
   "slug": slug.current,
   title,
-  "excerpt": coalesce(excerpt, array::join(string::split(pt::text(body), "")[0...255], "")),
-  "isSyntheticExcerpt": !defined(excerpt),
+  ${excerptFields},
   date,
   featuredImage { ${IMAGE_FIELDS} },
 `;
 
-const ZArticle = z.object({
-  _id: z.string(),
-  slug: z.string(),
-  title: z.string().transform(smartQuotes),
-  excerpt: z
-    .string()
-    .nullable()
-    .transform((v) => (v ? sentencize(v)[0] : null))
-    .transform(smartQuotes),
-  isSyntheticExcerpt: z.boolean(),
-  date: z.string(),
-  author: z
-    .object({
-      firstName: z.string(),
-      surname: z.string(),
-      _id: z.string(),
-    })
-    .nullable(),
-  body: z.array(ZTypedObject).nullable(),
-  featuredImage: Z_IMAGE_SCHEMA.nullable(),
-});
+const ZArticle = z
+  .object({
+    _id: z.string(),
+    slug: z.string(),
+    title: z.string().transform(smartQuotes),
+    date: z.string(),
+    author: z
+      .object({
+        firstName: z.string(),
+        surname: z.string(),
+        _id: z.string(),
+      })
+      .nullable(),
+    body: z.array(ZTypedObject).nullable(),
+    featuredImage: Z_IMAGE_SCHEMA.nullable(),
+  })
+  .merge(ZExcerpt);
 
 export const ZArticleSummary = ZArticle.omit({
   body: true,

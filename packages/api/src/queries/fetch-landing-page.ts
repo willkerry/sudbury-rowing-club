@@ -3,6 +3,7 @@ import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 import { ZTypedObject } from "./typed-object";
 import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
+import { excerptFields, ZExcerpt } from "./fetch-news-article";
 
 const ZNoteSchema = z.object({
   display: z.boolean(),
@@ -11,14 +12,15 @@ const ZNoteSchema = z.object({
   type: z.enum(["primary", "secondary", "success", "warning", "error"]),
 });
 
-const ZNewsSchema = z.object({
-  excerpt: z.union([z.null(), z.string()]),
-  date: z.string(),
-  featuredImage: Z_IMAGE_SCHEMA.nullable(),
-  _id: z.string(),
-  slug: z.string(),
-  title: z.string(),
-});
+const ZNewsSchema = z
+  .object({
+    date: z.string(),
+    featuredImage: Z_IMAGE_SCHEMA.nullable(),
+    _id: z.string(),
+    slug: z.string(),
+    title: z.string(),
+  })
+  .merge(ZExcerpt);
 
 const ZHeroImageSchema = z.object({
   image: z.object({
@@ -74,7 +76,7 @@ const query = groq`{
   _id,
   "slug": slug.current,
   title,
-  excerpt,
+  ${excerptFields},
   date,
   featuredImage { ${IMAGE_FIELDS} },
 }[0..3]}`;
