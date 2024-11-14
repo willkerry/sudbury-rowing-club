@@ -1,0 +1,1 @@
+export { smartQuotes } from "./smartQuotes";

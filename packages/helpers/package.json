@@ -1,0 +1,21 @@
+{
+  "name": "@sudburyrc/helpers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sudburyrc/tsconfig": "workspace:*",
+    "tsup": "^8.3.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  }
+}
