@@ -8,11 +8,7 @@ import animate from "tailwindcss-animate";
 export default {
   plugins: [animate, typography, aspectRatio],
   mode: "jit",
-  content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./{components,pages,app,lib}/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
@@ -31,6 +27,7 @@ export default {
 
       fontFamily: {
         sans: ["InterVariable", "Inter", "system-ui", "sans-serif"],
+        serif: ['"Source Serif 4 Variable"', "serif"],
         mono: [
           "JetBrains Mono Variable",
           "ui-monospace",
@@ -68,10 +65,6 @@ export default {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            '[class~="lead"]': {
-              color: theme("colors.gray.900"),
-              fontWeight: theme("fontWeight.medium"),
-            },
             "h2, h3": {
               lineHeight: theme("lineHeight.snug"),
             },
@@ -83,19 +76,15 @@ export default {
 
             blockquote: {
               fontWeight: null,
-              color: theme("colors.gray.600"),
-              borderWidth: theme("borderWidth.DEFAULT"),
-              borderColor: theme("colors.gray.200"),
-              borderRadius: theme("borderRadius.md"),
-              backgroundColor: theme("colors.gray.50"),
-              paddingLeft: theme("padding.6"),
-              paddingRight: theme("padding.6"),
-              marginTop: theme("spacing.5"),
-              marginBottom: theme("spacing.5"),
+              color: null,
+              borderWidth: null,
               borderLeftWidth: null,
               borderLeftColor: null,
+              borderInlineStartWidth: null,
+              borderInlineStartColor: null,
               quotes: null,
               fontStyle: null,
+              fontSize: "0.875rem",
             },
             "blockquote p:first-of-type::before": {
               content: null,
@@ -103,6 +92,11 @@ export default {
             "blockquote p:last-of-type::after": {
               content: null,
             },
+
+            "blockquote p": {
+              fontSize: "1rem",
+            },
+
             a: {
               fontWeight: null,
               textDecoration: null,

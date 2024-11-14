@@ -6,9 +6,12 @@ type Props = {
 };
 
 const PostBody = ({ content }: Props) => (
-  <div className="mx-auto max-w-prose">
-    <Text portableText={content} lead />
-  </div>
+  <Text
+    portableText={content}
+    font="serif"
+    lead
+    className="mx-auto max-w-[650px]"
+  />
 );
 
 export default PostBody;

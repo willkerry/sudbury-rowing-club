@@ -28,7 +28,7 @@ const components: PortableTextComponents = {
         <blockquote>
           <PortableText value={value?.quote} />
         </blockquote>
-        <figcaption>{value?.attribution}</figcaption>
+        <figcaption className="pl-3.5 -mt-4">{value?.attribution}</figcaption>
       </figure>
     ),
     note: ({ value }) => (

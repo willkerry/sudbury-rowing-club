@@ -1,5 +1,7 @@
+import type { ComponentProps } from "react";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
+import Text from "@/components/stour/text";
 import { cn } from "@/lib/utils";
 
 /**
@@ -11,20 +13,25 @@ const TextPage = ({
   title,
   color,
   prose = "prose",
+  font,
   className,
 }: {
   title: string;
   children: React.ReactNode;
-  color?: Parameters<typeof HeroTitle>[0]["color"];
+  color?: ComponentProps<typeof HeroTitle>["color"];
   prose?: "max-w-prose" | "prose" | false;
+  font?: ComponentProps<typeof Text>["font"];
   className?: Parameters<typeof cn>[0];
 }) => (
   <>
     <HeroTitle title={title} prose={!!prose} breadcrumbs {...{ color }} />
     <Container>
-      <div className={cn("mx-auto mb-16 mt-8 sm:my-16", prose, className)}>
+      <Text
+        className={cn("mx-auto mb-16 mt-8 sm:my-16", prose, className)}
+        font={font}
+      >
         {children}
-      </div>
+      </Text>
     </Container>
   </>
 );
