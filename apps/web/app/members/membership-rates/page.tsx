@@ -1,7 +1,7 @@
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
-import { AlertTriangle } from "lucide-react";
+import { TagIcon } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -40,8 +40,8 @@ const MembershipRates = async () => {
                 <div className="text-xs">{rate.Category.Description}</div>
 
                 {rate.Category.Restrictions && (
-                  <div className="mt-1 flex items-center gap-1 text-xs font-medium text-red-700">
-                    <AlertTriangle className="inline-block h-3 w-3" />
+                  <div className="mt-1 flex items-start gap-1 text-xs font-medium text-red-700">
+                    <TagIcon aria-hidden className="shrink-0 h-3 w-3 mt-0.5" />
                     {rate.Category.Restrictions}
                   </div>
                 )}
