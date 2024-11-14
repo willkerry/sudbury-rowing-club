@@ -16,6 +16,8 @@
   "dependencies": {
     "@portabletext/types": "^2.0.13",
     "@sanity/image-url": "^1.0.2",
+    "@stdlib/nlp-sentencize": "^0.2.2",
+    "@sudburyrc/helpers": "workspace:*",
     "emoji-regex": "^10.4.0",
     "groq": "^3.57.4",
     "he": "^1.2.0",

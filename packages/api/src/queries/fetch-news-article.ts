@@ -3,12 +3,15 @@ import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 import { ZTypedObject } from "./typed-object";
 import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
+import sentencize from "@stdlib/nlp-sentencize";
+import { smartQuotes } from "@sudburyrc/helpers";
 
 const articleFields = groq`
   _id,
   "slug": slug.current,
   title,
-  excerpt,
+  "excerpt": coalesce(excerpt, array::join(string::split(pt::text(body), "")[0...255], "")),
+  "isSyntheticExcerpt": !defined(excerpt),
   date,
   author {
     "firstName": coalesce(@->person->firstName, @->firstName),
@@ -41,7 +44,8 @@ const articleSummaryFields = groq`
   _id,
   "slug": slug.current,
   title,
-  excerpt,
+  "excerpt": coalesce(excerpt, array::join(string::split(pt::text(body), "")[0...255], "")),
+  "isSyntheticExcerpt": !defined(excerpt),
   date,
   featuredImage { ${IMAGE_FIELDS} },
 `;
@@ -49,8 +53,13 @@ const articleSummaryFields = groq`
 const ZArticle = z.object({
   _id: z.string(),
   slug: z.string(),
-  title: z.string(),
-  excerpt: z.string().nullable(),
+  title: z.string().transform(smartQuotes),
+  excerpt: z
+    .string()
+    .nullable()
+    .transform((v) => (v ? sentencize(v)[0] : null))
+    .transform(smartQuotes),
+  isSyntheticExcerpt: z.boolean(),
   date: z.string(),
   author: z
     .object({
