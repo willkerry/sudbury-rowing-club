@@ -16,7 +16,7 @@ export default async function getOfficer(id: string) {
   }
   const data = await sanityClient.fetch(
     groq`
-          *[_id == $id && !(_id in path("drafts.**")) && vacant == false && email != null && email != ""]{
+          *[_id == $id && !(_id in path("drafts.**")) && vacant == false && defined(occupant->email)]{
             _id,
             "occupantID": occupant->_id,
             "name": occupant->firstName + " " + occupant->surname,
@@ -26,6 +26,11 @@ export default async function getOfficer(id: string) {
         `,
     { id },
   );
+
+  if (!data)
+    throw new Error(
+      "Unable to retrieve contact details for the selected officer",
+    );
 
   return GetOfficerSchema.parse(data);
 }
