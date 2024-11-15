@@ -35,7 +35,7 @@ export default function SafetyError({ error }: { error: Error }) {
         <div className="h-12" />
 
         <ErrorComponent error={error} label={error.name}>
-          <pre className="overflow-hidden rounded bg-red-50 p-2 text-red-600">
+          <pre className="rounded bg-red-50 p-2 text-xs text-red-600">
             <code>{error.stack}</code>
           </pre>
         </ErrorComponent>

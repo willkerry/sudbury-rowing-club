@@ -44,7 +44,7 @@ export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
           )}
 
           {children && (
-            <div className="prose-red mt-2 text-xs prose-a:underline">
+            <div className="prose prose-red mt-2 prose-a:underline">
               {children}
             </div>
           )}
