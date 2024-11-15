@@ -1,3 +1,5 @@
+"use client";
+
 import { useLightBox } from "@/components/stour/lightbox";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { cn } from "@/lib/utils";

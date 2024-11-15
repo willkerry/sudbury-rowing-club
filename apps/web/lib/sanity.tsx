@@ -1,5 +1,3 @@
-"use client";
-
 import Figure from "@/components/stour/figure";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
@@ -15,6 +13,7 @@ import {
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { OEmbed } from "../components/oembed/oembed";
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
@@ -76,7 +75,8 @@ const components: PortableTextComponents = {
         <AlertDescription>{value?.note}</AlertDescription>
       </Alert>
     ),
-    figure: Figure,
+    figure: ({ value }) => <Figure value={value} />,
+    oembed: ({ value }) => <OEmbed url={value?.url} />,
   },
 };
 

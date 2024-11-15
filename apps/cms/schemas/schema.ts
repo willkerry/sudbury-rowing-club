@@ -7,6 +7,7 @@ import members from "./members";
 import minutes from "./minutes";
 import news from "./news";
 import note from "./note";
+import oembed from "./oembed";
 import officers from "./officers";
 import person from "./person";
 import quote from "./quote";
@@ -29,6 +30,7 @@ const schemas = [
   minutes,
   news,
   note,
+  oembed,
   officers,
   person,
   quote,
