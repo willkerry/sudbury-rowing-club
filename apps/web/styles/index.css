@@ -62,7 +62,7 @@ label {
     hyphens: auto;
   }
 
-  .auto-lead > :first-child {
+  .auto-lead > p:first-child {
     @apply font-medium font-sans;
   }
 
