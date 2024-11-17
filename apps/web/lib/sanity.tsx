@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { OEmbed } from "../components/oembed/oembed";
+import { smartQuotes } from "@sudburyrc/helpers";
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
@@ -45,8 +46,10 @@ const NoteIcon = ({
 
 const components: PortableTextComponents = {
   marks: {
+    normal: ({ value }) => <pre>{JSON.stringify(value)}</pre>,
     link: ({ value, children }) => <Link href={value?.href}>{children}</Link>,
   },
+
   types: {
     code: ({ value }) => (
       <pre data-language={value?.language}>
@@ -88,9 +91,32 @@ export function PortableText({
   if (value) {
     return (
       <div {...{ className }}>
-        <BlockContent {...{ components, value }} {...rest} />
+        <BlockContent
+          components={components}
+          // value={smartQuotesDeep(value)}
+          value={value}
+          {...rest}
+        />
       </div>
     );
   }
   return null;
+}
+
+function smartQuotesDeep(
+  input: PortableTextProps["value"],
+): PortableTextProps["value"] {
+  if (!input) return input;
+  if (!Array.isArray(input)) return input;
+
+  return input.map((item) => {
+    return {
+      ...item,
+      children: item.children?.map((child: Record<string, string>) => {
+        if (child.text) return { ...child, text: smartQuotes(child.text) };
+
+        return child;
+      }),
+    };
+  });
 }

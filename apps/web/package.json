@@ -30,6 +30,7 @@
     "@south-paw/react-obfuscate-ts": "^2.0.0",
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/blue": "workspace:*",
+    "@sudburyrc/helpers": "workspace:*",
     "@sudburyrc/ical-builder": "workspace:*",
     "@sudburyrc/tailwind-config": "workspace:*",
     "@tanstack/react-form": "^0.20.3",
