@@ -5,7 +5,13 @@ import {
   MobileMenuButton,
   MobileMenuSection,
 } from "@/components/nav/mobile-menu";
-import { Popover, Transition } from "@headlessui/react";
+import {
+  Popover,
+  PopoverButton,
+  PopoverGroup,
+  PopoverPanel,
+  Transition,
+} from "@headlessui/react";
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
 import { fork } from "radash";
 import { Fragment } from "react";
@@ -54,13 +60,13 @@ const Nav = () => {
               <NavLogo />
               <MobileMenuButton />
 
-              <Popover.Group as="nav" className="mx-auto hidden sm:flex">
+              <PopoverGroup as="nav" className="mx-auto hidden sm:flex">
                 {navigationGroups.map(({ title, items }) => (
                   <NavSection key={title} label={title} {...{ items }} />
                 ))}
-              </Popover.Group>
+              </PopoverGroup>
 
-              <Popover.Group
+              <PopoverGroup
                 as="nav"
                 className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
               >
@@ -80,7 +86,7 @@ const Nav = () => {
                     />
                   );
                 })}
-              </Popover.Group>
+              </PopoverGroup>
             </div>
           </div>
 
@@ -94,7 +100,7 @@ const Nav = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Popover.Panel
+            <PopoverPanel
               focus
               static
               className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden"
@@ -119,12 +125,12 @@ const Nav = () => {
                 ))}
               </div>
               <div className="absolute right-3 top-3">
-                <Popover.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
+                <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
                   <span className="sr-only">Close menu</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden />
-                </Popover.Button>
+                </PopoverButton>
               </div>
-            </Popover.Panel>
+            </PopoverPanel>
           </Transition>
         </>
       )}

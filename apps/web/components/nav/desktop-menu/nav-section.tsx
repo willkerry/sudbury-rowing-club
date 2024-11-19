@@ -2,7 +2,12 @@
 
 import { cn } from "@/lib/utils";
 import type { IconNavItemType } from "@/types/nav-item";
-import { CloseButton, Popover, Transition } from "@headlessui/react";
+import {
+  CloseButton,
+  Popover,
+  PopoverButton,
+  Transition,
+} from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -111,7 +116,7 @@ const NavSection = ({
     <Popover className="relative">
       {({ open }) => (
         <>
-          <Popover.Button
+          <PopoverButton
             className={cn(
               isActive || open ? navLinkActive : navLinkColor,
               navLinkClasses,
@@ -131,7 +136,7 @@ const NavSection = ({
                 aria-hidden
               />
             </>
-          </Popover.Button>
+          </PopoverButton>
 
           <Transition
             show={open}
