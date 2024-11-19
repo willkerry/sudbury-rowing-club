@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useClipboard } from "@mantine/hooks";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { CheckIcon, Clipboard } from "lucide-react";
 import { toast } from "sonner";
 
@@ -32,8 +32,8 @@ const Copy = ({ value }: { value: string }) => {
       <span
         data-copied={copied}
         className={cn(
-          "relative hidden select-none items-center text-xs font-semibold text-blue-500 opacity-0 md:flex",
-          "transition-opacity group-hover:opacity-100  data-[copied=true]:opacity-100",
+          "relative hidden select-none items-center text-xs font-semibold text-blue-500 mb-0.5 opacity-0 md:flex",
+          "transition-opacity duration-300 group-hover:opacity-100 data-[copied=true]:opacity-100",
         )}
       >
         <Clipboard aria-hidden className="absolute h-4 w-4" />

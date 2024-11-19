@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { Select } from "@/components/ui/select";
@@ -8,7 +9,8 @@ import useFilter from "@/hooks/useFilter";
 import { HOSTNAME } from "@/lib/constants";
 import { getHostname } from "@/lib/helpers/getHostname";
 import type { SRCEvent } from "@sudburyrc/api";
-import { useState } from "react";
+import { AnimatePresence, LayoutGroup } from "motion/react";
+import * as motion from "motion/react-client";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -28,10 +30,17 @@ const EventCard = ({
 }: {
   event: Event;
 }) => (
-  <li
-    {...{ id }}
+  <motion.li
+    layout="position"
+    id={id}
     key={id}
-    className={`grid bg-white px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
+    className={`grid bg-white border rounded px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
+    animate={{
+      transition: { duration: 0.3 },
+      opacity: 1,
+    }}
+    exit={{ opacity: 0 }}
+    initial={{ opacity: 0 }}
   >
     <h3 className="mb-0.5 line-clamp-1 text-sm font-semibold">{competition}</h3>
     <DateFormatter
@@ -50,7 +59,7 @@ const EventCard = ({
         </Link>
       )}
     </div>
-  </li>
+  </motion.li>
 );
 
 const groupByMonth = (
@@ -72,12 +81,6 @@ const groupByMonth = (
 };
 
 export const EventCalendar = ({ events }: { events: Event[] }) => {
-  // const { data: events, status } = useQuery({
-  //   queryKey: ["competition-calendar"],
-  //   queryFn: fetchCompetitions,
-  //   staleTime: 10 * 60 * 1000,
-  // });
-
   const regions = new Set(events?.map((event) => event.region));
   const [selectedRegion, setSelectedRegion] = useState<string | null>(
     "Eastern",
@@ -123,13 +126,18 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
         </div>
       </div>
 
-      {events && (
-        <div className="grid grid-cols-1 rounded border bg-gray-50 md:grid-cols-2 lg:grid-cols-3">
-          {groupByMonth(filteredEvents).map(({ month, events }) => (
-            <div
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <AnimatePresence>
+          {groupByMonth(filteredEvents).map(({ month, events }, i) => (
+            <motion.div
               id={`month-${month + 1}`}
               key={month}
-              className="overflow-hidden border-b border-r md:border-b-0"
+              animate={{
+                transition: { duration: 0.5 },
+                opacity: 1,
+              }}
+              exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
             >
               <Label as="h2" className="mb-2 p-2 text-xs">
                 {new Date(events[0].startDate).toLocaleString("default", {
@@ -138,15 +146,15 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
                 })}
               </Label>
 
-              <ul className="mb-8 grid divide-y border-y">
+              <motion.ul className="mb-8 grid gap-2">
                 {events.map((event) => (
                   <EventCard {...{ event }} key={event.id} />
                 ))}
-              </ul>
-            </div>
+              </motion.ul>
+            </motion.div>
           ))}
-        </div>
-      )}
+        </AnimatePresence>
+      </div>
     </>
   );
 };

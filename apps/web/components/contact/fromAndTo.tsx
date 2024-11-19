@@ -1,7 +1,7 @@
 import { clampString } from "@/lib/helpers/clampString";
 import { getInitials } from "@/lib/helpers/getInitials";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { z } from "zod";
 import { Identity } from "./identity";
