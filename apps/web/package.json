@@ -37,7 +37,6 @@
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@tanstack/zod-form-adapter": "^0.20.3",
-    "@vercel/analytics": "^1.3.2",
     "@vercel/kv": "^1.0.1",
     "algoliasearch": "^4.24.0",
     "bowser": "^2.11.0",
