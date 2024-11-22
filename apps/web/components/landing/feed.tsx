@@ -3,7 +3,10 @@ import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 import cn from "clsx";
-import type { BRArticle } from "@/lib/server/fetchBritishRowingFeed";
+import {
+  fetchBritishRowingFeed,
+  type BRArticle,
+} from "@/lib/server/fetchBritishRowingFeed";
 
 const BritishRowingArticle = ({
   article,
@@ -37,7 +40,7 @@ const BritishRowingArticle = ({
   </a>
 );
 
-const Feed = async ({
+const PresentationalFeed = ({
   articles,
   skeleton,
 }:
@@ -62,4 +65,8 @@ const Feed = async ({
   </>
 );
 
-export default Feed;
+export const Feed = async ({ skeleton }: { skeleton?: boolean }) => {
+  if (skeleton) return <PresentationalFeed skeleton />;
+
+  return <PresentationalFeed articles={await fetchBritishRowingFeed()} />;
+};

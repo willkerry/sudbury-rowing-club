@@ -1,13 +1,14 @@
-import Container from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { SOCIALS } from "@/lib/constants";
-import type { ArticleSummary } from "@sudburyrc/api";
+import { fetchLandingPage } from "@sudburyrc/api";
 
-const LatestNews = ({ news }: { news: ArticleSummary[] }) => (
-  <section className="my-16">
-    <Container>
+const LandingNewsPage = async () => {
+  const { news } = await fetchLandingPage();
+
+  return (
+    <>
       <h2>
         <Label>Latest News</Label>
       </h2>
@@ -20,8 +21,8 @@ const LatestNews = ({ news }: { news: ArticleSummary[] }) => (
       <Link href="/news" arrow>
         See more news
       </Link>
-    </Container>
-  </section>
-);
+    </>
+  );
+};
 
-export default LatestNews;
+export default LandingNewsPage;

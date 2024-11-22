@@ -1,4 +1,4 @@
-import Feed from "@/components/landing/feed";
+import { Feed } from "@/components/landing/feed";
 
 const BritishRowingFeedLoader = () => <Feed skeleton />;
 
