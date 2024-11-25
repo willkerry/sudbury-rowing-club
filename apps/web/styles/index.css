@@ -1,59 +1,11 @@
 @tailwind base;
 
 html {
-  @apply antialiased;
+  @apply antialiased bg-white;
   font-feature-settings: "ss03" 1;
 }
 
 @tailwind components;
-
-/* [type="text"],
-[type="email"],
-[type="url"],
-[type="password"],
-[type="number"],
-[type="date"],
-[type="datetime-local"],
-[type="month"],
-[type="search"],
-[type="tel"],
-[type="time"],
-[type="week"],
-[multiple],
-textarea,
-select {
-  @apply mt-1 w-full rounded-md border-gray-200 transition focus:border-blue-600 focus:ring focus:ring-blue-200 focus:ring-opacity-50;
-}
-
-select {
-  @apply cursor-pointer hover:border-blue-600 hover:ring hover:ring-blue-200 hover:ring-opacity-50;
-}
-
-[type="checkbox"] {
-  @apply mx-2 rounded hover:cursor-pointer;
-}
-
-input:disabled,
-select:disabled,
-textarea:disabled {
-  @apply cursor-not-allowed bg-gray-50 text-gray-500 placeholder:text-gray-300 hover:border-inherit hover:ring-0;
-}
-
-input.invalid,
-select.invalid,
-textarea.invalid {
-  @apply cursor-pointer border-red-500 ring-2 ring-red-200 hover:ring-4 focus:ring-4;
-}
-
-input:invalid:before {
-  position: absolute;
-  content: "✖";
-  padding-left: 5px;
-}
-
-label {
-  @apply block text-xs font-medium uppercase tracking-wider text-gray-600;
-} */
 
 @tailwind utilities;
 
