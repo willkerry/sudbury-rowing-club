@@ -1,3 +1,4 @@
-import Figure from "./figure";
+import { Figure } from "./figure";
+import { SanityFigure } from "./sanityFigure";
 
-export default Figure;
+export { Figure, SanityFigure };

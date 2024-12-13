@@ -5,10 +5,10 @@ import { useToggle, useViewportSize } from "@mantine/hooks";
 import { Fragment, type SetStateAction } from "react";
 
 type LightBoxProps = {
-  aspectRatio: number;
+  aspectRatio?: number;
   src: string;
-  lqip: string;
-  alt: string;
+  lqip?: string;
+  alt?: string;
   open: boolean;
   toggle: (value?: SetStateAction<boolean>) => void;
 };
@@ -18,7 +18,7 @@ const PADDING = 16;
 function calculateImageSize(
   windowWidth: number,
   windowHeight: number,
-  aspectRatio: number,
+  aspectRatio = 1,
 ) {
   const windowAspectRatio = windowWidth / windowHeight;
 
@@ -35,7 +35,7 @@ function calculateImageSize(
   };
 }
 
-function useLightBoxSize(aspectRatio: number) {
+function useLightBoxSize(aspectRatio?: number) {
   const { width: viewportWidth, height: viewportHeight } = useViewportSize();
 
   const { width, height } = calculateImageSize(

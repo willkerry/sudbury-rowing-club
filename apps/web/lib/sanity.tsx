@@ -1,4 +1,4 @@
-import Figure from "@/components/stour/figure";
+import { SanityFigure } from "@/components/stour/figure";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   PortableText as BlockContent,
@@ -78,7 +78,7 @@ const components: PortableTextComponents = {
         <AlertDescription>{value?.note}</AlertDescription>
       </Alert>
     ),
-    figure: ({ value }) => <Figure value={value} />,
+    figure: ({ value }) => <SanityFigure value={value} />,
     oembed: ({ value }) => <OEmbed url={value?.url} />,
   },
 };
