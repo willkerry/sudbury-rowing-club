@@ -65,7 +65,6 @@ export const SanityFigure = ({
         blurDataURL: lqip,
       }}
       caption={captionText}
-      src={urlFor(image).url()}
     />
   );
 };

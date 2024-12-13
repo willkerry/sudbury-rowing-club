@@ -8,13 +8,14 @@ export const FigureWrapper = ({
   blurDataURL,
   src,
   children,
+  ...rest
 }: {
   alt?: string;
   aspectRatio?: number;
   blurDataURL?: string;
   src: string;
   children: React.ReactNode;
-}) => {
+} & React.ComponentPropsWithoutRef<"figure">) => {
   const { toggle, LightBox } = useLightBox({
     aspectRatio,
     src,
@@ -26,7 +27,7 @@ export const FigureWrapper = ({
     <>
       <LightBox />
 
-      <figure>
+      <figure {...rest}>
         <button
           type="button"
           onClick={() => toggle()}
