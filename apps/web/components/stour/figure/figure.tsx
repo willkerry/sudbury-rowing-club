@@ -1,17 +1,17 @@
+import React from "react";
 import { cn } from "@/lib/utils";
 import Image, { type ImageProps, type StaticImageData } from "next/image";
 import { FigureWrapper } from "./figureWrapper";
 
 export const WIDTH = 650;
 
-export const Figure = ({
-  imageProps: { className, ...imageProps },
-  caption,
-  ...rest
-}: {
-  imageProps: ImageProps;
-  caption?: string;
-} & React.ComponentPropsWithoutRef<"figure">) => {
+export const Figure = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    imageProps: ImageProps;
+    caption?: React.ReactNode;
+  }
+>(({ imageProps, caption, ...props }, ref) => {
   const src = getSrcString(imageProps.src);
   const { alt, blurDataURL, width, height } = imageProps;
 
@@ -20,10 +20,8 @@ export const Figure = ({
   const probableWidth = maybeStaticImageData?.width || Number(width);
   const probableHeight = maybeStaticImageData?.height || Number(height);
 
-  const hasCaption = caption?.trim();
-  const imageClassName = cn(hasCaption && "mb-0", className);
-
   const willBeOptimised = isOptimisableImage(imageProps);
+  const hasCaption = !!caption;
 
   return (
     <FigureWrapper
@@ -35,28 +33,29 @@ export const Figure = ({
           : probableWidth / probableHeight
       }
       blurDataURL={blurDataURL}
-      {...rest}
+      {...props}
+      ref={ref}
     >
       {willBeOptimised ? (
         <Image
           sizes={`(max-width: ${WIDTH}px) 80vw, ${width}px`}
-          className={imageClassName}
+          className={cn(hasCaption && "mb-0", imageProps.className)}
           {...imageProps}
         />
       ) : (
         <img
           src={src}
           alt={alt}
-          className={imageClassName}
+          className={cn(hasCaption && "mb-0", imageProps.className)}
           width={width}
           height={height}
         />
       )}
 
-      {hasCaption && <figcaption>{caption}</figcaption>}
+      {caption && <figcaption>{caption}</figcaption>}
     </FigureWrapper>
   );
-};
+});
 
 function getSrcString(src: ImageProps["src"]): string {
   if (!src) return "";

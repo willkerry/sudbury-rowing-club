@@ -1,21 +1,17 @@
 "use client";
 
+import React from "react";
 import { useLightBox } from "../lightbox";
 
-export const FigureWrapper = ({
-  alt,
-  aspectRatio,
-  blurDataURL,
-  src,
-  children,
-  ...rest
-}: {
-  alt?: string;
-  aspectRatio?: number;
-  blurDataURL?: string;
-  src: string;
-  children: React.ReactNode;
-} & React.ComponentPropsWithoutRef<"figure">) => {
+export const FigureWrapper = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    alt?: string;
+    aspectRatio?: number;
+    blurDataURL?: string;
+    src: string;
+  }
+>(({ alt, aspectRatio, blurDataURL, src, children, ...rest }, ref) => {
   const { toggle, LightBox } = useLightBox({
     aspectRatio,
     src,
@@ -27,11 +23,11 @@ export const FigureWrapper = ({
     <>
       <LightBox />
 
-      <figure {...rest}>
+      <figure {...rest} ref={ref}>
         <button
           type="button"
           onClick={() => toggle()}
-          className="mx-auto block hover:cursor-zoom-in"
+          className="mx-auto block hover:cursor-zoom-in text-left"
           aria-label={`View the '${alt}' image in lightbox`}
         >
           {children}
@@ -39,4 +35,4 @@ export const FigureWrapper = ({
       </figure>
     </>
   );
-};
+});
