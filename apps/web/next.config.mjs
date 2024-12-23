@@ -1,5 +1,5 @@
 // @ts-check
-
+import { withContentCollections } from "@content-collections/next";
 import redirects from "./data/redirects.json" assert { type: "json" };
 const { redirects: redirectsArray } = redirects;
 
@@ -15,9 +15,10 @@ const config = {
   },
   swcMinify: true,
   redirects: () => new Promise((resolve) => resolve(redirectsArray)),
+  reactStrictMode: true,
 };
 
-export default config;
+export default withContentCollections(config);
 
 /**
  * @param {string} hostname

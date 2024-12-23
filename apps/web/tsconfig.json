@@ -10,9 +10,11 @@
       "@/types/*": ["types/*"],
       "@/pages/*": ["pages/*"],
       "@/app/*": ["app/*"],
-      "@/assets/*": ["public/assets/*"]
+      "@/assets/*": ["public/assets/*"],
+      "content-collections": ["./.content-collections/generated"]
     },
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "moduleResolution": "bundler"
   },
   "include": [
     "next-env.d.ts",

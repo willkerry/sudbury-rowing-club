@@ -50,3 +50,78 @@ html {
       "cv08" 1;
   }
 }
+
+.shiki {
+  --fd-diff-remove-color: rgba(200, 10, 100, 0.12);
+  --fd-diff-remove-symbol-color: #e60a64;
+  --fd-diff-add-color: rgba(14, 180, 100, 0.12);
+  --fd-diff-add-symbol-color: #0ac864;
+}
+
+.shiki code {
+  display: grid;
+  background-color: var(--shiki-light-bg);
+}
+
+.dark .shiki code {
+  background-color: var(--shiki-dark-bg);
+}
+
+.shiki code span {
+  color: var(--shiki-light);
+}
+
+.dark .shiki code span {
+  color: var(--shiki-dark);
+}
+
+.fd-codeblock code {
+  display: grid;
+  font-size: 13px;
+}
+
+.shiki code .diff.remove {
+  background-color: var(--fd-diff-remove-color);
+  opacity: 0.7;
+}
+
+.shiki code .diff:before {
+  position: absolute;
+  left: 6px;
+}
+
+.shiki code .diff.remove:before {
+  content: "-";
+  color: var(--fd-diff-remove-symbol-color);
+}
+
+.shiki code .diff.add {
+  background-color: var(--fd-diff-add-color);
+}
+
+.shiki code .diff.add:before {
+  content: "+";
+  color: var(--fd-diff-add-symbol-color);
+}
+
+.shiki code .diff {
+  margin: 0 -16px;
+  padding: 0 16px;
+  position: relative;
+}
+
+.shiki .highlighted {
+  margin: 0 -16px;
+  padding: 0 16px;
+  background-color: rgb(255 255 255 / 15%);
+}
+
+.shiki .highlighted-word {
+  padding: 1px 2px;
+  margin: -1px -3px;
+  border: 1px solid;
+  border-color: rgb(255 255 255 / 55%);
+  background-color: rgb(255 255 255 / 15%);
+  border-radius: 2px;
+}
+
