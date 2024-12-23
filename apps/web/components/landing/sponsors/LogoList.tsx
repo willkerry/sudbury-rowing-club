@@ -3,7 +3,7 @@
 import { shuffle as shuffleFn } from "radash";
 import { cn } from "@/lib/utils";
 import type { SponsorLogo } from ".";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const LogoListItem = ({ logo, href, name }: SponsorLogo) => (
   <li key={`${href}${name}`}>
@@ -31,7 +31,11 @@ export const LogoList = ({
   className?: string;
   shuffle?: boolean;
 }) => {
-  const [maybeShuffledLogos] = useState(shuffle ? shuffleFn(logos) : logos);
+  const [maybeShuffledLogos, setLogos] = useState<SponsorLogo[]>();
+
+  useEffect(() => {
+    setLogos(shuffle ? shuffleFn(logos) : logos);
+  }, [logos, shuffle]);
 
   return (
     <ul
@@ -40,7 +44,7 @@ export const LogoList = ({
         className,
       )}
     >
-      {maybeShuffledLogos.map((logo) => (
+      {maybeShuffledLogos?.map((logo) => (
         <LogoListItem key={logo.name} {...logo} />
       ))}
     </ul>
