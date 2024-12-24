@@ -1,6 +1,7 @@
 import TextPage from "@/components/layouts/text-page";
 import committees from "@/data/officer-archive.json";
 import { createMetadata } from "@/lib/create-metadata";
+import Link from "next/link";
 import { listify } from "radash";
 
 export const metadata = createMetadata({
@@ -10,21 +11,30 @@ export const metadata = createMetadata({
 
 type Position = keyof (typeof committees)[0];
 
-const POSITION_NAMES = new Map<Position, [string, string]>([
+export const POSITION_NAMES = new Map<Position, [string, string]>([
   ["president", ["President", "Presidents"]],
   ["captain", ["Captain", "Captains"]],
   ["chair", ["Chair", "Chairs"]],
   ["secretary", ["Secretary", "Secretaries"]],
   ["treasurer", ["Treasurer", "Treasurers"]],
-  ["viceCaptains", ["Vice Captain", "Vice Captains"]],
+  ["viceCaptains", ["Vice-captain", "Vice-captains"]],
   ["ladiesCaptain", ["Ladies Captain", "Ladies Captains"]],
   ["ladiesSecretary", ["Ladies Secretary", "Ladies Secretaries"]],
   ["ladiesViceCaptain", ["Ladies VC", "Ladies VCs"]],
   ["season", ["Season", "Seasons"]],
 ]);
 
-const initialiseName = (name: string) => {
+const NAME_SWAPS = new Map<string, string>([["Tricia", "P"]]);
+
+export const initialiseName = (name: string) => {
   const names = name.split(" ");
+
+  for (const nameSwap of NAME_SWAPS.keys()) {
+    if (names.includes(nameSwap)) {
+      names.splice(names.indexOf(nameSwap), 1, NAME_SWAPS.get(nameSwap) || "");
+    }
+  }
+
   const surname = names.pop()?.replace("+", " ");
 
   const initials = names.map((name) => name[0]).join(" ");
@@ -41,9 +51,9 @@ const Archive = () => (
 
       return (
         <div key={season}>
-          <a href={`#season-${season}`}>
+          <Link href={`committees/${season}`}>
             <h2 id={`season-${season}`}>{season}</h2>
-          </a>
+          </Link>
           <ul className="mb-8 list-none pl-0">
             {listify(committee, (position, occupants) => {
               if (!occupants?.length) return null;

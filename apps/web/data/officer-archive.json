@@ -1789,5 +1789,22 @@
     "ladiesCaptain": null,
     "ladiesViceCaptain": null,
     "ladiesSecretary": null
+  },
+  {
+    "season": ["2025"],
+    "president": null,
+    "chair": ["Sean Moriarty"],
+    "captain": ["Paul Shipton"],
+    "secretary": ["Linda Newbigging"],
+    "treasurer": ["Mark Todd"],
+    "viceCaptains": [
+      "Tracy Muir",
+      "Emma Krohn",
+      "Valerie Ingham+Boor",
+      "Victoria Burgess"
+    ],
+    "ladiesCaptain": null,
+    "ladiesViceCaptain": null,
+    "ladiesSecretary": null
   }
 ]
