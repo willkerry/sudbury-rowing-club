@@ -33,11 +33,11 @@ const Notice = async ({ params }: Params) => {
       <HeroTitle prose title={notice?.title} transparent>
         <div className="h-2" />
         <Label>Members’ Notices</Label>{" "}
-        <Link href="/members" arrow className="text-sm font-medium">
+        <Link href="/members" arrow className="font-medium text-sm">
           View all
         </Link>
       </HeroTitle>
-      <Container className="mb-12 mt-6 max-w-prose  space-y-6 sm:mt-12">
+      <Container className="mt-6 mb-12 max-w-prose space-y-6 sm:mt-12">
         <div className="divide-y overflow-hidden rounded border">
           <NoticeBody notice={notice} />
         </div>

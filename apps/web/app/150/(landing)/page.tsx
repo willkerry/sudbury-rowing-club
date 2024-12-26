@@ -31,7 +31,7 @@ const Join = () => (
       <Container className="my-16">
         <HundredAndFiftyLogo />
 
-        <h1 className="mx-auto mb-12 mt-20 text-center text-3xl font-semibold text-white md:text-7xl">
+        <h1 className="mx-auto mt-20 mb-12 text-center font-semibold text-3xl text-white md:text-7xl">
           Join us in celebrating 150 years of rowing in Sudbury
         </h1>
 

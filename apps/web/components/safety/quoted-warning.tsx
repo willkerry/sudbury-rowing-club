@@ -44,7 +44,7 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
       <blockquote className="relative mt-3 overflow-hidden">
         {source && (
           <div
-            className={`${agencyColors} absolute right-0 top-0 flex items-center justify-center rounded-bl p-1`}
+            className={`${agencyColors} absolute top-0 right-0 flex items-center justify-center rounded-bl p-1`}
           >
             <AgencyIcon aria-hidden className="h-4 w-4" />
           </div>

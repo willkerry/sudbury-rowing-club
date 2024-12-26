@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { LogoList } from "./LogoList";
 import abglass from "../../../public/assets/logos/ab-glass-home-improvement.svg";
 import ashtons from "../../../public/assets/logos/ashtons.svg";
 import britishRowing from "../../../public/assets/logos/british-rowing.svg";
 import errc from "../../../public/assets/logos/errc.svg";
 import mooreGreen from "../../../public/assets/logos/moore-green.svg";
 import swan from "../../../public/assets/logos/swan-at-lavenham.svg";
+import { LogoList } from "./LogoList";
 
 export type SponsorLogo = {
   logo: React.ReactNode;
@@ -99,7 +99,7 @@ export const Affiliates = ({ className }: { className?: string }) => (
     logos={[
       {
         logo: (
-          <div className="flex items-center pt-1 text-xs font-medium leading-none text-gray-500">
+          <div className="flex items-center pt-1 font-medium text-gray-500 text-xs leading-none">
             Affiliated with{" "}
           </div>
         ),
@@ -130,7 +130,7 @@ const Sponsors = ({
       <LogoList logos={affiliateLogos} className="md:justify-center md:gap-8" />
     )}
     {heading && (
-      <h3 className="mb-4 text-center text-sm font-medium text-gray-500">
+      <h3 className="mb-4 text-center font-medium text-gray-500 text-sm">
         {heading}
       </h3>
     )}

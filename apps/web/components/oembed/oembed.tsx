@@ -1,8 +1,8 @@
 import { unfurl } from "unfurl.js";
-import { Iframe } from "./iframe";
-import { Avatar, AvatarImage } from "../ui/avatar";
 import Link from "../stour/link";
+import { Avatar, AvatarImage } from "../ui/avatar";
 import { Error as ErrorComponent } from "../ui/error";
+import { Iframe } from "./iframe";
 
 export const OEmbed = async ({ url }: { url: string }) => {
   try {
@@ -33,8 +33,8 @@ export const OEmbed = async ({ url }: { url: string }) => {
 
       return (
         <figure>
-          <div className="not-prose border rounded-3xl p-2 text-sm max-w-sm">
-            <div className="flex items-center gap-2 mb-3">
+          <div className="not-prose max-w-sm rounded-3xl border p-2 text-sm">
+            <div className="mb-3 flex items-center gap-2">
               <Avatar>
                 <AvatarImage src={images?.[0].url} />
               </Avatar>
@@ -89,7 +89,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
       const { title, images, url, site_name } = data.open_graph;
 
       return (
-        <figure className="border rounded p-2 text-sm max-w-xs">
+        <figure className="max-w-xs rounded border p-2 text-sm">
           <img src={images?.[0].url} alt={title} />
           <figcaption>
             <a href={url}>
@@ -105,7 +105,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
       const { title, images, url, site_name = "" } = data.open_graph;
 
       return (
-        <figure className="border rounded p-2 text-sm max-w-xs">
+        <figure className="max-w-xs rounded border p-2 text-sm">
           <img src={images?.[0].url} alt={title} />
           <figcaption>
             <a href={url}>

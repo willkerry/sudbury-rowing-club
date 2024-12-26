@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import Image from "next/image";
 
 export const PostPreviewImage = ({
   id,

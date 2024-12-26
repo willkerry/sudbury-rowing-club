@@ -135,7 +135,7 @@ export const BugsClientSide = () => {
               </Field>
 
               <fieldset className="col-span-2 grid gap-4 rounded border bg-gray-50 p-2">
-                <legend className="text-xs font-medium text-gray-700">
+                <legend className="font-medium text-gray-700 text-xs">
                   Included automatically
                 </legend>
 
@@ -202,7 +202,7 @@ export const BugsClientSide = () => {
         }}
       />
 
-      <div className="prose mt-16 text-sm text-gray-500">
+      <div className="prose mt-16 text-gray-500 text-sm">
         Alternatively, mail{" "}
         <Obfuscate email="webmaster@sudburyrowingclub.org.uk" />.
       </div>

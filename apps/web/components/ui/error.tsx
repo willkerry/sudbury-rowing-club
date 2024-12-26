@@ -22,11 +22,11 @@ export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
       ref={ref}
       aria-atomic
       role="alert"
-      className={cn("text-sm font-medium text-red-600", className)}
+      className={cn("font-medium text-red-600 text-sm", className)}
       {...props}
     >
       <div className="flex items-start">
-        <AlertOctagon aria-hidden className="mr-2 mt-0.5 h-4 w-4 flex-none" />
+        <AlertOctagon aria-hidden className="mt-0.5 mr-2 h-4 w-4 flex-none" />
 
         <div>
           {label && <span className="mr-2 font-semibold">{label}</span>}

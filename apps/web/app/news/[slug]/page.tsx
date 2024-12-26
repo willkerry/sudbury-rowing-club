@@ -70,12 +70,12 @@ const Post = async ({ params }: Params) => {
       />
       {post.body && <PostBody content={post.body} />}
 
-      <div className="mx-auto my-12 flex max-w-prose justify-between rounded border bg-gray-50 px-3 pb-3 pt-2">
+      <div className="mx-auto my-12 flex max-w-prose justify-between rounded border bg-gray-50 px-3 pt-2 pb-3">
         <div className="flex gap-8">
           {post.author && (
             <div>
               <Label className="text-xs">Author</Label>
-              <div className="text-sm font-medium">
+              <div className="font-medium text-sm">
                 {`${post.author?.firstName} ${post.author?.surname}`}
                 <Link href={`/news/author/${post.author?._id}`}>
                   <ArrowUpRightIcon aria-hidden className="inline h-4 w-4" />
@@ -89,7 +89,7 @@ const Post = async ({ params }: Params) => {
           )}
           <div>
             <Label className="text-xs">Published</Label>
-            <div className="text-sm font-medium">
+            <div className="font-medium text-sm">
               <DateFormatter dateString={post.date} />
             </div>
           </div>

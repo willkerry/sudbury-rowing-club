@@ -13,13 +13,13 @@ const DateLocation = ({ date, location }: Props) => (
   <div className="my-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
     <div className="flex items-center">
       <CalendarIcon aria-hidden className={ICON_CLASSES} />
-      <span className="text-sm text-gray-800">{date}</span>
+      <span className="text-gray-800 text-sm">{date}</span>
     </div>
     <div className="flex items-center">
       <MapIcon aria-hidden className={ICON_CLASSES} />
       <Link
         href="/contact/how-to-find-us"
-        className="disambiguate text-sm text-gray-800"
+        className="disambiguate text-gray-800 text-sm"
       >
         {location}
       </Link>

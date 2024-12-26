@@ -27,7 +27,7 @@ export const FigureWrapper = React.forwardRef<
         <button
           type="button"
           onClick={() => toggle()}
-          className="mx-auto block hover:cursor-zoom-in text-left"
+          className="mx-auto block text-left hover:cursor-zoom-in"
           aria-label={`View the '${alt}' image in lightbox`}
         >
           {children}

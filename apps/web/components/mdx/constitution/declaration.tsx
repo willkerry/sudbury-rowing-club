@@ -2,7 +2,7 @@ import { Wordmark } from "@sudburyrc/blue";
 
 const DottedLine = () => (
   <span
-    className="ml-2 flex grow border-b-2 border-dotted border-gray-400"
+    className="ml-2 flex grow border-gray-400 border-b-2 border-dotted"
     aria-hidden
   >
     &nbsp;
@@ -10,7 +10,7 @@ const DottedLine = () => (
 );
 
 export const Declaration = () => (
-  <div className="rounded px-6 py-8 text-black shadow sm:px-28 sm:pb-24 sm:pt-14">
+  <div className="rounded px-6 py-8 text-black shadow sm:px-28 sm:pt-14 sm:pb-24">
     <p className="flex justify-center">
       <Wordmark className="mb-5 w-1/2 text-blue-800" />
     </p>
@@ -36,7 +36,7 @@ export const Declaration = () => (
 
     <br className="mb-6" />
 
-    <div className="text-sm text-gray-700">
+    <div className="text-gray-700 text-sm">
       <p>
         <em>
           <span className="font-semibold">*</span>

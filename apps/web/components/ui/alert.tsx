@@ -3,7 +3,7 @@ import { cn } from "lib/utils";
 import * as React from "react";
 
 const alertVariants = cva(
-  "relative w-full rounded border border-gray-200 p-3 [&>svg~*]:pl-6 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-3 [&>svg]:top-3 [&>svg]:text-gray-950",
+  "relative w-full rounded border border-gray-200 p-3 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:top-3 [&>svg]:left-3 [&>svg]:text-gray-950 [&>svg~*]:pl-6",
   {
     variants: {
       variant: {
@@ -49,7 +49,7 @@ const AlertDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("text-sm [&_p]:leading-relaxed [&_p]:my-0", className)}
+    className={cn("text-sm [&_p]:my-0 [&_p]:leading-relaxed", className)}
     {...props}
   />
 ));

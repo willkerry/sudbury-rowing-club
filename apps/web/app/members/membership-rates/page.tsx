@@ -40,20 +40,20 @@ const MembershipRates = async () => {
                 <div className="text-xs">{rate.Category.Description}</div>
 
                 {rate.Category.Restrictions && (
-                  <div className="mt-1 flex items-start gap-1 text-xs font-medium text-red-700">
-                    <TagIcon aria-hidden className="shrink-0 h-3 w-3 mt-0.5" />
+                  <div className="mt-1 flex items-start gap-1 font-medium text-red-700 text-xs">
+                    <TagIcon aria-hidden className="mt-0.5 h-3 w-3 shrink-0" />
                     {rate.Category.Restrictions}
                   </div>
                 )}
               </td>
               <td>
-                <div className="disambiguate text-sm font-medium tabular-nums leading-6">
+                <div className="disambiguate font-medium text-sm tabular-nums leading-6">
                   {Intl.NumberFormat("en-GB", {
                     currency: "GBP",
                     style: "currency",
                   }).format(rate.Cost.InclTax.Value)}
                 </div>
-                <div className="text-xs font-medium text-gray-500">
+                <div className="font-medium text-gray-500 text-xs">
                   {rate.DurationDescription}
                 </div>
 
@@ -65,7 +65,7 @@ const MembershipRates = async () => {
                         style: "currency",
                       }).format(rate.EarlyPaymentCost.InclTax.Value)}
                     </div>
-                    <div className="text-xs font-medium text-gray-500">
+                    <div className="font-medium text-gray-500 text-xs">
                       if paid within {rate.EarlyPaymentDeadlineDaysAbs}
                       {Intl.NumberFormat("en-GB", {
                         style: "unit",

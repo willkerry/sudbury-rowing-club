@@ -12,13 +12,13 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const inputVariants = cva(
   [
-    "peer flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+    "peer flex h-10 w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
     "data-[error=true]:border-2 data-[error=true]:border-red-600 data-[error=true]:bg-red-50",
   ],
   {
     variants: {
       loading: {
-        true: "animate-pulse ease-in-out bg-gray-100",
+        true: "animate-pulse bg-gray-100 ease-in-out",
       },
     },
   },
@@ -34,7 +34,7 @@ export const InputDescription = ({
   if (!description) return null;
 
   return (
-    <div id={id} className="mt-1 text-xs text-gray-600">
+    <div id={id} className="mt-1 text-gray-600 text-xs">
       {description}
     </div>
   );
@@ -46,7 +46,7 @@ export const InputError = ({ id, error }: { id: string; error?: string }) => {
   return (
     <div
       id={id}
-      className="mt-1 text-xs font-medium text-red-700"
+      className="mt-1 font-medium text-red-700 text-xs"
       aria-atomic
       role="alert"
     >

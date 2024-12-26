@@ -1,7 +1,7 @@
-import type { ComponentProps } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 import { MDXContent as BaseMDXContent } from "@content-collections/mdx/react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import type { ComponentProps } from "react";
 
 export const MDXContent = ({
   components,
@@ -18,7 +18,7 @@ export const MDXContent = ({
       ),
       mark: ({ className, ...props }) => (
         <mark
-          className={cn("bg-blue-100 px-px rounded-sm text-black", className)}
+          className={cn("rounded-sm bg-blue-100 px-px text-black", className)}
           {...props}
         />
       ),

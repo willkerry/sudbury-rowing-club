@@ -5,13 +5,13 @@ import { Loader2 } from "lucide-react";
 import * as React from "react";
 
 const buttonVariants = cva(
-  "inline-flex not-prose relative items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
+  "not-prose relative inline-flex items-center justify-center whitespace-nowrap rounded font-medium text-sm ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
   {
     variants: {
       variant: {
         default: "bg-black text-gray-100 hover:bg-black/80",
-        secondary: "bg-white text-gray-900 border hover:bg-gray-100",
-        tertiary: "bg-gray-100 text-gray-900 border hover:bg-gray-200",
+        secondary: "border bg-white text-gray-900 hover:bg-gray-100",
+        tertiary: "border bg-gray-100 text-gray-900 hover:bg-gray-200",
         destructive: "bg-red-600 text-white hover:bg-red-500",
         brand: "bg-blue-700 text-white hover:bg-blue-500",
         success: "bg-green-600 text-white hover:bg-green-500",
@@ -20,13 +20,13 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-10 px-4 py-2",
-        xs: "h-7 px-2 text-xs font-medium",
+        xs: "h-7 px-2 font-medium text-xs",
         sm: "h-9 px-3",
         lg: "h-11 px-8",
         icon: "h-10 w-10",
       },
       shadow: {
-        true: "shadow-xl hover:shadow-lg transition-shadow",
+        true: "shadow-xl transition-shadow hover:shadow-lg",
       },
     },
     defaultVariants: {

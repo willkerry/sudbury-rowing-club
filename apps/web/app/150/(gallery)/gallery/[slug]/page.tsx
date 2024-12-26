@@ -1,5 +1,6 @@
 import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
 import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
+import { ClubJsonLd } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
 import {
   type Archive as TArchive,
@@ -7,11 +8,10 @@ import {
   fetchArchives,
 } from "@sudburyrc/api";
 import type { Metadata } from "next";
+import Script from "next/script";
+import type { Photograph, WithContext } from "schema-dts";
 import snarkdown from "snarkdown";
 import { formatYear } from "../page";
-import type { WithContext, Photograph } from "schema-dts";
-import { ClubJsonLd } from "@/lib/constants";
-import Script from "next/script";
 
 const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;
 
@@ -95,7 +95,7 @@ const Archive = async ({ params }: ArchivePageParams) => {
 
       <ArchiveImage image={archive.image} alt={archive.alt || ""} />
 
-      <div className="max-w-prose pb-8 text-sm text-gray-800">
+      <div className="max-w-prose pb-8 text-gray-800 text-sm">
         <p
           dangerouslySetInnerHTML={{
             __html: snarkdown(
@@ -103,7 +103,7 @@ const Archive = async ({ params }: ArchivePageParams) => {
             ),
           }}
         />
-        <p className="mb-6 mt-4 text-xs font-medium text-gray-600">
+        <p className="mt-4 mb-6 font-medium text-gray-600 text-xs">
           {archive.year ? (
             <ArchiveDate date={archive.year} range={archive.range}>
               {formatYear(archive.year, archive.range)}

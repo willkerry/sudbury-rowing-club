@@ -1,9 +1,9 @@
 import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
-import { ZTypedObject } from "./typed-object";
 import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
-import { excerptFields, ZExcerpt } from "./fetch-news-article";
+import { ZExcerpt, excerptFields } from "./fetch-news-article";
+import { ZTypedObject } from "./typed-object";
 
 const ZNoteSchema = z.object({
   display: z.boolean(),

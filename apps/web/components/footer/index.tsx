@@ -8,12 +8,12 @@ import {
   regatta,
   socials,
 } from "@/components/nav/nav-data";
+import type { IconNavItemType } from "@/types/nav-item";
 import { Crest } from "@sudburyrc/blue";
 import Address from "./address";
 import FooterColumn from "./column";
 import ReportABug from "./reportABug";
 import SocialIcons from "./socialIcons";
-import type { IconNavItemType } from "@/types/nav-item";
 
 const columns: [string, IconNavItemType[]][] = [
   ["About", about],
@@ -40,7 +40,7 @@ const Footer = () => (
       </div>
 
       <div className="pt-2">
-        <div className="m-auto flex justify-between py-5 text-sm text-gray-500 md:flex-row">
+        <div className="m-auto flex justify-between py-5 text-gray-500 text-sm md:flex-row">
           <div className="mt-2">
             © Sudbury Rowing Club {new Date().getFullYear()}. <ReportABug />
           </div>

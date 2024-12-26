@@ -35,7 +35,7 @@ const Authors = async () => {
 
   return (
     <>
-      <div className="flex items-center border-b border-t py-6">
+      <div className="flex items-center border-t border-b py-6">
         <Container>
           <h1>
             <Label className="max-w-prose">Author Archive</Label>
@@ -44,7 +44,7 @@ const Authors = async () => {
       </div>
 
       <Container>
-        <ul className="pb-16 mt-8">
+        <ul className="mt-8 pb-16">
           {authors.map(
             ({ _id, firstName, surname, articleCount, rank }, index) => {
               const authorName = `${firstName} ${surname}`;
@@ -60,7 +60,7 @@ const Authors = async () => {
                 >
                   <div className="relative w-6">
                     {firstOfRank && (
-                      <span className="disambiguate absolute inset-0 text-center font-medium leading-none text-blue-500">
+                      <span className="disambiguate absolute inset-0 text-center font-medium text-blue-500 leading-none">
                         {rank}
                       </span>
                     )}
@@ -71,7 +71,7 @@ const Authors = async () => {
                     </span>
 
                     {firstOfRank && (
-                      <span className="ml-3 text-sm mb-0.5 font-semibold uppercase tracking-widest text-gray-500 transition group-hover:text-gray-700">
+                      <span className="mb-0.5 ml-3 font-semibold text-gray-500 text-sm uppercase tracking-widest transition group-hover:text-gray-700">
                         {articleCount}
                       </span>
                     )}

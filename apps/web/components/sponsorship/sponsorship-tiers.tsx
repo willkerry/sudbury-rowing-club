@@ -34,7 +34,7 @@ export const SponsorshipTiers = ({
         )}
         key={tier}
       >
-        <h3 className="mb-3 text-lg font-semibold">{tier}</h3>
+        <h3 className="mb-3 font-semibold text-lg">{tier}</h3>
         <p className="mb-3 min-h-16 text-gray-700">{description}</p>
 
         <Button
@@ -49,7 +49,7 @@ export const SponsorshipTiers = ({
           </Link>
         </Button>
 
-        <ul className="my-2 grid grid-cols-1 gap-2 text-sm font-medium">
+        <ul className="my-2 grid grid-cols-1 gap-2 font-medium text-sm">
           {benefits.map((benefit) => (
             <li key={benefit} className="flex gap-x-2">
               <Check className="mt-1.5 h-4 w-4 flex-none text-blue-600" />

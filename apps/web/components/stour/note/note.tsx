@@ -35,7 +35,7 @@ const Note = ({
   const centeredClassNames = centered ? "mx-auto max-w-prose" : "max-w-none";
 
   const noteClasses = cn(
-    "border rounded-md prose",
+    "prose rounded-md border",
     centeredClassNames,
     variantClassNames,
     sizeClassNames,

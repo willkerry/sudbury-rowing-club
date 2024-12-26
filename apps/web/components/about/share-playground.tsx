@@ -60,7 +60,7 @@ const SharePlayground = () => {
 
   return (
     <form
-      className="grid grid-cols-1 items-end gap-3 pb-12 pt-4 md:grid-cols-2"
+      className="grid grid-cols-1 items-end gap-3 pt-4 pb-12 md:grid-cols-2"
       onSubmit={onSubmit}
     >
       <Input
@@ -91,7 +91,7 @@ const SharePlayground = () => {
 
       <Button type="submit">Generate</Button>
 
-      <div className="aspect-h-8 aspect-w-16 relative mt-6 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
+      <div className="relative mt-6 aspect-h-8 aspect-w-16 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
         <div
           className="absolute inset-0 hidden items-center justify-center"
           ref={loadingRef}

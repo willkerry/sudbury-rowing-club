@@ -2,8 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { useClipboard } from "@mantine/hooks";
-import { AnimatePresence, motion } from "motion/react";
 import { CheckIcon, Clipboard } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 
 const Copy = ({ value }: { value: string }) => {
@@ -26,13 +26,13 @@ const Copy = ({ value }: { value: string }) => {
       className="group inline-flex items-center gap-1"
       onClick={handleClick}
     >
-      <span className="disambiguate select-all font-medium tracking-wider text-black">
+      <span className="disambiguate select-all font-medium text-black tracking-wider">
         {value}
       </span>
       <span
         data-copied={copied}
         className={cn(
-          "relative hidden select-none items-center text-xs font-semibold text-blue-500 mb-0.5 opacity-0 md:flex",
+          "relative mb-0.5 hidden select-none items-center font-semibold text-blue-500 text-xs opacity-0 md:flex",
           "transition-opacity duration-300 group-hover:opacity-100 data-[copied=true]:opacity-100",
         )}
       >

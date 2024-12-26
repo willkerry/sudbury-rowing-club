@@ -39,7 +39,7 @@ const Input = ({
   <div className="col-span-2 sm:col-span-1">
     <label htmlFor={id}>{label}</label>
 
-    {instruction && <p className="my-1 text-sm text-gray-900">{instruction}</p>}
+    {instruction && <p className="my-1 text-gray-900 text-sm">{instruction}</p>}
 
     <input
       {...input}
@@ -54,7 +54,7 @@ const Input = ({
       type={type}
     />
 
-    {hint && <p className="my-1 text-xs text-gray-700">{hint}</p>}
+    {hint && <p className="my-1 text-gray-700 text-xs">{hint}</p>}
   </div>
 );
 

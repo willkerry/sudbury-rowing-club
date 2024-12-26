@@ -1,6 +1,6 @@
+import { type VariantProps, cva } from "class-variance-authority";
 import Container from "../../layouts/container";
 import Breadcrumbs from "../breadcrumbs";
-import { cva, type VariantProps } from "class-variance-authority";
 
 interface BaseProps {
   title: string;
@@ -77,19 +77,19 @@ const breadcrumbContainerVariants = cva("py-2", {
   ],
 });
 
-const breadcrumbListVariants = cva("flex text-sm overflow-x-auto", {
-  variants: { prose: { true: "max-w-min mx-auto justify-center" } },
+const breadcrumbListVariants = cva("flex overflow-x-auto text-sm", {
+  variants: { prose: { true: "mx-auto max-w-min justify-center" } },
 });
 
 const breadcrumbInactiveItemVariants = cva(
-  "whitespace-nowrap after:content-['→'] after:px-2 after:text-gray-400 capitalize transition",
+  "whitespace-nowrap capitalize transition after:px-2 after:text-gray-400 after:content-['→']",
   {
     variants: {
       color: {
         blue: "text-blue-500 hover:text-blue-300",
         gray: "text-gray-500 hover:text-gray-300",
         transparent:
-          "text-gray-800 hover:text-gray-600 transition hover:text-blue-500",
+          "text-gray-800 transition hover:text-blue-500 hover:text-gray-600",
       },
       prose: { true: "", false: "" },
     },

@@ -66,7 +66,7 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
       <MapPinIcon
         aria-hidden
         className={clsx(
-          "-ml-0.5 mb-[0.17em] mr-0.5 inline-flex h-6 w-6 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5",
+          "-ml-0.5 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5 mr-0.5 mb-[0.17em] inline-flex h-6 w-6",
           { Club: "text-blue-500", Regatta: "text-green-500" }[name],
         )}
       />

@@ -47,7 +47,7 @@ const SafetyItemTitle = ({
 );
 
 const SafetyItemUpdatedAt = ({ date }: { date: string }) => (
-  <div className="mb-2 text-xs font-medium text-gray-500">
+  <div className="mb-2 font-medium text-gray-500 text-xs">
     Updated on <DateFormatter dateString={date} />
   </div>
 );

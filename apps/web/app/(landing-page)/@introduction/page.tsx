@@ -1,7 +1,7 @@
 import CommitteeSignature from "@/components/landing/committee-signature";
 import Sponsors, { Affiliates } from "@/components/landing/sponsors";
-import { fetchLandingPage } from "@sudburyrc/api";
 import Text from "@/components/stour/text";
+import { fetchLandingPage } from "@sudburyrc/api";
 
 const LandingIntroductionPage = async () => {
   const {

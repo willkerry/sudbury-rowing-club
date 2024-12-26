@@ -18,13 +18,13 @@ export const DocPageHeader = ({
         />
       </div>
       <div className="flex items-center">
-        <h1 className="inline-block text-2xl sm:text-3xl font-bold text-gray-900">
+        <h1 className="inline-block font-bold text-2xl text-gray-900 sm:text-3xl">
           {title}
         </h1>
       </div>
 
       {description && (
-        <div className="mt-2 text-lg prose prose-gray">
+        <div className="prose prose-gray mt-2 text-lg">
           <p>{description}</p>
         </div>
       )}

@@ -374,7 +374,7 @@ const History: NextPage = () => (
       to race at the event when they competed in the Silver Goblets and Nichols
       Cup for coxless pairs.
     </p>
-    <div className="pt-16 text-sm text-gray-500">
+    <div className="pt-16 text-gray-500 text-sm">
       <p>
         Written by Trevor Chambers in 1996.
         <br />

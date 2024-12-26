@@ -1,9 +1,9 @@
 import { PortableText } from "@/lib/sanity";
 import type { PortableTextProps } from "@portabletext/react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 import cn from "clsx";
 
-const variants = cva(["prose", "prose-lead:font-sans prose-lead:font-medium"], {
+const variants = cva(["prose", "prose-lead:font-medium prose-lead:font-sans"], {
   variants: {
     type: {
       default: "",
@@ -19,7 +19,7 @@ const variants = cva(["prose", "prose-lead:font-sans prose-lead:font-medium"], {
     font: {
       sans: "",
       serif:
-        "prose-p:font-serif prose-p:text-lg prose-p:leading-relaxed prose-p:font-[360]",
+        "prose-p:font-[360] prose-p:font-serif prose-p:text-lg prose-p:leading-relaxed",
     },
     lead: {
       true: "auto-lead",

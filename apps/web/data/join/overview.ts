@@ -1,7 +1,7 @@
+import CoxingImage from "@/assets/join/coxing.jpg";
 import JuniorsImage from "@/assets/join/juniors.jpg";
 import RacingImage from "@/assets/join/racing.jpg";
 import RecreationalImage from "@/assets/join/recreational.jpg";
-import CoxingImage from "@/assets/join/coxing.jpg";
 import VolunteerImage from "@/assets/join/volunteer.jpg";
 
 const overview = [

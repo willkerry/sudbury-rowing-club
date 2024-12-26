@@ -2,11 +2,11 @@ import BritishRowing from "@/components/landing/sponsors/logos/british-rowing";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
-import cn from "clsx";
 import {
-  fetchBritishRowingFeed,
   type BRArticle,
+  fetchBritishRowingFeed,
 } from "@/lib/server/fetchBritishRowingFeed";
+import cn from "clsx";
 
 const BritishRowingArticle = ({
   article,
@@ -24,13 +24,13 @@ const BritishRowingArticle = ({
   >
     {article && (
       <>
-        <h3 className="text-sm font-medium leading-tight transition-colors group-hover:text-blue-500">
+        <h3 className="font-medium text-sm leading-tight transition-colors group-hover:text-blue-500">
           {article.title.rendered}
         </h3>
 
         <div className="flex items-end justify-between gap-1">
           <DateFormatter
-            className="text-xs font-medium leading-none text-gray-500 transition-colors group-hover:text-gray-800"
+            className="font-medium text-gray-500 text-xs leading-none transition-colors group-hover:text-gray-800"
             dateString={article.date}
           />
           <BritishRowing className="h-4" />

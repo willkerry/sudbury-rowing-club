@@ -1,9 +1,9 @@
 "use client";
 
-import { shuffle as shuffleFn } from "radash";
 import { cn } from "@/lib/utils";
-import type { SponsorLogo } from ".";
+import { shuffle as shuffleFn } from "radash";
 import { useEffect, useState } from "react";
+import type { SponsorLogo } from ".";
 
 const LogoListItem = ({ logo, href, name }: SponsorLogo) => (
   <li key={`${href}${name}`}>

@@ -79,7 +79,7 @@ const Join = async () => {
 
         {archives.map(({ era, slug, archives }) => (
           <div key={slug} className="mb-8">
-            <h2 id={slug} className="mb-2 text-xl font-medium text-gray-900">
+            <h2 id={slug} className="mb-2 font-medium text-gray-900 text-xl">
               {era}
             </h2>
             <div className="sm:masonry-2-col gap-4">

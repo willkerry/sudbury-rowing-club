@@ -7,11 +7,11 @@ import { createMetadata } from "@/lib/create-metadata";
 import combineURLs from "@/lib/helpers/combineURLs";
 import { Crest, Wordmark, blue } from "@sudburyrc/blue";
 import Color from "color";
+import a from "indefinite";
 import { Circle, HelpCircle } from "lucide-react";
 import type { Metadata } from "next";
 import NextLink from "next/link";
 import toWords from "num-words";
-import a from "indefinite";
 import { capitalize } from "radash";
 
 export const metadata: Metadata = {
@@ -315,7 +315,7 @@ const Brand = () => (
               <code>{item.id}</code>
             </td>
             <td>
-              <span className="text-sm font-medium">
+              <span className="font-medium text-sm">
                 {item.name} {item.library}
               </span>
             </td>
@@ -355,7 +355,7 @@ const Brand = () => (
       </li>
 
       <li>
-        <span className="font-mono font-bold">
+        <span className="font-bold font-mono">
           <a href="https://jetbrains.com/mono">JetBrains Mono</a>
         </span>
         , for code and monospaced text. This is a free and open-source typeface

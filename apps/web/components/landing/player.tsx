@@ -61,7 +61,7 @@ const Player = () => {
       {playerState !== "idle" && (
         <video
           ref={ref}
-          className="aspect-h-9 aspect-w-16 absolute inset-0 z-0 w-full"
+          className="absolute inset-0 z-0 aspect-h-9 aspect-w-16 w-full"
           autoPlay
           muted
           loop
@@ -84,7 +84,7 @@ const Player = () => {
         disabled={playerState === "loading"}
         onClick={handleClick}
         type="button"
-        className="absolute bottom-3 right-3 z-10 text-white"
+        className="absolute right-3 bottom-3 z-10 text-white"
       >
         <Icon aria-hidden className="h-6 w-6" />
         <div className="sr-only">{text}</div>

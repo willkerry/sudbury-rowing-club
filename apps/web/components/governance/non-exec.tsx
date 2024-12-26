@@ -27,7 +27,7 @@ const NonExec = ({ vicePresidents, trustees }: Props) => (
           New vice-presidents may be elected each year at the AGM.
         </Description>
         <div className="h-4" />
-        <ul className="space-y-1 text-sm font-medium text-gray-900 ">
+        <ul className="space-y-1 font-medium text-gray-900 text-sm ">
           {vicePresidents?.map(({ _id, firstName, surname }) => (
             <li key={_id}>
               {firstName} {surname}
@@ -42,7 +42,7 @@ const NonExec = ({ vicePresidents, trustees }: Props) => (
           Trustees are responsible for, but not in control of, the club.
         </Description>
         <div className="h-4" />
-        <ul className="space-y-1 text-sm font-medium text-gray-900 ">
+        <ul className="space-y-1 font-medium text-gray-900 text-sm">
           {trustees?.map(({ _id, firstName, surname }) => (
             <li key={_id}>
               {firstName} {surname}

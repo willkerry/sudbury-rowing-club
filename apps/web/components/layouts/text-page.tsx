@@ -1,8 +1,8 @@
-import type { ComponentProps } from "react";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Text from "@/components/stour/text";
 import { cn } from "@/lib/utils";
+import type { ComponentProps } from "react";
 
 /**
  * A 'root'-level comonent for rendering simple pages with a title and some
@@ -27,7 +27,7 @@ const TextPage = ({
     <HeroTitle title={title} prose={!!prose} breadcrumbs {...{ color }} />
     <Container>
       <Text
-        className={cn("mx-auto mb-16 mt-8 sm:my-16", prose, className)}
+        className={cn("mx-auto mt-8 mb-16 sm:my-16", prose, className)}
         font={font}
       >
         {children}

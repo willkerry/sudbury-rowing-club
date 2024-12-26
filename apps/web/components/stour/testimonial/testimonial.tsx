@@ -46,8 +46,8 @@ const Testimonial = ({
     <blockquote
       className={cn(
         "space-y-4 leading-snug",
-        { "hyphens-auto text-sm text-gray-800": text?.length > 250 },
-        { "text-lg font-light text-black": text?.length < 250 },
+        { "hyphens-auto text-gray-800 text-sm": text?.length > 250 },
+        { "font-light text-black text-lg": text?.length < 250 },
       )}
     >
       {text}
@@ -64,7 +64,7 @@ const Testimonial = ({
         )}
       </cite>
       {club && (
-        <div className="text-sm text-gray-500">
+        <div className="text-gray-500 text-sm">
           {club}
           <ClubImage
             clubBladeUrl={clubBladeUrl}

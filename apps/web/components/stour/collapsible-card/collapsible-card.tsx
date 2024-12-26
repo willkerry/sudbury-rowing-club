@@ -31,7 +31,7 @@ export const NoticeBody = ({ notice }: Props) => {
           {notice.meta.map((item) => (
             <div className="px-4" key={item._key}>
               <Label className="select-none text-xs">{`${item.label}: `}</Label>
-              <span className="disambiguate text-xs font-medium !text-gray-800">
+              <span className="disambiguate !text-gray-800 font-medium text-xs">
                 {item.value}
               </span>
             </div>
@@ -46,7 +46,7 @@ export const NoticeBody = ({ notice }: Props) => {
         </div>
       )}
 
-      <div className="flex justify-between gap-4 bg-gray-100 px-4 py-3 text-xs font-medium text-gray-500">
+      <div className="flex justify-between gap-4 bg-gray-100 px-4 py-3 font-medium text-gray-500 text-xs">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           <span>
             Created:{" "}

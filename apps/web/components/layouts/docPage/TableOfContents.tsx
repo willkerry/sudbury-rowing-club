@@ -2,10 +2,10 @@
 
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 
-import { TableOfContentsItem } from "./TableOfContentsItem";
-import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { TableOfContentsItem } from "./TableOfContentsItem";
 
 const getHeadings = (toc: SerializableTOC) =>
   toc
@@ -47,7 +47,7 @@ export const TableOfContents = ({
   }, []);
 
   return (
-    <ul className={cn("max-w-sm not-prose", className)} {...props}>
+    <ul className={cn("not-prose max-w-sm", className)} {...props}>
       {toc.map((props) => {
         const isActive = activeHeading === props.url.slice(1);
 

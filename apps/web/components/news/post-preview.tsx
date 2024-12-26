@@ -1,9 +1,9 @@
+import { cn } from "@/lib/utils";
+import { NewspaperIcon } from "@heroicons/react/24/outline";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
 import DateFormatter from "../utils/date-formatter";
 import { PostPreviewImage } from "./post-preview-image";
-import { cn } from "@/lib/utils";
-import { NewspaperIcon } from "@heroicons/react/24/outline";
 
 const GRADIENT_DIRECTIONS = [
   "bg-gradient-to-tr",
@@ -32,9 +32,9 @@ const getRandomGradient = () =>
 const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li
     id={post.slug}
-    className="group rounded border bg-white transition overflow-hidden hover:border-blue-400"
+    className="group overflow-hidden rounded border bg-white transition hover:border-blue-400"
   >
-    <Link href={`/news/${post.slug}`} className="flex flex-col h-full">
+    <Link href={`/news/${post.slug}`} className="flex h-full flex-col">
       {post.featuredImage ? (
         <div className="relative h-48 overflow-hidden border-b">
           <PostPreviewImage
@@ -46,33 +46,33 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
       ) : (
         <div
           className={cn(
-            "relative select-none h-[191px] overflow-hidden border-b",
+            "relative h-[191px] select-none overflow-hidden border-b",
             getRandomGradient(),
-            "group-hover:opacity-100 opacity-75 transition-opacity",
+            "opacity-75 transition-opacity group-hover:opacity-100",
           )}
         >
           <div
             aria-hidden
-            className="mx-2.5 mt-1.5 leading-none text-balance w-96 text-6xl font-bold text-black mix-blend-soft-light transition-all"
+            className="mx-2.5 mt-1.5 w-96 text-balance font-bold text-6xl text-black leading-none mix-blend-soft-light transition-all"
           >
             {post.title}
           </div>
         </div>
       )}
 
-      <h3 className="text-xl m-2 mb-3 grow line-clamp-3 font-semibold leading-tight text-pretty transition group-hover:text-blue-500">
+      <h3 className="m-2 mb-3 line-clamp-3 grow text-pretty font-semibold text-xl leading-tight transition group-hover:text-blue-500">
         {post.title}
       </h3>
 
       {post.excerpt && (
-        <p className="text-xs font-medium text-gray-600 mx-2 line-clamp-3">
+        <p className="mx-2 line-clamp-3 font-medium text-gray-600 text-xs">
           {post.excerpt}
         </p>
       )}
 
       <DateFormatter
         dateString={post.date}
-        className="text-xs font-semibold uppercase font-mono text-gray-600 mx-2 my-2"
+        className="mx-2 my-2 font-mono font-semibold text-gray-600 text-xs uppercase"
       />
     </Link>
   </li>

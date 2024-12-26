@@ -175,7 +175,7 @@ const Banner = () => {
               <Text portableText={data?.text} size="small" className="py-4" />
 
               {data.date && (
-                <div className="mb-4 text-xs font-medium text-gray-700">
+                <div className="mb-4 font-medium text-gray-700 text-xs">
                   Updated <DateFormatter dateString={data.date} />
                 </div>
               )}

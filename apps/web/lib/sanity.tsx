@@ -5,6 +5,7 @@ import {
   type PortableTextComponents,
   type PortableTextProps,
 } from "@portabletext/react";
+import { smartQuotes } from "@sudburyrc/helpers";
 import {
   AlertCircle,
   CheckCircle,
@@ -14,7 +15,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { OEmbed } from "../components/oembed/oembed";
-import { smartQuotes } from "@sudburyrc/helpers";
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
@@ -61,7 +61,7 @@ const components: PortableTextComponents = {
         <blockquote>
           <PortableText value={value?.quote} />
         </blockquote>
-        <figcaption className="pl-3.5 -mt-4">{value?.attribution}</figcaption>
+        <figcaption className="-mt-4 pl-3.5">{value?.attribution}</figcaption>
       </figure>
     ),
     note: ({ value }) => (

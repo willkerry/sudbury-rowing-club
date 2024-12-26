@@ -1,16 +1,16 @@
 import TextPage from "@/components/layouts/text-page";
-import committees from "@/data/officer-archive.json";
-import { createMetadata } from "@/lib/create-metadata";
-import { notFound } from "next/navigation";
-import { listify } from "radash";
-import { initialiseName, POSITION_NAMES } from "../page";
-import type { Metadata } from "next";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import committees from "@/data/officer-archive.json";
+import { createMetadata } from "@/lib/create-metadata";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { listify } from "radash";
+import { POSITION_NAMES, initialiseName } from "../page";
 
 const NAME_CHANGE_YEAR = 1982;
 

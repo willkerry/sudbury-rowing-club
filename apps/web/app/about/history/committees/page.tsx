@@ -63,8 +63,8 @@ const Archive = () => (
                 POSITION_NAMES.get(position)?.[isPlural ? 1 : 0];
 
               return (
-                <li className="mb-2 mt-0 pl-0" key={position}>
-                  <span className="block text-xs font-semibold uppercase tracking-widest text-gray-400">
+                <li className="mt-0 mb-2 pl-0" key={position}>
+                  <span className="block font-semibold text-gray-400 text-xs uppercase tracking-widest">
                     {positionName}
                   </span>
 

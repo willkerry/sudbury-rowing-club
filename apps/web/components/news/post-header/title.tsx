@@ -13,7 +13,7 @@ const PostTitle = ({ title, date, center }: Props) => (
     <Label>
       <DateFormatter dateString={date} />
     </Label>
-    <h1 className="mb-10 mt-2 text-3xl font-bold text-balance leading-tight text-gray-800 md:text-5xl md:leading-none lg:text-6xl">
+    <h1 className="mt-2 mb-10 text-balance font-bold text-3xl text-gray-800 leading-tight md:text-5xl md:leading-none lg:text-6xl">
       {title}
     </h1>
   </div>

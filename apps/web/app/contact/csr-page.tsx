@@ -62,7 +62,7 @@ const ContactPage = ({
         }
         color="transparent"
       />
-      <Container className="max-w-lg pb-12 pt-6 sm:pt-12">
+      <Container className="max-w-lg pt-6 pb-12 sm:pt-12">
         <div className="prose mx-auto pb-10">
           {recipientWasProvided ? null : (
             <p>
@@ -74,7 +74,7 @@ const ContactPage = ({
           )}
         </div>
         <ContactForm contacts={officers} initialValues={initialValues} />
-        <div className="prose mt-16 text-sm text-gray-500">
+        <div className="prose mt-16 text-gray-500 text-sm">
           Alternatively, mail{" "}
           <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general
           enquiries, or <Obfuscate email="regatta@sudburyrowingclub.org.uk" />{" "}

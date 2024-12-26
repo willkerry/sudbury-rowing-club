@@ -21,7 +21,7 @@ const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
           <div key={year._id} className="mb-24">
             <Masonry>
               <div className="py-8 sm:py-24">
-                <h3 className="text-xl font-medium">
+                <h3 className="font-medium text-xl">
                   Praise for the {ordinal(year.number)} regatta
                 </h3>
                 <Label>

@@ -84,7 +84,7 @@ const SponsorshipPage = async () => {
         its members. ${DESCRIPTION}`}
       />
 
-      <Container className="mb-24 mt-12">
+      <Container className="mt-12 mb-24">
         <Hero label="The need" title="Why do we need sponsors?" />
         <div className="prose">
           <p className="lead">
@@ -106,7 +106,7 @@ const SponsorshipPage = async () => {
         </div>
       </Container>
 
-      <Container className="mb-24 mt-12">
+      <Container className="mt-12 mb-24">
         <Hero label="The benefits" title="How does sponsorship benefit you?" />
         <div className="prose">
           <p>
@@ -126,7 +126,7 @@ const SponsorshipPage = async () => {
         </div>
       </Container>
 
-      <Container className="mb-24 mt-12">
+      <Container className="mt-12 mb-24">
         <Hero label="Sponsorship tiers" title="What can you sponsor?" />
         <div className="prose">
           <p>
@@ -139,7 +139,7 @@ const SponsorshipPage = async () => {
         <SponsorshipTiers tiers={SPONSORSHIP_TIERS} />
       </Container>
 
-      <Container className="mb-24 mt-12">
+      <Container className="mt-12 mb-24">
         <Hero label="Speak to us" title="Want to find out more?" />
         <div className="prose mb-6">
           <p>

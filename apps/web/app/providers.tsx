@@ -3,9 +3,9 @@
 import { Toaster } from "@/components/ui/sonner";
 import { QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-import { getQueryClient } from "./get-query-client";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
   if (!process.env.NEXT_PUBLIC_POSTHOG_KEY)

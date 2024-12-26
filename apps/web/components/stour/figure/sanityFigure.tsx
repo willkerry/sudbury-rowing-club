@@ -1,8 +1,8 @@
 "use client";
 
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
-import { Figure, WIDTH } from "./figure";
 import { urlFor } from "@sudburyrc/api";
+import { Figure, WIDTH } from "./figure";
 
 type FigureProps = {
   _id?: string;

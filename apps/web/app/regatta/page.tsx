@@ -1,3 +1,4 @@
+import { logos as sponsors } from "@/components/landing/sponsors";
 import Container from "@/components/layouts/container";
 import DateLocation from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
@@ -12,7 +13,6 @@ import { getClub } from "@/lib/getClub";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import dynamic from "next/dynamic";
-import { logos as sponsors } from "@/components/landing/sponsors";
 import type { SportsEvent, WithContext } from "schema-dts";
 
 const Gallery = dynamic(

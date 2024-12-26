@@ -47,7 +47,7 @@ const News = async ({ params: { page } }: { params: Params }) => {
 
   return (
     <>
-      <div className="flex items-center border-b border-t py-6">
+      <div className="flex items-center border-t border-b py-6">
         <Container>
           <h1>
             <Label className="max-w-prose">News Archive</Label>
@@ -61,7 +61,7 @@ const News = async ({ params: { page } }: { params: Params }) => {
                 </>
               )}
             </span>
-            <span className="text-sm font-medium uppercase tracking-wider text-gray-600">
+            <span className="font-medium text-gray-600 text-sm uppercase tracking-wider">
               Page {page} of {pages}
             </span>
           </p>

@@ -31,7 +31,7 @@ const StatusShell = ({ grade, text }: StatusShellProps) => {
     <Link
       href="/safety"
       className={cn(
-        "group ml-1 flex items-center rounded-full border px-2 py-1 text-xs font-medium transition duration-300",
+        "group ml-1 flex items-center rounded-full border px-2 py-1 font-medium text-xs transition duration-300",
         bgClass,
       )}
       title={`River safety status: ${text}`}

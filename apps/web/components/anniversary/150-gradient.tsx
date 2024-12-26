@@ -5,7 +5,7 @@ import { useId } from "react";
 
 const variants = cva(
   cn([
-    "absolute left-1/2 top-1/2 -z-10 -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0",
+    "-z-10 -translate-y-1/2 sm:-ml-80 lg:-translate-x-1/2 absolute top-1/2 left-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full lg:left-1/2 lg:ml-0 lg:translate-y-0",
   ]),
   {
     variants: {

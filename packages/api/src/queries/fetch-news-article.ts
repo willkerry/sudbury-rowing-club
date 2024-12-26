@@ -1,10 +1,10 @@
+import sentencize from "@stdlib/nlp-sentencize";
+import { smartQuotes } from "@sudburyrc/helpers";
 import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
-import { ZTypedObject } from "./typed-object";
 import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
-import sentencize from "@stdlib/nlp-sentencize";
-import { smartQuotes } from "@sudburyrc/helpers";
+import { ZTypedObject } from "./typed-object";
 
 export const excerptFields = groq`
   "excerpt": coalesce(excerpt, array::join(string::split(pt::text(body), "")[0...255], "")),

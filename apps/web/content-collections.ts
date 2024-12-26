@@ -1,7 +1,7 @@
 import { defineCollection, defineConfig } from "@content-collections/core";
 import { transformMDX as fumaTransformMDX } from "@fumadocs/content-collections/configuration";
-import remarkSmartypants from "remark-smartypants";
 import { remarkAdmonition } from "fumadocs-core/mdx-plugins";
+import remarkSmartypants from "remark-smartypants";
 import { z } from "zod";
 
 const transform: typeof fumaTransformMDX = (document, context) =>

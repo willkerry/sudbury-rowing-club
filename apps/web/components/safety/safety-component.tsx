@@ -33,7 +33,7 @@ const SafetyComponent = async () => {
       <div className="p-3 sm:p-4">
         {source ? <QuotedWarning {...{ description, source }} /> : description}
         {date && (
-          <div className="disambiguate mt-4 text-sm font-medium text-gray-500">
+          <div className="disambiguate mt-4 font-medium text-gray-500 text-sm">
             Updated <DateFormatter dateString={date} format="time" />
           </div>
         )}
@@ -46,7 +46,7 @@ const SafetyComponent = async () => {
       <div className="grid grid-flow-col grid-cols-2 divide-x">
         <a
           href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
-          className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-sm text-gray-500 transition duration-300 hover:bg-white hover:text-black"
+          className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-gray-500 text-sm transition duration-300 hover:bg-white hover:text-black"
         >
           <EnvironmentAgency aria-hidden className="h-4 w-4" />
           EA Floods
@@ -57,7 +57,7 @@ const SafetyComponent = async () => {
         </a>
         <a
           href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
-          className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-sm text-gray-500 transition duration-300 hover:bg-white hover:text-black"
+          className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-gray-500 text-sm transition duration-300 hover:bg-white hover:text-black"
         >
           <div className="w-0">
             <MetOffice aria-hidden className="h-4 w-4" />

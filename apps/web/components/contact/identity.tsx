@@ -46,10 +46,10 @@ export const Identity = ({
       <AvatarFallback>{fallback}</AvatarFallback>
     </Avatar>
     <div>
-      <p className="text-xs font-semibold leading-snug text-gray-800">{name}</p>
+      <p className="font-semibold text-gray-800 text-xs leading-snug">{name}</p>
       <p
         className={cn(
-          "text-xs font-medium leading-snug text-gray-500",
+          "font-medium text-gray-500 text-xs leading-snug",
           highlightDescription &&
             "underline decoration-red-600 decoration-wavy",
         )}

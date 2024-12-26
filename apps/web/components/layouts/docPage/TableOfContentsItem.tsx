@@ -1,12 +1,12 @@
 "use client";
 
-import { memo, type MouseEventHandler } from "react";
-import Link from "next/link";
-import { animateScroll } from "react-scroll";
-import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { chain } from "radash";
+import { type MouseEventHandler, memo } from "react";
+import { animateScroll } from "react-scroll";
 
 const removePrecedingNumbers = (title: string) =>
   title.replace(/^\d+\./, "").replace(/^\d+\)/, "");
@@ -57,7 +57,7 @@ export const TableOfContentsItem = memo(
           href={url}
           onClick={scrollTo}
           className={cn(
-            "text-sm hover:text-gray-900 line-clamp-1 py-1",
+            "line-clamp-1 py-1 text-sm hover:text-gray-900",
             depth <= 2 ? "text-gray-700" : "text-gray-500",
             // isActive && "text-blue-500",
             getDepthClassName(depth),

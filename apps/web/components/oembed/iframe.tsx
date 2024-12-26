@@ -9,13 +9,13 @@ export const Iframe = ({
   aspectRatio?: number;
 }) => (
   <div
-    className="relative pt-[25px] w-full h-0 rounded overflow-hidden"
+    className="relative h-0 w-full overflow-hidden rounded pt-[25px]"
     style={{
       paddingBottom: `${(aspectRatio || 0.5625) * 100}%`,
     }}
   >
     <iframe
-      className={cn("absolute inset-0 w-full h-full", className)}
+      className={cn("absolute inset-0 h-full w-full", className)}
       width="100%"
       allowFullScreen
       {...props}

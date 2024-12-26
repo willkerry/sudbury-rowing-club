@@ -36,7 +36,7 @@ const ClubSearchResults = ({
         >
           {club.name}
           {clubs.length < 10 && club.bladeUrl && (
-            <div className="absolute bottom-0 right-2 top-0 flex items-center">
+            <div className="absolute top-0 right-2 bottom-0 flex items-center">
               <img
                 className="h-6 w-12"
                 src={club.bladeUrl}

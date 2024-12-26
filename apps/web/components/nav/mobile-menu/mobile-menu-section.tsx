@@ -47,7 +47,7 @@ const SectionWrapper = ({
           <Accordion.Trigger
             className={cn(
               titleClasses,
-              "-my-4 flex w-full justify-between py-4 [&[data-state=open]>svg]:-rotate-180",
+              "-my-4 [&[data-state=open]>svg]:-rotate-180 flex w-full justify-between py-4",
             )}
           >
             {title}

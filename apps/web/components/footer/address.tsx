@@ -2,7 +2,7 @@
  * Prints the club address.
  */
 const Address = () => (
-  <address className="space-y-1 text-sm not-italic text-gray-500">
+  <address className="space-y-1 text-gray-500 text-sm not-italic">
     <p className="font-medium text-gray-800">Sudbury Rowing Club</p>
     <p>Quay Lane</p>
     <p>Sudbury</p>

@@ -58,7 +58,7 @@ const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
         </p>
 
         <div className="mt-2 flex gap-2 text-gray-600">
-          <span className="text-xs font-semibold">{post.likesCount} likes</span>
+          <span className="font-semibold text-xs">{post.likesCount} likes</span>
           <DateFormatter dateString={post.timestamp} />
           <a
             href={post.url}

@@ -33,9 +33,9 @@ export const NextCourse = () => {
 
   return (
     <div className="prose-sm rounded border border-green-200 bg-green-50 px-2 pb-1 prose-a:underline">
-      <h3 className="mb-1 mt-2 flex items-center gap-1 text-base font-semibold">
+      <h3 className="mt-2 mb-1 flex items-center gap-1 font-semibold text-base">
         Course Dates
-        <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">
+        <span className="mt-0.5 rounded-full bg-green-500 px-1 py-0.5 font-semibold text-white text-xs uppercase tracking-wider">
           New
         </span>
       </h3>

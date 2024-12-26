@@ -53,7 +53,7 @@ const GalleryFigure = ({
 
       <figcaption
         aria-hidden
-        className="mt-1 flex items-center text-sm text-gray-600"
+        className="mt-1 flex items-center text-gray-600 text-sm"
       >
         {caption}
       </figcaption>

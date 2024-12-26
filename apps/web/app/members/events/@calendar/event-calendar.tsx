@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { Select } from "@/components/ui/select";
@@ -11,6 +10,7 @@ import { getHostname } from "@/lib/helpers/getHostname";
 import type { SRCEvent } from "@sudburyrc/api";
 import { AnimatePresence, LayoutGroup } from "motion/react";
 import * as motion from "motion/react-client";
+import { useState } from "react";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -20,7 +20,7 @@ const BR_EVENT_STATUS = {
 type Event = SRCEvent;
 
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="rounded-sm border bg-gray-50 p-0.5 text-xs font-semibold leading-none text-gray-400 first-of-type:-ml-0.5">
+  <span className="first-of-type:-ml-0.5 rounded-sm border bg-gray-50 p-0.5 font-semibold text-gray-400 text-xs leading-none">
     {children}
   </span>
 );
@@ -34,7 +34,7 @@ const EventCard = ({
     layout="position"
     id={id}
     key={id}
-    className={`grid bg-white border rounded px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
+    className={`grid rounded border bg-white px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
     animate={{
       transition: { duration: 0.3 },
       opacity: 1,
@@ -42,19 +42,19 @@ const EventCard = ({
     exit={{ opacity: 0 }}
     initial={{ opacity: 0 }}
   >
-    <h3 className="mb-0.5 line-clamp-1 text-sm font-semibold">{competition}</h3>
+    <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm">{competition}</h3>
     <DateFormatter
       dateString={startDate}
-      className="mb-2 block text-xs font-semibold leading-none text-gray-500"
+      className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
     />
-    <div className="mb-2 text-xs font-semibold text-orange-600">{notes}</div>
+    <div className="mb-2 font-semibold text-orange-600 text-xs">{notes}</div>
 
     <div className="flex flex-wrap gap-2">
       <Tag>{region}</Tag>
       {status === 8 && <Tag>{BR_EVENT_STATUS[status]}</Tag>}
 
       {url && (
-        <Link href={url} external className="text-xs font-semibold">
+        <Link href={url} external className="font-semibold text-xs">
           {getHostname(url)}
         </Link>
       )}
@@ -126,7 +126,7 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
           {groupByMonth(filteredEvents).map(({ month, events }, i) => (
             <motion.div

@@ -10,11 +10,11 @@ type Props = {
 const RegattaHero = ({ ticketItems, subtitle }: Props) => (
   <div className="mx-auto mb-12 max-w-lg text-center sm:mt-12">
     <ImageComposite ticketItems={ticketItems} />
-    <h1 className="bg-gradient-to-br from-blue-400 to-blue-950 bg-clip-text pb-12 text-5xl font-bold tracking-tight text-transparent sm:text-7xl md:text-7xl">
+    <h1 className="bg-gradient-to-br from-blue-400 to-blue-950 bg-clip-text pb-12 font-bold text-5xl text-transparent tracking-tight sm:text-7xl md:text-7xl">
       Sudbury <span className="font-light text-gray-900">‘International’</span>{" "}
       Regatta
     </h1>
-    <p className="text-xl text-gray-800">
+    <p className="text-gray-800 text-xl">
       {subtitle}{" "}
       <ScrollLink
         to="regatta-body"

@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { decode } from "he";
+import { z } from "zod";
 
 const QUERY_URL =
   "https://www.britishrowing.org/wp-json/wp/v2/posts?_fields=id,title,date,link&per_page=12";

@@ -1,16 +1,16 @@
 import Container from "@/components/layouts/container";
-import { AlignLeftIcon } from "lucide-react";
 import { MDXContent } from "@/components/mdx/mdx-content";
 import Text from "@/components/stour/text";
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import { smartQuotes } from "@sudburyrc/helpers";
+import { AlignLeftIcon } from "lucide-react";
 
-import { TableOfContents } from "@/components/layouts/docPage/TableOfContents";
 import { DocPageHeader } from "@/components/layouts/docPage/DocPageHeader";
 import {
   DocPagePrePostNote,
   type PrePostNote,
 } from "@/components/layouts/docPage/DocPagePrePostNote";
+import { TableOfContents } from "@/components/layouts/docPage/TableOfContents";
 
 export const DocPage = ({
   title,
@@ -47,10 +47,10 @@ export const DocPage = ({
         )}
       </Text>
 
-      <div className="max-w-72 max-h-[100dvh] overflow-y-auto hidden lg:block sticky top-0 px-4">
-        <div className="sticky top-0 bg-gradient-to-t from-transparent to-white right-0 w-full h-12" />
+      <div className="sticky top-0 hidden max-h-[100dvh] max-w-72 overflow-y-auto px-4 lg:block">
+        <div className="sticky top-0 right-0 h-12 w-full bg-gradient-to-t from-transparent to-white" />
 
-        <h2 className="text-sm font-medium text-gray-700 mb-3 gap-2 flex items-center">
+        <h2 className="mb-3 flex items-center gap-2 font-medium text-gray-700 text-sm">
           <AlignLeftIcon
             className="w-3 stroke-[3] stroke-current"
             aria-hidden
@@ -58,7 +58,7 @@ export const DocPage = ({
           On this page
         </h2>
         <TableOfContents toc={toc} />
-        <div className="sticky bottom-0 right-0 w-full h-12 bg-gradient-to-b from-transparent to-white bg-opacity-50" />
+        <div className="sticky right-0 bottom-0 h-12 w-full bg-gradient-to-b bg-opacity-50 from-transparent to-white" />
       </div>
     </Container>
   );

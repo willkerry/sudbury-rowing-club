@@ -25,7 +25,7 @@ export const Modal = ({
     <div className="fixed inset-0 flex w-screen items-center justify-center p-4 backdrop-blur-sm">
       <Dialog.Panel className="m-4 w-full max-w-lg rounded border bg-white p-4 shadow-lg">
         <div className="mb-4">
-          <Dialog.Title className="text-lg font-semibold">{title}</Dialog.Title>
+          <Dialog.Title className="font-semibold text-lg">{title}</Dialog.Title>
           <Dialog.Description className="text-gray-500">
             {description}
           </Dialog.Description>

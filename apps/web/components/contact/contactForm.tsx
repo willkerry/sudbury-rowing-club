@@ -14,11 +14,11 @@ import { useForm } from "@tanstack/react-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { zodValidator } from "@tanstack/zod-form-adapter";
 import type { getWodehouseFullDetails } from "get-wodehouse-name";
+import ky from "ky";
 import { shake } from "radash";
 import { z } from "zod";
 import { Error as ErrorComponent } from "../ui/error";
 import { FromAndTo } from "./fromAndTo";
-import ky from "ky";
 
 const MessageToSchema = z.string().refine((value) => value !== "default", {
   message: "Select a recipient",
@@ -139,7 +139,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         )}
       </form.Field>
 
-      <div className="col-span-2 -mb-4 grid gap-x-4 sm:grid-cols-2">
+      <div className="-mb-4 col-span-2 grid gap-x-4 sm:grid-cols-2">
         <form.Field name="name" validators={{ onSubmit: MessageNameSchema }}>
           {(field) => (
             <Input

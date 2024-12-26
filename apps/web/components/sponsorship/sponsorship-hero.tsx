@@ -15,12 +15,12 @@ export const SponsorshipHero = ({
 }) => (
   <Container className="py-16 text-center text-gray-900 sm:py-24" id="hero">
     <Label className="sm:mb-3">{title}</Label>
-    <h1 className="relative z-10 bg-gradient-to-br from-emerald-400 to-blue-700 bg-clip-text text-6xl font-semibold text-transparent drop-shadow-xl sm:text-8xl">
+    <h1 className="relative z-10 bg-gradient-to-br from-emerald-400 to-blue-700 bg-clip-text font-semibold text-6xl text-transparent drop-shadow-xl sm:text-8xl">
       Sponsor us{" "}
       <HeartHandshake className="inline h-12 w-12 rotate-6 text-gray-500 drop-shadow-2xl sm:h-16 sm:w-16" />
     </h1>
 
-    <div className="prose mx-auto mb-16 mt-12 max-w-xl text-left">
+    <div className="prose mx-auto mt-12 mb-16 max-w-xl text-left">
       <p className="lead">{description}</p>
     </div>
 

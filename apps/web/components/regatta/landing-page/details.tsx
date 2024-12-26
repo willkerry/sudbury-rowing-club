@@ -47,7 +47,7 @@ const Details = ({ items }: { items: DetailProps[] }) => {
 
             <div
               aria-hidden
-              className="pointer-events-none absolute bottom-1 left-0 right-0"
+              className="pointer-events-none absolute right-0 bottom-1 left-0"
             >
               <Mouse
                 className={cn(

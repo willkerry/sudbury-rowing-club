@@ -1,10 +1,10 @@
-import { notFound } from "next/navigation";
-import { title as formatTitle } from "radash";
+import { DocPage } from "@/components/layouts/doc-page";
+import { createMetadata } from "@/lib/create-metadata";
+import { smartQuotes } from "@sudburyrc/helpers";
 import { allPolicies } from "content-collections";
 import type { Metadata } from "next";
-import { smartQuotes } from "@sudburyrc/helpers";
-import { createMetadata } from "@/lib/create-metadata";
-import { DocPage } from "@/components/layouts/doc-page";
+import { notFound } from "next/navigation";
+import { title as formatTitle } from "radash";
 
 export const generateStaticParams = async () =>
   allPolicies.map((policy) => ({

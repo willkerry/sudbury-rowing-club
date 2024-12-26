@@ -30,7 +30,7 @@ const AuthorArchive = async ({ params }: Params) => {
 
   return (
     <>
-      <div className="flex items-center border-b border-t py-6">
+      <div className="flex items-center border-t border-b py-6">
         <Container>
           <h1>
             <Label className="max-w-prose">Author Archive</Label>
@@ -53,7 +53,7 @@ const AuthorArchive = async ({ params }: Params) => {
                 <DateFormatter
                   dateString={date}
                   format="short"
-                  className="text-sm font-medium"
+                  className="font-medium text-sm"
                 />
               </li>
             ))}

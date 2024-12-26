@@ -20,7 +20,7 @@ const AmendmentDate = ({ set }: { set: keyof typeof COLORS }) => (
   <>
     <span className="sr-only"> Amendment ratified in </span>
     <DateFormatter
-      className="disambiguate text-xs font-semibold"
+      className="disambiguate font-semibold text-xs"
       format="year"
       dateString={AMENDEMENTS[set]}
     />
@@ -33,7 +33,7 @@ type InsProps = {
 
 export const Ins = ({ set = 1, children, ...props }: InsProps) => (
   <ins
-    className={`-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 no-underline not-italic ${COLORS[set]}`}
+    className={`-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 not-italic no-underline ${COLORS[set]}`}
     dateTime={AMENDEMENTS[set].toISOString()}
     {...props}
   >
@@ -46,7 +46,7 @@ export const Ins = ({ set = 1, children, ...props }: InsProps) => (
 
 export const InsBlock = ({ set = 1, children, ...props }: InsProps) => (
   <ins
-    className={`rounded border pl-2 pr-2 block no-underline ${COLORS[set]}`}
+    className={`block rounded border pr-2 pl-2 no-underline ${COLORS[set]}`}
     dateTime={AMENDEMENTS[set].toISOString()}
     {...props}
   >

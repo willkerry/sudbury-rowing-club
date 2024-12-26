@@ -6,11 +6,11 @@ import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
 const labelVariants = cva(
-  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+  "font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
 );
 
 const RequiredIndicator = () => (
-  <span className="absolute inset-y-0 -left-3.5 flex items-center text-red-600">
+  <span className="-left-3.5 absolute inset-y-0 flex items-center text-red-600">
     <span aria-hidden>＊</span>
     <span className="sr-only">(Required)</span>
   </span>

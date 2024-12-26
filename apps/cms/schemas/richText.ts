@@ -1,8 +1,8 @@
 import {
   BlockquoteIcon,
+  DocumentVideoIcon,
   ImageIcon,
   InfoOutlineIcon,
-  DocumentVideoIcon,
 } from "@sanity/icons";
 import { defineArrayMember, defineType } from "sanity";
 
