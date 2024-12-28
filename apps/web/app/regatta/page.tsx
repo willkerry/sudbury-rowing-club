@@ -13,6 +13,7 @@ import { getClub } from "@/lib/getClub";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import dynamic from "next/dynamic";
+import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 
 const Gallery = dynamic(

@@ -6,9 +6,11 @@ const SafetyItemLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) => {
-  const { title } = await fetchSafetyById(params.slug);
+  const { slug } = await params;
+
+  const { title } = await fetchSafetyById(slug);
 
   return (
     <TextPage title={title} color="transparent">

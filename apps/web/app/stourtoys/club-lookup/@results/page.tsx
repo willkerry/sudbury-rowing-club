@@ -1,13 +1,12 @@
 import allClubs from "@/data/clubs.json";
 import Link from "next/link";
 
-const ClubSearchResults = ({
-  searchParams,
-}: {
-  searchParams: {
+const ClubSearchResults = async (props: {
+  searchParams: Promise<{
     q?: string;
-  };
+  }>;
 }) => {
+  const searchParams = await props.searchParams;
   if (!searchParams.q) return null;
 
   const clubs = allClubs.filter((club) =>

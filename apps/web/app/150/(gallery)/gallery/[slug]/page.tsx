@@ -38,7 +38,10 @@ const ArchiveDate = ({
   </div>
 );
 
-export const generateStaticParams = async () => {
+type ArchivePageParams = { slug: string };
+type ArchivePageParamObject = { params: Promise<ArchivePageParams> };
+
+export const generateStaticParams = async (): Promise<ArchivePageParams[]> => {
   const archives = await fetchArchives();
 
   return archives.map((archive) => ({
@@ -46,14 +49,10 @@ export const generateStaticParams = async () => {
   }));
 };
 
-type ArchivePageParams = {
-  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
-};
-
 export const generateMetadata = async ({
   params,
-}: ArchivePageParams): Promise<Metadata> => {
-  const archive = await fetchArchiveById(params.slug);
+}: ArchivePageParamObject): Promise<Metadata> => {
+  const archive = await fetchArchiveById((await params).slug);
 
   return createMetadata({
     title: `150th Anniversary Gallery: ${archive?.title || ""}`,
@@ -81,8 +80,8 @@ const createArchiveJsonLd = (archive: TArchive): WithContext<Photograph> => ({
   description: archive.description || undefined,
 });
 
-const Archive = async ({ params }: ArchivePageParams) => {
-  const archive = await fetchArchiveById(params.slug);
+const Archive = async ({ params }: ArchivePageParamObject) => {
+  const archive = await fetchArchiveById((await params).slug);
 
   return (
     <>

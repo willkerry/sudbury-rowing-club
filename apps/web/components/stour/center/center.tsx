@@ -1,15 +1,13 @@
-import cn from "clsx";
+import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
 type Props = {
-  children: React.ReactNode;
-  className?: string;
   h?: boolean;
   v?: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 const Center = forwardRef<HTMLDivElement, Props>(
-  ({ children, className, h, v, ...props }, ref) => (
+  ({ className, h, v, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
@@ -19,9 +17,7 @@ const Center = forwardRef<HTMLDivElement, Props>(
         className,
       )}
       {...props}
-    >
-      {children}
-    </div>
+    />
   ),
 );
 Center.displayName = "Center";

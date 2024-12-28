@@ -1,4 +1,4 @@
-import type * as React from "react";
+import type { JSX } from "react";
 
 const BritishRowing = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,

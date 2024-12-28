@@ -19,13 +19,11 @@ export const generateStaticParams = async () =>
 
 type Params = Awaited<ReturnType<typeof generateStaticParams>>[number];
 
-export const generateMetadata = async ({
-  params: { page },
-}: {
-  params: Params;
+export const generateMetadata = async (props: {
+  params: Promise<Params>;
 }): Promise<Metadata> =>
   createMetadata({
-    title: `News | Page ${page} | Sudbury Rowing Club`,
+    title: `News | Page ${(await props.params).page} | Sudbury Rowing Club`,
     description: "News from Sudbury Rowing Club.",
   });
 
@@ -36,7 +34,9 @@ const fetchPagedArticles = (page: number) => {
   return serverGetNArticles(firstArticleNumber, lastArticleNumber);
 };
 
-const News = async ({ params: { page } }: { params: Params }) => {
+const News = async (props: { params: Promise<Params> }) => {
+  const { page } = await props.params;
+
   const pages = await fetchPageCount();
   const data = await fetchPagedArticles(Number(page));
 

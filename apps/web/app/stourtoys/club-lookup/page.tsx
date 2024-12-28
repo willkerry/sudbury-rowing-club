@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { use } from "react";
 
-const Clubs = ({ searchParams }: { searchParams: { q?: string } }) => {
+const Clubs = (props: { searchParams: Promise<{ q?: string }> }) => {
+  const searchParams = use(props.searchParams);
   const router = useRouter();
 
   return (

@@ -1,6 +1,4 @@
-import dynamic from "next/dynamic";
-
-const Fireworks = dynamic(() => import("@fireworks-js/react"), { ssr: false });
+import Fireworks from "@fireworks-js/react";
 
 export const HundredAndFiftyFireworks = () => (
   <Fireworks

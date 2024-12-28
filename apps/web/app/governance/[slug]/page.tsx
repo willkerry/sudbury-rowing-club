@@ -11,11 +11,10 @@ export const generateStaticParams = async () =>
     slug: policy._meta.path,
   }));
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
+export const generateMetadata = async (props: {
+  params: Promise<Awaited<ReturnType<typeof generateStaticParams>>[number]>;
 }): Promise<Metadata> => {
+  const params = await props.params;
   const policy = allPolicies.find(
     (policy) => policy._meta.path === params.slug,
   );

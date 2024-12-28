@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { JSX, SVGProps } from "react";
 
 /**
  * Renders the club crest in inlined SVG. Not terribly efficient, so don't use

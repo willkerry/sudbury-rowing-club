@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
   <div
     className="-rotate-6 relative rounded-lg bg-gradient-to-tr from-gray-300 to-white drop-shadow-2xl"

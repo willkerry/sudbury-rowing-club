@@ -13,7 +13,6 @@ const config = {
       createRemotePattern("clubimages.britishrowing.org", "https"),
     ],
   },
-  swcMinify: true,
   redirects: () => new Promise((resolve) => resolve(redirectsArray)),
   reactStrictMode: true,
 };

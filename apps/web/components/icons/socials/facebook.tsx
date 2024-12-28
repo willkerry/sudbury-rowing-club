@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 const Facebook = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (

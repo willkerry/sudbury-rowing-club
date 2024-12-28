@@ -44,7 +44,8 @@
       "**/build/**",
       "**/.next/**",
       "**/.tmp/**",
-      "**/.vscode/**"
+      "**/.vscode/**",
+      "**/.content-collections/**"
     ],
     "rules": {
       "recommended": true,

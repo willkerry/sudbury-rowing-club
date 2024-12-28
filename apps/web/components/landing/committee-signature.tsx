@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { JSX, SVGProps } from "react";
 
 const CommitteeSignature = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,

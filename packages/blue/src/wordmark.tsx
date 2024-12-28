@@ -1,4 +1,4 @@
-import type { SVGProps } from "react";
+import type { JSX, SVGProps } from "react";
 
 /**
  * Renders the website wordmark in inlined SVG format. This is the club crest with

@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 const Twitter = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (

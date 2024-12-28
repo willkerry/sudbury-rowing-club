@@ -6,26 +6,25 @@ import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
 import { Download, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 
-export const generateStaticParams = async () => {
+type SafetyPageParams = { slug: string };
+type SafetyPageParamObject = { params: Promise<SafetyPageParams> };
+
+export const generateStaticParams = async (): Promise<SafetyPageParams[]> => {
   const paths = await fetchSafety();
 
   return paths.map(({ _id }) => ({ slug: _id }));
 };
 
-type Params = {
-  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
-};
-
 export const generateMetadata = async ({
   params,
-}: Params): Promise<Metadata> => {
-  const { title } = await fetchSafetyById(params.slug);
+}: SafetyPageParamObject): Promise<Metadata> => {
+  const { title } = await fetchSafetyById((await params).slug);
 
   return createMetadata({ title });
 };
 
-const SafetyItem = async ({ params }: { params: { slug: string } }) => {
-  const item = await fetchSafetyById(params.slug);
+const SafetyItem = async ({ params }: SafetyPageParamObject) => {
+  const item = await fetchSafetyById((await params).slug);
 
   return (
     <>

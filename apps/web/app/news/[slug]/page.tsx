@@ -13,14 +13,13 @@ import {
 } from "@sudburyrc/api";
 import type { Metadata } from "next";
 
-export const generateStaticParams = async () => {
+type NewsPageParams = { slug: string };
+type NewsPageParamObject = { params: Promise<NewsPageParams> };
+
+export const generateStaticParams = async (): Promise<NewsPageParams[]> => {
   const paths = await serverGetAllSlugs();
 
   return paths.map((slug) => ({ slug }));
-};
-
-type Params = {
-  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
 };
 
 const coverImage = (image: Article["featuredImage"]) => {
@@ -31,8 +30,8 @@ const coverImage = (image: Article["featuredImage"]) => {
 
 export const generateMetadata = async ({
   params,
-}: Params): Promise<Metadata> => {
-  const post = await serverGetArticleBySlug(params?.slug);
+}: NewsPageParamObject): Promise<Metadata> => {
+  const post = await serverGetArticleBySlug((await params).slug);
 
   return {
     ...createMetadata({
@@ -58,8 +57,8 @@ export const generateMetadata = async ({
   };
 };
 
-const Post = async ({ params }: Params) => {
-  const post = await serverGetArticleBySlug(params?.slug);
+const Post = async ({ params }: NewsPageParamObject) => {
+  const post = await serverGetArticleBySlug((await params).slug);
 
   return (
     <>

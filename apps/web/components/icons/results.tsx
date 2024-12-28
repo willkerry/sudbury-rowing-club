@@ -1,3 +1,5 @@
+import type { JSX } from "react";
+
 const Results = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (

@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 export type Icon = JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>;
 
 export const defaultProps: Icon = {

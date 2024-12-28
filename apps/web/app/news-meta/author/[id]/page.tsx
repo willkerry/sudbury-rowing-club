@@ -5,18 +5,17 @@ import { createMetadata } from "@/lib/create-metadata";
 import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
 import Link from "next/link";
 
-export const generateStaticParams = async () => {
+type AuthorPageParams = { id: string };
+type AuthorPageParamObject = { params: Promise<AuthorPageParams> };
+
+export const generateStaticParams = async (): Promise<AuthorPageParams[]> => {
   const authors = await fetchAllAuthors();
 
   return authors.map(({ _id }) => ({ id: _id }));
 };
 
-type Params = {
-  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
-};
-
-export const generateMetadata = async ({ params }: Params) => {
-  const author = await fetchAuthor(params?.id);
+export const generateMetadata = async ({ params }: AuthorPageParamObject) => {
+  const author = await fetchAuthor((await params).id);
 
   return createMetadata({
     title: `${author?.firstName} ${author?.surname}`,
@@ -25,8 +24,8 @@ export const generateMetadata = async ({ params }: Params) => {
   });
 };
 
-const AuthorArchive = async ({ params }: Params) => {
-  const author = await fetchAuthor(params?.id);
+const AuthorArchive = async ({ params }: AuthorPageParamObject) => {
+  const author = await fetchAuthor((await params).id);
 
   return (
     <>

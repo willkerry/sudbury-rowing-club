@@ -6,18 +6,17 @@ import Link from "@/components/stour/link";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
 
-export const generateStaticParams = async () => {
+type MemberPageParams = { slug: string };
+type MemberPageParamObject = { params: Promise<MemberPageParams> };
+
+export const generateStaticParams = async (): Promise<MemberPageParams[]> => {
   const paths = await fetchNoticeSlugs();
 
   return paths.map(({ slug }) => ({ slug }));
 };
 
-type Params = {
-  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
-};
-
-export const generateMetadata = async ({ params }: Params) => {
-  const notice = await fetchOneNotice(params?.slug);
+export const generateMetadata = async ({ params }: MemberPageParamObject) => {
+  const notice = await fetchOneNotice((await params).slug);
 
   return createMetadata({
     title: notice?.title,
@@ -25,8 +24,8 @@ export const generateMetadata = async ({ params }: Params) => {
   });
 };
 
-const Notice = async ({ params }: Params) => {
-  const notice = await fetchOneNotice(params?.slug);
+const Notice = async ({ params }: MemberPageParamObject) => {
+  const notice = await fetchOneNotice((await params).slug);
 
   return (
     <>

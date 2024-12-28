@@ -8,8 +8,8 @@ import useFilter from "@/hooks/useFilter";
 import { HOSTNAME } from "@/lib/constants";
 import { getHostname } from "@/lib/helpers/getHostname";
 import type { SRCEvent } from "@sudburyrc/api";
-import { AnimatePresence, LayoutGroup } from "motion/react";
-import * as motion from "motion/react-client";
+import { AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 const BR_EVENT_STATUS = {

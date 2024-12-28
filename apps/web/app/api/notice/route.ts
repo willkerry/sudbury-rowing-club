@@ -3,7 +3,7 @@ import groq from "groq";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-export const revalidate = 5 * 60;
+export const revalidate = 300;
 
 const NoticeSchema = z.object({
   display: z.boolean(),
