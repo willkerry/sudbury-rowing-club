@@ -55,7 +55,7 @@ const fetchAuthor = async (id: string) => {
     id,
   });
 
-  return ZAuthorResponse.parse(response);
+  return ZAuthorResponse.nullable().parse(response);
 };
 
 const fetchAllAuthors = async () => {

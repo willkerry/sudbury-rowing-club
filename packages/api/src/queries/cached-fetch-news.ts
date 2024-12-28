@@ -56,7 +56,13 @@ const readFromCache = async () => {
 const serverGetArticleBySlug = async (slug: string) => {
   const articles = await readFromCache();
 
-  return articles[prependNewsPrefix(slug)];
+  const key = prependNewsPrefix(slug);
+
+  if (key in articles) {
+    return articles[key];
+  }
+
+  return null;
 };
 
 const serverGetArticleCount = async () => {

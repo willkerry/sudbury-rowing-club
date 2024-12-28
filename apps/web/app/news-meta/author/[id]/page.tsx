@@ -4,6 +4,7 @@ import DateFormatter from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type AuthorPageParams = { id: string };
 type AuthorPageParamObject = { params: Promise<AuthorPageParams> };
@@ -17,6 +18,8 @@ export const generateStaticParams = async (): Promise<AuthorPageParams[]> => {
 export const generateMetadata = async ({ params }: AuthorPageParamObject) => {
   const author = await fetchAuthor((await params).id);
 
+  if (!author) return {};
+
   return createMetadata({
     title: `${author?.firstName} ${author?.surname}`,
     description: `Archive of all posts by ${author?.firstName} ${author?.surname}`,
@@ -26,6 +29,8 @@ export const generateMetadata = async ({ params }: AuthorPageParamObject) => {
 
 const AuthorArchive = async ({ params }: AuthorPageParamObject) => {
   const author = await fetchAuthor((await params).id);
+
+  if (!author) return notFound();
 
   return (
     <>

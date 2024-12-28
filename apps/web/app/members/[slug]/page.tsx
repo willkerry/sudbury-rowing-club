@@ -5,6 +5,7 @@ import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
+import { notFound } from "next/navigation";
 
 type MemberPageParams = { slug: string };
 type MemberPageParamObject = { params: Promise<MemberPageParams> };
@@ -18,6 +19,8 @@ export const generateStaticParams = async (): Promise<MemberPageParams[]> => {
 export const generateMetadata = async ({ params }: MemberPageParamObject) => {
   const notice = await fetchOneNotice((await params).slug);
 
+  if (!notice) return {};
+
   return createMetadata({
     title: notice?.title,
     description: "Members’ Notices",
@@ -26,6 +29,8 @@ export const generateMetadata = async ({ params }: MemberPageParamObject) => {
 
 const Notice = async ({ params }: MemberPageParamObject) => {
   const notice = await fetchOneNotice((await params).slug);
+
+  if (!notice) return notFound();
 
   return (
     <>

@@ -39,8 +39,8 @@ export const fetchArchives = async (): Promise<Archive[]> => {
   return z.array(ZArchive).parse(response);
 };
 
-export const fetchArchiveById = async (id: string): Promise<Archive> => {
+export const fetchArchiveById = async (id: string): Promise<Archive | null> => {
   const response = await sanityClient.fetch(queryById, { id });
 
-  return ZArchive.parse(response);
+  return ZArchive.nullable().parse(response);
 };

@@ -1,5 +1,6 @@
 import TextPage from "@/components/layouts/text-page";
 import { fetchSafetyById } from "@sudburyrc/api";
+import { notFound } from "next/navigation";
 
 const SafetyItemLayout = async ({
   children,
@@ -10,7 +11,11 @@ const SafetyItemLayout = async ({
 }) => {
   const { slug } = await params;
 
-  const { title } = await fetchSafetyById(slug);
+  const entry = await fetchSafetyById(slug);
+
+  if (!entry) return notFound();
+
+  const { title } = entry;
 
   return (
     <TextPage title={title} color="transparent">

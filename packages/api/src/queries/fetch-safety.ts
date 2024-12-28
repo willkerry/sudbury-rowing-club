@@ -66,7 +66,7 @@ const fetchSafety = async () => {
 const fetchSafetyById = async (id: string) => {
   const response = await sanityClient.fetch(safetyQueryById, { id });
 
-  return ZSafetyResponse.parse(response);
+  return ZSafetyResponse.nullable().parse(response);
 };
 
 type SafetyResponse = z.infer<typeof ZSafetyResponse>;

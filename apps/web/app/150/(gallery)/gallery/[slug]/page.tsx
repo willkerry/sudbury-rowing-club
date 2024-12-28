@@ -8,6 +8,7 @@ import {
   fetchArchives,
 } from "@sudburyrc/api";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Script from "next/script";
 import type { Photograph, WithContext } from "schema-dts";
 import snarkdown from "snarkdown";
@@ -54,6 +55,8 @@ export const generateMetadata = async ({
 }: ArchivePageParamObject): Promise<Metadata> => {
   const archive = await fetchArchiveById((await params).slug);
 
+  if (!archive) return {};
+
   return createMetadata({
     title: `150th Anniversary Gallery: ${archive?.title || ""}`,
     description: archive?.description || "",
@@ -82,6 +85,8 @@ const createArchiveJsonLd = (archive: TArchive): WithContext<Photograph> => ({
 
 const Archive = async ({ params }: ArchivePageParamObject) => {
   const archive = await fetchArchiveById((await params).slug);
+
+  if (!archive) return notFound();
 
   return (
     <>

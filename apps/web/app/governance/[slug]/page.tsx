@@ -6,18 +6,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { title as formatTitle } from "radash";
 
-export const generateStaticParams = async () =>
+type PolicyPageParams = { slug: string };
+type PolicyPageParamObject = { params: Promise<PolicyPageParams> };
+
+export const generateStaticParams = async (): Promise<PolicyPageParams[]> =>
   allPolicies.map((policy) => ({
     slug: policy._meta.path,
   }));
 
-export const generateMetadata = async (props: {
-  params: Promise<Awaited<ReturnType<typeof generateStaticParams>>[number]>;
-}): Promise<Metadata> => {
-  const params = await props.params;
-  const policy = allPolicies.find(
-    (policy) => policy._meta.path === params.slug,
-  );
+export const generateMetadata = async ({
+  params,
+}: PolicyPageParamObject): Promise<Metadata> => {
+  const { slug } = await params;
+  const policy = allPolicies.find((policy) => policy._meta.path === slug);
 
   if (!policy) return {};
 
@@ -27,7 +28,7 @@ export const generateMetadata = async (props: {
   });
 };
 
-const TestPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+const TestPage = async ({ params }: PolicyPageParamObject) => {
   const { slug } = await params;
 
   const policy = allPolicies.find((policy) => policy._meta.path === slug);

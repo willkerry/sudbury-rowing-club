@@ -83,7 +83,7 @@ const fetchNotices = async () => {
 const fetchOneNotice = async (slug: string) => {
   const response = await sanityClient.fetch(queryForOne, { slug });
 
-  return ZNotice.parse(response);
+  return ZNotice.nullable().parse(response);
 };
 
 type Notice = z.infer<typeof ZNotice>;
