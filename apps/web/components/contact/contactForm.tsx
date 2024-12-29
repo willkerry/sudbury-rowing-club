@@ -7,16 +7,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
+import { browserIndexOfficers } from "@/lib/algolia";
 import { cn } from "@/lib/utils";
+import {
+  useDebouncedCallback,
+  useHotkeys,
+  useOs,
+  useThrottledCallback,
+} from "@mantine/hooks";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
-import { useForm } from "@tanstack/react-form";
+import { type ReactFormExtendedApi, useForm } from "@tanstack/react-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { zodValidator } from "@tanstack/zod-form-adapter";
 import type { getWodehouseFullDetails } from "get-wodehouse-name";
 import ky from "ky";
 import { shake } from "radash";
-import { z } from "zod";
+import { useCallback, useEffect, useState } from "react";
+import { set, z } from "zod";
+import { toast } from "sonner";
 import { Error as ErrorComponent } from "../ui/error";
 import { FromAndTo } from "./fromAndTo";
 
@@ -42,19 +50,77 @@ type Props = {
   initialValues: Partial<Message>;
 };
 
-const usePlaceholder = () => {
-  const { data, ...rest } = useQuery({
+const useDummySender = (form: ReactFormExtendedApi<Message>) => {
+  const os = useOs();
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const { data, refetch } = useQuery({
+    enabled: isEnabled,
     queryKey: ["/api/pg"],
     queryFn: () =>
       ky.get<ReturnType<typeof getWodehouseFullDetails>>("/api/pg").json(),
+    select: ({ firstName, lastName, email }) => ({
+      name: `${firstName} ${lastName}`,
+      email,
+    }),
   });
 
-  const placeholder = {
-    name: data ? `${data.firstName} ${data.lastName}` : "",
-    email: data?.email ?? "",
-  };
+  const { data: webmasterId } = useQuery({
+    enabled: isEnabled,
+    queryKey: ["webmasterId"],
+    queryFn: () => browserIndexOfficers.search<OfficerResponse>("WEBMASTER"),
+    select: (data) => data.hits[0]?._id,
+  });
 
-  return { placeholder, ...rest };
+  const setFieldValues = useCallback(() => {
+    if (!data) return;
+
+    const to = webmasterId ?? "";
+
+    form.setFieldValue("to", to);
+    form.setFieldValue("name", data?.name);
+    form.setFieldValue("email", data?.email);
+  }, [data, webmasterId, form]);
+
+  useEffect(() => {
+    if (isEnabled) setFieldValues();
+  }, [isEnabled, setFieldValues]);
+
+  const handleHotkey = useThrottledCallback(async () => {
+    if (isEnabled) {
+      await refetch();
+
+      toast("Testing mode sender regenerated.", { position: "top-center" });
+
+      return;
+    }
+
+    const didConfirm = await new Promise<boolean>((resolve) => {
+      toast("Enable testing mode?", {
+        id: "testing-mode",
+        description: (
+          <div className="text-gray-700">
+            You can activate testing mode by pressing{" "}
+            {os === "macos" ? <kbd>⌘+J</kbd> : <kbd>Ctrl+J</kbd>}.
+          </div>
+        ),
+        position: "top-center",
+        dismissible: true,
+        onDismiss: () => resolve(false),
+        onAutoClose: () => resolve(false),
+        action: {
+          label: "Confirm",
+          onClick: () => resolve(true),
+        },
+      });
+    });
+
+    if (!didConfirm) return;
+
+    setIsEnabled(true);
+  }, 1000);
+
+  useHotkeys([["mod+j", handleHotkey]]);
 };
 
 /**
@@ -62,10 +128,6 @@ const usePlaceholder = () => {
  * valid recipients are provided, will render a fully-functional form.
  */
 const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
-  const localDisabled = disabled;
-
-  const { placeholder, isPending } = usePlaceholder();
-
   const recipientWasProvided = !!initialValues.to;
 
   const { mutateAsync, status, error } = useMutation({
@@ -98,15 +160,17 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       message: initialValues.message || "",
     },
     onSubmit: ({ value }) => mutateAsync(value),
-    validatorAdapter: zodValidator,
+    validators: { onSubmit: MessageSchema },
   });
 
-  if (localDisabled) return <DisabledOverlay form={<div />} />;
+  useDummySender(form);
+
+  if (disabled) return <DisabledOverlay form={<div />} />;
   if (form.state.isSubmitted) return <Success />;
 
   const disableFields =
     form.state.isSubmitting ||
-    localDisabled ||
+    disabled ||
     form.state.isSubmitted ||
     status === "pending";
 
@@ -118,12 +182,12 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         form.handleSubmit();
       }}
     >
-      <form.Field name="to" validators={{ onSubmit: MessageToSchema }}>
+      <form.Field name="to">
         {(field) => (
           <Select
             className={cn("col-span-2", recipientWasProvided && "hidden")}
             disabled={disableFields}
-            error={field.state.meta.touchedErrors[0]?.toString()}
+            error={field.state.meta.errors[0]?.toString()}
             label="Who would you like to contact?"
             value={field.state.value}
             onBlur={field.handleBlur}
@@ -140,16 +204,14 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       </form.Field>
 
       <div className="-mb-4 col-span-2 grid gap-x-4 sm:grid-cols-2">
-        <form.Field name="name" validators={{ onSubmit: MessageNameSchema }}>
+        <form.Field name="name">
           {(field) => (
             <Input
-              loading={isPending}
               disabled={disableFields}
               label="Your name"
-              placeholder={placeholder.name}
               type="text"
               className="mb-4"
-              error={field.state.meta.touchedErrors[0]?.toString()}
+              error={field.state.meta.errors[0]?.toString()}
               value={field.state.value}
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
@@ -157,18 +219,14 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
           )}
         </form.Field>
 
-        <form.Field name="email" validators={{ onSubmit: MessageEmailSchema }}>
+        <form.Field name="email">
           {(field) => (
             <Input
               disabled={disableFields}
               label="Your email"
-              loading={isPending}
-              placeholder={placeholder.email}
               type="email"
               className="mb-4"
-              error={
-                field.state.meta.touchedErrors[0]?.toString().split(",")[0]
-              }
+              error={field.state.meta.errors[0]?.toString().split(",")[0]}
               value={field.state.value}
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
@@ -189,7 +247,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             to={shake(contacts.find((o) => o._id === to))}
             isOpen={to !== "default"}
             from={{
-              name: name || placeholder.name,
+              name,
               email: email || "Placeholder",
               isPlaceholder: !name || !form.getFieldValue("email"),
             }}
@@ -197,10 +255,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         )}
       </form.Subscribe>
 
-      <form.Field
-        name="message"
-        validators={{ onSubmit: MessageMessageSchema }}
-      >
+      <form.Field name="message">
         {(field) => (
           <TextArea
             label="Your message"
@@ -209,7 +264,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             id="message"
             minRows={3}
             required
-            error={field.state.meta.touchedErrors[0]?.toString()}
+            error={field.state.meta.errors[0]?.toString()}
             value={field.state.value}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}

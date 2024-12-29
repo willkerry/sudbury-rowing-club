@@ -151,7 +151,7 @@ const FindUs: NextPage = () => (
               rel="noreferrer"
               target="_blank"
             >
-              ///craziest.flask.falls
+              {"///craziest.flask.falls"}
             </a>
             .
           </Note>
