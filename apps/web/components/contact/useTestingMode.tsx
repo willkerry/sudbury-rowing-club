@@ -10,10 +10,9 @@ import { type ExternalToast, toast } from "sonner";
 import { Button } from "../ui/button";
 import type { Message } from "./contactForm";
 
-const TESTING_MODE_TOAST_OPTIONS: ExternalToast = {
+const TESTING_MODE_TOAST_OPTIONS = {
   id: "testing-mode",
-  position: "top-center",
-};
+} satisfies ExternalToast;
 
 export const useTestingMode = (form: ReactFormExtendedApi<Message>) => {
   const os = useOs();
@@ -51,9 +50,7 @@ export const useTestingMode = (form: ReactFormExtendedApi<Message>) => {
   const handleHotkey = useThrottledCallback(async () => {
     if (isEnabled) {
       await setFieldValues();
-      toast.success("New sender generated.", {
-        position: "top-center",
-      });
+      toast.success("New sender generated.");
 
       return;
     }
