@@ -166,7 +166,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             from={{
               name,
               email: email || "Placeholder",
-              isPlaceholder: !name || !form.getFieldValue("email"),
+              isPlaceholder: !(name && form.getFieldValue("email")),
             }}
           />
         )}

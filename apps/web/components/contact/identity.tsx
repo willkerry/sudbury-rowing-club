@@ -12,7 +12,7 @@ const IdentityImage = forwardRef<
     imageBuilder: (builder) => builder.width(80).height(80).fit("crop"),
   });
 
-  if (!imageProps?.src || !id) return null;
+  if (!(imageProps?.src && id)) return null;
 
   return (
     <AvatarImage ref={ref} asChild src={imageProps.src} {...props}>

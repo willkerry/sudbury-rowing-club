@@ -14,7 +14,7 @@ function getBoatsByWave(matrix: string[][], exclude?: string): OutputMap {
     if (!x) return;
 
     row.forEach((value, y) => {
-      if (!y || !value || value === exclude) return;
+      if (!(y && value) || value === exclude) return;
 
       if (!outputMap[value]) outputMap[value] = [];
 

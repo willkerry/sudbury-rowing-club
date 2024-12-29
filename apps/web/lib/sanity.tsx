@@ -105,7 +105,7 @@ export function PortableText({
 function smartQuotesDeep(
   input: PortableTextProps["value"],
 ): PortableTextProps["value"] {
-  if (!input || !Array.isArray(input)) return input;
+  if (!(input && Array.isArray(input))) return input;
 
   return input.map((item) => ({
     ...item,

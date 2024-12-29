@@ -67,7 +67,7 @@ const forwarders = defineType({
     prepare({ alias, recipients, otherRecipients }) {
       const title = alias;
 
-      if (!recipients && !otherRecipients) {
+      if (!(recipients || otherRecipients)) {
         return {
           title,
           subtitle: "No recipients",

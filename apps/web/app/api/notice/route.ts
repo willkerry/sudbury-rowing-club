@@ -14,7 +14,7 @@ const NoticeSchema = z.object({
   date: z
     .string()
     .optional()
-    .refine((s) => !s || !Number.isNaN(Date.parse(s))),
+    .refine((s) => !(s && Number.isNaN(Date.parse(s)))),
 });
 
 export type Notice = z.infer<typeof NoticeSchema>;
