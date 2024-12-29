@@ -99,7 +99,7 @@ const Committee = async ({
               <tr>
                 <th>{roleName}</th>
                 <td>
-                  {incumbents?.map((name, i) => (
+                  {incumbents?.map((name) => (
                     <InitialisedName name={name} key={name} />
                   ))}
                 </td>

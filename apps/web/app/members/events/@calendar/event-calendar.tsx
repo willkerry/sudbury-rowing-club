@@ -128,7 +128,7 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
 
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
-          {groupByMonth(filteredEvents).map(({ month, events }, i) => (
+          {groupByMonth(filteredEvents).map(({ month, events }) => (
             <motion.div
               id={`month-${month + 1}`}
               key={month}

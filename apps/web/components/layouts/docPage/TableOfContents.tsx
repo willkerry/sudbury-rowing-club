@@ -17,7 +17,6 @@ export const TableOfContents = ({
   className,
   ...props
 }: { toc: SerializableTOC } & React.HTMLAttributes<HTMLUListElement>) => {
-  const router = useRouter();
   const headingsRef = useRef<HTMLHeadingElement[]>([]);
 
   useEffect(() => {

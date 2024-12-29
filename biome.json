@@ -52,6 +52,7 @@
       "a11y": { "noRedundantAlt": "off" },
       "complexity": { "noExcessiveCognitiveComplexity": "error" },
       "correctness": {
+        "noUnusedVariables": "error",
         "noUndeclaredVariables": "error",
         "useHookAtTopLevel": "error"
       },

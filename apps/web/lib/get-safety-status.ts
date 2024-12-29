@@ -59,9 +59,6 @@ const numericSeverityMap: Record<1 | 2 | 3 | 4, Severity> = {
   4: Severity.neutral,
 };
 
-/** Rounds to 2 decimal places */
-const round = (n: number) => (Math.round(n * 100) * 0.01).toFixed(2);
-
 /** Assembles a string describing the current water level at the club's monitoring station */
 function formatDescriptionString(
   name: string,
