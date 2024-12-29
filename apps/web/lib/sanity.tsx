@@ -93,8 +93,7 @@ export function PortableText({
       <div {...{ className }}>
         <BlockContent
           components={components}
-          // value={smartQuotesDeep(value)}
-          value={value}
+          value={smartQuotesDeep(value)}
           {...rest}
         />
       </div>
@@ -106,17 +105,14 @@ export function PortableText({
 function smartQuotesDeep(
   input: PortableTextProps["value"],
 ): PortableTextProps["value"] {
-  if (!input) return input;
-  if (!Array.isArray(input)) return input;
+  if (!input || !Array.isArray(input)) return input;
 
-  return input.map((item) => {
-    return {
-      ...item,
-      children: item.children?.map((child: Record<string, string>) => {
-        if (child.text) return { ...child, text: smartQuotes(child.text) };
+  return input.map((item) => ({
+    ...item,
+    children: item.children?.map((child: Record<string, string>) => {
+      if (child.text) return { ...child, text: smartQuotes(child.text) };
 
-        return child;
-      }),
-    };
-  });
+      return child;
+    }),
+  }));
 }
