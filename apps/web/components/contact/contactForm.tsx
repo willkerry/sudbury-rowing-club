@@ -7,26 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
-import { browserIndexOfficers } from "@/lib/algolia";
 import { cn } from "@/lib/utils";
-import {
-  useDebouncedCallback,
-  useHotkeys,
-  useOs,
-  useThrottledCallback,
-} from "@mantine/hooks";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
-import { type ReactFormExtendedApi, useForm } from "@tanstack/react-form";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import type { getWodehouseFullDetails } from "get-wodehouse-name";
-import ky from "ky";
+import { useForm } from "@tanstack/react-form";
+import { useMutation } from "@tanstack/react-query";
 import { shake } from "radash";
-import { useCallback, useEffect, useState } from "react";
-import { set, z } from "zod";
-import { toast } from "sonner";
+import { z } from "zod";
 import { Error as ErrorComponent } from "../ui/error";
 import { FromAndTo } from "./fromAndTo";
+import { useTestingMode } from "./useTestingMode";
 
 const MessageToSchema = z.string().refine((value) => value !== "default", {
   message: "Select a recipient",
@@ -48,79 +38,6 @@ type Props = {
   disabled?: boolean;
   contacts: OfficerResponse[];
   initialValues: Partial<Message>;
-};
-
-const useDummySender = (form: ReactFormExtendedApi<Message>) => {
-  const os = useOs();
-  const [isEnabled, setIsEnabled] = useState(false);
-
-  const { data, refetch } = useQuery({
-    enabled: isEnabled,
-    queryKey: ["/api/pg"],
-    queryFn: () =>
-      ky.get<ReturnType<typeof getWodehouseFullDetails>>("/api/pg").json(),
-    select: ({ firstName, lastName, email }) => ({
-      name: `${firstName} ${lastName}`,
-      email,
-    }),
-  });
-
-  const { data: webmasterId } = useQuery({
-    enabled: isEnabled,
-    queryKey: ["webmasterId"],
-    queryFn: () => browserIndexOfficers.search<OfficerResponse>("WEBMASTER"),
-    select: (data) => data.hits[0]?._id,
-  });
-
-  const setFieldValues = useCallback(() => {
-    if (!data) return;
-
-    const to = webmasterId ?? "";
-
-    form.setFieldValue("to", to);
-    form.setFieldValue("name", data?.name);
-    form.setFieldValue("email", data?.email);
-  }, [data, webmasterId, form]);
-
-  useEffect(() => {
-    if (isEnabled) setFieldValues();
-  }, [isEnabled, setFieldValues]);
-
-  const handleHotkey = useThrottledCallback(async () => {
-    if (isEnabled) {
-      await refetch();
-
-      toast("Testing mode sender regenerated.", { position: "top-center" });
-
-      return;
-    }
-
-    const didConfirm = await new Promise<boolean>((resolve) => {
-      toast("Enable testing mode?", {
-        id: "testing-mode",
-        description: (
-          <div className="text-gray-700">
-            You can activate testing mode by pressing{" "}
-            {os === "macos" ? <kbd>⌘+J</kbd> : <kbd>Ctrl+J</kbd>}.
-          </div>
-        ),
-        position: "top-center",
-        dismissible: true,
-        onDismiss: () => resolve(false),
-        onAutoClose: () => resolve(false),
-        action: {
-          label: "Confirm",
-          onClick: () => resolve(true),
-        },
-      });
-    });
-
-    if (!didConfirm) return;
-
-    setIsEnabled(true);
-  }, 1000);
-
-  useHotkeys([["mod+j", handleHotkey]]);
 };
 
 /**
@@ -163,7 +80,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     validators: { onSubmit: MessageSchema },
   });
 
-  useDummySender(form);
+  useTestingMode(form);
 
   if (disabled) return <DisabledOverlay form={<div />} />;
   if (form.state.isSubmitted) return <Success />;
