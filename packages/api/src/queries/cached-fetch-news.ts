@@ -35,7 +35,7 @@ const writeToCache = async () => {
   );
 
   cache.articles = articlesBySlug;
-  cache.lastFetchTime = new Date().getTime();
+  cache.lastFetchTime = Date.now();
 };
 
 const readFromCache = async () => {
