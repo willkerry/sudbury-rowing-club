@@ -3,7 +3,6 @@
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { TableOfContentsItem } from "./TableOfContentsItem";
 

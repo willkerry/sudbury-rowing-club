@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { NewspaperIcon } from "@heroicons/react/24/outline";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
 import DateFormatter from "../utils/date-formatter";

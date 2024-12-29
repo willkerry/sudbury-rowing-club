@@ -1,4 +1,3 @@
-import React from "react";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 const forwarders = defineType({

@@ -1,11 +1,7 @@
 import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
-import {
-  IMAGE_FIELDS,
-  NESTED_IMAGE_FIELDS,
-  Z_IMAGE_SCHEMA,
-} from "../shared/image";
+import { NESTED_IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
 import { ZTypedObject } from "./typed-object";
 
 const regattaSettingsQuery = groq`
