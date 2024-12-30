@@ -6,6 +6,7 @@ import {
   fetchSafety,
   serverGetAllSlugs,
 } from "@sudburyrc/api";
+import { allPolicies } from "content-collections";
 import type { MetadataRoute } from "next";
 
 const url = (pathname: string) => `${BASE_URL}${pathname}`;
@@ -54,6 +55,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
+  const policiesDynamicPaths: MetadataRoute.Sitemap = allPolicies.map(
+    (policy) => ({
+      url: url(`/governance/${policy._meta.path}`),
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+    }),
+  );
+
   return [
     {
       url: url("/"),
@@ -92,36 +102,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    {
-      url: url("/governance/anti-bullying-policy"),
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: url("/governance/club-rules"),
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: url("/governance/constitution"),
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: url("/governance/grievance-and-disciplinary-policy"),
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: url("/governance/privacy-policy"),
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
+    ...policiesDynamicPaths,
     {
       url: url("/about/sponsorship"),
       lastModified: new Date(),
