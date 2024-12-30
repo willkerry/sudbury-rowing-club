@@ -2,6 +2,7 @@ import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import type { NextPage } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import regatta1888Image from "public/assets/history/1888-regatta.jpg";
 import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";
 import river1920sImage from "public/assets/history/1920s-river.jpg";
@@ -374,6 +375,7 @@ const History: NextPage = () => (
       to race at the event when they competed in the Silver Goblets and Nichols
       Cup for coxless pairs.
     </p>
+
     <div className="pt-16 text-gray-500 text-sm">
       <p>
         Written by Trevor Chambers in 1996.
@@ -387,6 +389,16 @@ const History: NextPage = () => (
         </a>{" "}
         unless otherwise noted.
       </p>
+    </div>
+
+    <div className="pt-8 text-gray-500 text-sm">
+      <h2 className="mb-0 font-medium text-base">See also</h2>
+      <Link className="block" href="/150">
+        150th anniversary gallery
+      </Link>
+      <Link className="block" href="committees">
+        Committee archive
+      </Link>
     </div>
   </TextPage>
 );
