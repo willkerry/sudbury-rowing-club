@@ -396,7 +396,7 @@ const History: NextPage = () => (
       <Link className="block" href="/150">
         150th anniversary gallery
       </Link>
-      <Link className="block" href="committees">
+      <Link className="block" href="./history/committees">
         Committee archive
       </Link>
     </div>

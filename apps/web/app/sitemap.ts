@@ -1,4 +1,5 @@
 import { BASE_URL } from "@/lib/constants";
+import { getCommitteeArchive } from "@/lib/get-committee-archive";
 import {
   fetchAllAuthors,
   fetchArchives,
@@ -17,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const authors = await fetchAllAuthors();
   const news = await serverGetAllSlugs();
   const safetyItems = await fetchSafety();
+  const committeeArchive = getCommitteeArchive();
 
   const archiveDynamicPaths: MetadataRoute.Sitemap = archives.map(
     (archive) => ({
@@ -64,6 +66,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
+  const committeeArchiveDynamicPaths: MetadataRoute.Sitemap =
+    committeeArchive.map(({ season }) => ({
+      url: url(`/about/history/committees/${season}`),
+      lastModified: new Date(season),
+      changeFrequency: "never",
+      priority: 0.1,
+    }));
+
   return [
     {
       url: url("/"),
@@ -83,6 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.25,
     },
+    ...committeeArchiveDynamicPaths,
     {
       url: url("/about/brand"),
       lastModified: new Date(),

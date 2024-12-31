@@ -5,25 +5,28 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import committees from "@/data/officer-archive.json";
 import { createMetadata } from "@/lib/create-metadata";
+import { getCommitteeArchive } from "@/lib/get-committee-archive";
+import { initialiseName } from "@/lib/helpers/initialiseName";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { listify } from "radash";
-import { POSITION_NAMES, initialiseName } from "../page";
+
+const committeeArchive = getCommitteeArchive();
 
 const NAME_CHANGE_YEAR = 1982;
 
 const getClubName = (year: number | string) => {
   const yearNumber = Number(year);
-  if (Number.isNaN(yearNumber) || yearNumber > NAME_CHANGE_YEAR) return "SRC";
+  if (Number.isNaN(yearNumber) || yearNumber > NAME_CHANGE_YEAR)
+    return ["SRC", "Sudbury Rowing Club"];
 
-  return "SBC";
+  return ["SBC", "Stour Boat Club"];
 };
 
 export const generateStaticParams = async () =>
-  committees.map((committee) => ({
-    season: committee.season[0],
+  committeeArchive.map(({ season }) => ({
+    season,
   }));
 
 type Params = Awaited<ReturnType<typeof generateStaticParams>>[number];
@@ -35,15 +38,17 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { season } = await params;
 
-  const committee = committees.find(
-    (committee) => committee.season[0] === season,
+  const committee = committeeArchive.find(
+    (committee) => committee.season === season,
   );
 
   if (!committee) return {};
 
+  const clubName = getClubName(season);
+
   return createMetadata({
-    title: `The ${season} ${getClubName(season)} Committee`,
-    description: `${season} Committee`,
+    title: `The ${season} ${clubName[0]} Committee`,
+    description: `${clubName[1]} committee of ${season}`,
   });
 };
 
@@ -69,13 +74,14 @@ const Committee = async ({
 }) => {
   const { season } = await params;
 
-  const committee = committees.find(
-    (committee) => committee.season[0] === season,
+  const committee = committeeArchive.find(
+    (committee) => committee.season === season,
   );
 
   if (!committee) return notFound();
 
-  const pageTitle = `${season} ${getClubName(season)} Committee`;
+  const clubName = getClubName(season);
+  const pageTitle = `${season} ${clubName[0]} Committee`;
 
   return (
     <TextPage title={pageTitle} color="transparent">
@@ -87,26 +93,21 @@ const Committee = async ({
           </tr>
         </thead>
         <tbody>
-          {listify(committee, (role, incumbents) => {
-            if (!incumbents?.length) return null;
-            if (role === "season") return null;
-
-            const isMultiple = incumbents.length > 1;
-
-            const roleName = POSITION_NAMES.get(role)?.[isMultiple ? 1 : 0];
-
-            return (
-              <tr>
-                <th>{roleName}</th>
-                <td>
-                  {incumbents?.map((name) => (
-                    <InitialisedName name={name} key={name} />
-                  ))}
-                </td>
-              </tr>
-            );
-          })}
+          {listify(committee.committee, (key, office) => (
+            <tr key={key}>
+              <th>{office?.displayName}</th>
+              <td>
+                {office?.holders?.map((name) => (
+                  <InitialisedName name={name} key={name} />
+                ))}
+              </td>
+            </tr>
+          ))}
         </tbody>
+
+        <caption className="mt-6 caption-bottom text-gray-500">
+          {clubName[1]} committee of {season}
+        </caption>
       </table>
     </TextPage>
   );
