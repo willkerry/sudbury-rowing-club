@@ -9,9 +9,9 @@ export const POSITION_NAMES = new Map<Position, [string, string]>([
   ["secretary", ["Secretary", "Secretaries"]],
   ["treasurer", ["Treasurer", "Treasurers"]],
   ["viceCaptains", ["Vice-captain", "Vice-captains"]],
-  ["ladiesCaptain", ["Ladies Captain", "Ladies Captains"]],
-  ["ladiesSecretary", ["Ladies Secretary", "Ladies Secretaries"]],
-  ["ladiesViceCaptain", ["Ladies VC", "Ladies VCs"]],
+  ["ladiesCaptain", ["Ladies’ Captain", "Ladies’ Captains"]],
+  ["ladiesSecretary", ["Ladies’ Secretary", "Ladies’ Secretaries"]],
+  ["ladiesViceCaptain", ["Ladies’ VC", "Ladies’ VCs"]],
   ["season", ["Season", "Seasons"]],
 ]);
 
