@@ -1,9 +1,9 @@
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { getCommitteeArchive } from "@/lib/get-committee-archive";
-import { initialiseName } from "@/lib/helpers/initialiseName";
 import Link from "next/link";
 import { listify } from "radash";
+import { InitialisedName } from "./InitialiseName";
 
 export const metadata = createMetadata({
   title: "Committees",
@@ -30,9 +30,7 @@ const Archive = () => (
               </span>
 
               {office?.holders.map((name) => (
-                <span className="block leading-snug" key={name}>
-                  {initialiseName(name)}
-                </span>
+                <InitialisedName name={name} key={name} />
               ))}
             </li>
           ))}

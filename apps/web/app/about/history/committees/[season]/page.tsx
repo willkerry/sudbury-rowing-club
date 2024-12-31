@@ -1,16 +1,10 @@
 import TextPage from "@/components/layouts/text-page";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { createMetadata } from "@/lib/create-metadata";
 import { getCommitteeArchive } from "@/lib/get-committee-archive";
-import { initialiseName } from "@/lib/helpers/initialiseName";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { listify } from "radash";
+import { InitialisedName } from "../InitialiseName";
 
 const committeeArchive = getCommitteeArchive();
 
@@ -50,21 +44,6 @@ export const generateMetadata = async ({
     title: `The ${season} ${clubName[0]} Committee`,
     description: `${clubName[1]} committee of ${season}`,
   });
-};
-
-const InitialisedName = ({ name }: { name: string }) => {
-  const initialisedName = initialiseName(name);
-
-  if (initialisedName === name) return <div>{name}</div>;
-
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger className="block">{initialisedName}</TooltipTrigger>
-        <TooltipContent>{name.replace("+", " ")}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
 };
 
 const Committee = async ({
