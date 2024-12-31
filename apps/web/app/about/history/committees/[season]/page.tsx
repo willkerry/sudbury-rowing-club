@@ -14,7 +14,7 @@ import { listify } from "radash";
 
 const committeeArchive = getCommitteeArchive();
 
-const NAME_CHANGE_YEAR = 1982;
+const NAME_CHANGE_YEAR = 1975;
 
 const getClubName = (year: number | string) => {
   const yearNumber = Number(year);
