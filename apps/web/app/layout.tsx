@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
 import "../styles/index.css";
+import { blue } from "@sudburyrc/blue";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#00295A",
     "msapplication-config": "/favicon/browserconfig.xml",
   },
+
   icons: {
     other: [
       {
@@ -52,7 +54,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000",
+  themeColor: [
+    { color: "#fff", media: "(prefers-color-scheme: light)" },
+    { color: blue[950], media: "(prefers-color-scheme: dark)" },
+  ],
 };
 
 export default function RootLayout({
