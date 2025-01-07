@@ -36,7 +36,7 @@ export const SponsorshipHero = ({
         </Button>
       </ScrollLink>
       <Button asChild size="lg">
-        <Link href="/contact?q=sponsorship">Enquire now</Link>
+        <Link href="/contact?q=sponsorship,secretary">Enquire now</Link>
       </Button>
     </div>
 
