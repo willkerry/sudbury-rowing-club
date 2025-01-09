@@ -1,3 +1,4 @@
+import { smartQuotes } from "@sudburyrc/helpers";
 import { EnvironmentAgency, MetOffice } from "../icons";
 
 export enum WarningSourceEnum {
@@ -38,10 +39,10 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
   }
 
   return (
-    <div className="prose prose-p:my-0 prose-blockquote:p-4 prose-blockquote:text-sm">
+    <div className="text-gray-900">
       {agencyName && <p>The {agencyName} has issued the following warning:</p>}
 
-      <blockquote className="relative mt-3 overflow-hidden">
+      <blockquote className="relative mt-3 overflow-hidden rounded border p-3 text-gray-700">
         {source && (
           <div
             className={`${agencyColors} absolute top-0 right-0 flex items-center justify-center rounded-bl p-1`}
@@ -49,7 +50,7 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
             <AgencyIcon aria-hidden className="h-4 w-4" />
           </div>
         )}
-        <p>{description}</p>
+        <p className="text-sm">{smartQuotes(description)}</p>
       </blockquote>
     </div>
   );
