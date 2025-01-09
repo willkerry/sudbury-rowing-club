@@ -17,10 +17,10 @@ const BritishRowingArticle = ({
     href={article?.link}
     target="_blank"
     rel="noopener noreferrer"
-    className={cn(
-      "group grid gap-1.5 rounded border p-2 transition-colors hover:border-blue-500",
-      !article && "h-16 animate-pulse bg-gray-50",
-    )}
+    className={cn("group grid gap-1.5 rounded border p-2 transition-colors", {
+      "hover:border-blue-500": article,
+      "h-16 animate-pulse bg-gray-50": !article,
+    })}
   >
     {article && (
       <>
