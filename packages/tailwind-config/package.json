@@ -9,7 +9,7 @@
   "dependencies": {
     "@sudburyrc/blue": "workspace:*",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.15",
     "tailwindcss-animate": "^1.0.7"
   }
