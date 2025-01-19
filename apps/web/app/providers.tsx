@@ -1,5 +1,6 @@
 "use client";
 
+import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
 import { QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
@@ -27,17 +28,27 @@ const ReactQueryDevtools = dynamic(
   { ssr: false },
 );
 
+const DialogInitializer = () => {
+  useInitializeDialog();
+
+  return null;
+};
+
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
   return (
     <PostHogProvider client={posthog}>
       <QueryClientProvider client={queryClient}>
-        {children}
+        <DialogProvider>
+          {children}
 
-        {process.env.NODE_ENV === "development" && (
-          <ReactQueryDevtools initialIsOpen={false} />
-        )}
+          {process.env.NODE_ENV === "development" && (
+            <ReactQueryDevtools initialIsOpen={false} />
+          )}
+
+          <DialogInitializer />
+        </DialogProvider>
 
         <Toaster />
       </QueryClientProvider>
