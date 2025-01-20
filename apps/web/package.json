@@ -60,7 +60,7 @@
     "ky": "^1.7.4",
     "lucide-react": "^0.469.0",
     "motion": "12.0.0-alpha.2",
-    "next": "15.1.3",
+    "next": "15.1.5",
     "next-sanity-image": "^6.1.1",
     "num-words": "^1.2.3",
     "pigeon-maps": "^0.22.1",
