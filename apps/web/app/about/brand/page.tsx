@@ -92,7 +92,7 @@ const brandAssets = [
       },
       {
         format: "PNG",
-        href: "/assets/about/brand/logo/logo@2560w.png",
+        href: "/assets/about/brand/logo/logo@1280w.png",
         w: "1280",
       },
     ],
@@ -119,7 +119,7 @@ const brandAssets = [
       },
       {
         format: "PNG",
-        href: "/assets/about/brand/logo/logo-white@2560w.png",
+        href: "/assets/about/brand/logo/logo-white@1280w.png",
         w: "1280",
       },
     ],
@@ -206,7 +206,7 @@ const Brand = () => (
     </p>
 
     {brandAssets.map((item) => (
-      <section key={item.files.toString()}>
+      <section key={item.name}>
         <figure>
           {item.Illustration && (
             <item.Illustration
