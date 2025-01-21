@@ -4,8 +4,9 @@ import type { ShareImage } from "@/app/api/og/route";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 import { makeShareImageURL } from "@/lib/og-image";
+import { cn } from "@/lib/utils";
 import { useClipboard } from "@mantine/hooks";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Input } from "../ui/input";
 import { Select } from "../ui/select";
@@ -17,46 +18,57 @@ const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
   month: "long",
   day: "numeric",
 });
-const DEFAULT_VARIANT = "blue";
 
 const SharePlayground = () => {
   const titleInputRef = useRef<HTMLInputElement>(null);
   const subtitleInputRef = useRef<HTMLInputElement>(null);
   const variantInputRef = useRef<HTMLSelectElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const loadingRef = useRef<HTMLDivElement>(null);
 
   const { copy, error } = useClipboard();
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [state, setState] = useState<"idle" | "loading" | "success" | "error">(
+    "idle",
+  );
 
+  const handleGenerateImageAndPutIntoImg = useCallback(() => {
     if (!titleInputRef.current) return;
     if (!subtitleInputRef.current) return;
     if (!variantInputRef.current) return;
+
     if (!imageRef.current) return;
-    if (!loadingRef.current) return;
 
     const title = titleInputRef.current.value;
     const subtitle = subtitleInputRef.current.value;
     const variant = variantInputRef.current.value as ShareImage["variant"];
 
-    imageRef.current.removeAttribute("src");
-    imageRef.current.removeAttribute("alt");
-
-    loadingRef.current.classList.remove("hidden");
-    loadingRef.current.classList.add("flex");
-
-    imageRef.current.alt = `Share image with title "${titleInputRef.current?.value}" and subtitle "${subtitleInputRef.current?.value}"`;
-    imageRef.current.src = makeShareImageURL(title, true, {
+    const imageUrl = makeShareImageURL(title, true, {
       subtitle,
       variant,
     });
 
-    imageRef.current.addEventListener("load", () => {
-      loadingRef.current?.classList.add("hidden");
-    });
+    setState("loading");
+
+    const image = imageRef.current;
+    image.src = imageUrl;
+
+    image.onload = () => {
+      setState("success");
+    };
+
+    image.onerror = () => {
+      setState("error");
+    };
+  }, []);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await handleGenerateImageAndPutIntoImg();
   };
+
+  useEffect(() => {
+    handleGenerateImageAndPutIntoImg();
+  }, [handleGenerateImageAndPutIntoImg]);
 
   return (
     <form
@@ -65,6 +77,7 @@ const SharePlayground = () => {
     >
       <Input
         name="title"
+        disabled={state === "loading"}
         ref={titleInputRef}
         defaultValue={DEFAULT_TITLE}
         label="Title"
@@ -72,6 +85,7 @@ const SharePlayground = () => {
 
       <Input
         name="subtitle"
+        disabled={state === "loading"}
         ref={subtitleInputRef}
         defaultValue={DEFAULT_SUBTITLE}
         label="Subtitle"
@@ -80,6 +94,7 @@ const SharePlayground = () => {
 
       <Select
         name="variant"
+        disabled={state === "loading"}
         ref={variantInputRef}
         defaultValue="blue"
         label="Variant"
@@ -89,39 +104,35 @@ const SharePlayground = () => {
         <option value="dark">Dark</option>
       </Select>
 
-      <Button type="submit">Generate</Button>
+      <Button loading={state === "loading"} type="submit">
+        Generate
+      </Button>
 
       <div className="relative mt-6 aspect-h-8 aspect-w-16 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
         <div
-          className="absolute inset-0 hidden items-center justify-center"
-          ref={loadingRef}
+          className={cn({
+            "absolute inset-0 z-10 items-center justify-center bg-white bg-opacity-90 backdrop-blur":
+              state === "loading",
+            hidden: state !== "loading",
+          })}
         >
           <Loading />
         </div>
 
-        <img
-          src={makeShareImageURL(DEFAULT_TITLE, true, {
-            subtitle: DEFAULT_SUBTITLE,
-            variant: DEFAULT_VARIANT,
-          })}
-          ref={imageRef}
-          alt="Placeholder for the generated share picture. This one is blue, features the title 'Share Image Playground 🎉' and the subtitle 'Monday, 1 January 2000'."
-        />
+        <img suppressHydrationWarning ref={imageRef} alt="" />
       </div>
 
       <div className="flex justify-end gap-1 md:col-span-2">
-        {imageRef.current?.src && (
-          <Button asChild size="sm" variant="secondary">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={imageRef.current?.src}
-              download="share-image.png"
-            >
-              Download
-            </a>
-          </Button>
-        )}
+        <Button asChild size="sm" variant="secondary">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={imageRef.current?.src}
+            download="share-image.png"
+          >
+            Download
+          </a>
+        </Button>
 
         <Button
           onClick={() => {
