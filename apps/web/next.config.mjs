@@ -1,3 +1,4 @@
+import createNextIntlPlugin from "next-intl/plugin";
 // @ts-check
 import { withContentCollections } from "@content-collections/next";
 import redirects from "./data/redirects.json" assert { type: "json" };
@@ -17,7 +18,8 @@ const config = {
   reactStrictMode: true,
 };
 
-export default withContentCollections(config);
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(withContentCollections(config));
 
 /**
  * @param {string} hostname
