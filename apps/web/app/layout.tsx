@@ -1,3 +1,5 @@
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/jetbrains-mono/index.css";
 import "@fontsource-variable/source-serif-4/opsz.css";
@@ -60,13 +62,16 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const messages = await getMessages();
+
   return (
-    <html lang="en-GB">
+    <NextIntlClientProvider messages={messages}>
+      <html lang="en-GB">
       <body>
         <Providers>
           <main>
@@ -80,5 +85,6 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
+    </NextIntlClientProvider>
   );
 }
