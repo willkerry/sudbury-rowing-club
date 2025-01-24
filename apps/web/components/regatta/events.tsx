@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import shortCourse from "@/components/regatta/events/350.svg";
 import longCourse from "@/components/regatta/events/650.svg";
 import { cn } from "@/lib/utils";
@@ -32,47 +33,52 @@ const Events = ({
   compact?: boolean;
 }) => (
   <div className={cn("grid gap-8 md:grid-cols-2", compact && "gap-4")}>
-    {data.map((item) => (
+    {data.map((item) =>  {
+const t = useTranslations("../components/regatta");
+
+return (
       <section key={item._key}>
         <div className="text-center">
           <Image
             src={item.course === "350m" ? shortCourse : longCourse}
             className="w-full px-4"
-            alt={`Illustrative map of the ${
-              item.course === "350m" ? "short" : "long"
-            } regatta course.`}
+            alt={t('illustrative-map-regatta-course')}
           />
           <h4 className="pt-6 pb-1 font-bold text-xl">{item.title}</h4>
           <p className="h-14 pb-6 text-gray-500 text-sm">{item.description}</p>
         </div>
         <div className="w-full">
           <dl>
-            <Row label="Categories" value={item.categories} />
-            <Row label="Gender" value={item.gender} />
+            <Row label={t('categories-label')} value={item.categories} />
+            <Row label={t('gender-label')} value={item.gender} />
             <Row
-              label="Boat Classes"
+              label={t('boat-classes-label')}
               value={item.boatClasses.map((w, index) => (
                 <span key={w} className="disambiguate">
                   {(index ? ", " : "") + w}
                 </span>
               ))}
             />
-            <Row label="Prizes" value={item.prizes} />
+            <Row label={t('prizes-label')} value={item.prizes} />
           </dl>
         </div>
       </section>
-    ))}
+    )
+})}
   </div>
 );
 
-export const CompactEvents = ({ data }: { data: Event[] }) => (
+export const CompactEvents = ({ data }: { data: Event[] }) =>  {
+const t = useTranslations("../components/regatta");
+
+return (
   <table>
     <thead>
       <tr>
-        <th>Event</th>
-        <th>Categories</th>
-        <th>Boat Classes</th>
-        <th>Prizes</th>
+        <th>{t('event-label')}</th>
+        <th>{t('categories-title')}</th>
+        <th>{t('boat-classes-title')}</th>
+        <th>{t('prizes-title')}</th>
       </tr>
     </thead>
     <tbody>
@@ -90,6 +96,7 @@ export const CompactEvents = ({ data }: { data: Event[] }) => (
       ))}
     </tbody>
   </table>
-);
+)
+};
 
 export default Events;

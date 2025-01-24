@@ -1,9 +1,12 @@
+import { useTranslations } from "next-intl";
 import Note from "@/components/stour/note";
 
-const Success = () => (
-  <Note label="Message sent" type="success">
-    Thank you for your message. We will get back to you as soon as possible.
-  </Note>
-);
+const Success = () =>  {
+const t = useTranslations("../components/contact/views");
+
+return (
+  <Note label={t('message-sent')} type="success">{t('thank-you-for-your-message')}</Note>
+)
+};
 
 export default Success;

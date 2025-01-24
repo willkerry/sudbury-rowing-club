@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import TextPage from "@/components/layouts/text-page";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
@@ -79,6 +80,8 @@ const getStateText = (state: State, date: Date) =>
   })[state];
 
 const Draw = async () => {
+const t = await getTranslations("regatta/draw");
+
   const { showDrawFrom, showResultsFrom, thisYearsDrawIsPublished, thisYear } =
     await fetchDraw();
 
@@ -96,13 +99,8 @@ const Draw = async () => {
 
   return (
     <TextPage title={`Regatta draw ${String(thisYear)}`}>
-      <p className="lead">
-        Each year, the Sudbury Regatta draw is published to{" "}
-        <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
-          live.sudburyrowingclub.org.uk
-        </a>{" "}
-        the week before the regatta.
-      </p>
+      <p className="lead">{t('sudbury-regatta-draw-published', { "component0": <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">{t('sudbury-regatta-draw-published_component0')}</a> })}
+        </p>
       <p>{paragraph}</p>
       <p className="flex justify-center py-4">
         <Button shadow size="lg" asChild>

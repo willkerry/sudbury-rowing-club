@@ -1,22 +1,17 @@
+import { useTranslations } from "next-intl";
 import TextPage from "@/components/layouts/text-page";
 import Loading from "@/components/stour/loading";
 import type { NextPage } from "next";
 import Link from "next/link";
 
-const LearnToRowApplicationForm: NextPage = () => (
+const LearnToRowApplicationForm: NextPage = () =>  {
+const t = useTranslations("join/apply");
+
+return (
   <TextPage title="Apply for Learn to Row">
-    <p>
-      What’s the next step? After we receive your application, the Learn to Row
-      coordinator will contact you ahead of the next course to arrange a taster
-      session.
-    </p>
-    <p className="prose-sm">
-      Alternatively,{" "}
-      <Link href={{ pathname: "/contact", query: { q: "l2r,captain" } }}>
-        contact the Learn to Row coordinator
-      </Link>{" "}
-      directly.
-    </p>
+    <p>{t('next-step-application-process')}</p>
+    <p className="prose-sm">{t('contact-learn-to-row-coordinator', { "component0": <Link href={{ pathname: "/contact", query: { q: "l2r,captain" } }}>{t('contact-learn-to-row-coordinator_component0')}</Link> })}
+      </p>
     <iframe
       title="Learn to Row application form"
       src="https://docs.google.com/forms/d/e/1FAIpQLScoypkKpYLlr4Tv-pdsl2N9hJs1_TCGJyv1xdkDWpZs2se6qA/viewform?embedded=true"
@@ -29,14 +24,10 @@ const LearnToRowApplicationForm: NextPage = () => (
     >
       <Loading />
     </iframe>
-    <p className="prose-sm">
-      Trouble accessing the Google Form?{" "}
-      <Link href="https://docs.google.com/forms/d/e/1FAIpQLScoypkKpYLlr4Tv-pdsl2N9hJs1_TCGJyv1xdkDWpZs2se6qA/viewform">
-        View it full-page
-      </Link>
-      .
-    </p>
+    <p className="prose-sm">{t('access-google-form', { "component0": <Link href="https://docs.google.com/forms/d/e/1FAIpQLScoypkKpYLlr4Tv-pdsl2N9hJs1_TCGJyv1xdkDWpZs2se6qA/viewform">{t('access-google-form_component0')}</Link> })}
+      </p>
   </TextPage>
-);
+)
+};
 
 export default LearnToRowApplicationForm;

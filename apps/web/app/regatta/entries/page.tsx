@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import TextPage from "@/components/layouts/text-page";
 import EntriesComponent from "@/components/regatta/entries";
 import { CompactEvents } from "@/components/regatta/events";
@@ -13,6 +14,8 @@ export const metadata = createMetadata({
 });
 
 const Entries = async () => {
+const t = await getTranslations("regatta/entries");
+
   const { entries, events } = await fetchRegattaSettings();
 
   const table =
@@ -22,8 +25,8 @@ const Entries = async () => {
     <TextPage title="Entry Information" color="transparent">
       <CompactEvents data={events} />
       <div className="space-x-4">
-        <Link href="/regatta/events">More on events</Link>
-        <Link href="/regatta/course">Course Map</Link>
+        <Link href="/regatta/events">{t('more-on-events')}</Link>
+        <Link href="/regatta/course">{t('course-map')}</Link>
       </div>
       <div className="h-16" />
       <EntriesComponent

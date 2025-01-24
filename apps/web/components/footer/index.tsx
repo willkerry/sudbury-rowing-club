@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import Container from "@/components/layouts/container";
 import {
@@ -22,10 +24,13 @@ const columns: [string, IconNavItemType[]][] = [
   ["Miscellany", misc],
 ];
 
-const Footer = () => (
+const Footer = () =>  {
+const t = useTranslations("../components/footer");
+
+return (
   <footer className="border-t">
     <Container>
-      <h2 className="sr-only">Footer</h2>
+      <h2 className="sr-only">{t('footer-title')}</h2>
       <div className="justify-left flex flex-wrap py-16">
         <div className="w-1/2 sm:w-4/12 md:w-3/12">
           <Crest aria-hidden className="mb-6 h-12 text-gray-600 md:h-16" />
@@ -41,8 +46,7 @@ const Footer = () => (
 
       <div className="pt-2">
         <div className="m-auto flex justify-between py-5 text-gray-500 text-sm md:flex-row">
-          <div className="mt-2">
-            © Sudbury Rowing Club {new Date().getFullYear()}. <ReportABug />
+          <div className="mt-2">{t('footer-copyright')}{new Date().getFullYear()}. <ReportABug />
           </div>
           <div className="mt-2 flex flex-row">
             <SocialIcons />
@@ -51,6 +55,7 @@ const Footer = () => (
       </div>
     </Container>
   </footer>
-);
+)
+};
 
 export default Footer;

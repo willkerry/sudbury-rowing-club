@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
@@ -12,27 +14,27 @@ export const metadata = createMetadata({
 });
 
 const MembershipRates = async () => {
+const t = await getTranslations("members/membership-rates");
+
   const rates = await scrapeRatesTable();
 
   return (
     <TextPage title="Membership Rates" color="transparent">
-      <p>
-        The values on this page are periodically retrieved from the definitive{" "}
-        <a href="https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories">
-          membership categories page
-        </a>{" "}
-        on MyClubhouse.
-      </p>
+      <p>{t('membership-categories-info', { "component0": <a href="https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories">{t('membership-categories-info_component0')}</a> })}
+        </p>
 
       <table>
         <thead>
           <tr className="text-left">
-            <th>Category</th>
-            <th>Cost</th>
+            <th>{t('category-title')}</th>
+            <th>{t('cost-title')}</th>
           </tr>
         </thead>
         <tbody>
-          {rates?.map((rate) => (
+          {rates?.map((rate) =>  {
+const t = useTranslations("members/membership-rates");
+
+return (
             <tr key={rate.ID}>
               <td>
                 <strong className="block leading-6">{rate.Name}</strong>
@@ -65,19 +67,17 @@ const MembershipRates = async () => {
                         style: "currency",
                       }).format(rate.EarlyPaymentCost.InclTax.Value)}
                     </div>
-                    <div className="font-medium text-gray-500 text-xs">
-                      if paid within {rate.EarlyPaymentDeadlineDaysAbs}
+                    <div className="font-medium text-gray-500 text-xs">{t('payment-deadline')}{rate.EarlyPaymentDeadlineDaysAbs}
                       {Intl.NumberFormat("en-GB", {
                         style: "unit",
                         unit: "day",
-                      }).format(rate.EarlyPaymentDeadlineDaysAbs)}{" "}
-                      of season start
-                    </div>
+                      }).format(rate.EarlyPaymentDeadlineDaysAbs)}{t('season-start-notice')}</div>
                   </>
                 ) : null}
               </td>
             </tr>
-          ))}
+          )
+})}
         </tbody>
       </table>
     </TextPage>

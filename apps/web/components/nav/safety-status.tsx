@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { sanityClient } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
@@ -13,6 +14,8 @@ type StatusShellProps = {
 };
 
 const StatusShell = ({ grade, text }: StatusShellProps) => {
+const t = useTranslations("../components/nav");
+
   const bgClass = {
     "hover:bg-red-600 hover:border-red-600 text-red-600": grade === 3,
     "hover:bg-yellow-600 hover:border-yellow-600 text-yellow-600": grade === 2,
@@ -44,7 +47,7 @@ const StatusShell = ({ grade, text }: StatusShellProps) => {
           )}
         />
         <span className="font-medium transition duration-300 group-hover:text-white">
-          <span className="sr-only">River safety status:</span>
+          <span className="sr-only">{t('river-safety-status')}</span>
           <span className="capitalize">{text}</span>
         </span>
       </>
@@ -53,6 +56,8 @@ const StatusShell = ({ grade, text }: StatusShellProps) => {
 };
 
 const StatusIndicator = () => {
+const t = useTranslations("../components/nav");
+
   const { data, status: queryStatus } = useQuery({
     queryKey: ["safetyStatus"],
     queryFn: () =>
@@ -61,7 +66,7 @@ const StatusIndicator = () => {
       ),
   });
 
-  if (queryStatus === "error") return <div>Unavailable</div>;
+  if (queryStatus === "error") return <div>{t('unavailable-status')}</div>;
   if (queryStatus === "pending")
     return <StatusShell grade={null} text={<Loading />} />;
 

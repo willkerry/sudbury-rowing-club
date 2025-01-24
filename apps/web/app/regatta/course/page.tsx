@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,8 @@ export const metadata = createMetadata({
 });
 
 const Coursemap = async () => {
+const t = await getTranslations("regatta/course");
+
   const {
     heading,
     description,
@@ -46,7 +49,7 @@ const Coursemap = async () => {
   return (
     <>
       <HeroTitle
-        title="Sudbury Regatta Course"
+        title={t('sudbury-regatta-course')}
         breadcrumbs
         color="transparent"
       />
@@ -55,7 +58,7 @@ const Coursemap = async () => {
           <p className="lead">{heading}</p>
           <p>{description}</p>
           <Button icon={<Download />} asChild>
-            <a href={`${map}?dl=`}>Download the PDF</a>
+            <a href={`${map}?dl=`}>{t('download-pdf')}</a>
           </Button>
         </div>
         <div className="flex overflow-hidden rounded border shadow-xl">
