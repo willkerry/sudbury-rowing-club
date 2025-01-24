@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Ticket from "@/components/regatta/landing-page/ticket";
 import Image from "next/image";
 import type { JSX } from "react";
@@ -10,18 +11,21 @@ const ImageComposite = ({
   ticketItems,
 }: {
   ticketItems: [string, string | JSX.Element][];
-}) => (
+}) =>  {
+const t = useTranslations("../components/regatta/landing-page");
+
+return (
   <div className="relative mx-auto h-96 w-64">
     <div className="absolute bottom-12 left-10 z-10">
       <Ticket items={ticketItems} />
     </div>
     <div className="absolute right-0 bottom-8 z-10 rotate-3 drop-shadow-lg">
-      <Image src={cupImage} placeholder="blur" alt="" width="90" height="100" />
+      <Image src={cupImage} placeholder={t('blur-effect-1')} alt="" width="90" height="100" />
     </div>
     <div className="absolute top-6 right-0 left-0 z-0 drop-shadow-lg">
       <Image
         src={buntingImage}
-        placeholder="blur"
+        placeholder={t('blur-effect-2')}
         alt=""
         width="317"
         height="28"
@@ -30,7 +34,7 @@ const ImageComposite = ({
     <div className="-rotate-2 absolute bottom-3 left-0 z-10 drop-shadow-lg">
       <Image
         src={victoriaImage}
-        placeholder="blur"
+        placeholder={t('blur-effect-3')}
         alt=""
         width="145"
         height="111"
@@ -39,7 +43,7 @@ const ImageComposite = ({
     <div className="absolute bottom-0 left-28 z-0 rotate-45 drop-shadow-lg">
       <Image
         src={bladeImage}
-        placeholder="blur"
+        placeholder={t('blur-effect-4')}
         alt=""
         width="34"
         height="425"
@@ -48,13 +52,14 @@ const ImageComposite = ({
     <div className="-rotate-45 absolute right-28 bottom-0 z-0 scale-x-[-1] drop-shadow-2xl">
       <Image
         src={bladeImage}
-        placeholder="blur"
+        placeholder={t('blur-effect-5')}
         alt=""
         width="34"
         height="425"
       />
     </div>
   </div>
-);
+)
+};
 
 export default ImageComposite;

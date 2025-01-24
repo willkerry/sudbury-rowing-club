@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Container from "@/components/layouts/container";
 import { HeroTitle } from "@/components/stour/hero";
 import { createMetadata } from "@/lib/create-metadata";
@@ -10,15 +11,19 @@ export const metadata = createMetadata({
   image: { title: "Report a bug 💩" },
 });
 
-const BugsPage = () => (
+const BugsPage = () =>  {
+const t = useTranslations("bugs");
+
+return (
   <>
-    <HeroTitle prose title="Report a bug 💩" color="transparent" />
+    <HeroTitle prose title={t('report-a-bug')} color="transparent" />
     <Container className="max-w-lg pt-6 pb-12 sm:pt-12">
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>{t('loading-message')}</div>}>
         <BugsClientSide />
       </Suspense>
     </Container>
   </>
-);
+)
+};
 
 export default BugsPage;

@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import Container from "@/components/layouts/container";
 import Results from "@/components/regatta/results";
 import HeroTitle from "@/components/stour/hero/hero-title";
@@ -25,6 +26,8 @@ export const metadata = createMetadata({
 });
 
 const ResultsPage = async () => {
+const t = await getTranslations("regatta/results");
+
   const { results, other }: { results: Result[]; other: Other } =
     await sanityClient.fetch(
       groq`{ 
@@ -44,7 +47,7 @@ const ResultsPage = async () => {
   return (
     <>
       <HeroTitle
-        title="Regatta results"
+        title={t('regatta-results')}
         breadcrumbs
         color="transparent"
         prose

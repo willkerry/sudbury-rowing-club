@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { NavLogo, NavSection } from "@/components/nav";
 import {
@@ -53,7 +55,10 @@ const Nav = () => {
 
   return (
     <Popover className="bg-white text-gray-900" id="navbar">
-      {({ open }) => (
+      {({ open }) =>  {
+const t = useTranslations("../components/nav");
+
+return (
         <>
           <div className="mx-auto max-w-screen-lg px-4 sm:px-6">
             <div className="flex items-center justify-between py-3 xs:py-4 md:py-6 ">
@@ -126,14 +131,15 @@ const Nav = () => {
               </div>
               <div className="absolute top-3 right-3">
                 <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
-                  <span className="sr-only">Close menu</span>
+                  <span className="sr-only">{t('close-menu')}</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden />
                 </PopoverButton>
               </div>
             </PopoverPanel>
           </Transition>
         </>
-      )}
+      )
+}}
     </Popover>
   );
 };

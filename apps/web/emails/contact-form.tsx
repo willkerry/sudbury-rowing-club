@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   Body,
   Column,
@@ -51,20 +52,21 @@ export const ContactFormEmail = ({
   fromName = "From Person",
   fromEmail = "from@person.com",
   message = "Hello, this is a message\n\nIt has come to my attention that you are a person. This is a good thing, as I am also a person. We should meet up and do person things together.\n\nRegards,\n\nPerson",
-}: ContactFormEmailProps) => (
+}: ContactFormEmailProps) =>  {
+const t = useTranslations("../emails");
+
+return (
   <Html>
     <Head />
 
     <Tailwind>
       <Body className="mx-auto my-auto bg-white py-4 font-sans ">
         <Container>
-          <Heading className="font-normal text-black text-lg">
-            You have received a message via SRC Contact
-          </Heading>
+          <Heading className="font-normal text-black text-lg">{t('message-received-via-src-contact')}</Heading>
 
           <Section>
             <Text>
-              <Label>From: </Label>
+              <Label>{t('from-label')}</Label>
               <Value>
                 {fromName}{" "}
                 <span>
@@ -76,7 +78,7 @@ export const ContactFormEmail = ({
             </Text>
 
             <Text>
-              <Label>To: </Label>
+              <Label>{t('to-label')}</Label>
               <Value>
                 <Quote value={toRole} /> <RightArrow /> {toName}{" "}
                 <span>
@@ -89,7 +91,7 @@ export const ContactFormEmail = ({
 
             <Row>
               <Column>
-                <Label>Message:</Label>
+                <Label>{t('message-label')}</Label>
                 <div
                   className="m-0 rounded border border-gray-200 border-solid bg-gray-50 p-2 text-gray-900 text-sm"
                   dangerouslySetInnerHTML={{ __html: snarkdown(message) }}
@@ -100,26 +102,18 @@ export const ContactFormEmail = ({
 
           <Section className="mt-8">
             <Hr className="border-gray-200" />
-            <Text className="font-medium text-gray-600 text-xs">
-              Sent using the{" "}
-              <Link
+            <Text className="font-medium text-gray-600 text-xs">{t('sent-using-contact-form', { "component0": <Link
                 className="text-blue-500"
                 href="https://sudburyrowingclub.org.uk/contact"
-              >
-                contact form
-              </Link>{" "}
-              on the Sudbury Rowing Club website. If you’re experiencing issues
-              with this form, please{" "}
-              <Link className="text-blue-500" href="mailto:will@willkerry.com">
-                contact Will
-              </Link>
-              .
-            </Text>
+              >{t('sent-using-contact-form_component0')}</Link>, "component1": <Link className="text-blue-500" href="mailto:will@willkerry.com">{t('sent-using-contact-form_component1')}</Link> })}
+              
+              </Text>
           </Section>
         </Container>
       </Body>
     </Tailwind>
   </Html>
-);
+)
+};
 
 export default ContactFormEmail;
