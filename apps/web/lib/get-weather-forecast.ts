@@ -1,46 +1,62 @@
 import { fetchWeatherForecast } from "@sudburyrc/api";
 import type { WeatherCodeNumber } from "@sudburyrc/api";
+import {
+  type CardinalDirection,
+  convertBearingToCardinal,
+} from "./helpers/convertBearingToCardinal";
+import { convertKphToBeaufort } from "./helpers/convertKphToBeaufort";
 
-export const weatherCodes: Record<WeatherCodeNumber, string> = {
-  0: "Clear",
-  1: "Mainly clear",
-  2: "Partly cloudy",
-  3: "Overcast",
-  45: "Fog",
-  48: "Depositing rime fog",
-  51: "Light drizzle",
-  53: "Moderate drizzle",
-  55: "Dense drizzle",
-  56: "Light freezing drizzle",
-  57: "Dense freezing drizzle",
-  61: "Slight rain",
-  63: "Moderate rain",
-  65: "Heavy rain",
-  66: "Light freezing rain",
-  67: "Heavy freezing rain",
-  71: "Slight snow",
-  73: "Moderate snow",
-  75: "Heavy snow",
-  77: "Snow grains",
-  80: "Light showers",
-  81: "Moderate showers",
-  82: "Heavy showers",
-  85: "Light snow showers",
-  86: "Heavy snow showers",
-  95: "Thunderstorm",
-  96: "Thunderstorm",
-  99: "Thunderstorm",
-};
+const lc = (s: string) => s.toLowerCase();
 
 const CLEAR = "Clear";
-const OVERCAST = "Overcast";
-const FOG = "Fog";
+const CLOUDY = "Cloudy";
+const DENSE = "Dense";
 const DRIZZLE = "Drizzle";
+const FOG = "Fog";
+const HEAVY = "Heavy";
+const LIGHT = "Light";
+const MODERATE = "Moderate";
+const OVERCAST = "Overcast";
 const RAIN = "Rain";
-const SNOW = "Snow";
 const SHOWERS = "Showers";
+const SLIGHT = "Slight";
+const SNOW = "Snow";
 const SNOW_SHOWERS = `${SNOW} ${SHOWERS}`;
 const THUNDER = "Thunder";
+const THUNDERSTORM = "Thunderstorm";
+
+const FREEZING = "freezing";
+
+export const weatherCodes: Record<WeatherCodeNumber, string> = {
+  0: CLEAR,
+  1: `Mainly ${lc(CLEAR)}`,
+  2: `Partly ${lc(CLOUDY)}`,
+  3: OVERCAST,
+  45: FOG,
+  48: `Depositing rime ${lc(FOG)}`,
+  51: `${LIGHT} ${lc(DRIZZLE)}`,
+  53: `${MODERATE} ${lc(DRIZZLE)}`,
+  55: `${DENSE} ${lc(DRIZZLE)}`,
+  56: `${LIGHT} ${FREEZING} ${lc(DRIZZLE)}`,
+  57: `${DENSE} ${FREEZING} ${lc(DRIZZLE)}`,
+  61: `${SLIGHT} ${lc(RAIN)}`,
+  63: `${MODERATE} ${lc(RAIN)}`,
+  65: `${HEAVY} ${lc(RAIN)}`,
+  66: `${LIGHT} ${FREEZING} ${lc(RAIN)}`,
+  67: `${HEAVY} ${FREEZING} ${lc(RAIN)}`,
+  71: `${SLIGHT} ${lc(SNOW)}`,
+  73: `${MODERATE} ${lc(SNOW)}`,
+  75: `${HEAVY} ${lc(SNOW)}`,
+  77: `${SNOW} grains`,
+  80: `${LIGHT} ${lc(SHOWERS)}`,
+  81: `${MODERATE} ${lc(SHOWERS)}`,
+  82: `${HEAVY} ${lc(SHOWERS)}`,
+  85: `${LIGHT} ${lc(SNOW_SHOWERS)}`,
+  86: `${HEAVY} ${lc(SNOW_SHOWERS)}`,
+  95: THUNDERSTORM,
+  96: THUNDERSTORM,
+  99: THUNDERSTORM,
+};
 
 export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
   0: CLEAR,
@@ -73,61 +89,6 @@ export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
   99: THUNDER,
 };
 
-enum CardinalDirection {
-  N = 0,
-  NNE = 1,
-  NE = 2,
-  ENE = 3,
-  E = 4,
-  ESE = 5,
-  SE = 6,
-  SSE = 7,
-  S = 8,
-  SSW = 9,
-  SW = 10,
-  WSW = 11,
-  W = 12,
-  WNW = 13,
-  NW = 14,
-  NNW = 15,
-}
-
-const THRESHOLDS = [1, 6, 12, 20, 29, 39, 50, 62, 75, 89, 103, 118] as const;
-
-/**
- * Converts mph windspeeds to the Beaufort scale, clumsily.
- */
-const kphToBeaufort = (kph: number) => {
-  if (Number.isNaN(kph)) throw new Error("kph is not a number");
-  if (kph < 0) throw new Error("kph is negative");
-
-  for (const threshold of THRESHOLDS) {
-    if (kph < threshold) return THRESHOLDS.indexOf(threshold);
-  }
-
-  return THRESHOLDS.length + 1;
-};
-
-const degreesToInt = (degrees: number) => {
-  if (degrees < 0 || degrees >= 360) {
-    throw new Error("degrees must be in the range [0, 360)");
-  }
-  return Math.round(degrees / 22.5) % 16;
-};
-
-const intToCardinal = (int: number): CardinalDirection => {
-  if (int < 0 || int > 15) throw new Error("Invalid integer");
-  return CardinalDirection[Math.round(int)] as unknown as CardinalDirection;
-};
-
-/**
- * Converts a wind direction in degrees to a compass direction.
- */
-const degreesToCardinal = (degrees: number) => {
-  const int = degreesToInt(degrees);
-  return intToCardinal(int);
-};
-
 type Forecast = {
   code: WeatherCodeNumber;
   maxTemp: number;
@@ -153,10 +114,10 @@ const getWeatherForecast = async (): Promise<Forecast[]> => {
       minTemp: Math.round(daily.temperature_2m_min[index]),
       windSpeed: daily.windspeed_10m_max[index],
       windDirection: daily.winddirection_10m_dominant[index],
-      windDirectionText: degreesToCardinal(
+      windDirectionText: convertBearingToCardinal(
         daily.winddirection_10m_dominant[index],
       ),
-      beaufort: kphToBeaufort(daily.windspeed_10m_max[index]),
+      beaufort: convertKphToBeaufort(daily.windspeed_10m_max[index]),
       date: time,
     }));
   } catch (err) {
