@@ -4,7 +4,7 @@
   "author": "",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "lefthook": "^1.10.1"
+    "lefthook": "^1.10.10"
   },
   "description": "",
   "keywords": [],
@@ -19,7 +19,7 @@
     "clean": "sh scripts/clean.sh"
   },
   "dependencies": {
-    "turbo": "^2.3.3"
+    "turbo": "^2.4.0"
   },
   "pnpm": {
     "overrides": {
