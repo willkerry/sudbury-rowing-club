@@ -1,6 +1,5 @@
-import { clampString } from "@/lib/helpers/clampString";
-import { getInitials } from "@/lib/helpers/getInitials";
 import { cn } from "@/lib/utils";
+import { clampString, getInitials } from "@sudburyrc/helpers";
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { z } from "zod";

@@ -78,7 +78,7 @@ importers:
         specifier: ^3.72.1
         version: 3.72.1(@types/babel__core@7.20.5)(@types/node@22.13.0)(@types/react@19.0.8)(react@18.3.1)(typescript@5.7.3)
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.2
         version: 19.0.8
 
   apps/web:
@@ -334,10 +334,10 @@ importers:
         specifier: ^20.17.16
         version: 20.17.16
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.2
         version: 19.0.8
       '@types/react-dom':
-        specifier: ^19.0.3
+        specifier: ^19.0.2
         version: 19.0.3(@types/react@19.0.8)
       '@types/react-scroll':
         specifier: ^1.8.10
@@ -416,7 +416,7 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       '@types/react':
-        specifier: ^19.0.8
+        specifier: ^19.0.2
         version: 19.0.8
       react:
         specifier: ^18.3.1

@@ -1,11 +1,12 @@
-import { trim } from "radash";
-
 const LETTER_PATTERN = /^[a-z\u00C0-\u017F]/i;
 
+/**
+ * Get the initials of a name.
+ */
 export const getInitials = (name?: string): string => {
   if (!name) return "";
 
-  const trimmed = trim(name);
+  const trimmed = name.trim();
   if (!trimmed) return "";
 
   const words = trimmed.replace("-", " ").split(" ");
