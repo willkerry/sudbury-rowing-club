@@ -18,9 +18,9 @@ export const HundredAndFiftyCta = () => (
       <p className="mb-1 font-medium text-lg text-sky-200">150th Anniversary</p>
       <h2 className="mb-6 font-bold text-3xl">Celebrating 150 years</h2>
       <p className="mb-10 opacity-70">
-        This year, in celebration of the 150th anniversary of our foundation, we
-        have created a space to share our history, our stories, and our
-        memories. We invite you to join us in celebrating this milestone.
+        In 2024, in celebration of the 150th anniversary of our foundation, we
+        created a space to share our history, our stories, and our memories. We
+        invited you to join us in celebrating this milestone.
       </p>
       <Button asChild variant="secondary">
         <Link href="/150">Visit the mini-site</Link>

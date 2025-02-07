@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 const TITLE = "150 Years of Rowing in Sudbury";
-const DESCRIPTION = "Join us in celebrating 150 years of rowing in Sudbury";
+const DESCRIPTION = "See how we celebrated 150 years of rowing in Sudbury";
 
 export const metadata: Metadata = {
   ...createMetadata({
@@ -32,16 +32,15 @@ const Join = () => (
         <HundredAndFiftyLogo />
 
         <h1 className="mx-auto mt-20 mb-12 text-center font-semibold text-3xl text-white md:text-7xl">
-          Join us in celebrating 150 years of rowing in Sudbury
+          150 years of rowing in Sudbury
         </h1>
 
         <div className="prose prose-invert mx-auto mb-6 text-blue-50">
           <p>
             Sudbury Rowing Club, formerly Stour Boat Club, was founded in 1874.
-            This year, in celebration of the 150th anniversary of our
-            foundation, we have created a space to share our history, our
-            stories, and our memories. We invite you to join us in celebrating
-            this milestone.
+            In 2024, in celebration of the 150th anniversary of our foundation,
+            we created a space to share our history, our stories, and our
+            memories. We invited you to join us in celebrating that milestone.
           </p>
         </div>
 

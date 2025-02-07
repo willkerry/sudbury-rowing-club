@@ -61,7 +61,7 @@ const navigationGroups: NavigationGroup[] = [
       {
         name: "150th anniversary",
         shortName: "150 years",
-        description: "Celebrate 150 years’ rowing in Sudbury.",
+        description: "View a century-and-a-half of photos.",
         href: "/150",
         icon: CakeIcon,
       },
