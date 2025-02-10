@@ -6,7 +6,8 @@
   "types": "dist/index.d.mts",
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,9 @@
     "@sudburyrc/tsconfig": "workspace:*",
     "smartypants": "^0.2.2",
     "tsup": "^8.3.6"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0"
   },
   "peerDependencies": {
     "react": "^18.3.1"
