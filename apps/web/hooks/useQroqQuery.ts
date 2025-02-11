@@ -2,13 +2,13 @@ import { sanityClient } from "@sudburyrc/api";
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
 
 const useGroqQuery = <T>(
-  query: string,
+  query: Parameters<typeof sanityClient.fetch>[0],
   params: Parameters<typeof sanityClient.fetch>[1] = {},
   options?: Omit<UseQueryOptions<T>, "queryFn" | "queryKey">,
 ) =>
   useQuery({
     queryKey: [query, params],
-    queryFn: async () => sanityClient.fetch<T>(query, params),
+    queryFn: () => sanityClient.fetch<T>(query, params),
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
