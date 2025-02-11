@@ -12,7 +12,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 import type { Photograph, WithContext } from "schema-dts";
 import snarkdown from "snarkdown";
-import { formatYear } from "../page";
+import { formatYear } from "../formatYear";
 
 const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;
 

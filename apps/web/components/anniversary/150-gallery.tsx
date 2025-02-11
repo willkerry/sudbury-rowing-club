@@ -1,4 +1,4 @@
-import { formatYear } from "@/app/150/(gallery)/gallery/page";
+import { formatYear } from "@/app/150/(gallery)/gallery/formatYear";
 import Gallery from "@/components/regatta/landing-page/gallery";
 import type { Archive } from "@sudburyrc/api";
 
