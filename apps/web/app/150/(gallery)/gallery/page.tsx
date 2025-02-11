@@ -69,6 +69,10 @@ const Join = async () => {
       <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
 
       <Container>
+        <div className="mb-4">
+          <Link href="/150/gallery/map">View memory map</Link>
+        </div>
+
         <ul className="mb-8 flex flex-wrap gap-x-4">
           {archives.map(({ era, slug }) => (
             <li key={slug}>
