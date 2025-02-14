@@ -25,10 +25,10 @@ export default {
       },
 
       fontFamily: {
-        sans: ["InterVariable", "Inter", "system-ui", "sans-serif"],
-        serif: ['"Source Serif 4 Variable"', "serif"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        serif: ["var(--font-source-serif-4)", "serif"],
         mono: [
-          "JetBrains Mono Variable",
+          "var(--font-jetbrains-mono)",
           "ui-monospace",
           "SFMono-Regular",
           "Menlo",
