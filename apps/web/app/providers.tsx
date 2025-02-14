@@ -2,11 +2,14 @@
 
 import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
+import { useCookieBanner } from "@/hooks/useCookieBanner";
 import { QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-import posthog from "posthog-js";
+import posthog, { type PostHog } from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { getQueryClient } from "./get-query-client";
+
+let posthogInstance: PostHog | undefined;
 
 if (typeof window !== "undefined") {
   if (!process.env.NEXT_PUBLIC_POSTHOG_KEY)
@@ -14,9 +17,10 @@ if (typeof window !== "undefined") {
   if (!process.env.NEXT_PUBLIC_POSTHOG_HOST)
     throw new Error("Missing NEXT_PUBLIC_POSTHOG_HOST");
 
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
+  posthogInstance = posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     person_profiles: "identified_only",
+    mask_personal_data_properties: true,
   });
 }
 
@@ -36,6 +40,8 @@ const DialogInitializer = () => {
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
+
+  useCookieBanner(posthogInstance);
 
   return (
     <PostHogProvider client={posthog}>
