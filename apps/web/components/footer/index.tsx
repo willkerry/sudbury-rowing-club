@@ -12,6 +12,7 @@ import type { IconNavItemType } from "@/types/nav-item";
 import { Crest } from "@sudburyrc/blue";
 import Address from "./address";
 import FooterColumn from "./column";
+import { CookieSettings } from "./cookie-settings";
 import ReportABug from "./reportABug";
 import SocialIcons from "./socialIcons";
 
@@ -42,7 +43,8 @@ const Footer = () => (
       <div className="pt-2">
         <div className="m-auto flex justify-between py-5 text-gray-500 text-sm md:flex-row">
           <div className="mt-2">
-            © Sudbury Rowing Club {new Date().getFullYear()}. <ReportABug />
+            © Sudbury Rowing Club {new Date().getFullYear()}. <CookieSettings />{" "}
+            <ReportABug />
           </div>
           <div className="mt-2 flex flex-row">
             <SocialIcons />
