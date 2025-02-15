@@ -27,29 +27,8 @@ const Regattas = defineType({
 
       of: [
         defineArrayMember({
-          name: "gallery",
           title: "Photo provider",
-          type: "object",
-          fields: [
-            defineField({
-              name: "name",
-              type: "string",
-              title: "Provider name",
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: "url",
-              type: "url",
-              title: "URL to photo provider",
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: "password",
-              type: "string",
-              title: "Password",
-              description: "Leave blank if not required.",
-            }),
-          ],
+          type: "gallery",
         }),
       ],
     }),
@@ -57,32 +36,7 @@ const Regattas = defineType({
       name: "testimonials",
       title: "Praise for the regatta",
       type: "array",
-      of: [
-        defineArrayMember({
-          name: "testimonial",
-          title: "Testimonial",
-          type: "object",
-          fields: [
-            defineField({
-              name: "text",
-              type: "text",
-              title: "Text",
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: "name",
-              type: "string",
-              title: "Name",
-              description: "Leave blank to display testimonial as ‘Anonymous’.",
-            }),
-            defineField({
-              name: "club",
-              type: "string",
-              title: "Club",
-            }),
-          ],
-        }),
-      ],
+      of: [defineArrayMember({ type: "testimonial" })],
     }),
   ],
   preview: {
