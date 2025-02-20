@@ -1,35 +1,15 @@
+import type { Metadata, Viewport } from "next";
+import "@fontsource-variable/jetbrains-mono/index.css";
+import "@fontsource-variable/source-serif-4/opsz.css";
+import "@fontsource-variable/source-serif-4/opsz-italic.css";
+import "inter-ui/inter-variable.css";
 import Banner from "@/components/banner";
 import Footer from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
-import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import "../styles/index.css";
 import { blue } from "@sudburyrc/blue";
 import Providers from "./providers";
-
-const inter = Inter({
-  axes: ["opsz"],
-  display: "swap",
-  style: ["italic", "normal"],
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  display: "swap",
-  style: ["italic", "normal"],
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-});
-
-const sourceSerif4 = Source_Serif_4({
-  axes: ["opsz"],
-  display: "swap",
-  style: ["italic", "normal"],
-  subsets: ["latin"],
-  variable: "--font-source-serif-4",
-});
 
 export const metadata: Metadata = {
   title: PROJECT_NAME,
@@ -86,10 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en-GB"
-      className={`${inter.variable} ${jetBrainsMono.variable} ${sourceSerif4.variable}`}
-    >
+    <html lang="en-GB">
       <body>
         <Providers>
           <main>
