@@ -72,17 +72,16 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
       />
       {name}
     </h4>
-    <p>
-      <address className="not-italic">
-        {address.map((line, i) => (
-          <span key={line}>
-            {line}
-            {i < address.length - 1 ? <br /> : " "}
-          </span>
-        ))}
-        <span className="disambiguate">{postcode}</span>
-      </address>
-    </p>
+
+    <address className="not-italic">
+      {address.map((line, i) => (
+        <span key={line}>
+          {line}
+          {i < address.length - 1 ? <br /> : " "}
+        </span>
+      ))}
+      <span className="disambiguate">{postcode}</span>
+    </address>
 
     <div className="my-4 flex space-x-3 text-sm">
       {openInApp.map((item) => (
