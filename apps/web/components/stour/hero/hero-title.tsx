@@ -67,7 +67,8 @@ const breadcrumbContainerVariants = cva("py-2", {
     {
       color: "transparent",
       prose: true,
-      className: "mx-auto w-min rounded-full border",
+      className:
+        "mx-auto w-fit max-w-[calc(100%-2rem)] rounded-full border px-4",
     },
     {
       color: "transparent",
@@ -77,8 +78,8 @@ const breadcrumbContainerVariants = cva("py-2", {
   ],
 });
 
-const breadcrumbListVariants = cva("flex overflow-x-auto text-sm", {
-  variants: { prose: { true: "mx-auto max-w-min justify-center" } },
+const breadcrumbListVariants = cva("flex flex-wrap text-sm", {
+  variants: { prose: { true: "mx-auto justify-center" } },
 });
 
 const breadcrumbInactiveItemVariants = cva(
