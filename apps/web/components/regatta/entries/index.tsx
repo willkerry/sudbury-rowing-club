@@ -51,13 +51,16 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
           </thead>
           <tbody>
             {table.slice(1).map((wave, category) => (
-              <tr key={wave[0]}>
+              <tr key={`${wave[0]}-${category}`}>
                 <th>{wave[0]}</th>
                 {wave.slice(1).map((entry, boatClass) => {
-                  if (!entry) return <td key={entry} />;
+                  if (!entry) return <td key={`${entry}-${boatClass}`} />;
 
                   return (
-                    <td key={entry} className="px-0.5 text-center sm:px-1">
+                    <td
+                      key={`${entry}-${boatClass}`}
+                      className="px-0.5 text-center sm:px-1"
+                    >
                       <Chip
                         id={indicesToBoatName(category, boatClass)}
                         location="table"
