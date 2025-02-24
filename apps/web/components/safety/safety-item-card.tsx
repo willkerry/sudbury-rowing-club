@@ -2,32 +2,36 @@ import Link from "@/components/stour/link";
 import Text from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
+import { cn } from "@/lib/utils";
 import type { SafetyResponse } from "@sudburyrc/api";
 import { BASE_URL } from "lib/constants";
 import { Download, ExternalLink } from "lucide-react";
 import NextLink from "next/link";
 import { first, isArray } from "radash";
+import { forwardRef } from "react";
 
 const URGENT_WORDS = ["emergency", "urgent", "critical"];
 
 const containsUrgentWords = (title: string) =>
   URGENT_WORDS.some((word) => title.toLowerCase().includes(word));
 
-const SafetyItemBorder = ({
-  isEmergency,
-  children,
-}: {
-  isEmergency: boolean;
-  children: React.ReactNode;
-}) => (
+const SafetyItemCardBorder = forwardRef<
+  HTMLDivElement,
+  {
+    isEmergency: boolean;
+    className?: string;
+  } & React.HTMLAttributes<HTMLDivElement>
+>(({ isEmergency, className, ...props }, ref) => (
   <div
-    className={`rounded-lg border p-2 ${
-      isEmergency ? "border-2 border-red-400" : "bg-white"
-    }`}
-  >
-    {children}
-  </div>
-);
+    ref={ref}
+    {...props}
+    className={cn(
+      "rounded-lg border p-2",
+      isEmergency ? "border-2 border-red-400" : "bg-white",
+      className,
+    )}
+  />
+));
 
 const SafetyItemTitle = ({
   href,
@@ -40,7 +44,7 @@ const SafetyItemTitle = ({
     href={href}
     className="text-gray-900 transition hover:text-blue-500 hover:underline"
   >
-    <h2 className="mb-2 line-clamp-1 font-semibold leading-tight">
+    <h2 className="mb-2 line-clamp-1 font-semibold text-xl leading-tight md:text-base">
       {children}
     </h2>
   </Link>
@@ -116,38 +120,41 @@ export const SafetyItemCard = ({
   const isAnUrgentItem = containsUrgentWords(title);
 
   return (
-    <div key={_id} id={_id} data-updated-at={_updatedAt}>
-      <SafetyItemBorder isEmergency={isAnUrgentItem}>
-        <SafetyItemUpdatedAt date={_updatedAt} />
-        <SafetyItemTitle href={permalink}>{title}</SafetyItemTitle>
+    <SafetyItemCardBorder
+      key={_id}
+      id={_id}
+      data-updated-at={_updatedAt}
+      isEmergency={isAnUrgentItem}
+    >
+      <SafetyItemUpdatedAt date={_updatedAt} />
+      <SafetyItemTitle href={permalink}>{title}</SafetyItemTitle>
 
-        {firstParagraph && (
-          <Text portableText={firstParagraph} className="prose-sm mb-4" />
+      {firstParagraph && (
+        <Text portableText={firstParagraph} className="prose-sm mb-4" />
+      )}
+
+      <div className="space-y-2">
+        {hasMultipleParagraphs && (
+          <Button asChild variant="secondary" className="w-full">
+            <NextLink href={permalink}>More</NextLink>
+          </Button>
         )}
 
-        <div className="space-y-2">
-          {hasMultipleParagraphs && (
-            <Button asChild variant="secondary" className="w-full">
-              <NextLink href={permalink}>More</NextLink>
-            </Button>
-          )}
+        {link && (
+          <SafetyItemLinkButton href={link.url} isEmergency={isAnUrgentItem}>
+            {link.title}
+          </SafetyItemLinkButton>
+        )}
 
-          {link && (
-            <SafetyItemLinkButton href={link.url} isEmergency={isAnUrgentItem}>
-              {link.title}
-            </SafetyItemLinkButton>
-          )}
-
-          {document && (
-            <SafetyItemDownloadButton
-              href={document.url}
-              isEmergency={isAnUrgentItem}
-            >
-              {document.title}
-            </SafetyItemDownloadButton>
-          )}
-        </div>
-      </SafetyItemBorder>
-    </div>
+        {document && (
+          <SafetyItemDownloadButton
+            href={document.url}
+            isEmergency={isAnUrgentItem}
+          >
+            {document.title}
+          </SafetyItemDownloadButton>
+        )}
+      </div>
+    </SafetyItemCardBorder>
   );
 };
