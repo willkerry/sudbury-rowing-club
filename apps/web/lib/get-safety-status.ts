@@ -2,7 +2,7 @@ import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import type { SafetyComponentProps } from "@/components/safety/safety-component";
 import { EAStationResponseSchema } from "@/types/ea-station-respose";
 import { EAWarningSchema } from "@/types/ea-warning";
-import { Severity } from "@/types/severity";
+import { type Severity, severities } from "@/types/severity";
 import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
 import { z } from "zod";
@@ -12,7 +12,7 @@ const SanityStatusSchema = z.object({
   _updatedAt: z.coerce.date(),
   description: z.string(),
   display: z.boolean(),
-  status: z.nativeEnum(Severity),
+  status: z.enum(severities),
 });
 
 /** Fetches the latest safety status from the content management system */
@@ -53,10 +53,10 @@ const fetchEAStation = () =>
 
 /** Maps the EA's 1-4 severity levels to our traffic light Severity enum */
 const numericSeverityMap: Record<1 | 2 | 3 | 4, Severity> = {
-  1: Severity.red,
-  2: Severity.red,
-  3: Severity.amber,
-  4: Severity.neutral,
+  1: "red",
+  2: "red",
+  3: "amber",
+  4: "neutral",
 };
 
 /** Assembles a string describing the current water level at the club's monitoring station */
@@ -122,7 +122,7 @@ const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     const { typicalRangeHigh, typicalRangeLow } = station.stageScale;
     const mean = (typicalRangeHigh + typicalRangeLow) / 2;
 
-    const status = value >= mean ? Severity.amber : Severity.neutral;
+    const status = value >= mean ? "amber" : "neutral";
 
     return {
       status,
@@ -138,7 +138,7 @@ const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
   }
 
   return {
-    status: Severity.neutral,
+    status: "neutral",
     description: "No data available",
     date: new Date(),
     statusMessage: "No data available",

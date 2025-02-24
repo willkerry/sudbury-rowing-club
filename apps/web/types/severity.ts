@@ -1,6 +1,3 @@
-export enum Severity {
-  red = "red",
-  amber = "amber",
-  green = "green",
-  neutral = "neutral",
-}
+export const severities = ["red", "amber", "green", "neutral"] as const;
+
+export type Severity = (typeof severities)[number];
