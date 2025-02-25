@@ -1,5 +1,5 @@
 import { smartQuotes } from "@sudburyrc/helpers";
-import { JSDOM } from "jsdom";
+import { Browser } from "happy-dom";
 import { z } from "zod";
 
 const parseAndReformatDates = (input: string): React.ReactNode => {
@@ -186,18 +186,25 @@ const MYCLUBHOUSE_RATES_URL =
   "https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories";
 
 const scrapeMembershipData = async () => {
-  const dom = await JSDOM.fromURL(MYCLUBHOUSE_RATES_URL);
-  const { window } = dom;
-  const { document } = window;
-  const membershipData = document.querySelector("#membership-data");
+  const browser = new Browser();
+  const page = browser.newPage();
+
+  await page.goto(MYCLUBHOUSE_RATES_URL);
+
+  const membershipData =
+    page.mainFrame.document.querySelector("#membership-data");
 
   if (!membershipData) {
     throw new Error("Could not find table element");
   }
 
-  return MyClubhouseMembershipSchema.parse(
+  const parsedData = MyClubhouseMembershipSchema.parse(
     JSON.parse(membershipData.textContent ?? ""),
   );
+
+  await browser.close();
+
+  return parsedData;
 };
 
 export const scrapeRatesTable = async () => {
