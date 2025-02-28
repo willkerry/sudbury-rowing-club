@@ -23,13 +23,9 @@ const ZNewsSchema = z
   .merge(ZExcerpt);
 
 const ZHeroImageSchema = z.object({
-  image: z.object({
-    _id: z.string(),
-    lqip: z.string(),
-    aspectRatio: z.number(),
-  }),
-  youtubeId: z.string(),
-  youtubeStartOffset: z.number(),
+  _id: z.string(),
+  lqip: z.string(),
+  aspectRatio: z.number(),
 });
 
 const ZLandingPageSubSchema = z.object({
@@ -60,13 +56,9 @@ const query = groq`{
     "url": asset->url
   },
   heroImage {
-    image {
-      "_id": asset->_id,
-      "lqip": asset->metadata.lqip,
-      "aspectRatio": asset->metadata.dimensions.aspectRatio,
-    }, 
-    youtubeId,
-    youtubeStartOffset
+    "_id": asset->_id,
+    "lqip": asset->metadata.lqip,
+    "aspectRatio": asset->metadata.dimensions.aspectRatio
   },
   note,
   tagline,

@@ -10,9 +10,9 @@ const LandingHeroPage = async () => {
   return (
     <div className="group relative flex overflow-hidden rounded shadow">
       <LandingHero
-        imageId={heroImage.image._id}
-        imageAspectRatio={heroImage.image.aspectRatio}
-        imageLqip={heroImage.image.lqip}
+        imageId={heroImage._id}
+        imageAspectRatio={heroImage.aspectRatio}
+        imageLqip={heroImage.lqip}
       >
         <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-3 p-6 sm:gap-8 sm:p-12 md:gap-12 md:p-24 lg:gap-14">
           <BoathouseDoor aria-hidden className="z-10 w-full text-white" />
