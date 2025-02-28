@@ -42,28 +42,8 @@ const SiteSettings = defineType({
           },
         }),
         defineField({
-          type: "object",
           name: "heroImage",
-          options: {
-            collapsible: true,
-          },
-          fields: [
-            defineField({ name: "image", type: "image" }),
-            defineField({
-              name: "youtubeId",
-              title: "YouTube video ID",
-              type: "string",
-              description:
-                "The ID string from any YouTube video. For example, `https://www.youtube.com/watch?v=2EiBu6A7KhA` gives us 2EiBu6A7KhA",
-            }),
-            defineField({
-              name: "youtubeStartOffset",
-              title: "YouTube start offset",
-              type: "number",
-              description:
-                "When should the video start (in seconds from the beginning).",
-            }),
-          ],
+          type: "image",
         }),
         defineField({
           name: "images",
@@ -75,7 +55,6 @@ const SiteSettings = defineType({
             defineArrayMember({
               name: "image",
               type: "image",
-
               fields: [
                 defineField({
                   name: "caption",

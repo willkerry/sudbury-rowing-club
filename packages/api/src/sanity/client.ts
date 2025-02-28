@@ -10,7 +10,7 @@ export const getSanityConfig = () => {
   return {
     dataset: dataset || "production",
     projectId: projectId,
-    apiVersion: "2021-03-25",
+    apiVersion: "2025-02-28",
     useCdn: true,
   } satisfies ClientConfig;
 };

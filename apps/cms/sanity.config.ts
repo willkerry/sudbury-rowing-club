@@ -5,7 +5,7 @@ import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
-import { deskTool } from "sanity/desk";
+import { structureTool } from "sanity/structure";
 import schemas from "./schemas/schema";
 
 const config = defineConfig({
@@ -13,7 +13,7 @@ const config = defineConfig({
   projectId: "gvxge7ps",
   dataset: "production",
   plugins: [
-    deskTool({
+    structureTool({
       structure: (S, context) => {
         return S.list()
           .title("Content")
