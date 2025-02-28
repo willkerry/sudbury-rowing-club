@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "@sanity/cli": "^3.77.2",
-    "@types/react": "^19.0.10"
+    "@types/react": "^19.0.8"
   }
 }
