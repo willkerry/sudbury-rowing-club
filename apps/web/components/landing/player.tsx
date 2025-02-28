@@ -6,6 +6,7 @@ import {
   PauseCircleIcon,
   PlayCircleIcon,
 } from "@heroicons/react/24/solid";
+import { useThrottledCallback } from "@mantine/hooks";
 import { useRef, useState } from "react";
 
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
@@ -29,13 +30,15 @@ const controlText: Record<PlayerState, string> = {
 const Player = () => {
   const [playerState, setPlayerState] = useState<PlayerState>("idle");
 
-  const ref = useRef<HTMLVideoElement>(null);
+  const throttledSetPlayerState = useThrottledCallback(setPlayerState, 500);
 
-  const setError = () => setPlayerState("error");
-  const setIdle = () => setPlayerState("idle");
-  const setLoading = () => setPlayerState("loading");
-  const setPaused = () => setPlayerState("paused");
-  const setPlaying = () => setPlayerState("playing");
+  const setError = () => throttledSetPlayerState("error");
+  const setIdle = () => throttledSetPlayerState("idle");
+  const setLoading = () => throttledSetPlayerState("loading");
+  const setPaused = () => throttledSetPlayerState("paused");
+  const setPlaying = () => throttledSetPlayerState("playing");
+
+  const ref = useRef<HTMLVideoElement>(null);
 
   const clickHandlers: Record<PlayerState, () => void> = {
     error: setError,
