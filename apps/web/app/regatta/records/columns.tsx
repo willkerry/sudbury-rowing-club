@@ -85,9 +85,7 @@ export const columns: ColumnDef<Record>[] = [
     id: "link",
     header: "Link",
     cell: ({ row }) => (
-      <Link href={`/regatta/results/records/${slugify(row.original.event)}`}>
-        View
-      </Link>
+      <Link href={`/regatta/records/${slugify(row.original.event)}`}>View</Link>
     ),
     enableSorting: false,
     enableHiding: false,
