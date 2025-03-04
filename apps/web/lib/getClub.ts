@@ -39,3 +39,6 @@ export const getClub = (name: string): Club | undefined => {
 
   return clubs.find((club) => possibleNames.includes(club?.name.toLowerCase()));
 };
+
+export const getClubByCode = (code: string): Club | undefined =>
+  clubs.find((club) => club?.code === code);

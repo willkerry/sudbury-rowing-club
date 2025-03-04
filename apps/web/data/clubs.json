@@ -10,12 +10,14 @@
   },
   {
     "href": "https://www.britishrowing.org/club/1921-boat-club/",
-    "name": "1921 Boat Club"
+    "name": "1921 Boat Club",
+    "code": "NTO"
   },
   {
     "href": "https://www.britishrowing.org/club/1st-3rd-trinity-boat-club/",
     "name": "1st & 3rd Trinity Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=439"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=439",
+    "code": "FTT"
   },
   {
     "href": "https://www.britishrowing.org/club/1st-clifton-york-sea-scout-group/",
@@ -52,33 +54,40 @@
   {
     "href": "https://www.britishrowing.org/club/a-b-severn-rc/",
     "name": "A B Severn RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=365"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=365",
+    "code": "ABV"
   },
   {
     "href": "https://www.britishrowing.org/club/aberaeron-wsra/",
-    "name": "Aberaeron (WSRA)"
+    "name": "Aberaeron (WSRA)",
+    "code": "ABR"
   },
   {
     "href": "https://www.britishrowing.org/club/aberdyfi-rc-wsra/",
-    "name": "Aberdyfi RC (WSRA)"
+    "name": "Aberdyfi RC (WSRA)",
+    "code": "ADY"
   },
   {
     "href": "https://www.britishrowing.org/club/aberporth-wsra/",
-    "name": "Aberporth (WSRA)"
+    "name": "Aberporth (WSRA)",
+    "code": "ABP"
   },
   {
     "href": "https://www.britishrowing.org/club/aberystwyth-wsra/",
-    "name": "Aberystwyth (WSRA)"
+    "name": "Aberystwyth (WSRA)",
+    "code": "ABW"
   },
   {
     "href": "https://www.britishrowing.org/club/abingdon-rc/",
     "name": "Abingdon RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=620"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=620",
+    "code": "ABN"
   },
   {
     "href": "https://www.britishrowing.org/club/abingdon-school-rc/",
     "name": "Abingdon School RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=621"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=621",
+    "code": "ABS"
   },
   {
     "href": "https://www.britishrowing.org/club/accrington-district-sea-cadets/",
@@ -87,7 +96,8 @@
   {
     "href": "https://www.britishrowing.org/club/action4youth-rowing-club/",
     "name": "Action4Youth Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2055"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2055",
+    "code": "AFY"
   },
   {
     "href": "https://www.britishrowing.org/club/adventure-boatwork-centre-sea-cadets/",
@@ -100,7 +110,8 @@
   {
     "href": "https://www.britishrowing.org/club/agecroft-rc/",
     "name": "Agecroft RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=595"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=595",
+    "code": "AGE"
   },
   {
     "href": "https://www.britishrowing.org/club/ahoy-centre/",
@@ -109,21 +120,25 @@
   {
     "href": "https://www.britishrowing.org/club/alban-academy-boat-club/",
     "name": "Alban Academy Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2119"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2119",
+    "code": "ALA"
   },
   {
     "href": "https://www.britishrowing.org/club/aldworthian-boat-club/",
     "name": "Aldworthian BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2231"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2231",
+    "code": "ABC"
   },
   {
     "href": "https://www.britishrowing.org/club/all-aboard-watersports-centre/",
-    "name": "All Aboard! Watersports Centre"
+    "name": "All Aboard! Watersports Centre",
+    "code": "ALL"
   },
   {
     "href": "https://www.britishrowing.org/club/alpha-womens-arc/",
     "name": "Alpha Womens ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=288"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=288",
+    "code": "ALW"
   },
   {
     "href": "https://www.britishrowing.org/club/alton-water-sports-centre/",
@@ -136,17 +151,20 @@
   {
     "href": "https://www.britishrowing.org/club/american-school-in-london-bc/",
     "name": "American School In London BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=751"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=751",
+    "code": "ASL"
   },
   {
     "href": "https://www.britishrowing.org/club/ancholme-rowing-club/",
     "name": "Ancholme Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=599"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=599",
+    "code": "ANC"
   },
   {
     "href": "https://www.britishrowing.org/club/anglia-ruskin-bc/",
     "name": "Anglia Ruskin BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=270"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=270",
+    "code": "ARU"
   },
   {
     "href": "https://www.britishrowing.org/club/appledore-cpga/",
@@ -155,36 +173,43 @@
   {
     "href": "https://www.britishrowing.org/club/ardingly-rc/",
     "name": "Ardingly RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=784"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=784",
+    "code": "ARD"
   },
   {
     "href": "https://www.britishrowing.org/club/army-rc/",
     "name": "Army RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=622"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=622",
+    "code": "ARM"
   },
   {
     "href": "https://www.britishrowing.org/club/aston-university-rowing-club/",
     "name": "Aston University Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2394"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2394",
+    "code": "ASU"
   },
   {
     "href": "https://www.britishrowing.org/club/auriol-kensington-rc/",
     "name": "Auriol Kensington RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=675"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=675",
+    "code": "AKN"
   },
   {
     "href": "https://www.britishrowing.org/club/avon-county-rc/",
     "name": "Avon County RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=336"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=336",
+    "code": "AVN"
   },
   {
     "href": "https://www.britishrowing.org/club/b-row/",
-    "name": "B-Row"
+    "name": "B-Row",
+    "code": "BSR"
   },
   {
     "href": "https://www.britishrowing.org/club/balliol-college-bc/",
     "name": "Balliol College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=468"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=468",
+    "code": "BAL"
   },
   {
     "href": "https://www.britishrowing.org/club/bangor-sea-cadets/",
@@ -193,17 +218,20 @@
   {
     "href": "https://www.britishrowing.org/club/bangor-univ-wales/",
     "name": "Bangor, Univ Wales",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=902"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=902",
+    "code": "UNW"
   },
   {
     "href": "https://www.britishrowing.org/club/barn-elms-rc/",
     "name": "Barn Elms RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=522"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=522",
+    "code": "BAE"
   },
   {
     "href": "https://www.britishrowing.org/club/barnes-bridge-ladies-rc/",
     "name": "Barnes Bridge Ladies RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=289"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=289",
+    "code": "BBL"
   },
   {
     "href": "https://www.britishrowing.org/club/barnsley-sea-cadets/",
@@ -219,7 +247,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/barry-wsra/",
-    "name": "Barry (WSRA)"
+    "name": "Barry (WSRA)",
+    "code": "BAR"
   },
   {
     "href": "https://www.britishrowing.org/club/barry-sea-cadets/",
@@ -236,17 +265,20 @@
   {
     "href": "https://www.britishrowing.org/club/bath-spa-university-rowing-club/",
     "name": "Bath Spa University Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2357"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2357",
+    "code": "BSU"
   },
   {
     "href": "https://www.britishrowing.org/club/bath-university-bc/",
     "name": "Bath University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=647"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=647",
+    "code": "BAU"
   },
   {
     "href": "https://www.britishrowing.org/club/beccles-rc/",
     "name": "Beccles RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=684"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=684",
+    "code": "BEC"
   },
   {
     "href": "https://www.britishrowing.org/club/beccles-sea-cadets/",
@@ -255,32 +287,38 @@
   {
     "href": "https://www.britishrowing.org/club/the-becket-school-rowing-club/",
     "name": "Becket Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2062"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2062",
+    "code": "BKS"
   },
   {
     "href": "https://www.britishrowing.org/club/bedford-girls-school-rc/",
     "name": "Bedford Girls School RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1620"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1620",
+    "code": "BGS"
   },
   {
     "href": "https://www.britishrowing.org/club/bedford-ladies-rc/",
     "name": "Bedford Ladies RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=414"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=414",
+    "code": "BDL"
   },
   {
     "href": "https://www.britishrowing.org/club/bedford-modern-school-bc/",
     "name": "Bedford Modern School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=415"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=415",
+    "code": "BMS"
   },
   {
     "href": "https://www.britishrowing.org/club/bedford-rc/",
     "name": "Bedford RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=416"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=416",
+    "code": "BED"
   },
   {
     "href": "https://www.britishrowing.org/club/bedford-school-bc/",
     "name": "Bedford School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=417"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=417",
+    "code": "BDS"
   },
   {
     "href": "https://www.britishrowing.org/club/bedford-sea-cadets/",
@@ -289,42 +327,50 @@
   {
     "href": "https://www.britishrowing.org/club/bedford-star-rc/",
     "name": "Bedford Star RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=418"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=418",
+    "code": "BST"
   },
   {
     "href": "https://www.britishrowing.org/club/southend-coastal-rowing-club/",
     "name": "Benfleet Yacht Club Coastal Rowers",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1984"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1984",
+    "code": "BYC"
   },
   {
     "href": "https://www.britishrowing.org/club/bentham-boat-club/",
     "name": "Bentham Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2118"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2118",
+    "code": "BNT"
   },
   {
     "href": "https://www.britishrowing.org/club/berkhampstead-collegiate-school-bc/",
     "name": "Berkhampstead School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1269"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1269",
+    "code": "BKM"
   },
   {
     "href": "https://www.britishrowing.org/club/berwick-rc/",
     "name": "Berwick RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=196"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=196",
+    "code": "BER"
   },
   {
     "href": "https://www.britishrowing.org/club/bewdley-rc/",
     "name": "Bewdley RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=394"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=394",
+    "code": "BEW"
   },
   {
     "href": "https://www.britishrowing.org/club/bewl-bridge-rc/",
     "name": "Bewl Bridge RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=539"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=539",
+    "code": "BEB"
   },
   {
     "href": "https://www.britishrowing.org/club/bexhill-rc/",
     "name": "Bexhill RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=837"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=837",
+    "code": "BEX"
   },
   {
     "href": "https://www.britishrowing.org/club/bideford-cpga/",
@@ -333,32 +379,38 @@
   {
     "href": "https://www.britishrowing.org/club/bideford-aac/",
     "name": "Bideford Aac",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=709"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=709",
+    "code": "BIA"
   },
   {
     "href": "https://www.britishrowing.org/club/bideford-arc/",
     "name": "Bideford ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=572"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=572",
+    "code": "BID"
   },
   {
     "href": "https://www.britishrowing.org/club/bideford-college-boat-club/",
     "name": "Bideford College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2320"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2320",
+    "code": "BCB"
   },
   {
     "href": "https://www.britishrowing.org/club/birmingham-city-university-rowing-club/",
     "name": "Birmingham City University Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2335"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2335",
+    "code": "BCU"
   },
   {
     "href": "https://www.britishrowing.org/club/birmingham-rc/",
     "name": "Birmingham RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=395"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=395",
+    "code": "BIR"
   },
   {
     "href": "https://www.britishrowing.org/club/birmingham-university-bc/",
     "name": "Birmingham University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=396"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=396",
+    "code": "UBI"
   },
   {
     "href": "https://www.britishrowing.org/club/birmingham-vernon-sea-cadets/",
@@ -367,22 +419,26 @@
   {
     "href": "https://www.britishrowing.org/club/bishop-veseys-grammar-school-rowing-club/",
     "name": "Bishop Vesey’s Grammar School Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1504"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1504",
+    "code": "BVG"
   },
   {
     "href": "https://www.britishrowing.org/club/bishopsgate-school-boat-club/",
     "name": "Bishopsgate School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2098"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2098",
+    "code": "BIS"
   },
   {
     "href": "https://www.britishrowing.org/club/black-prince-bc/",
     "name": "Black Prince BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=343"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=343",
+    "code": "BLP"
   },
   {
     "href": "https://www.britishrowing.org/club/black-sheep-rc/",
     "name": "Black Sheep RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=787"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=787",
+    "code": "BLS"
   },
   {
     "href": "https://www.britishrowing.org/club/blackpool-sea-cadets/",
@@ -391,16 +447,19 @@
   {
     "href": "https://www.britishrowing.org/club/blue-star-club/",
     "name": "Blue Star Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=804"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=804",
+    "code": "BSC"
   },
   {
     "href": "https://www.britishrowing.org/club/boars-head-bc/",
     "name": "Boars Head BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=847"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=847",
+    "code": "BHB"
   },
   {
     "href": "https://www.britishrowing.org/club/borth-wsra/",
-    "name": "Borth (WSRA)"
+    "name": "Borth (WSRA)",
+    "code": "BOR"
   },
   {
     "href": "https://www.britishrowing.org/club/boscastle-cpga/",
@@ -409,17 +468,20 @@
   {
     "href": "https://www.britishrowing.org/club/boston-rc/",
     "name": "Boston RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=601"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=601",
+    "code": "BOS"
   },
   {
     "href": "https://www.britishrowing.org/club/bournemouth-collegiate-school/",
     "name": "Bournemouth Collegiate School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1982"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1982",
+    "code": "BCS"
   },
   {
     "href": "https://www.britishrowing.org/club/westover-bournemouth-rc/",
     "name": "Bournemouth RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=330"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=330",
+    "code": "BOR"
   },
   {
     "href": "https://www.britishrowing.org/club/bournemouth-sea-cadets/",
@@ -432,22 +494,26 @@
   {
     "href": "https://www.britishrowing.org/club/bournemouth-university-bc/",
     "name": "Bournemouth University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=748"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=748",
+    "code": "BOU"
   },
   {
     "href": "https://www.britishrowing.org/club/bradford-arc/",
     "name": "Bradford ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=221"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=221",
+    "code": "BRD"
   },
   {
     "href": "https://www.britishrowing.org/club/bradford-grammar-school-bc/",
     "name": "Bradford Grammar School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=222"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=222",
+    "code": "BRG"
   },
   {
     "href": "https://www.britishrowing.org/club/bradford-on-avon-rc/",
     "name": "Bradford on Avon RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=332"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=332",
+    "code": "BOA"
   },
   {
     "href": "https://www.britishrowing.org/club/bradford-sea-cadets/",
@@ -456,22 +522,26 @@
   {
     "href": "https://www.britishrowing.org/club/bradford-university-rc/",
     "name": "Bradford University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=227"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=227",
+    "code": "UBD"
   },
   {
     "href": "https://www.britishrowing.org/club/brampton-manor-academy-bc/",
     "name": "Brampton Manor Academy BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2148"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2148",
+    "code": "BMA"
   },
   {
     "href": "https://www.britishrowing.org/club/brasenose-college-bc/",
     "name": "Brasenose College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=469"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=469",
+    "code": "BRC"
   },
   {
     "href": "https://www.britishrowing.org/club/bridgnorth-rc/",
     "name": "Bridgnorth RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=605"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=605",
+    "code": "BRI"
   },
   {
     "href": "https://www.britishrowing.org/club/bridgwater-sea-cadets/",
@@ -484,12 +554,14 @@
   {
     "href": "https://www.britishrowing.org/club/brightlingsea-coastal-rowing-club/",
     "name": "Brightlingsea Coastal Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2099"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2099",
+    "code": "BCR"
   },
   {
     "href": "https://www.britishrowing.org/club/brighton-and-hove-rowing-bc/",
     "name": "Brighton and Hove Rowing BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=973"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=973",
+    "code": "BHR"
   },
   {
     "href": "https://www.britishrowing.org/club/bristol-cpga/",
@@ -502,12 +574,14 @@
   {
     "href": "https://www.britishrowing.org/club/bristol-ariel-rc/",
     "name": "Bristol Ariel RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=562"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=562",
+    "code": "BRA"
   },
   {
     "href": "https://www.britishrowing.org/club/bristol-university-bc/",
     "name": "Bristol University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=570"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=570",
+    "code": "UBR"
   },
   {
     "href": "https://www.britishrowing.org/club/britannia-cpga/",
@@ -516,7 +590,8 @@
   {
     "href": "https://www.britishrowing.org/club/british-airways-rowing-club/",
     "name": "British Airways Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=630"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=630",
+    "code": "BAW"
   },
   {
     "href": "https://www.britishrowing.org/club/brixham-cpga/",
@@ -525,32 +600,38 @@
   {
     "href": "https://www.britishrowing.org/club/broadland-bc/",
     "name": "Broadland BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=463"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=463",
+    "code": "BLD"
   },
   {
     "href": "https://www.britishrowing.org/club/broxbourne-rc/",
     "name": "Broxbourne RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=297"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=297",
+    "code": "BRX"
   },
   {
     "href": "https://www.britishrowing.org/club/brunel-university-rc/",
     "name": "Brunel University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=497"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=497",
+    "code": "BRU"
   },
   {
     "href": "https://www.britishrowing.org/club/bryanston-buffaloes-bc/",
     "name": "Bryanston Buffaloes BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=556"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=556",
+    "code": "BRB"
   },
   {
     "href": "https://www.britishrowing.org/club/bryanston-school-bc/",
     "name": "Bryanston School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=557"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=557",
+    "code": "BRY"
   },
   {
     "href": "https://www.britishrowing.org/club/btc-southampton-rc/",
     "name": "BTC Southampton RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=558"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=558",
+    "code": "BTC"
   },
   {
     "href": "https://www.britishrowing.org/club/bucs/",
@@ -563,7 +644,8 @@
   {
     "href": "https://www.britishrowing.org/club/burlington-danes-academy-boat-club/",
     "name": "Burlington Danes Academy Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2232"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2232",
+    "code": "BUD"
   },
   {
     "href": "https://www.britishrowing.org/club/burnham-and-highbridge-sea-cadets/",
@@ -571,7 +653,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/burnham-on-crouch-coastal-rowing-club/",
-    "name": "Burnham-On-Crouch Coastal Rowing Club"
+    "name": "Burnham-On-Crouch Coastal Rowing Club",
+    "code": "BNH"
   },
   {
     "href": "https://www.britishrowing.org/club/burnley-pendle-rossendale-sea-cadets/",
@@ -580,17 +663,20 @@
   {
     "href": "https://www.britishrowing.org/club/burton-leander-rc/",
     "name": "Burton Leander RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=246"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=246",
+    "code": "BUL"
   },
   {
     "href": "https://www.britishrowing.org/club/burway-rc/",
     "name": "Burway RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=498"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=498",
+    "code": "BUR"
   },
   {
     "href": "https://www.britishrowing.org/club/butler-college-bc/",
     "name": "Butler College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1205"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1205",
+    "code": "BTL"
   },
   {
     "href": "https://www.britishrowing.org/club/cadgwith-cpga/",
@@ -599,42 +685,50 @@
   {
     "href": "https://www.britishrowing.org/club/caius-bc/",
     "name": "Caius BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=429"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=429",
+    "code": "CAI"
   },
   {
     "href": "https://www.britishrowing.org/club/calpe-rc/",
     "name": "Calpe RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=914"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=914",
+    "code": "CAL"
   },
   {
     "href": "https://www.britishrowing.org/club/cambois-rowing-club/",
     "name": "Cambois Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=578"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=578",
+    "code": "CBS"
   },
   {
     "href": "https://www.britishrowing.org/club/cambridge-99-rc/",
     "name": "Cambridge 99 RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=455"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=455",
+    "code": "CNN"
   },
   {
     "href": "https://www.britishrowing.org/club/cambridge-city-rc/",
     "name": "Cambridge City RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=612"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=612",
+    "code": "CAM"
   },
   {
     "href": "https://www.britishrowing.org/club/cambridge-university-bc/",
     "name": "Cambridge University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=430"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=430",
+    "code": "CUB"
   },
   {
     "href": "https://www.britishrowing.org/club/cambridge-u-l-rc/",
     "name": "Cambridge University Lightweights RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=431"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=431",
+    "code": "CLR"
   },
   {
     "href": "https://www.britishrowing.org/club/cambridge-university-womens-bc/",
     "name": "Cambridge University Women’s BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=608"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=608",
+    "code": "CUW"
   },
   {
     "href": "https://www.britishrowing.org/club/cambs-ra/",
@@ -643,27 +737,32 @@
   {
     "href": "https://www.britishrowing.org/club/camrowers/",
     "name": "Camrowers",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1100"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1100",
+    "code": "CMR"
   },
   {
     "href": "https://www.britishrowing.org/club/canford-crocodiles-bc/",
     "name": "Canford Crocodiles BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=796"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=796",
+    "code": "CAC"
   },
   {
     "href": "https://www.britishrowing.org/club/canford-school-bc/",
     "name": "Canford School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=559"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=559",
+    "code": "CAN"
   },
   {
     "href": "https://www.britishrowing.org/club/cantabrigian-rc/",
     "name": "Cantabrigian RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=611"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=611",
+    "code": "CAB"
   },
   {
     "href": "https://www.britishrowing.org/club/canterbury-pilgrims-bc/",
     "name": "Canterbury Pilgrims BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=540"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=540",
+    "code": "CAP"
   },
   {
     "href": "https://www.britishrowing.org/club/canterbury-sea-cadets/",
@@ -679,11 +778,13 @@
   },
   {
     "href": "https://www.britishrowing.org/club/cardiff-vale-schools-rowing-academy/",
-    "name": "Cardiff & Vale Schools Rowing Academy"
+    "name": "Cardiff & Vale Schools Rowing Academy",
+    "code": "CAR"
   },
   {
     "href": "https://www.britishrowing.org/club/cardiff-alumni-rc/",
-    "name": "Cardiff Alumni RC"
+    "name": "Cardiff Alumni RC",
+    "code": "CFA"
   },
   {
     "href": "https://www.britishrowing.org/club/cardiff-bay-water-activity-centre/",
@@ -691,29 +792,35 @@
   },
   {
     "href": "https://www.britishrowing.org/club/cardiff-city/",
-    "name": "Cardiff City"
+    "name": "Cardiff City",
+    "code": "CFC"
   },
   {
     "href": "https://www.britishrowing.org/club/cardiff-univ-wales/",
-    "name": "Cardiff, Univ Wales"
+    "name": "Cardiff, Univ Wales",
+    "code": "CFU"
   },
   {
     "href": "https://www.britishrowing.org/club/cardigan-wsra/",
-    "name": "Cardigan (WSRA)"
+    "name": "Cardigan (WSRA)",
+    "code": "CDG"
   },
   {
     "href": "https://www.britishrowing.org/club/cardinal-vaughan-memorial-school-bc/",
     "name": "Cardinal Vaughan Memorial School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1486"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1486",
+    "code": "CVS"
   },
   {
     "href": "https://www.britishrowing.org/club/carmarthen-boat-club/",
-    "name": "Carmarthen Boat Club"
+    "name": "Carmarthen Boat Club",
+    "code": "CRM"
   },
   {
     "href": "https://www.britishrowing.org/club/castle-dore-rc/",
     "name": "Castle Dore RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=730"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=730",
+    "code": "CAD"
   },
   {
     "href": "https://www.britishrowing.org/club/cattewater-cpga/",
@@ -722,32 +829,38 @@
   {
     "href": "https://www.britishrowing.org/club/champion-of-the-thames-cambridge-rc/",
     "name": "Champion Of The Thames (Cambridge) RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=685"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=685",
+    "code": "CHA"
   },
   {
     "href": "https://www.britishrowing.org/club/charlestown-cpga/",
     "name": "Charlestown (CPGA)",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1369"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1369",
+    "code": "CHL"
   },
   {
     "href": "https://www.britishrowing.org/club/charterhouse-bc/",
     "name": "Charterhouse BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1182"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1182",
+    "code": "CHH"
   },
   {
     "href": "https://www.britishrowing.org/club/chelsea-academy-boat-club/",
     "name": "Chelsea Academy Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2377"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2377",
+    "code": "CHL"
   },
   {
     "href": "https://www.britishrowing.org/club/cheltenham-college-bc/",
     "name": "Cheltenham College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=564"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=564",
+    "code": "CHE"
   },
   {
     "href": "https://www.britishrowing.org/club/cheltenham-ladies-college-the-rowing-club/",
     "name": "Cheltenham Ladies’ College, The, Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=772"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=772",
+    "code": "CLC"
   },
   {
     "href": "https://www.britishrowing.org/club/cheltenham-sea-cadets/",
@@ -756,12 +869,14 @@
   {
     "href": "https://www.britishrowing.org/club/cheney-school-oxford-boat-club/",
     "name": "Cheney School Oxford Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2078"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2078",
+    "code": "CFR"
   },
   {
     "href": "https://www.britishrowing.org/club/chester-le-street-arc/",
     "name": "Chester-Le-Street ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=690"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=690",
+    "code": "CLS"
   },
   {
     "href": "https://www.britishrowing.org/club/chester-le-street-sea-cadets/",
@@ -770,37 +885,44 @@
   {
     "href": "https://www.britishrowing.org/club/chesterton-rowing-club/",
     "name": "Chesterton Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=686"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=686",
+    "code": "CRC"
   },
   {
     "href": "https://www.britishrowing.org/club/chiswick-school-bc/",
     "name": "Chiswick School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=633"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=633",
+    "code": "CHK"
   },
   {
     "href": "https://www.britishrowing.org/club/christ-church-bc/",
     "name": "Christ Church BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=699"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=699",
+    "code": "CHB"
   },
   {
     "href": "https://www.britishrowing.org/club/christs-college-bc/",
     "name": "Christ’s College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=432"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=432",
+    "code": "CCO"
   },
   {
     "href": "https://www.britishrowing.org/club/christchurch-rc/",
     "name": "Christchurch RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=644"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=644",
+    "code": "CHR"
   },
   {
     "href": "https://www.britishrowing.org/club/churchill-college-bc/",
     "name": "Churchill College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=433"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=433",
+    "code": "CHU"
   },
   {
     "href": "https://www.britishrowing.org/club/bristol-city-rowing-club/",
     "name": "City of Bristol Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=565"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=565",
+    "code": "CBR"
   },
   {
     "href": "https://www.britishrowing.org/club/city-of-liverpool-sea-cadets/",
@@ -809,12 +931,14 @@
   {
     "href": "https://www.britishrowing.org/club/city-of-oxford-college-activate-learning-boat-club/",
     "name": "City of Oxford College – Activate Learning Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2464"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2464",
+    "code": "OXF"
   },
   {
     "href": "https://www.britishrowing.org/club/oxford-city-rc/",
     "name": "City of Oxford RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=478"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=478",
+    "code": "COX"
   },
   {
     "href": "https://www.britishrowing.org/club/city-of-salford-sea-cadets/",
@@ -823,12 +947,14 @@
   {
     "href": "https://www.britishrowing.org/club/claires-court-school-bc/",
     "name": "Claires Court School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=266"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=266",
+    "code": "CCS"
   },
   {
     "href": "https://www.britishrowing.org/club/clare-bc/",
     "name": "Clare BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=434"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=434",
+    "code": "CLA"
   },
   {
     "href": "https://www.britishrowing.org/club/clevedon-cpga/",
@@ -836,7 +962,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/clevedon-coastal-rowing/",
-    "name": "Clevedon Coastal Rowing"
+    "name": "Clevedon Coastal Rowing",
+    "code": "CLV"
   },
   {
     "href": "https://www.britishrowing.org/club/clifton-cpga/",
@@ -845,7 +972,8 @@
   {
     "href": "https://www.britishrowing.org/club/clifton-college-bc/",
     "name": "Clifton College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=648"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=648",
+    "code": "CLI"
   },
   {
     "href": "https://www.britishrowing.org/club/clovelly-cpga/",
@@ -853,27 +981,32 @@
   },
   {
     "href": "https://www.britishrowing.org/club/clwb-rhwyfo-pwllheli-wsra/",
-    "name": "Clwb Rhwyfo Pwllheli (WSRA)"
+    "name": "Clwb Rhwyfo Pwllheli (WSRA)",
+    "code": "RHP"
   },
   {
     "href": "https://www.britishrowing.org/club/coastal-rowing-association-of-blakeney/",
     "name": "Coastal Rowing Association of Blakeney",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2011"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2011",
+    "code": "CBL"
   },
   {
     "href": "https://www.britishrowing.org/club/coldharbour-boat-club/",
     "name": "Coldharbour Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2265"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2265",
+    "code": "CBC"
   },
   {
     "href": "https://www.britishrowing.org/club/colet-bc/",
     "name": "Colet BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=350"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=350",
+    "code": "COL"
   },
   {
     "href": "https://www.britishrowing.org/club/collingwood-college-bc/",
     "name": "Collingwood College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=197"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=197",
+    "code": "COC"
   },
   {
     "href": "https://www.britishrowing.org/club/cornwall-rowing-association/",
@@ -882,12 +1015,14 @@
   {
     "href": "https://www.britishrowing.org/club/corpus-christi-college-cam-bc/",
     "name": "Corpus Christi College Cam BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=435"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=435",
+    "code": "COR"
   },
   {
     "href": "https://www.britishrowing.org/club/corpus-christi-college-oxf-bc/",
     "name": "Corpus Christi College Oxf BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=247"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=247",
+    "code": "COO"
   },
   {
     "href": "https://www.britishrowing.org/club/cotehele-quay-cpga/",
@@ -896,7 +1031,8 @@
   {
     "href": "https://www.britishrowing.org/club/cotswold-rowing-club/",
     "name": "Cotswold Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1102"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1102",
+    "code": "CTW"
   },
   {
     "href": "https://www.britishrowing.org/club/coverack-cpga/",
@@ -917,15 +1053,18 @@
   {
     "href": "https://www.britishrowing.org/club/crabtree-bc/",
     "name": "Crabtree BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=806"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=806",
+    "code": "CRB"
   },
   {
     "href": "https://www.britishrowing.org/club/cranbrook-school-bc/",
-    "name": "Cranbrook School BC"
+    "name": "Cranbrook School BC",
+    "code": "CRN"
   },
   {
     "href": "https://www.britishrowing.org/club/craster-coastal-rowing-club/",
-    "name": "Craster Coastal Rowing Club"
+    "name": "Craster Coastal Rowing Club",
+    "code": "CCR"
   },
   {
     "href": "https://www.britishrowing.org/club/crosby-lakeside-adventure-centre/",
@@ -938,16 +1077,19 @@
   {
     "href": "https://www.britishrowing.org/club/curlew-rc/",
     "name": "Curlew RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=541"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=541",
+    "code": "CUR"
   },
   {
     "href": "https://www.britishrowing.org/club/cygnet-rowing-club/",
     "name": "Cygnet Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=351"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=351",
+    "code": "CYG"
   },
   {
     "href": "https://www.britishrowing.org/club/dale-wsra/",
-    "name": "Dale (WSRA)"
+    "name": "Dale (WSRA)",
+    "code": "DAL"
   },
   {
     "href": "https://www.britishrowing.org/club/dart-cpga/",
@@ -956,47 +1098,56 @@
   {
     "href": "https://www.britishrowing.org/club/dart-totnes-rc/",
     "name": "Dart Totnes RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=573"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=573",
+    "code": "DAT"
   },
   {
     "href": "https://www.britishrowing.org/club/dartmouth-arc/",
     "name": "Dartmouth ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=651"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=651",
+    "code": "DAR"
   },
   {
     "href": "https://www.britishrowing.org/club/darwin-college-bc/",
     "name": "Darwin College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=436"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=436",
+    "code": "DAW"
   },
   {
     "href": "https://www.britishrowing.org/club/de-montfort-university-leics-bc/",
     "name": "De Montfort University (Leics) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=714"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=714",
+    "code": "DML"
   },
   {
     "href": "https://www.britishrowing.org/club/deal-walmer-kingsdown-arc/",
     "name": "Deal Walmer & Kingsdown ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=551"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=551",
+    "code": "DWK"
   },
   {
     "href": "https://www.britishrowing.org/club/deben-rc/",
     "name": "Deben RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=791"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=791",
+    "code": "DEB"
   },
   {
     "href": "https://www.britishrowing.org/club/derby-city-county-schools-ra/",
     "name": "Derby City & County Schools RA",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1215"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1215",
+    "code": "DBY"
   },
   {
     "href": "https://www.britishrowing.org/club/derby-rc/",
     "name": "Derby RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=376"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=376",
+    "code": "DBY"
   },
   {
     "href": "https://www.britishrowing.org/club/derwent-rc/",
     "name": "Derwent RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=377"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=377",
+    "code": "DEW"
   },
   {
     "href": "https://www.britishrowing.org/club/derwenthaugh-boat-station-sea-cadets/",
@@ -1005,7 +1156,8 @@
   {
     "href": "https://www.britishrowing.org/club/devils-elbow-rowing-club/",
     "name": "Devil’s Elbow Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1711"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1711",
+    "code": "DEV"
   },
   {
     "href": "https://www.britishrowing.org/club/devoran-cpga/",
@@ -1017,51 +1169,61 @@
   },
   {
     "href": "https://www.britishrowing.org/club/dittons-skiff-punting-club/",
-    "name": "Dittons Skiff & Punting Club"
+    "name": "Dittons Skiff & Punting Club",
+    "code": "DIT"
   },
   {
     "href": "https://www.britishrowing.org/club/dolphin-rowing-club/",
     "name": "Dolphin Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2226"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2226",
+    "code": "DOL"
   },
   {
     "href": "https://www.britishrowing.org/club/doncaster-rc/",
     "name": "Doncaster RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=697"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=697",
+    "code": "DON"
   },
   {
     "href": "https://www.britishrowing.org/club/doncaster-schools-ra/",
     "name": "Doncaster Schools RA",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=776"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=776",
+    "code": "DOS"
   },
   {
     "href": "https://www.britishrowing.org/club/dorney-boat-club/",
     "name": "Dorney Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1314"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1314",
+    "code": "DOR"
   },
   {
     "href": "https://www.britishrowing.org/club/dover-rowing-club/",
     "name": "Dover Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=552"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=552",
+    "code": "DOV"
   },
   {
     "href": "https://www.britishrowing.org/club/downing-college-bc/",
     "name": "Downing College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=437"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=437",
+    "code": "DOW"
   },
   {
     "href": "https://www.britishrowing.org/club/dragon-school-bc/",
     "name": "Dragon School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=480"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=480",
+    "code": "DRG"
   },
   {
     "href": "https://www.britishrowing.org/club/dudley-rowing-club/",
-    "name": "Dudley Rowing Club"
+    "name": "Dudley Rowing Club",
+    "code": "DUD"
   },
   {
     "href": "https://www.britishrowing.org/club/dulwich-college-bc/",
     "name": "Dulwich College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=658"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=658",
+    "code": "DUL"
   },
   {
     "href": "https://www.britishrowing.org/club/dundee-sea-cadets/",
@@ -1074,27 +1236,32 @@
   {
     "href": "https://www.britishrowing.org/club/durham-arc/",
     "name": "Durham ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=579"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=579",
+    "code": "DUR"
   },
   {
     "href": "https://www.britishrowing.org/club/durham-school-bc/",
     "name": "Durham School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=198"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=198",
+    "code": "DUS"
   },
   {
     "href": "https://www.britishrowing.org/club/durham-university-bc/",
     "name": "Durham University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=199"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=199",
+    "code": "DUB"
   },
   {
     "href": "https://www.britishrowing.org/club/earith-sculling-centre/",
     "name": "Earith Sculling Centre",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2129"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2129",
+    "code": "EAR"
   },
   {
     "href": "https://www.britishrowing.org/club/east-anglia-university-bc/",
     "name": "East Anglia University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=664"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=664",
+    "code": "UEA"
   },
   {
     "href": "https://www.britishrowing.org/club/east-coast-rowing-association/",
@@ -1103,17 +1270,20 @@
   {
     "href": "https://www.britishrowing.org/club/east-india-club-rowing-section/",
     "name": "East India Club Rowing Section",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2057"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2057",
+    "code": "EIC"
   },
   {
     "href": "https://www.britishrowing.org/club/eastbourne-college-bc/",
     "name": "Eastbourne College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=542"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=542",
+    "code": "ESC"
   },
   {
     "href": "https://www.britishrowing.org/club/eastbourne-rc/",
     "name": "Eastbourne RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=553"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=553",
+    "code": "EAS"
   },
   {
     "href": "https://www.britishrowing.org/club/eastern-area-sea-cadets/",
@@ -1121,57 +1291,68 @@
   },
   {
     "href": "https://www.britishrowing.org/club/ebchester-boat-club/",
-    "name": "Ebchester Boat Club"
+    "name": "Ebchester Boat Club",
+    "code": "EBC"
   },
   {
     "href": "https://www.britishrowing.org/club/elizabethan-bc/",
     "name": "Elizabethan BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=524"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=524",
+    "code": "ELZ"
   },
   {
     "href": "https://www.britishrowing.org/club/emanuel-school-bc/",
     "name": "Emanuel School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=353"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=353",
+    "code": "EMA"
   },
   {
     "href": "https://www.britishrowing.org/club/emmanuel-bc/",
     "name": "Emmanuel BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=438"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=438",
+    "code": "EMM"
   },
   {
     "href": "https://www.britishrowing.org/club/erith-rowing-club/",
     "name": "Erith Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=543"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=543",
+    "code": "ERT"
   },
   {
     "href": "https://www.britishrowing.org/club/essex-university-rc/",
     "name": "Essex University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=305"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=305",
+    "code": "UES"
   },
   {
     "href": "https://www.britishrowing.org/club/eton-college-bc/",
     "name": "Eton College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=268"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=268",
+    "code": "ETN"
   },
   {
     "href": "https://www.britishrowing.org/club/eton-excelsior-rc/",
     "name": "Eton Excelsior RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=269"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=269",
+    "code": "ETX"
   },
   {
     "href": "https://www.britishrowing.org/club/eton-mission-rowing-club/",
     "name": "Eton Mission Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=298"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=298",
+    "code": "ETM"
   },
   {
     "href": "https://www.britishrowing.org/club/eton-vikings-club/",
     "name": "Eton Vikings Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=625"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=625",
+    "code": "ETV"
   },
   {
     "href": "https://www.britishrowing.org/club/evesham-rowing-club/",
     "name": "Evesham Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=397"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=397",
+    "code": "EVE"
   },
   {
     "href": "https://www.britishrowing.org/club/evesham-sea-cadets/",
@@ -1180,17 +1361,20 @@
   {
     "href": "https://www.britishrowing.org/club/exeter-college-bc/",
     "name": "Exeter College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=678"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=678",
+    "code": "EXC"
   },
   {
     "href": "https://www.britishrowing.org/club/exeter-rowing-club/",
     "name": "Exeter Rowing Club Ltd.",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=574"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=574",
+    "code": "EXE"
   },
   {
     "href": "https://www.britishrowing.org/club/exeter-university-bc/",
     "name": "Exeter University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=575"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=575",
+    "code": "EXU"
   },
   {
     "href": "https://www.britishrowing.org/club/exmouth-cpga/",
@@ -1199,7 +1383,8 @@
   {
     "href": "https://www.britishrowing.org/club/exmouth-rc/",
     "name": "Exmouth RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=848"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=848",
+    "code": "EXM"
   },
   {
     "href": "https://www.britishrowing.org/club/exmouth-sea-cadets/",
@@ -1208,7 +1393,8 @@
   {
     "href": "https://www.britishrowing.org/club/eyre-club/",
     "name": "Eyre Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=786"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=786",
+    "code": "EYR"
   },
   {
     "href": "https://www.britishrowing.org/club/fairlands-valley-sailing-centre/",
@@ -1221,16 +1407,19 @@
   {
     "href": "https://www.britishrowing.org/club/fairlop-rowing-club/",
     "name": "Fairlop Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2058"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2058",
+    "code": "FRC"
   },
   {
     "href": "https://www.britishrowing.org/club/falcon-rc/",
     "name": "Falcon RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=481"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=481",
+    "code": "FAL"
   },
   {
     "href": "https://www.britishrowing.org/club/falmouth-cpga/",
-    "name": "Falmouth (CPGA)"
+    "name": "Falmouth (CPGA)",
+    "code": "FLM"
   },
   {
     "href": "https://www.britishrowing.org/club/farnham-fleet-and-aldershot-sea-cadet-unit/",
@@ -1238,7 +1427,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/fishguard-goodwick-jemima-rc-wsra/",
-    "name": "Fishguard & Goodwick Jemima RC (WSRA)"
+    "name": "Fishguard & Goodwick Jemima RC (WSRA)",
+    "code": "FGJ"
   },
   {
     "href": "https://www.britishrowing.org/club/fishguard-sea-cadets/",
@@ -1247,7 +1437,8 @@
   {
     "href": "https://www.britishrowing.org/club/fitzwilliam-college-bc/",
     "name": "Fitzwilliam College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=440"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=440",
+    "code": "FIT"
   },
   {
     "href": "https://www.britishrowing.org/club/fleetwood-sea-cadets/",
@@ -1264,7 +1455,8 @@
   {
     "href": "https://www.britishrowing.org/club/folkestone-rc/",
     "name": "Folkestone RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=708"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=708",
+    "code": "FOL"
   },
   {
     "href": "https://www.britishrowing.org/club/fowey-cpga/",
@@ -1276,36 +1468,43 @@
   },
   {
     "href": "https://www.britishrowing.org/club/fulham-boys-school-the-boat-club/",
-    "name": "Fulham Boys School, The. Boat Club"
+    "name": "Fulham Boys School, The. Boat Club",
+    "code": "FBS"
   },
   {
     "href": "https://www.britishrowing.org/club/fulham-reach-boat-club/",
     "name": "Fulham Reach Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1952"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1952",
+    "code": "FUL"
   },
   {
     "href": "https://www.britishrowing.org/club/furnivall-sculling-club/",
     "name": "Furnivall Sculling Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=292"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=292",
+    "code": "FSC"
   },
   {
     "href": "https://www.britishrowing.org/club/fuzzy-duck-bc/",
     "name": "Fuzzy Duck BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=888"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=888",
+    "code": "FUZ"
   },
   {
     "href": "https://www.britishrowing.org/club/gainsborough-rc/",
-    "name": "Gainsborough RC"
+    "name": "Gainsborough RC",
+    "code": "GNB"
   },
   {
     "href": "https://www.britishrowing.org/club/gateshead-community-rowing-club/",
     "name": "Gateshead Community Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2060"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2060",
+    "code": "GCR"
   },
   {
     "href": "https://www.britishrowing.org/club/girton-college-bc/",
     "name": "Girton College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=609"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=609",
+    "code": "GIR"
   },
   {
     "href": "https://www.britishrowing.org/club/glmw-scout-county/",
@@ -1314,12 +1513,14 @@
   {
     "href": "https://www.britishrowing.org/club/globe-rowing-club/",
     "name": "Globe Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=299"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=299",
+    "code": "GLB"
   },
   {
     "href": "https://www.britishrowing.org/club/gloucester-rc/",
     "name": "Gloucester RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=649"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=649",
+    "code": "GLR"
   },
   {
     "href": "https://www.britishrowing.org/club/gloucester-sea-cadets/",
@@ -1328,26 +1529,31 @@
   {
     "href": "https://www.britishrowing.org/club/gloucestershire-univ-rc/",
     "name": "Gloucestershire Univ RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1824"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1824",
+    "code": "GLO"
   },
   {
     "href": "https://www.britishrowing.org/club/gm-swans/",
     "name": "GM Swans",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1839"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1839",
+    "code": "GMA"
   },
   {
     "href": "https://www.britishrowing.org/club/godolphin-latymer-school-bc/",
     "name": "Godolphin & Latymer School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=741"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=741",
+    "code": "GLT"
   },
   {
     "href": "https://www.britishrowing.org/club/gofigueira/",
-    "name": "GoFigueira"
+    "name": "GoFigueira",
+    "code": "GOF"
   },
   {
     "href": "https://www.britishrowing.org/club/goldie-bc/",
     "name": "Goldie BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=441"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=441",
+    "code": "GOL"
   },
   {
     "href": "https://www.britishrowing.org/club/goran-cpga/",
@@ -1356,22 +1562,26 @@
   {
     "href": "https://www.britishrowing.org/club/gordons-school-boat-club/",
     "name": "Gordon’s School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2379"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2379",
+    "code": "GRD"
   },
   {
     "href": "https://www.britishrowing.org/club/goring-gap-bc/",
     "name": "Goring Gap BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=826"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=826",
+    "code": "GOG"
   },
   {
     "href": "https://www.britishrowing.org/club/gorse-the-boat-club/",
     "name": "Gorse, The, Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2337"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2337",
+    "code": "GOR"
   },
   {
     "href": "https://www.britishrowing.org/club/gosforth-community-rowing-club/",
     "name": "Gosforth Community Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2106"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2106",
+    "code": "GSF"
   },
   {
     "href": "https://www.britishrowing.org/club/gosforth-sea-cadets/",
@@ -1380,12 +1590,14 @@
   {
     "href": "https://www.britishrowing.org/club/grange-school-hartford-rc/",
     "name": "Grange School RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=592"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=592",
+    "code": "GRN"
   },
   {
     "href": "https://www.britishrowing.org/club/granta-bc/",
     "name": "Granta BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=745"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=745",
+    "code": "GRT"
   },
   {
     "href": "https://www.britishrowing.org/club/granta-skiff-club/",
@@ -1394,17 +1606,20 @@
   {
     "href": "https://www.britishrowing.org/club/gravesend-rc/",
     "name": "Gravesend RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=544"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=544",
+    "code": "GRV"
   },
   {
     "href": "https://www.britishrowing.org/club/great-marlow-school-bc/",
     "name": "Great Marlow School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1222"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1222",
+    "code": "GMS"
   },
   {
     "href": "https://www.britishrowing.org/club/green-templeton-bc/",
     "name": "Green Templeton BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1260"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1260",
+    "code": "GTM"
   },
   {
     "href": "https://www.britishrowing.org/club/green-withens-water-sports-centre/",
@@ -1413,7 +1628,8 @@
   {
     "href": "https://www.britishrowing.org/club/greenbank-falmouth-rc/",
     "name": "Greenbank Falmouth RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=576"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=576",
+    "code": "GRF"
   },
   {
     "href": "https://www.britishrowing.org/club/greenock-sea-cadets/",
@@ -1422,7 +1638,8 @@
   {
     "href": "https://www.britishrowing.org/club/grey-college-bc/",
     "name": "Grey College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=202"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=202",
+    "code": "GRC"
   },
   {
     "href": "https://www.britishrowing.org/club/grimsby-and-cleethorpes-sea-cadets/",
@@ -1431,16 +1648,19 @@
   {
     "href": "https://www.britishrowing.org/club/grosvenor-rc-chester/",
     "name": "Grosvenor RC, Chester",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=593"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=593",
+    "code": "GRO"
   },
   {
     "href": "https://www.britishrowing.org/club/guernsey-rc/",
-    "name": "Guernsey RC"
+    "name": "Guernsey RC",
+    "code": "GUE"
   },
   {
     "href": "https://www.britishrowing.org/club/guildford-rc/",
     "name": "Guildford RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=499"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=499",
+    "code": "GUI"
   },
   {
     "href": "https://www.britishrowing.org/club/guildford-sea-cadets/",
@@ -1448,50 +1668,60 @@
   },
   {
     "href": "https://www.britishrowing.org/club/guy-fawkes-boat-club/",
-    "name": "Guy Fawkes Boat Club"
+    "name": "Guy Fawkes Boat Club",
+    "code": "GUY"
   },
   {
     "href": "https://www.britishrowing.org/club/hadrian-bc/",
     "name": "Hadrian BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1094"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1094",
+    "code": "HDN"
   },
   {
     "href": "https://www.britishrowing.org/club/haileybury-rc/",
     "name": "Haileybury RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=808"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=808",
+    "code": "HAI"
   },
   {
     "href": "https://www.britishrowing.org/club/halliford-school-bc/",
-    "name": "Halliford School BC"
+    "name": "Halliford School BC",
+    "code": "HLF"
   },
   {
     "href": "https://www.britishrowing.org/club/hammersmith-academy-boat-club/",
     "name": "Hammersmith Academy Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2223"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2223",
+    "code": "HAC"
   },
   {
     "href": "https://www.britishrowing.org/club/hampton-school-bc/",
     "name": "Hampton School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=500"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=500",
+    "code": "HAM"
   },
   {
     "href": "https://www.britishrowing.org/club/harper-adams-university-rowing-club/",
     "name": "Harper Adams University Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2125"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2125",
+    "code": "HAU"
   },
   {
     "href": "https://www.britishrowing.org/club/hartpury-university-and-college-boat-club/",
-    "name": "Hartpury University and College Boat Club"
+    "name": "Hartpury University and College Boat Club",
+    "code": "HPY"
   },
   {
     "href": "https://www.britishrowing.org/club/hastings-st-leonards-rc/",
     "name": "Hastings & St Leonards RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=800"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=800",
+    "code": "HSL"
   },
   {
     "href": "https://www.britishrowing.org/club/hatfield-college-bc/",
     "name": "Hatfield College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=203"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=203",
+    "code": "HAT"
   },
   {
     "href": "https://www.britishrowing.org/club/hayle-cpga/",
@@ -1500,7 +1730,8 @@
   {
     "href": "https://www.britishrowing.org/club/headington-school-oxford-bc/",
     "name": "Headington School Oxford BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=723"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=723",
+    "code": "HED"
   },
   {
     "href": "https://www.britishrowing.org/club/helford-cpga/",
@@ -1508,26 +1739,31 @@
   },
   {
     "href": "https://www.britishrowing.org/club/hengistbury-head-outdoor-education-centre/",
-    "name": "Hengistbury Head Outdoor Education Centre"
+    "name": "Hengistbury Head Outdoor Education Centre",
+    "code": "HGB"
   },
   {
     "href": "https://www.britishrowing.org/club/henley-rowing-club/",
     "name": "Henley Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=627"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=627",
+    "code": "HEN"
   },
   {
     "href": "https://www.britishrowing.org/club/henley-sea-cadets/",
-    "name": "Henley Sea Cadets"
+    "name": "Henley Sea Cadets",
+    "code": "ZZZ"
   },
   {
     "href": "https://www.britishrowing.org/club/hereford-cathedral-school-bc/",
     "name": "Hereford Cathedral School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=398"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=398",
+    "code": "HCS"
   },
   {
     "href": "https://www.britishrowing.org/club/hereford-rc/",
     "name": "Hereford RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=399"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=399",
+    "code": "HER"
   },
   {
     "href": "https://www.britishrowing.org/club/hereford-sea-cadets/",
@@ -1536,22 +1772,26 @@
   {
     "href": "https://www.britishrowing.org/club/hereward-rowing-club/",
     "name": "Hereward Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2262"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2262",
+    "code": "HRW"
   },
   {
     "href": "https://www.britishrowing.org/club/herne-bay/",
     "name": "Herne Bay",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=743"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=743",
+    "code": "HEB"
   },
   {
     "href": "https://www.britishrowing.org/club/hertford-college-bc/",
     "name": "Hertford College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=248"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=248",
+    "code": "HEC"
   },
   {
     "href": "https://www.britishrowing.org/club/hexham-rc/",
     "name": "Hexham RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=204"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=204",
+    "code": "HEX"
   },
   {
     "href": "https://www.britishrowing.org/club/hillingdon-outdoor-activities-centre/",
@@ -1560,11 +1800,13 @@
   {
     "href": "https://www.britishrowing.org/club/hillingdon-rowing-club/",
     "name": "Hillingdon Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1845"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1845",
+    "code": "HIL"
   },
   {
     "href": "https://www.britishrowing.org/club/hinchley-wood-bc/",
-    "name": "Hinchley Wood BC"
+    "name": "Hinchley Wood BC",
+    "code": "HCW"
   },
   {
     "href": "https://www.britishrowing.org/club/hinckley-sea-cadets/",
@@ -1573,22 +1815,26 @@
   {
     "href": "https://www.britishrowing.org/club/hinksey-sculling-school/",
     "name": "Hinksey Sculling School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=819"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=819",
+    "code": "HIN"
   },
   {
     "href": "https://www.britishrowing.org/club/hollingworth-lake-rc/",
     "name": "Hollingworth Lake RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=231"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=231",
+    "code": "HOL"
   },
   {
     "href": "https://www.britishrowing.org/club/hollowell-scullers/",
     "name": "Hollowell Scullers",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1218"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1218",
+    "code": "HLS"
   },
   {
     "href": "https://www.britishrowing.org/club/homerton-college-bc/",
     "name": "Homerton College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=610"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=610",
+    "code": "HOM"
   },
   {
     "href": "https://www.britishrowing.org/club/hornets-bc/",
@@ -1605,32 +1851,38 @@
   {
     "href": "https://www.britishrowing.org/club/hsbc-rc/",
     "name": "HSBC RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=529"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=529",
+    "code": "HSB"
   },
   {
     "href": "https://www.britishrowing.org/club/hughes-hall-bc/",
     "name": "Hughes Hall BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1062"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1062",
+    "code": "HUH"
   },
   {
     "href": "https://www.britishrowing.org/club/hull-rc/",
     "name": "Hull RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1310"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1310",
+    "code": "HUL"
   },
   {
     "href": "https://www.britishrowing.org/club/hull-university-bc/",
     "name": "Hull University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=223"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=223",
+    "code": "HUU"
   },
   {
     "href": "https://www.britishrowing.org/club/huntingdon-bc/",
     "name": "Huntingdon BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=420"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=420",
+    "code": "HUN"
   },
   {
     "href": "https://www.britishrowing.org/club/icena/",
     "name": "Icena",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=333"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=333",
+    "code": "ICE"
   },
   {
     "href": "https://www.britishrowing.org/club/ilfracombe-cpga/",
@@ -1643,22 +1895,26 @@
   {
     "href": "https://www.britishrowing.org/club/imperial-college-boat-club/",
     "name": "Imperial College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=515"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=515",
+    "code": "IMP"
   },
   {
     "href": "https://www.britishrowing.org/club/imperial-college-school-of-medicine-bc/",
     "name": "Imperial College School Of Medicine BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=870"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=870",
+    "code": "IMM"
   },
   {
     "href": "https://www.britishrowing.org/club/infidel-bc/",
     "name": "Infidel BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=867"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=867",
+    "code": "IND"
   },
   {
     "href": "https://www.britishrowing.org/club/ipswich-rowing-club/",
     "name": "Ipswich Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2054"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2054",
+    "code": "IPS"
   },
   {
     "href": "https://www.britishrowing.org/club/ipswich-sea-cadet-corps/",
@@ -1667,85 +1923,102 @@
   {
     "href": "https://www.britishrowing.org/club/ironbridge-rowing-club/",
     "name": "Ironbridge Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=400"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=400",
+    "code": "IRO"
   },
   {
     "href": "https://www.britishrowing.org/club/isis-bc/",
     "name": "Isis BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=249"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=249",
+    "code": "ISI"
   },
   {
     "href": "https://www.britishrowing.org/club/isle-of-ely-rc/",
     "name": "Isle Of Ely RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=949"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=949",
+    "code": "IEL"
   },
   {
     "href": "https://www.britishrowing.org/club/isle-of-man-rowing-federation/",
-    "name": "Isle of Man Rowing Federation"
+    "name": "Isle of Man Rowing Federation",
+    "code": "IOM"
   },
   {
     "href": "https://www.britishrowing.org/club/itchen-imperial-rc/",
     "name": "Itchen Imperial RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=726"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=726",
+    "code": "ITC"
   },
   {
     "href": "https://www.britishrowing.org/club/james-allens-girls-school-boat-club/",
     "name": "James Allen’s Girls’ School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2052"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2052",
+    "code": "JAG"
   },
   {
     "href": "https://www.britishrowing.org/club/jersey-rc/",
-    "name": "Jersey RC"
+    "name": "Jersey RC",
+    "code": "JER"
   },
   {
     "href": "https://www.britishrowing.org/club/jesus-college-cambridge-bc/",
     "name": "Jesus College (Cambridge) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=442"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=442",
+    "code": "JEC"
   },
   {
     "href": "https://www.britishrowing.org/club/jesus-college-oxford-bc/",
     "name": "Jesus College (Oxford) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=250"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=250",
+    "code": "JEO"
   },
   {
     "href": "https://www.britishrowing.org/club/john-snow-college-boat-club/",
     "name": "John Snow College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=971"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=971",
+    "code": "JSC"
   },
   {
     "href": "https://www.britishrowing.org/club/keble-college-bc/",
     "name": "Keble College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=251"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=251",
+    "code": "KEB"
   },
   {
     "href": "https://www.britishrowing.org/club/keele-university-boat-club/",
     "name": "Keele University Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1971"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1971",
+    "code": "KEL"
   },
   {
     "href": "https://www.britishrowing.org/club/kent-college-boat-club/",
     "name": "Kent College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=948"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=948",
+    "code": "KEC"
   },
   {
     "href": "https://www.britishrowing.org/club/kent-university-rc/",
     "name": "Kent University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=681"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=681",
+    "code": "UKE"
   },
   {
     "href": "https://www.britishrowing.org/club/kew-house-school-boat-club/",
     "name": "Kew House School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2381"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2381",
+    "code": "KHS"
   },
   {
     "href": "https://www.britishrowing.org/club/king-edward-vi-school-bc/",
     "name": "King Edward VI School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=401"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=401",
+    "code": "KES"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-college-london-boat-club-incorporating-guys-and-st-thomas-hospitals/",
     "name": "King’s College London Boat Club Incorporating Guy’s And St. Thomas’ Hospitals",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=285"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=285",
+    "code": "KCL"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-lynn-sea-cadets/",
@@ -1754,37 +2027,44 @@
   {
     "href": "https://www.britishrowing.org/club/kings-college-bc/",
     "name": "Kings College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=443"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=443",
+    "code": "KCB"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-college-school-bc/",
     "name": "Kings College School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=327"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=327",
+    "code": "KCS"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-rochester-bc/",
     "name": "Kings Rochester BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=545"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=545",
+    "code": "KSR"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-school-ely-bc/",
     "name": "Kings School  Ely BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=457"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=457",
+    "code": "KSE"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-school-canterbury-bc/",
     "name": "Kings School Canterbury BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=549"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=549",
+    "code": "KCA"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-school-chester-rc/",
     "name": "Kings School Chester RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=596"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=596",
+    "code": "KCH"
   },
   {
     "href": "https://www.britishrowing.org/club/kings-school-worcester-bc/",
     "name": "Kings School Worcester BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=402"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=402",
+    "code": "KSW"
   },
   {
     "href": "https://www.britishrowing.org/club/kingston-district-sea-cadets/",
@@ -1793,80 +2073,96 @@
   {
     "href": "https://www.britishrowing.org/club/kingston-grammar-school-bc/",
     "name": "Kingston Grammar School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=505"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=505",
+    "code": "KGS"
   },
   {
     "href": "https://www.britishrowing.org/club/kingston-grammar-school-veterans-bc/",
     "name": "Kingston Grammar School Veterans BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=777"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=777",
+    "code": "KGV"
   },
   {
     "href": "https://www.britishrowing.org/club/kingston-rc/",
     "name": "Kingston RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=506"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=506",
+    "code": "KRC"
   },
   {
     "href": "https://www.britishrowing.org/club/kingston-students-rowing-club/",
     "name": "Kingston Students Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1722"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1722",
+    "code": "KIS"
   },
   {
     "href": "https://www.britishrowing.org/club/kingswood-school-boat-club/",
-    "name": "Kingswood School Boat Club"
+    "name": "Kingswood School Boat Club",
+    "code": "KWS"
   },
   {
     "href": "https://www.britishrowing.org/club/lady-eleanor-holles-bc/",
     "name": "Lady Eleanor Holles BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=501"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=501",
+    "code": "LEH"
   },
   {
     "href": "https://www.britishrowing.org/club/lady-margaret-bc/",
     "name": "Lady Margaret BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=444"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=444",
+    "code": "LMB"
   },
   {
     "href": "https://www.britishrowing.org/club/lady-margaret-hall-bc/",
     "name": "Lady Margaret Hall BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=252"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=252",
+    "code": "LMH"
   },
   {
     "href": "https://www.britishrowing.org/club/lady-margaret-school-bc/",
     "name": "Lady Margaret School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2222"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2222",
+    "code": "LMS"
   },
   {
     "href": "https://www.britishrowing.org/club/lady-rohesia-boat-club/",
     "name": "Lady Rohesia Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1712"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1712",
+    "code": "LRH"
   },
   {
     "href": "https://www.britishrowing.org/club/lakeland-rowing-club/",
     "name": "Lakeland Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1131"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1131",
+    "code": "LKL"
   },
   {
     "href": "https://www.britishrowing.org/club/lancaster-john-ogaunt-rc/",
     "name": "Lancaster John O’Gaunt RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=587"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=587",
+    "code": "LAJ"
   },
   {
     "href": "https://www.britishrowing.org/club/lancaster-royal-grammar-school-bc/",
     "name": "Lancaster Royal Grammar School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=232"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=232",
+    "code": "LRG"
   },
   {
     "href": "https://www.britishrowing.org/club/lancaster-schools-rowing-association/",
     "name": "Lancaster Schools’ Rowing Association",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1496"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1496",
+    "code": "LCS"
   },
   {
     "href": "https://www.britishrowing.org/club/lancaster-university-bc/",
     "name": "Lancaster University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=241"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=241",
+    "code": "LAU"
   },
   {
     "href": "https://www.britishrowing.org/club/langport-rc/",
-    "name": "Langport RC"
+    "name": "Langport RC",
+    "code": "LAN"
   },
   {
     "href": "https://www.britishrowing.org/club/langstone-cpga/",
@@ -1875,17 +2171,20 @@
   {
     "href": "https://www.britishrowing.org/club/las-vegas-institute-of-sport-boat-club/",
     "name": "Las Vegas Institute of Sport Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2128"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2128",
+    "code": "LVI"
   },
   {
     "href": "https://www.britishrowing.org/club/latymer-upper-school-bc/",
     "name": "Latymer Upper School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=293"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=293",
+    "code": "LTU"
   },
   {
     "href": "https://www.britishrowing.org/club/lea-rc/",
     "name": "Lea RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=537"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=537",
+    "code": "LEA"
   },
   {
     "href": "https://www.britishrowing.org/club/leander-kingston-sea-scouts/",
@@ -1894,17 +2193,20 @@
   {
     "href": "https://www.britishrowing.org/club/leander-club/",
     "name": "Leander Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=628"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=628",
+    "code": "LDR"
   },
   {
     "href": "https://www.britishrowing.org/club/leeds-beckett-university-rowing-club/",
     "name": "Leeds Beckett University Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1362"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1362",
+    "code": "LBU"
   },
   {
     "href": "https://www.britishrowing.org/club/leeds-rowing-club/",
     "name": "Leeds Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=906"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=906",
+    "code": "LEE"
   },
   {
     "href": "https://www.britishrowing.org/club/leeds-sailing-and-activity-centre/",
@@ -1917,37 +2219,44 @@
   {
     "href": "https://www.britishrowing.org/club/leeds-university-bc/",
     "name": "Leeds University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=356"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=356",
+    "code": "LDU"
   },
   {
     "href": "https://www.britishrowing.org/club/leicester-rc/",
     "name": "Leicester RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=380"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=380",
+    "code": "LER"
   },
   {
     "href": "https://www.britishrowing.org/club/leicester-university-bc/",
     "name": "Leicester University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=381"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=381",
+    "code": "LEU"
   },
   {
     "href": "https://www.britishrowing.org/club/leys-school-boat-club/",
     "name": "Leys School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=466"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=466",
+    "code": "LEY"
   },
   {
     "href": "https://www.britishrowing.org/club/linacre-boat-club/",
     "name": "Linacre Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=668"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=668",
+    "code": "LIN"
   },
   {
     "href": "https://www.britishrowing.org/club/lincoln-college-bc/",
     "name": "Lincoln College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=693"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=693",
+    "code": "LIC"
   },
   {
     "href": "https://www.britishrowing.org/club/lincoln-rowing-centre/",
     "name": "Lincoln Rowing Centre",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1095"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1095",
+    "code": "LCN"
   },
   {
     "href": "https://www.britishrowing.org/club/lincoln-sea-cadets/",
@@ -1955,7 +2264,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/little-haven-wsra/",
-    "name": "Little Haven (WSRA)"
+    "name": "Little Haven (WSRA)",
+    "code": "LHV"
   },
   {
     "href": "https://www.britishrowing.org/club/littlehampton-sea-cadets/",
@@ -1968,21 +2278,25 @@
   {
     "href": "https://www.britishrowing.org/club/liverpool-john-moores-university-rowing-club/",
     "name": "Liverpool John Moores University Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2127"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2127",
+    "code": "LJM"
   },
   {
     "href": "https://www.britishrowing.org/club/liverpool-university-bc/",
     "name": "Liverpool University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=233"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=233",
+    "code": "LIU"
   },
   {
     "href": "https://www.britishrowing.org/club/liverpool-victoria-rc/",
     "name": "Liverpool Victoria RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=235"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=235",
+    "code": "LIV"
   },
   {
     "href": "https://www.britishrowing.org/club/llandaff-rc/",
-    "name": "Llandaff RC"
+    "name": "Llandaff RC",
+    "code": "LLA"
   },
   {
     "href": "https://www.britishrowing.org/club/llanelli-sea-cadets/",
@@ -1990,15 +2304,18 @@
   },
   {
     "href": "https://www.britishrowing.org/club/llangrannog-wsra/",
-    "name": "Llangrannog (WSRA)"
+    "name": "Llangrannog (WSRA)",
+    "code": "LLG"
   },
   {
     "href": "https://www.britishrowing.org/club/llangwm-rc-wsra/",
-    "name": "Llangwm RC (WSRA)"
+    "name": "Llangwm RC (WSRA)",
+    "code": "LWM"
   },
   {
     "href": "https://www.britishrowing.org/club/llanion-warriors-wsra/",
-    "name": "Llanion Warriors (WSRA)"
+    "name": "Llanion Warriors (WSRA)",
+    "code": "LLW"
   },
   {
     "href": "https://www.britishrowing.org/club/london-cpga/",
@@ -2007,7 +2324,8 @@
   {
     "href": "https://www.britishrowing.org/club/london-otters-rowing-club/",
     "name": "London Otters Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2100"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2100",
+    "code": "LOT"
   },
   {
     "href": "https://www.britishrowing.org/club/london-regatta-centre/",
@@ -2016,21 +2334,25 @@
   {
     "href": "https://www.britishrowing.org/club/london-rowing-club/",
     "name": "London Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=526"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=526",
+    "code": "LRC"
   },
   {
     "href": "https://www.britishrowing.org/club/london-school-of-economics-rc/",
     "name": "London School Of Economics RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=725"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=725",
+    "code": "LSE"
   },
   {
     "href": "https://www.britishrowing.org/club/london-youth-rowing/",
-    "name": "London Youth Rowing"
+    "name": "London Youth Rowing",
+    "code": "LYR"
   },
   {
     "href": "https://www.britishrowing.org/club/longridge/",
     "name": "Longridge",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1749"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1749",
+    "code": "LGD"
   },
   {
     "href": "https://www.britishrowing.org/club/looe-cpga/",
@@ -2039,7 +2361,8 @@
   {
     "href": "https://www.britishrowing.org/club/loughborough-bc/",
     "name": "Loughborough BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=382"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=382",
+    "code": "LBR"
   },
   {
     "href": "https://www.britishrowing.org/club/loughborough-sea-cadets/",
@@ -2048,27 +2371,32 @@
   {
     "href": "https://www.britishrowing.org/club/loughborough-students-rc/",
     "name": "Loughborough Students RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=603"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=603",
+    "code": "LBS"
   },
   {
     "href": "https://www.britishrowing.org/club/lower-thames-rc/",
     "name": "Lower Thames RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=907"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=907",
+    "code": "LTH"
   },
   {
     "href": "https://www.britishrowing.org/club/lowestoft-rc/",
     "name": "Lowestoft RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=459"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=459",
+    "code": "LWS"
   },
   {
     "href": "https://www.britishrowing.org/club/lucy-cavendish-college-boat-club/",
     "name": "Lucy Cavendish College Boat CLub",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2075"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2075",
+    "code": "LCC"
   },
   {
     "href": "https://www.britishrowing.org/club/lvs-ascot-boat-club/",
     "name": "LVS Ascot Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1623"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1623",
+    "code": "LVA"
   },
   {
     "href": "https://www.britishrowing.org/club/lyme-regis-cpga/",
@@ -2077,32 +2405,38 @@
   {
     "href": "https://www.britishrowing.org/club/lymington-arc/",
     "name": "Lymington ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=671"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=671",
+    "code": "LYM"
   },
   {
     "href": "https://www.britishrowing.org/club/lyr-tradesmen/",
     "name": "LYR Tradesmen",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2043"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2043",
+    "code": "LYR"
   },
   {
     "href": "https://www.britishrowing.org/club/magdalen-college-bc/",
     "name": "Magdalen College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=464"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=464",
+    "code": "MAG"
   },
   {
     "href": "https://www.britishrowing.org/club/magdalen-college-school-bc/",
     "name": "Magdalen College School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=482"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=482",
+    "code": "MGN"
   },
   {
     "href": "https://www.britishrowing.org/club/magdalene-bc/",
     "name": "Magdalene BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=445"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=445",
+    "code": "MGD"
   },
   {
     "href": "https://www.britishrowing.org/club/maidenhead-rc/",
     "name": "Maidenhead RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=629"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=629",
+    "code": "MHD"
   },
   {
     "href": "https://www.britishrowing.org/club/maidenhead-sea-cadets/",
@@ -2110,12 +2444,14 @@
   },
   {
     "href": "https://www.britishrowing.org/club/maidstone-grammar-school-rc/",
-    "name": "Maidstone Grammar School RC"
+    "name": "Maidstone Grammar School RC",
+    "code": "MGS"
   },
   {
     "href": "https://www.britishrowing.org/club/maidstone-invicta-rc/",
     "name": "Maidstone Invicta RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=301"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=301",
+    "code": "MAV"
   },
   {
     "href": "https://www.britishrowing.org/club/maldon-and-district-sea-cadets/",
@@ -2124,17 +2460,20 @@
   {
     "href": "https://www.britishrowing.org/club/manchester-grammar-school-boat-club/",
     "name": "Manchester Grammar School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2013"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2013",
+    "code": "MNG"
   },
   {
     "href": "https://www.britishrowing.org/club/manchester-the-univ-bc/",
     "name": "Manchester, The Univ BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=234"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=234",
+    "code": "MAU"
   },
   {
     "href": "https://www.britishrowing.org/club/mansfield-college-bc/",
     "name": "Mansfield College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=716"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=716",
+    "code": "MAN"
   },
   {
     "href": "https://www.britishrowing.org/club/mansfield-sea-cadets/",
@@ -2151,7 +2490,8 @@
   {
     "href": "https://www.britishrowing.org/club/marlow-rc/",
     "name": "Marlow RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=488"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=488",
+    "code": "MAR"
   },
   {
     "href": "https://www.britishrowing.org/club/marlow-sea-cadets/",
@@ -2159,51 +2499,61 @@
   },
   {
     "href": "https://www.britishrowing.org/club/mawddach-wsra/",
-    "name": "Mawddach (WSRA)"
+    "name": "Mawddach (WSRA)",
+    "code": "MAW"
   },
   {
     "href": "https://www.britishrowing.org/club/mayflower-offshore-rowing-club/",
     "name": "Mayflower Offshore Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1158"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1158",
+    "code": "MAY"
   },
   {
     "href": "https://www.britishrowing.org/club/mediterranean-rc/",
     "name": "Mediterranean RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=919"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=919",
+    "code": "MDT"
   },
   {
     "href": "https://www.britishrowing.org/club/medway-towns-rc/",
     "name": "Medway Towns RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=546"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=546",
+    "code": "MED"
   },
   {
     "href": "https://www.britishrowing.org/club/meles-bc/",
-    "name": "Meles BC"
+    "name": "Meles BC",
+    "code": "MEL"
   },
   {
     "href": "https://www.britishrowing.org/club/merchant-taylors-school-bc/",
     "name": "Merchant Taylors’ School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=589"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=589",
+    "code": "MTS"
   },
   {
     "href": "https://www.britishrowing.org/club/mersea-island-rowing-club/",
     "name": "Mersea Island Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1933"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1933",
+    "code": "MEI"
   },
   {
     "href": "https://www.britishrowing.org/club/mersey-rc/",
     "name": "Mersey RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=239"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=239",
+    "code": "MES"
   },
   {
     "href": "https://www.britishrowing.org/club/merton-college-bc/",
     "name": "Merton College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=253"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=253",
+    "code": "MER"
   },
   {
     "href": "https://www.britishrowing.org/club/metropolitan-police-rc/",
     "name": "Metropolitan Police RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=547"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=547",
+    "code": "MPS"
   },
   {
     "href": "https://www.britishrowing.org/club/mevagissey-cpga/",
@@ -2224,54 +2574,65 @@
   {
     "href": "https://www.britishrowing.org/club/millfield-rc/",
     "name": "Millfield RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1825"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1825",
+    "code": "MIL"
   },
   {
     "href": "https://www.britishrowing.org/club/milton-keynes-rowing-club/",
     "name": "Milton Keynes Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=790"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=790",
+    "code": "MIK"
   },
   {
     "href": "https://www.britishrowing.org/club/minerva-bath-rc/",
     "name": "Minerva Bath RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=334"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=334",
+    "code": "MIN"
   },
   {
     "href": "https://www.britishrowing.org/club/mochras-wsra/",
-    "name": "Mochras (WSRA)"
+    "name": "Mochras (WSRA)",
+    "code": "MCH"
   },
   {
     "href": "https://www.britishrowing.org/club/molesey-boat-club/",
     "name": "Molesey Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=631"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=631",
+    "code": "MBC"
   },
   {
     "href": "https://www.britishrowing.org/club/monkton-bluefriars-bc/",
     "name": "Monkton Bluefriars BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=566"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=566",
+    "code": "MNB"
   },
   {
     "href": "https://www.britishrowing.org/club/monkton-combe-school-bc/",
     "name": "Monkton Combe School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=567"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=567",
+    "code": "MNK"
   },
   {
     "href": "https://www.britishrowing.org/club/monmouth-comprehensive-school-boat-club/",
     "name": "Monmouth Comprehensive School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=899"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=899",
+    "code": "MOC"
   },
   {
     "href": "https://www.britishrowing.org/club/monmouth-rc/",
-    "name": "Monmouth RC"
+    "name": "Monmouth RC",
+    "code": "MON"
   },
   {
     "href": "https://www.britishrowing.org/club/hmsg-rc/",
     "name": "Monmouth School for Girls RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=894"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=894",
+    "code": "HAB"
   },
   {
     "href": "https://www.britishrowing.org/club/monmouth-school-rc/",
-    "name": "Monmouth School RC"
+    "name": "Monmouth School RC",
+    "code": "MNS"
   },
   {
     "href": "https://www.britishrowing.org/club/morecambe-and-heysham-sea-cadets/",
@@ -2280,12 +2641,14 @@
   {
     "href": "https://www.britishrowing.org/club/mortlake-anglian-alpha-bc/",
     "name": "Mortlake Anglian & Alpha BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=635"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=635",
+    "code": "MAA"
   },
   {
     "href": "https://www.britishrowing.org/club/mossbourne-community-academy-bc/",
     "name": "Mossbourne Community Academy BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1960"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1960",
+    "code": "MOS"
   },
   {
     "href": "https://www.britishrowing.org/club/mounts-bay-cpga/",
@@ -2293,12 +2656,14 @@
   },
   {
     "href": "https://www.britishrowing.org/club/mumbles-arc-wsra/",
-    "name": "Mumbles ARC (WSRA)"
+    "name": "Mumbles ARC (WSRA)",
+    "code": "MUM"
   },
   {
     "href": "https://www.britishrowing.org/club/murray-edwards-college-bc/",
     "name": "Murray Edwards College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=446"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=446",
+    "code": "MEC"
   },
   {
     "href": "https://www.britishrowing.org/club/nankersey-cpga/",
@@ -2311,7 +2676,8 @@
   {
     "href": "https://www.britishrowing.org/club/nautilus-boat-club/",
     "name": "Nautilus Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=676"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=676",
+    "code": "NAU"
   },
   {
     "href": "https://www.britishrowing.org/club/neath-and-district-sea-cadets/",
@@ -2320,48 +2686,58 @@
   {
     "href": "https://www.britishrowing.org/club/nemesis-boat-club/",
     "name": "Nemesis Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1248"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1248",
+    "code": "NMS"
   },
   {
     "href": "https://www.britishrowing.org/club/nephthys-bc/",
-    "name": "Nephthys BC"
+    "name": "Nephthys BC",
+    "code": "NEP"
   },
   {
     "href": "https://www.britishrowing.org/club/new-college-bc/",
     "name": "New College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=259"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=259",
+    "code": "NEC"
   },
   {
     "href": "https://www.britishrowing.org/club/new-quay-community-rc-wsra/",
-    "name": "New Quay Community RC  (WSRA)"
+    "name": "New Quay Community RC  (WSRA)",
+    "code": "NQC"
   },
   {
     "href": "https://www.britishrowing.org/club/new-quay-ukrs-wsra/",
-    "name": "New Quay UKRS (WSRA)"
+    "name": "New Quay UKRS (WSRA)",
+    "code": "NQU"
   },
   {
     "href": "https://www.britishrowing.org/club/newark-rc/",
     "name": "Newark RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=383"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=383",
+    "code": "NWK"
   },
   {
     "href": "https://www.britishrowing.org/club/newcastle-university-bc/",
     "name": "Newcastle University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=205"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=205",
+    "code": "NEW"
   },
   {
     "href": "https://www.britishrowing.org/club/newnham-college-bc/",
     "name": "Newnham College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=447"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=447",
+    "code": "NNM"
   },
   {
     "href": "https://www.britishrowing.org/club/newport-wsra/",
-    "name": "Newport (WSRA)"
+    "name": "Newport (WSRA)",
+    "code": "NWP"
   },
   {
     "href": "https://www.britishrowing.org/club/newport-rc/",
     "name": "Newport RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=760"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=760",
+    "code": "NWP"
   },
   {
     "href": "https://www.britishrowing.org/club/newquay-cpga/",
@@ -2369,17 +2745,20 @@
   },
   {
     "href": "https://www.britishrowing.org/club/neyland-wsra/",
-    "name": "Neyland (WSRA)"
+    "name": "Neyland (WSRA)",
+    "code": "NYL"
   },
   {
     "href": "https://www.britishrowing.org/club/nonesuch-bc/",
     "name": "Nonesuch BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1485"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1485",
+    "code": "NSH"
   },
   {
     "href": "https://www.britishrowing.org/club/north-staffordshire-rc/",
     "name": "North Staffordshire RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=597"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=597",
+    "code": "NST"
   },
   {
     "href": "https://www.britishrowing.org/club/northampton-and-wellingborough-sc/",
@@ -2388,7 +2767,8 @@
   {
     "href": "https://www.britishrowing.org/club/northampton-rc/",
     "name": "Northampton RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=422"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=422",
+    "code": "NTN"
   },
   {
     "href": "https://www.britishrowing.org/club/northern-area-sea-cadets/",
@@ -2397,27 +2777,32 @@
   {
     "href": "https://www.britishrowing.org/club/northumbria-university-bc/",
     "name": "Northumbria University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=768"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=768",
+    "code": "UNO"
   },
   {
     "href": "https://www.britishrowing.org/club/northwich-rc/",
     "name": "Northwich RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=243"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=243",
+    "code": "NOW"
   },
   {
     "href": "https://www.britishrowing.org/club/norwich-high-school-rc/",
     "name": "Norwich High School RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=460"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=460",
+    "code": "NHS"
   },
   {
     "href": "https://www.britishrowing.org/club/norwich-rowing-club/",
     "name": "Norwich Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=461"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=461",
+    "code": "NOR"
   },
   {
     "href": "https://www.britishrowing.org/club/norwich-school-bc/",
     "name": "Norwich School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=462"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=462",
+    "code": "NSC"
   },
   {
     "href": "https://www.britishrowing.org/club/norwich-sea-cadets/",
@@ -2426,17 +2811,20 @@
   {
     "href": "https://www.britishrowing.org/club/nottingham-union-rc/",
     "name": "Nottingham & Union RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=385"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=385",
+    "code": "NUN"
   },
   {
     "href": "https://www.britishrowing.org/club/nottingham-girls-high-school/",
     "name": "Nottingham Girls High School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2329"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2329",
+    "code": "NGH"
   },
   {
     "href": "https://www.britishrowing.org/club/nottingham-rowing-club/",
     "name": "Nottingham Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1077"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1077",
+    "code": "NRC"
   },
   {
     "href": "https://www.britishrowing.org/club/nottingham-sea-cadets/",
@@ -2445,50 +2833,60 @@
   {
     "href": "https://www.britishrowing.org/club/nottingham-trent-university-rc/",
     "name": "Nottingham Trent University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=391"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=391",
+    "code": "NTU"
   },
   {
     "href": "https://www.britishrowing.org/club/nottingham-university-bc/",
     "name": "Nottingham University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=388"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=388",
+    "code": "NGU"
   },
   {
     "href": "https://www.britishrowing.org/club/nottinghamshire-county-rowing-association/",
     "name": "Nottinghamshire County Rowing Association",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=389"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=389",
+    "code": "NCR"
   },
   {
     "href": "https://www.britishrowing.org/club/oarsome-chance-foundation/",
-    "name": "Oarsome Chance Foundation"
+    "name": "Oarsome Chance Foundation",
+    "code": "OAR"
   },
   {
     "href": "https://www.britishrowing.org/club/old-monmothians/",
-    "name": "Old Monmothians"
+    "name": "Old Monmothians",
+    "code": "OMN"
   },
   {
     "href": "https://www.britishrowing.org/club/old-norvicensians-boat-club/",
     "name": "Old Norvicensians Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2328"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2328",
+    "code": "OLD"
   },
   {
     "href": "https://www.britishrowing.org/club/oratory-cardinals-bc/",
     "name": "Oratory Cardinals BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=724"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=724",
+    "code": "ORC"
   },
   {
     "href": "https://www.britishrowing.org/club/oratory-school-bc/",
     "name": "Oratory School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=486"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=486",
+    "code": "ORA"
   },
   {
     "href": "https://www.britishrowing.org/club/oriel-college-bc/",
     "name": "Oriel College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=260"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=260",
+    "code": "ORO"
   },
   {
     "href": "https://www.britishrowing.org/club/orion-rc/",
     "name": "Orion RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=843"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=843",
+    "code": "ORI"
   },
   {
     "href": "https://www.britishrowing.org/club/orkney-sea-cadets/",
@@ -2497,57 +2895,68 @@
   {
     "href": "https://www.britishrowing.org/club/ortner-bc/",
     "name": "Ortner BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1091"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1091",
+    "code": "ORT"
   },
   {
     "href": "https://www.britishrowing.org/club/osler-house-bc/",
     "name": "Osler House BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=261"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=261",
+    "code": "OSG"
   },
   {
     "href": "https://www.britishrowing.org/club/oundelian-bc/",
     "name": "Oundelian BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1259"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1259",
+    "code": "OUD"
   },
   {
     "href": "https://www.britishrowing.org/club/oundle-school-bc/",
     "name": "Oundle School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=423"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=423",
+    "code": "OUN"
   },
   {
     "href": "https://www.britishrowing.org/club/oundle-town-rc/",
     "name": "Oundle Town RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=869"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=869",
+    "code": "OUT"
   },
   {
     "href": "https://www.britishrowing.org/club/oxford-academicals-rc/",
     "name": "Oxford Academicals RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=915"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=915",
+    "code": "OAC"
   },
   {
     "href": "https://www.britishrowing.org/club/oxford-brookes-university-bc/",
     "name": "Oxford Brookes University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=483"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=483",
+    "code": "OXB"
   },
   {
     "href": "https://www.britishrowing.org/club/oxford-university-bc/",
     "name": "Oxford University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=262"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=262",
+    "code": "OUB"
   },
   {
     "href": "https://www.britishrowing.org/club/oxford-university-lightweight-rowing-club/",
     "name": "Oxford University Lightweight Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=616"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=616",
+    "code": "OUL"
   },
   {
     "href": "https://www.britishrowing.org/club/oxford-university-lightweight-womens-rc/",
     "name": "Oxford University Lightweight Womens RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=739"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=739",
+    "code": "OLW"
   },
   {
     "href": "https://www.britishrowing.org/club/oxford-university-womens-bc/",
     "name": "Oxford University Women’s BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=775"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=775",
+    "code": "OUW"
   },
   {
     "href": "https://www.britishrowing.org/club/padstow-cpga/",
@@ -2560,17 +2969,20 @@
   {
     "href": "https://www.britishrowing.org/club/paignton-amateur-rowing-club/",
     "name": "Paignton Amateur Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=759"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=759",
+    "code": "PAI"
   },
   {
     "href": "https://www.britishrowing.org/club/pangbourne-college-bc/",
     "name": "Pangbourne College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=280"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=280",
+    "code": "PAN"
   },
   {
     "href": "https://www.britishrowing.org/club/pangbourne-nautics-bc/",
     "name": "Pangbourne Nautics BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=779"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=779",
+    "code": "NUT"
   },
   {
     "href": "https://www.britishrowing.org/club/par-bay-cpga/",
@@ -2579,38 +2991,46 @@
   {
     "href": "https://www.britishrowing.org/club/parrs-priory-rc/",
     "name": "Parr’s Priory RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=530"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=530",
+    "code": "PAR"
   },
   {
     "href": "https://www.britishrowing.org/club/pembroke-college-oxf-bc/",
     "name": "Pembroke College (Oxf) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=617"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=617",
+    "code": "PMB"
   },
   {
     "href": "https://www.britishrowing.org/club/pembroke-collegecambs-bc/",
     "name": "Pembroke College,Cambs BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=448"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=448",
+    "code": "PEM"
   },
   {
     "href": "https://www.britishrowing.org/club/pembrokeshire-yacht-club-wsra/",
-    "name": "Pembrokeshire Yacht Club (WSRA)"
+    "name": "Pembrokeshire Yacht Club (WSRA)",
+    "code": "PMY"
   },
   {
     "href": "https://www.britishrowing.org/club/penarth-rc/",
-    "name": "Penarth RC"
+    "name": "Penarth RC",
+    "code": "PEN"
   },
   {
     "href": "https://www.britishrowing.org/club/pendeen-cpga/",
-    "name": "Pendeen (CPGA)"
+    "name": "Pendeen (CPGA)",
+    "code": "PDN"
   },
   {
     "href": "https://www.britishrowing.org/club/pengwern-bc/",
     "name": "Pengwern BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=403"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=403",
+    "code": "PGN"
   },
   {
     "href": "https://www.britishrowing.org/club/pennine-rowing-club/",
-    "name": "Pennine Rowing Club"
+    "name": "Pennine Rowing Club",
+    "code": "PRC"
   },
   {
     "href": "https://www.britishrowing.org/club/penryn-cpga/",
@@ -2623,7 +3043,8 @@
   {
     "href": "https://www.britishrowing.org/club/peterborough-city-rc/",
     "name": "Peterborough City RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=424"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=424",
+    "code": "PET"
   },
   {
     "href": "https://www.britishrowing.org/club/peterborough-sea-cadets/",
@@ -2632,17 +3053,20 @@
   {
     "href": "https://www.britishrowing.org/club/peterhouse-bc/",
     "name": "Peterhouse BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=449"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=449",
+    "code": "PBC"
   },
   {
     "href": "https://www.britishrowing.org/club/phyllis-court-rc/",
     "name": "Phyllis Court RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=877"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=877",
+    "code": "PHY"
   },
   {
     "href": "https://www.britishrowing.org/club/plymouth-amateur-rowing-club/",
     "name": "Plymouth Amateur Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=577"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=577",
+    "code": "PLA"
   },
   {
     "href": "https://www.britishrowing.org/club/plymouth-rowing-forum/",
@@ -2651,7 +3075,8 @@
   {
     "href": "https://www.britishrowing.org/club/poole-arc/",
     "name": "Poole ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=273"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=273",
+    "code": "PLE"
   },
   {
     "href": "https://www.britishrowing.org/club/poole-cpga/",
@@ -2660,7 +3085,8 @@
   {
     "href": "https://www.britishrowing.org/club/poplar-blackwall-district-rc/",
     "name": "Poplar Blackwall & District RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=548"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=548",
+    "code": "PBD"
   },
   {
     "href": "https://www.britishrowing.org/club/port-isaac-cpga/",
@@ -2684,11 +3110,13 @@
   },
   {
     "href": "https://www.britishrowing.org/club/porthmadog-rc-wsra/",
-    "name": "Porthmadog RC (WSRA)"
+    "name": "Porthmadog RC (WSRA)",
+    "code": "PMG"
   },
   {
     "href": "https://www.britishrowing.org/club/portland-cpga/",
-    "name": "Portland (CPGA)"
+    "name": "Portland (CPGA)",
+    "code": "POR"
   },
   {
     "href": "https://www.britishrowing.org/club/portmadog-wsra/",
@@ -2709,12 +3137,14 @@
   {
     "href": "https://www.britishrowing.org/club/putney-high-school-rc/",
     "name": "Putney High School RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=701"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=701",
+    "code": "PHS"
   },
   {
     "href": "https://www.britishrowing.org/club/putney-town-rc/",
     "name": "Putney Town RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=636"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=636",
+    "code": "PTR"
   },
   {
     "href": "https://www.britishrowing.org/club/pwllheli-wsra/",
@@ -2722,65 +3152,78 @@
   },
   {
     "href": "https://www.britishrowing.org/club/queen-annes-boat-club/",
-    "name": "Queen Anne’s Boat Club"
+    "name": "Queen Anne’s Boat Club",
+    "code": "QAS"
   },
   {
     "href": "https://www.britishrowing.org/club/queen-elizabeth-high-school/",
     "name": "Queen Elizabeth High School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=206"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=206",
+    "code": "QEH"
   },
   {
     "href": "https://www.britishrowing.org/club/queen-mary-college-bc/",
     "name": "Queen Mary College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=700"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=700",
+    "code": "QMC"
   },
   {
     "href": "https://www.britishrowing.org/club/queens-college-oxford-bc/",
     "name": "Queen’s College (Oxford) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=263"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=263",
+    "code": "QCO"
   },
   {
     "href": "https://www.britishrowing.org/club/queens-gate-rowing-club/",
-    "name": "Queen’s Gate Rowing Club"
+    "name": "Queen’s Gate Rowing Club",
+    "code": "QGS"
   },
   {
     "href": "https://www.britishrowing.org/club/queens-park-high-school-bc/",
     "name": "Queens Park High School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=244"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=244",
+    "code": "QPH"
   },
   {
     "href": "https://www.britishrowing.org/club/queens-college-cambridge-bc/",
     "name": "Queens’ College (Cambridge) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=657"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=657",
+    "code": "QCC"
   },
   {
     "href": "https://www.britishrowing.org/club/quintin-bc/",
     "name": "Quintin BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=637"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=637",
+    "code": "QBC"
   },
   {
     "href": "https://www.britishrowing.org/club/r-m-a-sandhurst-bc/",
-    "name": "R M A Sandhurst BC"
+    "name": "R M A Sandhurst BC",
+    "code": "RMA"
   },
   {
     "href": "https://www.britishrowing.org/club/radley-college-bc/",
     "name": "Radley College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=484"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=484",
+    "code": "RAD"
   },
   {
     "href": "https://www.britishrowing.org/club/radley-mariners/",
     "name": "Radley Mariners",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=485"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=485",
+    "code": "RAM"
   },
   {
     "href": "https://www.britishrowing.org/club/radnor-house-school-rowing-club/",
     "name": "Radnor House School Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1852"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1852",
+    "code": "RDH"
   },
   {
     "href": "https://www.britishrowing.org/club/raf-rc/",
     "name": "RAF RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=607"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=607",
+    "code": "RAF"
   },
   {
     "href": "https://www.britishrowing.org/club/raleigh-cpga/",
@@ -2793,27 +3236,32 @@
   {
     "href": "https://www.britishrowing.org/club/ramsey-rc/",
     "name": "Ramsey RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=947"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=947",
+    "code": "RAR"
   },
   {
     "href": "https://www.britishrowing.org/club/reading-blue-coat-school-bc/",
     "name": "Reading Blue Coat School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=623"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=623",
+    "code": "RBL"
   },
   {
     "href": "https://www.britishrowing.org/club/reading-rowing-club/",
     "name": "Reading Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=624"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=624",
+    "code": "RDG"
   },
   {
     "href": "https://www.britishrowing.org/club/reading-school-bc/",
     "name": "Reading School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=265"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=265",
+    "code": "RDS"
   },
   {
     "href": "https://www.britishrowing.org/club/reading-university-bc/",
     "name": "Reading University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=282"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=282",
+    "code": "RDU"
   },
   {
     "href": "https://www.britishrowing.org/club/redditch-and-bromsgrove-sea-cadets/",
@@ -2822,7 +3270,8 @@
   {
     "href": "https://www.britishrowing.org/club/regents-park-college-bc/",
     "name": "Regents Park College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=909"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=909",
+    "code": "RPC"
   },
   {
     "href": "https://www.britishrowing.org/club/reigate-sea-cadets/",
@@ -2831,17 +3280,20 @@
   {
     "href": "https://www.britishrowing.org/club/rentacrew-rc/",
     "name": "Rentacrew RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=489"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=489",
+    "code": "REN"
   },
   {
     "href": "https://www.britishrowing.org/club/rex-bc/",
     "name": "Rex BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=236"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=236",
+    "code": "REX"
   },
   {
     "href": "https://www.britishrowing.org/club/richmond-bridge-boat-club/",
     "name": "Richmond Bridge Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2111"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2111",
+    "code": "RBR"
   },
   {
     "href": "https://www.britishrowing.org/club/rickmansworth-and-watford-sea-cadets/",
@@ -2854,7 +3306,8 @@
   {
     "href": "https://www.britishrowing.org/club/river-teign-rowing-club-teign-scullers/",
     "name": "River Teign Rowing Club (Teign Scullers)",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=987"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=987",
+    "code": "TGN"
   },
   {
     "href": "https://www.britishrowing.org/club/rm-tamar-cpga/",
@@ -2863,12 +3316,14 @@
   {
     "href": "https://www.britishrowing.org/club/rob-roy-bc/",
     "name": "Rob Roy BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=613"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=613",
+    "code": "ROB"
   },
   {
     "href": "https://www.britishrowing.org/club/robinson-college-bc/",
     "name": "Robinson College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=450"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=450",
+    "code": "ROC"
   },
   {
     "href": "https://www.britishrowing.org/club/rock-cpga/",
@@ -2877,7 +3332,8 @@
   {
     "href": "https://www.britishrowing.org/club/roehampton-university-rowing-club/",
     "name": "Roehampton University Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=793"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=793",
+    "code": "ROE"
   },
   {
     "href": "https://www.britishrowing.org/club/romsey-sea-cadets/",
@@ -2894,7 +3350,8 @@
   {
     "href": "https://www.britishrowing.org/club/ross-rowing-club/",
     "name": "Ross Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=404"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=404",
+    "code": "ROS"
   },
   {
     "href": "https://www.britishrowing.org/club/rotherham-sea-cadets/",
@@ -2902,22 +3359,26 @@
   },
   {
     "href": "https://www.britishrowing.org/club/row-caldecotte/",
-    "name": "Row Caldecotte"
+    "name": "Row Caldecotte",
+    "code": "CAL"
   },
   {
     "href": "https://www.britishrowing.org/club/row2recovery-rowing-club/",
     "name": "Row2Recovery Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2107"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2107",
+    "code": "RTR"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-agricultural-university-bc/",
     "name": "Royal Agricultural University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=568"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=568",
+    "code": "RAC"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-chester-rc/",
     "name": "Royal Chester RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=237"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=237",
+    "code": "RCH"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-docks-sea-cadets/",
@@ -2926,37 +3387,44 @@
   {
     "href": "https://www.britishrowing.org/club/royal-free-univ-college-medical-school-bc/",
     "name": "Royal Free & Univ College Medical School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=517"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=517",
+    "code": "RUM"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-grammar-school-high-wycombe-bc/",
     "name": "Royal Grammar School High Wycombe BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=490"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=490",
+    "code": "HWG"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-grammar-school-worcester-bc/",
     "name": "Royal Grammar School Worcester  BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=606"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=606",
+    "code": "WRG"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-holloway-bc/",
     "name": "Royal Holloway BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=518"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=518",
+    "code": "RHO"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-navy-royal-marines-ara/",
     "name": "Royal Navy & Royal Marines Ara",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=638"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=638",
+    "code": "RNY"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-shrewsbury-school-bc/",
     "name": "Royal Shrewsbury School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=405"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=405",
+    "code": "SHR"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-veterinary-college-boat-club/",
     "name": "Royal Veterinary College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=696"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=696",
+    "code": "RVC"
   },
   {
     "href": "https://www.britishrowing.org/club/royal-victoria-dock-sea-cadets/",
@@ -2964,7 +3432,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/royal-welsh-yacht-club-caernarfon-wsra/",
-    "name": "Royal Welsh Yacht Club, Caernarfon (WSRA)"
+    "name": "Royal Welsh Yacht Club, Caernarfon (WSRA)",
+    "code": "RYW"
   },
   {
     "href": "https://www.britishrowing.org/club/rugby-sea-cadet-unit/",
@@ -2973,27 +3442,32 @@
   {
     "href": "https://www.britishrowing.org/club/runcorn-rc/",
     "name": "Runcorn RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=238"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=238",
+    "code": "RUN"
   },
   {
     "href": "https://www.britishrowing.org/club/ryde-rc/",
     "name": "Ryde RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=645"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=645",
+    "code": "RYD"
   },
   {
     "href": "https://www.britishrowing.org/club/ryde-school-boat-club/",
     "name": "Ryde School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2224"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2224",
+    "code": "RYS"
   },
   {
     "href": "https://www.britishrowing.org/club/sabrina-rc/",
     "name": "Sabrina Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=406"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=406",
+    "code": "SAB"
   },
   {
     "href": "https://www.britishrowing.org/club/sacred-heart-high-school-rowing-club/",
     "name": "Sacred Heart High School Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2266"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2266",
+    "code": "SAH"
   },
   {
     "href": "https://www.britishrowing.org/club/salcombe-cpga/",
@@ -3002,7 +3476,8 @@
   {
     "href": "https://www.britishrowing.org/club/salford-university-bc/",
     "name": "Salford University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=590"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=590",
+    "code": "SFU"
   },
   {
     "href": "https://www.britishrowing.org/club/salisbury-sea-cadets/",
@@ -3011,7 +3486,8 @@
   {
     "href": "https://www.britishrowing.org/club/scarborough-arc/",
     "name": "Scarborough ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=584"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=584",
+    "code": "SCA"
   },
   {
     "href": "https://www.britishrowing.org/club/scarborough-sea-cadets/",
@@ -3040,16 +3516,19 @@
   {
     "href": "https://www.britishrowing.org/club/selwyn-college-bc/",
     "name": "Selwyn College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=451"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=451",
+    "code": "SEL"
   },
   {
     "href": "https://www.britishrowing.org/club/serpentine-rowing-association/",
-    "name": "Serpentine Rowing Association"
+    "name": "Serpentine Rowing Association",
+    "code": "SRA"
   },
   {
     "href": "https://www.britishrowing.org/club/severn-river-rowing-association/",
     "name": "Severn River Rowing Association",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=335"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=335",
+    "code": "SEV"
   },
   {
     "href": "https://www.britishrowing.org/club/shadwell-basin/",
@@ -3058,22 +3537,26 @@
   {
     "href": "https://www.britishrowing.org/club/shanklin-sandown-rc/",
     "name": "Shanklin Sandown RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=560"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=560",
+    "code": "SHS"
   },
   {
     "href": "https://www.britishrowing.org/club/sheffield-city-rc/",
     "name": "Sheffield City RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=582"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=582",
+    "code": "CSH"
   },
   {
     "href": "https://www.britishrowing.org/club/sheffield-hallam-university-rc/",
     "name": "Sheffield Hallam University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=585"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=585",
+    "code": "SHH"
   },
   {
     "href": "https://www.britishrowing.org/club/sheffield-university-rc/",
     "name": "Sheffield University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=225"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=225",
+    "code": "SHU"
   },
   {
     "href": "https://www.britishrowing.org/club/sheppey-sea-cadets/",
@@ -3082,12 +3565,14 @@
   {
     "href": "https://www.britishrowing.org/club/shiplake-college-bc/",
     "name": "Shiplake College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=491"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=491",
+    "code": "SHP"
   },
   {
     "href": "https://www.britishrowing.org/club/shiplake-vikings-rc/",
     "name": "Shiplake Vikings RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=682"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=682",
+    "code": "SHV"
   },
   {
     "href": "https://www.britishrowing.org/club/shirley-district-sea-cadets/",
@@ -3096,16 +3581,19 @@
   {
     "href": "https://www.britishrowing.org/club/shoreham-rc/",
     "name": "Shoreham RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=554"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=554",
+    "code": "SHO"
   },
   {
     "href": "https://www.britishrowing.org/club/shrewsbury-high-school-bc/",
     "name": "Shrewsbury High School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=407"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=407",
+    "code": "SYH"
   },
   {
     "href": "https://www.britishrowing.org/club/shropshire-adventure-wsra/",
-    "name": "Shropshire Adventure (WSRA)"
+    "name": "Shropshire Adventure (WSRA)",
+    "code": "SPA"
   },
   {
     "href": "https://www.britishrowing.org/club/sidmouth-cpga/",
@@ -3114,30 +3602,36 @@
   {
     "href": "https://www.britishrowing.org/club/sidney-sussex-college-bc/",
     "name": "Sidney Sussex College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=358"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=358",
+    "code": "SID"
   },
   {
     "href": "https://www.britishrowing.org/club/sir-john-deanes-college-bc/",
     "name": "Sir John Deane’s College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=245"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=245",
+    "code": "SJD"
   },
   {
     "href": "https://www.britishrowing.org/club/sir-william-borlases-grammar-school-bc/",
     "name": "Sir William Borlase’s Grammar School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=492"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=492",
+    "code": "SWB"
   },
   {
     "href": "https://www.britishrowing.org/club/sir-william-perkinss-school-rc/",
     "name": "Sir William Perkins’s School RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=828"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=828",
+    "code": "SWP"
   },
   {
     "href": "https://www.britishrowing.org/club/skerries-for-schools-s4s/",
-    "name": "Skerries for Schools (S4S)"
+    "name": "Skerries for Schools (S4S)",
+    "code": "SFS"
   },
   {
     "href": "https://www.britishrowing.org/club/skiff-racing-association/",
-    "name": "Skiff Racing Association"
+    "name": "Skiff Racing Association",
+    "code": "SRA"
   },
   {
     "href": "https://www.britishrowing.org/club/slough-sea-cadets/",
@@ -3150,12 +3644,14 @@
   {
     "href": "https://www.britishrowing.org/club/somerville-college-boat-club/",
     "name": "Somerville College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=363"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=363",
+    "code": "SOM"
   },
   {
     "href": "https://www.britishrowing.org/club/sons-of-the-thames-rc/",
     "name": "Sons of the Thames RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=354"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=354",
+    "code": "SON"
   },
   {
     "href": "https://www.britishrowing.org/club/south-west-area-sea-cadets/",
@@ -3164,17 +3660,20 @@
   {
     "href": "https://www.britishrowing.org/club/south-woodham-ferrers-yacht-club/",
     "name": "South Woodham Ferrers Yacht Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2158"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2158",
+    "code": "SWF"
   },
   {
     "href": "https://www.britishrowing.org/club/southampton-arc/",
     "name": "Southampton ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=328"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=328",
+    "code": "SOA"
   },
   {
     "href": "https://www.britishrowing.org/club/southampton-coalporters-arc/",
     "name": "Southampton Coalporters ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=661"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=661",
+    "code": "SOC"
   },
   {
     "href": "https://www.britishrowing.org/club/southampton-sea-cadets/",
@@ -3183,12 +3682,14 @@
   {
     "href": "https://www.britishrowing.org/club/southampton-univ-medical-school-bc/",
     "name": "Southampton Univ. Medical School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2198"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2198",
+    "code": "SUM"
   },
   {
     "href": "https://www.britishrowing.org/club/southampton-university-bc/",
     "name": "Southampton University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=329"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=329",
+    "code": "SOU"
   },
   {
     "href": "https://www.britishrowing.org/club/southampton-water-activity-centre/",
@@ -3201,7 +3702,8 @@
   {
     "href": "https://www.britishrowing.org/club/merchants-98-bc/",
     "name": "Southport Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=827"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=827",
+    "code": "SBC"
   },
   {
     "href": "https://www.britishrowing.org/club/southport-sea-cadets/",
@@ -3210,7 +3712,8 @@
   {
     "href": "https://www.britishrowing.org/club/southsea-rowing-club/",
     "name": "Southsea Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=561"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=561",
+    "code": "STH"
   },
   {
     "href": "https://www.britishrowing.org/club/southwark-sea-cadets/",
@@ -3218,17 +3721,20 @@
   },
   {
     "href": "https://www.britishrowing.org/club/sphinx-bc/",
-    "name": "Sphinx BC"
+    "name": "Sphinx BC",
+    "code": "SPX"
   },
   {
     "href": "https://www.britishrowing.org/club/spitfire-bc/",
     "name": "Spitfire BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=871"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=871",
+    "code": "SPF"
   },
   {
     "href": "https://www.britishrowing.org/club/sport-imperial-bc/",
     "name": "Sport Imperial BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1313"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1313",
+    "code": "SIP"
   },
   {
     "href": "https://www.britishrowing.org/club/st-agnes-cpga/",
@@ -3237,81 +3743,97 @@
   {
     "href": "https://www.britishrowing.org/club/st-aidans-college-bc/",
     "name": "St Aidan’s College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=208"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=208",
+    "code": "AID"
   },
   {
     "href": "https://www.britishrowing.org/club/st-annes-college-bc/",
     "name": "St Annes College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=264"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=264",
+    "code": "SAC"
   },
   {
     "href": "https://www.britishrowing.org/club/st-antonys-college-bc/",
     "name": "St Antonys College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=962"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=962",
+    "code": "SAY"
   },
   {
     "href": "https://www.britishrowing.org/club/st-bartholomews-the-royal-london-hospitals-bc/",
     "name": "St Bartholomew’s & The Royal London Hospital’s BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=304"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=304",
+    "code": "SBA"
   },
   {
     "href": "https://www.britishrowing.org/club/st-benets-hall-boat-club/",
     "name": "St Benet’s Hall Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1376"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1376",
+    "code": "SBH"
   },
   {
     "href": "https://www.britishrowing.org/club/st-catharines-college-bc/",
     "name": "St Catharine’s College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=452"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=452",
+    "code": "SCC"
   },
   {
     "href": "https://www.britishrowing.org/club/st-catherines-college-oxford-bc/",
     "name": "St Catherines College Oxford BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=471"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=471",
+    "code": "SCO"
   },
   {
     "href": "https://www.britishrowing.org/club/st-cuthberts-society-bc/",
     "name": "St Cuthberts Society BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=210"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=210",
+    "code": "SCB"
   },
   {
     "href": "https://www.britishrowing.org/club/st-edmund-hall-bc/",
     "name": "St Edmund Hall BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=472"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=472",
+    "code": "SEH"
   },
   {
     "href": "https://www.britishrowing.org/club/st-edmunds-college-bc/",
     "name": "St Edmund’s College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1550"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1550",
+    "code": "SEC"
   },
   {
     "href": "https://www.britishrowing.org/club/st-edwards-martyrs-bc/",
     "name": "St Edward’s Martyrs BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=695"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=695",
+    "code": "MRT"
   },
   {
     "href": "https://www.britishrowing.org/club/st-edwards-school-bc/",
     "name": "St Edwards School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=276"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=276",
+    "code": "SES"
   },
   {
     "href": "https://www.britishrowing.org/club/st-georges-college-bc/",
     "name": "St Georges College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=504"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=504",
+    "code": "SGC"
   },
   {
     "href": "https://www.britishrowing.org/club/st-georges-ladies-rc/",
     "name": "St Georges Ladies RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=254"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=254",
+    "code": "SGL"
   },
   {
     "href": "https://www.britishrowing.org/club/st-georges-medical-school-bc/",
     "name": "St Georges Medical School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=520"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=520",
+    "code": "SGH"
   },
   {
     "href": "https://www.britishrowing.org/club/st-helen-and-st-katharine-sch/",
-    "name": "St Helen and St Katharine Sch"
+    "name": "St Helen and St Katharine Sch",
+    "code": "SHK"
   },
   {
     "href": "https://www.britishrowing.org/club/st-helens-sea-cadets/",
@@ -3320,17 +3842,20 @@
   {
     "href": "https://www.britishrowing.org/club/st-hild-st-bede-college-bc/",
     "name": "St Hild & St Bede College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=211"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=211",
+    "code": "SHB"
   },
   {
     "href": "https://www.britishrowing.org/club/st-hildas-college-bc/",
     "name": "St Hildas College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=719"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=719",
+    "code": "SHI"
   },
   {
     "href": "https://www.britishrowing.org/club/st-hughs-bc/",
     "name": "St Hughs BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=785"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=785",
+    "code": "SHG"
   },
   {
     "href": "https://www.britishrowing.org/club/st-ives-cpga/",
@@ -3339,37 +3864,44 @@
   {
     "href": "https://www.britishrowing.org/club/st-ives-rc/",
     "name": "St Ives RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=425"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=425",
+    "code": "SIV"
   },
   {
     "href": "https://www.britishrowing.org/club/st-james-sch-bc/",
     "name": "St James Sch BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=821"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=821",
+    "code": "SJA"
   },
   {
     "href": "https://www.britishrowing.org/club/st-johns-college-durham-bc/",
     "name": "St John’s College (Durham) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=212"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=212",
+    "code": "SJC"
   },
   {
     "href": "https://www.britishrowing.org/club/st-johns-college-school-bc/",
     "name": "St John’s College School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=920"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=920",
+    "code": "SJS"
   },
   {
     "href": "https://www.britishrowing.org/club/st-johns-college-oxford-bc/",
     "name": "St Johns College (Oxford) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=473"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=473",
+    "code": "SJO"
   },
   {
     "href": "https://www.britishrowing.org/club/st-leonards-school-bc/",
     "name": "St Leonards School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=213"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=213",
+    "code": "SLS"
   },
   {
     "href": "https://www.britishrowing.org/club/st-marys-college-bc/",
     "name": "St Mary’s College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=214"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=214",
+    "code": "SMC"
   },
   {
     "href": "https://www.britishrowing.org/club/st-marys-ios-cpga/",
@@ -3378,67 +3910,80 @@
   {
     "href": "https://www.britishrowing.org/club/st-neots-rc/",
     "name": "St Neots RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=426"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=426",
+    "code": "SNE"
   },
   {
     "href": "https://www.britishrowing.org/club/st-pauls-girls-school-bc/",
     "name": "St Pauls Girls School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=255"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=255",
+    "code": "SPG"
   },
   {
     "href": "https://www.britishrowing.org/club/st-pauls-school-bc/",
     "name": "St Pauls School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=256"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=256",
+    "code": "SPS"
   },
   {
     "href": "https://www.britishrowing.org/club/st-peters-college-bc/",
     "name": "St Peters College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=474"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=474",
+    "code": "SPC"
   },
   {
     "href": "https://www.britishrowing.org/club/st-radegund-bc/",
     "name": "St Radegund BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1101"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1101",
+    "code": "SRG"
   },
   {
     "href": "https://www.britishrowing.org/club/st-richard-reynolds-school-rowing-club/",
     "name": "St Richard Reynolds School Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2227"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2227",
+    "code": "SRR"
   },
   {
     "href": "https://www.britishrowing.org/club/st-chads-college-boat-club/",
     "name": "St. Chad’s College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=209"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=209",
+    "code": "SCH"
   },
   {
     "href": "https://www.britishrowing.org/club/st-peters-school-bc/",
     "name": "St. Peter’s School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=226"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=226",
+    "code": "SPT"
   },
   {
     "href": "https://www.britishrowing.org/club/staines-bc/",
     "name": "Staines BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=320"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=320",
+    "code": "STN"
   },
   {
     "href": "https://www.britishrowing.org/club/star-arrow-club/",
     "name": "Star & Arrow Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=493"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=493",
+    "code": "SAA"
   },
   {
     "href": "https://www.britishrowing.org/club/star-club/",
     "name": "Star Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=427"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=427",
+    "code": "STA"
   },
   {
     "href": "https://www.britishrowing.org/club/stbc-club/",
     "name": "Stbc Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=944"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=944",
+    "code": "STB"
   },
   {
     "href": "https://www.britishrowing.org/club/stephenson-college-bc/",
     "name": "Stephenson College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=972"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=972",
+    "code": "GSC"
   },
   {
     "href": "https://www.britishrowing.org/club/stonehaven-and-district-sea-cadets/",
@@ -3447,21 +3992,25 @@
   {
     "href": "https://www.britishrowing.org/club/stourport-bc/",
     "name": "Stourport BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=408"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=408",
+    "code": "STP"
   },
   {
     "href": "https://www.britishrowing.org/club/stowe-sculling-club/",
     "name": "Stowe Sculling Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=428"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=428",
+    "code": "STO"
   },
   {
     "href": "https://www.britishrowing.org/club/stratford-upon-avon-bc/",
     "name": "Stratford-upon-Avon BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=409"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=409",
+    "code": "SUA"
   },
   {
     "href": "https://www.britishrowing.org/club/streatham-and-clapham-high-school-boat-club/",
-    "name": "Streatham and Clapham High School Boat Club"
+    "name": "Streatham and Clapham High School Boat Club",
+    "code": "STC"
   },
   {
     "href": "https://www.britishrowing.org/club/stretford-and-urmston-sea-cadets/",
@@ -3470,16 +4019,19 @@
   {
     "href": "https://www.britishrowing.org/club/sub-rosa-boat-club/",
     "name": "Sub Rosa Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2334"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2334",
+    "code": "SUB"
   },
   {
     "href": "https://www.britishrowing.org/club/sudbury-rc/",
     "name": "Sudbury RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=465"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=465",
+    "code": "SRC"
   },
   {
     "href": "https://www.britishrowing.org/club/summer-sculling-club/",
-    "name": "Summer Sculling Club"
+    "name": "Summer Sculling Club",
+    "code": "SSC"
   },
   {
     "href": "https://www.britishrowing.org/club/sunbury-skiff-punting-club/",
@@ -3488,17 +4040,20 @@
   {
     "href": "https://www.britishrowing.org/club/sunderland-city-rc/",
     "name": "Sunderland City RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=580"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=580",
+    "code": "CSN"
   },
   {
     "href": "https://www.britishrowing.org/club/sunderland-university-rc/",
     "name": "Sunderland University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=306"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=306",
+    "code": "USN"
   },
   {
     "href": "https://www.britishrowing.org/club/surbiton-high-school-bc/",
     "name": "Surbiton High School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=734"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=734",
+    "code": "SBT"
   },
   {
     "href": "https://www.britishrowing.org/club/surrey-docks-watersports-centre/",
@@ -3507,7 +4062,8 @@
   {
     "href": "https://www.britishrowing.org/club/surrey-university-bc/",
     "name": "Surrey University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=322"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=322",
+    "code": "USU"
   },
   {
     "href": "https://www.britishrowing.org/club/sutton-coldfield-sea-cadets/",
@@ -3519,7 +4075,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/swansea-city-rc/",
-    "name": "Swansea City RC"
+    "name": "Swansea City RC",
+    "code": "CSW"
   },
   {
     "href": "https://www.britishrowing.org/club/swansea-sea-cadets/",
@@ -3527,12 +4084,14 @@
   },
   {
     "href": "https://www.britishrowing.org/club/swansea-univ-wales/",
-    "name": "Swansea, Univ Wales"
+    "name": "Swansea, Univ Wales",
+    "code": "UWS"
   },
   {
     "href": "https://www.britishrowing.org/club/swindon-rc/",
     "name": "Swindon RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=810"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=810",
+    "code": "SWI"
   },
   {
     "href": "https://www.britishrowing.org/club/swindon-sea-cadets/",
@@ -3541,7 +4100,8 @@
   {
     "href": "https://www.britishrowing.org/club/sydenham-high-school/",
     "name": "Sydenham High School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2261"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2261",
+    "code": "SYD"
   },
   {
     "href": "https://www.britishrowing.org/club/t-s-norfolk-sea-cadets/",
@@ -3550,7 +4110,8 @@
   {
     "href": "https://www.britishrowing.org/club/talkin-tarn-arc/",
     "name": "Talkin Tarn ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=215"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=215",
+    "code": "TTA"
   },
   {
     "href": "https://www.britishrowing.org/club/tamartavy/",
@@ -3563,27 +4124,32 @@
   {
     "href": "https://www.britishrowing.org/club/taunton-rc/",
     "name": "Taunton RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1827"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1827",
+    "code": "TUN"
   },
   {
     "href": "https://www.britishrowing.org/club/taurus-bc/",
     "name": "Taurus BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=711"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=711",
+    "code": "TAU"
   },
   {
     "href": "https://www.britishrowing.org/club/team-keane-sculling-school/",
     "name": "Team Keane Sculling School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1953"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1953",
+    "code": "TKC"
   },
   {
     "href": "https://www.britishrowing.org/club/tees-rowing-club/",
     "name": "Tees Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=581"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=581",
+    "code": "TEE"
   },
   {
     "href": "https://www.britishrowing.org/club/teesside-university-bc/",
     "name": "Teesside University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=733"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=733",
+    "code": "UTS"
   },
   {
     "href": "https://www.britishrowing.org/club/teignmouth-cpga/",
@@ -3591,17 +4157,20 @@
   },
   {
     "href": "https://www.britishrowing.org/club/tenby-wsra/",
-    "name": "Tenby (WSRA)"
+    "name": "Tenby (WSRA)",
+    "code": "TBY"
   },
   {
     "href": "https://www.britishrowing.org/club/tethys-bc/",
     "name": "Tethys BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1261"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1261",
+    "code": "TYS"
   },
   {
     "href": "https://www.britishrowing.org/club/tewkesbury-school-bc/",
     "name": "Tewkesbury School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1708"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1708",
+    "code": "TWB"
   },
   {
     "href": "https://www.britishrowing.org/club/tewkesbury-sea-cadets/",
@@ -3610,29 +4179,35 @@
   {
     "href": "https://www.britishrowing.org/club/thames-rowing-club/",
     "name": "Thames Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=531"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=531",
+    "code": "TRC"
   },
   {
     "href": "https://www.britishrowing.org/club/thames-scullers/",
-    "name": "Thames Scullers"
+    "name": "Thames Scullers",
+    "code": "THS"
   },
   {
     "href": "https://www.britishrowing.org/club/thames-tradesmens-rc/",
     "name": "Thames Tradesmen’s RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=257"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=257",
+    "code": "TTR"
   },
   {
     "href": "https://www.britishrowing.org/club/thames-traditional-boat-society/",
-    "name": "Thames Traditional Boat Society"
+    "name": "Thames Traditional Boat Society",
+    "code": "TTB"
   },
   {
     "href": "https://www.britishrowing.org/club/thames-traditional-rowing-association/",
-    "name": "Thames Traditional Rowing Association"
+    "name": "Thames Traditional Rowing Association",
+    "code": "TTD"
   },
   {
     "href": "https://www.britishrowing.org/club/thames-valley-park-rc/",
     "name": "Thames Valley Park RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1441"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1441",
+    "code": "TVP"
   },
   {
     "href": "https://www.britishrowing.org/club/thames-valley-skiff-club/",
@@ -3645,37 +4220,44 @@
   {
     "href": "https://www.britishrowing.org/club/the-1829-boat-club/",
     "name": "The 1829 Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=862"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=862",
+    "code": "TTN"
   },
   {
     "href": "https://www.britishrowing.org/club/the-1927-boat-club/",
     "name": "The 1927 Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1295"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1295",
+    "code": "TNT"
   },
   {
     "href": "https://www.britishrowing.org/club/the-chorister-school-boat-club/",
     "name": "The Chorister School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2063"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2063",
+    "code": "TCS"
   },
   {
     "href": "https://www.britishrowing.org/club/the-griffen-bc/",
     "name": "The Griffen BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=710"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=710",
+    "code": "GRI"
   },
   {
     "href": "https://www.britishrowing.org/club/the-langley-academy/",
     "name": "The Langley Academy",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1617"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1617",
+    "code": "TLA"
   },
   {
     "href": "https://www.britishrowing.org/club/the-skiff-club/",
     "name": "The Skiff Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=508"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=508",
+    "code": "SKI"
   },
   {
     "href": "https://www.britishrowing.org/club/the-windsorian-rc/",
     "name": "The Windsorian RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=494"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=494",
+    "code": "WNC"
   },
   {
     "href": "https://www.britishrowing.org/club/thurrock-sea-cadets/",
@@ -3684,25 +4266,30 @@
   {
     "href": "https://www.britishrowing.org/club/tideway-scullers-school/",
     "name": "Tideway Scullers School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=258"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=258",
+    "code": "TSS"
   },
   {
     "href": "https://www.britishrowing.org/club/tiffin-associates-rc/",
-    "name": "Tiffin Associates RC"
+    "name": "Tiffin Associates RC",
+    "code": "TFP"
   },
   {
     "href": "https://www.britishrowing.org/club/tiffin-school-boat-club/",
     "name": "Tiffin School Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=510"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=510",
+    "code": "TFN"
   },
   {
     "href": "https://www.britishrowing.org/club/toprow-london/",
-    "name": "TopRow London"
+    "name": "TopRow London",
+    "code": "TOP"
   },
   {
     "href": "https://www.britishrowing.org/club/torquay-rowing-club/",
     "name": "Torquay Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=655"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=655",
+    "code": "TOQ"
   },
   {
     "href": "https://www.britishrowing.org/club/torridge-cpga/",
@@ -3711,20 +4298,24 @@
   {
     "href": "https://www.britishrowing.org/club/tortoise-club/",
     "name": "Tortoise Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=761"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=761",
+    "code": "TOR"
   },
   {
     "href": "https://www.britishrowing.org/club/towy-bc-wsra/",
-    "name": "Towy BC (WSRA)"
+    "name": "Towy BC (WSRA)",
+    "code": "TWY"
   },
   {
     "href": "https://www.britishrowing.org/club/trafalgar-2001-trust/",
-    "name": "Trafalgar 2001 Trust"
+    "name": "Trafalgar 2001 Trust",
+    "code": "TTT"
   },
   {
     "href": "https://www.britishrowing.org/club/trafford-rc/",
     "name": "Trafford RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=240"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=240",
+    "code": "TRF"
   },
   {
     "href": "https://www.britishrowing.org/club/trafford-water-sports-centre/",
@@ -3733,31 +4324,37 @@
   {
     "href": "https://www.britishrowing.org/club/trent-rc/",
     "name": "Trent RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=604"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=604",
+    "code": "TRT"
   },
   {
     "href": "https://www.britishrowing.org/club/trentham-bc/",
     "name": "Trentham BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=883"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=883",
+    "code": "STK"
   },
   {
     "href": "https://www.britishrowing.org/club/trevelyan-college-bc/",
     "name": "Trevelyan College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=216"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=216",
+    "code": "TRV"
   },
   {
     "href": "https://www.britishrowing.org/club/trinity-college-bc/",
     "name": "Trinity College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=475"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=475",
+    "code": "TRO"
   },
   {
     "href": "https://www.britishrowing.org/club/trinity-hall-bc/",
     "name": "Trinity Hall BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=453"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=453",
+    "code": "TRH"
   },
   {
     "href": "https://www.britishrowing.org/club/trireme-ynys-mon-rc-wsra/",
-    "name": "Trireme Ynys Mon RC (WSRA)"
+    "name": "Trireme Ynys Mon RC (WSRA)",
+    "code": "TRY"
   },
   {
     "href": "https://www.britishrowing.org/club/truro-cpga/",
@@ -3766,130 +4363,156 @@
   {
     "href": "https://www.britishrowing.org/club/twickenham-rc/",
     "name": "Twickenham RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=511"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=511",
+    "code": "TWK"
   },
   {
     "href": "https://www.britishrowing.org/club/two-lions-bc/",
     "name": "Two Lions BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1442"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1442",
+    "code": "TWL"
   },
   {
     "href": "https://www.britishrowing.org/club/tyne-rc/",
     "name": "Tyne Amateur RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=217"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=217",
+    "code": "TYN"
   },
   {
     "href": "https://www.britishrowing.org/club/tyne-united-rc/",
     "name": "Tyne United RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1172"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1172",
+    "code": "TYU"
   },
   {
     "href": "https://www.britishrowing.org/club/tynemouth-rc/",
     "name": "Tynemouth RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=218"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=218",
+    "code": "TYM"
   },
   {
     "href": "https://www.britishrowing.org/club/uk-armed-forces-rc/",
     "name": "UK Armed Forces RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=279"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=279",
+    "code": "UKA"
   },
   {
     "href": "https://www.britishrowing.org/club/uk-surf-rowers-league/",
-    "name": "UK Surf Rowers League"
+    "name": "UK Surf Rowers League",
+    "code": "UKS"
   },
   {
     "href": "https://www.britishrowing.org/club/univ-of-london-tyrian-club/",
     "name": "UL Tyrian Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=287"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=287",
+    "code": "TYR"
   },
   {
     "href": "https://www.britishrowing.org/club/united-hospitals-bc/",
     "name": "United Hospitals BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=347"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=347",
+    "code": "UNH"
   },
   {
     "href": "https://www.britishrowing.org/club/univ-portsmouth/",
     "name": "Univ Portsmouth",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=764"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=764",
+    "code": "POR"
   },
   {
     "href": "https://www.britishrowing.org/club/university-college-durham-bc/",
     "name": "University College (Durham) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=219"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=219",
+    "code": "UCD"
   },
   {
     "href": "https://www.britishrowing.org/club/university-college-london-bc/",
     "name": "University College London BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=348"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=348",
+    "code": "UCL"
   },
   {
     "href": "https://www.britishrowing.org/club/university-college-oxford-bc/",
     "name": "University College Oxford BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=476"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=476",
+    "code": "UCO"
   },
   {
     "href": "https://www.britishrowing.org/club/chester-university-rc/",
     "name": "University of Chester RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=838"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=838",
+    "code": "UOC"
   },
   {
     "href": "https://www.britishrowing.org/club/university-of-east-london-bc/",
     "name": "University of East London BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1891"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1891",
+    "code": "UEL"
   },
   {
     "href": "https://www.britishrowing.org/club/university-of-hertfordshire-rc/",
     "name": "University Of Hertfordshire RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=660"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=660",
+    "code": "UHE"
   },
   {
     "href": "https://www.britishrowing.org/club/university-of-london-bc/",
     "name": "University Of London BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=349"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=349",
+    "code": "ULO"
   },
   {
     "href": "https://www.britishrowing.org/club/university-of-northampton-rc/",
     "name": "University of Northampton RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1753"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1753",
+    "code": "NHU"
   },
   {
     "href": "https://www.britishrowing.org/club/plymouth-university-bc/",
     "name": "University of Plymouth BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1064"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1064",
+    "code": "PLU"
   },
   {
     "href": "https://www.britishrowing.org/club/university-of-south-wales/",
-    "name": "University of South Wales"
+    "name": "University of South Wales",
+    "code": "USW"
   },
   {
     "href": "https://www.britishrowing.org/club/upper-thames-rowing-club/",
     "name": "Upper Thames Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=495"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=495",
+    "code": "UTC"
   },
   {
     "href": "https://www.britishrowing.org/club/upton-rowing-club/",
     "name": "Upton Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=788"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=788",
+    "code": "UPT"
   },
   {
     "href": "https://www.britishrowing.org/club/ursus-bc/",
     "name": "Ursus BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=910"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=910",
+    "code": "WGA"
   },
   {
     "href": "https://www.britishrowing.org/club/van-mildert-bc/",
     "name": "Van Mildert BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=220"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=220",
+    "code": "VAN"
   },
   {
     "href": "https://www.britishrowing.org/club/vesta-rc/",
     "name": "Vesta RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=533"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=533",
+    "code": "VRC"
   },
   {
     "href": "https://www.britishrowing.org/club/wadham-college-bc/",
     "name": "Wadham College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=477"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=477",
+    "code": "WAD"
   },
   {
     "href": "https://www.britishrowing.org/club/wakefield-sea-cadets/",
@@ -3898,17 +4521,20 @@
   {
     "href": "https://www.britishrowing.org/club/walbrook-rowing-club/",
     "name": "Walbrook Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=632"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=632",
+    "code": "WBK"
   },
   {
     "href": "https://www.britishrowing.org/club/wallingford-rc/",
     "name": "Wallingford RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=487"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=487",
+    "code": "WRC"
   },
   {
     "href": "https://www.britishrowing.org/club/walton-rowing-club/",
     "name": "Walton Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=323"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=323",
+    "code": "WLT"
   },
   {
     "href": "https://www.britishrowing.org/club/wargrave-bc/",
@@ -3917,7 +4543,8 @@
   {
     "href": "https://www.britishrowing.org/club/warrington-rc/",
     "name": "Warrington RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=598"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=598",
+    "code": "WTN"
   },
   {
     "href": "https://www.britishrowing.org/club/warsash-sea-cadet-unit/",
@@ -3930,12 +4557,14 @@
   {
     "href": "https://www.britishrowing.org/club/warwick-boat-club/",
     "name": "Warwick Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=411"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=411",
+    "code": "WAR"
   },
   {
     "href": "https://www.britishrowing.org/club/warwick-university-bc/",
     "name": "Warwick University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=410"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=410",
+    "code": "UWK"
   },
   {
     "href": "https://www.britishrowing.org/club/waterland/",
@@ -3943,17 +4572,20 @@
   },
   {
     "href": "https://www.britishrowing.org/club/watermen-the-company-of/",
-    "name": "Watermen, The Company Of"
+    "name": "Watermen, The Company Of",
+    "code": "WAT"
   },
   {
     "href": "https://www.britishrowing.org/club/welbeck-college-bc/",
     "name": "Welbeck College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=773"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=773",
+    "code": "WEC"
   },
   {
     "href": "https://www.britishrowing.org/club/wellington-college-boat-club/",
     "name": "Wellington College Boat Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2042"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2042",
+    "code": "WTG"
   },
   {
     "href": "https://www.britishrowing.org/club/welsh-harp-boat-station/",
@@ -3961,7 +4593,8 @@
   },
   {
     "href": "https://www.britishrowing.org/club/welsh-sea-rowing-assoc/",
-    "name": "Welsh Sea Rowing Assoc"
+    "name": "Welsh Sea Rowing Assoc",
+    "code": "WSR"
   },
   {
     "href": "https://www.britishrowing.org/club/welton-waters-adventure-centre/",
@@ -3974,12 +4607,14 @@
   {
     "href": "https://www.britishrowing.org/club/west-norfolk-rowing-club/",
     "name": "West Norfolk Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2012"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2012",
+    "code": "WNO"
   },
   {
     "href": "https://www.britishrowing.org/club/west-of-england-university-rc/",
     "name": "West of England University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=563"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=563",
+    "code": "UWE"
   },
   {
     "href": "https://www.britishrowing.org/club/westerham-sea-cadets/",
@@ -3988,12 +4623,14 @@
   {
     "href": "https://www.britishrowing.org/club/westminster-school-bc/",
     "name": "Westminster School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=534"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=534",
+    "code": "WES"
   },
   {
     "href": "https://www.britishrowing.org/club/westminster-univ-bc/",
     "name": "Westminster Univ BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=639"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=639",
+    "code": "WMN"
   },
   {
     "href": "https://www.britishrowing.org/club/weston-super-mare-sea-cadets/",
@@ -4001,22 +4638,26 @@
   },
   {
     "href": "https://www.britishrowing.org/club/wetherby-preparatory-school-rowing-club/",
-    "name": "Wetherby Preparatory School Rowing Club"
+    "name": "Wetherby Preparatory School Rowing Club",
+    "code": "WPS"
   },
   {
     "href": "https://www.britishrowing.org/club/weybridge-ladies-arc/",
     "name": "Weybridge Ladies ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=324"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=324",
+    "code": "WEL"
   },
   {
     "href": "https://www.britishrowing.org/club/weybridge-rowing-club/",
     "name": "Weybridge Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=325"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=325",
+    "code": "WEY"
   },
   {
     "href": "https://www.britishrowing.org/club/weyfarers-rowing-club/",
     "name": "Weyfarers Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=371"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=371",
+    "code": "WEF"
   },
   {
     "href": "https://www.britishrowing.org/club/weymouth/",
@@ -4025,7 +4666,8 @@
   {
     "href": "https://www.britishrowing.org/club/whitby-friendship-arc/",
     "name": "Whitby Friendship ARC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=586"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=586",
+    "code": "WHF"
   },
   {
     "href": "https://www.britishrowing.org/club/whitehaven-sea-cadets/",
@@ -4034,51 +4676,61 @@
   {
     "href": "https://www.britishrowing.org/club/whitgift-school-bc/",
     "name": "Whitgift School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=986"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=986",
+    "code": "WGT"
   },
   {
     "href": "https://www.britishrowing.org/club/wiltshire-scullers-school/",
     "name": "Wiltshire Scullers School",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1326"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1326",
+    "code": "WSS"
   },
   {
     "href": "https://www.britishrowing.org/club/wimbleball-rc/",
     "name": "Wimbleball RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=677"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=677",
+    "code": "WIM"
   },
   {
     "href": "https://www.britishrowing.org/club/wimbledon-high-sch/",
     "name": "Wimbledon High Sch",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=783"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=783",
+    "code": "WHS"
   },
   {
     "href": "https://www.britishrowing.org/club/winchester-college-bc/",
     "name": "Winchester College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=331"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=331",
+    "code": "WIN"
   },
   {
     "href": "https://www.britishrowing.org/club/windermere-rowing-club/",
     "name": "Windermere Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2157"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2157",
+    "code": "WDM"
   },
   {
     "href": "https://www.britishrowing.org/club/windsor-boys-school-bc/",
     "name": "Windsor Boys School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=496"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=496",
+    "code": "WBS"
   },
   {
     "href": "https://www.britishrowing.org/club/wisemans-bridge-rc-wsra/",
-    "name": "Wisemans Bridge RC (WSRA)"
+    "name": "Wisemans Bridge RC (WSRA)",
+    "code": "WIS"
   },
   {
     "href": "https://www.britishrowing.org/club/wolfson-college-cam-bc/",
     "name": "Wolfson College (Cam) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=666"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=666",
+    "code": "WOC"
   },
   {
     "href": "https://www.britishrowing.org/club/wolfson-college-oxford-bc/",
     "name": "Wolfson College (Oxford) BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=618"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=618",
+    "code": "WOO"
   },
   {
     "href": "https://www.britishrowing.org/club/wootton-bassett-sea-cadets/",
@@ -4087,12 +4739,14 @@
   {
     "href": "https://www.britishrowing.org/club/worcester-college-bc/",
     "name": "Worcester College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=619"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=619",
+    "code": "WRO"
   },
   {
     "href": "https://www.britishrowing.org/club/worcester-rc/",
     "name": "Worcester RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=412"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=412",
+    "code": "WRR"
   },
   {
     "href": "https://www.britishrowing.org/club/worcester-sea-cadets/",
@@ -4101,7 +4755,8 @@
   {
     "href": "https://www.britishrowing.org/club/worcester-university-rc/",
     "name": "Worcester University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1079"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=1079",
+    "code": "WRU"
   },
   {
     "href": "https://www.britishrowing.org/club/workington-sea-cadets/",
@@ -4110,7 +4765,8 @@
   {
     "href": "https://www.britishrowing.org/club/worthing-rc/",
     "name": "Worthing RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=555"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=555",
+    "code": "WOR"
   },
   {
     "href": "https://www.britishrowing.org/club/worthing-sea-and-royal-marines-cadets/",
@@ -4118,37 +4774,44 @@
   },
   {
     "href": "https://www.britishrowing.org/club/wraysbury-skiff-and-punting-club/",
-    "name": "Wraysbury Skiff and Punting Club"
+    "name": "Wraysbury Skiff and Punting Club",
+    "code": "WRA"
   },
   {
     "href": "https://www.britishrowing.org/club/wycliffe-college-bc/",
     "name": "Wycliffe College BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=571"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=571",
+    "code": "WYC"
   },
   {
     "href": "https://www.britishrowing.org/club/wycliffe-junior-rowing-club/",
     "name": "Wycliffe Junior Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2358"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2358",
+    "code": "WYJ"
   },
   {
     "href": "https://www.britishrowing.org/club/wycliffe-junior-rowing-club-2/",
     "name": "Wycliffe Junior Rowing Club",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2358"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=2358",
+    "code": "WYJ"
   },
   {
     "href": "https://www.britishrowing.org/club/x-press-bc/",
     "name": "X-Press BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=456"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=456",
+    "code": "XPR"
   },
   {
     "href": "https://www.britishrowing.org/club/yare-bc/",
     "name": "Yare BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=467"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=467",
+    "code": "YAR"
   },
   {
     "href": "https://www.britishrowing.org/club/yarm-school-bc/",
     "name": "Yarm School BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=802"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=802",
+    "code": "YRM"
   },
   {
     "href": "https://www.britishrowing.org/club/yarmouth-iow-cpga/",
@@ -4161,17 +4824,20 @@
   {
     "href": "https://www.britishrowing.org/club/york-city-rc/",
     "name": "York City RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=230"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=230",
+    "code": "YRK"
   },
   {
     "href": "https://www.britishrowing.org/club/york-st-john-university-rc/",
     "name": "York St John University RC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=583"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=583",
+    "code": "YSJ"
   },
   {
     "href": "https://www.britishrowing.org/club/york-university-bc/",
     "name": "York University BC",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=228"
+    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=228",
+    "code": "UYO"
   },
   {
     "href": "https://www.britishrowing.org/club/young-bristol/",
