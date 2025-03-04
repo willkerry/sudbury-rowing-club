@@ -72,7 +72,11 @@ export const slugify = (event: string) => {
   return slug(replacedEvent);
 };
 
-export const getSlugifiedRecords = (eventSlug: string) => {
+export const getSlugifiedRecords = (eventSlug?: string) => {
+  if (!eventSlug) {
+    return transformRecords(recordJson);
+  }
+
   const untransformedRecords = recordJson.filter(
     (record) => slugify(prettifyBoatnames(record.event)) === eventSlug,
   );

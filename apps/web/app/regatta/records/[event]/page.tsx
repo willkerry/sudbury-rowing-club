@@ -26,6 +26,13 @@ export const generateMetadata = async ({
   });
 };
 
+export const generateStaticParams = async () => {
+  const records = getSlugifiedRecords();
+  return records.map((record) => ({
+    event: record.event,
+  }));
+};
+
 const Page = async ({
   params,
 }: {
