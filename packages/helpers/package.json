@@ -18,7 +18,7 @@
     "tsup": "^8.3.6"
   },
   "devDependencies": {
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.1"
   },
   "peerDependencies": {
     "react": "^18.3.1"
