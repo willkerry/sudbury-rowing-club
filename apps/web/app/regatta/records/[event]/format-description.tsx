@@ -15,7 +15,9 @@ export const formatDescription = (records: Record[]): string => {
     // All eights race on the 350m course
     holder.boat.includes("8") ||
     // There's a record for an adaptive/arms-only mixed elite 1x race on the 350m course
-    (holder.boat.includes("1") && holder.time.minutes < 2)
+    (holder.boat.includes("1") && holder.time.minutes < 2) ||
+    // There’s at least one event who's name includes a '(350m)'
+    holder.event.includes("350m")
       ? 350
       : 650;
 
