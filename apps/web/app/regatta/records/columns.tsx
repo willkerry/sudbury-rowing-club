@@ -4,6 +4,7 @@ import Link from "@/components/stour/link";
 import { DataTableColumnHeader } from "@/components/ui/table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { detectAndFormatCourseLength } from "./[event]/format-description";
+import { getBladeUrls } from "./[event]/utils";
 import { type Record, formatDuration } from "./transformRecords";
 import { slugify } from "./transformRecords";
 
@@ -41,18 +42,29 @@ export const columns: ColumnDef<Record>[] = [
       <DataTableColumnHeader column={column} title="Club" />
     ),
     accessorKey: "club",
-    cell: ({ row }) => (
-      <div className="uppercase tracking-wider">{row.original.club}</div>
-    ),
+    cell: ({ row }) => {
+      const blades = getBladeUrls(row.original.club);
+
+      return (
+        <div className="flex flex-row gap-2">
+          {blades.length > 0 && (
+            <div className="flex flex-row items-center gap-2">
+              {blades.map((blade) => (
+                <img
+                  key={blade}
+                  src={blade}
+                  alt=""
+                  className="h-3 w-6 mix-blend-multiply"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          )}
+          <div className="uppercase tracking-wider">{row.original.club}</div>
+        </div>
+      );
+    },
   },
-  // {
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Name" />
-  //   ),
-  //   enableSorting: false,
-  //   accessorKey: "name",
-  //   cell: ({ row }) => <div className="text-gray-600">{row.original.name}</div>,
-  // },
   {
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Time" />
