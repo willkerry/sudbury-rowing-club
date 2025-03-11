@@ -38,3 +38,16 @@ export const getBladeUrls = (clubCode: string) => {
     .map((club) => ("bladeUrl" in club ? (club.bladeUrl ?? "") : ""))
     .filter(Boolean);
 };
+
+export const extendEventName = (event: string): string =>
+  // Mx === Mixed
+  event
+    .replace("Mx", "Mixed")
+    // Eli === Elite
+    .replace("Eli", "Elite")
+    // Nov === Novice
+    .replace("Nov", "Novice")
+    // Mas === Masters
+    .replace("Mas", "Masters")
+    // W === Womens
+    .replace("W", "Womens");

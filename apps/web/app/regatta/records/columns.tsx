@@ -3,18 +3,17 @@
 import Link from "@/components/stour/link";
 import { DataTableColumnHeader } from "@/components/ui/table";
 import type { ColumnDef } from "@tanstack/react-table";
+import { detectAndFormatCourseLength } from "./[event]/format-description";
 import { type Record, formatDuration } from "./transformRecords";
 import { slugify } from "./transformRecords";
 
 export const columns: ColumnDef<Record>[] = [
   {
-    accessorKey: "boat",
+    accessorKey: "course",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Boat" />
+      <DataTableColumnHeader column={column} title="Course" />
     ),
-    cell: ({ row }) => (
-      <div className="font-medium text-gray-500">{row.original.boat}</div>
-    ),
+    cell: ({ row }) => detectAndFormatCourseLength(row.original),
   },
   {
     accessorKey: "event",
@@ -46,14 +45,14 @@ export const columns: ColumnDef<Record>[] = [
       <div className="uppercase tracking-wider">{row.original.club}</div>
     ),
   },
-  {
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Name" />
-    ),
-    enableSorting: false,
-    accessorKey: "name",
-    cell: ({ row }) => <div className="text-gray-600">{row.original.name}</div>,
-  },
+  // {
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title="Name" />
+  //   ),
+  //   enableSorting: false,
+  //   accessorKey: "name",
+  //   cell: ({ row }) => <div className="text-gray-600">{row.original.name}</div>,
+  // },
   {
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Time" />
