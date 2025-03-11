@@ -31,7 +31,7 @@ export const formatVerboseDuration = (duration: {
     return `${duration.seconds} seconds`;
   }
   if (duration.seconds === 0) {
-    return `exactly ${duration.minutes} minute${duration.minutes > 1 ? "s" : ""}`;
+    return `${duration.minutes} minute${duration.minutes > 1 ? "s" : ""} and 0 seconds`;
   }
   return `${duration.minutes} minute${duration.minutes > 1 ? "s" : ""} and ${duration.seconds} second${duration.seconds > 1 ? "s" : ""}`;
 };
