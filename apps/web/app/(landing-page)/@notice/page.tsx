@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/container";
-import Note from "@/components/stour/note";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { fetchLandingPage } from "@sudburyrc/api";
 
 const LandingNoticePage = async () => {
@@ -11,9 +11,10 @@ const LandingNoticePage = async () => {
 
   return (
     <Container>
-      <Note centered label={note.label} type={note.type}>
-        {note.text}
-      </Note>
+      <Alert variant="default">
+        <AlertTitle>{note.label}</AlertTitle>
+        <AlertDescription>{note.text}</AlertDescription>
+      </Alert>
     </Container>
   );
 };

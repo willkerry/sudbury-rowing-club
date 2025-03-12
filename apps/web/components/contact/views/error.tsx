@@ -1,4 +1,4 @@
-import Note from "@/components/stour/note";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { EMAIL } from "@/lib/constants";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 
@@ -15,13 +15,13 @@ const ErrorView = ({ error, message }: Props) => {
   }
 
   return (
-    <Note label="Error" type="error">
-      We were unable to send your message. Please try again later or{" "}
-      <Obfuscate email={mailto.toString()}>email us</Obfuscate>.{" "}
-      <div className="mt-2 mb-0 bg-transparent p-0 font-medium text-black text-sm">
-        <code>{error}</code>
-      </div>
-    </Note>
+    <Alert variant="destructive">
+      <AlertTitle>Error</AlertTitle>
+      <AlertDescription>
+        We were unable to send your message. Please try again later or{" "}
+        <Obfuscate email={mailto.toString()}>email us</Obfuscate>.
+      </AlertDescription>
+    </Alert>
   );
 };
 

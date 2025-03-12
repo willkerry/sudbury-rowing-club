@@ -1,7 +1,7 @@
 import Instagram from "@/components/icons/socials/instagram";
 import Container from "@/components/layouts/container";
 import Loading from "@/components/stour/loading";
-import Note from "@/components/stour/note";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Carousel,
   CarouselContent,
@@ -125,9 +125,10 @@ export const InstagramGallery = () => {
 
         {status === "error" && (
           <Container>
-            <Note type="error" label="Error">
-              {error?.message}
-            </Note>
+            <Alert variant="destructive">
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>{error?.message}</AlertDescription>
+            </Alert>
           </Container>
         )}
       </CarouselContent>

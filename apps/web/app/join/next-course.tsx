@@ -1,6 +1,6 @@
 "use client";
 
-import Note from "@/components/stour/note";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Link from "next/link";
 
 const HIDE_COURSE_AFTER_DATE = new Date(2024, 9, 15);
@@ -20,14 +20,13 @@ export const NextCourse = () => {
 
   if (HIDE_COURSE_AFTER_DATE.getTime() < Date.now()) {
     return (
-      <Note
-        className="m-4 bg-white"
-        type="success"
-        label={`Our ${expirySeason} course has finished`}
-      >
-        Check back soon for details of our next course. Apply now to register
-        your interest and be notified when the next course is announced.
-      </Note>
+      <Alert variant="success">
+        <AlertTitle>Our {expirySeason} course has finished</AlertTitle>
+        <AlertDescription>
+          Check back soon for details of our next course. Apply now to register
+          your interest and be notified when the next course is announced.
+        </AlertDescription>
+      </Alert>
     );
   }
 

@@ -1,9 +1,12 @@
-import Note from "@/components/stour/note";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const Success = () => (
-  <Note label="Message sent" type="success">
-    Thank you for your message. We will get back to you as soon as possible.
-  </Note>
+  <Alert variant="success">
+    <AlertTitle>Message sent</AlertTitle>
+    <AlertDescription>
+      Thank you for your message. We will get back to you as soon as possible.
+    </AlertDescription>
+  </Alert>
 );
 
 export default Success;
