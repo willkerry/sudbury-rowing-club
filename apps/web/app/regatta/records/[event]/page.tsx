@@ -6,10 +6,12 @@ import { formatDescription } from "./format-description";
 import { RecordHolderList } from "./record-holder-list";
 import { RecordTime } from "./record-time";
 
+type Param = { event: string };
+
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ event: string }>;
+  params: Promise<Param>;
 }) => {
   const { event } = await params;
   const records = getSlugifiedRecords(event);
@@ -26,8 +28,9 @@ export const generateMetadata = async ({
   });
 };
 
-export const generateStaticParams = async () => {
+export const generateStaticParams = async (): Promise<Param[]> => {
   const records = getSlugifiedRecords();
+
   return records.map((record) => ({
     event: record.event,
   }));
@@ -36,7 +39,7 @@ export const generateStaticParams = async () => {
 const Page = async ({
   params,
 }: {
-  params: Promise<{ event: string }>;
+  params: Promise<Param>;
 }) => {
   const { event } = await params;
 
