@@ -1,3 +1,5 @@
+import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
+import Image from "next/image";
 import type { Record } from "../transformRecords";
 import { formatClubAndCrewName, getBladeUrls } from "./utils";
 
@@ -14,12 +16,15 @@ const RecordHolder = ({ record }: { record: Record }) => {
   return (
     <li className="p-0">
       {bladeUrls.map((url) => (
-        <img
+        <Image
           src={url}
           className="mr-2 inline-block h-6 w-12"
           loading="lazy"
           alt=""
           key={url}
+          width={48}
+          height={24}
+          loader={cloudflareLoader}
         />
       ))}
 
