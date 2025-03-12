@@ -9,6 +9,10 @@ import {
 } from "@sudburyrc/api";
 import { allPolicies } from "content-collections";
 import type { MetadataRoute } from "next";
+import {
+  getSlugifiedRecords,
+  slugify,
+} from "./regatta/records/transformRecords";
 
 const url = (pathname: string) => `${BASE_URL}${pathname}`;
 
@@ -19,12 +23,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const news = await serverGetAllSlugs();
   const safetyItems = await fetchSafety();
   const committeeArchive = getCommitteeArchive();
+  const records = getSlugifiedRecords();
 
   const archiveDynamicPaths: MetadataRoute.Sitemap = archives.map(
     (archive) => ({
       url: url(`/150/gallery/${archive._id}`),
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "yearly",
       priority: 0.5,
     }),
   );
@@ -39,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const authorDynamicPaths: MetadataRoute.Sitemap = authors.map(({ _id }) => ({
     url: url(`/news/author/${_id}`),
     lastModified: new Date(),
-    changeFrequency: "daily",
+    changeFrequency: "yearly",
     priority: 0.5,
   }));
 
@@ -52,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const safetyDynamicPaths: MetadataRoute.Sitemap = safetyItems.map((item) => ({
     url: url(`/safety/${item._id}`),
-    lastModified: new Date(),
+    lastModified: new Date(item._updatedAt),
     changeFrequency: "daily",
     priority: 0.5,
   }));
@@ -73,6 +78,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "never",
       priority: 0.1,
     }));
+
+  const recordsDynamicPaths: MetadataRoute.Sitemap = records.map((record) => ({
+    url: url(`/regatta/records/${slugify(record.event)}`),
+    lastModified: new Date(record.year),
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
 
   return [
     {
@@ -226,6 +238,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
     ...noticeDynamicPaths,
+    {
+      url: url("/regatta/records"),
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    ...recordsDynamicPaths,
     {
       url: url("/stourtoys"),
       lastModified: new Date(),
