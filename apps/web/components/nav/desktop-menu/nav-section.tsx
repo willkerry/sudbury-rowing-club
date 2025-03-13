@@ -57,9 +57,10 @@ const ListItem = ({
         <p
           className={cn(
             "flex py-0.5 font-semibold text-sm leading-none transition-colors",
-            cta
-              ? "text-gray-900 group-hover:text-gray-700"
-              : "text-gray-600 group-hover:text-gray-900",
+            {
+              "text-gray-900 group-hover:text-gray-700": cta,
+              "text-gray-600 group-hover:text-gray-900": !cta,
+            },
           )}
         >
           {name}
