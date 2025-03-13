@@ -149,7 +149,7 @@ export const BugsClientSide = () => {
                       type="text"
                       className="col-span-2"
                       inputClassName="text-xs p-1.5 font-mono"
-                      description="Your browser always supplies it’s name, version number, and your operating system to us."
+                      description="Any time you use the web, your browser identifies itself (not you) to websites using a user agent string. This is included automatically."
                       required={false}
                     />
                   )}
