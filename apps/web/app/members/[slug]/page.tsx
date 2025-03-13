@@ -34,7 +34,7 @@ const Notice = async ({ params }: MemberPageParamObject) => {
 
   return (
     <>
-      <HeroTitle prose title={notice?.title} transparent>
+      <HeroTitle prose title={notice?.title} color="transparent">
         <div className="h-2" />
         <Label>Members’ Notices</Label>{" "}
         <Link href="/members" arrow className="font-medium text-sm">
