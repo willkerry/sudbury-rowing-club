@@ -45,7 +45,7 @@ const SafetyComponent = async () => {
 
       <div className="grid grid-flow-col grid-cols-2 divide-x">
         <a
-          href="https://flood-warning-information.service.gov.uk/warnings?location=+Sudbury"
+          href="https://check-for-flooding.service.gov.uk/location/sudbury-suffolk"
           className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-gray-500 text-sm transition duration-300 hover:bg-white hover:text-black"
         >
           <EnvironmentAgency aria-hidden className="h-4 w-4" />
