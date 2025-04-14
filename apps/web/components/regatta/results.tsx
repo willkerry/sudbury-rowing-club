@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
 import { cn } from "@/lib/utils";
 import { ordinal } from "@sudburyrc/helpers";
-import { Download } from "lucide-react";
+import { Download, Table2 } from "lucide-react";
+import NextLink from "next/link";
 
 type Result = {
   _id: string;
@@ -23,12 +24,20 @@ const Results = ({ tab = false, children, records, results }: Props) => (
   <>
     <div className={cn(tab ? "mx-auto mb-6" : "mb-12", "space-y-12")}>
       {children}
-      {records && (
-        <Button icon={<Download />}>
-          <a href={`${records}?dl=`}>Course records</a>
+
+      <div className="flex gap-2">
+        <Button icon={<Table2 />}>
+          <NextLink href="/regatta/records">View interactive records</NextLink>
         </Button>
-      )}
+
+        {records && (
+          <Button icon={<Download />} variant="secondary">
+            <a href={`${records}?dl=`}>Download course records</a>
+          </Button>
+        )}
+      </div>
     </div>
+
     <div className={cn("prose max-w-none", tab ? "prose-sm" : "prose-lg")}>
       <table>
         <thead>
