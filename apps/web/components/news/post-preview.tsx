@@ -44,6 +44,7 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
         </div>
       ) : (
         <div
+          suppressHydrationWarning
           className={cn(
             "relative h-[191px] select-none overflow-hidden border-b",
             getRandomGradient(),
