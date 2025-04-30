@@ -4,10 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { use } from "react";
 
-const Clubs = (props: { searchParams: Promise<{ q?: string }> }) => {
-  const searchParams = use(props.searchParams);
+const Clubs = () => {
   const router = useRouter();
 
   return (
@@ -21,13 +19,7 @@ const Clubs = (props: { searchParams: Promise<{ q?: string }> }) => {
       <label htmlFor="q" className="sr-only">
         Search
       </label>
-      <Input
-        type="search"
-        aria-label="Search"
-        className="flex-1"
-        placeholder={searchParams.q ?? "Search"}
-        name="q"
-      />
+      <Input type="search" aria-label="Search" className="flex-1" name="q" />
       <Button type="submit" icon={<Search />} variant="link">
         Search
       </Button>
