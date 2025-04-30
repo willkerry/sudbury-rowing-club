@@ -9,18 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { browserIndex } from "@/lib/algolia";
 import { SOCIALS } from "@/lib/constants";
-import type { SearchResponse } from "@algolia/client-search";
 import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import type { serverGetNArticles } from "@sudburyrc/api";
-import { useRouter, useSearchParams } from "next/navigation";
-import {
-  type FormEventHandler,
-  Suspense,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useQueryState } from "nuqs";
+import { Suspense, useState } from "react";
 
 function getMoreUrl(activeSearchTerm: string, data: unknown[]) {
   if (activeSearchTerm) {
@@ -34,64 +28,40 @@ function getMoreUrl(activeSearchTerm: string, data: unknown[]) {
 
 type MinimalArticle = Awaited<ReturnType<typeof serverGetNArticles>>[number];
 
+const search = async (term: string | null): Promise<MinimalArticle[]> => {
+  if (!term) return new Promise((resolve) => resolve([]));
+
+  return browserIndex.search<MinimalArticle>(term).then(({ hits }) => hits);
+};
+
 const NewsPage = ({
   articles,
 }: {
   articles: MinimalArticle[];
 }) => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const q = searchParams?.get("q");
+  const [searchInputValue, setSearchInputValue] = useState("");
+  const [searchTerm, setSearchTerm] = useQueryState("q");
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeSearchTerm, setActiveSearchTerm] = useState("");
-  const [dirty, setDirty] = useState(false);
-  const [results, setResults] = useState<
-    SearchResponse<MinimalArticle>["hits"]
-  >([]);
+  const {
+    data: results,
+    status,
+    error,
+  } = useQuery({
+    enabled: !!searchTerm,
+    queryKey: ["search", searchTerm],
+    queryFn: () => search(searchTerm),
+  });
 
-  const search = useCallback(() => {
-    if (!dirty) setDirty(true);
-    router.push(`/news?q=${encodeURIComponent(searchTerm)}`);
-    setActiveSearchTerm(searchTerm);
-  }, [searchTerm, dirty, router]);
-
-  const handleSubmit: FormEventHandler = (e) => {
-    e?.preventDefault();
-    search();
+  const cancelSearch = () => {
+    setSearchTerm(null);
   };
-
-  const cancelSearch = useCallback(() => {
-    setSearchTerm("");
-    setActiveSearchTerm("");
-    setDirty(false);
-    router.push("/news");
-  }, [router]);
-
-  useEffect(() => {
-    if (q) {
-      setSearchTerm(q as string);
-      setActiveSearchTerm(q as string);
-    } else {
-      setSearchTerm("");
-      setActiveSearchTerm("");
-    }
-  }, [q]);
-
-  useEffect(() => {
-    if (activeSearchTerm) {
-      browserIndex
-        .search<MinimalArticle>(activeSearchTerm)
-        .then((response) => setResults(response.hits));
-    }
-  }, [activeSearchTerm]);
 
   return (
     <>
       <div className="flex items-center border-t border-b py-6">
         <Container className="grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2 md:grid-cols-3">
           <div className="flex items-center md:col-span-2">
-            {activeSearchTerm && (
+            {searchTerm && (
               <button
                 type="button"
                 className="py-3 pr-4 text-gray-400 hover:text-blue-600"
@@ -104,13 +74,15 @@ const NewsPage = ({
             <div>
               <h1>
                 <Label className="max-w-prose">
-                  {activeSearchTerm ? "Search Results" : "Latest News"}
+                  {status === "success" ? "Search Results" : "Latest News"}
                 </Label>
               </h1>
               <p className="max-w-prose">
-                {activeSearchTerm ? (
+                {searchTerm ? (
                   <>
-                    Showing results for{" "}
+                    {status === "success" && "Showing results for"}
+                    {status === "pending" && "Searching for"}
+                    {status === "error" && "Error searching for"}{" "}
                     <button
                       type="button"
                       className={
@@ -119,7 +91,7 @@ const NewsPage = ({
                       onClick={() => cancelSearch()}
                     >
                       <XMarkIcon className="absolute right-0 left-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100" />
-                      {activeSearchTerm}
+                      {searchTerm}
                     </button>
                   </>
                 ) : (
@@ -136,21 +108,24 @@ const NewsPage = ({
           </div>
           <form
             className="mt-4 flex w-full items-center justify-center"
-            onSubmit={(e) => handleSubmit(e)}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSearchTerm(searchInputValue);
+            }}
           >
             <Input
+              value={searchInputValue}
+              onChange={(e) => setSearchInputValue(e.target.value)}
               type="search"
               name="q"
               inputClassName="rounded-r-none"
               aria-label="Search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Button
               type="submit"
               variant="secondary"
               className="-ml-px z-0 h-10 rounded-l-none border-l"
-              disabled={!searchTerm}
+              disabled={!searchInputValue}
             >
               <span className="sr-only">Search</span>
               <MagnifyingGlassIcon className="h-4 w-4" />
@@ -160,9 +135,11 @@ const NewsPage = ({
       </div>
       <Container className="my-10">
         <NewsList
-          posts={activeSearchTerm ? results : articles}
-          hero={!activeSearchTerm}
-          more={getMoreUrl(activeSearchTerm, articles)}
+          posts={searchTerm && results ? results : articles}
+          hero={!searchTerm}
+          more={getMoreUrl(searchTerm ?? "", articles)}
+          status={status}
+          error={error ?? undefined}
         />
       </Container>
     </>

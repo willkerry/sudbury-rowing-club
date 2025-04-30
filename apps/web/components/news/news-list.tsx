@@ -6,9 +6,11 @@ type Props = {
   posts: ArticleSummary[];
   hero?: boolean;
   more?: string;
+  status?: "pending" | "success" | "error";
+  error?: Error;
 };
 
-const NewsList = ({ posts, hero, more }: Props) => {
+const NewsList = ({ posts, hero, more, ...rest }: Props) => {
   if (posts.length === 0)
     return (
       <div className="flex h-48 w-full flex-col items-center justify-center">
@@ -22,12 +24,12 @@ const NewsList = ({ posts, hero, more }: Props) => {
     return (
       <>
         <HeroPost post={posts[0]} />
-        <MoreStories posts={posts.slice(1)} {...{ more }} />
+        <MoreStories posts={posts.slice(1)} more={more} {...rest} />
       </>
     );
   }
 
-  return <MoreStories {...{ more, posts }} />;
+  return <MoreStories posts={posts} more={more} {...rest} />;
 };
 
 export default NewsList;

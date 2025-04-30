@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
+import { useMemo } from "react";
 import DateFormatter from "../utils/date-formatter";
 import { PostPreviewImage } from "./post-preview-image";
 
@@ -28,6 +29,23 @@ const getRandomGradient = () =>
     GRADIENT_TO[Math.floor(Math.random() * 10) % GRADIENT_TO.length],
   );
 
+const PostPreviewText = ({ title }: { title: string }) => (
+  <div
+    className={cn(
+      "relative h-[191px] select-none overflow-hidden border-b",
+      useMemo(getRandomGradient, []),
+      "opacity-75 transition-opacity group-hover:opacity-100",
+    )}
+  >
+    <div
+      aria-hidden
+      className="mx-2.5 mt-1.5 w-96 text-balance font-bold text-6xl text-black leading-none mix-blend-soft-light transition-all"
+    >
+      {title}
+    </div>
+  </div>
+);
+
 const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li
     id={post.slug}
@@ -43,20 +61,7 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
           />
         </div>
       ) : (
-        <div
-          className={cn(
-            "relative h-[191px] select-none overflow-hidden border-b",
-            getRandomGradient(),
-            "opacity-75 transition-opacity group-hover:opacity-100",
-          )}
-        >
-          <div
-            aria-hidden
-            className="mx-2.5 mt-1.5 w-96 text-balance font-bold text-6xl text-black leading-none mix-blend-soft-light transition-all"
-          >
-            {post.title}
-          </div>
-        </div>
+        <PostPreviewText title={post.title} />
       )}
 
       <h3 className="m-2 mb-3 line-clamp-3 grow text-pretty font-semibold text-xl leading-tight transition group-hover:text-blue-500">

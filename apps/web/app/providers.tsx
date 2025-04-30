@@ -4,6 +4,7 @@ import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
 import { QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { getQueryClient } from "./get-query-client";
@@ -40,17 +41,19 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <PostHogProvider client={posthog}>
       <QueryClientProvider client={queryClient}>
-        <DialogProvider>
-          {children}
+        <NuqsAdapter>
+          <DialogProvider>
+            {children}
 
-          {process.env.NODE_ENV === "development" && (
-            <ReactQueryDevtools initialIsOpen={false} />
-          )}
+            {process.env.NODE_ENV === "development" && (
+              <ReactQueryDevtools initialIsOpen={false} />
+            )}
 
-          <DialogInitializer />
-        </DialogProvider>
+            <DialogInitializer />
+          </DialogProvider>
 
-        <Toaster />
+          <Toaster />
+        </NuqsAdapter>
       </QueryClientProvider>
     </PostHogProvider>
   );
