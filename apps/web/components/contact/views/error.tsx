@@ -7,7 +7,7 @@ interface Props {
   message?: string;
 }
 
-const ErrorView = ({ error, message }: Props) => {
+const ErrorView = ({ message }: Props) => {
   const mailto = new URLSearchParams(EMAIL);
 
   if (message) {
