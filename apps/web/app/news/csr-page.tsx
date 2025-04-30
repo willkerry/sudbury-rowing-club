@@ -138,7 +138,7 @@ const NewsPage = ({
           posts={searchTerm && results ? results : articles}
           hero={!searchTerm}
           more={getMoreUrl(searchTerm ?? "", articles)}
-          status={status}
+          status={searchTerm ? status : "success"}
           error={error ?? undefined}
         />
       </Container>
