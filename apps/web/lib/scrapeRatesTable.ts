@@ -189,7 +189,7 @@ const scrapeMembershipData = async () => {
   const browser = new Browser();
   const page = browser.newPage();
 
-  await page.goto(MYCLUBHOUSE_RATES_URL);
+  await page.goto(MYCLUBHOUSE_RATES_URL, { timeout: 5000 });
 
   const membershipData =
     page.mainFrame.document.querySelector("#membership-data");
@@ -207,8 +207,25 @@ const scrapeMembershipData = async () => {
   return parsedData;
 };
 
-export const scrapeRatesTable = async () => {
-  const membershipData = await scrapeMembershipData();
+export const scrapeRatesTable = async (): Promise<
+  | {
+      status: "success";
+      data: z.infer<typeof MembershipSchema>[];
+    }
+  | {
+      status: "error";
+      message: string;
+    }
+> => {
+  try {
+    const membershipData = await scrapeMembershipData();
 
-  return membershipData.Groups[0].Memberships;
+    return { status: "success", data: membershipData.Groups[0].Memberships };
+  } catch (_) {
+    return {
+      status: "error",
+      message:
+        "We’re temporarily unable to display current membership rates – please check back soon or contact us for information.",
+    };
+  }
 };
