@@ -1,7 +1,6 @@
 "use client";
 
 import ContactForm from "@/components/contact";
-import type { Message } from "@/components/contact/contactForm";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Loading from "@/components/stour/loading";
@@ -9,7 +8,8 @@ import { browserIndexOfficers } from "@/lib/algolia";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { fetchOfficerNames } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
+import { parseAsArrayOf, parseAsString, useQueryStates } from "nuqs";
+import { shake } from "radash";
 import { Suspense } from "react";
 
 const ContactPage = ({
@@ -17,22 +17,19 @@ const ContactPage = ({
 }: {
   officers: Awaited<ReturnType<typeof fetchOfficerNames>>;
 }) => {
-  const searchParams = useSearchParams();
-
-  const q = searchParams?.get("q")?.split(",") ?? [];
-
-  const initialValues: Partial<Message> = {
-    to: searchParams?.get("to") ?? undefined,
-    name: searchParams?.get("name") ?? undefined,
-    email: searchParams?.get("email") ?? undefined,
-    message: searchParams?.get("message") ?? undefined,
-  };
+  const [{ q, ...initialValues }] = useQueryStates({
+    q: parseAsArrayOf(parseAsString),
+    to: parseAsString,
+    name: parseAsString,
+    email: parseAsString,
+    message: parseAsString,
+  });
 
   const { data: guessedRecipient } = useQuery({
     queryKey: ["officers", q],
     queryFn: () =>
       Promise.all(
-        q.map((query) =>
+        (q ?? []).map((query) =>
           browserIndexOfficers
             .search<(typeof officers)[number]>(query)
             .then((r) => r.hits[0]),
@@ -73,7 +70,7 @@ const ContactPage = ({
             </p>
           )}
         </div>
-        <ContactForm contacts={officers} initialValues={initialValues} />
+        <ContactForm contacts={officers} initialValues={shake(initialValues)} />
         <div className="prose mt-16 text-gray-500 text-sm">
           Alternatively, mail{" "}
           <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general

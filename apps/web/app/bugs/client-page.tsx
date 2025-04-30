@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { FORM_ERROR } from "final-form";
-import { useSearchParams } from "next/navigation";
+import { useQueryState } from "nuqs";
 import { Field, Form } from "react-final-form";
 
 const getUserAgent = () => {
@@ -27,8 +27,7 @@ const formatIfStringIsParseableJSON = (string: string) => {
 };
 
 export const BugsClientSide = () => {
-  const searchParams = useSearchParams();
-  const message = searchParams?.get("message");
+  const [message] = useQueryState("message");
 
   const userAgent = getUserAgent() || "Unknown";
 

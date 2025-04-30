@@ -35,8 +35,11 @@ export const useTestingMode = (form: ReactFormExtendedApi<Message>) => {
   const { refetch: setFieldValues } = useQuery({
     enabled: isEnabled && !!getWodehouseFullDetails,
     queryKey: ["setFieldValues"],
-    queryFn: getWodehouseFullDetails,
-    select: ({ firstName, lastName, email }) => {
+    queryFn: getWodehouseFullDetails ?? (() => Promise.resolve(undefined)),
+    select: (details) => {
+      if (!details) return;
+
+      const { firstName, lastName, email } = details;
       const name = `${firstName} ${lastName}`;
 
       form.setFieldValue("to", webmasterId ?? "");
