@@ -74,7 +74,9 @@ const NewsPage = ({
             <div>
               <h1>
                 <Label className="max-w-prose">
-                  {status === "success" ? "Search Results" : "Latest News"}
+                  {status === "success" && !searchTerm
+                    ? "Search Results"
+                    : "Latest News"}
                 </Label>
               </h1>
               <p className="max-w-prose">
