@@ -9,10 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { browserIndex } from "@/lib/algolia";
 import { SOCIALS } from "@/lib/constants";
-import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/20/solid";
-import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import type { serverGetNArticles } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
+import { SearchIcon, Undo2Icon, XIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
 import { Suspense, useState } from "react";
 
@@ -67,7 +66,7 @@ const NewsPage = ({
                 className="py-3 pr-4 text-gray-400 hover:text-blue-600"
                 onClick={() => cancelSearch()}
               >
-                <ArrowUturnLeftIcon aria-hidden className="h-5 w-5" />
+                <Undo2Icon aria-hidden className="h-4 w-4" />
                 <span className="sr-only">Cancel search</span>
               </button>
             )}
@@ -92,7 +91,10 @@ const NewsPage = ({
                       }
                       onClick={() => cancelSearch()}
                     >
-                      <XMarkIcon className="absolute right-0 left-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100" />
+                      <XIcon
+                        aria-hidden
+                        className="absolute right-0 left-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
+                      />
                       {searchTerm}
                     </button>
                   </>
@@ -112,7 +114,7 @@ const NewsPage = ({
             className="mt-4 flex w-full items-center justify-center"
             onSubmit={(e) => {
               e.preventDefault();
-              setSearchTerm(searchInputValue);
+              setSearchTerm(searchInputValue.trim());
             }}
           >
             <Input
@@ -129,8 +131,7 @@ const NewsPage = ({
               className="-ml-px z-0 h-10 rounded-l-none border-l"
               disabled={!searchInputValue}
             >
-              <span className="sr-only">Search</span>
-              <MagnifyingGlassIcon className="h-4 w-4" />
+              <SearchIcon aria-hidden className="h-4 w-4" />
             </Button>
           </form>
         </Container>
