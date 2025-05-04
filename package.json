@@ -14,7 +14,7 @@
     "build": "turbo build",
     "type-check": "turbo type-check",
     "test": "turbo test",
-    "dev": "turbo dev",
+    "dev": "turbo watch dev",
     "check": "biome check --write .",
     "clean": "sh scripts/clean.sh"
   },

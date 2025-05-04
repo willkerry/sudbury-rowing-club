@@ -7,7 +7,7 @@
   "types": "dist/index.d.mts",
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch",
+    "dev": "tsup",
     "type-check": "tsc --noEmit"
   },
   "keywords": [],

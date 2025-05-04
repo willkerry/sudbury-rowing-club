@@ -22,6 +22,7 @@ export default defineConfig({
     "src/queries/fetch-regattas.ts",
     "src/queries/fetch-safety.ts",
   ],
+  clean: true,
   dts: true,
   sourcemap: true,
   splitting: true,
@@ -30,7 +31,6 @@ export default defineConfig({
   minifySyntax: true,
   minifyWhitespace: true,
   format: ["esm"],
-
   onSuccess: async () => {
     const outputFiles = await fs.promises.readdir(outpurDirectory);
     const mjsFiles = outputFiles.filter((file) => file.endsWith(".mjs"));

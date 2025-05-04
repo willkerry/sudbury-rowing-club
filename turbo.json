@@ -1,7 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-
+  "ui": "tui",
   "tasks": {
     "type-check": {
       "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
@@ -22,11 +22,11 @@
         "SANITY_STUDIO_*"
       ]
     },
-
     "dev": {
-      "cache": false,
+      "dependsOn": ["^dev"],
+      "outputLogs": "new-only",
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
-      "persistent": true
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"]
     }
   }
 }
