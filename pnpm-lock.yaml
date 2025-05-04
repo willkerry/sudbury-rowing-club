@@ -440,19 +440,19 @@ importers:
 
   packages/helpers:
     dependencies:
-      '@sudburyrc/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
       react:
-        specifier: ^18.3.1
-        version: 18.3.1
+        specifier: ^19.0.0
+        version: 19.1.0
       smartypants:
         specifier: ^0.2.2
         version: 0.2.2
+    devDependencies:
+      '@sudburyrc/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       tsup:
         specifier: ^8.3.6
         version: 8.4.0(typescript@5.8.3)
-    devDependencies:
       vitest:
         specifier: ^1.6.0
         version: 1.6.1
