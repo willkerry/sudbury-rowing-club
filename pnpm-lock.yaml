@@ -424,15 +424,16 @@ importers:
 
   packages/blue:
     dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.1.0
+    devDependencies:
       '@sudburyrc/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@types/react':
         specifier: ^19.0.2
         version: 19.1.2
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
       tsup:
         specifier: ^8.3.6
         version: 8.4.0(typescript@5.8.3)

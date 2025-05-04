@@ -11,12 +11,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/react": "^19.0.8",
     "tsup": "^8.3.6"
   },
   "peerDependencies": {
-    "react": "^18.3.1"
+    "react": "^19.0.0"
   }
 }
