@@ -1,48 +1,76 @@
-@tailwind base;
+@import "tailwindcss";
 
-html {
-  @apply antialiased bg-white;
-  font-feature-settings: "ss03" 1;
+@config '../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
-@tailwind components;
-
-@tailwind utilities;
-
-@layer utilities {
-  .hyphens-auto {
-    hyphens: auto;
+/*
+  Apparently they also changed the normalise sheet so that buttons don't
+  automatically get a pointer cursor.
+*/
+@layer base {
+  button:not([disabled]) {
+    @apply cursor-pointer;
   }
+}
 
-  .auto-lead > p:first-child {
+@utility hyphens-auto {
+  hyphens: auto;
+}
+
+@utility auto-lead {
+  & > p:first-child {
     @apply font-medium font-sans;
   }
+}
 
-  .masonry-4-col {
-    column-count: 4;
-    column-gap: 2em;
-  }
+@utility masonry-4-col {
+  column-count: 4;
+  column-gap: 2em;
+}
 
-  .masonry-3-col {
-    column-count: 3;
-    column-gap: 2em;
-  }
+@utility masonry-3-col {
+  column-count: 3;
+  column-gap: 2em;
+}
 
-  .masonry-2-col {
-    column-count: 2;
-    column-gap: 2em;
-  }
+@utility masonry-2-col {
+  column-count: 2;
+  column-gap: 2em;
+}
 
-  .break-inside {
-    break-inside: avoid;
-  }
+@utility break-inside {
+  break-inside: avoid;
+}
 
-  .disambiguate {
-    font-feature-settings: "ss01" 1, "ss04" 1;
-  }
+@utility disambiguate {
+  font-feature-settings: "ss01" 1, "ss04" 1;
+}
 
-  .uppercase {
-    font-feature-settings: "case" 1, "cpsp" 1, "cv08" 1;
+@utility uppercase {
+  font-feature-settings: "case" 1, "cpsp" 1, "cv08" 1;
+}
+
+@layer base {
+  html {
+    @apply antialiased bg-white;
+    font-feature-settings: "ss03" 1;
   }
 }
 

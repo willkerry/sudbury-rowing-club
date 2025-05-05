@@ -7,7 +7,7 @@ import CoverImage from "./cover-image";
 const HeroPost = ({ post }: { post: ArticleSummary }) => (
   <Link
     href={`/news/${post.slug}`}
-    className="group mb-4 grid overflow-hidden rounded border transition duration-200 hover:border-blue-400 md:grid-cols-3 md:gap-x-2"
+    className="group mb-4 grid overflow-hidden rounded-sm border transition duration-200 hover:border-blue-400 md:grid-cols-3 md:gap-x-2"
   >
     <div className="relative h-60 border-b sm:h-96 md:col-span-2 md:border-r md:border-b-0">
       {post.featuredImage ? (

@@ -48,7 +48,7 @@ const MemoryMapPage = async () => {
           </AlertDescription>
         </Alert>
 
-        <div className="relative mb-12 aspect-[3/2] overflow-hidden rounded border shadow-lg">
+        <div className="relative mb-12 aspect-3/2 overflow-hidden rounded-sm border shadow-lg">
           <MemoryMap locations={locations} />
         </div>
       </Container>

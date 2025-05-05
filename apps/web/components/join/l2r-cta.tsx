@@ -21,7 +21,7 @@ const L2RCallToActionSection = ({
 }) => (
   <div
     className={cn(
-      "flex items-center justify-between gap-4 rounded border p-6",
+      "flex items-center justify-between gap-4 rounded-sm border p-6",
       className,
     )}
   >

@@ -22,7 +22,7 @@ const Overview = ({ items }: OverviewProps) => (
         {items.map(({ title, subtitle }) => (
           <li key={title}>
             <ScrollLink
-              activeClass="!text-blue-500 font-semibold"
+              activeClass="text-blue-500! font-semibold"
               className="font-medium text-gray-700 transition hover:cursor-pointer hover:text-gray-900"
               duration={200}
               offset={-30}
@@ -50,7 +50,7 @@ const Overview = ({ items }: OverviewProps) => (
                 placeholder="blur"
                 src={image.src}
                 width={635}
-                className="rounded shadow"
+                className="rounded-sm shadow-sm"
               />
             </div>
           )}

@@ -94,7 +94,7 @@ export const MobileMenuSection = ({
         >
           {!compact && Icon && (
             <Icon
-              className="mr-1.5 h-5 w-5 flex-shrink-0 text-blue-700"
+              className="mr-1.5 h-5 w-5 shrink-0 text-blue-700"
               aria-hidden
             />
           )}

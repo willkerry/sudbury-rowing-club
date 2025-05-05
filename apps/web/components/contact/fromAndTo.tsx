@@ -43,7 +43,7 @@ export const FromAndTo = ({ isOpen, from, to }: FromAndToRouteProps) => {
           className="col-span-2 origin-top"
           aria-hidden
         >
-          <div className="mb-4 flex items-center justify-between gap-4 overflow-hidden rounded border bg-gray-50 p-2">
+          <div className="mb-4 flex items-center justify-between gap-4 overflow-hidden rounded-sm border bg-gray-50 p-2">
             <Identity
               fallback={getInitials(from?.name)}
               name={from?.name}

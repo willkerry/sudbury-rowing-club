@@ -43,13 +43,13 @@ const ListItem = ({
       key={href}
       href={href}
       className={cn(
-        "group flex rounded transition",
+        "group flex rounded-sm transition",
         description ? "items-start" : "items-center",
       )}
     >
       {Icon && (
         <Icon
-          className="mr-2.5 h-6 w-6 flex-shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
+          className="mr-2.5 h-6 w-6 shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
           aria-hidden
         />
       )}
@@ -151,7 +151,7 @@ const NavSection = ({
           >
             <div
               aria-hidden
-              className="absolute top-12 right-1/2 h-6 w-6 rotate-45 rounded-sm bg-gray-200 bg-opacity-75 shadow backdrop-blur"
+              className="absolute top-12 right-1/2 h-6 w-6 rotate-45 rounded-xs bg-gray-200 bg-opacity-75 shadow-sm backdrop-blur-sm"
             />
           </Transition>
 
@@ -172,8 +172,8 @@ const NavSection = ({
                 POPOVER_PANEL_CLASSES.get(compact),
               )}
             >
-              <div className="overflow-hidden rounded-md bg-gray-200 bg-opacity-75 p-1 shadow-lg backdrop-blur">
-                <div className="relative grid gap-4 rounded-sm bg-white p-2 shadow">
+              <div className="overflow-hidden rounded-md bg-gray-200 bg-opacity-75 p-1 shadow-lg backdrop-blur-sm">
+                <div className="relative grid gap-4 rounded-xs bg-white p-2 shadow-sm">
                   {primaryItems.map((item) => (
                     <ListItem key={item.href} {...item} />
                   ))}

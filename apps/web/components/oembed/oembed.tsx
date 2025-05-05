@@ -89,7 +89,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
       const { title, images, url, site_name } = data.open_graph;
 
       return (
-        <figure className="max-w-xs rounded border p-2 text-sm">
+        <figure className="max-w-xs rounded-sm border p-2 text-sm">
           <img src={images?.[0].url} alt={title} />
           <figcaption>
             <a href={url}>
@@ -105,7 +105,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
       const { title, images, url, site_name = "" } = data.open_graph;
 
       return (
-        <figure className="max-w-xs rounded border p-2 text-sm">
+        <figure className="max-w-xs rounded-sm border p-2 text-sm">
           <img src={images?.[0].url} alt={title} />
           <figcaption>
             <a href={url}>

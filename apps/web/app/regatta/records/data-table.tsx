@@ -43,7 +43,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="mx-auto max-w-screen-lg rounded-md border">
+    <div className="mx-auto max-w-(--breakpoint-lg) rounded-md border">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

@@ -111,7 +111,7 @@ const SharePlayground = () => {
       <div className="relative mt-6 aspect-h-8 aspect-w-16 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
         <div
           className={cn({
-            "absolute inset-0 z-10 items-center justify-center bg-white bg-opacity-90 backdrop-blur":
+            "absolute inset-0 z-10 items-center justify-center bg-white bg-opacity-90 backdrop-blur-sm":
               state === "loading",
             hidden: state !== "loading",
           })}

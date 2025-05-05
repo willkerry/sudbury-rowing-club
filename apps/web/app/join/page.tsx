@@ -65,7 +65,7 @@ const Join = async () => (
         Start rowing with us{" "}
         <ThumbsUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
       </h1>
-      <div className="-rotate-2 z-0 mx-auto flex max-h-[160px] max-w-[240px] overflow-hidden rounded shadow-xl">
+      <div className="-rotate-2 z-0 mx-auto flex max-h-[160px] max-w-[240px] overflow-hidden rounded-sm shadow-xl">
         <Image
           alt="Trainee rowers on the water during on learn to row course."
           height={160}
@@ -111,7 +111,7 @@ const Join = async () => (
             Your first step should be to contact the club captain.
           </p>
         </div>
-        <div className="flex items-center rounded border border-gray-200 bg-gray-50 p-4 text-center">
+        <div className="flex items-center rounded-sm border border-gray-200 bg-gray-50 p-4 text-center">
           <div className="w-full">
             <div className="mb-2 font-medium text-lg">
               Contact the club captain
@@ -125,9 +125,9 @@ const Join = async () => (
     </Container>
 
     <Container className="my-40 flex items-center">
-      <div className="flex-grow border-gray-300 border-t" />
+      <div className="grow border-gray-300 border-t" />
       <div className="mb-px px-4 font-medium text-lg leading-none">or</div>
-      <div className="flex-grow border-gray-300 border-t" />
+      <div className="grow border-gray-300 border-t" />
     </Container>
 
     {/* About the L2R course */}

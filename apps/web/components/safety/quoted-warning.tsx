@@ -42,7 +42,7 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
     <div className="text-gray-900">
       {agencyName && <p>The {agencyName} has issued the following warning:</p>}
 
-      <blockquote className="relative mt-3 overflow-hidden rounded border p-3 text-gray-700">
+      <blockquote className="relative mt-3 overflow-hidden rounded-sm border p-3 text-gray-700">
         {source && (
           <div
             className={`${agencyColors} absolute top-0 right-0 flex items-center justify-center rounded-bl p-1`}

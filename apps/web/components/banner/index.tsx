@@ -166,7 +166,7 @@ const Banner = () => {
 
       {!data.link && (
         <div
-          className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow transition-all duration-500"
+          className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500"
           style={{ maxHeight: expanded ? textRef.current?.scrollHeight : 0 }}
           aria-hidden={!expanded}
         >

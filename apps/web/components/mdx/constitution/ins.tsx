@@ -33,7 +33,7 @@ type InsProps = {
 
 export const Ins = ({ set = 1, children, ...props }: InsProps) => (
   <ins
-    className={`-my-0.5 mx-0.5 rounded border px-0.5 py-0.5 not-italic no-underline ${COLORS[set]}`}
+    className={`-my-0.5 mx-0.5 rounded-sm border px-0.5 py-0.5 not-italic no-underline ${COLORS[set]}`}
     dateTime={AMENDEMENTS[set].toISOString()}
     {...props}
   >
@@ -46,7 +46,7 @@ export const Ins = ({ set = 1, children, ...props }: InsProps) => (
 
 export const InsBlock = ({ set = 1, children, ...props }: InsProps) => (
   <ins
-    className={`block rounded border pr-2 pl-2 no-underline ${COLORS[set]}`}
+    className={`block rounded-sm border pr-2 pl-2 no-underline ${COLORS[set]}`}
     dateTime={AMENDEMENTS[set].toISOString()}
     {...props}
   >

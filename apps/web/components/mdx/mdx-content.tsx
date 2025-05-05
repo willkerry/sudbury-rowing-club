@@ -20,7 +20,7 @@ export const MDXContent = ({
       ),
       mark: ({ className, ...props }) => (
         <mark
-          className={cn("rounded-sm bg-blue-100 px-px text-black", className)}
+          className={cn("rounded-xs bg-blue-100 px-px text-black", className)}
           {...props}
         />
       ),

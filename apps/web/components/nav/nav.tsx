@@ -55,7 +55,7 @@ const Nav = () => {
     <Popover className="bg-white text-gray-900" id="navbar">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-screen-lg px-4 sm:px-6">
+          <div className="mx-auto max-w-(--breakpoint-lg) px-4 sm:px-6">
             <div className="flex items-center justify-between py-3 xs:py-4 md:py-6 ">
               <NavLogo />
               <MobileMenuButton />
@@ -105,7 +105,7 @@ const Nav = () => {
               static
               className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden"
             >
-              <div className="relative divide-y rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="relative divide-y rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                 {primaryGroups.map(({ title, items }) => (
                   <MobileMenuSection
                     collapse={title.toLowerCase() === "regatta"}
@@ -125,7 +125,7 @@ const Nav = () => {
                 ))}
               </div>
               <div className="absolute top-3 right-3">
-                <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-none">
+                <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden">
                   <span className="sr-only">Close menu</span>
                   <XMarkIcon className="h-6 w-6" aria-hidden />
                 </PopoverButton>

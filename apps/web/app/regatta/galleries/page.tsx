@@ -63,7 +63,7 @@ const Photography = async () => {
                     <span className="hidden sm:inline"> Regatta</span>
                   </th>
 
-                  <td className="!align-middle">
+                  <td className="align-middle!">
                     {galleries.map(({ _key, password }) => {
                       if (!password) return null;
 

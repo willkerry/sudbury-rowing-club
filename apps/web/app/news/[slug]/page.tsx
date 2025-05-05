@@ -74,7 +74,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
       />
       {post.body && <PostBody content={post.body} />}
 
-      <div className="mx-auto my-12 flex max-w-prose justify-between rounded border bg-gray-50 px-3 pt-2 pb-3">
+      <div className="mx-auto my-12 flex max-w-prose justify-between rounded-sm border bg-gray-50 px-3 pt-2 pb-3">
         <div className="flex gap-8">
           {post.author && (
             <div>

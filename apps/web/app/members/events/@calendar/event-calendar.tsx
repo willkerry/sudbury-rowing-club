@@ -20,7 +20,7 @@ const BR_EVENT_STATUS = {
 type Event = SRCEvent;
 
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="first-of-type:-ml-0.5 rounded-sm border bg-gray-50 p-0.5 font-semibold text-gray-400 text-xs leading-none">
+  <span className="first-of-type:-ml-0.5 rounded-xs border bg-gray-50 p-0.5 font-semibold text-gray-400 text-xs leading-none">
     {children}
   </span>
 );
@@ -34,7 +34,7 @@ const EventCard = ({
     layout="position"
     id={id}
     key={id}
-    className={`grid rounded border bg-white px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
+    className={`grid rounded-sm border bg-white px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
     animate={{
       transition: { duration: 0.3 },
       opacity: 1,

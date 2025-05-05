@@ -133,7 +133,7 @@ export const BugsClientSide = () => {
                 )}
               </Field>
 
-              <fieldset className="col-span-2 grid gap-4 rounded border bg-gray-50 p-2">
+              <fieldset className="col-span-2 grid gap-4 rounded-sm border bg-gray-50 p-2">
                 <legend className="font-medium text-gray-700 text-xs">
                   Included automatically
                 </legend>

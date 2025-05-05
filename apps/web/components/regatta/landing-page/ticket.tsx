@@ -2,7 +2,7 @@ import type { JSX } from "react";
 
 const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
   <div
-    className="-rotate-6 relative rounded-lg bg-gradient-to-tr from-gray-300 to-white drop-shadow-2xl"
+    className="-rotate-6 relative rounded-lg bg-linear-to-tr from-gray-300 to-white drop-shadow-2xl"
     style={{
       clipPath:
         "path('M159 0a15 15 0 0115 15v185a15 15 0 000 30v57a15 15 0 01-14 15l-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6-6-6-6 6h-1a15 15 0 01-15-15v-57a15 15 0 000-30V15A15 15 0 0115 0l6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6 6 6 6-6z')",

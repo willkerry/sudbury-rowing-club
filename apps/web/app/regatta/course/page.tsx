@@ -58,7 +58,7 @@ const Coursemap = async () => {
             <a href={`${map}?dl=`}>Download the PDF</a>
           </Button>
         </div>
-        <div className="flex overflow-hidden rounded border shadow-xl">
+        <div className="flex overflow-hidden rounded-sm border shadow-xl">
           <CourseMap
             id={mapImage.id}
             aspectRatio={mapImage.aspectRatio}

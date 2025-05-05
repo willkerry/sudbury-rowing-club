@@ -100,7 +100,7 @@ const Officers = ({ officers }: Props) => (
     <GovGrid>
       {officers.map((officer) => (
         <div key={officer._id}>
-          <div className="relative mb-2 flex h-36 w-full items-center justify-center overflow-hidden rounded bg-gradient-to-b from-gray-200 to-gray-100">
+          <div className="relative mb-2 flex h-36 w-full items-center justify-center overflow-hidden rounded-sm bg-linear-to-b from-gray-200 to-gray-100">
             <OfficerPhotographOrPlaceholder {...{ officer }} />
             {officer.description && (
               <Popover>
@@ -121,7 +121,7 @@ const Officers = ({ officers }: Props) => (
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Popover.Panel className="absolute top-0 left-0 h-full w-full rounded border border-gray-300 bg-opacity- bg-white p-2 backdrop-blur">
+                  <Popover.Panel className="absolute top-0 left-0 h-full w-full rounded-sm border border-gray-300 bg-opacity- bg-white p-2 backdrop-blur-sm">
                     <div className="font-medium text-black text-sm">
                       <p>{officer.description}</p>
                     </div>

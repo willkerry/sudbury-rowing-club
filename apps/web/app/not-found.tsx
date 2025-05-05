@@ -19,7 +19,7 @@ const Custom404 = () => (
     <div className="flex justify-center">
       <Image
         alt="The time the river ran dry."
-        className="rounded-sm"
+        className="rounded-xs"
         height={144}
         src={TroubleAtTMill}
         width={192}

@@ -55,7 +55,7 @@ export const Chip = ({
       data-boatid={sanitisedId}
       type="button"
       className={cn(
-        "rounded px-0.5 font-medium ring-black ring-offset-1 transition",
+        "rounded-sm px-0.5 font-medium ring-black ring-offset-1 transition",
         color,
         className,
       )}

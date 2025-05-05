@@ -6,10 +6,10 @@ import DateFormatter from "../utils/date-formatter";
 import { PostPreviewImage } from "./post-preview-image";
 
 const GRADIENT_DIRECTIONS = [
-  "bg-gradient-to-tr",
-  "bg-gradient-to-br",
-  "bg-gradient-to-bl",
-  "bg-gradient-to-tl",
+  "bg-linear-to-tr",
+  "bg-linear-to-br",
+  "bg-linear-to-bl",
+  "bg-linear-to-tl",
 ];
 const GRADIENT_TO = [
   "to-blue-100",
@@ -49,7 +49,7 @@ const PostPreviewText = ({ title }: { title: string }) => (
 const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li
     id={post.slug}
-    className="group overflow-hidden rounded border bg-white transition hover:border-blue-400"
+    className="group overflow-hidden rounded-sm border bg-white transition hover:border-blue-400"
   >
     <Link href={`/news/${post.slug}`} className="flex h-full flex-col">
       {post.featuredImage ? (

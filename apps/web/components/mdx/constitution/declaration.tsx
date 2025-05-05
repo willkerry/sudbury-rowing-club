@@ -10,7 +10,7 @@ const DottedLine = () => (
 );
 
 export const Declaration = () => (
-  <div className="rounded px-6 py-8 text-black shadow sm:px-28 sm:pt-14 sm:pb-24">
+  <div className="rounded-sm px-6 py-8 text-black shadow-sm sm:px-28 sm:pt-14 sm:pb-24">
     <p className="flex justify-center">
       <Wordmark className="mb-5 w-1/2 text-blue-800" />
     </p>

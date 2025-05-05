@@ -32,7 +32,7 @@ const L2RStages = ({ stages }: Props) => (
           <div className="font-semibold text-gray-700 text-lg leading-tight">
             {stage.name}
           </div>
-          <p className="!text-gray-500">{stage.content}</p>
+          <p className="text-gray-500!">{stage.content}</p>
         </li>
       ))}
     </ol>

@@ -38,7 +38,7 @@ const GalleryFigure = ({
     blurDataURL: lqip,
     alt: caption || "",
     sizes: "(min-width: 640px) 100vw, 30vw",
-    className: "rounded shadow",
+    className: "rounded-sm shadow-sm",
   };
 
   return (

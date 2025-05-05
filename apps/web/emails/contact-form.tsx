@@ -91,7 +91,7 @@ export const ContactFormEmail = ({
               <Column>
                 <Label>Message:</Label>
                 <div
-                  className="m-0 rounded border border-gray-200 border-solid bg-gray-50 p-2 text-gray-900 text-sm"
+                  className="m-0 rounded-sm border border-gray-200 border-solid bg-gray-50 p-2 text-gray-900 text-sm"
                   dangerouslySetInnerHTML={{ __html: snarkdown(message) }}
                 />
               </Column>

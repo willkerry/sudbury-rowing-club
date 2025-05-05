@@ -32,7 +32,7 @@ const InstagramFullPost = ({ post }: { post: InstagramPost }) => {
   }, [inViewport]);
 
   return (
-    <figure className="relative overflow-hidden rounded border" ref={ref}>
+    <figure className="relative overflow-hidden rounded-sm border" ref={ref}>
       {latchedInViewport ? (
         <img
           src={post.displayUrl}
@@ -111,7 +111,7 @@ export const InstagramGallery = () => {
               key={index}
               className="basis-[80%] animate-pulse sm:basis-1/2 lg:basis-1/4"
             >
-              <figure className="overflow-hidden rounded border">
+              <figure className="overflow-hidden rounded-sm border">
                 <div className={IMAGE_CLASS_NAME} />
                 <div
                   className="whitespace-pre-wrap p-2 text-xs opacity-0"

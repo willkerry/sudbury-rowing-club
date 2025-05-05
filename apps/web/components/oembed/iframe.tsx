@@ -9,7 +9,7 @@ export const Iframe = ({
   aspectRatio?: number;
 }) => (
   <div
-    className="relative h-0 w-full overflow-hidden rounded pt-[25px]"
+    className="relative h-0 w-full overflow-hidden rounded-sm pt-[25px]"
     style={{
       paddingBottom: `${(aspectRatio || 0.5625) * 100}%`,
     }}

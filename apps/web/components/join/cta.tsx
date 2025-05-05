@@ -46,7 +46,7 @@ const CTASection = ({
 );
 
 const JoinCTA = () => (
-  <div className="grid gap-12 rounded border bg-gray-50 p-12 md:grid-cols-2">
+  <div className="grid gap-12 rounded-sm border bg-gray-50 p-12 md:grid-cols-2">
     <CTASection
       to="l2r"
       variant="secondary"

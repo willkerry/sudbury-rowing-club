@@ -87,7 +87,7 @@ const NewsPage = ({
                     <button
                       type="button"
                       className={
-                        "group relative mb-px inline-block rounded border border-blue-200 bg-blue-50 px-0.5 font-bold text-blue-400 text-xs uppercase tracking-widest transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-200"
+                        "group relative mb-px inline-block rounded-sm border border-blue-200 bg-blue-50 px-0.5 font-bold text-blue-400 text-xs uppercase tracking-widest transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-200"
                       }
                       onClick={() => cancelSearch()}
                     >

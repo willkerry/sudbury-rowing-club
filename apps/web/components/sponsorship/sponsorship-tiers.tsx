@@ -17,7 +17,7 @@ export const SponsorshipTiers = ({
   emphasisedIndex?: number;
 }) => (
   <ul
-    className="my-12 grid gap-8 rounded sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:border"
+    className="my-12 grid gap-8 rounded-sm sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:border"
     id="sponsorship-tiers"
   >
     {Object.entries(tiers).map(([tier, { benefits, description }], i) => (

@@ -26,7 +26,7 @@ const ClubSearchResults = async (props: {
   }
 
   return (
-    <div className="divide-y rounded border">
+    <div className="divide-y rounded-sm border">
       {clubs.map((club) => (
         <Link
           className="relative block p-2 hover:bg-gray-50"

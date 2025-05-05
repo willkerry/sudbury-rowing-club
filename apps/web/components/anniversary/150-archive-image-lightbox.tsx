@@ -54,7 +54,7 @@ export const ArchiveImage = ({
           width={width}
           height={height}
           alt={alt}
-          className="mx-auto my-4 rounded shadow"
+          className="mx-auto my-4 rounded-sm shadow-sm"
         />
       </button>
     </>

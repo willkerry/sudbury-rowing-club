@@ -11,7 +11,7 @@ const Accordion = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Root
     ref={ref}
-    className={cn("divide-y rounded border", className)}
+    className={cn("divide-y rounded-sm border", className)}
     {...props}
   />
 ));

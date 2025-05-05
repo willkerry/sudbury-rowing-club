@@ -40,7 +40,7 @@ const MoreStories = ({ posts, more, status, error }: Props) => {
           <li>
             <Link
               href={more}
-              className="group flex h-56 items-center justify-center gap-1 rounded border font-medium text-gray-500 transition hover:border-blue-400 hover:text-black"
+              className="group flex h-56 items-center justify-center gap-1 rounded-sm border font-medium text-gray-500 transition hover:border-blue-400 hover:text-black"
             >
               See more{" "}
               <ArrowLongRightIcon

@@ -108,7 +108,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
         <div className="mb-8 sm:mx-0 md:mb-16">
           <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />
           <figure
-            className="relative mx-auto flex max-w-3xl flex-col overflow-hidden rounded bg-gray-200 text-gray-600"
+            className="relative mx-auto flex max-w-3xl flex-col overflow-hidden rounded-sm bg-gray-200 text-gray-600"
             style={{
               backgroundColor: featuredImage.background || "transparent",
               color: featuredImage.foreground || "inherit",
@@ -135,7 +135,7 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
         <div className="relative flex-none">
           <HeaderLightBox {...{ featuredImage, title, open, toggleOpen }} />
           <figure
-            className="flex flex-col overflow-hidden rounded shadow-lg"
+            className="flex flex-col overflow-hidden rounded-sm shadow-lg"
             style={{
               maxWidth: 512 * featuredImage.aspectRatio,
               backgroundColor: featuredImage.background || undefined,

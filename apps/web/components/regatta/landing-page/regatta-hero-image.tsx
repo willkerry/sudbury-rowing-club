@@ -31,10 +31,10 @@ const RegattaHeroImage = ({
         width={imageWidth}
         height={imageHeight}
       />
-      <div className="absolute top-0 left-0 h-full w-full bg-gradient-to-tr from-black via-transparent to-transparent" />
+      <div className="absolute top-0 left-0 h-full w-full bg-linear-to-tr from-black via-transparent to-transparent" />
       <div className="absolute top-0 left-0 flex h-full w-full items-end p-6 md:p-12">
         <div className="hidden w-2/3 sm:block">
-          <div className="max-w-sm font-bold text-4xl text-white leading-tighter drop-shadow md:text-6xl">
+          <div className="max-w-sm font-bold text-4xl text-white leading-tighter drop-shadow-sm md:text-6xl">
             {title}
           </div>
           <div className="font-medium text-white opacity-75">

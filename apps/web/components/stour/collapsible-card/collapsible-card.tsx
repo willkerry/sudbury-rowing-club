@@ -31,7 +31,7 @@ export const NoticeBody = ({ notice }: Props) => {
           {notice.meta.map((item) => (
             <div className="px-4" key={item._key}>
               <Label className="select-none text-xs">{`${item.label}: `}</Label>
-              <span className="disambiguate !text-gray-800 font-medium text-xs">
+              <span className="disambiguate font-medium text-gray-800! text-xs">
                 {item.value}
               </span>
             </div>
@@ -81,7 +81,7 @@ export const NoticeBody = ({ notice }: Props) => {
 const CollapsibleCard = ({ notice }: Props) => (
   <Accordion
     type="single"
-    className="divide-y overflow-hidden rounded border"
+    className="divide-y overflow-hidden rounded-sm border"
     id={notice.slug}
     collapsible
   >

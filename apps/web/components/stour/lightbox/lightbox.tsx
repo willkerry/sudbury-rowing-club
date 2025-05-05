@@ -70,7 +70,7 @@ const LightBox = ({
       as={Fragment}
     >
       <Dialog
-        className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-white bg-opacity-10 backdrop-blur"
+        className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm"
         open={open}
         onClose={() => toggle()}
         onClick={() => toggle()}
@@ -80,7 +80,7 @@ const LightBox = ({
           width={width}
           height={height}
           src={src}
-          className="rounded shadow-lg"
+          className="rounded-sm shadow-lg"
           style={{
             maxWidth: viewportWidth,
             maxHeight: viewportHeight,

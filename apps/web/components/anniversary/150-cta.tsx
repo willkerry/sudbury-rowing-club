@@ -6,7 +6,7 @@ import { HundredAndFiftyGradient } from "./150-gradient";
 import { HundredAndFiftyLogo } from "./150-logo";
 
 export const HundredAndFiftyCta = () => (
-  <div className="relative isolate grid grid-cols-1 items-center overflow-hidden rounded-lg border bg-gray-900 text-white shadow md:grid-cols-3">
+  <div className="relative isolate grid grid-cols-1 items-center overflow-hidden rounded-lg border bg-gray-900 text-white shadow-sm md:grid-cols-3">
     <div className="mt-12 flex h-full items-center justify-center md:relative md:my-12">
       <HundredAndFiftyLogo block={false} />
       <HundredAndFiftyFireworks />

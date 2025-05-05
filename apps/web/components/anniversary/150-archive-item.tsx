@@ -20,7 +20,7 @@ export const ArchiveItem = ({ _id, alt, image, title }: Archive) => {
           alt={alt || title || ""}
           width={IMAGE_WIDTH}
           height={imageHeight}
-          className="mx-auto rounded shadow"
+          className="mx-auto rounded-sm shadow-sm"
         />
       </Link>
     </figure>

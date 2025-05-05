@@ -42,7 +42,7 @@ const Notice = async ({ params }: MemberPageParamObject) => {
         </Link>
       </HeroTitle>
       <Container className="mt-6 mb-12 max-w-prose space-y-6 sm:mt-12">
-        <div className="divide-y overflow-hidden rounded border">
+        <div className="divide-y overflow-hidden rounded-sm border">
           <NoticeBody notice={notice} />
         </div>
       </Container>

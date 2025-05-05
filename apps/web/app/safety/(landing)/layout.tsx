@@ -13,7 +13,7 @@ const SafetyLayout = async ({
     <HeroTitle prose title="Safety" color="transparent" />
 
     <Container className="mx-auto my-6 max-w-prose space-y-16 sm:my-12">
-      <div className="overflow-hidden rounded border">{status}</div>
+      <div className="overflow-hidden rounded-sm border">{status}</div>
       {children}
     </Container>
   </>
