@@ -161,9 +161,15 @@ importers:
       '@sudburyrc/ical-builder':
         specifier: workspace:*
         version: link:../../packages/ical-builder
-      '@sudburyrc/tailwind-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
+      '@tailwindcss/aspect-ratio':
+        specifier: ^0.4.2
+        version: 0.4.2(tailwindcss@3.4.17)
+      '@tailwindcss/forms':
+        specifier: ^0.5.10
+        version: 0.5.10(tailwindcss@3.4.17)
+      '@tailwindcss/typography':
+        specifier: ^0.5.16
+        version: 0.5.16(tailwindcss@3.4.17)
       '@tanstack/react-form':
         specifier: ^0.40.4
         version: 0.40.4(react-dom@19.1.0)(react@19.1.0)(typescript@5.8.3)
@@ -477,28 +483,6 @@ importers:
       vitest:
         specifier: ^1.6.0
         version: 1.6.1
-
-  packages/tailwind-config:
-    dependencies:
-      '@sudburyrc/blue':
-        specifier: workspace:*
-        version: link:../blue
-      '@tailwindcss/aspect-ratio':
-        specifier: ^0.4.2
-        version: 0.4.2(tailwindcss@3.4.17)
-      '@tailwindcss/forms':
-        specifier: ^0.5.10
-        version: 0.5.10(tailwindcss@3.4.17)
-      '@tailwindcss/typography':
-        specifier: ^0.5.16
-        version: 0.5.16(tailwindcss@3.4.17)
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.17)
-    devDependencies:
-      tailwindcss:
-        specifier: ^3.4.17
-        version: 3.4.17
 
   packages/tsconfig: {}
 
