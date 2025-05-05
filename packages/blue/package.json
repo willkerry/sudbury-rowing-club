@@ -5,8 +5,8 @@
   "main": "dist/index.mjs",
   "types": "dist/index.d.mts",
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup"
+    "build": "tsdown",
+    "dev": "tsdown"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +14,7 @@
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/react": "^19.0.8",
-    "tsup": "^8.3.6"
+    "tsdown": "^0.11.0-beta.3"
   },
   "peerDependencies": {
     "react": "^19.0.0"
