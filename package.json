@@ -8,7 +8,11 @@
     "@commitlint/config-conventional": "^19.8.0",
     "@commitlint/prompt-cli": "^19.8.0",
     "@commitlint/types": "^19.8.0",
-    "lefthook": "^1.11.12"
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "lefthook": "^1.11.12",
+    "semantic-release": "^24.2.3",
+    "semantic-release-monorepo": "^8.0.2"
   },
   "description": "",
   "keywords": [],
@@ -21,7 +25,8 @@
     "test": "turbo test",
     "dev": "turbo watch dev",
     "check": "biome check --write .",
-    "clean": "sh scripts/clean.sh"
+    "clean": "sh scripts/clean.sh",
+    "semantic-release": "semantic-release -e semantic-release-monorepo"
   },
   "dependencies": {
     "turbo": "^2.4.0"
