@@ -1,13 +1,13 @@
-// @ts-check
 import { withContentCollections } from "@content-collections/next";
-import redirects from "./data/redirects.json" assert { type: "json" };
-const { redirects: redirectsArray } = redirects;
+import type { NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
-const config = {
+import { redirects as redirectsArray } from "./data/redirects.json" with {
+  type: "json",
+};
+
+const config: NextConfig = {
   images: {
     minimumCacheTTL: 31536000,
-
     remotePatterns: [
       createRemotePattern("cdn.sanity.io", "https"),
       createRemotePattern("clubimages.britishrowing.org", "https"),
@@ -19,10 +19,6 @@ const config = {
 
 export default withContentCollections(config);
 
-/**
- * @param {string} hostname
- * @param {'http'|'https'} protocol
- */
-function createRemotePattern(hostname, protocol) {
+function createRemotePattern(hostname: string, protocol: "http" | "https") {
   return { hostname, protocol };
 }
