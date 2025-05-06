@@ -443,6 +443,9 @@ importers:
       tsdown:
         specifier: ^0.11.0-beta.3
         version: 0.11.0-beta.3(typescript@5.8.3)
+      typescript:
+        specifier: ^5.7.3
+        version: 5.8.3
 
   packages/helpers:
     dependencies:
@@ -459,6 +462,9 @@ importers:
       tsdown:
         specifier: ^0.11.0-beta.3
         version: 0.11.0-beta.3(typescript@5.8.3)
+      typescript:
+        specifier: ^5.7.3
+        version: 5.8.3
       vitest:
         specifier: ^1.6.0
         version: 1.6.1

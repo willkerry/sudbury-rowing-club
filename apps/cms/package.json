@@ -8,7 +8,8 @@
     "start": "sanity start",
     "build": "sanity build -y",
     "dev": "sanity dev",
-    "sanity": "sanity"
+    "sanity": "sanity",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@sanity/client": "^7.0.0",
