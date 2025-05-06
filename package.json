@@ -4,7 +4,11 @@
   "author": "",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "lefthook": "^1.10.10"
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@commitlint/prompt-cli": "^19.8.0",
+    "@commitlint/types": "^19.8.0",
+    "lefthook": "^1.11.12"
   },
   "description": "",
   "keywords": [],
@@ -12,6 +16,7 @@
   "packageManager": "pnpm@8.14.1",
   "scripts": {
     "build": "turbo build",
+    "commit": "commit",
     "type-check": "turbo type-check",
     "test": "turbo test",
     "dev": "turbo watch dev",
