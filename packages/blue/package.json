@@ -6,7 +6,8 @@
   "types": "dist/index.d.mts",
   "scripts": {
     "build": "tsdown",
-    "dev": "tsdown"
+    "dev": "tsdown",
+    "semantic-release": "semantic-release -e semantic-release-monorepo"
   },
   "keywords": [],
   "author": "",

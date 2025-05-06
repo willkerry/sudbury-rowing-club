@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "scripts": {
+    "semantic-release": "semantic-release -e semantic-release-monorepo"
+  },
   "publishConfig": {
     "access": "public"
   }
