@@ -289,7 +289,7 @@ const Brand = () => (
 
     <p>
       These colour definitions are provided in case they’re of any help to
-      anyone –&nbsp;<code>900</code> is the ‘official’ club colour. The shade
+      anyone –&nbsp;<code>950</code> is the ‘official’ club colour. The shade
       scale may change in development, but the values on this page are
       programmatically extracted from the design system and will immediately
       reflect any changes.
