@@ -55,39 +55,37 @@ const Nav = () => {
     <Popover className="bg-white text-gray-900" id="navbar">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-(--breakpoint-lg) px-4 sm:px-6">
-            <div className="flex items-center justify-between py-3 xs:py-4 md:py-6 ">
-              <NavLogo />
-              <MobileMenuButton />
+          <div className="container flex items-center justify-between px-4! py-3 xs:py-4 md:py-6">
+            <NavLogo />
+            <MobileMenuButton />
 
-              <PopoverGroup as="nav" className="mx-auto hidden sm:flex">
-                {navigationGroups.map(({ title, items }) => (
-                  <NavSection key={title} label={title} {...{ items }} />
-                ))}
-              </PopoverGroup>
+            <PopoverGroup as="nav" className="mx-auto hidden sm:flex">
+              {navigationGroups.map(({ title, items }) => (
+                <NavSection key={title} label={title} {...{ items }} />
+              ))}
+            </PopoverGroup>
 
-              <PopoverGroup
-                as="nav"
-                className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
-              >
-                {secondaryNavigationGroups.map(({ title, items, icon }) => {
-                  const Icon = icon || null;
-                  return (
-                    <NavSection
-                      key={title}
-                      label={title}
-                      icon={
-                        Icon ? (
-                          <Icon aria-hidden className="flex h-4 w-4" />
-                        ) : undefined
-                      }
-                      compact
-                      {...{ items }}
-                    />
-                  );
-                })}
-              </PopoverGroup>
-            </div>
+            <PopoverGroup
+              as="nav"
+              className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
+            >
+              {secondaryNavigationGroups.map(({ title, items, icon }) => {
+                const Icon = icon || null;
+                return (
+                  <NavSection
+                    key={title}
+                    label={title}
+                    icon={
+                      Icon ? (
+                        <Icon aria-hidden className="flex h-4 w-4" />
+                      ) : undefined
+                    }
+                    compact
+                    {...{ items }}
+                  />
+                );
+              })}
+            </PopoverGroup>
           </div>
 
           <Transition

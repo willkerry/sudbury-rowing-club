@@ -58,7 +58,7 @@ const NewsPage = ({
   return (
     <>
       <div className="flex items-center border-t border-b py-6">
-        <Container className="grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <Container className="grid grid-cols-1 items-center gap-4 sm:grid-cols-2 md:grid-cols-3">
           <div className="flex items-center md:col-span-2">
             {searchTerm && (
               <button
@@ -111,7 +111,7 @@ const NewsPage = ({
             </div>
           </div>
           <form
-            className="mt-4 flex w-full items-center justify-center"
+            className="mt-4 flex w-full items-center justify-end"
             onSubmit={(e) => {
               e.preventDefault();
               setSearchTerm(searchInputValue.trim());
