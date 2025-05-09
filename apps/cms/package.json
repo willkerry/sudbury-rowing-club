@@ -6,7 +6,7 @@
   "author": "Will Kerry <webmaster@sudburyrowingclub.org.uk>",
   "scripts": {
     "start": "sanity start",
-    "build": "sanity build -y",
+    "build": "sanity build -y && (test $SANITY_AUTH_TOKEN && sanity schema deploy || echo 'Warning: Skipping schema deploy as SANITY_AUTH_TOKEN is not defined. If building locally run `npx sanity schema deploy` to use OAUTH authentication istead.')",
     "dev": "sanity dev",
     "sanity": "sanity",
     "type-check": "tsc --noEmit"
