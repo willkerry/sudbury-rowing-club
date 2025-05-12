@@ -1,3 +1,4 @@
+import { kyInstance } from "@/app/get-query-client";
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import type { SafetyComponentProps } from "@/components/safety/safety-component";
 import { EAStationResponseSchema } from "@/types/ea-station-respose";
@@ -39,15 +40,17 @@ const EA_WARNING_URL = `https://environment.data.gov.uk/flood-monitoring/id/floo
 /** Fetches the latest flood warning from the Environment Agency API, using the
  * club's location */
 const fetchEAWarning = () =>
-  fetch(EA_WARNING_URL)
-    .then((res) => res.json())
+  kyInstance
+    .get(EA_WARNING_URL)
+    .json()
     .then(z.object({ items: z.array(EAWarningSchema) }).parse)
     .then((res) => res.items[0]);
 
 /** Fetches monitoring station data from the Environment Agency API */
 const fetchEAStation = () =>
-  fetch("https://environment.data.gov.uk/flood-monitoring/id/stations/E21856")
-    .then((res) => res.json())
+  kyInstance
+    .get("https://environment.data.gov.uk/flood-monitoring/id/stations/E21856")
+    .json()
     .then(z.object({ items: EAStationResponseSchema }).parse)
     .then((res) => res.items);
 

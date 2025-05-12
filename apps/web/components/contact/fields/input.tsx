@@ -21,8 +21,7 @@ type Props = {
 };
 
 /**
- * Provides a simple input field with automatic best-practice labels. Intended for
- * compatibility with the `Field` component from `react-final-form`.
+ * Provides a simple input field with automatic best-practice labels.
  */
 const Input = ({
   input,

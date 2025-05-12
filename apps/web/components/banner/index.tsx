@@ -1,6 +1,7 @@
 "use client";
 
 import type { Notice } from "@/app/api/notice/route";
+import { kyInstance } from "@/app/get-query-client";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import { useEffect, useRef, useState } from "react";
@@ -103,9 +104,10 @@ const ButtonOrAnchor = ({
   })[type];
 
 const Banner = () => {
-  const { data, error } = useQuery<Notice>({
+  const { data, error } = useQuery({
     queryKey: ["notice"],
-    queryFn: () => fetch("/api/notice").then((res) => res.json()),
+    queryFn: ({ signal }) =>
+      kyInstance.get<Notice>("/api/notice", { signal }).json(),
     staleTime: 5 * 60 * 1000,
   });
 

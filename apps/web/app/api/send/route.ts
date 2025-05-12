@@ -1,6 +1,7 @@
 import checkForSpam from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import getOfficer from "@/lib/get-officer";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { ContactFormEmail } from "emails/contact-form";
 import DOMPurify from "isomorphic-dompurify";
 import { type NextRequest, NextResponse } from "next/server";
@@ -96,6 +97,9 @@ const findRecipient = async (id: string) => {
 
 export const POST = async (req: NextRequest) => {
   try {
+    const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
+    if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
     const { fromEmail, fromName, toID, message } = await validateRequest(req);
 
     await spamCheck(req, fromName, fromEmail, message);
@@ -139,14 +143,15 @@ export const POST = async (req: NextRequest) => {
     }
   } catch (error) {
     if (error instanceof ResponseError) {
-      return new NextResponse(`Unhandled exception: ${error.message}`, {
+      return new NextResponse(error.message, {
         status: error.status || 500,
+        statusText: error.message,
       });
     }
 
-    return new NextResponse(
-      `Unhandled exception: ${error instanceof Error ? error.message : error}`,
-      { status: 500 },
-    );
+    return new NextResponse("Unhandled exception", {
+      status: 500,
+      statusText: `Unhandled exception: ${error instanceof Error ? error.message : error}`,
+    });
   }
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import { kyInstance } from "@/app/get-query-client";
 import DisabledOverlay from "@/components/contact/views/disabledOverlay";
 import Success from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
+import { scrollToSelector } from "@/lib/scrollToSelector";
 import { cn } from "@/lib/utils";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
@@ -48,20 +50,9 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const recipientWasProvided = !!initialValues.to;
 
   const { mutateAsync, status, error } = useMutation({
-    mutationFn: async (values: Message) => {
-      const response = await fetch("/api/send", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const status = response?.status;
-      if (status === 200) return undefined;
-
-      throw new Error(await response?.text());
-    },
+    mutationKey: ["contact-form"],
+    mutationFn: (values: Message) =>
+      kyInstance.post("/api/send", { json: values }),
   });
 
   const optionArray = contacts.map((contact) => ({
@@ -78,6 +69,7 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     },
     onSubmit: ({ value }) => mutateAsync(value),
     validators: { onSubmit: MessageSchema },
+    onSubmitInvalid: () => scrollToSelector('[aria-invalid="true"]'),
   });
 
   useTestingMode(form);
@@ -180,7 +172,6 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             disabled={disableFields}
             id="message"
             minRows={3}
-            required
             error={field.state.meta.errors[0]?.toString()}
             value={field.state.value}
             onBlur={field.handleBlur}

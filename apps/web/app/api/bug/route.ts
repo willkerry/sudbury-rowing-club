@@ -1,11 +1,12 @@
 import checkForSpam from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import Bowser from "bowser";
 import { type NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const createResendClient = () => new Resend(process.env.RESEND_API_KEY);
 
 const parseToJSON = (value: string) => {
   try {
@@ -15,17 +16,32 @@ const parseToJSON = (value: string) => {
   }
 };
 
-const BugReportSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  description: z.string().min(1),
-  userAgent: z.string().min(1),
-  additionalInformation: z.string().optional(),
+const BugReportNameSchema = z.string().min(1, "Provide your name");
+const BugReportEmailSchema = z
+  .string()
+  .min(1, "Provide your email")
+  .email("Provide a valid email address");
+const BugReportDescriptionSchema = z
+  .string()
+  .trim()
+  .min(1, "Provide a description");
+const BugReportUserAgentSchema = z.string().min(1, "Provide your user agent");
+const BugReportAdditionalInformationSchema = z.string();
+
+export const BugReportSchema = z.object({
+  name: BugReportNameSchema,
+  email: BugReportEmailSchema,
+  description: BugReportDescriptionSchema,
+  userAgent: BugReportUserAgentSchema,
+  additionalInformation: BugReportAdditionalInformationSchema,
 });
 
 export type BugReport = z.infer<typeof BugReportSchema>;
 
 export const POST = async (req: NextRequest) => {
+  const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
+  if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
   if (!process.env.BUG_RECIPIENT_EMAIL) {
     return new NextResponse("BUG_RECIPIENT_EMAIL not set.", {
       status: 500,
@@ -61,6 +77,8 @@ export const POST = async (req: NextRequest) => {
       status: 403,
     });
   }
+
+  const resend = createResendClient();
 
   const response = await resend.emails.send({
     from: `${name} <${SENDER.email}>`,

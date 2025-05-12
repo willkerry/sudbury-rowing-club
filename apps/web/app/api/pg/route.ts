@@ -1,10 +1,14 @@
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 export const revalidate = 60;
 
-export const GET = () => {
+export const GET = async (req: NextRequest) => {
+  const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
+  if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
   try {
     const status = getWodehouseFullDetails();
 

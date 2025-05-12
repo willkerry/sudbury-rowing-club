@@ -1,6 +1,7 @@
-import { ZTypedObject, sanityClient } from "@sudburyrc/api";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
+import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 export const revalidate = 300;
@@ -8,7 +9,7 @@ export const revalidate = 300;
 const NoticeSchema = z.object({
   display: z.boolean(),
   label: z.string(),
-  text: z.array(ZTypedObject).optional(),
+  text: z.unknown(),
   type: z.enum(["primary", "secondary", "success", "warning", "error"]),
   link: z.string().optional(),
   date: z
@@ -19,7 +20,10 @@ const NoticeSchema = z.object({
 
 export type Notice = z.infer<typeof NoticeSchema>;
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
+  const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
+  if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
   const rawNotice = await sanityClient
     .fetch(groq`*[_type == "regattaSettings"][0].note`)
     .catch(

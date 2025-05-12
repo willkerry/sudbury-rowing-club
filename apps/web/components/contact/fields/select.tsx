@@ -19,8 +19,7 @@ type Props = {
 
 /**
  * Provides a simple select field with automatic best-practice label syntax and
- * array-based options. Intended for compatibility with the `Field` component
- * from `react-final-form`.
+ * array-based options.
  */
 const Select = ({
   input,

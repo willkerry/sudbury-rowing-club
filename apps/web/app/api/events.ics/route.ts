@@ -1,7 +1,8 @@
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { serversideFetchCompetitions } from "@sudburyrc/api";
 import IcalBuilder from "@sudburyrc/ical-builder";
 import { kv } from "@vercel/kv";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours
@@ -32,7 +33,10 @@ const cachedTransformToICS = async () => {
   return icsString;
 };
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
+  const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
+  if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
   try {
     const iCalFeed = await cachedTransformToICS();
 
