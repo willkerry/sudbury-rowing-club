@@ -15,13 +15,9 @@ const useLanguage = () => {
 };
 
 const useURL = () => {
-  const [url, setURL] = useState<string | undefined>(undefined);
+  if (typeof window === "undefined") return "";
 
-  useEffect(() => {
-    setURL(window.location.href);
-  }, []);
-
-  return url;
+  return window.location.href;
 };
 
 const ReportABug = () => {
