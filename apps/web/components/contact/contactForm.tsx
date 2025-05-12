@@ -72,7 +72,13 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     onSubmitInvalid: () => scrollToSelector('[aria-invalid="true"]'),
   });
 
-  useTestingMode(form);
+  useTestingMode({
+    setValues: (values) => {
+      form.setFieldValue("to", values.to);
+      form.setFieldValue("name", values.name);
+      form.setFieldValue("email", values.email);
+    },
+  });
 
   if (disabled) return <DisabledOverlay form={<div />} />;
   if (form.state.isSubmitted) return <Success />;
