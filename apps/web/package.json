@@ -73,7 +73,7 @@
     "num-words": "^1.2.3",
     "nuqs": "^2.4.3",
     "pigeon-maps": "^0.22.1",
-    "posthog-js": "^1.215.1",
+    "posthog-js": "^1.240.6",
     "radash": "^12.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
