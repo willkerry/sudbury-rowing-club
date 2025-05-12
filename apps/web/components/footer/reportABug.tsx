@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const useLocale = () => Intl.DateTimeFormat().resolvedOptions().locale;
 
@@ -29,6 +29,9 @@ const useURL = () => {
   return url.toString();
 };
 
+const CLASSES = "transition hover:text-black";
+const TEXT = "Report a bug.";
+
 const ReportABug = () => {
   const locale = useLocale();
   const language = useLanguage();
@@ -45,13 +48,21 @@ const ReportABug = () => {
   const message = encodeURIComponent(stringifiedMessage);
 
   return (
-    <a
-      href={`/bugs?message=${message}`}
-      className="transition hover:text-black"
-      suppressHydrationWarning
+    <Suspense
+      fallback={
+        <a href="/bugs" className={CLASSES}>
+          {TEXT}
+        </a>
+      }
     >
-      Report a bug.
-    </a>
+      <a
+        href={`/bugs?message=${message}`}
+        className={CLASSES}
+        suppressHydrationWarning
+      >
+        {TEXT}
+      </a>
+    </Suspense>
   );
 };
 
