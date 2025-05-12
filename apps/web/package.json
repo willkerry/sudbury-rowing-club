@@ -60,7 +60,7 @@
     "get-wodehouse-name": "^0.3.1",
     "github-slugger": "^2.0.0",
     "groq": "^3.72.1",
-    "happy-dom": "^17.1.8",
+    "happy-dom": "^17.4.7",
     "he": "^1.2.0",
     "indefinite": "^2.5.1",
     "inter-ui": "^4.1.0",
