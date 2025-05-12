@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown",
+    "semantic-release": "semantic-release -e semantic-release-monorepo",
     "type-check": "tsc --noEmit"
   },
   "keywords": [],

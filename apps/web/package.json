@@ -8,7 +8,8 @@
     "dev": "next dev --turbopack -p 4321",
     "email-dev": "email dev",
     "start": "next start",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "semantic-release": "semantic-release -e semantic-release-monorepo"
   },
   "dependencies": {
     "@algolia/client-search": "^4.24.0",

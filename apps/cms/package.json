@@ -9,7 +9,8 @@
     "build": "sanity build -y && (test $SANITY_AUTH_TOKEN && sanity schema deploy || echo 'Warning: Skipping schema deploy as SANITY_AUTH_TOKEN is not defined. If building locally run `npx sanity schema deploy` to use OAUTH authentication istead.')",
     "dev": "sanity dev",
     "sanity": "sanity",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "semantic-release": "semantic-release -e semantic-release-monorepo"
   },
   "dependencies": {
     "@sanity/client": "^7.1.0",
