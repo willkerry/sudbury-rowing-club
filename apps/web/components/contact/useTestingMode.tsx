@@ -3,7 +3,6 @@
 import { browserIndexOfficers } from "@/lib/algolia";
 import { useHotkeys, useOs, useThrottledCallback } from "@mantine/hooks";
 import type { OfficerResponse } from "@sudburyrc/api";
-import type { ReactFormExtendedApi } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { type ExternalToast, toast } from "sonner";
@@ -14,7 +13,11 @@ const TESTING_MODE_TOAST_OPTIONS = {
   id: "testing-mode",
 } satisfies ExternalToast;
 
-export const useTestingMode = (form: ReactFormExtendedApi<Message>) => {
+export const useTestingMode = ({
+  setValues,
+}: {
+  setValues: (values: Pick<Message, "to" | "name" | "email">) => void;
+}) => {
   const os = useOs();
   const [isEnabled, setIsEnabled] = useState(false);
 
@@ -42,9 +45,7 @@ export const useTestingMode = (form: ReactFormExtendedApi<Message>) => {
       const { firstName, lastName, email } = details;
       const name = `${firstName} ${lastName}`;
 
-      form.setFieldValue("to", webmasterId ?? "");
-      form.setFieldValue("name", name);
-      form.setFieldValue("email", email);
+      setValues({ to: webmasterId ?? "", name, email });
 
       return undefined;
     },

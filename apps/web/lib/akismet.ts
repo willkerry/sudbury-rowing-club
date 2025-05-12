@@ -1,37 +1,38 @@
+import { kyInstance } from "@/app/get-query-client";
 import { BASE_URL } from "./constants";
 
 const API_KEY = "6c80e09f5c4d";
 
-export default async function checkForSpam(
+const checkForSpam = (
   userIp: string,
   userAgent: string,
   referrer: string,
   commentAuthor: string,
   commentAuthorEmail: string,
   commentContent: string,
-): Promise<boolean> {
-  const body = new URLSearchParams({
-    api_key: API_KEY,
-    blog: BASE_URL,
-    user_ip: userIp,
-    user_agent: userAgent,
-    referrer,
-    comment_type: "contact-form",
-    comment_author: commentAuthor,
-    comment_author_email: commentAuthorEmail,
-    comment_content: commentContent,
-    blog_lang: "en_gb",
-  });
+): Promise<boolean> => {
+  const formData = new FormData();
 
-  const headers = new Headers({
-    "Content-Type": "application/x-www-form-urlencoded",
-  });
+  formData.append("api_key", API_KEY);
+  formData.append("blog", BASE_URL);
+  formData.append("user_ip", userIp);
+  formData.append("user_agent", userAgent);
+  formData.append("referrer", referrer);
+  formData.append("comment_type", "contact-form");
+  formData.append("comment_author", commentAuthor);
+  formData.append("comment_author_email", commentAuthorEmail);
+  formData.append("comment_content", commentContent);
+  formData.append("blog_lang", "en_gb");
 
-  const isSpam = await fetch("https://rest.akismet.com/1.1/comment-check", {
-    method: "POST",
-    headers,
-    body,
-  }).then((res) => res.text());
+  return kyInstance
+    .post("https://rest.akismet.com/1.1/comment-check", {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: formData,
+    })
+    .text()
+    .then((r) => r === "true");
+};
 
-  return isSpam === "true";
-}
+export default checkForSpam;

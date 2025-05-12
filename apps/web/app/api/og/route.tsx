@@ -1,4 +1,5 @@
 import { BASE_URL } from "@/lib/constants";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { Wordmark } from "@sudburyrc/blue";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
@@ -58,6 +59,9 @@ const getFonts = async () =>
   ]);
 
 export const GET = async (request: NextRequest): Promise<ImageResponse> => {
+  const maybeRateLimitedResponse = await routeHandlerRatelimiter(request);
+  if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
   const { searchParams } = new URL(request.url);
 
   try {

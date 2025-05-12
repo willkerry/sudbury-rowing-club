@@ -1,9 +1,11 @@
 import checkForSpam from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import Bowser from "bowser";
 import { type NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { z } from "zod";
+
+import { BugReportSchema } from "./BugReportSchema";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -15,17 +17,10 @@ const parseToJSON = (value: string) => {
   }
 };
 
-const BugReportSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  description: z.string().min(1),
-  userAgent: z.string().min(1),
-  additionalInformation: z.string().optional(),
-});
-
-export type BugReport = z.infer<typeof BugReportSchema>;
-
 export const POST = async (req: NextRequest) => {
+  const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
+  if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
   if (!process.env.BUG_RECIPIENT_EMAIL) {
     return new NextResponse("BUG_RECIPIENT_EMAIL not set.", {
       status: 500,

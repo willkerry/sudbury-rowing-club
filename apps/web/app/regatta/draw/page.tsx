@@ -1,3 +1,4 @@
+import { kyInstance } from "@/app/get-query-client";
 import TextPage from "@/components/layouts/text-page";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";
@@ -32,10 +33,7 @@ const fetchDraw = async () => {
     firstSaturdayInAugust,
   ).setHours(10);
 
-  const draw = await (async () => {
-    const drawResponse = await fetch(DRAW_URL);
-    return drawResponse.text();
-  })();
+  const draw = await kyInstance.get(DRAW_URL).text();
 
   const thisYearsDrawIsPublished = (() => {
     const drawYear = /20\d\d/.exec(draw)?.[0];
