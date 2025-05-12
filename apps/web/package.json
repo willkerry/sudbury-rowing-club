@@ -89,7 +89,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "unfurl.js": "^6.4.0",
-    "zod": "^3.24.4"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@content-collections/core": "^0.8.0",

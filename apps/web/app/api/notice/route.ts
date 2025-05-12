@@ -1,5 +1,5 @@
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
-import { sanityClient } from "@sudburyrc/api";
+import { ZTypedObject, sanityClient } from "@sudburyrc/api";
 import groq from "groq";
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
@@ -9,7 +9,7 @@ export const revalidate = 300;
 const NoticeSchema = z.object({
   display: z.boolean(),
   label: z.string(),
-  text: z.unknown(),
+  text: z.array(ZTypedObject).optional(),
   type: z.enum(["primary", "secondary", "success", "warning", "error"]),
   link: z.string().optional(),
   date: z

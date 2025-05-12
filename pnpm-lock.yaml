@@ -318,7 +318,7 @@ importers:
         specifier: ^6.4.0
         version: 6.4.0
       zod:
-        specifier: ^3.24.4
+        specifier: ^3.24.1
         version: 3.24.4
     devDependencies:
       '@content-collections/core':
@@ -413,7 +413,7 @@ importers:
         version: 8.4.0(typescript@5.8.3)
       zod:
         specifier: ^3.24.1
-        version: 3.24.3
+        version: 3.24.4
     devDependencies:
       '@sudburyrc/tsconfig':
         specifier: workspace:*
@@ -16375,10 +16375,6 @@ packages:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.7.0
-    dev: false
-
-  /zod@3.24.3:
-    resolution: {integrity: sha512-HhY1oqzWCQWuUqvBFnsyrtZRhyPeR7SUGv+C4+MsisMuVfSPx8HpwWqH8tRahSlt6M3PiFAcoeFhZAqIXTxoSg==}
     dev: false
 
   /zod@3.24.4:
