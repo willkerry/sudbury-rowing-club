@@ -19,7 +19,8 @@
         "BUG_RECIPIENT_EMAIL",
         "NEXT_PUBLIC_*",
         "RESEND_API_KEY",
-        "SANITY_STUDIO_*"
+        "SANITY_STUDIO_*",
+        "SANITY_AUTH_TOKEN"
       ]
     },
     "dev": {
