@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const useLocale = () => Intl.DateTimeFormat().resolvedOptions().locale;
@@ -15,13 +16,17 @@ const useLanguage = () => {
 };
 
 const useURL = () => {
-  const [url, setURL] = useState<string | undefined>(undefined);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  useEffect(() => {
-    setURL(window.location.href);
-  }, []);
+  const origin = window ? window.location.origin : undefined;
 
-  return url;
+  const url = new URL(pathname, origin);
+  searchParams.forEach((value, key) => {
+    url.searchParams.set(key, value);
+  });
+
+  return url.toString();
 };
 
 const ReportABug = () => {
