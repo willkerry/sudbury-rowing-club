@@ -11,6 +11,8 @@ pre-commit:
       stage_fixed: true
 
 commit-msg:
+  only:
+    - master
   commands:
     lint-commit-msg:
       run: pnpm commitlint --edit $1
