@@ -1,6 +1,6 @@
 "use client";
 
-import { type BugReport, BugReportSchema } from "@/app/api/bug/route";
+import { type BugReport, BugReportSchema } from "@/app/api/bug/BugReportSchema";
 import Success from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
