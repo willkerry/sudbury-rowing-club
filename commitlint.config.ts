@@ -7,7 +7,7 @@ const Configuration: UserConfig = {
       2,
       "always",
       [
-        "repo",
+        "monorepo",
         "web",
         "cms",
         "api",
