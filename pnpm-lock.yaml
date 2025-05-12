@@ -231,8 +231,8 @@ importers:
         specifier: ^3.72.1
         version: 3.87.0
       happy-dom:
-        specifier: ^17.1.8
-        version: 17.4.4
+        specifier: ^17.4.7
+        version: 17.4.7
       he:
         specifier: ^1.2.0
         version: 1.2.0
@@ -10201,8 +10201,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /happy-dom@17.4.4:
-    resolution: {integrity: sha512-/Pb0ctk3HTZ5xEL3BZ0hK1AqDSAUuRQitOmROPHhfUYEWpmTImwfD8vFDGADmMAX0JYgbcgxWoLFKtsWhcpuVA==}
+  /happy-dom@17.4.7:
+    resolution: {integrity: sha512-NZypxadhCiV5NT4A+Y86aQVVKQ05KDmueja3sz008uJfDRwz028wd0aTiJPwo4RQlvlz0fznkEEBBCHVNWc08g==}
     engines: {node: '>=18.0.0'}
     dependencies:
       webidl-conversions: 7.0.0
