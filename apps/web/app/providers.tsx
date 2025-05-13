@@ -22,6 +22,7 @@ if (typeof window !== "undefined") {
     api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     person_profiles: "identified_only",
     mask_personal_data_properties: true,
+    opt_out_capturing_by_default: true,
   });
 }
 
