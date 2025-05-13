@@ -7,6 +7,12 @@ export type NavItemType = {
   href: string;
   mobileOnly?: boolean;
   cta?: boolean;
+  hideWhenLoggedIn?: boolean;
+};
+
+export type ComponentNavItemType = {
+  name: string;
+  component: React.ReactNode;
 };
 
 export interface IconNavItemType extends NavItemType {
