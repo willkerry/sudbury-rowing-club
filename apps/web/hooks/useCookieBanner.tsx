@@ -26,8 +26,8 @@ export const useCookieBanner = (posthog: PostHog | undefined) => {
         toast(
           <div>
             <p className="mb-3">
-              We use one cookie to help catch problems people encounter on our
-              website.
+              We’d like to log errors and usage with a service that sets a
+              cookie. This helps us fix bugs.
             </p>
 
             <div className="flex justify-end gap-2">
@@ -46,7 +46,7 @@ export const useCookieBanner = (posthog: PostHog | undefined) => {
                   toast.dismiss(COOKIE_TOAST_ID);
                 }}
               >
-                Decline
+                No thanks
               </Button>
 
               <Button
@@ -57,7 +57,7 @@ export const useCookieBanner = (posthog: PostHog | undefined) => {
                   toast.dismiss(COOKIE_TOAST_ID);
                 }}
               >
-                Accept
+                Allow it
               </Button>
             </div>
           </div>,
