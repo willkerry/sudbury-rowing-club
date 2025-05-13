@@ -5,6 +5,7 @@ import {
   MobileMenuButton,
   MobileMenuSection,
 } from "@/components/nav/mobile-menu";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import {
   Popover,
   PopoverButton,
@@ -71,6 +72,7 @@ const Nav = () => {
             >
               {secondaryNavigationGroups.map(({ title, items, icon }) => {
                 const Icon = icon || null;
+
                 return (
                   <NavSection
                     key={title}
@@ -86,6 +88,10 @@ const Nav = () => {
                 );
               })}
             </PopoverGroup>
+
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
 
           <Transition

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.24.0",
+    "@clerk/nextjs": "^6.19.2",
     "@fireworks-js/react": "^2.10.8",
     "@fontsource-variable/jetbrains-mono": "^5.1.2",
     "@fontsource-variable/source-serif-4": "^5.1.1",

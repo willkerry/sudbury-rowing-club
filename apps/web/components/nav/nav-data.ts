@@ -20,6 +20,7 @@ import {
   ShieldCheckIcon,
   SparklesIcon,
   TicketIcon,
+  UserCircleIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
 import { Facebook, Instagram } from "lucide-react";
@@ -187,6 +188,13 @@ const secondaryNavigationGroups: NavigationGroup[] = [
         href: "https://spond.com/login",
         icon: Spond,
         cta: true,
+      },
+      {
+        name: "Log in",
+        href: "/login",
+        cta: true,
+        icon: UserCircleIcon,
+        hideWhenLoggedIn: true,
       },
     ],
   },
