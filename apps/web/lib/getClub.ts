@@ -7,6 +7,7 @@ const SUFFIX_ALIASES = {
 } as const;
 
 type Club = {
+  id: number;
   name: string;
   href: string;
   bladeUrl?: string;
@@ -37,8 +38,28 @@ export const getClub = (name: string): Club | undefined => {
     ),
   );
 
-  return clubs.find((club) => possibleNames.includes(club?.name.toLowerCase()));
+  const foundClub = clubs.find((club) =>
+    possibleNames.includes(club?.name.toLowerCase()),
+  );
+
+  if (!foundClub) return undefined;
+
+  return {
+    id: foundClub.id,
+    name: foundClub.name,
+    href: foundClub.href,
+    bladeUrl: foundClub.newBladeUrl ?? undefined,
+  };
 };
 
-export const getClubByCode = (code: string): Club | undefined =>
-  clubs.find((club) => club?.code === code);
+export const getClubByCode = (code: string) => {
+  const foundClub = clubs.find((club) => club.code === code);
+  if (!foundClub) return undefined;
+
+  return {
+    id: foundClub.id,
+    name: foundClub.name,
+    href: foundClub.href,
+    bladeUrl: foundClub.newBladeUrl ?? undefined,
+  };
+};

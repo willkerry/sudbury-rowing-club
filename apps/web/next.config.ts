@@ -11,6 +11,7 @@ const config: NextConfig = {
     remotePatterns: [
       createRemotePattern("cdn.sanity.io", "https"),
       createRemotePattern("clubimages.britishrowing.org", "https"),
+      createRemotePattern("britishrowing.justgo.com", "https"),
     ],
   },
   redirects: () => Promise.resolve(redirectsArray),
