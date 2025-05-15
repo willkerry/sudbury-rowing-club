@@ -8,10 +8,7 @@ import { redirects as redirectsArray } from "./data/redirects.json" with {
 const config: NextConfig = {
   images: {
     minimumCacheTTL: 31536000,
-    remotePatterns: [
-      createRemotePattern("cdn.sanity.io", "https"),
-      createRemotePattern("clubimages.britishrowing.org", "https"),
-    ],
+    remotePatterns: [createRemotePattern("cdn.sanity.io", "https")],
   },
   redirects: () => Promise.resolve(redirectsArray),
   reactStrictMode: true,
