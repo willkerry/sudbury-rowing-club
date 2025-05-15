@@ -1,3 +1,4 @@
+import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Anonymous from "./anonymous";
@@ -25,6 +26,7 @@ const ClubImage = ({
     <a href={clubHref} target="_blank" rel="noopener noreferrer">
       <Image
         src={clubBladeUrl}
+        loader={cloudflareLoader}
         width={32}
         height={16}
         alt={alt}

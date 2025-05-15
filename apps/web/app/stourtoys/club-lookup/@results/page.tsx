@@ -1,5 +1,7 @@
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import allClubs from "@/data/clubs.json";
+import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
+import Image from "next/image";
 import Link from "next/link";
 
 const MAX_CLUBS = 64;
@@ -56,10 +58,13 @@ const ClubSearchResults = async (props: {
             {club.name}
             {clubs.length < MAX_CLUBS_WITH_BLADES && club.newBladeUrl && (
               <div className="absolute top-0 right-2 bottom-0 flex items-center">
-                <img
-                  className="h-6 w-12"
+                <Image
+                  className="h-4 w-8"
                   src={club.newBladeUrl}
                   alt=""
+                  loader={cloudflareLoader}
+                  width={32}
+                  height={16}
                   loading="lazy"
                 />
               </div>
