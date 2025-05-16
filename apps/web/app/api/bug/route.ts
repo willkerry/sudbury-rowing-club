@@ -7,8 +7,6 @@ import { Resend } from "resend";
 
 import { BugReportSchema } from "./BugReportSchema";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const parseToJSON = (value: string) => {
   try {
     return JSON.parse(value);
@@ -20,6 +18,8 @@ const parseToJSON = (value: string) => {
 export const POST = async (req: NextRequest) => {
   const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
   if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   if (!process.env.BUG_RECIPIENT_EMAIL) {
     return new NextResponse("BUG_RECIPIENT_EMAIL not set.", {

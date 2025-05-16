@@ -8,8 +8,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const formatName = (email: string, name: string) => {
   if (name) return `${name} <${email}>`;
 
@@ -109,6 +107,8 @@ export const POST = async (req: NextRequest) => {
       email: toEmail,
       role: toRole,
     } = await findRecipient(toID);
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     try {
       await resend.emails.send({
