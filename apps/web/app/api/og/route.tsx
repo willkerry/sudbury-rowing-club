@@ -6,8 +6,6 @@ import type { NextRequest } from "next/server";
 import { z } from "zod";
 import { variants } from "./variants";
 
-export const runtime = "edge";
-
 const ErrorResponse = (message: string) =>
   new ImageResponse(
     <div

@@ -49,3 +49,9 @@ tsconfig.tsbuildinfo
 
 # turbo
 .turbo
+
+# cloudflare
+.wrangler
+
+# open-next
+.open-next

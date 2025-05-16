@@ -45,7 +45,8 @@
       "**/.next/**",
       "**/.tmp/**",
       "**/.vscode/**",
-      "**/.content-collections/**"
+      "**/.content-collections/**",
+      "**/cloudflare-env.d.ts"
     ],
     "rules": {
       "recommended": true,
