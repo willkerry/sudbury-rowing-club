@@ -28,6 +28,10 @@
       "outputLogs": "new-only",
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"]
+    },
+    "build:worker": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".open-next/**"]
     }
   }
 }

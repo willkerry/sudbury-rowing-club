@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": ".open-next/worker.js",
-  "name": "sudburyrc-web",
+  "name": "sudbury-rc-web",
   "compatibility_date": "2025-05-15",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "assets": {
@@ -18,5 +18,21 @@
       // See https://developers.cloudflare.com/workers/wrangler/commands/#r2-bucket-create
       "bucket_name": "cache"
     }
-  ]
+  ],
+  "env": {
+    "production": {
+      "vars": {
+        "NEXT_PUBLIC_ALGOLIA_APP_ID": "29FJURULSW",
+        "NEXT_PUBLIC_ALGOLIA_INDEX_NAME": "news",
+        "NEXT_PUBLIC_ALGOLIA_SEARCH_KEY": "00e0a3d56005e16db7f6bc784430d3d7",
+        "NEXT_PUBLIC_HIGHLIGHT_PROJECT_ID": "6gl4pzzd",
+        "NEXT_PUBLIC_MAPTILER_KEY": "q3gbdmFDPGft7ylWLC6u",
+        "NEXT_PUBLIC_POSTHOG_HOST": "https://us.i.posthog.com",
+        "NEXT_PUBLIC_POSTHOG_KEY": "phc_NPjWQ08kmqGluntoAMit8PNfRTn64icqWW4ltnnbrVH",
+        "NEXT_PUBLIC_SANITY_DATASET": "production",
+        "NEXT_PUBLIC_SANITY_PROJECT_ID": "gvxge7ps",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YWNlLWRydW0tMzEuY2xlcmsuYWNjb3VudHMuZGV2JA"
+      }
+    }
+  }
 }
