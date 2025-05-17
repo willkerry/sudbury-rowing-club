@@ -49,3 +49,9 @@ tsconfig.tsbuildinfo
 
 # turbo
 .turbo
+
+# parcel
+.parcel-cache
+
+**/dist/
+**/node_modules/

@@ -1,4 +1,6 @@
 {
+  "name": "@sudburyrc/results",
+  "version": "1.0.1",
   "scripts": {
     "build": "tsx src/build.ts"
   },
@@ -9,20 +11,7 @@
     "nunjucks": "^3.2.4",
     "tidy-html5": "^0.1.1"
   },
-  "name": "results",
-  "version": "1.0.1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/willkerry/sudbury-regatta-results.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/willkerry/sudbury-regatta-results/issues"
-  },
   "browserslist": "> 0.5%, last 2 versions, not dead",
-  "homepage": "https://github.com/willkerry/sudbury-regatta-results#readme",
   "description": "",
   "devDependencies": {
     "@parcel/config-default": "^2.12.0",
