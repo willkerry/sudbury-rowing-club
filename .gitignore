@@ -42,6 +42,7 @@ tsconfig.tsbuildinfo
 
 # temporary
 .tmp
+.temp
 
 # react-email
 .react-email

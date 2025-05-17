@@ -2,23 +2,23 @@
   "name": "@sudburyrc/results",
   "version": "1.0.1",
   "scripts": {
+    "dev": "tsx watch --include \"./data/**/*\" src/build.ts & serve ./dist",
     "build": "tsx src/build.ts"
   },
   "type": "module",
-  "dependencies": {
-    "cli-progress": "^3.12.0",
-    "fs-extra": "^11.2.0",
-    "nunjucks": "^3.2.4",
-    "tidy-html5": "^0.1.1"
-  },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
   "devDependencies": {
     "@parcel/config-default": "^2.12.0",
     "@parcel/core": "^2.12.0",
-    "@types/cli-progress": "^3.11.6",
     "@types/fs-extra": "^11.0.4",
     "@types/nunjucks": "^3.2.6",
+    "@types/serve-handler": "^6.1.4",
+    "consola": "^3.4.2",
+    "fs-extra": "^11.3.0",
+    "nunjucks": "^3.2.4",
+    "serve": "^14.2.4",
+    "tidy-html5": "^0.1.1",
     "tsx": "^4.19.2",
     "typescript": "latest"
   },

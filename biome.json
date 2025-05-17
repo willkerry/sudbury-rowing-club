@@ -9,7 +9,8 @@
       "**/.next/**",
       "**/.tmp/**",
       "**/.vscode/**",
-      "**/.content-collections/**"
+      "**/.content-collections/**",
+      "apps/results/data/**"
     ],
     "enabled": true,
     "formatWithErrors": false,
@@ -45,7 +46,8 @@
       "**/.next/**",
       "**/.tmp/**",
       "**/.vscode/**",
-      "**/.content-collections/**"
+      "**/.content-collections/**",
+      "apps/results/data/**"
     ],
     "rules": {
       "recommended": true,

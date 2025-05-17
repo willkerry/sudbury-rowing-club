@@ -1,6 +1,6 @@
-import nunjucks from "nunjucks";
+import { readFile, readdir, stat } from "node:fs/promises";
 import { join } from "node:path";
-import { readdir, readFile, stat } from "node:fs/promises";
+import nunjucks from "nunjucks";
 
 // takes a directory path and returns formatted HTML string
 export const createDirectoryListing = async (

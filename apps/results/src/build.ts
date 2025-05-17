@@ -1,35 +1,36 @@
 import { Parcel } from "@parcel/core";
+import { consola } from "consola";
 import { remove } from "fs-extra/esm";
 
-import { generateResults, cleanResults, TEMP } from "./convert.ts";
-
-const bundler = new Parcel({
-  entries: `${TEMP}/index.html`,
-  defaultConfig: "@parcel/config-default",
-  mode: "production",
-});
+import { TEMP, cleanResults, generateResults } from "./convert.ts";
 
 const clean = async () =>
   Promise.all([cleanResults(), remove(".parcel-cache")]);
 
-const main = async () => {
+export const build = async () => {
+  const bundler = new Parcel({
+    entries: `${TEMP}/index.html`,
+    defaultConfig: "@parcel/config-default",
+    mode: "production",
+  });
+
   try {
     await clean();
 
-    console.log("Generating results from archival HTML...");
+    consola.start("Generating results from archival HTML...");
+
     await generateResults();
 
-    console.log("Bundling results with Parcel...");
+    consola.start("Bundling results with Parcel...");
+
     await bundler.run();
 
-    console.log("Done.");
+    consola.success("Done.");
   } catch (error) {
-    console.error(error);
-    process.exit(1);
+    consola.error(error);
   } finally {
     await clean();
-    process.exit(0);
   }
 };
 
-main();
+build();

@@ -1,0 +1,15 @@
+.return-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.5em;
+  background: #fff;
+}
+
+.listing-link {
+  margin: 2em auto 0 auto;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+}
