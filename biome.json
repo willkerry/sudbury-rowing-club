@@ -1,0 +1,110 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+
+  "formatter": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/.tmp/**",
+      "**/.vscode/**",
+      "**/.content-collections/**"
+    ],
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
+    "attributePosition": "auto"
+  },
+  "organizeImports": {
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/.tmp/**",
+      "**/.vscode/**"
+    ],
+    "enabled": true
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "defaultBranch": "master",
+    "useIgnoreFile": true
+  },
+
+  "linter": {
+    "enabled": true,
+    "ignore": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/.tmp/**",
+      "**/.vscode/**",
+      "**/.content-collections/**"
+    ],
+    "rules": {
+      "recommended": true,
+      "a11y": { "noRedundantAlt": "off" },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "error",
+        "noUselessStringConcat": "error",
+        "useArrowFunction": "error",
+        "useDateNow": "error",
+        "useSimplifiedLogicExpression": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noUndeclaredVariables": "error",
+        "useHookAtTopLevel": "error",
+        "noUnusedImports": "error"
+      },
+      "nursery": {
+        "noDuplicateElseIf": "error",
+        "useSortedClasses": {
+          "level": "error",
+          "fix": "safe",
+          "options": {
+            "functions": ["cn", "cva", "clsx"]
+          }
+        }
+      },
+      "performance": { "noReExportAll": "error" },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noEvolvingTypes": "error",
+        "useAwait": "error",
+        "useErrorMessage": "error"
+      },
+      "security": { "noDangerouslySetInnerHtml": "off" },
+      "style": {
+        "noNegationElse": "error",
+        "noNonNullAssertion": "error",
+        "useCollapsedElseIf": "error",
+        "useForOf": "error",
+        "useFragmentSyntax": "error",
+        "useShorthandArrayType": "error",
+        "useShorthandAssign": "error",
+        "useSingleCaseStatement": "error"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "attributePosition": "auto",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    },
+    "globals": ["React", "JSX"]
+  }
+}

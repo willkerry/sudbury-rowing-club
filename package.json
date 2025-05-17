@@ -1,0 +1,30 @@
+{
+  "name": "@sudburyrc/monorepo",
+  "version": "1.0.0",
+  "author": "",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "lefthook": "^1.10.10"
+  },
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "packageManager": "pnpm@8.14.1",
+  "scripts": {
+    "build": "turbo build",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "dev": "turbo watch dev",
+    "check": "biome check --write .",
+    "clean": "sh scripts/clean.sh"
+  },
+  "dependencies": {
+    "turbo": "^2.4.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^19.0.2",
+      "@types/react-dom": "^19.0.2"
+    }
+  }
+}

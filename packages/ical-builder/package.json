@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "@sudburyrc/ical-builder",
+  "version": "0.0.0",
+  "private": true,
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown",
+    "test": "vitest run",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@sudburyrc/api": "workspace:*",
+    "@sudburyrc/tsconfig": "workspace:*",
+    "tsdown": "^0.11.0-beta.3",
+    "typescript": "^5.7.3",
+    "vitest": "^1.6.0"
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  }
+}

@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@config '../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+/*
+  Apparently they also changed the normalise sheet so that buttons don't
+  automatically get a pointer cursor.
+*/
+@layer base {
+  button:not([disabled]) {
+    @apply cursor-pointer;
+  }
+}
+
+@utility hyphens-auto {
+  hyphens: auto;
+}
+
+@utility auto-lead {
+  & > p:first-child {
+    @apply font-medium font-sans;
+  }
+}
+
+@utility masonry-4-col {
+  column-count: 4;
+  column-gap: 2em;
+}
+
+@utility masonry-3-col {
+  column-count: 3;
+  column-gap: 2em;
+}
+
+@utility masonry-2-col {
+  column-count: 2;
+  column-gap: 2em;
+}
+
+@utility break-inside {
+  break-inside: avoid;
+}
+
+@utility disambiguate {
+  font-feature-settings: "ss01" 1, "ss04" 1;
+}
+
+@utility uppercase {
+  font-feature-settings: "case" 1, "cpsp" 1, "cv08" 1;
+}
+
+@layer base {
+  html {
+    @apply antialiased bg-white;
+    font-feature-settings: "ss03" 1;
+  }
+}
+
+.shiki {
+  --fd-diff-remove-color: rgba(200, 10, 100, 0.12);
+  --fd-diff-remove-symbol-color: #e60a64;
+  --fd-diff-add-color: rgba(14, 180, 100, 0.12);
+  --fd-diff-add-symbol-color: #0ac864;
+}
+
+.shiki code {
+  display: grid;
+  background-color: var(--shiki-light-bg);
+}
+
+.dark .shiki code {
+  background-color: var(--shiki-dark-bg);
+}
+
+.shiki code span {
+  color: var(--shiki-light);
+}
+
+.dark .shiki code span {
+  color: var(--shiki-dark);
+}
+
+.fd-codeblock code {
+  display: grid;
+  font-size: 13px;
+}
+
+.shiki code .diff.remove {
+  background-color: var(--fd-diff-remove-color);
+  opacity: 0.7;
+}
+
+.shiki code .diff:before {
+  position: absolute;
+  left: 6px;
+}
+
+.shiki code .diff.remove:before {
+  content: "-";
+  color: var(--fd-diff-remove-symbol-color);
+}
+
+.shiki code .diff.add {
+  background-color: var(--fd-diff-add-color);
+}
+
+.shiki code .diff.add:before {
+  content: "+";
+  color: var(--fd-diff-add-symbol-color);
+}
+
+.shiki code .diff {
+  margin: 0 -16px;
+  padding: 0 16px;
+  position: relative;
+}
+
+.shiki .highlighted {
+  margin: 0 -16px;
+  padding: 0 16px;
+  background-color: rgb(255 255 255 / 15%);
+}
+
+.shiki .highlighted-word {
+  padding: 1px 2px;
+  margin: -1px -3px;
+  border: 1px solid;
+  border-color: rgb(255 255 255 / 55%);
+  background-color: rgb(255 255 255 / 15%);
+  border-radius: 2px;
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "ui": "tui",
+  "tasks": {
+    "type-check": {
+      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+    },
+    "test": {
+      "outputs": []
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env.local"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
+      "env": [
+        "ALGOLIA_API_KEY",
+        "APP_URL",
+        "BUG_RECIPIENT_EMAIL",
+        "NEXT_PUBLIC_*",
+        "RESEND_API_KEY",
+        "SANITY_STUDIO_*",
+        "SANITY_AUTH_TOKEN"
+      ]
+    },
+    "dev": {
+      "dependsOn": ["^dev"],
+      "outputLogs": "new-only",
+      "inputs": ["$TURBO_DEFAULT$", ".env.local"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"]
+    }
+  }
+}

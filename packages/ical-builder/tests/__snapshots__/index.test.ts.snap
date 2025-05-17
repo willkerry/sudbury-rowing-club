@@ -1,0 +1,112 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`IcalBuilder 1`] = `
+"BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//SudburyRC//EN
+X-WR-CALNAME:SudburyRC
+X-WR-TIMEZONE:Europe/London
+X-WR-CALDESC:SudburyRC
+BEGIN:VEVENT
+UID:978-1-57868-584-4
+DTSTAMP:20240501T000000.000Z
+DTSTART:20240501
+SUMMARY:Oberbrunneringham Regatta
+DESCRIPTION:Vallum adstringo vix certe credo.
+LOCATION:Gwent
+URL:https://spotted-skullduggery.me.uk/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-1-3980-3060-2
+DTSTAMP:20240508T000000.000Z
+DTSTART:20240508
+SUMMARY:Castle Will Regatta
+DESCRIPTION:Usus usus volutabrum demitto.
+LOCATION:Somerset
+URL:https://starry-ink.ltd.uk
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-1-176-51597-0
+DTSTAMP:20240515T000000.000Z
+DTSTART:20240515
+SUMMARY:Breitenbergwood Regatta
+DESCRIPTION:Audentia teres tabula defleo bis.
+LOCATION:Herefordshire
+URL:https://complex-alb.gov.uk
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-0-626-39964-1
+DTSTAMP:20240522T000000.000Z
+DTSTART:20240522
+SUMMARY:Long Kertzmann Regatta
+DESCRIPTION:Alveus adulescens volubilis sopor solitudo spargo assumenda bene.
+LOCATION:Warwickshire
+URL:https://colorful-rhythm.cymru/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-0-350-46991-7
+DTSTAMP:20240529T000000.000Z
+DTSTART:20240529
+SUMMARY:Durganwick Regatta
+DESCRIPTION:Solitudo non catena cupio deleniti demo caries qui articulus confero.
+LOCATION:County Antrim
+URL:https://radiant-physiology.gov.uk/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-1-193-68006-4
+DTSTAMP:20240605T000000.000Z
+DTSTART:20240605
+SUMMARY:Pacocha-under-Witting Regatta
+DESCRIPTION:Delicate dolore voluptatibus adsidue pecco defendo tactus accusantium adflicto decimus.
+LOCATION:Wiltshire
+URL:https://wooden-caffeine.gov.uk/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-0-16-384902-9
+DTSTAMP:20240612T000000.000Z
+DTSTART:20240612
+SUMMARY:Mannthorpe Regatta
+DESCRIPTION:Dolor eos veritatis aliquid verus.
+LOCATION:Surrey
+URL:https://bold-trim.cymru
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-0-681-67822-4
+DTSTAMP:20240619T000000.000Z
+DTSTART:20240619
+SUMMARY:South McGlynnthorpe Regatta
+DESCRIPTION:Tricesimus corpus abeo arca.
+LOCATION:Bedfordshire
+URL:https://nocturnal-distance.org.uk
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-0-942753-58-5
+DTSTAMP:20240626T000000.000Z
+DTSTART:20240626
+SUMMARY:Nikolausbury Regatta
+DESCRIPTION:Sponte dedecor deduco tyrannus volutabrum subnecto angelus coadunatio tenetur torqueo.
+LOCATION:Tyne and Wear
+URL:https://humming-policy.scot/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:978-1-389-65765-8
+DTSTAMP:20240703T000000.000Z
+DTSTART:20240703
+SUMMARY:Willdon Regatta
+DESCRIPTION:Curriculum quaerat pecto demo accusantium delinquo.
+LOCATION:Norfolk
+URL:https://sandy-pilgrim.cymru/
+STATUS:CONFIRMED
+END:VEVENT
+
+END:VCALENDAR"
+`;
