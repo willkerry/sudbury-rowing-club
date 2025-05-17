@@ -1,0 +1,39 @@
+BODY
+{
+    FONT-SIZE: 11pt;
+    COLOR: #000066;
+    FONT-FAMILY: Tahoma, Arial, Verdana;
+    BACKGROUND-COLOR: white
+}
+TABLE
+{
+    FONT-SIZE: x-small
+}
+TD
+{
+    FONT-SIZE: 10pt;
+    FONT-FAMILY: Tahoma, Arial, Verdana
+}
+TD.CellA
+{
+    BORDER-TOP: gray thin solid;
+    BORDER-BOTTOM: gray thin solid;
+    BACKGROUND-COLOR: silver;
+    TEXT-ALIGN: left
+}
+TD.CellB
+{
+    BORDER-RIGHT: gray thin solid;
+    BORDER-TOP: gray thin solid;
+    BORDER-BOTTOM: gray thin solid;
+    BACKGROUND-COLOR: silver;
+    TEXT-ALIGN: right
+}
+TD.CellC
+{
+    BORDER-RIGHT: gray thin solid
+}
+A
+{
+    TEXT-DECORATION: none
+}

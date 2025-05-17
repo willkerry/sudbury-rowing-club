@@ -1,0 +1,27 @@
+BODY {
+  color: black;
+  font-family: Arial, Verdana;
+  font-size: small;
+}
+TABLE {
+}
+TD {
+  font-family: Arial, Verdana;
+  font-size: 10pt;
+}
+TD.CellA {
+  background-color: silver;
+  text-align: left;
+  border-bottom: gray thin solid;
+  border-top: gray thin solid;
+}
+TD.CellB {
+  background-color: silver;
+  text-align: right;
+  border-right: gray thin solid;
+  border-bottom: gray thin solid;
+  border-top: gray thin solid;
+}
+TD.CellC {
+  border-right: gray thin solid;
+}
