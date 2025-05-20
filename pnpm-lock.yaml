@@ -138,8 +138,8 @@ importers:
         specifier: ^1.1.7
         version: 1.1.8(@content-collections/core@0.8.2)(@content-collections/mdx@0.2.2)(fumadocs-core@15.3.1)
       '@headlessui/react':
-        specifier: ^2.2.0
-        version: 2.2.2(react-dom@19.1.0)(react@19.1.0)
+        specifier: ^2.2.3
+        version: 2.2.3(react-dom@19.1.0)(react@19.1.0)
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.1.0)
@@ -3381,8 +3381,8 @@ packages:
       fumadocs-core: 15.3.1(@types/react@19.1.2)(algoliasearch@4.24.0)(next@15.3.2)(react-dom@19.1.0)(react@19.1.0)
     dev: false
 
-  /@headlessui/react@2.2.2(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-zbniWOYBQ8GHSUIOPY7BbdIn6PzUOq0z41RFrF30HbjsxG6Rrfk+6QulR8Kgf2Vwj2a/rE6i62q5vo+2gI5dJA==}
+  /@headlessui/react@2.2.3(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-hgOJGXPifPlOczIeSwX8OjLWRJ5XdYApZFf7DeCbCrO1PXHkPhNTRrA9ZwJsgAG7SON1i2JcvIreF/kbgtJeaQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^18 || ^19 || ^19.0.0-rc
@@ -3391,7 +3391,7 @@ packages:
       '@floating-ui/react': 0.26.28(react-dom@19.1.0)(react@19.1.0)
       '@react-aria/focus': 3.20.2(react-dom@19.1.0)(react@19.1.0)
       '@react-aria/interactions': 3.25.0(react-dom@19.1.0)(react@19.1.0)
-      '@tanstack/react-virtual': 3.13.6(react-dom@19.1.0)(react@19.1.0)
+      '@tanstack/react-virtual': 3.13.8(react-dom@19.1.0)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       use-sync-external-store: 1.5.0(react@19.1.0)
