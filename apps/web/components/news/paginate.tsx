@@ -69,6 +69,12 @@ const Paginate = ({
         </PaginationItem>
       )}
 
+      {page + 1 < pages && (
+        <PaginationItem>
+          <PaginationLink href={`${template}${pages}`}>{pages}</PaginationLink>
+        </PaginationItem>
+      )}
+
       {showNext && (
         <PaginationItem>
           <PaginationNext href={next} aria-disabled={!showNext} />
