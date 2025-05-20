@@ -69,9 +69,8 @@ const Nav = () => {
               as="nav"
               className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
             >
-              {secondaryNavigationGroups.map(({ title, items, icon }) => {
-                const Icon = icon || null;
-                return (
+              {secondaryNavigationGroups.map(
+                ({ title, items, icon: Icon = null }) => (
                   <NavSection
                     key={title}
                     label={title}
@@ -81,10 +80,10 @@ const Nav = () => {
                       ) : undefined
                     }
                     compact
-                    {...{ items }}
+                    items={items}
                   />
-                );
-              })}
+                ),
+              )}
             </PopoverGroup>
           </div>
 
