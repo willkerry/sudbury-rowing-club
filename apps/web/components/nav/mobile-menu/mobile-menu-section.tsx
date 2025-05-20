@@ -1,8 +1,12 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import type { IconNavItemType } from "@/types/nav-item";
-import { CloseButton } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import * as Accordion from "@radix-ui/react-accordion";
 import Link from "next/link";
 
 type SectionProps = {
@@ -42,9 +46,9 @@ const SectionWrapper = ({
 
   if (collapse)
     return (
-      <Accordion.Root type="single" collapsible>
-        <Accordion.Item className={outer} value={title}>
-          <Accordion.Trigger
+      <Accordion type="single" collapsible>
+        <AccordionItem className={outer} value={title}>
+          <AccordionTrigger
             className={cn(
               titleClasses,
               "-my-4 [&[data-state=open]>svg]:-rotate-180 flex w-full justify-between py-4",
@@ -55,17 +59,17 @@ const SectionWrapper = ({
               aria-hidden
               className="h-4 w-4 transition-transform duration-200"
             />
-          </Accordion.Trigger>
-          <Accordion.Content
+          </AccordionTrigger>
+          <AccordionContent
             className={cn(
               panel,
               "transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:opacity-0 data-[state=open]:opacity-100",
             )}
           >
             {inner}
-          </Accordion.Content>
-        </Accordion.Item>
-      </Accordion.Root>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     );
   return (
     <div className={outer}>
@@ -84,10 +88,8 @@ export const MobileMenuSection = ({
   <SectionWrapper {...{ title, collapse, compact }}>
     {data.map((item) => {
       const Icon = item.icon || null;
-
       return (
-        <CloseButton
-          as={Link}
+        <Link
           key={item.name}
           href={item.href}
           className="-m-2 flex items-center rounded-md p-2 hover:bg-gray-100"
@@ -101,7 +103,7 @@ export const MobileMenuSection = ({
           <span className="font-medium text-gray-900">
             {item.shortName ? item.shortName : item.name}
           </span>
-        </CloseButton>
+        </Link>
       );
     })}
   </SectionWrapper>

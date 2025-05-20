@@ -1,20 +1,18 @@
 "use client";
 
 import { NavLogo, NavSection } from "@/components/nav";
+import { MobileMenuSection } from "@/components/nav/mobile-menu";
+import { Button } from "@/components/ui/button";
 import {
-  MobileMenuButton,
-  MobileMenuSection,
-} from "@/components/nav/mobile-menu";
-import {
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-  Transition,
-} from "@headlessui/react";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
+import { Bars3Icon } from "lucide-react";
 import { fork } from "radash";
-import { Fragment } from "react";
 import { navigationGroups, secondaryNavigationGroups } from "./nav-data";
 
 const extractSingletonGroups = (
@@ -52,87 +50,72 @@ const Nav = () => {
   );
 
   return (
-    <Popover className="bg-white text-gray-900" id="navbar">
-      {({ open }) => (
-        <>
-          <div className="container flex items-center justify-between px-4! py-3 xs:py-4 md:py-6">
-            <NavLogo />
-            <MobileMenuButton />
-
-            <PopoverGroup as="nav" className="mx-auto hidden sm:flex">
-              {navigationGroups.map(({ title, items }) => (
-                <NavSection key={title} label={title} {...{ items }} />
-              ))}
-            </PopoverGroup>
-
-            <PopoverGroup
-              as="nav"
-              className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
-            >
-              {secondaryNavigationGroups.map(({ title, items, icon }) => {
-                const Icon = icon || null;
-                return (
-                  <NavSection
-                    key={title}
-                    label={title}
-                    icon={
-                      Icon ? (
-                        <Icon aria-hidden className="flex h-4 w-4" />
-                      ) : undefined
-                    }
-                    compact
-                    {...{ items }}
-                  />
-                );
-              })}
-            </PopoverGroup>
-          </div>
-
-          <Transition
-            show={open}
-            as={Fragment}
-            enter="duration-200 ease-out"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="duration-100 ease-in"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-          >
-            <PopoverPanel
-              focus
-              static
-              className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden"
-            >
-              <div className="relative divide-y rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-                {primaryGroups.map(({ title, items }) => (
-                  <MobileMenuSection
-                    collapse={title.toLowerCase() === "regatta"}
-                    key={title}
-                    title={title}
-                    data={items}
-                  />
-                ))}
-
-                {secondaryGroups.map(({ title, items }) => (
-                  <MobileMenuSection
-                    key={title}
-                    title={title}
-                    data={items}
-                    compact
-                  />
-                ))}
-              </div>
-              <div className="absolute top-3 right-3">
-                <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden">
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden />
-                </PopoverButton>
-              </div>
-            </PopoverPanel>
-          </Transition>
-        </>
-      )}
-    </Popover>
+    <div className="bg-white text-gray-900" id="navbar">
+      <div className="container flex items-center justify-between px-4! py-3 xs:py-4 md:py-6">
+        <NavLogo />
+        {/* Mobile menu trigger */}
+        <NavigationMenu className="sm:hidden">
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="border-0 bg-transparent p-0 shadow-none">
+                <span className="sr-only">Open menu</span>
+                <Bars3Icon className="h-6 w-6" aria-hidden />
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden">
+                <div className="relative divide-y rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                  {primaryGroups.map(({ title, items }) => (
+                    <MobileMenuSection
+                      collapse={title.toLowerCase() === "regatta"}
+                      key={title}
+                      title={title}
+                      data={items}
+                    />
+                  ))}
+                  {secondaryGroups.map(({ title, items }) => (
+                    <MobileMenuSection
+                      key={title}
+                      title={title}
+                      data={items}
+                      compact
+                    />
+                  ))}
+                </div>
+                <div className="absolute top-3 right-3">
+                  <Button variant="ghost" size="icon">
+                    <span className="sr-only">Close menu</span>
+                    <XMarkIcon className="h-6 w-6" aria-hidden />
+                  </Button>
+                </div>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        {/* Desktop nav */}
+        <nav className="mx-auto hidden sm:flex">
+          {navigationGroups.map(({ title, items }) => (
+            <NavSection key={title} label={title} {...{ items }} />
+          ))}
+        </nav>
+        <nav className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 ">
+          {secondaryNavigationGroups.map(({ title, items, icon }) => {
+            const Icon = icon || null;
+            return (
+              <NavSection
+                key={title}
+                label={title}
+                icon={
+                  Icon ? (
+                    <Icon aria-hidden className="flex h-4 w-4" />
+                  ) : undefined
+                }
+                compact
+                {...{ items }}
+              />
+            );
+          })}
+        </nav>
+      </div>
+    </div>
   );
 };
 
