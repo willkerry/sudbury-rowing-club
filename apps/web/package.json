@@ -16,7 +16,7 @@
     "@fontsource-variable/jetbrains-mono": "^5.1.2",
     "@fontsource-variable/source-serif-4": "^5.1.1",
     "@fumadocs/content-collections": "^1.1.7",
-    "@headlessui/react": "^2.2.0",
+    "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
     "@mantine/hooks": "^7.16.2",
     "@maptiler/sdk": "^3.2.2",
