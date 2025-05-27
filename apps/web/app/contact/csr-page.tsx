@@ -45,7 +45,7 @@ const ContactPage = ({
     },
     enabled: !!q,
     staleTime: Number.POSITIVE_INFINITY,
-    select: (data) => data.filter((d) => d)[0].results[0],
+    select: (data) => data.filter((d) => d)[0].results[0]?.hits[0],
   });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
