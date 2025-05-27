@@ -1,4 +1,4 @@
-import { serverIndexOfficers } from "@/lib/algolia";
+import { OFFICERS_INDEX_NAME, getServerClient } from "@/lib/algolia";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchOfficerNames } from "@sudburyrc/api";
 import { CSRContactPage } from "./csr-page";
@@ -12,9 +12,10 @@ export const metadata = createMetadata({
 const fetchOfficersAndUpdateSearchIndex = async () => {
   const officers = await fetchOfficerNames();
 
-  serverIndexOfficers.replaceAllObjects(
-    officers.map((o) => ({ ...o, objectID: o._id })),
-  );
+  await getServerClient().replaceAllObjects({
+    indexName: OFFICERS_INDEX_NAME,
+    objects: officers.map((o) => ({ ...o, objectID: o._id })),
+  });
 
   return officers;
 };

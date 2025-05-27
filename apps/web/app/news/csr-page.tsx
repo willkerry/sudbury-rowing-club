@@ -7,7 +7,7 @@ import Link from "@/components/stour/link";
 import Loading from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { browserIndex } from "@/lib/algolia";
+import { SEARCH_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
 import { SOCIALS } from "@/lib/constants";
 import type { serverGetNArticles } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
@@ -30,7 +30,16 @@ type MinimalArticle = Awaited<ReturnType<typeof serverGetNArticles>>[number];
 const search = async (term: string | null): Promise<MinimalArticle[]> => {
   if (!term) return new Promise((resolve) => resolve([]));
 
-  return browserIndex.search<MinimalArticle>(term).then(({ hits }) => hits);
+  const { results } = await getBrowserClient().searchForHits<MinimalArticle>({
+    requests: [
+      {
+        indexName: SEARCH_INDEX_NAME,
+        query: term,
+      },
+    ],
+  });
+
+  return results[0]?.hits ?? [];
 };
 
 const NewsPage = ({

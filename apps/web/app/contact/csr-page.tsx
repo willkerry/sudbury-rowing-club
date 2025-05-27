@@ -4,9 +4,9 @@ import ContactForm from "@/components/contact";
 import Container from "@/components/layouts/container";
 import HeroTitle from "@/components/stour/hero/hero-title";
 import Loading from "@/components/stour/loading";
-import { browserIndexOfficers } from "@/lib/algolia";
+import { OFFICERS_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import type { fetchOfficerNames } from "@sudburyrc/api";
+import type { OfficerResponse, fetchOfficerNames } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import { parseAsArrayOf, parseAsString, useQueryStates } from "nuqs";
 import { shake } from "radash";
@@ -27,17 +27,25 @@ const ContactPage = ({
 
   const { data: guessedRecipient } = useQuery({
     queryKey: ["officers", q],
-    queryFn: () =>
-      Promise.all(
+    queryFn: () => {
+      const client = getBrowserClient();
+
+      return Promise.all(
         (q ?? []).map((query) =>
-          browserIndexOfficers
-            .search<(typeof officers)[number]>(query)
-            .then((r) => r.hits[0]),
+          client.searchForHits<OfficerResponse>({
+            requests: [
+              {
+                indexName: OFFICERS_INDEX_NAME,
+                query,
+              },
+            ],
+          }),
         ),
-      ),
+      );
+    },
     enabled: !!q,
     staleTime: Number.POSITIVE_INFINITY,
-    select: (data) => data.filter((d) => d)[0],
+    select: (data) => data.filter((d) => d)[0].results[0],
   });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
