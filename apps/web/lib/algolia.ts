@@ -1,18 +1,18 @@
-import assert from "node:assert";
 import { algoliasearch } from "algoliasearch";
 import { liteClient } from "algoliasearch/lite";
+import invariant from "tiny-invariant";
 
-assert(
+invariant(
   process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
   "Missing Algolia index name environment variable",
 );
 
 export const getServerClient = () => {
-  assert(
+  invariant(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     "Missing Algolia App ID environment variable",
   );
-  assert(
+  invariant(
     process.env.ALGOLIA_API_KEY,
     "Missing Algolia API key environment variable",
   );
@@ -24,11 +24,11 @@ export const getServerClient = () => {
 };
 
 export const getBrowserClient = () => {
-  assert(
+  invariant(
     process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     "Missing Algolia App ID environment variable",
   );
-  assert(
+  invariant(
     process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
     "Missing Algolia search key environment variable",
   );

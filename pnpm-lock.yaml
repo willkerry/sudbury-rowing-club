@@ -353,6 +353,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.1.5)
+      tiny-invariant:
+        specifier: ^1.3.3
+        version: 1.3.3
       unfurl.js:
         specifier: ^6.4.0
         version: 6.4.0
