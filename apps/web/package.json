@@ -47,7 +47,7 @@
     "@tanstack/react-table": "^8.21.2",
     "@upstash/ratelimit": "^2.0.5",
     "@vercel/kv": "^3.0.0",
-    "algoliasearch": "^4.24.0",
+    "algoliasearch": "^5.25.0",
     "bowser": "^2.11.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
