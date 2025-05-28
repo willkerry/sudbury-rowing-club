@@ -27,25 +27,16 @@ const ContactPage = ({
 
   const { data: guessedRecipient } = useQuery({
     queryKey: ["officers", q],
-    queryFn: () => {
-      const client = getBrowserClient();
-
-      return Promise.all(
-        (q ?? []).map((query) =>
-          client.searchForHits<OfficerResponse>({
-            requests: [
-              {
-                indexName: OFFICERS_INDEX_NAME,
-                query,
-              },
-            ],
-          }),
-        ),
-      );
-    },
+    queryFn: () =>
+      getBrowserClient().searchForHits<OfficerResponse>({
+        requests: (q ?? []).map((query) => ({
+          indexName: OFFICERS_INDEX_NAME,
+          query,
+        })),
+      }),
     enabled: !!q,
     staleTime: Number.POSITIVE_INFINITY,
-    select: (data) => data.filter((d) => d)[0].results[0]?.hits[0],
+    select: (data) => data.results.flatMap((d) => d.hits)?.[0],
   });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
