@@ -1,6 +1,6 @@
 "use client";
 
-import { browserIndexOfficers } from "@/lib/algolia";
+import { OFFICERS_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
 import { useHotkeys, useOs, useThrottledCallback } from "@mantine/hooks";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
@@ -31,8 +31,16 @@ export const useTestingMode = ({
   const { data: webmasterId } = useQuery({
     enabled: isEnabled,
     queryKey: ["webmasterId"],
-    queryFn: () => browserIndexOfficers.search<OfficerResponse>("WEBMASTER"),
-    select: (data) => data.hits[0]?._id,
+    queryFn: () =>
+      getBrowserClient().searchForHits<OfficerResponse>({
+        requests: [
+          {
+            indexName: OFFICERS_INDEX_NAME,
+            query: "WEBMASTER",
+          },
+        ],
+      }),
+    select: (data) => data.results[0]?.hits[0]?._id,
   });
 
   const { refetch: setFieldValues } = useQuery({
