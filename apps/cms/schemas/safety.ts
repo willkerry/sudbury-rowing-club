@@ -24,20 +24,7 @@ const Safety = defineType({
     }),
     defineField({
       name: "link",
-      type: "object",
-      title: "Link",
-      fields: [
-        defineField({
-          name: "title",
-          type: "string",
-          title: "Title",
-        }),
-        defineField({
-          name: "url",
-          type: "url",
-          title: "URL",
-        }),
-      ],
+      type: "link",
     }),
     defineField({ name: "date", type: "date", title: "Date Updated" }),
   ],
