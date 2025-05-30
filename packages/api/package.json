@@ -19,19 +19,19 @@
     "@stdlib/nlp-sentencize": "^0.2.2",
     "@sudburyrc/helpers": "workspace:*",
     "emoji-regex": "^10.4.0",
-    "groq": "^3.72.1",
+    "groq": "^3.90.0",
     "he": "^1.2.0",
-    "isomorphic-dompurify": "^2.21.0",
-    "next-sanity": "^9.8.47",
+    "isomorphic-dompurify": "^2.25.0",
+    "next-sanity": "^9.12.0",
     "picosanity": "^4.1.1",
-    "tsup": "^8.3.6",
-    "zod": "^3.24.1"
+    "tsup": "^8.5.0",
+    "zod": "^3.25.42"
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "^1.2.3",
-    "@types/node": "^20.17.16",
-    "typescript": "^5.7.3"
+    "@types/node": "^20.17.55",
+    "typescript": "^5.8.3"
   },
   "browser": {
     "fs": false,
