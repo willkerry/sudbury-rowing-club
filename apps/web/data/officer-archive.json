@@ -1791,7 +1791,7 @@
     "ladiesSecretary": null
   },
   {
-    "season": ["2025"],
+    "season": ["2025 I"],
     "president": null,
     "chair": ["Sean Moriarty"],
     "captain": ["Paul Shipton"],
@@ -1803,6 +1803,18 @@
       "Valerie Ingham+Boor",
       "Victoria Burgess"
     ],
+    "ladiesCaptain": null,
+    "ladiesViceCaptain": null,
+    "ladiesSecretary": null
+  },
+  {
+    "season": ["2025 II"],
+    "president": null,
+    "chair": ["Tony Hogsbjerg"],
+    "captain": ["Harry Moule"],
+    "secretary": ["Emma Krohn"],
+    "treasurer": ["Vacant"],
+    "viceCaptains": ["Emma Krohn", "Sophie Brown", "Amelia Moule"],
     "ladiesCaptain": null,
     "ladiesViceCaptain": null,
     "ladiesSecretary": null

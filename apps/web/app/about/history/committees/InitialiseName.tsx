@@ -14,7 +14,7 @@ export const InitialisedName = ({ name }: { name: string }) => {
 
   return (
     <TooltipProvider>
-      <Tooltip>
+      <Tooltip delayDuration={0}>
         <TooltipTrigger className="block select-none leading-snug">
           {initialisedName}
         </TooltipTrigger>
