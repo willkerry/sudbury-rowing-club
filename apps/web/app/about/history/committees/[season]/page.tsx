@@ -1,6 +1,7 @@
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { getCommitteeArchive } from "@/lib/get-committee-archive";
+import { slug } from "github-slugger";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { listify } from "radash";
@@ -20,7 +21,7 @@ const getClubName = (year: number | string) => {
 
 export const generateStaticParams = async () =>
   committeeArchive.map(({ season }) => ({
-    season,
+    season: slug(season),
   }));
 
 type Params = Awaited<ReturnType<typeof generateStaticParams>>[number];
@@ -33,7 +34,7 @@ export const generateMetadata = async ({
   const { season } = await params;
 
   const committee = committeeArchive.find(
-    (committee) => committee.season === season,
+    (committee) => slug(committee.season) === season,
   );
 
   if (!committee) return {};
@@ -54,13 +55,13 @@ const Committee = async ({
   const { season } = await params;
 
   const committee = committeeArchive.find(
-    (committee) => committee.season === season,
+    (committee) => slug(committee.season) === season,
   );
 
   if (!committee) return notFound();
 
-  const clubName = getClubName(season);
-  const pageTitle = `${season} ${clubName[0]} Committee`;
+  const clubName = getClubName(committee.season);
+  const pageTitle = `${committee.season} ${clubName[0]} Committee`;
 
   return (
     <TextPage title={pageTitle} color="transparent">
@@ -85,7 +86,7 @@ const Committee = async ({
         </tbody>
 
         <caption className="mt-6 caption-bottom text-gray-500">
-          {clubName[1]} committee of {season}
+          {clubName[1]} committee of {committee.season}
         </caption>
       </table>
     </TextPage>

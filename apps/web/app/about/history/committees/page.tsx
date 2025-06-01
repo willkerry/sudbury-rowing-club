@@ -1,6 +1,7 @@
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { getCommitteeArchive } from "@/lib/get-committee-archive";
+import { slug } from "github-slugger";
 import Link from "next/link";
 import { listify } from "radash";
 import { InitialisedName } from "./InitialiseName";
@@ -19,7 +20,7 @@ const Archive = () => (
   >
     {committeeArchive.map(({ season, ...committee }) => (
       <div key={season}>
-        <Link href={`committees/${season}`}>
+        <Link href={`committees/${slug(season)}`}>
           <h2 id={`season-${season}`}>{season}</h2>
         </Link>
         <ul className="mb-8 list-none pl-0">

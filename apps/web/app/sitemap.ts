@@ -8,6 +8,7 @@ import {
   serverGetAllSlugs,
 } from "@sudburyrc/api";
 import { allPolicies } from "content-collections";
+import { slug } from "github-slugger";
 import type { MetadataRoute } from "next";
 import {
   getSlugifiedRecords,
@@ -73,8 +74,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const committeeArchiveDynamicPaths: MetadataRoute.Sitemap =
     committeeArchive.map(({ season }) => ({
-      url: url(`/about/history/committees/${season}`),
-      lastModified: new Date(season),
+      url: url(`/about/history/committees/${slug(season)}`),
+      lastModified: new Date(season.split(" ")[0]),
       changeFrequency: "never",
       priority: 0.1,
     }));
