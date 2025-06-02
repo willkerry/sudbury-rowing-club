@@ -14,7 +14,7 @@
     "@algolia/client-search": "^5.25.0",
     "@fireworks-js/react": "^2.10.8",
     "@fontsource-variable/jetbrains-mono": "^5.2.5",
-    "@fontsource-variable/source-serif-4": "^5.2.7",
+    "@fontsource-variable/source-serif-4": "^5.2.8",
     "@fumadocs/content-collections": "^1.2.0",
     "@headlessui/react": "^2.2.4",
     "@heroicons/react": "^2.2.0",
