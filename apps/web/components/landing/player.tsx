@@ -30,7 +30,7 @@ const controlText: Record<PlayerState, string> = {
 const Player = () => {
   const [playerState, setPlayerState] = useState<PlayerState>("idle");
 
-  const throttledSetPlayerState = useThrottledCallback(setPlayerState, 500);
+  const throttledSetPlayerState = useThrottledCallback(setPlayerState, 100);
 
   const setError = () => throttledSetPlayerState("error");
   const setIdle = () => throttledSetPlayerState("idle");
