@@ -17,7 +17,7 @@ export const metadata = createMetadata({
 });
 
 const History: NextPage = () => (
-  <TextPage title="Club History">
+  <TextPage title="Club history">
     <p className="lead">
       Although early records have been lost, it is known that Sudbury RC,
       formerly Stour BC, was formed some time before 1873, but ceased to

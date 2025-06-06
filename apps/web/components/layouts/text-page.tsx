@@ -11,27 +11,28 @@ import type { ComponentProps } from "react";
 const TextPage = ({
   children,
   title,
-  color,
   prose = "prose",
   font,
   className,
 }: {
   title: string;
   children: React.ReactNode;
-  color?: ComponentProps<typeof HeroTitle>["color"];
   prose?: "max-w-prose" | "prose" | false;
   font?: ComponentProps<typeof Text>["font"];
   className?: Parameters<typeof cn>[0];
 }) => (
   <>
-    <HeroTitle title={title} prose={!!prose} breadcrumbs {...{ color }} />
+    <HeroTitle title={title} breadcrumbs />
     <Container>
-      <Text
-        className={cn("mx-auto mt-8 mb-16 sm:my-16", prose, className)}
-        font={font}
-      >
-        {children}
-      </Text>
+      {prose === "prose" ? (
+        <Text className={cn("mt-8 mb-16 sm:my-16", className)} font={font}>
+          {children}
+        </Text>
+      ) : (
+        <div className={cn("mt-8 mb-16 sm:my-16", prose, className)}>
+          {children}
+        </div>
+      )}
     </Container>
   </>
 );
