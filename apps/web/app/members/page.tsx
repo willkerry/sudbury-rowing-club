@@ -17,7 +17,7 @@ const Notices = async () => {
 
   return (
     <>
-      <HeroTitle prose title="Notices" transparent />
+      <HeroTitle prose title="Notices" />
       <Container className="my-12 max-w-prose space-y-6">
         {notices.map((notice) => (
           <CollapsibleCard key={notice._id} {...{ notice }} />

@@ -45,11 +45,7 @@ const Coursemap = async () => {
 
   return (
     <>
-      <HeroTitle
-        title="Sudbury Regatta Course"
-        breadcrumbs
-        color="transparent"
-      />
+      <HeroTitle title="Regatta course" breadcrumbs />
       <Container className="mb-16">
         <div className="prose my-16">
           <p className="lead">{heading}</p>

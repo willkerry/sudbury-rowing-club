@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const Custom404 = () => (
   <>
-    <HeroTitle prose title="404 Page not found." transparent />
+    <HeroTitle prose title="404 Page not found." />
 
     <div className="flex justify-center">
       <Image

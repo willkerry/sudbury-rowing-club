@@ -17,11 +17,7 @@ const SafetyItemLayout = async ({
 
   const { title } = entry;
 
-  return (
-    <TextPage title={title} color="transparent">
-      {children}
-    </TextPage>
-  );
+  return <TextPage title={title}>{children}</TextPage>;
 };
 
 export default SafetyItemLayout;

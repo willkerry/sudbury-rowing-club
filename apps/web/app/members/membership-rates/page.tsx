@@ -16,7 +16,7 @@ const MembershipRates = async () => {
   const rates = await scrapeRatesTable();
 
   return (
-    <TextPage title="Membership Rates" color="transparent">
+    <TextPage title="Membership rates">
       <p>
         The values on this page are periodically retrieved from the definitive{" "}
         <a href="https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories">

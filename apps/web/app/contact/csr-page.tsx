@@ -56,7 +56,6 @@ const ContactPage = ({
             ? `Contact ${initialRecipientName}`
             : "Contact a club officer"
         }
-        color="transparent"
       />
       <Container className="max-w-lg pt-6 pb-12 sm:pt-12">
         <div className="prose mx-auto pb-10">

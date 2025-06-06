@@ -13,7 +13,7 @@ import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
 export default function SafetyError({ error }: { error: Error }) {
   return (
     <>
-      <HeroTitle prose title="Something went wrong." transparent />
+      <HeroTitle prose title="Something went wrong." />
 
       <div className="flex justify-center">
         <Image

@@ -36,7 +36,7 @@ const RecordHolder = ({ record }: { record: Record }) => {
 };
 
 export const RecordHolderList = ({ records }: { records: Record[] }) => (
-  <ul className="not-prose mb-12 grid grid-cols-1 justify-items-center gap-3">
+  <ul className="not-prose mb-12 grid grid-cols-1 gap-3">
     {records.map((record) => (
       <RecordHolder key={`${record.club}-${record.year}`} record={record} />
     ))}

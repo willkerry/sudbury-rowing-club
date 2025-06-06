@@ -108,7 +108,7 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
 
 const FindUs: NextPage = () => (
   <>
-    <HeroTitle title="How to find us" color="transparent" />
+    <HeroTitle title="How to find us" />
 
     <Container>
       <div className="grid grid-cols-1 gap-16 pb-10 sm:py-10 md:grid-cols-2">

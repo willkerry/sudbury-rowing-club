@@ -102,7 +102,7 @@ const Draw = async () => {
         the week before the regatta.
       </p>
       <p>{paragraph}</p>
-      <p className="flex justify-center py-4">
+      <p className="py-4">
         <Button shadow size="lg" asChild>
           <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
             {button}
