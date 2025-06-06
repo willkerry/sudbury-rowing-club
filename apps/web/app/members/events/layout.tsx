@@ -9,7 +9,7 @@ const EventsLayout = ({
   calendar: React.ReactNode;
 }) => (
   <>
-    <HeroTitle prose title="Competition Calendar" transparent />
+    <HeroTitle breadcrumbs title="Competition Calendar" />
     <Container>{children}</Container>
     <Container>{calendar}</Container>
 

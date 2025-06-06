@@ -8,7 +8,7 @@ export const metadata = createMetadata({
 });
 
 const EventPage = () => (
-  <div className="prose mx-auto mb-12">
+  <div className="prose mb-12">
     <p>
       This calendar is provided as an ergonomic way for Sudbury members to check
       the dates of upcoming events and competitions. The data displayed here are

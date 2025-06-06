@@ -15,11 +15,12 @@ const committeeArchive = getCommitteeArchive();
 
 const Archive = () => (
   <TextPage
-    title="Committee Archive"
-    className="grid grid-cols-2 gap-x-2 sm:grid-cols-3 md:grid-cols-4"
+    title="Committee archive"
+    prose={false}
+    className="prose flex max-w-full flex-wrap"
   >
     {committeeArchive.map(({ season, ...committee }) => (
-      <div key={season}>
+      <div key={season} className="w-40">
         <Link href={`committees/${slug(season)}`}>
           <h2 id={`season-${season}`}>{season}</h2>
         </Link>

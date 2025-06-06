@@ -39,7 +39,7 @@ export const metadata = createMetadata({
 });
 
 const StourToys = () => (
-  <TextPage title="StourToys" color="transparent">
+  <TextPage title="StourToys">
     <StourToyList items={stourToys} />
   </TextPage>
 );

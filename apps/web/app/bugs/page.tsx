@@ -12,7 +12,7 @@ export const metadata = createMetadata({
 
 const BugsPage = () => (
   <>
-    <HeroTitle prose title="Report a bug 💩" color="transparent" />
+    <HeroTitle prose title="Report a bug 💩" />
     <Container className="max-w-lg pt-6 pb-12 sm:pt-12">
       <Suspense fallback={<div>Loading...</div>}>
         <BugsClientSide />
