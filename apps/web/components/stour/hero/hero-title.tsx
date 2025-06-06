@@ -32,11 +32,11 @@ const HeroTitle = ({
         </div>
 
         <div
-          className={cn("py-10", {
+          className={cn("pt-6 pb-3 sm:py-10", {
             "text-center": prose,
           })}
         >
-          <h1 className="font-bold text-2xl text-gray-900 sm:text-5xl">
+          <h1 className="font-bold text-3xl text-gray-900 sm:text-5xl">
             {title}
           </h1>
         </div>
