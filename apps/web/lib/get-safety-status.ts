@@ -7,6 +7,7 @@ import { type Severity, severities } from "@/types/severity";
 import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
 import { HTTPError } from "ky";
+import { sift } from "radash";
 import { z } from "zod";
 import { CLUB_LOCATION } from "./constants";
 
@@ -214,6 +215,11 @@ const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     description: "Unable to fetch safety data from any source",
     date: new Date(),
     statusMessage: "No data available",
+    errors: sift([
+      sanityResult.error,
+      eaWarningResult.error,
+      stationResult.error,
+    ]),
   };
 };
 

@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { EnvironmentAgency, MetOffice } from "../icons";
 import Label from "../stour/label";
 import Loading from "../stour/loading";
+import { Error as ErrorComponent } from "../ui/error";
 import DateFormatter from "../utils/date-formatter";
 import ForecastComponent from "./forecast";
 import QuotedWarning, { type WarningSourceEnum } from "./quoted-warning";
@@ -16,10 +17,11 @@ export type SafetyComponentProps = {
   status: Severity;
   statusMessage: string;
   source?: WarningSourceEnum;
+  errors?: string[];
 };
 
 const SafetyComponent = async () => {
-  const { description, date, status, statusMessage, source } =
+  const { description, date, status, statusMessage, source, errors } =
     await getSafetyStatus();
 
   return (
@@ -38,6 +40,14 @@ const SafetyComponent = async () => {
           </div>
         )}
       </div>
+
+      {Number(errors?.length) > 0 && (
+        <div className="p-3 sm:p-4">
+          {errors?.map((error) => (
+            <ErrorComponent key={error} error={{ message: error }} />
+          ))}
+        </div>
+      )}
 
       <Suspense fallback={<Loading />}>
         <ForecastComponent />
