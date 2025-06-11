@@ -21,16 +21,19 @@ const SafetyItemCardBorder = forwardRef<
     isEmergency: boolean;
     className?: string;
   } & React.HTMLAttributes<HTMLDivElement>
->(({ isEmergency, className, ...props }, ref) => (
-  <div
-    ref={ref}
-    {...props}
-    className={cn(
-      "rounded-lg border p-2",
-      isEmergency ? "border-2 border-red-400" : "bg-white",
-      className,
-    )}
-  />
+>(({ isEmergency, className, children, ...props }, ref) => (
+  <div {...props}>
+    <div
+      ref={ref}
+      className={cn(
+        "rounded-lg border p-2",
+        isEmergency ? "border-2 border-red-400" : "bg-white",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  </div>
 ));
 
 const SafetyItemTitle = ({
