@@ -22,10 +22,17 @@ const TextPage = ({
   className?: Parameters<typeof cn>[0];
 }) => (
   <>
-    <HeroTitle title={title} breadcrumbs />
+    <HeroTitle
+      title={title}
+      breadcrumbs
+      prose={prose === "prose" || prose === "max-w-prose"}
+    />
     <Container>
       {prose === "prose" ? (
-        <Text className={cn("mt-8 mb-16 sm:my-16", className)} font={font}>
+        <Text
+          className={cn("mx-auto mt-8 mb-16 sm:my-16", className)}
+          font={font}
+        >
           {children}
         </Text>
       ) : (
