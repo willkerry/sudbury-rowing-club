@@ -132,8 +132,8 @@ importers:
         specifier: ^5.2.5
         version: 5.2.5
       '@fontsource-variable/source-serif-4':
-        specifier: ^5.2.7
-        version: 5.2.7
+        specifier: ^5.2.8
+        version: 5.2.8
       '@fumadocs/content-collections':
         specifier: ^1.2.0
         version: 1.2.0(@content-collections/core@0.8.2)(@content-collections/mdx@0.2.2)(fumadocs-core@15.4.2)
@@ -4207,8 +4207,8 @@ packages:
     resolution: {integrity: sha512-G3sN1xq1moZd0JL+hFaA4MEdsiQS+JXC/z7m+EqA5/Fzn5CQlXGUaaNKFGQdDsFuLTnCfW0KOOSWHjygNfjEPw==}
     dev: false
 
-  /@fontsource-variable/source-serif-4@5.2.7:
-    resolution: {integrity: sha512-YvLPjm4XCzBPsvsbbhlu+sb/zB+13B2mdYG6tcJEKIoX5QS3dElizKhOwxgWiMoidcDixrikbcdUmUkjLXvb6Q==}
+  /@fontsource-variable/source-serif-4@5.2.8:
+    resolution: {integrity: sha512-qj5xZxbKmucdY2t6Qp2RdFzgQoepl7FLukVOE527o9ueDSQ3M4nwoec5YyTn45iP2y8jCb8H3Se6JnhL7tlltA==}
     dev: false
 
   /@formatjs/intl-localematcher@0.6.1:
