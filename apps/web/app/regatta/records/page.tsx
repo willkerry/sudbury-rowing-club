@@ -9,7 +9,7 @@ const RecordsPage = () => {
 
   return (
     <>
-      <HeroTitle title="Course records" breadcrumbs color="transparent" />
+      <HeroTitle title="Course records" breadcrumbs />
 
       <div className="p-4">
         <DataTable columns={columns} data={records} />

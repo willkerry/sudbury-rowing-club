@@ -29,7 +29,7 @@ const Governance = async () => {
 
   return (
     <>
-      <HeroTitle prose title="Governance" />
+      <HeroTitle breadcrumbs title="Governance" />
       <Container className="mt-4 mb-16 sm:my-16">
         <Officers officers={officers} />
         <Committees committees={committees} />

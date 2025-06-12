@@ -64,7 +64,7 @@ const Committee = async ({
   const pageTitle = `${committee.season} ${clubName[0]} Committee`;
 
   return (
-    <TextPage title={pageTitle} color="transparent">
+    <TextPage title={pageTitle}>
       <table>
         <thead>
           <tr>

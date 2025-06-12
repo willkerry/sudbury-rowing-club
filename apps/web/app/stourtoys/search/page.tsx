@@ -8,7 +8,7 @@ export const metadata = createMetadata({
 });
 
 const Clubs = () => (
-  <TextPage title="Search the site" color="transparent" prose="max-w-prose">
+  <TextPage title="Search the site" prose="max-w-prose">
     <SiteSearch />
   </TextPage>
 );
