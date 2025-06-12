@@ -19,7 +19,7 @@
     "clean": "sh scripts/clean.sh"
   },
   "dependencies": {
-    "turbo": "^2.4.0"
+    "turbo": "^2.5.4"
   },
   "pnpm": {
     "overrides": {
