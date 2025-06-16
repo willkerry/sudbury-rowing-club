@@ -23,7 +23,7 @@
     "he": "^1.2.0",
     "isomorphic-dompurify": "^2.25.0",
     "next-sanity": "^9.12.0",
-    "picosanity": "^4.1.1",
+    "picosanity": "^5.0.0",
     "tsup": "^8.5.0",
     "zod": "^3.25.42"
   },
