@@ -255,8 +255,8 @@ importers:
         specifier: ^10.4.0
         version: 10.4.0
       final-form:
-        specifier: ^4.20.10
-        version: 4.20.10
+        specifier: ^5.0.0
+        version: 5.0.0
       fumadocs-core:
         specifier: ^15.4.2
         version: 15.4.2(@types/react@19.1.6)(algoliasearch@5.25.0)(next@15.3.3)(react-dom@19.1.0)(react@19.1.0)
@@ -2862,11 +2862,11 @@ packages:
   /@babel/runtime@7.27.3:
     resolution: {integrity: sha512-7EYtGezsdiDMyY80+65EzwiGmcJqpmcZCojSXaRgdrBaGtWTgDZKq69cPIVped6MkIM78cTQ2GOiEYjwOlG4xw==}
     engines: {node: '>=6.9.0'}
+    dev: false
 
   /@babel/runtime@7.27.6:
     resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
-    dev: false
 
   /@babel/template@7.27.2:
     resolution: {integrity: sha512-LPDZ85aEJyYSd18/DkjNh4/y1ntkE5KwUHWTiqgRxruuZL2F1yuHligVHLvcHY2vMHXttKFpJn6LwfI7cw7ODw==}
@@ -4260,7 +4260,7 @@ packages:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       css-box-model: 1.2.1
       raf-schd: 4.0.3
       react: 19.1.0
@@ -11601,7 +11601,7 @@ packages:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
     dev: false
 
   /date-fns@4.1.0:
@@ -12485,11 +12485,11 @@ packages:
     dependencies:
       to-regex-range: 5.0.1
 
-  /final-form@4.20.10:
-    resolution: {integrity: sha512-TL48Pi1oNHeMOHrKv1bCJUrWZDcD3DIG6AGYVNOnyZPr7Bd/pStN0pL+lfzF5BNoj/FclaoiaLenk4XUIFVYng==}
+  /final-form@5.0.0:
+    resolution: {integrity: sha512-HByosvP7x3N4bWTCPoBeUeoMatadewRifxaH3qhCQI2DBwFNO0m5wxETLVUXNGWz2yokdSCMdJEvtjfZoXnqDA==}
     engines: {node: '>=8'}
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
     dev: false
 
   /find-cache-dir@2.1.0:
@@ -13135,7 +13135,7 @@ packages:
   /history@5.3.0:
     resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
     dev: false
 
   /hoist-non-react-statics@3.3.2:
@@ -13241,7 +13241,7 @@ packages:
   /i18next@23.16.8:
     resolution: {integrity: sha512-06r/TitrM88Mg5FdUXAKL96dJMzgqLE5dv3ryBAra4KCwD9mJ4ndOTS95ZuymIGoE+2hzfdaMak2X11/es7ZWg==}
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
     dev: false
 
   /iconv-lite@0.4.24:
@@ -14466,7 +14466,7 @@ packages:
     peerDependencies:
       esbuild: 0.*
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       '@esbuild-plugins/node-resolve': 0.2.2(esbuild@0.25.5)
       '@fal-works/esbuild-plugin-global-externals': 2.1.2
       '@mdx-js/esbuild': 3.1.0(acorn@8.15.0)(esbuild@0.25.5)
@@ -15917,7 +15917,7 @@ packages:
     resolution: {integrity: sha512-OBatVyC/N7SCW/FaDHrSd+vn0o5cS855TOmYi4OkdWUMSJCET/xip//ch8xGUvtr3i44X9LVyWwQlRMTN3pwSA==}
     engines: {node: '>=10'}
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
     dev: false
 
   /postcss-load-config@6.0.1:
@@ -16190,7 +16190,7 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       react: 19.1.0
     dev: false
 
@@ -16263,7 +16263,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       '@types/react': 19.1.6
       focus-lock: 1.3.6
       prop-types: 15.8.1
@@ -16282,7 +16282,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       '@types/react': 19.1.8
       focus-lock: 1.3.6
       prop-types: 15.8.1
@@ -16314,7 +16314,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       html-parse-stringify: 3.0.1
       i18next: 23.16.8
       react: 19.1.0
@@ -18963,7 +18963,7 @@ packages:
     peerDependencies:
       react: '>=16.13'
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       dequal: 2.0.3
       react: 19.1.0
     dev: false
@@ -19672,7 +19672,7 @@ packages:
     resolution: {integrity: sha512-Z2Fe1bn+eLstG8DRR6FTavGD+MeAwyfmouhHsIUgaADz8jvFKbO/fXc2trJKZg+5EBjh4gGm3iU/t3onKlXHIg==}
     engines: {node: '>=10'}
     dependencies:
-      '@babel/runtime': 7.27.3
+      '@babel/runtime': 7.27.6
       '@types/lodash': 4.17.17
       lodash: 4.17.21
       lodash-es: 4.17.21
