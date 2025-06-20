@@ -1,6 +1,6 @@
 import Container from "@/components/layouts/container";
 import CollapsibleCard from "@/components/stour/collapsible-card";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchNotices } from "@sudburyrc/api";
 
@@ -17,7 +17,7 @@ const Notices = async () => {
 
   return (
     <>
-      <HeroTitle prose title="Notices" />
+      <PageHeader prose title="Notices" />
       <Container className="my-12 max-w-prose space-y-6">
         {notices.map((notice) => (
           <CollapsibleCard key={notice._id} {...{ notice }} />

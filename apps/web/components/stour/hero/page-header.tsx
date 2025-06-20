@@ -19,7 +19,7 @@ type Props =
       breadcrumbs?: true;
     });
 
-const HeroTitle = ({
+export const PageHeader = ({
   title,
   description,
   prose = false,
@@ -62,5 +62,3 @@ const HeroTitle = ({
     </div>
   );
 };
-
-export default HeroTitle;

@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import Text from "@/components/stour/text";
 import { cn } from "@/lib/utils";
 import type { ComponentProps } from "react";
@@ -26,7 +26,7 @@ const TextPage = ({
   description?: string;
 }) => (
   <>
-    <HeroTitle title={title} breadcrumbs description={description} />
+    <PageHeader title={title} breadcrumbs description={description} />
     <Container>
       {prose === "prose" ? (
         <Text className={cn("mb-16", className)} font={font} lead={lead}>

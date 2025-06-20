@@ -1,6 +1,6 @@
 import Container from "@/components/layouts/container";
 import EventsComponent from "@/components/regatta/events";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
@@ -31,7 +31,7 @@ const EventsPage = async () => {
 
   return (
     <>
-      <HeroTitle title="Event information" breadcrumbs />
+      <PageHeader title="Event information" breadcrumbs />
       <Container className="mb-12">
         <EventsComponent data={events} />
       </Container>

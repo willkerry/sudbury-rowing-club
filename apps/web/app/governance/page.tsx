@@ -5,7 +5,7 @@ import {
   Officers,
 } from "@/components/governance";
 import Container from "@/components/layouts/container";
-import { HeroTitle } from "@/components/stour/hero";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { makeShareImageURL } from "@/lib/og-image";
 import { fetchGovernance } from "@sudburyrc/api";
 import type { Metadata } from "next";
@@ -29,7 +29,7 @@ const Governance = async () => {
 
   return (
     <>
-      <HeroTitle breadcrumbs title="Governance" />
+      <PageHeader breadcrumbs title="Governance" />
       <Container className="mb-16">
         <Officers officers={officers} />
         <Committees committees={committees} />

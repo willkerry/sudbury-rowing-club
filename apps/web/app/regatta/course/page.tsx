@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/create-metadata";
 import { sanityClient } from "@sudburyrc/api";
@@ -45,7 +45,7 @@ const Coursemap = async () => {
 
   return (
     <>
-      <HeroTitle title="Regatta course" breadcrumbs />
+      <PageHeader title="Regatta course" breadcrumbs />
       <Container className="mb-16">
         <div className="prose auto-lead mb-16">
           <p>{heading}</p>

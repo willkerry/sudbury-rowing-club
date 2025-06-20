@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/container";
-import { HeroTitle } from "@/components/stour/hero";
+import { PageHeader } from "@/components/stour/hero/page-header";
 
 const EventsLayout = ({
   children,
@@ -9,7 +9,7 @@ const EventsLayout = ({
   calendar: React.ReactNode;
 }) => (
   <>
-    <HeroTitle breadcrumbs title="Competition Calendar" />
+    <PageHeader breadcrumbs title="Competition Calendar" />
     <Container>{children}</Container>
     <Container>{calendar}</Container>
 

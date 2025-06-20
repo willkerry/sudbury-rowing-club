@@ -1,6 +1,6 @@
 import Container from "@/components/layouts/container";
 import Results from "@/components/regatta/results";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import Text from "@/components/stour/text";
 import { createMetadata } from "@/lib/create-metadata";
 import type { PortableTextProps } from "@portabletext/react";
@@ -43,7 +43,7 @@ const ResultsPage = async () => {
 
   return (
     <>
-      <HeroTitle title="Regatta results" breadcrumbs />
+      <PageHeader title="Regatta results" breadcrumbs />
       <Container className="pb-16">
         <Results results={results} records={other.records}>
           <Text lead portableText={other.description} />

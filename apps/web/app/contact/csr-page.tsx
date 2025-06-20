@@ -2,7 +2,7 @@
 
 import ContactForm from "@/components/contact";
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import Loading from "@/components/stour/loading";
 import { OFFICERS_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
@@ -49,7 +49,7 @@ const ContactPage = ({
 
   return (
     <>
-      <HeroTitle
+      <PageHeader
         prose
         title={
           initialValues.to

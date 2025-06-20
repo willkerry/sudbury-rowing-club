@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import type React from "react";
 
 const SafetyLayout = async ({
@@ -10,7 +10,7 @@ const SafetyLayout = async ({
   status: React.ReactNode;
 }) => (
   <>
-    <HeroTitle prose title="Safety" />
+    <PageHeader prose title="Safety" />
 
     <Container className="mx-auto my-6 max-w-prose space-y-16 sm:my-12">
       <div className="overflow-hidden rounded-sm border">{status}</div>
