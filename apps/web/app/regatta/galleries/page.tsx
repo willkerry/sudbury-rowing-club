@@ -40,7 +40,7 @@ const Photography = async () => {
     <>
       <HeroTitle title="Official regatta photography" breadcrumbs />
       <Container>
-        <div className="prose prose-lg max-w-none py-16">
+        <div className="prose prose-lg max-w-none pb-16">
           <table>
             <thead>
               <tr>

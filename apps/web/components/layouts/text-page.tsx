@@ -14,29 +14,26 @@ const TextPage = ({
   prose = "prose",
   font,
   className,
+  lead = false,
+  description,
 }: {
   title: string;
   children: React.ReactNode;
   prose?: "max-w-prose" | "prose" | false;
   font?: ComponentProps<typeof Text>["font"];
   className?: Parameters<typeof cn>[0];
+  lead?: boolean;
+  description?: string;
 }) => (
   <>
-    <HeroTitle
-      title={title}
-      breadcrumbs
-      prose={prose === "prose" || prose === "max-w-prose"}
-    />
+    <HeroTitle title={title} breadcrumbs description={description} />
     <Container>
       {prose === "prose" ? (
-        <Text
-          className={cn("mx-auto mt-8 mb-16 sm:my-16", className)}
-          font={font}
-        >
+        <Text className={cn("mb-16", className)} font={font} lead={lead}>
           {children}
         </Text>
       ) : (
-        <div className={cn("mt-8 mb-16 sm:my-16", prose, className)}>
+        <div className={cn("mb-16", prose, className, { "auto-lead": lead })}>
           {children}
         </div>
       )}

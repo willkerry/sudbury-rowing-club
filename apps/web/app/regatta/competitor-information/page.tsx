@@ -42,8 +42,8 @@ const CompetitorInformationPage = async () => {
   return (
     <>
       <HeroTitle title="Competitor information" breadcrumbs />
-      <Container className="py-16">
-        <CompetitorInformation {...{ description }} items={documents} />
+      <Container className="pb-16">
+        <CompetitorInformation description={description} items={documents} />
       </Container>
     </>
   );

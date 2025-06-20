@@ -32,7 +32,7 @@ const EventsPage = async () => {
   return (
     <>
       <HeroTitle title="Event information" breadcrumbs />
-      <Container className="my-12">
+      <Container className="mb-12">
         <EventsComponent data={events} />
       </Container>
     </>

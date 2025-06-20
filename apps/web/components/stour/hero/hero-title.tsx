@@ -4,57 +4,60 @@ import Container from "../../layouts/container";
 import { cn } from "@/lib/utils";
 import Breadcrumbs from "../breadcrumbs";
 
-interface BaseProps {
+type BaseProps = {
   title: string;
   description?: string;
-  prose?: boolean;
-  breadcrumbs?: boolean;
-}
+};
+
+type Props =
+  | (BaseProps & {
+      prose?: true;
+      breadcrumbs?: false;
+    })
+  | (BaseProps & {
+      prose?: false;
+      breadcrumbs?: true;
+    });
 
 const HeroTitle = ({
   title,
   description,
   prose = false,
   breadcrumbs = false,
-}: BaseProps) => {
+}: Props) => {
   return (
-    <div className="bg-blue-950">
-      <Container>
-        <header className="relative space-y-2.5">
+    <div>
+      {breadcrumbs && !prose && (
+        <div className="relative hidden border-y py-3 sm:block">
+          <Container>
+            <Breadcrumbs
+              listClassName="not-prose flex font-medium text-sm"
+              currentLabel={title}
+              inactiveItemClassName="text-gray-500 hover:text-gray-900 transition after:content-['→'] after:px-3 after:text-gray-400 capitalize transition"
+              activeItemClassName="whitespace-nowrap text-gray-900"
+            />
+          </Container>
+        </div>
+      )}
+
+      <Container
+        className={cn("my-10", {
+          "text-center": !!prose,
+        })}
+      >
+        <h1 className="font-semibold text-3xl sm:text-5xl">{title}</h1>
+
+        {description ? (
           <div
-            className={cn("pt-6 pb-3 sm:py-10", {
-              "text-center": prose,
+            className={cn("my-3.5 max-w-2xl text-2xl", {
+              "mx-auto": !!prose,
             })}
           >
-            <h1 className="font-bold text-3xl text-blue-50 sm:text-5xl">
-              {title}
-            </h1>
-
-            <div className="h-5">
-              {breadcrumbs && (
-                <div
-                  className={cn("mt-3", {
-                    "ml-0.5": !prose,
-                    "mx-auto max-w-min": prose,
-                  })}
-                >
-                  <Breadcrumbs
-                    listClassName="not-prose flex font-medium text-sm"
-                    currentLabel={title}
-                    inactiveItemClassName="text-blue-200 hover:text-blue-50 transition after:content-['→'] after:px-2 after:text-white after:opacity-50 capitalize transition"
-                    activeItemClassName="whitespace-nowrap font-medium text-blue-50"
-                  />
-                </div>
-              )}
-            </div>
+            {smartQuotes(description)}
           </div>
-
-          {description && (
-            <div className="prose prose-gray mt-2 text-lg">
-              <p>{smartQuotes(description)}</p>
-            </div>
-          )}
-        </header>
+        ) : (
+          <div className="h-3.5" />
+        )}
       </Container>
     </div>
   );

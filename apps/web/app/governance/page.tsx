@@ -30,7 +30,7 @@ const Governance = async () => {
   return (
     <>
       <HeroTitle breadcrumbs title="Governance" />
-      <Container className="mt-4 mb-16 sm:my-16">
+      <Container className="mb-16">
         <Officers officers={officers} />
         <Committees committees={committees} />
         <NonExec trustees={trustees} vicePresidents={vicePresidents} />

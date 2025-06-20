@@ -47,8 +47,8 @@ const Coursemap = async () => {
     <>
       <HeroTitle title="Regatta course" breadcrumbs />
       <Container className="mb-16">
-        <div className="prose my-16">
-          <p className="lead">{heading}</p>
+        <div className="prose auto-lead mb-16">
+          <p>{heading}</p>
           <p>{description}</p>
           <Button icon={<Download />} asChild>
             <a href={`${map}?dl=`}>Download the PDF</a>

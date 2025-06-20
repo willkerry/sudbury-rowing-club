@@ -44,7 +44,7 @@ const ResultsPage = async () => {
   return (
     <>
       <HeroTitle title="Regatta results" breadcrumbs />
-      <Container className="py-16">
+      <Container className="pb-16">
         <Results results={results} records={other.records}>
           <Text lead portableText={other.description} />
         </Results>
