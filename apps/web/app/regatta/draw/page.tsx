@@ -93,8 +93,8 @@ const Draw = async () => {
   const { paragraph, button } = getStateText(state, new Date(showDrawFrom));
 
   return (
-    <TextPage title={`Regatta draw ${String(thisYear)}`}>
-      <p className="lead">
+    <TextPage title={`Regatta draw ${String(thisYear)}`} lead>
+      <p>
         Each year, the Sudbury Regatta draw is published to{" "}
         <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
           live.sudburyrowingclub.org.uk
@@ -102,7 +102,7 @@ const Draw = async () => {
         the week before the regatta.
       </p>
       <p>{paragraph}</p>
-      <p className="flex justify-center py-4">
+      <p className="py-4">
         <Button shadow size="lg" asChild>
           <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
             {button}

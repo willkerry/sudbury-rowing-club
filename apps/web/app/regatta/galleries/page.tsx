@@ -1,6 +1,6 @@
 import Container from "@/components/layouts/container";
 import Copy from "@/components/stour/copy";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
@@ -38,13 +38,9 @@ const Photography = async () => {
 
   return (
     <>
-      <HeroTitle
-        title="Official regatta photography"
-        breadcrumbs
-        color="transparent"
-      />
+      <PageHeader title="Official regatta photography" breadcrumbs />
       <Container>
-        <div className="prose prose-lg max-w-none py-16">
+        <div className="prose prose-lg max-w-none pb-16">
           <table>
             <thead>
               <tr>

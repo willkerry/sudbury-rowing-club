@@ -1,4 +1,4 @@
-import { HeroTitle } from "@/components/stour/hero";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import recordJson from "./records.json";
@@ -9,7 +9,7 @@ const RecordsPage = () => {
 
   return (
     <>
-      <HeroTitle title="Course records" breadcrumbs color="transparent" />
+      <PageHeader title="Course records" breadcrumbs />
 
       <div className="p-4">
         <DataTable columns={columns} data={records} />

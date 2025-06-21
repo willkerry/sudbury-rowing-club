@@ -2,7 +2,7 @@
 
 import Container from "@/components/layouts/container";
 import { SiteSearch } from "@/components/search";
-import { HeroTitle } from "@/components/stour/hero";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { Home } from "lucide-react";
@@ -13,7 +13,7 @@ import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
 export default function SafetyError({ error }: { error: Error }) {
   return (
     <>
-      <HeroTitle prose title="Something went wrong." transparent />
+      <PageHeader breadcrumbs title="Something went wrong." />
 
       <div className="flex justify-center">
         <Image

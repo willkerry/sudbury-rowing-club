@@ -1,8 +1,6 @@
 import Container from "@/components/layouts/container";
 import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
-import HeroTitle from "@/components/stour/hero/hero-title";
-import Label from "@/components/stour/label";
-import Link from "@/components/stour/link";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
 import { notFound } from "next/navigation";
@@ -34,17 +32,10 @@ const Notice = async ({ params }: MemberPageParamObject) => {
 
   return (
     <>
-      <HeroTitle prose title={notice?.title} color="transparent">
-        <div className="h-2" />
-        <Label>Members’ Notices</Label>{" "}
-        <Link href="/members" arrow className="font-medium text-sm">
-          View all
-        </Link>
-      </HeroTitle>
-      <Container className="mt-6 mb-12 max-w-prose space-y-6 sm:mt-12">
-        <div className="divide-y overflow-hidden rounded-sm border">
-          <NoticeBody notice={notice} />
-        </div>
+      <PageHeader title={notice?.title} breadcrumbs />
+
+      <Container className="px-0">
+        <NoticeBody notice={notice} />
       </Container>
     </>
   );

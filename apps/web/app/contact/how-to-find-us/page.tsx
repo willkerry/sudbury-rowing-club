@@ -1,5 +1,5 @@
 import Container from "@/components/layouts/container";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   CLUB_LOCATION,
@@ -108,7 +108,7 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
 
 const FindUs: NextPage = () => (
   <>
-    <HeroTitle title="How to find us" color="transparent" />
+    <PageHeader title="How to find us" />
 
     <Container>
       <div className="grid grid-cols-1 gap-16 pb-10 sm:py-10 md:grid-cols-2">

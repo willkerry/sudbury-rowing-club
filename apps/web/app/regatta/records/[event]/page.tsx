@@ -55,7 +55,7 @@ const Page = async ({
   const description = formatDescription(records);
 
   return (
-    <TextPage title={eventName} color="transparent">
+    <TextPage title={eventName} prose="prose">
       <RecordTime time={time} />
       <RecordHolderList records={records} />
 

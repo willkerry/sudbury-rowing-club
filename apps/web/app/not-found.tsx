@@ -1,6 +1,6 @@
 import Container from "@/components/layouts/container";
 import { SiteSearch } from "@/components/search";
-import HeroTitle from "@/components/stour/hero/hero-title";
+import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 import type { Metadata } from "next";
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const Custom404 = () => (
   <>
-    <HeroTitle prose title="404 Page not found." transparent />
+    <PageHeader prose title="404 Page not found." />
 
     <div className="flex justify-center">
       <Image

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { unique } from "radash";
 import prettifyBreadcrumb from "./prettifyBreadcrumb";
 
 type Props = {
@@ -39,6 +40,33 @@ const getBreadcrumbs = (pathname: string, overrideLastItem?: string) => {
   return pathArray;
 };
 
+const abridgeBreadcrumbs = (breadcrumbs: Crumb[]): Crumb[] => {
+  const getTotalCharacterLength = () =>
+    breadcrumbs.reduce((acc, crumb) => acc + crumb.breadcrumb.length, 0);
+
+  for (const i of Array.from({ length: breadcrumbs.length }, (_, i) => i)) {
+    if (getTotalCharacterLength() <= 50) {
+      break;
+    }
+
+    if (i === 0) {
+      continue;
+    }
+
+    if (i > 1 && breadcrumbs[i - 1].breadcrumb === "") {
+      breadcrumbs.splice(i, 1);
+      continue;
+    }
+
+    breadcrumbs[i] = {
+      breadcrumb: "",
+      href: "#",
+    };
+  }
+
+  return unique(breadcrumbs, (crumb) => crumb.href);
+};
+
 const Breadcrumbs = ({
   listClassName,
   activeItemClassName,
@@ -54,6 +82,8 @@ const Breadcrumbs = ({
 
   if (!breadcrumbs) return null;
 
+  const abridgedBreadcrumbs = abridgeBreadcrumbs(breadcrumbs);
+
   return (
     <nav aria-label="breadcrumbs">
       <ol className={listClassName}>
@@ -61,23 +91,35 @@ const Breadcrumbs = ({
           <Link href="/">{rootLabel}</Link>
         </li>
 
-        {breadcrumbs.map((breadcrumb, i) =>
-          i === breadcrumbs.length - 1 ? (
-            <li
-              key={breadcrumb.href}
-              aria-current="page"
-              className={activeItemClassName}
-            >
-              {prettifyBreadcrumb(breadcrumb.breadcrumb)}
-            </li>
-          ) : (
+        {abridgedBreadcrumbs.map((breadcrumb, i) => {
+          if (i === abridgedBreadcrumbs.length - 1) {
+            return (
+              <li
+                key={breadcrumb.href}
+                aria-current="page"
+                className={activeItemClassName}
+              >
+                {prettifyBreadcrumb(breadcrumb.breadcrumb)}
+              </li>
+            );
+          }
+
+          if (breadcrumb.breadcrumb === "") {
+            return (
+              <li key={breadcrumb.href} className={inactiveItemClassName}>
+                &hellip;
+              </li>
+            );
+          }
+
+          return (
             <li key={breadcrumb.href} className={inactiveItemClassName}>
               <Link href={breadcrumb.href}>
                 {prettifyBreadcrumb(breadcrumb.breadcrumb)}
               </Link>
             </li>
-          ),
-        )}
+          );
+        })}
       </ol>
     </nav>
   );
