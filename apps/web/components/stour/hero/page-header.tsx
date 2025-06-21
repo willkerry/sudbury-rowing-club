@@ -26,7 +26,7 @@ export const PageHeader = ({
   breadcrumbs = false,
 }: Props) => {
   return (
-    <div>
+    <>
       {breadcrumbs && !prose && (
         <div className="relative hidden border-y py-3 sm:block">
           <Container>
@@ -41,24 +41,25 @@ export const PageHeader = ({
       )}
 
       <Container
-        className={cn("my-10", {
+        className={cn("my-2 sm:my-10", {
           "text-center": !!prose,
         })}
       >
         <h1 className="font-semibold text-3xl sm:text-5xl">{title}</h1>
 
-        {description ? (
+        {description && (
           <div
-            className={cn("my-3.5 max-w-2xl text-2xl", {
-              "mx-auto": !!prose,
-            })}
+            className={cn(
+              "my-t mb-7 max-w-2xl text-gray-600 text-lg sm:my-3.5 sm:text-2xl",
+              {
+                "mx-auto": !!prose,
+              },
+            )}
           >
             {smartQuotes(description)}
           </div>
-        ) : (
-          <div className="h-3.5" />
         )}
       </Container>
-    </div>
+    </>
   );
 };
