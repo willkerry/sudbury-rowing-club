@@ -167,7 +167,7 @@ const RegattaPage = async () => {
         <CompetitorInformation
           tab
           description={competitorInformation.description}
-          items={competitorInformation.documents}
+          items={competitorInformation.documents || undefined}
         />
       ),
     },

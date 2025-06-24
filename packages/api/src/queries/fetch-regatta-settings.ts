@@ -50,7 +50,7 @@ const ZDocument = z.object({
 
 const ZCompetitorInformation = z.object({
   description: z.string(),
-  documents: z.array(ZDocument),
+  documents: z.array(ZDocument).nullable(),
 });
 
 const ZEvent = z.object({
