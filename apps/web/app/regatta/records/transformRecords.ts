@@ -63,7 +63,7 @@ export const slugify = (event: string) => {
     .replace(/4-/g, "coxless four")
     .replace(/4[x×]\+/g, "coxed quad")
     .replace(/4[x×]-/g, "coxless quad")
-    .replace(/4[x×](?![\+-])/g, "quad")
+    .replace(/4[x×](?![+-])/g, "quad")
     .replace(/2\+/g, "coxed pair")
     .replace(/2-/g, "pair")
     .replace(/2[x×]/g, "double")

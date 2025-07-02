@@ -8,11 +8,7 @@ import {
 } from "@/lib/server/fetchBritishRowingFeed";
 import cn from "clsx";
 
-const BritishRowingArticle = ({
-  article,
-}: {
-  article?: BRArticle;
-}) => (
+const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
   <a
     href={article?.link}
     target="_blank"

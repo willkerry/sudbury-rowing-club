@@ -28,7 +28,7 @@ export const generateMetadata = async ({
   });
 };
 
-export const generateStaticParams = async (): Promise<Param[]> => {
+export const generateStaticParams = (): Param[] => {
   const records = getSlugifiedRecords();
 
   return records.map((record) => ({
@@ -36,11 +36,7 @@ export const generateStaticParams = async (): Promise<Param[]> => {
   }));
 };
 
-const Page = async ({
-  params,
-}: {
-  params: Promise<Param>;
-}) => {
+const Page = async ({ params }: { params: Promise<Param> }) => {
   const { event } = await params;
 
   const records = getSlugifiedRecords(event);

@@ -6,11 +6,7 @@ export type PrePostNote =
       url?: string | undefined;
     };
 
-export const DocPagePrePostNote = ({
-  notes,
-}: {
-  notes?: PrePostNote[];
-}) => (
+export const DocPagePrePostNote = ({ notes }: { notes?: PrePostNote[] }) => (
   <table className="opacity-90">
     <colgroup>
       <col />

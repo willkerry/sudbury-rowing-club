@@ -20,28 +20,18 @@ type WrappedPortableTextProps = PortableTextProps & {
   className?: string;
 };
 
-const NoteIcon = ({
-  type,
-}: { type: "primary" | "secondary" | "success" | "warning" | "error" }) => {
-  const props = {
-    "aria-hidden": true,
-    className: "h-4 w-4",
-  };
+const NOTE_ICONS = {
+  primary: InfoIcon,
+  secondary: HelpCircle,
+  success: CheckCircle,
+  warning: AlertCircle,
+  error: XCircle,
+} as const;
 
-  switch (type) {
-    case "primary":
-      return <InfoIcon {...props} />;
-    case "secondary":
-      return <HelpCircle {...props} />;
-    case "success":
-      return <CheckCircle {...props} />;
-    case "warning":
-      return <AlertCircle {...props} />;
-    case "error":
-      return <XCircle {...props} />;
-    default:
-      return <InfoIcon {...props} />;
-  }
+const NoteIcon = ({ type }: { type: keyof typeof NOTE_ICONS }) => {
+  const Icon = NOTE_ICONS[type] ?? NOTE_ICONS.primary;
+
+  return <Icon aria-hidden={true} className="h-4 w-4" />;
 };
 
 const components: PortableTextComponents = {

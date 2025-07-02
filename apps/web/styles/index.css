@@ -60,11 +60,16 @@
 }
 
 @utility disambiguate {
-  font-feature-settings: "ss01" 1, "ss04" 1;
+  font-feature-settings:
+    "ss01" 1,
+    "ss04" 1;
 }
 
 @utility uppercase {
-  font-feature-settings: "case" 1, "cpsp" 1, "cv08" 1;
+  font-feature-settings:
+    "case" 1,
+    "cpsp" 1,
+    "cv08" 1;
 }
 
 @layer base {

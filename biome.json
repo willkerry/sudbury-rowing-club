@@ -1,16 +1,16 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
-
+  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
   "formatter": {
-    "ignore": [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/build/**",
-      "**/.next/**",
-      "**/.tmp/**",
-      "**/.vscode/**",
-      "**/.content-collections/**",
-      "apps/results/data/**"
+    "includes": [
+      "**",
+      "!**/node_modules/**",
+      "!**/dist/**",
+      "!**/build/**",
+      "!**/.next/**",
+      "!**/.tmp/**",
+      "!**/.vscode/**",
+      "!**/.content-collections/**",
+      "!**/apps/results/data/**"
     ],
     "enabled": true,
     "formatWithErrors": false,
@@ -19,16 +19,15 @@
     "lineWidth": 80,
     "attributePosition": "auto"
   },
-  "organizeImports": {
-    "ignore": [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/build/**",
-      "**/.next/**",
-      "**/.tmp/**",
-      "**/.vscode/**"
-    ],
-    "enabled": true
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "off",
+        "useSortedAttributes": "off",
+        "useSortedKeys": "off",
+        "useSortedProperties": "off"
+      }
+    }
   },
   "vcs": {
     "enabled": true,
@@ -39,15 +38,16 @@
 
   "linter": {
     "enabled": true,
-    "ignore": [
-      "**/node_modules/**",
-      "**/dist/**",
-      "**/build/**",
-      "**/.next/**",
-      "**/.tmp/**",
-      "**/.vscode/**",
-      "**/.content-collections/**",
-      "apps/results/data/**"
+    "includes": [
+      "**",
+      "!**/node_modules/**",
+      "!**/dist/**",
+      "!**/build/**",
+      "!**/.next/**",
+      "!**/.tmp/**",
+      "!**/.vscode/**",
+      "!**/.content-collections/**",
+      "!**/apps/results/data/**"
     ],
     "rules": {
       "recommended": true,
@@ -63,24 +63,26 @@
         "noUnusedVariables": "error",
         "noUndeclaredVariables": "error",
         "useHookAtTopLevel": "error",
-        "noUnusedImports": "error"
+        "noUnusedImports": "error",
+        "noSwitchDeclarations": "error"
       },
       "nursery": {
-        "noDuplicateElseIf": "error",
         "useSortedClasses": {
           "level": "error",
           "fix": "safe",
           "options": {
             "functions": ["cn", "cva", "clsx"]
           }
-        }
+        },
+        "useUniqueElementIds": "off"
       },
-      "performance": { "noReExportAll": "error" },
+      "performance": { "noReExportAll": "error", "noImgElement": "off" },
       "suspicious": {
         "noArrayIndexKey": "off",
         "noEvolvingTypes": "error",
         "useAwait": "error",
-        "useErrorMessage": "error"
+        "useErrorMessage": "error",
+        "noDuplicateElseIf": "error"
       },
       "security": { "noDangerouslySetInnerHtml": "off" },
       "style": {
@@ -89,9 +91,21 @@
         "useCollapsedElseIf": "error",
         "useForOf": "error",
         "useFragmentSyntax": "error",
-        "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
-        "useSingleCaseStatement": "error"
+        "noParameterAssign": "error",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useEnumInitializers": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error",
+        "useConsistentArrayType": {
+          "level": "error",
+          "options": { "syntax": "shorthand" }
+        }
       }
     }
   },

@@ -42,11 +42,7 @@ const search = async (term: string | null): Promise<MinimalArticle[]> => {
   return results[0]?.hits ?? [];
 };
 
-const NewsPage = ({
-  articles,
-}: {
-  articles: MinimalArticle[];
-}) => {
+const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [searchTerm, setSearchTerm] = useQueryState("q");
 

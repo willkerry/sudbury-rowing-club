@@ -10,7 +10,11 @@ export const cloudflareLoader: ImageLoader = ({
   src,
   width,
   quality,
-}: { src: string; width: number; quality?: number }) => {
+}: {
+  src: string;
+  width: number;
+  quality?: number;
+}) => {
   if (process.env.NODE_ENV === "development") {
     return src;
   }

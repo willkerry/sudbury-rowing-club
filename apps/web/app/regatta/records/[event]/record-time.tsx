@@ -2,7 +2,9 @@ import { formatVerboseDuration } from "../transformRecords";
 
 export const RecordTime = ({
   time,
-}: { time: { minutes: number; seconds: number } }) => (
+}: {
+  time: { minutes: number; seconds: number };
+}) => (
   <div className="mb-12 rounded-3xl border bg-gray-50 p-4">
     <div className="text-center font-medium text-gray-500 text-sm uppercase tracking-widest">
       Time

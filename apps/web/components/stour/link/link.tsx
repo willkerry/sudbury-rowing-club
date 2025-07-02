@@ -62,26 +62,24 @@ const Link = ({
         rel: "noopener noreferrer",
       })}
     >
-      <>
-        {children}
-        {extension && (
-          <span className="ml-1 rounded-full border px-1 font-medium text-gray-400 text-xs uppercase transition">
-            {extension}
-          </span>
-        )}
-        {hasIcon && (
-          <RightIcon
-            aria-hidden
-            className={cn(
-              "ml-0.5 inline h-[1em] w-[1em] transition",
-              arrow && "group-hover:translate-x-[0.05rem]",
-              external &&
-                "group-hover:translate-x-[0.05rem] group-hover:translate-y-[-0.05rem]",
-              download && "group-hover:translate-y-[0.05rem]",
-            )}
-          />
-        )}
-      </>
+      {children}
+      {extension && (
+        <span className="ml-1 rounded-full border px-1 font-medium text-gray-400 text-xs uppercase transition">
+          {extension}
+        </span>
+      )}
+      {hasIcon && (
+        <RightIcon
+          aria-hidden
+          className={cn(
+            "ml-0.5 inline h-[1em] w-[1em] transition",
+            arrow && "group-hover:translate-x-[0.05rem]",
+            external &&
+              "group-hover:translate-x-[0.05rem] group-hover:translate-y-[-0.05rem]",
+            download && "group-hover:translate-y-[0.05rem]",
+          )}
+        />
+      )}
     </LinkComponent>
   );
 };

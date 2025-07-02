@@ -47,11 +47,7 @@ export const generateMetadata = async ({
   });
 };
 
-const Committee = async ({
-  params,
-}: {
-  params: Promise<Params>;
-}) => {
+const Committee = async ({ params }: { params: Promise<Params> }) => {
   const { season } = await params;
 
   const committee = committeeArchive.find(

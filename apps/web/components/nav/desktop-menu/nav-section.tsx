@@ -125,18 +125,16 @@ const NavSection = ({
             )}
             aria-current={isActive ? "page" : undefined}
           >
-            <>
-              <span className={cn(icon && "sr-only")}>{label}</span>
-              {icon}
+            <span className={cn(icon && "sr-only")}>{label}</span>
+            {icon}
 
-              <ChevronDownIcon
-                className={cn(
-                  isActive ? "stroke-current text-gray-700" : "text-gray-400",
-                  "-mb-px ml-0.5 h-3 w-3 transition group-hover:text-gray-800",
-                )}
-                aria-hidden
-              />
-            </>
+            <ChevronDownIcon
+              className={cn(
+                isActive ? "stroke-current text-gray-700" : "text-gray-400",
+                "-mb-px ml-0.5 h-3 w-3 transition group-hover:text-gray-800",
+              )}
+              aria-hidden
+            />
           </PopoverButton>
 
           <Transition

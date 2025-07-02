@@ -66,7 +66,7 @@ const OfficerNameOrPlaceholder = ({
   officer: Governance["officers"][0];
 }) => {
   if (vacant) {
-    return <>&nbsp;</>;
+    return <span>&nbsp;</span>;
   }
 
   if (hasEmail) {
