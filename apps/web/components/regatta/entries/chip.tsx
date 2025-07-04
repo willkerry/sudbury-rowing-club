@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 const BOAT_CLASS_SYMBOLS: Record<string, string> = {
@@ -48,7 +49,7 @@ export const Chip = ({
   id: string;
   className?: string;
 }) => {
-  const sanitisedId = sanitizeBoatClass(id);
+  const sanitisedId = useMemo(() => sanitizeBoatClass(id), [id]);
 
   return (
     <button
@@ -58,6 +59,7 @@ export const Chip = ({
         "rounded-sm px-0.5 font-medium ring-black ring-offset-1 transition",
         color,
         className,
+        "hover:cursor-default",
       )}
       onMouseEnter={() => highlightBoat(sanitisedId)}
       onMouseLeave={() => unhighlightBoat(sanitisedId)}

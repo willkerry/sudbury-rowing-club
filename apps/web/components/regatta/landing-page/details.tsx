@@ -1,66 +1,54 @@
 "use client";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
-import { Mouse } from "lucide-react";
-import { useState } from "react";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export type DetailProps = {
   summary: string;
   icon: React.ReactNode;
-  children: React.ReactNode;
+  href: string;
 };
 
-const Details = ({ items }: { items: DetailProps[] }) => {
-  const [scrolled, setScrolled] = useState(false);
+export const Details = ({ items }: { items: DetailProps[] }) => (
+  <div className="flex flex-col">
+    {items.map(({ summary, icon, href }, i) => (
+      <Link
+        key={summary}
+        id={summary}
+        href={href}
+        className={cn([
+          "relative",
+          "group flex items-center gap-x-2.5 p-4 transition-colors",
+          "first:rounded-t last:rounded-b",
+          "border-x border-b first:border-t",
+          "hover:bg-blue-50 focus:bg-blue-50",
+        ])}
+      >
+        <div
+          className={cn({
+            "-inset-px absolute transition-opacity": true,
+            "border-[1.5px] border-transparent group-hover:border-blue-300": true,
+            "rounded-t": i === 0,
+            "rounded-b": i === items.length - 1,
+          })}
+        />
 
-  return (
-    <Accordion type="single" collapsible>
-      {items.map(({ summary, icon, children }) => (
-        <AccordionItem key={summary} value={summary}>
-          <AccordionTrigger>
-            <div className="flex items-center justify-between gap-x-2">
-              <Slot
-                aria-hidden
-                className="h-6 w-6 stroke-[1.5px] text-gray-400"
-              >
-                {icon}
-              </Slot>
-              {summary}
-            </div>
-          </AccordionTrigger>
-          <AccordionContent
-            className="relative h-96 resize-y overflow-y-auto border-t pt-2"
-            onScrollCapture={() => {
-              if (scrolled) return;
+        <Slot
+          aria-hidden
+          className="h-6 w-6 stroke-[1.5px] text-gray-400 transition-colors group-hover:text-gray-600 group-focus:text-gray-600"
+        >
+          {icon}
+        </Slot>
 
-              setScrolled(true);
-            }}
-          >
-            {children}
+        <div>{summary}</div>
 
-            <div
-              aria-hidden
-              className="pointer-events-none absolute right-0 bottom-1 left-0"
-            >
-              <Mouse
-                className={cn(
-                  "mx-auto h-6 w-6 animate-bounce fill-white stroke-[1.5px] text-gray-400 opacity-100 transition-opacity",
-                  scrolled && "opacity-0",
-                )}
-              />
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
-  );
-};
-
-export default Details;
+        <ArrowRightIcon
+          className="ml-auto h-6 w-6 text-gray-300 transition-colors group-hover:text-blue-500 group-focus:text-blue-500"
+          aria-hidden
+        />
+      </Link>
+    ))}
+  </div>
+);

@@ -4,7 +4,6 @@ import DateLocation from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import Testimonials from "@/components/regatta/landing-page/testimonials";
 import Hero from "@/components/stour/hero";
-import Loading from "@/components/stour/loading";
 import Text from "@/components/stour/text";
 import DateFormatter from "@/components/utils/date-formatter";
 import { ClubJsonLd, REGATTA } from "@/lib/constants";
@@ -12,39 +11,12 @@ import { createMetadata } from "@/lib/create-metadata";
 import { getClub } from "@/lib/getClub";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
-import dynamic from "next/dynamic";
 import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
-
-const Gallery = dynamic(
-  () => import("@/components/regatta/landing-page/gallery"),
-  { loading: () => <Loading /> },
-);
-const Details = dynamic(
-  () => import("@/components/regatta/landing-page/details"),
-  { loading: () => <Loading /> },
-);
-const RegattaHero = dynamic(
-  () => import("@/components/regatta/landing-page/regatta-hero"),
-  { loading: () => <Loading /> },
-);
-const RegattaHeroImage = dynamic(
-  () => import("@/components/regatta/landing-page/regatta-hero-image"),
-  { loading: () => <Loading /> },
-);
-const Results = dynamic(() => import("@/components/regatta/results"), {
-  loading: () => <Loading />,
-});
-const Entries = dynamic(() => import("@/components/regatta/entries"), {
-  loading: () => <Loading />,
-});
-const Events = dynamic(() => import("@/components/regatta/events"), {
-  loading: () => <Loading />,
-});
-const CompetitorInformation = dynamic(
-  () => import("@/components/regatta/competitor-information"),
-  { loading: () => <Loading /> },
-);
+import { Details } from "@/components/regatta/landing-page/details";
+import Gallery from "@/components/regatta/landing-page/gallery";
+import RegattaHero from "@/components/regatta/landing-page/regatta-hero";
+import RegattaHeroImage from "@/components/regatta/landing-page/regatta-hero-image";
 
 const fetchRegattasAndSettings = async () => {
   const regattaSettings = await fetchRegattaSettings();
@@ -97,16 +69,8 @@ export const metadata = createMetadata({
 });
 
 const RegattaPage = async () => {
-  const {
-    competitorInformation,
-    date,
-    entries,
-    events,
-    landingPage,
-    results,
-    title,
-    regattas,
-  } = await fetchRegattasAndSettings();
+  const { date, landingPage, title, regattas } =
+    await fetchRegattasAndSettings();
 
   const regattaDate = <DateFormatter dateString={date} format="long" />;
 
@@ -120,56 +84,22 @@ const RegattaPage = async () => {
     {
       summary: "Events",
       icon: <Award aria-hidden />,
-      children: <Events compact data={events} />,
+      href: "./regatta/events",
     },
     {
       summary: "Entries",
       icon: <TicketIcon aria-hidden />,
-      children: (
-        <Entries
-          table={
-            entries.waves?.rows.map((row) => row.cells.map((cell) => cell)) || [
-              [],
-            ]
-          }
-          caption={entries.wavesCaption}
-          waveNames={entries.waveNames}
-          compact
-        >
-          <Text size="small" portableText={entries.description || []} />
-        </Entries>
-      ),
+      href: "./regatta/entries",
     },
     {
       summary: "Results",
       icon: <Timer aria-hidden />,
-      children: (
-        <Results
-          results={
-            regattas.map(({ _id, date, number, results }) => ({
-              _id,
-              date: new Date(date),
-              number,
-              results,
-            })) || []
-          }
-          records={results.records}
-          tab
-        >
-          <Text size="small" portableText={results.description || []} />
-        </Results>
-      ),
+      href: "./regatta/results",
     },
     {
       summary: "Important",
       icon: <BadgeAlert aria-hidden />,
-      children: (
-        <CompetitorInformation
-          tab
-          description={competitorInformation.description}
-          items={competitorInformation.documents || undefined}
-        />
-      ),
+      href: "./regatta/competitor-information",
     },
   ];
 
@@ -230,6 +160,7 @@ const RegattaPage = async () => {
       <Container className="my-24 max-w-prose" id="regatta-body">
         <Text portableText={landingPage.description || []} />
         <div className="h-5" />
+
         <Details items={accordion} />
       </Container>
 

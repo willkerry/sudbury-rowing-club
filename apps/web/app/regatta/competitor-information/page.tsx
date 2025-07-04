@@ -1,6 +1,6 @@
 import Container from "@/components/layouts/container";
-import CompetitorInformation from "@/components/regatta/competitor-information";
 import { PageHeader } from "@/components/stour/hero/page-header";
+import Link from "@/components/stour/link";
 import { createMetadata } from "@/lib/create-metadata";
 import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
@@ -43,7 +43,28 @@ const CompetitorInformationPage = async () => {
     <>
       <PageHeader title="Competitor information" breadcrumbs />
       <Container className="pb-16">
-        <CompetitorInformation description={description} items={documents} />
+        <div className="prose">
+          <p>{description}</p>
+
+          {documents ? (
+            <ul>
+              {documents?.map((item) => (
+                <li key={item._id}>
+                  <Link
+                    href={`${item.url}?dl=`}
+                    download
+                    aria-label={`Download ${item.title}`}
+                    extension={item.extension}
+                  >
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 text-sm">No documents available</p>
+          )}
+        </div>
       </Container>
     </>
   );
