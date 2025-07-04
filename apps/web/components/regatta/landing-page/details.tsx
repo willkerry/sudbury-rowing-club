@@ -1,5 +1,3 @@
-"use client";
-
 import { Slot } from "@radix-ui/react-slot";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { cn } from "@/lib/utils";
@@ -37,7 +35,7 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
 
         <Slot
           aria-hidden
-          className="h-6 w-6 stroke-[1.5px] text-gray-400 transition-colors group-hover:text-gray-600 group-focus:text-gray-600"
+          className="h-6 w-6 stroke-[1.5px] text-gray-400 transition-colors group-hover:text-blue-600 group-focus:text-blue-600"
         >
           {icon}
         </Slot>

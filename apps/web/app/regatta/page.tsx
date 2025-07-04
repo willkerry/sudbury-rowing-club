@@ -97,7 +97,7 @@ const RegattaPage = async () => {
       href: "./regatta/results",
     },
     {
-      summary: "Important",
+      summary: "Competitor Information",
       icon: <BadgeAlert aria-hidden />,
       href: "./regatta/competitor-information",
     },
