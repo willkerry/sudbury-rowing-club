@@ -43,7 +43,7 @@ export const createDirectoryListing = async (
     }
   });
 
-  const listingTemplate = await readFile("src/listing.njs", "utf-8");
+  const listingTemplate = await readFile("src/listing.njk", "utf-8");
 
   nunjucks.configure({
     autoescape: false,
