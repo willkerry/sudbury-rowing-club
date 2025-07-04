@@ -59,7 +59,7 @@ export const Chip = ({
         "rounded-sm px-0.5 font-medium ring-black ring-offset-1 transition",
         color,
         className,
-        "hover:cursor-default",
+        "hover:cursor-default hover:opacity-50 hover:ring-0",
       )}
       onMouseEnter={() => highlightBoat(sanitisedId)}
       onMouseLeave={() => unhighlightBoat(sanitisedId)}
