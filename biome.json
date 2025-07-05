@@ -82,7 +82,8 @@
         "noEvolvingTypes": "error",
         "useAwait": "error",
         "useErrorMessage": "error",
-        "noDuplicateElseIf": "error"
+        "noDuplicateElseIf": "error",
+        "noFocusedTests": "off"
       },
       "security": { "noDangerouslySetInnerHtml": "off" },
       "style": {
