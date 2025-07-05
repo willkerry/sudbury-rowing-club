@@ -22,11 +22,12 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
           "first:rounded-t last:rounded-b",
           "border-x border-b first:border-t",
           "hover:bg-blue-50 focus:bg-blue-50",
+          "transition-colors",
         ])}
       >
         <div
           className={cn({
-            "-inset-px absolute transition-opacity": true,
+            "-inset-px absolute transition-colors": true,
             "border-[1.5px] border-transparent group-hover:border-blue-300": true,
             "rounded-t": i === 0,
             "rounded-b": i === items.length - 1,
