@@ -254,9 +254,6 @@ importers:
       emoji-regex:
         specifier: ^10.4.0
         version: 10.4.0
-      final-form:
-        specifier: ^5.0.0
-        version: 5.0.0
       fumadocs-core:
         specifier: ^15.4.2
         version: 15.4.2(@types/react@19.1.8)(algoliasearch@5.25.0)(next@15.3.3)(react-dom@19.1.0)(react@19.1.0)
@@ -10459,13 +10456,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
-
-  /final-form@5.0.0:
-    resolution: {integrity: sha512-HByosvP7x3N4bWTCPoBeUeoMatadewRifxaH3qhCQI2DBwFNO0m5wxETLVUXNGWz2yokdSCMdJEvtjfZoXnqDA==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@babel/runtime': 7.27.6
-    dev: false
 
   /find-cache-dir@2.1.0:
     resolution: {integrity: sha512-Tq6PixE0w/VMFfCgbONnkiQIVol/JJL7nRMi20fqzA4NRs9AfeqMGeRdPi3wIhYkxjeBaWh2rxwapn5Tu3IqOQ==}
