@@ -39,11 +39,14 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
           compact ? "prose-sm my-6" : "my-12 text-xs sm:text-sm lg:text-base",
         )}
       >
-        <table>
+        <table className="table-fixed">
           <thead>
             <tr>
-              {table[0].map((entry) => (
-                <th key={entry} className="px-pt text-center sm:px-1">
+              {table[0].map((entry, i) => (
+                <th
+                  key={entry}
+                  className={cn("px-pt text-center sm:px-1", i === 0 && "w-36")}
+                >
                   {entry}
                 </th>
               ))}

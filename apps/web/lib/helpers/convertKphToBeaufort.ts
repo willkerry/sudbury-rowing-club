@@ -11,5 +11,5 @@ export const convertKphToBeaufort = (kph: number) => {
     if (kph < threshold) return THRESHOLDS.indexOf(threshold);
   }
 
-  return THRESHOLDS.length + 1;
+  return THRESHOLDS.length;
 };

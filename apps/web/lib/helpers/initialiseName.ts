@@ -9,7 +9,7 @@ export const initialiseName = (name: string) => {
     }
   }
 
-  const surname = names.pop()?.replace("+", " ");
+  const surname = names.pop()?.replaceAll("+", " ");
 
   const initials = names.map((name) => name[0]).join(" ");
   return `${initials} ${surname}`;
