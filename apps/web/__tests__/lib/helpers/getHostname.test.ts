@@ -29,4 +29,8 @@ describe("getHostname", () => {
       "example.com",
     );
   });
+
+  it("should handle URLs www subdomain", () => {
+    expect(getHostname("https://www.example.com")).toBe("example.com");
+  });
 });

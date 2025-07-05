@@ -97,6 +97,7 @@ alwaysApply: true
 - Don't use control flow statements in finally blocks.
 - Don't use dangerous JSX props.
 - Don't use debugger.
+- Don't use default exports _except_ where required by meta frameworks (e.g. some Next.js App router files)
 - Don't use disabled tests.
 - Don't use distracting elements like `<marquee>` or `<blink>`.
 - Don't use duplicate case labels.

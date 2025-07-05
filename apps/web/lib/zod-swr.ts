@@ -13,7 +13,10 @@ const useZodSWR = <T extends z.ZodTypeAny>(
   schema: T,
   key: QueryKey,
   fetcher: QueryFunction<z.infer<T>>,
-  config?: UndefinedInitialDataOptions<z.infer<T>>,
+  config?: Omit<
+    UndefinedInitialDataOptions<z.infer<T>>,
+    "queryKey" | "queryFn" | "select"
+  >,
 ) => {
   const { data, error, ...rest } = useQuery({
     queryKey: key,
