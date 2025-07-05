@@ -41,8 +41,8 @@ const Copy = ({ value }: { value: string }) => {
           {copied && (
             <motion.div
               className="absolute h-4 w-4"
-              initial={{ opacity: 0, translateY: -5 }}
-              animate={{ opacity: 1, translateY: 0 }}
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ type: "spring", damping: 20, stiffness: 300 }}
             >
