@@ -9,7 +9,7 @@
     "email-dev": "email dev",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "dependencies": {
     "@algolia/client-search": "^5.25.0",
