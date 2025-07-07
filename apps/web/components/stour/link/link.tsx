@@ -3,16 +3,13 @@ import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
 import NextLink from "next/link";
 
 type Props = {
-  href: string;
-  children: React.ReactNode;
   dark?: boolean;
   download?: boolean;
   arrow?: boolean;
   external?: boolean;
   extension?: string;
-  className?: string;
   unstyled?: boolean;
-};
+} & React.ComponentProps<typeof NextLink>;
 
 // Ridiculous hack because I set up an awful component API
 const assignIcon = (
@@ -36,16 +33,17 @@ const Link = ({
   extension,
   className,
   unstyled = false,
+  ...rest
 }: Props) => {
   const hasIcon = external || download || arrow;
   const RightIcon = assignIcon(external, download, arrow);
 
-  const isExternal = href.startsWith("http") || external;
+  const isExternal = String(href).startsWith("http") || external;
   const LinkComponent = isExternal ? "a" : NextLink;
 
   return (
     <LinkComponent
-      href={href}
+      href={String(href)}
       className={cn(
         unstyled
           ? "stour-link"
@@ -61,6 +59,7 @@ const Link = ({
         target: "_blank",
         rel: "noopener noreferrer",
       })}
+      {...rest}
     >
       {children}
       {extension && (
