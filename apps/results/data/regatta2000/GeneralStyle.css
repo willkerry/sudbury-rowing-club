@@ -1,0 +1,48 @@
+BODY {
+  color: black;
+  font-family: Arial, Verdana;
+  font-size: small;
+}
+TD {
+  font-family: Arial, Verdana;
+  font-size: 10pt;
+}
+TD.CellA {
+  background-color: silver;
+  text-align: left;
+  border-top: gray thin solid;
+  border-bottom: gray thin solid;
+  width: 100;
+}
+TD.CellB {
+  background-color: silver;
+  text-align: right;
+  border-right: gray thin solid;
+  border-top: gray thin solid;
+  border-bottom: gray thin solid;
+  font-style: italic;
+}
+TD.CellC {
+  border-right: gray thin solid;
+}
+
+/*
+     FILE ARCHIVED ON 20:58:17 Feb 15, 2002 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:52:37 Jul 07, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 2.032
+  exclusion.robots: 0.022
+  exclusion.robots.policy: 0.011
+  esindex: 0.01
+  cdx.remote: 14.865
+  LoadShardBlock: 152.261 (3)
+  PetaboxLoader3.datanode: 119.716 (4)
+  load_resource: 126.28
+  PetaboxLoader3.resolve: 92.848
+*/
