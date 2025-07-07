@@ -19,13 +19,13 @@
     "@stdlib/nlp-sentencize": "^0.2.2",
     "@sudburyrc/helpers": "workspace:*",
     "emoji-regex": "^10.4.0",
-    "groq": "^3.90.0",
+    "groq": "^3.97.1",
     "he": "^1.2.0",
     "isomorphic-dompurify": "^2.25.0",
     "next-sanity": "^9.12.0",
     "picosanity": "^5.0.0",
     "tsup": "^8.5.0",
-    "zod": "^3.25.42"
+    "zod": "^3.25.75"
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",

@@ -4,7 +4,7 @@
   "author": "",
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
-    "lefthook": "^1.10.10"
+    "lefthook": "^1.11.16"
   },
   "description": "",
   "keywords": [],
