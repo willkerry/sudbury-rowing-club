@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const Results = (
+export const Results = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
@@ -15,5 +15,3 @@ const Results = (
     />
   </svg>
 );
-
-export default Results;

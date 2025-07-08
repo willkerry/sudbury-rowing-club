@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const Facebook = (
+export const Facebook = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" {...props}>
@@ -11,5 +11,3 @@ const Facebook = (
     />
   </svg>
 );
-
-export default Facebook;

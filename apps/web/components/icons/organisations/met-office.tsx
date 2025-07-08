@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const MetOffice = (
+export const MetOffice = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -17,5 +17,3 @@ const MetOffice = (
     />
   </svg>
 );
-
-export default MetOffice;

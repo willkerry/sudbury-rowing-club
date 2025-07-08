@@ -1,4 +1,4 @@
-import Instagram from "@/components/icons/socials/instagram";
+import { Instagram } from "@/components/icons";
 import Container from "@/components/layouts/container";
 import Loading from "@/components/stour/loading";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";

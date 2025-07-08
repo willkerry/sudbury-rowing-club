@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const Rower = (
+export const Rower = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -19,5 +19,3 @@ const Rower = (
     <circle cx={11} cy={4} r={1} />
   </svg>
 );
-
-export default Rower;

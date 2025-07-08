@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const UserDropdown = (
+export const UserDropdown = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -22,5 +22,3 @@ const UserDropdown = (
     <circle cx="13" cy="19" r=".4" />
   </svg>
 );
-
-export default UserDropdown;
