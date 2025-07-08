@@ -6,7 +6,7 @@ import cn from "clsx";
 import Loading from "../stour/loading";
 import DateFormatter from "../utils/date-formatter";
 
-const ForecastComponent = async () => {
+export const ForecastComponent = async () => {
   const forecast = await getWeatherForecast();
 
   const status: string = "";
@@ -64,5 +64,3 @@ const ForecastComponent = async () => {
     </div>
   );
 };
-
-export default ForecastComponent;

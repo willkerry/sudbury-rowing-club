@@ -7,9 +7,9 @@ import Label from "../stour/label";
 import Loading from "../stour/loading";
 import { Error as ErrorComponent } from "../ui/error";
 import DateFormatter from "../utils/date-formatter";
-import ForecastComponent from "./forecast";
-import QuotedWarning, { type WarningSourceEnum } from "./quoted-warning";
-import SeveritySection from "./severity-section";
+import { ForecastComponent } from "./forecast";
+import { QuotedWarning, type WarningSourceEnum } from "./quoted-warning";
+import { SeveritySection } from "./severity-section";
 
 export type SafetyComponentProps = {
   description: string;
@@ -20,7 +20,7 @@ export type SafetyComponentProps = {
   errors?: string[];
 };
 
-const SafetyComponent = async () => {
+export const SafetyComponent = async () => {
   const { description, date, status, statusMessage, source, errors } =
     await getSafetyStatus();
 
@@ -82,5 +82,3 @@ const SafetyComponent = async () => {
     </div>
   );
 };
-
-export default SafetyComponent;

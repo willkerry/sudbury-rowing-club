@@ -6,7 +6,7 @@ type SeveritySectionProps = {
   message?: string;
 };
 
-const SeveritySection = ({ status, message }: SeveritySectionProps) => {
+export const SeveritySection = ({ status, message }: SeveritySectionProps) => {
   const severityClasses: Record<Severity, string> = {
     red: "text-red-500 bg-red-50",
     amber: "text-yellow-500 bg-yellow-50",
@@ -33,5 +33,3 @@ const SeveritySection = ({ status, message }: SeveritySectionProps) => {
     </div>
   );
 };
-
-export default SeveritySection;
