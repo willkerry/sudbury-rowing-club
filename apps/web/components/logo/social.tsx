@@ -5,7 +5,9 @@ import type { JSX, SVGProps } from "react";
  *
  * @deprecated This component is deprecated and will be removed in the next major version.
  */
-const Social = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
+export const Social = (
+  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
+) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
     <title>Sudbury Rowing Club crest</title>
     <path fill="#003B80" d="M0 0h512v512H0z" />
@@ -25,5 +27,3 @@ const Social = (props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) => (
     </g>
   </svg>
 );
-
-export default Social;
