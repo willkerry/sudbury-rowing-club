@@ -1,4 +1,4 @@
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 
 const PostLayout = ({ children }: { children: React.ReactNode }) => (
   <Container>

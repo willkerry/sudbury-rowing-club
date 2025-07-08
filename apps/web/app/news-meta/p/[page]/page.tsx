@@ -1,4 +1,4 @@
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import NewsList from "@/components/news/news-list";
 import Paginate from "@/components/news/paginate";
 import Label from "@/components/stour/label";

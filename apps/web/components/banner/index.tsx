@@ -5,7 +5,7 @@ import { kyInstance } from "@/app/get-query-client";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import { useEffect, useRef, useState } from "react";
-import Container from "../layouts/container";
+import { Container } from "@/components/layouts/container";
 import Text from "../stour/text";
 import DateFormatter from "../utils/date-formatter";
 

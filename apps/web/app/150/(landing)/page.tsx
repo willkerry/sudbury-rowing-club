@@ -2,7 +2,7 @@ import { HundredAndFiftyContactButton } from "@/components/anniversary/150-conta
 import { HundredAndFiftyFireworks } from "@/components/anniversary/150-fireworks";
 import { HundredAndFiftyGradient } from "@/components/anniversary/150-gradient";
 import { HundredAndFiftyLogo } from "@/components/anniversary/150-logo";
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/create-metadata";
 import type { Metadata } from "next";

@@ -1,4 +1,4 @@
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import Label from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";

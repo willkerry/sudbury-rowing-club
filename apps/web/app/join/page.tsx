@@ -5,7 +5,7 @@ import {
   Overview,
   SectionHeading,
 } from "@/components/join";
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { Button } from "@/components/ui/button";

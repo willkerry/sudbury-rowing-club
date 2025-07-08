@@ -1,5 +1,5 @@
 import { HundredAndFiftyContactButton } from "@/components/anniversary/150-contact-button";
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 
 const HundredAndFiftyLayout = ({
   children,

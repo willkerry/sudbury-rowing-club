@@ -1,6 +1,6 @@
 import { HundredAndFiftyCta } from "@/components/anniversary/150-cta";
 import { LandingCTA } from "@/components/landing";
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 
 const LandingPageLayout = ({
   britishRowingFeed,

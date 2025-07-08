@@ -1,5 +1,5 @@
 import { logos as sponsors } from "@/components/landing/sponsors";
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import DateLocation from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import Testimonials from "@/components/regatta/landing-page/testimonials";

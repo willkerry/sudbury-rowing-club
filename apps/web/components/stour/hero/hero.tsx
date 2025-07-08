@@ -1,6 +1,6 @@
 import Label from "@/components/stour/label";
 import cn from "clsx";
-import Container from "../../layouts/container";
+import { Container } from "@/components/layouts/container";
 
 interface Props {
   title: string;

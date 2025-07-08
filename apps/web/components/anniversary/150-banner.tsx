@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Container from "../layouts/container";
+import { Container } from "@/components/layouts/container";
 import { HundredAndFiftyFireworks } from "./150-fireworks";
 import { HundredAndFiftyGradient } from "./150-gradient";
 import { HundredAndFiftyLogo } from "./150-logo";
