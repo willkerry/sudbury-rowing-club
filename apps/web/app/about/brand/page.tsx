@@ -1,4 +1,4 @@
-import SharePlayground from "@/components/about/share-playground";
+import { SharePlayground } from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
 import Social from "@/components/logo/social";
 import Copy from "@/components/stour/copy";

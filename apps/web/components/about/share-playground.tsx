@@ -19,7 +19,7 @@ const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
   day: "numeric",
 });
 
-const SharePlayground = () => {
+export const SharePlayground = () => {
   const titleInputRef = useRef<HTMLInputElement>(null);
   const subtitleInputRef = useRef<HTMLInputElement>(null);
   const variantInputRef = useRef<HTMLSelectElement>(null);
@@ -154,5 +154,3 @@ const SharePlayground = () => {
     </form>
   );
 };
-
-export default SharePlayground;
