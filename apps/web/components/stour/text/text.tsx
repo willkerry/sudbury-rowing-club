@@ -40,7 +40,7 @@ type Props = {
   portableText?: PortableTextProps["value"];
 } & VariantProps<typeof variants>;
 
-const Text = ({
+export const Text = ({
   type,
   size,
   font,
@@ -57,5 +57,3 @@ const Text = ({
     <div className={classes}>{children}</div>
   );
 };
-
-export default Text;

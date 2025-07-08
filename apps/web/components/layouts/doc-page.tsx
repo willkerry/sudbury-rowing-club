@@ -1,6 +1,6 @@
 import { Container } from "@/components/layouts/container";
 import { MDXContent } from "@/components/mdx/mdx-content";
-import Text from "@/components/stour/text";
+import { Text } from "@/components/stour/text";
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import { smartQuotes } from "@sudburyrc/helpers";
 import { AlignLeftIcon } from "lucide-react";

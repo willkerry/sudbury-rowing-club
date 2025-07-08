@@ -1,7 +1,7 @@
 "use client";
 
 import { Label } from "@/components/stour/label";
-import Text from "@/components/stour/text";
+import { Text } from "@/components/stour/text";
 import {
   Accordion,
   AccordionContent,

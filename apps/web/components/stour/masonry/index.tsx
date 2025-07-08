@@ -1,3 +1,1 @@
-import Masonry from "./masonry";
-
-export default Masonry;
+export { Masonry } from "./masonry";

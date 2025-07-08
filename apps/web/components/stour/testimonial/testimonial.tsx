@@ -1,7 +1,7 @@
 import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Anonymous from "./anonymous";
+import { Anonymous } from "./anonymous";
 
 export type TestimonialType = {
   _key: string;
@@ -36,7 +36,7 @@ const ClubImage = ({
   );
 };
 
-const Testimonial = ({
+export const Testimonial = ({
   name,
   club,
   text,
@@ -78,5 +78,3 @@ const Testimonial = ({
     </figcaption>
   </figure>
 );
-
-export default Testimonial;

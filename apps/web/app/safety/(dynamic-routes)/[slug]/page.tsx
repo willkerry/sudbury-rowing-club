@@ -1,4 +1,4 @@
-import Text from "@/components/stour/text";
+import { Text } from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import { BASE_URL } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";

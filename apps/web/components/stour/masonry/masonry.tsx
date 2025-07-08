@@ -5,7 +5,7 @@ type Props = {
   className?: string;
 };
 
-const Masonry = ({ children, className }: Props) => (
+export const Masonry = ({ children, className }: Props) => (
   <div
     className={cn(
       "sm:masonry-2-col lg:masonry-3-col before:box-inherit after:box-inherit mx-auto box-border",
@@ -15,5 +15,3 @@ const Masonry = ({ children, className }: Props) => (
     {children}
   </div>
 );
-
-export default Masonry;

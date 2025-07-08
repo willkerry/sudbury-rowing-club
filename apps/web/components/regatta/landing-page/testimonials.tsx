@@ -1,8 +1,9 @@
 import { Label } from "@/components/stour/label";
-import Masonry from "@/components/stour/masonry";
-import Testimonial, {
+import { Masonry } from "@/components/stour/masonry";
+import {
+  Testimonial,
   type TestimonialType,
-} from "@/components/stour/testimonial/testimonial";
+} from "@/components/stour/testimonial";
 import DateFormatter from "@/components/utils/date-formatter";
 import { ordinal } from "@sudburyrc/helpers";
 

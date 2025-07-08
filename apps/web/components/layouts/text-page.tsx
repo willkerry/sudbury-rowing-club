@@ -1,6 +1,6 @@
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
-import Text from "@/components/stour/text";
+import { Text } from "@/components/stour/text";
 import { cn } from "@/lib/utils";
 import type { ComponentProps } from "react";
 

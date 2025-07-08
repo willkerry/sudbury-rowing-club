@@ -1,4 +1,4 @@
-import Loading from "@/components/stour/loading";
+import { Loading } from "@/components/stour/loading";
 
 const LandingPageLoader = () => <Loading />;
 

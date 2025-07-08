@@ -1,7 +1,7 @@
 "use client";
 
 import type { ShareImage } from "@/app/api/og/route";
-import Loading from "@/components/stour/loading";
+import { Loading } from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 import { makeShareImageURL } from "@/lib/og-image";
 import { cn } from "@/lib/utils";

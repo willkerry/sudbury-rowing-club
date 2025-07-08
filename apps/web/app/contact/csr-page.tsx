@@ -3,7 +3,7 @@
 import { ContactForm } from "@/components/contact";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
-import Loading from "@/components/stour/loading";
+import { Loading } from "@/components/stour/loading";
 import { OFFICERS_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse, fetchOfficerNames } from "@sudburyrc/api";
