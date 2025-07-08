@@ -1,6 +1,6 @@
-import checkForSpam from "@/lib/akismet";
+import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
-import getOfficer from "@/lib/get-officer";
+import { getOfficer } from "@/lib/get-officer";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { ContactFormEmail } from "emails/contact-form";
 import DOMPurify from "isomorphic-dompurify";

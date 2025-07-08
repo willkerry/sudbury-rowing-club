@@ -1,4 +1,4 @@
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {

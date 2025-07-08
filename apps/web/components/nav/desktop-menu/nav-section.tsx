@@ -90,7 +90,7 @@ type NavSectionProps = {
   label?: string;
 };
 
-const NavSection = ({
+export const NavSection = ({
   compact = false,
   icon,
   items,
@@ -197,5 +197,3 @@ const NavSection = ({
     </Popover>
   );
 };
-
-export default NavSection;

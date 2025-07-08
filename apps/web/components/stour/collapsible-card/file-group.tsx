@@ -1,11 +1,11 @@
-import Link from "@/components/stour/link";
+import { Link } from "@/components/stour/link";
 import type { Notice } from "@sudburyrc/api";
 
 type FileGroupProps = {
   fileItems: Notice["documents"];
 };
 
-const FileGroup = ({ fileItems }: FileGroupProps) => {
+export const FileGroup = ({ fileItems }: FileGroupProps) => {
   if (!fileItems) return null;
 
   return (
@@ -24,5 +24,3 @@ const FileGroup = ({ fileItems }: FileGroupProps) => {
     </div>
   );
 };
-
-export default FileGroup;

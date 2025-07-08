@@ -1,11 +1,11 @@
 import { logos as sponsors } from "@/components/landing/sponsors";
-import Container from "@/components/layouts/container";
-import DateLocation from "@/components/regatta/landing-page/date-location";
+import { Container } from "@/components/layouts/container";
+import { DateLocation } from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
-import Testimonials from "@/components/regatta/landing-page/testimonials";
-import Hero from "@/components/stour/hero";
-import Text from "@/components/stour/text";
-import DateFormatter from "@/components/utils/date-formatter";
+import { Testimonials } from "@/components/regatta/landing-page/testimonials";
+import { Hero } from "@/components/stour/hero";
+import { Text } from "@/components/stour/text";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import { ClubJsonLd, REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
 import { getClub } from "@/lib/getClub";
@@ -14,9 +14,9 @@ import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 import { Details } from "@/components/regatta/landing-page/details";
-import Gallery from "@/components/regatta/landing-page/gallery";
-import RegattaHero from "@/components/regatta/landing-page/regatta-hero";
-import RegattaHeroImage from "@/components/regatta/landing-page/regatta-hero-image";
+import { Gallery } from "@/components/regatta/landing-page/gallery";
+import { RegattaHero } from "@/components/regatta/landing-page/regatta-hero";
+import { RegattaHeroImage } from "@/components/regatta/landing-page/regatta-hero-image";
 
 const fetchRegattasAndSettings = async () => {
   const regattaSettings = await fetchRegattaSettings();

@@ -5,7 +5,7 @@ type Props = {
   className?: string;
 };
 
-const SectionTitle = ({ className, children }: Props) => (
+export const SectionTitle = ({ className, children }: Props) => (
   <h2
     className={cn(
       "mt-8 mb-6 font-bold text-2xl text-gray-800 tracking-tight sm:mt-16",
@@ -15,5 +15,3 @@ const SectionTitle = ({ className, children }: Props) => (
     {children}
   </h2>
 );
-
-export default SectionTitle;

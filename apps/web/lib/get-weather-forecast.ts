@@ -104,7 +104,7 @@ type Forecast = {
  * Fetches the weather forecast for the club location and returns a Forecast
  * array for the next 7 days.
  */
-const getWeatherForecast = async (): Promise<Forecast[]> => {
+export const getWeatherForecast = async (): Promise<Forecast[]> => {
   try {
     const { daily } = await fetchWeatherForecast();
 
@@ -125,8 +125,6 @@ const getWeatherForecast = async (): Promise<Forecast[]> => {
     return [];
   }
 };
-
-export default getWeatherForecast;
 
 const MET_OFFICE_BASE_URL =
   "https://www.metoffice.gov.uk/weather/forecast/u12809dqk#";

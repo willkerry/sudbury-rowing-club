@@ -1,5 +1,5 @@
-import Container from "@/components/layouts/container";
-import EventsComponent from "@/components/regatta/events";
+import { Container } from "@/components/layouts/container";
+import { Events as EventsComponent } from "@/components/regatta/events";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { sanityClient } from "@sudburyrc/api";

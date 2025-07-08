@@ -1,3 +1,2 @@
-import Testimonial from "./testimonial";
-
-export default Testimonial;
+export { Testimonial } from "./testimonial";
+export type { TestimonialType } from "./testimonial";

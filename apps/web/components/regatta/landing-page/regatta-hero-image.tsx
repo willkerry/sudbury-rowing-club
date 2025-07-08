@@ -12,7 +12,7 @@ type Props = {
   blurDataURL?: string;
 };
 
-const RegattaHeroImage = ({
+export const RegattaHeroImage = ({
   title,
   subtitle,
   aspectRatio,
@@ -46,5 +46,3 @@ const RegattaHeroImage = ({
     </div>
   );
 };
-
-export default RegattaHeroImage;

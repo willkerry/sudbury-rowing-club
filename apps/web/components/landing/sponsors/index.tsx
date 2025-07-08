@@ -116,7 +116,7 @@ export const Affiliates = ({ className }: { className?: string }) => (
   />
 );
 
-const Sponsors = ({
+export const Sponsors = ({
   className,
   includeAffiliates = false,
   heading,
@@ -137,5 +137,3 @@ const Sponsors = ({
     <LogoList shuffle logos={sponsorLogos} />
   </div>
 );
-
-export default Sponsors;

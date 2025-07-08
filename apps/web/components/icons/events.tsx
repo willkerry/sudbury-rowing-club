@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const Events = (
+export const Events = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -19,5 +19,3 @@ const Events = (
     <path d="M8 6H5c-.7 0-1 .3-1 1 0 2 1 5 4 5m8-6h3c.7 0 1 .3 1 1 0 2-1 5-4 5" />
   </svg>
 );
-
-export default Events;

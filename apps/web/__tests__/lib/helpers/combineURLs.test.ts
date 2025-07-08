@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import combineURLs from "@/lib/helpers/combineURLs";
+import { combineURLs } from "@/lib/helpers/combineURLs";
 
 describe("combineURLs", () => {
   it("should combine two URLs", () => {

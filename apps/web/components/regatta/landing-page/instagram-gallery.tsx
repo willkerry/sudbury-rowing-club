@@ -1,14 +1,15 @@
-import Instagram from "@/components/icons/socials/instagram";
-import Container from "@/components/layouts/container";
-import Loading from "@/components/stour/loading";
+import { Instagram } from "@/components/icons";
+import { Container } from "@/components/layouts/container";
+import { Loading } from "@/components/stour/loading";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import DateFormatter from "@/components/utils/date-formatter";
-import useInstagramPosts, {
+import { DateFormatter } from "@/components/utils/date-formatter";
+import {
+  useInstagramPosts,
   type InstagramPost,
 } from "@/hooks/useInstagramPosts";
 import { useInViewport, useReducedMotion } from "@mantine/hooks";

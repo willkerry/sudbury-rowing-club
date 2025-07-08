@@ -1,6 +1,6 @@
-import Container from "@/components/layouts/container";
-import Label from "@/components/stour/label";
-import DateFormatter from "@/components/utils/date-formatter";
+import { Container } from "@/components/layouts/container";
+import { Label } from "@/components/stour/label";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchAllAuthors, fetchAuthor } from "@sudburyrc/api";
 import Link from "next/link";

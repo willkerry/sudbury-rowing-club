@@ -1,6 +1,4 @@
-import CommitteeSignature from "./committee-signature";
-import LandingCTA from "./cta";
-import LandingHero from "./landing-hero";
-import Sponsors from "./sponsors";
-
-export { CommitteeSignature, LandingHero, Sponsors, LandingCTA };
+export { CommitteeSignature } from "./committee-signature";
+export { LandingCTA } from "./cta";
+export { LandingHero } from "./landing-hero";
+export { Sponsors } from "./sponsors";

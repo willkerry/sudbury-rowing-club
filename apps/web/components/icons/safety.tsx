@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const Safety = (
+export const Safety = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -18,5 +18,3 @@ const Safety = (
     <path d="M10 5h4" />
   </svg>
 );
-
-export default Safety;

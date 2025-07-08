@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const History = (
+export const History = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -19,5 +19,3 @@ const History = (
     <path d="M16 13l-6-6a6 6 0 00-3.5-1A6 6 0 003 7l2 2m2 0v2c.3.3 1.2.5 2.5.5s2.3-.7 3-2m-2.5 2V16M5 9h2" />
   </svg>
 );
-
-export default History;

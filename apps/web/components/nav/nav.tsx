@@ -45,7 +45,7 @@ const extractSingletonGroups = (
   };
 };
 
-const Nav = () => {
+export const Nav = () => {
   const { primaryGroups, secondaryGroups } = extractSingletonGroups(
     navigationGroups,
     secondaryNavigationGroups,
@@ -134,5 +134,3 @@ const Nav = () => {
     </Popover>
   );
 };
-
-export default Nav;

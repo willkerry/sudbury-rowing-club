@@ -61,7 +61,7 @@ const GalleryFigure = ({
   );
 };
 
-const Gallery = ({ images }: { images: SudburyImage[] }) => {
+export const Gallery = ({ images }: { images: SudburyImage[] }) => {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -92,5 +92,3 @@ const Gallery = ({ images }: { images: SudburyImage[] }) => {
     </Carousel>
   );
 };
-
-export default Gallery;

@@ -1,5 +1,5 @@
-import Container from "@/components/layouts/container";
-import CollapsibleCard from "@/components/stour/collapsible-card";
+import { Container } from "@/components/layouts/container";
+import { CollapsibleCard } from "@/components/stour/collapsible-card";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchNotices } from "@sudburyrc/api";

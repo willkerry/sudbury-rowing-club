@@ -1,5 +1,5 @@
-import Label from "@/components/stour/label";
-import DateFormatter from "@/components/utils/date-formatter";
+import { Label } from "@/components/stour/label";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import cn from "clsx";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   center?: boolean;
 };
 
-const PostTitle = ({ title, date, center }: Props) => (
+export const PostTitle = ({ title, date, center }: Props) => (
   <div className={cn("mx-auto my-12 max-w-2xl", center && "text-center")}>
     <Label>
       <DateFormatter dateString={date} />
@@ -18,5 +18,3 @@ const PostTitle = ({ title, date, center }: Props) => (
     </h1>
   </div>
 );
-
-export default PostTitle;

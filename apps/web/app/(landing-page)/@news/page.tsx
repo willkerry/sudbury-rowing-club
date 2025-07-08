@@ -1,6 +1,6 @@
-import NewsList from "@/components/news/news-list";
-import Label from "@/components/stour/label";
-import Link from "@/components/stour/link";
+import { NewsList } from "@/components/news/news-list";
+import { Label } from "@/components/stour/label";
+import { Link } from "@/components/stour/link";
 import { SOCIALS } from "@/lib/constants";
 import { fetchLandingPage } from "@sudburyrc/api";
 

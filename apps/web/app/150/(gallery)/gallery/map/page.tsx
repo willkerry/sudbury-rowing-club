@@ -1,5 +1,5 @@
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchArchives } from "@sudburyrc/api";

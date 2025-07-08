@@ -1,7 +1,7 @@
 import TextPage from "@/components/layouts/text-page";
-import EntriesComponent from "@/components/regatta/entries";
+import { Entries as EntriesComponent } from "@/components/regatta/entries";
 import { CompactEvents } from "@/components/regatta/events";
-import Text from "@/components/stour/text";
+import { Text } from "@/components/stour/text";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchRegattaSettings } from "@sudburyrc/api";
 import Link from "next/link";

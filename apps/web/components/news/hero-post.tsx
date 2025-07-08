@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
-import DateFormatter from "../utils/date-formatter";
-import CoverImage from "./cover-image";
+import { DateFormatter } from "../utils/date-formatter";
+import { CoverImage } from "./cover-image";
 
-const HeroPost = ({ post }: { post: ArticleSummary }) => (
+export const HeroPost = ({ post }: { post: ArticleSummary }) => (
   <Link
     href={`/news/${post.slug}`}
     className="group mb-4 grid overflow-hidden rounded-sm border transition duration-200 hover:border-blue-400 md:grid-cols-3 md:gap-x-2"
@@ -44,5 +44,3 @@ const HeroPost = ({ post }: { post: ArticleSummary }) => (
     </div>
   </Link>
 );
-
-export default HeroPost;

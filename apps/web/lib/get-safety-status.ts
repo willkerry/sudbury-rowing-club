@@ -158,7 +158,7 @@ function formatDescriptionString(
  * Fetches safety status data from a series of different APIs, stopping as soon
  * as it finds a reason to display a warning.
  */
-const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
+export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
   const [sanityResult, eaWarningResult, stationResult] = await Promise.all([
     fetchSanityStatus(),
     fetchEAWarning(),
@@ -222,5 +222,3 @@ const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     ]),
   };
 };
-
-export default getSafetyStatus;

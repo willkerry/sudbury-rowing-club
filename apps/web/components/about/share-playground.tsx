@@ -1,7 +1,7 @@
 "use client";
 
 import type { ShareImage } from "@/app/api/og/route";
-import Loading from "@/components/stour/loading";
+import { Loading } from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 import { makeShareImageURL } from "@/lib/og-image";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,7 @@ const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
   day: "numeric",
 });
 
-const SharePlayground = () => {
+export const SharePlayground = () => {
   const titleInputRef = useRef<HTMLInputElement>(null);
   const subtitleInputRef = useRef<HTMLInputElement>(null);
   const variantInputRef = useRef<HTMLSelectElement>(null);
@@ -154,5 +154,3 @@ const SharePlayground = () => {
     </form>
   );
 };
-
-export default SharePlayground;

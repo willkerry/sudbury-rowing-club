@@ -3,7 +3,7 @@
 import { type ComponentProps, Suspense, useEffect, useState } from "react";
 import { ServerOrClientDateFormatter } from "./server-or-client-date-formatter";
 
-const DateFormatter = ({
+export const DateFormatter = ({
   ...props
 }: ComponentProps<typeof ServerOrClientDateFormatter>) => {
   const [_, setHydrated] = useState(false);
@@ -18,5 +18,3 @@ const DateFormatter = ({
     </Suspense>
   );
 };
-
-export default DateFormatter;

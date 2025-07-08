@@ -1,4 +1,4 @@
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { Suspense } from "react";

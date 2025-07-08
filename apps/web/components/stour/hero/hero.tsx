@@ -1,6 +1,6 @@
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import cn from "clsx";
-import Container from "../../layouts/container";
+import { Container } from "@/components/layouts/container";
 
 interface Props {
   title: string;
@@ -18,7 +18,7 @@ const Text = ({ title, description, label }: Props) => (
   </>
 );
 
-const Hero = ({
+export const Hero = ({
   title,
   label,
   description,
@@ -40,5 +40,3 @@ const Hero = ({
     </div>
   );
 };
-
-export default Hero;

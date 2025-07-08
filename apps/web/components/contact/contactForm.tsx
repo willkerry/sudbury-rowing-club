@@ -1,8 +1,8 @@
 "use client";
 
 import { kyInstance } from "@/app/get-query-client";
-import DisabledOverlay from "@/components/contact/views/disabledOverlay";
-import Success from "@/components/contact/views/success";
+import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
+import { Success } from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -46,7 +46,7 @@ type Props = {
  * Renders the contact form. Intended for use on the contact page. So long as
  * valid recipients are provided, will render a fully-functional form.
  */
-const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
+export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const recipientWasProvided = !!initialValues.to;
 
   const { mutateAsync, status, error } = useMutation({
@@ -215,5 +215,3 @@ const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     </form>
   );
 };
-
-export default ContactForm;

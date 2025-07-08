@@ -1,5 +1,5 @@
 import TextPage from "@/components/layouts/text-page";
-import Loading from "@/components/stour/loading";
+import { Loading } from "@/components/stour/loading";
 import type { NextPage } from "next";
 import Link from "next/link";
 

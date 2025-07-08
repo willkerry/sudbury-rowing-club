@@ -1,4 +1,4 @@
-import checkForSpam from "@/lib/akismet";
+import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import Bowser from "bowser";

@@ -13,7 +13,11 @@ const Dot = () => (
   />
 );
 
-const Loading = ({ className, children, visible = true }: LoadingProps) => (
+export const Loading = ({
+  className,
+  children,
+  visible = true,
+}: LoadingProps) => (
   <div
     className={cn(
       "relative inline-flex h-full min-h-[1em] w-full min-w-[48px] items-center text-base",
@@ -30,5 +34,3 @@ const Loading = ({ className, children, visible = true }: LoadingProps) => (
     </span>
   </div>
 );
-
-export default Loading;

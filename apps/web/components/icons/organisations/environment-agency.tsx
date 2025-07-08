@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const EnvironmentAgency = (
+export const EnvironmentAgency = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -17,5 +17,3 @@ const EnvironmentAgency = (
     />
   </svg>
 );
-
-export default EnvironmentAgency;

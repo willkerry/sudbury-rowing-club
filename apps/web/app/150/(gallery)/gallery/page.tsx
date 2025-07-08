@@ -1,7 +1,7 @@
 import { ArchiveItem } from "@/components/anniversary/150-archive-item";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
-import Container from "@/components/layouts/container";
-import Link from "@/components/stour/link";
+import { Container } from "@/components/layouts/container";
+import { Link } from "@/components/stour/link";
 import { createMetadata } from "@/lib/create-metadata";
 import { type Archive, fetchArchives } from "@sudburyrc/api";
 import type { Metadata } from "next";

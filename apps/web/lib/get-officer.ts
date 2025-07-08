@@ -10,7 +10,7 @@ const GetOfficerSchema = z.object({
   role: z.string(),
 });
 
-export default async function getOfficer(id: string) {
+export const getOfficer = async (id: string) => {
   if (!id) {
     throw new Error("No officer ID supplied");
   }
@@ -33,4 +33,4 @@ export default async function getOfficer(id: string) {
     );
 
   return GetOfficerSchema.parse(data);
-}
+};

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
 import { useMemo } from "react";
-import DateFormatter from "../utils/date-formatter";
+import { DateFormatter } from "../utils/date-formatter";
 import { PostPreviewImage } from "./post-preview-image";
 
 const GRADIENT_DIRECTIONS = [
@@ -46,7 +46,7 @@ const PostPreviewText = ({ title }: { title: string }) => (
   </div>
 );
 
-const PostPreview = ({ post }: { post: ArticleSummary }) => (
+export const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li
     id={post.slug}
     className="group overflow-hidden rounded-sm border bg-white transition hover:border-blue-400"
@@ -81,5 +81,3 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
     </Link>
   </li>
 );
-
-export default PostPreview;

@@ -9,7 +9,7 @@ type Props = {
   }[];
 };
 
-const FooterColumn = ({ heading, data }: Props) => (
+export const FooterColumn = ({ heading, data }: Props) => (
   <div className="mb-12 w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
     <h3 className="mb-4 select-none font-semibold text-xs uppercase tracking-widest">
       {heading}
@@ -25,5 +25,3 @@ const FooterColumn = ({ heading, data }: Props) => (
     ))}
   </div>
 );
-
-export default FooterColumn;

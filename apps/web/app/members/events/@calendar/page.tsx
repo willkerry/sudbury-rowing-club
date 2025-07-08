@@ -1,4 +1,4 @@
-import Loading from "@/components/stour/loading";
+import { Loading } from "@/components/stour/loading";
 import { serversideFetchCompetitions } from "@sudburyrc/api";
 import { Suspense } from "react";
 import { EventCalendar } from "./event-calendar";

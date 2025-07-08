@@ -15,7 +15,7 @@ let AgencyIcon: React.FC<{ className: string }> = () => null;
 let agencyName = "";
 let agencyColors = "";
 
-const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
+export const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
   if (!description) return null;
   if (!source) return null;
 
@@ -55,5 +55,3 @@ const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
     </div>
   );
 };
-
-export default QuotedWarning;

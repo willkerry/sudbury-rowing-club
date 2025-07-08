@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "@/components/stour/link";
+import { Link } from "@/components/stour/link";
 import { DataTableColumnHeader } from "@/components/ui/table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { detectAndFormatCourseLength } from "./[event]/format-description";

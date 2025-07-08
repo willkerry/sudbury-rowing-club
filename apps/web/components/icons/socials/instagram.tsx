@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-const Instagram = (
+export const Instagram = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" {...props}>
@@ -12,5 +12,3 @@ const Instagram = (
     <circle cx={13} cy={5} r={1} fill="currentColor" />
   </svg>
 );
-
-export default Instagram;

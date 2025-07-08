@@ -1,6 +1,6 @@
 import type { JSX, SVGProps } from "react";
 
-const CommitteeSignature = (
+export const CommitteeSignature = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) => (
   <svg
@@ -20,5 +20,3 @@ const CommitteeSignature = (
     <circle cx={1014.6} cy={168.5} r={1} />
   </svg>
 );
-
-export default CommitteeSignature;

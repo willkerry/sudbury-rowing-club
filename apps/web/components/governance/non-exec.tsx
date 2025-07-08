@@ -11,7 +11,7 @@ type Props = {
   trustees: NonExecutiveOfficer[];
 };
 
-const NonExec = ({ vicePresidents, trustees }: Props) => (
+export const NonExec = ({ vicePresidents, trustees }: Props) => (
   <section id="nonexec">
     <SectionTitle>Non-Executive Officers</SectionTitle>
     <GovGrid>
@@ -53,5 +53,3 @@ const NonExec = ({ vicePresidents, trustees }: Props) => (
     </GovGrid>
   </section>
 );
-
-export default NonExec;

@@ -1,6 +1,6 @@
 import { ShieldIcon } from "lucide-react";
 
-const Anonymous = () => (
+export const Anonymous = () => (
   <span className="flex items-center not-italic">
     <ShieldIcon
       aria-hidden
@@ -11,5 +11,3 @@ const Anonymous = () => (
     </span>
   </span>
 );
-
-export default Anonymous;

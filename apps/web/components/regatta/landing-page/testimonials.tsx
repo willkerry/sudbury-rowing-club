@@ -1,9 +1,10 @@
-import Label from "@/components/stour/label";
-import Masonry from "@/components/stour/masonry";
-import Testimonial, {
+import { Label } from "@/components/stour/label";
+import { Masonry } from "@/components/stour/masonry";
+import {
+  Testimonial,
   type TestimonialType,
-} from "@/components/stour/testimonial/testimonial";
-import DateFormatter from "@/components/utils/date-formatter";
+} from "@/components/stour/testimonial";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import { ordinal } from "@sudburyrc/helpers";
 
 type Regatta = {
@@ -13,7 +14,7 @@ type Regatta = {
   testimonials: TestimonialType[] | null;
 };
 
-const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
+export const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
   <>
     {regattas.map(
       (year) =>
@@ -37,5 +38,3 @@ const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
     )}
   </>
 );
-
-export default Testimonials;

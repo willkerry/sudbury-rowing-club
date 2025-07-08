@@ -29,7 +29,7 @@ const L2RCallToActionSection = ({
   </div>
 );
 
-const L2RCallToAction = () => (
+export const L2RCallToAction = () => (
   <div className="my-20 grid gap-6 text-gray-700 sm:my-36 sm:gap-12 md:grid-cols-2">
     <L2RCallToActionSection className="border-green-200 bg-green-50">
       <L2RCallToActionText>Send your application form now</L2RCallToActionText>
@@ -47,5 +47,3 @@ const L2RCallToAction = () => (
     </L2RCallToActionSection>
   </div>
 );
-
-export default L2RCallToAction;

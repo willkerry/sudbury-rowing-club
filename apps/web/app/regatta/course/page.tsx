@@ -1,4 +1,4 @@
-import Container from "@/components/layouts/container";
+import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/create-metadata";

@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import Link from "../stour/link";
+import { Link } from "../stour/link";
 import { Button } from "../ui/button";
 import { HundredAndFiftyFireworks } from "./150-fireworks";
 import { HundredAndFiftyGradient } from "./150-gradient";
