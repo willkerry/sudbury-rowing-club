@@ -6,7 +6,7 @@ import { EnvironmentAgency, MetOffice } from "../icons";
 import { Label } from "../stour/label";
 import { Loading } from "../stour/loading";
 import { Error as ErrorComponent } from "../ui/error";
-import DateFormatter from "../utils/date-formatter";
+import { DateFormatter } from "../utils/date-formatter";
 import { ForecastComponent } from "./forecast";
 import { QuotedWarning, type WarningSourceEnum } from "./quoted-warning";
 import { SeveritySection } from "./severity-section";

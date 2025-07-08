@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import DateFormatter from "@/components/utils/date-formatter";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import type { Notice } from "@sudburyrc/api";
 import { LinkIcon } from "lucide-react";
 import Link from "next/link";

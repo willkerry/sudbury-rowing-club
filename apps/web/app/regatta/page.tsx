@@ -5,7 +5,7 @@ import type { DetailProps } from "@/components/regatta/landing-page/details";
 import { Testimonials } from "@/components/regatta/landing-page/testimonials";
 import { Hero } from "@/components/stour/hero";
 import { Text } from "@/components/stour/text";
-import DateFormatter from "@/components/utils/date-formatter";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import { ClubJsonLd, REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
 import { getClub } from "@/lib/getClub";

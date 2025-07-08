@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
-import DateFormatter from "../utils/date-formatter";
+import { DateFormatter } from "../utils/date-formatter";
 import { CoverImage } from "./cover-image";
 
 export const HeroPost = ({ post }: { post: ArticleSummary }) => (

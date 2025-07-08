@@ -4,7 +4,7 @@ import {
   Testimonial,
   type TestimonialType,
 } from "@/components/stour/testimonial";
-import DateFormatter from "@/components/utils/date-formatter";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import { ordinal } from "@sudburyrc/helpers";
 
 type Regatta = {

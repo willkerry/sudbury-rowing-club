@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import DateFormatter from "@/components/utils/date-formatter";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import useInstagramPosts, {
   type InstagramPost,
 } from "@/hooks/useInstagramPosts";

@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
 import { useMemo } from "react";
-import DateFormatter from "../utils/date-formatter";
+import { DateFormatter } from "../utils/date-formatter";
 import { PostPreviewImage } from "./post-preview-image";
 
 const GRADIENT_DIRECTIONS = [

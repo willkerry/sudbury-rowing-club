@@ -7,7 +7,7 @@ import cn from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/layouts/container";
 import { Text } from "../stour/text";
-import DateFormatter from "../utils/date-formatter";
+import { DateFormatter } from "../utils/date-formatter";
 
 const bannerVariants: Record<
   Notice["type"][number],

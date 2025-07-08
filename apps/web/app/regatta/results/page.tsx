@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/stour/hero/page-header";
 import { Link } from "@/components/stour/link";
 import { Text } from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
-import DateFormatter from "@/components/utils/date-formatter";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
 import type { PortableTextProps } from "@portabletext/react";
 import { sanityClient } from "@sudburyrc/api";

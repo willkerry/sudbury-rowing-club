@@ -5,7 +5,10 @@ type OutputMap = {
 /**
  * Takes a matrix with headers and returns header value pairs for agglomerated value pairs.
  */
-function getBoatsByWave(matrix: string[][], exclude?: string): OutputMap {
+export function getBoatsByWave(
+  matrix: string[][],
+  exclude?: string,
+): OutputMap {
   const categories: string[] = matrix.map((value) => value[0]);
   const boats: string[] = matrix[0];
   const outputMap: OutputMap = {};
@@ -36,5 +39,3 @@ function getBoatsByWave(matrix: string[][], exclude?: string): OutputMap {
 
   return outputMap;
 }
-
-export default getBoatsByWave;
