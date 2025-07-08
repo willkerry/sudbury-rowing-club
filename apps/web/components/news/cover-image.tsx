@@ -22,7 +22,7 @@ const imageBuilder: UseNextSanityImageBuilder = (builder, { width }) => {
     .crop("focalpoint");
 };
 
-const CoverImage = ({ title, id, alt, blurDataURL }: Props) => {
+export const CoverImage = ({ title, id, alt, blurDataURL }: Props) => {
   const { src, loader } = useSanityImageProps(id, { imageBuilder });
 
   return (
@@ -39,5 +39,3 @@ const CoverImage = ({ title, id, alt, blurDataURL }: Props) => {
     />
   );
 };
-
-export default CoverImage;

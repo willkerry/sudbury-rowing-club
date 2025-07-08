@@ -1,6 +1,6 @@
 import type { ArticleSummary } from "@sudburyrc/api";
-import HeroPost from "./hero-post";
-import MoreStories from "./more-stories";
+import { HeroPost } from "./hero-post";
+import { MoreStories } from "./more-stories";
 
 type Props = {
   posts: ArticleSummary[];
@@ -10,7 +10,7 @@ type Props = {
   error?: Error;
 };
 
-const NewsList = ({ posts, hero, more, ...rest }: Props) => {
+export const NewsList = ({ posts, hero, more, ...rest }: Props) => {
   if (posts.length === 0)
     return (
       <div className="flex h-48 w-full flex-col items-center justify-center">
@@ -31,5 +31,3 @@ const NewsList = ({ posts, hero, more, ...rest }: Props) => {
 
   return <MoreStories posts={posts} more={more} {...rest} />;
 };
-
-export default NewsList;

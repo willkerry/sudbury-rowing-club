@@ -46,7 +46,7 @@ const PostPreviewText = ({ title }: { title: string }) => (
   </div>
 );
 
-const PostPreview = ({ post }: { post: ArticleSummary }) => (
+export const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li
     id={post.slug}
     className="group overflow-hidden rounded-sm border bg-white transition hover:border-blue-400"
@@ -81,5 +81,3 @@ const PostPreview = ({ post }: { post: ArticleSummary }) => (
     </Link>
   </li>
 );
-
-export default PostPreview;

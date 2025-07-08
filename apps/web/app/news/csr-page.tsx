@@ -1,7 +1,7 @@
 "use client";
 
 import { Container } from "@/components/layouts/container";
-import NewsList from "@/components/news/news-list";
+import { NewsList } from "@/components/news/news-list";
 import Label from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import Loading from "@/components/stour/loading";

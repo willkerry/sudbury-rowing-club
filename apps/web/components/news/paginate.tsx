@@ -18,7 +18,7 @@ type Props = {
   template?: string;
 };
 
-const Paginate = ({
+export const Paginate = ({
   page,
   pages,
   showPrev,
@@ -83,5 +83,3 @@ const Paginate = ({
     </PaginationContent>
   </Pagination>
 );
-
-export default Paginate;

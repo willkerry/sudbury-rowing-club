@@ -5,8 +5,8 @@ import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { useToggle } from "@mantine/hooks";
 import { type Article, urlFor } from "@sudburyrc/api";
 import Image from "next/image";
-import Caption from "./caption";
-import PostTitle from "./title";
+import { Caption } from "./caption";
+import { PostTitle } from "./title";
 
 type Props = Pick<Article, "title" | "date" | "featuredImage">;
 
@@ -98,7 +98,7 @@ const PortraitOrLandscapeImage = ({
   );
 };
 
-const PostHeader = ({ title, date, featuredImage }: Props) => {
+export const PostHeader = ({ title, date, featuredImage }: Props) => {
   const [open, toggleOpen] = useToggle();
 
   if (featuredImage && featuredImage.aspectRatio > 1)
@@ -157,5 +157,3 @@ const PostHeader = ({ title, date, featuredImage }: Props) => {
     );
   return <PostTitle date={date} title={title} center />;
 };
-
-export default PostHeader;
