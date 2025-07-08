@@ -45,7 +45,7 @@ const CTASection = ({
   </div>
 );
 
-const JoinCTA = () => (
+export const JoinCTA = () => (
   <div className="grid gap-12 rounded-sm border bg-gray-50 p-12 md:grid-cols-2">
     <CTASection
       to="l2r"
@@ -65,5 +65,3 @@ const JoinCTA = () => (
     </CTASection>
   </div>
 );
-
-export default JoinCTA;

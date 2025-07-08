@@ -7,7 +7,7 @@ type Props = {
   stages: Stage[];
 };
 
-const L2RStages = ({ stages }: Props) => (
+export const L2RStages = ({ stages }: Props) => (
   <div className="mt-24">
     <Label as="h3" className="mb-6 ml-8 text-green-600 md:ml-0">
       How it works
@@ -38,5 +38,3 @@ const L2RStages = ({ stages }: Props) => (
     </ol>
   </div>
 );
-
-export default L2RStages;

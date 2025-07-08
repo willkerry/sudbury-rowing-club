@@ -1,6 +1,12 @@
 import Label from "@/components/stour/label";
 
-const SectionHeading = ({ title, label }: { title: string; label: string }) => (
+export const SectionHeading = ({
+  title,
+  label,
+}: {
+  title: string;
+  label: string;
+}) => (
   <div className="my-16 text-center">
     <Label as="div" className="my-4">
       {label}
@@ -8,5 +14,3 @@ const SectionHeading = ({ title, label }: { title: string; label: string }) => (
     <h2 className="font-bold text-5xl">{title}</h2>
   </div>
 );
-
-export default SectionHeading;
