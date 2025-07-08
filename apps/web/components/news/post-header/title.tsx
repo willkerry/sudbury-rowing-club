@@ -1,4 +1,4 @@
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 import cn from "clsx";
 

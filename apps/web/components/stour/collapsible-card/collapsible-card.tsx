@@ -1,6 +1,6 @@
 "use client";
 
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import Text from "@/components/stour/text";
 import {
   Accordion,
@@ -12,7 +12,7 @@ import DateFormatter from "@/components/utils/date-formatter";
 import type { Notice } from "@sudburyrc/api";
 import { LinkIcon } from "lucide-react";
 import Link from "next/link";
-import FileGroup from "./file-group";
+import { FileGroup } from "./file-group";
 
 type Props = { notice: Notice };
 
@@ -77,7 +77,7 @@ export const NoticeBody = ({ notice }: Props) => {
   );
 };
 
-const CollapsibleCard = ({ notice }: Props) => (
+export const CollapsibleCard = ({ notice }: Props) => (
   <Accordion
     type="single"
     className="divide-y overflow-hidden rounded-sm border"
@@ -99,5 +99,3 @@ const CollapsibleCard = ({ notice }: Props) => (
     </AccordionItem>
   </Accordion>
 );
-
-export default CollapsibleCard;

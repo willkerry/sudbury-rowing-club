@@ -3,7 +3,7 @@ import { HeartHandshake } from "lucide-react";
 import Link from "next/link";
 import { Sponsors } from "../landing/sponsors";
 import { Container } from "@/components/layouts/container";
-import Label from "../stour/label";
+import { Label } from "../stour/label";
 import { Button } from "../ui/button";
 
 export const SponsorshipHero = ({

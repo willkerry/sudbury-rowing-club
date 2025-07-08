@@ -6,7 +6,11 @@ type Props = {
   as?: React.ElementType;
 };
 
-const Label = ({ children, className, as: Component = "span" }: Props) => (
+export const Label = ({
+  children,
+  className,
+  as: Component = "span",
+}: Props) => (
   <Component
     className={cn(
       "inline-block font-medium text-gray-600 text-sm uppercase leading-tight tracking-widest",
@@ -16,5 +20,3 @@ const Label = ({ children, className, as: Component = "span" }: Props) => (
     {children}
   </Component>
 );
-
-export default Label;

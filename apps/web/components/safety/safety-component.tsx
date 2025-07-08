@@ -3,7 +3,7 @@ import type { Severity } from "@/types/severity";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import { Suspense } from "react";
 import { EnvironmentAgency, MetOffice } from "../icons";
-import Label from "../stour/label";
+import { Label } from "../stour/label";
 import Loading from "../stour/loading";
 import { Error as ErrorComponent } from "../ui/error";
 import DateFormatter from "../utils/date-formatter";

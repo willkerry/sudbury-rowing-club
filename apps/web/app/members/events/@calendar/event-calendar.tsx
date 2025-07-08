@@ -1,6 +1,6 @@
 "use client";
 
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { Select } from "@/components/ui/select";
 import DateFormatter from "@/components/utils/date-formatter";

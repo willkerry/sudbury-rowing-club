@@ -1,4 +1,2 @@
-import { Figure } from "./figure";
-import { SanityFigure } from "./sanityFigure";
-
-export { Figure, SanityFigure };
+export { Figure } from "./figure";
+export { SanityFigure } from "./sanityFigure";

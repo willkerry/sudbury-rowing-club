@@ -1,4 +1,4 @@
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 
 export const SectionHeading = ({
   title,

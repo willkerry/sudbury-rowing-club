@@ -1,5 +1,5 @@
 import { BritishRowing } from "@/components/icons/organisations/british-rowing";
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 import {

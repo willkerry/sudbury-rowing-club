@@ -1,7 +1,7 @@
 import { Container } from "@/components/layouts/container";
 import { NewsList } from "@/components/news/news-list";
 import { Paginate } from "@/components/news/paginate";
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import DateFormatter from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";

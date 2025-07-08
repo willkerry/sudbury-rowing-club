@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { unique } from "radash";
-import prettifyBreadcrumb from "./prettifyBreadcrumb";
+import { prettifyBreadcrumb } from "./prettifyBreadcrumb";
 
 type Props = {
   listClassName?: string;
@@ -67,7 +67,7 @@ const abridgeBreadcrumbs = (breadcrumbs: Crumb[]): Crumb[] => {
   return unique(breadcrumbs, (crumb) => crumb.href);
 };
 
-const Breadcrumbs = ({
+export const Breadcrumbs = ({
   listClassName,
   activeItemClassName,
   inactiveItemClassName,
@@ -124,5 +124,3 @@ const Breadcrumbs = ({
     </nav>
   );
 };
-
-export default Breadcrumbs;

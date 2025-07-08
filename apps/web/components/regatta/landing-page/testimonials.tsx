@@ -1,4 +1,4 @@
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import Masonry from "@/components/stour/masonry";
 import Testimonial, {
   type TestimonialType,

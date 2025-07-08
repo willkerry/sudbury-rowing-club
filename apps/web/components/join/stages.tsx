@@ -1,4 +1,4 @@
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import { cn } from "@/lib/utils";
 import styles from "./stages.module.css";
 

@@ -1,7 +1,7 @@
 import { Container } from "@/components/layouts/container";
 import { SponsorshipHero } from "@/components/sponsorship/sponsorship-hero";
 import { SponsorshipTiers } from "@/components/sponsorship/sponsorship-tiers";
-import Hero from "@/components/stour/hero";
+import { Hero } from "@/components/stour/hero";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/create-metadata";
 import { fetchOfficerNames } from "@sudburyrc/api";

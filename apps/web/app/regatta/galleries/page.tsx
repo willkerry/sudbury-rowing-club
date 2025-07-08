@@ -1,5 +1,5 @@
 import { Container } from "@/components/layouts/container";
-import Copy from "@/components/stour/copy";
+import { Copy } from "@/components/stour/copy";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import Link from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";

@@ -6,7 +6,7 @@ import { CheckIcon, Clipboard } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 
-const Copy = ({ value }: { value: string }) => {
+export const Copy = ({ value }: { value: string }) => {
   const { copy, copied, error } = useClipboard();
 
   const handleClick = () => {
@@ -57,5 +57,3 @@ const Copy = ({ value }: { value: string }) => {
     </button>
   );
 };
-
-export default Copy;

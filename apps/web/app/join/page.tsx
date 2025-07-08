@@ -6,7 +6,7 @@ import {
   SectionHeading,
 } from "@/components/join";
 import { Container } from "@/components/layouts/container";
-import Label from "@/components/stour/label";
+import { Label } from "@/components/stour/label";
 import Link from "@/components/stour/link";
 import { Button } from "@/components/ui/button";
 import { l2rStages, overview } from "@/data/join/";

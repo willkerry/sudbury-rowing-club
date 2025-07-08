@@ -1,4 +1,4 @@
-import Breadcrumbs from "@/components/stour/breadcrumbs";
+import { Breadcrumbs } from "@/components/stour/breadcrumbs";
 
 export const DocPageHeader = ({
   title,

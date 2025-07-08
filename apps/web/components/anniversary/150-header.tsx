@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
-import Label from "../stour/label";
+import { Label } from "../stour/label";
 
 export const HundredAndFiftyHeader = ({
   title,
