@@ -103,7 +103,7 @@ const ButtonOrAnchor = ({
     ),
   })[type];
 
-const Banner = () => {
+export const Banner = () => {
   const { data, error } = useQuery({
     queryKey: ["notice"],
     queryFn: ({ signal }) =>
@@ -188,5 +188,3 @@ const Banner = () => {
     </>
   );
 };
-
-export default Banner;
