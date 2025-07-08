@@ -7,7 +7,7 @@ type Props = {
   documents: Governance["documents"];
 };
 
-const Documents = ({ documents }: Props) => (
+export const Documents = ({ documents }: Props) => (
   <section className="max-w-lg pt-6 pb-12 sm:pt-12" id="documents">
     <SectionTitle>Documents</SectionTitle>
     {documents.map((group) => (
@@ -34,5 +34,3 @@ const Documents = ({ documents }: Props) => (
     ))}
   </section>
 );
-
-export default Documents;

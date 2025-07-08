@@ -1,19 +1,8 @@
-import Committees from "./committees";
-import Description from "./description";
-import Documents from "./documents";
-import GovGrid from "./gov-grid";
-import NonExec from "./non-exec";
-import Officers from "./officers";
-import SectionTitle from "./section-title";
-import SubTitle from "./subtitle";
-
-export {
-  Committees,
-  Description,
-  Documents,
-  GovGrid,
-  NonExec,
-  Officers,
-  SectionTitle,
-  SubTitle,
-};
+export { Committees } from "./committees";
+export { Description } from "./description";
+export { Documents } from "./documents";
+export { GovGrid } from "./gov-grid";
+export { NonExec } from "./non-exec";
+export { Officers } from "./officers";
+export { SectionTitle } from "./section-title";
+export { SubTitle } from "./subtitle";

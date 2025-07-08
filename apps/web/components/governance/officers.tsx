@@ -94,7 +94,7 @@ const OfficerNameOrPlaceholder = ({
   return <span>{name}</span>;
 };
 
-const Officers = ({ officers }: Props) => (
+export const Officers = ({ officers }: Props) => (
   <section id="officers">
     <SectionTitle>Club Officers</SectionTitle>
     <GovGrid>
@@ -154,5 +154,3 @@ const Officers = ({ officers }: Props) => (
     </p>
   </section>
 );
-
-export default Officers;

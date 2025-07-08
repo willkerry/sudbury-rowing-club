@@ -11,7 +11,7 @@ type Props = {
   committees: Governance["committees"];
 };
 
-const Committees = ({ committees }: Props) => (
+export const Committees = ({ committees }: Props) => (
   <section id="committees">
     <SectionTitle>Committees</SectionTitle>
     <GovGrid>
@@ -43,5 +43,3 @@ const Committees = ({ committees }: Props) => (
     </GovGrid>
   </section>
 );
-
-export default Committees;

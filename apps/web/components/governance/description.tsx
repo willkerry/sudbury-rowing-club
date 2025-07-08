@@ -5,8 +5,6 @@ type Props = {
   className?: string;
 };
 
-const Description = ({ children, className }: Props) => (
+export const Description = ({ children, className }: Props) => (
   <div className={cn("text-gray-700", className)}>{children}</div>
 );
-
-export default Description;
