@@ -23,7 +23,7 @@ const Row = ({ label, value }: { label: string; value: React.ReactNode }) => (
   </div>
 );
 
-const Events = ({ data }: { data: Event[] }) => (
+export const Events = ({ data }: { data: Event[] }) => (
   <div className="grid gap-8 md:grid-cols-2">
     {data.map((item) => (
       <section key={item._key}>
@@ -84,5 +84,3 @@ export const CompactEvents = ({ data }: { data: Event[] }) => (
     </tbody>
   </table>
 );
-
-export default Events;

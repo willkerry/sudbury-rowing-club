@@ -1,6 +1,6 @@
 import { type Icon, defaultProps } from "./defaultProps";
 
-const InfoIcon = (props: Icon) => (
+export const InfoIcon = (props: Icon) => (
   <svg {...defaultProps} {...props}>
     <title>Info</title>
     <circle cx={16} cy={16} r={15.3} />
@@ -8,5 +8,3 @@ const InfoIcon = (props: Icon) => (
     <circle cx={16} cy={9.5} r={2.3} />
   </svg>
 );
-
-export default InfoIcon;

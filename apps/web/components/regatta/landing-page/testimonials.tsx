@@ -13,7 +13,7 @@ type Regatta = {
   testimonials: TestimonialType[] | null;
 };
 
-const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
+export const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
   <>
     {regattas.map(
       (year) =>
@@ -37,5 +37,3 @@ const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
     )}
   </>
 );
-
-export default Testimonials;

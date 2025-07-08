@@ -9,7 +9,7 @@ type Props = {
 
 const ICON_CLASSES = "mr-1.5 inline-flex h-4 w-4 text-gray-400";
 
-const DateLocation = ({ date, location }: Props) => (
+export const DateLocation = ({ date, location }: Props) => (
   <div className="my-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
     <div className="flex items-center">
       <CalendarIcon aria-hidden className={ICON_CLASSES} />
@@ -26,5 +26,3 @@ const DateLocation = ({ date, location }: Props) => (
     </div>
   </div>
 );
-
-export default DateLocation;

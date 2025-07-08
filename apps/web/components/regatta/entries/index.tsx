@@ -21,7 +21,13 @@ const WAVE_COLORS = [
 
 const listFormatter = new Intl.ListFormat("en-GB");
 
-const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
+export const Entries = ({
+  children,
+  table,
+  waveNames,
+  caption,
+  compact,
+}: Props) => {
   const boatsByWave = getBoatsByWave(table, "Any");
   const getWaveColor = (entry: string) =>
     WAVE_COLORS[waveNames.indexOf(entry)] || "bg-gray-100";
@@ -108,5 +114,3 @@ const Entries = ({ children, table, waveNames, caption, compact }: Props) => {
     </div>
   );
 };
-
-export default Entries;

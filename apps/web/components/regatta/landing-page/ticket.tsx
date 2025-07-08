@@ -1,6 +1,10 @@
 import type { JSX } from "react";
 
-const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
+export const Ticket = ({
+  items,
+}: {
+  items: [string, string | JSX.Element][];
+}) => (
   <div
     className="-rotate-6 relative rounded-lg bg-linear-to-tr from-gray-300 to-white drop-shadow-2xl"
     style={{
@@ -45,5 +49,3 @@ const Ticket = ({ items }: { items: [string, string | JSX.Element][] }) => (
     </svg>
   </div>
 );
-
-export default Ticket;
