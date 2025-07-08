@@ -20,7 +20,7 @@ const useURL = () => {
   return window.location.href;
 };
 
-const ReportABug = () => {
+export const ReportABug = () => {
   const locale = useLocale();
   const language = useLanguage();
   const url = useURL();
@@ -45,5 +45,3 @@ const ReportABug = () => {
     </a>
   );
 };
-
-export default ReportABug;

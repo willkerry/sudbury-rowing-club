@@ -1,5 +1,3 @@
-"use client";
-
 import Container from "@/components/layouts/container";
 import {
   about,
@@ -10,10 +8,10 @@ import {
 } from "@/components/nav/nav-data";
 import type { IconNavItemType } from "@/types/nav-item";
 import { Crest } from "@sudburyrc/blue";
-import Address from "./address";
-import FooterColumn from "./column";
-import ReportABug from "./reportABug";
-import SocialIcons from "./socialIcons";
+import { Address } from "./address";
+import { FooterColumn } from "./column";
+import { ReportABug } from "./reportABug";
+import { SocialIcons } from "./socialIcons";
 
 const columns: [string, IconNavItemType[]][] = [
   ["About", about],
@@ -22,7 +20,7 @@ const columns: [string, IconNavItemType[]][] = [
   ["Miscellany", misc],
 ];
 
-const Footer = () => (
+export const Footer = () => (
   <footer className="border-t">
     <Container>
       <h2 className="sr-only">Footer</h2>
@@ -52,5 +50,3 @@ const Footer = () => (
     </Container>
   </footer>
 );
-
-export default Footer;

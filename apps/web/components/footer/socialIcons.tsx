@@ -1,7 +1,7 @@
 import { socials } from "@/components/nav/nav-data";
 import Link from "next/link";
 
-const SocialIcons = () => (
+export const SocialIcons = () => (
   <>
     {socials.map((item) => (
       <Link
@@ -15,5 +15,3 @@ const SocialIcons = () => (
     ))}
   </>
 );
-
-export default SocialIcons;
