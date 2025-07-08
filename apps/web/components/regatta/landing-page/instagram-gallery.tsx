@@ -8,7 +8,8 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { DateFormatter } from "@/components/utils/date-formatter";
-import useInstagramPosts, {
+import {
+  useInstagramPosts,
   type InstagramPost,
 } from "@/hooks/useInstagramPosts";
 import { useInViewport, useReducedMotion } from "@mantine/hooks";

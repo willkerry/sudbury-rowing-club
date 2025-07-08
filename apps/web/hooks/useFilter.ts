@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useFilter = <
+export const useFilter = <
   TObject extends Record<string, unknown>,
   TKeyInObject extends keyof TObject,
 >(
@@ -21,5 +21,3 @@ const useFilter = <
 
   return filteredArray;
 };
-
-export default useFilter;

@@ -93,11 +93,9 @@ export const InstagramPostSchema = z.object({
   taggedUsers: z.array(TaggedUserSchema).optional(),
 });
 
-const useInstagramPosts = () =>
+export const useInstagramPosts = () =>
   useZodSWR(z.array(InstagramPostSchema), [KEY], async () =>
     (await fetch(QUERY_URL)).json(),
   );
 
 export type InstagramPost = z.infer<typeof InstagramPostSchema>;
-
-export default useInstagramPosts;
