@@ -1,5 +1,5 @@
-import CommitteeSignature from "@/components/landing/committee-signature";
-import Sponsors, { Affiliates } from "@/components/landing/sponsors";
+import { CommitteeSignature } from "@/components/landing/committee-signature";
+import { Sponsors, Affiliates } from "@/components/landing/sponsors";
 import Text from "@/components/stour/text";
 import { fetchLandingPage } from "@sudburyrc/api";
 

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const LandingCTA = () => {
+export const LandingCTA = () => {
   const scrollToIntro = () => {
     const intro = document.getElementById("intro");
     const introTop = intro?.getBoundingClientRect().top;
@@ -22,5 +22,3 @@ const LandingCTA = () => {
     </div>
   );
 };
-
-export default LandingCTA;

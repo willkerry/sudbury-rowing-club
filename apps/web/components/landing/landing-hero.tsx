@@ -13,7 +13,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const LandingHero = ({
+export const LandingHero = ({
   imageId,
   imageAspectRatio,
   imageLqip,
@@ -34,4 +34,3 @@ const LandingHero = ({
     <Player />
   </>
 );
-export default LandingHero;

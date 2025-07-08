@@ -14,7 +14,7 @@ import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 import { Details } from "@/components/regatta/landing-page/details";
-import Gallery from "@/components/regatta/landing-page/gallery";
+import { Gallery } from "@/components/regatta/landing-page/gallery";
 import RegattaHero from "@/components/regatta/landing-page/regatta-hero";
 import RegattaHeroImage from "@/components/regatta/landing-page/regatta-hero-image";
 
