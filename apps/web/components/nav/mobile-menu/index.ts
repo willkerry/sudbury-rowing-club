@@ -1,4 +1,2 @@
-import MobileMenuButton from "./mobile-menu-button";
-import { MobileMenuSection } from "./mobile-menu-section";
-
-export { MobileMenuButton, MobileMenuSection };
+export { MobileMenuButton } from "./mobile-menu-button";
+export { MobileMenuSection } from "./mobile-menu-section";

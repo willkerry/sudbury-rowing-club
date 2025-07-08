@@ -106,5 +106,3 @@ export const MobileMenuSection = ({
     })}
   </SectionWrapper>
 );
-
-export default MobileMenuSection;
