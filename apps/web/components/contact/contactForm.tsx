@@ -1,8 +1,8 @@
 "use client";
 
 import { kyInstance } from "@/app/get-query-client";
-import DisabledOverlay from "@/components/contact/views/disabledOverlay";
-import Success from "@/components/contact/views/success";
+import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
+import { Success } from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

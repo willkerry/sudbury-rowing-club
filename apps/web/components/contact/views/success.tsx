@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-const Success = () => (
+export const Success = () => (
   <Alert variant="success">
     <AlertTitle>Message sent</AlertTitle>
     <AlertDescription>
@@ -8,5 +8,3 @@ const Success = () => (
     </AlertDescription>
   </Alert>
 );
-
-export default Success;
