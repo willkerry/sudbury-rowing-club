@@ -1,6 +1,6 @@
 "use client";
 
-import ContactForm from "@/components/contact";
+import { ContactForm } from "@/components/contact";
 import Container from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import Loading from "@/components/stour/loading";
