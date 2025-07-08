@@ -1,4 +1,4 @@
-import DateFormatter from "@/components/utils/date-formatter";
+import { ServerOrClientDateFormatter } from "@/components/utils/server-or-client-date-formatter";
 import type { DetailedHTMLProps, InsHTMLAttributes } from "react";
 
 const COLORS = {
@@ -19,7 +19,7 @@ const AMENDEMENTS = {
 const AmendmentDate = ({ set }: { set: keyof typeof COLORS }) => (
   <>
     <span className="sr-only"> Amendment ratified in </span>
-    <DateFormatter
+    <ServerOrClientDateFormatter
       className="disambiguate font-semibold text-xs"
       format="year"
       dateString={AMENDEMENTS[set]}
