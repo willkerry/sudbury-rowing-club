@@ -1,7 +1,7 @@
 import { PostBody } from "@/components/news/post-body";
 import { PostHeader } from "@/components/news/post-header";
 import { Label } from "@/components/stour/label";
-import Link from "@/components/stour/link";
+import { Link } from "@/components/stour/link";
 import DateFormatter from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
 import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";

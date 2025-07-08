@@ -23,7 +23,7 @@ const assignIcon = (
   return ArrowRightIcon;
 };
 
-const Link = ({
+export const Link = ({
   href,
   children,
   dark = false,
@@ -82,5 +82,3 @@ const Link = ({
     </LinkComponent>
   );
 };
-
-export default Link;

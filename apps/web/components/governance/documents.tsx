@@ -1,5 +1,5 @@
 import { SectionTitle, SubTitle } from "@/components/governance";
-import Link from "@/components/stour/link";
+import { Link } from "@/components/stour/link";
 import { BASE_URL } from "@/lib/constants";
 import type { Governance } from "@sudburyrc/api";
 

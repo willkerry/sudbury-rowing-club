@@ -1,4 +1,4 @@
-import Link from "@/components/stour/link";
+import { Link } from "@/components/stour/link";
 import Text from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import DateFormatter from "@/components/utils/date-formatter";

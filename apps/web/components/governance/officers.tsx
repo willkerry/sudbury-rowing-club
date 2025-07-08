@@ -1,7 +1,7 @@
 "use client";
 
 import { Description, GovGrid, SectionTitle } from "@/components/governance";
-import Link from "@/components/stour/link";
+import { Link } from "@/components/stour/link";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { Popover, Transition } from "@headlessui/react";
 import type { Governance } from "@sudburyrc/api";

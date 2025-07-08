@@ -1,5 +1,5 @@
 import { unfurl } from "unfurl.js";
-import Link from "../stour/link";
+import { Link } from "../stour/link";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Error as ErrorComponent } from "../ui/error";
 import { Iframe } from "./iframe";

@@ -47,7 +47,7 @@ function useLightBoxSize(aspectRatio?: number) {
   return { width, height, viewportWidth, viewportHeight };
 }
 
-const LightBox = ({
+export const LightBox = ({
   aspectRatio,
   src,
   lqip,
@@ -93,7 +93,7 @@ const LightBox = ({
   );
 };
 
-const useLightBox = ({
+export const useLightBox = ({
   aspectRatio,
   src,
   lqip,
@@ -108,6 +108,3 @@ const useLightBox = ({
     ),
   };
 };
-
-export default LightBox;
-export { useLightBox };

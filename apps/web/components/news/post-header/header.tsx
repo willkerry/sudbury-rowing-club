@@ -1,6 +1,6 @@
 "use client";
 
-import LightBox from "@/components/stour/lightbox";
+import { LightBox } from "@/components/stour/lightbox";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { useToggle } from "@mantine/hooks";
 import { type Article, urlFor } from "@sudburyrc/api";
