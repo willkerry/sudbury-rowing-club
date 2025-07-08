@@ -1,4 +1,4 @@
-import getSafetyStatus from "@/lib/get-safety-status";
+import { getSafetyStatus } from "@/lib/get-safety-status";
 import type { Severity } from "@/types/severity";
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import { Suspense } from "react";

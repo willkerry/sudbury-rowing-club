@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { waitFor } from "@testing-library/react";
 import { z } from "zod";
-import useZodSWR from "@/lib/zod-swr";
+import { useZodSWR } from "@/lib/zod-swr";
 import { renderHook } from "../__utils__/renderHook";
 
 const testSchema = z.object({

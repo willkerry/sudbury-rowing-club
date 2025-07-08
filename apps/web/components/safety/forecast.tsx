@@ -1,6 +1,7 @@
-import getWeatherForecast, {
+import {
   briefWeatherCodes,
   getMetOfficeURL,
+  getWeatherForecast,
 } from "@/lib/get-weather-forecast";
 import cn from "clsx";
 import { Loading } from "../stour/loading";

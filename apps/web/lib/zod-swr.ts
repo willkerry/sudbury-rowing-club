@@ -9,7 +9,7 @@ import type { z } from "zod";
 /**
  * A type-safe version of useQuery. It takes a Zod schema as the first argument, validates the fetch result against it, and returns the result as a Zod type.
  */
-const useZodSWR = <T extends z.ZodTypeAny>(
+export const useZodSWR = <T extends z.ZodTypeAny>(
   schema: T,
   key: QueryKey,
   fetcher: QueryFunction<z.infer<T>>,
@@ -35,5 +35,3 @@ const useZodSWR = <T extends z.ZodTypeAny>(
 
   return { data, error, ...rest };
 };
-
-export default useZodSWR;

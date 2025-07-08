@@ -1,4 +1,4 @@
-import useZodSWR from "@/lib/zod-swr";
+import { useZodSWR } from "@/lib/zod-swr";
 import { z } from "zod";
 
 const KEY = "instagram-posts";

@@ -3,7 +3,7 @@ import { BASE_URL } from "./constants";
 
 const API_KEY = "6c80e09f5c4d";
 
-const checkForSpam = (
+export const checkForSpam = (
   userIp: string,
   userAgent: string,
   referrer: string,
@@ -34,5 +34,3 @@ const checkForSpam = (
     .text()
     .then((r) => r === "true");
 };
-
-export default checkForSpam;
