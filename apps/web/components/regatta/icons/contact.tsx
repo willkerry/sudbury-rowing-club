@@ -1,4 +1,4 @@
-import { type Icon, defaultProps } from "./defaultProps";
+import { defaultProps, type Icon } from "./defaultProps";
 
 export const ContactIcon = (props: Icon) => (
   <svg {...defaultProps} {...props}>

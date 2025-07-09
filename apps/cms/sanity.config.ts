@@ -4,8 +4,8 @@ import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
-import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import { structureTool } from "sanity/structure";
+import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import schemas from "./schemas/schema";
 
 const config = defineConfig({

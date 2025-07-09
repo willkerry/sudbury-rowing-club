@@ -1,7 +1,7 @@
-import { PortableText } from "@/lib/sanity";
 import type { PortableTextProps } from "@portabletext/react";
-import { type VariantProps, cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import cn from "clsx";
+import { PortableText } from "@/lib/sanity";
 
 const variants = cva(["prose", "prose-lead:font-medium prose-lead:font-sans"], {
   variants: {

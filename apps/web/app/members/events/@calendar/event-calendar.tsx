@@ -1,5 +1,8 @@
 "use client";
 
+import type { SRCEvent } from "@sudburyrc/api";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
 import { Select } from "@/components/ui/select";
@@ -7,10 +10,6 @@ import { DateFormatter } from "@/components/utils/date-formatter";
 import { useFilter } from "@/hooks/useFilter";
 import { HOSTNAME } from "@/lib/constants";
 import { getHostname } from "@/lib/helpers/getHostname";
-import type { SRCEvent } from "@sudburyrc/api";
-import { AnimatePresence } from "motion/react";
-import { motion } from "motion/react";
-import { useState } from "react";
 
 const BR_EVENT_STATUS = {
   2: "",

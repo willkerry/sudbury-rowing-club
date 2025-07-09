@@ -1,11 +1,11 @@
+import cn from "clsx";
+import { Loading } from "@/components/stour/loading";
+import { DateFormatter } from "@/components/utils/date-formatter";
 import {
   briefWeatherCodes,
   getMetOfficeURL,
   getWeatherForecast,
 } from "@/lib/get-weather-forecast";
-import cn from "clsx";
-import { Loading } from "../stour/loading";
-import { DateFormatter } from "../utils/date-formatter";
 
 export const ForecastComponent = async () => {
   const forecast = await getWeatherForecast();

@@ -1,3 +1,6 @@
+import { useInViewport, useReducedMotion } from "@mantine/hooks";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { useEffect, useState } from "react";
 import { Instagram } from "@/components/icons";
 import { Container } from "@/components/layouts/container";
 import { Loading } from "@/components/stour/loading";
@@ -9,12 +12,9 @@ import {
 } from "@/components/ui/carousel";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import {
-  useInstagramPosts,
   type InstagramPost,
+  useInstagramPosts,
 } from "@/hooks/useInstagramPosts";
-import { useInViewport, useReducedMotion } from "@mantine/hooks";
-import AutoScroll from "embla-carousel-auto-scroll";
-import { useEffect, useState } from "react";
 
 const IMAGE_CLASS_NAME =
   "h-48 w-full border-b bg-gray-100 object-cover sm:h-80";

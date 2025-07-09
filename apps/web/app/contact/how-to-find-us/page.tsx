@@ -1,3 +1,7 @@
+import { MapPinIcon } from "@heroicons/react/24/solid";
+import clsx from "clsx";
+import type { NextPage } from "next";
+import Image from "next/image";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -9,10 +13,6 @@ import {
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
-import { MapPinIcon } from "@heroicons/react/24/solid";
-import clsx from "clsx";
-import type { NextPage } from "next";
-import Image from "next/image";
 import { LocationMap } from "./location-map";
 
 export const metadata = createMetadata({

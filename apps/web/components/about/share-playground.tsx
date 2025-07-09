@@ -1,15 +1,15 @@
 "use client";
 
-import type { ShareImage } from "@/app/api/og/route";
-import { Loading } from "@/components/stour/loading";
-import { Button } from "@/components/ui/button";
-import { makeShareImageURL } from "@/lib/og-image";
-import { cn } from "@/lib/utils";
 import { useClipboard } from "@mantine/hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { Input } from "../ui/input";
-import { Select } from "../ui/select";
+import type { ShareImage } from "@/app/api/og/route";
+import { Loading } from "@/components/stour/loading";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { makeShareImageURL } from "@/lib/og-image";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_TITLE = "Share Image Playground 🎉";
 const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {

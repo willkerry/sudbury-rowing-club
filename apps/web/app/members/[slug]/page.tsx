@@ -1,9 +1,9 @@
+import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
+import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
 import { NoticeBody } from "@/components/stour/collapsible-card/collapsible-card";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
-import { fetchNoticeSlugs, fetchOneNotice } from "@sudburyrc/api";
-import { notFound } from "next/navigation";
 
 type MemberPageParams = { slug: string };
 type MemberPageParamObject = { params: Promise<MemberPageParams> };

@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { Anonymous } from "./anonymous";
 
 export type TestimonialType = {

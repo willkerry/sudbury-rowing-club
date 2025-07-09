@@ -1,6 +1,6 @@
-import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
 import { type NextRequest, NextResponse } from "next/server";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 
 export const runtime = "edge";
 export const revalidate = 60;

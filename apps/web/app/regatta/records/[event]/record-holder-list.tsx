@@ -1,5 +1,5 @@
-import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 import Image from "next/image";
+import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 import type { Record } from "../transformRecords";
 import { formatClubAndCrewName, getBladeUrls } from "./utils";
 

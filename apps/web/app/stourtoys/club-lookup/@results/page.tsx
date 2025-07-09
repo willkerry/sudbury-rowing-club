@@ -1,8 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import allClubs from "@/data/clubs.json";
 import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
-import Image from "next/image";
-import Link from "next/link";
 
 const MAX_CLUBS = 64;
 const MAX_CLUBS_WITH_BLADES = 10;

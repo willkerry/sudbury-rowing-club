@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import * as RadixDialog from "@radix-ui/react-dialog";
 import React, { createContext, useContext, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type DialogType = "error" | "success" | "warn" | "info";
 

@@ -1,5 +1,5 @@
-import { fetchWeatherForecast } from "@sudburyrc/api";
 import type { WeatherCodeNumber } from "@sudburyrc/api";
+import { fetchWeatherForecast } from "@sudburyrc/api";
 import {
   type CardinalDirection,
   convertBearingToCardinal,

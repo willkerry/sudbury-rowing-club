@@ -1,8 +1,7 @@
 import { smartQuotes } from "@sudburyrc/helpers";
 import { Container } from "@/components/layouts/container";
-
+import { Breadcrumbs } from "@/components/stour/breadcrumbs";
 import { cn } from "@/lib/utils";
-import { Breadcrumbs } from "../breadcrumbs";
 
 type BaseProps = {
   title: string;

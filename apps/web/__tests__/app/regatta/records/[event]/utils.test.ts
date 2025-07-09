@@ -1,11 +1,11 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
-  formatClubAndCrewName,
   extendEventName,
-  isCompositeCrew,
-  getClubsFromCompositeCrewString,
-  unpickCompositeCrewClubs,
+  formatClubAndCrewName,
   getBladeUrls,
+  getClubsFromCompositeCrewString,
+  isCompositeCrew,
+  unpickCompositeCrewClubs,
 } from "@/app/regatta/records/[event]/utils";
 
 describe("formatClubAndCrewName", () => {

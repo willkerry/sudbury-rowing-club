@@ -1,6 +1,6 @@
-import { OFFICERS_INDEX_NAME, getServerClient } from "@/lib/algolia";
-import { createMetadata } from "@/lib/create-metadata";
 import { fetchOfficerNames } from "@sudburyrc/api";
+import { getServerClient, OFFICERS_INDEX_NAME } from "@/lib/algolia";
+import { createMetadata } from "@/lib/create-metadata";
 import { CSRContactPage } from "./csr-page";
 
 export const metadata = createMetadata({

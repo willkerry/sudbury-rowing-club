@@ -1,6 +1,6 @@
+import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
-import Link from "next/link";
 
 type StourToy = {
   name: string;

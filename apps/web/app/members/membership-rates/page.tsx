@@ -1,8 +1,8 @@
+import { TagIcon } from "lucide-react";
 import TextPage from "@/components/layouts/text-page";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
-import { TagIcon } from "lucide-react";
 
 export const revalidate = 60;
 

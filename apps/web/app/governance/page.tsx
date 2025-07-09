@@ -1,3 +1,5 @@
+import { fetchGovernance } from "@sudburyrc/api";
+import type { Metadata } from "next";
 import {
   Committees,
   Documents,
@@ -7,8 +9,6 @@ import {
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { makeShareImageURL } from "@/lib/og-image";
-import { fetchGovernance } from "@sudburyrc/api";
-import type { Metadata } from "next";
 
 const title = "Governance";
 const description = "How is Sudbury Rowing Club run?";

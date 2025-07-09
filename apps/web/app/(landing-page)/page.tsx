@@ -1,6 +1,6 @@
-import { ClubJsonLd } from "@/lib/constants";
 import { fetchLandingPage } from "@sudburyrc/api";
 import Script from "next/script";
+import { ClubJsonLd } from "@/lib/constants";
 
 export const generateMetadata = async () => {
   const {

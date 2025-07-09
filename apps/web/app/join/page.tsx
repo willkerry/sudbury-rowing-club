@@ -1,3 +1,7 @@
+import { ThumbsUp } from "lucide-react";
+import Image from "next/image";
+import NextLink from "next/link";
+import JoinImage from "@/assets/join/l2r.jpg";
 import {
   JoinCTA,
   L2RCallToAction,
@@ -12,12 +16,7 @@ import { Button } from "@/components/ui/button";
 import { l2rStages, overview } from "@/data/join/";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
-import { ThumbsUp } from "lucide-react";
-import Image from "next/image";
-import NextLink from "next/link";
 import { NextCourse } from "./next-course";
-
-import JoinImage from "@/assets/join/l2r.jpg";
 
 export const metadata = createMetadata({
   title: "Start rowing at Sudbury Rowing Club",

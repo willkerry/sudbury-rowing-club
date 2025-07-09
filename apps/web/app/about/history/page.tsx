@@ -1,5 +1,3 @@
-import TextPage from "@/components/layouts/text-page";
-import { createMetadata } from "@/lib/create-metadata";
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +8,8 @@ import aerial1936Image from "public/assets/history/1936-aerial.jpg";
 import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
 import henley2002Image from "public/assets/history/2002-henley.jpg";
 import reachPreWw1Image from "public/assets/history/reach.jpg";
+import TextPage from "@/components/layouts/text-page";
+import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
   title: "History",

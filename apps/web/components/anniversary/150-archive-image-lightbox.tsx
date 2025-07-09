@@ -1,10 +1,10 @@
 "use client";
 
-import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { useToggle } from "@mantine/hooks";
 import type { Archive } from "@sudburyrc/api";
 import Image from "next/image";
-import { LightBox } from "../stour/lightbox";
+import { LightBox } from "@/components/stour/lightbox";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 const LONGEST_EDGE = 880;
 

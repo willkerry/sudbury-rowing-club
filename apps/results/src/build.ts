@@ -2,7 +2,7 @@ import { Parcel } from "@parcel/core";
 import { consola } from "consola";
 import { remove } from "fs-extra/esm";
 
-import { TEMP, cleanResults, generateResults } from "./convert.ts";
+import { cleanResults, generateResults, TEMP } from "./convert.ts";
 
 const clean = async () =>
   Promise.all([cleanResults(), remove(".parcel-cache")]);

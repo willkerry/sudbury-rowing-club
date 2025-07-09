@@ -1,3 +1,4 @@
+import { Crest } from "@sudburyrc/blue";
 import { Container } from "@/components/layouts/container";
 import {
   about,
@@ -7,7 +8,6 @@ import {
   socials,
 } from "@/components/nav/nav-data";
 import type { IconNavItemType } from "@/types/nav-item";
-import { Crest } from "@sudburyrc/blue";
 import { Address } from "./address";
 import { FooterColumn } from "./column";
 import { ReportABug } from "./reportABug";

@@ -1,7 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import type { IconNavItemType } from "@/types/nav-item";
 import {
   CloseButton,
   Popover,
@@ -13,6 +11,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { fork } from "radash";
 import { Fragment } from "react";
+import { cn } from "@/lib/utils";
+import type { IconNavItemType } from "@/types/nav-item";
 
 export const navLinkClasses = cn(
   "group inline-flex rounded-md px-2 py-2.5 text-sm transition hover:text-black md:px-3",

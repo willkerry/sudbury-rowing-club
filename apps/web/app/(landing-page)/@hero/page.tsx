@@ -1,6 +1,6 @@
+import { fetchLandingPage } from "@sudburyrc/api";
 import { BoathouseDoor } from "@/components/landing/boathouse-door";
 import { LandingHero } from "@/components/landing/landing-hero";
-import { fetchLandingPage } from "@sudburyrc/api";
 
 const LandingHeroPage = async () => {
   const {

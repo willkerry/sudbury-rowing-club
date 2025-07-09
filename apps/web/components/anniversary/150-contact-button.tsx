@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button, type ButtonProps } from "../ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 
 const RECIPIENT = "will";
 

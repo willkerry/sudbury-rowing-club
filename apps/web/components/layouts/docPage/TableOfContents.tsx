@@ -1,9 +1,8 @@
 "use client";
 
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
-
-import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 import { TableOfContentsItem } from "./TableOfContentsItem";
 
 const getHeadings = (toc: SerializableTOC) =>

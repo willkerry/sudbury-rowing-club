@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import abglass from "../../../public/assets/logos/ab-glass-home-improvement.svg";
 import ashtons from "../../../public/assets/logos/ashtons.svg";
 import britishRowing from "../../../public/assets/logos/british-rowing.svg";

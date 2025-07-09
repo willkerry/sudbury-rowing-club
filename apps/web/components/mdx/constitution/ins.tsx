@@ -1,5 +1,5 @@
-import { ServerOrClientDateFormatter } from "@/components/utils/server-or-client-date-formatter";
 import type { DetailedHTMLProps, InsHTMLAttributes } from "react";
+import { ServerOrClientDateFormatter } from "@/components/utils/server-or-client-date-formatter";
 
 const COLORS = {
   1: "bg-green-50 border-green-300",

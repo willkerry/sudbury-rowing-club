@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "../stour/link";
-import { Button } from "../ui/button";
-import { HundredAndFiftyFireworks } from "./150-fireworks";
-import { HundredAndFiftyGradient } from "./150-gradient";
-import { HundredAndFiftyLogo } from "./150-logo";
+import { HundredAndFiftyFireworks } from "@/components/anniversary/150-fireworks";
+import { HundredAndFiftyGradient } from "@/components/anniversary/150-gradient";
+import { HundredAndFiftyLogo } from "@/components/anniversary/150-logo";
+import { Link } from "@/components/stour/link";
+import { Button } from "@/components/ui/button";
 
 export const HundredAndFiftyCta = () => (
   <div className="relative isolate grid grid-cols-1 items-center overflow-hidden rounded-lg border bg-gray-900 text-white shadow-sm md:grid-cols-3">

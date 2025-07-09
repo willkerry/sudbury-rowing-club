@@ -1,7 +1,7 @@
+import Image from "next/image";
 import shortCourse from "@/components/regatta/events/350.svg";
 import longCourse from "@/components/regatta/events/650.svg";
-import Image from "next/image";
-import { Label } from "../stour/label";
+import { Label } from "@/components/stour/label";
 
 type Event = {
   _key: string;

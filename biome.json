@@ -19,16 +19,6 @@
     "lineWidth": 80,
     "attributePosition": "auto"
   },
-  "assist": {
-    "actions": {
-      "source": {
-        "organizeImports": "off",
-        "useSortedAttributes": "off",
-        "useSortedKeys": "off",
-        "useSortedProperties": "off"
-      }
-    }
-  },
   "vcs": {
     "enabled": true,
     "clientKind": "git",

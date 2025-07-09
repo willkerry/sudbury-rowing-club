@@ -1,17 +1,17 @@
-import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
-import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
-import { ClubJsonLd } from "@/lib/constants";
-import { createMetadata } from "@/lib/create-metadata";
 import {
-  type Archive as TArchive,
   fetchArchiveById,
   fetchArchives,
+  type Archive as TArchive,
 } from "@sudburyrc/api";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import type { Photograph, WithContext } from "schema-dts";
 import snarkdown from "snarkdown";
+import { HundredAndFiftyArchiveButtons } from "@/components/anniversary/150-archive-buttons";
+import { ArchiveImage } from "@/components/anniversary/150-archive-image-lightbox";
+import { ClubJsonLd } from "@/lib/constants";
+import { createMetadata } from "@/lib/create-metadata";
 import { formatYear } from "../formatYear";
 
 const roundToNearestFive = (num: number) => Math.round(num / 5) * 5;

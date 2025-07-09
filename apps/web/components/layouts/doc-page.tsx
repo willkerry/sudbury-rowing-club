@@ -1,16 +1,15 @@
-import { Container } from "@/components/layouts/container";
-import { MDXContent } from "@/components/mdx/mdx-content";
-import { Text } from "@/components/stour/text";
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import { smartQuotes } from "@sudburyrc/helpers";
 import { AlignLeftIcon } from "lucide-react";
-
+import { Container } from "@/components/layouts/container";
 import { DocPageHeader } from "@/components/layouts/docPage/DocPageHeader";
 import {
   DocPagePrePostNote,
   type PrePostNote,
 } from "@/components/layouts/docPage/DocPagePrePostNote";
 import { TableOfContents } from "@/components/layouts/docPage/TableOfContents";
+import { MDXContent } from "@/components/mdx/mdx-content";
+import { Text } from "@/components/stour/text";
 
 export const DocPage = ({
   title,

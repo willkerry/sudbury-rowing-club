@@ -1,6 +1,6 @@
+import type React from "react";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
-import type React from "react";
 
 const SafetyLayout = async ({
   children,

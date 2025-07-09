@@ -1,5 +1,3 @@
-import { BASE_URL } from "@/lib/constants";
-import { getCommitteeArchive } from "@/lib/get-committee-archive";
 import {
   fetchAllAuthors,
   fetchArchives,
@@ -10,6 +8,8 @@ import {
 import { allPolicies } from "content-collections";
 import { slug } from "github-slugger";
 import type { MetadataRoute } from "next";
+import { BASE_URL } from "@/lib/constants";
+import { getCommitteeArchive } from "@/lib/get-committee-archive";
 import {
   getSlugifiedRecords,
   slugify,

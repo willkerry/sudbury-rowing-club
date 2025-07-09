@@ -1,13 +1,12 @@
 "use client";
 
+import type { ColumnDef } from "@tanstack/react-table";
 import { Link } from "@/components/stour/link";
 import { DataTableColumnHeader } from "@/components/ui/table";
-import type { ColumnDef } from "@tanstack/react-table";
 import { detectAndFormatCourseLength } from "./[event]/format-description";
 import { getBladeUrls } from "./[event]/utils";
-import { type Record, formatDuration } from "./transformRecords";
-import { slugify } from "./transformRecords";
 import { Blade } from "./blade";
+import { formatDuration, type Record, slugify } from "./transformRecords";
 
 export const columns: ColumnDef<Record>[] = [
   {

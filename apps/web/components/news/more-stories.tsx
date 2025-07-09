@@ -1,7 +1,7 @@
 import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
-import { Loading } from "../stour/loading";
+import { Loading } from "@/components/stour/loading";
 import { PostPreview } from "./post-preview";
 
 export const MoreStories = ({

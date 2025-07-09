@@ -1,9 +1,9 @@
 "use client";
 
-import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import type { Archive } from "@sudburyrc/api";
 import Image from "next/image";
 import Link from "next/link";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 const IMAGE_WIDTH = 480;
 

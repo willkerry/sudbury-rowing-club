@@ -1,8 +1,8 @@
-import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
-import { ZTypedObject, sanityClient } from "@sudburyrc/api";
+import { sanityClient, ZTypedObject } from "@sudburyrc/api";
 import groq from "groq";
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 
 export const revalidate = 300;
 

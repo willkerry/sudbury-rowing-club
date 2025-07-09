@@ -1,6 +1,6 @@
+import { notFound } from "next/navigation";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
-import { notFound } from "next/navigation";
 import { getSlugifiedRecords } from "../transformRecords";
 import { formatDescription } from "./format-description";
 import { RecordHolderList } from "./record-holder-list";

@@ -1,10 +1,10 @@
-import { ScrollLink } from "@/components/utils/scroll-link";
 import { HeartHandshake } from "lucide-react";
 import Link from "next/link";
-import { Sponsors } from "../landing/sponsors";
+import { Sponsors } from "@/components/landing/sponsors";
 import { Container } from "@/components/layouts/container";
-import { Label } from "../stour/label";
-import { Button } from "../ui/button";
+import { Label } from "@/components/stour/label";
+import { Button } from "@/components/ui/button";
+import { ScrollLink } from "@/components/utils/scroll-link";
 
 export const SponsorshipHero = ({
   title,

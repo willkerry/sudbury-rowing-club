@@ -1,10 +1,5 @@
 "use client";
 
-import { NavLogo, NavSection } from "@/components/nav";
-import {
-  MobileMenuButton,
-  MobileMenuSection,
-} from "@/components/nav/mobile-menu";
 import {
   Popover,
   PopoverButton,
@@ -15,6 +10,11 @@ import {
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
 import { fork } from "radash";
 import { Fragment } from "react";
+import { NavLogo, NavSection } from "@/components/nav";
+import {
+  MobileMenuButton,
+  MobileMenuSection,
+} from "@/components/nav/mobile-menu";
 import { navigationGroups, secondaryNavigationGroups } from "./nav-data";
 
 const extractSingletonGroups = (

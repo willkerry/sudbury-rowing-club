@@ -1,5 +1,3 @@
-import { SanityFigure } from "@/components/stour/figure";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   PortableText as BlockContent,
   type PortableTextComponents,
@@ -14,7 +12,9 @@ import {
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
-import { OEmbed } from "../components/oembed/oembed";
+import { OEmbed } from "@/components/oembed/oembed";
+import { SanityFigure } from "@/components/stour/figure";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 type WrappedPortableTextProps = PortableTextProps & {
   className?: string;

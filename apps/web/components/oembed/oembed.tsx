@@ -1,7 +1,7 @@
 import { unfurl } from "unfurl.js";
-import { Link } from "../stour/link";
-import { Avatar, AvatarImage } from "../ui/avatar";
-import { Error as ErrorComponent } from "../ui/error";
+import { Link } from "@/components/stour/link";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Error as ErrorComponent } from "@/components/ui/error";
 import { Iframe } from "./iframe";
 
 export const OEmbed = async ({ url }: { url: string }) => {

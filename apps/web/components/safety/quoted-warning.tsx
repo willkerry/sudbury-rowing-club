@@ -1,5 +1,5 @@
 import { smartQuotes } from "@sudburyrc/helpers";
-import { EnvironmentAgency, MetOffice } from "../icons";
+import { EnvironmentAgency, MetOffice } from "@/components/icons";
 
 export enum WarningSourceEnum {
   metoffice = "metoffice",

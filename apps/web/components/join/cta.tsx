@@ -1,6 +1,6 @@
+import type { ComponentProps } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollLink } from "@/components/utils/scroll-link";
-import type { ComponentProps } from "react";
 
 type CTALinkProps = {
   to: string;

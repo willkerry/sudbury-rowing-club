@@ -1,11 +1,4 @@
-import { SharePlayground } from "@/components/about/share-playground";
-import TextPage from "@/components/layouts/text-page";
-import { Social } from "@/components/logo/social";
-import { Copy } from "@/components/stour/copy";
-import { Link } from "@/components/stour/link";
-import { createMetadata } from "@/lib/create-metadata";
-import { combineURLs } from "@/lib/helpers/combineURLs";
-import { Crest, Wordmark, blue } from "@sudburyrc/blue";
+import { blue, Crest, Wordmark } from "@sudburyrc/blue";
 import Color from "color";
 import a from "indefinite";
 import { Circle, HelpCircle } from "lucide-react";
@@ -13,6 +6,13 @@ import type { Metadata } from "next";
 import NextLink from "next/link";
 import toWords from "num-words";
 import { capitalize } from "radash";
+import { SharePlayground } from "@/components/about/share-playground";
+import TextPage from "@/components/layouts/text-page";
+import { Social } from "@/components/logo/social";
+import { Copy } from "@/components/stour/copy";
+import { Link } from "@/components/stour/link";
+import { createMetadata } from "@/lib/create-metadata";
+import { combineURLs } from "@/lib/helpers/combineURLs";
 
 export const metadata: Metadata = {
   ...createMetadata({

@@ -1,7 +1,7 @@
 "use client";
 
-import { CLUB_LOCATION } from "@/lib/constants";
 import * as maptilersdk from "@maptiler/sdk";
+import { CLUB_LOCATION } from "@/lib/constants";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { useEffect, useRef } from "react";
 

@@ -2,7 +2,7 @@ import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
 import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
-import { ZExcerpt, excerptFields } from "./fetch-news-article";
+import { excerptFields, ZExcerpt } from "./fetch-news-article";
 import { ZTypedObject } from "./typed-object";
 
 const ZNoteSchema = z.object({

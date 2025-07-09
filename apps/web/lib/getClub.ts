@@ -1,5 +1,5 @@
-import clubs from "@/data/clubs.json";
 import { unique } from "radash";
+import clubs from "@/data/clubs.json";
 
 const SUFFIX_ALIASES = {
   " Rowing Club": [" Rowing Club", " RC"],

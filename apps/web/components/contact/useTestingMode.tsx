@@ -1,12 +1,12 @@
 "use client";
 
-import { OFFICERS_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
 import { useHotkeys, useOs, useThrottledCallback } from "@mantine/hooks";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { type ExternalToast, toast } from "sonner";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { getBrowserClient, OFFICERS_INDEX_NAME } from "@/lib/algolia";
 import type { Message } from "./contactForm";
 
 const TESTING_MODE_TOAST_OPTIONS = {

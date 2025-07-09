@@ -1,16 +1,16 @@
 "use client";
 
-import { ContactForm } from "@/components/contact";
-import { Container } from "@/components/layouts/container";
-import { PageHeader } from "@/components/stour/hero/page-header";
-import { Loading } from "@/components/stour/loading";
-import { OFFICERS_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
-import type { OfficerResponse, fetchOfficerNames } from "@sudburyrc/api";
+import type { fetchOfficerNames, OfficerResponse } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import { parseAsArrayOf, parseAsString, useQueryStates } from "nuqs";
 import { shake } from "radash";
 import { Suspense } from "react";
+import { ContactForm } from "@/components/contact";
+import { Container } from "@/components/layouts/container";
+import { PageHeader } from "@/components/stour/hero/page-header";
+import { Loading } from "@/components/stour/loading";
+import { getBrowserClient, OFFICERS_INDEX_NAME } from "@/lib/algolia";
 
 const ContactPage = ({
   officers,

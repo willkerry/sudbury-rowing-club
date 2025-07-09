@@ -1,8 +1,8 @@
 "use client";
 
-import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { ArrowUpIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 type Props = {
   title: string;

@@ -1,11 +1,11 @@
+import { sanityClient } from "@sudburyrc/api";
+import groq from "groq";
 import { Container } from "@/components/layouts/container";
 import { Copy } from "@/components/stour/copy";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Link } from "@/components/stour/link";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
-import { sanityClient } from "@sudburyrc/api";
-import groq from "groq";
 
 export const metadata = createMetadata({
   title: "Official Photography | Sudbury Regatta",

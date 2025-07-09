@@ -1,6 +1,6 @@
-import TextPage from "@/components/layouts/text-page";
 import { fetchSafetyById } from "@sudburyrc/api";
 import { notFound } from "next/navigation";
+import TextPage from "@/components/layouts/text-page";
 
 const SafetyItemLayout = async ({
   children,

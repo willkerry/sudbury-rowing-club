@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { formatYear } from "@/app/150/(gallery)/gallery/formatYear";
 
 describe("formatYear", () => {

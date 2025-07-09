@@ -1,5 +1,5 @@
+import { getBoatsByWave } from "@/components/utils/getBoatsByWave";
 import { cn } from "@/lib/utils";
-import { getBoatsByWave } from "../../utils/getBoatsByWave";
 import { Chip } from "./chip";
 
 type Props = {

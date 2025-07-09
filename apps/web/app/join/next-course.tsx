@@ -1,7 +1,7 @@
 "use client";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Link from "next/link";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const HIDE_COURSE_AFTER_DATE = new Date(2024, 9, 15);
 

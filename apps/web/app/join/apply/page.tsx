@@ -1,7 +1,7 @@
-import TextPage from "@/components/layouts/text-page";
-import { Loading } from "@/components/stour/loading";
 import type { NextPage } from "next";
 import Link from "next/link";
+import TextPage from "@/components/layouts/text-page";
+import { Loading } from "@/components/stour/loading";
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row">

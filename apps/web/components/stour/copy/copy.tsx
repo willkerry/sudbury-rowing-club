@@ -1,10 +1,10 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { useClipboard } from "@mantine/hooks";
 import { CheckIcon, Clipboard } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 export const Copy = ({ value }: { value: string }) => {
   const { copy, copied, error } = useClipboard();

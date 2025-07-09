@@ -1,9 +1,9 @@
-import TextPage from "@/components/layouts/text-page";
-import { createMetadata } from "@/lib/create-metadata";
-import { getCommitteeArchive } from "@/lib/get-committee-archive";
 import { slug } from "github-slugger";
 import Link from "next/link";
 import { listify } from "radash";
+import TextPage from "@/components/layouts/text-page";
+import { createMetadata } from "@/lib/create-metadata";
+import { getCommitteeArchive } from "@/lib/get-committee-archive";
 import { InitialisedName } from "./InitialiseName";
 
 export const metadata = createMetadata({

@@ -1,13 +1,13 @@
 "use client";
 
-import type { Notice } from "@/app/api/notice/route";
-import { kyInstance } from "@/app/get-query-client";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import { useEffect, useRef, useState } from "react";
+import type { Notice } from "@/app/api/notice/route";
+import { kyInstance } from "@/app/get-query-client";
 import { Container } from "@/components/layouts/container";
-import { Text } from "../stour/text";
-import { DateFormatter } from "../utils/date-formatter";
+import { Text } from "@/components/stour/text";
+import { DateFormatter } from "@/components/utils/date-formatter";
 
 const bannerVariants: Record<
   Notice["type"][number],

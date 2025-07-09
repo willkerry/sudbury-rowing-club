@@ -1,12 +1,12 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { chain } from "radash";
 import { type MouseEventHandler, memo } from "react";
 import { animateScroll } from "react-scroll";
+import { cn } from "@/lib/utils";
 
 const removePrecedingNumbers = (title: string) =>
   title.replace(/^\d+\./, "").replace(/^\d+\)/, "");

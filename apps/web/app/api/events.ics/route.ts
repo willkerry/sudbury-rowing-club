@@ -1,8 +1,8 @@
-import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { serversideFetchCompetitions } from "@sudburyrc/api";
 import IcalBuilder from "@sudburyrc/ical-builder";
 import { kv } from "@vercel/kv";
 import { type NextRequest, NextResponse } from "next/server";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours

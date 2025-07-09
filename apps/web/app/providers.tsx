@@ -1,12 +1,12 @@
 "use client";
 
-import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
-import { Toaster } from "@/components/ui/sonner";
 import { QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
+import { Toaster } from "@/components/ui/sonner";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {

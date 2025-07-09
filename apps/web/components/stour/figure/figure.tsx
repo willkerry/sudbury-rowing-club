@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
 import Image, { type ImageProps, type StaticImageData } from "next/image";
 import React from "react";
+import { cn } from "@/lib/utils";
 import { FigureWrapper } from "./figureWrapper";
 
 export const WIDTH = 650;

@@ -1,6 +1,6 @@
+import { fetchLandingPage } from "@sudburyrc/api";
 import { Container } from "@/components/layouts/container";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { fetchLandingPage } from "@sudburyrc/api";
 
 const LandingNoticePage = async () => {
   const {

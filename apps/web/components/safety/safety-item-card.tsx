@@ -1,14 +1,14 @@
-import { Link } from "@/components/stour/link";
-import { Text } from "@/components/stour/text";
-import { Button } from "@/components/ui/button";
-import { DateFormatter } from "@/components/utils/date-formatter";
-import { cn } from "@/lib/utils";
 import type { SafetyResponse } from "@sudburyrc/api";
 import { BASE_URL } from "lib/constants";
 import { Download, ExternalLink } from "lucide-react";
 import NextLink from "next/link";
 import { first, isArray } from "radash";
 import { forwardRef } from "react";
+import { Link } from "@/components/stour/link";
+import { Text } from "@/components/stour/text";
+import { Button } from "@/components/ui/button";
+import { DateFormatter } from "@/components/utils/date-formatter";
+import { cn } from "@/lib/utils";
 
 const URGENT_WORDS = ["emergency", "urgent", "critical"];
 

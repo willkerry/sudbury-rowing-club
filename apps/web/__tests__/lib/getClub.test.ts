@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { getClub, getClubByCode } from "@/lib/getClub";
 
 const club = {

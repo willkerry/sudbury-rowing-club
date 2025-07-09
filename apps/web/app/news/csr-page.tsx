@@ -1,5 +1,10 @@
 "use client";
 
+import type { serverGetNArticles } from "@sudburyrc/api";
+import { useQuery } from "@tanstack/react-query";
+import { SearchIcon, Undo2Icon, XIcon } from "lucide-react";
+import { useQueryState } from "nuqs";
+import { Suspense, useState } from "react";
 import { Container } from "@/components/layouts/container";
 import { NewsList } from "@/components/news/news-list";
 import { Label } from "@/components/stour/label";
@@ -7,13 +12,8 @@ import { Link } from "@/components/stour/link";
 import { Loading } from "@/components/stour/loading";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { SEARCH_INDEX_NAME, getBrowserClient } from "@/lib/algolia";
+import { getBrowserClient, SEARCH_INDEX_NAME } from "@/lib/algolia";
 import { SOCIALS } from "@/lib/constants";
-import type { serverGetNArticles } from "@sudburyrc/api";
-import { useQuery } from "@tanstack/react-query";
-import { SearchIcon, Undo2Icon, XIcon } from "lucide-react";
-import { useQueryState } from "nuqs";
-import { Suspense, useState } from "react";
 
 function getMoreUrl(activeSearchTerm: string, data: unknown[]) {
   if (activeSearchTerm) {

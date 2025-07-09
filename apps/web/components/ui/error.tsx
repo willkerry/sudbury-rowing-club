@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
 import { AlertOctagon, ArrowUpRight } from "lucide-react";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 type ErrorProps = React.HTMLAttributes<HTMLDivElement> & {
   label?: string;

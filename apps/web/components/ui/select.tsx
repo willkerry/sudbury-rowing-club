@@ -1,6 +1,6 @@
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "lib/utils";
-import { type InputHTMLAttributes, forwardRef, useId } from "react";
+import { forwardRef, type InputHTMLAttributes, useId } from "react";
 import {
   InputDescription,
   InputError,

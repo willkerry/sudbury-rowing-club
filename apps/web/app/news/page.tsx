@@ -1,10 +1,10 @@
-import { SEARCH_INDEX_NAME, getServerClient } from "@/lib/algolia";
-import { createMetadata } from "@/lib/create-metadata";
 import {
   fetchArticleCount,
   fetchNArticles,
   serverGetNArticles,
 } from "@sudburyrc/api";
+import { getServerClient, SEARCH_INDEX_NAME } from "@/lib/algolia";
+import { createMetadata } from "@/lib/create-metadata";
 import { CSRNewsPage } from "./csr-page";
 
 export const metadata = createMetadata({

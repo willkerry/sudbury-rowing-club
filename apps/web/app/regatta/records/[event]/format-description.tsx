@@ -1,4 +1,4 @@
-import { type Record, formatVerboseDuration } from "../transformRecords";
+import { formatVerboseDuration, type Record } from "../transformRecords";
 import { extendEventName, formatClubAndCrewName, listFormatter } from "./utils";
 
 const distanceFormatter = new Intl.NumberFormat("en-GB", {

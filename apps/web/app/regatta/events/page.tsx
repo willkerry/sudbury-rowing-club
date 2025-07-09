@@ -1,9 +1,9 @@
+import { sanityClient } from "@sudburyrc/api";
+import groq from "groq";
 import { Container } from "@/components/layouts/container";
 import { Events as EventsComponent } from "@/components/regatta/events";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
-import { sanityClient } from "@sudburyrc/api";
-import groq from "groq";
 
 export const metadata = createMetadata({
   title: "Event Information | Sudbury Regatta",

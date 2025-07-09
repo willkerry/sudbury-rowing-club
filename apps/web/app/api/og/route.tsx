@@ -1,9 +1,9 @@
-import { BASE_URL } from "@/lib/constants";
-import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { Wordmark } from "@sudburyrc/blue";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
+import { BASE_URL } from "@/lib/constants";
+import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { variants } from "./variants";
 
 export const runtime = "edge";

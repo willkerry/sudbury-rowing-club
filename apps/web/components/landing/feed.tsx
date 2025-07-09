@@ -1,3 +1,4 @@
+import cn from "clsx";
 import { BritishRowing } from "@/components/icons/organisations/british-rowing";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
@@ -6,7 +7,6 @@ import {
   type BRArticle,
   fetchBritishRowingFeed,
 } from "@/lib/server/fetchBritishRowingFeed";
-import cn from "clsx";
 
 const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
   <a

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useLightBox } from "../lightbox";
+import { useLightBox } from "@/components/stour/lightbox";
 
 export const FigureWrapper = React.forwardRef<
   HTMLDivElement,

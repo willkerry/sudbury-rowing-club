@@ -1,11 +1,11 @@
-import { Text } from "@/components/stour/text";
-import { Button } from "@/components/ui/button";
-import { BASE_URL } from "@/lib/constants";
-import { createMetadata } from "@/lib/create-metadata";
 import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
 import { Download, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Text } from "@/components/stour/text";
+import { Button } from "@/components/ui/button";
+import { BASE_URL } from "@/lib/constants";
+import { createMetadata } from "@/lib/create-metadata";
 
 type SafetyPageParams = { slug: string };
 type SafetyPageParamObject = { params: Promise<SafetyPageParams> };

@@ -1,8 +1,8 @@
 import { z } from "zod";
 import {
   type Article,
-  ZArticleSummary,
   fetchAllArticles,
+  ZArticleSummary,
 } from "./fetch-news-article";
 
 type Cache = {

@@ -1,8 +1,8 @@
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { cn } from "@/lib/utils";
 import { MDXContent as BaseMDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { cn } from "@/lib/utils";
 
 export const MDXContent = ({
   components,

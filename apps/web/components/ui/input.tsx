@@ -1,6 +1,6 @@
-import { type VariantProps, cva } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "lib/utils";
-import { type InputHTMLAttributes, forwardRef, useId } from "react";
+import { forwardRef, type InputHTMLAttributes, useId } from "react";
 import { Label } from "./label";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
