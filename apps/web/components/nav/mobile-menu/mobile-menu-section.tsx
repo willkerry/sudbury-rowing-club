@@ -1,7 +1,7 @@
 import { CloseButton } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import * as Accordion from "@radix-ui/react-accordion";
 import Link from "next/link";
+import { Accordion } from "radix-ui";
 import { cn } from "@/lib/utils";
 import type { IconNavItemType } from "@/types/nav-item";
 

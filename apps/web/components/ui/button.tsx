@@ -1,8 +1,8 @@
-import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "lib/utils";
 import { Loader2 } from "lucide-react";
-import * as React from "react";
+import { Slot as SlotPrimitive } from "radix-ui";
+import { forwardRef } from "react";
 
 const buttonVariants = cva(
   "not-prose relative inline-flex items-center justify-center whitespace-nowrap rounded-sm font-medium text-sm ring-offset-white transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
@@ -44,7 +44,7 @@ export interface ButtonProps
   icon?: React.ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,
@@ -59,7 +59,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const Comp = asChild ? Slot : "button";
+    const Comp = asChild ? SlotPrimitive.Slot : "button";
 
     return (
       <Comp
@@ -68,12 +68,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <Slottable>{children}</Slottable>
-        <Slottable>
-          <Slot aria-hidden className="ml-2 w-4">
+        <SlotPrimitive.Slottable>{children}</SlotPrimitive.Slottable>
+        <SlotPrimitive.Slottable>
+          <SlotPrimitive.Slot aria-hidden className="ml-2 w-4">
             {loading ? <Loader2 className="animate-spin" /> : icon}
-          </Slot>
-        </Slottable>
+          </SlotPrimitive.Slot>
+        </SlotPrimitive.Slottable>
       </Comp>
     );
   },

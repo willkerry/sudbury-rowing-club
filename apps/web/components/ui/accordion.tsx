@@ -1,12 +1,12 @@
 "use client";
 
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cn } from "lib/utils";
 import { ChevronDown } from "lucide-react";
-import * as React from "react";
+import { Accordion as AccordionPrimitive } from "radix-ui";
+import { forwardRef } from "react";
 
-const Accordion = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Root>,
+const Accordion = forwardRef<
+  React.ComponentRef<typeof AccordionPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Root
@@ -17,7 +17,7 @@ const Accordion = React.forwardRef<
 ));
 Accordion.displayName = AccordionPrimitive.Root.displayName;
 
-const AccordionItem = React.forwardRef<
+const AccordionItem = forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
@@ -25,8 +25,8 @@ const AccordionItem = React.forwardRef<
 ));
 AccordionItem.displayName = "AccordionItem";
 
-const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
+const AccordionTrigger = forwardRef<
+  React.ComponentRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Header className="flex">
@@ -45,8 +45,8 @@ const AccordionTrigger = React.forwardRef<
 ));
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
-const AccordionContent = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Content>,
+const AccordionContent = forwardRef<
+  React.ComponentRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content

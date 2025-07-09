@@ -1,7 +1,7 @@
 "use client";
 
-import * as RadixDialog from "@radix-ui/react-dialog";
-import React, { createContext, useContext, useState } from "react";
+import { Dialog as RadixDialog } from "radix-ui";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 type DialogType = "error" | "success" | "warn" | "info";
@@ -164,7 +164,7 @@ export const Dialog = {
 export const useInitializeDialog = () => {
   const context = useContext(DialogContext);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setDialogContext(context);
   }, [context]);
 };

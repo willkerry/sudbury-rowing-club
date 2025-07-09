@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import { Slot } from "@radix-ui/react-slot";
 import Link from "next/link";
+import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 export type DetailProps = {
@@ -34,12 +34,12 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
           })}
         />
 
-        <Slot
+        <Slot.Slot
           aria-hidden
           className="h-6 w-6 stroke-[1.5px] text-gray-400 transition-colors group-hover:text-blue-600 group-focus:text-blue-600"
         >
           {icon}
-        </Slot>
+        </Slot.Slot>
 
         <div>{summary}</div>
 
