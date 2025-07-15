@@ -6,7 +6,7 @@ import { ServerOrClientDateFormatter } from "./server-or-client-date-formatter";
 export const DateFormatter = ({
   ...props
 }: ComponentProps<typeof ServerOrClientDateFormatter>) => {
-  const [_, setHydrated] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setHydrated(true);
@@ -14,7 +14,7 @@ export const DateFormatter = ({
 
   return (
     <Suspense>
-      <ServerOrClientDateFormatter {...props} />
+      {hydrated && <ServerOrClientDateFormatter {...props} />}
     </Suspense>
   );
 };
