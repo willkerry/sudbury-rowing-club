@@ -4678,22 +4678,7 @@
   },
   {
     "id": 616,
-    "name": "Oxford University Lwt Rowing Club",
-    "address": "OULRC, Fleming Boathouse, Chalmore Gardens, OX10 9EP",
-    "bladeUrl": "https://clubimages.britishrowing.org/blades?id=616",
-    "code": "OUL",
-    "geo": {
-      "lat": 51.5948336484998,
-      "lng": -1.12293734328716
-    },
-    "href": "https://www.britishrowing.org/rowing-activity-finder/club/?clubid=616",
-    "newBladeUrl": "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/118363/616.png",
-    "region": "Thames Upriver",
-    "website": "https://www.oulrc.org/"
-  },
-  {
-    "id": 616,
-    "name": "Oxford University Lwt Rowing Club",
+    "name": "Oxford University Lightweight Rowing Club",
     "address": "OULRC, Fleming Boathouse, Chalmore Gardens, OX10 9EP",
     "bladeUrl": "https://clubimages.britishrowing.org/blades?id=616",
     "code": "OUL",
