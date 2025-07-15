@@ -53,7 +53,10 @@ export const getClub = (name: string): Club | undefined => {
 };
 
 export const getClubByCode = (code: string) => {
-  const foundClub = clubs.find((club) => club.code === code);
+  const foundClub =
+    clubs.find((club) => club.code === code) ??
+    clubs.find((club) => club.aliasCodes?.includes(code));
+
   if (!foundClub) return undefined;
 
   return {

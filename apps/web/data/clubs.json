@@ -4682,6 +4682,7 @@
     "address": "OULRC, Fleming Boathouse, Chalmore Gardens, OX10 9EP",
     "bladeUrl": "https://clubimages.britishrowing.org/blades?id=616",
     "code": "OUL",
+    "aliasCodes": ["NEP"],
     "geo": {
       "lat": 51.5948336484998,
       "lng": -1.12293734328716

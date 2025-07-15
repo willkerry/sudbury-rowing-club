@@ -1,3 +1,4 @@
+import { sift } from "radash";
 import { getClubByCode } from "@/lib/getClub";
 
 export const isCompositeCrew = (club: string) => club.includes("/");
@@ -31,13 +32,25 @@ export const formatClubAndCrewName = (club: string, verbose = false) => {
   return getClubByCode(club)?.name ?? club;
 };
 
-export const getBladeUrls = (clubCode: string) => {
+export function getBladeUrls(
+  clubCode: string,
+  nullIfNotFound?: false,
+): string[];
+export function getBladeUrls(
+  clubCode: string,
+  nullIfNotFound?: true,
+): (string | null)[];
+export function getBladeUrls(clubCode: string, nullIfNotFound = false) {
   const clubs = getClubsFromCompositeCrewString(clubCode);
 
-  return clubs
-    .map((club) => ("bladeUrl" in club ? (club.bladeUrl ?? "") : ""))
-    .filter(Boolean);
-};
+  const bladeUrls = clubs.map((club) =>
+    "bladeUrl" in club ? (club.bladeUrl ?? null) : null,
+  );
+
+  if (nullIfNotFound) return bladeUrls;
+
+  return sift(bladeUrls);
+}
 
 export const extendEventName = (event: string): string =>
   // Mx === Mixed

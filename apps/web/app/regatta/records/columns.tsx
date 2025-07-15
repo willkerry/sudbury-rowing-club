@@ -43,7 +43,7 @@ export const columns: ColumnDef<Record>[] = [
     ),
     accessorKey: "club",
     cell: ({ row }) => {
-      const blades = getBladeUrls(row.original.club);
+      const blades = getBladeUrls(row.original.club, true);
 
       return (
         <div className="flex flex-row gap-2">

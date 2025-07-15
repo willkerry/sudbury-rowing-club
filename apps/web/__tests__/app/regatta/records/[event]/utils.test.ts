@@ -108,4 +108,11 @@ describe("getBladeUrls", () => {
       "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
     ]);
   });
+
+  it("should return null for missing clubs if nullIfNotFound is true", () => {
+    expect(getBladeUrls("SRC/NOT_A_CLUB", true)).toEqual([
+      "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
+      null,
+    ]);
+  });
 });
