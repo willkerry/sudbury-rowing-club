@@ -1,5 +1,5 @@
 import type { Column } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, ChevronsUpDown, Undo } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronsUpDown, Search, Undo } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { cn } from "@/lib/utils";
+import { Input } from "./input";
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -127,55 +128,102 @@ const DataTableColumnHeader = <TData, TValue>({
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) => {
-  if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>;
-  }
+  // if (!column.getCanSort()) {
+  //   return <div className={cn(className)}>{title}</div>;
+  // }
 
-  const icon = {
-    desc: <ArrowDown />,
-    asc: <ArrowUp />,
-    none: <ChevronsUpDown />,
+  const sortIcon = {
+    desc: <ArrowDown aria-hidden className="h-3.5 w-3.5" />,
+    asc: <ArrowUp aria-hidden className="h-3.5 w-3.5" />,
+    none: <ChevronsUpDown aria-hidden className="h-3.5 w-3.5" />,
   }[column.getIsSorted() || "none"];
 
   return (
-    <div className={cn("flex items-center space-x-2", className)}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="-ml-3 h-8 data-[state=open]:bg-accent"
-            icon={icon}
-          >
-            <span>{title}</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="start">
-          <DropdownMenuItem
-            onClick={() => column.toggleSorting(false)}
-            disabled={column.getIsSorted() === "asc"}
-          >
-            <ArrowUp className="h-3.5 w-3.5 text-muted-foreground/70" />
-            Ascending
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => column.toggleSorting(true)}
-            disabled={column.getIsSorted() === "desc"}
-          >
-            <ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70" />
-            Descending
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
+    <div className={cn("flex items-center gap-0.5", className)}>
+      <span>{title}</span>
 
-          <DropdownMenuItem
-            onClick={() => column.clearSorting()}
-            disabled={!column.getIsSorted()}
-          >
-            <Undo className="h-3.5 w-3.5 text-muted-foreground/70" />
-            Clear
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div>
+        {column.getCanSort() && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="xs">
+                {sortIcon}
+                <span className="sr-only">Sort</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem
+                onClick={() => column.toggleSorting(false)}
+                disabled={column.getIsSorted() === "asc"}
+              >
+                <ArrowUp aria-hidden className="h-3.5 w-3.5" />
+                Ascending
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => column.toggleSorting(true)}
+                disabled={column.getIsSorted() === "desc"}
+              >
+                <ArrowDown aria-hidden className="h-3.5 w-3.5" />
+                Descending
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem
+                onClick={() => column.clearSorting()}
+                disabled={!column.getIsSorted()}
+              >
+                <Undo aria-hidden className="h-3.5 w-3.5" />
+                Clear
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+
+        {column.getCanFilter() && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="xs">
+                <Search aria-hidden className="h-3.5 w-3.5" />
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent align="start" asChild>
+              <DropdownMenuItem asChild>
+                {/* if there are fewer than 20 unique values, show a dropdown menu with the values */}
+                {column.getFacetedUniqueValues().size < 99999 ? (
+                  // <Select
+                  //   value={column.getFilterValue() as string}
+                  //   onChange={(value) => column.setFilterValue(value)}
+                  // >
+                  //   {Array.from(column.getFacetedUniqueValues().values())
+                  //     .sort()
+                  //     .map((value) => (
+                  //       <option key={value} value={value}>
+                  //         {value}
+                  //       </option>
+                  //     ))}
+                  // </Select>
+                  <pre>
+                    {JSON.stringify(
+                      column.getFacetedUniqueValues().entries(),
+                      null,
+                      2,
+                    )}
+                  </pre>
+                ) : (
+                  <Input
+                    type="text"
+                    value={column.getFilterValue() as string}
+                    onChange={(event) =>
+                      column.setFilterValue(event.target.value)
+                    }
+                  />
+                )}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+      </div>
     </div>
   );
 };

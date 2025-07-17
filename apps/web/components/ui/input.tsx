@@ -20,6 +20,11 @@ export const inputVariants = cva(
       loading: {
         true: "animate-pulse bg-gray-100 ease-in-out",
       },
+      size: {
+        sm: "h-8 text-xs",
+        md: "h-10 text-sm",
+        lg: "h-12 text-base",
+      },
     },
   },
 );
