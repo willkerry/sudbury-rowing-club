@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "author": "",
   "devDependencies": {
-    "@biomejs/biome": "^2.0.6",
-    "lefthook": "^1.11.16"
+    "@biomejs/biome": "^2.1.1",
+    "lefthook": "^1.12.2"
   },
   "description": "",
   "keywords": [],
@@ -19,7 +19,7 @@
     "clean": "sh scripts/clean.sh"
   },
   "dependencies": {
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.5"
   },
   "pnpm": {
     "overrides": {

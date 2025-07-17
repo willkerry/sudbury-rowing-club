@@ -30,7 +30,7 @@ const policies = defineCollection({
   name: "policies",
   directory: "content/policies",
   include: "**/*.mdx",
-  schema: () => ({
+  schema: z.object({
     title: z.string(),
     status: StatusSchema.optional().default("published"),
     description: z.string().optional(),

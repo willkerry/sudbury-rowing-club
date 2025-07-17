@@ -77,7 +77,7 @@ const Join = async () => {
             <h2 id={slug} className="mb-2 font-medium text-gray-900 text-xl">
               {era}
             </h2>
-            <div className="sm:masonry-2-col gap-4">
+            <div className="sm:columns-2">
               {archives?.map((archive) => (
                 <ArchiveItem key={archive._id} {...archive} />
               ))}
