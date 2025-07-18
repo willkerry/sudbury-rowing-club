@@ -38,7 +38,6 @@ export const BrandAsset = ({
           <Illustration
             className="max-h-32 max-w-full bg-gray-100 bg-indicate-transparency"
             fill={color}
-            data-name={name}
             ref={svgRef}
           />
         )}
