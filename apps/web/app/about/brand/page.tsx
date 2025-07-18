@@ -1,18 +1,14 @@
-import { blue, Crest, Wordmark } from "@sudburyrc/blue";
-import Color from "color";
+import { blue } from "@sudburyrc/blue";
 import a from "indefinite";
-import { Circle, HelpCircle } from "lucide-react";
 import type { Metadata } from "next";
 import NextLink from "next/link";
 import toWords from "num-words";
 import { capitalize } from "radash";
 import { SharePlayground } from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
-import { Social } from "@/components/logo/social";
-import { Copy } from "@/components/stour/copy";
-import { Link } from "@/components/stour/link";
 import { createMetadata } from "@/lib/create-metadata";
-import { combineURLs } from "@/lib/helpers/combineURLs";
+import { BrandAssets } from "./brand-assets";
+import { ColorIndicator } from "./color-indicator";
 
 export const metadata: Metadata = {
   ...createMetadata({
@@ -20,162 +16,6 @@ export const metadata: Metadata = {
     description: "Some handy resources for building things for Sudbury RC.",
   }),
 };
-
-const brandAssets = [
-  {
-    Illustration: Crest,
-    color: "#002147",
-    description: "Crest in Oxford Blue",
-    files: [
-      {
-        href: "/assets/about/brand/primary/primary.svg",
-        w: "",
-      },
-      {
-        href: "/assets/about/brand/primary/primary.pdf",
-        w: "",
-      },
-      {
-        href: "/assets/about/brand/primary/primary@1280w.png",
-        w: "1280",
-      },
-      {
-        href: "/assets/about/brand/primary/primary@640w.png",
-        w: "640",
-      },
-    ],
-    name: "Primary",
-  },
-  {
-    Illustration: Crest,
-    color: "#FFF",
-    description: "Crest in white",
-    files: [
-      {
-        href: "/assets/about/brand/white/white.svg",
-        w: "",
-      },
-      {
-        href: "/assets/about/brand/white/white.pdf",
-        w: "",
-      },
-      {
-        href: "/assets/about/brand/white/white@1280w.png",
-        w: "1280",
-      },
-      {
-        href: "/assets/about/brand/white/white@640w.png",
-        w: "640",
-      },
-    ],
-    name: "White",
-  },
-  {
-    Illustration: Wordmark,
-    color: "#002147",
-    description: "A composited logo that contains both crest and wordmark.",
-    files: [
-      {
-        format: "SVG",
-        href: "/assets/about/brand/logo/logo.svg",
-        w: "",
-      },
-      {
-        format: "PDF",
-        href: "/assets/about/brand/logo/logo.pdf",
-        w: "",
-      },
-      {
-        format: "PNG",
-        href: "/assets/about/brand/logo/logo@2560w.png",
-        w: "2560",
-      },
-      {
-        format: "PNG",
-        href: "/assets/about/brand/logo/logo@1280w.png",
-        w: "1280",
-      },
-    ],
-    name: "Primary with text",
-  },
-  {
-    color: "#FFF",
-    description: "A composited logo that contains both crest and wordmark.",
-    files: [
-      {
-        format: "SVG",
-        href: "/assets/about/brand/logo/logo-white.svg",
-        w: "",
-      },
-      {
-        format: "PDF",
-        href: "/assets/about/brand/logo/logo-white.pdf",
-        w: "",
-      },
-      {
-        format: "PNG",
-        href: "/assets/about/brand/logo/logo-white@2560w.png",
-        w: "2560",
-      },
-      {
-        format: "PNG",
-        href: "/assets/about/brand/logo/logo-white@1280w.png",
-        w: "1280",
-      },
-    ],
-    name: "Primary in white with text",
-  },
-  {
-    Illustration: Social,
-    color: "#003B80",
-    description:
-      "A square image with a background, for use on platforms that require profile pictures.",
-    files: [
-      {
-        href: "/assets/about/brand/social/social@1024w.png",
-        w: "1024",
-      },
-    ],
-    name: "Social",
-  },
-];
-
-const getFileExtensionFromPath = (url: string) =>
-  url.substring(url.lastIndexOf(".") + 1, url.length) || url;
-
-function ColorIndicator({
-  color = "rgb",
-  type,
-}: {
-  color: string;
-  type: string;
-}) {
-  const newColor = Color(color);
-  let print = color;
-  if (type === "rgb") print = newColor.rgb().string();
-  if (type === "hsl") print = newColor.hsl().round().string();
-  return (
-    <span className="flex flex-row items-center text-xs">
-      <Circle className="h-4 text-gray-200" fill={color} />
-      <Copy value={print.toUpperCase()} />
-    </span>
-  );
-}
-
-function FileExtensionWidget({ href }: { href: string }) {
-  const fileInfo = "https://fileinfo.com/extension/";
-  const extension = getFileExtensionFromPath(href);
-
-  return (
-    <span className="flex flex-row items-center gap-1">
-      <code className="uppercase">{extension}</code>
-      <Link href={combineURLs(fileInfo, extension)}>
-        <span className="sr-only">{`About ${extension.toUpperCase()} files`}</span>
-        <HelpCircle aria-hidden className="h-4 w-4" />
-      </Link>
-    </span>
-  );
-}
 
 const brandColorCount = Object.keys(blue).length;
 
@@ -199,58 +39,11 @@ const Brand = () => (
       This is a somewhat simplified version of our crest, based on characterful
       twentieth century hand-drawn versions, and intended specifically for use
       on screens. It is a vector graphic, so it can be scaled to any size
-      without loss of quality, and is distributed as a near-optimal{" "}
-      <span className="disambiguate">6&nbsp;KB</span> SVG string. For other
-      applications (e.g. embroidery), completely different versions of the crest
-      are available.
+      without loss of quality. For other applications (e.g. embroidery),
+      completely different versions of the crest are available.
     </p>
 
-    {brandAssets.map((item) => (
-      <section key={item.name}>
-        <figure>
-          {item.Illustration && (
-            <item.Illustration
-              className="max-h-32 max-w-full bg-gray-100 bg-indicate-transparency"
-              fill={item.color}
-            />
-          )}
-          <figcaption>
-            <h4 className="inline">{item.name}:</h4> {item.description}
-          </figcaption>
-        </figure>
-        <table>
-          <thead>
-            <tr>
-              <th>Colour</th>
-              <th>File format</th>
-              <th className="hidden sm:table-cell">Width</th>
-              <th className="sr-only">Download</th>
-            </tr>
-          </thead>
-          <tbody>
-            {item.files.map((file) => (
-              <tr key={file.href}>
-                <td>
-                  <ColorIndicator color={item.color} type="hex" />
-                </td>
-                <td>
-                  <FileExtensionWidget href={file.href} />
-                </td>
-                <td className="hidden sm:table-cell">
-                  {file.w ? <code>{file.w}px </code> : "\u221e"}
-                </td>
-                <td>
-                  <Link href={file.href} download>
-                    <span className="hidden sm:inline">Download</span>
-                    <span className="inline sm:hidden">Get</span>
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-    ))}
+    <BrandAssets />
 
     <h2>{capitalize(toWords(brandColorCount))} blues</h2>
 

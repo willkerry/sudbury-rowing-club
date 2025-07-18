@@ -15,6 +15,7 @@ export const columns: ColumnDef<Record>[] = [
       <DataTableColumnHeader column={column} title="Course" />
     ),
     cell: ({ row }) => detectAndFormatCourseLength(row.original),
+    enableColumnFilter: false,
   },
   {
     accessorKey: "event",
@@ -93,6 +94,7 @@ export const columns: ColumnDef<Record>[] = [
       <Link href={`/regatta/records/${slugify(row.original.event)}`}>View</Link>
     ),
     enableSorting: false,
+    enableColumnFilter: false,
     enableHiding: false,
   },
 ];
