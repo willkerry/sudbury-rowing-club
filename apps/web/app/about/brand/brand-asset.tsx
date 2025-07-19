@@ -4,6 +4,7 @@ import { HelpCircle } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "@/components/stour/link";
 import { combineURLs } from "@/lib/helpers/combineURLs";
+import { cn } from "@/lib/utils";
 import type { BrandAssetType } from "./brand-assets";
 import { ColorIndicator } from "./color-indicator";
 import { DownloadImageButton } from "./download-buttons";
@@ -36,7 +37,12 @@ export const BrandAsset = ({
       <figure>
         {Illustration && (
           <Illustration
-            className="max-h-32 max-w-full bg-gray-100 bg-indicate-transparency"
+            className={cn(
+              "bg-gray-100 bg-indicate-transparency",
+              name.toLowerCase().includes("lockup") ? "max-w-full" : "h-48",
+              color.toLowerCase().slice(undefined, 4) === "#fff" &&
+                "backdrop-brightness-75",
+            )}
             fill={color}
             ref={svgRef}
           />
