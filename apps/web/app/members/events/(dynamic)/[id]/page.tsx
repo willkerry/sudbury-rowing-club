@@ -22,6 +22,17 @@ export async function generateStaticParams(): Promise<EventPageParams[]> {
   return events.map((event) => ({ id: slug(event.id) }));
 }
 
+const clearBrokenUrl = async (url: string) => {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return "";
+
+    return url;
+  } catch (_: unknown) {
+    return "";
+  }
+};
+
 const Calendar = async ({ params }: EventPageParamObject) => {
   const { id } = await params;
 
@@ -32,6 +43,11 @@ const Calendar = async ({ params }: EventPageParamObject) => {
   const club = await getClubByUrl(event?.url || "");
 
   if (!event) return notFound();
+
+  // Tiny bit of a hack: if the URL is obviously broken, we set it to an empty string,
+  // which is evaluated as false, as if it never existed.
+  if (club?.website) club.website = await clearBrokenUrl(club?.website);
+  if (event?.url) event.url = await clearBrokenUrl(event?.url);
 
   return (
     <TextPage title={event?.competition}>
@@ -91,9 +107,11 @@ const Calendar = async ({ params }: EventPageParamObject) => {
       </table>
 
       <div className="flex flex-col flex-wrap gap-x-4 gap-y-2 font-medium text-sm sm:flex-row">
-        <StourLink href={event?.url || ""} external>
-          Event website
-        </StourLink>
+        {event?.url && (
+          <StourLink href={event?.url} external>
+            Event website
+          </StourLink>
+        )}
 
         {club?.href && (
           <StourLink href={club?.href} external>
