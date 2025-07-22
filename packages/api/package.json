@@ -22,7 +22,7 @@
     "groq": "^4.0.1",
     "he": "^1.2.0",
     "isomorphic-dompurify": "^2.26.0",
-    "next-sanity": "^10.0.0",
+    "next-sanity": "^10.0.3",
     "picosanity": "^5.0.0",
     "radash": "^12.1.1",
     "tsup": "^8.5.0",
