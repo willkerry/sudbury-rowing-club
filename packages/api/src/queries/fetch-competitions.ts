@@ -1,6 +1,7 @@
 import emojiRegex from "emoji-regex";
 import he from "he";
 import DOMPurify from "isomorphic-dompurify";
+import { dash } from "radash";
 import { z } from "zod";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
@@ -98,7 +99,7 @@ const replaceUglyRegionNames = (region: string) => {
 const transformCompetions = (events: BREvent[]) =>
   z.array(ZSRCEvent).parse(
     events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
-      id: `${sanitise(Competition)}-${StartDate}`.replace(/[^a-zA-Z0-9]/g, ""),
+      id: dash(`${sanitise(Competition)}-${StartDate}`),
 
       competition: sanitise(Competition),
       url: extractURL(Competition),

@@ -7,17 +7,18 @@ export const useFilter = <
   arrayOfObjects: TObject[],
   key: TKeyInObject,
   value: TObject[TKeyInObject],
+  unfilteredString = "",
 ) => {
   const [filteredArray, setFilteredArray] = useState<TObject[]>(arrayOfObjects);
 
   useEffect(() => {
-    if (value === "") setFilteredArray(arrayOfObjects);
+    if (value === unfilteredString) setFilteredArray(arrayOfObjects);
     else {
       setFilteredArray(
         arrayOfObjects.filter((object) => object[key] === value),
       );
     }
-  }, [arrayOfObjects, key, value]);
+  }, [arrayOfObjects, key, value, unfilteredString]);
 
   return filteredArray;
 };

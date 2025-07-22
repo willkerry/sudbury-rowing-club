@@ -4,6 +4,7 @@ import {
   fetchNoticeSlugs,
   fetchSafety,
   serverGetAllSlugs,
+  serversideFetchCompetitions,
 } from "@sudburyrc/api";
 import { allPolicies } from "content-collections";
 import { slug } from "github-slugger";
@@ -25,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const safetyItems = await fetchSafety();
   const committeeArchive = getCommitteeArchive();
   const records = getSlugifiedRecords();
+  const events = await serversideFetchCompetitions(false);
 
   const archiveDynamicPaths: MetadataRoute.Sitemap = archives.map(
     (archive) => ({
@@ -85,6 +87,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(record.year),
     changeFrequency: "monthly",
     priority: 0.5,
+  }));
+
+  const eventsDynamicPaths: MetadataRoute.Sitemap = events.map((event) => ({
+    url: url(`/members/events/${slug(event.id)}`),
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.1,
   }));
 
   return [
@@ -270,5 +279,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.1,
     },
+    ...eventsDynamicPaths,
   ];
 }

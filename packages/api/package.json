@@ -24,6 +24,7 @@
     "isomorphic-dompurify": "^2.26.0",
     "next-sanity": "^10.0.0",
     "picosanity": "^5.0.0",
+    "radash": "^12.1.1",
     "tsup": "^8.5.0",
     "zod": "^4.0.5"
   },

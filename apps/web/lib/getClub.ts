@@ -1,5 +1,6 @@
 import { unique } from "radash";
 import clubs from "@/data/clubs.json";
+import { getHostname } from "./helpers/getHostname";
 
 const SUFFIX_ALIASES = {
   " Rowing Club": [" Rowing Club", " RC"],
@@ -50,6 +51,13 @@ export const getClub = (name: string): Club | undefined => {
     href: foundClub.href,
     bladeUrl: foundClub.newBladeUrl ?? undefined,
   };
+};
+
+export const getClubByUrl = (url: string) => {
+  const hostname = getHostname(url);
+
+  const foundClub = clubs.find((club) => club.website?.includes(hostname));
+  return foundClub;
 };
 
 export const getClubByCode = (code: string) => {

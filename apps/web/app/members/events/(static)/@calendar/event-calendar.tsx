@@ -1,15 +1,17 @@
 "use client";
 
 import type { SRCEvent } from "@sudburyrc/api";
+import { slug } from "github-slugger";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import Link from "next/link";
+import { useQueryState } from "nuqs";
 import { Label } from "@/components/stour/label";
-import { Link } from "@/components/stour/link";
+import { Link as StourLink } from "@/components/stour/link";
 import { Select } from "@/components/ui/select";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { useFilter } from "@/hooks/useFilter";
 import { HOSTNAME } from "@/lib/constants";
-import { getHostname } from "@/lib/helpers/getHostname";
+import { cn } from "@/lib/utils";
 
 const BR_EVENT_STATUS = {
   2: "",
@@ -19,13 +21,13 @@ const BR_EVENT_STATUS = {
 type Event = SRCEvent;
 
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="first-of-type:-ml-0.5 rounded-xs border bg-gray-50 p-0.5 font-semibold text-gray-400 text-xs leading-none">
+  <span className="first-of-type:-ml-0.5 rounded-xs border bg-gray-50 p-0.5 font-semibold text-gray-400 text-xs leading-none transition-colors group-hover:text-gray-500">
     {children}
   </span>
 );
 
 const EventCard = ({
-  event: { id, competition, startDate, notes, region, status, url },
+  event: { id, competition, startDate, notes, region, status },
 }: {
   event: Event;
 }) => (
@@ -33,7 +35,6 @@ const EventCard = ({
     layout="position"
     id={id}
     key={id}
-    className={`grid rounded-sm border bg-white px-2 py-1.5 ${status === 8 ? "opacity-50" : ""}`}
     animate={{
       transition: { duration: 0.3 },
       opacity: 1,
@@ -41,23 +42,29 @@ const EventCard = ({
     exit={{ opacity: 0 }}
     initial={{ opacity: 0 }}
   >
-    <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm">{competition}</h3>
-    <DateFormatter
-      dateString={startDate}
-      className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
-    />
-    <div className="mb-2 font-semibold text-orange-600 text-xs">{notes}</div>
-
-    <div className="flex flex-wrap gap-2">
-      <Tag>{region}</Tag>
-      {status === 8 && <Tag>{BR_EVENT_STATUS[status]}</Tag>}
-
-      {url && (
-        <Link href={url} external className="font-semibold text-xs">
-          {getHostname(url)}
-        </Link>
+    <Link
+      href={`/members/events/${slug(id)}`}
+      className={cn(
+        "grid rounded-sm border bg-white px-2 py-1.5",
+        status === 8 && "opacity-50",
+        "group transition-colors hover:border-blue-300",
       )}
-    </div>
+    >
+      <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm group-hover:text-blue-500">
+        {competition}
+      </h3>
+
+      <DateFormatter
+        dateString={startDate}
+        className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
+      />
+      <div className="mb-2 font-semibold text-orange-600 text-xs">{notes}</div>
+
+      <div className="flex flex-wrap gap-2">
+        <Tag>{region}</Tag>
+        {status === 8 && <Tag>{BR_EVENT_STATUS[status]}</Tag>}
+      </div>
+    </Link>
   </motion.li>
 );
 
@@ -79,16 +86,20 @@ const groupByMonth = (
   }));
 };
 
+const ALL_REGIONS = "All";
+
 export const EventCalendar = ({ events }: { events: Event[] }) => {
   const regions = new Set(events?.map((event) => event.region));
-  const [selectedRegion, setSelectedRegion] = useState<string | null>(
-    "Eastern",
-  );
+  const [selectedRegion, setSelectedRegion] = useQueryState<string>("region", {
+    defaultValue: "Eastern",
+    parse: (value) => value || "Eastern",
+  });
 
   const filteredEvents = useFilter(
     events || [],
     "region",
-    selectedRegion || "",
+    selectedRegion,
+    ALL_REGIONS.toLowerCase(),
   );
 
   return (
@@ -103,7 +114,7 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
           >
             {regions ? (
               <>
-                <option value="">All</option>
+                <option value={ALL_REGIONS.toLowerCase()}>{ALL_REGIONS}</option>
                 {Array.from(regions).map((region) => (
                   <option value={region} key={region}>
                     {region}
@@ -119,9 +130,9 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
         <div className="hidden sm:block" />
 
         <div className="flex justify-end pt-3">
-          <Link href={`webcal://${HOSTNAME}/api/events.ics`} external>
+          <StourLink href={`webcal://${HOSTNAME}/api/events.ics`} external>
             Subscribe to iCal feed
-          </Link>
+          </StourLink>
         </div>
       </div>
 

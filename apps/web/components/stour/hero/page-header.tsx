@@ -44,7 +44,9 @@ export const PageHeader = ({
           "text-center": !!prose,
         })}
       >
-        <h1 className="font-semibold text-3xl sm:text-5xl">{title}</h1>
+        <h1 className="max-w-2xl font-semibold text-3xl sm:text-5xl">
+          {title}
+        </h1>
 
         {description && (
           <div

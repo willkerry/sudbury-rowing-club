@@ -444,6 +444,9 @@ importers:
       picosanity:
         specifier: ^5.0.0
         version: 5.0.0
+      radash:
+        specifier: ^12.1.1
+        version: 12.1.1
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(typescript@5.8.3)
