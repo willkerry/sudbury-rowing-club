@@ -1,6 +1,11 @@
 "use client";
 
-import { useClickOutside, useMergedRef, useWindowEvent } from "@mantine/hooks";
+import {
+  useClickOutside,
+  useFocusWithin,
+  useMergedRef,
+  useWindowEvent,
+} from "@mantine/hooks";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
@@ -99,16 +104,14 @@ export const Banner = () => {
   };
   useWindowEvent("scroll", scrollHandler);
 
-  const focusHandler = () => {
-    if (!collapsibleRef.current?.contains(document.activeElement))
-      setExpanded(false);
-  };
-  useWindowEvent("focus", focusHandler);
+  const { ref: focusRef } = useFocusWithin({
+    onBlur: () => setExpanded(false),
+  });
 
   const clickOutsideRef = useClickOutside<HTMLDivElement>(() => {
     setExpanded(false);
   });
-  const mergedRef = useMergedRef(collapsibleRef, clickOutsideRef);
+  const mergedRef = useMergedRef(collapsibleRef, clickOutsideRef, focusRef);
 
   useEffect(() => {
     if (!pathname) return;
