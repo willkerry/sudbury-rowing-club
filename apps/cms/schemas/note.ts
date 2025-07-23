@@ -17,7 +17,7 @@ const Note = defineType({
     }),
     defineField({
       name: "link",
-      type: "url",
+      type: "string",
       description:
         "If set, no text will be displayed and the banner will link to this URL (useful, for example, for linking to the draw).",
     }),
