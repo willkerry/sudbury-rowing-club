@@ -1,7 +1,11 @@
 "use client";
 
+import { useClickOutside, useMergedRef, useWindowEvent } from "@mantine/hooks";
+import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
+import Link, { type LinkProps } from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { Notice } from "@/app/api/notice/route";
 import { kyInstance } from "@/app/get-query-client";
@@ -20,27 +24,27 @@ const bannerVariants: Record<
   primary: {
     bgColor: "bg-blue-800",
     textColor: "text-blue-50",
-    textHover: "group-hover:text-blue-200",
+    textHover: "group-hover:text-blue-200 group-focus:text-blue-200",
   },
   secondary: {
     bgColor: "bg-black",
     textColor: "text-gray-200",
-    textHover: "group-hover:text-blue-300",
+    textHover: "group-hover:text-blue-300 group-focus:text-blue-300",
   },
   success: {
     bgColor: "bg-green-800",
     textColor: "text-green-200",
-    textHover: "group-hover:text-green-400",
+    textHover: "group-hover:text-green-400 group-focus:text-green-400",
   },
   warning: {
     bgColor: "bg-amber-500",
     textColor: "text-gray-950",
-    textHover: "group-hover:text-yellow-900",
+    textHover: "group-hover:text-yellow-900 group-focus:text-yellow-900",
   },
   error: {
     bgColor: "bg-red-700",
     textColor: "text-red-50",
-    textHover: "group-hover:text-red-300",
+    textHover: "group-hover:text-red-300 group-focus:text-red-300",
   },
 };
 
@@ -64,44 +68,19 @@ const controlVariants: Record<
   },
 };
 
-type BaseButtonOrAnchorProps = {
-  className?: string;
-  children: React.ReactNode;
+const ButtonOrAnchor = (
+  props:
+    | ({ type: "button" } & CollapsiblePrimitive.CollapsibleTriggerProps)
+    | ({ type: "a" } & LinkProps),
+) => {
+  if (props.type === "button") {
+    const { type: _, ...buttonProps } = props;
+    return <CollapsiblePrimitive.Trigger {...buttonProps} />;
+  }
+
+  const { type: _, ...anchorProps } = props;
+  return <Link target="_blank" rel="noopener noreferrer" {...anchorProps} />;
 };
-
-type ButtonOrAnchorProps =
-  | (BaseButtonOrAnchorProps & {
-      type: "button";
-      onClick?: () => void;
-    })
-  | (BaseButtonOrAnchorProps & {
-      type: "a";
-      href: string;
-    });
-
-const ButtonOrAnchor = ({
-  type,
-  className,
-  children,
-  ...props
-}: ButtonOrAnchorProps) =>
-  ({
-    button: (
-      <button type="button" className={className} {...props}>
-        {children}
-      </button>
-    ),
-    a: (
-      <a
-        className={className}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...props}
-      >
-        {children}
-      </a>
-    ),
-  })[type];
 
 export const Banner = () => {
   const { data, error } = useQuery({
@@ -111,18 +90,31 @@ export const Banner = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  const textRef = useRef<HTMLDivElement>(null);
+  const collapsibleRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
 
+  const scrollHandler = () => {
+    if (window.scrollY > 100) setExpanded(false);
+  };
+  useWindowEvent("scroll", scrollHandler);
+
+  const focusHandler = () => {
+    if (!collapsibleRef.current?.contains(document.activeElement))
+      setExpanded(false);
+  };
+  useWindowEvent("focus", focusHandler);
+
+  const clickOutsideRef = useClickOutside<HTMLDivElement>(() => {
+    setExpanded(false);
+  });
+  const mergedRef = useMergedRef(collapsibleRef, clickOutsideRef);
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) setExpanded(false);
-    };
+    if (!pathname) return;
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    setExpanded(false);
+  }, [pathname]);
 
   if (error || !data || !data.display) return null;
 
@@ -137,17 +129,19 @@ export const Banner = () => {
     bannerVariants[data?.type || "primary"];
 
   return (
-    <>
+    <CollapsiblePrimitive.Root
+      open={expanded}
+      onOpenChange={setExpanded}
+      ref={mergedRef}
+    >
       <ButtonOrAnchor
         className={cn(
           "group z-50 flex w-full items-center py-2 text-sm",
           bgColor,
           textColor,
-          expanded && "shadow-2xl",
         )}
         type={controlType}
         href={data.link || "#"}
-        onClick={() => setExpanded((prev) => !prev)}
       >
         <Container className="text-left">
           <span className="font-semibold">{data?.label}</span>{" "}
@@ -167,28 +161,22 @@ export const Banner = () => {
       </ButtonOrAnchor>
 
       {!data.link && (
-        <div
-          className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500"
-          style={{ maxHeight: expanded ? textRef.current?.scrollHeight : 0 }}
-          aria-hidden={!expanded}
-        >
-          <div ref={textRef} className="h-full">
-            <Container>
-              <Text portableText={data?.text} size="small" className="py-4" />
+        <CollapsiblePrimitive.Content className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
+          <Container>
+            <Text portableText={data?.text} size="small" className="py-4" />
 
-              {data.date && (
-                <div className="mb-4 font-medium text-gray-700 text-xs">
-                  Updated{" "}
-                  <DateFormatter
-                    format={data.includeTime ? "time" : undefined}
-                    dateString={data.date}
-                  />
-                </div>
-              )}
-            </Container>
-          </div>
-        </div>
+            {data.date && (
+              <div className="mb-4 font-medium text-gray-700 text-xs">
+                Updated{" "}
+                <DateFormatter
+                  format={data.includeTime ? "time" : undefined}
+                  dateString={data.date}
+                />
+              </div>
+            )}
+          </Container>
+        </CollapsiblePrimitive.Content>
       )}
-    </>
+    </CollapsiblePrimitive.Root>
   );
 };
