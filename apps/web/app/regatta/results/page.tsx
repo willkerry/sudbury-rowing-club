@@ -1,5 +1,5 @@
 import type { PortableTextProps } from "@portabletext/react";
-import { sanityClient } from "@sudburyrc/api";
+import { fetchRegattaSettings, sanityClient } from "@sudburyrc/api";
 import { ordinal } from "@sudburyrc/helpers";
 import groq from "groq";
 import { Download, Table2 } from "lucide-react";
@@ -11,6 +11,7 @@ import { Text } from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
+import { LiveResultsButton } from "./live-results-button";
 
 export interface Result {
   _id: string;
@@ -46,6 +47,9 @@ const ResultsPage = async () => {
       }`,
     );
 
+  const { date: regattaDateString } = await fetchRegattaSettings();
+  const regattaDate = new Date(regattaDateString);
+
   return (
     <>
       <PageHeader title="Regatta results" breadcrumbs />
@@ -54,14 +58,16 @@ const ResultsPage = async () => {
           <Text lead portableText={other.description} />
 
           <div className="flex gap-2">
-            <Button icon={<Table2 />}>
+            <LiveResultsButton regattaDate={regattaDate} />
+
+            <Button icon={<Table2 />} asChild>
               <NextLink href="/regatta/records">
                 View interactive records
               </NextLink>
             </Button>
 
             {other.records && (
-              <Button icon={<Download />} variant="secondary">
+              <Button icon={<Download />} variant="secondary" asChild>
                 <a href={`${other.records}?dl=`}>Download course records</a>
               </Button>
             )}
