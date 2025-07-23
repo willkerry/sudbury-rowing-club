@@ -1,4 +1,3 @@
-import { HundredAndFiftyCta } from "@/components/anniversary/150-cta";
 import { LandingCTA } from "@/components/landing";
 import { Container } from "@/components/layouts/container";
 
@@ -31,10 +30,6 @@ const LandingPageLayout = ({
     <section id="intro">
       <Container className="my-16">{introduction}</Container>
     </section>
-
-    <div className="mx-auto max-w-7xl px-4 pb-20">
-      <HundredAndFiftyCta />
-    </div>
 
     {gallery}
 
