@@ -1,10 +1,14 @@
-import { kyInstance } from "@/app/get-query-client";
+import { Browser } from "happy-dom";
 import TextPage from "@/components/layouts/text-page";
-import { Button } from "@/components/ui/button";
-import { DateFormatter } from "@/components/utils/date-formatter";
+import { REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
+import { ClientDraw } from "./client";
 
-const DRAW_URL = "https://live.sudburyrowingclub.org.uk/";
+const WEEK_DAY_OF_REGATTA = 5;
+const MONTH_OF_REGATTA = 7;
+
+const WEEK_DAY_OF_DRAW_PUBLICATION = 6;
+const HOUR_OF_DRAW_PUBLICATION = 10;
 
 export const revalidate = 86_400;
 export const metadata = createMetadata({
@@ -12,103 +16,38 @@ export const metadata = createMetadata({
   description: "Draw for the Sudbury Regatta",
 });
 
-const fetchDraw = async () => {
-  const today = new Date();
-  const thisYear = today.getFullYear();
+const getThisYearsDrawIsPublished = async (year: number): Promise<boolean> => {
+  const browser = new Browser();
+  const page = browser.newPage();
 
-  const firstSaturdayInAugust = ((year: number) => {
-    const firstDayInAugust = new Date(year, 7, 1);
-    return new Date(
-      firstDayInAugust.setDate(
-        firstDayInAugust.getDate() + (6 - firstDayInAugust.getDay()),
-      ),
-    );
-  })(thisYear);
+  await page.goto(REGATTA.LIVE_RESULTS_URL);
 
-  const mondayBeforeFirstSaturdayInAugust = new Date(
-    firstSaturdayInAugust,
-  ).setDate(firstSaturdayInAugust.getDate() - 5);
+  const title = page.mainFrame.document.querySelector("title");
+  const titleContainsThisYear = Boolean(
+    title?.textContent?.includes(year.toString()),
+  );
 
-  const tenAMOnFirstSaturdayInAugustInBST = new Date(
-    firstSaturdayInAugust,
-  ).setHours(10);
+  const pageContainsATable = Boolean(
+    page.mainFrame.document.querySelector("table"),
+  );
 
-  const draw = await kyInstance.get(DRAW_URL).text();
-
-  const thisYearsDrawIsPublished = (() => {
-    const drawYear = /20\d\d/.exec(draw)?.[0];
-    return drawYear === thisYear.toString();
-  })();
-
-  return {
-    showDrawFrom: mondayBeforeFirstSaturdayInAugust,
-    showResultsFrom: tenAMOnFirstSaturdayInAugustInBST,
-    thisYearsDrawIsPublished: await thisYearsDrawIsPublished,
-    thisYear,
-  };
+  return titleContainsThisYear && pageContainsATable;
 };
 
-type State = "placeholder" | "draw" | "results";
-
-const getStateText = (state: State, date: Date) =>
-  ({
-    placeholder: {
-      paragraph: (
-        <>
-          This year that is expected to be approximately{" "}
-          <DateFormatter timeZone="utc" dateString={date} format="long" />.
-        </>
-      ),
-      button: "View last year’s draw",
-    },
-    draw: {
-      paragraph: (
-        <>
-          This year’s draw is now available. Over the course of the regatta, the
-          draw will be updated with results after each division.
-        </>
-      ),
-      button: "View this year’s draw",
-    },
-    results: {
-      paragraph: <>This year’s draw is now populated with results.</>,
-      button: "View this year’s results",
-    },
-  })[state];
-
 const Draw = async () => {
-  const { showDrawFrom, showResultsFrom, thisYearsDrawIsPublished, thisYear } =
-    await fetchDraw();
-
-  const date = new Date();
-  const now = date.getTime();
-
-  const state: State = (() => {
-    if (now < showDrawFrom && !thisYearsDrawIsPublished) return "placeholder";
-    if (now < showDrawFrom && thisYearsDrawIsPublished) return "draw";
-    if (now < showResultsFrom) return "results";
-    return "results";
-  })();
-
-  const { paragraph, button } = getStateText(state, new Date(showDrawFrom));
+  const thisYearsDrawIsPublished = await getThisYearsDrawIsPublished(
+    new Date().getFullYear(),
+  );
 
   return (
-    <TextPage title={`Regatta draw ${String(thisYear)}`} lead>
-      <p>
-        Each year, the Sudbury Regatta draw is published to{" "}
-        <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
-          live.sudburyrowingclub.org.uk
-        </a>{" "}
-        the week before the regatta.
-      </p>
-      <p>{paragraph}</p>
-      <p className="py-4">
-        <Button shadow size="lg" asChild>
-          <a href={DRAW_URL} target="_blank" rel="noopener noreferrer">
-            {button}
-          </a>
-        </Button>
-      </p>
+    <TextPage title="Regatta draw" lead>
+      <ClientDraw
+        weekDayOfRegatta={WEEK_DAY_OF_REGATTA}
+        monthOfRegatta={MONTH_OF_REGATTA}
+        weekDayOfDrawPublication={WEEK_DAY_OF_DRAW_PUBLICATION}
+        hourOfDrawPublication={HOUR_OF_DRAW_PUBLICATION}
+        thisYearsDrawIsPublished={thisYearsDrawIsPublished}
+      />
     </TextPage>
   );
 };

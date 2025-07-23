@@ -59,6 +59,8 @@ export namespace REGATTA {
   export const TESTIMONIAL_TITLE = "Feedack";
   export const TESTIMONIAL_DESCRIPTION =
     "Some of the people who’ve come to our regatta have said lovely things about it";
+
+  export const LIVE_RESULTS_URL = "https://live.sudburyrowingclub.org.uk/";
 }
 
 export const ClubJsonLd: WithContext<SportsClub> = {
