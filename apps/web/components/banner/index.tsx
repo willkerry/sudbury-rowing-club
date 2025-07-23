@@ -178,7 +178,11 @@ export const Banner = () => {
 
               {data.date && (
                 <div className="mb-4 font-medium text-gray-700 text-xs">
-                  Updated <DateFormatter dateString={data.date} />
+                  Updated{" "}
+                  <DateFormatter
+                    format={data.includeTime ? "time" : undefined}
+                    dateString={data.date}
+                  />
                 </div>
               )}
             </Container>

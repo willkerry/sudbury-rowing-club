@@ -38,9 +38,15 @@ const Note = defineType({
     }),
     defineField({
       name: "date",
-      type: "date",
+      type: "datetime",
       description:
         "If text is set and this date is not blank, it will be displated below the text. Acts as a 'last updated' date.",
+    }),
+    defineField({
+      name: "includeTime",
+      type: "boolean",
+      description:
+        "If set to true, the time will be displayed in the 'last updated' date.",
     }),
   ],
 });

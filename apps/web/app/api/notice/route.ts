@@ -16,6 +16,7 @@ const NoticeSchema = z.object({
     .string()
     .optional()
     .refine((s) => !(s && Number.isNaN(Date.parse(s)))),
+  includeTime: z.boolean().optional(),
 });
 
 export type Notice = z.infer<typeof NoticeSchema>;
