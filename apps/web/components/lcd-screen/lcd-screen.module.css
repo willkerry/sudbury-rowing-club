@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "DS-Digital";
+  src: url("DS-Digital-Italic.woff2") format("truetype");
+}
+
+.lcdScreen::before {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 0, 0.1) 0%,
+    rgba(0, 255, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+.lcdText {
+  font-family: "DS-Digital", monospace;
+}
