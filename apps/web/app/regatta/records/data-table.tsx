@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import { parseAsIndex, useQueryStates } from "nuqs";
 import * as React from "react";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -30,10 +31,10 @@ interface DataTableProps<TData, TValue> {
   readonly data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+const DataTableWithoutSuspense = <TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -149,4 +150,15 @@ export function DataTable<TData, TValue>({
       </div>
     </>
   );
-}
+};
+
+export const DataTable = <TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DataTableWithoutSuspense columns={columns} data={data} />
+    </Suspense>
+  );
+};
