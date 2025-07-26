@@ -9,7 +9,14 @@ import { Nav } from "@/components/nav";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
 import "../styles/index.css";
 import { blue } from "@sudburyrc/blue";
+import localFont from "next/font/local";
 import Providers from "./providers";
+
+const digital7Font = localFont({
+  src: "./Digital-7MonoItalic.woff2",
+  display: "swap",
+  variable: "--font-digital",
+});
 
 export const metadata: Metadata = {
   title: PROJECT_NAME,
@@ -67,7 +74,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB">
-      <body>
+      <body className={digital7Font.variable}>
         <Providers>
           <main>
             <Banner />
