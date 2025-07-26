@@ -16,7 +16,6 @@ export const LCDScreen = ({
   >
     <div
       className={cn(
-        styles.lcdText,
         "relative z-20 font-base font-digital font-light text-9xl text-green-400 leading-none",
         "before:pointer-events-none before:absolute before:inset-0 before:z-[-1] before:text-green-400 before:opacity-10 before:content-['88:88']",
       )}
