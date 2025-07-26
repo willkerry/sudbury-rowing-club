@@ -13,6 +13,7 @@ import {
   type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import { parseAsIndex, useQueryStates } from "nuqs";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,6 +38,12 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
+
+  const [currentPage, setCurrentPage] = useQueryStates({
+    pageIndex: parseAsIndex.withDefault(0),
+    pageSize: parseAsIndex.withDefault(10),
+  });
+
   const table = useReactTable({
     data,
     columns,
@@ -51,7 +58,9 @@ export function DataTable<TData, TValue>({
     state: {
       sorting,
       columnFilters,
+      pagination: currentPage,
     },
+    onPaginationChange: setCurrentPage,
   });
 
   return (
