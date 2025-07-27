@@ -40,7 +40,7 @@ export const PageHeader = ({
       )}
 
       <Container
-        className={cn("my-2 sm:my-10", {
+        className={cn("mt-6 mb-10 sm:my-10", {
           "text-center": !!prose,
         })}
       >
@@ -51,7 +51,7 @@ export const PageHeader = ({
         {description && (
           <div
             className={cn(
-              "my-t mb-7 max-w-2xl text-gray-600 text-lg sm:my-3.5 sm:text-2xl",
+              "mb-7 max-w-2xl text-gray-600 text-lg sm:my-3.5 sm:text-2xl",
               {
                 "mx-auto": !!prose,
               },
