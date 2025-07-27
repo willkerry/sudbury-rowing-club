@@ -7,6 +7,7 @@ import {
   MapPinIcon,
   NewspaperIcon,
   PhotoIcon,
+  QueueListIcon,
   ShieldCheckIcon,
   SparklesIcon,
   TicketIcon,
@@ -105,6 +106,11 @@ const navigationGroups: NavigationGroup[] = [
         name: "Results",
         href: "/regatta/results",
         icon: Results,
+      },
+      {
+        name: "Draw",
+        href: "/regatta/draw",
+        icon: QueueListIcon,
       },
       {
         name: "Entries",

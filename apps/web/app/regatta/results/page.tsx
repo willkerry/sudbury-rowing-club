@@ -60,14 +60,14 @@ const ResultsPage = async () => {
           <div className="flex gap-2">
             <LiveResultsButton regattaDate={regattaDate} />
 
-            <Button icon={<Table2 />} asChild>
+            <Button icon={<Table2 />} asChild variant="secondary">
               <NextLink href="/regatta/records">
                 View interactive records
               </NextLink>
             </Button>
 
             {other.records && (
-              <Button icon={<Download />} variant="secondary" asChild>
+              <Button icon={<Download />} variant="ghost" asChild>
                 <a href={`${other.records}?dl=`}>Download course records</a>
               </Button>
             )}

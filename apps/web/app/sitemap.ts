@@ -188,6 +188,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: url("/regatta/draw"),
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.9,
+    },
+    {
       url: url("/regatta/results"),
       lastModified: new Date(),
       changeFrequency: "yearly",
