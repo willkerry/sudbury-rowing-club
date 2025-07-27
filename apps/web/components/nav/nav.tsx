@@ -102,7 +102,7 @@ export const Nav = () => {
               static
               className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden"
             >
-              <div className="relative divide-y rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="relative divide-y rounded-sm bg-white shadow-lg">
                 {primaryGroups.map(({ title, items }) => (
                   <MobileMenuSection
                     collapse={title.toLowerCase() === "regatta"}
