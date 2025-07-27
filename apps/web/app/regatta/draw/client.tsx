@@ -82,9 +82,9 @@ export const ClientDraw = ({
   const now = Date.now();
 
   const state: State = (() => {
-    if (now < showDrawFrom && !thisYearsDrawIsPublished) return "placeholder";
-    if (now < showDrawFrom && thisYearsDrawIsPublished) return "draw";
-    if (now < showResultsFrom) return "results";
+    if (now > showDrawFrom && !thisYearsDrawIsPublished) return "placeholder";
+    if (now > showDrawFrom && thisYearsDrawIsPublished) return "draw";
+    if (now > showResultsFrom) return "results";
     return "results";
   })();
 
