@@ -38,7 +38,7 @@ export const LCDScreen = ({
       >
         <span>{minutes.toString().padStart(2, " ")}</span>
         <span className="animate-pulse">:</span>
-        <span>{seconds.toString().padStart(2, " ")}</span>
+        <span>{seconds.toString().padStart(2, "0")}</span>
       </div>
     </div>
   );
