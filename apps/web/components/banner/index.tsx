@@ -147,8 +147,8 @@ export const Banner = () => {
         href={data.link || "#"}
       >
         <Container className="text-left">
-          <span className="font-semibold">{data?.label}</span>{" "}
-          <span className={cn(textHover, "ml-2")}>
+          <span className="mr-1 font-semibold">{data?.label} </span>
+          <span className={cn(textHover, "whitespace-nowrap")}>
             {text}{" "}
             <span
               className={cn(
