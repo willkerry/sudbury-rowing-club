@@ -1,3 +1,4 @@
+import { QueueListIcon } from "@heroicons/react/24/outline";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
 import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
 import type { JSX } from "react";
@@ -95,6 +96,11 @@ const RegattaPage = async () => {
       summary: "Results",
       icon: <Timer aria-hidden />,
       href: "./regatta/results",
+    },
+    {
+      summary: "Draw",
+      icon: <QueueListIcon aria-hidden />,
+      href: "./regatta/draw",
     },
     {
       summary: "Competitor Information",
