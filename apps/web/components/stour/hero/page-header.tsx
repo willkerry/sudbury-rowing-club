@@ -44,7 +44,11 @@ export const PageHeader = ({
           "text-center": !!prose,
         })}
       >
-        <h1 className="max-w-2xl font-semibold text-3xl sm:text-5xl">
+        <h1
+          className={cn("max-w-2xl font-semibold text-3xl sm:text-5xl", {
+            "mx-auto": !!prose,
+          })}
+        >
           {title}
         </h1>
 
