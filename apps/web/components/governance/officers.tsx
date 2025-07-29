@@ -149,8 +149,8 @@ export const Officers = ({ officers }: Props) => (
       The role descriptions provided above are abbreviated and for illustrative
       purposes only. Please refer to the{" "}
       <Link href="/governance/constitution">constitution</Link> for accurate
-      details. If you wish to enquire about a vacant position, please contact
-      the club secretary.
+      details. If you wish to enquire about a vacant position, please{" "}
+      <Link href="/contact?q=secretary">contact the club secretary</Link>.
     </p>
   </section>
 );
