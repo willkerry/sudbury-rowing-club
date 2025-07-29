@@ -4,7 +4,7 @@ import { Error as ErrorComponent } from "@/components/ui/error";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 
-export const revalidate = 60;
+export const revalidate = 86400;
 
 export const metadata = createMetadata({
   title: "Membership Rates",
