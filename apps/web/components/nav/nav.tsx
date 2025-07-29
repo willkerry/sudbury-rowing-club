@@ -67,7 +67,7 @@ export const Nav = () => {
 
             <PopoverGroup
               as="nav"
-              className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1 "
+              className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1"
             >
               {secondaryNavigationGroups.map(
                 ({ title, items, icon: Icon = null }) => (

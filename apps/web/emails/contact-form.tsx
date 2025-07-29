@@ -56,7 +56,7 @@ export const ContactFormEmail = ({
     <Head />
 
     <Tailwind>
-      <Body className="mx-auto my-auto bg-white py-4 font-sans ">
+      <Body className="mx-auto my-auto bg-white py-4 font-sans">
         <Container>
           <Heading className="font-normal text-black text-lg">
             You have received a message via SRC Contact
