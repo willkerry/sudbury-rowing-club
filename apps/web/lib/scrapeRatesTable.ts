@@ -2,7 +2,7 @@ import { smartQuotes } from "@sudburyrc/helpers";
 import { Browser } from "happy-dom";
 import { z } from "zod";
 
-const parseAndReformatDates = (input: string): React.ReactNode => {
+const parseAndReformatDates = (input: string): string => {
   const dateRegex =
     /(\d{1,2})\/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/g;
 
