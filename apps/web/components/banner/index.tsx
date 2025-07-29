@@ -6,11 +6,11 @@ import {
   useMergedRef,
   useWindowEvent,
 } from "@mantine/hooks";
-import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
+import { Collapsible } from "radix-ui";
 import { useEffect, useRef, useState } from "react";
 import type { Notice } from "@/app/api/notice/route";
 import { kyInstance } from "@/app/get-query-client";
@@ -75,12 +75,12 @@ const controlVariants: Record<
 
 const ButtonOrAnchor = (
   props:
-    | ({ type: "button" } & CollapsiblePrimitive.CollapsibleTriggerProps)
+    | ({ type: "button" } & Collapsible.CollapsibleTriggerProps)
     | ({ type: "a" } & LinkProps),
 ) => {
   if (props.type === "button") {
     const { type: _, ...buttonProps } = props;
-    return <CollapsiblePrimitive.Trigger {...buttonProps} />;
+    return <Collapsible.Trigger {...buttonProps} />;
   }
 
   const { type: _, ...anchorProps } = props;
@@ -132,7 +132,7 @@ export const Banner = () => {
     bannerVariants[data?.type || "primary"];
 
   return (
-    <CollapsiblePrimitive.Root
+    <Collapsible.Root
       open={expanded}
       onOpenChange={setExpanded}
       ref={mergedRef}
@@ -164,7 +164,7 @@ export const Banner = () => {
       </ButtonOrAnchor>
 
       {!data.link && (
-        <CollapsiblePrimitive.Content className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
+        <Collapsible.Content className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
           <Container>
             <Text portableText={data?.text} size="small" className="py-4" />
 
@@ -178,8 +178,8 @@ export const Banner = () => {
               </div>
             )}
           </Container>
-        </CollapsiblePrimitive.Content>
+        </Collapsible.Content>
       )}
-    </CollapsiblePrimitive.Root>
+    </Collapsible.Root>
   );
 };

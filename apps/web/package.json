@@ -23,7 +23,6 @@
     "@maptiler/sdk": "^3.6.0",
     "@portabletext/react": "^3.2.1",
     "@portabletext/types": "^2.0.13",
-    "@radix-ui/react-collapsible": "^1.1.11",
     "@react-email/components": "^0.3.1",
     "@south-paw/react-obfuscate-ts": "^2.0.0",
     "@sudburyrc/api": "workspace:*",
