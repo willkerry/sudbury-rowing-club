@@ -57,10 +57,7 @@ const MembershipRates = async () => {
                 </td>
                 <td>
                   <div className="disambiguate font-medium text-sm tabular-nums leading-6">
-                    {Intl.NumberFormat("en-GB", {
-                      currency: "GBP",
-                      style: "currency",
-                    }).format(rate.Cost.InclTax.Value)}
+                    {formatCurrency(rate.Cost.InclTax.Value)}
                   </div>
                   <div className="font-medium text-gray-500 text-xs">
                     {rate.DurationDescription}
@@ -69,18 +66,12 @@ const MembershipRates = async () => {
                   {rate.HasEarlyPaymentOption ? (
                     <>
                       <div className="disambiguate mt-2 font-medium tabular-nums">
-                        {Intl.NumberFormat("en-GB", {
-                          currency: "GBP",
-                          style: "currency",
-                        }).format(rate.EarlyPaymentCost.InclTax.Value)}
+                        {formatCurrency(rate.EarlyPaymentCost.InclTax.Value)}
                       </div>
                       <div className="font-medium text-gray-500 text-xs">
-                        if paid within {rate.EarlyPaymentDeadlineDaysAbs}
-                        {Intl.NumberFormat("en-GB", {
-                          style: "unit",
-                          unit: "day",
-                        }).format(rate.EarlyPaymentDeadlineDaysAbs)}{" "}
-                        of season start
+                        if paid within{" "}
+                        {formatDays(rate.EarlyPaymentDeadlineDaysAbs)} of season
+                        start
                       </div>
                     </>
                   ) : null}
@@ -93,5 +84,16 @@ const MembershipRates = async () => {
     </TextPage>
   );
 };
+
+function formatCurrency(value: number) {
+  return Intl.NumberFormat("en-GB", {
+    currency: "GBP",
+    style: "currency",
+  }).format(value);
+}
+
+function formatDays(value: number) {
+  return `${value} ${value === 1 ? "day" : "days"}`;
+}
 
 export default MembershipRates;
