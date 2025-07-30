@@ -5,13 +5,16 @@ import {
   serverGetArticleBySlug,
   urlFor,
 } from "@sudburyrc/api";
+import type { RecommendationsHit } from "algoliasearch/lite";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostBody } from "@/components/news/post-body";
 import { PostHeader } from "@/components/news/post-header";
+import { PostPreview } from "@/components/news/post-preview";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
 import { DateFormatter } from "@/components/utils/date-formatter";
+import { getBrowserClient } from "@/lib/algolia";
 import { createMetadata } from "@/lib/create-metadata";
 
 type NewsPageParams = { slug: string };
@@ -27,6 +30,29 @@ const coverImage = (image: Article["featuredImage"]) => {
   if (!image) return undefined;
 
   return urlFor(image).width(1200).url();
+};
+
+type MinimalArticle = Awaited<ReturnType<typeof serverGetArticleBySlug>>;
+
+const recommendClient = getBrowserClient();
+
+const getRelatedArticles = async (
+  slug: string,
+): Promise<(RecommendationsHit & MinimalArticle)[]> => {
+  const recommendations = await recommendClient.getRecommendations({
+    requests: [
+      {
+        indexName: "news",
+        model: "related-products",
+        threshold: 0.7,
+        maxRecommendations: 3,
+        objectID: slug,
+      },
+    ],
+  });
+
+  return recommendations.results[0].hits as (RecommendationsHit &
+    MinimalArticle)[];
 };
 
 export const generateMetadata = async ({
@@ -62,6 +88,7 @@ export const generateMetadata = async ({
 
 const Post = async ({ params }: NewsPageParamObject) => {
   const post = await serverGetArticleBySlug((await params).slug);
+  const relatedArticles = post?._id ? await getRelatedArticles(post._id) : [];
 
   if (!post) return notFound();
 
@@ -104,6 +131,12 @@ const Post = async ({ params }: NewsPageParamObject) => {
           <span className="sr-only">Edit this article</span>
           <PencilSquareIcon aria-hidden className="inline h-4 w-4" />
         </Link>
+      </div>
+
+      <div className="grid grid-cols-3 gap-4">
+        {relatedArticles.map((hit) => (
+          <PostPreview post={hit} key={hit._id} />
+        ))}
       </div>
     </>
   );
