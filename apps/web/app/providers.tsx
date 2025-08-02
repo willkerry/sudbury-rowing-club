@@ -15,11 +15,15 @@ if (typeof window !== "undefined") {
   if (!process.env.NEXT_PUBLIC_POSTHOG_HOST)
     throw new Error("Missing NEXT_PUBLIC_POSTHOG_HOST");
 
-  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-    person_profiles: "identified_only",
-    persistence: "localStorage",
-  });
+  const isProduction = process.env.NODE_ENV === "production";
+
+  if (isProduction) {
+    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
+      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+      person_profiles: "identified_only",
+      persistence: "localStorage",
+    });
+  }
 }
 
 const ReactQueryDevtools = dynamic(
