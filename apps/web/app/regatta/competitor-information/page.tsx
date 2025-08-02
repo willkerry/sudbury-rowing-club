@@ -50,7 +50,7 @@ const CompetitorInformationPage = async () => {
             <ul>
               {documents?.map((item) => (
                 <li key={item._id}>
-                  <Link href={item.url} download extension={item.extension}>
+                  <Link href={item.url} extension={item.extension}>
                     {item.title}
                   </Link>
                 </li>
