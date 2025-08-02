@@ -1,6 +1,5 @@
 import type { ArticleSummary } from "@sudburyrc/api";
 import Link from "next/link";
-import { useMemo } from "react";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { cn } from "@/lib/utils";
 import { PostPreviewImage } from "./post-preview-image";
@@ -20,20 +19,30 @@ const GRADIENT_TO = [
   "to-gray-200",
 ];
 
-const getRandomGradient = () =>
-  cn(
-    GRADIENT_DIRECTIONS[
-      Math.floor(Math.random() * 10) % GRADIENT_DIRECTIONS.length
-    ],
+const getDeterministicGradient = (title: string) => {
+  const hash = title
+    .split("")
+    .reduce(
+      (acc, val) => val.charCodeAt(0) + (acc << 6) + (acc << 16) - acc,
+      0,
+    );
+
+  const directionIndex = Math.abs(hash) % GRADIENT_DIRECTIONS.length;
+  const toIndex = Math.abs(hash >> 8) % GRADIENT_TO.length;
+  console.log(directionIndex, toIndex);
+
+  return cn(
+    GRADIENT_DIRECTIONS[directionIndex],
     "from-blue-50",
-    GRADIENT_TO[Math.floor(Math.random() * 10) % GRADIENT_TO.length],
+    GRADIENT_TO[toIndex],
   );
+};
 
 const PostPreviewText = ({ title }: { title: string }) => (
   <div
     className={cn(
       "relative h-[191px] select-none overflow-hidden border-b",
-      useMemo(getRandomGradient, []),
+      getDeterministicGradient(title),
       "opacity-75 transition-opacity group-hover:opacity-100",
     )}
   >
