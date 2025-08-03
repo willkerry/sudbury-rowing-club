@@ -6,6 +6,8 @@ import { formatDescription } from "./format-description";
 import { RecordHolderList } from "./record-holder-list";
 import { RecordTime } from "./record-time";
 
+export const dynamicParams = false;
+
 type Param = { event: string };
 
 export const generateMetadata = async ({
