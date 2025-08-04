@@ -19,7 +19,7 @@
     "@fumadocs/content-collections": "^1.2.1",
     "@headlessui/react": "^2.2.6",
     "@heroicons/react": "^2.2.0",
-    "@mantine/hooks": "^8.2.1",
+    "@mantine/hooks": "^8.2.2",
     "@maptiler/sdk": "^3.7.0",
     "@portabletext/react": "^3.2.1",
     "@portabletext/types": "^2.0.13",
