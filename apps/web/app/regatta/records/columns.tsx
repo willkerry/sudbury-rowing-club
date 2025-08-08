@@ -23,6 +23,12 @@ export const columns: ColumnDef<Record>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Event" />
     ),
+    filterFn: (row, _id, value) =>
+      row.original.event
+        .toLowerCase()
+        .replaceAll("×", "x")
+        .replaceAll("−", "-")
+        .includes(value.toLowerCase()),
   },
   {
     accessorKey: "year",
@@ -37,6 +43,8 @@ export const columns: ColumnDef<Record>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Year" />
     ),
+    filterFn: (row, _id, value) =>
+      row.original.year.getFullYear().toString().includes(value),
   },
   {
     header: ({ column }) => (
@@ -59,6 +67,8 @@ export const columns: ColumnDef<Record>[] = [
         </div>
       );
     },
+    filterFn: (row, _id, value) =>
+      row.original.club.toLowerCase().includes(value.toLowerCase()),
   },
   {
     header: ({ column }) => (
@@ -80,6 +90,7 @@ export const columns: ColumnDef<Record>[] = [
       return aTimeSeconds - bTimeSeconds;
     },
     enableSorting: true,
+    enableColumnFilter: false,
     accessorKey: "time",
     cell: ({ row }) => (
       <div className="tabular-nums tracking-wider">
@@ -88,6 +99,7 @@ export const columns: ColumnDef<Record>[] = [
     ),
   },
   {
+    accessorKey: "link",
     id: "link",
     header: "Link",
     cell: ({ row }) => (

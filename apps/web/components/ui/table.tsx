@@ -10,7 +10,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import { cn } from "@/lib/utils";
 import { Input } from "./input";
 
@@ -189,36 +188,13 @@ const DataTableColumnHeader = <TData, TValue>({
 
             <DropdownMenuContent align="start" asChild>
               <DropdownMenuItem asChild>
-                {/* if there are fewer than 20 unique values, show a dropdown menu with the values */}
-                {column.getFacetedUniqueValues().size < 99999 ? (
-                  // <Select
-                  //   value={column.getFilterValue() as string}
-                  //   onChange={(value) => column.setFilterValue(value)}
-                  // >
-                  //   {Array.from(column.getFacetedUniqueValues().values())
-                  //     .sort()
-                  //     .map((value) => (
-                  //       <option key={value} value={value}>
-                  //         {value}
-                  //       </option>
-                  //     ))}
-                  // </Select>
-                  <pre>
-                    {JSON.stringify(
-                      column.getFacetedUniqueValues().entries(),
-                      null,
-                      2,
-                    )}
-                  </pre>
-                ) : (
-                  <Input
-                    type="text"
-                    value={column.getFilterValue() as string}
-                    onChange={(event) =>
-                      column.setFilterValue(event.target.value)
-                    }
-                  />
-                )}
+                <Input
+                  type="text"
+                  value={String(column.getFilterValue() ?? "")}
+                  onChange={(event) =>
+                    column.setFilterValue(event.target.value)
+                  }
+                />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

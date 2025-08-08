@@ -13,8 +13,12 @@ import {
   type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import { parseAsIndex, useQueryStates } from "nuqs";
-import * as React from "react";
+import {
+  createParser,
+  parseAsIndex,
+  useQueryState,
+  useQueryStates,
+} from "nuqs";
 import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,13 +35,44 @@ interface DataTableProps<TData, TValue> {
   readonly data: TData[];
 }
 
+const parseAsSortingState = createParser<SortingState>({
+  parse: (value) =>
+    value.split(",").map((item) => {
+      const [id, desc] = item.split(":");
+      return {
+        id,
+        desc: desc === "desc",
+      };
+    }),
+  serialize: (value) =>
+    value.map((item) => `${item.id}:${item.desc ? "desc" : "asc"}`).join(","),
+});
+
+const parseAsColumnFiltersState = createParser<ColumnFiltersState>({
+  parse: (value) =>
+    value.split(",").map((item) => {
+      const [id, value] = item.split(":");
+      return { id, value };
+    }),
+  serialize: (value) => {
+    return value.map((item) => `${item.id}:${item.value}`).join(",");
+  },
+});
+
 const DataTableWithoutSuspense = <TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) => {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
+  const [sorting, setSorting] = useQueryState(
+    "sorting",
+    parseAsSortingState.withDefault(null as unknown as SortingState),
+  );
+
+  const [columnFilters, setColumnFilters] = useQueryState(
+    "columnFilters",
+    parseAsColumnFiltersState.withDefault(
+      null as unknown as ColumnFiltersState,
+    ),
   );
 
   const [currentPage, setCurrentPage] = useQueryStates({
