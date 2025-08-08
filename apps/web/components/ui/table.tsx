@@ -127,10 +127,6 @@ const DataTableColumnHeader = <TData, TValue>({
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) => {
-  // if (!column.getCanSort()) {
-  //   return <div className={cn(className)}>{title}</div>;
-  // }
-
   const sortIcon = {
     desc: <ArrowDown aria-hidden className="h-3.5 w-3.5" />,
     asc: <ArrowUp aria-hidden className="h-3.5 w-3.5" />,
@@ -138,68 +134,72 @@ const DataTableColumnHeader = <TData, TValue>({
   }[column.getIsSorted() || "none"];
 
   return (
-    <div className={cn("flex items-center gap-0.5", className)}>
-      <span>{title}</span>
+    <div className={cn("flex items-center gap-1", className)}>
+      <div>{title}</div>
 
-      <div>
-        {column.getCanSort() && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="xs">
-                {sortIcon}
-                <span className="sr-only">Sort</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem
-                onClick={() => column.toggleSorting(false)}
-                disabled={column.getIsSorted() === "asc"}
-              >
-                <ArrowUp aria-hidden className="h-3.5 w-3.5" />
-                Ascending
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => column.toggleSorting(true)}
-                disabled={column.getIsSorted() === "desc"}
-              >
-                <ArrowDown aria-hidden className="h-3.5 w-3.5" />
-                Descending
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
+      {column.getCanSort() && (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant={column.getIsSorted() ? "tertiary" : "ghost"}
+              className="px-1"
+              size="xs"
+            >
+              {sortIcon}
+              <span className="sr-only">Sort</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem
+              onClick={() => column.toggleSorting(false)}
+              disabled={column.getIsSorted() === "asc"}
+            >
+              <ArrowUp aria-hidden className="h-3.5 w-3.5" />
+              Ascending
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => column.toggleSorting(true)}
+              disabled={column.getIsSorted() === "desc"}
+            >
+              <ArrowDown aria-hidden className="h-3.5 w-3.5" />
+              Descending
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
 
-              <DropdownMenuItem
-                onClick={() => column.clearSorting()}
-                disabled={!column.getIsSorted()}
-              >
-                <Undo aria-hidden className="h-3.5 w-3.5" />
-                Clear
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
+            <DropdownMenuItem
+              onClick={() => column.clearSorting()}
+              disabled={!column.getIsSorted()}
+            >
+              <Undo aria-hidden className="h-3.5 w-3.5" />
+              Clear
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
 
-        {column.getCanFilter() && (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="xs">
-                <Search aria-hidden className="h-3.5 w-3.5" />
-              </Button>
-            </DropdownMenuTrigger>
+      {column.getCanFilter() && (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant={column.getIsFiltered() ? "tertiary" : "ghost"}
+              className="px-1"
+              size="xs"
+            >
+              <Search aria-hidden className="h-3.5 w-3.5" />
+            </Button>
+          </DropdownMenuTrigger>
 
-            <DropdownMenuContent align="start" asChild>
-              <DropdownMenuItem asChild>
-                <Input
-                  type="text"
-                  value={String(column.getFilterValue() ?? "")}
-                  onChange={(event) =>
-                    column.setFilterValue(event.target.value)
-                  }
-                />
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        )}
-      </div>
+          <DropdownMenuContent align="start" asChild>
+            <DropdownMenuItem asChild>
+              <Input
+                type="text"
+                value={String(column.getFilterValue() ?? "")}
+                onChange={(event) => column.setFilterValue(event.target.value)}
+              />
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
     </div>
   );
 };
