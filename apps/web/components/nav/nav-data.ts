@@ -108,8 +108,8 @@ const navigationGroups: NavigationGroup[] = [
         icon: Results,
       },
       {
-        name: "Draw",
-        href: "/regatta/draw",
+        name: "Course records",
+        href: "/regatta/records",
         icon: QueueListIcon,
       },
       {
