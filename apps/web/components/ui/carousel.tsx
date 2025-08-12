@@ -173,6 +173,7 @@ const CarouselItem = React.forwardRef<
   const { orientation } = useCarousel();
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: fight between Biome and shadcn/ui
     <div
       ref={ref}
       role="group"
