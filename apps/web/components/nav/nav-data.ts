@@ -118,13 +118,13 @@ const navigationGroups: NavigationGroup[] = [
         icon: TicketIcon,
       },
       {
-        name: "Course Map",
+        name: "Course map",
         shortName: "Course",
         href: "/regatta/course",
         icon: FlagIcon,
       },
       {
-        name: "Official Photography",
+        name: "Official photography",
         shortName: "Photography",
         href: "/regatta/galleries",
         icon: PhotoIcon,
