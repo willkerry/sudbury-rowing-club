@@ -74,7 +74,7 @@
 
 @layer base {
   html {
-    @apply antialiased bg-white;
+    @apply antialiased bg-white text-black;
     font-feature-settings: "ss03" 1;
   }
 }
