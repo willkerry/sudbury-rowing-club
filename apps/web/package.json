@@ -23,7 +23,7 @@
     "@maptiler/sdk": "^3.7.0",
     "@portabletext/react": "^3.2.1",
     "@portabletext/types": "^2.0.13",
-    "@react-email/components": "^0.3.3",
+    "@react-email/components": "^0.5.0",
     "@south-paw/react-obfuscate-ts": "^2.0.0",
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/blue": "workspace:*",
