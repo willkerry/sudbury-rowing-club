@@ -66,7 +66,7 @@
     "pigeon-maps": "^0.22.1",
     "posthog-js": "^1.259.0",
     "radash": "^12.1.1",
-    "radix-ui": "^1.4.2",
+    "radix-ui": "^1.4.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-email": "^4.2.8",
