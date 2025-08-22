@@ -1,10 +1,9 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
-
-const Player = dynamic(() => import("@/components/landing/player"));
 
 type Props = {
   imageId: string;
@@ -18,19 +17,27 @@ export const LandingHero = ({
   imageAspectRatio,
   imageLqip,
   children,
-}: Props) => (
-  <>
-    <Image
-      {...useSanityImageProps(imageId)}
-      width={992}
-      height={992 / imageAspectRatio}
-      alt="Aerial photograph of a Sudbury crew training."
-      quality={60}
-      placeholder="blur"
-      blurDataURL={imageLqip}
-      priority
-    />
-    {children}
-    <Player />
-  </>
-);
+}: Props) => {
+  const { data: Player, isSuccess } = useQuery({
+    queryKey: ["player"],
+    queryFn: () => dynamic(() => import("@/components/landing/player")),
+    staleTime: "static",
+  });
+
+  return (
+    <>
+      <Image
+        {...useSanityImageProps(imageId)}
+        width={992}
+        height={992 / imageAspectRatio}
+        alt="Aerial photograph of a Sudbury crew training."
+        quality={60}
+        placeholder="blur"
+        blurDataURL={imageLqip}
+        priority
+      />
+      {children}
+      {isSuccess && <Player />}
+    </>
+  );
+};
