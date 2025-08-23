@@ -1,12 +1,14 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
+import ky from "ky";
 import { BritishRowing } from "@/components/icons/organisations/british-rowing";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
+import { ErrorAlert } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
-import {
-  type BRArticle,
-  fetchBritishRowingFeed,
-} from "@/lib/server/fetchBritishRowingFeed";
+import type { BRArticle } from "@/lib/server/fetchBritishRowingFeed";
 
 const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
   <a
@@ -64,8 +66,15 @@ const PresentationalFeed = ({
   </>
 );
 
-export const Feed = async ({ skeleton }: { skeleton?: boolean }) => {
-  if (skeleton) return <PresentationalFeed skeleton />;
+export const Feed = () => {
+  const { data, status, error } = useQuery({
+    queryKey: ["br-feed"],
+    queryFn: () => ky.get<BRArticle[]>("/api/br").json(),
+  });
 
-  return <PresentationalFeed articles={await fetchBritishRowingFeed()} />;
+  if (status === "pending") return <PresentationalFeed skeleton />;
+  if (status === "error")
+    return <ErrorAlert error={error} label={error.name} className="my-12" />;
+
+  return <PresentationalFeed articles={data} />;
 };

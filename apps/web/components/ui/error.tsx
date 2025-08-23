@@ -1,6 +1,7 @@
 import { AlertOctagon, ArrowUpRight } from "lucide-react";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { Alert } from "./alert";
 
 type ErrorProps = React.HTMLAttributes<HTMLDivElement> & {
   label?: string;
@@ -54,3 +55,16 @@ export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
   ),
 );
 Error.displayName = "Error";
+
+export const ErrorAlert = React.forwardRef<HTMLDivElement, ErrorProps>(
+  ({ error, label, className, ...props }, ref) => (
+    <Alert
+      variant="destructive"
+      ref={ref}
+      className={cn("font-medium text-red-600 text-sm", className)}
+      {...props}
+    >
+      <Error error={error} {...props} />
+    </Alert>
+  ),
+);
