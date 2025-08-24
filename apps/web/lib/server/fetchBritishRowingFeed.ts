@@ -6,12 +6,12 @@ const QUERY_URL =
 
 const schema = z.array(
   z.object({
-    id: z.number(),
-    title: z.object({
-      rendered: z.string(),
-    }),
-    date: z.coerce.date(),
-    link: z.string(),
+    id: z.int(),
+    title: z
+      .object({ rendered: z.string() })
+      .transform(({ rendered }) => decode(rendered)),
+    date: z.coerce.date().transform((date) => date.toISOString()),
+    link: z.url(),
   }),
 );
 
@@ -28,10 +28,6 @@ export const fetchBritishRowingFeed = async () => {
 
   if (!feed.success) {
     throw new Error("Unparseable response provided by British Rowing API");
-  }
-
-  for (const item of feed.data) {
-    item.title.rendered = decode(item.title.rendered);
   }
 
   return feed.data;

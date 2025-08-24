@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
-import ky from "ky";
+import { kyInstance } from "@/app/get-query-client";
 import { BritishRowing } from "@/components/icons/organisations/british-rowing";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
@@ -26,7 +26,7 @@ const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
     {article && (
       <>
         <h3 className="font-medium text-sm leading-tight transition-colors group-hover:text-blue-500">
-          {article.title.rendered}
+          {article.title}
         </h3>
 
         <div className="flex items-end justify-between gap-1">
@@ -69,12 +69,12 @@ const PresentationalFeed = ({
 export const Feed = () => {
   const { data, status, error } = useQuery({
     queryKey: ["br-feed"],
-    queryFn: () => ky.get<BRArticle[]>("/api/br").json(),
+    queryFn: ({ signal }) =>
+      kyInstance.get<BRArticle[]>("/api/br", { signal }).json(),
   });
 
   if (status === "pending") return <PresentationalFeed skeleton />;
-  if (status === "error")
-    return <ErrorAlert error={error} label={error.name} className="my-12" />;
+  if (status === "error") return <ErrorAlert error={error} className="my-12" />;
 
   return <PresentationalFeed articles={data} />;
 };
