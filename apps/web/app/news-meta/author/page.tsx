@@ -1,4 +1,4 @@
-import { fetchAllAuthors } from "@sudburyrc/api";
+import { type AuthorsResponse, fetchAllAuthors } from "@sudburyrc/api";
 import cn from "clsx";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
@@ -11,23 +11,20 @@ export const metadata = createMetadata({
   image: { title: "Our authors" },
 });
 
-const fetchAndRankAuthors = async () => {
+type AuthorResponseWithRank = AuthorsResponse[number] & { rank: number };
+
+const fetchAndRankAuthors = async (): Promise<AuthorResponseWithRank[]> => {
   const authors = await fetchAllAuthors();
 
-  let rank = 0;
+  const sortedAuthors = authors.sort(
+    (a, b) =>
+      a.articleCount - b.articleCount || a.surname.localeCompare(b.surname),
+  );
 
-  return authors
-    .map((author, index) => {
-      if (author.articleCount !== authors[index - 1]?.articleCount) {
-        rank += 1;
-      }
-
-      return {
-        ...author,
-        rank,
-      };
-    })
-    .sort((a, b) => a.rank - b.rank || a.surname.localeCompare(b.surname));
+  return sortedAuthors.map((author, index) => ({
+    ...author,
+    rank: index + 1,
+  }));
 };
 
 const Authors = async () => {

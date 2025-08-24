@@ -50,18 +50,14 @@ describe("fetchBritishRowingFeed", () => {
     expect(result).toHaveLength(2);
     expect(result[0]).toEqual({
       id: 1,
-      title: {
-        rendered: "Test Article & Title",
-      },
-      date: new Date("2023-10-01T12:00:00Z"),
+      title: "Test Article & Title",
+      date: "2023-10-01T12:00:00.000Z",
       link: "https://example.com/article-1",
     });
     expect(result[1]).toEqual({
       id: 2,
-      title: {
-        rendered: "Another Article <Title>",
-      },
-      date: new Date("2023-10-02T12:00:00Z"),
+      title: "Another Article <Title>",
+      date: "2023-10-02T12:00:00.000Z",
       link: "https://example.com/article-2",
     });
   });
@@ -135,7 +131,7 @@ describe("fetchBritishRowingFeed", () => {
     expect(decode).toHaveBeenCalledWith(
       "Article with &quot;quotes&quot; &amp; symbols",
     );
-    expect(result[0].title.rendered).toBe('Article with "quotes" & symbols');
+    expect(result[0].title).toBe('Article with "quotes" & symbols');
   });
 
   it("should handle network errors", async () => {
