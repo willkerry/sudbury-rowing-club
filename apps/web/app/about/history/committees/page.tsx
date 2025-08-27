@@ -22,7 +22,7 @@ const Archive = () => (
     {committeeArchive.map(({ season, ...committee }) => (
       <div key={season} className="w-40">
         <Link href={`committees/${slug(season)}`}>
-          <h2 id={`season-${season}`}>{season}</h2>
+          <h2>{season}</h2>
         </Link>
         <ul className="mb-8 list-none pl-0">
           {listify(committee.committee, (key, office) => (

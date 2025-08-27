@@ -171,7 +171,6 @@ export const BugsClientSide = () => {
 
         <Center className="col-span-2">
           <Button
-            id="message"
             disabled={form.state.isSubmitting}
             loading={form.state.isSubmitting}
             size="lg"

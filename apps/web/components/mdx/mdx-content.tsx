@@ -4,6 +4,18 @@ import type { ComponentProps } from "react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 
+const Callout = ({
+  children,
+  type,
+  ...props
+}: ComponentProps<typeof Alert> & {
+  type: "warn" | "destructive" | "success";
+}) => (
+  <Alert variant={type || "default"} {...props}>
+    <AlertDescription>{children}</AlertDescription>
+  </Alert>
+);
+
 export const MDXContent = ({
   components,
   ...props
@@ -13,11 +25,7 @@ export const MDXContent = ({
     components={{
       ...components,
       a: Link,
-      Callout: ({ children, type, ...props }) => (
-        <Alert variant={type || "default"} {...props}>
-          <AlertDescription>{children}</AlertDescription>
-        </Alert>
-      ),
+      Callout,
       mark: ({ className, ...props }) => (
         <mark
           className={cn("rounded-xs bg-blue-100 px-px text-black", className)}

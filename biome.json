@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.2/schema.json",
   "formatter": {
     "includes": [
       "**",
@@ -63,8 +63,7 @@
           "options": {
             "functions": ["cn", "cva", "clsx"]
           }
-        },
-        "useUniqueElementIds": "off"
+        }
       },
       "performance": { "noReExportAll": "error", "noImgElement": "off" },
       "suspicious": {
@@ -73,7 +72,8 @@
         "useAwait": "error",
         "useErrorMessage": "error",
         "noDuplicateElseIf": "error",
-        "noFocusedTests": "off"
+        "noFocusedTests": "off",
+        "noUnknownAtRules": "off"
       },
       "security": { "noDangerouslySetInnerHtml": "off" },
       "style": {

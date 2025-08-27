@@ -107,7 +107,6 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
       <div className="mb-4 grid grid-cols-1 items-end md:grid-cols-2 lg:grid-cols-3">
         <div>
           <Select
-            id="region"
             aria-label="Filter by region"
             value={selectedRegion || ""}
             onChange={(e) => setSelectedRegion(e.target.value)}

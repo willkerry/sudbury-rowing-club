@@ -52,7 +52,7 @@ export const Nav = () => {
   );
 
   return (
-    <Popover className="bg-white text-gray-900" id="navbar">
+    <Popover className="bg-white text-gray-900">
       {({ open }) => (
         <>
           <div className="container flex items-center justify-between px-4! py-3 xs:py-4 md:py-6">

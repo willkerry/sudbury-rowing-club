@@ -176,7 +176,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             label="Your message"
             className={cn("col-span-2")}
             disabled={disableFields}
-            id="message"
+            id={field.name}
             minRows={3}
             error={field.state.meta.errors[0]?.toString()}
             value={field.state.value}
@@ -200,7 +200,6 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         <form.Subscribe selector={(state) => state.isSubmitting}>
           {(isSubmitting) => (
             <Button
-              id="message"
               loading={isSubmitting}
               size="lg"
               type="submit"

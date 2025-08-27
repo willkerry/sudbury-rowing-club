@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const NonExec = ({ vicePresidents, trustees }: Props) => (
-  <section id="nonexec">
+  <section>
     <SectionTitle>Non-Executive Officers</SectionTitle>
     <GovGrid>
       <div>

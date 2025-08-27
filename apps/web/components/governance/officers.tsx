@@ -95,7 +95,7 @@ const OfficerNameOrPlaceholder = ({
 };
 
 export const Officers = ({ officers }: Props) => (
-  <section id="officers">
+  <section>
     <SectionTitle>Club Officers</SectionTitle>
     <GovGrid>
       {officers.map((officer) => (

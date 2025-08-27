@@ -145,7 +145,6 @@ const RegattaPage = async () => {
   return (
     <>
       <script
-        id="json-ld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
@@ -163,7 +162,7 @@ const RegattaPage = async () => {
           subtitle={landingPage.heroImage.subheading}
         />
       </Container>
-      <Container className="my-24 max-w-prose" id="regatta-body">
+      <Container className="my-24 max-w-prose">
         <Text portableText={landingPage.description || []} />
         <div className="h-5" />
 
@@ -172,7 +171,7 @@ const RegattaPage = async () => {
 
       <Gallery images={landingPage.images} />
 
-      <div id="feedback">
+      <div>
         <Hero
           title={TESTIMONIAL_DESCRIPTION}
           label={TESTIMONIAL_TITLE}

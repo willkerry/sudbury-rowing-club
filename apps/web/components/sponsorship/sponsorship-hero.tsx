@@ -13,7 +13,7 @@ export const SponsorshipHero = ({
   title: string;
   description: string;
 }) => (
-  <Container className="py-16 text-center text-gray-900 sm:py-24" id="hero">
+  <Container className="py-16 text-center text-gray-900 sm:py-24">
     <Label className="sm:mb-3">{title}</Label>
     <h1 className="relative z-10 bg-linear-to-br from-emerald-400 to-blue-700 bg-clip-text font-semibold text-6xl text-transparent drop-shadow-xl sm:text-8xl">
       Sponsor us{" "}

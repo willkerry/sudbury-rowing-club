@@ -13,25 +13,25 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@sanity/client": "^7.8.2",
+    "@sanity/client": "^7.10.0",
     "@sanity/color": "^3.0.6",
     "@sanity/dashboard": "^4.1.4",
     "@sanity/icons": "^3.7.4",
     "@sanity/orderable-document-list": "^1.4.0",
     "@sanity/table": "^1.1.4",
-    "@sanity/types": "^4.3.0",
-    "@sanity/ui": "^2.16.12",
+    "@sanity/types": "^4.6.0",
+    "@sanity/ui": "^2.16.13",
     "@sanity/uuid": "^3.0.2",
-    "@sanity/vision": "^4.3.0",
+    "@sanity/vision": "^4.6.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "sanity": "^4.3.0",
+    "sanity": "^4.6.0",
     "sanity-plugin-dashboard-widget-vercel": "^3.1.4",
     "styled-components": "^6.1.19",
     "typescript": "^5.9.2"
   },
   "devDependencies": {
-    "@sanity/cli": "^4.3.0",
-    "@types/react": "^19.1.10"
+    "@sanity/cli": "^4.6.0",
+    "@types/react": "^19.1.11"
   }
 }

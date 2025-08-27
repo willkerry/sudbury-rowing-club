@@ -58,7 +58,7 @@ const templateLearnToRowCourseCost = (cost: string | null) =>
 const Join = async () => (
   <>
     {/* Big hero */}
-    <Container className="py-16 text-center text-gray-900 sm:py-24" id="hero">
+    <Container className="py-16 text-center text-gray-900 sm:py-24">
       <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
       <h1 className="relative z-10 font-semibold text-6xl text-green-500 tracking-tighter drop-shadow-xl sm:text-8xl">
         Start rowing with us{" "}
@@ -88,7 +88,7 @@ const Join = async () => (
       <JoinCTA />
     </Container>
 
-    <Container id="experienced">
+    <Container>
       <SectionHeading
         label="Join as an experienced rower"
         title="Have you rowed before?"
@@ -130,7 +130,7 @@ const Join = async () => (
     </Container>
 
     {/* About the L2R course */}
-    <div className="my-24" id="l2r">
+    <div className="my-24">
       <Container>
         <SectionHeading
           label="Learn to row with us"
@@ -172,7 +172,7 @@ const Join = async () => (
         <L2RCallToAction />
       </Container>
     </div>
-    <Container className="text-gray-800" id="overview">
+    <Container className="text-gray-800">
       <SectionHeading
         label="What to expect"
         title="What can you do at Sudbury Rowing Club?"

@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const Committees = ({ committees }: Props) => (
-  <section id="committees">
+  <section>
     <SectionTitle>Committees</SectionTitle>
     <GovGrid>
       {committees.map((committee) => (
