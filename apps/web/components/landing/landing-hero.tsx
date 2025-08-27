@@ -1,6 +1,6 @@
 import { BoathouseDoor } from "./boathouse-door";
 import { LandingHeroImage } from "./landing-hero-image";
-import Player from "./player";
+import { Player } from "./player";
 
 type Props = {
   imageId: string;

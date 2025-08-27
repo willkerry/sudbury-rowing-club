@@ -27,7 +27,7 @@ const controlText: Record<PlayerState, string> = {
   error: "Error",
 };
 
-const Player = () => {
+export const Player = () => {
   const [playerState, setPlayerState] = useState<PlayerState>("idle");
 
   const throttledSetPlayerState = useThrottledCallback(setPlayerState, 100);
@@ -95,5 +95,3 @@ const Player = () => {
     </div>
   );
 };
-
-export default Player;
