@@ -12,9 +12,11 @@ export const getFirstInstanceOfGivenDayInMonth = (
 ): Date => {
   const firstDayOfMonth = new Date(year, month, 1);
 
-  return new Date(
-    firstDayOfMonth.setDate(
-      firstDayOfMonth.getDate() + (weekDay + 1 - firstDayOfMonth.getDay()),
-    ),
-  );
+  const jsDay = firstDayOfMonth.getDay();
+
+  const currentDay = jsDay === 0 ? 6 : jsDay - 1;
+
+  const daysToAdd = (weekDay - currentDay + 7) % 7;
+
+  return new Date(year, month, 1 + daysToAdd);
 };
