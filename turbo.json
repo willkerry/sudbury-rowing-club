@@ -9,6 +9,9 @@
     "test": {
       "outputs": []
     },
+    "test:watch": {
+      "outputs": []
+    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],

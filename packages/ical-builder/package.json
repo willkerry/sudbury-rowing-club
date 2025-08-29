@@ -9,6 +9,7 @@
     "build": "tsdown",
     "dev": "tsdown",
     "test": "vitest run",
+    "test:watch": "vitest watch",
     "type-check": "tsc --noEmit"
   },
   "keywords": [],
