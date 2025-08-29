@@ -2,7 +2,7 @@ import { waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 import { useZodSWR } from "@/lib/zod-swr";
-import { renderHook } from "../__utils__/renderHook";
+import { renderHook } from "@/test-utils/renderHook";
 
 const testSchema = z.object({
   id: z.number(),

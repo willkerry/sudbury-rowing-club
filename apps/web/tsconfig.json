@@ -11,7 +11,8 @@
       "@/pages/*": ["pages/*"],
       "@/app/*": ["app/*"],
       "@/assets/*": ["public/assets/*"],
-      "content-collections": ["./.content-collections/generated"]
+      "content-collections": ["./.content-collections/generated"],
+      "@/test-utils/*": ["test-utils/*"]
     },
     "strictNullChecks": true,
     "moduleResolution": "bundler"
