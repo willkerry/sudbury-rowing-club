@@ -15,7 +15,8 @@ export const INPUT_DIR = path.join(cwd(), "data");
 const OUTPUT_DIR = path.join(cwd(), TEMP);
 
 const VIEWPORT_TAG = `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
-const RETURN_LINK_HTML = `<a class="return-link" href="https://sudburyrowingclub.org.uk/regatta/results/">View all results</a>`;
+const RETURN_LINK_HTML = `<a href="https://sudburyrowingclub.org.uk/regatta/results/">View all results</a>`;
+const LISTING_LINK_HTML = `<a href="_listing.html">Directory listing</a>`;
 
 const STYLES = fs.readFileSync(path.join(cwd(), "src", "style.css"), "utf8");
 
@@ -27,12 +28,6 @@ const STYLES = fs.readFileSync(path.join(cwd(), "src", "style.css"), "utf8");
 function modifyHtmlCharsetTag(str: string) {
   if (!str) throw new Error("Input is empty");
   return str.replace(/charset=iso-8859-1/g, "charset=utf-8").replace(/ï¿/g, "");
-}
-
-/** Add return link at the top of each page. */
-function addReturnLink(str: string) {
-  if (!str) throw new Error("Input is empty");
-  return str.toString().replace(/<body>/, `<body>${RETURN_LINK_HTML}`);
 }
 
 /** Add viewport meta tag. */
@@ -53,7 +48,7 @@ function stripGeneratorMetaTags(html: string): string {
 function addListingLink(html: string): string {
   return html.replace(
     /<\/body>/,
-    '<a href="_listing.html" class="listing-link">Directory listing</a>\n</body>',
+    `<footer class="generated-footer">${LISTING_LINK_HTML} ${RETURN_LINK_HTML}</footer>\n</body>`,
   );
 }
 function addStyleLinkTag(html: string): string {
@@ -96,7 +91,6 @@ const convertFile = async (
           "show-errors": 0,
         })
         ?.toString() ?? output;
-    output = addReturnLink(output);
     output = addVieportMetaTag(output);
     output = addStyleLinkTag(output);
 
