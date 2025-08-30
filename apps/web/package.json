@@ -60,7 +60,7 @@
     "ky": "^1.9.0",
     "lucide-react": "^0.525.0",
     "motion": "12.23.6",
-    "next": "15.4.1",
+    "next": "15.4.7",
     "next-sanity-image": "^6.2.0",
     "num-words": "^1.2.3",
     "nuqs": "^2.5.1",
