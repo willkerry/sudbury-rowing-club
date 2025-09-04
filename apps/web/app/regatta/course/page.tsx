@@ -5,7 +5,7 @@ import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/create-metadata";
-import CourseMap from "./course-map";
+import { CourseMap } from "./course-map";
 
 export const metadata = createMetadata({
   title: "Coursemap | Sudbury Regatta",

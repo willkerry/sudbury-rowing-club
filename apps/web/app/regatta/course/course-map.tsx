@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
-const CourseMap = ({
+export const CourseMap = ({
   id,
   aspectRatio,
   lqip,
@@ -21,5 +21,3 @@ const CourseMap = ({
     alt=""
   />
 );
-
-export default CourseMap;
