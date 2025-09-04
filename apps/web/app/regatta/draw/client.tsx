@@ -22,18 +22,21 @@ const getDrawInformation = (
   const daysToSubtract = (weekDayOfRegatta - weekDayOfDrawPublication + 7) % 7;
 
   return {
+    showThisYearPlaceholderFrom: new Date(year, 0, 1).getTime(),
     showDrawFrom: new Date(dateOfRegatta).setDate(
       dateOfRegatta.getDate() - daysToSubtract,
     ),
     showResultsFrom: new Date(dateOfRegatta).setHours(hourOfDrawPublication),
+    showNextYearPlaceholderFrom:
+      new Date(dateOfRegatta).getTime() + 7 * 24 * 60 * 60 * 1000,
   };
 };
 
-type State = "placeholder" | "draw" | "results";
+type State = "thisYearPlaceholder" | "nextYearPlaceholder" | "draw" | "results";
 
 const getStateText = (state: State, date: Date) =>
   ({
-    placeholder: {
+    thisYearPlaceholder: {
       paragraph: (
         <>
           This year that is expected to be{" "}
@@ -55,6 +58,15 @@ const getStateText = (state: State, date: Date) =>
       paragraph: <>This year’s draw is now populating with live results.</>,
       button: "View this year’s results",
     },
+    nextYearPlaceholder: {
+      paragraph: (
+        <>
+          The publication date for next year’s draw will be announced in the
+          months before the regatta.
+        </>
+      ),
+      button: "Check anyway",
+    },
   })[state];
 
 export const ClientDraw = ({
@@ -71,7 +83,12 @@ export const ClientDraw = ({
   thisYearsDrawIsPublished: boolean;
 }) => {
   const thisYear = new Date().getFullYear();
-  const { showDrawFrom, showResultsFrom } = getDrawInformation(
+  const {
+    showThisYearPlaceholderFrom,
+    showDrawFrom,
+    showResultsFrom,
+    showNextYearPlaceholderFrom,
+  } = getDrawInformation(
     thisYear,
     weekDayOfRegatta,
     monthOfRegatta,
@@ -82,7 +99,10 @@ export const ClientDraw = ({
   const now = Date.now();
 
   const state: State = (() => {
-    if (now > showDrawFrom && !thisYearsDrawIsPublished) return "placeholder";
+    if (now > showThisYearPlaceholderFrom && !thisYearsDrawIsPublished)
+      return "thisYearPlaceholder";
+    if (now > showNextYearPlaceholderFrom) return "nextYearPlaceholder";
+    if (now > showDrawFrom && !thisYearsDrawIsPublished) return "draw";
     if (now > showDrawFrom && thisYearsDrawIsPublished) return "draw";
     if (now > showResultsFrom) return "results";
     return "results";
