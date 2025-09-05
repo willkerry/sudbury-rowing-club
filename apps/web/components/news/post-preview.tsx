@@ -29,7 +29,6 @@ const getDeterministicGradient = (title: string) => {
 
   const directionIndex = Math.abs(hash) % GRADIENT_DIRECTIONS.length;
   const toIndex = Math.abs(hash >> 8) % GRADIENT_TO.length;
-  console.log(directionIndex, toIndex);
 
   return cn(
     GRADIENT_DIRECTIONS[directionIndex],
