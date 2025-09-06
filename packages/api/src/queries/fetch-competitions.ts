@@ -66,8 +66,6 @@ const ZBREvent = z
     const competition = sanitise(event.Competition);
     const url = extractURL(event.Competition);
 
-    console.log({ event });
-
     return {
       id: dash(`${competition}-${event.StartDate.toISOString().split("T")[0]}`),
       competition,
