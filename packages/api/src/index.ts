@@ -17,7 +17,6 @@ export {
 } from "./queries/fetch-authors";
 export {
   type BREvent,
-  type SRCEvent,
   serversideFetchCompetitions,
 } from "./queries/fetch-competitions";
 export {

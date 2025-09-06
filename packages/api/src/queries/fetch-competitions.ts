@@ -7,34 +7,6 @@ import { z } from "zod";
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 const MAX_COMPETITION_AGE_DAYS = 14;
 
-const ZBREvent = z.object({
-  MeetingDate: z.string(),
-  Competition: z.string(),
-  StatusId: z.number(),
-  Notes: z.string(),
-
-  MeetClass: z.string(),
-  CompClass: z.string(),
-  NoteClass: z.string(),
-
-  StartDate: z.string(),
-  Region: z.string(),
-});
-
-const ZSRCEvent = z.object({
-  id: z.string(),
-  competition: z.string(),
-  url: z.string().nullable(),
-  status: z.number(),
-  notes: z.string().nullable(),
-
-  startDate: z.string().transform((date) => new Date(date).toISOString()),
-  region: z.string(),
-});
-
-export type BREvent = z.infer<typeof ZBREvent>;
-export type SRCEvent = z.infer<typeof ZSRCEvent>;
-
 const sanitise = (html: string) => {
   const sanitised = he
     .decode(
@@ -75,54 +47,57 @@ const coerceEmptyStringToNull = (value: string) => {
   return value;
 };
 
-const filterOutOldEvents = (events: BREvent[]) => {
-  const now = new Date();
-  const maxAge = new Date(
-    now.getTime() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000,
-  );
-
-  return events.filter((event) => new Date(event.StartDate) >= maxAge);
-};
-
 const REGION_REPLACEMENT_TABLE = new Map<string, string>([
   ["Thames SouthEast", "Thames Southeast"],
 ]);
+const replaceUglyRegionNames = (region: string) =>
+  REGION_REPLACEMENT_TABLE.get(region) || region;
 
-const replaceUglyRegionNames = (region: string) => {
-  if (REGION_REPLACEMENT_TABLE.has(region)) {
-    return REGION_REPLACEMENT_TABLE.get(region);
-  }
+const ZBREvent = z
+  .object({
+    Competition: z.string(),
+    StatusId: z.int(),
+    Notes: z.string().transform(sanitise).transform(coerceEmptyStringToNull),
 
-  return region;
-};
+    StartDate: z.coerce.date(),
+    Region: z.string().transform(sanitise).transform(replaceUglyRegionNames),
+  })
+  .transform((event) => {
+    const competition = sanitise(event.Competition);
+    const url = extractURL(event.Competition);
 
-const transformCompetions = (events: BREvent[]) =>
-  z.array(ZSRCEvent).parse(
-    events.map(({ Competition, StatusId, Notes, StartDate, Region }) => ({
-      id: dash(`${sanitise(Competition)}-${StartDate}`),
+    console.log({ event });
 
-      competition: sanitise(Competition),
-      url: extractURL(Competition),
-      status: StatusId,
-      notes: coerceEmptyStringToNull(sanitise(Notes)),
+    return {
+      id: dash(`${competition}-${event.StartDate.toISOString().split("T")[0]}`),
+      competition,
+      cancelled: event.StatusId === 8,
+      url,
+      notes: event.Notes,
+      startDate: event.StartDate,
+      region: event.Region,
+    };
+  });
 
-      startDate: sanitise(StartDate),
-      region: replaceUglyRegionNames(sanitise(Region)),
-    })),
-  );
+export type BREvent = z.infer<typeof ZBREvent>;
 
-const serverSideFetchCompetitionsFromBR = async () => {
+const serversideFetchCompetitions = async (includeOldEvents?: boolean) => {
   const brCalendarResponse = await fetch(EVENT_CALENDAR_API);
   const brCalendarJSON = await brCalendarResponse.json();
 
-  return z.array(ZBREvent).parse(brCalendarJSON);
+  return z
+    .array(ZBREvent)
+    .transform((events) => ({
+      events: includeOldEvents
+        ? events
+        : events.filter(
+            ({ startDate }) =>
+              startDate.getTime() >=
+              Date.now() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000,
+          ),
+      regions: Array.from(new Set(events.map(({ region }) => region))),
+    }))
+    .parse(brCalendarJSON);
 };
-
-const serversideFetchCompetitions = async (includeOldEvents?: boolean) =>
-  transformCompetions(
-    includeOldEvents
-      ? await serverSideFetchCompetitionsFromBR()
-      : filterOutOldEvents(await serverSideFetchCompetitionsFromBR()),
-  );
 
 export { serversideFetchCompetitions };

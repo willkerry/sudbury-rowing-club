@@ -1,9 +1,7 @@
 "use client";
 
-import type { SRCEvent } from "@sudburyrc/api";
-import { slug } from "github-slugger";
+import type { BREvent } from "@sudburyrc/api";
 import { AnimatePresence, motion } from "motion/react";
-import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { Label } from "@/components/stour/label";
 import { Link as StourLink } from "@/components/stour/link";
@@ -13,13 +11,6 @@ import { useFilter } from "@/hooks/useFilter";
 import { HOSTNAME } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
-const BR_EVENT_STATUS = {
-  2: "",
-  8: "Cancelled",
-} as const;
-
-type Event = SRCEvent;
-
 const Tag = ({ children }: { children: React.ReactNode }) => (
   <span className="first-of-type:-ml-0.5 rounded-xs border bg-gray-50 p-0.5 font-semibold text-gray-400 text-xs leading-none transition-colors group-hover:text-gray-500">
     {children}
@@ -27,52 +18,58 @@ const Tag = ({ children }: { children: React.ReactNode }) => (
 );
 
 const EventCard = ({
-  event: { id, competition, startDate, notes, region, status },
+  event: { id, competition, startDate, notes, region, cancelled, url },
 }: {
-  event: Event;
-}) => (
-  <motion.li
-    layout="position"
-    id={id}
-    key={id}
-    animate={{
-      transition: { duration: 0.3 },
-      opacity: 1,
-    }}
-    exit={{ opacity: 0 }}
-    initial={{ opacity: 0 }}
-  >
-    <Link
-      href={`/members/events/${slug(id)}`}
-      className={cn(
-        "grid rounded-sm border bg-white px-2 py-1.5",
-        status === 8 && "opacity-50",
-        "group transition-colors hover:border-blue-300",
-      )}
+  event: BREvent;
+}) => {
+  const Comp = url ? "a" : "div";
+
+  return (
+    <motion.li
+      layout="position"
+      id={id}
+      key={id}
+      animate={{
+        transition: { duration: 0.3 },
+        opacity: 1,
+      }}
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
     >
-      <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm group-hover:text-blue-500">
-        {competition}
-      </h3>
+      <Comp
+        href={url || undefined}
+        className={cn(
+          "grid rounded-sm border bg-white px-2 py-1.5",
+          cancelled && "opacity-50",
+          "group transition-colors hover:border-blue-300",
+        )}
+      >
+        <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm group-hover:text-blue-500">
+          {competition}
+        </h3>
 
-      <DateFormatter
-        dateString={startDate}
-        className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
-      />
-      <div className="mb-2 font-semibold text-orange-600 text-xs">{notes}</div>
+        <DateFormatter
+          dateString={startDate}
+          className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
+        />
+        <div className="mb-2 font-semibold text-orange-600 text-xs">
+          {notes}
+        </div>
 
-      <div className="flex flex-wrap gap-2">
-        <Tag>{region}</Tag>
-        {status === 8 && <Tag>{BR_EVENT_STATUS[status]}</Tag>}
-      </div>
-    </Link>
-  </motion.li>
-);
+        <div className="flex flex-wrap gap-2">
+          <Tag>{region}</Tag>
+          {cancelled && <Tag>Cancelled</Tag>}
+        </div>
+      </Comp>
+    </motion.li>
+  );
+};
 
 const groupByMonth = (
-  events: Event[],
+  events: BREvent[],
 ): {
   month: number;
-  events: Event[];
+  events: BREvent[];
 }[] => {
   const months = new Set(
     events.map((event) => new Date(event.startDate).getMonth()),
@@ -88,8 +85,13 @@ const groupByMonth = (
 
 const ALL_REGIONS = "All";
 
-export const EventCalendar = ({ events }: { events: Event[] }) => {
-  const regions = new Set(events?.map((event) => event.region));
+export const EventCalendar = ({
+  events,
+  regions,
+}: {
+  events: BREvent[];
+  regions: string[];
+}) => {
   const [selectedRegion, setSelectedRegion] = useQueryState<string>("region", {
     defaultValue: "Eastern",
     parse: (value) => value || "Eastern",
@@ -114,7 +116,7 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
             {regions ? (
               <>
                 <option value={ALL_REGIONS.toLowerCase()}>{ALL_REGIONS}</option>
-                {Array.from(regions).map((region) => (
+                {regions.map((region) => (
                   <option value={region} key={region}>
                     {region}
                   </option>
@@ -149,7 +151,7 @@ export const EventCalendar = ({ events }: { events: Event[] }) => {
               initial={{ opacity: 0 }}
             >
               <Label as="h2" className="mb-2 p-2 text-xs">
-                {new Date(events[0].startDate).toLocaleString("default", {
+                {events[0].startDate.toLocaleString("default", {
                   month: "long",
                   year: "numeric",
                 })}
