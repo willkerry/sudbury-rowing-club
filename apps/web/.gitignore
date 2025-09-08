@@ -49,3 +49,5 @@ tsconfig.tsbuildinfo
 
 # content collections
 /.content-collections
+
+.cache
