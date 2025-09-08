@@ -17,7 +17,7 @@ const cachedTransformToICS = async () => {
 
   console.log(new Date(), "iCal feed cold start");
 
-  const { events } = await serversideFetchCompetitions(true);
+  const events = await serversideFetchCompetitions(true);
 
   const calendar = new IcalBuilder(
     "SRC Events",

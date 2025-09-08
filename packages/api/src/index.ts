@@ -1,4 +1,9 @@
 export {
+  cachedFetchCompetitionBySlug,
+  cachedFetchCompetitions,
+  cachedFetchRegions,
+} from "./queries/cached-fetch-competitions";
+export {
   serverGetAllSlugs,
   serverGetArticleBySlug,
   serverGetArticleCount,

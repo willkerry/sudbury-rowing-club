@@ -9,7 +9,7 @@ import {
 
 const cache = new Cache({
   key: "news",
-  ttl: 1000 * 60,
+  ttl: 60 * 5,
   function: fetchAllArticles,
   primaryKey: "slug",
 });

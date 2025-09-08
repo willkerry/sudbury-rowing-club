@@ -85,16 +85,15 @@ const serversideFetchCompetitions = async (includeOldEvents?: boolean) => {
 
   return z
     .array(ZBREvent)
-    .transform((events) => ({
-      events: includeOldEvents
+    .transform((events) =>
+      includeOldEvents
         ? events
         : events.filter(
             ({ startDate }) =>
               startDate.getTime() >=
               Date.now() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000,
           ),
-      regions: Array.from(new Set(events.map(({ region }) => region))),
-    }))
+    )
     .parse(brCalendarJSON);
 };
 

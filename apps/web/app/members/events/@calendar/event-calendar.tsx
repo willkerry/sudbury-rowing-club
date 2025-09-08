@@ -151,10 +151,10 @@ export const EventCalendar = ({
               initial={{ opacity: 0 }}
             >
               <Label as="h2" className="mb-2 p-2 text-xs">
-                {events[0].startDate.toLocaleString("default", {
-                  month: "long",
-                  year: "numeric",
-                })}
+                <DateFormatter
+                  dateString={events[0].startDate}
+                  format={{ month: "long", year: "numeric" }}
+                />
               </Label>
 
               <motion.ul className="mb-8 grid gap-2">

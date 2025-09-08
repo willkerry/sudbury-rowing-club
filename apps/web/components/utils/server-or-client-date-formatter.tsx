@@ -11,7 +11,7 @@ type DateFormatPresets =
 
 type Props = {
   dateString: string | number | Date;
-  format?: DateFormatPresets;
+  format?: DateFormatPresets | Intl.DateTimeFormatOptions;
   locale?: Intl.ResolvedDateTimeFormatOptions["locale"];
   timeZone?: Intl.DateTimeFormatOptions["timeZone"];
 } & React.HTMLAttributes<HTMLTimeElement>;
@@ -41,6 +41,21 @@ const defaultOptions: Map<DateFormatPresets, Intl.DateTimeFormatOptions> =
     ["shortWeekday", { weekday: "short" }],
   ]);
 
+const normaliseFormat = (
+  format: DateFormatPresets | Intl.DateTimeFormatOptions,
+): Intl.DateTimeFormatOptions => {
+  if (typeof format === "string") {
+    return (
+      defaultOptions.get(format) || {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }
+    );
+  }
+  return format;
+};
+
 export const ServerOrClientDateFormatter = ({
   dateString,
   format = "default",
@@ -49,13 +64,14 @@ export const ServerOrClientDateFormatter = ({
   ...props
 }: Props) => {
   const isNonGbClient = timeZone !== "Europe/London";
-  const selectedFormatIncludesTime = format?.includes("time");
+  const normalisedFormat = normaliseFormat(format);
+  const selectedFormatIncludesTime = "hour" in normalisedFormat;
 
   return (
     <time dateTime={dateString.toString()} suppressHydrationWarning {...props}>
       {Intl.DateTimeFormat(locale, {
         timeZone: "Europe/London",
-        ...defaultOptions.get(format ?? "default"),
+        ...normalisedFormat,
       }).format(new Date(dateString))}
 
       {isNonGbClient && selectedFormatIncludesTime && " (UK time)"}

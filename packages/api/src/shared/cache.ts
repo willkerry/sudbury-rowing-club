@@ -2,9 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 
 type Options<T> = {
+  /** A unique identifier for the cache */
   key: string;
+  /** The time to live for the cache in seconds */
   ttl: number;
+  /** An async function that returns an array of data */
   function: () => Promise<T[]>;
+  /** The primary key the data are indexed by */
   primaryKey: keyof T;
 };
 
@@ -64,7 +68,7 @@ export class Cache<T> {
   private async _cachedRead(): Promise<Record<string, T>> {
     const { data, lastFetchTime } = await this._read();
 
-    if (lastFetchTime + this.options.ttl > Date.now()) {
+    if (lastFetchTime + this.options.ttl * 1000 > Date.now()) {
       return data;
     }
 
