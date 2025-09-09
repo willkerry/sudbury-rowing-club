@@ -82,7 +82,7 @@ export class Cache<T> {
   private _toMap(data: T[]): Record<string, T> {
     return data.reduce(
       (acc, item) => {
-        acc[item[this.options.primaryKey] as string] = item;
+        acc[`${this.options.key}-${item[this.options.primaryKey]}`] = item;
         return acc;
       },
       {} as Record<string, T>,
@@ -100,10 +100,12 @@ export class Cache<T> {
   public async getByPrimaryKey(primaryKey: string): Promise<T | undefined> {
     const data = await this._cachedRead();
 
-    if (!(primaryKey in data)) {
+    const cacheKey = `${this.options.key}-${primaryKey}`;
+
+    if (!(cacheKey in data)) {
       return undefined;
     }
 
-    return data[primaryKey];
+    return data[cacheKey];
   }
 }
