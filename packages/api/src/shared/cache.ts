@@ -41,13 +41,22 @@ export class Cache<T> {
     }
 
     if (!fs.existsSync(this._cacheFilePath())) {
-      await fs.promises.writeFile(
-        this._cacheFilePath(),
-        JSON.stringify({
-          data: {},
-          lastFetchTime: 0,
-        }),
-      );
+      try {
+        await fs.promises.writeFile(
+          this._cacheFilePath(),
+          JSON.stringify({
+            data: {},
+            lastFetchTime: 0,
+          }),
+        );
+      } catch (error) {
+        console.warn(`Unable to create cache file: ${error}`);
+
+        return {
+          data: this._toMap(await this.options.function()),
+          lastFetchTime: Date.now(),
+        };
+      }
     }
 
     const cache = await fs.promises.readFile(this._cacheFilePath(), "utf-8");
