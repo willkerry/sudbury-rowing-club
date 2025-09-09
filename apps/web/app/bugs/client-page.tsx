@@ -31,7 +31,7 @@ const formatIfStringIsParseableJSON = (string: string) => {
 export const BugsClientSide = () => {
   const [message] = useQueryState("message");
 
-  const { mutateAsync, error } = useMutation({
+  const { mutateAsync, error, data, status } = useMutation({
     mutationKey: ["bug-report"],
     mutationFn: (values: BugReport) =>
       kyInstance.post("/api/bug", { json: values }),
@@ -55,7 +55,7 @@ export const BugsClientSide = () => {
     onSubmitInvalid: () => scrollToSelector('[aria-invalid="true"]'),
   });
 
-  if (form.state.isSubmitted) return <Success />;
+  if (data && status === "success") return <Success response={data} />;
 
   const disableFields = form.state.isSubmitting || form.state.isSubmitted;
 
