@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "author": "",
   "devDependencies": {
-    "@biomejs/biome": "^2.2.2",
-    "lefthook": "^1.12.3"
+    "@biomejs/biome": "^2.2.3",
+    "lefthook": "^1.12.4"
   },
   "description": "",
   "keywords": [],
