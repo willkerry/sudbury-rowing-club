@@ -7,12 +7,12 @@ import {
   Hr,
   Html,
   Link,
+  Markdown,
   Row,
   Section,
   Tailwind,
   Text,
 } from "@react-email/components";
-import snarkdown from "snarkdown";
 
 interface ContactFormEmailProps {
   toName?: string;
@@ -56,7 +56,7 @@ export const ContactFormEmail = ({
     <Head />
 
     <Tailwind>
-      <Body className="mx-auto my-auto bg-white py-4 font-sans">
+      <Body className="font-sans">
         <Container>
           <Heading className="font-normal text-black text-lg">
             You have received a message via SRC Contact
@@ -90,10 +90,9 @@ export const ContactFormEmail = ({
             <Row>
               <Column>
                 <Label>Message:</Label>
-                <div
-                  className="m-0 rounded-sm border border-gray-200 border-solid bg-gray-50 p-2 text-gray-900 text-sm"
-                  dangerouslySetInnerHTML={{ __html: snarkdown(message) }}
-                />
+                <div className="m-0 text-gray-900 text-sm">
+                  <Markdown>{message}</Markdown>
+                </div>
               </Column>
             </Row>
           </Section>
