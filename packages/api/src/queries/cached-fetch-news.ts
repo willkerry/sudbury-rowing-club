@@ -26,7 +26,7 @@ const serverGetArticleCount = async (): Promise<number> => {
 const serverGetAllSlugs = async (): Promise<string[]> => {
   const articles = await cache.get();
 
-  return Object.keys(articles);
+  return articles.map((article) => article.slug);
 };
 
 const serverGetNArticles = async (
