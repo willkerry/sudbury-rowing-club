@@ -49,7 +49,7 @@ type Props = {
 export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const recipientWasProvided = !!initialValues.to;
 
-  const { mutateAsync, status, error } = useMutation({
+  const { mutateAsync, status, error, data } = useMutation({
     mutationKey: ["contact-form"],
     mutationFn: (values: Message) =>
       kyInstance.post("/api/send", { json: values }),
@@ -81,7 +81,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   });
 
   if (disabled) return <DisabledOverlay form={<div />} />;
-  if (form.state.isSubmitted) return <Success />;
+  if (data && status === "success") return <Success response={data} />;
 
   const disableFields =
     form.state.isSubmitting ||
@@ -188,11 +188,13 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
 
       {status === "error" && (
         <ErrorComponent className="col-span-2" error={error}>
-          Contact us{" "}
-          <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
-            by email
-          </Obfuscate>
-          .
+          <div className="text-sm">
+            Contact us{" "}
+            <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
+              by email
+            </Obfuscate>
+            .
+          </div>
         </ErrorComponent>
       )}
 

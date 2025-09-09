@@ -110,36 +110,34 @@ export const POST = async (req: NextRequest) => {
       role: toRole,
     } = await findRecipient(toID);
 
-    try {
-      await resend.emails.send({
-        from: formatName(SENDER.email, SENDER.name),
-        to: formatName(toEmail, toName),
-        replyTo: formatName(fromEmail, fromName),
-        subject: `${fromName} via SRC Contact`,
-        react: ContactFormEmail({
-          toName,
-          toEmail,
-          toRole,
-          fromName,
-          fromEmail,
-          message: DOMPurify.sanitize(message),
-        }),
-      });
+    const createEmailResponse = await resend.emails.send({
+      from: formatName(SENDER.email, SENDER.name),
+      to: formatName(toEmail, toName),
+      replyTo: formatName(fromEmail, fromName),
+      subject: `${fromName} via SRC Contact`,
+      react: ContactFormEmail({
+        toName,
+        toEmail,
+        toRole,
+        fromName,
+        fromEmail,
+        message: DOMPurify.sanitize(message),
+      }),
+      text: DOMPurify.sanitize(message),
+    });
 
-      return new NextResponse("Message sent", {
+    if (createEmailResponse.error) {
+      throw new ResponseError(
+        `A third party service returned an error: ${createEmailResponse.error.message}`,
+        502,
+      );
+    }
+
+    if (createEmailResponse.data.id) {
+      return new NextResponse(`Message ID: ${createEmailResponse.data.id}`, {
         status: 200,
+        statusText: `Message ID: ${createEmailResponse.data.id}`,
       });
-    } catch (error) {
-      console.error("error sending email", error);
-
-      if (error instanceof Error) {
-        throw new ResponseError(
-          `A third party service returned an error: ${error.message}`,
-          502,
-        );
-      }
-
-      throw error;
     }
   } catch (error) {
     if (error instanceof ResponseError) {
