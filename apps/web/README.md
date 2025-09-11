@@ -22,3 +22,4 @@ This is the latest iteration of Sudbury Rowing Club’s website.
 **2020:** a custom Wordpress job with all the bells and whistles, which was going to cost an arm and a leg to host
 
 **2021:** this jobbie
+
