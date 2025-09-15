@@ -34,7 +34,7 @@ const SquadPage = async ({ params }: SquadPageParamObject) => {
       <Container className="mb-12">
         <OfficerContactCard query={squad.title} />
 
-        <div className="h-12" />
+        <div className="h-6 md:h-12" />
 
         <MDXContent code={squad?.body} />
       </Container>
