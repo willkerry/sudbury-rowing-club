@@ -11,8 +11,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { fork } from "radash";
 import { Fragment } from "react";
+import type { NavigationItem } from "@/components/nav/types";
 import { cn } from "@/lib/utils";
-import type { IconNavItemType } from "@/types/nav-item";
 
 export const navLinkClasses = cn(
   "group inline-flex rounded-md px-2 py-2.5 text-sm transition hover:text-black md:px-3",
@@ -32,61 +32,73 @@ const ListItem = ({
   icon,
   mobileOnly,
   cta,
-}: IconNavItemType) => {
+  items,
+}: NavigationItem) => {
   if (mobileOnly) return null;
 
   const Icon = icon || null;
 
   return (
-    <CloseButton
-      as={Link}
-      key={href}
-      href={href}
-      className={cn(
-        "group flex rounded-sm transition",
-        description ? "items-start" : "items-center",
-      )}
-    >
-      {Icon && (
-        <Icon
-          className="mr-2.5 h-6 w-6 shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
-          aria-hidden
-        />
-      )}
-      <div className="flex flex-col">
-        <p
-          className={cn(
-            "flex py-0.5 font-semibold text-sm leading-none transition-colors",
-            {
-              "text-gray-900 group-hover:text-gray-700": cta,
-              "text-gray-600 group-hover:text-gray-900": !cta,
-            },
-          )}
-        >
-          {name}
-          {!cta && (
-            <span
-              aria-hidden
-              className="block scale-y-90 opacity-0 transition group-hover:translate-x-1 group-hover:scale-x-110 group-hover:opacity-100"
-            >
-              &rarr;
-            </span>
-          )}
-        </p>
-        {description && (
-          <p className="font-medium text-gray-500 text-xs transition-colors group-hover:text-gray-900">
-            {description}
-          </p>
+    <>
+      <CloseButton
+        as={Link}
+        key={href}
+        href={href}
+        className={cn(
+          "group flex rounded-sm transition",
+          description ? "items-start" : "items-center",
         )}
-      </div>
-    </CloseButton>
+      >
+        {Icon && (
+          <Icon
+            className="mr-2.5 h-6 w-6 shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
+            aria-hidden
+          />
+        )}
+        <div className="flex flex-col">
+          <p
+            className={cn(
+              "flex py-0.5 text-sm leading-none transition-colors",
+              {
+                "text-gray-900 group-hover:text-gray-700": cta,
+                "text-gray-600 group-hover:text-gray-900": !cta,
+              },
+              icon || description ? "font-semibold" : "font-medium",
+            )}
+          >
+            {name}
+            {!cta && (
+              <span
+                aria-hidden
+                className="block scale-y-90 opacity-0 transition group-hover:translate-x-1 group-hover:scale-x-110 group-hover:opacity-100"
+              >
+                &rarr;
+              </span>
+            )}
+          </p>
+          {description && (
+            <p className="font-medium text-gray-500 text-xs transition-colors group-hover:text-gray-900">
+              {description}
+            </p>
+          )}
+        </div>
+      </CloseButton>
+
+      {items && (
+        <div className="-mt-2 ml-8.5 grid grid-cols-2 gap-2">
+          {items.map((item) => (
+            <ListItem key={item.href} {...item} />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
 type NavSectionProps = {
   compact?: boolean;
   icon?: React.ReactElement;
-  items: IconNavItemType[];
+  items: NavigationItem[];
   label?: string;
 };
 
@@ -101,6 +113,7 @@ export const NavSection = ({
 
   if (items.length === 1) {
     const { href, name } = items[0];
+
     return (
       <Link
         href={href}

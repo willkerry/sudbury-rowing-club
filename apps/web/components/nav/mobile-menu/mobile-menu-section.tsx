@@ -2,12 +2,12 @@ import { CloseButton } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { Accordion } from "radix-ui";
+import type { NavigationItem } from "@/components/nav/types";
 import { cn } from "@/lib/utils";
-import type { IconNavItemType } from "@/types/nav-item";
 
 type SectionProps = {
   title: string;
-  data: IconNavItemType[];
+  data: NavigationItem[];
   collapse?: boolean;
   compact?: boolean;
 };
