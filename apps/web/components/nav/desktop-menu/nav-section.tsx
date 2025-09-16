@@ -38,6 +38,8 @@ const ListItem = ({
 
   const Icon = icon || null;
 
+  const isSubItem = !(icon || description);
+
   return (
     <>
       <CloseButton
@@ -63,7 +65,7 @@ const ListItem = ({
                 "text-gray-900 group-hover:text-gray-700": cta,
                 "text-gray-600 group-hover:text-gray-900": !cta,
               },
-              icon || description ? "font-semibold" : "font-medium",
+              isSubItem ? "font-medium" : "font-semibold",
             )}
           >
             {name}
