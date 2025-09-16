@@ -1,4 +1,3 @@
-import { CircleIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -35,7 +34,7 @@ const PathwayCardContentPrimary = ({
 }) => (
   <div>
     <div className="font-medium text-sm">{title}</div>
-    <div className="text-xs">{children}</div>
+    <div className="text-sm">{children}</div>
   </div>
 );
 
@@ -46,12 +45,19 @@ const PathwayCardContentSecondary = ({
   title: string;
   children: React.ReactNode;
 }) => (
-  <div className="flex flex-row gap-3">
-    <CircleIcon aria-hidden className="mt-2 h-4 w-4" />
-    <div className="flex flex-col">
-      <p className="font-medium text-sm">{title}</p>
-      <div className="text-xs">{children}</div>
-    </div>
+  <div className="mt-1 flex items-center justify-between gap-2 rounded-xs bg-gray-100 p-1">
+    <p className="font-medium text-gray-600 text-xs">{title}</p>
+    <div className="text-gray-600 text-xs">{children}</div>
+  </div>
+);
+
+const PathwayCardContentAlert = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <div className="mb-1 rounded-xs border border-blue-200 bg-blue-50 px-2 py-1 text-blue-700 text-xs">
+    {children}
   </div>
 );
 
@@ -81,4 +87,5 @@ Object.assign(SquadPathways, {
   PathwayCardContent,
   PathwayCardContentPrimary,
   PathwayCardContentSecondary,
+  PathwayCardContentAlert,
 });
