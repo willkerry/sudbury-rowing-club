@@ -11,6 +11,7 @@ import {
   ShieldCheckIcon,
   SparklesIcon,
   TicketIcon,
+  UserGroupIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
 import { Facebook, Instagram } from "lucide-react";
@@ -23,18 +24,36 @@ import {
   Spond,
 } from "@/components/icons";
 import { SOCIALS } from "@/lib/constants";
-import type { IconNavItemType } from "@/types/nav-item";
-
-type NavigationGroup = {
-  title: string;
-  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
-  items: IconNavItemType[];
-};
+import type { NavigationGroup, NavigationItem } from "./types";
 
 const navigationGroups: NavigationGroup[] = [
   {
     title: "About",
     items: [
+      {
+        name: "Squads",
+        description: "Find out about our squads.",
+        href: "/about/squads",
+        icon: UserGroupIcon,
+        items: [
+          {
+            name: "Masters",
+            href: "/about/squads/masters",
+          },
+          {
+            name: "Seniors",
+            href: "/about/squads/seniors",
+          },
+          {
+            name: "Adaptive",
+            href: "/about/squads/adaptive",
+          },
+          {
+            name: "Juniors",
+            href: "/about/squads/juniors",
+          },
+        ],
+      },
       {
         name: "History",
         description: "Rowing in Sudbury since 1874.",
@@ -206,7 +225,7 @@ const availableLogos: Record<
   facebook: Facebook,
 };
 
-export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
+export const socials: NavigationItem[] = Object.entries(SOCIALS).map(
   ([key, { href, name }]) => ({
     name,
     href,

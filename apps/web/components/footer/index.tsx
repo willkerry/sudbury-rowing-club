@@ -7,13 +7,13 @@ import {
   regatta,
   socials,
 } from "@/components/nav/nav-data";
-import type { IconNavItemType } from "@/types/nav-item";
+import type { NavigationItem } from "@/components/nav/types";
 import { Address } from "./address";
 import { FooterColumn } from "./column";
 import { ReportABug } from "./reportABug";
 import { SocialIcons } from "./socialIcons";
 
-const columns: [string, IconNavItemType[]][] = [
+const columns: [string, NavigationItem[]][] = [
   ["About", about],
   ["Regatta", regatta],
   ["Community", [...members.filter((item) => item.cta), ...socials]],

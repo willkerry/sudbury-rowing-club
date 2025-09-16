@@ -130,7 +130,8 @@ const Join = async () => (
     </Container>
 
     {/* About the L2R course */}
-    <div className="my-24">
+    {/** biome-ignore lint/correctness/useUniqueElementIds: ID for hash link */}
+    <div className="my-24" id="l2r">
       <Container>
         <SectionHeading
           label="Learn to row with us"

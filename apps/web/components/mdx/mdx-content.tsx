@@ -1,6 +1,8 @@
 import { MDXContent as BaseMDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import { SquadPathways } from "@/components/about/squads/squad-pathways";
+import { Text } from "@/components/stour/text";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 
@@ -32,6 +34,8 @@ export const MDXContent = ({
           {...props}
         />
       ),
+      SquadPathways,
+      Text,
     }}
   />
 );
