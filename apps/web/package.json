@@ -65,7 +65,7 @@
     "num-words": "^1.2.3",
     "nuqs": "^2.6.0",
     "pigeon-maps": "^0.22.1",
-    "posthog-js": "^1.262.0",
+    "posthog-js": "^1.266.2",
     "posthog-node": "^5.8.5",
     "radash": "^12.1.1",
     "radix-ui": "^1.4.3",
