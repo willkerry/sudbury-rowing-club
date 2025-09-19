@@ -7,6 +7,7 @@ import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
+import { HOSTNAME } from "@/lib/constants";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
@@ -22,6 +23,7 @@ if (typeof window !== "undefined") {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
       person_profiles: "identified_only",
       persistence: "localStorage",
+      __add_tracing_headers: [HOSTNAME],
     });
   }
 }

@@ -3,7 +3,9 @@
 import { Home } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePostHog } from "posthog-js/react";
 import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
+import { useEffect } from "react";
 import { Container } from "@/components/layouts/container";
 import { SiteSearch } from "@/components/search";
 import { PageHeader } from "@/components/stour/hero/page-header";
@@ -11,6 +13,12 @@ import { Button } from "@/components/ui/button";
 import { Error as ErrorComponent } from "@/components/ui/error";
 
 export default function SafetyError({ error }: { error: Error }) {
+  const posthog = usePostHog();
+
+  useEffect(() => {
+    posthog.captureException(error);
+  }, [posthog, error]);
+
   return (
     <>
       <PageHeader breadcrumbs title="Something went wrong." />
