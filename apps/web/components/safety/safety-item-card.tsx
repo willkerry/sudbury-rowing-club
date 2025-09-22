@@ -1,4 +1,4 @@
-import type { SafetyResponse } from "@sudburyrc/api";
+import type { SafetyItem } from "@sudburyrc/api";
 import { BASE_URL } from "lib/constants";
 import { Download, ExternalLink } from "lucide-react";
 import NextLink from "next/link";
@@ -112,7 +112,7 @@ export const SafetyItemCard = ({
   body,
   link,
   document,
-}: SafetyResponse) => {
+}: SafetyItem) => {
   const permalink = `safety/${_id}`;
   const firstParagraph = body ? first(body) : null;
   const hasMultipleParagraphs = isArray(body) && body.length > 1;

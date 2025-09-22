@@ -66,7 +66,7 @@ export {
 export {
   fetchSafety,
   fetchSafetyById,
-  type SafetyResponse,
+  type SafetyItem,
 } from "./queries/fetch-safety";
 export { ZTypedObject } from "./queries/typed-object";
 export { getSanityConfig, sanityClient } from "./sanity/client";

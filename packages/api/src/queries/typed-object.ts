@@ -15,3 +15,4 @@ const baseTypedObjectZ = z
   .passthrough();
 
 export const ZTypedObject = schemaForType<TypedObject>()(baseTypedObjectZ);
+export type { TypedObject } from "@portabletext/types";

@@ -1,4 +1,4 @@
-import { fetchSafety, type SafetyResponse } from "@sudburyrc/api";
+import { fetchSafety, type SafetyItem } from "@sudburyrc/api";
 import { fork } from "radash";
 import { SafetyItemCard } from "@/components/safety/safety-item-card";
 import { containsUrgentWords } from "@/lib/contains-urgent-words";
@@ -9,7 +9,7 @@ export const metadata = createMetadata({
   description: "Safety information from Sudbury Rowing Club.",
 });
 
-const isPinnedDiscriminator = (item: SafetyResponse) =>
+const isPinnedDiscriminator = (item: SafetyItem) =>
   item.pin || containsUrgentWords(item.title);
 
 const Safety = async () => {
