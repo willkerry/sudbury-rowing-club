@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Text } from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import { BASE_URL } from "@/lib/constants";
+import { containsUrgentWords } from "@/lib/contains-urgent-words";
 import { createMetadata } from "@/lib/create-metadata";
 
 type SafetyPageParams = { slug: string };
@@ -48,7 +49,11 @@ const SafetyItem = async ({ params }: SafetyPageParamObject) => {
         </Button>
       )}
       {item.document && (
-        <Button asChild icon={<Download />}>
+        <Button
+          asChild
+          icon={<Download />}
+          variant={containsUrgentWords(item.title) ? "destructive" : "tertiary"}
+        >
           <a href={`${item.document.url}?dl=`}>{item.document.title}</a>
         </Button>
       )}
