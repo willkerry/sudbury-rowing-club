@@ -11,9 +11,9 @@ pin,
 body[]{
     ...,
     _type == "figure" => {
-    "_id": @.image.asset->_id,       
+    "_id": @.image.asset->_id,
     "altText": @.image.asset->altText,
-    "description": @.image.asset->description,   
+    "description": @.image.asset->description,
     "lqip": @.image.asset->metadata.lqip,
     "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio, 
     },
@@ -28,7 +28,7 @@ document != null => {
 link != null => { link }`;
 
 const safetyQuery = groq`*[
-    _type == "safety" && 
+    _type == "safety" &&
     !(_id in path("drafts.**"))
   ] | order(_updatedAt asc) {
   ${fields}
@@ -37,7 +37,15 @@ const safetyQuery = groq`*[
 const safetyQueryById = groq`*[_id == $id][0]{${fields}}`;
 
 const ZSafetyResponse = z.object({
-  _updatedAt: z.string(),
+  _updatedAt: z.coerce
+    .date()
+    .transform((date) => {
+      if (date.toDateString() === new Date("2025-09-22").toDateString())
+        return new Date("2025-01-30");
+
+      return date;
+    })
+    .transform((date) => date.toDateString()),
   _id: z.string(),
   title: z.string(),
   body: z.array(ZTypedObject).nullable(),
