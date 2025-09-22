@@ -1,7 +1,7 @@
 import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
 import { HTTPError } from "ky";
-import { sift } from "radash";
+import { sift } from "radashi";
 import { z } from "zod";
 import { kyInstance } from "@/app/get-query-client";
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";

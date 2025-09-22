@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { unique } from "radash";
+import { unique } from "radashi";
 import { prettifyBreadcrumb } from "./prettifyBreadcrumb";
 
 type Props = {

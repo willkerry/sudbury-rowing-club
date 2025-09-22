@@ -1,4 +1,4 @@
-import { sift } from "radash";
+import { sift } from "radashi";
 import { getClubByCode } from "@/lib/getClub";
 
 export const isCompositeCrew = (club: string) => club.includes("/");

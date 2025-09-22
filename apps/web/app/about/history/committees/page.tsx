@@ -1,6 +1,6 @@
 import { slug } from "github-slugger";
 import Link from "next/link";
-import { listify } from "radash";
+import { listify } from "radashi";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { getCommitteeArchive } from "@/lib/get-committee-archive";

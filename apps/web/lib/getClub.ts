@@ -1,4 +1,4 @@
-import { unique } from "radash";
+import { unique } from "radashi";
 import clubs from "@/data/clubs.json";
 import { getHostname } from "./helpers/getHostname";
 

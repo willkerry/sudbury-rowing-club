@@ -2,7 +2,7 @@ import { smartQuotes } from "@sudburyrc/helpers";
 import { allPolicies } from "content-collections";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { title as formatTitle } from "radash";
+import { title as formatTitle } from "radashi";
 import { DocPage } from "@/components/layouts/doc-page";
 import { createMetadata } from "@/lib/create-metadata";
 

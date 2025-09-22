@@ -4,7 +4,7 @@ import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
-import { shake } from "radash";
+import { shake } from "radashi";
 import { z } from "zod";
 import { kyInstance } from "@/app/get-query-client";
 import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
@@ -159,7 +159,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       >
         {([to, name, email]) => (
           <FromAndTo
-            to={shake(contacts.find((o) => o._id === to))}
+            to={shake(contacts.find((o) => o._id === to) ?? {})}
             isOpen={to !== "default"}
             from={{
               name,

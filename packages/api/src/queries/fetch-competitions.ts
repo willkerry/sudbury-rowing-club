@@ -1,7 +1,7 @@
 import emojiRegex from "emoji-regex";
 import he from "he";
 import DOMPurify from "isomorphic-dompurify";
-import { dash } from "radash";
+import { dash } from "radashi";
 import { z } from "zod";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";

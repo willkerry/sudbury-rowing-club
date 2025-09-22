@@ -1,6 +1,6 @@
 import { type Archive, fetchArchives } from "@sudburyrc/api";
 import type { Metadata } from "next";
-import { dash, group } from "radash";
+import { dash, group } from "radashi";
 import { ArchiveItem } from "@/components/anniversary/150-archive-item";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import { Container } from "@/components/layouts/container";

@@ -1,5 +1,5 @@
 import { fetchSafety, type SafetyItem } from "@sudburyrc/api";
-import { fork } from "radash";
+import { fork } from "radashi";
 import { SafetyItemCard } from "@/components/safety/safety-item-card";
 import { containsUrgentWords } from "@/lib/contains-urgent-words";
 import { createMetadata } from "@/lib/create-metadata";

@@ -8,7 +8,7 @@ import {
   Transition,
 } from "@headlessui/react";
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
-import { fork } from "radash";
+import { fork } from "radashi";
 import { Fragment } from "react";
 import { NavLogo, NavSection } from "@/components/nav";
 import {

@@ -3,7 +3,7 @@ import a from "indefinite";
 import type { Metadata } from "next";
 import NextLink from "next/link";
 import toWords from "num-words";
-import { capitalize } from "radash";
+import { capitalize } from "radashi";
 import { SharePlayground } from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";

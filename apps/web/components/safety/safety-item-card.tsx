@@ -2,7 +2,7 @@ import type { SafetyItem } from "@sudburyrc/api";
 import { BASE_URL } from "lib/constants";
 import { Download, ExternalLink } from "lucide-react";
 import NextLink from "next/link";
-import { first, isArray } from "radash";
+import { first, isArray } from "radashi";
 import { forwardRef } from "react";
 import { Link } from "@/components/stour/link";
 import { Text } from "@/components/stour/text";

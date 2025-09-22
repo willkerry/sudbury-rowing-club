@@ -1,6 +1,6 @@
 "use client";
 
-import { shuffle as shuffleFn } from "radash";
+import { shuffle as shuffleFn } from "radashi";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import type { SponsorLogo } from ".";

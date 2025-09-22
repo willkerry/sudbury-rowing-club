@@ -1,6 +1,6 @@
 import Color from "color";
 import { Circle } from "lucide-react";
-import { tryit } from "radash";
+import { tryit } from "radashi";
 import { Copy } from "@/components/stour/copy";
 
 const getPrint = (color: string, type: string) => {

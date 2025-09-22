@@ -3,7 +3,7 @@
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { chain } from "radash";
+import { chain } from "radashi";
 import { type MouseEventHandler, memo } from "react";
 import { animateScroll } from "react-scroll";
 import { cn } from "@/lib/utils";
