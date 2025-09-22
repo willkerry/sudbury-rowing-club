@@ -1,42 +1,60 @@
 import { smartQuotes } from "@sudburyrc/helpers";
+import type { JSX } from "react";
 import { EnvironmentAgency, MetOffice } from "@/components/icons";
 
-export enum WarningSourceEnum {
-  metoffice = "metoffice",
-  environmentAgency = "environment-agency",
-}
+export const WarningSourceEnum = {
+  metoffice: "mo",
+  environmentAgency: "ea",
+} as const;
+export type WarningSourceEnum =
+  (typeof WarningSourceEnum)[keyof typeof WarningSourceEnum];
 
 type QuotedWarningProps = {
   description: string;
   source?: WarningSourceEnum;
 };
 
-let AgencyIcon: React.FC<{ className: string }> = () => null;
-let agencyName = "";
-let agencyColors = "";
+const getAgency = (
+  source?: WarningSourceEnum,
+): {
+  agencyName: string;
+  agencyColors: string;
+  AgencyIcon: (
+    props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
+  ) => React.ReactNode;
+  notFound: boolean;
+} => {
+  switch (source) {
+    case WarningSourceEnum.environmentAgency:
+      return {
+        agencyName: "Environment Agency",
+        agencyColors: "bg-green-600 text-green-50",
+        AgencyIcon: EnvironmentAgency,
+        notFound: false,
+      };
+    case WarningSourceEnum.metoffice:
+      return {
+        agencyName: "Met Office",
+        agencyColors: "bg-gray-700 text-lime-400",
+        AgencyIcon: MetOffice,
+        notFound: false,
+      };
+    default:
+      return {
+        agencyName: "",
+        agencyColors: "",
+        AgencyIcon: () => null,
+        notFound: true,
+      };
+  }
+};
 
 export const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
   if (!description) return null;
-  if (!source) return null;
 
-  switch (source) {
-    case WarningSourceEnum.environmentAgency: {
-      agencyName = "Environment Agency";
-      AgencyIcon = EnvironmentAgency;
-      agencyColors = "bg-green-600 text-green-50";
-      break;
-    }
+  const { agencyName, agencyColors, AgencyIcon, notFound } = getAgency(source);
 
-    case WarningSourceEnum.metoffice: {
-      agencyName = "Met Office";
-      AgencyIcon = MetOffice;
-      agencyColors = "bg-gray-700 text-lime-400";
-      break;
-    }
-
-    default:
-      break;
-  }
+  if (notFound) return null;
 
   return (
     <div className="text-gray-900">
