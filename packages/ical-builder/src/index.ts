@@ -1,4 +1,4 @@
-import type { SRCEvent } from "@sudburyrc/api";
+import type { BREvent } from "@sudburyrc/api";
 
 type IcalEvent = {
   BEGIN: "VEVENT";
@@ -85,7 +85,7 @@ export default class IcalBuilder {
       .join("\n");
   }
 
-  addEvent(event: SRCEvent): void {
+  addEvent(event: BREvent): void {
     this.events.push({
       BEGIN: "VEVENT",
       UID: event.id,
@@ -102,7 +102,7 @@ export default class IcalBuilder {
     });
   }
 
-  set(SRCEvents: SRCEvent[]): void {
+  set(SRCEvents: BREvent[]): void {
     SRCEvents.map((event) => this.addEvent(event));
   }
 
