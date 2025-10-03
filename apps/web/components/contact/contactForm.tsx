@@ -4,6 +4,7 @@ import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
+import { usePostHog } from "posthog-js/react";
 import { shake } from "radashi";
 import { z } from "zod";
 import { kyInstance } from "@/app/get-query-client";
@@ -49,10 +50,16 @@ type Props = {
 export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const recipientWasProvided = !!initialValues.to;
 
+  const posthog = usePostHog();
+
   const { mutateAsync, status, error, data } = useMutation({
     mutationKey: ["contact-form"],
     mutationFn: (values: Message) =>
-      kyInstance.post("/api/send", { json: values }),
+      kyInstance.post<string>("/api/send", { json: values }),
+    onMutate: () => posthog.capture("contact-form-submitted"),
+    onError: (error) => posthog.capture("contact-form-error", { error }),
+    onSuccess: (data) =>
+      posthog.capture("contact-form-success", { id: data.text() }),
   });
 
   const optionArray = contacts.map((contact) => ({

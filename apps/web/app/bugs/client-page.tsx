@@ -4,6 +4,7 @@ import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
 import { useQueryState } from "nuqs";
+import { usePostHog } from "posthog-js/react";
 import { type BugReport, BugReportSchema } from "@/app/api/bug/BugReportSchema";
 import { Success } from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
@@ -31,10 +32,16 @@ const formatIfStringIsParseableJSON = (string: string) => {
 export const BugsClientSide = () => {
   const [message] = useQueryState("message");
 
+  const posthog = usePostHog();
+
   const { mutateAsync, error, data, status } = useMutation({
     mutationKey: ["bug-report"],
     mutationFn: (values: BugReport) =>
       kyInstance.post("/api/bug", { json: values }),
+    onMutate: () => posthog.capture("bug-report-submitted"),
+    onError: (error) => posthog.capture("bug-report-error", { error }),
+    onSuccess: (data) =>
+      posthog.capture("bug-report-success", { id: data.text() }),
   });
 
   const additionalInformation = message
