@@ -24,36 +24,51 @@ const STYLES = fs.readFileSync(path.join(cwd(), "src", "style.css"), "utf8");
  * HELPER FUNCTIONS
  */
 
+const CHARSET_REGEX = /charset=iso-8859-1/g;
+const HYPHEN_CHARACTER_REGEX = /ï¿/g;
+
 /** Changes the `charset` to utf-8 and remove the `ï¿` character. */
 function modifyHtmlCharsetTag(str: string) {
   if (!str) throw new Error("Input is empty");
-  return str.replace(/charset=iso-8859-1/g, "charset=utf-8").replace(/ï¿/g, "");
+  return str
+    .replace(CHARSET_REGEX, "charset=utf-8")
+    .replace(HYPHEN_CHARACTER_REGEX, "");
 }
+
+const OPENING_HEAD_TAG_REGEX = /<head>/;
 
 /** Add viewport meta tag. */
 function addVieportMetaTag(str: string) {
   if (!str) throw new Error("Input is empty");
-  return str.toString().replace(/<head>/, `<head>${VIEWPORT_TAG}`);
+  return str
+    .toString()
+    .replace(OPENING_HEAD_TAG_REGEX, `<head>${VIEWPORT_TAG}`);
 }
+
+const GENERATOR_META_TAG_REGEX =
+  /<meta\s+(?:name|content)*?=['"]*?\s*?generator\s*?['"][\s\S]*?>/gi;
 
 function stripGeneratorMetaTags(html: string): string {
   // Match both uppercase and lowercase variations, with flexible spacing
-  const generatorPattern =
-    /<meta\s+(?:name|content)*?=['"]*?\s*?generator\s*?['"][\s\S]*?>/gi;
+  const generatorPattern = GENERATOR_META_TAG_REGEX;
 
   return html.replace(generatorPattern, "");
 }
 
+const CLOSING_BODY_TAG_REGEX = /<\/body>/;
+
 // append a link, diorectly before the closing body tag, to the listing page
 function addListingLink(html: string): string {
   return html.replace(
-    /<\/body>/,
+    CLOSING_BODY_TAG_REGEX,
     `<footer class="generated-footer">${LISTING_LINK_HTML} ${RETURN_LINK_HTML}</footer>\n</body>`,
   );
 }
+const CLOSING_HEAD_TAG_REGEX = /<\/head>/;
+
 function addStyleLinkTag(html: string): string {
   return html.replace(
-    /<\/head>/,
+    CLOSING_HEAD_TAG_REGEX,
     `<link rel="stylesheet" href="../style.css">\n</head>`,
   );
 }

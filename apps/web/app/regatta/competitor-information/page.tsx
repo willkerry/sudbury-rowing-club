@@ -23,17 +23,17 @@ export type CompetitorInformationType = {
 
 const CompetitorInformationPage = async () => {
   const {
-    competitorInformation: { description, documents },
+    competitorInformation: { description, documents = [] },
   }: {
     competitorInformation: CompetitorInformationType;
   } = await sanityClient.fetch(groq`
   *[_type == "regattaSettings"][0]{
-    competitorInformation { 
-      description, 
-      documents[] { 
-        title, 
-        "extension": asset->extension, 
-        "url": asset->url, 
+    competitorInformation {
+      description,
+      documents[] {
+        title,
+        "extension": asset->extension,
+        "url": asset->url,
         "_id": asset->_id
       },
     },
@@ -46,9 +46,9 @@ const CompetitorInformationPage = async () => {
         <div className="prose">
           <p>{description}</p>
 
-          {documents ? (
+          {documents.length > 0 ? (
             <ul>
-              {documents?.map((item) => (
+              {documents.map((item) => (
                 <li key={item._id}>
                   <Link href={item.url} extension={item.extension}>
                     {item.title}

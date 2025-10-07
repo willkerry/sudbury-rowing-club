@@ -33,8 +33,10 @@ const removeWhitespace = (url: string) => {
   return stripped;
 };
 
+const HREF_REGEX = /href=['"]([^'"]*)['"]/;
+
 const extractURL = (html: string) => {
-  const match = /href=['"]([^'"]*)['"]/.exec(html);
+  const match = HREF_REGEX.exec(html);
 
   if (match) return removeWhitespace(match[1]);
 

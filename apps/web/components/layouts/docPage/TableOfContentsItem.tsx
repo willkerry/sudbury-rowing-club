@@ -8,10 +8,20 @@ import { type MouseEventHandler, memo } from "react";
 import { animateScroll } from "react-scroll";
 import { cn } from "@/lib/utils";
 
+const PRECEDING_NUMBERS_REGEX = /^\d+\./;
+const TRAILING_PUNCTUATION_REGEX = /\.$/;
+
+const PRECEDING_PARENTHESES_REGEX = /^\d+\)/;
+const TRAILING_PARENTHESES_REGEX = /\)$/;
+
 const removePrecedingNumbers = (title: string) =>
-  title.replace(/^\d+\./, "").replace(/^\d+\)/, "");
+  title
+    .replace(PRECEDING_NUMBERS_REGEX, "")
+    .replace(PRECEDING_PARENTHESES_REGEX, "");
 const removeTrailingPunctuation = (title: string) =>
-  title.replace(/\.$/, "").replace(/\)$/, "");
+  title
+    .replace(TRAILING_PUNCTUATION_REGEX, "")
+    .replace(TRAILING_PARENTHESES_REGEX, "");
 
 const formatTitle = chain(removePrecedingNumbers, removeTrailingPunctuation);
 

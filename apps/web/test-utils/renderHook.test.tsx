@@ -42,9 +42,9 @@ describe("renderHook utility", () => {
   });
 
   it("should handle initial props correctly", () => {
-    const testHook = (props: { value: string }) => {
-      return { value: props.value.toUpperCase() };
-    };
+    const testHook = (props: { value: string }) => ({
+      value: props.value.toUpperCase(),
+    });
 
     const { result } = renderHook(testHook, {
       initialProps: { value: "hello" },

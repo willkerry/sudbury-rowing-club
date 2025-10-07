@@ -12,7 +12,9 @@ const appendAFullStop = (str: string) => {
   return `${trimmed}.`;
 };
 
-const stripTrailingPunctuation = (str: string) => str.replace(/[.,;:!?]+$/, "");
+const TRAILING_PUNCTUATION_REGEX = /[.,;:!?]+$/;
+const stripTrailingPunctuation = (str: string) =>
+  str.replace(TRAILING_PUNCTUATION_REGEX, "");
 
 const shortenDescription = (description?: string | null) => {
   if (!description) return "";

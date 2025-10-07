@@ -55,7 +55,7 @@ export const useTestingMode = ({
 
       setValues({ to: webmasterId ?? "", name, email });
 
-      return undefined;
+      return;
     },
   });
 

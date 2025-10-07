@@ -36,8 +36,8 @@ const svgToPng = (
   height: number,
   originalWidth: number,
   originalHeight: number,
-): Promise<Blob> => {
-  return new Promise((resolve, reject) => {
+): Promise<Blob> =>
+  new Promise((resolve, reject) => {
     const img = new Image();
     const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
     const url = URL.createObjectURL(svgBlob);
@@ -82,7 +82,6 @@ const svgToPng = (
 
     img.src = url;
   });
-};
 
 const getSvgDimensions = (svgElement: SVGElement) => {
   const viewBox = svgElement.getAttribute("viewBox");

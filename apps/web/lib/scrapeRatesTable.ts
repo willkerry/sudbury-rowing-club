@@ -221,7 +221,7 @@ export const scrapeRatesTable = async (): Promise<
     const membershipData = await scrapeMembershipData();
 
     return { status: "success", data: membershipData.Groups[0].Memberships };
-  } catch (_) {
+  } catch {
     return {
       status: "error",
       message:

@@ -24,7 +24,7 @@ const getUserAgent = () => {
 const formatIfStringIsParseableJSON = (string: string) => {
   try {
     return JSON.stringify(JSON.parse(string), null, 2);
-  } catch (_error) {
+  } catch {
     return string;
   }
 };

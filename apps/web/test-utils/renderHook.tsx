@@ -13,8 +13,8 @@ interface RenderHookOptions {
   // e.g., user?: User;
 }
 
-const createDefaultQueryClient = () => {
-  return new QueryClient({
+const createDefaultQueryClient = () =>
+  new QueryClient({
     defaultOptions: {
       queries: {
         retry: false,
@@ -22,7 +22,6 @@ const createDefaultQueryClient = () => {
       },
     },
   });
-};
 
 const TestProviders: React.FC<TestProvidersProps & RenderHookOptions> = ({
   children,

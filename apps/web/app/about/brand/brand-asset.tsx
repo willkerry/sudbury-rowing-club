@@ -62,33 +62,31 @@ export const BrandAsset = ({
           </tr>
         </thead>
         <tbody>
-          {downloads.map((download) => {
-            return (
-              <tr key={download.format + download.width}>
-                <td>
-                  <ColorIndicator color={color} type="hex" />
-                </td>
-                <td>
-                  <FileExtensionWidget extension={download.format} />
-                </td>
-                <td className="hidden sm:table-cell">
-                  {download.width ? <code>{download.width}px </code> : "\u221e"}
-                </td>
-                <td>
-                  <DownloadImageButton
-                    svgRef={svgRef}
-                    format={download.format}
-                    width={download.width}
-                    className="text-blue-500 transition-colors hover:text-blue-600"
-                  >
-                    <span className="hidden sm:inline">Download</span>
-                    <span className="inline sm:hidden">Get</span>
-                    <span> &darr;</span>
-                  </DownloadImageButton>
-                </td>
-              </tr>
-            );
-          })}
+          {downloads.map((download) => (
+            <tr key={download.format + download.width}>
+              <td>
+                <ColorIndicator color={color} type="hex" />
+              </td>
+              <td>
+                <FileExtensionWidget extension={download.format} />
+              </td>
+              <td className="hidden sm:table-cell">
+                {download.width ? <code>{download.width}px </code> : "\u221e"}
+              </td>
+              <td>
+                <DownloadImageButton
+                  svgRef={svgRef}
+                  format={download.format}
+                  width={download.width}
+                  className="text-blue-500 transition-colors hover:text-blue-600"
+                >
+                  <span className="hidden sm:inline">Download</span>
+                  <span className="inline sm:hidden">Get</span>
+                  <span> &darr;</span>
+                </DownloadImageButton>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </section>

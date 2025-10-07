@@ -54,9 +54,8 @@ const parseAsColumnFiltersState = createParser<ColumnFiltersState>({
       const [id, value] = item.split(":");
       return { id, value };
     }),
-  serialize: (value) => {
-    return value.map((item) => `${item.id}:${item.value}`).join(",");
-  },
+  serialize: (value) =>
+    value.map((item) => `${item.id}:${item.value}`).join(","),
 });
 
 const DataTableWithoutSuspense = <TData, TValue>({
@@ -190,10 +189,8 @@ const DataTableWithoutSuspense = <TData, TValue>({
 export const DataTable = <TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <DataTableWithoutSuspense columns={columns} data={data} />
-    </Suspense>
-  );
-};
+}: DataTableProps<TData, TValue>) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <DataTableWithoutSuspense columns={columns} data={data} />
+  </Suspense>
+);

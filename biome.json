@@ -25,7 +25,6 @@
     "defaultBranch": "master",
     "useIgnoreFile": true
   },
-
   "linter": {
     "enabled": true,
     "includes": [
@@ -41,7 +40,9 @@
     ],
     "rules": {
       "recommended": true,
-      "a11y": { "noRedundantAlt": "off" },
+      "a11y": {
+        "noRedundantAlt": "off"
+      },
       "complexity": {
         "noExcessiveCognitiveComplexity": "error",
         "noUselessStringConcat": "error",
@@ -63,9 +64,19 @@
           "options": {
             "functions": ["cn", "cva", "clsx"]
           }
-        }
+        },
+        "noFloatingPromises": "error",
+        "noUnnecessaryConditions": "error",
+        "noUselessCatchBinding": "error",
+        "noUselessUndefined": "error",
+        "useConsistentArrowReturn": "error",
+        "useExhaustiveSwitchCases": "error"
       },
-      "performance": { "noReExportAll": "error", "noImgElement": "off" },
+      "performance": {
+        "noReExportAll": "error",
+        "noImgElement": "off",
+        "useTopLevelRegex": "error"
+      },
       "suspicious": {
         "noArrayIndexKey": "off",
         "noEvolvingTypes": "error",
@@ -75,7 +86,9 @@
         "noFocusedTests": "off",
         "noUnknownAtRules": "off"
       },
-      "security": { "noDangerouslySetInnerHtml": "off" },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
       "style": {
         "noNegationElse": "error",
         "noNonNullAssertion": "error",
@@ -95,8 +108,11 @@
         "noUselessElse": "error",
         "useConsistentArrayType": {
           "level": "error",
-          "options": { "syntax": "shorthand" }
-        }
+          "options": {
+            "syntax": "shorthand"
+          }
+        },
+        "useAtIndex": "error"
       }
     }
   },

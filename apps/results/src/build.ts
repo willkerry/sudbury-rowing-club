@@ -33,4 +33,4 @@ export const build = async () => {
   }
 };
 
-build();
+await build();

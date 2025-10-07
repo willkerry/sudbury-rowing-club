@@ -111,9 +111,7 @@ export class Cache<T> {
 
     const cacheKey = `${this.options.key}-${primaryKey}`;
 
-    if (!(cacheKey in data)) {
-      return undefined;
-    }
+    if (!(cacheKey in data)) return;
 
     return data[cacheKey];
   }

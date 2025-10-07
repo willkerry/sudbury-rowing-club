@@ -70,13 +70,13 @@ function getSrcString(src: ImageProps["src"]): string {
 function getStaticImageData(
   src: ImageProps["src"],
 ): StaticImageData | undefined {
-  if (!src) return undefined;
-  if (typeof src === "string") return undefined;
+  if (!src) return;
+  if (typeof src === "string") return;
 
   if ("src" in src) return src;
   if ("default" in src) return src.default;
 
-  return undefined;
+  return;
 }
 
 function isOptimisableImage(imageProps: ImageProps): boolean {

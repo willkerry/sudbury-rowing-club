@@ -86,8 +86,8 @@ const groupByMonth = (
 const ALL_REGIONS = "All";
 
 export const EventCalendar = ({
-  events,
-  regions,
+  events = [],
+  regions = [],
 }: {
   events: BREvent[];
   regions: string[];
@@ -98,7 +98,7 @@ export const EventCalendar = ({
   });
 
   const filteredEvents = useFilter(
-    events || [],
+    events,
     "region",
     selectedRegion,
     ALL_REGIONS.toLowerCase(),
@@ -113,7 +113,7 @@ export const EventCalendar = ({
             value={selectedRegion || ""}
             onChange={(e) => setSelectedRegion(e.target.value)}
           >
-            {regions ? (
+            {regions.length > 0 ? (
               <>
                 <option value={ALL_REGIONS.toLowerCase()}>{ALL_REGIONS}</option>
                 {regions.map((region) => (

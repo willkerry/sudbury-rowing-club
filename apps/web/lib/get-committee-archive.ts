@@ -27,8 +27,8 @@ const getCommitteeOffice = (
   position: Position,
   holders: string[] | null,
 ): CommitteeOffice | undefined => {
-  if (!holders) return undefined;
-  if (!holders.length) return undefined;
+  if (!holders) return;
+  if (!holders.length) return;
 
   return {
     holders,

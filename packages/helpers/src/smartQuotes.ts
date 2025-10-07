@@ -6,7 +6,7 @@ export function smartQuotes<T = string>(text: T): T {
 
   try {
     return smartypantsu(text);
-  } catch (_error) {
+  } catch {
     return text;
   }
 }

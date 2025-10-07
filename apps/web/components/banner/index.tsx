@@ -18,6 +18,9 @@ import { Container } from "@/components/layouts/container";
 import { Text } from "@/components/stour/text";
 import { DateFormatter } from "@/components/utils/date-formatter";
 
+const LINK_REGEX = /^(https?|mailto):\/\//;
+const PATH_REGEX = /^\/[a-z0-9-]+/;
+
 const bannerVariants: Record<
   Notice["type"][number],
   {
@@ -122,8 +125,8 @@ export const Banner = () => {
   if (error || !data || !data.display) return null;
 
   const controlType: (typeof controlTypes)[number] = (() => {
-    if (data.link?.match(/^(https?|mailto):\/\//)) return "a";
-    if (data.link?.match(/^\/[a-z0-9-]+/)) return "a";
+    if (data.link?.match(LINK_REGEX)) return "a";
+    if (data.link?.match(PATH_REGEX)) return "a";
     return "button";
   })();
 

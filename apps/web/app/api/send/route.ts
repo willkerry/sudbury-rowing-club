@@ -87,7 +87,7 @@ const spamCheck = async (
 const findRecipient = async (id: string) => {
   try {
     return await getOfficer(id);
-  } catch (_error) {
+  } catch {
     throw new ResponseError(
       "Could not find recipient. This is likely a temporary error. Please try again later or contact us directly.",
       404,

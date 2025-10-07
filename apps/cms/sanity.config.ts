@@ -14,8 +14,8 @@ const config = defineConfig({
   dataset: "production",
   plugins: [
     structureTool({
-      structure: (S, context) => {
-        return S.list()
+      structure: (S, context) =>
+        S.list()
           .title("Content")
           .items([
             S.listItem()
@@ -157,8 +157,7 @@ const config = defineConfig({
                   "vicePresidents",
                 ].includes(listItem.getId() as string),
             ),
-          ]);
-      },
+          ]),
     }),
 
     visionTool(),

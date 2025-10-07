@@ -12,7 +12,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const parseToJSON = (value: string) => {
   try {
     return JSON.parse(value);
-  } catch (_error) {
+  } catch {
     return value;
   }
 };

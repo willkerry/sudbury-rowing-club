@@ -27,7 +27,7 @@ export const generateStaticParams = async (): Promise<NewsPageParams[]> => {
 };
 
 const coverImage = (image: Article["featuredImage"]) => {
-  if (!image) return undefined;
+  if (!image) return;
 
   return urlFor(image).width(1200).url();
 };

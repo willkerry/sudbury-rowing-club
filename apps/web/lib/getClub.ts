@@ -15,7 +15,7 @@ type Club = {
 };
 
 export const getClub = (name: string): Club | undefined => {
-  if (!name) return undefined;
+  if (!name) return;
 
   const possibleNames = unique(
     Object.entries(SUFFIX_ALIASES).reduce(
@@ -43,7 +43,7 @@ export const getClub = (name: string): Club | undefined => {
     possibleNames.includes(club?.name.toLowerCase()),
   );
 
-  if (!foundClub) return undefined;
+  if (!foundClub) return;
 
   return {
     id: foundClub.id,
@@ -65,7 +65,7 @@ export const getClubByCode = (code: string) => {
     clubs.find((club) => club.code === code) ??
     clubs.find((club) => club.aliasCodes?.includes(code));
 
-  if (!foundClub) return undefined;
+  if (!foundClub) return;
 
   return {
     id: foundClub.id,

@@ -4,13 +4,16 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { Iframe } from "./iframe";
 
+const TWITTER_HANDLE_REGEX = /https:\/\/x.com\/([^/]+)/;
+const IFRAME_SRC_REGEX = /src="([^"]*)"/;
+
 export const OEmbed = async ({ url }: { url: string }) => {
   try {
     const data = await unfurl(url, { oembed: true });
 
     if (data.oEmbed?.type === "rich" || data.oEmbed?.type === "video") {
       const { width, height, html, title, provider_name } = data.oEmbed;
-      const src = html.match(/src="([^"]*)"/)?.[1];
+      const src = html.match(IFRAME_SRC_REGEX)?.[1];
 
       return (
         <figure>
@@ -29,7 +32,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
       const { description, title, images, url, site_name } = data.open_graph;
 
       const username = title.split(" (")?.[0];
-      const handle = url?.match(/https:\/\/x.com\/([^/]+)/)?.[1];
+      const handle = url?.match(TWITTER_HANDLE_REGEX)?.[1];
 
       return (
         <figure>
