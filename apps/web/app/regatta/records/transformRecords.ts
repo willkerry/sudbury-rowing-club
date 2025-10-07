@@ -39,47 +39,59 @@ export const formatVerboseDuration = (duration: {
 const prettifyBoatnames = (boatname: string) =>
   boatname.replace(/(\d)x/g, "$1×");
 
-const RecordSchema = z.object({
-  boat: z.string().transform(prettifyBoatnames),
-  event: z.string().transform(prettifyBoatnames),
-  year: z.string().transform((year) => new Date(year)),
-  club: z.string(),
-  name: z.string(),
-  time: z.string().transform(parseDuration),
-  round: z.union([z.literal("F"), z.literal("S"), z.literal("Q")]),
-});
+const RecordSchema = z
+  .object({
+    boat: z.string().transform(prettifyBoatnames),
+    event: z.string().transform(prettifyBoatnames),
+    year: z.string().transform((year) => new Date(year)),
+    club: z.string(),
+    name: z.string(),
+    time: z.string().transform(parseDuration),
+    round: z.union([z.literal("F"), z.literal("S"), z.literal("Q")]),
+  })
+  .transform((record) => ({
+    ...record,
+    slug: slugify(record.event),
+  }));
 
 export type Record = z.infer<typeof RecordSchema>;
 
 export const transformRecords = (records: typeof recordJson) =>
   RecordSchema.array().parse(records);
 
+const REGEXES = {
+  eight: /8\+/g,
+  octuple: /8[x×]/g,
+  coxedFour: /4\+/g,
+  coxlessFour: /4-/g,
+  coxedQuad: /4[x×]\+/g,
+  coxlessQuad: /4[x×]-/g,
+  quad: /4[x×](?![+-])/g,
+  coxedPair: /2\+/g,
+  pair: /2-/g,
+  double: /2[x×]/g,
+  single: /1[x×]/g,
+};
+
 export const slugify = (event: string) => {
   // Replace boat class notation with full names
   const replacedEvent = event
-    .replace(/8\+/g, "eight")
-    .replace(/8[x×]/g, "octuple")
-    .replace(/4\+/g, "coxed four")
-    .replace(/4-/g, "coxless four")
-    .replace(/4[x×]\+/g, "coxed quad")
-    .replace(/4[x×]-/g, "coxless quad")
-    .replace(/4[x×](?![+-])/g, "quad")
-    .replace(/2\+/g, "coxed pair")
-    .replace(/2-/g, "pair")
-    .replace(/2[x×]/g, "double")
-    .replace(/1[x×]/g, "single");
+    .replace(REGEXES.eight, "eight")
+    .replace(REGEXES.octuple, "octuple")
+    .replace(REGEXES.coxedFour, "coxed four")
+    .replace(REGEXES.coxlessFour, "coxless four")
+    .replace(REGEXES.coxedQuad, "coxed quad")
+    .replace(REGEXES.coxlessQuad, "coxless quad")
+    .replace(REGEXES.quad, "quad")
+    .replace(REGEXES.coxedPair, "coxed pair")
+    .replace(REGEXES.pair, "pair")
+    .replace(REGEXES.double, "double")
+    .replace(REGEXES.single, "single");
 
   return slug(replacedEvent);
 };
 
-export const getSlugifiedRecords = (eventSlug?: string) => {
-  if (!eventSlug) {
-    return transformRecords(recordJson);
-  }
+export const getSlugifiedRecords = (): Record[] => transformRecords(recordJson);
 
-  const untransformedRecords = recordJson.filter(
-    (record) => slugify(prettifyBoatnames(record.event)) === eventSlug,
-  );
-
-  return transformRecords(untransformedRecords);
-};
+export const getResultBySlug = (eventSlug: string): Record[] =>
+  transformRecords(recordJson).filter((record) => record.slug === eventSlug);
