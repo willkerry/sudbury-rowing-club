@@ -28,7 +28,6 @@ export const detectAndFormatCourseLength = (record: Record): string => {
 
 export const formatDescription = (records: Record[]): string => {
   const holder = records[0];
-  const matchers = records.slice(1);
 
   const course = detectCourseLength(holder);
 
@@ -37,15 +36,15 @@ export const formatDescription = (records: Record[]): string => {
   const isHeldByMultipleClubs = records.length > 1;
 
   const eventDescription = `The ${extendEventName(holder.event)} event is contested over the ${localisedCourseLength} course.`;
-  const recordDescription = `The record is held by ${formatClubAndCrewName(holder.club, true)}, who set a time of ${formatVerboseDuration(holder.time)} in ${holder.year.getFullYear()}.`;
-  const matchedDescription = isHeldByMultipleClubs
-    ? ` It was matched by ${listFormatter.format(
-        matchers.map(
-          ({ club, year }) =>
-            `${formatClubAndCrewName(club)} in ${year.getFullYear()}`,
+
+  const recordDescription = isHeldByMultipleClubs
+    ? `The record of ${formatVerboseDuration(holder.time)} is jointly held ${listFormatter.format(
+        records.map(
+          ({ club, year }, i) =>
+            `by ${formatClubAndCrewName(club, true)} ${i === 0 ? `who set it in ${year.getFullYear()}` : `who matched it in ${year.getFullYear()}`}`,
         ),
       )}.`
-    : "";
+    : `The record is held by ${formatClubAndCrewName(holder.club, true)}, who set a time of ${formatVerboseDuration(holder.time)} in ${holder.year.getFullYear()}.`;
 
-  return [eventDescription, recordDescription, matchedDescription].join(" ");
+  return [eventDescription, recordDescription].join(" ");
 };
