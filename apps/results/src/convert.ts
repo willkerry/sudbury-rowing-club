@@ -58,10 +58,15 @@ function stripGeneratorMetaTags(html: string): string {
 const CLOSING_BODY_TAG_REGEX = /<\/body>/;
 
 // append a link, diorectly before the closing body tag, to the listing page
-function addListingLink(html: string): string {
+function addListingLink(html: string, fileName: string): string {
+  const returnLink =
+    fileName !== "index.html" ? `<a href="./index.html">Return</a>` : "";
+
   return html.replace(
     CLOSING_BODY_TAG_REGEX,
-    `<footer class="generated-footer">${LISTING_LINK_HTML} ${RETURN_LINK_HTML}</footer>\n</body>`,
+    `<footer class="generated-footer">
+    ${returnLink}
+    ${LISTING_LINK_HTML} ${RETURN_LINK_HTML}</footer>\n</body>`,
   );
 }
 const CLOSING_HEAD_TAG_REGEX = /<\/head>/;
@@ -111,9 +116,7 @@ const convertFile = async (
 
     output = stripGeneratorMetaTags(output);
 
-    if (fileName.startsWith("index")) {
-      output = addListingLink(output);
-    }
+    output = addListingLink(output, fileName);
   }
 
   await fs.writeFile(outputFile, output);
