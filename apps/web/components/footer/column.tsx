@@ -1,12 +1,9 @@
 import Link from "next/link";
+import type { NavigationItem } from "@/components/nav/types";
 
 type Props = {
   heading: string;
-  data: {
-    name: string;
-    shortName?: string;
-    href: string;
-  }[];
+  data: NavigationItem[];
 };
 
 export const FooterColumn = ({ heading, data }: Props) => (
