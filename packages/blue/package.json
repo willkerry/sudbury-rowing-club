@@ -14,9 +14,9 @@
   "license": "ISC",
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
-    "@types/react": "^19.1.12",
-    "tsdown": "^0.15.0",
-    "typescript": "^5.9.2"
+    "@types/react": "^19.2.2",
+    "tsdown": "^0.15.9",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "react": "^19.0.0"

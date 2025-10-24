@@ -25,7 +25,9 @@
   "pnpm": {
     "overrides": {
       "@types/react": "^19.0.2",
-      "@types/react-dom": "^19.0.2"
+      "@types/react-dom": "^19.0.2",
+      "@swc/core": "1.13.5",
+      "@swc/core-darwin-arm64": "1.13.5"
     }
   }
 }

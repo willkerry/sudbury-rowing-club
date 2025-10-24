@@ -18,25 +18,29 @@
     "@sanity/image-url": "^1.2.0",
     "@stdlib/nlp-sentencize": "^0.2.2",
     "@sudburyrc/helpers": "workspace:*",
-    "emoji-regex": "^10.5.0",
-    "groq": "^4.7.0",
+    "emoji-regex": "^10.6.0",
+    "groq": "^4.11.0",
     "he": "^1.2.0",
-    "isomorphic-dompurify": "^2.26.0",
-    "next-sanity": "^10.1.2",
+    "isomorphic-dompurify": "^2.30.1",
+    "next-sanity": "^10.1.4",
     "picosanity": "^5.0.0",
-    "radashi": "^12.6.2",
+    "radashi": "^12.7.0",
     "tsup": "^8.5.0",
-    "zod": "^4.1.5"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "^1.2.3",
-    "@types/node": "^20.19.13",
-    "typescript": "^5.9.2"
+    "@types/node": "^20.19.23",
+    "jsdom": "^27.0.1",
+    "typescript": "^5.9.3"
   },
   "browser": {
     "fs": false,
     "os": false,
     "path": false
+  },
+  "peerDependencies": {
+    "jsdom": "^27.0.1"
   }
 }

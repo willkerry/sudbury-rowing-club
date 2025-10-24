@@ -16,11 +16,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@faker-js/faker": "^10.0.0",
+    "@faker-js/faker": "^10.1.0",
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/tsconfig": "workspace:*",
-    "tsdown": "^0.15.0",
-    "typescript": "^5.9.2",
+    "tsdown": "^0.15.9",
+    "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   },
   "browser": {
