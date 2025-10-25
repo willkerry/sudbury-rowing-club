@@ -56,11 +56,6 @@
       "permanent": true
     },
     {
-      "source": "/contact/:slug((?!how-to-find-us$).*)",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
       "source": "/about/club-officers",
       "destination": "/governance",
       "permanent": true
