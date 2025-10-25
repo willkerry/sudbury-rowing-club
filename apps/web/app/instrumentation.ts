@@ -1,5 +1,6 @@
 import type { Instrumentation } from "next";
 import type { PostHog } from "posthog-node";
+import { env } from "@/env";
 
 export const register = () => {};
 
@@ -7,7 +8,7 @@ export const onRequestError: Instrumentation.onRequestError = async (
   error,
   request,
 ) => {
-  if (process.env.NEXT_RUNTIME === "nodejs") {
+  if (env.NEXT_ENV === "production") {
     const { getPostHogServer } = require("./app/posthog-server");
     const posthog: PostHog = await getPostHogServer();
 

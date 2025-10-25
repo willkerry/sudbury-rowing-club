@@ -2,6 +2,7 @@ import { Wordmark } from "@sudburyrc/blue";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
+import { env } from "@/env";
 import { BASE_URL } from "@/lib/constants";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { variants } from "./variants";
@@ -50,11 +51,11 @@ export type ShareImage = z.infer<typeof ShareImageSchema>;
 
 const getFonts = async () =>
   Promise.all([
-    fetch(new URL("/Inter-Bold.ttf", process.env.APP_URL || BASE_URL)).then(
-      (res) => res.arrayBuffer(),
+    fetch(new URL("/Inter-Bold.ttf", env.APP_URL || BASE_URL)).then((res) =>
+      res.arrayBuffer(),
     ),
-    fetch(new URL("/Inter-Medium.ttf", process.env.APP_URL || BASE_URL)).then(
-      (res) => res.arrayBuffer(),
+    fetch(new URL("/Inter-Medium.ttf", env.APP_URL || BASE_URL)).then((res) =>
+      res.arrayBuffer(),
     ),
   ]);
 

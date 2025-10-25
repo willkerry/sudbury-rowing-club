@@ -3,19 +3,17 @@
 import { Marker, Map as PigeonMap, type Point } from "pigeon-maps";
 import { maptiler } from "pigeon-maps/providers";
 import type { ComponentProps } from "react";
-
-const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY;
-
-if (!MAPTILER_KEY) {
-  throw new Error("MAPTILER_KEY is not set");
-}
+import { env } from "@/env";
 
 type LocationMapProps = {
   defaultCenter: Point;
   markers: ComponentProps<typeof Marker>[];
 };
 
-const maptilerProvider = maptiler(MAPTILER_KEY, "uk-openzoomstack-road");
+const maptilerProvider = maptiler(
+  env.NEXT_PUBLIC_MAPTILER_KEY,
+  "uk-openzoomstack-road",
+);
 
 export const LocationMap = ({ defaultCenter, markers }: LocationMapProps) => (
   <PigeonMap

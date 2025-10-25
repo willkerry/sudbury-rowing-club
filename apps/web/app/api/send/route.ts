@@ -3,12 +3,13 @@ import DOMPurify from "isomorphic-dompurify";
 import { type NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { env } from "@/env";
 import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY);
 
 const formatName = (email: string, name: string) => {
   if (name) return `${name} <${email}>`;

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { title as formatTitle } from "radashi";
 import { DocPage } from "@/components/layouts/doc-page";
+import { env } from "@/env";
 import { createMetadata } from "@/lib/create-metadata";
 
 type PolicyPageParams = { slug: string };
@@ -33,7 +34,7 @@ const TestPage = async ({ params }: PolicyPageParamObject) => {
 
   const policy = allPolicies.find((policy) => policy._meta.path === slug);
 
-  const isDevelopment = process.env.NODE_ENV === "development";
+  const isDevelopment = env.NODE_ENV === "development";
 
   if (!policy || (!isDevelopment && policy.status === "draft"))
     return notFound();

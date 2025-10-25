@@ -1,6 +1,7 @@
 "use client";
 
 import type { ImageLoader } from "next/image";
+import { env } from "@/env";
 
 const normalizeSrc = (src: string) =>
   src.startsWith("/") ? src.slice(1) : src;
@@ -14,7 +15,7 @@ export const cloudflareLoader: ImageLoader = ({
   width: number;
   quality?: number;
 }) => {
-  if (process.env.NODE_ENV === "development") {
+  if (env.NODE_ENV === "development") {
     return src;
   }
 

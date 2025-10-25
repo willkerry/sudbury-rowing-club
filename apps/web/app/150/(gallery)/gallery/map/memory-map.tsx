@@ -4,12 +4,7 @@ import * as maptilersdk from "@maptiler/sdk";
 import { CLUB_LOCATION } from "@/lib/constants";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { useEffect, useRef } from "react";
-
-const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY;
-
-if (!MAPTILER_KEY) {
-  throw new Error("MAPTILER_KEY is not set");
-}
+import { env } from "@/env";
 
 type Location = {
   coordinates: [number, number];
@@ -27,7 +22,7 @@ export const MemoryMap = ({ locations }: MemoryMapProps) => {
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    maptilersdk.config.apiKey = MAPTILER_KEY;
+    maptilersdk.config.apiKey = env.NEXT_PUBLIC_MAPTILER_KEY;
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current,

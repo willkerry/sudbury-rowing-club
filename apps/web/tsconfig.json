@@ -12,7 +12,8 @@
       "@/app/*": ["app/*"],
       "@/assets/*": ["public/assets/*"],
       "content-collections": ["./.content-collections/generated"],
-      "@/test-utils/*": ["test-utils/*"]
+      "@/test-utils/*": ["test-utils/*"],
+      "@/env": ["./env.ts"]
     },
     "strictNullChecks": true,
     "moduleResolution": "bundler"

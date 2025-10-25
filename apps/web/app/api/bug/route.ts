@@ -1,13 +1,13 @@
 import Bowser from "bowser";
 import { type NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { env } from "@/env";
 import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
-
 import { BugReportSchema } from "./BugReportSchema";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(env.RESEND_API_KEY);
 
 const parseToJSON = (value: string) => {
   try {
@@ -21,7 +21,7 @@ export const POST = async (req: NextRequest) => {
   const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
   if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
 
-  if (!process.env.BUG_RECIPIENT_EMAIL) {
+  if (!env.BUG_RECIPIENT_EMAIL) {
     return new NextResponse("BUG_RECIPIENT_EMAIL not set.", {
       status: 500,
     });
@@ -60,7 +60,7 @@ export const POST = async (req: NextRequest) => {
   const response = await resend.emails.send({
     from: `${name} <${SENDER.email}>`,
     replyTo: `${name} <${email}>`,
-    to: process.env.BUG_RECIPIENT_EMAIL,
+    to: env.BUG_RECIPIENT_EMAIL,
     subject: "Bug Report from sudburyrowingclub.org.uk",
     text: `DESCRIPTION: ${description}\n\nREPORTER: ${name} <${
       SENDER.email

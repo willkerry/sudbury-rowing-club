@@ -7,20 +7,14 @@ import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
+import { env } from "@/env";
 import { HOSTNAME } from "@/lib/constants";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
-  if (!process.env.NEXT_PUBLIC_POSTHOG_KEY)
-    throw new Error("Missing NEXT_PUBLIC_POSTHOG_KEY");
-  if (!process.env.NEXT_PUBLIC_POSTHOG_HOST)
-    throw new Error("Missing NEXT_PUBLIC_POSTHOG_HOST");
-
-  const isProduction = process.env.NODE_ENV === "production";
-
-  if (isProduction) {
-    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+  if (env.NEXT_ENV === "production") {
+    posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
+      api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
       person_profiles: "identified_only",
       persistence: "localStorage",
       __add_tracing_headers: [HOSTNAME],
@@ -52,7 +46,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           <DialogProvider>
             {children}
 
-            {process.env.NODE_ENV === "development" && (
+            {env.NODE_ENV === "development" && (
               <ReactQueryDevtools initialIsOpen={false} />
             )}
 
