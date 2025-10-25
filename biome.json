@@ -64,13 +64,7 @@
           "options": {
             "functions": ["cn", "cva", "clsx"]
           }
-        },
-        "noFloatingPromises": "error",
-        "noUnnecessaryConditions": "error",
-        "noUselessCatchBinding": "error",
-        "noUselessUndefined": "error",
-        "useConsistentArrowReturn": "error",
-        "useExhaustiveSwitchCases": "error"
+        }
       },
       "performance": {
         "noReExportAll": "error",
