@@ -23,6 +23,9 @@ const EventCard = ({
   event: BREvent;
 }) => {
   const Comp = url ? "a" : "div";
+  const compProps = url
+    ? { href: url, target: "_blank", rel: "noopener noreferrer" }
+    : {};
 
   return (
     <motion.li
@@ -37,7 +40,7 @@ const EventCard = ({
       initial={{ opacity: 0 }}
     >
       <Comp
-        href={url || undefined}
+        {...compProps}
         className={cn(
           "grid rounded-sm border bg-white px-2 py-1.5",
           cancelled && "opacity-50",
