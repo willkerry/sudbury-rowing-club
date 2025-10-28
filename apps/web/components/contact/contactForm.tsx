@@ -109,7 +109,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
           <Select
             className={cn("col-span-2", recipientWasProvided && "hidden")}
             disabled={disableFields}
-            error={field.state.meta.errors[0]?.toString()}
+            error={field.state.meta.errors[0]?.message}
             label="Who would you like to contact?"
             value={field.state.value}
             onBlur={field.handleBlur}
@@ -133,7 +133,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               label="Your name"
               type="text"
               className="mb-4"
-              error={field.state.meta.errors[0]?.toString()}
+              error={field.state.meta.errors[0]?.message}
               value={field.state.value}
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
@@ -148,7 +148,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               label="Your email"
               type="email"
               className="mb-4"
-              error={field.state.meta.errors[0]?.toString().split(",")[0]}
+              error={field.state.meta.errors[0]?.message}
               value={field.state.value}
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
@@ -185,7 +185,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             disabled={disableFields}
             id={field.name}
             minRows={3}
-            error={field.state.meta.errors[0]?.toString()}
+            error={field.state.meta.errors[0]?.message}
             value={field.state.value}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
