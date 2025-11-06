@@ -251,8 +251,8 @@ importers:
         specifier: ^4.11.0
         version: 4.13.0
       happy-dom:
-        specifier: ^18.0.1
-        version: 18.0.1
+        specifier: ^20.0.10
+        version: 20.0.10
       he:
         specifier: ^1.2.0
         version: 1.2.0
@@ -424,7 +424,7 @@ importers:
         version: 5.1.4(typescript@5.9.3)(vite@7.2.1)
       vitest:
         specifier: ^3.2.4
-        version: 3.2.4(@types/node@24.10.0)(happy-dom@18.0.1)(jsdom@27.1.0)
+        version: 3.2.4(@types/node@24.10.0)(happy-dom@20.0.10)(jsdom@27.1.0)
 
   packages/api:
     dependencies:
@@ -9111,7 +9111,7 @@ packages:
       std-env: 3.10.0
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.2.4(@types/node@24.10.0)(happy-dom@18.0.1)(jsdom@27.1.0)
+      vitest: 3.2.4(@types/node@24.10.0)(happy-dom@20.0.10)(jsdom@27.1.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -11548,8 +11548,8 @@ packages:
       duplexer: 0.1.2
     dev: true
 
-  /happy-dom@18.0.1:
-    resolution: {integrity: sha512-qn+rKOW7KWpVTtgIUi6RVmTBZJSe2k0Db0vh1f7CWrWclkkc7/Q+FrOfkZIb2eiErLyqu5AXEzE7XthO9JVxRA==}
+  /happy-dom@20.0.10:
+    resolution: {integrity: sha512-6umCCHcjQrhP5oXhrHQQvLB0bwb1UzHAHdsXy+FjtKoYjUhmNZsQL8NivwM1vDvNEChJabVrUYxUnp/ZdYmy2g==}
     engines: {node: '>=20.0.0'}
     dependencies:
       '@types/node': 20.19.24
@@ -17672,7 +17672,7 @@ packages:
       - yaml
     dev: true
 
-  /vitest@3.2.4(@types/node@24.10.0)(happy-dom@18.0.1)(jsdom@27.1.0):
+  /vitest@3.2.4(@types/node@24.10.0)(happy-dom@20.0.10)(jsdom@27.1.0):
     resolution: {integrity: sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
@@ -17712,7 +17712,7 @@ packages:
       chai: 5.3.3
       debug: 4.4.3(supports-color@8.1.1)
       expect-type: 1.2.2
-      happy-dom: 18.0.1
+      happy-dom: 20.0.10
       jsdom: 27.1.0
       magic-string: 0.30.21
       pathe: 2.0.3
