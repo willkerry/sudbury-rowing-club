@@ -12,6 +12,7 @@ const config: NextConfig = {
   },
   redirects: () => Promise.resolve(redirectsArray),
   reactStrictMode: true,
+  serverExternalPackages: ["jsdom"],
 };
 
 export default withContentCollections(config);
