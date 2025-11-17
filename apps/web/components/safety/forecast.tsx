@@ -15,7 +15,7 @@ export const ForecastComponent = async () => {
   if (status === "error") return null;
 
   return (
-    <div className="overflow-x-scroll bg-gray-100">
+    <div className="overflow-x-scroll bg-gray-100 md:overflow-x-hidden">
       <Loading visible={status === "pending"}>
         <div className="grid w-full min-w-[30rem] grid-cols-7 gap-1 p-3">
           {forecast?.map(({ beaufort, code, date, maxTemp, minTemp }) => (
