@@ -1,4 +1,5 @@
-import cn from "clsx";
+import { TriangleAlertIcon } from "lucide-react";
+import type { ComponentProps } from "react";
 import { Loading } from "@/components/stour/loading";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import {
@@ -6,6 +7,50 @@ import {
   getMetOfficeURL,
   getWeatherForecast,
 } from "@/lib/get-weather-forecast";
+import { cn } from "@/lib/utils";
+
+const getExtremeTemperature = (
+  maxTemp: number,
+  minTemp: number,
+): 0 | -1 | 1 => {
+  if (maxTemp > 30) return 1;
+  if (minTemp < 4) return -1;
+  return 0;
+};
+
+const ExtremeConditionIcon = ({
+  className,
+  ...props
+}: ComponentProps<typeof TriangleAlertIcon>) => (
+  <TriangleAlertIcon
+    aria-hidden
+    className={cn("size-3 text-red-600", className)}
+    {...props}
+  />
+);
+
+const rangeFormatter = Intl.NumberFormat("en-GB", {
+  unit: "celsius",
+  style: "unit",
+  signDisplay: "negative",
+});
+
+const TemperatureRange = ({
+  maxTemp,
+  minTemp,
+}: {
+  maxTemp: number;
+  minTemp: number;
+}) => {
+  const extreme = getExtremeTemperature(maxTemp, minTemp);
+
+  return (
+    <div className="disambiguate mb-0.5 flex items-center justify-center gap-0.5 whitespace-nowrap font-semibold text-gray-700 text-xs transition group-hover:text-blue-500">
+      {rangeFormatter.formatRange(minTemp, maxTemp)}
+      {extreme !== 0 && <ExtremeConditionIcon />}
+    </div>
+  );
+};
 
 export const ForecastComponent = async () => {
   const forecast = await getWeatherForecast();
@@ -18,48 +63,39 @@ export const ForecastComponent = async () => {
     <div className="overflow-x-scroll bg-gray-100 md:overflow-x-hidden">
       <Loading visible={status === "pending"}>
         <div className="grid w-full min-w-[30rem] grid-cols-7 gap-1 p-3">
-          {forecast?.map(({ beaufort, code, date, maxTemp, minTemp }) => (
-            <a
-              key={String(date)}
-              className="group mb-2 text-center"
-              href={getMetOfficeURL(date)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <h3 className="mb-1 font-semibold text-gray-600 text-xs uppercase tracking-wider">
-                <DateFormatter dateString={date} format="shortWeekday" />
-              </h3>
-
-              <div className="mb-0.5 font-semibold text-gray-500 text-xs group-hover:text-blue-400">
-                {briefWeatherCodes[code]}
-              </div>
-
-              <div
-                className={cn(
-                  "disambiguate mb-0.5 whitespace-nowrap font-semibold text-xs transition",
-                  maxTemp > 30 || minTemp < 4
-                    ? "font-bold text-red-600 underline decoration-red-300 underline-offset-2"
-                    : "text-gray-700 group-hover:text-blue-500",
-                )}
+          {forecast?.map(
+            ({ windSpeedBeaufort, code, date, maxTemp, minTemp }) => (
+              <a
+                key={String(date)}
+                className="group mb-2 text-center"
+                href={getMetOfficeURL(date)}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {Intl.NumberFormat("en-GB", {
-                  unit: "celsius",
-                  style: "unit",
-                }).formatRange(minTemp, maxTemp)}
-              </div>
+                <h3 className="mb-1 font-semibold text-gray-600 text-xs uppercase tracking-wider">
+                  <DateFormatter dateString={date} format="shortWeekday" />
+                </h3>
 
-              <div
-                className={cn(
-                  "disambiguate text-xs transition",
-                  beaufort >= 6
-                    ? "font-bold text-red-600"
-                    : "font-semibold text-gray-600 group-hover:text-blue-400",
-                )}
-              >
-                <span className="font-medium">Force</span> {beaufort}
-              </div>
-            </a>
-          ))}
+                <div className="mb-0.5 flex items-center justify-center gap-0.5 text-gray-500 group-hover:text-blue-400">
+                  <div className="font-semibold text-xs">
+                    {briefWeatherCodes[code]}
+                  </div>
+
+                  {code >= 95 && <ExtremeConditionIcon />}
+                </div>
+
+                <TemperatureRange maxTemp={maxTemp} minTemp={minTemp} />
+
+                <div className="disambiguate flex items-center justify-center gap-0.5 font-semibold text-gray-600 text-xs transition group-hover:text-blue-400">
+                  <span>
+                    <span className="font-medium">Force</span>{" "}
+                    {windSpeedBeaufort}
+                  </span>
+                  {windSpeedBeaufort >= 6 && <ExtremeConditionIcon />}
+                </div>
+              </a>
+            ),
+          )}
         </div>
       </Loading>
     </div>

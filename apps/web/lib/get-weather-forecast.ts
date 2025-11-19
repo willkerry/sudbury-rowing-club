@@ -21,7 +21,8 @@ const RAIN = "Rain";
 const SHOWERS = "Showers";
 const SLIGHT = "Slight";
 const SNOW = "Snow";
-const SNOW_SHOWERS = `${SNOW} ${SHOWERS}`;
+const SNOW_SHOWERS = `${SNOW} ${lc(SHOWERS)}`;
+const LIGHT_SNOW = `${LIGHT} ${lc(SNOW)}`;
 const THUNDER = "Thunder";
 const THUNDERSTORM = "Thunderstorm";
 
@@ -82,8 +83,8 @@ export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
   80: SHOWERS,
   81: SHOWERS,
   82: SHOWERS,
-  85: SNOW_SHOWERS,
-  86: SNOW_SHOWERS,
+  85: LIGHT_SNOW,
+  86: LIGHT_SNOW,
   95: THUNDER,
   96: THUNDER,
   99: THUNDER,
@@ -93,10 +94,9 @@ type Forecast = {
   code: WeatherCodeNumber;
   maxTemp: number;
   minTemp: number;
-  windSpeed: number;
+  windSpeedBeaufort: number;
   windDirection: number;
   windDirectionText: CardinalDirection;
-  beaufort: number;
   date: Date;
 };
 
@@ -112,12 +112,11 @@ export const getWeatherForecast = async (): Promise<Forecast[]> => {
       code: daily.weathercode[index],
       maxTemp: Math.round(daily.temperature_2m_max[index]),
       minTemp: Math.round(daily.temperature_2m_min[index]),
-      windSpeed: daily.windspeed_10m_max[index],
+      windSpeedBeaufort: convertKphToBeaufort(daily.windspeed_10m_max[index]),
       windDirection: daily.winddirection_10m_dominant[index],
       windDirectionText: convertBearingToCardinal(
         daily.winddirection_10m_dominant[index],
       ),
-      beaufort: convertKphToBeaufort(daily.windspeed_10m_max[index]),
       date: time,
     }));
   } catch (err) {
