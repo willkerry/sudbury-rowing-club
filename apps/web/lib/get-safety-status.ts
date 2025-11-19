@@ -10,6 +10,7 @@ import { EAStationResponseSchema } from "@/types/ea-station-respose";
 import { EAWarningSchema } from "@/types/ea-warning";
 import { type Severity, severities } from "@/types/severity";
 import { CLUB_LOCATION } from "./constants";
+import { fetchWeatherWarning } from "./server/fetchWeatherWarning";
 
 type SafetyStatusResult<T> =
   | {
@@ -159,11 +160,13 @@ function formatDescriptionString(
  * as it finds a reason to display a warning.
  */
 export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
-  const [sanityResult, eaWarningResult, stationResult] = await Promise.all([
-    fetchSanityStatus(),
-    fetchEAWarning(),
-    fetchEAStation(),
-  ]);
+  const [sanityResult, eaWarningResult, stationResult, weatherWarningResult] =
+    await Promise.all([
+      fetchSanityStatus(),
+      fetchEAWarning(),
+      fetchEAStation(),
+      fetchWeatherWarning(),
+    ]);
 
   if (sanityResult.ok && sanityResult.data?.display) {
     const { data: sanityStatus } = sanityResult;
@@ -187,6 +190,28 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
       date: timeRaised,
       statusMessage: severity,
       source: WarningSourceEnum.environmentAgency,
+    };
+  }
+
+  if (
+    weatherWarningResult.ok &&
+    weatherWarningResult.data &&
+    weatherWarningResult.data.items.length > 0
+  ) {
+    const { data: weatherWarning } = weatherWarningResult;
+
+    const lowerCaseSnippet =
+      weatherWarning.items[0].contentSnippet.toLowerCase();
+
+    const isYellowOrAmber =
+      lowerCaseSnippet.includes("yellow") || lowerCaseSnippet.includes("amber");
+
+    return {
+      status: isYellowOrAmber ? "amber" : "red",
+      description: weatherWarning.items[0].content,
+      date: new Date(weatherWarning.pubDate),
+      statusMessage: "Weather warning",
+      source: WarningSourceEnum.metoffice,
     };
   }
 
