@@ -23,5 +23,8 @@
   },
   "[css]": {
     "editor.defaultFormatter": "biomejs.biome"
-  }
+  },
+  "tailwindCSS.classFunctions": [
+    "cn"
+  ]
 }
