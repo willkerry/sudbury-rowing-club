@@ -6,7 +6,8 @@ import {
 } from "./helpers/convertBearingToCardinal";
 import { convertKphToBeaufort } from "./helpers/convertKphToBeaufort";
 
-const lc = (s: string) => s.toLowerCase();
+const lc = <T extends string>(s: T): Lowercase<T> =>
+  s.toLowerCase() as Lowercase<T>;
 
 const CLEAR = "Clear";
 const CLOUDY = "Cloudy";
@@ -21,14 +22,14 @@ const RAIN = "Rain";
 const SHOWERS = "Showers";
 const SLIGHT = "Slight";
 const SNOW = "Snow";
-const SNOW_SHOWERS = `${SNOW} ${lc(SHOWERS)}`;
-const LIGHT_SNOW = `${LIGHT} ${lc(SNOW)}`;
+const SNOW_SHOWERS = `${SNOW} ${lc(SHOWERS)}` as const;
+const LIGHT_SNOW = `${LIGHT} ${lc(SNOW)}` as const;
 const THUNDER = "Thunder";
 const THUNDERSTORM = "Thunderstorm";
 
 const FREEZING = "freezing";
 
-export const weatherCodes: Record<WeatherCodeNumber, string> = {
+const weatherCodes = {
   0: CLEAR,
   1: `Mainly ${lc(CLEAR)}`,
   2: `Partly ${lc(CLOUDY)}`,
@@ -57,9 +58,9 @@ export const weatherCodes: Record<WeatherCodeNumber, string> = {
   95: THUNDERSTORM,
   96: THUNDERSTORM,
   99: THUNDERSTORM,
-};
+} as const satisfies Record<WeatherCodeNumber, string>;
 
-export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
+const briefWeatherCodes = {
   0: CLEAR,
   1: CLEAR,
   2: CLEAR,
@@ -88,15 +89,25 @@ export const briefWeatherCodes: Record<WeatherCodeNumber, string> = {
   95: THUNDER,
   96: THUNDER,
   99: THUNDER,
-};
+} as const satisfies Record<WeatherCodeNumber, string>;
 
 type Forecast = {
   code: WeatherCodeNumber;
-  maxTemp: number;
-  minTemp: number;
-  windSpeedBeaufort: number;
-  windDirection: number;
-  windDirectionText: CardinalDirection;
+  condition: {
+    full: (typeof weatherCodes)[WeatherCodeNumber];
+    brief: (typeof briefWeatherCodes)[WeatherCodeNumber];
+  };
+  temp: {
+    /** @format °C */
+    max: number;
+    /** @format °C */
+    min: number;
+  };
+  wind: {
+    /** @format Beaufort scale */
+    speed: number;
+    direction: CardinalDirection;
+  };
   date: Date;
 };
 
@@ -110,13 +121,20 @@ export const getWeatherForecast = async (): Promise<Forecast[]> => {
 
     return daily.time.map((time, index) => ({
       code: daily.weathercode[index],
-      maxTemp: Math.round(daily.temperature_2m_max[index]),
-      minTemp: Math.round(daily.temperature_2m_min[index]),
-      windSpeedBeaufort: convertKphToBeaufort(daily.windspeed_10m_max[index]),
-      windDirection: daily.winddirection_10m_dominant[index],
-      windDirectionText: convertBearingToCardinal(
-        daily.winddirection_10m_dominant[index],
-      ),
+      condition: {
+        full: weatherCodes[daily.weathercode[index]],
+        brief: briefWeatherCodes[daily.weathercode[index]],
+      },
+      temp: {
+        max: Math.round(daily.temperature_2m_max[index]),
+        min: Math.round(daily.temperature_2m_min[index]),
+      },
+      wind: {
+        speed: convertKphToBeaufort(daily.windspeed_10m_max[index]),
+        direction: convertBearingToCardinal(
+          daily.winddirection_10m_dominant[index],
+        ),
+      },
       date: time,
     }));
   } catch (err) {
