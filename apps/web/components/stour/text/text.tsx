@@ -1,7 +1,7 @@
 import type { PortableTextProps } from "@portabletext/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import cn from "clsx";
 import { PortableText } from "@/lib/sanity";
+import { cn } from "@/lib/utils";
 
 const variants = cva(["prose", "prose-lead:font-medium prose-lead:font-sans"], {
   variants: {
@@ -34,9 +34,7 @@ const variants = cva(["prose", "prose-lead:font-medium prose-lead:font-sans"], {
   },
 });
 
-type Props = {
-  children?: React.ReactNode;
-  className?: string;
+type Props = React.HTMLAttributes<HTMLDivElement> & {
   portableText?: PortableTextProps["value"];
 } & VariantProps<typeof variants>;
 
@@ -48,12 +46,22 @@ export const Text = ({
   className,
   lead,
   portableText,
+  ...props
 }: Props) => {
   const classes = cn(variants({ type, size, font, lead }), className);
 
-  return portableText ? (
-    <PortableText className={classes} value={portableText} />
-  ) : (
-    <div className={classes}>{children}</div>
+  if (portableText) {
+    return (
+      <PortableText
+        value={portableText}
+        wrapperProps={{ className: classes, ...props }}
+      />
+    );
+  }
+
+  return (
+    <div className={classes} {...props}>
+      {children}
+    </div>
   );
 };

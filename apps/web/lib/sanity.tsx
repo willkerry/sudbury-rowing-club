@@ -9,8 +9,11 @@ import type { ComponentProps } from "react";
 import { OEmbed } from "@/components/oembed/oembed";
 import { SanityFigure } from "@/components/stour/figure";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { cn } from "./utils";
 
 type WrappedPortableTextProps = PortableTextProps & {
+  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
+  /* @deprecated - use wrapperProps.className instead */
   className?: string;
 };
 
@@ -63,21 +66,21 @@ const components: PortableTextComponents = {
 
 export function PortableText({
   value,
-  className = "",
+  className,
+  wrapperProps,
   ...rest
 }: WrappedPortableTextProps) {
-  if (value) {
-    return (
-      <div {...{ className }}>
-        <BlockContent
-          components={components}
-          value={smartQuotesDeep(value)}
-          {...rest}
-        />
-      </div>
-    );
-  }
-  return null;
+  if (!value) return null;
+
+  return (
+    <div {...wrapperProps} className={cn(className, wrapperProps?.className)}>
+      <BlockContent
+        components={components}
+        value={smartQuotesDeep(value)}
+        {...rest}
+      />
+    </div>
+  );
 }
 
 function smartQuotesDeep(

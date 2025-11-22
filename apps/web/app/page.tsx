@@ -1,5 +1,6 @@
 import { fetchLandingPage } from "@sudburyrc/api";
 import Script from "next/script";
+import { useId } from "react";
 import { LandingCTA } from "@/components/landing";
 import { CommitteeSignature } from "@/components/landing/committee-signature";
 import { Feed } from "@/components/landing/feed";
@@ -26,6 +27,8 @@ export const generateMetadata = async () => {
 };
 
 const Home = async () => {
+  const introId = useId();
+
   const {
     landingPage: { note, heroImage, tagline, description, images },
     news,
@@ -57,12 +60,16 @@ const Home = async () => {
       </Container>
 
       <Container>
-        <LandingCTA />
+        <LandingCTA introId={introId} />
       </Container>
 
       <Container className="my-16">
         <div className="mx-auto my-16">
-          <Text portableText={description} className="mx-auto my-16" />
+          <Text
+            portableText={description}
+            className="mx-auto my-16"
+            id={introId}
+          />
           <span className="sr-only">The Committee</span>
           <CommitteeSignature aria-hidden className="mx-auto w-48" />
           <Affiliates />
