@@ -91,7 +91,7 @@ const briefWeatherCodes = {
   99: THUNDER,
 } as const satisfies Record<WeatherCodeNumber, string>;
 
-type Forecast = {
+export type Forecast = {
   code: WeatherCodeNumber;
   condition: {
     full: (typeof weatherCodes)[WeatherCodeNumber];

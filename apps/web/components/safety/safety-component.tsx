@@ -1,15 +1,17 @@
+"use client";
+
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
-import { Suspense } from "react";
+import { type QueryStatus, useQuery } from "@tanstack/react-query";
+import { kyInstance } from "@/app/get-query-client";
 import { EnvironmentAgency, MetOffice } from "@/components/icons";
 import { Label } from "@/components/stour/label";
-import { Loading } from "@/components/stour/loading";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
-import { getSafetyStatus } from "@/lib/get-safety-status";
 import type { Severity } from "@/types/severity";
+import { Loading } from "../stour/loading";
 import { ForecastComponent } from "./forecast";
 import { QuotedWarning, type WarningSourceEnum } from "./quoted-warning";
-import { SeveritySection } from "./severity-section";
+import { IS_LOADING, SeveritySection } from "./severity-section";
 
 export type SafetyComponentProps = {
   description: string;
@@ -20,9 +22,52 @@ export type SafetyComponentProps = {
   errors?: string[];
 };
 
-export const SafetyComponent = async () => {
-  const { description, date, status, statusMessage, source, errors } =
-    await getSafetyStatus();
+const SafetyDateUpdated = ({ date }: { date?: Date }) => {
+  if (!date) return null;
+
+  return (
+    <div className="disambiguate mt-4 font-medium text-gray-500 text-sm">
+      Updated <DateFormatter dateString={date} format="time" />
+    </div>
+  );
+};
+
+const SafetyDescription = ({
+  description,
+  source,
+}: Partial<Pick<SafetyComponentProps, "description" | "source">>) => {
+  if (source && description) {
+    return <QuotedWarning description={description} source={source} />;
+  }
+
+  if (description) return <>{description}</>;
+
+  return null;
+};
+
+export const SafetyComponent = () => {
+  const { data, status, error } = useQuery<SafetyComponentProps>({
+    queryKey: ["safety-status"],
+    queryFn: () => kyInstance.get<SafetyComponentProps>("/api/safety").json(),
+  });
+
+  const severityStatusMap: Record<QueryStatus, SafetyComponentProps["status"]> =
+    {
+      pending: "neutral",
+      error: "neutral",
+      success: data?.status || "neutral",
+    };
+  const severityStatus = severityStatusMap[status];
+
+  const statusMessageMap: Record<
+    QueryStatus,
+    SafetyComponentProps["statusMessage"] | undefined
+  > = {
+    pending: IS_LOADING,
+    error: "Error",
+    success: data?.statusMessage,
+  };
+  const statusMessage = statusMessageMap[status];
 
   return (
     <div className="divide-y">
@@ -30,28 +75,33 @@ export const SafetyComponent = async () => {
         <Label as="h2">River Safety Status</Label>
       </div>
 
-      <SeveritySection status={status} message={statusMessage} />
+      <SeveritySection status={severityStatus} message={statusMessage} />
 
-      <div className="p-3 sm:p-4">
-        {source ? <QuotedWarning {...{ description, source }} /> : description}
-        {date && (
-          <div className="disambiguate mt-4 font-medium text-gray-500 text-sm">
-            Updated <DateFormatter dateString={date} format="time" />
-          </div>
+      <div className="min-h-22 p-3 sm:p-4">
+        {status === "pending" ? (
+          <Loading className="h-22" />
+        ) : (
+          <>
+            <SafetyDescription
+              description={data?.description}
+              source={data?.source}
+            />
+            <SafetyDateUpdated date={data?.date} />
+          </>
         )}
       </div>
 
-      {Number(errors?.length) > 0 && (
+      {(Number(data?.errors?.length) > 0 || error) && (
         <div className="p-3 sm:p-4">
-          {errors?.map((error) => (
+          {data?.errors?.map((error) => (
             <ErrorComponent key={error} error={{ message: error }} />
           ))}
+
+          {error && <ErrorComponent error={{ message: error.message }} />}
         </div>
       )}
 
-      <Suspense fallback={<Loading />}>
-        <ForecastComponent />
-      </Suspense>
+      <ForecastComponent />
 
       <div className="grid grid-flow-col grid-cols-2 divide-x">
         <a

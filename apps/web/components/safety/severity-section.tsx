@@ -1,9 +1,19 @@
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid";
 import type { Severity } from "@/types/severity";
+import { LoadingText } from "../stour/loading-text/loading-text";
+
+export const IS_LOADING = "Loading...";
 
 type SeveritySectionProps = {
   status: Severity;
   message?: string;
+};
+
+const getMessage = (status: Severity, message?: string) => {
+  if (message === IS_LOADING) return <LoadingText />;
+  if (message) return <>{message}</>;
+
+  return <>{status.charAt(0).toUpperCase() + status.slice(1)}</>;
 };
 
 export const SeveritySection = ({ status, message }: SeveritySectionProps) => {
@@ -18,7 +28,7 @@ export const SeveritySection = ({ status, message }: SeveritySectionProps) => {
     <div
       className={`${severityClasses[status]} flex h-12 items-center justify-between p-3 font-bold text-2xl sm:h-16 sm:p-4 md:text-3xl`}
     >
-      {message ?? status.charAt(0).toUpperCase() + status.slice(1)}
+      {getMessage(status, message)}
 
       {status === "red" || status === "amber" ? (
         <div className="relative h-6 w-6">
