@@ -230,6 +230,9 @@ importers:
       color:
         specifier: ^5.0.2
         version: 5.0.2
+      devalue:
+        specifier: ^5.5.0
+        version: 5.5.0
       embla-carousel-auto-scroll:
         specifier: ^8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
@@ -8584,7 +8587,7 @@ packages:
       '@tanstack/form-core': 1.24.4
       '@tanstack/react-store': 0.7.7(react-dom@19.2.0)(react@19.2.0)
       decode-formdata: 0.9.0
-      devalue: 5.4.2
+      devalue: 5.5.0
       react: 19.2.0
     transitivePeerDependencies:
       - react-dom
@@ -10466,8 +10469,8 @@ packages:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
     dev: false
 
-  /devalue@5.4.2:
-    resolution: {integrity: sha512-MwPZTKEPK2k8Qgfmqrd48ZKVvzSQjgW0lXLxiIBA8dQjtf/6mw6pggHNLcyDKyf+fI6eXxlQwPsfaCMTU5U+Bw==}
+  /devalue@5.5.0:
+    resolution: {integrity: sha512-69sM5yrHfFLJt0AZ9QqZXGCPfJ7fQjvpln3Rq5+PS03LD32Ost1Q9N+eEnaQwGRIriKkMImXD56ocjQmfjbV3w==}
     dev: false
 
   /devlop@1.1.0:

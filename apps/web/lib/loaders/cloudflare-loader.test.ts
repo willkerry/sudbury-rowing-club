@@ -1,4 +1,16 @@
 import { describe, expect, it, vi } from "vitest";
+
+const mockEnv = vi.hoisted(() => ({
+  env: {
+    get NODE_ENV() {
+      return process.env.NODE_ENV as "development" | "production";
+    },
+    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: undefined,
+  },
+}));
+
+vi.mock("@/env", () => mockEnv);
+
 import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 
 describe("loadCloudflareLoader", () => {
@@ -22,6 +34,7 @@ describe("loadCloudflareLoader", () => {
   });
 
   it("should handle relative URLs", () => {
+    vi.stubEnv("NODE_ENV", "production");
     expect(cloudflareLoader({ src: "/test.jpg", width: 100 })).toBe(
       "https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/width=100/test.jpg",
     );
