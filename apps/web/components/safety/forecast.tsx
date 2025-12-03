@@ -60,7 +60,7 @@ export const ForecastComponent = () => {
     return null;
 
   return (
-    <div className="h-22 overflow-x-scroll bg-gray-100 md:overflow-x-hidden">
+    <div className="h-22 overflow-y-hidden overflow-x-scroll bg-gray-100 md:overflow-x-hidden">
       <Loading visible={status === "pending"}>
         <div className="grid w-full min-w-[30rem] grid-cols-7 gap-1 p-3">
           {forecast?.map(({ code, condition, date, temp, wind }) => (
