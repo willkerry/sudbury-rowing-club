@@ -4,7 +4,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 export const ratelimiter = new Ratelimit({
   redis: kv,
-  limiter: Ratelimit.slidingWindow(3, "10s"),
+  limiter: Ratelimit.slidingWindow(10, "10s"),
 });
 
 export const routeHandlerRatelimiter = async (req: NextRequest) => {
