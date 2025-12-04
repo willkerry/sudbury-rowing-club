@@ -1,5 +1,5 @@
 import { kv } from "@vercel/kv";
-import { parse, stringify } from "devalue";
+import { parse as devalueParse, stringify as devalueStringify } from "devalue";
 import { env } from "@/env";
 
 type CacheOptions<T, R = T> = {
@@ -31,6 +31,12 @@ const withCommitHash = (key: string): string => {
   return commitSha ? `${key}:${commitSha}` : key;
 };
 
+// kv.get() will attempt to parse the string as JSON if it looks like JSON
+const stringify = (data: unknown): string =>
+  Buffer.from(devalueStringify(data)).toString("base64");
+const parse = <T>(data: string): T =>
+  devalueParse(Buffer.from(data, "base64").toString());
+
 /**
  * Caches the return value of an async function in KV store with proper
  * serialisation/deserialisation using `devalue`. Returns an object with the
@@ -53,7 +59,7 @@ export const cached = async <T, R = T>(
   if (cached) {
     try {
       console.log(new Date(), `${cacheKey} hit cache`);
-      const parsed = parse(cached) as T;
+      const parsed = parse<T>(cached);
       const data = transform ? transform(parsed) : (parsed as unknown as R);
 
       const cacheResult = "hit";
