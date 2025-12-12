@@ -17,7 +17,8 @@
     "test:watch": "turbo test:watch",
     "dev": "turbo watch dev",
     "check": "biome check --write .",
-    "clean": "sh scripts/clean.sh"
+    "clean": "sh scripts/clean.sh",
+    "deploy": "turbo deploy"
   },
   "dependencies": {
     "turbo": "^2.5.6"
