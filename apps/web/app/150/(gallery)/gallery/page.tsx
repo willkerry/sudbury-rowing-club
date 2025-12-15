@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     image: {
+      title: `${TITLE} 🍾`,
       subtitle: "1874–2024",
     },
   }),

@@ -23,9 +23,13 @@ export const generateMetadata = async ({
 
   if (!policy) return {};
 
+  const title = smartQuotes(policy.title || formatTitle(policy._meta.path));
+
   return createMetadata({
-    title: smartQuotes(policy.title || formatTitle(policy._meta.path)),
+    title,
+    description: policy.description,
     type: "article",
+    image: { title },
   });
 };
 

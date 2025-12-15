@@ -26,7 +26,11 @@ export const generateMetadata = async ({
 
   const { title } = item;
 
-  return createMetadata({ title });
+  return createMetadata({
+    title,
+    description: "Safety information from Sudbury Rowing Club.",
+    image: { title },
+  });
 };
 
 const SafetyItem = async ({ params }: SafetyPageParamObject) => {

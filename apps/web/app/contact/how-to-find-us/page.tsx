@@ -18,6 +18,7 @@ import { LocationMap } from "./location-map";
 export const metadata = createMetadata({
   title: "How to find us",
   description: "Directions to our club and to our regatta",
+  image: { title: "How to find us 📍" },
 });
 
 const openInApp = [

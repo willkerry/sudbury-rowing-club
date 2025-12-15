@@ -2,6 +2,14 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import TextPage from "@/components/layouts/text-page";
 import { Loading } from "@/components/stour/loading";
+import { createMetadata } from "@/lib/create-metadata";
+
+export const metadata = createMetadata({
+  title: "Apply for Learn to Row",
+  description:
+    "Apply for a place on Sudbury Rowing Club's Learn to Row programme.",
+  image: { title: "Apply for Learn to Row 🚣" },
+});
 
 const LearnToRowApplicationForm: NextPage = () => (
   <TextPage title="Apply for Learn to Row">

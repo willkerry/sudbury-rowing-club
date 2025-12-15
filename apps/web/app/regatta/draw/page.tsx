@@ -14,6 +14,7 @@ export const revalidate = 86_400;
 export const metadata = createMetadata({
   title: `Regatta Draw ${String(new Date().getFullYear())}`,
   description: "Draw for the Sudbury Regatta",
+  image: { title: "Regatta Draw" },
 });
 
 const getThisYearsDrawIsPublished = async (year: number): Promise<boolean> => {

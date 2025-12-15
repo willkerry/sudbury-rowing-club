@@ -9,6 +9,7 @@ import { InitialisedName } from "./InitialiseName";
 export const metadata = createMetadata({
   title: "Committees",
   description: "List of Sudbury Rowing Club committees since 1874",
+  image: { title: "Committee Archive" },
 });
 
 const committeeArchive = getCommitteeArchive();

@@ -21,7 +21,8 @@ export const generateMetadata = async ({ params }: MemberPageParamObject) => {
 
   return createMetadata({
     title: notice?.title,
-    description: "Members’ Notices",
+    description: "Members' Notices",
+    image: { title: notice?.title || "Notice" },
   });
 };
 

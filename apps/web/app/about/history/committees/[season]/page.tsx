@@ -44,6 +44,7 @@ export const generateMetadata = async ({
   return createMetadata({
     title: `The ${season} ${clubName[0]} Committee`,
     description: `${clubName[1]} committee of ${season}`,
+    image: { title: `${season} Committee` },
   });
 };
 

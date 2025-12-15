@@ -21,11 +21,17 @@ export const generateMetadata = async ({
     return;
   }
 
+  const eventName = extendEventName(records[0].event);
+
   return createMetadata({
-    title: `Course record for ${extendEventName(records[0].event)}`,
+    title: `Course record for ${eventName}`,
     description: formatDescription(records),
     publishedTime: records[0].year.toISOString(),
     type: "article",
+    image: {
+      title: eventName,
+      subtitle: "Course Record",
+    },
   });
 };
 

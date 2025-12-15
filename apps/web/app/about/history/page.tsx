@@ -14,6 +14,7 @@ import { createMetadata } from "@/lib/create-metadata";
 export const metadata = createMetadata({
   title: "History",
   description: "A history of Sudbury Rowing Club",
+  image: { title: "Club History 📜" },
 });
 
 const History: NextPage = () => (

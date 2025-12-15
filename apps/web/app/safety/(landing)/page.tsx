@@ -7,6 +7,7 @@ import { createMetadata } from "@/lib/create-metadata";
 export const metadata = createMetadata({
   title: "Safety",
   description: "Safety information from Sudbury Rowing Club.",
+  image: { title: "Safety ⚠️" },
 });
 
 const isPinnedDiscriminator = (item: SafetyItem) =>

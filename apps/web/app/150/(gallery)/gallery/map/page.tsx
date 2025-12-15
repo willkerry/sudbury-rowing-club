@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     image: {
+      title: "Memory Map 🗺️",
       subtitle: "1874–2024",
     },
   }),

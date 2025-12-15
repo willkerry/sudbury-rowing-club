@@ -36,6 +36,8 @@ const stourToys: StourToy[] = [
 
 export const metadata = createMetadata({
   title: "StourToys",
+  description: "Useful tools and utilities for Sudbury Rowing Club members.",
+  image: { title: "StourToys 🧸" },
 });
 
 const StourToys = () => (

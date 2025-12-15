@@ -5,6 +5,7 @@ import { createMetadata } from "@/lib/create-metadata";
 export const metadata = createMetadata({
   title: "Search the site",
   description: "Find stuff on here",
+  image: { title: "Search 🔍" },
 });
 
 const Clubs = () => (
