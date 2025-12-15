@@ -4,6 +4,7 @@ import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
+import { HTTPError } from "ky";
 import { usePostHog } from "posthog-js/react";
 import { shake } from "radashi";
 import { z } from "zod";
@@ -16,6 +17,7 @@ import { Error as ErrorComponent } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
+import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
 import { scrollToSelector } from "@/lib/scrollToSelector";
 import { cn } from "@/lib/utils";
 import { FromAndTo } from "./fromAndTo";
@@ -56,10 +58,19 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     mutationKey: ["contact-form"],
     mutationFn: (values: Message) =>
       kyInstance.post<string>("/api/send", { json: values }),
-    onMutate: () => posthog.capture("contact-form-submitted"),
-    onError: (error) => posthog.capture("contact-form-error", { error }),
+    onMutate: () => posthog.capture("contact_form_submitted"),
+    onError: async (error) => {
+      const isHttpError = error instanceof HTTPError;
+      posthog.capture("contact_form_api_error", {
+        error_message: error.message,
+        error_name: error.name,
+        http_status: isHttpError ? error.response.status : undefined,
+        http_status_text: isHttpError ? error.response.statusText : undefined,
+        response_body: isHttpError ? await error.response.text() : undefined,
+      });
+    },
     onSuccess: (data) =>
-      posthog.capture("contact-form-success", { id: data.text() }),
+      posthog.capture("contact_form_success", { message_id: data.text() }),
   });
 
   const optionArray = contacts.map((contact) => ({
@@ -76,7 +87,20 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     },
     onSubmit: ({ value }) => mutateAsync(value),
     validators: { onSubmit: MessageSchema },
-    onSubmitInvalid: () => scrollToSelector('[aria-invalid="true"]'),
+    onSubmitInvalid: ({ formApi }) => {
+      const fieldErrors = Object.fromEntries(
+        Object.entries(formApi.state.fieldMeta)
+          .filter(([, meta]) => meta.errors.length > 0)
+          .map(([field, meta]) => [field, meta.errors.map((e) => e.message)]),
+      );
+
+      posthog.capture("contact_form_validation_error", {
+        fields_with_errors: Object.keys(fieldErrors),
+        error_details: fieldErrors,
+      });
+
+      scrollToSelector('[aria-invalid="true"]');
+    },
   });
 
   useTestingMode({
@@ -86,6 +110,12 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       form.setFieldValue("email", values.email);
     },
   });
+
+  const hasTouchedFields = Object.values(form.state.fieldMeta).some(
+    (meta) => meta.isTouched,
+  );
+
+  useTrackFormStarted("contact_form", hasTouchedFields);
 
   if (disabled) return <DisabledOverlay form={<div />} />;
   if (data && status === "success") return <Success response={data} />;

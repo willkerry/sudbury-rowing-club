@@ -8,6 +8,7 @@ import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
+import { trackServerEvent, trackServerException } from "@/lib/server/track";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
@@ -70,13 +71,14 @@ const spamCheck = async (
     name,
     email,
     message,
-  ).catch(() => {
-    console.error("Could not connect to Akismet");
+  ).catch((error) => {
+    trackServerEvent("contact_form_external_api_failure", {
+      service: "akismet",
+      error_message: error instanceof Error ? error.message : String(error),
+    });
 
     throw new ResponseError("Could not connect to spam checking service.", 500);
   });
-
-  console.log("Spam check", isSpam);
 
   if (isSpam)
     throw new ResponseError(
@@ -128,6 +130,12 @@ export const POST = async (req: NextRequest) => {
     });
 
     if (createEmailResponse.error) {
+      trackServerEvent("contact_form_external_api_failure", {
+        service: "resend",
+        error_message: createEmailResponse.error.message,
+        error_name: createEmailResponse.error.name,
+      });
+
       throw new ResponseError(
         `A third party service returned an error: ${createEmailResponse.error.message}`,
         502,
@@ -147,6 +155,8 @@ export const POST = async (req: NextRequest) => {
         statusText: error.message,
       });
     }
+
+    trackServerException(error);
 
     return new NextResponse("Unhandled exception", {
       status: 500,

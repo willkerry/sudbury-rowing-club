@@ -5,6 +5,7 @@ import { env } from "@/env";
 import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
+import { trackServerEvent } from "@/lib/server/track";
 import { BugReportSchema } from "./BugReportSchema";
 
 const resend = new Resend(env.RESEND_API_KEY);
@@ -77,7 +78,11 @@ export const POST = async (req: NextRequest) => {
   });
 
   if (response.error) {
-    console.error("Failed to send bug report", response.error);
+    trackServerEvent("bug_report_external_api_failure", {
+      service: "resend",
+      error_message: response.error.message,
+      error_name: response.error.name,
+    });
 
     return new NextResponse(
       `Failed to send bug report: ${response.error.message}`,

@@ -3,6 +3,7 @@
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
+import { HTTPError } from "ky";
 import { useQueryState } from "nuqs";
 import { usePostHog } from "posthog-js/react";
 import { type BugReport, BugReportSchema } from "@/app/api/bug/BugReportSchema";
@@ -12,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
+import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
 import { scrollToSelector } from "@/lib/scrollToSelector";
 import { kyInstance } from "../get-query-client";
 
@@ -38,10 +40,19 @@ export const BugsClientSide = () => {
     mutationKey: ["bug-report"],
     mutationFn: (values: BugReport) =>
       kyInstance.post("/api/bug", { json: values }),
-    onMutate: () => posthog.capture("bug-report-submitted"),
-    onError: (error) => posthog.capture("bug-report-error", { error }),
+    onMutate: () => posthog.capture("bug_report_submitted"),
+    onError: async (error) => {
+      const isHttpError = error instanceof HTTPError;
+      posthog.capture("bug_report_api_error", {
+        error_message: error.message,
+        error_name: error.name,
+        http_status: isHttpError ? error.response.status : undefined,
+        http_status_text: isHttpError ? error.response.statusText : undefined,
+        response_body: isHttpError ? await error.response.text() : undefined,
+      });
+    },
     onSuccess: (data) =>
-      posthog.capture("bug-report-success", { id: data.text() }),
+      posthog.capture("bug_report_success", { response: data.text() }),
   });
 
   const additionalInformation = message
@@ -59,8 +70,27 @@ export const BugsClientSide = () => {
     validators: { onSubmit: BugReportSchema },
     onSubmit: ({ value }) => mutateAsync(value),
     canSubmitWhenInvalid: true,
-    onSubmitInvalid: () => scrollToSelector('[aria-invalid="true"]'),
+    onSubmitInvalid: ({ formApi }) => {
+      const fieldErrors = Object.fromEntries(
+        Object.entries(formApi.state.fieldMeta)
+          .filter(([, meta]) => meta.errors.length > 0)
+          .map(([field, meta]) => [field, meta.errors.map((e) => e.message)]),
+      );
+
+      posthog.capture("bug_report_validation_error", {
+        fields_with_errors: Object.keys(fieldErrors),
+        error_details: fieldErrors,
+      });
+
+      scrollToSelector('[aria-invalid="true"]');
+    },
   });
+
+  const hasTouchedFields = Object.values(form.state.fieldMeta).some(
+    (meta) => meta.isTouched,
+  );
+
+  useTrackFormStarted("bug_report", hasTouchedFields);
 
   if (data && status === "success") return <Success response={data} />;
 

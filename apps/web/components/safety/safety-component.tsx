@@ -7,6 +7,7 @@ import { EnvironmentAgency, MetOffice } from "@/components/icons";
 import { Label } from "@/components/stour/label";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
+import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
 import type { Severity } from "@/types/severity";
 import { Loading } from "../stour/loading";
 import { ForecastComponent } from "./forecast";
@@ -46,9 +47,20 @@ const SafetyDescription = ({
 };
 
 export const SafetyComponent = () => {
-  const { data, status, error } = useQuery<SafetyComponentProps>({
+  const { data, status, error } = useQuery({
     queryKey: ["safety-status"],
     queryFn: () => kyInstance.get<SafetyComponentProps>("/api/safety").json(),
+  });
+
+  useTrackLoadTime(status, {
+    successEvent: "safety_api_response",
+    errorEvent: "safety_api_request_failed",
+    successProperties: {
+      status: data?.status,
+      status_message: data?.statusMessage,
+      has_partial_errors: (data?.errors?.length ?? 0) > 0,
+    },
+    error,
   });
 
   const severityStatusMap: Record<QueryStatus, SafetyComponentProps["status"]> =
