@@ -12,7 +12,7 @@ import { HOSTNAME } from "@/lib/constants";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
-  if (env.NEXT_ENV === "production") {
+  if (env.NODE_ENV === "production") {
     posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
       api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
       person_profiles: "identified_only",

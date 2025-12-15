@@ -9,7 +9,7 @@ export const trackServerEvent = (
   event: string,
   properties?: Record<string, unknown>,
 ) => {
-  if (env.NEXT_ENV !== "production") return;
+  if (env.NODE_ENV !== "production") return;
 
   const posthog = getPostHogServer();
 
@@ -24,7 +24,7 @@ export const trackServerEvent = (
  * Captures a server-side exception in production only.
  */
 export const trackServerException = (error: unknown) => {
-  if (env.NEXT_ENV !== "production") return;
+  if (env.NODE_ENV !== "production") return;
 
   const posthog = getPostHogServer();
 

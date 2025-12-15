@@ -8,7 +8,7 @@ export const onRequestError: Instrumentation.onRequestError = async (
   error,
   request,
 ) => {
-  if (env.NEXT_ENV === "production") {
+  if (env.NODE_ENV === "production") {
     const { getPostHogServer } = require("./app/posthog-server");
     const posthog: PostHog = await getPostHogServer();
 
