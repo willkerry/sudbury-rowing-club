@@ -9,7 +9,11 @@ export const GET = async (req: NextRequest) => {
   if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
 
   try {
-    const { data: safetyStatus, headers } = await cached({
+    const {
+      data: safetyStatus,
+      headers,
+      cachedAt,
+    } = await cached({
       key: "safety-status",
       ttl: 60 * 60, // 1 hour
       fn: getSafetyStatus,
@@ -23,7 +27,10 @@ export const GET = async (req: NextRequest) => {
       });
     }
 
-    return NextResponse.json(safetyStatus, { headers });
+    return NextResponse.json(
+      { ...safetyStatus, retrievedAt: cachedAt },
+      { headers },
+    );
   } catch (error) {
     trackServerException(error);
 

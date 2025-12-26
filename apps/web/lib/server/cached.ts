@@ -23,12 +23,18 @@ type CachedResult<R> = {
   data: R;
   cacheResult: HitMiss;
   headers: CacheHeaders;
+  cachedAt: Date;
 };
 
 const withCommitHash = (key: string): string => {
   const commitSha = env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA;
 
   return commitSha ? `${key}:${commitSha}` : key;
+};
+
+type CachedData<T> = {
+  data: T;
+  cachedAt: Date;
 };
 
 // kv.get() will attempt to parse the string as JSON if it looks like JSON
@@ -59,8 +65,10 @@ export const cached = async <T, R = T>(
   if (cached) {
     try {
       console.log(new Date(), `${cacheKey} hit cache`);
-      const parsed = parse<T>(cached);
-      const data = transform ? transform(parsed) : (parsed as unknown as R);
+      const parsed = parse<CachedData<T>>(cached);
+      const data = transform
+        ? transform(parsed.data)
+        : (parsed.data as unknown as R);
 
       const cacheResult = "hit";
 
@@ -68,6 +76,7 @@ export const cached = async <T, R = T>(
         data,
         cacheResult,
         headers: { "X-Cache-Result": cacheResult },
+        cachedAt: parsed.cachedAt,
       };
     } catch (parseError) {
       console.error(
@@ -80,14 +89,20 @@ export const cached = async <T, R = T>(
   }
 
   console.log(new Date(), `${key} cold start`);
-  const data = await fn();
-  await kv.set(cacheKey, stringify(data), { ex: ttl });
+  const fetchedData = await fn();
+  const cachedAt = new Date();
+  const dataWithTimestamp: CachedData<T> = {
+    data: fetchedData,
+    cachedAt,
+  };
+  await kv.set(cacheKey, stringify(dataWithTimestamp), { ex: ttl });
 
   const cacheResult = "miss";
 
   return {
-    data: transform ? transform(data) : (data as unknown as R),
+    data: transform ? transform(fetchedData) : (fetchedData as unknown as R),
     cacheResult,
     headers: { "X-Cache-Result": cacheResult },
+    cachedAt,
   };
 };

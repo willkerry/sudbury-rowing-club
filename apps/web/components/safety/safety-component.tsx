@@ -17,18 +17,53 @@ import { IS_LOADING, SeveritySection } from "./severity-section";
 export type SafetyComponentProps = {
   description: string;
   date?: Date;
+  retrievedAt?: Date;
   status: Severity;
   statusMessage: string;
   source?: WarningSourceEnum;
   errors?: string[];
 };
 
-const SafetyDateUpdated = ({ date }: { date?: Date }) => {
-  if (!date) return null;
+const SafetyDateUpdated = ({
+  date,
+  retrievedAt,
+}: {
+  date?: Date;
+  retrievedAt?: Date;
+}) => {
+  const hasTimestamps = Boolean(date || retrievedAt);
+  if (!hasTimestamps) return null;
+
+  const isSameDay =
+    date &&
+    retrievedAt &&
+    new Date(date).toDateString() === new Date(retrievedAt).toDateString();
 
   return (
     <div className="disambiguate mt-4 font-medium text-gray-500 text-sm">
-      Updated <DateFormatter dateString={date} format="time" />
+      {date && (
+        <>
+          Published <DateFormatter dateString={date} format="time" />
+          {retrievedAt && (
+            <>
+              {" "}
+              (Retrieved{" "}
+              <DateFormatter
+                dateString={retrievedAt}
+                format={
+                  isSameDay ? { hour: "numeric", minute: "numeric" } : "time"
+                }
+              />
+              )
+            </>
+          )}
+        </>
+      )}
+      {!date && retrievedAt && (
+        <>
+          Retrieved <DateFormatter dateString={retrievedAt} format="time" />
+        </>
+      )}
     </div>
   );
 };
@@ -98,7 +133,10 @@ export const SafetyComponent = () => {
               description={data?.description}
               source={data?.source}
             />
-            <SafetyDateUpdated date={data?.date} />
+            <SafetyDateUpdated
+              date={data?.date}
+              retrievedAt={data?.retrievedAt}
+            />
           </>
         )}
       </div>
