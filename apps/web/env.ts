@@ -5,6 +5,7 @@ export const env = createEnv({
   server: {
     ALGOLIA_API_KEY: z.string().min(1),
     BUG_RECIPIENT_EMAIL: z.string(),
+    REDIRECT_SECRET: z.string().min(32),
     RESEND_API_KEY: z.string().min(1),
   },
   shared: {
@@ -26,6 +27,7 @@ export const env = createEnv({
     APP_URL: process.env.APP_URL,
     ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
     BUG_RECIPIENT_EMAIL: process.env.BUG_RECIPIENT_EMAIL,
+    REDIRECT_SECRET: process.env.REDIRECT_SECRET,
     NEXT_PUBLIC_ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     NEXT_PUBLIC_ALGOLIA_INDEX_NAME: process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
     NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,

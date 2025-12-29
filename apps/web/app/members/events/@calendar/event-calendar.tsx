@@ -2,6 +2,7 @@
 
 import type { BREvent } from "@sudburyrc/api";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import { useQueryState } from "nuqs";
 import { Label } from "@/components/stour/label";
 import { Link as StourLink } from "@/components/stour/link";
@@ -22,10 +23,24 @@ const EventCard = ({
 }: {
   event: BREvent;
 }) => {
-  const Comp = url ? "a" : "div";
-  const compProps = url
-    ? { href: url, target: "_blank", rel: "noopener noreferrer" }
-    : {};
+  const cardContent = (
+    <>
+      <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm group-hover:text-blue-500">
+        {competition}
+      </h3>
+
+      <DateFormatter
+        dateString={startDate}
+        className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
+      />
+      <div className="mb-2 font-semibold text-orange-600 text-xs">{notes}</div>
+
+      <div className="flex flex-wrap gap-2">
+        <Tag>{region}</Tag>
+        {cancelled && <Tag>Cancelled</Tag>}
+      </div>
+    </>
+  );
 
   return (
     <motion.li
@@ -39,31 +54,27 @@ const EventCard = ({
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}
     >
-      <Comp
-        {...compProps}
-        className={cn(
-          "grid rounded-sm border bg-white px-2 py-1.5",
-          cancelled && "opacity-50",
-          "group transition-colors hover:border-blue-300",
-        )}
-      >
-        <h3 className="mb-0.5 line-clamp-1 font-semibold text-sm group-hover:text-blue-500">
-          {competition}
-        </h3>
-
-        <DateFormatter
-          dateString={startDate}
-          className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
-        />
-        <div className="mb-2 font-semibold text-orange-600 text-xs">
-          {notes}
+      {url ? (
+        <Link
+          href={url}
+          className={cn(
+            "grid rounded-sm border bg-white px-2 py-1.5",
+            cancelled && "opacity-50",
+            "group transition-colors hover:border-blue-300",
+          )}
+        >
+          {cardContent}
+        </Link>
+      ) : (
+        <div
+          className={cn(
+            "grid rounded-sm border bg-white px-2 py-1.5",
+            cancelled && "opacity-50",
+          )}
+        >
+          {cardContent}
         </div>
-
-        <div className="flex flex-wrap gap-2">
-          <Tag>{region}</Tag>
-          {cancelled && <Tag>Cancelled</Tag>}
-        </div>
-      </Comp>
+      )}
     </motion.li>
   );
 };
