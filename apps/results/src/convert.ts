@@ -1,5 +1,6 @@
 import path from "node:path";
 import { cwd } from "node:process";
+import { buildCloudflareImageUrl } from "@sudburyrc/images";
 import { clubs } from "@sudburyrc/static";
 import fs from "fs-extra";
 // @ts-expect-error
@@ -93,8 +94,21 @@ const bladeUrlMap = new Map(
 const OLD_BLADE_URL_REGEX =
   /https:\/\/clubimages\.britishrowing\.org\/blades\?id=\d+/g;
 
+const BLADE_WIDTH = 32;
+const BLADE_HEIGHT = 16;
+
 const replaceBladeUrls = (html: string): string =>
-  html.replace(OLD_BLADE_URL_REGEX, (match) => bladeUrlMap.get(match) ?? match);
+  html.replace(OLD_BLADE_URL_REGEX, (match) => {
+    const newUrl = bladeUrlMap.get(match);
+
+    if (!newUrl) return match;
+
+    return buildCloudflareImageUrl(newUrl, {
+      width: BLADE_WIDTH,
+      height: BLADE_HEIGHT,
+      fit: "contain",
+    });
+  });
 
 const convertFile = async (
   fileName: string,

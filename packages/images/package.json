@@ -1,0 +1,33 @@
+{
+  "name": "@sudburyrc/images",
+  "version": "1.0.0",
+  "description": "Image URL builders for Cloudflare and other CDNs",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    },
+    "./cloudflare": {
+      "import": "./dist/cloudflare.mjs",
+      "types": "./dist/cloudflare.d.mts"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@sudburyrc/tsconfig": "workspace:*",
+    "tsdown": "^0.15.9",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

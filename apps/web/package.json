@@ -29,6 +29,7 @@
     "@sudburyrc/api": "workspace:*",
     "@sudburyrc/blue": "workspace:*",
     "@sudburyrc/helpers": "workspace:*",
+    "@sudburyrc/images": "workspace:*",
     "@sudburyrc/ical-builder": "workspace:*",
     "@sudburyrc/static": "workspace:*",
     "@t3-oss/env-nextjs": "^0.13.8",

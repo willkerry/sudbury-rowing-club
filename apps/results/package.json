@@ -9,6 +9,7 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
   "dependencies": {
+    "@sudburyrc/images": "workspace:*",
     "@sudburyrc/static": "workspace:*"
   },
   "devDependencies": {

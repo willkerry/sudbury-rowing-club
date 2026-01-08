@@ -89,6 +89,9 @@ importers:
 
   apps/results:
     dependencies:
+      '@sudburyrc/images':
+        specifier: workspace:*
+        version: link:../../packages/images
       '@sudburyrc/static':
         specifier: workspace:*
         version: link:../../packages/static
@@ -189,6 +192,9 @@ importers:
       '@sudburyrc/ical-builder':
         specifier: workspace:*
         version: link:../../packages/ical-builder
+      '@sudburyrc/images':
+        specifier: workspace:*
+        version: link:../../packages/images
       '@sudburyrc/static':
         specifier: workspace:*
         version: link:../../packages/static
@@ -547,6 +553,21 @@ importers:
       '@sudburyrc/api':
         specifier: workspace:*
         version: link:../api
+      '@sudburyrc/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      tsdown:
+        specifier: ^0.15.9
+        version: 0.15.12(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: ^3.2.4
+        version: 3.2.4
+
+  packages/images:
+    devDependencies:
       '@sudburyrc/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
