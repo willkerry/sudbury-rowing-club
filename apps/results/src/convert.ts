@@ -1,5 +1,6 @@
 import path from "node:path";
 import { cwd } from "node:process";
+import { clubs } from "@sudburyrc/static";
 import fs from "fs-extra";
 // @ts-expect-error
 import tidy from "tidy-html5";
@@ -78,6 +79,23 @@ function addStyleLinkTag(html: string): string {
   );
 }
 
+/**
+ * Build a map from old blade URL to new blade URL.
+ * Old format: https://clubimages.britishrowing.org/blades?id=XXX
+ * New format: https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/XXXXX/XXX.png
+ */
+const bladeUrlMap = new Map(
+  clubs
+    .filter((club) => club.bladeUrl && club.newBladeUrl)
+    .map((club) => [club.bladeUrl, club.newBladeUrl]),
+);
+
+const OLD_BLADE_URL_REGEX =
+  /https:\/\/clubimages\.britishrowing\.org\/blades\?id=\d+/g;
+
+const replaceBladeUrls = (html: string): string =>
+  html.replace(OLD_BLADE_URL_REGEX, (match) => bladeUrlMap.get(match) ?? match);
+
 const convertFile = async (
   fileName: string,
   inputFile: string,
@@ -115,6 +133,7 @@ const convertFile = async (
     output = addStyleLinkTag(output);
 
     output = stripGeneratorMetaTags(output);
+    output = replaceBladeUrls(output);
 
     output = addListingLink(output, fileName);
   }

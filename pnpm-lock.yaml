@@ -88,6 +88,10 @@ importers:
         version: 4.54.0
 
   apps/results:
+    dependencies:
+      '@sudburyrc/static':
+        specifier: workspace:*
+        version: link:../../packages/static
     devDependencies:
       '@parcel/config-default':
         specifier: ^2.15.4
