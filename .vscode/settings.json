@@ -26,5 +26,11 @@
   },
   "tailwindCSS.classFunctions": [
     "cn"
+  ],
+  "json.schemas": [
+    {
+      "fileMatch": ["packages/static/src/data/clubs.json"],
+      "url": "./packages/static/schemas/clubs.schema.json"
+    }
   ]
 }

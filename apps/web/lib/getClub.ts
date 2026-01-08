@@ -1,5 +1,5 @@
+import { clubs } from "@sudburyrc/static";
 import { unique } from "radashi";
-import clubs from "@/data/clubs.json";
 import { getHostname } from "./helpers/getHostname";
 
 const SUFFIX_ALIASES = {

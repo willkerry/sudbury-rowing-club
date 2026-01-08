@@ -1,7 +1,7 @@
+import { clubs as allClubs } from "@sudburyrc/static";
 import Image from "next/image";
 import Link from "next/link";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import allClubs from "@/data/clubs.json";
 import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 
 const MAX_CLUBS = 64;

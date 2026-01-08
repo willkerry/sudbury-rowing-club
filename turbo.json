@@ -28,6 +28,7 @@
       ]
     },
     "dev": {
+      "dependsOn": ["^dev"],
       "outputLogs": "new-only",
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"]
