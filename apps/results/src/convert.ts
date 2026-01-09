@@ -91,14 +91,28 @@ const bladeUrlMap = new Map(
     .map((club) => [club.bladeUrl, club.newBladeUrl]),
 );
 
-const OLD_BLADE_URL_REGEX =
+/**
+ * Build a map from boat code (lowercase) to new blade URL.
+ * Used for old format: http://www.britishrowing.org/sites/all/themes/britishrowing/images/blades/XXX.gif
+ */
+const boatCodeToBladeUrlMap = new Map(
+  clubs
+    .filter((club) => club.code && club.newBladeUrl)
+    .map((club) => [club.code.toLowerCase(), club.newBladeUrl]),
+);
+
+const CLUBIMAGES_URL_REGEX =
   /https:\/\/clubimages\.britishrowing\.org\/blades\?id=\d+/g;
+const WORDPRESS_URL_REGEX =
+  /http:\/\/www\.britishrowing\.org\/sites\/all\/themes\/britishrowing\/images\/blades\/([a-z]+)\.gif/gi;
 
-const BLADE_WIDTH = 32;
-const BLADE_HEIGHT = 16;
+const BLADE_WIDTH = 75;
+const BLADE_HEIGHT = 70;
 
-const replaceBladeUrls = (html: string): string =>
-  html.replace(OLD_BLADE_URL_REGEX, (match) => {
+const replaceBladeUrls = (html: string): string => {
+  let result = html;
+
+  result = result.replaceAll(CLUBIMAGES_URL_REGEX, (match) => {
     const newUrl = bladeUrlMap.get(match);
 
     if (!newUrl) return match;
@@ -109,6 +123,21 @@ const replaceBladeUrls = (html: string): string =>
       fit: "contain",
     });
   });
+
+  result = result.replaceAll(WORDPRESS_URL_REGEX, (match, boatCode) => {
+    const newUrl = boatCodeToBladeUrlMap.get(boatCode.toLowerCase());
+
+    if (!newUrl) return match;
+
+    return buildCloudflareImageUrl(newUrl, {
+      width: BLADE_WIDTH,
+      height: BLADE_HEIGHT,
+      fit: "contain",
+    });
+  });
+
+  return result;
+};
 
 const convertFile = async (
   fileName: string,
