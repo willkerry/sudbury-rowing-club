@@ -1,6 +1,6 @@
 import TextPage from "@/components/layouts/text-page";
 
-const Clubs = ({
+const SearchLayout = ({
   children,
   results,
 }: {
@@ -13,4 +13,4 @@ const Clubs = ({
   </TextPage>
 );
 
-export default Clubs;
+export default SearchLayout;

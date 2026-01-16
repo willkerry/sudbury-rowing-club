@@ -54,6 +54,8 @@ const ClubSearchResults = async (props: {
             className="relative block p-2 hover:bg-gray-50"
             key={club.id}
             href={club.href}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {club.name}
             {clubs.length < MAX_CLUBS_WITH_BLADES && club.newBladeUrl && (

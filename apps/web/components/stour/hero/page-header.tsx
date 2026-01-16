@@ -31,7 +31,7 @@ export const PageHeader = ({
           <Breadcrumbs
             listClassName="not-prose flex font-medium text-sm"
             currentLabel={title}
-            inactiveItemClassName="text-gray-500 hover:text-gray-900 transition after:content-['→'] after:px-3 after:text-gray-400 capitalize transition"
+            inactiveItemClassName="text-gray-500 hover:text-gray-900 transition after:content-['→'] after:px-3 after:text-gray-400 transition"
             activeItemClassName="whitespace-nowrap text-gray-900"
           />
         </Container>

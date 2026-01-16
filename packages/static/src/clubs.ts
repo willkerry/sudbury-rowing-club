@@ -33,6 +33,10 @@ export type Club = {
   region: string | null;
   /** The club's website URL. Beware of broken links. */
   website: string | null;
+  /** The club's location (town/city and county). */
+  location?: string | null;
+  /** The club's nation (England, Scotland, Wales, etc.). */
+  nation?: string | null;
 };
 
 export type ClubsSchema = Club[];

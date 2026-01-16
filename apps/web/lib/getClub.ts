@@ -7,6 +7,11 @@ const SUFFIX_ALIASES = {
   " Boat Club": [" Boat Club", " BC"],
 } as const;
 
+const RC_REGEX = / RC$/;
+const ROWING_CLUB_REGEX = / Rowing Club$/;
+const BC_REGEX = / BC$/;
+const BOAT_CLUB_REGEX = / Boat Club$/;
+
 type Club = {
   id: number;
   name: string;
@@ -70,6 +75,43 @@ export const getClubByCode = (code: string) => {
   return {
     id: foundClub.id,
     name: foundClub.name,
+    href: foundClub.href,
+    bladeUrl: foundClub.newBladeUrl ?? undefined,
+  };
+};
+
+const normaliseClubName = (
+  name: string,
+  format: "short" | "long" | undefined,
+): string => {
+  if (format === "long") {
+    return name
+      .replace(RC_REGEX, " Rowing Club")
+      .replace(BC_REGEX, " Boat Club");
+  }
+  if (format === "short") {
+    return name
+      .replace(ROWING_CLUB_REGEX, " RC")
+      .replace(BOAT_CLUB_REGEX, " BC");
+  }
+  return name;
+};
+
+export const getClubByBoatCode = (
+  code: string,
+  options?: { normaliseClubName?: "short" | "long" },
+) => {
+  const uppercaseCode = code.toUpperCase();
+
+  const foundClub =
+    clubs.find((club) => club.code === uppercaseCode) ??
+    clubs.find((club) => club.aliasCodes?.includes(uppercaseCode));
+
+  if (!foundClub) return;
+
+  return {
+    id: foundClub.id,
+    name: normaliseClubName(foundClub.name, options?.normaliseClubName),
     href: foundClub.href,
     bladeUrl: foundClub.newBladeUrl ?? undefined,
   };
