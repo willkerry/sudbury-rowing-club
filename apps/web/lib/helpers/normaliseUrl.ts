@@ -43,7 +43,12 @@ export function normaliseUrl(url: string | null | undefined): string | null {
   // If it already has a protocol, validate and return
   if (PROTOCOL_REGEX.test(trimmed)) {
     try {
-      return new URL(trimmed).toString();
+      const parsed = new URL(trimmed);
+      const urlString = parsed.toString();
+
+      return urlString.endsWith("/") && parsed.pathname === "/"
+        ? urlString.slice(0, -1)
+        : urlString;
     } catch {
       return null;
     }
