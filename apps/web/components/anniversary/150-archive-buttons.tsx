@@ -25,7 +25,7 @@ export const HundredAndFiftyArchiveButtons = ({
             archive.location?.lng || 0,
             archive.title,
           )}
-          rel="noreferrer"
+          rel="noopener noreferrer"
           target="_blank"
         >
           View location
@@ -34,7 +34,12 @@ export const HundredAndFiftyArchiveButtons = ({
     )}
 
     <Button asChild size="xs" variant="secondary">
-      <a href={archive.image.url} rel="noreferrer" target="_blank" download>
+      <a
+        href={archive.image.url}
+        rel="noopener noreferrer"
+        target="_blank"
+        download
+      >
         Download full size image
       </a>
     </Button>

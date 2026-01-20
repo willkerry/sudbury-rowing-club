@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { useToggle, useViewportSize } from "@mantine/hooks";
+import { useReducedMotion, useToggle, useViewportSize } from "@mantine/hooks";
 import { Fragment, type SetStateAction } from "react";
 
 type LightBoxProps = {
@@ -57,20 +57,21 @@ export const LightBox = ({
 }: LightBoxProps) => {
   const { width, height, viewportWidth, viewportHeight } =
     useLightBoxSize(aspectRatio);
+  const reducedMotion = useReducedMotion();
 
   return (
     <Transition
       show={open}
-      enter="transition"
-      enterFrom="transform scale-50 opacity-0"
-      enterTo="transform scale-100 opacity-100"
-      leave="transition"
-      leaveFrom="transform scale-100 opacity-100"
-      leaveTo="transform scale-50 opacity-0"
+      enter={reducedMotion ? "" : "transition"}
+      enterFrom={reducedMotion ? "" : "scale-50 opacity-0"}
+      enterTo={reducedMotion ? "" : "scale-100 opacity-100"}
+      leave={reducedMotion ? "" : "transition"}
+      leaveFrom={reducedMotion ? "" : "scale-100 opacity-100"}
+      leaveTo={reducedMotion ? "" : "scale-50 opacity-0"}
       as={Fragment}
     >
       <Dialog
-        className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm"
+        className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center overscroll-contain bg-white bg-opacity-10 backdrop-blur-sm"
         open={open}
         onClose={() => toggle()}
         onClick={() => toggle()}

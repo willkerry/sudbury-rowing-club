@@ -104,5 +104,7 @@ export const MemoryMap = ({ locations }: MemoryMapProps) => {
     };
   }, [locations]);
 
-  return <div ref={mapContainer} className="h-full w-full" />;
+  return (
+    <div ref={mapContainer} className="h-full w-full touch-manipulation" />
+  );
 };

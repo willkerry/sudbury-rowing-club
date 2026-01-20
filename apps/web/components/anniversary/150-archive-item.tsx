@@ -14,7 +14,7 @@ export const ArchiveItem = ({ _id, alt, image, title }: Archive) => {
 
   return (
     <figure id={_id} className="break-inside-avoid">
-      <Link href={`/150/gallery/${_id}`}>
+      <Link href={`/150/gallery/${_id}`} aria-label={`View ${title}`}>
         <div className="h-0.5" />
 
         <Image

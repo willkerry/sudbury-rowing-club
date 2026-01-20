@@ -48,7 +48,11 @@ export const ArchiveImage = ({
         toggle={() => toggle()}
       />
 
-      <button type="button" onClick={() => toggle()}>
+      <button
+        type="button"
+        onClick={() => toggle()}
+        aria-label="View full size"
+      >
         <Image
           {...props}
           width={width}
