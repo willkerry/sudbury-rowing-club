@@ -1,5 +1,18 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.1/schema.json",
+  "files": {
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/dist",
+      "!**/build",
+      "!**/.next",
+      "!**/.tmp",
+      "!**/.vscode",
+      "!**/.content-collections",
+      "!**/apps/results/data"
+    ]
+  },
   "formatter": {
     "includes": [
       "**",
@@ -123,5 +136,11 @@
       "trailingCommas": "all"
     },
     "globals": ["React", "JSX"]
+  },
+  "css": {
+    "parser": {
+      "cssModules": true,
+      "tailwindDirectives": true
+    }
   }
 }
