@@ -51,12 +51,11 @@ const GalleryFigure = ({
         <Image {...imageProps} />
       )}
 
-      <figcaption
-        aria-hidden
-        className="mt-1 flex items-center text-gray-600 text-sm"
-      >
-        {caption}
-      </figcaption>
+      {caption && (
+        <figcaption className="mt-1 flex items-center text-gray-600 text-sm">
+          {caption}
+        </figcaption>
+      )}
     </figure>
   );
 };

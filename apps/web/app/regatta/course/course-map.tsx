@@ -18,6 +18,6 @@ export const CourseMap = ({
     height={982 / aspectRatio}
     placeholder="blur"
     blurDataURL={lqip}
-    alt=""
+    alt="Sudbury Regatta course map showing the river layout, start and finish positions, and key landmarks"
   />
 );

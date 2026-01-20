@@ -186,6 +186,7 @@ const DataTableColumnHeader = <TData, TValue>({
               size="xs"
             >
               <Search aria-hidden className="h-3.5 w-3.5" />
+              <span className="sr-only">Filter {title}</span>
             </Button>
           </DropdownMenuTrigger>
 
@@ -193,6 +194,7 @@ const DataTableColumnHeader = <TData, TValue>({
             <DropdownMenuItem asChild>
               <Input
                 type="text"
+                aria-label={`Filter by ${title}`}
                 value={String(column.getFilterValue() ?? "")}
                 onChange={(event) => column.setFilterValue(event.target.value)}
               />

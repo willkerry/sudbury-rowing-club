@@ -132,6 +132,7 @@ export const ClientDraw = ({
             rel="noopener noreferrer"
           >
             {button}
+            <span className="sr-only"> (opens in new tab)</span>
           </a>
         </Button>
       </p>

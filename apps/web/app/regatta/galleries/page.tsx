@@ -44,17 +44,17 @@ const Photography = async () => {
           <table>
             <thead>
               <tr>
-                <th>Year</th>
-                <th>
-                  <span className="sm:hidden">Password</span>
+                <th scope="col">Year</th>
+                <th scope="col">
+                  <span className="sr-only sm:not-sr-only">Password</span>
                 </th>
-                <th>Providers</th>
+                <th scope="col">Providers</th>
               </tr>
             </thead>
             <tbody>
               {regattas.map(({ _id, date, galleries }) => (
                 <tr key={_id}>
-                  <th>
+                  <th scope="row">
                     <DateFormatter dateString={date} format="year" />
                     <span className="hidden sm:inline"> Regatta</span>
                   </th>
