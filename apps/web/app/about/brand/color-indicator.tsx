@@ -24,7 +24,7 @@ export const ColorIndicator = ({
     <span className="flex flex-row items-center text-xs">
       {print ? (
         <>
-          <Circle className="h-4 text-gray-200" fill={color} />
+          <Circle aria-hidden className="h-4 text-gray-200" fill={color} />
           <Copy value={print.toUpperCase()} />
         </>
       ) : (

@@ -16,16 +16,18 @@ const maptilerProvider = maptiler(
 );
 
 export const LocationMap = ({ defaultCenter, markers }: LocationMapProps) => (
-  <PigeonMap
-    attribution={false}
-    defaultCenter={defaultCenter}
-    defaultZoom={14}
-    dprs={[1, 2]}
-    height={565}
-    provider={maptilerProvider}
-  >
-    {markers.map((marker) => (
-      <Marker key={String(marker.anchor)} {...marker} />
-    ))}
-  </PigeonMap>
+  <div className="touch-manipulation">
+    <PigeonMap
+      attribution={false}
+      defaultCenter={defaultCenter}
+      defaultZoom={14}
+      dprs={[1, 2]}
+      height={565}
+      provider={maptilerProvider}
+    >
+      {markers.map((marker) => (
+        <Marker key={String(marker.anchor)} {...marker} />
+      ))}
+    </PigeonMap>
+  </div>
 );

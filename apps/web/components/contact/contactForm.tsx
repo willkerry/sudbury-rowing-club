@@ -162,6 +162,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               disabled={disableFields}
               label="Your name"
               type="text"
+              autoComplete="name"
               className="mb-4"
               error={field.state.meta.errors[0]?.message}
               value={field.state.value}
@@ -177,6 +178,8 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               disabled={disableFields}
               label="Your email"
               type="email"
+              autoComplete="email"
+              spellCheck={false}
               className="mb-4"
               error={field.state.meta.errors[0]?.message}
               value={field.state.value}

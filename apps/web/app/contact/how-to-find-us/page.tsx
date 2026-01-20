@@ -90,7 +90,7 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
           key={item.name}
           className="flex rounded-lg p-px"
           href={name === "Club" ? item.href : item.hrefregatta}
-          rel="noreferrer"
+          rel="noopener noreferrer"
           target="_blank"
           aria-label={`Open in ${item.name}`}
         >
@@ -151,7 +151,7 @@ const FindUs: NextPage = () => (
               What3Words address for the regatta is{" "}
               <a
                 href="https://w3w.co/craziest.flask.falls"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 {"///craziest.flask.falls"}
