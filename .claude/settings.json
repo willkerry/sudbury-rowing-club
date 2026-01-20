@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "biome check --write",
+            "command": "pnpm check",
             "timeout": 5
           }
         ]
