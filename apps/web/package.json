@@ -109,13 +109,13 @@
     "@types/react-dom": "^19.2.2",
     "@types/react-scroll": "^1.8.10",
     "@vitejs/plugin-react": "^5.1.0",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.17",
     "jsdom": "^27.1.0",
     "postcss": "^8.5.6",
     "schema-dts": "^1.1.5",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.17"
   }
 }
