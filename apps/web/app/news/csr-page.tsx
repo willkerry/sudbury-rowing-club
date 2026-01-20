@@ -127,6 +127,7 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
               onChange={(e) => setSearchInputValue(e.target.value)}
               type="search"
               name="q"
+              autoComplete="off"
               inputClassName="rounded-r-none"
               aria-label="Search"
             />
@@ -135,6 +136,7 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
               variant="secondary"
               className="-ml-px z-0 h-10 rounded-l-none border-l"
               disabled={!searchInputValue}
+              aria-label="Search"
             >
               <SearchIcon aria-hidden className="h-4 w-4" />
             </Button>
