@@ -19,7 +19,13 @@ const Clubs = () => {
       <label htmlFor="q" className="sr-only">
         Search
       </label>
-      <Input type="search" aria-label="Search" className="flex-1" name="q" />
+      <Input
+        type="search"
+        id="q"
+        autoComplete="off"
+        className="flex-1"
+        name="q"
+      />
       <Button type="submit" icon={<Search />} variant="link">
         Search
       </Button>

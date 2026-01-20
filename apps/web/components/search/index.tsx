@@ -14,6 +14,7 @@ export const SiteSearch = () => (
       name="q"
       placeholder="Search our site with Google"
       type="search"
+      autoComplete="off"
       className="w-full"
       aria-label="Search our site with Google"
     />
