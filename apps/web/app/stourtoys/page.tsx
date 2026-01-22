@@ -23,7 +23,7 @@ const StourToyList = ({ items }: { items: StourToy[] }) => (
 
 const stourToys: StourToy[] = [
   {
-    name: "Club Lookup",
+    name: "Club lookup",
     href: "/stourtoys/club-lookup",
     description: "Search for rowing clubs and their blades.",
   },
@@ -31,6 +31,11 @@ const stourToys: StourToy[] = [
     name: "Search",
     href: "/stourtoys/search",
     description: "Search the SRC website.",
+  },
+  {
+    name: "Share image generator",
+    href: "/stourtoys/share-image",
+    description: "Generate Open Graph images for sharing on social media.",
   },
 ];
 
