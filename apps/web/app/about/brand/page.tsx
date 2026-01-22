@@ -66,14 +66,15 @@ const Brand = () => (
     </p>
 
     <figure>
-      <div
-        className="h-16 w-full rounded-sm bg-blue-950 shadow-sm"
-        style={{
-          background: `linear-gradient(to right, ${brandColors.map(
-            (a) => a.color,
-          )})`,
-        }}
-      />
+      <div className="flex flex-row gap-1.5">
+        {brandColors.map((item) => (
+          <div
+            key={item.id}
+            className="h-48 w-full rounded-sm bg-blue-950 shadow-sm"
+            style={{ background: item.color }}
+          />
+        ))}
+      </div>
       <figcaption>
         A visual representation of the shade scale, starting at the original
         Oxford Blue.
