@@ -4,6 +4,12 @@
   "description": "",
   "main": "dist/index.mjs",
   "types": "dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown",
