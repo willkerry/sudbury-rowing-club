@@ -227,6 +227,10 @@ export const misc = [
     name: "Content Management System",
     href: "https://edit.sudburyrowingclub.org.uk/",
   },
+  {
+    name: "StourToys",
+    href: "/stourtoys",
+  },
 ];
 
 export const [{ items: about }, , { items: regatta }] = navigationGroups;
