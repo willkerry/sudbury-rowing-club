@@ -19,7 +19,7 @@ const formatName = (email: string, name: string) => {
 };
 
 const RequestSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   name: z.string(),
   to: z.string(),
   message: z.string(),
