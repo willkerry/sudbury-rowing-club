@@ -6,6 +6,7 @@ import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { trackServerEvent } from "@/lib/server/track";
+import { parseWithFieldErrors, ValidationError } from "@/lib/validation";
 import { BugReportSchema } from "./BugReportSchema";
 
 const resend = new Resend(env.RESEND_API_KEY);
@@ -19,80 +20,80 @@ const parseToJSON = (value: string) => {
 };
 
 export const POST = async (req: NextRequest) => {
-  const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
-  if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
+  try {
+    const maybeRateLimitedResponse = await routeHandlerRatelimiter(req);
+    if (maybeRateLimitedResponse) return maybeRateLimitedResponse;
 
-  if (!env.BUG_RECIPIENT_EMAIL) {
-    return new NextResponse("BUG_RECIPIENT_EMAIL not set.", {
-      status: 500,
-    });
-  }
-
-  const body = BugReportSchema.safeParse(await req.json());
-
-  if (!body.success) {
-    console.log("Invalid body", body.error.issues);
-
-    return new NextResponse("Invalid body", {
-      status: 400,
-    });
-  }
-
-  const { name, email, description, userAgent, additionalInformation } =
-    body.data;
-  console.log("Bug report", { name, email, description, userAgent });
-
-  const isSpam = await checkForSpam(
-    req.headers.get("x-forwarded-for") ?? "",
-    req.headers.get("user-agent") ?? "",
-    req.headers.get("referer") ?? "",
-    name,
-    email,
-    description,
-  );
-
-  if (isSpam) {
-    console.log("Spam detected", { name, email, description });
-    return new NextResponse("The spam filter has blocked this request.", {
-      status: 403,
-    });
-  }
-
-  const response = await resend.emails.send({
-    from: `${name} <${SENDER.email}>`,
-    replyTo: `${name} <${email}>`,
-    to: env.BUG_RECIPIENT_EMAIL,
-    subject: "Bug Report from sudburyrowingclub.org.uk",
-    text: `DESCRIPTION: ${description}\n\nREPORTER: ${name} <${
-      SENDER.email
-    }>\n\nDATA: ${JSON.stringify(
-      {
-        description,
-        userAgent,
-        parsedUserAgent: Bowser.parse(userAgent),
-        additionalInformation: parseToJSON(additionalInformation ?? ""),
-      },
-      null,
-      2,
-    )}`,
-  });
-
-  if (response.error) {
-    trackServerEvent("bug_report_external_api_failure", {
-      service: "resend",
-      error_message: response.error.message,
-      error_name: response.error.name,
-    });
-
-    return new NextResponse(
-      `Failed to send bug report: ${response.error.message}`,
-      {
+    if (!env.BUG_RECIPIENT_EMAIL) {
+      return new NextResponse("BUG_RECIPIENT_EMAIL not set.", {
         status: 500,
-      },
-    );
-  }
+      });
+    }
 
-  return new NextResponse("Bug report sent successfully.", {
-    status: 200,
-  });
+    const { name, email, description, userAgent, additionalInformation } =
+      parseWithFieldErrors(BugReportSchema, await req.json());
+
+    console.log("Bug report", { name, email, description, userAgent });
+
+    const isSpam = await checkForSpam(
+      req.headers.get("x-forwarded-for") ?? "",
+      req.headers.get("user-agent") ?? "",
+      req.headers.get("referer") ?? "",
+      name,
+      email,
+      description,
+    );
+
+    if (isSpam) {
+      console.log("Spam detected", { name, email, description });
+
+      return new NextResponse("The spam filter has blocked this request.", {
+        status: 403,
+      });
+    }
+
+    const response = await resend.emails.send({
+      from: `${name} <${SENDER.email}>`,
+      replyTo: `${name} <${email}>`,
+      to: env.BUG_RECIPIENT_EMAIL,
+      subject: "Bug Report from sudburyrowingclub.org.uk",
+      text: `DESCRIPTION: ${description}\n\nREPORTER: ${name} <${
+        SENDER.email
+      }>\n\nDATA: ${JSON.stringify(
+        {
+          description,
+          userAgent,
+          parsedUserAgent: Bowser.parse(userAgent),
+          additionalInformation: parseToJSON(additionalInformation ?? ""),
+        },
+        null,
+        2,
+      )}`,
+    });
+
+    if (response.error) {
+      trackServerEvent("bug_report_external_api_failure", {
+        service: "resend",
+        error_message: response.error.message,
+        error_name: response.error.name,
+      });
+
+      return new NextResponse(
+        `Failed to send bug report: ${response.error.message}`,
+        {
+          status: 500,
+        },
+      );
+    }
+
+    return new NextResponse("Bug report sent successfully.", {
+      status: 200,
+    });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return NextResponse.json(error.errors, { status: 400 });
+    }
+
+    throw error;
+  }
 };

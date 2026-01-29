@@ -7,7 +7,6 @@ import { useMutation } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 import { usePostHog } from "posthog-js/react";
 import { shake } from "radashi";
-import { z } from "zod";
 import { kyInstance } from "@/app/get-query-client";
 import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
 import { Success } from "@/components/contact/views/success";
@@ -18,26 +17,12 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
+import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
 import { cn } from "@/lib/utils";
 import { FromAndTo } from "./fromAndTo";
+import { DEFAULT_VALUE, type Message, MessageSchema } from "./Message";
 import { useTestingMode } from "./useTestingMode";
-
-const MessageToSchema = z.string().refine((value) => value !== "default", {
-  message: "Select a recipient",
-});
-const MessageNameSchema = z.string().min(1, "Provide your name");
-const MessageEmailSchema = z.string().min(1, "Provide your email").email();
-const MessageMessageSchema = z.string().trim().min(1, "Provide a message");
-
-const MessageSchema = z.object({
-  to: MessageToSchema,
-  name: MessageNameSchema,
-  email: MessageEmailSchema,
-  message: MessageMessageSchema,
-});
-
-export type Message = z.infer<typeof MessageSchema>;
 
 type Props = {
   disabled?: boolean;
@@ -61,6 +46,8 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     onMutate: () => posthog.capture("contact_form_submitted"),
     onError: async (error) => {
       const isHttpError = error instanceof HTTPError;
+      if (isHttpError && error.response.status === 400) return;
+
       posthog.capture("contact_form_api_error", {
         error_message: error.message,
         error_name: error.name,
@@ -80,18 +67,20 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
 
   const form = useForm({
     defaultValues: {
-      to: initialValues.to || "default",
+      to: initialValues.to || DEFAULT_VALUE,
       name: initialValues.name || "",
       email: initialValues.email || "",
       message: initialValues.message || "",
     },
-    onSubmit: ({ value }) => mutateAsync(value),
-    validators: { onSubmit: MessageSchema },
+    validators: {
+      onSubmit: MessageSchema,
+      onSubmitAsync: withServerValidation(mutateAsync),
+    },
     onSubmitInvalid: ({ formApi }) => {
       const fieldErrors = Object.fromEntries(
         Object.entries(formApi.state.fieldMeta)
           .filter(([, meta]) => meta.errors.length > 0)
-          .map(([field, meta]) => [field, meta.errors.map((e) => e.message)]),
+          .map(([field, meta]) => [field, meta.errors.map(getErrorMessage)]),
       );
 
       posthog.capture("contact_form_validation_error", {
@@ -139,13 +128,13 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
           <Select
             className={cn("col-span-2", recipientWasProvided && "hidden")}
             disabled={disableFields}
-            error={field.state.meta.errors[0]?.message}
+            error={getErrorMessage(field.state.meta.errors[0])}
             label="Who would you like to contact?"
             value={field.state.value}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
           >
-            <option value="default" disabled />
+            <option value={DEFAULT_VALUE} disabled />
             {optionArray.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -164,7 +153,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               type="text"
               autoComplete="name"
               className="mb-4"
-              error={field.state.meta.errors[0]?.message}
+              error={getErrorMessage(field.state.meta.errors[0])}
               value={field.state.value}
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
@@ -181,7 +170,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               autoComplete="email"
               spellCheck={false}
               className="mb-4"
-              error={field.state.meta.errors[0]?.message}
+              error={getErrorMessage(field.state.meta.errors[0])}
               value={field.state.value}
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
@@ -218,7 +207,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             disabled={disableFields}
             id={field.name}
             minRows={3}
-            error={field.state.meta.errors[0]?.message}
+            error={getErrorMessage(field.state.meta.errors[0])}
             value={field.state.value}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
@@ -226,17 +215,18 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         )}
       </form.Field>
 
-      {status === "error" && (
-        <ErrorComponent className="col-span-2" error={error}>
-          <div className="text-sm">
-            Contact us{" "}
-            <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
-              by email
-            </Obfuscate>
-            .
-          </div>
-        </ErrorComponent>
-      )}
+      {status === "error" &&
+        !(error instanceof HTTPError && error.response.status === 400) && (
+          <ErrorComponent className="col-span-2" error={error}>
+            <div className="text-sm">
+              Contact us{" "}
+              <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
+                by email
+              </Obfuscate>
+              .
+            </div>
+          </ErrorComponent>
+        )}
 
       <Center className="col-span-2">
         <form.Subscribe selector={(state) => state.isSubmitting}>

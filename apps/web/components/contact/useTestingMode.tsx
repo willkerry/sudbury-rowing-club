@@ -7,7 +7,7 @@ import { useState } from "react";
 import { type ExternalToast, toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { getBrowserClient, OFFICERS_INDEX_NAME } from "@/lib/algolia";
-import type { Message } from "./contactForm";
+import type { Message } from "./Message";
 
 const TESTING_MODE_TOAST_OPTIONS = {
   id: "testing-mode",

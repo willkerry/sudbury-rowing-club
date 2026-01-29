@@ -14,6 +14,7 @@ import { Error as ErrorComponent } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
+import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
 import { kyInstance } from "../get-query-client";
 
@@ -43,6 +44,8 @@ export const BugsClientSide = () => {
     onMutate: () => posthog.capture("bug_report_submitted"),
     onError: async (error) => {
       const isHttpError = error instanceof HTTPError;
+      if (isHttpError && error.response.status === 400) return;
+
       posthog.capture("bug_report_api_error", {
         error_message: error.message,
         error_name: error.name,
@@ -67,14 +70,15 @@ export const BugsClientSide = () => {
       userAgent: getUserAgent() || "Unknown",
       additionalInformation,
     },
-    validators: { onSubmit: BugReportSchema },
-    onSubmit: ({ value }) => mutateAsync(value),
-    canSubmitWhenInvalid: true,
+    validators: {
+      onSubmit: BugReportSchema,
+      onSubmitAsync: withServerValidation(mutateAsync),
+    },
     onSubmitInvalid: ({ formApi }) => {
       const fieldErrors = Object.fromEntries(
         Object.entries(formApi.state.fieldMeta)
           .filter(([, meta]) => meta.errors.length > 0)
-          .map(([field, meta]) => [field, meta.errors.map((e) => e.message)]),
+          .map(([field, meta]) => [field, meta.errors.map(getErrorMessage)]),
       );
 
       posthog.capture("bug_report_validation_error", {
@@ -120,7 +124,7 @@ export const BugsClientSide = () => {
               className="col-span-2 sm:col-span-1"
               id={name}
               label="Your name"
-              error={state.meta.errors[0]?.message}
+              error={getErrorMessage(state.meta.errors[0])}
               type="text"
               value={state.value}
               onBlur={handleBlur}
@@ -136,7 +140,7 @@ export const BugsClientSide = () => {
               className="col-span-2 sm:col-span-1"
               id={name}
               label="Your email"
-              error={state.meta.errors[0]?.message}
+              error={getErrorMessage(state.meta.errors[0])}
               inputMode="email"
               value={state.value}
               onBlur={handleBlur}
@@ -150,7 +154,7 @@ export const BugsClientSide = () => {
             <TextArea
               className="col-span-2"
               disabled={disableFields}
-              error={state.meta.errors[0]?.message}
+              error={getErrorMessage(state.meta.errors[0])}
               id={name}
               minRows={3}
               label="Description"
@@ -204,7 +208,10 @@ export const BugsClientSide = () => {
           )}
         </fieldset>
 
-        {error && <ErrorComponent className="col-span-2" error={error} />}
+        {error &&
+          !(error instanceof HTTPError && error.response.status === 400) && (
+            <ErrorComponent className="col-span-2" error={error} />
+          )}
 
         <Center className="col-span-2">
           <Button

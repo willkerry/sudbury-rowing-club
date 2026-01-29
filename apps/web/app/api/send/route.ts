@@ -2,13 +2,14 @@ import { ContactFormEmail } from "emails/contact-form";
 import DOMPurify from "isomorphic-dompurify";
 import { type NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { z } from "zod";
+import { MessageSchema } from "@/components/contact/Message";
 import { env } from "@/env";
 import { checkForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
 import { trackServerEvent, trackServerException } from "@/lib/server/track";
+import { parseWithFieldErrors, ValidationError } from "@/lib/validation";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
@@ -17,13 +18,6 @@ const formatName = (email: string, name: string) => {
 
   return email;
 };
-
-const RequestSchema = z.object({
-  email: z.email(),
-  name: z.string(),
-  to: z.string(),
-  message: z.string(),
-});
 
 class ResponseError extends Error {
   status: number;
@@ -35,27 +29,14 @@ class ResponseError extends Error {
 }
 
 const validateRequest = async (req: NextRequest) => {
-  try {
-    const request = RequestSchema.parse(await req.json());
+  const request = parseWithFieldErrors(MessageSchema, await req.json());
 
-    console.log("Validating request", request);
-
-    return {
-      fromEmail: request.email,
-      fromName: request.name,
-      toID: request.to,
-      message: request.message,
-    };
-  } catch (error) {
-    console.error(error);
-
-    if (error instanceof z.ZodError) {
-      const errors = error.issues.map((issue) => issue.message);
-      throw new ResponseError(errors.join(", "), 400);
-    }
-
-    throw error;
-  }
+  return {
+    fromEmail: request.email,
+    fromName: request.name,
+    toID: request.to,
+    message: request.message,
+  };
 };
 
 const spamCheck = async (
@@ -149,6 +130,10 @@ export const POST = async (req: NextRequest) => {
       });
     }
   } catch (error) {
+    if (error instanceof ValidationError) {
+      return NextResponse.json(error.errors, { status: 400 });
+    }
+
     if (error instanceof ResponseError) {
       return new NextResponse(error.message, {
         status: error.status || 500,
