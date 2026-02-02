@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "node",
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "include-component-in-tag": true,
+  "changelog-sections": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "perf", "section": "Performance" },
+    { "type": "refactor", "section": "Refactoring" },
+    { "type": "deps", "section": "Dependencies" },
+    { "type": "chore", "section": "Miscellaneous", "hidden": true },
+    { "type": "docs", "section": "Documentation", "hidden": true },
+    { "type": "test", "section": "Tests", "hidden": true },
+    { "type": "ci", "section": "CI", "hidden": true }
+  ],
+  "packages": {
+    "apps/web": { "component": "web" },
+    "apps/cms": { "component": "cms" },
+    "apps/results": { "component": "results" },
+    "packages/api": { "component": "api" },
+    "packages/blue": { "component": "blue" },
+    "packages/helpers": { "component": "helpers" },
+    "packages/ical-builder": { "component": "ical-builder" },
+    "packages/images": { "component": "images" },
+    "packages/static": { "component": "static" }
+  },
+  "plugins": ["node-workspace"]
+}

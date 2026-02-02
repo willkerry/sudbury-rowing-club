@@ -1,0 +1,11 @@
+{
+  "apps/web": "1.0.0",
+  "apps/cms": "2.0.0",
+  "apps/results": "1.0.1",
+  "packages/api": "0.0.0",
+  "packages/blue": "1.0.0",
+  "packages/helpers": "1.0.0",
+  "packages/ical-builder": "0.0.0",
+  "packages/images": "1.0.0",
+  "packages/static": "1.0.0"
+}
