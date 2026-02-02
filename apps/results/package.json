@@ -3,7 +3,8 @@
   "version": "1.0.1",
   "scripts": {
     "dev": "tsx watch --include \"./data/**/*\" src/build.ts & serve ./dist",
-    "build": "tsx src/build.ts"
+    "build": "tsx src/build.ts",
+    "deploy": "wrangler deploy"
   },
   "type": "module",
   "browserslist": "> 0.5%, last 2 versions, not dead",
@@ -26,6 +27,7 @@
     "serve": "^14.2.5",
     "tidy-html5": "^0.1.1",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.54.0"
   }
 }

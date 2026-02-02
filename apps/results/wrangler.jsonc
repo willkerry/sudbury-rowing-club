@@ -1,14 +1,14 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "sudbury-sanity-cms",
+  "name": "sudbury-regatta-results",
   "compatibility_date": "2025-12-12",
   "assets": {
     "directory": "./dist/",
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "404-page"
   },
   "env": {
     "staging": {
-      "name": "sudbury-sanity-cms-staging"
+      "name": "sudbury-regatta-results-staging"
     }
   }
 }
