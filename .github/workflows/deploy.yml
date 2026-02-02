@@ -50,7 +50,7 @@ jobs:
       - name: Build all packages and apps
         run: pnpm build
         env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TURBO_TEAM: ${{ vars.TURBO_TEAM }}
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
@@ -102,7 +102,7 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
       - name: Deploy and alias to staging
@@ -193,7 +193,7 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
       - name: Deploy to production

@@ -34,12 +34,12 @@ jobs:
 
       - run: pnpm type-check
         env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
       - run: pnpm test
         env:
-          TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           TURBO_TEAM: ${{ vars.TURBO_TEAM }}
 
       - run: pnpm check

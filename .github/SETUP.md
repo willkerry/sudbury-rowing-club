@@ -8,12 +8,11 @@ Settings > Secrets and variables > Actions > **Secrets**
 
 | Secret | Source | Notes |
 |---|---|---|
-| `VERCEL_TOKEN` | Vercel Dashboard > Settings > Tokens > Create | Full account scope |
+| `VERCEL_TOKEN` | Vercel Dashboard > Settings > Tokens > Create | Full account scope. Also used as `VERCEL_TOKEN` for remote cache. |
 | `VERCEL_ORG_ID` | Vercel Dashboard > Settings > General > ID | Current: `team_bKRQFvACTWs20HMo8eS0eJLN` |
 | `VERCEL_PROJECT_ID` | Vercel Dashboard > Project > Settings > General > ID | Current: `prj_aSi6kK1McEFWy6AW6gGJyMSIfC5i` |
 | `CLOUDFLARE_API_TOKEN` | CF Dashboard > My Profile > API Tokens > Create | Needs "Workers Scripts: Edit" permission |
 | `CLOUDFLARE_ACCOUNT_ID` | CF Dashboard > any zone > Overview sidebar | |
-| `TURBO_TOKEN` | Vercel Dashboard > Settings > Artifacts > Manage | Or `npx turbo login && npx turbo link` |
 | `SANITY_AUTH_TOKEN` | Sanity > Project > API > Tokens | Read token for GROQ queries at build time |
 | `ALGOLIA_API_KEY` | Algolia Dashboard > API Keys | Search/indexing key |
 | `RESEND_API_KEY` | Resend Dashboard > API Keys | For contact form emails |
@@ -60,17 +59,17 @@ npx turbo link
 pnpm build  # should show "Remote caching enabled"
 ```
 
-The `TURBO_TOKEN` and `TURBO_TEAM` values from this setup go into the GitHub secrets/variables above.
+The `VERCEL_TOKEN` and `TURBO_TEAM` values from this setup go into the GitHub secrets/variables above.
 
 ## What Uses What
 
 | Workflow | Secrets | Variables |
 |---|---|---|
-| **test.yml** | `TURBO_TOKEN` | `TURBO_TEAM` |
-| **deploy.yml** (build) | `TURBO_TOKEN`, `SANITY_AUTH_TOKEN`, `ALGOLIA_API_KEY`, `RESEND_API_KEY`, `REDIRECT_SECRET` | `TURBO_TEAM`, `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `APP_URL`, `BUG_RECIPIENT_EMAIL` |
-| **deploy.yml** (web staging/prod) | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `TURBO_TOKEN` | `TURBO_TEAM` |
+| **test.yml** | `VERCEL_TOKEN` | `TURBO_TEAM` |
+| **deploy.yml** (build) | `VERCEL_TOKEN`, `SANITY_AUTH_TOKEN`, `ALGOLIA_API_KEY`, `RESEND_API_KEY`, `REDIRECT_SECRET` | `TURBO_TEAM`, `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`, `APP_URL`, `BUG_RECIPIENT_EMAIL` |
+| **deploy.yml** (web staging/prod) | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | `TURBO_TEAM` |
 | **deploy.yml** (cms/results) | `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` | — |
-| **preview.yml** | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `TURBO_TOKEN` | `TURBO_TEAM` |
+| **preview.yml** | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | `TURBO_TEAM` |
 
 ### release-please
 
