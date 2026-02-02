@@ -51,14 +51,12 @@ jobs:
         run: pnpm build
         env:
           TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           REDIRECT_SECRET: ${{ secrets.REDIRECT_SECRET }}
           NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ vars.NEXT_PUBLIC_SANITY_PROJECT_ID }}
           NEXT_PUBLIC_SANITY_DATASET: ${{ vars.NEXT_PUBLIC_SANITY_DATASET }}
-          APP_URL: ${{ vars.APP_URL }}
           BUG_RECIPIENT_EMAIL: ${{ vars.BUG_RECIPIENT_EMAIL }}
 
       - uses: actions/upload-artifact@v4
@@ -103,7 +101,7 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+
 
       - name: Deploy and alias to staging
         run: |
@@ -194,7 +192,7 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+
 
       - name: Deploy to production
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
