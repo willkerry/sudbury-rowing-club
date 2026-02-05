@@ -1,14 +1,17 @@
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
+import { httpBatchLink } from "@trpc/client";
 import dynamic from "next/dynamic";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { useState } from "react";
 import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/env";
 import { HOSTNAME } from "@/lib/constants";
+import { trpc } from "@/lib/trpc/client";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
@@ -30,6 +33,14 @@ const ReactQueryDevtools = dynamic(
   { ssr: false },
 );
 
+function getUrl() {
+  if (typeof window !== "undefined") return "/api/trpc";
+  if (process.env.VERCEL_URL)
+    return `https://${process.env.VERCEL_URL}/api/trpc`;
+
+  return "http://localhost:4321/api/trpc";
+}
+
 const DialogInitializer = () => {
   useInitializeDialog();
 
@@ -39,23 +50,35 @@ const DialogInitializer = () => {
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
+  const [trpcClient] = useState(() =>
+    trpc.createClient({
+      links: [
+        httpBatchLink({
+          url: getUrl(),
+        }),
+      ],
+    }),
+  );
+
   return (
     <PostHogProvider client={posthog}>
-      <QueryClientProvider client={queryClient}>
-        <NuqsAdapter>
-          <DialogProvider>
-            {children}
+      <trpc.Provider client={trpcClient} queryClient={queryClient}>
+        <QueryClientProvider client={queryClient}>
+          <NuqsAdapter>
+            <DialogProvider>
+              {children}
 
-            {env.NODE_ENV === "development" && (
-              <ReactQueryDevtools initialIsOpen={false} />
-            )}
+              {env.NODE_ENV === "development" && (
+                <ReactQueryDevtools initialIsOpen={false} />
+              )}
 
-            <DialogInitializer />
-          </DialogProvider>
+              <DialogInitializer />
+            </DialogProvider>
 
-          <Toaster />
-        </NuqsAdapter>
-      </QueryClientProvider>
+            <Toaster />
+          </NuqsAdapter>
+        </QueryClientProvider>
+      </trpc.Provider>
     </PostHogProvider>
   );
 }
