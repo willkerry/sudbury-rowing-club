@@ -7,7 +7,7 @@ import { Resend } from "resend";
 import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import { MessageSchema } from "@/components/contact/Message";
 import { env } from "@/env";
-import { checkForSpam } from "@/lib/akismet";
+import { checkHeadersForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
 import { trackServerEvent } from "@/lib/server/track";
@@ -33,13 +33,9 @@ export const commsRouter = router({
   send: rateLimitedProcedure
     .input(MessageSchema)
     .mutation(async ({ input, ctx }) => {
-      const [spamError, isSpam] = await tryit(checkForSpam)(
-        ctx.headers.get("x-forwarded-for") ?? "",
-        ctx.headers.get("user-agent") ?? "",
-        ctx.headers.get("referer") ?? "",
-        input.name,
-        input.email,
-        input.message,
+      const [spamError, isSpam] = await tryit(checkHeadersForSpam)(
+        ctx.headers,
+        input,
       );
 
       if (spamError) {
@@ -112,13 +108,12 @@ export const commsRouter = router({
         });
       }
 
-      const [spamError, isSpam] = await tryit(checkForSpam)(
-        ctx.headers.get("x-forwarded-for") ?? "",
-        ctx.headers.get("user-agent") ?? "",
-        ctx.headers.get("referer") ?? "",
-        input.name,
-        input.email,
-        input.description,
+      const [spamError, isSpam] = await tryit(checkHeadersForSpam)(
+        ctx.headers,
+        {
+          ...input,
+          message: input.description,
+        },
       );
 
       if (spamError) {

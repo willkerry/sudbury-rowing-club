@@ -34,3 +34,16 @@ export const checkForSpam = (
     .text()
     .then((r) => r === "true");
 };
+
+export const checkHeadersForSpam = async (
+  headers: Headers,
+  { name, email, message }: { name: string; email: string; message: string },
+) =>
+  checkForSpam(
+    headers.get("x-forwarded-for") ?? "",
+    headers.get("user-agent") ?? "",
+    headers.get("referer") ?? "",
+    name,
+    email,
+    message,
+  );
