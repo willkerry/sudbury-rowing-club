@@ -3,11 +3,9 @@
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
-import { useMutation } from "@tanstack/react-query";
-import { HTTPError } from "ky";
+import { TRPCClientError } from "@trpc/client";
 import { usePostHog } from "posthog-js/react";
 import { shake } from "radashi";
-import { kyInstance } from "@/app/get-query-client";
 import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
 import { Success } from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
@@ -19,6 +17,7 @@ import { TextArea } from "@/components/ui/textarea";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
 import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
+import { trpc } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 import { FromAndTo } from "./fromAndTo";
 import { DEFAULT_VALUE, type Message, MessageSchema } from "./Message";
@@ -39,25 +38,18 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
 
   const posthog = usePostHog();
 
-  const { mutateAsync, status, error, data } = useMutation({
-    mutationKey: ["contact-form"],
-    mutationFn: (values: Message) =>
-      kyInstance.post<string>("/api/send", { json: values }),
+  const { mutateAsync, status, error, data } = trpc.comms.send.useMutation({
     onMutate: () => posthog.capture("contact_form_submitted"),
-    onError: async (error) => {
-      const isHttpError = error instanceof HTTPError;
-      if (isHttpError && error.response.status === 400) return;
+    onError: (error) => {
+      if (error instanceof TRPCClientError && error.data?.zodError) return;
 
       posthog.capture("contact_form_api_error", {
         error_message: error.message,
         error_name: error.name,
-        http_status: isHttpError ? error.response.status : undefined,
-        http_status_text: isHttpError ? error.response.statusText : undefined,
-        response_body: isHttpError ? await error.response.text() : undefined,
       });
     },
     onSuccess: (data) =>
-      posthog.capture("contact_form_success", { message_id: data.text() }),
+      posthog.capture("contact_form_success", { message_id: data.messageId }),
   });
 
   const optionArray = contacts.map((contact) => ({
@@ -107,7 +99,8 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   useTrackFormStarted("contact_form", hasTouchedFields);
 
   if (disabled) return <DisabledOverlay form={<div />} />;
-  if (data && status === "success") return <Success response={data} />;
+  if (data && status === "success")
+    return <Success messageId={data.messageId} />;
 
   const disableFields =
     form.state.isSubmitting ||
@@ -216,7 +209,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       </form.Field>
 
       {status === "error" &&
-        !(error instanceof HTTPError && error.response.status === 400) && (
+        !(error instanceof TRPCClientError && error.data?.zodError) && (
           <ErrorComponent className="col-span-2" error={error}>
             <div className="text-sm">
               Contact us{" "}
