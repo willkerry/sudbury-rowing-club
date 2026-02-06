@@ -2,13 +2,12 @@
 
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { useForm } from "@tanstack/react-form";
-import { useMutation } from "@tanstack/react-query";
-import { HTTPError } from "ky";
+import { TRPCClientError } from "@trpc/client";
 import { useQueryState } from "nuqs";
 import { usePostHog } from "posthog-js/react";
-import { type BugReport, BugReportSchema } from "@/app/api/bug/BugReportSchema";
-import { Success } from "@/components/contact/views/success";
+import { BugReportSchema } from "@/app/api/bug/BugReportSchema";
 import Center from "@/components/stour/center";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
@@ -16,7 +15,7 @@ import { TextArea } from "@/components/ui/textarea";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
 import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
-import { kyInstance } from "../get-query-client";
+import { trpc } from "@/lib/trpc/client";
 
 const getUserAgent = () => {
   if (typeof window === "undefined") return null;
@@ -37,25 +36,17 @@ export const BugsClientSide = () => {
 
   const posthog = usePostHog();
 
-  const { mutateAsync, error, data, status } = useMutation({
-    mutationKey: ["bug-report"],
-    mutationFn: (values: BugReport) =>
-      kyInstance.post("/api/bug", { json: values }),
+  const { mutateAsync, error, data, status } = trpc.comms.bug.useMutation({
     onMutate: () => posthog.capture("bug_report_submitted"),
-    onError: async (error) => {
-      const isHttpError = error instanceof HTTPError;
-      if (isHttpError && error.response.status === 400) return;
+    onError: (error) => {
+      if (error instanceof TRPCClientError && error.data?.zodError) return;
 
       posthog.capture("bug_report_api_error", {
         error_message: error.message,
         error_name: error.name,
-        http_status: isHttpError ? error.response.status : undefined,
-        http_status_text: isHttpError ? error.response.statusText : undefined,
-        response_body: isHttpError ? await error.response.text() : undefined,
       });
     },
-    onSuccess: (data) =>
-      posthog.capture("bug_report_success", { response: data.text() }),
+    onSuccess: () => posthog.capture("bug_report_success"),
   });
 
   const additionalInformation = message
@@ -96,7 +87,16 @@ export const BugsClientSide = () => {
 
   useTrackFormStarted("bug_report", hasTouchedFields);
 
-  if (data && status === "success") return <Success response={data} />;
+  if (data && status === "success") {
+    return (
+      <Alert variant="success">
+        <AlertTitle>Bug report sent</AlertTitle>
+        <AlertDescription>
+          Thank you for your report. We will investigate as soon as possible.
+        </AlertDescription>
+      </Alert>
+    );
+  }
 
   const disableFields = form.state.isSubmitting || form.state.isSubmitted;
 
@@ -209,7 +209,7 @@ export const BugsClientSide = () => {
         </fieldset>
 
         {error &&
-          !(error instanceof HTTPError && error.response.status === 400) && (
+          !(error instanceof TRPCClientError && error.data?.zodError) && (
             <ErrorComponent className="col-span-2" error={error} />
           )}
 
