@@ -1,5 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { cache } from "react";
+import superjson from "superjson";
 import { ratelimiter } from "@/lib/rate-limiter";
 
 export const createTRPCContext = cache((opts: { headers: Headers }) => {
@@ -8,7 +9,9 @@ export const createTRPCContext = cache((opts: { headers: Headers }) => {
 
 const t = initTRPC
   .context<Awaited<ReturnType<typeof createTRPCContext>>>()
-  .create();
+  .create({
+    transformer: superjson,
+  });
 
 export const createCallerFactory = t.createCallerFactory;
 export const router = t.router;

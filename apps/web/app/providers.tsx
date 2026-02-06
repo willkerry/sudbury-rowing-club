@@ -7,6 +7,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { useState } from "react";
+import superjson from "superjson";
 import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/env";
@@ -55,6 +56,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       links: [
         httpBatchLink({
           url: getUrl(),
+          transformer: superjson,
         }),
       ],
     }),

@@ -45,7 +45,6 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
 
       posthog.capture("contact_form_api_error", {
         error_message: error.message,
-        error_name: error.name,
       });
     },
     onSuccess: (data) =>

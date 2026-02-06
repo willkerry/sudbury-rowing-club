@@ -43,7 +43,6 @@ export const BugsClientSide = () => {
 
       posthog.capture("bug_report_api_error", {
         error_message: error.message,
-        error_name: error.name,
       });
     },
     onSuccess: () => posthog.capture("bug_report_success"),

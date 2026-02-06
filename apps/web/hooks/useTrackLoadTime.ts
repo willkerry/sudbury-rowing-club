@@ -11,7 +11,7 @@ type TrackLoadTimeOptions = {
   /** Additional properties to include with the success event */
   successProperties?: Record<string, unknown>;
   /** The error object (if status is "error") */
-  error?: Error | null;
+  error?: { message: string } | null;
 };
 
 /**
