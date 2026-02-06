@@ -1,9 +1,8 @@
 import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
-import { HTTPError } from "ky";
+import ky, { HTTPError } from "ky";
 import { sift } from "radashi";
 import { z } from "zod";
-import { kyInstance } from "@/app/get-query-client";
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import type { SafetyComponentProps } from "@/components/safety/safety-component";
 import { EAStationResponseSchema } from "@/types/ea-station-respose";
@@ -79,9 +78,8 @@ const fetchEAWarning = async (): Promise<
       ok: true,
       data: z
         .object({ items: z.array(EAWarningSchema) })
-        .parse(
-          await kyInstance.get(getEaWarningUrl(), { timeout: 5000 }).json(),
-        ).items[0],
+        .parse(await ky.get(getEaWarningUrl(), { timeout: 5000 }).json())
+        .items[0],
     };
   } catch (error) {
     return {
@@ -106,8 +104,7 @@ const fetchEAStation = async (): Promise<
       ok: true,
       data: z
         .object({ items: EAStationResponseSchema })
-        .parse(await kyInstance.get(STATION_URL, { timeout: 5000 }).json())
-        .items,
+        .parse(await ky.get(STATION_URL, { timeout: 5000 }).json()).items,
     };
   } catch (error) {
     return {

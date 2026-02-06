@@ -1,4 +1,4 @@
-import { kyInstance } from "@/app/get-query-client";
+import ky from "ky";
 import { BASE_URL } from "./constants";
 
 const API_KEY = "6c80e09f5c4d";
@@ -24,7 +24,7 @@ export const checkForSpam = (
   formData.append("comment_content", commentContent);
   formData.append("blog_lang", "en_gb");
 
-  return kyInstance
+  return ky
     .post("https://rest.akismet.com/1.1/comment-check", {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
