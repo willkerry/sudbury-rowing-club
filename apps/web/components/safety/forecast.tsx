@@ -1,10 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import { TriangleAlertIcon } from "lucide-react";
 import type { ComponentProps } from "react";
-import { kyInstance } from "@/app/get-query-client";
 import { Loading } from "@/components/stour/loading";
 import { DateFormatter } from "@/components/utils/date-formatter";
-import { type Forecast, getMetOfficeURL } from "@/lib/get-weather-forecast";
+import { getMetOfficeURL } from "@/lib/get-weather-forecast";
+import { trpc } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 
 const getExtremeTemperature = (
@@ -51,10 +50,7 @@ const TemperatureRange = ({
 };
 
 export const ForecastComponent = () => {
-  const { data: forecast, status } = useQuery<Forecast[]>({
-    queryKey: ["forecast"],
-    queryFn: () => kyInstance.get("/api/forecast").json(),
-  });
+  const { data: forecast, status } = trpc.safety.forecast.useQuery();
 
   if (status === "error" || (status === "success" && !forecast?.length))
     return null;
@@ -67,7 +63,7 @@ export const ForecastComponent = () => {
             <a
               key={String(date)}
               className="group text-center leading-none"
-              href={getMetOfficeURL(date)}
+              href={getMetOfficeURL(new Date(date))}
               target="_blank"
               rel="noopener noreferrer"
             >
