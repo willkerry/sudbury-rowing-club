@@ -1,13 +1,13 @@
 "use client";
 
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
-import { type QueryStatus, useQuery } from "@tanstack/react-query";
-import { kyInstance } from "@/app/get-query-client";
+import type { QueryStatus } from "@tanstack/react-query";
 import { EnvironmentAgency, MetOffice } from "@/components/icons";
 import { Label } from "@/components/stour/label";
 import { Error as ErrorComponent } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
+import { trpc } from "@/lib/trpc/client";
 import type { Severity } from "@/types/severity";
 import { Loading } from "../stour/loading";
 import { ForecastComponent } from "./forecast";
@@ -82,10 +82,7 @@ const SafetyDescription = ({
 };
 
 export const SafetyComponent = () => {
-  const { data, status, error } = useQuery({
-    queryKey: ["safety-status"],
-    queryFn: () => kyInstance.get<SafetyComponentProps>("/api/safety").json(),
-  });
+  const { data, status, error } = trpc.safety.status.useQuery();
 
   useTrackLoadTime(status, {
     successEvent: "safety_api_response",
