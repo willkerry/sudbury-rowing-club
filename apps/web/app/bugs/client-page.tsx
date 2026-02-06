@@ -5,7 +5,7 @@ import { useForm } from "@tanstack/react-form";
 import { TRPCClientError } from "@trpc/client";
 import { useQueryState } from "nuqs";
 import { usePostHog } from "posthog-js/react";
-import { BugReportSchema } from "@/app/api/bug/BugReportSchema";
+import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import Center from "@/components/stour/center";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";

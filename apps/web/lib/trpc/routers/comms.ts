@@ -4,7 +4,7 @@ import { ContactFormEmail } from "emails/contact-form";
 import DOMPurify from "isomorphic-dompurify";
 import { tryit } from "radashi";
 import { Resend } from "resend";
-import { BugReportSchema } from "@/app/api/bug/BugReportSchema";
+import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import { MessageSchema } from "@/components/contact/Message";
 import { env } from "@/env";
 import { checkForSpam } from "@/lib/akismet";
@@ -33,24 +33,21 @@ export const commsRouter = router({
   send: rateLimitedProcedure
     .input(MessageSchema)
     .mutation(async ({ input, ctx }) => {
-      const isSpam = await checkForSpam(
+      const [spamError, isSpam] = await tryit(checkForSpam)(
         ctx.headers.get("x-forwarded-for") ?? "",
         ctx.headers.get("user-agent") ?? "",
         ctx.headers.get("referer") ?? "",
         input.name,
         input.email,
         input.message,
-      ).catch((error) => {
-        trackServerEvent("contact_form_external_api_failure", {
-          service: "akismet",
-          error_message: error instanceof Error ? error.message : String(error),
-        });
+      );
 
+      if (spamError) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
           message: "Could not connect to spam checking service.",
         });
-      });
+      }
 
       if (isSpam) {
         throw new TRPCError({
@@ -60,12 +57,12 @@ export const commsRouter = router({
         });
       }
 
-      const [error, officer] = await tryit(getOfficer)(input.to);
+      const [officerError, officer] = await tryit(getOfficer)(input.to);
 
-      if (error) {
+      if (officerError) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: error.message,
+          message: officerError.message,
         });
       }
 
@@ -115,7 +112,7 @@ export const commsRouter = router({
         });
       }
 
-      const isSpam = await checkForSpam(
+      const [spamError, isSpam] = await tryit(checkForSpam)(
         ctx.headers.get("x-forwarded-for") ?? "",
         ctx.headers.get("user-agent") ?? "",
         ctx.headers.get("referer") ?? "",
@@ -123,6 +120,13 @@ export const commsRouter = router({
         input.email,
         input.description,
       );
+
+      if (spamError) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Could not connect to spam checking service.",
+        });
+      }
 
       if (isSpam) {
         throw new TRPCError({
