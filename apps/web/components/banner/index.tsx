@@ -6,17 +6,16 @@ import {
   useMergedRef,
   useWindowEvent,
 } from "@mantine/hooks";
-import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import { Collapsible } from "radix-ui";
 import { useEffect, useRef, useState } from "react";
-import type { Notice } from "@/app/api/notice/route";
-import { kyInstance } from "@/app/get-query-client";
 import { Container } from "@/components/layouts/container";
 import { Text } from "@/components/stour/text";
 import { DateFormatter } from "@/components/utils/date-formatter";
+import { trpc } from "@/lib/trpc/client";
+import type { Notice } from "@/lib/trpc/routers/content";
 
 const LINK_REGEX = /^(https?|mailto):\/\//;
 const PATH_REGEX = /^\/[a-z0-9-]+/;
@@ -91,10 +90,7 @@ const ButtonOrAnchor = (
 };
 
 export const Banner = () => {
-  const { data, error } = useQuery({
-    queryKey: ["notice"],
-    queryFn: ({ signal }) =>
-      kyInstance.get<Notice>("/api/notice", { signal }).json(),
+  const { data, error } = trpc.content.notice.useQuery(undefined, {
     staleTime: 5 * 60 * 1000,
   });
 
