@@ -10,7 +10,7 @@ import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
 import { Success } from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
@@ -209,7 +209,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
 
       {status === "error" &&
         !(error instanceof TRPCClientError && error.data?.zodError) && (
-          <ErrorComponent className="col-span-2" error={error}>
+          <ErrorMessage className="col-span-2" error={error}>
             <div className="text-sm">
               Contact us{" "}
               <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
@@ -217,7 +217,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               </Obfuscate>
               .
             </div>
-          </ErrorComponent>
+          </ErrorMessage>
         )}
 
       <Center className="col-span-2">

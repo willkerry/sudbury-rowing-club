@@ -4,7 +4,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
 import type { QueryStatus } from "@tanstack/react-query";
 import { EnvironmentAgency, MetOffice } from "@/components/icons";
 import { Label } from "@/components/stour/label";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
 import { trpc } from "@/lib/trpc/client";
@@ -141,10 +141,10 @@ export const SafetyComponent = () => {
       {(Number(data?.errors?.length) > 0 || error) && (
         <div className="p-3 sm:p-4">
           {data?.errors?.map((error) => (
-            <ErrorComponent key={error} error={{ message: error }} />
+            <ErrorMessage key={error} error={{ message: error }} />
           ))}
 
-          {error && <ErrorComponent error={{ message: error.message }} />}
+          {error && <ErrorMessage error={{ message: error.message }} />}
         </div>
       )}
 

@@ -9,7 +9,7 @@ import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import Center from "@/components/stour/center";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
@@ -209,7 +209,7 @@ export const BugsClientSide = () => {
 
         {error &&
           !(error instanceof TRPCClientError && error.data?.zodError) && (
-            <ErrorComponent className="col-span-2" error={error} />
+            <ErrorMessage className="col-span-2" error={error} />
           )}
 
         <Center className="col-span-2">

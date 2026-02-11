@@ -16,8 +16,7 @@ type ErrorProps = React.HTMLAttributes<HTMLDivElement> & {
       };
 };
 
-// biome-ignore lint/suspicious/noShadowRestrictedNames: TODO: fix
-export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
+export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorProps>(
   ({ children, error, label, className, ...props }, ref) => (
     <div
       ref={ref}
@@ -54,7 +53,7 @@ export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
     </div>
   ),
 );
-Error.displayName = "Error";
+ErrorMessage.displayName = "ErrorMessage";
 
 export const ErrorAlert = React.forwardRef<HTMLDivElement, ErrorProps>(
   ({ error, label, className, ...props }, ref) => (
@@ -64,7 +63,7 @@ export const ErrorAlert = React.forwardRef<HTMLDivElement, ErrorProps>(
       className={cn("font-medium text-red-600 text-sm", className)}
       {...props}
     >
-      <Error error={error} {...props} />
+      <ErrorMessage error={error} {...props} />
     </Alert>
   ),
 );

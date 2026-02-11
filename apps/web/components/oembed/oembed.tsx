@@ -1,7 +1,7 @@
 import { unfurl } from "unfurl.js";
 import { Link } from "@/components/stour/link";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { Iframe } from "./iframe";
 
 const TWITTER_HANDLE_REGEX = /https:\/\/x.com\/([^/]+)/;
@@ -126,6 +126,6 @@ export const OEmbed = async ({ url }: { url: string }) => {
 
     return <Link href={url}>{data.title}</Link>;
   } catch (error) {
-    if (error instanceof Error) return <ErrorComponent error={error} />;
+    if (error instanceof Error) return <ErrorMessage error={error} />;
   }
 };

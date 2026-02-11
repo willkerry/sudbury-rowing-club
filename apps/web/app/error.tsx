@@ -10,7 +10,7 @@ import { Container } from "@/components/layouts/container";
 import { SiteSearch } from "@/components/search";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 
 export default function SafetyError({ error }: { error: Error }) {
   const posthog = usePostHog();
@@ -42,11 +42,11 @@ export default function SafetyError({ error }: { error: Error }) {
         </div>
         <div className="h-12" />
 
-        <ErrorComponent error={error} label={error.name}>
+        <ErrorMessage error={error} label={error.name}>
           <pre className="rounded-sm bg-red-50 p-2 text-red-600 text-xs">
             <code>{error.stack}</code>
           </pre>
-        </ErrorComponent>
+        </ErrorMessage>
       </Container>
     </>
   );

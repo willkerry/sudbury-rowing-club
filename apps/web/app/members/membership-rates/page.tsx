@@ -1,6 +1,6 @@
 import { TagIcon } from "lucide-react";
 import TextPage from "@/components/layouts/text-page";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 
@@ -26,7 +26,7 @@ const MembershipRates = async () => {
       </p>
 
       {rates.status === "error" && (
-        <ErrorComponent error={{ message: rates.message }} />
+        <ErrorMessage error={{ message: rates.message }} />
       )}
 
       {rates.status === "success" && (
