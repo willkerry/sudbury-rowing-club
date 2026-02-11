@@ -20,15 +20,13 @@ const fetchArticlesAndUpdateSearchIndex = async () => {
     const sanityTotal = await fetchArticleCount();
 
     // Then fetch the number of posts on Algolia
-    const algoliaTotal = await getServerClient()
-      .searchSingleIndex({
-        indexName: SEARCH_INDEX_NAME,
-        searchParams: {
-          query: "",
-          hitsPerPage: 0,
-        },
-      })
-      .then((r) => r.nbHits);
+    const { nbHits: algoliaTotal } = await getServerClient().searchSingleIndex({
+      indexName: SEARCH_INDEX_NAME,
+      searchParams: {
+        query: "",
+        hitsPerPage: 0,
+      },
+    });
 
     // If the number of posts on Sanity does not equal the number of posts on
     // Algolia, reindex. (Obviously, this is not fault-proof, but it should ensure

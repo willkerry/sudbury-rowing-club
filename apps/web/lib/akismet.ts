@@ -3,7 +3,7 @@ import { BASE_URL } from "./constants";
 
 const API_KEY = "6c80e09f5c4d";
 
-export const checkForSpam = (
+export const checkForSpam = async (
   userIp: string,
   userAgent: string,
   referrer: string,
@@ -24,15 +24,16 @@ export const checkForSpam = (
   formData.append("comment_content", commentContent);
   formData.append("blog_lang", "en_gb");
 
-  return ky
+  const response = await ky
     .post("https://rest.akismet.com/1.1/comment-check", {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: formData,
     })
-    .text()
-    .then((r) => r === "true");
+    .text();
+
+  return response === "true";
 };
 
 export const checkHeadersForSpam = async (
