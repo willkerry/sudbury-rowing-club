@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "sudbury-sanity-cms",
-  "compatibility_date": "2025-12-12",
+  "compatibility_date": "2026-02-11",
   "assets": {
     "directory": "./dist/",
     "not_found_handling": "single-page-application"
