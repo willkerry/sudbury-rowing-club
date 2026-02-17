@@ -22,7 +22,6 @@ export const PostPreviewImage = ({
       placeholder="blur"
       blurDataURL={lqip}
       fill
-      quality={60}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 218px, 316px"
       className="z-0 bg-linear-to-r from-gray-200 to-white object-cover"
     />
