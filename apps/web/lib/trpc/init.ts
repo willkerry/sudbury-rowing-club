@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
+import { parse, stringify } from "devalue";
 import { cache } from "react";
-import superjson from "superjson";
 import { ratelimiter } from "@/lib/rate-limiter";
 
 export const createTRPCContext = cache((opts: { headers: Headers }) => {
@@ -10,7 +10,10 @@ export const createTRPCContext = cache((opts: { headers: Headers }) => {
 const t = initTRPC
   .context<Awaited<ReturnType<typeof createTRPCContext>>>()
   .create({
-    transformer: superjson,
+    transformer: {
+      serialize: (object: unknown) => stringify(object),
+      deserialize: (object: string) => parse(object),
+    },
   });
 
 export const createCallerFactory = t.createCallerFactory;
