@@ -12,19 +12,22 @@ import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/env";
 import { HOSTNAME } from "@/lib/constants";
+import { WhenDev, whenEnv } from "@/lib/environment";
 import { trpc } from "@/lib/trpc/client";
 import { getQueryClient } from "./get-query-client";
 
-if (typeof window !== "undefined") {
-  if (env.NODE_ENV === "production") {
+whenEnv({
+  ifPreview: () => undefined,
+  ifProd: () => {
     posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
       api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
       person_profiles: "identified_only",
       persistence: "localStorage",
       __add_tracing_headers: [HOSTNAME],
     });
-  }
-}
+  },
+  ifDev: () => undefined,
+});
 
 const ReactQueryDevtools = dynamic(
   () =>
@@ -70,9 +73,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             <DialogProvider>
               {children}
 
-              {env.NODE_ENV === "development" && (
+              <WhenDev>
                 <ReactQueryDevtools initialIsOpen={false} />
-              )}
+              </WhenDev>
 
               <DialogInitializer />
             </DialogProvider>

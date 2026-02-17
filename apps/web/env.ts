@@ -11,6 +11,7 @@ export const env = createEnv({
   shared: {
     APP_URL: z.string().optional(),
     NODE_ENV: z.enum(["development", "production"]),
+    VERCEL_ENV: z.enum(["development", "preview", "production"]).optional(),
   },
   client: {
     NEXT_PUBLIC_ALGOLIA_APP_ID: z.string(),
@@ -40,5 +41,6 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
     NODE_ENV: process.env.NODE_ENV,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    VERCEL_ENV: process.env.VERCEL_ENV,
   },
 });

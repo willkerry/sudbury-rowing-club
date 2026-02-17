@@ -1,22 +1,24 @@
 import type { Instrumentation } from "next";
-import type { PostHog } from "posthog-node";
-import { env } from "@/env";
+import { whenEnv } from "@/lib/environment";
 
 export const register = () => {};
 
 export const onRequestError: Instrumentation.onRequestError = async (
   error,
   request,
-) => {
-  if (env.NODE_ENV === "production") {
-    const { getPostHogServer } = require("./app/posthog-server");
-    const posthog: PostHog = await getPostHogServer();
+) =>
+  whenEnv({
+    ifPreview: () => undefined,
+    ifProd: async () => {
+      const { getPostHogServer } = await import("./posthog-server");
+      const posthog = await getPostHogServer();
 
-    const sessionId = request.headers["x-posthog-session-id"];
-    const distinctId = request.headers["x-posthog-distinct-id"];
+      const sessionId = request.headers["x-posthog-session-id"];
+      const distinctId = request.headers["x-posthog-distinct-id"];
 
-    posthog.captureException(error, distinctId as string | undefined, {
-      $session_id: sessionId,
-    });
-  }
-};
+      posthog.captureException(error, distinctId as string | undefined, {
+        $session_id: sessionId,
+      });
+    },
+    ifDev: () => undefined,
+  });

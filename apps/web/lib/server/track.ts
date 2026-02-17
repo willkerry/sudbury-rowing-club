@@ -1,5 +1,5 @@
 import { getPostHogServer } from "@/app/posthog-server";
-import { env } from "@/env";
+import { whenEnv } from "../environment";
 
 /**
  * Captures a server-side PostHog event in production only.
@@ -8,25 +8,32 @@ import { env } from "@/env";
 export const trackServerEvent = (
   event: string,
   properties?: Record<string, unknown>,
-) => {
-  if (env.NODE_ENV !== "production") return;
+) =>
+  whenEnv({
+    ifPreview: () => undefined,
+    ifProd: () => {
+      const posthog = getPostHogServer();
 
-  const posthog = getPostHogServer();
-
-  posthog.capture({
-    distinctId: "server",
-    event,
-    properties,
+      posthog.capture({
+        distinctId: "server",
+        event,
+        properties,
+      });
+    },
+    ifDev: () => undefined,
   });
-};
 
 /**
  * Captures a server-side exception in production only.
  */
 export const trackServerException = (error: unknown) => {
-  if (env.NODE_ENV !== "production") return;
+  whenEnv({
+    ifPreview: () => undefined,
+    ifProd: () => {
+      const posthog = getPostHogServer();
 
-  const posthog = getPostHogServer();
-
-  posthog.captureException(error, "server");
+      posthog.captureException(error, "server");
+    },
+    ifDev: () => undefined,
+  });
 };

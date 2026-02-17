@@ -1,6 +1,7 @@
 import { kv } from "@vercel/kv";
 import { parse as devalueParse, stringify as devalueStringify } from "devalue";
 import { env } from "@/env";
+import { whenEnv } from "../environment";
 
 type CacheOptions<T, R = T> = {
   /** Unique cache key */
@@ -57,7 +58,18 @@ const parse = <T>(data: string): T =>
 export const cached = async <T, R = T>(
   options: CacheOptions<T, R>,
 ): Promise<CachedResult<R>> => {
-  const { key, ttl, fn, transform } = options;
+  const { key, ttl, fn, transform } = whenEnv({
+    ifPreview: () => ({
+      ...options,
+      key: `${options.key}-preview-${env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}`,
+    }),
+    ifProd: () => options,
+    ifDev: () => ({
+      ...options,
+      key: `${options.key}-dev`,
+      ttl: 30,
+    }),
+  });
   const cacheKey = withCommitHash(key);
 
   const cached = await kv.get<string>(cacheKey);

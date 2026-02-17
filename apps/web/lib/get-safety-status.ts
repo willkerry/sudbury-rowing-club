@@ -10,6 +10,7 @@ import { EAWarningSchema } from "@/types/ea-warning";
 import { type Severity, severities } from "@/types/severity";
 import { CLUB_LOCATION } from "./constants";
 import { fetchWeatherWarning } from "./server/fetchWeatherWarning";
+import { trackServerException } from "./server/track";
 
 type SafetyStatusResult<T> =
   | {
@@ -49,6 +50,8 @@ const fetchSanityStatus = async (): Promise<
       ),
     };
   } catch (error) {
+    trackServerException(error);
+
     return {
       ok: false,
       error:
@@ -82,6 +85,8 @@ const fetchEAWarning = async (): Promise<
         .items[0],
     };
   } catch (error) {
+    trackServerException(error);
+
     return {
       ok: false,
       error:
@@ -107,6 +112,8 @@ const fetchEAStation = async (): Promise<
         .parse(await ky.get(STATION_URL, { timeout: 5000 }).json()).items,
     };
   } catch (error) {
+    trackServerException(error);
+
     return {
       ok: false,
       error:
