@@ -16,18 +16,20 @@ import { WhenDev, whenEnv } from "@/lib/environment";
 import { trpc } from "@/lib/trpc/client";
 import { getQueryClient } from "./get-query-client";
 
-whenEnv({
-  ifPreview: () => undefined,
-  ifProd: () => {
-    posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
-      api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
-      person_profiles: "identified_only",
-      persistence: "localStorage",
-      __add_tracing_headers: [HOSTNAME],
-    });
-  },
-  ifDev: () => undefined,
-});
+if (typeof window !== "undefined") {
+  whenEnv({
+    ifPreview: () => undefined,
+    ifProd: () => {
+      posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
+        api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+        person_profiles: "identified_only",
+        persistence: "localStorage",
+        __add_tracing_headers: [HOSTNAME],
+      });
+    },
+    ifDev: () => undefined,
+  });
+}
 
 const ReactQueryDevtools = dynamic(
   () =>
