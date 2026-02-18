@@ -130,7 +130,7 @@ const config = {
               color: theme("colors.blue.300"),
             },
             "figure img": {
-              borderRadius: theme("borderRadius.lg"),
+              borderRadius: theme("borderRadius.sm"),
               backgroundColor: theme("colors.gray.200"),
             },
             "code::before": {

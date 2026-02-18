@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import { useLightBox } from "@/components/stour/lightbox";
+import { LightBox, LightBoxTrigger } from "@/components/stour/lightbox";
 
 export const FigureWrapper = React.forwardRef<
   HTMLDivElement,
@@ -12,27 +10,16 @@ export const FigureWrapper = React.forwardRef<
     src: string;
   }
 >(({ alt, aspectRatio, blurDataURL, src, children, ...rest }, ref) => {
-  const { toggle, LightBox } = useLightBox({
-    aspectRatio,
-    src,
-    lqip: blurDataURL,
-    alt,
-  });
-
   return (
-    <>
-      <LightBox />
-
+    <LightBox aspectRatio={aspectRatio} src={src} lqip={blurDataURL} alt={alt}>
       <figure {...rest} ref={ref}>
-        <button
-          type="button"
-          onClick={() => toggle()}
-          className="mx-auto block text-left hover:cursor-zoom-in"
+        <LightBoxTrigger
+          className="block text-left hover:cursor-zoom-in"
           aria-label={`View the '${alt}' image in lightbox`}
         >
           {children}
-        </button>
+        </LightBoxTrigger>
       </figure>
-    </>
+    </LightBox>
   );
 });
