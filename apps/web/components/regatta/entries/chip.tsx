@@ -1,45 +1,14 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { cn } from "@/lib/utils";
-
-const BOAT_CLASS_SYMBOLS: Record<string, string> = {
-  "×": "scull",
-  "+": "coxed",
-  "−": "coxless",
-  "/": "or",
-  " ": "-",
-};
-
-const sanitizeBoatClass = (boatClass: string) =>
-  boatClass
-    .split("")
-    .map((char) => BOAT_CLASS_SYMBOLS[char] || char)
-    .join("")
-    .concat("_only");
-
-const getElementsByBoatName = (boatName: string) =>
-  document.querySelectorAll(`[data-boatid^="${boatName}"]`);
-
-const highlightBoat = (boatName: string) => {
-  const boatElements = getElementsByBoatName(boatName);
-
-  for (const boatElement of boatElements) {
-    boatElement.classList.add("ring-2");
-  }
-};
-
-const unhighlightBoat = (boatName: string) => {
-  const boatElements = getElementsByBoatName(boatName);
-
-  for (const boatElement of boatElements) {
-    boatElement.classList.remove("ring-2");
-  }
-};
+import { useBoatHighlight } from "./boat-highlight-context";
+import { sanitizeBoatClass } from "./sanitize-boat-class";
 
 export const Chip = ({
   children,
   color,
+  location,
   id,
   className,
 }: {
@@ -49,11 +18,19 @@ export const Chip = ({
   id: string;
   className?: string;
 }) => {
+  const { register, highlight, unhighlight } = useBoatHighlight();
   const sanitisedId = useMemo(() => sanitizeBoatClass(id), [id]);
+
+  const ref = useCallback(
+    (el: HTMLButtonElement | null) => {
+      register(sanitisedId, location, el);
+    },
+    [register, sanitisedId, location],
+  );
 
   return (
     <button
-      data-boatid={sanitisedId}
+      ref={ref}
       type="button"
       className={cn(
         "rounded-sm px-0.5 font-medium ring-black ring-offset-1 transition",
@@ -61,11 +38,11 @@ export const Chip = ({
         className,
         "hover:cursor-default hover:opacity-50 hover:ring-0",
       )}
-      onMouseEnter={() => highlightBoat(sanitisedId)}
-      onMouseLeave={() => unhighlightBoat(sanitisedId)}
-      onFocus={() => highlightBoat(sanitisedId)}
-      onBlur={() => unhighlightBoat(sanitisedId)}
-      onClick={() => highlightBoat(sanitisedId)}
+      onMouseEnter={() => highlight(sanitisedId)}
+      onMouseLeave={() => unhighlight(sanitisedId)}
+      onFocus={() => highlight(sanitisedId)}
+      onBlur={() => unhighlight(sanitisedId)}
+      onClick={() => highlight(sanitisedId)}
     >
       {children}
     </button>

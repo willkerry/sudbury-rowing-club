@@ -1,5 +1,8 @@
+"use client";
+
 import { getBoatsByWave } from "@/components/utils/getBoatsByWave";
 import { cn } from "@/lib/utils";
+import { BoatHighlightProvider } from "./boat-highlight-context";
 import { Chip } from "./chip";
 
 type Props = {
@@ -36,81 +39,86 @@ export const Entries = ({
     `${table[categoryIndex + 1][0]} ${table[0][boatClassIndex + 1]}`;
 
   return (
-    <div className="mx-auto">
-      {children}
-      <figure
-        className={cn(
-          "prose",
-          "overflow-x-auto",
-          compact ? "prose-sm my-6" : "my-12 text-xs sm:text-sm lg:text-base",
-        )}
-      >
-        <table className="table-fixed">
-          <thead>
-            <tr>
-              {table[0].map((entry, i) => (
-                <th
-                  key={entry}
-                  className={cn("px-pt text-center sm:px-1", i === 0 && "w-36")}
-                >
-                  {entry}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {table.slice(1).map((wave, category) => (
-              <tr key={`${wave[0]}-${category}`}>
-                <th>{wave[0]}</th>
-                {wave.slice(1).map((entry, boatClass) => {
-                  if (!entry) return <td key={`${entry}-${boatClass}`} />;
-
-                  return (
-                    <td
-                      key={`${entry}-${boatClass}`}
-                      className="px-0.5 text-center sm:px-1"
-                    >
-                      <Chip
-                        id={indicesToBoatName(category, boatClass)}
-                        location="table"
-                        className="w-full"
-                        color={getWaveColor(entry)}
-                      >
-                        {entry}
-                      </Chip>
-                    </td>
-                  );
-                })}
+    <BoatHighlightProvider>
+      <div className="mx-auto">
+        {children}
+        <figure
+          className={cn(
+            "prose",
+            "overflow-x-auto",
+            compact ? "prose-sm my-6" : "my-12 text-xs sm:text-sm lg:text-base",
+          )}
+        >
+          <table className="table-fixed">
+            <thead>
+              <tr>
+                {table[0].map((entry, i) => (
+                  <th
+                    key={entry}
+                    className={cn(
+                      "px-pt text-center sm:px-1",
+                      i === 0 && "w-36",
+                    )}
+                  >
+                    {entry}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <figcaption>{caption}</figcaption>
-      </figure>
+            </thead>
+            <tbody>
+              {table.slice(1).map((wave, category) => (
+                <tr key={`${wave[0]}-${category}`}>
+                  <th>{wave[0]}</th>
+                  {wave.slice(1).map((entry, boatClass) => {
+                    if (!entry) return <td key={`${entry}-${boatClass}`} />;
 
-      {Object.keys(boatsByWave).map((wave) => (
-        <div className="prose prose-sm text-sm" key={wave}>
-          <h4 className="mb-0 inline-block pr-2">Wave {wave}: </h4>
+                    return (
+                      <td
+                        key={`${entry}-${boatClass}`}
+                        className="px-0.5 text-center sm:px-1"
+                      >
+                        <Chip
+                          id={indicesToBoatName(category, boatClass)}
+                          location="table"
+                          className="w-full"
+                          color={getWaveColor(entry)}
+                        >
+                          {entry}
+                        </Chip>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <figcaption>{caption}</figcaption>
+        </figure>
 
-          {listFormatter
-            .formatToParts(boatsByWave[wave].map(({ x, y }) => `${x} ${y}`))
-            .map(({ type, value }, i) => {
-              if (type === "literal") return <span key={i}>{value}</span>;
+        {Object.keys(boatsByWave).map((wave) => (
+          <div className="prose prose-sm text-sm" key={wave}>
+            <h4 className="mb-0 inline-block pr-2">Wave {wave}: </h4>
 
-              return (
-                <Chip
-                  id={value}
-                  location="list"
-                  color={getWaveColor(wave)}
-                  key={value}
-                  className="px-1 text-xs"
-                >
-                  {value}
-                </Chip>
-              );
-            })}
-        </div>
-      ))}
-    </div>
+            {listFormatter
+              .formatToParts(boatsByWave[wave].map(({ x, y }) => `${x} ${y}`))
+              .map(({ type, value }, i) => {
+                if (type === "literal") return <span key={i}>{value}</span>;
+
+                return (
+                  <Chip
+                    id={value}
+                    location="list"
+                    color={getWaveColor(wave)}
+                    key={value}
+                    className="px-1 text-xs"
+                  >
+                    {value}
+                  </Chip>
+                );
+              })}
+          </div>
+        ))}
+      </div>
+    </BoatHighlightProvider>
   );
 };
