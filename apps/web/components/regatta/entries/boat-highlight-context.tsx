@@ -33,12 +33,24 @@ export const useBoatHighlight = () => {
   return context;
 };
 
+const isVisibleInScrollParent = (el: HTMLElement): boolean => {
+  const scrollParent = el.closest(".overflow-x-auto");
+  if (!scrollParent) return true;
+
+  const parentRect = scrollParent.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
+
+  return elRect.right > parentRect.left && elRect.left < parentRect.right;
+};
+
 export const BoatHighlightProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
   const registry = useRef(new Map<string, ElementPair>());
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
 
   const register = useCallback(
     (
@@ -62,9 +74,41 @@ export const BoatHighlightProvider = ({
 
   const highlight = useCallback((sanitizedId: string) => {
     const pair = registry.current.get(sanitizedId);
+
     if (!pair) return;
+
     pair.table?.classList.add("ring-2");
     pair.list?.classList.add("ring-2");
+
+    const { table, list } = pair;
+
+    const wrapper = wrapperRef.current;
+    const path = pathRef.current;
+
+    if (!(table && list && wrapper && path)) return;
+    if (!isVisibleInScrollParent(table)) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const tableRect = table.getBoundingClientRect();
+    const listRect = list.getBoundingClientRect();
+
+    const GAP = 3;
+    const x1 = Math.round(
+      tableRect.left + tableRect.width / 2 - wrapperRect.left,
+    );
+    const y1 = Math.round(tableRect.bottom - wrapperRect.top + GAP);
+    const x2 = Math.round(
+      listRect.left + listRect.width / 2 - wrapperRect.left,
+    );
+    const y2 = Math.round(listRect.top - wrapperRect.top - GAP);
+
+    const dy = Math.round((y2 - y1) * 0.4);
+
+    path.setAttribute(
+      "d",
+      `M ${x1} ${y1} C ${x1} ${y1 + dy}, ${x2} ${y2 - dy}, ${x2} ${y2}`,
+    );
+    path.style.display = "";
   }, []);
 
   const unhighlight = useCallback((sanitizedId: string) => {
@@ -72,6 +116,12 @@ export const BoatHighlightProvider = ({
     if (!pair) return;
     pair.table?.classList.remove("ring-2");
     pair.list?.classList.remove("ring-2");
+
+    const path = pathRef.current;
+    if (path) {
+      path.style.display = "none";
+      path.removeAttribute("d");
+    }
   }, []);
 
   const value = useMemo(
@@ -79,5 +129,23 @@ export const BoatHighlightProvider = ({
     [register, getElements, highlight, unhighlight],
   );
 
-  return <BoatHighlightContext value={value}>{children}</BoatHighlightContext>;
+  return (
+    <BoatHighlightContext value={value}>
+      <div ref={wrapperRef} className="relative">
+        {children}
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+          aria-hidden="true"
+        >
+          <path
+            ref={pathRef}
+            className="stroke-black"
+            strokeWidth={2}
+            fill="none"
+            style={{ display: "none" }}
+          />
+        </svg>
+      </div>
+    </BoatHighlightContext>
+  );
 };
