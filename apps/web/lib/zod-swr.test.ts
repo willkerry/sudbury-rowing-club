@@ -5,7 +5,7 @@ import { useZodSWR } from "@/lib/zod-swr";
 import { renderHook } from "@/test-utils/renderHook";
 
 const testSchema = z.object({
-  email: z.string().email(),
+  email: z.email(),
   id: z.number(),
   name: z.string(),
 });

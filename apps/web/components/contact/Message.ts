@@ -6,7 +6,10 @@ const MessageToSchema = z.string().refine((value) => value !== DEFAULT_VALUE, {
   message: "Select a recipient",
 });
 const MessageNameSchema = z.string().trim().min(1, "Provide your name");
-const MessageEmailSchema = z.email("Provide your email");
+const MessageEmailSchema = z
+  .string()
+  .trim()
+  .pipe(z.email("Provide your email"));
 const MessageMessageSchema = z.string().trim().min(1, "Provide a message");
 
 export const MessageSchema = z.object({

@@ -3,8 +3,8 @@ import { z } from "zod";
 const BugReportNameSchema = z.string().min(1, "Provide your name");
 const BugReportEmailSchema = z
   .string()
-  .min(1, "Provide your email")
-  .email("Provide a valid email address");
+  .trim()
+  .pipe(z.email("Provide a valid email address"));
 const BugReportDescriptionSchema = z
   .string()
   .trim()

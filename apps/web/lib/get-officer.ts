@@ -4,7 +4,7 @@ import { z } from "zod";
 
 const GetOfficerSchema = z.object({
   _id: z.string(),
-  email: z.string().email(),
+  email: z.email(),
   name: z.string(),
   occupantID: z.string(),
   role: z.string(),

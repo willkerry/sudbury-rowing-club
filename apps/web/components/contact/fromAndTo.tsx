@@ -24,8 +24,7 @@ type FromAndToRouteProps = {
 
 export const FromAndTo = ({ isOpen, from, to }: FromAndToRouteProps) => {
   const fromEmailIsValid =
-    from.email === "Placeholder" ||
-    !!z.string().email().safeParse(from.email).success;
+    from.email === "Placeholder" || !!z.email().safeParse(from.email).success;
 
   return (
     <AnimatePresence>
