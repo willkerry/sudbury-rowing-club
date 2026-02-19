@@ -37,6 +37,7 @@ const Home = async () => {
   return (
     <>
       <Script
+        id="club-json-ld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ClubJsonLd) }}
       />

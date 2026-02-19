@@ -91,6 +91,7 @@ const Archive = async ({ params }: ArchivePageParamObject) => {
   return (
     <>
       <Script
+        id="archive-json-ld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(createArchiveJsonLd(archive)),

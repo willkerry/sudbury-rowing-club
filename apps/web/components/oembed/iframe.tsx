@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 export const Iframe = ({
   aspectRatio,
   className,
+  title = "Embedded content",
   ...props
 }: React.HTMLAttributes<HTMLIFrameElement> & {
   src?: string;
@@ -18,6 +19,7 @@ export const Iframe = ({
       className={cn("absolute inset-0 h-full w-full", className)}
       width="100%"
       allowFullScreen
+      title={title}
       {...props}
     />
   </div>

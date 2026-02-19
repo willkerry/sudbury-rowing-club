@@ -19,22 +19,16 @@ export const DocPagePrePostNote = ({ notes }: { notes?: PrePostNote[] }) => (
 
         if (typeof note === "string") {
           return (
-            <tr className="" key={i}>
-              <td colSpan={2} className="">
-                {note}
-              </td>
+            <tr key={i}>
+              <td colSpan={2}>{note}</td>
             </tr>
           );
         }
 
         return (
-          <tr className="" key={i}>
-            <th scope="row" key={i} className="">
-              {note.label}
-            </th>
-            <td className="" key={i}>
-              {note.value}
-            </td>
+          <tr key={i}>
+            <th scope="row">{note.label}</th>
+            <td>{note.value}</td>
           </tr>
         );
       })}
