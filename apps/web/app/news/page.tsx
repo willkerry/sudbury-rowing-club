@@ -15,18 +15,16 @@ export const metadata = createMetadata({
 
 const fetchArticlesAndUpdateSearchIndex = async () => {
   try {
-    const articles = await serverGetNArticles(0, 30);
-
-    const sanityTotal = await fetchArticleCount();
-
-    // Then fetch the number of posts on Algolia
-    const { nbHits: algoliaTotal } = await getServerClient().searchSingleIndex({
-      indexName: SEARCH_INDEX_NAME,
-      searchParams: {
-        query: "",
-        hitsPerPage: 0,
-      },
-    });
+    const [articles, sanityTotal, { nbHits: algoliaTotal }] = await Promise.all(
+      [
+        serverGetNArticles(0, 30),
+        fetchArticleCount(),
+        getServerClient().searchSingleIndex({
+          indexName: SEARCH_INDEX_NAME,
+          searchParams: { query: "", hitsPerPage: 0 },
+        }),
+      ],
+    );
 
     // If the number of posts on Sanity does not equal the number of posts on
     // Algolia, reindex. (Obviously, this is not fault-proof, but it should ensure

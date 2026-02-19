@@ -60,8 +60,10 @@ const DateRange = ({ articles }: { articles: ArticleSummary[] }) => {
 const News = async (props: { params: Promise<Params> }) => {
   const { page } = await props.params;
 
-  const pages = await fetchPageCount();
-  const data = await fetchPagedArticles(Number(page));
+  const [pages, data] = await Promise.all([
+    fetchPageCount(),
+    fetchPagedArticles(Number(page)),
+  ]);
 
   const showPrev = Number(page) > 1;
   const showNext = pages > Number(page);
