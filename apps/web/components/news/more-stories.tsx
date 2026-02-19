@@ -42,8 +42,8 @@ export const MoreStories = ({
             {more && (
               <li>
                 <Link
-                  href={more}
                   className="group flex h-56 items-center justify-center gap-1 rounded-sm border font-medium text-gray-500 transition hover:border-blue-400 hover:text-black"
+                  href={more}
                 >
                   See more{" "}
                   <ArrowLongRightIcon

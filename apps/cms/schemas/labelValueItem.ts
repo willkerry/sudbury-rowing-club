@@ -1,15 +1,15 @@
 import { defineField } from "sanity";
 
 const LabelValueItem = defineField({
-  type: "object",
   name: "labelValueItem",
-  options: {
-    columns: 2,
-  },
+  type: "object",
   fields: [
     defineField({ name: "label", type: "string" }),
     defineField({ name: "value", type: "string" }),
   ],
+  options: {
+    columns: 2,
+  },
 });
 
 export default LabelValueItem;

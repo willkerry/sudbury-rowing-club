@@ -22,13 +22,13 @@ const getDrawInformation = (
   const daysToSubtract = (weekDayOfRegatta - weekDayOfDrawPublication + 7) % 7;
 
   return {
-    showThisYearPlaceholderFrom: new Date(year, 0, 1).getTime(),
     showDrawFrom: new Date(dateOfRegatta).setDate(
       dateOfRegatta.getDate() - daysToSubtract,
     ),
-    showResultsFrom: new Date(dateOfRegatta).setHours(hourOfDrawPublication),
     showNextYearPlaceholderFrom:
       new Date(dateOfRegatta).getTime() + 7 * 24 * 60 * 60 * 1000,
+    showResultsFrom: new Date(dateOfRegatta).setHours(hourOfDrawPublication),
+    showThisYearPlaceholderFrom: new Date(year, 0, 1).getTime(),
   };
 };
 
@@ -36,36 +36,36 @@ type State = "thisYearPlaceholder" | "nextYearPlaceholder" | "draw" | "results";
 
 const getStateText = (state: State, date: Date) =>
   ({
-    thisYearPlaceholder: {
-      paragraph: (
-        <>
-          This year that is expected to be{" "}
-          <DateFormatter timeZone="utc" dateString={date} format="long" />.
-        </>
-      ),
-      button: "Check anyway",
-    },
     draw: {
+      button: "View this year’s draw",
       paragraph: (
         <>
           This year’s draw is now available. Over the course of the regatta, the
           draw will be updated with results after each division.
         </>
       ),
-      button: "View this year’s draw",
-    },
-    results: {
-      paragraph: <>This year’s draw is now populating with live results.</>,
-      button: "View this year’s results",
     },
     nextYearPlaceholder: {
+      button: "Check anyway",
       paragraph: (
         <>
           The publication date for next year’s draw will be announced in the
           months before the regatta.
         </>
       ),
+    },
+    results: {
+      button: "View this year’s results",
+      paragraph: <>This year’s draw is now populating with live results.</>,
+    },
+    thisYearPlaceholder: {
       button: "Check anyway",
+      paragraph: (
+        <>
+          This year that is expected to be{" "}
+          <DateFormatter dateString={date} format="long" timeZone="utc" />.
+        </>
+      ),
     },
   })[state];
 
@@ -116,8 +116,8 @@ export const ClientDraw = ({
         Each year, the Sudbury Regatta draw is published to{" "}
         <a
           href={REGATTA.LIVE_RESULTS_URL}
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
         >
           {new URL(REGATTA.LIVE_RESULTS_URL).hostname}
         </a>{" "}
@@ -125,11 +125,11 @@ export const ClientDraw = ({
       </p>
       <p>{paragraph}</p>
       <p className="py-4">
-        <Button size="lg" asChild icon={<RadioTowerIcon />}>
+        <Button asChild icon={<RadioTowerIcon />} size="lg">
           <a
             href={REGATTA.LIVE_RESULTS_URL}
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {button}
             <span className="sr-only"> (opens in new tab)</span>

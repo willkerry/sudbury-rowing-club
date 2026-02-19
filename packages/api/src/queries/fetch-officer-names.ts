@@ -13,17 +13,17 @@ const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacan
 
 const ZOfficerResponse = z.object({
   _id: z.string(),
-  occupantId: z.string(),
-  name: z.string(),
-  role: z.string(),
-  description: z.string().optional().nullable(),
   avatar: z
     .object({
       _id: z.string(),
-      url: z.string(),
       lqip: z.string(),
+      url: z.string(),
     })
     .nullable(),
+  description: z.string().optional().nullable(),
+  name: z.string(),
+  occupantId: z.string(),
+  role: z.string(),
 });
 
 const fetchOfficerNames = async () => {

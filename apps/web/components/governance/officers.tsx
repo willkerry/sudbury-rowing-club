@@ -28,12 +28,12 @@ const OfficerPhotograph = ({
   return (
     <Image
       {...{ src, loader }}
-      fill
-      sizes="(max-width: 768px) 45vw, (max-width: 1024px) 148px, 222px"
-      placeholder="blur"
+      alt={name || ""}
       blurDataURL={lqip}
       className="object-cover"
-      alt={name || ""}
+      fill
+      placeholder="blur"
+      sizes="(max-width: 768px) 45vw, (max-width: 1024px) 148px, 222px"
     />
   );
 };
@@ -72,20 +72,20 @@ const OfficerNameOrPlaceholder = ({
   if (hasEmail) {
     return (
       <NextLink
+        className="group flex items-center gap-1.5"
         href={{
           pathname: "contact",
           query: { to: _id },
         }}
-        className="group flex items-center gap-1.5"
         title={`Contact ${name}`}
       >
         {name}
         <span className="sr-only">(Contact {name})</span>
         <MessageCircle
+          aria-hidden
+          className="text-blue-500 transition group-hover:text-gray-600"
           size="1em"
           strokeWidth="0.15em"
-          className="text-blue-500 transition group-hover:text-gray-600"
-          aria-hidden
         />
       </NextLink>
     );
@@ -106,10 +106,10 @@ export const Officers = ({ officers }: Props) => (
               <Popover>
                 <Popover.Button>
                   <HelpCircle
+                    aria-hidden
                     className="absolute right-2 bottom-2 fill-white text-blue-500 transition hover:text-gray-700"
                     size="1.15em"
                     strokeWidth="0.15em"
-                    aria-hidden
                   />
                   <span className="sr-only">Show description</span>
                 </Popover.Button>

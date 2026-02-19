@@ -24,10 +24,10 @@ export const NewsList = ({ posts, hero, more, ...rest }: Props) => {
     return (
       <>
         <HeroPost post={posts[0]} />
-        <MoreStories posts={posts.slice(1)} more={more} {...rest} />
+        <MoreStories more={more} posts={posts.slice(1)} {...rest} />
       </>
     );
   }
 
-  return <MoreStories posts={posts} more={more} {...rest} />;
+  return <MoreStories more={more} posts={posts} {...rest} />;
 };

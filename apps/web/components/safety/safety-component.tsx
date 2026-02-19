@@ -85,20 +85,20 @@ export const SafetyComponent = () => {
   const { data, status, error } = trpc.safety.status.useQuery();
 
   useTrackLoadTime(status, {
-    successEvent: "safety_api_response",
     errorEvent: "safety_api_request_failed",
+    successEvent: "safety_api_response",
     successProperties: {
+      has_partial_errors: (data?.errors?.length ?? 0) > 0,
       status: data?.status,
       status_message: data?.statusMessage,
-      has_partial_errors: (data?.errors?.length ?? 0) > 0,
     },
     error,
   });
 
   const severityStatusMap: Record<QueryStatus, SafetyComponentProps["status"]> =
     {
-      pending: "neutral",
       error: "neutral",
+      pending: "neutral",
       success: data?.status || "neutral",
     };
   const severityStatus = severityStatusMap[status];
@@ -107,8 +107,8 @@ export const SafetyComponent = () => {
     QueryStatus,
     SafetyComponentProps["statusMessage"] | undefined
   > = {
-    pending: IS_LOADING,
     error: "Error",
+    pending: IS_LOADING,
     success: data?.statusMessage,
   };
   const statusMessage = statusMessageMap[status];
@@ -119,7 +119,7 @@ export const SafetyComponent = () => {
         <Label as="h2">River Safety Status</Label>
       </div>
 
-      <SeveritySection status={severityStatus} message={statusMessage} />
+      <SeveritySection message={statusMessage} status={severityStatus} />
 
       <div className="min-h-22 p-3 sm:p-4">
         {status === "pending" ? (
@@ -141,7 +141,7 @@ export const SafetyComponent = () => {
       {(Number(data?.errors?.length) > 0 || error) && (
         <div className="p-3 sm:p-4">
           {data?.errors?.map((error) => (
-            <ErrorMessage key={error} error={{ message: error }} />
+            <ErrorMessage error={{ message: error }} key={error} />
           ))}
 
           {error && <ErrorMessage error={{ message: error.message }} />}
@@ -152,8 +152,8 @@ export const SafetyComponent = () => {
 
       <div className="grid grid-flow-col grid-cols-2 divide-x">
         <a
-          href="https://check-for-flooding.service.gov.uk/location/sudbury-suffolk"
           className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-gray-500 text-sm transition duration-300 hover:bg-white hover:text-black"
+          href="https://check-for-flooding.service.gov.uk/location/sudbury-suffolk"
         >
           <EnvironmentAgency aria-hidden className="h-4 w-4" />
           EA Floods
@@ -163,8 +163,8 @@ export const SafetyComponent = () => {
           />
         </a>
         <a
-          href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
           className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-gray-500 text-sm transition duration-300 hover:bg-white hover:text-black"
+          href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
         >
           <div className="w-0">
             <MetOffice aria-hidden className="h-4 w-4" />

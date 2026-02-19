@@ -5,10 +5,10 @@ import { contentRouter } from "./routers/content";
 import { safetyRouter } from "./routers/safety";
 
 export const appRouter = router({
-  safety: safetyRouter,
-  content: contentRouter,
-  comms: commsRouter,
   calendar: calendarRouter,
+  comms: commsRouter,
+  content: contentRouter,
+  safety: safetyRouter,
 });
 
 export type AppRouter = typeof appRouter;

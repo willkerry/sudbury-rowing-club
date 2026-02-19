@@ -25,9 +25,9 @@ export const MemoryMap = ({ locations }: MemoryMapProps) => {
     maptilersdk.config.apiKey = env.NEXT_PUBLIC_MAPTILER_KEY;
 
     map.current = new maptilersdk.Map({
+      center: [CLUB_LOCATION[1], CLUB_LOCATION[0]],
       container: mapContainer.current,
       style: maptilersdk.MapStyle.STREETS,
-      center: [CLUB_LOCATION[1], CLUB_LOCATION[0]],
       zoom: 12,
     });
 
@@ -37,43 +37,27 @@ export const MemoryMap = ({ locations }: MemoryMapProps) => {
       map.current.addSource("memories", {
         type: "geojson",
         data: {
-          type: "FeatureCollection",
           features: locations.map((loc) => ({
             type: "Feature",
+            geometry: {
+              coordinates: loc.coordinates,
+              type: "Point",
+            },
             properties: {
               weight: loc.weight,
             },
-            geometry: {
-              type: "Point",
-              coordinates: loc.coordinates,
-            },
           })),
+          type: "FeatureCollection",
         },
       });
 
       map.current.addLayer({
         id: "memories-heat",
-        type: "heatmap",
         source: "memories",
+        type: "heatmap",
         paint: {
-          "heatmap-weight": [
-            "interpolate",
-            ["linear"],
-            ["get", "weight"],
-            0,
-            0,
-            1,
-            1,
-          ],
-          "heatmap-intensity": [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            0,
-            1,
-            15,
-            3,
-          ],
+          "heatmap-opacity": 0.8,
+          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 15, 50],
           "heatmap-color": [
             "interpolate",
             ["linear"],
@@ -91,8 +75,24 @@ export const MemoryMap = ({ locations }: MemoryMapProps) => {
             1,
             "rgb(255,0,0)",
           ],
-          "heatmap-radius": ["interpolate", ["linear"], ["zoom"], 0, 2, 15, 50],
-          "heatmap-opacity": 0.8,
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            0,
+            1,
+            15,
+            3,
+          ],
+          "heatmap-weight": [
+            "interpolate",
+            ["linear"],
+            ["get", "weight"],
+            0,
+            0,
+            1,
+            1,
+          ],
         },
       });
     });
@@ -105,6 +105,6 @@ export const MemoryMap = ({ locations }: MemoryMapProps) => {
   }, [locations]);
 
   return (
-    <div ref={mapContainer} className="h-full w-full touch-manipulation" />
+    <div className="h-full w-full touch-manipulation" ref={mapContainer} />
   );
 };

@@ -2,10 +2,10 @@ import { WarningOutlineIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 const SafetyStatus = defineType({
-  name: "safetyStatus",
-  type: "document",
-  title: "Safety Status",
   icon: WarningOutlineIcon,
+  name: "safetyStatus",
+  title: "Safety Status",
+  type: "document",
   // __experimental_actions: [/*'create',*/ "update", /*'delete',*/ "publish"],
 
   fields: [
@@ -13,21 +13,21 @@ const SafetyStatus = defineType({
       name: "status",
       type: "string",
       options: {
+        direction: "horizontal",
+        layout: "radio",
         list: [
           { title: "Neutral", value: "neutral" },
           { title: "Green", value: "green" },
           { title: "Amber", value: "amber" },
           { title: "Red", value: "red" },
         ],
-        layout: "radio",
-        direction: "horizontal",
       },
     }),
     defineField({ name: "description", type: "text" }),
     defineField({
+      description: "Display the safety widget",
       name: "display",
       type: "boolean",
-      description: "Display the safety widget",
     }),
   ],
 });

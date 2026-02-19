@@ -13,11 +13,11 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: TITLE,
     description: DESCRIPTION,
+    title: TITLE,
     image: {
-      title: "Memory Map 🗺️",
       subtitle: "1874–2024",
+      title: "Memory Map 🗺️",
     },
   }),
 };
@@ -39,10 +39,10 @@ const MemoryMapPage = async () => {
 
   return (
     <>
-      <HundredAndFiftyHeader title="Memory Map" href="/150" />
+      <HundredAndFiftyHeader href="/150" title="Memory Map" />
 
       <Container>
-        <Alert variant="default" className="mb-8">
+        <Alert className="mb-8" variant="default">
           <AlertTitle>Hint</AlertTitle>
           <AlertDescription>
             Zoom out to see more photo locations.

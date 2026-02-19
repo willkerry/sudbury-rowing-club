@@ -16,17 +16,17 @@ const Clubs = () => {
         router.push(`?q=${encodeURIComponent(e.currentTarget.q.value)}`);
       }}
     >
-      <label htmlFor="q" className="sr-only">
+      <label className="sr-only" htmlFor="q">
         Search
       </label>
       <Input
-        type="search"
-        id="q"
         autoComplete="off"
         className="flex-1"
+        id="q"
         name="q"
+        type="search"
       />
-      <Button type="submit" icon={<Search />} variant="link">
+      <Button icon={<Search />} type="submit" variant="link">
         Search
       </Button>
     </form>

@@ -121,21 +121,21 @@ export const getWeatherForecast = async (): Promise<Forecast[]> => {
 
     return daily.time.map((time, index) => ({
       code: daily.weathercode[index],
+      date: time,
       condition: {
-        full: weatherCodes[daily.weathercode[index]],
         brief: briefWeatherCodes[daily.weathercode[index]],
+        full: weatherCodes[daily.weathercode[index]],
       },
       temp: {
         max: Math.round(daily.temperature_2m_max[index]),
         min: Math.round(daily.temperature_2m_min[index]),
       },
       wind: {
-        speed: convertKphToBeaufort(daily.windspeed_10m_max[index]),
         direction: convertBearingToCardinal(
           daily.winddirection_10m_dominant[index],
         ),
+        speed: convertKphToBeaufort(daily.windspeed_10m_max[index]),
       },
-      date: time,
     }));
   } catch (err) {
     console.error(err);

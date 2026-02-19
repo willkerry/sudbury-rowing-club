@@ -13,10 +13,10 @@ import { cn } from "@/lib/utils";
 
 const DEFAULT_TITLE = "Share Image Playground 🎉";
 const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
   weekday: "long",
   year: "numeric",
-  month: "long",
-  day: "numeric",
 });
 
 export const SharePlayground = () => {
@@ -76,28 +76,28 @@ export const SharePlayground = () => {
       onSubmit={onSubmit}
     >
       <Input
-        name="title"
-        disabled={state === "loading"}
-        ref={titleInputRef}
         defaultValue={DEFAULT_TITLE}
+        disabled={state === "loading"}
         label="Title"
+        name="title"
+        ref={titleInputRef}
       />
 
       <Input
-        name="subtitle"
-        disabled={state === "loading"}
-        ref={subtitleInputRef}
         defaultValue={DEFAULT_SUBTITLE}
+        disabled={state === "loading"}
         label="Subtitle"
+        name="subtitle"
+        ref={subtitleInputRef}
         required={false}
       />
 
       <Select
-        name="variant"
-        disabled={state === "loading"}
-        ref={variantInputRef}
         defaultValue="blue"
+        disabled={state === "loading"}
         label="Variant"
+        name="variant"
+        ref={variantInputRef}
       >
         <option value="blue">Blue</option>
         <option value="light">Light</option>
@@ -119,16 +119,16 @@ export const SharePlayground = () => {
           <Loading />
         </div>
 
-        <img suppressHydrationWarning ref={imageRef} alt="" />
+        <img alt="" ref={imageRef} suppressHydrationWarning />
       </div>
 
       <div className="flex justify-end gap-1 md:col-span-2">
         <Button asChild size="sm" variant="secondary">
           <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={imageRef.current?.src}
             download="share-image.png"
+            href={imageRef.current?.src}
+            rel="noopener noreferrer"
+            target="_blank"
           >
             Download
           </a>

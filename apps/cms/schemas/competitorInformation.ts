@@ -1,19 +1,19 @@
 import { defineArrayMember, defineField } from "sanity";
 
 const CompetitorInformation = defineField({
+  description: "Documents and information",
   name: "competitorInformation",
   type: "object",
-  description: "Documents and information",
   fields: [
-    defineField({ name: "description", type: "text", rows: 4 }),
+    defineField({ name: "description", rows: 4, type: "text" }),
     defineField({
       name: "documents",
       type: "array",
       of: [
         defineArrayMember({
-          type: "file",
-          name: "file",
           fields: [defineField({ name: "title", type: "string" })],
+          name: "file",
+          type: "file",
         }),
       ],
     }),

@@ -59,16 +59,16 @@ export const cached = async <T, R = T>(
   options: CacheOptions<T, R>,
 ): Promise<CachedResult<R>> => {
   const { key, ttl, fn, transform } = whenEnv({
-    ifPreview: () => ({
-      ...options,
-      key: `${options.key}-preview-${env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}`,
-    }),
-    ifProd: () => options,
     ifDev: () => ({
       ...options,
       key: `${options.key}-dev`,
       ttl: 30,
     }),
+    ifPreview: () => ({
+      ...options,
+      key: `${options.key}-preview-${env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}`,
+    }),
+    ifProd: () => options,
   });
   const cacheKey = withCommitHash(key);
 
@@ -87,8 +87,8 @@ export const cached = async <T, R = T>(
       return {
         data,
         cacheResult,
-        headers: { "X-Cache-Result": cacheResult },
         cachedAt: parsed.cachedAt,
+        headers: { "X-Cache-Result": cacheResult },
       };
     } catch (parseError) {
       console.error(

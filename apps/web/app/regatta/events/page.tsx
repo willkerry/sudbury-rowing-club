@@ -6,9 +6,9 @@ import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  title: "Event Information | Sudbury Regatta",
   description: "Races at the Sudbury Regatta.",
   image: { title: "Event Information" },
+  title: "Event Information | Sudbury Regatta",
 });
 
 export type Event = {
@@ -31,7 +31,7 @@ const EventsPage = async () => {
 
   return (
     <>
-      <PageHeader title="Event information" breadcrumbs />
+      <PageHeader breadcrumbs title="Event information" />
       <Container className="mb-12">
         <EventsComponent data={events} />
       </Container>

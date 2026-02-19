@@ -67,9 +67,9 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
           <div className="flex items-center md:col-span-2">
             {searchTerm && (
               <button
-                type="button"
                 className="py-3 pr-4 text-gray-400 hover:text-blue-600"
                 onClick={() => cancelSearch()}
+                type="button"
               >
                 <Undo2Icon aria-hidden className="h-4 w-4" />
                 <span className="sr-only">Cancel search</span>
@@ -90,11 +90,11 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
                     {status === "pending" && "Searching for"}
                     {status === "error" && "Error searching for"}{" "}
                     <button
-                      type="button"
                       className={
                         "group relative mb-px inline-block rounded-sm border border-blue-200 bg-blue-50 px-0.5 font-bold text-blue-400 text-xs uppercase tracking-widest transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-200"
                       }
                       onClick={() => cancelSearch()}
+                      type="button"
                     >
                       <XIcon
                         aria-hidden
@@ -123,20 +123,20 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
             }}
           >
             <Input
-              value={searchInputValue}
-              onChange={(e) => setSearchInputValue(e.target.value)}
-              type="search"
-              name="q"
+              aria-label="Search"
               autoComplete="off"
               inputClassName="rounded-r-none"
-              aria-label="Search"
+              name="q"
+              onChange={(e) => setSearchInputValue(e.target.value)}
+              type="search"
+              value={searchInputValue}
             />
             <Button
+              aria-label="Search"
+              className="z-0 -ml-px h-10 rounded-l-none border-l"
+              disabled={!searchInputValue}
               type="submit"
               variant="secondary"
-              className="-ml-px z-0 h-10 rounded-l-none border-l"
-              disabled={!searchInputValue}
-              aria-label="Search"
             >
               <SearchIcon aria-hidden className="h-4 w-4" />
             </Button>
@@ -145,11 +145,11 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
       </div>
       <Container className="my-10">
         <NewsList
-          posts={searchTerm && results ? results : articles}
+          error={error ?? undefined}
           hero={!searchTerm}
           more={getMoreUrl(searchTerm ?? "", articles)}
+          posts={searchTerm && results ? results : articles}
           status={searchTerm ? status : "success"}
-          error={error ?? undefined}
         />
       </Container>
     </>

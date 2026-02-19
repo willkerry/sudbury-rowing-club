@@ -12,8 +12,8 @@ export const Wordmark = ({
   SVGProps<SVGSVGElement> & { suppressTitle?: boolean }) => (
   // biome-ignore lint/a11y/noSvgWithoutTitle: element is always aria-hidden when title is not present
   <svg
-    viewBox="0 0 6040 1000"
     fill="currentColor"
+    viewBox="0 0 6040 1000"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
     aria-hidden={suppressTitle}

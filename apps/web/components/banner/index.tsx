@@ -28,6 +28,11 @@ const bannerVariants: Record<
     textHover: string;
   }
 > = {
+  error: {
+    bgColor: "bg-red-700",
+    textColor: "text-red-50",
+    textHover: "group-hover:text-red-300 group-focus:text-red-300",
+  },
   primary: {
     bgColor: "bg-blue-800",
     textColor: "text-blue-50",
@@ -48,11 +53,6 @@ const bannerVariants: Record<
     textColor: "text-gray-950",
     textHover: "group-hover:text-yellow-900 group-focus:text-yellow-900",
   },
-  error: {
-    bgColor: "bg-red-700",
-    textColor: "text-red-50",
-    textHover: "group-hover:text-red-300 group-focus:text-red-300",
-  },
 };
 
 const controlTypes = ["button", "a"] as const;
@@ -64,14 +64,14 @@ const controlVariants: Record<
     classNameExpanded?: string;
   }
 > = {
+  a: {
+    className: "group-hover:translate-x-0.5 group-active:translate-x-1.5",
+    text: "Go",
+  },
   button: {
-    text: "Read more",
     className: "group-hover:rotate-90",
     classNameExpanded: "rotate-90 group-hover:-rotate-90",
-  },
-  a: {
-    text: "Go",
-    className: "group-hover:translate-x-0.5 group-active:translate-x-1.5",
+    text: "Read more",
   },
 };
 
@@ -86,7 +86,7 @@ const ButtonOrAnchor = (
   }
 
   const { type: _, ...anchorProps } = props;
-  return <Link target="_blank" rel="noopener noreferrer" {...anchorProps} />;
+  return <Link rel="noopener noreferrer" target="_blank" {...anchorProps} />;
 };
 
 export const Banner = () => {
@@ -132,8 +132,8 @@ export const Banner = () => {
 
   return (
     <Collapsible.Root
-      open={expanded}
       onOpenChange={setExpanded}
+      open={expanded}
       ref={mergedRef}
     >
       <ButtonOrAnchor
@@ -142,8 +142,8 @@ export const Banner = () => {
           bgColor,
           textColor,
         )}
-        type={controlType}
         href={data.link || "#"}
+        type={controlType}
       >
         <Container className="text-left">
           <span className="mr-1 font-semibold">{data?.label} </span>
@@ -165,14 +165,14 @@ export const Banner = () => {
       {!data.link && (
         <Collapsible.Content className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
           <Container>
-            <Text portableText={data?.text} size="small" className="py-4" />
+            <Text className="py-4" portableText={data?.text} size="small" />
 
             {data.date && (
               <div className="mb-4 font-medium text-gray-700 text-xs">
                 Updated{" "}
                 <DateFormatter
-                  format={data.includeTime ? "time" : undefined}
                   dateString={data.date}
+                  format={data.includeTime ? "time" : undefined}
                 />
               </div>
             )}

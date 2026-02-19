@@ -13,16 +13,16 @@ export const ArchiveItem = ({ _id, alt, image, title }: Archive) => {
   const props = useSanityImageProps(image._id);
 
   return (
-    <figure id={_id} className="break-inside-avoid">
-      <Link href={`/150/gallery/${_id}`} aria-label={`View ${title}`}>
+    <figure className="break-inside-avoid" id={_id}>
+      <Link aria-label={`View ${title}`} href={`/150/gallery/${_id}`}>
         <div className="h-0.5" />
 
         <Image
           {...props}
           alt={alt || title || ""}
-          width={IMAGE_WIDTH}
-          height={imageHeight}
           className="rounded-sm shadow-sm"
+          height={imageHeight}
+          width={IMAGE_WIDTH}
         />
 
         <div className="h-7.5" />

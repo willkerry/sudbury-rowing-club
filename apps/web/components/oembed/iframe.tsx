@@ -16,10 +16,10 @@ export const Iframe = ({
     }}
   >
     <iframe
-      className={cn("absolute inset-0 h-full w-full", className)}
-      width="100%"
       allowFullScreen
+      className={cn("absolute inset-0 h-full w-full", className)}
       title={title}
+      width="100%"
       {...props}
     />
   </div>

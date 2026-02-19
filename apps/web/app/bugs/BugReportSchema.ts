@@ -13,11 +13,11 @@ const BugReportUserAgentSchema = z.string().min(1, "Provide your user agent");
 const BugReportAdditionalInformationSchema = z.string();
 
 export const BugReportSchema = z.object({
-  name: BugReportNameSchema,
-  email: BugReportEmailSchema,
-  description: BugReportDescriptionSchema,
-  userAgent: BugReportUserAgentSchema,
   additionalInformation: BugReportAdditionalInformationSchema,
+  description: BugReportDescriptionSchema,
+  email: BugReportEmailSchema,
+  name: BugReportNameSchema,
+  userAgent: BugReportUserAgentSchema,
 });
 
 export type BugReport = z.infer<typeof BugReportSchema>;

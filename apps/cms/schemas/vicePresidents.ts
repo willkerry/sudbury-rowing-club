@@ -2,29 +2,24 @@ import { UsersIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 const VicePresidents = defineType({
-  name: "vicePresidents",
-  type: "document",
-  title: "Vice-Presidents",
   icon: UsersIcon,
+  name: "vicePresidents",
+  title: "Vice-Presidents",
+  type: "document",
   fields: [
     defineField({
       name: "firstName",
-      type: "string",
       title: "First Name",
+      type: "string",
     }),
-    defineField({ name: "surname", type: "string", title: "Surname" }),
+    defineField({ name: "surname", title: "Surname", type: "string" }),
     defineField({
       name: "reference",
-      type: "reference",
       to: [{ type: "person" } as const],
+      type: "reference",
     }),
   ],
   preview: {
-    select: {
-      firstName: "reference.firstName",
-      surname: "reference.surname",
-      media: "reference.image.image",
-    },
     prepare(selection) {
       const { firstName, surname, media } = selection;
 
@@ -32,6 +27,11 @@ const VicePresidents = defineType({
         title: `${firstName} ${surname}`,
         media,
       };
+    },
+    select: {
+      firstName: "reference.firstName",
+      media: "reference.image.image",
+      surname: "reference.surname",
     },
   },
 });

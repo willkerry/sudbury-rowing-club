@@ -2,10 +2,10 @@ import { Cache } from "../shared/cache";
 import { serversideFetchCompetitions } from "./fetch-competitions";
 
 const cache = new Cache({
-  key: "competitions",
-  ttl: 60 * 15,
   function: serversideFetchCompetitions,
+  key: "competitions",
   primaryKey: "id",
+  ttl: 60 * 15,
 });
 
 export const cachedFetchCompetitions = () => cache.get();

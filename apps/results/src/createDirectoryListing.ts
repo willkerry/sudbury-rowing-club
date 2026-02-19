@@ -66,8 +66,8 @@ export const createDirectoryListing = async (
 
   nunjucks.configure({
     autoescape: false,
-    noCache: true,
     lstripBlocks: true,
+    noCache: true,
     trimBlocks: true,
   });
 

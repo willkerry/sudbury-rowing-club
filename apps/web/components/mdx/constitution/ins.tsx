@@ -21,8 +21,8 @@ const AmendmentDate = ({ set }: { set: keyof typeof COLORS }) => (
     <span className="sr-only"> Amendment ratified in </span>
     <ServerOrClientDateFormatter
       className="disambiguate font-semibold text-xs"
-      format="year"
       dateString={AMENDEMENTS[set]}
+      format="year"
     />
   </>
 );
@@ -33,7 +33,7 @@ type InsProps = {
 
 export const Ins = ({ set = 1, children, ...props }: InsProps) => (
   <ins
-    className={`-my-0.5 mx-0.5 rounded-sm border px-0.5 py-0.5 not-italic no-underline ${COLORS[set]}`}
+    className={`mx-0.5 -my-0.5 rounded-sm border px-0.5 py-0.5 not-italic no-underline ${COLORS[set]}`}
     dateTime={AMENDEMENTS[set].toISOString()}
     {...props}
   >

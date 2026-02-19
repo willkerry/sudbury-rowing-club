@@ -42,12 +42,12 @@ const SectionWrapper = ({
 
   if (collapse)
     return (
-      <Accordion.Root type="single" collapsible>
+      <Accordion.Root collapsible type="single">
         <Accordion.Item className={outer} value={title}>
           <Accordion.Trigger
             className={cn(
               titleClasses,
-              "-my-4 [&[data-state=open]>svg]:-rotate-180 flex w-full justify-between py-4",
+              "-my-4 flex w-full justify-between py-4 [&[data-state=open]>svg]:-rotate-180",
             )}
           >
             {title}
@@ -88,14 +88,14 @@ export const MobileMenuSection = ({
       return (
         <CloseButton
           as={Link}
-          key={item.name}
-          href={item.href}
           className="-m-2 flex items-center rounded-md p-2 hover:bg-gray-100"
+          href={item.href}
+          key={item.name}
         >
           {!compact && Icon && (
             <Icon
-              className="mr-1.5 h-5 w-5 shrink-0 text-blue-700"
               aria-hidden
+              className="mr-1.5 h-5 w-5 shrink-0 text-blue-700"
             />
           )}
           <span className="font-medium text-gray-900">

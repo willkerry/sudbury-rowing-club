@@ -7,8 +7,8 @@ const OEmbed = defineType({
   fields: [
     defineField({
       name: "url",
-      type: "string",
       title: "URL",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
   ],

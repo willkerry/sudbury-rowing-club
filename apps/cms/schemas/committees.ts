@@ -2,26 +2,26 @@ import { CommentIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 const Committee = defineType({
-  name: "committees",
-  type: "document",
-  title: "Committees",
   icon: CommentIcon,
+  name: "committees",
+  title: "Committees",
+  type: "document",
   fields: [
-    defineField({ name: "title", type: "string", title: "Title" }),
+    defineField({ name: "title", title: "Title", type: "string" }),
     defineField({
       name: "description",
-      type: "text",
-      title: "Description",
       rows: 2,
+      title: "Description",
+      type: "text",
     }),
     defineField({
       name: "members",
-      type: "array",
       title: "Committee Members",
+      type: "array",
       of: [
         defineArrayMember({
-          type: "reference",
           to: [{ type: "officers" } as const],
+          type: "reference",
         }),
       ],
     }),

@@ -43,10 +43,10 @@ const getRelatedArticles = async (
     requests: [
       {
         indexName: "news",
-        model: "related-products",
-        threshold: 0.7,
         maxRecommendations: 3,
+        model: "related-products",
         objectID: slug,
+        threshold: 0.7,
       },
     ],
   });
@@ -64,24 +64,24 @@ export const generateMetadata = async ({
 
   return {
     ...createMetadata({
-      title: post.title,
       description: post.excerpt || "",
+      title: post.title,
       ...(post.author && {
         author: `${post.author.firstName} ${post.author.surname}`,
       }),
-      type: "article",
-      publishedTime: post.date,
       image: post.featuredImage
         ? coverImage(post.featuredImage)
         : {
             color: "light",
-            title: post.title,
             subtitle: new Date(post.date).toLocaleDateString("en-GB", {
-              year: "numeric",
-              month: "long",
               day: "numeric",
+              month: "long",
+              year: "numeric",
             }),
+            title: post.title,
           },
+      publishedTime: post.date,
+      type: "article",
     }),
   };
 };
@@ -95,9 +95,9 @@ const Post = async ({ params }: NewsPageParamObject) => {
   return (
     <>
       <PostHeader
-        title={post.title}
-        featuredImage={post.featuredImage}
         date={post.date}
+        featuredImage={post.featuredImage}
+        title={post.title}
       />
       {post.body && <PostBody content={post.body} />}
 
@@ -135,7 +135,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
 
       <div className="grid grid-cols-3 gap-4">
         {relatedArticles.map((hit) => (
-          <PostPreview post={hit} key={hit._id} />
+          <PostPreview key={hit._id} post={hit} />
         ))}
       </div>
     </>

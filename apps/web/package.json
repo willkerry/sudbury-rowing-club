@@ -1,17 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/package",
+  "license": "MIT",
   "name": "@sudburyrc/web",
   "version": "1.0.0",
-  "license": "MIT",
-  "scripts": {
-    "build": "next build",
-    "dev": "next dev -p 4321",
-    "email-dev": "email dev",
-    "start": "next start",
-    "type-check": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
   "dependencies": {
     "@algolia/client-search": "^5.41.0",
     "@fireworks-js/react": "^2.10.8",
@@ -119,5 +110,14 @@
     "typescript": "^5.9.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.0.17"
+  },
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev -p 4321",
+    "email-dev": "email dev",
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "type-check": "tsc --noEmit"
   }
 }

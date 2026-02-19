@@ -12,8 +12,8 @@ import { ColorIndicator } from "./color-indicator";
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: "Brand Assets",
     description: "Some handy resources for building things for Sudbury RC.",
+    title: "Brand Assets",
   }),
 };
 
@@ -69,8 +69,8 @@ const Brand = () => (
       <div className="flex flex-row gap-1.5">
         {brandColors.map((item) => (
           <div
-            key={item.id}
             className="h-48 w-full rounded-sm bg-blue-950 shadow-sm"
+            key={item.id}
             style={{ background: item.color }}
           />
         ))}
@@ -104,7 +104,7 @@ const Brand = () => (
 
       <tbody>
         {brandColors.map((item) => (
-          <tr key={item.id} className={item.id === "900" ? "bg-gray-100" : ""}>
+          <tr className={item.id === "900" ? "bg-gray-100" : ""} key={item.id}>
             <td className="text-right">
               <code>{item.id}</code>
             </td>

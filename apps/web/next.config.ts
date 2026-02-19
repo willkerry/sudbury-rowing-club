@@ -6,13 +6,13 @@ import { redirects as redirectsArray } from "./data/redirects.json" with {
 };
 
 const config: NextConfig = {
+  reactStrictMode: true,
+  serverExternalPackages: ["jsdom"],
   images: {
     minimumCacheTTL: 31536000,
     remotePatterns: [createRemotePattern("cdn.sanity.io", "https")],
   },
   redirects: () => Promise.resolve(redirectsArray),
-  reactStrictMode: true,
-  serverExternalPackages: ["jsdom"],
 };
 
 export default withContentCollections(config);

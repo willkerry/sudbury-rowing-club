@@ -16,42 +16,42 @@ export const ImageComposite = ({
       <Ticket items={ticketItems} />
     </div>
     <div className="absolute right-0 bottom-8 z-10 rotate-3 drop-shadow-lg">
-      <Image src={cupImage} placeholder="blur" alt="" width="90" height="100" />
+      <Image alt="" height="100" placeholder="blur" src={cupImage} width="90" />
     </div>
     <div className="absolute top-6 right-0 left-0 z-0 drop-shadow-lg">
       <Image
-        src={buntingImage}
-        placeholder="blur"
         alt=""
-        width="317"
         height="28"
+        placeholder="blur"
+        src={buntingImage}
+        width="317"
       />
     </div>
-    <div className="-rotate-2 absolute bottom-3 left-0 z-10 drop-shadow-lg">
+    <div className="absolute bottom-3 left-0 z-10 -rotate-2 drop-shadow-lg">
       <Image
-        src={victoriaImage}
-        placeholder="blur"
         alt=""
-        width="145"
         height="111"
+        placeholder="blur"
+        src={victoriaImage}
+        width="145"
       />
     </div>
     <div className="absolute bottom-0 left-28 z-0 rotate-45 drop-shadow-lg">
       <Image
-        src={bladeImage}
-        placeholder="blur"
         alt=""
-        width="34"
         height="425"
+        placeholder="blur"
+        src={bladeImage}
+        width="34"
       />
     </div>
-    <div className="-rotate-45 absolute right-28 bottom-0 z-0 scale-x-[-1] drop-shadow-2xl">
+    <div className="absolute right-28 bottom-0 z-0 -rotate-45 scale-x-[-1] drop-shadow-2xl">
       <Image
-        src={bladeImage}
-        placeholder="blur"
         alt=""
-        width="34"
         height="425"
+        placeholder="blur"
+        src={bladeImage}
+        width="34"
       />
     </div>
   </div>

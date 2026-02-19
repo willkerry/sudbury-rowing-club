@@ -24,13 +24,13 @@ export const generateMetadata = async ({
   const eventName = extendEventName(records[0].event);
 
   return createMetadata({
-    title: `Course record for ${eventName}`,
     description: formatDescription(records),
     publishedTime: records[0].year.toISOString(),
+    title: `Course record for ${eventName}`,
     type: "article",
     image: {
-      title: eventName,
       subtitle: "Course Record",
+      title: eventName,
     },
   });
 };
@@ -58,7 +58,7 @@ const Page = async ({ params }: { params: Promise<Param> }) => {
   const description = formatDescription(records);
 
   return (
-    <TextPage title={extendEventName(eventName)} prose="prose">
+    <TextPage prose="prose" title={extendEventName(eventName)}>
       <RecordTime time={time} />
       <RecordHolderList records={records} />
 

@@ -5,16 +5,16 @@ import * as React from "react";
 const alertVariants = cva(
   "relative w-full rounded-sm border border-gray-200 p-3 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:top-3 [&>svg]:left-3 [&>svg]:text-gray-950 [&>svg~*]:pl-6",
   {
+    defaultVariants: {
+      variant: "default",
+    },
     variants: {
       variant: {
         default: "bg-white text-gray-950",
-        warn: "border-yellow-500/50 bg-yellow-50 text-yellow-900",
         destructive: "border-red-500/50 text-red-500",
         success: "border-green-500/50 bg-green-50 text-green-900",
+        warn: "border-yellow-500/50 bg-yellow-50 text-yellow-900",
       },
-    },
-    defaultVariants: {
-      variant: "default",
     },
   },
 );
@@ -24,9 +24,9 @@ const Alert = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
 >(({ className, variant, ...props }, ref) => (
   <div
+    className={cn(alertVariants({ variant }), className)}
     ref={ref}
     role="alert"
-    className={cn(alertVariants({ variant }), className)}
     {...props}
   />
 ));
@@ -37,8 +37,8 @@ const AlertTitle = React.forwardRef<
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h5
-    ref={ref}
     className={cn("mb-1 font-semibold text-sm leading-none", className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -49,8 +49,8 @@ const AlertDescription = React.forwardRef<
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
   <div
-    ref={ref}
     className={cn("text-sm [&_p]:my-0 [&_p]:leading-relaxed", className)}
+    ref={ref}
     {...props}
   />
 ));

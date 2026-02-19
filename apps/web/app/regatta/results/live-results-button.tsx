@@ -20,8 +20,8 @@ export const LiveResultsButton = ({ regattaDate }: { regattaDate: Date }) => {
     <Button asChild icon={<RadioTowerIcon />} variant="success">
       <a
         href={REGATTA.LIVE_RESULTS_URL}
-        target="_blank"
         rel="noopener noreferrer"
+        target="_blank"
       >
         Live results
         <span className="sr-only"> (opens in new tab)</span>

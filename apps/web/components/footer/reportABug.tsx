@@ -38,8 +38,8 @@ export const ReportABug = () => {
 
   return (
     <a
-      href={`/bugs?message=${message}`}
       className="transition hover:text-black"
+      href={`/bugs?message=${message}`}
       suppressHydrationWarning
     >
       Report a bug.

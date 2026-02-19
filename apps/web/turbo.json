@@ -3,8 +3,8 @@
   "extends": ["//"],
   "tasks": {
     "dev": {
-      "persistent": true,
-      "cache": false
+      "cache": false,
+      "persistent": true
     }
   }
 }

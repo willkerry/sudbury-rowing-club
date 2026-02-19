@@ -18,15 +18,17 @@ const ContactPage = ({
   officers: Awaited<ReturnType<typeof fetchOfficerNames>>;
 }) => {
   const [{ q, ...initialValues }] = useQueryStates({
-    q: parseAsArrayOf(parseAsString),
-    to: parseAsString,
-    name: parseAsString,
     email: parseAsString,
     message: parseAsString,
+    name: parseAsString,
+    q: parseAsArrayOf(parseAsString),
+    to: parseAsString,
   });
 
   const { data: guessedRecipient } = useQuery({
+    enabled: !!q,
     queryKey: ["officers", q],
+    staleTime: Number.POSITIVE_INFINITY,
     queryFn: () =>
       getBrowserClient().searchForHits<OfficerResponse>({
         requests: (q ?? []).map((query) => ({
@@ -34,8 +36,6 @@ const ContactPage = ({
           query,
         })),
       }),
-    enabled: !!q,
-    staleTime: Number.POSITIVE_INFINITY,
     select: (data) => data.results.flatMap((d) => d.hits)?.[0],
   });
 

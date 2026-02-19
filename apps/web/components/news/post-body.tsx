@@ -7,9 +7,9 @@ type Props = {
 
 export const PostBody = ({ content }: Props) => (
   <Text
-    portableText={content}
+    className="mx-auto max-w-[650px]"
     font="serif"
     lead
-    className="mx-auto max-w-[650px]"
+    portableText={content}
   />
 );

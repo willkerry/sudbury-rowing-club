@@ -1,14 +1,9 @@
 {
-  "name": "@sudburyrc/results",
-  "version": "1.0.1",
-  "scripts": {
-    "dev": "tsx watch --include \"./data/**/*\" src/build.ts & serve ./dist",
-    "build": "tsx src/build.ts",
-    "deploy": "wrangler deploy"
-  },
-  "type": "module",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "description": "",
+  "name": "@sudburyrc/results",
+  "type": "module",
+  "version": "1.0.1",
   "dependencies": {
     "@sudburyrc/images": "workspace:*",
     "@sudburyrc/static": "workspace:*"
@@ -29,5 +24,10 @@
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "wrangler": "^4.54.0"
+  },
+  "scripts": {
+    "build": "tsx src/build.ts",
+    "deploy": "wrangler deploy",
+    "dev": "tsx watch --include \"./data/**/*\" src/build.ts & serve ./dist"
   }
 }

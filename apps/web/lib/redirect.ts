@@ -60,8 +60,8 @@ const timingSafeEqual = (a: Buffer, b: Buffer): boolean => {
 export const createRedirectUrl = (destinationUrl: string): string => {
   const signature = signUrl(destinationUrl);
   const params = new URLSearchParams({
-    url: destinationUrl,
     sig: signature,
+    url: destinationUrl,
   });
 
   return `/redirect?${params.toString()}`;

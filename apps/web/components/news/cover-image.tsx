@@ -27,14 +27,14 @@ export const CoverImage = ({ title, id, alt, blurDataURL }: Props) => {
 
   return (
     <Image
-      loader={loader}
-      src={src}
       alt={alt || `Cover Image for ${title}`}
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 455px, 651px"
-      fill
-      placeholder="blur"
       blurDataURL={blurDataURL}
       className="object-cover"
+      fill
+      loader={loader}
+      placeholder="blur"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 455px, 651px"
+      src={src}
     />
   );
 };

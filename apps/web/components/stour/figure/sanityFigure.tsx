@@ -55,15 +55,15 @@ export const SanityFigure = ({
 
   return (
     <Figure
+      caption={captionText}
       imageProps={{
         ...useSanityImageProps(image),
         alt,
         width,
         height,
-        placeholder: "blur",
         blurDataURL: lqip,
+        placeholder: "blur",
       }}
-      caption={captionText}
     />
   );
 };

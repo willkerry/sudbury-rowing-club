@@ -8,9 +8,9 @@ export const getSanityConfig = () => {
   if (!dataset) throw new Error("Missing NEXT_PUBLIC_SANITY_DATASET");
 
   return {
+    apiVersion: "2025-02-28",
     dataset: dataset || "production",
     projectId: projectId,
-    apiVersion: "2025-02-28",
     useCdn: true,
   } satisfies ClientConfig;
 };

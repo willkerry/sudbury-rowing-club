@@ -2,10 +2,10 @@ import { CalendarIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 const Regattas = defineType({
+  icon: CalendarIcon,
   name: "regattas",
   title: "Regattas",
   type: "document",
-  icon: CalendarIcon,
   fields: [
     defineField({
       name: "date",
@@ -34,15 +34,15 @@ const Regattas = defineType({
     }),
     defineField({
       name: "testimonials",
+      of: [defineArrayMember({ type: "testimonial" })],
       title: "Praise for the regatta",
       type: "array",
-      of: [defineArrayMember({ type: "testimonial" })],
     }),
   ],
   preview: {
     select: {
-      title: "number",
       subtitle: "date",
+      title: "number",
     },
   },
 });

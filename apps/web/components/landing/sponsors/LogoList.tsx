@@ -15,22 +15,22 @@ const useLogoDimensions = (logo: StaticImageData) =>
     const width = aspectRatio ** SCALE_FACTOR * BASE_WIDTH;
     const height = width / aspectRatio;
 
-    return { width: Math.round(width), height: Math.round(height) };
+    return { height: Math.round(height), width: Math.round(width) };
   }, [logo.width, logo.height]);
 
 const LogoListItem = ({ logo: { logo, ...rest } }: { logo: SponsorLogo }) => {
   const { width, height } = useLogoDimensions(logo);
 
-  const image = <Image src={logo.src} alt="" width={width} height={height} />;
+  const image = <Image alt="" height={height} src={logo.src} width={width} />;
 
   if (!rest.href) return image;
 
   return (
     <a
-      href={rest.href}
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label={rest.name}
+      href={rest.href}
+      rel="noopener noreferrer"
+      target="_blank"
     >
       {image}
     </a>

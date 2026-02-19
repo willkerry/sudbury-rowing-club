@@ -13,30 +13,30 @@ const ErrorResponse = (message: string) =>
   new ImageResponse(
     <div
       style={{
-        fontSize: 24,
+        alignItems: "center",
         background: "#000",
         color: "#fff",
-        width: "100%",
-        height: "100%",
         display: "flex",
         flexDirection: "column",
-        textAlign: "center",
-        alignItems: "center",
+        fontSize: 24,
+        height: "100%",
         justifyContent: "center",
         padding: 1,
+        textAlign: "center",
+        width: "100%",
       }}
     >
       {message}
     </div>,
     {
-      width: 120,
       height: 120,
+      width: 120,
     },
   );
 
 const ShareImageSchema = z.object({
-  title: z.string(),
   subtitle: z.string().default("").optional(),
+  title: z.string(),
   /**
    * Customise the colour scheme of the image. One of `blue`, `dark` or `light`. Defaults to `blue`.
    *
@@ -84,44 +84,44 @@ export const GET = async (request: NextRequest): Promise<ImageResponse> => {
   return new ImageResponse(
     <div
       style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
         backgroundColor: bg,
         color: fg,
+        display: "flex",
+        height: "100%",
         padding: 100,
+        width: "100%",
       }}
     >
       <div
         style={{
+          alignSelf: "center",
           display: "flex",
           flexDirection: "column",
-          alignSelf: "center",
           width: "100%",
         }}
       >
         <div
           style={{
-            display: "flex",
             alignItems: "center",
+            display: "flex",
           }}
         >
           <Wordmark
-            suppressTitle
             style={{
-              width: 400,
               height: (400 * 50) / 302,
+              width: 400,
             }}
+            suppressTitle
           />
 
           {subtitle && (
             <div
               style={{
-                fontSize: 23,
                 color: mg,
+                fontSize: 23,
                 letterSpacing: 2,
-                textTransform: "uppercase",
                 margin: "3.7px 0 0 32px",
+                textTransform: "uppercase",
               }}
             >
               {subtitle}
@@ -131,13 +131,13 @@ export const GET = async (request: NextRequest): Promise<ImageResponse> => {
 
         <div
           style={{
-            fontSize: 72,
-            fontWeight: weight,
+            background: `linear-gradient(90deg, ${g1} 0%, ${g2} 100%)`,
             backgroundClip: "text",
             color: "transparent",
-            background: `linear-gradient(90deg, ${g1} 0%, ${g2} 100%)`,
-            margin: "10px 0",
+            fontSize: 72,
+            fontWeight: weight,
             letterSpacing: spacing,
+            margin: "10px 0",
           }}
         >
           {title}
@@ -145,17 +145,17 @@ export const GET = async (request: NextRequest): Promise<ImageResponse> => {
       </div>
     </div>,
     {
-      width: 1200,
       height: 600,
+      width: 1200,
       fonts: [
         {
-          name: "Inter",
           data: semiboldFont,
+          name: "Inter",
           weight: 600,
         },
         {
-          name: "Inter",
           data: mediumFont,
+          name: "Inter",
           weight: 500,
         },
       ],

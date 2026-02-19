@@ -17,14 +17,14 @@ const RecordHolder = ({ record }: { record: Record }) => {
     <li className="p-0">
       {bladeUrls.map((url) => (
         <Image
-          src={url}
-          className="mr-2 inline-block h-6 w-12"
-          loading="lazy"
           alt=""
-          key={url}
-          width={48}
+          className="mr-2 inline-block h-6 w-12"
           height={24}
+          key={url}
           loader={cloudflareLoader}
+          loading="lazy"
+          src={url}
+          width={48}
         />
       ))}
 

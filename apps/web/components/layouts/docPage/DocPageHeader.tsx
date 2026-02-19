@@ -11,10 +11,10 @@ export const DocPageHeader = ({
     <div className="mt-0.5 space-y-2.5">
       <div className="h-5">
         <Breadcrumbs
-          listClassName="flex not-prose text-sm font-medium "
+          activeItemClassName="whitespace-nowrap font-medium text-gray-900"
           currentLabel={title}
           inactiveItemClassName="capitalize text-gray-500 hover:text-gray-900 transition after:content-['→'] after:px-2 after:text-gray-400 capitalize transition"
-          activeItemClassName="whitespace-nowrap font-medium text-gray-900"
+          listClassName="flex not-prose text-sm font-medium "
         />
       </div>
       <div className="flex items-center">

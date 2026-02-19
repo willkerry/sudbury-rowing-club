@@ -59,8 +59,8 @@ export const BoatHighlightProvider = ({
       el: HTMLButtonElement | null,
     ) => {
       const existing = registry.current.get(sanitizedId) ?? {
-        table: null,
         list: null,
+        table: null,
       };
       existing[location] = el;
       registry.current.set(sanitizedId, existing);
@@ -68,9 +68,10 @@ export const BoatHighlightProvider = ({
     [],
   );
 
-  const getElements = useCallback((sanitizedId: string) => {
-    return registry.current.get(sanitizedId);
-  }, []);
+  const getElements = useCallback(
+    (sanitizedId: string) => registry.current.get(sanitizedId),
+    [],
+  );
 
   const highlight = useCallback((sanitizedId: string) => {
     const pair = registry.current.get(sanitizedId);
@@ -131,17 +132,17 @@ export const BoatHighlightProvider = ({
 
   return (
     <BoatHighlightContext value={value}>
-      <div ref={wrapperRef} className="relative">
+      <div className="relative" ref={wrapperRef}>
         {children}
         <svg
-          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
           aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
         >
           <path
-            ref={pathRef}
             className="stroke-black"
-            strokeWidth={2}
             fill="none"
+            ref={pathRef}
+            strokeWidth={2}
             style={{ display: "none" }}
           />
         </svg>

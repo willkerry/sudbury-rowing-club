@@ -15,8 +15,8 @@ const AUTO_REDIRECT_DELAY = 2000;
 export const metadata: Metadata = {
   title: "Redirecting to external link",
   robots: {
-    index: false,
     follow: false,
+    index: false,
   },
 };
 
@@ -36,9 +36,9 @@ const RedirectPage = async ({ searchParams }: PageProps) => {
     } catch (err) {
       if (isSignedUrlError(err)) {
         return {
-          success: false as const,
           errorCode: err.code,
           errorMessage: err.userMessage,
+          success: false as const,
         };
       }
 
@@ -49,11 +49,11 @@ const RedirectPage = async ({ searchParams }: PageProps) => {
   if (!result.success) {
     return (
       <DelayedError
+        badUrl={url}
+        delay={AUTO_REDIRECT_DELAY}
         errorCode={result.errorCode}
         errorMessage={result.errorMessage}
-        delay={AUTO_REDIRECT_DELAY}
         loadingState={<LoadingState delay={AUTO_REDIRECT_DELAY} />}
-        badUrl={url}
         referrer={referrer}
       />
     );
@@ -64,13 +64,13 @@ const RedirectPage = async ({ searchParams }: PageProps) => {
   return (
     <>
       <Suspense fallback={null}>
-        <AutoRedirect url={result.url} delay={AUTO_REDIRECT_DELAY} />
+        <AutoRedirect delay={AUTO_REDIRECT_DELAY} url={result.url} />
       </Suspense>
 
       <LoadingState
-        verifiedUrl={result.url}
-        domain={domain}
         delay={AUTO_REDIRECT_DELAY}
+        domain={domain}
+        verifiedUrl={result.url}
       />
     </>
   );

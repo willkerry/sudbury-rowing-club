@@ -11,16 +11,16 @@ import { trpc } from "@/lib/trpc/client";
 
 const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
   <a
-    href={article?.link}
-    target="_blank"
-    rel="noopener noreferrer"
     className={cn(
       "group grid gap-1.5 rounded-sm border p-2 transition-colors",
       {
-        "hover:border-blue-500": article,
         "h-16 animate-pulse bg-gray-50": !article,
+        "hover:border-blue-500": article,
       },
     )}
+    href={article?.link}
+    rel="noopener noreferrer"
+    target="_blank"
   >
     {article && (
       <>
@@ -69,7 +69,7 @@ export const Feed = () => {
   const { data, status, error } = trpc.content.feed.useQuery();
 
   if (status === "pending") return <PresentationalFeed skeleton />;
-  if (status === "error") return <ErrorAlert error={error} className="my-12" />;
+  if (status === "error") return <ErrorAlert className="my-12" error={error} />;
 
   return <PresentationalFeed articles={data} />;
 };

@@ -4,33 +4,33 @@ import { PortableText } from "@/lib/sanity";
 import { cn } from "@/lib/utils";
 
 const variants = cva(["prose", "prose-lead:font-medium prose-lead:font-sans"], {
+  defaultVariants: {
+    font: "sans",
+    lead: false,
+    size: "base",
+    type: "default",
+  },
   variants: {
-    type: {
-      default: "",
-      invert: "text-white",
-      secondary: "text-gray-500",
-    },
-    size: {
-      small: "prose-sm",
-      base: "",
-      large: "prose-lg",
-      xlarge: "prose-xl",
-    },
     font: {
       sans: "",
       serif:
         "prose-p:font-[360] prose-p:font-serif prose-p:text-lg prose-p:leading-relaxed",
     },
     lead: {
-      true: "auto-lead",
       false: "",
+      true: "auto-lead",
     },
-  },
-  defaultVariants: {
-    type: "default",
-    size: "base",
-    font: "sans",
-    lead: false,
+    size: {
+      base: "",
+      large: "prose-lg",
+      small: "prose-sm",
+      xlarge: "prose-xl",
+    },
+    type: {
+      default: "",
+      invert: "text-white",
+      secondary: "text-gray-500",
+    },
   },
 });
 

@@ -32,7 +32,7 @@ export const DocPage = ({
   return (
     <Container className="relative flex justify-between">
       <Text className="my-12">
-        <DocPageHeader title={smartTitle} description={smartDescription} />
+        <DocPageHeader description={smartDescription} title={smartTitle} />
 
         {prenotes && <DocPagePrePostNote notes={prenotes} />}
 
@@ -50,7 +50,7 @@ export const DocPage = ({
         <div className="sticky top-0 right-0 h-12 w-full bg-linear-to-t from-transparent to-white" />
 
         <h2 className="mb-3 flex items-center gap-2 font-medium text-gray-700 text-sm">
-          <AlignLeftIcon className="w-3 stroke-3 stroke-current" aria-hidden />
+          <AlignLeftIcon aria-hidden className="w-3 stroke-3 stroke-current" />
           On this page
         </h2>
         <TableOfContents toc={toc} />

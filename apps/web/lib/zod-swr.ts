@@ -19,8 +19,8 @@ export const useZodSWR = <T extends z.ZodTypeAny>(
   >,
 ) => {
   const { data, error, ...rest } = useQuery({
-    queryKey: key,
     queryFn: fetcher,
+    queryKey: key,
     select: (data) => {
       const parse = schema.safeParse(data);
 

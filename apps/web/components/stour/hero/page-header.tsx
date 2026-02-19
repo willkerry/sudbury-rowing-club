@@ -29,10 +29,10 @@ export const PageHeader = ({
       <div className="relative hidden border-y py-3 sm:block">
         <Container>
           <Breadcrumbs
-            listClassName="not-prose flex font-medium text-sm"
+            activeItemClassName="whitespace-nowrap text-gray-900"
             currentLabel={title}
             inactiveItemClassName="text-gray-500 hover:text-gray-900 transition after:content-['→'] after:px-3 after:text-gray-400 transition"
-            activeItemClassName="whitespace-nowrap text-gray-900"
+            listClassName="not-prose flex font-medium text-sm"
           />
         </Container>
       </div>

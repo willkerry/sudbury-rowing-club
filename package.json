@@ -1,35 +1,36 @@
 {
-  "name": "@sudburyrc/monorepo",
-  "version": "1.0.0",
   "author": "",
-  "devDependencies": {
-    "@biomejs/biome": "2.3.1",
-    "lefthook": "^1.12.4"
-  },
   "description": "",
   "keywords": [],
   "license": "ISC",
+  "name": "@sudburyrc/monorepo",
   "packageManager": "pnpm@8.14.1",
-  "scripts": {
-    "build": "turbo build",
-    "type-check": "turbo type-check",
-    "test": "turbo test",
-    "test:watch": "turbo test:watch",
-    "dev": "turbo watch dev",
-    "check": "biome check --write .",
-    "clean": "sh scripts/clean.sh",
-    "deploy": "turbo deploy"
-  },
+  "version": "1.0.0",
   "dependencies": {
     "turbo": "^2.5.6"
   },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.0",
+    "lefthook": "^1.12.4"
+  },
   "pnpm": {
     "overrides": {
-      "@types/react": "^19.2.2",
-      "@types/react-dom": "^19.2.2",
       "@swc/core": "^1.13.5",
       "@swc/core-darwin-arm64": "^1.13.5",
+      "@types/react": "^19.2.2",
+      "@types/react-dom": "^19.2.2",
       "parse5": "^7.1.2"
     }
+  },
+  "scripts": {
+    "biome-migrate": "biome migrate --write",
+    "build": "turbo build",
+    "check": "biome check --write .",
+    "clean": "sh scripts/clean.sh",
+    "deploy": "turbo deploy",
+    "dev": "turbo watch dev",
+    "test": "turbo test",
+    "test:watch": "turbo test:watch",
+    "type-check": "turbo type-check"
   }
 }

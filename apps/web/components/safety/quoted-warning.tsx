@@ -3,8 +3,8 @@ import type { JSX } from "react";
 import { EnvironmentAgency, MetOffice } from "@/components/icons";
 
 export const WarningSourceEnum = {
-  metoffice: "mo",
   environmentAgency: "ea",
+  metoffice: "mo",
 } as const;
 export type WarningSourceEnum =
   (typeof WarningSourceEnum)[keyof typeof WarningSourceEnum];
@@ -27,24 +27,24 @@ const getAgency = (
   switch (source) {
     case WarningSourceEnum.environmentAgency:
       return {
-        agencyName: "Environment Agency",
-        agencyColors: "bg-green-600 text-green-50",
         AgencyIcon: EnvironmentAgency,
+        agencyColors: "bg-green-600 text-green-50",
+        agencyName: "Environment Agency",
         notFound: false,
       };
     case WarningSourceEnum.metoffice:
       return {
-        agencyName: "Met Office",
-        agencyColors: "bg-gray-700 text-lime-400",
         AgencyIcon: MetOffice,
+        agencyColors: "bg-gray-700 text-lime-400",
+        agencyName: "Met Office",
         notFound: false,
       };
     default:
       return {
-        agencyName: "",
         agencyColors: "",
-        AgencyIcon: () => null,
+        agencyName: "",
         notFound: true,
+        AgencyIcon: () => null,
       };
   }
 };

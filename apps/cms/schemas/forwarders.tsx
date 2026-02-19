@@ -2,13 +2,10 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 const forwarders = defineType({
   name: "forwarders",
-  type: "document",
   title: "Forwarders",
+  type: "document",
   fields: [
     defineField({
-      name: "alias",
-      type: "slug",
-      title: "Email Alias",
       description: (
         <p>
           This is first part of the email address. For example, if the email
@@ -16,29 +13,32 @@ const forwarders = defineType({
           <code>captain</code>.
         </p>
       ),
+      name: "alias",
+      title: "Email Alias",
+      type: "slug",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "recipients",
-      type: "array",
       title: "Recipients",
+      type: "array",
       of: [
         defineArrayMember({
-          type: "reference",
           to: [{ type: "officers" } as const],
+          type: "reference",
         }),
       ],
     }),
     defineField({
-      name: "otherRecipients",
-      type: "array",
-      title: "Other Recipients",
       description:
         "If you need to forward to an email address that isn't in the 'officers' list, enter it here.",
+      name: "otherRecipients",
+      title: "Other Recipients",
+      type: "array",
       of: [
         defineArrayMember({
-          type: "string",
           title: "Email Address",
+          type: "string",
           validation: (Rule) => Rule.email(),
         }),
       ],
@@ -47,23 +47,18 @@ const forwarders = defineType({
 
   orderings: [
     {
+      by: [{ direction: "asc", field: "alias.current" }],
       name: "aliasAsc",
       title: "Alias Ascending",
-      by: [{ field: "alias.current", direction: "asc" }],
     },
     {
+      by: [{ direction: "desc", field: "alias.current" }],
       name: "aliasDesc",
       title: "Alias Descending",
-      by: [{ field: "alias.current", direction: "desc" }],
     },
   ],
 
   preview: {
-    select: {
-      alias: "alias.current",
-      recipients: "recipients",
-      otherRecipients: "otherRecipients",
-    },
     prepare({ alias, recipients, otherRecipients }) {
       const title = alias;
 
@@ -86,6 +81,11 @@ const forwarders = defineType({
           totalRecipients,
         )}`,
       };
+    },
+    select: {
+      alias: "alias.current",
+      otherRecipients: "otherRecipients",
+      recipients: "recipients",
     },
   },
 });

@@ -1,21 +1,21 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "includeCoAuthoredBy": false,
+  "enabledPlugins": {
+    "frontend-design@anthropics-claude-code": true
+  },
   "hooks": {
     "PostToolUse": [
       {
         "matcher": "Edit|Write",
         "hooks": [
           {
-            "type": "command",
             "command": "pnpm check",
-            "timeout": 5
+            "timeout": 5,
+            "type": "command"
           }
         ]
       }
     ]
-  },
-  "enabledPlugins": {
-    "frontend-design@anthropics-claude-code": true
-  },
-  "includeCoAuthoredBy": false
+  }
 }

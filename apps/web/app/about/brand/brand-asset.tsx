@@ -75,10 +75,10 @@ export const BrandAsset = ({
               </td>
               <td>
                 <DownloadImageButton
-                  svgRef={svgRef}
-                  format={download.format}
-                  width={download.width}
                   className="text-blue-500 transition-colors hover:text-blue-600"
+                  format={download.format}
+                  svgRef={svgRef}
+                  width={download.width}
                 >
                   <span className="hidden sm:inline">Download</span>
                   <span className="inline sm:hidden">Get</span>

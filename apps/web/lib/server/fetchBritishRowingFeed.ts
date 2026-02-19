@@ -6,12 +6,12 @@ const QUERY_URL =
 
 const schema = z.array(
   z.object({
+    date: z.coerce.date().transform((date) => date.toISOString()),
     id: z.int(),
+    link: z.url(),
     title: z
       .object({ rendered: z.string() })
       .transform(({ rendered }) => decode(rendered)),
-    date: z.coerce.date().transform((date) => date.toISOString()),
-    link: z.url(),
   }),
 );
 

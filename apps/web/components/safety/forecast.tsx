@@ -27,9 +27,9 @@ const ExtremeConditionIcon = ({
 );
 
 const rangeFormatter = Intl.NumberFormat("en-GB", {
-  unit: "celsius",
-  style: "unit",
   signDisplay: "negative",
+  style: "unit",
+  unit: "celsius",
 });
 
 const TemperatureRange = ({
@@ -61,11 +61,11 @@ export const ForecastComponent = () => {
         <div className="grid w-full min-w-[30rem] grid-cols-7 gap-1 p-3">
           {forecast?.map(({ code, condition, date, temp, wind }) => (
             <a
-              key={String(date)}
               className="group text-center leading-none"
               href={getMetOfficeURL(new Date(date))}
-              target="_blank"
+              key={String(date)}
               rel="noopener noreferrer"
+              target="_blank"
             >
               <h3 className="h-4 font-semibold text-gray-600 text-xs uppercase tracking-wider">
                 <DateFormatter dateString={date} format="shortWeekday" />

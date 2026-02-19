@@ -36,48 +36,48 @@ const navigationGroups: NavigationGroup[] = [
     title: "About",
     items: [
       {
-        name: "History",
         description: "Rowing in Sudbury since 1874.",
         href: "/about/history",
         icon: History,
+        name: "History",
       },
       {
-        name: "Safety",
         description: "Your safety is our top priority.",
         href: "/safety",
         icon: Safety,
+        name: "Safety",
       },
       {
-        name: "Governance",
         description: "How our club is organised.",
         href: "/governance",
         icon: Governance,
+        name: "Governance",
       },
       {
-        name: "Sponsorship",
         description: "Discover the benefits of sponsorship.",
         href: "/about/sponsorship",
         icon: SparklesIcon,
+        name: "Sponsorship",
       },
       {
-        name: "150th anniversary",
-        shortName: "150 years",
         description: "View a century-and-a-half of photos.",
         href: "/150",
         icon: CakeIcon,
+        name: "150th anniversary",
+        shortName: "150 years",
       },
       {
-        name: "How to find us",
-        shortName: "Find us",
+        cta: true,
         href: "/contact/how-to-find-us",
         icon: MapPinIcon,
-        cta: true,
+        name: "How to find us",
+        shortName: "Find us",
       },
       {
-        name: "Contact",
+        cta: true,
         href: "/contact",
         icon: EnvelopeIcon,
-        cta: true,
+        name: "Contact",
       },
     ],
   },
@@ -85,9 +85,9 @@ const navigationGroups: NavigationGroup[] = [
     title: "News",
     items: [
       {
-        name: "News",
         href: "/news",
         icon: NewspaperIcon,
+        name: "News",
       },
     ],
   },
@@ -95,52 +95,52 @@ const navigationGroups: NavigationGroup[] = [
     title: "Regatta",
     items: [
       {
-        name: "The ‘International’",
-        shortName: "About",
         description:
           "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
         href: "/regatta",
         icon: InformationCircleIcon,
+        name: "The ‘International’",
+        shortName: "About",
       },
       {
-        name: "Results",
         href: "/regatta/results",
         icon: Results,
+        name: "Results",
       },
       {
-        name: "Course records",
         href: "/regatta/records",
         icon: QueueListIcon,
+        name: "Course records",
       },
       {
-        name: "Entries",
         href: "/regatta/entries",
         icon: TicketIcon,
+        name: "Entries",
       },
       {
-        name: "Course map",
-        shortName: "Course",
         href: "/regatta/course",
         icon: FlagIcon,
+        name: "Course map",
+        shortName: "Course",
       },
       {
-        name: "Official photography",
-        shortName: "Photography",
         href: "/regatta/galleries",
         icon: PhotoIcon,
+        name: "Official photography",
+        shortName: "Photography",
       },
       {
-        name: "Competitor information",
-        shortName: "Competitors",
         href: "/regatta/competitor-information",
         icon: ShieldCheckIcon,
+        name: "Competitor information",
+        shortName: "Competitors",
       },
       {
-        name: "Find the regatta",
-        shortName: "Find",
+        cta: true,
         href: "/contact/how-to-find-us",
         icon: MapPinIcon,
-        cta: true,
+        name: "Find the regatta",
+        shortName: "Find",
       },
     ],
   },
@@ -151,9 +151,9 @@ const secondaryNavigationGroups: NavigationGroup[] = [
     title: "Join",
     items: [
       {
-        name: "Join",
         href: "/join",
         icon: UserPlusIcon,
+        name: "Join",
       },
     ],
   },
@@ -161,38 +161,38 @@ const secondaryNavigationGroups: NavigationGroup[] = [
     title: "Members",
     items: [
       {
-        name: "Notices",
         href: "/members",
+        name: "Notices",
       },
       {
-        name: "Competitions",
         href: "/members/events",
+        name: "Competitions",
       },
       {
-        name: "Kit",
         href: "/members/kit",
+        name: "Kit",
       },
       {
-        name: "Rates",
         href: "/members/membership-rates",
+        name: "Rates",
       },
       {
-        name: "Squadlist",
+        cta: true,
         href: "https://sudbury.squadlist.app",
         icon: CalendarIcon,
-        cta: true,
+        name: "Squadlist",
       },
       {
-        name: "myClubhouse",
+        cta: true,
         href: "https://sudburyrowingclub.myclubhouse.co.uk",
         icon: MyClubhouse,
-        cta: true,
+        name: "myClubhouse",
       },
       {
-        name: "Spond",
+        cta: true,
         href: "https://spond.com/login",
         icon: Spond,
-        cta: true,
+        name: "Spond",
       },
     ],
   },
@@ -202,8 +202,8 @@ const availableLogos: Record<
   (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
   typeof Instagram
 > = {
-  instagram: Instagram,
   facebook: Facebook,
+  instagram: Instagram,
 };
 
 export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
@@ -216,20 +216,20 @@ export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
 
 export const misc = [
   {
-    name: "Get brand assets",
     href: "/about/brand",
+    name: "Get brand assets",
   },
   {
-    name: "Privacy policy",
     href: "/governance/privacy-policy",
+    name: "Privacy policy",
   },
   {
-    name: "Content Management System",
     href: "https://edit.sudburyrowingclub.org.uk/",
+    name: "Content Management System",
   },
   {
-    name: "StourToys",
     href: "/stourtoys",
+    name: "StourToys",
   },
 ];
 

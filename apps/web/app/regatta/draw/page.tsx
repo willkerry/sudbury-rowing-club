@@ -12,9 +12,9 @@ const HOUR_OF_DRAW_PUBLICATION = 10;
 
 export const revalidate = 86_400;
 export const metadata = createMetadata({
-  title: `Regatta Draw ${String(new Date().getFullYear())}`,
   description: "Draw for the Sudbury Regatta",
   image: { title: "Regatta Draw" },
+  title: `Regatta Draw ${String(new Date().getFullYear())}`,
 });
 
 const getThisYearsDrawIsPublished = async (year: number): Promise<boolean> => {
@@ -41,13 +41,13 @@ const Draw = async () => {
   );
 
   return (
-    <TextPage title="Regatta draw" lead>
+    <TextPage lead title="Regatta draw">
       <ClientDraw
-        weekDayOfRegatta={WEEK_DAY_OF_REGATTA}
-        monthOfRegatta={MONTH_OF_REGATTA}
-        weekDayOfDrawPublication={WEEK_DAY_OF_DRAW_PUBLICATION}
         hourOfDrawPublication={HOUR_OF_DRAW_PUBLICATION}
+        monthOfRegatta={MONTH_OF_REGATTA}
         thisYearsDrawIsPublished={thisYearsDrawIsPublished}
+        weekDayOfDrawPublication={WEEK_DAY_OF_DRAW_PUBLICATION}
+        weekDayOfRegatta={WEEK_DAY_OF_REGATTA}
       />
     </TextPage>
   );

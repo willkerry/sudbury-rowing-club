@@ -8,9 +8,9 @@ import { createMetadata } from "@/lib/create-metadata";
 import { CSRNewsPage } from "./csr-page";
 
 export const metadata = createMetadata({
-  title: "News | Sudbury Rowing Club",
   description: "Latest news from Sudbury Rowing Club.",
   image: { title: "News" },
+  title: "News | Sudbury Rowing Club",
 });
 
 const fetchArticlesAndUpdateSearchIndex = async () => {
@@ -21,7 +21,7 @@ const fetchArticlesAndUpdateSearchIndex = async () => {
         fetchArticleCount(),
         getServerClient().searchSingleIndex({
           indexName: SEARCH_INDEX_NAME,
-          searchParams: { query: "", hitsPerPage: 0 },
+          searchParams: { hitsPerPage: 0, query: "" },
         }),
       ],
     );

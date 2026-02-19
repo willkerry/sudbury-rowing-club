@@ -26,7 +26,7 @@ export const Loading = ({
   >
     <div className={`${visible ? "hidden" : "visible"} w-full`}>{children}</div>
     <span
-      className={`-translate-x-1/2 -translate-y-1/2 visible absolute top-1/2 left-1/2 flex h-full w-full select-none content-center items-center justify-center bg-transparent ${visible ? "visible" : "hidden"}`}
+      className={`visible absolute top-1/2 left-1/2 flex h-full w-full -translate-x-1/2 -translate-y-1/2 select-none content-center items-center justify-center bg-transparent ${visible ? "visible" : "hidden"}`}
     >
       <Dot />
       <Dot />

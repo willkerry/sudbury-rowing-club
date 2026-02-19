@@ -8,6 +8,7 @@ export default defineConfig({
     environment: "jsdom",
     coverage: {
       enabled: true,
+      reporter: ["text", "json", "html"],
       exclude: [
         ...coverageConfigDefaults.exclude,
         "type?(s)/**",
@@ -18,7 +19,6 @@ export default defineConfig({
         "**/*.tsx",
         "**/*[S|s]chema*",
       ],
-      reporter: ["text", "json", "html"],
     },
   },
 });

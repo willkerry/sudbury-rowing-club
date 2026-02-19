@@ -42,16 +42,16 @@ export const fetchWeatherWarning = async (): Promise<WeatherWarningResult> => {
     const feed = await parser.parseURL(WEATHER_WARNING_URL);
 
     return {
-      ok: true,
       data: feed as WarningResponse,
+      ok: true,
     };
   } catch (error) {
     return {
-      ok: false,
       error:
         error instanceof Error
           ? error.message
           : "Failed to fetch weather warning",
+      ok: false,
     };
   }
 };

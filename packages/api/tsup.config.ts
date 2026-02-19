@@ -4,6 +4,15 @@ import { defineConfig } from "tsup";
 
 const outpurDirectory = "dist";
 export default defineConfig({
+  clean: true,
+  dts: true,
+  format: ["esm"],
+  minify: true,
+  minifyIdentifiers: true,
+  minifySyntax: true,
+  minifyWhitespace: true,
+  sourcemap: true,
+  splitting: true,
   entry: [
     "src/index.ts",
     "src/sanity/image-url-builder.ts",
@@ -25,15 +34,6 @@ export default defineConfig({
     "src/queries/fetch-regattas.ts",
     "src/queries/fetch-safety.ts",
   ],
-  clean: true,
-  dts: true,
-  sourcemap: true,
-  splitting: true,
-  minify: true,
-  minifyIdentifiers: true,
-  minifySyntax: true,
-  minifyWhitespace: true,
-  format: ["esm"],
   onSuccess: async () => {
     const outputFiles = await fs.promises.readdir(outpurDirectory);
     const mjsFiles = outputFiles.filter((file) => file.endsWith(".mjs"));

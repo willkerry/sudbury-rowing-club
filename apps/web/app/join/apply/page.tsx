@@ -5,10 +5,10 @@ import { Loading } from "@/components/stour/loading";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  title: "Apply for Learn to Row",
   description:
     "Apply for a place on Sudbury Rowing Club's Learn to Row programme.",
   image: { title: "Apply for Learn to Row 🚣" },
+  title: "Apply for Learn to Row",
 });
 
 const LearnToRowApplicationForm: NextPage = () => (
@@ -26,14 +26,14 @@ const LearnToRowApplicationForm: NextPage = () => (
       directly.
     </p>
     <iframe
-      title="Learn to Row application form"
-      src="https://docs.google.com/forms/d/e/1FAIpQLScoypkKpYLlr4Tv-pdsl2N9hJs1_TCGJyv1xdkDWpZs2se6qA/viewform?embedded=true"
-      width="100%"
-      height={720}
+      className="overflow-hidden rounded-sm border shadow-inner"
       frameBorder={0}
+      height={720}
       marginHeight={0}
       marginWidth={0}
-      className="overflow-hidden rounded-sm border shadow-inner"
+      src="https://docs.google.com/forms/d/e/1FAIpQLScoypkKpYLlr4Tv-pdsl2N9hJs1_TCGJyv1xdkDWpZs2se6qA/viewform?embedded=true"
+      title="Learn to Row application form"
+      width="100%"
     >
       <Loading />
     </iframe>

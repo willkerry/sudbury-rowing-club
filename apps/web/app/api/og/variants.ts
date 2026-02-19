@@ -15,30 +15,30 @@ export const variants: Record<
 > = {
   blue: {
     bg: blue[950],
-    mg: blue[200],
     fg: "#fff",
     g1: "#a1c4fd",
     g2: "#c2e9fb",
-    weight: 600,
+    mg: blue[200],
     spacing: -1,
+    weight: 600,
   },
   dark: {
     bg: "#000",
-    mg: "rgba(255, 255, 255, 0.5)",
     fg: "rgba(255, 255, 255, 0.8)",
     g1: "#fff",
     g2: "#fff",
-    weight: 500,
+    mg: "rgba(255, 255, 255, 0.5)",
     spacing: -2,
+    weight: 500,
   },
   light: {
     bg: "#fff",
-    mg: "rgba(0, 0, 0, 0.5)",
     fg: "rgba(0, 0, 0, 0.8)",
     g1: "#000",
     g2: "#000",
-    weight: 500,
+    mg: "rgba(0, 0, 0, 0.5)",
     spacing: -2,
+    weight: 500,
   },
 };
 

@@ -4,13 +4,13 @@ export const CommitteeSignature = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
     strokeWidth={6}
     viewBox="0 0 1447 337"
+    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <title>The Committee</title>

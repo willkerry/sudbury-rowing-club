@@ -5,12 +5,12 @@ const SUFFIXES = ["th", "st", "nd", "rd"] as const;
 type Suffix = (typeof SUFFIXES)[number];
 
 const SUFFIX_RULES: Record<Intl.LDMLPluralRule, Suffix> = {
-  zero: SUFFIXES[0],
-  one: SUFFIXES[1],
-  two: SUFFIXES[2],
   few: SUFFIXES[3],
   many: SUFFIXES[0],
+  one: SUFFIXES[1],
   other: SUFFIXES[0],
+  two: SUFFIXES[2],
+  zero: SUFFIXES[0],
 };
 
 /**

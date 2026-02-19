@@ -2,25 +2,20 @@ import { UsersIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 const Trustees = defineType({
-  name: "trustees",
-  type: "document",
-  title: "Trustees",
   icon: UsersIcon,
+  name: "trustees",
+  title: "Trustees",
+  type: "document",
   fields: [
-    defineField({ name: "firstName", type: "string", title: "First Name" }),
-    defineField({ name: "surname", type: "string", title: "Surname" }),
+    defineField({ name: "firstName", title: "First Name", type: "string" }),
+    defineField({ name: "surname", title: "Surname", type: "string" }),
     defineField({
       name: "reference",
-      type: "reference",
       to: [{ type: "person" } as const],
+      type: "reference",
     }),
   ],
   preview: {
-    select: {
-      firstName: "reference.firstName",
-      surname: "reference.surname",
-      media: "reference.image.image",
-    },
     prepare(selection) {
       const { firstName, surname, media } = selection;
 
@@ -28,6 +23,11 @@ const Trustees = defineType({
         title: `${firstName} ${surname}`,
         media,
       };
+    },
+    select: {
+      firstName: "reference.firstName",
+      media: "reference.image.image",
+      surname: "reference.surname",
     },
   },
 });

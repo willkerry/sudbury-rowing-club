@@ -2,62 +2,62 @@ import { BookIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 const News = defineType({
-  name: "news",
-  type: "document",
-  title: "News",
   icon: BookIcon,
+  name: "news",
+  title: "News",
+  type: "document",
   fields: [
     defineField({
       name: "title",
-      type: "string",
       title: "Title",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
-      type: "slug",
-      title: "Slug",
       options: { source: "title" },
+      title: "Slug",
+      type: "slug",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "author",
-      type: "reference",
       to: [{ type: "author" } as const],
+      type: "reference",
     }),
-    defineField({ name: "excerpt", type: "text", title: "Excerpt", rows: 3 }),
+    defineField({ name: "excerpt", rows: 3, title: "Excerpt", type: "text" }),
     defineField({
       name: "date",
-      type: "date",
       title: "Original publication date",
+      type: "date",
       validation: (Rule) => Rule.required(),
     }),
-    defineField({ name: "body", type: "richText", title: "Body" }),
+    defineField({ name: "body", title: "Body", type: "richText" }),
     defineField({
       name: "featuredImage",
-      type: "figure",
       title: "Featured image",
+      type: "figure",
     }),
+  ],
+  orderings: [
+    {
+      by: [{ direction: "desc", field: "date" }],
+      name: "dateDesc",
+      title: "Publication Date, New",
+    },
+    {
+      by: [{ direction: "desc", field: "slug" }],
+      name: "slugAsc",
+      title: "Slug",
+    },
   ],
   preview: {
     select: {
-      title: "title",
-      subtitle: "body",
       media: "featuredImage.image",
+      subtitle: "body",
+      title: "title",
     },
   },
-  orderings: [
-    {
-      title: "Publication Date, New",
-      name: "dateDesc",
-      by: [{ field: "date", direction: "desc" }],
-    },
-    {
-      title: "Slug",
-      name: "slugAsc",
-      by: [{ field: "slug", direction: "desc" }],
-    },
-  ],
 });
 
 export default News;

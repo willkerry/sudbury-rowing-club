@@ -19,15 +19,15 @@ const events: BREvent[] = new Array(NUMBER_OF_EVENTS).fill(null).map((_, i) => {
   const date = addNWeeksToDate(i);
 
   return {
-    id: faker.commerce.isbn(),
-    startDate: date,
-    endDate: date,
-    competition: `${faker.location.city()} Regatta`,
-    region: faker.location.county(),
-    notes: faker.lorem.sentence(),
-    url: faker.internet.url(),
-    status: faker.datatype.boolean() ? 0 : 1,
     cancelled: faker.datatype.boolean(),
+    competition: `${faker.location.city()} Regatta`,
+    endDate: date,
+    id: faker.commerce.isbn(),
+    notes: faker.lorem.sentence(),
+    region: faker.location.county(),
+    startDate: date,
+    status: faker.datatype.boolean() ? 0 : 1,
+    url: faker.internet.url(),
   };
 });
 

@@ -6,14 +6,14 @@ import {
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-        retry: false,
-      },
       dehydrate: {
         shouldDehydrateQuery: (query) =>
           defaultShouldDehydrateQuery(query) ||
           query.state.status === "pending",
+      },
+      queries: {
+        retry: false,
+        staleTime: 60 * 1000,
       },
     },
   });

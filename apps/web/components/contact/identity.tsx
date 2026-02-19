@@ -15,8 +15,8 @@ const IdentityImage = forwardRef<
   if (!(imageProps?.src && id)) return null;
 
   return (
-    <AvatarImage ref={ref} asChild src={imageProps.src} {...props}>
-      <Image alt="" {...imageProps} placeholder="blur" blurDataURL={lqip} />
+    <AvatarImage asChild ref={ref} src={imageProps.src} {...props}>
+      <Image alt="" {...imageProps} blurDataURL={lqip} placeholder="blur" />
     </AvatarImage>
   );
 });

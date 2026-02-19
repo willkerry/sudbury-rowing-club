@@ -8,6 +8,7 @@ export const onRequestError: Instrumentation.onRequestError = async (
   request,
 ) =>
   whenEnv({
+    ifDev: () => undefined,
     ifPreview: () => undefined,
     ifProd: async () => {
       const { getPostHogServer } = await import("./posthog-server");
@@ -20,5 +21,4 @@ export const onRequestError: Instrumentation.onRequestError = async (
         $session_id: sessionId,
       });
     },
-    ifDev: () => undefined,
   });

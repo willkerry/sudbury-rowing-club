@@ -30,19 +30,19 @@ export const Chip = ({
 
   return (
     <button
-      ref={ref}
-      type="button"
       className={cn(
         "rounded-sm px-0.5 font-medium ring-black ring-offset-1 transition",
         color,
         className,
         "hover:cursor-default hover:opacity-50 hover:ring-0",
       )}
-      onMouseEnter={() => highlight(sanitisedId)}
-      onMouseLeave={() => unhighlight(sanitisedId)}
-      onFocus={() => highlight(sanitisedId)}
       onBlur={() => unhighlight(sanitisedId)}
       onClick={() => highlight(sanitisedId)}
+      onFocus={() => highlight(sanitisedId)}
+      onMouseEnter={() => highlight(sanitisedId)}
+      onMouseLeave={() => unhighlight(sanitisedId)}
+      ref={ref}
+      type="button"
     >
       {children}
     </button>

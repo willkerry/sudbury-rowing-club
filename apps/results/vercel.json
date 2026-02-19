@@ -1,14 +1,14 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "trailingSlash": true,
+  "buildCommand": "pnpm build",
   "cleanUrls": true,
   "outputDirectory": "dist",
-  "buildCommand": "pnpm build",
+  "trailingSlash": true,
   "redirects": [
     {
-      "source": "/",
       "destination": "https://sudburyrowingclub.org.uk/regatta/results/",
-      "permanent": true
+      "permanent": true,
+      "source": "/"
     }
   ]
 }

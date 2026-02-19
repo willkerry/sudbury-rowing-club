@@ -19,10 +19,10 @@ export const Track404 = () => {
 
     posthog.capture("404_page_viewed", {
       attempted_path: pathname,
-      search_params: searchParams.toString() || undefined,
       full_url: `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`,
-      referrer: referrer || undefined,
       is_internal_referrer: referrer?.includes("sudburyrowingclub.org.uk"),
+      referrer: referrer || undefined,
+      search_params: searchParams.toString() || undefined,
     });
   }, [pathname, searchParams, posthog]);
 

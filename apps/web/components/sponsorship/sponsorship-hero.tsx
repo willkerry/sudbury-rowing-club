@@ -26,12 +26,12 @@ export const SponsorshipHero = ({
 
     <div className="flex justify-center gap-2 pb-12">
       <ScrollLink
-        to="sponsorship-tiers"
+        className="text-white"
         offset={-175}
         smooth
-        className="text-white"
+        to="sponsorship-tiers"
       >
-        <Button variant="secondary" size="lg">
+        <Button size="lg" variant="secondary">
           Learn more
         </Button>
       </ScrollLink>

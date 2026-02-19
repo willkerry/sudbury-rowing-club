@@ -6,9 +6,9 @@ import { Label } from "@/components/stour/label";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  title: "Authors",
   description: "List of contributing authors",
   image: { title: "Our authors" },
+  title: "Authors",
 });
 
 type AuthorResponseWithRank = AuthorsResponse[number] & { rank: number };
@@ -52,8 +52,8 @@ const Authors = async () => {
 
               return (
                 <li
-                  key={_id}
                   className={cn("mb-4 flex text-lg", firstOfRank && "pt-2")}
+                  key={_id}
                 >
                   <div className="relative w-6">
                     {firstOfRank && (

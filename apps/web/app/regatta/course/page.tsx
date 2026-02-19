@@ -8,9 +8,9 @@ import { createMetadata } from "@/lib/create-metadata";
 import { CourseMap } from "./course-map";
 
 export const metadata = createMetadata({
-  title: "Coursemap | Sudbury Regatta",
   description: "The Sudbury Regatta’s challenging regatta course.",
   image: { title: "Coursemap" },
+  title: "Coursemap | Sudbury Regatta",
 });
 
 const Coursemap = async () => {
@@ -45,19 +45,19 @@ const Coursemap = async () => {
 
   return (
     <>
-      <PageHeader title="Regatta course" breadcrumbs />
+      <PageHeader breadcrumbs title="Regatta course" />
       <Container className="mb-16">
         <div className="prose auto-lead mb-16">
           <p>{heading}</p>
           <p>{description}</p>
-          <Button icon={<Download />} asChild>
+          <Button asChild icon={<Download />}>
             <a href={`${map}?dl=`}>Download the PDF</a>
           </Button>
         </div>
         <div className="flex overflow-hidden rounded-sm border shadow-xl">
           <CourseMap
-            id={mapImage.id}
             aspectRatio={mapImage.aspectRatio}
+            id={mapImage.id}
             lqip={mapImage.lqip}
           />
         </div>

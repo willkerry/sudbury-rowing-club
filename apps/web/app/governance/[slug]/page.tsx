@@ -28,8 +28,8 @@ export const generateMetadata = async ({
   return createMetadata({
     title,
     description: policy.description,
-    type: "article",
     image: { title },
+    type: "article",
   });
 };
 
@@ -45,11 +45,11 @@ const TestPage = async ({ params }: PolicyPageParamObject) => {
 
   return (
     <DocPage
-      title={policy.title || formatTitle(policy._meta.path)}
-      description={policy.description}
-      prenotes={policy.prenotes}
-      postnotes={policy.postnotes}
       body={policy.body}
+      description={policy.description}
+      postnotes={policy.postnotes}
+      prenotes={policy.prenotes}
+      title={policy.title || formatTitle(policy._meta.path)}
       toc={policy.toc}
     />
   );

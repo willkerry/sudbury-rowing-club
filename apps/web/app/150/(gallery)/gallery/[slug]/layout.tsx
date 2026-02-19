@@ -3,7 +3,7 @@ import { Container } from "@/components/layouts/container";
 
 const Archive = async ({ children }: { children: React.ReactNode }) => (
   <>
-    <HundredAndFiftyHeader title="Archive resource" href="/150/gallery" />
+    <HundredAndFiftyHeader href="/150/gallery" title="Archive resource" />
 
     <Container>{children}</Container>
   </>

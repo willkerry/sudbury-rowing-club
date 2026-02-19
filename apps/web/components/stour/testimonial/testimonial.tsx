@@ -23,14 +23,14 @@ const ClubImage = ({
   const alt = clubName ? `${clubName} blade` : "Club blade";
 
   return (
-    <a href={clubHref} target="_blank" rel="noopener noreferrer">
+    <a href={clubHref} rel="noopener noreferrer" target="_blank">
       <Image
-        src={clubBladeUrl}
-        loader={cloudflareLoader}
-        width={32}
-        height={16}
         alt={alt}
         className="mb-0.5 ml-2 inline-block h-4 w-8"
+        height={16}
+        loader={cloudflareLoader}
+        src={clubBladeUrl}
+        width={32}
       />
     </a>
   );

@@ -14,9 +14,9 @@ const ZNoteSchema = z.object({
 
 const ZNewsSchema = z
   .object({
+    _id: z.string(),
     date: z.string(),
     featuredImage: Z_IMAGE_SCHEMA.nullable(),
-    _id: z.string(),
     slug: z.string(),
     title: z.string(),
   })
@@ -24,17 +24,17 @@ const ZNewsSchema = z
 
 const ZHeroImageSchema = z.object({
   _id: z.string(),
-  lqip: z.string(),
   aspectRatio: z.number(),
+  lqip: z.string(),
 });
 
 const ZLandingPageSubSchema = z.object({
+  description: z.array(ZTypedObject),
+  heroImage: ZHeroImageSchema,
+  images: z.array(Z_IMAGE_SCHEMA),
+  note: ZNoteSchema,
   tagline: z.string(),
   title: z.string(),
-  description: z.array(ZTypedObject),
-  images: z.array(Z_IMAGE_SCHEMA),
-  heroImage: ZHeroImageSchema,
-  note: ZNoteSchema,
 });
 
 const ZLandingPageSchema = z.object({

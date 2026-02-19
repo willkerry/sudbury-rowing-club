@@ -13,8 +13,8 @@ export const build = async () => {
   const start = performance.now();
 
   const bundler = new Parcel({
-    entries: `${TEMP}/index.html`,
     defaultConfig: "@parcel/config-default",
+    entries: `${TEMP}/index.html`,
     mode: "production",
   });
 

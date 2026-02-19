@@ -37,9 +37,9 @@ const safetyQuery = groq`*[
 const safetyQueryById = groq`*[_id == $id][0]{${fields}}`;
 
 const ZSafetyDocument = z.object({
+  extension: z.string(),
   title: z.string(),
   url: z.string(),
-  extension: z.string(),
 });
 type SafetyDocument = z.infer<typeof ZSafetyDocument>;
 
@@ -50,6 +50,7 @@ const ZSafetyLink = z.object({
 type SafetyLink = z.infer<typeof ZSafetyLink>;
 
 const ZPartialSafetyResponse = z.object({
+  _id: z.string(),
   _updatedAt: z.coerce
     .date()
     .transform((date) => {
@@ -59,9 +60,8 @@ const ZPartialSafetyResponse = z.object({
       return date;
     })
     .transform((date) => date.toDateString()),
-  _id: z.string(),
-  title: z.string(),
   pin: z.boolean().nullable().default(false),
+  title: z.string(),
 });
 const ZSafetyItem = ZPartialSafetyResponse.extend({
   body: z.array(ZTypedObject).nullable(),

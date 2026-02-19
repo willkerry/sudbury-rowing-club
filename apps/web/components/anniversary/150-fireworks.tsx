@@ -12,7 +12,7 @@ export const HundredAndFiftyFireworks = () => {
     <Fireworks
       className="absolute inset-0"
       options={{
-        hue: { min: 205, max: 220 },
+        hue: { max: 220, min: 205 },
         intensity: 5,
         mouse: { click: true, move: false },
       }}

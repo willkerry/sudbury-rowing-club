@@ -4,13 +4,13 @@ export const Safety = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
 ) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
     fill="none"
     fillRule="evenodd"
     stroke="currentColor"
-    strokeWidth={1.5}
     strokeLinejoin="round"
+    strokeWidth={1.5}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <title>Safety</title>

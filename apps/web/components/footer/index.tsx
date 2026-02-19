@@ -33,7 +33,7 @@ export const Footer = () => (
 
       <div className="justify-left mb-12 flex flex-wrap">
         {columns.map(([heading, data]) => (
-          <FooterColumn key={heading} heading={heading} data={data} />
+          <FooterColumn data={data} heading={heading} key={heading} />
         ))}
       </div>
 

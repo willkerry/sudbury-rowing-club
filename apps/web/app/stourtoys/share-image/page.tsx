@@ -14,7 +14,7 @@ export const metadata = createMetadata({
 });
 
 const ShareImage = () => (
-  <TextPage title={title} description={description} prose="max-w-prose">
+  <TextPage description={description} prose="max-w-prose" title={title}>
     <SharePlayground />
   </TextPage>
 );

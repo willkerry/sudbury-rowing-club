@@ -9,8 +9,8 @@ const transform: typeof fumaTransformMDX = (document, context) =>
     remarkPlugins: [remarkAdmonition, remarkSmartypants],
     rehypeCodeOptions: {
       themes: {
-        light: "github-dark",
         dark: "github-dark",
+        light: "github-dark",
       },
     },
   });
@@ -20,22 +20,22 @@ const StatusSchema = z.union([z.literal("draft"), z.literal("published")]);
 const PrePostNoteSchema = z.union([
   z.object({
     label: z.string(),
-    value: z.string(),
     url: z.string().optional(),
+    value: z.string(),
   }),
   z.string(),
 ]);
 
 const policies = defineCollection({
-  name: "policies",
   directory: "content/policies",
   include: "**/*.mdx",
+  name: "policies",
   schema: z.object({
-    title: z.string(),
-    status: StatusSchema.optional().default("published"),
     description: z.string().optional(),
-    prenotes: z.array(PrePostNoteSchema).optional(),
     postnotes: z.array(PrePostNoteSchema).optional(),
+    prenotes: z.array(PrePostNoteSchema).optional(),
+    status: StatusSchema.optional().default("published"),
+    title: z.string(),
   }),
   transform,
 });

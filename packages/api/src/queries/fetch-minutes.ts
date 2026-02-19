@@ -17,6 +17,14 @@ const ZMinutes = z.object({
   _id: z.string(),
 
   /**
+   * The name of the committee that the minutes are for
+   *
+   * @example "Executive"
+   * @example "Social"
+   */
+  committee: z.string(),
+
+  /**
    * Formatted as `D Mmm YYYY`
    *
    * @example "1 Jan 2021"
@@ -31,22 +39,14 @@ const ZMinutes = z.object({
   ),
 
   /**
-   * Whether the minutes are public or not
-   */
-  public: z.boolean(),
-
-  /**
    * Must be an absolute URL, generally to a PDF file
    */
   file: z.string().url().nullable(),
 
   /**
-   * The name of the committee that the minutes are for
-   *
-   * @example "Executive"
-   * @example "Social"
+   * Whether the minutes are public or not
    */
-  committee: z.string(),
+  public: z.boolean(),
 });
 
 const fetchMinutes = async () => {

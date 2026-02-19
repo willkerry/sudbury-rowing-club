@@ -32,8 +32,8 @@ const mapNoteTypeToAlertVariant = (
 
 const components: PortableTextComponents = {
   marks: {
-    normal: ({ value }) => <pre>{JSON.stringify(value)}</pre>,
     link: ({ value, children }) => <Link href={value?.href}>{children}</Link>,
+    normal: ({ value }) => <pre>{JSON.stringify(value)}</pre>,
   },
 
   types: {
@@ -42,14 +42,7 @@ const components: PortableTextComponents = {
         <code>{value?.code}</code>
       </pre>
     ),
-    quote: ({ value }) => (
-      <figure>
-        <blockquote>
-          <PortableText value={value?.quote} />
-        </blockquote>
-        <figcaption className="-mt-4 pl-3.5">{value?.attribution}</figcaption>
-      </figure>
-    ),
+    figure: ({ value }) => <SanityFigure value={value} />,
     note: ({ value }) => (
       <Alert
         className="not-prose"
@@ -59,8 +52,15 @@ const components: PortableTextComponents = {
         {value?.note && <AlertDescription>{value?.note}</AlertDescription>}
       </Alert>
     ),
-    figure: ({ value }) => <SanityFigure value={value} />,
     oembed: ({ value }) => <OEmbed url={value?.url} />,
+    quote: ({ value }) => (
+      <figure>
+        <blockquote>
+          <PortableText value={value?.quote} />
+        </blockquote>
+        <figcaption className="-mt-4 pl-3.5">{value?.attribution}</figcaption>
+      </figure>
+    ),
   },
 };
 

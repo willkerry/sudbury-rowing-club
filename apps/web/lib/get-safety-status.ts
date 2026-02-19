@@ -37,7 +37,6 @@ const fetchSanityStatus = async (): Promise<
 > => {
   try {
     return {
-      ok: true,
       data: SanityStatusSchema.parse(
         await sanityClient.fetch(
           groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
@@ -48,16 +47,17 @@ const fetchSanityStatus = async (): Promise<
           }`,
         ),
       ),
+      ok: true,
     };
   } catch (error) {
     trackServerException(error);
 
     return {
-      ok: false,
       error:
         error instanceof Error
           ? error.message
           : "Failed to fetch safety status from content management system",
+      ok: false,
     };
   }
 };
@@ -65,9 +65,9 @@ const fetchSanityStatus = async (): Promise<
 const getEaWarningUrl = (): string =>
   `https://environment.data.gov.uk/flood-monitoring/id/floods?${new URLSearchParams(
     {
+      dist: String(3),
       lat: String(CLUB_LOCATION[0]),
       long: String(CLUB_LOCATION[1]),
-      dist: String(3),
     },
   ).toString()}`;
 
@@ -78,21 +78,21 @@ const fetchEAWarning = async (): Promise<
 > => {
   try {
     return {
-      ok: true,
       data: z
         .object({ items: z.array(EAWarningSchema) })
         .parse(await ky.get(getEaWarningUrl(), { timeout: 5000 }).json())
         .items[0],
+      ok: true,
     };
   } catch (error) {
     trackServerException(error);
 
     return {
-      ok: false,
       error:
         error instanceof HTTPError
           ? error.message
           : "Failed to fetch EA warning",
+      ok: false,
     };
   }
 };
@@ -106,20 +106,20 @@ const fetchEAStation = async (): Promise<
 > => {
   try {
     return {
-      ok: true,
       data: z
         .object({ items: EAStationResponseSchema })
         .parse(await ky.get(STATION_URL, { timeout: 5000 }).json()).items,
+      ok: true,
     };
   } catch (error) {
     trackServerException(error);
 
     return {
-      ok: false,
       error:
         error instanceof HTTPError
           ? error.message
           : "Failed to fetch EA station",
+      ok: false,
     };
   }
 };
@@ -150,9 +150,9 @@ function formatDescriptionString(
 
   const [l, c, f] = [level, ceil, floor].map((v) =>
     Intl.NumberFormat("en-GB", {
+      maximumFractionDigits: 0,
       style: "unit",
       unit: "centimeter",
-      maximumFractionDigits: 0,
     }).format(Math.max(0, v * 100)),
   );
 
@@ -176,9 +176,9 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     const { data: sanityStatus } = sanityResult;
 
     return {
-      status: sanityStatus.status,
-      description: sanityStatus.description,
       date: sanityStatus._updatedAt,
+      description: sanityStatus.description,
+      status: sanityStatus.status,
       statusMessage: sanityStatus.status.toString(),
     };
   }
@@ -189,11 +189,11 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     } = eaWarningResult;
 
     return {
-      status: numericSeverityMap[severityLevel],
-      description: message || "",
       date: timeRaised,
-      statusMessage: severity,
+      description: message || "",
       source: WarningSourceEnum.environmentAgency,
+      status: numericSeverityMap[severityLevel],
+      statusMessage: severity,
     };
   }
 
@@ -211,11 +211,11 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
       lowerCaseSnippet.includes("yellow") || lowerCaseSnippet.includes("amber");
 
     return {
-      status: isYellowOrAmber ? "amber" : "red",
-      description: weatherWarning.items[0].content,
       date: new Date(weatherWarning.pubDate),
-      statusMessage: "Weather warning",
+      description: weatherWarning.items[0].content,
       source: WarningSourceEnum.metoffice,
+      status: isYellowOrAmber ? "amber" : "red",
+      statusMessage: "Weather warning",
     };
   }
 
@@ -228,26 +228,26 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
 
     return {
       status,
+      date: stationResult.data.measures.latestReading.dateTime,
       description: formatDescriptionString(
         stationResult.data.label,
         value,
         typicalRangeHigh,
         typicalRangeLow,
       ),
-      date: stationResult.data.measures.latestReading.dateTime,
       statusMessage: "Monitoring station",
     };
   }
 
   return {
-    status: "neutral",
-    description: "Unable to fetch safety data from any source",
     date: new Date(),
-    statusMessage: "No data available",
+    description: "Unable to fetch safety data from any source",
     errors: sift([
       sanityResult.error,
       eaWarningResult.error,
       stationResult.error,
     ]),
+    status: "neutral",
+    statusMessage: "No data available",
   };
 };

@@ -5,7 +5,7 @@ const CourseMap = defineField({
   type: "object",
   fields: [
     defineField({ name: "heading", type: "string" }),
-    defineField({ name: "description", type: "text", rows: 4 }),
+    defineField({ name: "description", rows: 4, type: "text" }),
     defineField({ name: "map", type: "file" }),
     defineField({ name: "mapImage", title: "Map Image", type: "image" }),
   ],

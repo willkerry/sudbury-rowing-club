@@ -43,7 +43,6 @@ export const Link = ({
 
   return (
     <LinkComponent
-      href={String(href)}
       className={cn(
         unstyled
           ? "stour-link"
@@ -55,9 +54,10 @@ export const Link = ({
             ],
         className,
       )}
+      href={String(href)}
       {...(isExternal && {
-        target: "_blank",
         rel: "noopener noreferrer",
+        target: "_blank",
       })}
       {...rest}
     >

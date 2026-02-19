@@ -44,9 +44,9 @@ export const SponsorshipTiers = ({
         <Button
           asChild
           className="mb-4 w-full"
-          variant={i === emphasisedIndex ? "brand" : "secondary"}
           shadow={i === emphasisedIndex}
           size="xs"
+          variant={i === emphasisedIndex ? "brand" : "secondary"}
         >
           <Link href="/contact?q=sponsorship,secretary">
             {i === emphasisedIndex ? "Sponsor a boat" : "Enquire"}
@@ -55,7 +55,7 @@ export const SponsorshipTiers = ({
 
         <ul className="my-2 grid grid-cols-1 gap-2 font-medium text-sm">
           {benefits.map((benefit) => (
-            <li key={benefit} className="flex gap-x-2">
+            <li className="flex gap-x-2" key={benefit}>
               <Check className="mt-1.5 h-4 w-4 flex-none text-blue-600" />
               {benefit}
             </li>

@@ -1,9 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Next.js",
+  "exclude": ["node_modules"],
   "extends": "./base.json",
+  "include": ["src", "next-env.d.ts"],
   "compilerOptions": {
-    "plugins": [{ "name": "next" }],
     "allowJs": true,
     "declaration": false,
     "declarationMap": false,
@@ -12,9 +13,8 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "noEmit": true,
+    "plugins": [{ "name": "next" }],
     "resolveJsonModule": true,
     "target": "ES2022"
-  },
-  "include": ["src", "next-env.d.ts"],
-  "exclude": ["node_modules"]
+  }
 }

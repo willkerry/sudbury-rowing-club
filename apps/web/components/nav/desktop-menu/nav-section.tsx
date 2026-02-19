@@ -40,17 +40,17 @@ const ListItem = ({
   return (
     <CloseButton
       as={Link}
-      key={href}
-      href={href}
       className={cn(
         "group flex rounded-sm transition",
         description ? "items-start" : "items-center",
       )}
+      href={href}
+      key={href}
     >
       {Icon && (
         <Icon
-          className="mr-2.5 h-6 w-6 shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
           aria-hidden
+          className="mr-2.5 h-6 w-6 shrink-0 text-blue-700 transition-colors group-hover:text-blue-500"
         />
       )}
       <div className="flex flex-col">
@@ -58,8 +58,8 @@ const ListItem = ({
           className={cn(
             "flex py-0.5 font-semibold text-sm leading-none transition-colors",
             {
-              "text-gray-900 group-hover:text-gray-700": cta,
               "text-gray-600 group-hover:text-gray-900": !cta,
+              "text-gray-900 group-hover:text-gray-700": cta,
             },
           )}
         >
@@ -103,8 +103,8 @@ export const NavSection = ({
     const { href, name } = items[0];
     return (
       <Link
-        href={href}
         className={cn(isActive ? navLinkActive : navLinkColor, navLinkClasses)}
+        href={href}
       >
         {name}
       </Link>
@@ -118,27 +118,26 @@ export const NavSection = ({
       {({ open }) => (
         <>
           <PopoverButton
+            aria-current={isActive ? "page" : undefined}
             className={cn(
               isActive || open ? navLinkActive : navLinkColor,
               navLinkClasses,
               "items-center",
             )}
-            aria-current={isActive ? "page" : undefined}
           >
             <span className={cn(icon && "sr-only")}>{label}</span>
             {icon}
 
             <ChevronDownIcon
+              aria-hidden
               className={cn(
                 isActive ? "stroke-current text-gray-700" : "text-gray-400",
                 "-mb-px ml-0.5 h-3 w-3 transition group-hover:text-gray-800",
               )}
-              aria-hidden
             />
           </PopoverButton>
 
           <Transition
-            show={open}
             as={Fragment}
             enter="transition ease-in-out delay-75 duration-100"
             enterFrom="translate-y-8 opacity-0"
@@ -146,6 +145,7 @@ export const NavSection = ({
             leave="transition ease-in duration-75"
             leaveFrom="translate-y-0 opacity-100"
             leaveTo="translate-y-8 opacity-0"
+            show={open}
           >
             <div
               aria-hidden
@@ -154,7 +154,6 @@ export const NavSection = ({
           </Transition>
 
           <Transition
-            show={open}
             as={Fragment}
             enter="transition ease-in-out duration-75"
             enterFrom="opacity-0 -translate-y-10"
@@ -162,13 +161,14 @@ export const NavSection = ({
             leave="transition ease-in-out duration-200"
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 -translate-y-2"
+            show={open}
           >
             <Popover.Panel
-              static
               className={cn(
                 "absolute z-20 mt-3 transform px-2 sm:px-0",
                 POPOVER_PANEL_CLASSES.get(compact),
               )}
+              static
             >
               <div className="overflow-hidden rounded-md bg-gray-200 bg-opacity-75 p-1 shadow-lg backdrop-blur-sm">
                 <div className="relative grid gap-4 rounded-xs bg-white p-2 shadow-sm">

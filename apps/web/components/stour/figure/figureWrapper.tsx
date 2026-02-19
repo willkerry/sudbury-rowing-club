@@ -9,17 +9,15 @@ export const FigureWrapper = React.forwardRef<
     blurDataURL?: string;
     src: string;
   }
->(({ alt, aspectRatio, blurDataURL, src, children, ...rest }, ref) => {
-  return (
-    <LightBox aspectRatio={aspectRatio} src={src} lqip={blurDataURL} alt={alt}>
-      <figure {...rest} ref={ref}>
-        <LightBoxTrigger
-          className="block text-left hover:cursor-zoom-in"
-          aria-label={`View the '${alt}' image in lightbox`}
-        >
-          {children}
-        </LightBoxTrigger>
-      </figure>
-    </LightBox>
-  );
-});
+>(({ alt, aspectRatio, blurDataURL, src, children, ...rest }, ref) => (
+  <LightBox alt={alt} aspectRatio={aspectRatio} lqip={blurDataURL} src={src}>
+    <figure {...rest} ref={ref}>
+      <LightBoxTrigger
+        aria-label={`View the '${alt}' image in lightbox`}
+        className="block text-left hover:cursor-zoom-in"
+      >
+        {children}
+      </LightBoxTrigger>
+    </figure>
+  </LightBox>
+));

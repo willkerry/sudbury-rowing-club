@@ -2,11 +2,11 @@ import { describe, expect, it } from "vitest";
 import { getClub, getClubByCode } from "@/lib/getClub";
 
 const club = {
-  id: 465,
-  name: "Sudbury Rowing Club",
   bladeUrl:
     "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
   href: "https://www.britishrowing.org/rowing-activity-finder/club/?clubid=465",
+  id: 465,
+  name: "Sudbury Rowing Club",
 };
 
 describe("getClub", () => {

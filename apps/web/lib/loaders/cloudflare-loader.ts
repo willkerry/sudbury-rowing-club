@@ -10,7 +10,7 @@ import { whenEnv } from "../environment";
  */
 export const cloudflareLoader: ImageLoader = (props) =>
   whenEnv({
+    ifDev: () => props.src,
     ifPreview: () => baseCloudflareLoader(props),
     ifProd: () => baseCloudflareLoader(props),
-    ifDev: () => props.src,
   });

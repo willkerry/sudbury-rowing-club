@@ -19,8 +19,8 @@ describe("buildCloudflareImageUrl", () => {
   it("should build URL with width and height", () => {
     expect(
       buildCloudflareImageUrl("https://example.com/test.jpg", {
-        width: 100,
         height: 50,
+        width: 100,
       }),
     ).toBe(
       "https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/width=100,height=50/https://example.com/test.jpg",
@@ -30,8 +30,8 @@ describe("buildCloudflareImageUrl", () => {
   it("should build URL with quality", () => {
     expect(
       buildCloudflareImageUrl("https://example.com/test.jpg", {
-        width: 100,
         quality: 80,
+        width: 100,
       }),
     ).toBe(
       "https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/width=100,quality=80/https://example.com/test.jpg",
@@ -41,8 +41,8 @@ describe("buildCloudflareImageUrl", () => {
   it("should build URL with fit mode", () => {
     expect(
       buildCloudflareImageUrl("https://example.com/test.jpg", {
-        width: 100,
         fit: "cover",
+        width: 100,
       }),
     ).toBe(
       "https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/width=100,fit=cover/https://example.com/test.jpg",
@@ -52,8 +52,8 @@ describe("buildCloudflareImageUrl", () => {
   it("should build URL with format", () => {
     expect(
       buildCloudflareImageUrl("https://example.com/test.jpg", {
-        width: 100,
         format: "webp",
+        width: 100,
       }),
     ).toBe(
       "https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/width=100,format=webp/https://example.com/test.jpg",
@@ -79,9 +79,9 @@ describe("cloudflareLoader", () => {
   it("should include quality when provided", () => {
     expect(
       cloudflareLoader({
+        quality: 80,
         src: "https://example.com/test.jpg",
         width: 100,
-        quality: 80,
       }),
     ).toBe(
       "https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/width=100,quality=80/https://example.com/test.jpg",

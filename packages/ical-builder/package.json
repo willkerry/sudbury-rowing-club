@@ -1,20 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "@sudburyrc/ical-builder",
-  "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.mts",
-  "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "type-check": "tsc --noEmit"
-  },
-  "keywords": [],
   "author": "",
+  "keywords": [],
   "license": "ISC",
+  "main": "dist/index.mjs",
+  "name": "@sudburyrc/ical-builder",
+  "private": true,
+  "types": "dist/index.d.mts",
+  "version": "0.0.0",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
     "@sudburyrc/api": "workspace:*",
@@ -23,9 +21,11 @@
     "typescript": "^5.9.3",
     "vitest": "^4.0.17"
   },
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "type-check": "tsc --noEmit"
   }
 }

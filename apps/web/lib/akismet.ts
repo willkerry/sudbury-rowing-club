@@ -26,10 +26,10 @@ export const checkForSpam = async (
 
   const response = await ky
     .post("https://rest.akismet.com/1.1/comment-check", {
+      body: formData,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: formData,
     })
     .text();
 

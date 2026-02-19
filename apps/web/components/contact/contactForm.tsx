@@ -39,7 +39,6 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   const posthog = usePostHog();
 
   const { mutateAsync, status, error, data } = trpc.comms.send.useMutation({
-    onMutate: () => posthog.capture("contact_form_submitted"),
     onError: (error) => {
       if (error instanceof TRPCClientError && error.data?.zodError) return;
 
@@ -47,25 +46,22 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         error_message: error.message,
       });
     },
+    onMutate: () => posthog.capture("contact_form_submitted"),
     onSuccess: (data) =>
       posthog.capture("contact_form_success", { message_id: data.messageId }),
   });
 
   const optionArray = contacts.map((contact) => ({
-    value: contact._id,
     label: `${contact.role} (${contact.name})`,
+    value: contact._id,
   }));
 
   const form = useForm({
     defaultValues: {
-      to: initialValues.to || DEFAULT_VALUE,
-      name: initialValues.name || "",
       email: initialValues.email || "",
       message: initialValues.message || "",
-    },
-    validators: {
-      onSubmit: MessageSchema,
-      onSubmitAsync: withServerValidation(mutateAsync),
+      name: initialValues.name || "",
+      to: initialValues.to || DEFAULT_VALUE,
     },
     onSubmitInvalid: ({ formApi }) => {
       const fieldErrors = Object.fromEntries(
@@ -75,11 +71,15 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       );
 
       posthog.capture("contact_form_validation_error", {
-        fields_with_errors: Object.keys(fieldErrors),
         error_details: fieldErrors,
+        fields_with_errors: Object.keys(fieldErrors),
       });
 
       scrollToSelector('[aria-invalid="true"]');
+    },
+    validators: {
+      onSubmit: MessageSchema,
+      onSubmitAsync: withServerValidation(mutateAsync),
     },
   });
 
@@ -122,11 +122,11 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
             disabled={disableFields}
             error={getErrorMessage(field.state.meta.errors[0])}
             label="Who would you like to contact?"
-            value={field.state.value}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
+            value={field.state.value}
           >
-            <option value={DEFAULT_VALUE} disabled />
+            <option disabled value={DEFAULT_VALUE} />
             {optionArray.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -136,19 +136,19 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         )}
       </form.Field>
 
-      <div className="-mb-4 col-span-2 grid gap-x-4 sm:grid-cols-2">
+      <div className="col-span-2 -mb-4 grid gap-x-4 sm:grid-cols-2">
         <form.Field name="name">
           {(field) => (
             <Input
-              disabled={disableFields}
-              label="Your name"
-              type="text"
               autoComplete="name"
               className="mb-4"
+              disabled={disableFields}
               error={getErrorMessage(field.state.meta.errors[0])}
-              value={field.state.value}
+              label="Your name"
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
+              type="text"
+              value={field.state.value}
             />
           )}
         </form.Field>
@@ -156,16 +156,16 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         <form.Field name="email">
           {(field) => (
             <Input
-              disabled={disableFields}
-              label="Your email"
-              type="email"
               autoComplete="email"
-              spellCheck={false}
               className="mb-4"
+              disabled={disableFields}
               error={getErrorMessage(field.state.meta.errors[0])}
-              value={field.state.value}
+              label="Your email"
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
+              spellCheck={false}
+              type="email"
+              value={field.state.value}
             />
           )}
         </form.Field>
@@ -180,13 +180,13 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       >
         {([to, name, email]) => (
           <FromAndTo
-            to={shake(contacts.find((o) => o._id === to) ?? {})}
-            isOpen={to !== "default"}
             from={{
               name,
               email: email || "Placeholder",
               isPlaceholder: !(name && form.getFieldValue("email")),
             }}
+            isOpen={to !== "default"}
+            to={shake(contacts.find((o) => o._id === to) ?? {})}
           />
         )}
       </form.Subscribe>
@@ -194,15 +194,15 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       <form.Field name="message">
         {(field) => (
           <TextArea
-            label="Your message"
             className={cn("col-span-2")}
             disabled={disableFields}
-            id={field.name}
-            minRows={3}
             error={getErrorMessage(field.state.meta.errors[0])}
-            value={field.state.value}
+            id={field.name}
+            label="Your message"
+            minRows={3}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
+            value={field.state.value}
           />
         )}
       </form.Field>
@@ -224,10 +224,10 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         <form.Subscribe selector={(state) => state.isSubmitting}>
           {(isSubmitting) => (
             <Button
+              className="w-full"
               loading={isSubmitting}
               size="lg"
               type="submit"
-              className="w-full"
               variant="secondary"
             >
               Send

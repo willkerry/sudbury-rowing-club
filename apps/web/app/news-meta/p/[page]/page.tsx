@@ -27,11 +27,11 @@ export const generateMetadata = async (props: {
   params: Promise<Params>;
 }): Promise<Metadata> =>
   createMetadata({
-    title: `News | Page ${(await props.params).page} | Sudbury Rowing Club`,
     description: "News from Sudbury Rowing Club.",
+    title: `News | Page ${(await props.params).page} | Sudbury Rowing Club`,
     image: {
-      title: "News Archive",
       subtitle: `Page ${(await props.params).page}`,
+      title: "News Archive",
     },
   });
 

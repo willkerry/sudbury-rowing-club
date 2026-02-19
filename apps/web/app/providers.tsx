@@ -18,16 +18,16 @@ import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
   whenEnv({
+    ifDev: () => undefined,
     ifPreview: () => undefined,
     ifProd: () => {
       posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
-        api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
-        person_profiles: "identified_only",
-        persistence: "localStorage",
         __add_tracing_headers: [HOSTNAME],
+        api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+        persistence: "localStorage",
+        person_profiles: "identified_only",
       });
     },
-    ifDev: () => undefined,
   });
 }
 
@@ -62,8 +62,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         httpBatchLink({
           url: getUrl(),
           transformer: {
-            serialize: (object: unknown) => stringify(object),
             deserialize: (object: string) => parse(object),
+            serialize: (object: unknown) => stringify(object),
           },
         }),
       ],

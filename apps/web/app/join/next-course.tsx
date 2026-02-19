@@ -7,9 +7,9 @@ const HIDE_COURSE_AFTER_DATE = new Date(2024, 9, 15);
 
 export const NextCourse = () => {
   const seasonStartDates: Record<string, Date> = {
+    autumn: new Date("2023-09-15"),
     spring: new Date("2023-03-15"),
     summer: new Date("2023-06-15"),
-    autumn: new Date("2023-09-15"),
     winter: new Date("2023-12-15"),
   };
 

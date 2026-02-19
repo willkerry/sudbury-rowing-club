@@ -20,30 +20,30 @@ export const Blade = ({ src, alt }: { src: string | null; alt: string }) => {
         )}
       >
         <img
-          src={BLADE_PLACEHOLDER}
           alt=""
           className="h-full w-full animate-pulse"
+          src={BLADE_PLACEHOLDER}
         />
       </div>
 
       <Image
-        src={src ?? BLADE_PLACEHOLDER}
         alt={alt}
-        width={24}
-        height={12}
         className={cn(
           "mix-blend-multiply transition-opacity duration-300",
           loaded ? "opacity-100" : "opacity-0",
         )}
-        onLoad={() => setLoaded(true)}
-        loading="lazy"
+        height={12}
         loader={cloudflareLoader}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        src={src ?? BLADE_PLACEHOLDER}
+        width={24}
       />
 
       {!src && (
         <div
-          className="absolute inset-0 ml-1 flex select-none items-center font-semibold text-[0.5em]"
           aria-hidden
+          className="absolute inset-0 ml-1 flex select-none items-center font-semibold text-[0.5em]"
         >
           ?
         </div>

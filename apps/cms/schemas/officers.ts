@@ -6,48 +6,39 @@ import {
 import { defineField, defineType } from "sanity";
 
 const Officers = defineType({
-  name: "officers",
-  type: "document",
-  title: "Club Officers",
   icon: UsersIcon,
+  name: "officers",
+  orderings: [orderRankOrdering],
+  title: "Club Officers",
+  type: "document",
   fields: [
-    defineField({ name: "role", type: "string", title: "Role" }),
-    defineField({ name: "name", type: "string", title: "Name" }),
-    defineField({ name: "email", type: "string", title: "Email" }),
+    defineField({ name: "role", title: "Role", type: "string" }),
+    defineField({ name: "name", title: "Name", type: "string" }),
+    defineField({ name: "email", title: "Email", type: "string" }),
 
     defineField({
       name: "occupant",
-      type: "reference",
       to: [{ type: "person" } as const],
+      type: "reference",
     }),
 
     defineField({
       name: "vacant",
-      type: "boolean",
       title: "Is this position vacant?",
+      type: "boolean",
     }),
     defineField({
       name: "description",
-      type: "text",
-      title: "Role description",
       rows: 2,
+      title: "Role description",
+      type: "text",
       validation: (Rule) => Rule.max(175),
     }),
     defineField({ name: "image", type: "figure" }),
     orderRankField({ type: "officers" }),
   ],
-  orderings: [orderRankOrdering],
 
   preview: {
-    select: {
-      title: "role",
-      name: "occupant.firstName",
-      surname: "occupant.surname",
-      media: "occupant.image.image",
-      override: "override",
-      overrideName: "name",
-      vacant: "vacant",
-    },
     prepare(selection) {
       const { title, name, surname, media, vacant } = selection;
 
@@ -58,10 +49,19 @@ const Officers = defineType({
       };
 
       return {
-        title: title,
         subtitle: makeSubtitle(),
+        title: title,
         media,
       };
+    },
+    select: {
+      media: "occupant.image.image",
+      name: "occupant.firstName",
+      override: "override",
+      overrideName: "name",
+      surname: "occupant.surname",
+      title: "role",
+      vacant: "vacant",
     },
   },
 });

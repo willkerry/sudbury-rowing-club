@@ -1,17 +1,12 @@
 {
-  "name": "@sudburyrc/blue",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.mts",
-  "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown",
-    "type-check": "tsc --noEmit"
-  },
-  "keywords": [],
   "author": "",
+  "description": "",
+  "keywords": [],
   "license": "ISC",
+  "main": "dist/index.mjs",
+  "name": "@sudburyrc/blue",
+  "types": "dist/index.d.mts",
+  "version": "1.0.0",
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/react": "^19.2.2",
@@ -20,5 +15,10 @@
   },
   "peerDependencies": {
     "react": "^19.0.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown",
+    "type-check": "tsc --noEmit"
   }
 }

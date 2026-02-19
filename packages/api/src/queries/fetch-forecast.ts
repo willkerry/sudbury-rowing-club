@@ -36,20 +36,18 @@ const ZWeatherCode = z.union([
 
 const ZForecastResponse = z.object({
   daily: z.object({
-    weathercode: z.array(ZWeatherCode),
     temperature_2m_max: z.array(z.number()),
     temperature_2m_min: z.array(z.number()),
     /** Will be in form 2023-01-10, but is transformed to Date by Zod */
     time: z.array(z.coerce.date()),
-    windspeed_10m_max: z.array(z.number()),
+    weathercode: z.array(ZWeatherCode),
     winddirection_10m_dominant: z.array(z.number()),
+    windspeed_10m_max: z.array(z.number()),
   }),
 });
 
 const fetchWeatherForecast = async () => {
   const params = new URLSearchParams({
-    latitude: String(CLUB_LOCATION[0]),
-    longitude: String(CLUB_LOCATION[1]),
     daily: [
       "weathercode",
       "temperature_2m_max",
@@ -57,6 +55,8 @@ const fetchWeatherForecast = async () => {
       "windspeed_10m_max",
       "winddirection_10m_dominant",
     ].join(","),
+    latitude: String(CLUB_LOCATION[0]),
+    longitude: String(CLUB_LOCATION[1]),
     timezone: "Europe/London",
   });
 

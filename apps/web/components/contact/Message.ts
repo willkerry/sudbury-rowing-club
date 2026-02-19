@@ -10,10 +10,10 @@ const MessageEmailSchema = z.email("Provide your email");
 const MessageMessageSchema = z.string().trim().min(1, "Provide a message");
 
 export const MessageSchema = z.object({
-  to: MessageToSchema,
-  name: MessageNameSchema,
   email: MessageEmailSchema,
   message: MessageMessageSchema,
+  name: MessageNameSchema,
+  to: MessageToSchema,
 });
 
 export type Message = z.infer<typeof MessageSchema>;

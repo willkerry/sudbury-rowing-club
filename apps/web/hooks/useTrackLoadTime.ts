@@ -46,8 +46,8 @@ export const useTrackLoadTime = (
       hasTracked.current = true;
 
       posthog.capture(options.errorEvent, {
-        load_duration_ms: loadDurationMs,
         error_message: options.error?.message,
+        load_duration_ms: loadDurationMs,
       });
     }
   }, [status, options, posthog]);

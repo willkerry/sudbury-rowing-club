@@ -72,15 +72,15 @@ export const Nav = () => {
               {secondaryNavigationGroups.map(
                 ({ title, items, icon: Icon = null }) => (
                   <NavSection
-                    key={title}
-                    label={title}
+                    compact
                     icon={
                       Icon ? (
                         <Icon aria-hidden className="flex h-4 w-4" />
                       ) : undefined
                     }
-                    compact
                     items={items}
+                    key={title}
+                    label={title}
                   />
                 ),
               )}
@@ -88,7 +88,6 @@ export const Nav = () => {
           </div>
 
           <Transition
-            show={open}
             as={Fragment}
             enter="duration-200 ease-out"
             enterFrom="opacity-0 scale-95"
@@ -96,35 +95,36 @@ export const Nav = () => {
             leave="duration-100 ease-in"
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
+            show={open}
           >
             <PopoverPanel
+              className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden"
               focus
               static
-              className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden"
             >
               <div className="relative divide-y rounded-sm bg-white shadow-lg">
                 {primaryGroups.map(({ title, items }) => (
                   <MobileMenuSection
                     collapse={title.toLowerCase() === "regatta"}
+                    data={items}
                     key={title}
                     title={title}
-                    data={items}
                   />
                 ))}
 
                 {secondaryGroups.map(({ title, items }) => (
                   <MobileMenuSection
+                    compact
+                    data={items}
                     key={title}
                     title={title}
-                    data={items}
-                    compact
                   />
                 ))}
               </div>
               <div className="absolute top-3 right-3">
                 <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden">
                   <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden />
+                  <XMarkIcon aria-hidden className="h-6 w-6" />
                 </PopoverButton>
               </div>
             </PopoverPanel>

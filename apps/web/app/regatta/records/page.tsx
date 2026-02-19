@@ -6,10 +6,10 @@ import recordJson from "./records.json";
 import { transformRecords } from "./transformRecords";
 
 export const metadata = createMetadata({
-  title: "Course Records | Sudbury Regatta",
   description:
     "View all course records from the Sudbury Regatta, spanning decades of competitive rowing.",
   image: { title: "Course Records 🏆" },
+  title: "Course Records | Sudbury Regatta",
 });
 
 const RecordsPage = () => {
@@ -17,7 +17,7 @@ const RecordsPage = () => {
 
   return (
     <>
-      <PageHeader title="Course records" breadcrumbs />
+      <PageHeader breadcrumbs title="Course records" />
 
       <div className="p-4">
         <DataTable columns={columns} data={records} />

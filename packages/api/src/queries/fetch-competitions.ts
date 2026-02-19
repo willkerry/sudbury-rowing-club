@@ -11,8 +11,8 @@ const sanitise = (html: string) => {
   const sanitised = he
     .decode(
       DOMPurify.sanitize(html, {
-        ALLOWED_TAGS: [],
         ALLOWED_ATTR: [],
+        ALLOWED_TAGS: [],
       }),
     )
     .replace(emojiRegex(), "")
@@ -58,11 +58,11 @@ const replaceUglyRegionNames = (region: string) =>
 const ZBREvent = z
   .object({
     Competition: z.string(),
-    StatusId: z.int(),
     Notes: z.string().transform(sanitise).transform(coerceEmptyStringToNull),
+    Region: z.string().transform(sanitise).transform(replaceUglyRegionNames),
 
     StartDate: z.coerce.date(),
-    Region: z.string().transform(sanitise).transform(replaceUglyRegionNames),
+    StatusId: z.int(),
   })
   .transform((event) => {
     const competition = sanitise(event.Competition);
@@ -74,8 +74,8 @@ const ZBREvent = z
       cancelled: event.StatusId === 8,
       url,
       notes: event.Notes,
-      startDate: event.StartDate,
       region: event.Region,
+      startDate: event.StartDate,
     };
   });
 

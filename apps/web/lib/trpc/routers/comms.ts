@@ -30,6 +30,72 @@ const parseToJSON = (value: string) => {
 };
 
 export const commsRouter = router({
+  bug: rateLimitedProcedure
+    .input(BugReportSchema)
+    .mutation(async ({ input, ctx }) => {
+      if (!env.BUG_RECIPIENT_EMAIL) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "BUG_RECIPIENT_EMAIL not set.",
+        });
+      }
+
+      const [spamError, isSpam] = await tryit(checkHeadersForSpam)(
+        ctx.headers,
+        {
+          ...input,
+          message: input.description,
+        },
+      );
+
+      if (spamError) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Could not connect to spam checking service.",
+        });
+      }
+
+      if (isSpam) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "The spam filter has blocked this request.",
+        });
+      }
+
+      const response = await resend.emails.send({
+        from: `${input.name} <${SENDER.email}>`,
+        replyTo: `${input.name} <${input.email}>`,
+        subject: "Bug Report from sudburyrowingclub.org.uk",
+        text: `DESCRIPTION: ${input.description}\n\nREPORTER: ${input.name} <${SENDER.email}>\n\nDATA: ${JSON.stringify(
+          {
+            additionalInformation: parseToJSON(
+              input.additionalInformation ?? "",
+            ),
+            description: input.description,
+            parsedUserAgent: Bowser.parse(input.userAgent),
+            userAgent: input.userAgent,
+          },
+          null,
+          2,
+        )}`,
+        to: env.BUG_RECIPIENT_EMAIL,
+      });
+
+      if (response.error) {
+        trackServerEvent("bug_report_external_api_failure", {
+          error_message: response.error.message,
+          error_name: response.error.name,
+          service: "resend",
+        });
+
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `Failed to send bug report: ${response.error.message}`,
+        });
+      }
+
+      return { success: true };
+    }),
   send: rateLimitedProcedure
     .input(MessageSchema)
     .mutation(async ({ input, ctx }) => {
@@ -66,25 +132,25 @@ export const commsRouter = router({
 
       const createEmailResponse = await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),
-        to: formatName(toEmail, toName),
-        replyTo: formatName(input.email, input.name),
-        subject: `${input.name} via SRC Contact`,
         react: ContactFormEmail({
           toName,
           toEmail,
           toRole,
-          fromName: input.name,
           fromEmail: input.email,
+          fromName: input.name,
           message: DOMPurify.sanitize(input.message),
         }),
+        replyTo: formatName(input.email, input.name),
+        subject: `${input.name} via SRC Contact`,
         text: DOMPurify.sanitize(input.message),
+        to: formatName(toEmail, toName),
       });
 
       if (createEmailResponse.error) {
         trackServerEvent("contact_form_external_api_failure", {
-          service: "resend",
           error_message: createEmailResponse.error.message,
           error_name: createEmailResponse.error.name,
+          service: "resend",
         });
 
         throw new TRPCError({
@@ -96,72 +162,5 @@ export const commsRouter = router({
       return {
         messageId: createEmailResponse.data?.id ?? null,
       };
-    }),
-
-  bug: rateLimitedProcedure
-    .input(BugReportSchema)
-    .mutation(async ({ input, ctx }) => {
-      if (!env.BUG_RECIPIENT_EMAIL) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "BUG_RECIPIENT_EMAIL not set.",
-        });
-      }
-
-      const [spamError, isSpam] = await tryit(checkHeadersForSpam)(
-        ctx.headers,
-        {
-          ...input,
-          message: input.description,
-        },
-      );
-
-      if (spamError) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Could not connect to spam checking service.",
-        });
-      }
-
-      if (isSpam) {
-        throw new TRPCError({
-          code: "FORBIDDEN",
-          message: "The spam filter has blocked this request.",
-        });
-      }
-
-      const response = await resend.emails.send({
-        from: `${input.name} <${SENDER.email}>`,
-        replyTo: `${input.name} <${input.email}>`,
-        to: env.BUG_RECIPIENT_EMAIL,
-        subject: "Bug Report from sudburyrowingclub.org.uk",
-        text: `DESCRIPTION: ${input.description}\n\nREPORTER: ${input.name} <${SENDER.email}>\n\nDATA: ${JSON.stringify(
-          {
-            description: input.description,
-            userAgent: input.userAgent,
-            parsedUserAgent: Bowser.parse(input.userAgent),
-            additionalInformation: parseToJSON(
-              input.additionalInformation ?? "",
-            ),
-          },
-          null,
-          2,
-        )}`,
-      });
-
-      if (response.error) {
-        trackServerEvent("bug_report_external_api_failure", {
-          service: "resend",
-          error_message: response.error.message,
-          error_name: response.error.name,
-        });
-
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: `Failed to send bug report: ${response.error.message}`,
-        });
-      }
-
-      return { success: true };
     }),
 });

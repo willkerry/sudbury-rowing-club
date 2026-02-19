@@ -64,9 +64,9 @@ const {
 } = REGATTA;
 
 export const metadata = createMetadata({
-  title: EVENT_NAME_LONG,
   description: EVENT_TAGLINE,
   image: OG_IMAGE_URL,
+  title: EVENT_NAME_LONG,
 });
 
 const RegattaPage = async () => {
@@ -83,70 +83,70 @@ const RegattaPage = async () => {
 
   const accordion: DetailProps[] = [
     {
-      summary: "Events",
-      icon: <Award aria-hidden />,
       href: "./regatta/events",
+      icon: <Award aria-hidden />,
+      summary: "Events",
     },
     {
-      summary: "Entries",
-      icon: <TicketIcon aria-hidden />,
       href: "./regatta/entries",
+      icon: <TicketIcon aria-hidden />,
+      summary: "Entries",
     },
     {
-      summary: "Results",
-      icon: <Timer aria-hidden />,
       href: "./regatta/results",
+      icon: <Timer aria-hidden />,
+      summary: "Results",
     },
     {
-      summary: "Draw",
-      icon: <QueueListIcon aria-hidden />,
       href: "./regatta/draw",
+      icon: <QueueListIcon aria-hidden />,
+      summary: "Draw",
     },
     {
-      summary: "Competitor Information",
-      icon: <BadgeAlert aria-hidden />,
       href: "./regatta/competitor-information",
+      icon: <BadgeAlert aria-hidden />,
+      summary: "Competitor Information",
     },
   ];
 
   const jsonLd: WithContext<SportsEvent> = {
     "@context": "https://schema.org",
-    "@type": "SportsEvent",
     "@id": CANONICAL_URL,
+    "@type": "SportsEvent",
+    description: EVENT_TAGLINE,
+    endDate: date,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    image: OG_IMAGE_URL,
     isAccessibleForFree: true,
+    name: EVENT_NAME_LONG,
+    organizer: ClubJsonLd,
     sponsor: sponsors.map(({ href, name }) => ({
       "@type": "Organization",
       name,
       url: href,
     })),
-    name: EVENT_NAME_LONG,
+    sport: "Rowing",
     startDate: date,
-    endDate: date,
+    url: CANONICAL_URL,
     location: {
       "@type": "Place",
       name: VENUE,
       address: {
         "@type": "PostalAddress",
-        streetAddress: `${VENUE}, ${STREET}`,
+        addressCountry: "UK",
         addressLocality: TOWN,
         addressRegion: COUNTY,
         postalCode: POSTCODE,
-        addressCountry: "UK",
+        streetAddress: `${VENUE}, ${STREET}`,
       },
     },
-    url: CANONICAL_URL,
-    image: OG_IMAGE_URL,
-    description: EVENT_TAGLINE,
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    organizer: ClubJsonLd,
-    sport: "Rowing",
   };
 
   return (
     <>
       <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        type="application/ld+json"
       />
       <Container>
         <RegattaHero {...{ ticketItems }} subtitle={landingPage.tagline} />
@@ -156,10 +156,10 @@ const RegattaPage = async () => {
         />
         <RegattaHeroImage
           aspectRatio={landingPage.heroImage.image.aspectRatio || 1}
-          src={landingPage.heroImage.image._id}
           blurDataURL={landingPage.heroImage.image.lqip || ""}
-          title={landingPage.heroImage.heading}
+          src={landingPage.heroImage.image._id}
           subtitle={landingPage.heroImage.subheading}
+          title={landingPage.heroImage.heading}
         />
       </Container>
       <Container className="my-24 max-w-prose">
@@ -173,9 +173,9 @@ const RegattaPage = async () => {
 
       <div>
         <Hero
-          title={TESTIMONIAL_DESCRIPTION}
-          label={TESTIMONIAL_TITLE}
           fullwidth
+          label={TESTIMONIAL_TITLE}
+          title={TESTIMONIAL_DESCRIPTION}
         />
 
         <Container>

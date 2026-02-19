@@ -18,10 +18,10 @@ const getMessage = (status: Severity, message?: string) => {
 
 export const SeveritySection = ({ status, message }: SeveritySectionProps) => {
   const severityClasses: Record<Severity, string> = {
-    red: "text-red-500 bg-red-50",
     amber: "text-yellow-500 bg-yellow-50",
     green: "text-green-500 bg-green-50",
     neutral: "text-gray-500 bg-gray-50",
+    red: "text-red-500 bg-red-50",
   };
 
   return (

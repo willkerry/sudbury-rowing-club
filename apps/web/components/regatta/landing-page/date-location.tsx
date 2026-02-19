@@ -18,8 +18,8 @@ export const DateLocation = ({ date, location }: Props) => (
     <div className="flex items-center">
       <MapIcon aria-hidden className={ICON_CLASSES} />
       <Link
-        href="/contact/how-to-find-us"
         className="disambiguate text-gray-800 text-sm"
+        href="/contact/how-to-find-us"
       >
         {location}
       </Link>

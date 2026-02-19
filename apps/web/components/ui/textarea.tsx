@@ -12,10 +12,10 @@ import {
 } from "./input";
 
 export interface TextAreaProps extends TextareaAutosizeProps {
-  label?: string;
-  error?: string;
   description?: string;
+  error?: string;
   inputClassName?: string;
+  label?: string;
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -32,19 +32,19 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <InputWrapper className={className}>
         <TextAreaAutosize
-          className={cn(inputVariants(), inputClassName)}
-          data-error={!!error}
-          ref={ref}
-          id={inputId}
           aria-describedby={description && descriptionId}
           aria-errormessage={error && errorId}
           aria-invalid={!!error}
+          className={cn(inputVariants(), inputClassName)}
+          data-error={!!error}
+          id={inputId}
+          ref={ref}
           {...props}
         />
 
         <InputLabel id={inputId} label={label} />
-        <InputDescription id={descriptionId} description={description} />
-        <InputError id={errorId} error={error} />
+        <InputDescription description={description} id={descriptionId} />
+        <InputError error={error} id={errorId} />
       </InputWrapper>
     );
   },

@@ -64,8 +64,6 @@ export const TableOfContentsItem = memo(
     return (
       <li>
         <Link
-          href={url}
-          onClick={scrollTo}
           className={cn(
             "line-clamp-1 py-1 text-sm hover:text-gray-900",
             depth <= 2 ? "text-gray-700" : "text-gray-500",
@@ -74,6 +72,8 @@ export const TableOfContentsItem = memo(
             "data-[active='true']:text-blue-500",
           )}
           data-active={isActive || undefined}
+          href={url}
+          onClick={scrollTo}
           // style={depth - 2 ? { paddingLeft: `${depth - 2}em` } : undefined}
         >
           {formatTitle(title)}

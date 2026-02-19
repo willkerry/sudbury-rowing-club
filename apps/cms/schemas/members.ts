@@ -2,10 +2,10 @@ import { BillIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 const Members = defineType({
-  name: "members",
-  type: "document",
-  title: "Members’ Notices",
   icon: BillIcon,
+  name: "members",
+  title: "Members’ Notices",
+  type: "document",
   fields: [
     defineField({
       name: "title",
@@ -16,23 +16,23 @@ const Members = defineType({
       name: "slug",
       type: "slug",
       options: {
-        source: "title",
         maxLength: 96,
+        source: "title",
       },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "meta",
+
+      of: [defineArrayMember({ type: "labelValueItem" })],
       type: "array",
       options: {
         modal: {
           type: "popover",
         },
       },
-
-      of: [defineArrayMember({ type: "labelValueItem" })],
     }),
-    defineField({ name: "body", type: "richText", title: "Body" }),
+    defineField({ name: "body", title: "Body", type: "richText" }),
     defineField({
       name: "documents",
       type: "fileDocumentGroupArray",

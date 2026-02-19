@@ -7,9 +7,9 @@ import { Text } from "@/components/stour/text";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  title: "Entry Information | Sudbury Rowing Club",
   description: "Details for competetive entry to the Sudbury Regatta.",
   image: { title: "Entry Information" },
+  title: "Entry Information | Sudbury Rowing Club",
 });
 
 const Entries = async () => {
@@ -19,7 +19,7 @@ const Entries = async () => {
     entries?.waves?.rows?.map((row) => row?.cells?.map((cell) => cell)) || [];
 
   return (
-    <TextPage title="Entry information" prose={false}>
+    <TextPage prose={false} title="Entry information">
       <div className="prose max-w-full">
         <CompactEvents data={events} />
 

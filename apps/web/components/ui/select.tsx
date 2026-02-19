@@ -11,9 +11,9 @@ import {
 import css from "./select.module.css";
 
 interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
-  label?: string;
   description?: string;
   error?: string;
+  label?: string;
 }
 
 const Select = forwardRef<
@@ -28,24 +28,24 @@ const Select = forwardRef<
   return (
     <InputWrapper className={className}>
       <select
-        data-error={!!error}
+        aria-describedby={description && descriptionId}
+        aria-errormessage={error && errorId}
+        aria-invalid={!!error}
         className={cn(
           inputVariants(),
           "cursor-pointer enabled:appearance-none",
           css.select,
         )}
-        ref={ref}
+        data-error={!!error}
         id={inputId}
-        aria-describedby={description && descriptionId}
-        aria-errormessage={error && errorId}
-        aria-invalid={!!error}
+        ref={ref}
         required
         {...props}
       />
 
       <InputLabel id={inputId} label={label} />
-      <InputDescription id={descriptionId} description={description} />
-      <InputError id={errorId} error={error} />
+      <InputDescription description={description} id={descriptionId} />
+      <InputError error={error} id={errorId} />
     </InputWrapper>
   );
 });

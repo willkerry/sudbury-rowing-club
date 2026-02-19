@@ -35,19 +35,19 @@ export const HundredAndFiftyArchiveButtons = ({
 
     <Button asChild size="xs" variant="secondary">
       <a
+        download
         href={archive.image.url}
         rel="noopener noreferrer"
         target="_blank"
-        download
       >
         Download full size image
       </a>
     </Button>
 
     <HundredAndFiftyContactButton
+      message={`I would like to help identify or date the photo '${archive.title}', (ID ${archive._id}).\n\nMy message: `}
       size="xs"
       variant="link"
-      message={`I would like to help identify or date the photo '${archive.title}', (ID ${archive._id}).\n\nMy message: `}
     >
       Help identify this photo
     </HundredAndFiftyContactButton>

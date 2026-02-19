@@ -1,9 +1,9 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: ["src/index.ts", "src/cloudflare.ts"],
   dts: true,
-  sourcemap: true,
-  minify: true,
+  entry: ["src/index.ts", "src/cloudflare.ts"],
   format: ["esm"],
+  minify: true,
+  sourcemap: true,
 });

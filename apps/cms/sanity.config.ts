@@ -9,9 +9,9 @@ import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import schemas from "./schemas/schema";
 
 const config = defineConfig({
-  title: "Sudbury Rowing Club",
-  projectId: "gvxge7ps",
   dataset: "production",
+  projectId: "gvxge7ps",
+  title: "Sudbury Rowing Club",
   plugins: [
     structureTool({
       structure: (S, context) =>
@@ -45,9 +45,9 @@ const config = defineConfig({
                   .title("Governance")
                   .items([
                     orderableDocumentListDeskItem({
-                      type: "officers",
-                      title: "Club Officers",
                       icon: UsersIcon,
+                      title: "Club Officers",
+                      type: "officers",
                       S,
                       context,
                     }),

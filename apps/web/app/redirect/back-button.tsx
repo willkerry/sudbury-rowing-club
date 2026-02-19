@@ -12,8 +12,8 @@ export const BackButton = ({
 
   return (
     <Button
-      variant={variant}
       onClick={onClick ?? (() => router.back())}
+      variant={variant}
       {...props}
     />
   );

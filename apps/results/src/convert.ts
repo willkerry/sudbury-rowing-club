@@ -118,9 +118,9 @@ const replaceBladeUrls = (html: string): string => {
     if (!newUrl) return match;
 
     return buildCloudflareImageUrl(newUrl, {
-      width: BLADE_WIDTH,
-      height: BLADE_HEIGHT,
       fit: "contain",
+      height: BLADE_HEIGHT,
+      width: BLADE_WIDTH,
     });
   });
 
@@ -130,9 +130,9 @@ const replaceBladeUrls = (html: string): string => {
     if (!newUrl) return match;
 
     return buildCloudflareImageUrl(newUrl, {
-      width: BLADE_WIDTH,
-      height: BLADE_HEIGHT,
       fit: "contain",
+      height: BLADE_HEIGHT,
+      width: BLADE_WIDTH,
     });
   });
 
@@ -163,13 +163,13 @@ const convertFile = async (
       tidy
         .tidy_html5(output, {
           clean: true,
-          quiet: true,
           doctype: "html5",
-          "quote-ampersand": false,
           "drop-proprietary-attributes": true,
+          quiet: true,
+          "quote-ampersand": false,
+          "show-errors": 0,
           "show-info": false,
           "show-warnings": false,
-          "show-errors": 0,
         })
         ?.toString() ?? output;
     output = addVieportMetaTag(output);

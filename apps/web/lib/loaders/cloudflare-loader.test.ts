@@ -2,10 +2,10 @@ import { describe, expect, it, vi } from "vitest";
 
 const mockEnv = vi.hoisted(() => ({
   env: {
+    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: undefined,
     get NODE_ENV() {
       return process.env.NODE_ENV as "development" | "production";
     },
-    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: undefined,
   },
 }));
 
@@ -28,7 +28,7 @@ describe("cloudflareLoader", () => {
 
   it("should include quality in production", () => {
     vi.stubEnv("NODE_ENV", "production");
-    expect(cloudflareLoader({ src: "test.jpg", width: 100, quality: 80 })).toBe(
+    expect(cloudflareLoader({ quality: 80, src: "test.jpg", width: 100 })).toBe(
       "https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/width=100,quality=80/test.jpg",
     );
   });

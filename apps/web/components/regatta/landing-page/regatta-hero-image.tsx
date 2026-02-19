@@ -25,11 +25,11 @@ export const RegattaHeroImage = ({
     <div className="relative flex overflow-hidden rounded-xl shadow-lg">
       <Image
         {...useSanityImageProps(src)}
-        placeholder="blur"
         alt=""
         blurDataURL={blurDataURL}
-        width={imageWidth}
         height={imageHeight}
+        placeholder="blur"
+        width={imageWidth}
       />
       <div className="absolute top-0 left-0 h-full w-full bg-linear-to-tr from-black via-transparent to-transparent" />
       <div className="absolute top-0 left-0 flex h-full w-full items-end p-6 md:p-12">

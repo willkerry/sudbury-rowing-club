@@ -16,9 +16,9 @@ export const FooterColumn = ({ heading, data }: Props) => (
     </h3>
     {data.map((item) => (
       <Link
-        key={item.href}
-        href={item.href}
         className="my-3 block text-gray-500 text-sm duration-100 hover:text-black"
+        href={item.href}
+        key={item.href}
       >
         {item.shortName ? item.shortName : item.name}
       </Link>

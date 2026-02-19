@@ -28,21 +28,21 @@ type WhenEnvProps = {
 
 export const WhenPreview = ({ children }: WhenEnvProps) =>
   whenEnv({
+    ifDev: () => null,
     ifPreview: () => children,
     ifProd: () => null,
-    ifDev: () => null,
   });
 
 export const WhenProd = ({ children }: WhenEnvProps) =>
   whenEnv({
+    ifDev: () => null,
     ifPreview: () => null,
     ifProd: () => children,
-    ifDev: () => null,
   });
 
 export const WhenDev = ({ children }: WhenEnvProps) =>
   whenEnv({
+    ifDev: () => children,
     ifPreview: () => null,
     ifProd: () => null,
-    ifDev: () => children,
   });

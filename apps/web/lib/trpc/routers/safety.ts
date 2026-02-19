@@ -5,18 +5,27 @@ import { trackServerEvent, trackServerException } from "@/lib/server/track";
 import { rateLimitedProcedure, router } from "../init";
 
 export const safetyRouter = router({
+  forecast: rateLimitedProcedure.query(async () => {
+    const { data: forecast } = await cached({
+      fn: getWeatherForecast,
+      key: "weather-forecast",
+      ttl: 60 * 60 * 12,
+    });
+
+    return forecast;
+  }),
   status: rateLimitedProcedure.query(async () => {
     try {
       const { data: safetyStatus, cachedAt } = await cached({
+        fn: getSafetyStatus,
         key: "safety-status",
         ttl: 60 * 60,
-        fn: getSafetyStatus,
       });
 
       if (safetyStatus.errors && safetyStatus.errors.length > 0) {
         trackServerEvent("safety_api_partial_failure", {
-          errors: safetyStatus.errors,
           error_count: safetyStatus.errors.length,
+          errors: safetyStatus.errors,
           final_status: safetyStatus.status,
         });
       }
@@ -26,15 +35,5 @@ export const safetyRouter = router({
       trackServerException(error);
       throw error;
     }
-  }),
-
-  forecast: rateLimitedProcedure.query(async () => {
-    const { data: forecast } = await cached({
-      key: "weather-forecast",
-      ttl: 60 * 60 * 12,
-      fn: getWeatherForecast,
-    });
-
-    return forecast;
   }),
 });

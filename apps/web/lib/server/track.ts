@@ -10,6 +10,7 @@ export const trackServerEvent = (
   properties?: Record<string, unknown>,
 ) =>
   whenEnv({
+    ifDev: () => undefined,
     ifPreview: () => undefined,
     ifProd: () => {
       const posthog = getPostHogServer();
@@ -20,7 +21,6 @@ export const trackServerEvent = (
         properties,
       });
     },
-    ifDev: () => undefined,
   });
 
 /**
@@ -28,12 +28,12 @@ export const trackServerEvent = (
  */
 export const trackServerException = (error: unknown) => {
   whenEnv({
+    ifDev: () => undefined,
     ifPreview: () => undefined,
     ifProd: () => {
       const posthog = getPostHogServer();
 
       posthog.captureException(error, "server");
     },
-    ifDev: () => undefined,
   });
 };

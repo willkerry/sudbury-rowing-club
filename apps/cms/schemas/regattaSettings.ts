@@ -2,46 +2,46 @@ import { CogIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 const RegattaSettings = defineType({
-  name: "regattaSettings",
-  type: "document",
-  title: "Regatta Settings",
   icon: CogIcon,
+  name: "regattaSettings",
+  title: "Regatta Settings",
+  type: "document",
   fields: [
     defineField({
+      description: "Name of the next regatta",
       name: "title",
       type: "string",
       validation: (Rule) => Rule.required(),
-      description: "Name of the next regatta",
     }),
     defineField({
+      description: "Date of the next regatta",
       name: "date",
       type: "date",
-      description: "Date of the next regatta",
     }),
     defineField({
-      type: "regattaLandingPage",
       name: "landingPage",
+      type: "regattaLandingPage",
     }),
     defineField({
-      type: "note",
-      name: "note",
       description:
         "A optional note, displayed near the top of the regatta landing page and homepage.",
+      name: "note",
+      type: "note",
     }),
 
     defineField({
-      type: "events",
       name: "events",
+      type: "events",
     }),
 
     defineField({
-      type: "entries",
       name: "entries",
+      type: "entries",
     }),
 
     defineField({
-      type: "results",
       name: "results",
+      type: "results",
     }),
 
     defineField({

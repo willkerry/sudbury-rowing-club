@@ -8,10 +8,10 @@ import {
 } from "./fetch-news-article";
 
 const cache = new Cache({
-  key: "news",
-  ttl: 60 * 5,
   function: fetchAllArticles,
+  key: "news",
   primaryKey: "slug",
+  ttl: 60 * 5,
 });
 
 const serverGetArticleBySlug = (slug: string): Promise<Article | undefined> =>

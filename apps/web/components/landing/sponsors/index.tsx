@@ -17,38 +17,38 @@ export type SponsorLogo = {
 
 export const logos: SponsorLogo[] = [
   {
-    logo: abglass,
     href: "https://www.abglasshomeimprovements.co.uk/",
+    logo: abglass,
     name: "A&B Glass Home Improvements",
     type: "sponsor",
   },
   {
-    logo: mooreGreen,
     href: "https://www.mooregreen.co.uk/",
+    logo: mooreGreen,
     name: "Moore Green",
     type: "sponsor",
   },
   {
-    logo: ashtons,
     href: "https://www.ashtonslegal.co.uk/",
+    logo: ashtons,
     name: "Ashtons",
     type: "sponsor",
   },
   {
-    logo: swan,
     href: "https://theswanatlavenham.co.uk/?utm_source=website&utm_medium=listing&utm_campaign=sudbury_rowing_club",
+    logo: swan,
     name: "The Swan at Lavenham",
     type: "sponsor",
   },
   {
-    logo: britishRowing,
     href: "https://britishrowing.org/",
+    logo: britishRowing,
     name: "British Rowing",
     type: "affiliate",
   },
   {
-    logo: errc,
     href: "http://easternregionrowing.org.uk/",
+    logo: errc,
     name: "Eastern Region Rowing Council",
     type: "affiliate",
   },
@@ -59,11 +59,11 @@ const affiliateLogos = logos.filter(({ type }) => type === "affiliate");
 
 export const Affiliates = ({ className }: { className?: string }) => (
   <LogoList
-    logos={affiliateLogos}
     className={cn(
       "mx-auto my-6 flex justify-center gap-6 md:justify-center md:gap-6",
       className,
     )}
+    logos={affiliateLogos}
   />
 );
 
@@ -78,13 +78,13 @@ export const Sponsors = ({
 }) => (
   <div className={className}>
     {includeAffiliates && (
-      <LogoList logos={affiliateLogos} className="md:justify-center md:gap-8" />
+      <LogoList className="md:justify-center md:gap-8" logos={affiliateLogos} />
     )}
     {heading && (
       <h3 className="mb-4 text-center font-medium text-gray-500 text-sm">
         {heading}
       </h3>
     )}
-    <LogoList shuffle logos={sponsorLogos} />
+    <LogoList logos={sponsorLogos} shuffle />
   </div>
 );

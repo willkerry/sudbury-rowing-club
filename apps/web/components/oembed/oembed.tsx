@@ -17,7 +17,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
 
       return (
         <figure>
-          <Iframe src={src} aspectRatio={height / width} />
+          <Iframe aspectRatio={height / width} src={src} />
           <figcaption>
             <a href={data.canonical_url}>
               <em>{title}</em>
@@ -75,8 +75,8 @@ export const OEmbed = async ({ url }: { url: string }) => {
       return (
         <figure>
           <Iframe
-            src={data.open_graph.videos?.[0].url}
             aspectRatio={width && height && height / width}
+            src={data.open_graph.videos?.[0].url}
           />
           <figcaption>
             <a href={data.canonical_url}>
@@ -93,7 +93,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
 
       return (
         <figure className="max-w-xs rounded-sm border p-2 text-sm">
-          <img src={images?.[0].url} alt={title} />
+          <img alt={title} src={images?.[0].url} />
           <figcaption>
             <a href={url}>
               <em>{title}</em>
@@ -109,7 +109,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
 
       return (
         <figure className="max-w-xs rounded-sm border p-2 text-sm">
-          <img src={images?.[0].url} alt={title} />
+          <img alt={title} src={images?.[0].url} />
           <figcaption>
             <a href={url}>
               <em>{title}</em>

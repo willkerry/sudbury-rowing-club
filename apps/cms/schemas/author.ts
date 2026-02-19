@@ -2,20 +2,20 @@ import { EditIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 const Author = defineType({
-  name: "author",
-  type: "document",
-  title: "Author",
   icon: EditIcon,
+  name: "author",
+  title: "Author",
+  type: "document",
   fields: [
     defineField({
       name: "person",
-      type: "reference",
       to: [{ type: "person" }],
+      type: "reference",
     } as const),
     defineField({
       name: "firstName",
-      type: "string",
       title: "First Name",
+      type: "string",
       deprecated: {
         reason:
           "Use the First Name field on the referenced Person record instead.",
@@ -31,15 +31,15 @@ const Author = defineType({
     }),
   ],
   preview: {
-    select: {
-      name: "firstName",
-      surname: "surname",
-    },
     prepare(selection) {
       const { name, surname } = selection;
       return {
         title: `${name} ${surname}`,
       };
+    },
+    select: {
+      name: "firstName",
+      surname: "surname",
     },
   },
 });

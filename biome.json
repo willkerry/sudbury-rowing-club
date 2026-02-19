@@ -1,5 +1,25 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.1/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.0/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "useSortedAttributes": "on",
+        "useSortedInterfaceMembers": "on",
+        "useSortedKeys": {
+          "level": "on",
+          "options": {
+            "groupByNesting": true
+          }
+        }
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true,
+      "tailwindDirectives": true
+    }
+  },
   "files": {
     "includes": [
       "**",
@@ -14,6 +34,12 @@
     ]
   },
   "formatter": {
+    "attributePosition": "auto",
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 80,
     "includes": [
       "**",
       "!**/node_modules/**",
@@ -24,22 +50,28 @@
       "!**/.vscode/**",
       "!**/.content-collections/**",
       "!**/apps/results/data/**"
-    ],
-    "enabled": true,
-    "formatWithErrors": false,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 80,
-    "attributePosition": "auto"
+    ]
   },
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "defaultBranch": "master",
-    "useIgnoreFile": true
+  "javascript": {
+    "experimentalEmbeddedSnippetsEnabled": true,
+    "globals": ["React", "JSX"],
+    "formatter": {
+      "arrowParentheses": "always",
+      "attributePosition": "auto",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "all"
+    }
   },
   "linter": {
     "enabled": true,
+    "domains": {
+      "turborepo": "recommended"
+    },
     "includes": [
       "**",
       "!**/node_modules/**",
@@ -58,89 +90,82 @@
       },
       "complexity": {
         "noExcessiveCognitiveComplexity": "error",
+        "noUselessCatchBinding": "error",
         "noUselessStringConcat": "error",
+        "noUselessUndefined": "error",
         "useArrowFunction": "error",
         "useDateNow": "error",
         "useSimplifiedLogicExpression": "error"
       },
       "correctness": {
-        "noUnusedVariables": "error",
+        "noNestedComponentDefinitions": "error",
+        "noNextAsyncClientComponent": "error",
+        "noSwitchDeclarations": "error",
         "noUndeclaredVariables": "error",
-        "useHookAtTopLevel": "error",
+        "noUnknownPseudoElement": "off",
         "noUnusedImports": "error",
-        "noSwitchDeclarations": "error"
+        "noUnusedVariables": "error",
+        "useHookAtTopLevel": "error"
       },
       "nursery": {
         "useSortedClasses": {
-          "level": "error",
           "fix": "safe",
+          "level": "error",
           "options": {
             "functions": ["cn", "cva", "clsx"]
           }
         }
       },
       "performance": {
-        "noReExportAll": "error",
         "noImgElement": "off",
+        "noReExportAll": "error",
         "useTopLevelRegex": "error"
-      },
-      "suspicious": {
-        "noArrayIndexKey": "off",
-        "noEvolvingTypes": "error",
-        "useAwait": "error",
-        "useErrorMessage": "error",
-        "noDuplicateElseIf": "error",
-        "noFocusedTests": "off",
-        "noUnknownAtRules": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "off"
       },
       "style": {
+        "noInferrableTypes": "error",
         "noNegationElse": "error",
         "noNonNullAssertion": "error",
-        "useCollapsedElseIf": "error",
-        "useForOf": "error",
-        "useFragmentSyntax": "error",
-        "useShorthandAssign": "error",
         "noParameterAssign": "error",
+        "noUnusedTemplateLiteral": "error",
+        "noUselessElse": "error",
         "useAsConstAssertion": "error",
+        "useAtIndex": "error",
+        "useCollapsedElseIf": "error",
+        "useConsistentArrowReturn": "error",
         "useDefaultParameterLast": "error",
         "useEnumInitializers": "error",
-        "useSelfClosingElements": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
+        "useForOf": "error",
+        "useFragmentSyntax": "error",
         "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error",
+        "useSelfClosingElements": "error",
+        "useShorthandAssign": "error",
+        "useSingleVarDeclarator": "error",
         "useConsistentArrayType": {
           "level": "error",
           "options": {
             "syntax": "shorthand"
           }
-        },
-        "useAtIndex": "error"
+        }
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noDuplicateElseIf": "error",
+        "noEvolvingTypes": "error",
+        "noFocusedTests": "off",
+        "noImportCycles": "error",
+        "noUnknownAtRules": "off",
+        "useAwait": "error",
+        "useErrorMessage": "error"
       }
     }
   },
-  "javascript": {
-    "formatter": {
-      "arrowParentheses": "always",
-      "attributePosition": "auto",
-      "bracketSameLine": false,
-      "bracketSpacing": true,
-      "jsxQuoteStyle": "double",
-      "quoteProperties": "asNeeded",
-      "quoteStyle": "double",
-      "semicolons": "always",
-      "trailingCommas": "all"
-    },
-    "globals": ["React", "JSX"]
-  },
-  "css": {
-    "parser": {
-      "cssModules": true,
-      "tailwindDirectives": true
-    }
+  "vcs": {
+    "clientKind": "git",
+    "defaultBranch": "master",
+    "enabled": true,
+    "useIgnoreFile": true
   }
 }

@@ -16,11 +16,11 @@ const ERA = 25;
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: TITLE,
     description: DESCRIPTION,
+    title: TITLE,
     image: {
-      title: `${TITLE} 🍾`,
       subtitle: "1874–2024",
+      title: `${TITLE} 🍾`,
     },
   }),
 };
@@ -58,7 +58,7 @@ const Join = async () => {
 
   return (
     <>
-      <HundredAndFiftyHeader title="Anniversary gallery" href="/150" />
+      <HundredAndFiftyHeader href="/150" title="Anniversary gallery" />
 
       <Container>
         <div className="mb-4">
@@ -74,7 +74,7 @@ const Join = async () => {
         </ul>
 
         {archives.map(({ era, slug, archives }) => (
-          <div key={slug} className="mb-8">
+          <div className="mb-8" key={slug}>
             <h2 className="mb-2 font-medium text-gray-900 text-xl">{era}</h2>
             <div className="sm:columns-2">
               {archives?.map((archive) => (

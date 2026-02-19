@@ -42,9 +42,9 @@ export const generateMetadata = async ({
   const clubName = getClubName(season);
 
   return createMetadata({
-    title: `The ${season} ${clubName[0]} Committee`,
     description: `${clubName[1]} committee of ${season}`,
     image: { title: `${season} Committee` },
+    title: `The ${season} ${clubName[0]} Committee`,
   });
 };
 
@@ -75,7 +75,7 @@ const Committee = async ({ params }: { params: Promise<Params> }) => {
               <th>{office?.displayName}</th>
               <td>
                 {office?.holders?.map((name) => (
-                  <InitialisedName name={name} key={name} />
+                  <InitialisedName key={name} name={name} />
                 ))}
               </td>
             </tr>

@@ -19,9 +19,9 @@ export class Cache<T> {
 
   private options: Options<T> = {
     key: "",
+    primaryKey: "" as keyof T,
     ttl: 0,
     function: () => Promise.resolve([]),
-    primaryKey: "" as keyof T,
   };
 
   private _cacheDirectoryPath(): string {

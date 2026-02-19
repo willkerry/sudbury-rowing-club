@@ -42,12 +42,12 @@ const prettifyBoatnames = (boatname: string) =>
 const RecordSchema = z
   .object({
     boat: z.string().transform(prettifyBoatnames),
-    event: z.string().transform(prettifyBoatnames),
-    year: z.string().transform((year) => new Date(year)),
     club: z.string(),
+    event: z.string().transform(prettifyBoatnames),
     name: z.string(),
-    time: z.string().transform(parseDuration),
     round: z.union([z.literal("F"), z.literal("S"), z.literal("Q")]),
+    time: z.string().transform(parseDuration),
+    year: z.string().transform((year) => new Date(year)),
   })
   .transform((record) => ({
     ...record,
@@ -60,16 +60,16 @@ export const transformRecords = (records: typeof recordJson) =>
   RecordSchema.array().parse(records);
 
 const REGEXES = {
+  coxedFour: /4\+/g,
+  coxedPair: /2\+/g,
+  coxedQuad: /4[x×]\+/g,
+  coxlessFour: /4-/g,
+  coxlessQuad: /4[x×]-/g,
+  double: /2[x×]/g,
   eight: /8\+/g,
   octuple: /8[x×]/g,
-  coxedFour: /4\+/g,
-  coxlessFour: /4-/g,
-  coxedQuad: /4[x×]\+/g,
-  coxlessQuad: /4[x×]-/g,
-  quad: /4[x×](?![+-])/g,
-  coxedPair: /2\+/g,
   pair: /2-/g,
-  double: /2[x×]/g,
+  quad: /4[x×](?![+-])/g,
   single: /1[x×]/g,
 };
 

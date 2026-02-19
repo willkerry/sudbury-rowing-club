@@ -14,8 +14,8 @@ const regattasQuery = groq`
 
 const ZTestimonial = z.object({
   _key: z.string(),
-  name: z.string().default(""),
   club: z.string().default(""),
+  name: z.string().default(""),
   text: z.string(),
 });
 

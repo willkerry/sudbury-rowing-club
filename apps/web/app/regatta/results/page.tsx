@@ -25,9 +25,9 @@ export interface Other {
 }
 
 export const metadata = createMetadata({
-  title: "Regatta Results | Sudbury Rowing Club",
   description: "Results from the Sudbury Regatta.",
   image: { title: "Regatta Results" },
+  title: "Regatta Results | Sudbury Rowing Club",
 });
 
 const ResultsPage = async () => {
@@ -52,7 +52,7 @@ const ResultsPage = async () => {
 
   return (
     <>
-      <PageHeader title="Regatta results" breadcrumbs />
+      <PageHeader breadcrumbs title="Regatta results" />
       <Container className="pb-16">
         <div className="mb-12 space-y-12">
           <Text lead portableText={other.description} />
@@ -60,14 +60,14 @@ const ResultsPage = async () => {
           <div className="flex gap-2">
             <LiveResultsButton regattaDate={regattaDate} />
 
-            <Button icon={<Table2 />} asChild variant="secondary">
+            <Button asChild icon={<Table2 />} variant="secondary">
               <NextLink href="/regatta/records">
                 View interactive records
               </NextLink>
             </Button>
 
             {other.records && (
-              <Button icon={<Download />} variant="ghost" asChild>
+              <Button asChild icon={<Download />} variant="ghost">
                 <a href={`${other.records}?dl=`}>Download course records</a>
               </Button>
             )}
@@ -85,7 +85,7 @@ const ResultsPage = async () => {
             </thead>
             <tbody>
               {results.map(({ results: resultsLink, date, number, _id }) => (
-                <tr key={_id} className="hover:bg-gray-50">
+                <tr className="hover:bg-gray-50" key={_id}>
                   <td>
                     <span className="font-semibold">
                       {number
@@ -105,9 +105,9 @@ const ResultsPage = async () => {
                   <td>
                     {resultsLink ? (
                       <Link
-                        href={resultsLink}
-                        external
                         aria-label={`View results from the ${date} regatta.`}
+                        external
+                        href={resultsLink}
                       >
                         View<span className="hidden sm:inline"> results</span>
                       </Link>

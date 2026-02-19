@@ -65,24 +65,24 @@ const articleSummaryFields = groq`
 const ZArticle = z
   .object({
     _id: z.string(),
-    slug: z.string(),
-    title: z.string().transform(smartQuotes),
-    date: z.string(),
     author: z
       .object({
+        _id: z.string(),
         firstName: z.string(),
         surname: z.string(),
-        _id: z.string(),
       })
       .nullable(),
     body: z.array(ZTypedObject).nullable(),
+    date: z.string(),
     featuredImage: Z_IMAGE_SCHEMA.nullable(),
+    slug: z.string(),
+    title: z.string().transform(smartQuotes),
   })
   .merge(ZExcerpt);
 
 export const ZArticleSummary = ZArticle.omit({
-  body: true,
   author: true,
+  body: true,
 });
 
 const ZArticleCount = z.number();

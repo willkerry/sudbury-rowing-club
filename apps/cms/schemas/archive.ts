@@ -2,69 +2,63 @@ import { ArchiveIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 const Archive = defineType({
-  name: "archive",
-  type: "document",
-  title: "Archive",
   icon: ArchiveIcon,
+  name: "archive",
+  title: "Archive",
+  type: "document",
   fields: [
     defineField({
       name: "title",
-      type: "string",
       title: "Title",
+      type: "string",
     }),
     defineField({
       name: "year",
-      type: "date",
       title: "Year",
+      type: "date",
       options: {
         dateFormat: "YYYY",
       },
     }),
     defineField({
       name: "range",
-      type: "number",
       title: "Range",
+      type: "number",
     }),
     defineField({
       name: "description",
-      type: "text",
       title: "Description",
+      type: "text",
     }),
     defineField({
       name: "image",
-      type: "image",
       title: "Image",
+      type: "image",
     }),
     defineField({
       name: "alt",
-      type: "string",
       title: "Alt Text",
+      type: "string",
     }),
     defineField({
       name: "location",
-      type: "geopoint",
       title: "Location",
+      type: "geopoint",
     }),
   ],
   orderings: [
     {
+      by: [{ direction: "desc", field: "year" }],
       name: "yearDesc",
       title: "Latest",
-      by: [{ field: "year", direction: "desc" }],
     },
     {
+      by: [{ direction: "asc", field: "year" }],
       name: "yearAsc",
       title: "Earliest",
-      by: [{ field: "year", direction: "asc" }],
     },
   ],
   preview: {
-    select: {
-      title: "title",
-      year: "year",
-      range: "range",
-      media: "image",
-    },
     prepare({ title, year, range, media }) {
       const midYear = new Date(year).getFullYear();
       const startYear = midYear - range;
@@ -85,6 +79,12 @@ const Archive = defineType({
         subtitle,
         media,
       };
+    },
+    select: {
+      media: "image",
+      range: "range",
+      title: "title",
+      year: "year",
     },
   },
 });

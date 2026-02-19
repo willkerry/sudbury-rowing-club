@@ -3,8 +3,8 @@ import { kv } from "@vercel/kv";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const ratelimiter = new Ratelimit({
-  redis: kv,
   limiter: Ratelimit.slidingWindow(10, "10s"),
+  redis: kv,
 });
 
 export const routeHandlerRatelimiter = async (req: NextRequest) => {

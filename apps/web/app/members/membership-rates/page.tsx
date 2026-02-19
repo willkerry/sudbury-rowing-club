@@ -7,9 +7,9 @@ import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 export const revalidate = 86400;
 
 export const metadata = createMetadata({
-  title: "Membership Rates",
   description: "Membership rates for Sudbury Rowing Club.",
   image: { title: "Membership Rates 💸" },
+  title: "Membership Rates",
 });
 
 const MembershipRates = async () => {

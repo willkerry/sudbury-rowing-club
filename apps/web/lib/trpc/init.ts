@@ -3,16 +3,16 @@ import { parse, stringify } from "devalue";
 import { cache } from "react";
 import { ratelimiter } from "@/lib/rate-limiter";
 
-export const createTRPCContext = cache((opts: { headers: Headers }) => {
-  return { headers: opts.headers };
-});
+export const createTRPCContext = cache((opts: { headers: Headers }) => ({
+  headers: opts.headers,
+}));
 
 const t = initTRPC
   .context<Awaited<ReturnType<typeof createTRPCContext>>>()
   .create({
     transformer: {
-      serialize: (object: unknown) => stringify(object),
       deserialize: (object: string) => parse(object),
+      serialize: (object: unknown) => stringify(object),
     },
   });
 

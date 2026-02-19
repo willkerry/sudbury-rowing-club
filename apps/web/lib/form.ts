@@ -3,7 +3,7 @@ import { TRPCClientError } from "@trpc/client";
 export function getErrorMessage(
   error: string | { message: string } | undefined,
 ): string | undefined {
-  if (!error) return undefined;
+  if (!error) return;
   if (typeof error === "string") return error;
 
   return error.message;

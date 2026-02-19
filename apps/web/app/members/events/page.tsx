@@ -1,10 +1,10 @@
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  title: "Competition Calendar",
   description:
     "This calendar shows competitions for the current season, as recorded by British Rowing.",
   image: { title: "Competition Calendar 🗓️" },
+  title: "Competition Calendar",
 });
 
 const EventPage = () => (

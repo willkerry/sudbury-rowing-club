@@ -11,20 +11,20 @@ vi.mock("he", () => ({
 describe("fetchBritishRowingFeed", () => {
   const mockResponse = [
     {
+      date: "2023-10-01T12:00:00Z",
       id: 1,
+      link: "https://example.com/article-1",
       title: {
         rendered: "Test Article &amp; Title",
       },
-      date: "2023-10-01T12:00:00Z",
-      link: "https://example.com/article-1",
     },
     {
+      date: "2023-10-02T12:00:00Z",
       id: 2,
+      link: "https://example.com/article-2",
       title: {
         rendered: "Another Article &lt;Title&gt;",
       },
-      date: "2023-10-02T12:00:00Z",
-      link: "https://example.com/article-2",
     },
   ];
 
@@ -49,16 +49,16 @@ describe("fetchBritishRowingFeed", () => {
     );
     expect(result).toHaveLength(2);
     expect(result[0]).toEqual({
-      id: 1,
-      title: "Test Article & Title",
       date: "2023-10-01T12:00:00.000Z",
+      id: 1,
       link: "https://example.com/article-1",
+      title: "Test Article & Title",
     });
     expect(result[1]).toEqual({
-      id: 2,
-      title: "Another Article <Title>",
       date: "2023-10-02T12:00:00.000Z",
+      id: 2,
       link: "https://example.com/article-2",
+      title: "Another Article <Title>",
     });
   });
 
@@ -78,10 +78,10 @@ describe("fetchBritishRowingFeed", () => {
     // Mock response with invalid schema
     const invalidResponse = [
       {
-        id: "invalid-id", // should be number
-        title: "Missing title object",
         date: "2023-10-01T12:00:00Z",
+        id: "invalid-id", // should be number
         link: "https://example.com/article-1",
+        title: "Missing title object",
       },
     ];
 
@@ -109,12 +109,12 @@ describe("fetchBritishRowingFeed", () => {
   it("should decode HTML entities in article titles", async () => {
     const responseWithEntities = [
       {
+        date: "2023-10-01T12:00:00Z",
         id: 1,
+        link: "https://example.com/article-1",
         title: {
           rendered: "Article with &quot;quotes&quot; &amp; symbols",
         },
-        date: "2023-10-01T12:00:00Z",
-        link: "https://example.com/article-1",
       },
     ];
 
@@ -143,11 +143,11 @@ describe("fetchBritishRowingFeed", () => {
   it("should validate all required fields in response", async () => {
     const responseWithMissingFields = [
       {
+        date: "2023-10-01T12:00:00Z",
         id: 1,
         title: {
           rendered: "Test Article",
         },
-        date: "2023-10-01T12:00:00Z",
         // missing link field
       },
     ];

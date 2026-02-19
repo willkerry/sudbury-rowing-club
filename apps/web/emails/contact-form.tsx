@@ -15,12 +15,12 @@ import {
 } from "@react-email/components";
 
 interface ContactFormEmailProps {
-  toName?: string;
-  toEmail?: string;
-  toRole?: string;
-  fromName?: string;
   fromEmail?: string;
+  fromName?: string;
   message?: string;
+  toEmail?: string;
+  toName?: string;
+  toRole?: string;
 }
 
 const Label = ({ children }: { children: React.ReactNode }) => (

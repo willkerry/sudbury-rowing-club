@@ -36,12 +36,25 @@ const queryForOne = groq`*[_type == "members" && !(_id in path("drafts.**")) && 
 const queryForSlugs = groq`*[_type == "members" && !(_id in path("drafts.**"))] | order(_updatedAt desc) { "slug": slug.current }`;
 
 const ZNotice = z.object({
+  _createdAt: z.string().datetime(),
   _id: z.string(),
   _updatedAt: z.string().datetime(),
-  _createdAt: z.string().datetime(),
-  title: z.string(),
-  slug: z.string(),
   body: z.array(ZTypedObject).nullable(),
+  documents: z
+    .array(
+      z.object({
+        _key: z.string(),
+        documents: z.array(
+          z.object({
+            _key: z.string(),
+            title: z.string().nullable(),
+            url: z.string().nullable(),
+          }),
+        ),
+        title: z.string().nullable(),
+      }),
+    )
+    .nullable(),
   meta: z
     .array(
       z.object({
@@ -51,21 +64,8 @@ const ZNotice = z.object({
       }),
     )
     .nullable(),
-  documents: z
-    .array(
-      z.object({
-        _key: z.string(),
-        title: z.string().nullable(),
-        documents: z.array(
-          z.object({
-            _key: z.string(),
-            title: z.string().nullable(),
-            url: z.string().nullable(),
-          }),
-        ),
-      }),
-    )
-    .nullable(),
+  slug: z.string(),
+  title: z.string(),
 });
 
 const fetchNoticeSlugs = async () => {

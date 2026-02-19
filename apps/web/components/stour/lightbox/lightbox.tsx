@@ -30,14 +30,14 @@ const calculateImageSize = (
 
   if (windowAspectRatio > aspectRatio) {
     return {
-      width: (windowHeight - PADDING * 2) * aspectRatio,
       height: windowHeight - PADDING * 2,
+      width: (windowHeight - PADDING * 2) * aspectRatio,
     };
   }
 
   return {
-    width: windowWidth - PADDING * 2,
     height: (windowWidth - PADDING * 2) / aspectRatio,
+    width: windowWidth - PADDING * 2,
   };
 };
 
@@ -71,33 +71,33 @@ export const LightBox = ({
       {children}
 
       <Transition
-        show={open}
+        as={Fragment}
         enter={reducedMotion ? "" : "transition"}
         enterFrom={reducedMotion ? "" : "scale-50 opacity-0"}
         enterTo={reducedMotion ? "" : "scale-100 opacity-100"}
         leave={reducedMotion ? "" : "transition"}
         leaveFrom={reducedMotion ? "" : "scale-100 opacity-100"}
         leaveTo={reducedMotion ? "" : "scale-50 opacity-0"}
-        as={Fragment}
+        show={open}
       >
         <Dialog
           className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center overscroll-contain bg-white bg-opacity-10 backdrop-blur-sm"
-          open={open}
-          onClose={() => toggle()}
           onClick={() => toggle()}
+          onClose={() => toggle()}
+          open={open}
         >
           <img
             alt={alt}
-            width={width}
+            className="rounded-sm shadow-lg"
             height={height}
             src={src}
-            className="rounded-sm shadow-lg"
             style={{
-              maxWidth: viewportWidth,
-              maxHeight: viewportHeight,
               backgroundImage: `url(${lqip})`,
               backgroundSize: "cover",
+              maxHeight: viewportHeight,
+              maxWidth: viewportWidth,
             }}
+            width={width}
           />
         </Dialog>
       </Transition>

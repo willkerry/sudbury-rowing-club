@@ -54,11 +54,11 @@ export const Entries = ({
               <tr>
                 {table[0].map((entry, i) => (
                   <th
-                    key={entry}
                     className={cn(
                       "px-pt text-center sm:px-1",
                       i === 0 && "w-36",
                     )}
+                    key={entry}
                   >
                     {entry}
                   </th>
@@ -74,14 +74,14 @@ export const Entries = ({
 
                     return (
                       <td
-                        key={`${entry}-${boatClass}`}
                         className="px-0.5 text-center sm:px-1"
+                        key={`${entry}-${boatClass}`}
                       >
                         <Chip
-                          id={indicesToBoatName(category, boatClass)}
-                          location="table"
                           className="w-full"
                           color={getWaveColor(entry)}
+                          id={indicesToBoatName(category, boatClass)}
+                          location="table"
                         >
                           {entry}
                         </Chip>
@@ -106,11 +106,11 @@ export const Entries = ({
 
                 return (
                   <Chip
-                    id={value}
-                    location="list"
-                    color={getWaveColor(wave)}
-                    key={value}
                     className="px-1 text-xs"
+                    color={getWaveColor(wave)}
+                    id={value}
+                    key={value}
+                    location="list"
                   >
                     {value}
                   </Chip>

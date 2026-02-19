@@ -14,10 +14,10 @@ export const CourseMap = ({
 }) => (
   <Image
     {...useSanityImageProps(id)}
-    width={982}
+    alt="Sudbury Regatta course map showing the river layout, start and finish positions, and key landmarks"
+    blurDataURL={lqip}
     height={982 / aspectRatio}
     placeholder="blur"
-    blurDataURL={lqip}
-    alt="Sudbury Regatta course map showing the river layout, start and finish positions, and key landmarks"
+    width={982}
   />
 );

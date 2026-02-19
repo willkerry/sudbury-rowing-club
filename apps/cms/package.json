@@ -1,18 +1,9 @@
 {
-  "name": "@sudburyrc/cms",
-  "version": "2.0.0",
+  "author": "Will Kerry <webmaster@sudburyrowingclub.org.uk>",
   "description": "",
   "main": "package.json",
-  "author": "Will Kerry <webmaster@sudburyrowingclub.org.uk>",
-  "scripts": {
-    "start": "sanity start",
-    "build": "sanity build -y && (test $SANITY_AUTH_TOKEN && sanity schema deploy || echo 'Warning: Skipping schema deploy as SANITY_AUTH_TOKEN is not defined. If building locally run `npx sanity schema deploy` to use OAUTH authentication istead.')",
-    "deploy": "wrangler deploy",
-    "dev": "sanity dev",
-    "sanity": "sanity",
-    "sanity:upgrade": "sanity upgrade",
-    "type-check": "tsc --noEmit"
-  },
+  "name": "@sudburyrc/cms",
+  "version": "2.0.0",
   "dependencies": {
     "@sanity/client": "^7.12.0",
     "@sanity/color": "^3.0.6",
@@ -35,5 +26,14 @@
     "@sanity/cli": "^4.11.0",
     "@types/react": "^19.2.2",
     "wrangler": "^4.54.0"
+  },
+  "scripts": {
+    "build": "sanity build -y && (test $SANITY_AUTH_TOKEN && sanity schema deploy || echo 'Warning: Skipping schema deploy as SANITY_AUTH_TOKEN is not defined. If building locally run `npx sanity schema deploy` to use OAUTH authentication istead.')",
+    "deploy": "wrangler deploy",
+    "dev": "sanity dev",
+    "sanity": "sanity",
+    "sanity:upgrade": "sanity upgrade",
+    "start": "sanity start",
+    "type-check": "tsc --noEmit"
   }
 }

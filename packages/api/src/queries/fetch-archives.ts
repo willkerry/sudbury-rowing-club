@@ -22,14 +22,14 @@ const ZLocation = z.object({
 });
 
 export const ZArchive = z.object({
-  title: z.string(),
-  description: z.string().nullable(),
-  year: z.string().nullable(),
-  range: z.number().nullable(),
-  alt: z.string().nullable(),
-  image: Z_IMAGE_SCHEMA,
   _id: z.string(),
+  alt: z.string().nullable(),
+  description: z.string().nullable(),
+  image: Z_IMAGE_SCHEMA,
   location: ZLocation.nullable(),
+  range: z.number().nullable(),
+  title: z.string(),
+  year: z.string().nullable(),
 });
 export type Archive = z.infer<typeof ZArchive>;
 

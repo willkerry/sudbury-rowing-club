@@ -3,8 +3,8 @@ import { unique } from "radashi";
 import { getHostname } from "./helpers/getHostname";
 
 const SUFFIX_ALIASES = {
-  " Rowing Club": [" Rowing Club", " RC"],
   " Boat Club": [" Boat Club", " BC"],
+  " Rowing Club": [" Rowing Club", " RC"],
 } as const;
 
 const RC_REGEX = / RC$/;
@@ -51,10 +51,10 @@ export const getClub = (name: string): Club | undefined => {
   if (!foundClub) return;
 
   return {
+    bladeUrl: foundClub.newBladeUrl ?? undefined,
+    href: foundClub.href,
     id: foundClub.id,
     name: foundClub.name,
-    href: foundClub.href,
-    bladeUrl: foundClub.newBladeUrl ?? undefined,
   };
 };
 
@@ -73,10 +73,10 @@ export const getClubByCode = (code: string) => {
   if (!foundClub) return;
 
   return {
+    bladeUrl: foundClub.newBladeUrl ?? undefined,
+    href: foundClub.href,
     id: foundClub.id,
     name: foundClub.name,
-    href: foundClub.href,
-    bladeUrl: foundClub.newBladeUrl ?? undefined,
   };
 };
 
@@ -110,9 +110,9 @@ export const getClubByBoatCode = (
   if (!foundClub) return;
 
   return {
+    bladeUrl: foundClub.newBladeUrl ?? undefined,
+    href: foundClub.href,
     id: foundClub.id,
     name: normaliseClubName(foundClub.name, options?.normaliseClubName),
-    href: foundClub.href,
-    bladeUrl: foundClub.newBladeUrl ?? undefined,
   };
 };

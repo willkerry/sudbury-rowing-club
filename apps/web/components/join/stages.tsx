@@ -20,14 +20,14 @@ export const L2RStages = ({ stages }: Props) => (
     >
       {stages.map((stage) => (
         <li
-          key={stage.name}
           className={cn(
             "relative ml-8 before:absolute xl:ml-0",
             "before:disambiguate before:font-bold before:text-sm before:content-[counter(a)]",
             "before:rounded-full before:border-2 before:border-current before:text-center",
-            "before:-left-7 before:top-px before:h-5 before:w-5 before:leading-4",
+            "before:top-px before:-left-7 before:h-5 before:w-5 before:leading-4",
             styles.incrementStageCounter,
           )}
+          key={stage.name}
         >
           <div className="font-semibold text-gray-700 text-lg leading-tight">
             {stage.name}

@@ -37,14 +37,14 @@ const regattaSettingsQuery = groq`
 
 const ZHeroImage = z.object({
   heading: z.string(),
-  subheading: z.string(),
   image: Z_IMAGE_SCHEMA,
+  subheading: z.string(),
 });
 
 const ZDocument = z.object({
   _id: z.string(),
-  title: z.string(),
   extension: z.string(),
+  title: z.string(),
   url: z.string(),
 });
 
@@ -57,8 +57,8 @@ const ZEvent = z.object({
   _key: z.string(),
   boatClasses: z.array(z.string()),
   categories: z.string(),
-  description: z.string(),
   course: z.string(),
+  description: z.string(),
   gender: z.string(),
   prizes: z.string(),
   title: z.string(),
@@ -96,13 +96,13 @@ const ZResults = z.object({
 });
 
 const ZRegattaSettings = z.object({
-  title: z.string(),
-  date: z.string(),
   competitorInformation: ZCompetitorInformation,
+  date: z.string(),
   entries: ZEntries,
   events: z.array(ZEvent),
   landingPage: ZLandingPage,
   results: ZResults,
+  title: z.string(),
 });
 
 const fetchRegattaSettings = async () =>

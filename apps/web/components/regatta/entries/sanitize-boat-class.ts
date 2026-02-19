@@ -1,9 +1,9 @@
 const BOAT_CLASS_SYMBOLS: Record<string, string> = {
-  "×": "scull",
-  "+": "coxed",
-  "−": "coxless",
-  "/": "or",
   " ": "-",
+  "/": "or",
+  "+": "coxed",
+  "×": "scull",
+  "−": "coxless",
 };
 
 export const sanitizeBoatClass = (boatClass: string) =>

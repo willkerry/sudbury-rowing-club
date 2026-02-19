@@ -44,8 +44,8 @@ export const GET = async (req: NextRequest) => {
       status: 200,
       headers: {
         "Cache-Control": "public, s-maxage=21600",
-        "Content-Type": "text/calendar",
         "Content-Disposition": "attachment; filename=ical.ics",
+        "Content-Type": "text/calendar",
       },
     });
   } catch (error) {

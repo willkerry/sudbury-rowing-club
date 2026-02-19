@@ -13,7 +13,7 @@ export const NoticeBody = ({ notice }: { notice: Notice }) => {
 
   return (
     <>
-      {notice.body && <Text portableText={notice.body} className="p-4" />}
+      {notice.body && <Text className="p-4" portableText={notice.body} />}
 
       {notice.meta && (
         <div className="flex bg-gray-50 py-2.5 text-sm">
@@ -40,24 +40,24 @@ export const NoticeBody = ({ notice }: { notice: Notice }) => {
           <span>
             Created:{" "}
             <DateFormatter
+              className="disambiguate text-gray-700"
               dateString={notice._createdAt}
               format="short"
-              className="disambiguate text-gray-700"
             />
           </span>
           <span>
             Updated:{" "}
             <DateFormatter
+              className="disambiguate text-gray-700"
               dateString={notice._updatedAt}
               format="time"
-              className="disambiguate text-gray-700"
             />
           </span>
         </div>
 
         <Link
-          href={`../members/${notice.slug}`}
           className="transition-colors hover:text-black"
+          href={`../members/${notice.slug}`}
         >
           <span className="sr-only">Open permalink</span>
           <LinkIcon aria-hidden className="h-4 w-4" />

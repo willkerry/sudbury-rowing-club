@@ -83,19 +83,19 @@ const DataTableWithoutSuspense = <TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    onSortingChange: setSorting,
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnFiltersChange: setColumnFilters,
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    onPaginationChange: setCurrentPage,
+    onSortingChange: setSorting,
     state: {
       sorting,
       columnFilters,
       pagination: currentPage,
     },
-    onPaginationChange: setCurrentPage,
   });
 
   return (
@@ -127,8 +127,8 @@ const DataTableWithoutSuspense = <TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  key={row.id}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
@@ -148,8 +148,8 @@ const DataTableWithoutSuspense = <TData, TValue>({
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
                   className="h-24 text-center"
+                  colSpan={columns.length}
                 >
                   No results.
                 </TableCell>
@@ -160,10 +160,10 @@ const DataTableWithoutSuspense = <TData, TValue>({
       </div>
       <div className="flex select-none items-center justify-center gap-2 space-x-2 py-4">
         <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          onClick={() => table.previousPage()}
+          size="sm"
+          variant="ghost"
         >
           Previous
         </Button>
@@ -174,10 +174,10 @@ const DataTableWithoutSuspense = <TData, TValue>({
         </span>
 
         <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          onClick={() => table.nextPage()}
+          size="sm"
+          variant="ghost"
         >
           Next
         </Button>

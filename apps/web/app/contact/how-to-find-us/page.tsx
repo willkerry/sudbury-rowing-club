@@ -16,9 +16,9 @@ import { createMetadata } from "@/lib/create-metadata";
 import { LocationMap } from "./location-map";
 
 export const metadata = createMetadata({
-  title: "How to find us",
   description: "Directions to our club and to our regatta",
   image: { title: "How to find us 📍" },
+  title: "How to find us",
 });
 
 const openInApp = [
@@ -50,13 +50,13 @@ type Address = {
 
 const addresses: Address[] = [
   {
-    name: "Club",
     address: ["Sudbury Rowing Club", "Quay Lane", "Sudbury", "Suffolk"],
+    name: "Club",
     postcode: "CO10 2AN",
   },
   {
-    name: "Regatta",
     address: ["Friars Meadow", "Edgeworth Road", "Sudbury", "Suffolk"],
+    name: "Regatta",
     postcode: "CO10 2TL",
   },
 ];
@@ -67,7 +67,7 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
       <MapPinIcon
         aria-hidden
         className={clsx(
-          "-ml-0.5 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5 mr-0.5 mb-[0.17em] inline-flex h-6 w-6",
+          "mr-0.5 mb-[0.17em] -ml-0.5 inline-flex h-6 w-6 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5",
           { Club: "text-blue-500", Regatta: "text-green-500" }[name],
         )}
       />
@@ -87,12 +87,12 @@ const FindUsAddress = ({ name, address, postcode }: Address) => (
     <div className="my-4 flex space-x-3 text-sm">
       {openInApp.map((item) => (
         <a
-          key={item.name}
+          aria-label={`Open in ${item.name}`}
           className="flex rounded-lg p-px"
           href={name === "Club" ? item.href : item.hrefregatta}
+          key={item.name}
           rel="noopener noreferrer"
           target="_blank"
-          aria-label={`Open in ${item.name}`}
         >
           <Image
             alt=""

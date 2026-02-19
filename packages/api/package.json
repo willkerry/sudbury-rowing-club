@@ -1,18 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "@sudburyrc/api",
-  "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.mts",
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup",
-    "type-check": "tsc --noEmit"
-  },
-  "keywords": [],
   "author": "",
+  "keywords": [],
   "license": "ISC",
+  "main": "dist/index.mjs",
+  "name": "@sudburyrc/api",
+  "private": true,
+  "types": "dist/index.d.mts",
+  "version": "0.0.0",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "dependencies": {
     "@portabletext/types": "^2.0.15",
     "@sanity/image-url": "^1.2.0",
@@ -34,9 +34,9 @@
     "@types/node": "^22.15.0",
     "typescript": "^5.9.3"
   },
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup",
+    "type-check": "tsc --noEmit"
   }
 }

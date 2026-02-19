@@ -20,8 +20,8 @@ import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 import { NextCourse } from "./next-course";
 
 export const metadata = createMetadata({
-  title: "Start rowing at Sudbury Rowing Club",
   description: "Everything you need to know about getting rowing.",
+  title: "Start rowing at Sudbury Rowing Club",
   image: {
     title: "Start rowing 👍",
   },
@@ -46,8 +46,8 @@ const getLearnToRowCourseCost = async () => {
   if (!learnToRowCourseCost) return null;
 
   return Intl.NumberFormat("en-GB", {
-    style: "currency",
     currency: "GBP",
+    style: "currency",
   }).format(learnToRowCourseCost);
 };
 
@@ -69,7 +69,7 @@ const Join = async () => {
           Start rowing with us{" "}
           <ThumbsUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
         </h1>
-        <div className="-rotate-2 z-0 mx-auto flex max-h-[160px] max-w-[240px] overflow-hidden rounded-sm shadow-xl">
+        <div className="z-0 mx-auto flex max-h-[160px] max-w-[240px] -rotate-2 overflow-hidden rounded-sm shadow-xl">
           <Image
             alt="Trainee rowers on the water during on learn to row course."
             height={160}
@@ -92,17 +92,17 @@ const Join = async () => {
         </div>
         <LearnToRowCta>
           <LearnToRowCtaSection
-            title="New to the sport?"
             buttonText="Learn to Row"
-            variant="secondary"
+            title="New to the sport?"
             to={learnToRowId}
+            variant="secondary"
           >
             Our Learn to Row programme is for you.
           </LearnToRowCtaSection>
 
           <LearnToRowCtaSection
-            title="Already an active rower?"
             buttonText="How to join"
+            title="Already an active rower?"
             to={experienceId}
           >
             Contact a vice-captain for more information.

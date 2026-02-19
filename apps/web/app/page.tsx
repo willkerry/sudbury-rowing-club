@@ -37,9 +37,9 @@ const Home = async () => {
   return (
     <>
       <Script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ClubJsonLd) }}
         id="club-json-ld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ClubJsonLd) }}
       />
 
       {note.display && (
@@ -53,10 +53,10 @@ const Home = async () => {
 
       <Container>
         <LandingHero
-          imageId={heroImage._id}
-          imageAspectRatio={heroImage.aspectRatio}
-          imageLqip={heroImage.lqip}
           description={tagline}
+          imageAspectRatio={heroImage.aspectRatio}
+          imageId={heroImage._id}
+          imageLqip={heroImage.lqip}
         />
       </Container>
 
@@ -67,16 +67,16 @@ const Home = async () => {
       <Container className="my-16">
         <div className="mx-auto my-16">
           <Text
-            portableText={description}
             className="mx-auto my-16"
             id={introId}
+            portableText={description}
           />
           <span className="sr-only">The Committee</span>
           <CommitteeSignature aria-hidden className="mx-auto w-48" />
           <Affiliates />
         </div>
 
-        <Sponsors heading="Sponsored by" className="mb-24" />
+        <Sponsors className="mb-24" heading="Sponsored by" />
       </Container>
 
       <Gallery images={images} />
@@ -89,9 +89,9 @@ const Home = async () => {
           For more updates, follow us on{" "}
           <Link href={SOCIALS.facebook.href}>{SOCIALS.facebook.name}</Link>.
         </p>
-        <NewsList posts={news} hero />
+        <NewsList hero posts={news} />
         <div className="h-8" />
-        <Link href="/news" arrow>
+        <Link arrow href="/news">
           See more news
         </Link>
       </Container>

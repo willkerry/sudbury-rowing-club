@@ -14,11 +14,11 @@ export const LandingHeroImage = ({
 }) => (
   <Image
     {...useSanityImageProps(imageId)}
-    width={992}
-    height={992 / imageAspectRatio}
     alt="Aerial photograph of a Sudbury crew training."
-    placeholder="blur"
     blurDataURL={imageLqip}
+    height={992 / imageAspectRatio}
+    placeholder="blur"
     priority
+    width={992}
   />
 );

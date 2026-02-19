@@ -13,9 +13,6 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
   <div className="flex flex-col">
     {items.map(({ summary, icon, href }, i) => (
       <Link
-        key={summary}
-        id={summary}
-        href={href}
         className={cn([
           "relative",
           "group flex items-center gap-x-2.5 p-4 transition-colors",
@@ -24,13 +21,16 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
           "hover:bg-blue-50 focus:bg-blue-50",
           "transition-colors",
         ])}
+        href={href}
+        id={summary}
+        key={summary}
       >
         <div
           className={cn({
-            "-inset-px absolute transition-colors": true,
+            "absolute -inset-px transition-colors": true,
             "border-[1.5px] border-transparent group-hover:border-blue-300": true,
-            "rounded-t": i === 0,
             "rounded-b": i === items.length - 1,
+            "rounded-t": i === 0,
           })}
         />
 
@@ -44,8 +44,8 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
         <div>{summary}</div>
 
         <ArrowRightIcon
-          className="ml-auto h-6 w-6 text-gray-300 transition-colors group-hover:text-blue-500 group-focus:text-blue-500"
           aria-hidden
+          className="ml-auto h-6 w-6 text-gray-300 transition-colors group-hover:text-blue-500 group-focus:text-blue-500"
         />
       </Link>
     ))}

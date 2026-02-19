@@ -58,29 +58,29 @@ export const generateMetadata = async ({
   if (!archive) return {};
 
   return createMetadata({
-    title: `150th Anniversary Gallery: ${archive?.title || ""}`,
     description: archive?.description || "",
+    title: `150th Anniversary Gallery: ${archive?.title || ""}`,
     image: {
-      title: archive?.title || "",
       subtitle: archive?.year || "",
+      title: archive?.title || "",
     },
   });
 };
 
 const createArchiveJsonLd = (archive: TArchive): WithContext<Photograph> => ({
   "@context": "https://schema.org",
-  "@type": "Photograph",
   "@id": archive._id,
+  "@type": "Photograph",
   dateCreated: archive.year || undefined,
+  description: archive.description || undefined,
+  image: archive.image.url,
   name: archive.title,
+  sourceOrganization: ClubJsonLd,
   contentLocation: {
     "@type": "Place",
     latitude: archive.location?.lat,
     longitude: archive.location?.lng,
   },
-  image: archive.image.url,
-  sourceOrganization: ClubJsonLd,
-  description: archive.description || undefined,
 });
 
 const Archive = async ({ params }: ArchivePageParamObject) => {
@@ -91,14 +91,14 @@ const Archive = async ({ params }: ArchivePageParamObject) => {
   return (
     <>
       <Script
-        id="archive-json-ld"
-        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(createArchiveJsonLd(archive)),
         }}
+        id="archive-json-ld"
+        type="application/ld+json"
       />
 
-      <ArchiveImage image={archive.image} alt={archive.alt || ""} />
+      <ArchiveImage alt={archive.alt || ""} image={archive.image} />
 
       <div className="max-w-prose pb-8 text-gray-800 text-sm">
         <div

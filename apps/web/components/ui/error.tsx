@@ -19,10 +19,10 @@ type ErrorProps = React.HTMLAttributes<HTMLDivElement> & {
 export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorProps>(
   ({ children, error, label, className, ...props }, ref) => (
     <div
-      ref={ref}
       aria-atomic
-      role="alert"
       className={cn("font-medium text-red-600 text-sm", className)}
+      ref={ref}
+      role="alert"
       {...props}
     >
       <div className="flex items-start">
@@ -58,9 +58,9 @@ ErrorMessage.displayName = "ErrorMessage";
 export const ErrorAlert = React.forwardRef<HTMLDivElement, ErrorProps>(
   ({ error, label, className, ...props }, ref) => (
     <Alert
-      variant="destructive"
-      ref={ref}
       className={cn("font-medium text-red-600 text-sm", className)}
+      ref={ref}
+      variant="destructive"
       {...props}
     >
       <ErrorMessage error={error} {...props} />

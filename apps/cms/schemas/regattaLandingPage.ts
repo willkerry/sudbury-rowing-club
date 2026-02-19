@@ -1,16 +1,12 @@
 import { defineArrayMember, defineField } from "sanity";
 
 const RegattaLandingPage = defineField({
-  type: "object",
+  description: "Content displayed on the main regatta landing page.",
   name: "regattaLandingPage",
   title: "Landing Page",
-  description: "Content displayed on the main regatta landing page.",
-
-  options: {
-    collapsible: true,
-  },
+  type: "object",
   fields: [
-    defineField({ name: "tagline", type: "text", rows: 2 }),
+    defineField({ name: "tagline", rows: 2, type: "text" }),
     defineField({ name: "description", type: "richText" }),
     defineField({
       name: "heroImage",
@@ -19,9 +15,6 @@ const RegattaLandingPage = defineField({
     defineField({
       name: "images",
       type: "array",
-      options: {
-        layout: "grid",
-      },
       of: [
         defineArrayMember({
           name: "image",
@@ -30,14 +23,21 @@ const RegattaLandingPage = defineField({
           fields: [
             defineField({
               name: "caption",
-              type: "string",
               title: "Caption",
+              type: "string",
             }),
           ],
         }),
       ],
+      options: {
+        layout: "grid",
+      },
     }),
   ],
+
+  options: {
+    collapsible: true,
+  },
 });
 
 export default RegattaLandingPage;

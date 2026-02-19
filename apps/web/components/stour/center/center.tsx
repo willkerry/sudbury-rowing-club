@@ -9,13 +9,13 @@ type Props = {
 const Center = forwardRef<HTMLDivElement, Props>(
   ({ className, h, v, ...props }, ref) => (
     <div
-      ref={ref}
       className={cn(
         "flex min-h-full flex-1 flex-col items-center justify-center",
         h && "h-full",
         v && "v-full",
         className,
       )}
+      ref={ref}
       {...props}
     />
   ),

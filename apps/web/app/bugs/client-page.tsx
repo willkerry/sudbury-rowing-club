@@ -37,7 +37,6 @@ export const BugsClientSide = () => {
   const posthog = usePostHog();
 
   const { mutateAsync, error, data, status } = trpc.comms.bug.useMutation({
-    onMutate: () => posthog.capture("bug_report_submitted"),
     onError: (error) => {
       if (error instanceof TRPCClientError && error.data?.zodError) return;
 
@@ -45,6 +44,7 @@ export const BugsClientSide = () => {
         error_message: error.message,
       });
     },
+    onMutate: () => posthog.capture("bug_report_submitted"),
     onSuccess: () => posthog.capture("bug_report_success"),
   });
 
@@ -54,15 +54,11 @@ export const BugsClientSide = () => {
 
   const form = useForm({
     defaultValues: {
-      name: "",
-      email: "",
       description: "",
+      email: "",
+      name: "",
       userAgent: getUserAgent() || "Unknown",
       additionalInformation,
-    },
-    validators: {
-      onSubmit: BugReportSchema,
-      onSubmitAsync: withServerValidation(mutateAsync),
     },
     onSubmitInvalid: ({ formApi }) => {
       const fieldErrors = Object.fromEntries(
@@ -72,11 +68,15 @@ export const BugsClientSide = () => {
       );
 
       posthog.capture("bug_report_validation_error", {
-        fields_with_errors: Object.keys(fieldErrors),
         error_details: fieldErrors,
+        fields_with_errors: Object.keys(fieldErrors),
       });
 
       scrollToSelector('[aria-invalid="true"]');
+    },
+    validators: {
+      onSubmit: BugReportSchema,
+      onSubmitAsync: withServerValidation(mutateAsync),
     },
   });
 
@@ -119,15 +119,15 @@ export const BugsClientSide = () => {
         <form.Field name="name">
           {({ state, handleBlur, handleChange, name }) => (
             <Input
-              disabled={disableFields}
               className="col-span-2 sm:col-span-1"
+              disabled={disableFields}
+              error={getErrorMessage(state.meta.errors[0])}
               id={name}
               label="Your name"
-              error={getErrorMessage(state.meta.errors[0])}
-              type="text"
-              value={state.value}
               onBlur={handleBlur}
               onChange={(e) => handleChange(e.target.value)}
+              type="text"
+              value={state.value}
             />
           )}
         </form.Field>
@@ -135,15 +135,15 @@ export const BugsClientSide = () => {
         <form.Field name="email">
           {({ state, handleBlur, handleChange, name }) => (
             <Input
-              disabled={disableFields}
               className="col-span-2 sm:col-span-1"
-              id={name}
-              label="Your email"
+              disabled={disableFields}
               error={getErrorMessage(state.meta.errors[0])}
+              id={name}
               inputMode="email"
-              value={state.value}
+              label="Your email"
               onBlur={handleBlur}
               onChange={(e) => handleChange(e.target.value)}
+              value={state.value}
             />
           )}
         </form.Field>
@@ -152,15 +152,15 @@ export const BugsClientSide = () => {
           {({ state, handleBlur, handleChange, name }) => (
             <TextArea
               className="col-span-2"
+              description="Describe what you were trying to do, what you expected to happen, and what actually happened."
               disabled={disableFields}
               error={getErrorMessage(state.meta.errors[0])}
               id={name}
-              minRows={3}
               label="Description"
-              description="Describe what you were trying to do, what you expected to happen, and what actually happened."
-              value={state.value}
+              minRows={3}
               onBlur={handleBlur}
               onChange={(e) => handleChange(e.target.value)}
+              value={state.value}
             />
           )}
         </form.Field>
@@ -173,15 +173,15 @@ export const BugsClientSide = () => {
           <form.Field name="userAgent">
             {({ state, name }) => (
               <Input
+                className="col-span-2"
+                description="Any time you use the web, your browser identifies itself (not you) to websites using a user agent string. This is included automatically."
                 disabled
                 id={name}
-                value={state.value}
-                label="User agent"
-                type="text"
-                className="col-span-2"
                 inputClassName="text-xs p-1.5 font-mono"
-                description="Any time you use the web, your browser identifies itself (not you) to websites using a user agent string. This is included automatically."
+                label="User agent"
                 required={false}
+                type="text"
+                value={state.value}
               />
             )}
           </form.Field>
@@ -190,17 +190,17 @@ export const BugsClientSide = () => {
             <form.Field name="additionalInformation">
               {({ state, handleBlur, handleChange, name }) => (
                 <TextArea
-                  value={state.value}
-                  onBlur={handleBlur}
-                  onChange={(e) => handleChange(e.target.value)}
                   className="col-span-2"
-                  inputClassName="p-1.5 font-mono text-xs text-gray-600"
+                  description="The page you were on when you clicked the “Report a bug” link gave us some additional information. Delete it if you don’t want to include it."
                   disabled={disableFields}
                   id={name}
-                  required={false}
-                  minRows={3}
+                  inputClassName="p-1.5 font-mono text-xs text-gray-600"
                   label="Additional information"
-                  description="The page you were on when you clicked the “Report a bug” link gave us some additional information. Delete it if you don’t want to include it."
+                  minRows={3}
+                  onBlur={handleBlur}
+                  onChange={(e) => handleChange(e.target.value)}
+                  required={false}
+                  value={state.value}
                 />
               )}
             </form.Field>

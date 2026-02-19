@@ -5,23 +5,23 @@ import { useZodSWR } from "@/lib/zod-swr";
 import { renderHook } from "@/test-utils/renderHook";
 
 const testSchema = z.object({
+  email: z.string().email(),
   id: z.number(),
   name: z.string(),
-  email: z.string().email(),
 });
 
 const stringSchema = z.string();
 
 const validData = {
+  email: "john@example.com",
   id: 1,
   name: "John Doe",
-  email: "john@example.com",
 };
 
 const invalidData = {
+  email: "invalid-email", // should be valid email
   id: "invalid", // should be number
   name: "John Doe",
-  email: "invalid-email", // should be valid email
 };
 
 describe("useZodSWR", () => {
@@ -198,38 +198,38 @@ describe("useZodSWR", () => {
 
   it("should handle complex nested schemas", async () => {
     const nestedSchema = z.object({
+      metadata: z.object({
+        createdAt: z.string(),
+        updatedAt: z.string(),
+      }),
       user: z.object({
         id: z.number(),
         profile: z.object({
           firstName: z.string(),
           lastName: z.string(),
           preferences: z.object({
-            theme: z.enum(["light", "dark"]),
             notifications: z.boolean(),
+            theme: z.enum(["light", "dark"]),
           }),
         }),
-      }),
-      metadata: z.object({
-        createdAt: z.string(),
-        updatedAt: z.string(),
       }),
     });
 
     const nestedData = {
+      metadata: {
+        createdAt: "2023-01-01T00:00:00Z",
+        updatedAt: "2023-01-02T00:00:00Z",
+      },
       user: {
         id: 1,
         profile: {
           firstName: "John",
           lastName: "Doe",
           preferences: {
-            theme: "dark" as const,
             notifications: true,
+            theme: "dark" as const,
           },
         },
-      },
-      metadata: {
-        createdAt: "2023-01-01T00:00:00Z",
-        updatedAt: "2023-01-02T00:00:00Z",
       },
     };
 

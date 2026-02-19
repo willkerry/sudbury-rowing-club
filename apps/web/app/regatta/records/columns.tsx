@@ -11,45 +11,42 @@ import { formatDuration, type Record, slugify } from "./transformRecords";
 export const columns: ColumnDef<Record>[] = [
   {
     accessorKey: "course",
+    enableColumnFilter: false,
+    cell: ({ row }) => detectAndFormatCourseLength(row.original),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Course" />
     ),
-    cell: ({ row }) => detectAndFormatCourseLength(row.original),
-    enableColumnFilter: false,
   },
   {
     accessorKey: "event",
     enableSorting: false,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Event" />
-    ),
     filterFn: (row, _id, value) =>
       row.original.event
         .toLowerCase()
         .replaceAll("×", "x")
         .replaceAll("−", "-")
         .includes(value.toLowerCase()),
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Event" />
+    ),
   },
   {
     accessorKey: "year",
+    enableSorting: true,
     cell: ({ row }) => (
       <div className="disambiguate tabular-nums">
         {row.original.year.getFullYear()}
       </div>
     ),
-    sortingFn: (a, b) =>
-      a.original.year.getFullYear() - b.original.year.getFullYear(),
-    enableSorting: true,
+    filterFn: (row, _id, value) =>
+      row.original.year.getFullYear().toString().includes(value),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Year" />
     ),
-    filterFn: (row, _id, value) =>
-      row.original.year.getFullYear().toString().includes(value),
+    sortingFn: (a, b) =>
+      a.original.year.getFullYear() - b.original.year.getFullYear(),
   },
   {
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Club" />
-    ),
     accessorKey: "club",
     cell: ({ row }) => {
       const blades = getBladeUrls(row.original.club, true);
@@ -59,7 +56,7 @@ export const columns: ColumnDef<Record>[] = [
           {blades.length > 0 && (
             <div className="flex flex-row items-center gap-2">
               {blades.map((blade) => (
-                <Blade key={blade} src={blade} alt="" />
+                <Blade alt="" key={blade} src={blade} />
               ))}
             </div>
           )}
@@ -69,8 +66,19 @@ export const columns: ColumnDef<Record>[] = [
     },
     filterFn: (row, _id, value) =>
       row.original.club.toLowerCase().includes(value.toLowerCase()),
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Club" />
+    ),
   },
   {
+    accessorKey: "time",
+    enableColumnFilter: false,
+    enableSorting: true,
+    cell: ({ row }) => (
+      <div className="tabular-nums tracking-wider">
+        {formatDuration(row.original.time)}
+      </div>
+    ),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Time" />
     ),
@@ -89,24 +97,16 @@ export const columns: ColumnDef<Record>[] = [
 
       return aTimeSeconds - bTimeSeconds;
     },
-    enableSorting: true,
-    enableColumnFilter: false,
-    accessorKey: "time",
-    cell: ({ row }) => (
-      <div className="tabular-nums tracking-wider">
-        {formatDuration(row.original.time)}
-      </div>
-    ),
   },
   {
     accessorKey: "link",
-    id: "link",
+    enableColumnFilter: false,
+    enableHiding: false,
+    enableSorting: false,
     header: "Link",
+    id: "link",
     cell: ({ row }) => (
       <Link href={`/regatta/records/${slugify(row.original.event)}`}>View</Link>
     ),
-    enableSorting: false,
-    enableColumnFilter: false,
-    enableHiding: false,
   },
 ];

@@ -1,22 +1,23 @@
 {
+  "exclude": ["node_modules"],
   "extends": "@sudburyrc/tsconfig/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "moduleResolution": "bundler",
+    "strictNullChecks": true,
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/data/*": ["data/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"],
-      "@/types/*": ["types/*"],
-      "@/pages/*": ["pages/*"],
       "@/app/*": ["app/*"],
       "@/assets/*": ["public/assets/*"],
-      "content-collections": ["./.content-collections/generated"],
+      "@/components/*": ["components/*"],
+      "@/data/*": ["data/*"],
+      "@/env": ["./env.ts"],
+      "@/hooks/*": ["hooks/*"],
+      "@/lib/*": ["lib/*"],
+      "@/pages/*": ["pages/*"],
       "@/test-utils/*": ["test-utils/*"],
-      "@/env": ["./env.ts"]
-    },
-    "strictNullChecks": true,
-    "moduleResolution": "bundler"
+      "@/types/*": ["types/*"],
+      "content-collections": ["./.content-collections/generated"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -24,6 +25,5 @@
     "**/*.tsx",
     "tailwind.config.js",
     ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+  ]
 }
