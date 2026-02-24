@@ -25,7 +25,7 @@
     "next-sanity": "^10.1.4",
     "picosanity": "^5.0.0",
     "radashi": "^12.7.0",
-    "tsup": "^8.5.0",
+    "tsdown": "^0.15.9",
     "zod": "^4.1.12"
   },
   "devDependencies": {
@@ -35,8 +35,8 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup",
+    "build": "tsdown",
+    "dev": "tsdown",
     "type-check": "tsc --noEmit"
   }
 }

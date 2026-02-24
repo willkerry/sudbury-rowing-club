@@ -11,10 +11,8 @@ import { createDirectoryListing } from "./createDirectoryListing";
  * CONSTANTS
  */
 
-export const TEMP = ".temp";
-
 export const INPUT_DIR = path.join(cwd(), "data");
-const OUTPUT_DIR = path.join(cwd(), TEMP);
+export const OUTPUT_DIR = path.join(cwd(), "dist");
 
 const VIEWPORT_TAG = `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
 const RETURN_LINK_HTML = `<a href="https://sudburyrowingclub.org.uk/regatta/results/">View all results</a>`;

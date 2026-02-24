@@ -9,8 +9,6 @@
     "@sudburyrc/static": "workspace:*"
   },
   "devDependencies": {
-    "@parcel/config-default": "^2.15.4",
-    "@parcel/core": "^2.15.4",
     "@types/fs-extra": "^11.0.4",
     "@types/ms": "^2.1.0",
     "@types/nunjucks": "^3.2.6",
