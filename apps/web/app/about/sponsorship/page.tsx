@@ -137,7 +137,7 @@ const SponsorshipPage = async () => {
             </p>
           </div>
 
-          <SponsorshipTiers tiers={SPONSORSHIP_TIERS} />
+          <SponsorshipTiers emphasisedIndex={1} tiers={SPONSORSHIP_TIERS} />
         </Container>
       </ScrollReveal>
 
