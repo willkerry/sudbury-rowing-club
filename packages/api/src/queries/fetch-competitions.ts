@@ -73,7 +73,8 @@ const ZBREvent = z
       competition,
       cancelled: event.StatusId === 8,
       url,
-      notes: event.Notes,
+      notes:
+        event.Notes?.trim().toLowerCase() === "cancelled" ? null : event.Notes,
       region: event.Region,
       startDate: event.StartDate,
     };

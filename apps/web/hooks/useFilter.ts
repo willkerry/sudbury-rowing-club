@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 export const useFilter = <
   TObject extends Record<string, unknown>,
@@ -8,17 +8,9 @@ export const useFilter = <
   key: TKeyInObject,
   value: TObject[TKeyInObject],
   unfilteredString = "",
-) => {
-  const [filteredArray, setFilteredArray] = useState<TObject[]>(arrayOfObjects);
+) =>
+  useMemo(() => {
+    if (value === unfilteredString) return arrayOfObjects;
 
-  useEffect(() => {
-    if (value === unfilteredString) setFilteredArray(arrayOfObjects);
-    else {
-      setFilteredArray(
-        arrayOfObjects.filter((object) => object[key] === value),
-      );
-    }
+    return arrayOfObjects.filter((object) => object[key] === value);
   }, [arrayOfObjects, key, value, unfilteredString]);
-
-  return filteredArray;
-};
