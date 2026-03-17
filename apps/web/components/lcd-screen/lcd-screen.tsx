@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useTransform } from "motion/react";
 import { useMemo } from "react";
 import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
 import { cn } from "@/lib/utils";
@@ -16,9 +17,16 @@ export const LCDScreen = ({
   const targetSeconds = useMemo(() => getTotalSeconds(time), [time]);
 
   const animatedSeconds = useAnimatedNumber(targetSeconds);
-
-  const minutes = Math.floor(animatedSeconds / 60);
-  const seconds = animatedSeconds % 60;
+  const minutesText = useTransform(animatedSeconds, (v) =>
+    Math.floor(v / 60)
+      .toString()
+      .padStart(2, " "),
+  );
+  const secondsText = useTransform(animatedSeconds, (v) =>
+    Math.floor(v % 60)
+      .toString()
+      .padStart(2, "0"),
+  );
 
   return (
     <div
@@ -36,9 +44,9 @@ export const LCDScreen = ({
           "before:pointer-events-none before:absolute before:inset-0 before:z-[-1] before:text-green-400 before:opacity-10 before:content-['88:88']",
         )}
       >
-        <span>{minutes.toString().padStart(2, " ")}</span>
+        <motion.span>{minutesText}</motion.span>
         <span className="animate-pulse">:</span>
-        <span>{seconds.toString().padStart(2, "0")}</span>
+        <motion.span>{secondsText}</motion.span>
       </div>
     </div>
   );
