@@ -4,7 +4,8 @@ import { createMetadata } from "@/lib/create-metadata";
 import { CSRContactPage } from "./csr-page";
 
 export const metadata = createMetadata({
-  description: "Get in touch with the Sudbury Rowing Club",
+  description:
+    "Contact Sudbury Rowing Club – Quay Lane, Sudbury, Suffolk. Enquiries about membership, learn to row, the regatta, and more.",
   image: { title: "Contact Sudbury Rowing Club" },
   title: "Contact",
 });

@@ -8,7 +8,8 @@ import { createMetadata } from "@/lib/create-metadata";
 import { CSRNewsPage } from "./csr-page";
 
 export const metadata = createMetadata({
-  description: "Latest news from Sudbury Rowing Club.",
+  description:
+    "News and race reports from Sudbury Rowing Club – results, events, and updates from Suffolk's rowing club on the River Stour.",
   image: { title: "News" },
   title: "News | Sudbury Rowing Club",
 });

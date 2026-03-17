@@ -8,13 +8,16 @@ import {
 import type { RecommendationsHit } from "algoliasearch/lite";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { Article as ArticleSchema, WithContext } from "schema-dts";
 import { PostBody } from "@/components/news/post-body";
 import { PostHeader } from "@/components/news/post-header";
 import { PostPreview } from "@/components/news/post-preview";
+import { BreadcrumbJsonLd } from "@/components/stour/breadcrumbs/breadcrumb-json-ld";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { getBrowserClient } from "@/lib/algolia";
+import { BASE_URL, ClubJsonLd } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
 
 type NewsPageParams = { slug: string };
@@ -87,13 +90,46 @@ export const generateMetadata = async ({
 };
 
 const Post = async ({ params }: NewsPageParamObject) => {
-  const post = await serverGetArticleBySlug((await params).slug);
+  const { slug } = await params;
+  const post = await serverGetArticleBySlug(slug);
   const relatedArticles = post?._id ? await getRelatedArticles(post._id) : [];
 
   if (!post) return notFound();
 
+  const articleUrl = `${BASE_URL}/news/${slug}`;
+
+  const articleJsonLd: WithContext<ArticleSchema> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    datePublished: post.date,
+    description: post.excerpt || undefined,
+    headline: post.title,
+    publisher: ClubJsonLd,
+    url: articleUrl,
+    ...(post.author && {
+      author: {
+        "@type": "Person",
+        name: `${post.author.firstName} ${post.author.surname}`,
+      },
+    }),
+    ...(post.featuredImage && {
+      image: coverImage(post.featuredImage),
+    }),
+  };
+
   return (
     <>
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        type="application/ld+json"
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: BASE_URL },
+          { name: "News", url: `${BASE_URL}/news` },
+          { name: post.title, url: articleUrl },
+        ]}
+      />
       <PostHeader
         date={post.date}
         featuredImage={post.featuredImage}

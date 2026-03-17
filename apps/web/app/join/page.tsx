@@ -20,7 +20,8 @@ import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 import { NextCourse } from "./next-course";
 
 export const metadata = createMetadata({
-  description: "Everything you need to know about getting rowing.",
+  description:
+    "Join Sudbury Rowing Club – learn to row courses for beginners, plus direct membership for experienced rowers. Based on the River Stour in Sudbury, Suffolk.",
   title: "Start rowing at Sudbury Rowing Club",
   image: {
     title: "Start rowing 👍",

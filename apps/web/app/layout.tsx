@@ -21,6 +21,8 @@ const digital7Font = localFont({
 export const metadata: Metadata = {
   applicationName: "Sudbury Rowing Club",
   creator: PROJECT_NAME,
+  description:
+    "Sudbury Rowing Club – rowing for all ages and abilities on the River Stour since 1874. Learn to row courses, competitive racing, and recreational rowing in Suffolk.",
   manifest: "/favicon/site.webmanifest",
   metadataBase: new URL(BASE_URL),
   title: PROJECT_NAME,

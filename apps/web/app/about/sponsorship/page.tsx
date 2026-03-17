@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/create-metadata";
 
 const TITLE = "Sponsorship";
-const DESCRIPTION = "Partner with us and discover the benefits of sponsorship.";
+const DESCRIPTION =
+  "Sponsor Sudbury Rowing Club – put your brand at regattas, on racing boats, and in front of thousands of spectators across Suffolk.";
 
 const LINK_ON_SRC_WEBSITE = "Link on our website";
 

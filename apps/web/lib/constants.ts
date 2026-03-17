@@ -73,6 +73,7 @@ export const ClubJsonLd: WithContext<SportsClub> = {
   isicV4: "9312",
   logo: LOGO,
   name: PROJECT_NAME,
+  sameAs: [SOCIALS.facebook.href, SOCIALS.instagram.href],
   url: BASE_URL,
   address: {
     "@type": "PostalAddress",

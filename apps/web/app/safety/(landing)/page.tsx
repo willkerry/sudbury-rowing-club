@@ -5,7 +5,8 @@ import { containsUrgentWords } from "@/lib/contains-urgent-words";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  description: "Safety information from Sudbury Rowing Club.",
+  description:
+    "River safety, incident reporting, water quality, and rowing safety guidance for Sudbury Rowing Club members on the River Stour.",
   image: { title: "Safety ⚠️" },
   title: "Safety",
 });

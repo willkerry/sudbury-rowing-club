@@ -12,7 +12,8 @@ import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  description: "A history of Sudbury Rowing Club",
+  description:
+    "The history of Sudbury Rowing Club – from its founding on the River Stour in the 1870s through 150 years of rowing in Sudbury, Suffolk.",
   image: { title: "Club History 📜" },
   title: "History",
 });
