@@ -10,7 +10,7 @@ import { createMetadata } from "@/lib/create-metadata";
 
 const TITLE = "Sponsorship";
 const DESCRIPTION =
-  "Sponsor Sudbury Rowing Club – put your brand on racing boats and in front of thousands of spectators, from local regattas to Henley Royal.";
+  "Sponsor Sudbury Rowing Club – put your brand on racing boats and in front of thousands of spectators, from local regattas to Henley.";
 
 const LINK_ON_SRC_WEBSITE = "Link on our website";
 
@@ -84,7 +84,7 @@ const SponsorshipPage = async () => {
   return (
     <>
       <SponsorshipHero
-        description="Put your brand in front of thousands of spectators – from local regattas to Henley Royal."
+        description="Put your brand in front of thousands of spectators – from local regattas to Henley."
         title={TITLE}
       />
 
@@ -100,7 +100,7 @@ const SponsorshipPage = async () => {
               Membership fees and our annual regatta cover the day-to-day
               running of the club, but they don't stretch to replacing and
               upgrading the fleet. Your support keeps our crews competitive at
-              events from local regattas to Henley Royal – and puts your brand
+              events from local regattas to Henley – and puts your brand
               alongside them.
             </p>
           </div>
