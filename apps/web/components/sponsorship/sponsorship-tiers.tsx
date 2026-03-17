@@ -31,11 +31,11 @@ export const SponsorshipTiers = ({
       {Object.entries(tiers).map(([tier, { benefits, description }], i) => (
         <motion.li
           className={cn(
-            "",
+            "px-3 py-2",
             i === emphasisedIndex
-              ? "-my-1.5 rounded-lg border border-blue-200 bg-blue-50 px-2 py-1.5 shadow-xl"
-              : "border-b px-3 py-2 lg:border-b-0",
-            emphasisedIndex &&
+              ? "rounded-lg border border-blue-200 bg-blue-50 shadow-xl lg:-my-2 lg:px-4 lg:py-3"
+              : "border-b lg:border-b-0",
+            emphasisedIndex != null &&
               i !== emphasisedIndex &&
               i !== emphasisedIndex - 1 &&
               i !== Object.keys(tiers).length - 1
