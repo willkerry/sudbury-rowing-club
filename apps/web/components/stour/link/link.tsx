@@ -11,7 +11,6 @@ type Props = {
   unstyled?: boolean;
 } & React.ComponentProps<typeof NextLink>;
 
-// Ridiculous hack because I set up an awful component API
 const assignIcon = (
   external: boolean,
   download: boolean,
@@ -47,7 +46,7 @@ export const Link = ({
         unstyled
           ? "stour-link"
           : [
-              "group break-words transition",
+              "group wrap-break-word transition",
               dark
                 ? "text-blue-100 hover:text-white"
                 : "text-blue-500 hover:text-blue-300",

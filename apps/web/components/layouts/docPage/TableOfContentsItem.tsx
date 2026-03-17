@@ -67,14 +67,12 @@ export const TableOfContentsItem = memo(
           className={cn(
             "line-clamp-1 py-1 text-sm hover:text-gray-900",
             depth <= 2 ? "text-gray-700" : "text-gray-500",
-            // isActive && "text-blue-500",
             getDepthClassName(depth),
             "data-[active='true']:text-blue-500",
           )}
           data-active={isActive || undefined}
           href={url}
           onClick={scrollTo}
-          // style={depth - 2 ? { paddingLeft: `${depth - 2}em` } : undefined}
         >
           {formatTitle(title)}
         </Link>

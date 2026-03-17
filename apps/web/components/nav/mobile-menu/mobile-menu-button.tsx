@@ -3,7 +3,7 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 
 export const MobileMenuButton = () => (
   <div className="-my-2 -mr-2 sm:hidden">
-    <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-40 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-white focus:ring-inset">
+    <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition hover:bg-gray-100 hover:text-gray-500 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500">
       <span className="sr-only">Open menu</span>
       <Bars3Icon aria-hidden className="h-6 w-6" />
     </PopoverButton>

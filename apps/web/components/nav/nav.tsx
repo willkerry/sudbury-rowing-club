@@ -122,7 +122,7 @@ export const Nav = () => {
                 ))}
               </div>
               <div className="absolute top-3 right-3">
-                <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden">
+                <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500">
                   <span className="sr-only">Close menu</span>
                   <XMarkIcon aria-hidden className="h-6 w-6" />
                 </PopoverButton>
