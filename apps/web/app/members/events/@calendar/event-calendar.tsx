@@ -54,7 +54,7 @@ const EventCard = ({
           {competition}
         </h3>
         {url && (
-          <ArrowUpRightIcon className="mt-0.5 size-3 shrink-0 text-gray-300 transition-colors group-hover:text-blue-400" />
+          <ArrowUpRightIcon className="mt-0.5 size-3 shrink-0 text-gray-300 transition-[colors,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-400" />
         )}
       </div>
 
@@ -90,7 +90,7 @@ const EventCard = ({
           className={cn(
             "group grid rounded-sm border bg-white px-2 py-1.5",
             cancelled && "opacity-50",
-            "transition-[colors,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-sm",
+            "transition-[colors,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-sm active:translate-y-0 active:shadow-none",
           )}
           href={url}
         >
@@ -154,35 +154,30 @@ export const EventCalendar = ({
 
   return (
     <>
-      <div className="mb-4 grid grid-cols-1 items-center justify-between gap-2 md:grid-cols-2 lg:grid-cols-3">
-        <div>
-          <Select
-            aria-label="Filter by region"
-            onChange={(e) => setSelectedRegion(e.target.value)}
-            value={selectedRegion || ""}
-          >
-            {regions.length > 0 ? (
-              <>
-                <option value={ALL_REGIONS.toLowerCase()}>{ALL_REGIONS}</option>
-                {regions.map((region) => (
-                  <option key={region} value={region}>
-                    {region}
-                  </option>
-                ))}
-              </>
-            ) : (
-              <option value="">No regions found.</option>
-            )}
-          </Select>
-        </div>
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <Select
+          aria-label="Filter by region"
+          className="w-48"
+          onChange={(e) => setSelectedRegion(e.target.value)}
+          value={selectedRegion || ""}
+        >
+          {regions.length > 0 ? (
+            <>
+              <option value={ALL_REGIONS.toLowerCase()}>{ALL_REGIONS}</option>
+              {regions.map((region) => (
+                <option key={region} value={region}>
+                  {region}
+                </option>
+              ))}
+            </>
+          ) : (
+            <option value="">No regions found.</option>
+          )}
+        </Select>
 
-        <div className="hidden sm:block" />
-
-        <div className="flex justify-end pt-3">
-          <StourLink external href={`webcal://${HOSTNAME}/api/events.ics`}>
-            Subscribe to iCal feed
-          </StourLink>
-        </div>
+        <StourLink external href={`webcal://${HOSTNAME}/api/events.ics`}>
+          Subscribe to iCal feed
+        </StourLink>
       </div>
 
       <AnimatePresence mode="wait">
@@ -195,20 +190,20 @@ export const EventCalendar = ({
           transition={{ duration: reducedMotion ? 0 : 0.15 }}
         >
           {filteredEvents.length === 0 ? (
-            <p className="col-span-full py-8 text-center text-gray-400 text-sm">
-              No events found for this region.
+            <p className="col-span-full py-16 text-center text-gray-400 text-sm">
+              No events listed for this region yet.
             </p>
           ) : (
             groupByMonth(filteredEvents).map(({ month, events }) => (
               <div id={`month-${month + 1}`} key={month}>
-                <Label as="h2" className="mb-2 p-2 text-xs">
+                <Label as="h2" className="mb-3 text-xs">
                   <DateFormatter
                     dateString={events[0].startDate}
                     format={{ month: "long", year: "numeric" }}
                   />
                 </Label>
 
-                <ul className="mb-8 grid gap-2">
+                <ul className="mb-10 grid gap-2">
                   {events.map((event, i) => (
                     <EventCard event={event} index={i} key={event.id} />
                   ))}
