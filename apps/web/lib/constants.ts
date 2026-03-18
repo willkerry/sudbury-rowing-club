@@ -56,7 +56,7 @@ export namespace REGATTA {
   export const COUNTY = "Suffolk";
   export const POSTCODE = "CO10 2TL";
 
-  export const TESTIMONIAL_TITLE = "Feedack";
+  export const TESTIMONIAL_TITLE = "Feedback";
   export const TESTIMONIAL_DESCRIPTION =
     "Some of the people who’ve come to our regatta have said lovely things about it";
 

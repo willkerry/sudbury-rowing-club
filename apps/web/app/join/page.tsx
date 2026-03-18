@@ -165,7 +165,7 @@ const Join = async () => {
           <div className="mb-20 grid gap-12 md:grid-cols-2">
             <div className="prose">
               <p className="lead">
-                Our Learn to Row progamme starts with a ‘taster session’ after
+                Our Learn to Row programme starts with a ‘taster session’ after
                 which you can apply for a place on one of our courses during
                 which you will learn the basics of sculling (an oar in each
                 hand) over approximately 4 × 3-hour sessions.

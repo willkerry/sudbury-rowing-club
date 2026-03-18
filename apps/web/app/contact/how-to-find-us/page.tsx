@@ -144,7 +144,7 @@ const FindUs: NextPage = () => (
             <AlertDescription>
               Our regatta takes place on Friars Meadow, barely 100m from the
               boathouse but cut off from it by waterways. Access to the meadow
-              is from Edgworth Road (
+              is from Edgeworth Road (
               <span className="disambiguate">CO10 2TL</span>). During the
               regatta, the routes are signposted. We provide parking for
               spectators, trailers and competitors on Friars Meadow. The

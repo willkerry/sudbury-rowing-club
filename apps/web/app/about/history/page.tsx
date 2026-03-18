@@ -118,12 +118,12 @@ const History: NextPage = () => (
     </p>
     <figure>
       <Image
-        alt="An Edwardian photograph of Ladies’s Bridge, which crossed from Lady Island to the Essex bank and collapsed in the 1930s."
+        alt="An Edwardian photograph of Lady’s Bridge, which crossed from Lady Island to the Essex bank and collapsed in the 1930s."
         src={bridge1900sImage}
       />
       <figcaption>
-        An Edwardian photograph of Ladies’s Bridge, which crossed from Lady
-        Island to the Essex bank and collapsed in the 1930s.
+        An Edwardian photograph of Lady’s Bridge, which crossed from Lady Island
+        to the Essex bank and collapsed in the 1930s.
       </figcaption>
     </figure>
     <p>
@@ -229,17 +229,17 @@ const History: NextPage = () => (
     <p>
       The new boathouse was completed by February 1932, the new boats received
       and an opening ceremony was performed by the Mayoress on 16 March. It was
-      then best-equipped club in East Anglia and the only one with boats fitted
-      with swivel rowlocks. With this advantage the Club attracted a lot of new
-      members and over the following years they managed to win many events both
-      at home and away regattas. This continues up the time of the outbreak of
-      war in 1939 when, an enthusiastic nucleus kept the club running until 1946
-      when some of the pre-war members returned to try and pick up where they
-      had left off in 1939, and quite successful they were for by 1948 they
-      swept the board in winning every major rowing event they entered. Sadly,
-      within a year most of the older experienced members had retired or left
-      the area, and the younger ones who had joined since the war found success
-      rather more difficult.
+      then the best-equipped club in East Anglia and the only one with boats
+      fitted with swivel rowlocks. With this advantage the Club attracted a lot
+      of new members and over the following years they managed to win many
+      events both at home and away regattas. This continues up the time of the
+      outbreak of war in 1939 when, an enthusiastic nucleus kept the club
+      running until 1946 when some of the pre-war members returned to try and
+      pick up where they had left off in 1939, and quite successful they were
+      for by 1948 they swept the board in winning every major rowing event they
+      entered. Sadly, within a year most of the older experienced members had
+      retired or left the area, and the younger ones who had joined since the
+      war found success rather more difficult.
     </p>
     <figure>
       <Image
@@ -264,7 +264,7 @@ const History: NextPage = () => (
       It is safe to say that during a very difficult period in the club’s
       history during the 1960s and 1970s the ladies made an increasing
       contribution to the rowing as well as the social health of the club and
-      played a bid part in keeping the club going.
+      played a big part in keeping the club going.
     </p>
 
     <h2>1955, The Stour is Straightened</h2>
@@ -273,20 +273,20 @@ const History: NextPage = () => (
       Over the years the club had suffered from the lack of facilities on the
       river, having only about a quarter of a mile of straight water on which to
       practice, and every club knew that if they could hold Stour over the first
-      quarter of a mile, they could wear them down over the, however, was soon
-      to come to an end for in 1954, after another bad flooding in part of
-      Sudbury, the River Authority decided to straighten and widen the river
-      from Ballingdon to Cornard floodgates. When this was completed in 1955 the
-      club then had a vastly superior course of 1000 metres with the river now
-      70ft wide which meant that at long last boats could row abreast. During
-      the following years the club organised very successful regattas but the
-      club, as usual, was suffering from lack of funds to renew the ageing
-      equipment and, consequently, had very little success in winning events.
-      There was a continual turnover of membership for one reason or another,
-      but it resulted in very few reaching senior status which was unfortunate
-      so far as competition such as the the Duechar Cup was concerned. As we
-      were unable to enter a crew for a year or so the trophy went to Norfolk by
-      default.
+      quarter of a mile, they could wear them down over the rest of the course,
+      however, was soon to come to an end for in 1954, after another bad
+      flooding in part of Sudbury, the River Authority decided to straighten and
+      widen the river from Ballingdon to Cornard floodgates. When this was
+      completed in 1955 the club then had a vastly superior course of 1000
+      metres with the river now 70ft wide which meant that at long last boats
+      could row abreast. During the following years the club organised very
+      successful regattas but the club, as usual, was suffering from lack of
+      funds to renew the ageing equipment and, consequently, had very little
+      success in winning events. There was a continual turnover of membership
+      for one reason or another, but it resulted in very few reaching senior
+      status which was unfortunate so far as competition such as the the Duechar
+      Cup was concerned. As we were unable to enter a crew for a year or so the
+      trophy went to Norfolk by default.
     </p>
 
     <figure>
