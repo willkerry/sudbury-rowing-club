@@ -8,7 +8,7 @@ import { ZTypedObject } from "./typed-object";
 const ZNoteSchema = z.object({
   display: z.boolean(),
   label: z.string(),
-  text: z.string(),
+  text: ZTypedObject.optional(),
   type: z.enum(["primary", "secondary", "success", "warning", "error"]),
 });
 

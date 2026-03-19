@@ -14,6 +14,7 @@ import { Link } from "@/components/stour/link";
 import { Text } from "@/components/stour/text";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ClubJsonLd, SOCIALS } from "@/lib/constants";
+import { PortableText } from "@/lib/sanity";
 
 export const generateMetadata = async () => {
   const {
@@ -46,7 +47,9 @@ const Home = async () => {
         <Container>
           <Alert variant="default">
             <AlertTitle>{note.label}</AlertTitle>
-            <AlertDescription>{note.text}</AlertDescription>
+            <AlertDescription>
+              <PortableText value={note.text} />
+            </AlertDescription>
           </Alert>
         </Container>
       )}
