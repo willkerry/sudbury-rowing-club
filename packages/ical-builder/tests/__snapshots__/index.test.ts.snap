@@ -2,111 +2,111 @@
 
 exports[`IcalBuilder 1`] = `
 "BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//SudburyRC//EN
-X-WR-CALNAME:SudburyRC
-X-WR-TIMEZONE:Europe/London
-X-WR-CALDESC:SudburyRC
+END:VCALENDAR
 BEGIN:VEVENT
-UID:978-1-76546-489-4
+DESCRIPTION:Aeneus alias accusator tristis tergo usus volutabrum thermae deinde termes.
 DTSTAMP:20240501T000000.000Z
 DTSTART:20240501
-SUMMARY:Nether Lehner Regatta
-DESCRIPTION:Aeneus alias accusator tristis tergo usus volutabrum thermae deinde termes.
-LOCATION:Lancashire
-URL:https://productive-charm.uk/
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Cleveland
+STATUS:CONFIRMED
+SUMMARY:Mitchellhill Regatta
+UID:978-0-6489375-5-5
+URL:https://wealthy-lender.info/
 BEGIN:VEVENT
-UID:978-0-7450-6669-1
+DESCRIPTION:Spargo bene aperiam comedo convoco molestiae decens voveo.
 DTSTAMP:20240508T000000.000Z
 DTSTART:20240508
-SUMMARY:Hesselridge Regatta
-DESCRIPTION:Sopor spargo bene.
-LOCATION:Northumberland
-URL:https://gigantic-freezing.me.uk/
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Cheshire
+STATUS:CONFIRMED
+SUMMARY:Klocko-le-Auer Regatta
+UID:978-1-6696-3460-7
+URL:https://quarrelsome-disappointment.london/
 BEGIN:VEVENT
-UID:978-0-216-24211-1
+DESCRIPTION:Tactus adflicto cimentarius animi clementia angustus cometes.
 DTSTAMP:20240515T000000.000Z
 DTSTART:20240515
-SUMMARY:Connbury Regatta
-DESCRIPTION:Alter tum alo voluptatibus delicate voluptatibus pecco tactus adflicto.
-LOCATION:Essex
-URL:https://cloudy-entry.co/
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Grampian
+STATUS:CONFIRMED
+SUMMARY:Little O'Reillyford Regatta
+UID:978-0-380-80949-3
+URL:https://obvious-doing.ltd.uk
 BEGIN:VEVENT
-UID:978-0-652-50593-1
+DESCRIPTION:Centum tabesco vivo carpo nemo omnis mollitia cado.
 DTSTAMP:20240522T000000.000Z
 DTSTART:20240522
-SUMMARY:Cole Hill Regatta
-DESCRIPTION:Occaecati accusator tricesimus abeo.
-LOCATION:Dorset
-URL:https://finished-receptor.wales
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:West Sussex
+STATUS:CONFIRMED
+SUMMARY:Wardworth Regatta
+UID:978-1-172-15080-9
+URL:https://runny-epic.sch.uk
 BEGIN:VEVENT
-UID:978-1-5294-8628-5
+DESCRIPTION:Quae curto appositus coadunatio molestiae.
 DTSTAMP:20240529T000000.000Z
 DTSTART:20240529
-SUMMARY:Castle McClure Regatta
-DESCRIPTION:Surgo desino viscus sequi curriculum pecto accusantium cogito.
-LOCATION:Tayside
-URL:https://fortunate-octave.london
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Lincolnshire
+STATUS:CONFIRMED
+SUMMARY:McClure-on-Pouros Regatta
+UID:978-1-59646-036-2
+URL:https://qualified-hose.uk
 BEGIN:VEVENT
-UID:978-1-55664-834-2
+DESCRIPTION:Ubi timor modi.
 DTSTAMP:20240605T000000.000Z
 DTSTART:20240605
-SUMMARY:Schoen-upon-Bradtke Regatta
-DESCRIPTION:Vulticulus architecto ustilo ascisco possimus anser ubi timor.
-LOCATION:West Glamorgan
-URL:https://impure-battle.org.uk
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Grampian
+STATUS:CONFIRMED
+SUMMARY:Upton Schoen Regatta
+UID:978-1-197-91816-3
+URL:https://kosher-puppet.scot
 BEGIN:VEVENT
-UID:978-1-9803-7150-2
+DESCRIPTION:Addo asper quas neque capio victus porro facilis.
 DTSTAMP:20240612T000000.000Z
 DTSTART:20240612
-SUMMARY:Great Schimmelbury Regatta
-DESCRIPTION:Succurro addo asper quas neque capio victus porro facilis officia.
-LOCATION:East Sussex
-URL:https://general-guacamole.co.uk
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Lincolnshire
+STATUS:CONFIRMED
+SUMMARY:Anderson-over-Renner Regatta
+UID:978-0-501-07239-3
+URL:https://impeccable-cruelty.co.uk/
 BEGIN:VEVENT
-UID:978-1-4220-4363-9
+DESCRIPTION:Defetiscor fuga vel vulariter bis somnus celer accusator.
 DTSTAMP:20240619T000000.000Z
 DTSTART:20240619
-SUMMARY:Great Bergstrom Park Regatta
-DESCRIPTION:Vel vulariter bis somnus celer accusator tempora.
-LOCATION:Gwynedd County
-URL:https://ideal-mortise.sch.uk/
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Shropshire
+STATUS:CONFIRMED
+SUMMARY:Kuhndon Regatta
+UID:978-0-04-363100-3
+URL:https://oval-sonata.name/
 BEGIN:VEVENT
-UID:978-0-7196-2972-3
+DESCRIPTION:Currus corrumpo delectus chirographum.
 DTSTAMP:20240626T000000.000Z
 DTSTART:20240626
-SUMMARY:Lower Balistreribury Regatta
-DESCRIPTION:Delectus chirographum ocer urbanus angulus.
-LOCATION:Greater Manchester
-URL:https://complete-provision.info
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Lincolnshire
+STATUS:CONFIRMED
+SUMMARY:Nether Denesik Regatta
+UID:978-1-62972-250-4
+URL:https://minor-ceramics.org.uk/
 BEGIN:VEVENT
-UID:978-0-439-77905-0
+DESCRIPTION:Claro caput amaritudo acceptus vetus spargo territo cilicium occaecati adversus.
 DTSTAMP:20240703T000000.000Z
 DTSTART:20240703
-SUMMARY:Willmsworth Regatta
-DESCRIPTION:Acceptus vetus spargo.
-LOCATION:County Tyrone
-URL:https://fluffy-morbidity.biz
-STATUS:CONFIRMED
 END:VEVENT
+LOCATION:Herefordshire
+STATUS:CONFIRMED
+SUMMARY:Deckowford Regatta
+UID:978-0-397-79055-5
+URL:https://grimy-verve.com
 
-END:VCALENDAR"
+PRODID:-//SudburyRC//EN
+VERSION:2.0
+X-WR-CALDESC:SudburyRC
+X-WR-CALNAME:SudburyRC
+X-WR-TIMEZONE:Europe/London"
 `;
