@@ -61,10 +61,8 @@ const ContactPage = ({
         <div className="prose mx-auto pb-10">
           {recipientWasProvided ? null : (
             <p>
-              We’re a volunteer-run club that provides a safe and fun way to
-              row, but we also need your help. Since we don’t have a full-time
-              staff to respond to enquiries, we ask that you select an
-              appropriate recipient for your enquiry.
+              We’re a volunteer-run club. Selecting the right person below helps
+              us get back to you faster.
             </p>
           )}
         </div>

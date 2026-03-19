@@ -10,8 +10,8 @@ export const metadata = createMetadata({
 const EventPage = () => (
   <div className="prose mb-12">
     <p>
-      This calendar is provided as an ergonomic way for Sudbury members to check
-      the dates of upcoming events and competitions. The data displayed here are
+      This calendar is provided as an easy way for Sudbury members to check the
+      dates of upcoming events and competitions. The data displayed here are
       drawn from the British Rowing{" "}
       <a href="https://www.britishrowing.org/competition-calendar/">
         competition calendar

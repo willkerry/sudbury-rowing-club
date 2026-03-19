@@ -47,9 +47,11 @@ const Home = async () => {
         <Container>
           <Alert variant="default">
             <AlertTitle>{note.label}</AlertTitle>
-            <AlertDescription>
-              <PortableText value={note.text} />
-            </AlertDescription>
+            {note.text && (
+              <AlertDescription>
+                <PortableText value={note.text} />
+              </AlertDescription>
+            )}
           </Alert>
         </Container>
       )}
