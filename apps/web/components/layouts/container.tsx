@@ -14,7 +14,7 @@ type Props = {
  * Modifying this component will affect *every* page.
  */
 export const Container = ({ children, className, ...props }: Props) => (
-  <div className={cn("container mx-auto px-4", className)} {...props}>
+  <div className={cn("mx-auto w-full max-w-4xl px-4", className)} {...props}>
     {children}
   </div>
 );

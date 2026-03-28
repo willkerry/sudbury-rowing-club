@@ -55,7 +55,7 @@ export const Nav = () => {
     <Popover className="bg-white text-gray-900">
       {({ open }) => (
         <>
-          <div className="container flex items-center justify-between px-4! py-3 xs:py-4 md:py-6">
+          <div className="mx-auto flex max-w-4xl items-center justify-between px-4! py-3 xs:py-4 md:py-6">
             <NavLogo />
             <MobileMenuButton />
 
