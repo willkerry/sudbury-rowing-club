@@ -11,6 +11,7 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     NEXT_PUBLIC_SANITY_DATASET: z.string(),
     NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string(),
     NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: z.string().optional(),
   },
   runtimeEnv: {
@@ -25,11 +26,13 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
     NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
     NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA:
       process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
     NODE_ENV: process.env.NODE_ENV,
     REDIRECT_SECRET: process.env.REDIRECT_SECRET,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
     VERCEL_ENV: process.env.VERCEL_ENV,
   },
   server: {
@@ -37,6 +40,7 @@ export const env = createEnv({
     BUG_RECIPIENT_EMAIL: z.string(),
     REDIRECT_SECRET: z.string().min(32),
     RESEND_API_KEY: z.string().min(1),
+    TURNSTILE_SECRET_KEY: z.string().min(1),
   },
   shared: {
     APP_URL: z.string().optional(),

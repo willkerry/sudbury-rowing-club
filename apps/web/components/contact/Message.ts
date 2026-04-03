@@ -11,12 +11,17 @@ const MessageEmailSchema = z
   .trim()
   .pipe(z.email("Provide your email"));
 const MessageMessageSchema = z.string().trim().min(1, "Provide a message");
+const MessageTokenSchema = z
+  .string()
+  .trim()
+  .min(1, "Unable to verify you are human");
 
 export const MessageSchema = z.object({
   email: MessageEmailSchema,
   message: MessageMessageSchema,
   name: MessageNameSchema,
   to: MessageToSchema,
+  token: MessageTokenSchema,
 });
 
 export type Message = z.infer<typeof MessageSchema>;

@@ -165,6 +165,9 @@ importers:
       '@maptiler/sdk':
         specifier: ^3.8.0
         version: 3.8.0
+      '@marsidev/react-turnstile':
+        specifier: ^1.5.0
+        version: 1.5.0(react-dom@19.2.0)(react@19.2.0)
       '@portabletext/react':
         specifier: ^4.0.3
         version: 4.0.3(react@19.2.0)
@@ -6163,6 +6166,16 @@ packages:
 
   /@marijn/find-cluster-break@1.0.2:
     resolution: {integrity: sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==}
+    dev: false
+
+  /@marsidev/react-turnstile@1.5.0(react-dom@19.2.0)(react@19.2.0):
+    resolution: {integrity: sha512-Ph6mcj8u9WBDsBO7s9jKPsyRDz1sBPBJwrk+Ngx09vFInvKsQ6U6kW5amEcGq4dHOreB6DgFrOJk7/fy318YlQ==}
+    peerDependencies:
+      react: ^17.0.2 || ^18.0.0 || ^19.0
+      react-dom: ^17.0.2 || ^18.0.0 || ^19.0
+    dependencies:
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
     dev: false
 
   /@mdx-js/esbuild@3.1.1(esbuild@0.25.12):

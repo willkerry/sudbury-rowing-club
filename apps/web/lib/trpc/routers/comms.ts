@@ -11,6 +11,7 @@ import { checkHeadersForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
 import { trackServerEvent } from "@/lib/server/track";
+import { checkHeadersForTurnstileToken } from "@/lib/turnstile";
 import { rateLimitedProcedure, router } from "../init";
 
 const resend = new Resend(env.RESEND_API_KEY);
@@ -99,6 +100,26 @@ export const commsRouter = router({
   send: rateLimitedProcedure
     .input(MessageSchema)
     .mutation(async ({ input, ctx }) => {
+      const [turnstileError, turnstileResponse] = await tryit(
+        checkHeadersForTurnstileToken,
+      )(ctx.headers, { token: input.token });
+
+      if (turnstileError) {
+        throw new TRPCError({
+          cause: turnstileError.message,
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Could not connect to verification service.",
+        });
+      }
+
+      if (!turnstileResponse.success) {
+        throw new TRPCError({
+          cause: turnstileResponse.messages?.join(", "),
+          code: "FORBIDDEN",
+          message: "The verification service has blocked this request.",
+        });
+      }
+
       const [spamError, isSpam] = await tryit(checkHeadersForSpam)(
         ctx.headers,
         input,

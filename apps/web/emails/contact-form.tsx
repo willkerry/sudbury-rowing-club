@@ -8,6 +8,7 @@ import {
   Html,
   Link,
   Markdown,
+  Preview,
   Row,
   Section,
   Tailwind,
@@ -54,6 +55,8 @@ export const ContactFormEmail = ({
 }: ContactFormEmailProps) => (
   <Html>
     <Head />
+
+    <Preview>{message}</Preview>
 
     <Tailwind>
       <Body className="font-sans">
