@@ -122,7 +122,7 @@ export const Officers = ({ officers }: Props) => (
                   leaveTo="opacity-0"
                 >
                   <Popover.Panel className="absolute top-0 left-0 h-full w-full rounded-sm border border-gray-300 bg-opacity- bg-white p-2 backdrop-blur-sm">
-                    <div className="font-medium text-black text-sm">
+                    <div className="h-full w-full overflow-y-auto font-medium text-black text-sm">
                       <p>{officer.description}</p>
                     </div>
                     <Popover.Button>
