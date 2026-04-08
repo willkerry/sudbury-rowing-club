@@ -1,5 +1,6 @@
 import type { DetailedHTMLProps, InsHTMLAttributes } from "react";
 import { ServerOrClientDateFormatter } from "@/components/utils/server-or-client-date-formatter";
+import { cn } from "@/lib/utils";
 
 const COLORS = {
   1: "bg-green-50 border-green-300",
@@ -33,12 +34,15 @@ type InsProps = {
 
 export const Ins = ({ set = 1, children, ...props }: InsProps) => (
   <ins
-    className={`mx-0.5 -my-0.5 rounded-sm border px-0.5 py-0.5 not-italic no-underline ${COLORS[set]}`}
+    className={cn(
+      "mx-0.5 -my-0.5 rounded-sm border px-0.5 py-0.5 not-italic no-underline",
+      COLORS[set],
+    )}
     dateTime={AMENDEMENTS[set].toISOString()}
     {...props}
   >
     {children}
-    <span className={`px-1 ${FOREGROUND_COLORS[set]}`}>
+    <span className={cn("px-1", FOREGROUND_COLORS[set])}>
       <AmendmentDate set={set} />
     </span>
   </ins>
@@ -46,13 +50,16 @@ export const Ins = ({ set = 1, children, ...props }: InsProps) => (
 
 export const InsBlock = ({ set = 1, children, ...props }: InsProps) => (
   <ins
-    className={`block rounded-sm border pr-2 pl-2 no-underline ${COLORS[set]}`}
+    className={cn(
+      "block rounded-sm border pr-2 pl-2 no-underline",
+      COLORS[set],
+    )}
     dateTime={AMENDEMENTS[set].toISOString()}
     {...props}
   >
     {children}
 
-    <div className={`-mt-7 pb-1 text-right ${FOREGROUND_COLORS[set]}`}>
+    <div className={cn("-mt-7 pb-1 text-right", FOREGROUND_COLORS[set])}>
       <AmendmentDate set={set} />
     </div>
   </ins>

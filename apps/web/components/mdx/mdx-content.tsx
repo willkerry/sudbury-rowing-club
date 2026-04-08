@@ -1,6 +1,8 @@
 import { MDXContent as BaseMDXContent } from "@content-collections/mdx/react";
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import { Declaration } from "@/components/mdx/constitution/declaration";
+import { Ins, InsBlock } from "@/components/mdx/constitution/ins";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +28,9 @@ export const MDXContent = ({
       ...components,
       a: Link,
       Callout,
+      Declaration,
+      Ins,
+      InsBlock,
       mark: ({ className, ...props }) => (
         <mark
           className={cn("rounded-xs bg-blue-100 px-px text-black", className)}
