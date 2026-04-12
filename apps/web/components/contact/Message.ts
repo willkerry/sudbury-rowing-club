@@ -11,10 +11,8 @@ const MessageEmailSchema = z
   .trim()
   .pipe(z.email("Provide your email"));
 const MessageMessageSchema = z.string().trim().min(1, "Provide a message");
-const MessageTokenSchema = z
-  .string()
-  .trim()
-  .min(1, "Unable to verify you are human");
+// TODO: Re-enable Turnstile token validation
+const MessageTokenSchema = z.string().trim();
 
 export const MessageSchema = z.object({
   email: MessageEmailSchema,

@@ -1,13 +1,13 @@
 "use client";
 
-import { Turnstile } from "@marsidev/react-turnstile";
+// import { Turnstile } from "@marsidev/react-turnstile";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
 import { TRPCClientError } from "@trpc/client";
 import { usePostHog } from "posthog-js/react";
 import { shake } from "radashi";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
 import { Success } from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
@@ -16,7 +16,7 @@ import { ErrorMessage } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
-import { env } from "@/env";
+// import { env } from "@/env";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
 import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
@@ -211,7 +211,8 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         )}
       </form.Field>
 
-      <Turnstile
+      {/* TODO: Re-enable Turnstile */}
+      {/* <Turnstile
         className="col-span-2"
         onError={(error) => {
           posthog.capture("turnstile_error", {
@@ -228,7 +229,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
           theme: "light",
         }}
         siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-      />
+      /> */}
 
       {status === "error" &&
         !(error instanceof TRPCClientError && error.data?.zodError) && (
