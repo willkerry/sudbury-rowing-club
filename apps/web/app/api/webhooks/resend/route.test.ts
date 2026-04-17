@@ -95,7 +95,6 @@ describe("POST /api/webhooks/resend", () => {
       "email.bounced",
       "email.complained",
       "email.failed",
-      "email.canceled",
     ])("sends the failed notification and clears the inflight entry for %s", async (type) => {
       mockVerify.mockReturnValue({ data: { email_id: EMAIL_ID }, type });
 

@@ -2,7 +2,7 @@ import { ContactFormDeliveredEmail } from "emails/contact-form-delivered";
 import { ContactFormFailedEmail } from "emails/contact-form-failed";
 import { type NextRequest, NextResponse } from "next/server";
 import { tryit } from "radashi";
-import { Resend } from "resend";
+import { Resend, type WebhookEvent } from "resend";
 import { z } from "zod";
 import { env } from "@/env";
 import { EMAIL, SENDER } from "@/lib/constants";
@@ -28,12 +28,11 @@ const formatName = (email: string, name: string) => {
   return email;
 };
 
-const DELIVERED_EVENTS = new Set(["email.delivered"]);
-const FAILED_EVENTS = new Set([
+const DELIVERED_EVENTS = new Set<WebhookEvent>(["email.delivered"]);
+const FAILED_EVENTS = new Set<WebhookEvent>([
   "email.bounced",
   "email.complained",
   "email.failed",
-  "email.canceled",
 ]);
 
 const sendDeliveredNotification = async (
@@ -114,8 +113,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ignored: "no email_id" }, { status: 200 });
   }
 
-  const isDelivered = DELIVERED_EVENTS.has(eventType);
-  const isFailed = FAILED_EVENTS.has(eventType);
+  const isDelivered = DELIVERED_EVENTS.has(eventType as WebhookEvent);
+  const isFailed = FAILED_EVENTS.has(eventType as WebhookEvent);
 
   if (!(isDelivered || isFailed)) {
     return NextResponse.json({ ignored: eventType }, { status: 200 });
