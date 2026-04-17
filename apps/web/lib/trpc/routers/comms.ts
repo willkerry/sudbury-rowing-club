@@ -10,6 +10,7 @@ import { env } from "@/env";
 import { checkHeadersForSpam } from "@/lib/akismet";
 import { SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
+import { storeInflightContact } from "@/lib/inflight-contact";
 import { trackServerEvent } from "@/lib/server/track";
 // import { checkHeadersForTurnstileToken } from "@/lib/turnstile";
 import { rateLimitedProcedure, router } from "../init";
@@ -181,8 +182,26 @@ export const commsRouter = router({
         });
       }
 
+      const messageId = createEmailResponse.data?.id ?? null;
+
+      if (messageId) {
+        const [storeError] = await tryit(storeInflightContact)(messageId, {
+          fromEmail: input.email,
+          fromName: input.name,
+          toName,
+          toRole,
+        });
+
+        if (storeError) {
+          trackServerEvent("contact_form_inflight_store_failure", {
+            error_message: storeError.message,
+            error_name: storeError.name,
+          });
+        }
+      }
+
       return {
-        messageId: createEmailResponse.data?.id ?? null,
+        messageId,
       };
     }),
 });

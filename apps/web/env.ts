@@ -32,6 +32,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     REDIRECT_SECRET: process.env.REDIRECT_SECRET,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    RESEND_WEBHOOK_SECRET: process.env.RESEND_WEBHOOK_SECRET,
     TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
     VERCEL_ENV: process.env.VERCEL_ENV,
   },
@@ -40,6 +41,7 @@ export const env = createEnv({
     BUG_RECIPIENT_EMAIL: z.string(),
     REDIRECT_SECRET: z.string().min(32),
     RESEND_API_KEY: z.string().min(1),
+    RESEND_WEBHOOK_SECRET: z.string().min(1),
     TURNSTILE_SECRET_KEY: z.string().min(1),
   },
   shared: {
