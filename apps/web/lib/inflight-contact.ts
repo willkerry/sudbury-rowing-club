@@ -7,6 +7,7 @@ const TTL_SECONDS = 60 * 60 * 72;
 export const InflightContactSchema = z.object({
   fromEmail: z.email(),
   fromName: z.string().min(1),
+  message: z.string().min(1),
   toName: z.string().min(1),
   toRole: z.string().min(1),
 });
@@ -34,6 +35,8 @@ export const readInflightContact = async (messageId: string) => {
   return parsed.data;
 };
 
-export const deleteInflightContact = async (messageId: string) => {
-  await kv.del(key(messageId));
+export const claimInflightContact = async (messageId: string) => {
+  const deleted = await kv.del(key(messageId));
+
+  return deleted === 1;
 };

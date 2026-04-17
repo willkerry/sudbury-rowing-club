@@ -33,12 +33,27 @@ vi.mock("@/lib/server/track", () => ({
   trackServerEvent: mockTrack,
 }));
 
+vi.mock("emails/contact-form-delivered", () => ({
+  ContactFormDeliveredEmail: (props: Record<string, unknown>) => ({
+    __props: props,
+    __template: "delivered",
+  }),
+}));
+
+vi.mock("emails/contact-form-failed", () => ({
+  ContactFormFailedEmail: (props: Record<string, unknown>) => ({
+    __props: props,
+    __template: "failed",
+  }),
+}));
+
 const { POST } = await import("./route");
 
 const EMAIL_ID = "abc-123";
 const SAMPLE_CONTACT = {
   fromEmail: "alice@example.com",
   fromName: "Alice Example",
+  message: "Please sign me up for trial sessions.",
   toName: "Bob Officer",
   toRole: "Captain",
 };
@@ -86,6 +101,11 @@ describe("POST /api/webhooks/resend", () => {
       expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
       expect(args.subject).toContain("delivered");
       expect(args.subject).toContain(SAMPLE_CONTACT.toRole);
+      expect(args.react.__template).toBe("delivered");
+      expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);
+      expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
+      expect(args.react.__props.toName).toBe(SAMPLE_CONTACT.toName);
+      expect(args.react.__props.toRole).toBe(SAMPLE_CONTACT.toRole);
       expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
     });
   });
@@ -108,6 +128,13 @@ describe("POST /api/webhooks/resend", () => {
       expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
       expect(args.subject).toMatch(FAILURE_SUBJECT_PATTERN);
       expect(args.text).toContain("enquiries@sudburyrowingclub.org.uk");
+      expect(args.react.__template).toBe("failed");
+      expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);
+      expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
+      expect(args.react.__props.toRole).toBe(SAMPLE_CONTACT.toRole);
+      expect(args.react.__props.fallbackEmail).toBe(
+        "enquiries@sudburyrowingclub.org.uk",
+      );
       expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
     });
   });
@@ -188,7 +215,7 @@ describe("POST /api/webhooks/resend", () => {
       expect(mockKvDel).not.toHaveBeenCalled();
     });
 
-    it("does not delete the inflight entry when the follow-up send fails", async () => {
+    it("re-inserts the inflight entry when the follow-up send fails", async () => {
       mockVerify.mockReturnValue({
         data: { email_id: EMAIL_ID },
         type: "email.delivered",
@@ -201,11 +228,30 @@ describe("POST /api/webhooks/resend", () => {
       const response = await POST(buildRequest());
 
       expect(response.status).toBe(500);
-      expect(mockKvDel).not.toHaveBeenCalled();
+      expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
+      expect(mockKvSet).toHaveBeenCalledWith(
+        `contact:inflight:${EMAIL_ID}`,
+        SAMPLE_CONTACT,
+        expect.objectContaining({ ex: expect.any(Number) }),
+      );
       expect(mockTrack).toHaveBeenCalledWith(
         "contact_form_status_notification_failure",
         expect.objectContaining({ event_type: "email.delivered" }),
       );
+    });
+
+    it("skips the send when another handler has already claimed the event", async () => {
+      mockVerify.mockReturnValue({
+        data: { email_id: EMAIL_ID },
+        type: "email.delivered",
+      });
+      mockKvDel.mockResolvedValue(0);
+
+      const response = await POST(buildRequest());
+
+      expect(response.status).toBe(200);
+      expect(mockSend).not.toHaveBeenCalled();
+      expect(mockKvSet).not.toHaveBeenCalled();
     });
   });
 

@@ -7,9 +7,10 @@ import { z } from "zod";
 import { env } from "@/env";
 import { EMAIL, SENDER } from "@/lib/constants";
 import {
-  deleteInflightContact,
+  claimInflightContact,
   type InflightContact,
   readInflightContact,
+  storeInflightContact,
 } from "@/lib/inflight-contact";
 import { trackServerEvent } from "@/lib/server/track";
 
@@ -42,6 +43,7 @@ const sendDeliveredNotification = async (
     from: formatName(SENDER.email, SENDER.name),
     react: ContactFormDeliveredEmail({
       fromName: contact.fromName,
+      message: contact.message,
       toName: contact.toName,
       toRole: contact.toRole,
     }),
@@ -64,6 +66,7 @@ const sendFailedNotification = async (
     react: ContactFormFailedEmail({
       fallbackEmail: EMAIL,
       fromName: contact.fromName,
+      message: contact.message,
       toRole: contact.toRole,
     }),
     subject: "We couldn’t deliver your message to Sudbury Rowing Club",
@@ -126,11 +129,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ignored: "not tracked" }, { status: 200 });
   }
 
+  const claimed = await claimInflightContact(emailId);
+
+  if (!claimed) {
+    return NextResponse.json({ ignored: "already claimed" }, { status: 200 });
+  }
+
   const { error: sendError } = isDelivered
     ? await sendDeliveredNotification(contact)
     : await sendFailedNotification(contact);
 
   if (sendError) {
+    await tryit(storeInflightContact)(emailId, contact);
+
     trackServerEvent("contact_form_status_notification_failure", {
       error_message: sendError,
       event_type: eventType,
@@ -139,8 +150,6 @@ export async function POST(req: NextRequest) {
 
     return new NextResponse("Notification send failed", { status: 500 });
   }
-
-  await deleteInflightContact(emailId);
 
   return NextResponse.json({ handled: eventType }, { status: 200 });
 }

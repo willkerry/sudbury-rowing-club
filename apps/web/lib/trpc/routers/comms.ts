@@ -152,6 +152,7 @@ export const commsRouter = router({
       }
 
       const { name: toName, email: toEmail, role: toRole } = officer;
+      const sanitizedMessage = DOMPurify.sanitize(input.message);
 
       const createEmailResponse = await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),
@@ -161,11 +162,11 @@ export const commsRouter = router({
           toRole,
           fromEmail: input.email,
           fromName: input.name,
-          message: DOMPurify.sanitize(input.message),
+          message: sanitizedMessage,
         }),
         replyTo: formatName(input.email, input.name),
         subject: `${input.name} via SRC Contact`,
-        text: DOMPurify.sanitize(input.message),
+        text: sanitizedMessage,
         to: formatName(toEmail, toName),
       });
 
@@ -188,6 +189,7 @@ export const commsRouter = router({
         const [storeError] = await tryit(storeInflightContact)(messageId, {
           fromEmail: input.email,
           fromName: input.name,
+          message: sanitizedMessage,
           toName,
           toRole,
         });
