@@ -47,7 +47,7 @@ const sendDeliveredNotification = async (
       toName: contact.toName,
       toRole: contact.toRole,
     }),
-    subject: `We’ve delivered your message to ${contact.toRole}`,
+    subject: `We’ve delivered your message to ${contact.toName}`,
     text: `We’ve delivered your message to ${contact.toName} (${contact.toRole}). They’ll reply to you directly.`,
     to: formatName(contact.fromEmail, contact.fromName),
   });
@@ -69,8 +69,8 @@ const sendFailedNotification = async (
       message: contact.message,
       toRole: contact.toRole,
     }),
-    subject: "We couldn’t deliver your message to Sudbury Rowing Club",
-    text: `We couldn’t deliver your message to the ${contact.toRole}. Please email ${EMAIL} directly and someone will pass it on.`,
+    subject: `We couldn’t deliver your message to ${contact.toName}`,
+    text: `We couldn’t deliver your message to ${contact.toName}. Please email ${EMAIL} directly and someone will pass it on.`,
     to: formatName(contact.fromEmail, contact.fromName),
   });
 

@@ -100,7 +100,7 @@ describe("POST /api/webhooks/resend", () => {
 
       expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
       expect(args.subject).toContain("delivered");
-      expect(args.subject).toContain(SAMPLE_CONTACT.toRole);
+      expect(args.subject).toContain(SAMPLE_CONTACT.toName);
       expect(args.react.__template).toBe("delivered");
       expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);
       expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
@@ -127,6 +127,7 @@ describe("POST /api/webhooks/resend", () => {
 
       expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
       expect(args.subject).toMatch(FAILURE_SUBJECT_PATTERN);
+      expect(args.subject).toContain(SAMPLE_CONTACT.toName);
       expect(args.text).toContain("enquiries@sudburyrowingclub.org.uk");
       expect(args.react.__template).toBe("failed");
       expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);

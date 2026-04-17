@@ -37,7 +37,7 @@ export const ContactFormFailedEmail = ({
   <Html>
     <Head />
 
-    <Preview>We couldn’t deliver your message</Preview>
+    <Preview>Don’t expect a reply. Here’s what to do next.</Preview>
 
     <Tailwind>
       <Body className="font-sans">

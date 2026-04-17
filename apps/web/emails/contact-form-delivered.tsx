@@ -50,7 +50,7 @@ export const ContactFormDeliveredEmail = ({
   <Html>
     <Head />
 
-    <Preview>We’ve delivered your message to Sudbury Rowing Club</Preview>
+    <Preview>{toName} will reply to you directly.</Preview>
 
     <Tailwind>
       <Body className="font-sans">
