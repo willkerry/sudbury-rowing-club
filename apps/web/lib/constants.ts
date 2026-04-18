@@ -24,6 +24,11 @@ export const SENDER = {
   name: "Sudbury Rowing Club",
 };
 
+export const CONTACT_FORM_TAG = {
+  name: "source",
+  value: "contact_form",
+} as const;
+
 export const SUPPORTED_SOCIALS = ["instagram", "facebook"] as const;
 
 export const SOCIALS: Record<

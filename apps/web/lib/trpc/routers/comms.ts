@@ -8,8 +8,9 @@ import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import { MessageSchema } from "@/components/contact/Message";
 import { env } from "@/env";
 import { checkHeadersForSpam } from "@/lib/akismet";
-import { SENDER } from "@/lib/constants";
+import { CONTACT_FORM_TAG, SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
+import { storeInflightContact } from "@/lib/inflight-contact";
 import { trackServerEvent } from "@/lib/server/track";
 // import { checkHeadersForTurnstileToken } from "@/lib/turnstile";
 import { rateLimitedProcedure, router } from "../init";
@@ -151,6 +152,7 @@ export const commsRouter = router({
       }
 
       const { name: toName, email: toEmail, role: toRole } = officer;
+      const sanitizedMessage = DOMPurify.sanitize(input.message);
 
       const createEmailResponse = await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),
@@ -160,11 +162,12 @@ export const commsRouter = router({
           toRole,
           fromEmail: input.email,
           fromName: input.name,
-          message: DOMPurify.sanitize(input.message),
+          message: sanitizedMessage,
         }),
         replyTo: formatName(input.email, input.name),
         subject: `${input.name} via SRC Contact`,
-        text: DOMPurify.sanitize(input.message),
+        tags: [CONTACT_FORM_TAG],
+        text: sanitizedMessage,
         to: formatName(toEmail, toName),
       });
 
@@ -181,8 +184,27 @@ export const commsRouter = router({
         });
       }
 
+      const messageId = createEmailResponse.data?.id ?? null;
+
+      if (messageId) {
+        const [storeError] = await tryit(storeInflightContact)(messageId, {
+          fromEmail: input.email,
+          fromName: input.name,
+          message: sanitizedMessage,
+          toName,
+          toRole,
+        });
+
+        if (storeError) {
+          trackServerEvent("contact_form_inflight_store_failure", {
+            error_message: storeError.message,
+            error_name: storeError.name,
+          });
+        }
+      }
+
       return {
-        messageId: createEmailResponse.data?.id ?? null,
+        messageId,
       };
     }),
 });
