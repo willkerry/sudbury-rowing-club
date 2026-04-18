@@ -1,19 +1,17 @@
+import { Heading, Section } from "@react-email/components";
 import {
-  Body,
-  Column,
-  Container,
-  Head,
-  Heading,
-  Hr,
-  Html,
-  Link,
-  Markdown,
-  Preview,
-  Row,
-  Section,
-  Tailwind,
-  Text,
-} from "@react-email/components";
+  ContactFormLink,
+  EmailShell,
+  FooterNote,
+  GT,
+  Label,
+  LT,
+  MessageBody,
+  Quote,
+  RightArrow,
+  Value,
+  WillLink,
+} from "./_components";
 
 interface ContactFormEmailProps {
   fromEmail?: string;
@@ -24,27 +22,6 @@ interface ContactFormEmailProps {
   toRole?: string;
 }
 
-const Label = ({ children }: { children: React.ReactNode }) => (
-  <span className="my-2 block font-medium text-gray-500 text-sm">
-    {children}
-  </span>
-);
-
-const Value = ({ children }: { children: React.ReactNode }) => (
-  <span className="block font-medium text-gray-900 text-sm">{children}</span>
-);
-
-const LT = () => <span className="text-gray-400">&lt;</span>;
-const GT = () => <span className="text-gray-400">&gt;</span>;
-const RightArrow = () => <span className="text-gray-400">&rarr;</span>;
-const Quote = ({ value }: { value: string }) => (
-  <>
-    <span className="text-gray-400">&lsquo;</span>
-    {value}
-    <span className="text-gray-400">&rsquo;</span>
-  </>
-);
-
 export const ContactFormEmail = ({
   toName = "Per Person",
   toEmail = "per@person.com",
@@ -53,75 +30,39 @@ export const ContactFormEmail = ({
   fromEmail = "from@person.com",
   message = "Hello, this is a message\n\nIt has come to my attention that you are a person. This is a good thing, as I am also a person. We should meet up and do person things together.\n\nRegards,\n\nPerson",
 }: ContactFormEmailProps) => (
-  <Html>
-    <Head />
+  <EmailShell preview={message}>
+    <Heading className="font-normal text-black text-lg">
+      You have received a message via SRC Contact
+    </Heading>
 
-    <Preview>{message}</Preview>
+    <Section className="mb-4">
+      <Label>From:</Label>
+      <Value>
+        {fromName} <LT />
+        {fromEmail}
+        <GT />
+      </Value>
+    </Section>
 
-    <Tailwind>
-      <Body className="font-sans">
-        <Container>
-          <Heading className="font-normal text-black text-lg">
-            You have received a message via SRC Contact
-          </Heading>
+    <Section className="mb-4">
+      <Label>To:</Label>
+      <Value>
+        <Quote value={toRole} /> <RightArrow /> {toName} <LT />
+        {toEmail}
+        <GT />
+      </Value>
+    </Section>
 
-          <Section>
-            <Text>
-              <Label>From: </Label>
-              <Value>
-                {fromName}{" "}
-                <span>
-                  <LT />
-                  {fromEmail}
-                  <GT />
-                </span>
-              </Value>
-            </Text>
+    <Section className="mb-4">
+      <Label>Message:</Label>
+      <MessageBody>{message}</MessageBody>
+    </Section>
 
-            <Text>
-              <Label>To: </Label>
-              <Value>
-                <Quote value={toRole} /> <RightArrow /> {toName}{" "}
-                <span>
-                  <LT />
-                  {toEmail}
-                  <GT />
-                </span>
-              </Value>
-            </Text>
-
-            <Row>
-              <Column>
-                <Label>Message:</Label>
-                <div className="m-0 text-gray-900 text-sm">
-                  <Markdown>{message}</Markdown>
-                </div>
-              </Column>
-            </Row>
-          </Section>
-
-          <Section className="mt-8">
-            <Hr className="border-gray-200" />
-            <Text className="font-medium text-gray-600 text-xs">
-              Sent using the{" "}
-              <Link
-                className="text-blue-500"
-                href="https://sudburyrowingclub.org.uk/contact"
-              >
-                contact form
-              </Link>{" "}
-              on the Sudbury Rowing Club website. If you’re experiencing issues
-              with this form, please{" "}
-              <Link className="text-blue-500" href="mailto:will@willkerry.com">
-                contact Will
-              </Link>
-              .
-            </Text>
-          </Section>
-        </Container>
-      </Body>
-    </Tailwind>
-  </Html>
+    <FooterNote>
+      Sent using the <ContactFormLink /> on the Sudbury Rowing Club website. If
+      you’re experiencing issues with this form, please <WillLink />.
+    </FooterNote>
+  </EmailShell>
 );
 
 export default ContactFormEmail;
