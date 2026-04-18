@@ -262,8 +262,6 @@ describe("POST /api/webhooks/resend", () => {
         data: { email_id: EMAIL_ID },
         type: "email.bounced",
       });
-      // simulate a poisoned KV record that somehow picked up an officer email —
-      // the schema strips unknown keys, so it should never reach the send payload
       mockKvGet.mockResolvedValue({
         ...SAMPLE_CONTACT,
         toEmail: OFFICER_EMAIL,

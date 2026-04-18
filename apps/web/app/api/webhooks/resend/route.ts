@@ -39,7 +39,7 @@ const FAILED_EVENTS = new Set<WebhookEvent>([
 const sendDeliveredNotification = async (
   contact: InflightContact,
 ): Promise<{ error?: string }> => {
-  const { data, error } = await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: formatName(SENDER.email, SENDER.name),
     react: ContactFormDeliveredEmail({
       fromName: contact.fromName,
@@ -53,7 +53,6 @@ const sendDeliveredNotification = async (
   });
 
   if (error) return { error: error.message };
-  if (!data?.id) return { error: "No message ID returned" };
 
   return {};
 };
@@ -61,7 +60,7 @@ const sendDeliveredNotification = async (
 const sendFailedNotification = async (
   contact: InflightContact,
 ): Promise<{ error?: string }> => {
-  const { data, error } = await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: formatName(SENDER.email, SENDER.name),
     react: ContactFormFailedEmail({
       fallbackEmail: EMAIL,
@@ -75,7 +74,6 @@ const sendFailedNotification = async (
   });
 
   if (error) return { error: error.message };
-  if (!data?.id) return { error: "No message ID returned" };
 
   return {};
 };
