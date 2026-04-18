@@ -87,7 +87,7 @@ describe("POST /api/webhooks/resend", () => {
   describe("terminal success event", () => {
     it("sends the delivered notification and clears the inflight entry", async () => {
       mockVerify.mockReturnValue({
-        data: { email_id: EMAIL_ID },
+        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
         type: "email.delivered",
       });
 
@@ -116,7 +116,10 @@ describe("POST /api/webhooks/resend", () => {
       "email.complained",
       "email.failed",
     ])("sends the failed notification and clears the inflight entry for %s", async (type) => {
-      mockVerify.mockReturnValue({ data: { email_id: EMAIL_ID }, type });
+      mockVerify.mockReturnValue({
+        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
+        type,
+      });
 
       const response = await POST(buildRequest());
 
@@ -148,7 +151,10 @@ describe("POST /api/webhooks/resend", () => {
       "email.delivery_delayed",
       "email.scheduled",
     ])("ignores %s without sending or deleting", async (type) => {
-      mockVerify.mockReturnValue({ data: { email_id: EMAIL_ID }, type });
+      mockVerify.mockReturnValue({
+        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
+        type,
+      });
 
       const response = await POST(buildRequest());
 
@@ -161,7 +167,7 @@ describe("POST /api/webhooks/resend", () => {
   describe("edge cases", () => {
     it("ignores events for an unknown email_id", async () => {
       mockVerify.mockReturnValue({
-        data: { email_id: "not-tracked" },
+        data: { email_id: "not-tracked", tags: { source: "contact_form" } },
         type: "email.delivered",
       });
       mockKvGet.mockResolvedValue(null);
@@ -204,7 +210,7 @@ describe("POST /api/webhooks/resend", () => {
 
     it("rejects KV payloads that fail schema validation", async () => {
       mockVerify.mockReturnValue({
-        data: { email_id: EMAIL_ID },
+        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
         type: "email.delivered",
       });
       mockKvGet.mockResolvedValue({ fromEmail: "not-an-email" });
@@ -218,7 +224,7 @@ describe("POST /api/webhooks/resend", () => {
 
     it("re-inserts the inflight entry when the follow-up send fails", async () => {
       mockVerify.mockReturnValue({
-        data: { email_id: EMAIL_ID },
+        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
         type: "email.delivered",
       });
       mockSend.mockResolvedValue({
@@ -241,9 +247,37 @@ describe("POST /api/webhooks/resend", () => {
       );
     });
 
-    it("skips the send when another handler has already claimed the event", async () => {
+    it("ignores webhook events that aren't tagged as contact-form sends", async () => {
       mockVerify.mockReturnValue({
         data: { email_id: EMAIL_ID },
+        type: "email.delivered",
+      });
+
+      const response = await POST(buildRequest());
+
+      expect(response.status).toBe(200);
+      expect(mockKvGet).not.toHaveBeenCalled();
+      expect(mockKvDel).not.toHaveBeenCalled();
+      expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it("ignores webhook events tagged with a different source", async () => {
+      mockVerify.mockReturnValue({
+        data: { email_id: EMAIL_ID, tags: { source: "bug_report" } },
+        type: "email.delivered",
+      });
+
+      const response = await POST(buildRequest());
+
+      expect(response.status).toBe(200);
+      expect(mockKvGet).not.toHaveBeenCalled();
+      expect(mockKvDel).not.toHaveBeenCalled();
+      expect(mockSend).not.toHaveBeenCalled();
+    });
+
+    it("skips the send when another handler has already claimed the event", async () => {
+      mockVerify.mockReturnValue({
+        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
         type: "email.delivered",
       });
       mockKvDel.mockResolvedValue(0);
@@ -259,7 +293,7 @@ describe("POST /api/webhooks/resend", () => {
   describe("privacy", () => {
     it("does not expose any officer email address in the outgoing notifications", async () => {
       mockVerify.mockReturnValue({
-        data: { email_id: EMAIL_ID },
+        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
         type: "email.bounced",
       });
       mockKvGet.mockResolvedValue({

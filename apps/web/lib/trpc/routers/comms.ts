@@ -8,7 +8,7 @@ import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import { MessageSchema } from "@/components/contact/Message";
 import { env } from "@/env";
 import { checkHeadersForSpam } from "@/lib/akismet";
-import { SENDER } from "@/lib/constants";
+import { CONTACT_FORM_TAG, SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
 import { storeInflightContact } from "@/lib/inflight-contact";
 import { trackServerEvent } from "@/lib/server/track";
@@ -166,6 +166,7 @@ export const commsRouter = router({
         }),
         replyTo: formatName(input.email, input.name),
         subject: `${input.name} via SRC Contact`,
+        tags: [CONTACT_FORM_TAG],
         text: sanitizedMessage,
         to: formatName(toEmail, toName),
       });

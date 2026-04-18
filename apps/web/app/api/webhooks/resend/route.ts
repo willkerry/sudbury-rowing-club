@@ -5,7 +5,7 @@ import { tryit } from "radashi";
 import { Resend, type WebhookEvent } from "resend";
 import { z } from "zod";
 import { env } from "@/env";
-import { EMAIL, SENDER } from "@/lib/constants";
+import { CONTACT_FORM_TAG, EMAIL, SENDER } from "@/lib/constants";
 import {
   claimInflightContact,
   type InflightContact,
@@ -17,6 +17,7 @@ import { trackServerEvent } from "@/lib/server/track";
 const ResendEventSchema = z.object({
   data: z.object({
     email_id: z.string().optional(),
+    tags: z.record(z.string(), z.string()).optional(),
   }),
   type: z.string(),
 });
@@ -119,6 +120,10 @@ export async function POST(req: NextRequest) {
 
   if (!(isDelivered || isFailed)) {
     return NextResponse.json({ ignored: eventType }, { status: 200 });
+  }
+
+  if (data.tags?.[CONTACT_FORM_TAG.name] !== CONTACT_FORM_TAG.value) {
+    return NextResponse.json({ ignored: "untagged" }, { status: 200 });
   }
 
   const contact = await readInflightContact(emailId);
