@@ -1,0 +1,89 @@
+/*
+ * Scoped styles for legacy regatta HTML served via /live/*.
+ *
+ * The scoring software emits tables with a small, specific vocabulary of
+ * class names (CellA, CellB, CellC, ListA, Scratched, CellScratched) that
+ * carry meaning – the bracket trees in event pages are drawn entirely with
+ * borders on these cells, so we cannot restyle away from them.
+ *
+ * The `.wrapper` class below is scoped by the CSS module; everything
+ * targeted with `:global()` is the literal class name the source HTML
+ * contains, matched only when nested inside our wrapper.
+ */
+
+@reference "../../styles/index.css";
+
+.wrapper {
+  @apply overflow-x-auto px-4 py-6 text-gray-900 text-sm;
+}
+
+.wrapper :global(a) {
+  @apply text-black underline;
+}
+
+.wrapper :global(a:hover) {
+  @apply no-underline;
+}
+
+.wrapper :global(strong) {
+  @apply font-semibold;
+}
+
+.wrapper :global(b) {
+  @apply font-semibold;
+}
+
+.wrapper :global(table) {
+  @apply mx-auto border-collapse;
+}
+
+.wrapper :global(td),
+.wrapper :global(th) {
+  @apply px-2 py-1 text-xs;
+}
+
+.wrapper :global(th) {
+  @apply text-left font-semibold;
+}
+
+.wrapper :global(td.CellA) {
+  @apply border-gray-200 border-y whitespace-nowrap bg-gray-50 text-left;
+}
+
+.wrapper :global(td.CellB) {
+  @apply border-gray-200 border-y border-r whitespace-nowrap bg-gray-50 text-right;
+}
+
+.wrapper :global(td.CellC) {
+  @apply border-gray-200 border-r;
+}
+
+.wrapper :global(td.CellScratched) {
+  @apply border-gray-200 border-y bg-gray-50 text-left line-through;
+}
+
+.wrapper :global(td.Scratched) {
+  @apply line-through;
+}
+
+.wrapper :global(tr.ListA:nth-child(even)) {
+  @apply bg-gray-50;
+}
+
+.wrapper :global(img) {
+  @apply h-auto max-w-[150px];
+}
+
+/* The software wraps club names in a stray <ul>; neutralise it. */
+.wrapper :global(ul) {
+  @apply m-0 list-none p-0;
+}
+
+/* Legacy <FONT SIZE=+2> / SIZE=-2 wrappers survive parsing; size sensibly. */
+.wrapper :global(font[size="+2"]) {
+  @apply inline-block font-semibold text-xl;
+}
+
+.wrapper :global(font[size="-2"]) {
+  @apply text-xs;
+}

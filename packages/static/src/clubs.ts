@@ -25,6 +25,13 @@ export type Club = {
     lat: number;
     lng: number;
   } | null;
+  /** The club's colours. */
+  colours?: {
+    /** The club's (probable) colour. */
+    field: string;
+    /** An appropriate text colour for the `field` colour. */
+    text: string;
+  };
   /** The URL of the club's British Rowing page. */
   href: string;
   /** The URL of the club's new blade image. */
