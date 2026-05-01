@@ -10,6 +10,7 @@ const config: NextConfig = {
   serverExternalPackages: ["jsdom"],
   images: {
     minimumCacheTTL: 31536000,
+    qualities: [75, 60],
     remotePatterns: [createRemotePattern("cdn.sanity.io", "https")],
   },
   redirects: () => Promise.resolve(redirectsArray),
