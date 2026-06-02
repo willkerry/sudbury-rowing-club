@@ -1,120 +1,42 @@
-import { kv } from "@vercel/kv";
+import type { Cache } from "@epic-web/cachified";
+import { configure, totalTtl } from "@epic-web/cachified";
+import { kv, type VercelKV } from "@vercel/kv";
 import { parse as devalueParse, stringify as devalueStringify } from "devalue";
 import { env } from "@/env";
-import { whenEnv } from "../environment";
 
-type CacheOptions<T, R = T> = {
-  /** Unique cache key */
-  key: string;
-  /** Time to live in seconds */
-  ttl: number;
-  /** Async function whose return value should be cached */
-  fn: () => Promise<T>;
-  /** Optional function to transform cached data (e.g., reconstruct Date objects) */
-  transform?: (data: T) => R;
-};
-
-type HitMiss = "hit" | "miss";
-
-type CacheHeaders = {
-  "X-Cache-Result": HitMiss;
-};
-
-type CachedResult<R> = {
-  data: R;
-  cacheResult: HitMiss;
-  headers: CacheHeaders;
-  cachedAt: Date;
-};
+const SEPARATOR = ":";
 
 const withCommitHash = (key: string): string => {
   const commitSha = env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA;
-
-  return commitSha ? `${key}:${commitSha}` : key;
+  return commitSha ? `${key}${SEPARATOR}${commitSha}` : key;
 };
 
-type CachedData<T> = {
-  data: T;
-  cachedAt: Date;
-};
+const redisCacheAdapter = (redisCache: VercelKV): Cache => ({
+  name: "Redis",
+  delete: (key) => redisCache.del(withCommitHash(key)),
+  get: async (key) => {
+    const value = await redisCache.get(withCommitHash(key));
 
-// kv.get() will attempt to parse the string as JSON if it looks like JSON
-const stringify = (data: unknown): string =>
-  Buffer.from(devalueStringify(data)).toString("base64");
-const parse = <T>(data: string): T =>
-  devalueParse(Buffer.from(data, "base64").toString());
+    if (typeof value !== "string") return null;
 
-/**
- * Caches the return value of an async function in KV store with proper
- * serialisation/deserialisation using `devalue`. Returns an object with the
- * data and cache status.
- *
- * If a transform function is provided, it will be applied to cached data after
- * their retrieval from the cache (or the resolution of the async function).
- *
- * Cache validity is managed by the TTL. If the function rejects when there's
- * no cached data, the error will propagate.
- */
-export const cached = async <T, R = T>(
-  options: CacheOptions<T, R>,
-): Promise<CachedResult<R>> => {
-  const { key, ttl, fn, transform } = whenEnv({
-    ifDev: () => ({
-      ...options,
-      key: `${options.key}-dev`,
-      ttl: 30,
-    }),
-    ifPreview: () => ({
-      ...options,
-      key: `${options.key}-preview-${env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}`,
-    }),
-    ifProd: () => options,
-  });
-  const cacheKey = withCommitHash(key);
+    return devalueParse(value);
+  },
+  set: (key, value) => {
+    const ttl = totalTtl(value?.metadata);
+    const createdAt = value?.metadata?.createdTime;
 
-  const cached = await kv.get<string>(cacheKey);
+    return redisCache.set(
+      withCommitHash(key),
+      devalueStringify(value),
+      ttl > 0 && ttl < Number.POSITIVE_INFINITY && typeof createdAt === "number"
+        ? {
+            exat: Math.ceil((ttl + createdAt) / 1000),
+          }
+        : undefined,
+    );
+  },
+});
 
-  if (cached) {
-    try {
-      console.log(new Date(), `${cacheKey} hit cache`);
-      const parsed = parse<CachedData<T>>(cached);
-      const data = transform
-        ? transform(parsed.data)
-        : (parsed.data as unknown as R);
+const cache = redisCacheAdapter(kv);
 
-      const cacheResult = "hit";
-
-      return {
-        data,
-        cacheResult,
-        cachedAt: parsed.cachedAt,
-        headers: { "X-Cache-Result": cacheResult },
-      };
-    } catch (parseError) {
-      console.error(
-        new Date(),
-        `${cacheKey} failed to parse cached data, falling back to fresh fetch`,
-        parseError,
-      );
-      // Fall through to fetch fresh data
-    }
-  }
-
-  console.log(new Date(), `${key} cold start`);
-  const fetchedData = await fn();
-  const cachedAt = new Date();
-  const dataWithTimestamp: CachedData<T> = {
-    data: fetchedData,
-    cachedAt,
-  };
-  await kv.set(cacheKey, stringify(dataWithTimestamp), { ex: ttl });
-
-  const cacheResult = "miss";
-
-  return {
-    data: transform ? transform(fetchedData) : (fetchedData as unknown as R),
-    cacheResult,
-    headers: { "X-Cache-Result": cacheResult },
-    cachedAt,
-  };
-};
+export const cached = configure({ cache });

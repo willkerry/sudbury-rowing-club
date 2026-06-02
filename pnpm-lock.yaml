@@ -147,6 +147,9 @@ importers:
       '@algolia/client-search':
         specifier: ^5.41.0
         version: 5.42.0
+      '@epic-web/cachified':
+        specifier: ^5.6.2
+        version: 5.6.2
       '@fireworks-js/react':
         specifier: ^2.10.8
         version: 2.10.8(@types/react@19.2.9)(react@19.2.0)
@@ -252,6 +255,9 @@ importers:
       bowser:
         specifier: ^2.12.1
         version: 2.12.1
+      cachified-redis-adapter:
+        specifier: ^2.0.2
+        version: 2.0.2(@epic-web/cachified@5.6.2)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -3926,6 +3932,10 @@ packages:
 
   /@emotion/unitless@0.8.1:
     resolution: {integrity: sha512-KOEGMu6dmJZtpadb476IsZBclKvILjopjUii3V+7MnXIQCYh8W3NgNcgwo21n9LXZX6EDIKvqfjYxXebDwxKmQ==}
+    dev: false
+
+  /@epic-web/cachified@5.6.2:
+    resolution: {integrity: sha512-dxXZBBWDTZRelGE805m1ZMua4SGwlc/tGkEAxTU4bQMlfny+zLzLbuX1UF1eqJrO2BtLekchLIA4iDPRxyk+EQ==}
     dev: false
 
   /@esbuild-plugins/node-resolve@0.2.2(esbuild@0.25.12):
@@ -12511,6 +12521,15 @@ packages:
   /cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
+
+  /cachified-redis-adapter@2.0.2(@epic-web/cachified@5.6.2):
+    resolution: {integrity: sha512-Ouv+oREsPwZxbPKzKh7QOLHUkCI63W62E54f0TLwVqJdwqkL7UXdZNbapCInzAqxLSTLJvSXLVwIrtnrPj28Eg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      '@epic-web/cachified': ^5.0.0
+    dependencies:
+      '@epic-web/cachified': 5.6.2
+    dev: false
 
   /call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}

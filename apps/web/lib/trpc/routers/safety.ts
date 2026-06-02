@@ -6,8 +6,8 @@ import { rateLimitedProcedure, router } from "../init";
 
 export const safetyRouter = router({
   forecast: rateLimitedProcedure.query(async () => {
-    const { data: forecast } = await cached({
-      fn: getWeatherForecast,
+    const forecast = await cached({
+      getFreshValue: getWeatherForecast,
       key: "weather-forecast",
       ttl: 60 * 60 * 12,
     });
@@ -16,8 +16,8 @@ export const safetyRouter = router({
   }),
   status: rateLimitedProcedure.query(async () => {
     try {
-      const { data: safetyStatus, cachedAt } = await cached({
-        fn: getSafetyStatus,
+      const safetyStatus = await cached({
+        getFreshValue: getSafetyStatus,
         key: "safety-status",
         ttl: 60 * 60,
       });
@@ -30,7 +30,7 @@ export const safetyRouter = router({
         });
       }
 
-      return { ...safetyStatus, retrievedAt: cachedAt };
+      return safetyStatus;
     } catch (error) {
       trackServerException(error);
       throw error;

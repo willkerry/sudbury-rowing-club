@@ -178,6 +178,7 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     return {
       date: sanityStatus._updatedAt,
       description: sanityStatus.description,
+      retrievedAt: new Date(),
       status: sanityStatus.status,
       statusMessage: sanityStatus.status.toString(),
     };
@@ -213,6 +214,7 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     return {
       date: new Date(weatherWarning.pubDate),
       description: weatherWarning.items[0].content,
+      retrievedAt: new Date(),
       source: WarningSourceEnum.metoffice,
       status: isYellowOrAmber ? "amber" : "red",
       statusMessage: "Weather warning",
@@ -235,6 +237,7 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
         typicalRangeHigh,
         typicalRangeLow,
       ),
+      retrievedAt: new Date(),
       statusMessage: "Monitoring station",
     };
   }
@@ -247,6 +250,7 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
       eaWarningResult.error,
       stationResult.error,
     ]),
+    retrievedAt: new Date(),
     status: "neutral",
     statusMessage: "No data available",
   };
