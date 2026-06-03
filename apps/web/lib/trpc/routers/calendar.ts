@@ -28,6 +28,15 @@ const cachedTransformToICS = async () => {
   calendar.set(events);
 
   const icsString = calendar.stringify();
+
+  if (events.length === 0) {
+    console.warn(
+      "British Rowing calendar returned no events; skipping KV cache write to preserve last-known-good feed",
+    );
+
+    return icsString;
+  }
+
   await kv.set(CACHE_KEY, icsString, { ex: CACHE_TTL_SECONDS });
 
   return icsString;

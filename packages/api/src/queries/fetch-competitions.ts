@@ -6,6 +6,7 @@ import { z } from "zod";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 const MAX_COMPETITION_AGE_DAYS = 14;
+const REVALIDATE_SECONDS = 60 * 60 * 12;
 
 const sanitise = (html: string) => {
   const sanitised = he
@@ -89,14 +90,60 @@ const removeStaleEvents = (events: BREvent[]): BREvent[] =>
       Date.now() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000,
   );
 
-export const fetchCompetitions = async (includeOldEvents?: boolean) => {
-  const brCalendarResponse = await fetch(EVENT_CALENDAR_API);
-  const brCalendarJSON = await brCalendarResponse.json();
+export const fetchCompetitions = async (
+  includeOldEvents?: boolean,
+): Promise<BREvent[]> => {
+  try {
+    const response = await fetch(EVENT_CALENDAR_API, {
+      next: { revalidate: REVALIDATE_SECONDS },
+    } as RequestInit);
 
-  return z
-    .array(ZBREvent)
-    .transform(includeOldEvents ? (_) => _ : removeStaleEvents)
-    .parse(brCalendarJSON);
+    if (!response.ok) {
+      console.warn(
+        `British Rowing calendar returned ${response.status} ${response.statusText}`,
+      );
+
+      return [];
+    }
+
+    if (response.headers.get("cf-mitigated") === "challenge") {
+      console.warn(
+        "British Rowing calendar served a Cloudflare challenge (cf-mitigated: challenge)",
+      );
+
+      return [];
+    }
+
+    const contentType = response.headers.get("content-type") ?? "";
+
+    if (!contentType.toLowerCase().includes("json")) {
+      console.warn(
+        `British Rowing calendar returned non-JSON content-type "${contentType}"`,
+      );
+
+      return [];
+    }
+
+    const result = z
+      .array(ZBREvent)
+      .transform(includeOldEvents ? (_) => _ : removeStaleEvents)
+      .safeParse(await response.json());
+
+    if (!result.success) {
+      console.warn(
+        "British Rowing calendar returned an unexpected shape:",
+        result.error.message,
+      );
+
+      return [];
+    }
+
+    return result.data;
+  } catch (error) {
+    console.warn("Failed to fetch British Rowing calendar:", error);
+
+    return [];
+  }
 };
 
 export const fetchCompetitionById = async (id: string) => {
