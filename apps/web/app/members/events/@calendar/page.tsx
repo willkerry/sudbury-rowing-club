@@ -1,4 +1,4 @@
-import { cachedFetchCompetitions, cachedFetchRegions } from "@sudburyrc/api";
+import { fetchCompetitions, fetchRegions } from "@sudburyrc/api";
 import { Suspense } from "react";
 import { Loading } from "@/components/stour/loading";
 import { normaliseUrl } from "@/lib/helpers/normaliseUrl";
@@ -8,8 +8,8 @@ import { EventCalendar } from "./event-calendar";
 export const revalidate = 86_400;
 
 const Calendar = async () => {
-  const events = await cachedFetchCompetitions();
-  const regions = await cachedFetchRegions();
+  const events = await fetchCompetitions();
+  const regions = await fetchRegions();
 
   const eventsWithRedirectUrls = events.map((event) => {
     const normalisedUrl = event.url ? normaliseUrl(event.url) : null;

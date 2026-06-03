@@ -25,6 +25,7 @@
     "next-sanity": "^10.1.4",
     "picosanity": "^5.0.0",
     "radashi": "^12.7.0",
+    "rolldown": "^1.1.0",
     "tsdown": "^0.15.9",
     "zod": "^4.1.12"
   },

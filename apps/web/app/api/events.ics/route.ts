@@ -1,4 +1,4 @@
-import { serversideFetchCompetitions } from "@sudburyrc/api";
+import { fetchCompetitions } from "@sudburyrc/api";
 import IcalBuilder from "@sudburyrc/ical-builder";
 import { kv } from "@vercel/kv";
 import { type NextRequest, NextResponse } from "next/server";
@@ -17,7 +17,7 @@ const cachedTransformToICS = async () => {
 
   console.log(new Date(), "iCal feed cold start");
 
-  const events = await serversideFetchCompetitions(true);
+  const events = await fetchCompetitions(true);
 
   const calendar = new IcalBuilder(
     "SRC Events",

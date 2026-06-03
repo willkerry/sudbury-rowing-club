@@ -82,22 +82,33 @@ const ZBREvent = z
 
 export type BREvent = z.infer<typeof ZBREvent>;
 
-const serversideFetchCompetitions = async (includeOldEvents?: boolean) => {
+const removeStaleEvents = (events: BREvent[]): BREvent[] =>
+  events.filter(
+    ({ startDate }) =>
+      startDate.getTime() >=
+      Date.now() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000,
+  );
+
+export const fetchCompetitions = async (includeOldEvents?: boolean) => {
   const brCalendarResponse = await fetch(EVENT_CALENDAR_API);
   const brCalendarJSON = await brCalendarResponse.json();
 
   return z
     .array(ZBREvent)
-    .transform((events) =>
-      includeOldEvents
-        ? events
-        : events.filter(
-            ({ startDate }) =>
-              startDate.getTime() >=
-              Date.now() - MAX_COMPETITION_AGE_DAYS * 24 * 60 * 60 * 1000,
-          ),
-    )
+    .transform(includeOldEvents ? (_) => _ : removeStaleEvents)
     .parse(brCalendarJSON);
 };
 
-export { serversideFetchCompetitions };
+export const fetchCompetitionById = async (id: string) => {
+  const competitions = await fetchCompetitions();
+
+  return competitions.find((competition) => competition.id === id);
+};
+
+export const fetchRegions = async () => {
+  const competitions = await fetchCompetitions();
+
+  const regions = new Set(competitions.map(({ region }) => region));
+
+  return Array.from(regions);
+};

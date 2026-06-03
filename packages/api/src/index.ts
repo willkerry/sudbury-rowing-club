@@ -1,9 +1,4 @@
 export {
-  cachedFetchCompetitionBySlug,
-  cachedFetchCompetitions,
-  cachedFetchRegions,
-} from "./queries/cached-fetch-competitions";
-export {
   serverGetAllSlugs,
   serverGetArticleBySlug,
   serverGetArticleCount,
@@ -22,7 +17,9 @@ export {
 } from "./queries/fetch-authors";
 export {
   type BREvent,
-  serversideFetchCompetitions,
+  fetchCompetitionById,
+  fetchCompetitions,
+  fetchRegions,
 } from "./queries/fetch-competitions";
 export {
   type ForecastResponse,
