@@ -3,7 +3,6 @@ import Script from "next/script";
 import { useId } from "react";
 import { LandingCTA } from "@/components/landing";
 import { CommitteeSignature } from "@/components/landing/committee-signature";
-import { Feed } from "@/components/landing/feed";
 import { LandingHero } from "@/components/landing/landing-hero";
 import { Affiliates, Sponsors } from "@/components/landing/sponsors";
 import { Container } from "@/components/layouts/container";
@@ -101,9 +100,10 @@ const Home = async () => {
         </Link>
       </Container>
 
-      <Container>
+      {/* Temporarily disabled */}
+      {/* <Container>
         <Feed />
-      </Container>
+      </Container> */}
     </>
   );
 };
