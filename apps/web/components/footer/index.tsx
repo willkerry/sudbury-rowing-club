@@ -33,7 +33,14 @@ export const Footer = () => (
 
       <div className="mb-12 flex flex-wrap">
         {columns.map(([heading, data]) => (
-          <FooterColumn data={data} heading={heading} key={heading} />
+          <FooterColumn
+            data={data.map((item) => ({
+              ...item,
+              target: item.href.startsWith("http") ? "_blank" : undefined,
+            }))}
+            heading={heading}
+            key={heading}
+          />
         ))}
       </div>
 
