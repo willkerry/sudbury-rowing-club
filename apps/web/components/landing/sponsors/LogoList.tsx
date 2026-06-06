@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import Image, { type StaticImageData } from "next/image";
 import { useMemo } from "react";
 import { useShuffledArray } from "@/hooks/useShuffledArray";
@@ -28,6 +29,7 @@ const LogoListItem = ({ logo: { logo, ...rest } }: { logo: SponsorLogo }) => {
   return (
     <a
       aria-label={rest.name}
+      className="opacity-70 transition duration-300 hover:-translate-y-0.5 hover:opacity-100"
       href={rest.href}
       rel="noopener noreferrer"
       target="_blank"
@@ -47,6 +49,7 @@ export const LogoList = ({
   shuffle?: boolean;
 }) => {
   const maybeShuffledLogos = useShuffledArray(logos, shuffle);
+  const reduceMotion = useReducedMotion();
 
   return (
     <div
@@ -55,8 +58,20 @@ export const LogoList = ({
         className,
       )}
     >
-      {maybeShuffledLogos?.map((logo) => (
-        <LogoListItem key={logo.logo.src} logo={logo} />
+      {maybeShuffledLogos?.map((logo, index) => (
+        <motion.div
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 6 }}
+          key={logo.logo.src}
+          transition={{
+            delay: Math.min(index, 6) * 0.08,
+            duration: 0.4,
+            ease: [0.25, 1, 0.5, 1],
+          }}
+          viewport={{ margin: "0px 0px -10% 0px", once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          <LogoListItem logo={logo} />
+        </motion.div>
       ))}
     </div>
   );
