@@ -55,4 +55,4 @@ tsconfig.tsbuildinfo
 .parcel-cache
 
 **/dist/
-**/node_modules/
+**/*/node_modules/
