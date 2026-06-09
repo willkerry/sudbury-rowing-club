@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 
 export const Committees: CollectionConfig = {
+  defaultSort: "title",
   slug: "committees",
 
   versions: true,

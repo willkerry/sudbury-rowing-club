@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 
 export const People: CollectionConfig = {
+  defaultSort: "lastName",
   slug: "people",
 
   access: {
@@ -8,6 +9,7 @@ export const People: CollectionConfig = {
   },
 
   admin: {
+    defaultColumns: ["fullName", "email"],
     useAsTitle: "fullName",
   },
   fields: [

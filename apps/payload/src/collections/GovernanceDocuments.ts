@@ -10,6 +10,7 @@ export const GovernanceDocuments: CollectionConfig = {
   versions: true,
 
   admin: {
+    defaultColumns: ["title", "group", "type", "enabled"],
     group: "Governance",
     useAsTitle: "title",
   },

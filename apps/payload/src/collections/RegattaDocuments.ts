@@ -7,6 +7,7 @@ export const RegattaDocuments: CollectionConfig = {
   versions: true,
 
   admin: {
+    defaultColumns: ["title", "enabled"],
     group: "Regatta",
     useAsTitle: "title",
   },

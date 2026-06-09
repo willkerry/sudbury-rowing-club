@@ -7,6 +7,7 @@ export const Regattas: CollectionConfig = {
   slug: "regattas",
 
   admin: {
+    defaultColumns: ["number", "date"],
     group: "Regatta",
     useAsTitle: "number",
   },

@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload";
 import { slugFromTitle } from "../lib/slug-from-title";
 
 export const MemberNotices: CollectionConfig = {
+  defaultSort: "-updatedAt",
   slug: "memberNotices",
 
   access: {

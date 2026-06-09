@@ -10,6 +10,7 @@ export const Officers: CollectionConfig = {
   },
 
   admin: {
+    defaultColumns: ["role", "occupant"],
     group: "Governance",
     useAsTitle: "role",
   },

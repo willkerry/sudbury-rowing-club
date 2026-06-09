@@ -1,9 +1,14 @@
 import type { CollectionConfig } from "payload";
 
 export const Media: CollectionConfig = {
+  defaultSort: "-updatedAt",
   slug: "media",
   access: {
     read: () => true,
+  },
+  admin: {
+    defaultColumns: ["filename", "mimeType", "width", "height"],
+    useAsTitle: "filename",
   },
   fields: [
     {

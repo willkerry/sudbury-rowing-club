@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 
 export const VicePresidents: CollectionConfig = {
+  defaultSort: "occupant",
   slug: "vice-presidents",
 
   access: {
@@ -8,6 +9,7 @@ export const VicePresidents: CollectionConfig = {
   },
 
   admin: {
+    defaultColumns: ["occupant"],
     group: "Governance",
     useAsTitle: "occupant",
   },

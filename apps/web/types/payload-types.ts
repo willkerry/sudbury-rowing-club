@@ -1095,6 +1095,10 @@ export interface Regatta1 {
     } | null;
     courseRecords?: (string | null) | Media;
   };
+  /**
+   * Public live-results dashboard, shown during the regatta.
+   */
+  liveResultsUrl?: string | null;
   course?: {
     heading?: string | null;
     description?: {
@@ -1115,9 +1119,6 @@ export interface Regatta1 {
     map?: (string | null) | Media;
     mapImage?: (string | null) | Media;
   };
-  /**
-   * Where the regatta happens. Used in schema.org markup and for visitor wayfinding.
-   */
   venue?: {
     name?: string | null;
     street?: string | null;
@@ -1125,10 +1126,6 @@ export interface Regatta1 {
     county?: string | null;
     postcode?: string | null;
   };
-  /**
-   * Public live-results dashboard, shown during the regatta.
-   */
-  liveResultsUrl?: string | null;
   testimonialsSection?: {
     title?: string | null;
     description?: string | null;
@@ -1314,6 +1311,7 @@ export interface RegattaSelect<T extends boolean = true> {
         description?: T;
         courseRecords?: T;
       };
+  liveResultsUrl?: T;
   course?:
     | T
     | {
@@ -1331,7 +1329,6 @@ export interface RegattaSelect<T extends boolean = true> {
         county?: T;
         postcode?: T;
       };
-  liveResultsUrl?: T;
   testimonialsSection?:
     | T
     | {

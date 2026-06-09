@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 
 export const Trustees: CollectionConfig = {
+  defaultSort: "occupant",
   slug: "trustees",
 
   access: {
@@ -8,6 +9,7 @@ export const Trustees: CollectionConfig = {
   },
 
   admin: {
+    defaultColumns: ["occupant"],
     group: "Governance",
     useAsTitle: "occupant",
   },

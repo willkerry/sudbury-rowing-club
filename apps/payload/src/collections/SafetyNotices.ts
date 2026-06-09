@@ -4,6 +4,7 @@ import { slugFromTitle } from "../lib/slug-from-title";
 import { zv } from "../lib/zv";
 
 export const SafetyNotices: CollectionConfig = {
+  defaultSort: ["-pin", "-date"],
   slug: "safetyNotices",
 
   admin: {
