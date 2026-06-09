@@ -26,6 +26,7 @@ export interface SanityAsset {
 
 export interface SanityExportReader {
   allAssets: () => SanityAsset[];
+  allDocs: () => AsyncIterable<SanityDoc>;
   docById: (id: string) => Promise<SanityDoc | undefined>;
   docsOfType: (type: string) => AsyncIterable<SanityDoc>;
   exportDir: string;
@@ -218,8 +219,16 @@ export function createSanityExportReader(
     return readFile(filePath);
   }
 
+  async function* allDocs(): AsyncIterable<SanityDoc> {
+    for await (const doc of iterAll()) {
+      if (doc._id.startsWith("drafts.")) continue;
+      yield doc;
+    }
+  }
+
   return {
     allAssets,
+    allDocs,
     docById,
     docsOfType,
     exportDir,

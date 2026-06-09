@@ -12,10 +12,15 @@ export interface MediaRecord {
  * `sanityAssetId` column. Reads bytes from the on-disk export and uploads
  * through Payload, which routes to R2 via the storage plugin.
  */
+export interface AssetExtras {
+  caption?: string;
+}
+
 export async function ensureMediaForSanityAsset(
   payload: Payload,
   reader: SanityExportReader,
   asset: SanityAsset,
+  extras: AssetExtras = {},
 ): Promise<MediaRecord> {
   const existing = await payload.find({
     collection: "media",
@@ -33,6 +38,7 @@ export async function ensureMediaForSanityAsset(
     collection: "media",
     data: {
       alt: asset.altText ?? asset.originalFilename ?? "",
+      caption: extras.caption,
       sanityAssetId: asset._id,
     } as never,
     file: {
