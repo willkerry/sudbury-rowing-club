@@ -6,7 +6,7 @@ import {
   getCloudflareContext,
 } from "@opennextjs/cloudflare";
 import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { r2Storage } from "@payloadcms/storage-r2";
 import { buildConfig } from "payload";
 import type { GetPlatformProxyOptions } from "wrangler";
@@ -24,6 +24,9 @@ import { Governance } from "./globals/Governance";
 import { Landing } from "./globals/Landing";
 import { Regatta } from "./globals/Regatta";
 import { SafetyStatus } from "./globals/SafetyStatus";
+import { NoteBlock } from "./lib/lexical/note-block";
+import { OembedBlock } from "./lib/lexical/oembed-block";
+import { QuoteBlock } from "./lib/lexical/quote-block";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -74,7 +77,12 @@ export default buildConfig({
     migrationDir: path.resolve(dirname, "migrations"),
   }),
 
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      BlocksFeature({ blocks: [QuoteBlock, NoteBlock, OembedBlock] }),
+    ],
+  }),
   globals: [Landing, Regatta, Governance, SafetyStatus],
   logger: isProduction ? cloudflareLogger : undefined,
   secret: process.env.PAYLOAD_SECRET || "",

@@ -908,6 +908,69 @@ export interface CollectionsWidget {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteBlock".
+ */
+export interface QuoteBlock {
+  attribution?: string | null;
+  blockName?: string | null;
+  blockType: "quote";
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NoteBlock".
+ */
+export interface NoteBlock {
+  blockName?: string | null;
+  blockType: "note";
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  variant: "primary" | "success" | "warning" | "error";
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OembedBlock".
+ */
+export interface OembedBlock {
+  blockName?: string | null;
+  blockType: "oembed";
+  id?: string | null;
+  /**
+   * URL of the embeddable resource (YouTube, Vimeo, etc.)
+   */
+  url: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
