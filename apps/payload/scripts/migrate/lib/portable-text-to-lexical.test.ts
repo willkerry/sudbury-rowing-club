@@ -6,6 +6,26 @@ const stubCtx: ConvertContext = {
   resolveUpload: async (): Promise<string | undefined> => undefined,
 };
 
+describe("portableTextToLexical — fallbacks", () => {
+  it("warns and emits a paragraph for an unknown block type", async () => {
+    const original = console.warn;
+    const calls: string[] = [];
+    console.warn = (m: string): void => {
+      calls.push(m);
+    };
+    try {
+      const out = await portableTextToLexical(
+        [{ _type: "mysterious", text: "..." }],
+        stubCtx,
+      );
+      expect((out.root.children[0] as { type: string }).type).toBe("paragraph");
+      expect(calls.some((c) => c.includes("mysterious"))).toBe(true);
+    } finally {
+      console.warn = original;
+    }
+  });
+});
+
 describe("portableTextToLexical — custom blocks", () => {
   it("converts a quote block", async () => {
     const out = await portableTextToLexical(

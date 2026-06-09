@@ -381,7 +381,10 @@ async function processNodes(
       continue;
     }
 
-    console.warn(`[pt2lex] unknown node type ${n._type} — skipped`);
+    console.warn(
+      `[pt2lex] unknown node type "${n._type}" — emitted empty paragraph`,
+    );
+    out.push(emptyParagraph());
     i++;
   }
 
