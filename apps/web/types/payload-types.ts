@@ -79,6 +79,7 @@ export interface Config {
     governanceDocuments: GovernanceDocument;
     safetyNotices: SafetyNotice;
     news: News;
+    memberNotices: MemberNotice;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -98,6 +99,7 @@ export interface Config {
     governanceDocuments: GovernanceDocumentsSelect<false> | GovernanceDocumentsSelect<true>;
     safetyNotices: SafetyNoticesSelect<false> | SafetyNoticesSelect<true>;
     news: NewsSelect<false> | NewsSelect<true>;
+    memberNotices: MemberNoticesSelect<false> | MemberNoticesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -112,12 +114,14 @@ export interface Config {
     regatta: Regatta1;
     governance: Governance;
     safetyStatus: SafetyStatus;
+    siteNotice: SiteNotice;
   };
   globalsSelect: {
     landing: LandingSelect<false> | LandingSelect<true>;
     regatta: RegattaSelect<false> | RegattaSelect<true>;
     governance: GovernanceSelect<false> | GovernanceSelect<true>;
     safetyStatus: SafetyStatusSelect<false> | SafetyStatusSelect<true>;
+    siteNotice: SiteNoticeSelect<false> | SiteNoticeSelect<true>;
   };
   locale: null;
   widgets: {
@@ -388,10 +392,6 @@ export interface SafetyNotice {
 export interface News {
   id: string;
   title: string;
-  /**
-   * URL slug for /news/<slug>.
-   */
-  slug: string;
   author?: (string | null) | Person;
   /**
    * Original publication date.
@@ -414,6 +414,70 @@ export interface News {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Original Sanity _id. FE fallback during cutover. Removable after.
+   */
+  sanityDocId?: string | null;
+  /**
+   * URL slug for /news/<slug>.
+   */
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "memberNotices".
+ */
+export interface MemberNotice {
+  id: string;
+  title: string;
+  /**
+   * URL slug for /members/<slug>.
+   */
+  slug: string;
+  /**
+   * Key/value metadata shown alongside the notice.
+   */
+  meta?:
+    | {
+        label?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Optional grouped file attachments.
+   */
+  documents?:
+    | {
+        title?: string | null;
+        files?:
+          | {
+              title?: string | null;
+              file?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   /**
    * Original Sanity _id. FE fallback during cutover. Removable after.
    */
@@ -493,6 +557,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'news';
         value: string | News;
+      } | null)
+    | ({
+        relationTo: 'memberNotices';
+        value: string | MemberNotice;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -710,12 +778,45 @@ export interface SafetyNoticesSelect<T extends boolean = true> {
  */
 export interface NewsSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
   author?: T;
   date?: T;
   excerpt?: T;
   featuredImage?: T;
   body?: T;
+  sanityDocId?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "memberNotices_select".
+ */
+export interface MemberNoticesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  meta?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  body?: T;
+  documents?:
+    | T
+    | {
+        title?: T;
+        files?:
+          | T
+          | {
+              title?: T;
+              file?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   sanityDocId?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -918,6 +1019,51 @@ export interface SafetyStatus {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteNotice".
+ */
+export interface SiteNotice {
+  id: string;
+  /**
+   * Untick to hide the notice site-wide.
+   */
+  display?: boolean | null;
+  variant?: ('primary' | 'secondary' | 'success' | 'warning' | 'error') | null;
+  /**
+   * Displayed in bold.
+   */
+  label?: string | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Optional URL the notice should link to.
+   */
+  link?: string | null;
+  /**
+   * Acts as a 'last updated' date.
+   */
+  date?: string | null;
+  /**
+   * If on, the time is shown alongside the date.
+   */
+  includeTime?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing_select".
  */
 export interface LandingSelect<T extends boolean = true> {
@@ -1003,6 +1149,22 @@ export interface SafetyStatusSelect<T extends boolean = true> {
   status?: T;
   description?: T;
   display?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteNotice_select".
+ */
+export interface SiteNoticeSelect<T extends boolean = true> {
+  display?: T;
+  variant?: T;
+  label?: T;
+  body?: T;
+  link?: T;
+  date?: T;
+  includeTime?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

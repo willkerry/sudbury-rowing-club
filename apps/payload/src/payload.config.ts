@@ -13,6 +13,7 @@ import type { GetPlatformProxyOptions } from "wrangler";
 import { Committees } from "./collections/Committees";
 import { GovernanceDocuments } from "./collections/GovernanceDocuments";
 import { Media } from "./collections/Media";
+import { MemberNotices } from "./collections/MemberNotices";
 import { News } from "./collections/News";
 import { Officers } from "./collections/Officers";
 import { People } from "./collections/People";
@@ -26,6 +27,7 @@ import { Governance } from "./globals/Governance";
 import { Landing } from "./globals/Landing";
 import { Regatta } from "./globals/Regatta";
 import { SafetyStatus } from "./globals/SafetyStatus";
+import { SiteNotice } from "./globals/SiteNotice";
 import { NoteBlock } from "./lib/lexical/note-block";
 import { OembedBlock } from "./lib/lexical/oembed-block";
 import { QuoteBlock } from "./lib/lexical/quote-block";
@@ -86,7 +88,7 @@ export default buildConfig({
       BlocksFeature({ blocks: [QuoteBlock, NoteBlock, OembedBlock] }),
     ],
   }),
-  globals: [Landing, Regatta, Governance, SafetyStatus],
+  globals: [Landing, Regatta, Governance, SafetyStatus, SiteNotice],
   logger: isProduction ? cloudflareLogger : undefined,
   secret: process.env.PAYLOAD_SECRET || "",
   admin: {
@@ -108,6 +110,7 @@ export default buildConfig({
     GovernanceDocuments,
     SafetyNotices,
     News,
+    MemberNotices,
   ],
   plugins: [
     r2Storage({
