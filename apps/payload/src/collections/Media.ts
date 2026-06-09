@@ -15,9 +15,18 @@ export const Media: CollectionConfig = {
       name: "caption",
       type: "textarea",
     },
+    {
+      index: true,
+      name: "sanityAssetId",
+      type: "text",
+      admin: {
+        description:
+          "Original Sanity asset id. Migration uses this for idempotency. Safe to clear once Sanity is gone.",
+        hidden: true,
+      },
+    },
   ],
   upload: {
-    // These are not supported on Workers yet due to lack of sharp
     crop: false,
     focalPoint: false,
   },

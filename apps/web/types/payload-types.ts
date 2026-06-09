@@ -191,6 +191,10 @@ export interface Media {
   height?: number | null;
   id: string;
   mimeType?: string | null;
+  /**
+   * Original Sanity asset id. Migration uses this for idempotency. Safe to clear once Sanity is gone.
+   */
+  sanityAssetId?: string | null;
   thumbnailURL?: string | null;
   updatedAt: string;
   url?: string | null;
@@ -487,6 +491,7 @@ export interface MediaSelect<T extends boolean = true> {
   filesize?: T;
   height?: T;
   mimeType?: T;
+  sanityAssetId?: T;
   thumbnailURL?: T;
   updatedAt?: T;
   url?: T;
