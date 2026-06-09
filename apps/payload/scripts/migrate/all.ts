@@ -10,6 +10,8 @@ const scripts = [
   "scripts/migrate/vice-presidents.ts",
   "scripts/migrate/committees.ts",
   "scripts/migrate/news.ts",
+  "scripts/migrate/member-notices.ts",
+  "scripts/migrate/site-notice.ts",
 ];
 
 for (const script of scripts) {
