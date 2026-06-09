@@ -72,5 +72,6 @@ async function transform(doc: SanityDoc) {
     description: (doc.description as string | undefined) ?? undefined,
     occupant: occupantId,
     role: String(doc.role ?? "Untitled role"),
+    sanityDocId: doc._id,
   };
 }

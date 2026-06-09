@@ -65,6 +65,7 @@
     "ii": "pnpm install --ignore-workspace",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "migrate:all": "bun run scripts/migrate/all.ts",
+    "migrate:committees": "bun run scripts/migrate/committees.ts",
     "migrate:export-sanity": "bun run scripts/sanity-export.ts",
     "migrate:officers": "bun run scripts/migrate/officers.ts",
     "migrate:people": "bun run scripts/migrate/people.ts",

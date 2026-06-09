@@ -7,7 +7,7 @@ import type { Payload } from "payload";
  */
 export async function resolveByDocId(
   payload: Payload,
-  collection: "people",
+  collection: "people" | "officers",
   sanityRef: string | undefined | null,
 ): Promise<string | undefined> {
   if (!sanityRef) return;

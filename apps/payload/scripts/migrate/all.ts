@@ -7,6 +7,7 @@ const scripts = [
   "scripts/migrate/officers.ts",
   "scripts/migrate/trustees.ts",
   "scripts/migrate/vice-presidents.ts",
+  "scripts/migrate/committees.ts",
 ];
 
 for (const script of scripts) {
