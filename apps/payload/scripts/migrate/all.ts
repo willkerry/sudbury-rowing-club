@@ -13,6 +13,11 @@ const scripts = [
   "scripts/migrate/member-notices.ts",
   "scripts/migrate/site-notice.ts",
   "scripts/migrate/governance-documents.ts",
+  "scripts/migrate/landing.ts",
+  "scripts/migrate/regattas.ts",
+  "scripts/migrate/regatta-settings.ts",
+  "scripts/migrate/regatta-documents.ts",
+  "scripts/migrate/archive.ts",
 ];
 
 for (const script of scripts) {
