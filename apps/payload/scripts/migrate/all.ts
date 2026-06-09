@@ -3,6 +3,10 @@ import { spawnSync } from "node:child_process";
 const scripts = [
   "scripts/migrate/safety-status.ts",
   "scripts/migrate/safety.ts",
+  "scripts/migrate/people.ts",
+  "scripts/migrate/officers.ts",
+  "scripts/migrate/trustees.ts",
+  "scripts/migrate/vice-presidents.ts",
 ];
 
 for (const script of scripts) {
