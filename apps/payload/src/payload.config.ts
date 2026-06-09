@@ -32,6 +32,7 @@ import { SiteNotice } from "./globals/SiteNotice";
 import { NoteBlock } from "./lib/lexical/note-block";
 import { OembedBlock } from "./lib/lexical/oembed-block";
 import { QuoteBlock } from "./lib/lexical/quote-block";
+import { withGlobalRevalidation, withRevalidation } from "./lib/revalidate";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -89,7 +90,9 @@ export default buildConfig({
       BlocksFeature({ blocks: [QuoteBlock, NoteBlock, OembedBlock] }),
     ],
   }),
-  globals: [Landing, Regatta, SafetyStatus, SiteNotice],
+  globals: [Landing, Regatta, SafetyStatus, SiteNotice].map(
+    withGlobalRevalidation,
+  ),
   logger: isProduction ? cloudflareLogger : undefined,
   secret: process.env.PAYLOAD_SECRET || "",
   admin: {
@@ -99,21 +102,24 @@ export default buildConfig({
     },
   },
   collections: [
+    // Users is the auth collection; not public, no revalidation.
     Users,
-    Media,
-    People,
-    Officers,
-    Committees,
-    Archive,
-    RegattaDocuments,
-    Regattas,
-    VicePresidents,
-    Trustees,
-    GovernanceDocuments,
-    GovernanceGroups,
-    SafetyNotices,
-    News,
-    MemberNotices,
+    ...[
+      Media,
+      People,
+      Officers,
+      Committees,
+      Archive,
+      RegattaDocuments,
+      Regattas,
+      VicePresidents,
+      Trustees,
+      GovernanceDocuments,
+      GovernanceGroups,
+      SafetyNotices,
+      News,
+      MemberNotices,
+    ].map(withRevalidation),
   ],
   plugins: [
     r2Storage({
