@@ -57,9 +57,26 @@ export const People: CollectionConfig = {
     },
 
     {
+      name: "bio",
+      type: "textarea",
+    },
+
+    {
       name: "image",
       relationTo: "media",
       type: "upload",
+    },
+
+    {
+      index: true,
+      name: "sanityDocId",
+      type: "text",
+      admin: {
+        description:
+          "Original Sanity _id. Used to re-link cross-references during migration. Removable post-cutover.",
+        hidden: true,
+        position: "sidebar",
+      },
     },
   ],
 

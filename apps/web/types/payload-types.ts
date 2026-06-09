@@ -205,6 +205,7 @@ export interface Media {
  * via the `definition` "people".
  */
 export interface Person {
+  bio?: string | null;
   createdAt: string;
   email?: string | null;
   firstName: string;
@@ -213,6 +214,10 @@ export interface Person {
   id: string;
   image?: (string | null) | Media;
   lastName: string;
+  /**
+   * Original Sanity _id. Used to re-link cross-references during migration. Removable post-cutover.
+   */
+  sanityDocId?: string | null;
   updatedAt: string;
 }
 /**
@@ -513,6 +518,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "people_select".
  */
 export interface PeopleSelect<T extends boolean = true> {
+  bio?: T;
   createdAt?: T;
   email?: T;
   firstName?: T;
@@ -520,6 +526,7 @@ export interface PeopleSelect<T extends boolean = true> {
   hasEmail?: T;
   image?: T;
   lastName?: T;
+  sanityDocId?: T;
   updatedAt?: T;
 }
 /**
