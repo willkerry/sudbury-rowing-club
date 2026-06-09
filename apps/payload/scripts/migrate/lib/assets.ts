@@ -3,7 +3,7 @@ import type { SanityAsset, SanityExportReader } from "./sanity-export";
 
 export interface MediaRecord {
   alt?: string | null;
-  id: number;
+  id: string;
   sanityAssetId?: string | null;
 }
 
