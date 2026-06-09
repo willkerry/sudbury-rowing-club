@@ -67,6 +67,7 @@
     "migrate:all": "bun run scripts/migrate/all.ts",
     "migrate:committees": "bun run scripts/migrate/committees.ts",
     "migrate:export-sanity": "bun run scripts/sanity-export.ts",
+    "migrate:governance-documents": "bun run scripts/migrate/governance-documents.ts",
     "migrate:media": "bun run scripts/migrate/media.ts",
     "migrate:member-notices": "bun run scripts/migrate/member-notices.ts",
     "migrate:news": "bun run scripts/migrate/news.ts",
