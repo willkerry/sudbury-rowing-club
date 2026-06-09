@@ -222,10 +222,6 @@ export interface Person {
    */
   email?: string | null;
   hasEmail?: boolean | null;
-  /**
-   * Short biography. Shown alongside officer, trustee or vice-president listings.
-   */
-  bio?: string | null;
   image?: (string | null) | Media;
   /**
    * Original Sanity _id. Used to re-link cross-references during migration. Removable post-cutover.
@@ -285,7 +281,7 @@ export interface Archive {
   title: string;
   year?: string | null;
   /**
-   * Years either side of `year` to consider this record. Shown as 'c. (year-range)-(year+range)'.
+   * How fuzzy the year is. Larger values widen the 'circa' window shown on the page.
    */
   range?: number | null;
   /**
@@ -371,7 +367,7 @@ export interface Regatta {
 export interface VicePresident {
   id: string;
   /**
-   * Pick from the People collection. Add a Person record first if they aren't already there.
+   * Pick a name from the People list. If they aren't there yet, add them under People first.
    */
   person: string | Person;
   occupant?: string | null;
@@ -385,7 +381,7 @@ export interface VicePresident {
 export interface Trustee {
   id: string;
   /**
-   * Pick from the People collection. Add a Person record first if they aren't already there.
+   * Pick a name from the People list. If they aren't there yet, add them under People first.
    */
   person: string | Person;
   occupant?: string | null;
@@ -499,7 +495,7 @@ export interface News {
   id: string;
   title: string;
   /**
-   * Optional. Pick a person from the People collection.
+   * Optional. Pick a name from the People list.
    */
   author?: (string | null) | Person;
   /**
@@ -777,7 +773,6 @@ export interface PeopleSelect<T extends boolean = true> {
   fullName?: T;
   email?: T;
   hasEmail?: T;
-  bio?: T;
   image?: T;
   sanityDocId?: T;
   updatedAt?: T;

@@ -48,7 +48,6 @@ async function transform(doc: SanityDoc) {
     sanityDocId: doc._id,
     firstName,
     lastName,
-    bio: (doc.bio as string | undefined) ?? undefined,
     email: String(doc.email ?? "").trim() || undefined,
     image: imageMediaId,
   };

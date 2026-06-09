@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload";
 import { z } from "zod";
 import { slugFromTitle } from "../lib/slug-from-title";
+import { webAppUrl } from "../lib/web-app";
 import { zv } from "../lib/zv";
 
 export const SafetyNotices: CollectionConfig = {
@@ -11,6 +12,8 @@ export const SafetyNotices: CollectionConfig = {
     defaultColumns: ["title", "pin", "date"],
     group: "Safety",
     useAsTitle: "title",
+    preview: (doc) =>
+      typeof doc.slug === "string" ? webAppUrl(`/safety/${doc.slug}`) : null,
   },
 
   fields: [

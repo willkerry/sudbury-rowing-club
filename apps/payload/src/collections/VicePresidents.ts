@@ -22,7 +22,7 @@ export const VicePresidents: CollectionConfig = {
       type: "relationship",
       admin: {
         description:
-          "Pick from the People collection. Add a Person record first if they aren't already there.",
+          "Pick a name from the People list. If they aren't there yet, add them under People first.",
       },
     },
 

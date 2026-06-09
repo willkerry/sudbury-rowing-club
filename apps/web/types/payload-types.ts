@@ -186,7 +186,13 @@ export interface User {
  */
 export interface Media {
   id: string;
+  /**
+   * Describes the image for users who can't see it. Keep it short, factual, and don't repeat the caption.
+   */
   alt: string;
+  /**
+   * Optional supporting line shown under the image (subjects' names, location, etc.).
+   */
   caption?: string | null;
   /**
    * Original Sanity asset id. Migration uses this for idempotency. Safe to clear once Sanity is gone.
@@ -211,9 +217,11 @@ export interface Person {
   firstName: string;
   lastName: string;
   fullName?: string | null;
+  /**
+   * Personal email. Only visible to signed-in users — never rendered publicly.
+   */
   email?: string | null;
   hasEmail?: boolean | null;
-  bio?: string | null;
   image?: (string | null) | Media;
   /**
    * Original Sanity _id. Used to re-link cross-references during migration. Removable post-cutover.
@@ -230,7 +238,13 @@ export interface Officer {
   id: string;
   _order?: string | null;
   role: string;
+  /**
+   * Person currently in this role. Leave blank if the position is vacant.
+   */
   occupant?: (string | null) | Person;
+  /**
+   * What this officer is responsible for. Shown on the governance page.
+   */
   description?: string | null;
   /**
    * Original Sanity _id. Used to re-link cross-references during migration. Removable post-cutover.
@@ -247,6 +261,9 @@ export interface Committee {
   id: string;
   title: string;
   description?: string | null;
+  /**
+   * Officers sitting on this committee. Their photos and names come from the linked Person record.
+   */
   members?: (string | Officer)[] | null;
   /**
    * Original Sanity _id. Used to re-link cross-references during migration. Removable post-cutover.
@@ -264,7 +281,7 @@ export interface Archive {
   title: string;
   year?: string | null;
   /**
-   * Years either side of `year` to consider this record. Shown as 'c. (year-range)-(year+range)'.
+   * How fuzzy the year is. Larger values widen the 'circa' window shown on the page.
    */
   range?: number | null;
   /**
@@ -311,13 +328,19 @@ export interface Regatta {
   number: number;
   date: string;
   /**
-   * Link to results
+   * Where the results for this year's regatta live. Accepts a full URL or a site-relative path like /results/regatta2024/.
    */
   results?: string | null;
+  /**
+   * External photo galleries from the day (Hiskett, Flickr, club photographers, etc.).
+   */
   galleries?:
     | {
         name: string;
         url: string;
+        /**
+         * Optional gallery password shown alongside the link.
+         */
         password?: string | null;
         id?: string | null;
       }[]
@@ -343,6 +366,9 @@ export interface Regatta {
  */
 export interface VicePresident {
   id: string;
+  /**
+   * Pick a name from the People list. If they aren't there yet, add them under People first.
+   */
   person: string | Person;
   occupant?: string | null;
   updatedAt: string;
@@ -354,6 +380,9 @@ export interface VicePresident {
  */
 export interface Trustee {
   id: string;
+  /**
+   * Pick a name from the People list. If they aren't there yet, add them under People first.
+   */
   person: string | Person;
   occupant?: string | null;
   updatedAt: string;
@@ -465,12 +494,21 @@ export interface SafetyNotice {
 export interface News {
   id: string;
   title: string;
+  /**
+   * Optional. Pick a name from the People list.
+   */
   author?: (string | null) | Person;
   /**
    * Original publication date.
    */
   date: string;
+  /**
+   * Short summary shown on the news index and in social previews. Plain text only.
+   */
   excerpt?: string | null;
+  /**
+   * Hero image shown above the article and in cards.
+   */
   featuredImage?: (string | null) | Media;
   body?: {
     root: {
@@ -735,7 +773,6 @@ export interface PeopleSelect<T extends boolean = true> {
   fullName?: T;
   email?: T;
   hasEmail?: T;
-  bio?: T;
   image?: T;
   sanityDocId?: T;
   updatedAt?: T;
@@ -1093,6 +1130,9 @@ export interface Regatta1 {
       };
       [k: string]: unknown;
     } | null;
+    /**
+     * Single document listing course records over the years.
+     */
     courseRecords?: (string | null) | Media;
   };
   /**
@@ -1116,7 +1156,13 @@ export interface Regatta1 {
       };
       [k: string]: unknown;
     } | null;
+    /**
+     * Downloadable PDF version of the course map.
+     */
     map?: (string | null) | Media;
+    /**
+     * Inline image version shown on the page.
+     */
     mapImage?: (string | null) | Media;
   };
   venue?: {
@@ -1139,8 +1185,17 @@ export interface Regatta1 {
  */
 export interface SafetyStatus {
   id: string;
+  /**
+   * Conditions traffic light: green = all good, amber = caution, red = no rowing.
+   */
   status?: ('neutral' | 'green' | 'amber' | 'red') | null;
+  /**
+   * Short reason for the current status (e.g. 'high stream, no novices').
+   */
   description?: string | null;
+  /**
+   * Untick to suppress the status banner entirely.
+   */
   display?: boolean | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1176,7 +1231,7 @@ export interface SiteNotice {
     [k: string]: unknown;
   } | null;
   /**
-   * Optional URL the notice should link to.
+   * Optional URL the notice should link to. When set, the whole banner becomes a link and any body text is ignored.
    */
   link?: string | null;
   /**

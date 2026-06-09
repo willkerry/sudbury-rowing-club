@@ -63,15 +63,6 @@ export const People: CollectionConfig = {
     },
 
     {
-      name: "bio",
-      type: "textarea",
-      admin: {
-        description:
-          "Short biography. Shown alongside officer, trustee or vice-president listings.",
-      },
-    },
-
-    {
       name: "image",
       relationTo: "media",
       type: "upload",

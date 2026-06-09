@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { slugFromTitle } from "../lib/slug-from-title";
+import { webAppUrl } from "../lib/web-app";
 
 export const News: CollectionConfig = {
   defaultSort: "-date",
@@ -12,6 +13,8 @@ export const News: CollectionConfig = {
   admin: {
     defaultColumns: ["title", "date", "author"],
     useAsTitle: "title",
+    preview: (doc) =>
+      typeof doc.slug === "string" ? webAppUrl(`/news/${doc.slug}`) : null,
   },
 
   fields: [
@@ -25,7 +28,7 @@ export const News: CollectionConfig = {
       relationTo: "people",
       type: "relationship",
       admin: {
-        description: "Optional. Pick a person from the People collection.",
+        description: "Optional. Pick a name from the People list.",
         position: "sidebar",
       },
     },

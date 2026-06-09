@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { slugFromTitle } from "../lib/slug-from-title";
+import { webAppUrl } from "../lib/web-app";
 
 export const MemberNotices: CollectionConfig = {
   defaultSort: "-updatedAt",
@@ -12,6 +13,8 @@ export const MemberNotices: CollectionConfig = {
   admin: {
     defaultColumns: ["title", "updatedAt"],
     useAsTitle: "title",
+    preview: (doc) =>
+      typeof doc.slug === "string" ? webAppUrl(`/members/${doc.slug}`) : null,
   },
 
   fields: [

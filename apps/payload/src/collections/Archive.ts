@@ -38,7 +38,7 @@ export const Archive: CollectionConfig = {
       type: "number",
       admin: {
         description:
-          "Years either side of `year` to consider this record. Shown as 'c. (year-range)-(year+range)'.",
+          "How fuzzy the year is. Larger values widen the 'circa' window shown on the page.",
         position: "sidebar",
       },
     },

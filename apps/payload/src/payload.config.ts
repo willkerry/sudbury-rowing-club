@@ -97,6 +97,7 @@ export default buildConfig({
   logger: isProduction ? cloudflareLogger : undefined,
   secret: process.env.PAYLOAD_SECRET || "",
   admin: {
+    dateFormat: "d MMMM yyyy",
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
