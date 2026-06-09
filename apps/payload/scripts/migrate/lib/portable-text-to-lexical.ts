@@ -285,8 +285,30 @@ async function convertNote(
   node: PortableTextNode,
   ctx: ConvertContext,
 ): Promise<LexicalBlock> {
-  const nt = node as { type?: string; body?: PortableTextNode[] };
-  const inner = await portableTextToLexical(nt.body ?? [], ctx);
+  const nt = node as {
+    type?: string;
+    note?: string;
+    body?: PortableTextNode[];
+  };
+  // Sanity's note block stores its rich text content in either `note` (legacy
+  // plain string) or `body` (portable text array, used by other schemas). Try
+  // body first, fall back to wrapping the plain string in a paragraph.
+  const inner =
+    nt.body && nt.body.length > 0
+      ? await portableTextToLexical(nt.body, ctx)
+      : await portableTextToLexical(
+          nt.note
+            ? [
+                {
+                  _type: "block",
+                  children: [{ _type: "span", marks: [], text: nt.note }],
+                  markDefs: [],
+                  style: "normal",
+                } as PortableTextNode,
+              ]
+            : [],
+          ctx,
+        );
   const variant =
     (nt.type as "primary" | "success" | "warning" | "error") ?? "primary";
 

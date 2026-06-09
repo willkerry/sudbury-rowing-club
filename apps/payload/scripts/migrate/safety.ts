@@ -28,11 +28,21 @@ const resolveUpload = async (ref: string): Promise<string | undefined> => {
 
 for await (const doc of reader.docsOfType("safety")) {
   const data = await transform(doc);
-  await payload.create({
-    collection: "safetyNotices",
-    data: data as never,
-  });
-  imported++;
+  try {
+    await payload.create({
+      collection: "safetyNotices",
+      data: data as never,
+    });
+    imported++;
+    console.log(`[safety]   ok: ${doc._id} ${doc.title}`);
+  } catch (err) {
+    console.error(
+      `[safety] fail: ${doc._id} ${doc.title}: ${(err as Error).message}`,
+    );
+    console.error(
+      `[safety]   body json: ${JSON.stringify(data.body).slice(0, 400)}`,
+    );
+  }
 }
 
 console.log(`[safety] imported ${imported} notices`);
