@@ -1,0 +1,2778 @@
+{
+  "dialect": "sqlite",
+  "enums": {},
+  "id": "0b134c60-80ed-4743-b153-9d636443aa8e",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "6",
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "tables": {}
+  },
+  "internal": {
+    "indexes": {}
+  },
+  "tables": {
+    "_governance_documents_v": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "_governance_documents_v",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version__order": {
+          "autoincrement": false,
+          "name": "version__order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_created_at": {
+          "autoincrement": false,
+          "name": "version_created_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_enabled": {
+          "autoincrement": false,
+          "default": true,
+          "name": "version_enabled",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "version_file_id": {
+          "autoincrement": false,
+          "name": "version_file_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "version_rich_text": {
+          "autoincrement": false,
+          "name": "version_rich_text",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_title": {
+          "autoincrement": false,
+          "name": "version_title",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_updated_at": {
+          "autoincrement": false,
+          "name": "version_updated_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_url": {
+          "autoincrement": false,
+          "name": "version_url",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "_governance_documents_v_parent_id_governance_documents_id_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "_governance_documents_v_parent_id_governance_documents_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "_governance_documents_v",
+          "tableTo": "governance_documents"
+        },
+        "_governance_documents_v_version_file_id_media_id_fk": {
+          "columnsFrom": ["version_file_id"],
+          "columnsTo": ["id"],
+          "name": "_governance_documents_v_version_file_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "_governance_documents_v",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "_governance_documents_v_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "_governance_documents_v_created_at_idx"
+        },
+        "_governance_documents_v_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "_governance_documents_v_parent_idx"
+        },
+        "_governance_documents_v_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "_governance_documents_v_updated_at_idx"
+        },
+        "_governance_documents_v_version_version__order_idx": {
+          "columns": ["version__order"],
+          "isUnique": false,
+          "name": "_governance_documents_v_version_version__order_idx"
+        },
+        "_governance_documents_v_version_version_created_at_idx": {
+          "columns": ["version_created_at"],
+          "isUnique": false,
+          "name": "_governance_documents_v_version_version_created_at_idx"
+        },
+        "_governance_documents_v_version_version_file_idx": {
+          "columns": ["version_file_id"],
+          "isUnique": false,
+          "name": "_governance_documents_v_version_version_file_idx"
+        },
+        "_governance_documents_v_version_version_updated_at_idx": {
+          "columns": ["version_updated_at"],
+          "isUnique": false,
+          "name": "_governance_documents_v_version_version_updated_at_idx"
+        }
+      }
+    },
+    "_governance_documents_v_version_type": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "_governance_documents_v_version_type",
+      "uniqueConstraints": {},
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "order": {
+          "autoincrement": false,
+          "name": "order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "value": {
+          "autoincrement": false,
+          "name": "value",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "_governance_documents_v_version_type_parent_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "_governance_documents_v_version_type_parent_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "_governance_documents_v_version_type",
+          "tableTo": "_governance_documents_v"
+        }
+      },
+      "indexes": {
+        "_governance_documents_v_version_type_order_idx": {
+          "columns": ["order"],
+          "isUnique": false,
+          "name": "_governance_documents_v_version_type_order_idx"
+        },
+        "_governance_documents_v_version_type_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "_governance_documents_v_version_type_parent_idx"
+        }
+      }
+    },
+    "_regatta_documents_v": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "_regatta_documents_v",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version__order": {
+          "autoincrement": false,
+          "name": "version__order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_created_at": {
+          "autoincrement": false,
+          "name": "version_created_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_enabled": {
+          "autoincrement": false,
+          "default": true,
+          "name": "version_enabled",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "version_file_id": {
+          "autoincrement": false,
+          "name": "version_file_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "version_title": {
+          "autoincrement": false,
+          "name": "version_title",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "version_updated_at": {
+          "autoincrement": false,
+          "name": "version_updated_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "_regatta_documents_v_parent_id_regatta_documents_id_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "_regatta_documents_v_parent_id_regatta_documents_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "_regatta_documents_v",
+          "tableTo": "regatta_documents"
+        },
+        "_regatta_documents_v_version_file_id_media_id_fk": {
+          "columnsFrom": ["version_file_id"],
+          "columnsTo": ["id"],
+          "name": "_regatta_documents_v_version_file_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "_regatta_documents_v",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "_regatta_documents_v_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "_regatta_documents_v_created_at_idx"
+        },
+        "_regatta_documents_v_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "_regatta_documents_v_parent_idx"
+        },
+        "_regatta_documents_v_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "_regatta_documents_v_updated_at_idx"
+        },
+        "_regatta_documents_v_version_version__order_idx": {
+          "columns": ["version__order"],
+          "isUnique": false,
+          "name": "_regatta_documents_v_version_version__order_idx"
+        },
+        "_regatta_documents_v_version_version_created_at_idx": {
+          "columns": ["version_created_at"],
+          "isUnique": false,
+          "name": "_regatta_documents_v_version_version_created_at_idx"
+        },
+        "_regatta_documents_v_version_version_file_idx": {
+          "columns": ["version_file_id"],
+          "isUnique": false,
+          "name": "_regatta_documents_v_version_version_file_idx"
+        },
+        "_regatta_documents_v_version_version_updated_at_idx": {
+          "columns": ["version_updated_at"],
+          "isUnique": false,
+          "name": "_regatta_documents_v_version_version_updated_at_idx"
+        }
+      }
+    },
+    "governance": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "indexes": {},
+      "name": "governance",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "name": "created_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "name": "updated_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      }
+    },
+    "governance_documents": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "governance_documents",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "enabled": {
+          "autoincrement": false,
+          "default": true,
+          "name": "enabled",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "file_id": {
+          "autoincrement": false,
+          "name": "file_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "rich_text": {
+          "autoincrement": false,
+          "name": "rich_text",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "url": {
+          "autoincrement": false,
+          "name": "url",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "governance_documents_file_id_media_id_fk": {
+          "columnsFrom": ["file_id"],
+          "columnsTo": ["id"],
+          "name": "governance_documents_file_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "governance_documents",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "governance_documents__order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "governance_documents__order_idx"
+        },
+        "governance_documents_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "governance_documents_created_at_idx"
+        },
+        "governance_documents_file_idx": {
+          "columns": ["file_id"],
+          "isUnique": false,
+          "name": "governance_documents_file_idx"
+        },
+        "governance_documents_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "governance_documents_updated_at_idx"
+        }
+      }
+    },
+    "governance_documents_type": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "governance_documents_type",
+      "uniqueConstraints": {},
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "order": {
+          "autoincrement": false,
+          "name": "order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "value": {
+          "autoincrement": false,
+          "name": "value",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "governance_documents_type_parent_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "governance_documents_type_parent_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "governance_documents_type",
+          "tableTo": "governance_documents"
+        }
+      },
+      "indexes": {
+        "governance_documents_type_order_idx": {
+          "columns": ["order"],
+          "isUnique": false,
+          "name": "governance_documents_type_order_idx"
+        },
+        "governance_documents_type_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "governance_documents_type_parent_idx"
+        }
+      }
+    },
+    "governance_rels": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "governance_rels",
+      "uniqueConstraints": {},
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "integer"
+        },
+        "order": {
+          "autoincrement": false,
+          "name": "order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "path": {
+          "autoincrement": false,
+          "name": "path",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "people_id": {
+          "autoincrement": false,
+          "name": "people_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        }
+      },
+      "foreignKeys": {
+        "governance_rels_parent_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "governance_rels_parent_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "governance_rels",
+          "tableTo": "governance"
+        },
+        "governance_rels_people_fk": {
+          "columnsFrom": ["people_id"],
+          "columnsTo": ["id"],
+          "name": "governance_rels_people_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "governance_rels",
+          "tableTo": "people"
+        }
+      },
+      "indexes": {
+        "governance_rels_order_idx": {
+          "columns": ["order"],
+          "isUnique": false,
+          "name": "governance_rels_order_idx"
+        },
+        "governance_rels_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "governance_rels_parent_idx"
+        },
+        "governance_rels_path_idx": {
+          "columns": ["path"],
+          "isUnique": false,
+          "name": "governance_rels_path_idx"
+        },
+        "governance_rels_people_id_idx": {
+          "columns": ["people_id"],
+          "isUnique": false,
+          "name": "governance_rels_people_id_idx"
+        }
+      }
+    },
+    "landing": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "landing",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "name": "created_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "hero_id": {
+          "autoincrement": false,
+          "name": "hero_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "tagline": {
+          "autoincrement": false,
+          "name": "tagline",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "name": "updated_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "landing_hero_id_media_id_fk": {
+          "columnsFrom": ["hero_id"],
+          "columnsTo": ["id"],
+          "name": "landing_hero_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "landing",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "landing_hero_idx": {
+          "columns": ["hero_id"],
+          "isUnique": false,
+          "name": "landing_hero_idx"
+        }
+      }
+    },
+    "landing_images": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "landing_images",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "_parent_id": {
+          "autoincrement": false,
+          "name": "_parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text"
+        },
+        "image_id": {
+          "autoincrement": false,
+          "name": "image_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        }
+      },
+      "foreignKeys": {
+        "landing_images_image_id_media_id_fk": {
+          "columnsFrom": ["image_id"],
+          "columnsTo": ["id"],
+          "name": "landing_images_image_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "landing_images",
+          "tableTo": "media"
+        },
+        "landing_images_parent_id_fk": {
+          "columnsFrom": ["_parent_id"],
+          "columnsTo": ["id"],
+          "name": "landing_images_parent_id_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "landing_images",
+          "tableTo": "landing"
+        }
+      },
+      "indexes": {
+        "landing_images_image_idx": {
+          "columns": ["image_id"],
+          "isUnique": false,
+          "name": "landing_images_image_idx"
+        },
+        "landing_images_order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "landing_images_order_idx"
+        },
+        "landing_images_parent_id_idx": {
+          "columns": ["_parent_id"],
+          "isUnique": false,
+          "name": "landing_images_parent_id_idx"
+        }
+      }
+    },
+    "media": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "media",
+      "uniqueConstraints": {},
+      "columns": {
+        "alt": {
+          "autoincrement": false,
+          "name": "alt",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "caption": {
+          "autoincrement": false,
+          "name": "caption",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "filename": {
+          "autoincrement": false,
+          "name": "filename",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "filesize": {
+          "autoincrement": false,
+          "name": "filesize",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "numeric"
+        },
+        "height": {
+          "autoincrement": false,
+          "name": "height",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "numeric"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "mime_type": {
+          "autoincrement": false,
+          "name": "mime_type",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "sanity_asset_id": {
+          "autoincrement": false,
+          "name": "sanity_asset_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "thumbnail_u_r_l": {
+          "autoincrement": false,
+          "name": "thumbnail_u_r_l",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "url": {
+          "autoincrement": false,
+          "name": "url",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "width": {
+          "autoincrement": false,
+          "name": "width",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "numeric"
+        }
+      },
+      "indexes": {
+        "media_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "media_created_at_idx"
+        },
+        "media_filename_idx": {
+          "columns": ["filename"],
+          "isUnique": true,
+          "name": "media_filename_idx"
+        },
+        "media_sanity_asset_id_idx": {
+          "columns": ["sanity_asset_id"],
+          "isUnique": false,
+          "name": "media_sanity_asset_id_idx"
+        },
+        "media_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "media_updated_at_idx"
+        }
+      }
+    },
+    "officers": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "officers",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "occupant_id": {
+          "autoincrement": false,
+          "name": "occupant_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "role": {
+          "autoincrement": false,
+          "name": "role",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "officers_occupant_id_people_id_fk": {
+          "columnsFrom": ["occupant_id"],
+          "columnsTo": ["id"],
+          "name": "officers_occupant_id_people_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "officers",
+          "tableTo": "people"
+        }
+      },
+      "indexes": {
+        "officers__order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "officers__order_idx"
+        },
+        "officers_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "officers_created_at_idx"
+        },
+        "officers_occupant_idx": {
+          "columns": ["occupant_id"],
+          "isUnique": false,
+          "name": "officers_occupant_idx"
+        },
+        "officers_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "officers_updated_at_idx"
+        }
+      }
+    },
+    "payload_kv": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "payload_kv",
+      "uniqueConstraints": {},
+      "columns": {
+        "data": {
+          "autoincrement": false,
+          "name": "data",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "key": {
+          "autoincrement": false,
+          "name": "key",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "indexes": {
+        "payload_kv_key_idx": {
+          "columns": ["key"],
+          "isUnique": true,
+          "name": "payload_kv_key_idx"
+        }
+      }
+    },
+    "payload_locked_documents": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "payload_locked_documents",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "global_slug": {
+          "autoincrement": false,
+          "name": "global_slug",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "indexes": {
+        "payload_locked_documents_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "payload_locked_documents_created_at_idx"
+        },
+        "payload_locked_documents_global_slug_idx": {
+          "columns": ["global_slug"],
+          "isUnique": false,
+          "name": "payload_locked_documents_global_slug_idx"
+        },
+        "payload_locked_documents_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "payload_locked_documents_updated_at_idx"
+        }
+      }
+    },
+    "payload_locked_documents_rels": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "payload_locked_documents_rels",
+      "uniqueConstraints": {},
+      "columns": {
+        "governance_documents_id": {
+          "autoincrement": false,
+          "name": "governance_documents_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "integer"
+        },
+        "media_id": {
+          "autoincrement": false,
+          "name": "media_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "officers_id": {
+          "autoincrement": false,
+          "name": "officers_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "order": {
+          "autoincrement": false,
+          "name": "order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "path": {
+          "autoincrement": false,
+          "name": "path",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "people_id": {
+          "autoincrement": false,
+          "name": "people_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "regatta_documents_id": {
+          "autoincrement": false,
+          "name": "regatta_documents_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "regattas_id": {
+          "autoincrement": false,
+          "name": "regattas_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "safety_notices_id": {
+          "autoincrement": false,
+          "name": "safety_notices_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "trustees_id": {
+          "autoincrement": false,
+          "name": "trustees_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "users_id": {
+          "autoincrement": false,
+          "name": "users_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "vice_presidents_id": {
+          "autoincrement": false,
+          "name": "vice_presidents_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        }
+      },
+      "foreignKeys": {
+        "payload_locked_documents_rels_governance_documents_fk": {
+          "columnsFrom": ["governance_documents_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_governance_documents_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "governance_documents"
+        },
+        "payload_locked_documents_rels_media_fk": {
+          "columnsFrom": ["media_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_media_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "media"
+        },
+        "payload_locked_documents_rels_officers_fk": {
+          "columnsFrom": ["officers_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_officers_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "officers"
+        },
+        "payload_locked_documents_rels_parent_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_parent_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "payload_locked_documents"
+        },
+        "payload_locked_documents_rels_people_fk": {
+          "columnsFrom": ["people_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_people_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "people"
+        },
+        "payload_locked_documents_rels_regatta_documents_fk": {
+          "columnsFrom": ["regatta_documents_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_regatta_documents_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "regatta_documents"
+        },
+        "payload_locked_documents_rels_regattas_fk": {
+          "columnsFrom": ["regattas_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_regattas_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "regattas"
+        },
+        "payload_locked_documents_rels_safety_notices_fk": {
+          "columnsFrom": ["safety_notices_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_safety_notices_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "safety_notices"
+        },
+        "payload_locked_documents_rels_trustees_fk": {
+          "columnsFrom": ["trustees_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_trustees_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "trustees"
+        },
+        "payload_locked_documents_rels_users_fk": {
+          "columnsFrom": ["users_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_users_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "users"
+        },
+        "payload_locked_documents_rels_vice_presidents_fk": {
+          "columnsFrom": ["vice_presidents_id"],
+          "columnsTo": ["id"],
+          "name": "payload_locked_documents_rels_vice_presidents_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "vice_presidents"
+        }
+      },
+      "indexes": {
+        "payload_locked_documents_rels_governance_documents_id_idx": {
+          "columns": ["governance_documents_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_governance_documents_id_idx"
+        },
+        "payload_locked_documents_rels_media_id_idx": {
+          "columns": ["media_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_media_id_idx"
+        },
+        "payload_locked_documents_rels_officers_id_idx": {
+          "columns": ["officers_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_officers_id_idx"
+        },
+        "payload_locked_documents_rels_order_idx": {
+          "columns": ["order"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_order_idx"
+        },
+        "payload_locked_documents_rels_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_parent_idx"
+        },
+        "payload_locked_documents_rels_path_idx": {
+          "columns": ["path"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_path_idx"
+        },
+        "payload_locked_documents_rels_people_id_idx": {
+          "columns": ["people_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_people_id_idx"
+        },
+        "payload_locked_documents_rels_regatta_documents_id_idx": {
+          "columns": ["regatta_documents_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_regatta_documents_id_idx"
+        },
+        "payload_locked_documents_rels_regattas_id_idx": {
+          "columns": ["regattas_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_regattas_id_idx"
+        },
+        "payload_locked_documents_rels_safety_notices_id_idx": {
+          "columns": ["safety_notices_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_safety_notices_id_idx"
+        },
+        "payload_locked_documents_rels_trustees_id_idx": {
+          "columns": ["trustees_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_trustees_id_idx"
+        },
+        "payload_locked_documents_rels_users_id_idx": {
+          "columns": ["users_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_users_id_idx"
+        },
+        "payload_locked_documents_rels_vice_presidents_id_idx": {
+          "columns": ["vice_presidents_id"],
+          "isUnique": false,
+          "name": "payload_locked_documents_rels_vice_presidents_id_idx"
+        }
+      }
+    },
+    "payload_migrations": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "payload_migrations",
+      "uniqueConstraints": {},
+      "columns": {
+        "batch": {
+          "autoincrement": false,
+          "name": "batch",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "numeric"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "indexes": {
+        "payload_migrations_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "payload_migrations_created_at_idx"
+        },
+        "payload_migrations_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "payload_migrations_updated_at_idx"
+        }
+      }
+    },
+    "payload_preferences": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "payload_preferences",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "key": {
+          "autoincrement": false,
+          "name": "key",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "value": {
+          "autoincrement": false,
+          "name": "value",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "indexes": {
+        "payload_preferences_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "payload_preferences_created_at_idx"
+        },
+        "payload_preferences_key_idx": {
+          "columns": ["key"],
+          "isUnique": false,
+          "name": "payload_preferences_key_idx"
+        },
+        "payload_preferences_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "payload_preferences_updated_at_idx"
+        }
+      }
+    },
+    "payload_preferences_rels": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "payload_preferences_rels",
+      "uniqueConstraints": {},
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "integer"
+        },
+        "order": {
+          "autoincrement": false,
+          "name": "order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "path": {
+          "autoincrement": false,
+          "name": "path",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "users_id": {
+          "autoincrement": false,
+          "name": "users_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        }
+      },
+      "foreignKeys": {
+        "payload_preferences_rels_parent_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "payload_preferences_rels_parent_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_preferences_rels",
+          "tableTo": "payload_preferences"
+        },
+        "payload_preferences_rels_users_fk": {
+          "columnsFrom": ["users_id"],
+          "columnsTo": ["id"],
+          "name": "payload_preferences_rels_users_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "payload_preferences_rels",
+          "tableTo": "users"
+        }
+      },
+      "indexes": {
+        "payload_preferences_rels_order_idx": {
+          "columns": ["order"],
+          "isUnique": false,
+          "name": "payload_preferences_rels_order_idx"
+        },
+        "payload_preferences_rels_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "payload_preferences_rels_parent_idx"
+        },
+        "payload_preferences_rels_path_idx": {
+          "columns": ["path"],
+          "isUnique": false,
+          "name": "payload_preferences_rels_path_idx"
+        },
+        "payload_preferences_rels_users_id_idx": {
+          "columns": ["users_id"],
+          "isUnique": false,
+          "name": "payload_preferences_rels_users_id_idx"
+        }
+      }
+    },
+    "people": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "people",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "first_name": {
+          "autoincrement": false,
+          "name": "first_name",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "full_name": {
+          "autoincrement": false,
+          "name": "full_name",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "has_email": {
+          "autoincrement": false,
+          "default": false,
+          "name": "has_email",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "image_id": {
+          "autoincrement": false,
+          "name": "image_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "last_name": {
+          "autoincrement": false,
+          "name": "last_name",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "people_image_id_media_id_fk": {
+          "columnsFrom": ["image_id"],
+          "columnsTo": ["id"],
+          "name": "people_image_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "people",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "people_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "people_created_at_idx"
+        },
+        "people_image_idx": {
+          "columns": ["image_id"],
+          "isUnique": false,
+          "name": "people_image_idx"
+        },
+        "people_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "people_updated_at_idx"
+        }
+      }
+    },
+    "regatta": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "regatta",
+      "uniqueConstraints": {},
+      "columns": {
+        "course_description": {
+          "autoincrement": false,
+          "name": "course_description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "course_heading": {
+          "autoincrement": false,
+          "name": "course_heading",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "course_map_id": {
+          "autoincrement": false,
+          "name": "course_map_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "course_map_image_id": {
+          "autoincrement": false,
+          "name": "course_map_image_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "name": "created_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "date": {
+          "autoincrement": false,
+          "name": "date",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "entries_description": {
+          "autoincrement": false,
+          "name": "entries_description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "results_course_records_id": {
+          "autoincrement": false,
+          "name": "results_course_records_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "results_description": {
+          "autoincrement": false,
+          "name": "results_description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "tagline": {
+          "autoincrement": false,
+          "name": "tagline",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "name": "updated_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "regatta_course_map_id_media_id_fk": {
+          "columnsFrom": ["course_map_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_course_map_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "regatta",
+          "tableTo": "media"
+        },
+        "regatta_course_map_image_id_media_id_fk": {
+          "columnsFrom": ["course_map_image_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_course_map_image_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "regatta",
+          "tableTo": "media"
+        },
+        "regatta_results_course_records_id_media_id_fk": {
+          "columnsFrom": ["results_course_records_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_results_course_records_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "regatta",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "regatta_course_course_map_idx": {
+          "columns": ["course_map_id"],
+          "isUnique": false,
+          "name": "regatta_course_course_map_idx"
+        },
+        "regatta_course_course_map_image_idx": {
+          "columns": ["course_map_image_id"],
+          "isUnique": false,
+          "name": "regatta_course_course_map_image_idx"
+        },
+        "regatta_results_results_course_records_idx": {
+          "columns": ["results_course_records_id"],
+          "isUnique": false,
+          "name": "regatta_results_results_course_records_idx"
+        }
+      }
+    },
+    "regatta_documents": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "regatta_documents",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "enabled": {
+          "autoincrement": false,
+          "default": true,
+          "name": "enabled",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "file_id": {
+          "autoincrement": false,
+          "name": "file_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "regatta_documents_file_id_media_id_fk": {
+          "columnsFrom": ["file_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_documents_file_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "regatta_documents",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "regatta_documents__order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "regatta_documents__order_idx"
+        },
+        "regatta_documents_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "regatta_documents_created_at_idx"
+        },
+        "regatta_documents_file_idx": {
+          "columns": ["file_id"],
+          "isUnique": false,
+          "name": "regatta_documents_file_idx"
+        },
+        "regatta_documents_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "regatta_documents_updated_at_idx"
+        }
+      }
+    },
+    "regatta_events": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "regatta_events",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "_parent_id": {
+          "autoincrement": false,
+          "name": "_parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "categories": {
+          "autoincrement": false,
+          "name": "categories",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "course": {
+          "autoincrement": false,
+          "name": "course",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "gender": {
+          "autoincrement": false,
+          "name": "gender",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text"
+        },
+        "prizes": {
+          "autoincrement": false,
+          "name": "prizes",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "regatta_events_parent_id_fk": {
+          "columnsFrom": ["_parent_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_events_parent_id_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "regatta_events",
+          "tableTo": "regatta"
+        }
+      },
+      "indexes": {
+        "regatta_events_order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "regatta_events_order_idx"
+        },
+        "regatta_events_parent_id_idx": {
+          "columns": ["_parent_id"],
+          "isUnique": false,
+          "name": "regatta_events_parent_id_idx"
+        }
+      }
+    },
+    "regatta_events_boat_classes": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "regatta_events_boat_classes",
+      "uniqueConstraints": {},
+      "columns": {
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "order": {
+          "autoincrement": false,
+          "name": "order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "parent_id": {
+          "autoincrement": false,
+          "name": "parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "value": {
+          "autoincrement": false,
+          "name": "value",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "regatta_events_boat_classes_parent_fk": {
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_events_boat_classes_parent_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "regatta_events_boat_classes",
+          "tableTo": "regatta_events"
+        }
+      },
+      "indexes": {
+        "regatta_events_boat_classes_order_idx": {
+          "columns": ["order"],
+          "isUnique": false,
+          "name": "regatta_events_boat_classes_order_idx"
+        },
+        "regatta_events_boat_classes_parent_idx": {
+          "columns": ["parent_id"],
+          "isUnique": false,
+          "name": "regatta_events_boat_classes_parent_idx"
+        }
+      }
+    },
+    "regatta_images": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "regatta_images",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "_parent_id": {
+          "autoincrement": false,
+          "name": "_parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text"
+        },
+        "image_id": {
+          "autoincrement": false,
+          "name": "image_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        }
+      },
+      "foreignKeys": {
+        "regatta_images_image_id_media_id_fk": {
+          "columnsFrom": ["image_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_images_image_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "regatta_images",
+          "tableTo": "media"
+        },
+        "regatta_images_parent_id_fk": {
+          "columnsFrom": ["_parent_id"],
+          "columnsTo": ["id"],
+          "name": "regatta_images_parent_id_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "regatta_images",
+          "tableTo": "regatta"
+        }
+      },
+      "indexes": {
+        "regatta_images_image_idx": {
+          "columns": ["image_id"],
+          "isUnique": false,
+          "name": "regatta_images_image_idx"
+        },
+        "regatta_images_order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "regatta_images_order_idx"
+        },
+        "regatta_images_parent_id_idx": {
+          "columns": ["_parent_id"],
+          "isUnique": false,
+          "name": "regatta_images_parent_id_idx"
+        }
+      }
+    },
+    "regattas": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "regattas",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "date": {
+          "autoincrement": false,
+          "name": "date",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "number": {
+          "autoincrement": false,
+          "name": "number",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "numeric"
+        },
+        "results": {
+          "autoincrement": false,
+          "name": "results",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "indexes": {
+        "regattas_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "regattas_created_at_idx"
+        },
+        "regattas_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "regattas_updated_at_idx"
+        }
+      }
+    },
+    "regattas_galleries": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "regattas_galleries",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "_parent_id": {
+          "autoincrement": false,
+          "name": "_parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text"
+        },
+        "name": {
+          "autoincrement": false,
+          "name": "name",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "password": {
+          "autoincrement": false,
+          "name": "password",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "url": {
+          "autoincrement": false,
+          "name": "url",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "regattas_galleries_parent_id_fk": {
+          "columnsFrom": ["_parent_id"],
+          "columnsTo": ["id"],
+          "name": "regattas_galleries_parent_id_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "regattas_galleries",
+          "tableTo": "regattas"
+        }
+      },
+      "indexes": {
+        "regattas_galleries_order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "regattas_galleries_order_idx"
+        },
+        "regattas_galleries_parent_id_idx": {
+          "columns": ["_parent_id"],
+          "isUnique": false,
+          "name": "regattas_galleries_parent_id_idx"
+        }
+      }
+    },
+    "safety_notices": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "safety_notices",
+      "uniqueConstraints": {},
+      "columns": {
+        "body": {
+          "autoincrement": false,
+          "name": "body",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "date": {
+          "autoincrement": false,
+          "name": "date",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "document_document_id": {
+          "autoincrement": false,
+          "name": "document_document_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "document_title": {
+          "autoincrement": false,
+          "name": "document_title",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "link": {
+          "autoincrement": false,
+          "name": "link",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "pin": {
+          "autoincrement": false,
+          "default": false,
+          "name": "pin",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "sanity_doc_id": {
+          "autoincrement": false,
+          "name": "sanity_doc_id",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "slug": {
+          "autoincrement": false,
+          "name": "slug",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "title": {
+          "autoincrement": false,
+          "name": "title",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "safety_notices_document_document_id_media_id_fk": {
+          "columnsFrom": ["document_document_id"],
+          "columnsTo": ["id"],
+          "name": "safety_notices_document_document_id_media_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "safety_notices",
+          "tableTo": "media"
+        }
+      },
+      "indexes": {
+        "safety_notices_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "safety_notices_created_at_idx"
+        },
+        "safety_notices_document_document_document_idx": {
+          "columns": ["document_document_id"],
+          "isUnique": false,
+          "name": "safety_notices_document_document_document_idx"
+        },
+        "safety_notices_sanity_doc_id_idx": {
+          "columns": ["sanity_doc_id"],
+          "isUnique": false,
+          "name": "safety_notices_sanity_doc_id_idx"
+        },
+        "safety_notices_slug_idx": {
+          "columns": ["slug"],
+          "isUnique": true,
+          "name": "safety_notices_slug_idx"
+        },
+        "safety_notices_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "safety_notices_updated_at_idx"
+        }
+      }
+    },
+    "safety_status": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "indexes": {},
+      "name": "safety_status",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "name": "created_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "description": {
+          "autoincrement": false,
+          "name": "description",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "display": {
+          "autoincrement": false,
+          "name": "display",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "status": {
+          "autoincrement": false,
+          "name": "status",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "name": "updated_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        }
+      }
+    },
+    "trustees": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "trustees",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "person_id": {
+          "autoincrement": false,
+          "name": "person_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "trustees_person_id_people_id_fk": {
+          "columnsFrom": ["person_id"],
+          "columnsTo": ["id"],
+          "name": "trustees_person_id_people_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "trustees",
+          "tableTo": "people"
+        }
+      },
+      "indexes": {
+        "trustees_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "trustees_created_at_idx"
+        },
+        "trustees_person_idx": {
+          "columns": ["person_id"],
+          "isUnique": false,
+          "name": "trustees_person_idx"
+        },
+        "trustees_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "trustees_updated_at_idx"
+        }
+      }
+    },
+    "users": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "users",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "email": {
+          "autoincrement": false,
+          "name": "email",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "hash": {
+          "autoincrement": false,
+          "name": "hash",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "lock_until": {
+          "autoincrement": false,
+          "name": "lock_until",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "login_attempts": {
+          "autoincrement": false,
+          "default": 0,
+          "name": "login_attempts",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "numeric"
+        },
+        "reset_password_expiration": {
+          "autoincrement": false,
+          "name": "reset_password_expiration",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "reset_password_token": {
+          "autoincrement": false,
+          "name": "reset_password_token",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "salt": {
+          "autoincrement": false,
+          "name": "salt",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "indexes": {
+        "users_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "users_created_at_idx"
+        },
+        "users_email_idx": {
+          "columns": ["email"],
+          "isUnique": true,
+          "name": "users_email_idx"
+        },
+        "users_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "users_updated_at_idx"
+        }
+      }
+    },
+    "users_sessions": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "users_sessions",
+      "uniqueConstraints": {},
+      "columns": {
+        "_order": {
+          "autoincrement": false,
+          "name": "_order",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "_parent_id": {
+          "autoincrement": false,
+          "name": "_parent_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "created_at": {
+          "autoincrement": false,
+          "name": "created_at",
+          "notNull": false,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "expires_at": {
+          "autoincrement": false,
+          "name": "expires_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "users_sessions_parent_id_fk": {
+          "columnsFrom": ["_parent_id"],
+          "columnsTo": ["id"],
+          "name": "users_sessions_parent_id_fk",
+          "onDelete": "cascade",
+          "onUpdate": "no action",
+          "tableFrom": "users_sessions",
+          "tableTo": "users"
+        }
+      },
+      "indexes": {
+        "users_sessions_order_idx": {
+          "columns": ["_order"],
+          "isUnique": false,
+          "name": "users_sessions_order_idx"
+        },
+        "users_sessions_parent_id_idx": {
+          "columns": ["_parent_id"],
+          "isUnique": false,
+          "name": "users_sessions_parent_id_idx"
+        }
+      }
+    },
+    "vice_presidents": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "name": "vice_presidents",
+      "uniqueConstraints": {},
+      "columns": {
+        "created_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "created_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        },
+        "id": {
+          "autoincrement": false,
+          "name": "id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text(36)"
+        },
+        "person_id": {
+          "autoincrement": false,
+          "name": "person_id",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text(36)"
+        },
+        "updated_at": {
+          "autoincrement": false,
+          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))",
+          "name": "updated_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "foreignKeys": {
+        "vice_presidents_person_id_people_id_fk": {
+          "columnsFrom": ["person_id"],
+          "columnsTo": ["id"],
+          "name": "vice_presidents_person_id_people_id_fk",
+          "onDelete": "set null",
+          "onUpdate": "no action",
+          "tableFrom": "vice_presidents",
+          "tableTo": "people"
+        }
+      },
+      "indexes": {
+        "vice_presidents_created_at_idx": {
+          "columns": ["created_at"],
+          "isUnique": false,
+          "name": "vice_presidents_created_at_idx"
+        },
+        "vice_presidents_person_idx": {
+          "columns": ["person_id"],
+          "isUnique": false,
+          "name": "vice_presidents_person_idx"
+        },
+        "vice_presidents_updated_at_idx": {
+          "columns": ["updated_at"],
+          "isUnique": false,
+          "name": "vice_presidents_updated_at_idx"
+        }
+      }
+    }
+  }
+}

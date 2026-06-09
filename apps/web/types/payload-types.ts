@@ -338,9 +338,12 @@ export interface SafetyNotice {
   } | null;
   createdAt: string;
   /**
-   * Displayed as the notice’s last updated date. Is not necessarily the same as the true last updated date.
+   * Displayed as the notice’s last updated date. Not necessarily the true last-updated date.
    */
   date?: string | null;
+  /**
+   * Optional attached document. Either fill in both fields or leave both empty.
+   */
   document?: {
     title?: string | null;
     document?: (string | null) | Media;
@@ -348,7 +351,15 @@ export interface SafetyNotice {
   id: string;
   link?: string | null;
   pin?: boolean | null;
-  title?: string | null;
+  /**
+   * Original Sanity _id. FE fallback during cutover. Removable after.
+   */
+  sanityDocId?: string | null;
+  /**
+   * URL slug for /safety/<slug>. Auto-set on migration.
+   */
+  slug: string;
+  title: string;
   updatedAt: string;
 }
 /**
@@ -605,6 +616,8 @@ export interface SafetyNoticesSelect<T extends boolean = true> {
       };
   link?: T;
   pin?: T;
+  sanityDocId?: T;
+  slug?: T;
   title?: T;
   updatedAt?: T;
 }
