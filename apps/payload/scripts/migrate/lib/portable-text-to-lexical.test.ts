@@ -1,7 +1,10 @@
 import { describe, expect, it } from "bun:test";
+import type { ConvertContext } from "./portable-text-to-lexical";
 import { portableTextToLexical } from "./portable-text-to-lexical";
 
-const stubCtx = { resolveUpload: async () => undefined };
+const stubCtx: ConvertContext = {
+  resolveUpload: async (): Promise<string | undefined> => undefined,
+};
 
 describe("portableTextToLexical — text content", () => {
   it("converts a simple paragraph", async () => {
