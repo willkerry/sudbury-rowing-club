@@ -29,6 +29,7 @@ import { Landing } from "./globals/Landing";
 import { Regatta } from "./globals/Regatta";
 import { SafetyStatus } from "./globals/SafetyStatus";
 import { SiteNotice } from "./globals/SiteNotice";
+import { SiteSettings } from "./globals/SiteSettings";
 import { NoteBlock } from "./lib/lexical/note-block";
 import { OembedBlock } from "./lib/lexical/oembed-block";
 import { QuoteBlock } from "./lib/lexical/quote-block";
@@ -90,7 +91,7 @@ export default buildConfig({
       BlocksFeature({ blocks: [QuoteBlock, NoteBlock, OembedBlock] }),
     ],
   }),
-  globals: [Landing, Regatta, SafetyStatus, SiteNotice].map(
+  globals: [Landing, Regatta, SafetyStatus, SiteNotice, SiteSettings].map(
     withGlobalRevalidation,
   ),
   logger: isProduction ? cloudflareLogger : undefined,

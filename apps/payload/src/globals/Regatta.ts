@@ -166,5 +166,42 @@ export const Regatta: GlobalConfig = {
         },
       ],
     },
+
+    {
+      label: "Venue",
+      name: "venue",
+      type: "group",
+      admin: {
+        description:
+          "Where the regatta happens. Used in schema.org markup and for visitor wayfinding.",
+      },
+      fields: [
+        { name: "name", type: "text" },
+        { name: "street", type: "text" },
+        { name: "town", type: "text" },
+        { name: "county", type: "text" },
+        { name: "postcode", type: "text" },
+      ],
+    },
+    {
+      name: "liveResultsUrl",
+      type: "text",
+      admin: {
+        description: "Public live-results dashboard, shown during the regatta.",
+      },
+    },
+    {
+      label: "Testimonials section copy",
+      name: "testimonialsSection",
+      type: "group",
+      fields: [
+        {
+          defaultValue: "Feedback",
+          name: "title",
+          type: "text",
+        },
+        { name: "description", type: "textarea" },
+      ],
+    },
   ],
 };

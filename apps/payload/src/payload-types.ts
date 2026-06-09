@@ -118,12 +118,14 @@ export interface Config {
     regatta: Regatta1;
     safetyStatus: SafetyStatus;
     siteNotice: SiteNotice;
+    siteSettings: SiteSetting;
   };
   globalsSelect: {
     landing: LandingSelect<false> | LandingSelect<true>;
     regatta: RegattaSelect<false> | RegattaSelect<true>;
     safetyStatus: SafetyStatusSelect<false> | SafetyStatusSelect<true>;
     siteNotice: SiteNoticeSelect<false> | SiteNoticeSelect<true>;
+    siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -1113,6 +1115,24 @@ export interface Regatta1 {
     map?: (string | null) | Media;
     mapImage?: (string | null) | Media;
   };
+  /**
+   * Where the regatta happens. Used in schema.org markup and for visitor wayfinding.
+   */
+  venue?: {
+    name?: string | null;
+    street?: string | null;
+    town?: string | null;
+    county?: string | null;
+    postcode?: string | null;
+  };
+  /**
+   * Public live-results dashboard, shown during the regatta.
+   */
+  liveResultsUrl?: string | null;
+  testimonialsSection?: {
+    title?: string | null;
+    description?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1170,6 +1190,70 @@ export interface SiteNotice {
    * If on, the time is shown alongside the date.
    */
   includeTime?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings".
+ */
+export interface SiteSetting {
+  id: string;
+  club?: {
+    name?: string | null;
+    /**
+     * Primary contact email shown publicly.
+     */
+    email?: string | null;
+    logo?: (string | null) | Media;
+    /**
+     * Used in schema.org markup.
+     */
+    foundingDate?: string | null;
+  };
+  address?: {
+    streetAddress?: string | null;
+    locality?: string | null;
+    region?: string | null;
+    postalCode?: string | null;
+    country?: string | null;
+    /**
+     * Canonical link to the club on Google/Apple/etc. Used in schema.org markup as hasMap.
+     */
+    mapUrl?: string | null;
+  };
+  /**
+   * Used for embedded maps and schema.org.
+   */
+  location?: {
+    lat?: number | null;
+    lng?: number | null;
+  };
+  /**
+   * Where regatta visitors should arrive on the day.
+   */
+  regattaLocation?: {
+    lat?: number | null;
+    lng?: number | null;
+  };
+  /**
+   * Used as the From: header on automated emails.
+   */
+  sender?: {
+    name?: string | null;
+    email?: string | null;
+  };
+  socials?:
+    | {
+        platform: 'facebook' | 'instagram' | 'x' | 'youtube' | 'linkedin' | 'tiktok';
+        /**
+         * Public handle including @, for display only.
+         */
+        handle?: string | null;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1238,6 +1322,22 @@ export interface RegattaSelect<T extends boolean = true> {
         map?: T;
         mapImage?: T;
       };
+  venue?:
+    | T
+    | {
+        name?: T;
+        street?: T;
+        town?: T;
+        county?: T;
+        postcode?: T;
+      };
+  liveResultsUrl?: T;
+  testimonialsSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1266,6 +1366,59 @@ export interface SiteNoticeSelect<T extends boolean = true> {
   link?: T;
   date?: T;
   includeTime?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  club?:
+    | T
+    | {
+        name?: T;
+        email?: T;
+        logo?: T;
+        foundingDate?: T;
+      };
+  address?:
+    | T
+    | {
+        streetAddress?: T;
+        locality?: T;
+        region?: T;
+        postalCode?: T;
+        country?: T;
+        mapUrl?: T;
+      };
+  location?:
+    | T
+    | {
+        lat?: T;
+        lng?: T;
+      };
+  regattaLocation?:
+    | T
+    | {
+        lat?: T;
+        lng?: T;
+      };
+  sender?:
+    | T
+    | {
+        name?: T;
+        email?: T;
+      };
+  socials?:
+    | T
+    | {
+        platform?: T;
+        handle?: T;
+        href?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
