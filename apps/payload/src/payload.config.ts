@@ -8,7 +8,7 @@ import {
 import { sqliteD1Adapter } from "@payloadcms/db-d1-sqlite";
 import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { r2Storage } from "@payloadcms/storage-r2";
-import { buildConfig } from "payload";
+import { buildConfig, type Config } from "payload";
 import type { GetPlatformProxyOptions } from "wrangler";
 import { Committees } from "./collections/Committees";
 import { GovernanceDocuments } from "./collections/GovernanceDocuments";
@@ -67,7 +67,7 @@ const cloudflareLogger = {
   trace: createLog("trace", console.debug),
   warn: createLog("warn", console.warn),
   silent: () => {},
-} as any; // Use PayloadLogger type when it's exported
+} as unknown as Config["logger"]; // Use PayloadLogger type when it's exported
 
 const cloudflare =
   isCLI || !isProduction

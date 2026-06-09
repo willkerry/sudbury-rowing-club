@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zv } from "@/lib/zv";
 
 export const GovernanceDocuments: CollectionConfig = {
+  defaultSort: ["group", "_order"],
   orderable: true,
   slug: "governanceDocuments",
 

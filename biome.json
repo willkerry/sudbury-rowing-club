@@ -34,7 +34,8 @@
       "!**/apps/payload/src/payload-types.ts",
       "!**/apps/payload/src/migrations",
       "!**/apps/payload/src/app/(payload)/admin/importMap.js",
-      "!**/apps/web/types/payload-types.ts"
+      "!**/apps/web/types/payload-types.ts",
+      "!**/apps/payload/cloudflare-env.d.ts"
     ]
   },
   "formatter": {
