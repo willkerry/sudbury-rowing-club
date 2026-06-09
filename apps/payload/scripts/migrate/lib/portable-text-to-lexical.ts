@@ -161,6 +161,17 @@ function markFormat(marks: string[]): number {
   return f;
 }
 
+const URL_HAS_SCHEME_RE = /^([a-z][a-z0-9+.-]*:|#|\/)/i;
+
+function normaliseUrl(href: string | undefined | null): string | undefined {
+  if (!href) return;
+  const trimmed = href.trim();
+  if (!trimmed) return;
+  if (URL_HAS_SCHEME_RE.test(trimmed)) return trimmed;
+
+  return `https://${trimmed}`;
+}
+
 function spansToInline(block: PortableTextBlock): LexicalInline[] {
   const out: LexicalInline[] = [];
   for (const span of block.children) {
@@ -173,15 +184,21 @@ function spansToInline(block: PortableTextBlock): LexicalInline[] {
       const def = block.markDefs.find((d) => d._key === linkMarkKey) as
         | { href?: string }
         | undefined;
-      out.push({
-        children: [node],
-        direction: "ltr",
-        fields: { linkType: "custom", newTab: false, url: def?.href ?? "" },
-        format: "",
-        indent: 0,
-        type: "link",
-        version: 2,
-      });
+      const normalisedUrl = normaliseUrl(def?.href);
+      if (normalisedUrl) {
+        out.push({
+          children: [node],
+          direction: "ltr",
+          fields: { linkType: "custom", newTab: false, url: normalisedUrl },
+          format: "",
+          indent: 0,
+          type: "link",
+          version: 2,
+        });
+      } else {
+        // Link with no resolvable href — drop the link mark, keep the text.
+        out.push(node);
+      }
     } else {
       out.push(node);
     }
@@ -266,8 +283,15 @@ async function convertQuote(
   node: PortableTextNode,
   ctx: ConvertContext,
 ): Promise<LexicalBlock> {
-  const q = node as { body?: PortableTextNode[]; attribution?: string };
-  const inner = await portableTextToLexical(q.body ?? [], ctx);
+  const q = node as {
+    body?: PortableTextNode[];
+    quote?: PortableTextNode[];
+    attribution?: string;
+  };
+  // Sanity's quote block stores its rich text content in either `quote`
+  // (older schemas) or `body` (newer). Try both.
+  const source = q.quote && q.quote.length > 0 ? q.quote : (q.body ?? []);
+  const inner = await portableTextToLexical(source, ctx);
 
   return {
     format: "",
