@@ -25,10 +25,19 @@ export const Officers: CollectionConfig = {
       name: "occupant",
       relationTo: "people",
       type: "relationship",
+      admin: {
+        description:
+          "Person currently in this role. Leave blank if the position is vacant.",
+      },
     },
     {
+      label: "Role description",
       name: "description",
       type: "textarea",
+      admin: {
+        description:
+          "What this officer is responsible for. Shown on the governance page.",
+      },
     },
     {
       index: true,

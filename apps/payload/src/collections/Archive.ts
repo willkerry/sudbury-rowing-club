@@ -58,8 +58,8 @@ export const Archive: CollectionConfig = {
         description: "Approximate map point (WGS-84).",
       },
       fields: [
-        { name: "lat", type: "number" },
-        { name: "lng", type: "number" },
+        { label: "Latitude", name: "lat", type: "number" },
+        { label: "Longitude", name: "lng", type: "number" },
       ],
     },
     {

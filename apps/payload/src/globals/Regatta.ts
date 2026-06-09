@@ -98,13 +98,19 @@ export const Regatta: GlobalConfig = {
               fields: [
                 { name: "description", type: "richText" },
                 {
+                  label: "Course records (PDF)",
                   name: "courseRecords",
                   relationTo: "media",
                   type: "upload",
+                  admin: {
+                    description:
+                      "Single document listing course records over the years.",
+                  },
                 },
               ],
             },
             {
+              label: "Live results URL",
               name: "liveResultsUrl",
               type: "text",
               admin: {
@@ -124,14 +130,22 @@ export const Regatta: GlobalConfig = {
                 { name: "heading", type: "text" },
                 { name: "description", type: "richText" },
                 {
+                  label: "Course map (PDF)",
                   name: "map",
                   relationTo: "media",
                   type: "upload",
+                  admin: {
+                    description: "Downloadable PDF version of the course map.",
+                  },
                 },
                 {
+                  label: "Course map (image)",
                   name: "mapImage",
                   relationTo: "media",
                   type: "upload",
+                  admin: {
+                    description: "Inline image version shown on the page.",
+                  },
                 },
               ],
             },

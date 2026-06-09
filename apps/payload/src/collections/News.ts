@@ -25,6 +25,7 @@ export const News: CollectionConfig = {
       relationTo: "people",
       type: "relationship",
       admin: {
+        description: "Optional. Pick a person from the People collection.",
         position: "sidebar",
       },
     },
@@ -41,13 +42,19 @@ export const News: CollectionConfig = {
       name: "excerpt",
       type: "textarea",
       admin: {
+        description:
+          "Short summary shown on the news index and in social previews. Plain text only.",
         position: "sidebar",
       },
     },
     {
+      label: "Featured image",
       name: "featuredImage",
       relationTo: "media",
       type: "upload",
+      admin: {
+        description: "Hero image shown above the article and in cards.",
+      },
     },
     {
       name: "body",

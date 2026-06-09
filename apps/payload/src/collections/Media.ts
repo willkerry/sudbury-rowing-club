@@ -12,13 +12,22 @@ export const Media: CollectionConfig = {
   },
   fields: [
     {
+      label: "Alt text",
       name: "alt",
       required: true,
       type: "text",
+      admin: {
+        description:
+          "Describes the image for users who can't see it. Keep it short, factual, and don't repeat the caption.",
+      },
     },
     {
       name: "caption",
       type: "textarea",
+      admin: {
+        description:
+          "Optional supporting line shown under the image (subjects' names, location, etc.).",
+      },
     },
     {
       index: true,

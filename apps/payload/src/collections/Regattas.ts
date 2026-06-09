@@ -24,6 +24,7 @@ export const Regattas: CollectionConfig = {
       type: "date",
     },
     {
+      label: "Results URL",
       name: "results",
       type: "text",
 
@@ -39,20 +40,28 @@ export const Regattas: CollectionConfig = {
           .nullish(),
       ),
       admin: {
-        description: "Link to results",
+        description:
+          "Where the results for this year's regatta live. Accepts a full URL or a site-relative path like /results/regatta2024/.",
       },
     },
 
     {
+      labels: { plural: "Galleries", singular: "Gallery" },
       name: "galleries",
       type: "array",
+      admin: {
+        description:
+          "External photo galleries from the day (Hiskett, Flickr, club photographers, etc.).",
+      },
       fields: [
         {
+          label: "Photographer name",
           name: "name",
           required: true,
           type: "text",
         },
         {
+          label: "Gallery URL",
           name: "url",
           required: true,
           type: "text",
@@ -63,6 +72,9 @@ export const Regattas: CollectionConfig = {
         {
           name: "password",
           type: "text",
+          admin: {
+            description: "Optional gallery password shown alongside the link.",
+          },
         },
       ],
     },

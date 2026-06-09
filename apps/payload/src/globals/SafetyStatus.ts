@@ -12,6 +12,10 @@ export const SafetyStatus: GlobalConfig = {
     {
       name: "status",
       type: "radio",
+      admin: {
+        description:
+          "Conditions traffic light: green = all good, amber = caution, red = no rowing.",
+      },
       options: [
         { label: "Neutral", value: "neutral" },
         { label: "Green", value: "green" },
@@ -22,10 +26,18 @@ export const SafetyStatus: GlobalConfig = {
     {
       name: "description",
       type: "textarea",
+      admin: {
+        description:
+          "Short reason for the current status (e.g. 'high stream, no novices').",
+      },
     },
     {
+      label: "Show on site",
       name: "display",
       type: "checkbox",
+      admin: {
+        description: "Untick to suppress the status banner entirely.",
+      },
     },
   ],
 };

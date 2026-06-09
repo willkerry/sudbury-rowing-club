@@ -20,6 +20,10 @@ export const VicePresidents: CollectionConfig = {
       relationTo: "people",
       required: true,
       type: "relationship",
+      admin: {
+        description:
+          "Pick from the People collection. Add a Person record first if they aren't already there.",
+      },
     },
 
     {

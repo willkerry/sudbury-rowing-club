@@ -47,6 +47,10 @@ export const People: CollectionConfig = {
           headers.get("x-secret") === process.env.PAYLOAD_SECRET ||
           Boolean(user),
       },
+      admin: {
+        description:
+          "Personal email. Only visible to signed-in users — never rendered publicly.",
+      },
     },
 
     {
@@ -61,6 +65,10 @@ export const People: CollectionConfig = {
     {
       name: "bio",
       type: "textarea",
+      admin: {
+        description:
+          "Short biography. Shown alongside officer, trustee or vice-president listings.",
+      },
     },
 
     {

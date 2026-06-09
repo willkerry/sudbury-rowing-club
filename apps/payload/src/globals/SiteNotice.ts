@@ -39,10 +39,12 @@ export const SiteNotice: GlobalConfig = {
       type: "richText",
     },
     {
+      label: "Link URL",
       name: "link",
       type: "text",
       admin: {
-        description: "Optional URL the notice should link to.",
+        description:
+          "Optional URL the notice should link to. When set, the whole banner becomes a link and any body text is ignored.",
       },
     },
     {

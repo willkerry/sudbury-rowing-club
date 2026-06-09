@@ -43,15 +43,31 @@ export const SiteSettings: GlobalConfig = {
       ],
     },
     {
+      label: "Postal address",
       name: "address",
       type: "group",
       fields: [
-        { name: "streetAddress", type: "text" },
-        { defaultValue: "Sudbury", name: "locality", type: "text" },
-        { defaultValue: "Suffolk", name: "region", type: "text" },
-        { name: "postalCode", type: "text" },
-        { defaultValue: "United Kingdom", name: "country", type: "text" },
+        { label: "Street address", name: "streetAddress", type: "text" },
         {
+          defaultValue: "Sudbury",
+          label: "Town",
+          name: "locality",
+          type: "text",
+        },
+        {
+          defaultValue: "Suffolk",
+          label: "County",
+          name: "region",
+          type: "text",
+        },
+        { label: "Postcode", name: "postalCode", type: "text" },
+        {
+          defaultValue: "United Kingdom",
+          name: "country",
+          type: "text",
+        },
+        {
+          label: "Map URL",
           name: "mapUrl",
           type: "text",
           admin: {
@@ -69,8 +85,8 @@ export const SiteSettings: GlobalConfig = {
         description: "Used for embedded maps and schema.org.",
       },
       fields: [
-        { name: "lat", type: "number" },
-        { name: "lng", type: "number" },
+        { label: "Latitude", name: "lat", type: "number" },
+        { label: "Longitude", name: "lng", type: "number" },
       ],
     },
     {
@@ -81,8 +97,8 @@ export const SiteSettings: GlobalConfig = {
         description: "Where regatta visitors should arrive on the day.",
       },
       fields: [
-        { name: "lat", type: "number" },
-        { name: "lng", type: "number" },
+        { label: "Latitude", name: "lat", type: "number" },
+        { label: "Longitude", name: "lng", type: "number" },
       ],
     },
     {
@@ -127,6 +143,7 @@ export const SiteSettings: GlobalConfig = {
           },
         },
         {
+          label: "Profile URL",
           name: "href",
           required: true,
           type: "text",

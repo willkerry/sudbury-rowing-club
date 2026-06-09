@@ -31,6 +31,10 @@ export const Committees: CollectionConfig = {
       name: "members",
       relationTo: "officers",
       type: "relationship",
+      admin: {
+        description:
+          "Officers sitting on this committee. Their photos and names come from the linked Person record.",
+      },
     },
     {
       index: true,
