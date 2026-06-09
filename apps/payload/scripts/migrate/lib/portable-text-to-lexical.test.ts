@@ -1,0 +1,141 @@
+import { describe, expect, it } from "bun:test";
+import { portableTextToLexical } from "./portable-text-to-lexical";
+
+const stubCtx = { resolveUpload: async () => undefined };
+
+describe("portableTextToLexical — text content", () => {
+  it("converts a simple paragraph", async () => {
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: [], text: "Hello" }],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
+      stubCtx,
+    );
+
+    const para = out.root.children[0] as {
+      type: string;
+      children: { text: string }[];
+    };
+    expect(para.type).toBe("paragraph");
+    expect(para.children[0].text).toBe("Hello");
+  });
+
+  it("converts heading styles", async () => {
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: [], text: "Two" }],
+          markDefs: [],
+          style: "h2",
+        },
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: [], text: "Three" }],
+          markDefs: [],
+          style: "h3",
+        },
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: [], text: "Four" }],
+          markDefs: [],
+          style: "h4",
+        },
+      ],
+      stubCtx,
+    );
+
+    const tags = (out.root.children as { tag: string }[]).map((c) => c.tag);
+    expect(tags).toEqual(["h2", "h3", "h4"]);
+  });
+
+  it("applies bold and italic via the format bitmask", async () => {
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "block",
+          markDefs: [],
+          style: "normal",
+          children: [
+            { _type: "span", marks: ["strong"], text: "bold" },
+            { _type: "span", marks: ["em"], text: " plus italic" },
+            { _type: "span", marks: ["strong", "em"], text: " both" },
+          ],
+        },
+      ],
+      stubCtx,
+    );
+
+    const spans = (out.root.children[0] as { children: { format: number }[] })
+      .children;
+    // Lexical text format bits: bold=1, italic=2
+    expect(spans[0].format).toBe(1);
+    expect(spans[1].format).toBe(2);
+    expect(spans[2].format).toBe(3);
+  });
+
+  it("converts link marks to link nodes", async () => {
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: ["k1"], text: "click" }],
+          style: "normal",
+          markDefs: [
+            { _key: "k1", _type: "link", href: "https://example.com" },
+          ],
+        },
+      ],
+      stubCtx,
+    );
+
+    const link = (
+      out.root.children[0] as {
+        children: { type: string; fields: { url: string } }[];
+      }
+    ).children[0];
+    expect(link.type).toBe("link");
+    expect(link.fields.url).toBe("https://example.com");
+  });
+
+  it("groups consecutive list items into a list node", async () => {
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: [], text: "one" }],
+          level: 1,
+          listItem: "bullet",
+          markDefs: [],
+          style: "normal",
+        },
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: [], text: "two" }],
+          level: 1,
+          listItem: "bullet",
+          markDefs: [],
+          style: "normal",
+        },
+        {
+          _type: "block",
+          children: [{ _type: "span", marks: [], text: "after" }],
+          markDefs: [],
+          style: "normal",
+        },
+      ],
+      stubCtx,
+    );
+
+    expect((out.root.children[0] as { type: string }).type).toBe("list");
+    expect(
+      (out.root.children[0] as { children: unknown[] }).children,
+    ).toHaveLength(2);
+    expect((out.root.children[1] as { type: string }).type).toBe("paragraph");
+  });
+});
