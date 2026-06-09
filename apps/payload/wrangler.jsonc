@@ -23,6 +23,22 @@
       "remote": true
     }
   ],
+  "env": {
+    "local": {
+      "d1_databases": [
+        {
+          "binding": "D1",
+          "database_name": "sudbury-payload-local"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2",
+          "bucket_name": "sudbury-payload-r2"
+        }
+      ]
+    }
+  },
   "r2_buckets": [
     {
       "binding": "R2",
