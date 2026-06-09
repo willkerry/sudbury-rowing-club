@@ -6,6 +6,72 @@ const stubCtx: ConvertContext = {
   resolveUpload: async (): Promise<string | undefined> => undefined,
 };
 
+describe("portableTextToLexical — custom blocks", () => {
+  it("converts a quote block", async () => {
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "quote",
+          attribution: "A. Person",
+          body: [
+            {
+              _type: "block",
+              children: [{ _type: "span", marks: [], text: "Wisdom" }],
+              markDefs: [],
+              style: "normal",
+            },
+          ],
+        },
+      ],
+      stubCtx,
+    );
+    const block = out.root.children[0] as {
+      type: string;
+      fields: { blockType: string; attribution: string };
+    };
+    expect(block.type).toBe("block");
+    expect(block.fields.blockType).toBe("quote");
+    expect(block.fields.attribution).toBe("A. Person");
+  });
+
+  it("converts a note block", async () => {
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "note",
+          type: "warning",
+          body: [
+            {
+              _type: "block",
+              children: [{ _type: "span", marks: [], text: "Heads up" }],
+              markDefs: [],
+              style: "normal",
+            },
+          ],
+        },
+      ],
+      stubCtx,
+    );
+    const block = out.root.children[0] as {
+      fields: { blockType: string; variant: string };
+    };
+    expect(block.fields.blockType).toBe("note");
+    expect(block.fields.variant).toBe("warning");
+  });
+
+  it("converts an oembed block", async () => {
+    const out = await portableTextToLexical(
+      [{ _type: "oembed", url: "https://youtube.com/watch?v=abc" }],
+      stubCtx,
+    );
+    const block = out.root.children[0] as {
+      fields: { blockType: string; url: string };
+    };
+    expect(block.fields.blockType).toBe("oembed");
+    expect(block.fields.url).toBe("https://youtube.com/watch?v=abc");
+  });
+});
+
 describe("portableTextToLexical — figure", () => {
   it("converts a figure block to an upload node using the resolver", async () => {
     const ctx: ConvertContext = {

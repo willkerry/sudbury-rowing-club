@@ -262,6 +262,53 @@ function collectListItems(
   return { blocks, nextIdx: i };
 }
 
+async function convertQuote(
+  node: PortableTextNode,
+  ctx: ConvertContext,
+): Promise<LexicalBlock> {
+  const q = node as { body?: PortableTextNode[]; attribution?: string };
+  const inner = await portableTextToLexical(q.body ?? [], ctx);
+
+  return {
+    format: "",
+    type: "block",
+    version: 2,
+    fields: {
+      attribution: q.attribution ?? "",
+      blockType: "quote",
+      body: inner,
+    },
+  };
+}
+
+async function convertNote(
+  node: PortableTextNode,
+  ctx: ConvertContext,
+): Promise<LexicalBlock> {
+  const nt = node as { type?: string; body?: PortableTextNode[] };
+  const inner = await portableTextToLexical(nt.body ?? [], ctx);
+  const variant =
+    (nt.type as "primary" | "success" | "warning" | "error") ?? "primary";
+
+  return {
+    fields: { blockType: "note", variant, body: inner },
+    format: "",
+    type: "block",
+    version: 2,
+  };
+}
+
+function convertOembed(node: PortableTextNode): LexicalBlock {
+  const oe = node as { url?: string };
+
+  return {
+    fields: { blockType: "oembed", url: oe.url ?? "" },
+    format: "",
+    type: "block",
+    version: 2,
+  };
+}
+
 async function convertFigure(
   node: PortableTextNode,
   ctx: ConvertContext,
@@ -312,6 +359,24 @@ async function processNodes(
 
     if (n._type === "figure") {
       out.push(await convertFigure(n, ctx));
+      i++;
+      continue;
+    }
+
+    if (n._type === "quote") {
+      out.push(await convertQuote(n, ctx));
+      i++;
+      continue;
+    }
+
+    if (n._type === "note") {
+      out.push(await convertNote(n, ctx));
+      i++;
+      continue;
+    }
+
+    if (n._type === "oembed") {
+      out.push(convertOembed(n));
       i++;
       continue;
     }
