@@ -265,12 +265,10 @@ export interface Archive {
    * Years either side of `year` to consider this record. Shown as 'c. (year-range)-(year+range)'.
    */
   range?: number | null;
-  description?: string | null;
-  image?: (string | null) | Media;
   /**
-   * Alt text. Falls back to the Media record's alt text.
+   * Alt text and caption live on the Media record itself, not here.
    */
-  alt?: string | null;
+  image?: (string | null) | Media;
   /**
    * Approximate map point (WGS-84).
    */
@@ -774,9 +772,7 @@ export interface ArchiveSelect<T extends boolean = true> {
   title?: T;
   year?: T;
   range?: T;
-  description?: T;
   image?: T;
-  alt?: T;
   location?:
     | T
     | {

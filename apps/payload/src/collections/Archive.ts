@@ -43,19 +43,12 @@ export const Archive: CollectionConfig = {
       },
     },
     {
-      name: "description",
-      type: "textarea",
-    },
-    {
       name: "image",
       relationTo: "media",
       type: "upload",
-    },
-    {
-      name: "alt",
-      type: "text",
       admin: {
-        description: "Alt text. Falls back to the Media record's alt text.",
+        description:
+          "Alt text and caption live on the Media record itself, not here.",
       },
     },
     {
