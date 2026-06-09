@@ -13,6 +13,7 @@ import type { GetPlatformProxyOptions } from "wrangler";
 import { Committees } from "./collections/Committees";
 import { GovernanceDocuments } from "./collections/GovernanceDocuments";
 import { Media } from "./collections/Media";
+import { News } from "./collections/News";
 import { Officers } from "./collections/Officers";
 import { People } from "./collections/People";
 import { RegattaDocuments } from "./collections/RegattaDocuments";
@@ -106,6 +107,7 @@ export default buildConfig({
     Trustees,
     GovernanceDocuments,
     SafetyNotices,
+    News,
   ],
   plugins: [
     r2Storage({
