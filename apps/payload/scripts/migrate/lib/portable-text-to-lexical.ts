@@ -335,8 +335,8 @@ async function convertFigure(
   node: PortableTextNode,
   ctx: ConvertContext,
 ): Promise<LexicalBlock> {
-  const fig = node as { image?: { asset?: { _ref?: string } } };
-  const ref = fig.image?.asset?._ref;
+  const { assetIdFrom } = await import("./asset-ref");
+  const ref = assetIdFrom(node);
   const mediaId = ref ? await ctx.resolveUpload(ref) : undefined;
   if (mediaId) {
     return {

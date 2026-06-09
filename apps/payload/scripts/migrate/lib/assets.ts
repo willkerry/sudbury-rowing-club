@@ -24,7 +24,10 @@ export async function ensureMediaForSanityAsset(
   });
   if (existing.docs[0]) return existing.docs[0] as MediaRecord;
 
-  const data = await reader.readAssetBytes(asset);
+  const buf = await reader.readAssetBytes(asset);
+  // Miniflare's proxy worker can't hydrate Bun's Buffer view across the
+  // R2 binding boundary; pass a fresh Uint8Array copy instead.
+  const data = new Uint8Array(buf);
 
   const created = await payload.create({
     collection: "media",
@@ -36,7 +39,7 @@ export async function ensureMediaForSanityAsset(
       name: asset.originalFilename,
       data,
       mimetype: asset.mimeType,
-      size: asset.size,
+      size: asset.size || buf.byteLength,
     },
   });
 

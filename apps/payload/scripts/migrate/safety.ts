@@ -1,3 +1,4 @@
+import { assetIdFrom } from "./lib/asset-ref";
 import { ensureMediaForRef } from "./lib/assets";
 import { getPayloadClient } from "./lib/payload-client";
 import {
@@ -53,9 +54,9 @@ async function transform(doc: SanityDoc) {
   const slug = slugger(title);
 
   const sanityDoc = doc.document as
-    | { title?: string; asset?: { _ref?: string } }
+    | { title?: string; asset?: { _ref?: string }; _sanityAsset?: string }
     | undefined;
-  const documentMediaId = await resolveUpload(sanityDoc?.asset?._ref ?? "");
+  const documentMediaId = await resolveUpload(assetIdFrom(sanityDoc) ?? "");
 
   const sanityLink = doc.link as { url?: string } | undefined;
 

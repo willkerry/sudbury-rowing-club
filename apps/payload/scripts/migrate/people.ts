@@ -1,3 +1,4 @@
+import { assetIdFrom } from "./lib/asset-ref";
 import { ensureMediaForRef } from "./lib/assets";
 import { getPayloadClient } from "./lib/payload-client";
 import { createSanityExportReader, type SanityDoc } from "./lib/sanity-export";
@@ -34,13 +35,10 @@ console.log(`[people] imported ${imported} people`);
 process.exit(0);
 
 async function transform(doc: SanityDoc) {
-  const figure = doc.image as
-    | { image?: { asset?: { _ref?: string } }; altText?: string }
-    | undefined;
   const imageMediaId = await ensureMediaForRef(
     payload,
     reader,
-    figure?.image?.asset?._ref ?? null,
+    assetIdFrom(doc.image),
   ).then((media) => media?.id);
 
   const firstName = String(doc.firstName ?? "").trim() || "Unknown";
