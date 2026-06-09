@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { slugFromTitle } from "../lib/slug-from-title";
 
 export const News: CollectionConfig = {
   defaultSort: "-date",
@@ -20,20 +21,12 @@ export const News: CollectionConfig = {
       type: "text",
     },
     {
-      index: true,
-      name: "slug",
-      required: true,
-      type: "text",
-      unique: true,
-      admin: {
-        description: "URL slug for /news/<slug>.",
-        position: "sidebar",
-      },
-    },
-    {
       name: "author",
       relationTo: "people",
       type: "relationship",
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "date",
@@ -47,6 +40,9 @@ export const News: CollectionConfig = {
     {
       name: "excerpt",
       type: "textarea",
+      admin: {
+        position: "sidebar",
+      },
     },
     {
       name: "featuredImage",
@@ -66,6 +62,28 @@ export const News: CollectionConfig = {
           "Original Sanity _id. FE fallback during cutover. Removable after.",
         hidden: true,
         position: "sidebar",
+      },
+    },
+    {
+      index: true,
+      name: "slug",
+      required: true,
+      type: "text",
+      unique: true,
+      admin: {
+        description: "URL slug for /news/<slug>.",
+        position: "sidebar",
+        components: {
+          afterInput: [
+            {
+              exportName: "default",
+              path: "/components/SlugFromTitleButton.tsx",
+            },
+          ],
+        },
+      },
+      hooks: {
+        beforeValidate: [slugFromTitle],
       },
     },
   ],

@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload";
 import { z } from "zod";
+import { slugFromTitle } from "../lib/slug-from-title";
 import { zv } from "../lib/zv";
 
 export const SafetyNotices: CollectionConfig = {
@@ -26,6 +27,17 @@ export const SafetyNotices: CollectionConfig = {
       admin: {
         description: "URL slug for /safety/<slug>. Auto-set on migration.",
         position: "sidebar",
+        components: {
+          afterInput: [
+            {
+              exportName: "default",
+              path: "/components/SlugFromTitleButton.tsx",
+            },
+          ],
+        },
+      },
+      hooks: {
+        beforeValidate: [slugFromTitle],
       },
     },
     {

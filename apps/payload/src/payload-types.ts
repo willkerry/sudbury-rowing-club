@@ -388,10 +388,6 @@ export interface SafetyNotice {
 export interface News {
   id: string;
   title: string;
-  /**
-   * URL slug for /news/<slug>.
-   */
-  slug: string;
   author?: (string | null) | Person;
   /**
    * Original publication date.
@@ -418,6 +414,10 @@ export interface News {
    * Original Sanity _id. FE fallback during cutover. Removable after.
    */
   sanityDocId?: string | null;
+  /**
+   * URL slug for /news/<slug>.
+   */
+  slug: string;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -710,13 +710,13 @@ export interface SafetyNoticesSelect<T extends boolean = true> {
  */
 export interface NewsSelect<T extends boolean = true> {
   title?: T;
-  slug?: T;
   author?: T;
   date?: T;
   excerpt?: T;
   featuredImage?: T;
   body?: T;
   sanityDocId?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

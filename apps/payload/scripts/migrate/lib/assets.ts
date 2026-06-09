@@ -36,9 +36,9 @@ export async function ensureMediaForSanityAsset(
       sanityAssetId: asset._id,
     } as never,
     file: {
-      name: asset.originalFilename,
-      data,
+      data: data as unknown as Buffer,
       mimetype: asset.mimeType,
+      name: asset.originalFilename,
       size: asset.size || buf.byteLength,
     },
   });
