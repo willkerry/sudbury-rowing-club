@@ -81,6 +81,7 @@
     "migrate:safety": "bun run scripts/migrate/safety.ts",
     "migrate:safety-status": "bun run scripts/migrate/safety-status.ts",
     "migrate:site-notice": "bun run scripts/migrate/site-notice.ts",
+    "migrate:site-settings": "bun run scripts/migrate/site-settings.ts",
     "migrate:test": "bun test scripts/migrate",
     "migrate:trustees": "bun run scripts/migrate/trustees.ts",
     "migrate:vice-presidents": "bun run scripts/migrate/vice-presidents.ts",

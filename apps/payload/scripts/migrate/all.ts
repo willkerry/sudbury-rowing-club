@@ -18,6 +18,7 @@ const scripts = [
   "scripts/migrate/regatta-settings.ts",
   "scripts/migrate/regatta-documents.ts",
   "scripts/migrate/archive.ts",
+  "scripts/migrate/site-settings.ts",
 ];
 
 for (const script of scripts) {
