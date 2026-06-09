@@ -10,6 +10,7 @@ import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { r2Storage } from "@payloadcms/storage-r2";
 import { buildConfig } from "payload";
 import type { GetPlatformProxyOptions } from "wrangler";
+import { Committees } from "./collections/Committees";
 import { GovernanceDocuments } from "./collections/GovernanceDocuments";
 import { Media } from "./collections/Media";
 import { Officers } from "./collections/Officers";
@@ -75,6 +76,7 @@ export default buildConfig({
     binding: cloudflare.env.D1,
     idType: "uuid",
     migrationDir: path.resolve(dirname, "migrations"),
+    push: false,
   }),
 
   editor: lexicalEditor({
@@ -97,6 +99,7 @@ export default buildConfig({
     Media,
     People,
     Officers,
+    Committees,
     RegattaDocuments,
     Regattas,
     VicePresidents,

@@ -30,7 +30,11 @@
       "!**/.tmp",
       "!**/.vscode",
       "!**/.content-collections",
-      "!**/apps/results/data"
+      "!**/apps/results/data",
+      "!**/apps/payload/src/payload-types.ts",
+      "!**/apps/payload/src/migrations",
+      "!**/apps/payload/src/app/(payload)/admin/importMap.js",
+      "!**/apps/web/types/payload-types.ts"
     ]
   },
   "formatter": {
