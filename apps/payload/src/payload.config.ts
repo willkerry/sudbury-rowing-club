@@ -111,7 +111,7 @@ export default buildConfig({
     }),
   ],
   typescript: {
-    outputFile: path.resolve("../", "web", "types", "payload-types.ts"),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
 });
 

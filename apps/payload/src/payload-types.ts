@@ -71,6 +71,12 @@ export interface Config {
     media: Media;
     people: Person;
     officers: Officer;
+    regattaDocuments: RegattaDocument;
+    regattas: Regatta;
+    "vice-presidents": VicePresident;
+    trustees: Trustee;
+    governanceDocuments: GovernanceDocument;
+    safetyNotices: SafetyNotice;
     "payload-kv": PayloadKv;
     "payload-locked-documents": PayloadLockedDocument;
     "payload-preferences": PayloadPreference;
@@ -82,6 +88,16 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     people: PeopleSelect<false> | PeopleSelect<true>;
     officers: OfficersSelect<false> | OfficersSelect<true>;
+    regattaDocuments:
+      | RegattaDocumentsSelect<false>
+      | RegattaDocumentsSelect<true>;
+    regattas: RegattasSelect<false> | RegattasSelect<true>;
+    "vice-presidents": VicePresidentsSelect<false> | VicePresidentsSelect<true>;
+    trustees: TrusteesSelect<false> | TrusteesSelect<true>;
+    governanceDocuments:
+      | GovernanceDocumentsSelect<false>
+      | GovernanceDocumentsSelect<true>;
+    safetyNotices: SafetyNoticesSelect<false> | SafetyNoticesSelect<true>;
     "payload-kv": PayloadKvSelect<false> | PayloadKvSelect<true>;
     "payload-locked-documents":
       | PayloadLockedDocumentsSelect<false>
@@ -94,11 +110,21 @@ export interface Config {
       | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: number;
+    defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    landing: Landing;
+    regatta: Regatta1;
+    governance: Governance;
+    safetyStatus: SafetyStatus;
+  };
+  globalsSelect: {
+    landing: LandingSelect<false> | LandingSelect<true>;
+    regatta: RegattaSelect<false> | RegattaSelect<true>;
+    governance: GovernanceSelect<false> | GovernanceSelect<true>;
+    safetyStatus: SafetyStatusSelect<false> | SafetyStatusSelect<true>;
+  };
   jobs: {
     tasks: unknown;
     workflows: unknown;
@@ -136,7 +162,7 @@ export interface User {
   createdAt: string;
   email: string;
   hash?: string | null;
-  id: number;
+  id: string;
   lockUntil?: string | null;
   loginAttempts?: number | null;
   password?: string | null;
@@ -163,8 +189,12 @@ export interface Media {
   filename?: string | null;
   filesize?: number | null;
   height?: number | null;
-  id: number;
+  id: string;
   mimeType?: string | null;
+  /**
+   * Original Sanity asset id. Migration uses this for idempotency. Safe to clear once Sanity is gone.
+   */
+  sanityAssetId?: string | null;
   thumbnailURL?: string | null;
   updatedAt: string;
   url?: string | null;
@@ -179,8 +209,9 @@ export interface Person {
   email?: string | null;
   firstName: string;
   fullName?: string | null;
-  id: number;
-  image?: (number | null) | Media;
+  hasEmail?: boolean | null;
+  id: string;
+  image?: (string | null) | Media;
   lastName: string;
   updatedAt: string;
 }
@@ -189,11 +220,146 @@ export interface Person {
  * via the `definition` "officers".
  */
 export interface Officer {
+  _order?: string | null;
   createdAt: string;
   description?: string | null;
-  id: number;
-  occupant?: (number | null) | Person;
+  id: string;
+  occupant?: (string | null) | Person;
   role: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regattaDocuments".
+ */
+export interface RegattaDocument {
+  _order?: string | null;
+  createdAt: string;
+  enabled?: boolean | null;
+  file?: (string | null) | Media;
+  id: string;
+  title: string;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regattas".
+ */
+export interface Regatta {
+  createdAt: string;
+  date: string;
+  galleries?:
+    | {
+        name: string;
+        url: string;
+        password?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id: string;
+  number: number;
+  /**
+   * Link to results
+   */
+  results?: string | null;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vice-presidents".
+ */
+export interface VicePresident {
+  createdAt: string;
+  id: string;
+  occupant?: string | null;
+  person: string | Person;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "trustees".
+ */
+export interface Trustee {
+  createdAt: string;
+  id: string;
+  occupant?: string | null;
+  person: string | Person;
+  updatedAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "governanceDocuments".
+ */
+export interface GovernanceDocument {
+  _order?: string | null;
+  createdAt: string;
+  enabled?: boolean | null;
+  file?: (string | null) | Media;
+  id: string;
+  richText?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  title: string;
+  type?: ("file" | "link" | "document")[] | null;
+  updatedAt: string;
+  url?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "safetyNotices".
+ */
+export interface SafetyNotice {
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  createdAt: string;
+  /**
+   * Displayed as the notice’s last updated date. Not necessarily the true last-updated date.
+   */
+  date?: string | null;
+  /**
+   * Optional attached document. Either fill in both fields or leave both empty.
+   */
+  document?: {
+    title?: string | null;
+    document?: (string | null) | Media;
+  };
+  id: string;
+  link?: string | null;
+  pin?: boolean | null;
+  /**
+   * Original Sanity _id. FE fallback during cutover. Removable after.
+   */
+  sanityDocId?: string | null;
+  /**
+   * URL slug for /safety/<slug>. Auto-set on migration.
+   */
+  slug: string;
+  title: string;
   updatedAt: string;
 }
 /**
@@ -210,7 +376,7 @@ export interface PayloadKv {
     | number
     | boolean
     | null;
-  id: number;
+  id: string;
   key: string;
 }
 /**
@@ -222,26 +388,50 @@ export interface PayloadLockedDocument {
   document?:
     | ({
         relationTo: "users";
-        value: number | User;
+        value: string | User;
       } | null)
     | ({
         relationTo: "media";
-        value: number | Media;
+        value: string | Media;
       } | null)
     | ({
         relationTo: "people";
-        value: number | Person;
+        value: string | Person;
       } | null)
     | ({
         relationTo: "officers";
-        value: number | Officer;
+        value: string | Officer;
+      } | null)
+    | ({
+        relationTo: "regattaDocuments";
+        value: string | RegattaDocument;
+      } | null)
+    | ({
+        relationTo: "regattas";
+        value: string | Regatta;
+      } | null)
+    | ({
+        relationTo: "vice-presidents";
+        value: string | VicePresident;
+      } | null)
+    | ({
+        relationTo: "trustees";
+        value: string | Trustee;
+      } | null)
+    | ({
+        relationTo: "governanceDocuments";
+        value: string | GovernanceDocument;
+      } | null)
+    | ({
+        relationTo: "safetyNotices";
+        value: string | SafetyNotice;
       } | null);
   globalSlug?: string | null;
-  id: number;
+  id: string;
   updatedAt: string;
   user: {
     relationTo: "users";
-    value: number | User;
+    value: string | User;
   };
 }
 /**
@@ -250,12 +440,12 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   createdAt: string;
-  id: number;
+  id: string;
   key?: string | null;
   updatedAt: string;
   user: {
     relationTo: "users";
-    value: number | User;
+    value: string | User;
   };
   value?:
     | {
@@ -274,7 +464,7 @@ export interface PayloadPreference {
 export interface PayloadMigration {
   batch?: number | null;
   createdAt: string;
-  id: number;
+  id: string;
   name?: string | null;
   updatedAt: string;
 }
@@ -312,6 +502,7 @@ export interface MediaSelect<T extends boolean = true> {
   filesize?: T;
   height?: T;
   mimeType?: T;
+  sanityAssetId?: T;
   thumbnailURL?: T;
   updatedAt?: T;
   url?: T;
@@ -326,6 +517,7 @@ export interface PeopleSelect<T extends boolean = true> {
   email?: T;
   firstName?: T;
   fullName?: T;
+  hasEmail?: T;
   image?: T;
   lastName?: T;
   updatedAt?: T;
@@ -335,10 +527,98 @@ export interface PeopleSelect<T extends boolean = true> {
  * via the `definition` "officers_select".
  */
 export interface OfficersSelect<T extends boolean = true> {
+  _order?: T;
   createdAt?: T;
   description?: T;
   occupant?: T;
   role?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regattaDocuments_select".
+ */
+export interface RegattaDocumentsSelect<T extends boolean = true> {
+  _order?: T;
+  createdAt?: T;
+  enabled?: T;
+  file?: T;
+  title?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regattas_select".
+ */
+export interface RegattasSelect<T extends boolean = true> {
+  createdAt?: T;
+  date?: T;
+  galleries?:
+    | T
+    | {
+        name?: T;
+        url?: T;
+        password?: T;
+        id?: T;
+      };
+  number?: T;
+  results?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vice-presidents_select".
+ */
+export interface VicePresidentsSelect<T extends boolean = true> {
+  createdAt?: T;
+  occupant?: T;
+  person?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "trustees_select".
+ */
+export interface TrusteesSelect<T extends boolean = true> {
+  createdAt?: T;
+  occupant?: T;
+  person?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "governanceDocuments_select".
+ */
+export interface GovernanceDocumentsSelect<T extends boolean = true> {
+  _order?: T;
+  createdAt?: T;
+  enabled?: T;
+  file?: T;
+  richText?: T;
+  title?: T;
+  type?: T;
+  updatedAt?: T;
+  url?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "safetyNotices_select".
+ */
+export interface SafetyNoticesSelect<T extends boolean = true> {
+  body?: T;
+  createdAt?: T;
+  date?: T;
+  document?:
+    | T
+    | {
+        title?: T;
+        document?: T;
+      };
+  link?: T;
+  pin?: T;
+  sanityDocId?: T;
+  slug?: T;
+  title?: T;
   updatedAt?: T;
 }
 /**
@@ -383,6 +663,254 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing".
+ */
+export interface Landing {
+  createdAt?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  hero?: (string | null) | Media;
+  id: string;
+  images?:
+    | {
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  tagline?: string | null;
+  title?: string | null;
+  updatedAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regatta".
+ */
+export interface Regatta1 {
+  course?: {
+    heading?: string | null;
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ("ltr" | "rtl") | null;
+        format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    map?: (string | null) | Media;
+    mapImage?: (string | null) | Media;
+  };
+  createdAt?: string | null;
+  date?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  entries?: {
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ("ltr" | "rtl") | null;
+        format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+  };
+  events?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        gender?: string | null;
+        prizes?: string | null;
+        course?: ("350m" | "650m") | null;
+        categories?: string | null;
+        boatClasses?:
+          | ("8+" | "4+" | "4x-" | "4x+" | "2+" | "2-" | "2x" | "1x")[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id: string;
+  images?:
+    | {
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  results?: {
+    description?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ("ltr" | "rtl") | null;
+        format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    courseRecords?: (string | null) | Media;
+  };
+  tagline?: string | null;
+  title?: string | null;
+  updatedAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "governance".
+ */
+export interface Governance {
+  createdAt?: string | null;
+  id: string;
+  trustees?: (string | Person)[] | null;
+  updatedAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "safetyStatus".
+ */
+export interface SafetyStatus {
+  createdAt?: string | null;
+  description?: string | null;
+  display?: boolean | null;
+  id: string;
+  status?: ("neutral" | "green" | "amber" | "red") | null;
+  updatedAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing_select".
+ */
+export interface LandingSelect<T extends boolean = true> {
+  createdAt?: T;
+  description?: T;
+  globalType?: T;
+  hero?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  tagline?: T;
+  title?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "regatta_select".
+ */
+export interface RegattaSelect<T extends boolean = true> {
+  course?:
+    | T
+    | {
+        heading?: T;
+        description?: T;
+        map?: T;
+        mapImage?: T;
+      };
+  createdAt?: T;
+  date?: T;
+  description?: T;
+  entries?:
+    | T
+    | {
+        description?: T;
+      };
+  events?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        gender?: T;
+        prizes?: T;
+        course?: T;
+        categories?: T;
+        boatClasses?: T;
+        id?: T;
+      };
+  globalType?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  results?:
+    | T
+    | {
+        description?: T;
+        courseRecords?: T;
+      };
+  tagline?: T;
+  title?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "governance_select".
+ */
+export interface GovernanceSelect<T extends boolean = true> {
+  createdAt?: T;
+  globalType?: T;
+  trustees?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "safetyStatus_select".
+ */
+export interface SafetyStatusSelect<T extends boolean = true> {
+  createdAt?: T;
+  description?: T;
+  display?: T;
+  globalType?: T;
+  status?: T;
+  updatedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "collections_widget".
  */
 export interface CollectionsWidget {
@@ -390,6 +918,69 @@ export interface CollectionsWidget {
     [k: string]: unknown;
   };
   width: "full";
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuoteBlock".
+ */
+export interface QuoteBlock {
+  attribution?: string | null;
+  blockName?: string | null;
+  blockType: "quote";
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NoteBlock".
+ */
+export interface NoteBlock {
+  blockName?: string | null;
+  blockType: "note";
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ("ltr" | "rtl") | null;
+      format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  variant: "primary" | "success" | "warning" | "error";
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OembedBlock".
+ */
+export interface OembedBlock {
+  blockName?: string | null;
+  blockType: "oembed";
+  id?: string | null;
+  /**
+   * URL of the embeddable resource (YouTube, Vimeo, etc.)
+   */
+  url: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

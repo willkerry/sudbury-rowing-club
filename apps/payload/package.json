@@ -61,7 +61,7 @@
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "generate:types": "pnpm run generate:types:cloudflare && pnpm run generate:types:payload",
     "generate:types:cloudflare": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "generate:types:payload": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:types:payload": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types && cp src/payload-types.ts ../web/types/payload-types.ts",
     "ii": "pnpm install --ignore-workspace",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "migrate:all": "bun run scripts/migrate/all.ts",
