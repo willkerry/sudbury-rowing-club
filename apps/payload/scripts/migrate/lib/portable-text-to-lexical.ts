@@ -262,29 +262,61 @@ function collectListItems(
   return { blocks, nextIdx: i };
 }
 
-function processNodes(nodes: PortableTextNode[]): LexicalBlock[] {
+async function convertFigure(
+  node: PortableTextNode,
+  ctx: ConvertContext,
+): Promise<LexicalBlock> {
+  const fig = node as { image?: { asset?: { _ref?: string } } };
+  const ref = fig.image?.asset?._ref;
+  const mediaId = ref ? await ctx.resolveUpload(ref) : undefined;
+  if (mediaId) {
+    return {
+      fields: null,
+      format: "",
+      relationTo: "media",
+      type: "upload",
+      value: mediaId,
+      version: 3,
+    };
+  }
+
+  console.warn(
+    `[pt2lex] figure with unresolved ref ${ref ?? "(none)"} — skipped`,
+  );
+
+  return emptyParagraph();
+}
+
+async function processNodes(
+  nodes: PortableTextNode[],
+  ctx: ConvertContext,
+): Promise<LexicalBlock[]> {
   const out: LexicalBlock[] = [];
   let i = 0;
 
   while (i < nodes.length) {
     const n = nodes[i];
 
-    if (n._type !== "block") {
-      console.warn(`[pt2lex] unknown node type ${n._type} — skipped`);
+    if (n._type === "block") {
+      const block = n as PortableTextBlock;
+      if (block.listItem === "bullet" || block.listItem === "number") {
+        const { blocks, nextIdx } = collectListItems(nodes, i, block.listItem);
+        out.push(buildList(blocks, block.listItem));
+        i = nextIdx;
+        continue;
+      }
+      out.push(blockToTopLevel(block));
       i++;
       continue;
     }
 
-    const block = n as PortableTextBlock;
-
-    if (block.listItem === "bullet" || block.listItem === "number") {
-      const { blocks, nextIdx } = collectListItems(nodes, i, block.listItem);
-      out.push(buildList(blocks, block.listItem));
-      i = nextIdx;
+    if (n._type === "figure") {
+      out.push(await convertFigure(n, ctx));
+      i++;
       continue;
     }
 
-    out.push(blockToTopLevel(block));
+    console.warn(`[pt2lex] unknown node type ${n._type} — skipped`);
     i++;
   }
 
@@ -293,10 +325,8 @@ function processNodes(nodes: PortableTextNode[]): LexicalBlock[] {
 
 export async function portableTextToLexical(
   nodes: PortableTextNode[] | undefined | null,
-  _ctx: ConvertContext,
+  ctx: ConvertContext,
 ): Promise<LexicalRoot> {
-  // _ctx used by figure/custom-block branches added in later tasks
-  await Promise.resolve();
   if (!nodes || nodes.length === 0) {
     return {
       root: {
@@ -310,7 +340,7 @@ export async function portableTextToLexical(
     };
   }
 
-  const out = processNodes(nodes);
+  const out = await processNodes(nodes, ctx);
 
   if (out.length === 0) out.push(emptyParagraph());
 

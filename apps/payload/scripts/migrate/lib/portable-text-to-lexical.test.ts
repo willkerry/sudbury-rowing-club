@@ -6,6 +6,47 @@ const stubCtx: ConvertContext = {
   resolveUpload: async (): Promise<string | undefined> => undefined,
 };
 
+describe("portableTextToLexical — figure", () => {
+  it("converts a figure block to an upload node using the resolver", async () => {
+    const ctx: ConvertContext = {
+      resolveUpload: async (ref: string): Promise<string | undefined> =>
+        ref === "image-abc-100x100-jpg" ? "media-uuid-1" : undefined,
+    };
+    const out = await portableTextToLexical(
+      [
+        {
+          _type: "figure",
+          altText: "Some alt",
+          image: {
+            _type: "image",
+            asset: { _ref: "image-abc-100x100-jpg", _type: "reference" },
+          },
+        },
+      ],
+      ctx,
+    );
+    const upload = out.root.children[0] as {
+      type: string;
+      relationTo: string;
+      value: string;
+    };
+    expect(upload.type).toBe("upload");
+    expect(upload.relationTo).toBe("media");
+    expect(upload.value).toBe("media-uuid-1");
+  });
+
+  it("emits a warning paragraph when the figure can't be resolved", async () => {
+    const ctx: ConvertContext = {
+      resolveUpload: async (): Promise<string | undefined> => undefined,
+    };
+    const out = await portableTextToLexical(
+      [{ _type: "figure", image: { asset: { _ref: "missing" } } }],
+      ctx,
+    );
+    expect((out.root.children[0] as { type: string }).type).toBe("paragraph");
+  });
+});
+
 describe("portableTextToLexical — text content", () => {
   it("converts a simple paragraph", async () => {
     const out = await portableTextToLexical(
