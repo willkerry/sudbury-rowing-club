@@ -77,6 +77,7 @@ export interface Config {
     'vice-presidents': VicePresident;
     trustees: Trustee;
     governanceDocuments: GovernanceDocument;
+    governanceGroups: GovernanceGroup;
     safetyNotices: SafetyNotice;
     news: News;
     memberNotices: MemberNotice;
@@ -97,6 +98,7 @@ export interface Config {
     'vice-presidents': VicePresidentsSelect<false> | VicePresidentsSelect<true>;
     trustees: TrusteesSelect<false> | TrusteesSelect<true>;
     governanceDocuments: GovernanceDocumentsSelect<false> | GovernanceDocumentsSelect<true>;
+    governanceGroups: GovernanceGroupsSelect<false> | GovernanceGroupsSelect<true>;
     safetyNotices: SafetyNoticesSelect<false> | SafetyNoticesSelect<true>;
     news: NewsSelect<false> | NewsSelect<true>;
     memberNotices: MemberNoticesSelect<false> | MemberNoticesSelect<true>;
@@ -112,14 +114,12 @@ export interface Config {
   globals: {
     landing: Landing;
     regatta: Regatta1;
-    governance: Governance;
     safetyStatus: SafetyStatus;
     siteNotice: SiteNotice;
   };
   globalsSelect: {
     landing: LandingSelect<false> | LandingSelect<true>;
     regatta: RegattaSelect<false> | RegattaSelect<true>;
-    governance: GovernanceSelect<false> | GovernanceSelect<true>;
     safetyStatus: SafetyStatusSelect<false> | SafetyStatusSelect<true>;
     siteNotice: SiteNoticeSelect<false> | SiteNoticeSelect<true>;
   };
@@ -317,7 +317,11 @@ export interface GovernanceDocument {
   id: string;
   _order?: string | null;
   title: string;
-  type?: ('file' | 'link' | 'document')[] | null;
+  type: 'file' | 'link' | 'document';
+  /**
+   * Which grouping the document appears under. Leave blank to leave ungrouped.
+   */
+  group?: (string | null) | GovernanceGroup;
   enabled?: boolean | null;
   file?: (string | null) | Media;
   url?: string | null;
@@ -336,6 +340,25 @@ export interface GovernanceDocument {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Original Sanity _key. Migration helper.
+   */
+  sanityDocId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "governanceGroups".
+ */
+export interface GovernanceGroup {
+  id: string;
+  _order?: string | null;
+  title: string;
+  /**
+   * Original Sanity _key on the parent resourceGroup.
+   */
+  sanityDocId?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -551,6 +574,10 @@ export interface PayloadLockedDocument {
         value: string | GovernanceDocument;
       } | null)
     | ({
+        relationTo: 'governanceGroups';
+        value: string | GovernanceGroup;
+      } | null)
+    | ({
         relationTo: 'safetyNotices';
         value: string | SafetyNotice;
       } | null)
@@ -744,10 +771,23 @@ export interface GovernanceDocumentsSelect<T extends boolean = true> {
   _order?: T;
   title?: T;
   type?: T;
+  group?: T;
   enabled?: T;
   file?: T;
   url?: T;
   richText?: T;
+  sanityDocId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "governanceGroups_select".
+ */
+export interface GovernanceGroupsSelect<T extends boolean = true> {
+  _order?: T;
+  title?: T;
+  sanityDocId?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -997,16 +1037,6 @@ export interface Regatta1 {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "governance".
- */
-export interface Governance {
-  id: string;
-  trustees?: (string | Person)[] | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "safetyStatus".
  */
 export interface SafetyStatus {
@@ -1127,16 +1157,6 @@ export interface RegattaSelect<T extends boolean = true> {
         map?: T;
         mapImage?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "governance_select".
- */
-export interface GovernanceSelect<T extends boolean = true> {
-  trustees?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

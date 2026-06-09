@@ -20,23 +20,26 @@ export const GovernanceDocuments: CollectionConfig = {
       type: "text",
     },
     {
-      hasMany: true,
+      admin: { position: "sidebar" },
+      defaultValue: "file",
       name: "type",
-      type: "select",
+      required: true,
+      type: "radio",
       options: [
-        {
-          label: "File",
-          value: "file",
-        },
-        {
-          label: "Link",
-          value: "link",
-        },
-        {
-          label: "Document",
-          value: "document",
-        },
+        { label: "File", value: "file" },
+        { label: "Link", value: "link" },
+        { label: "Document", value: "document" },
       ],
+    },
+    {
+      name: "group",
+      relationTo: "governanceGroups",
+      type: "relationship",
+      admin: {
+        description:
+          "Which grouping the document appears under. Leave blank to leave ungrouped.",
+        position: "sidebar",
+      },
     },
     {
       defaultValue: true,
@@ -59,7 +62,17 @@ export const GovernanceDocuments: CollectionConfig = {
       label: "Link",
       name: "url",
       type: "text",
-      validate: zv(z.url({ message: "This must be a valid URL." }).nullable()),
+      validate: zv(
+        z
+          .union([
+            z.url({ message: "Must be a full URL or a /site-relative path." }),
+            z.string().regex(/^(\/|mailto:|tel:|#)/, {
+              message: "Must be a full URL or a /site-relative path.",
+            }),
+            z.literal(""),
+          ])
+          .nullish(),
+      ),
       admin: {
         condition: (data) => data?.type === "link",
       },
@@ -69,6 +82,16 @@ export const GovernanceDocuments: CollectionConfig = {
       type: "richText",
       admin: {
         condition: (data) => data?.type === "document",
+      },
+    },
+    {
+      index: true,
+      name: "sanityDocId",
+      type: "text",
+      admin: {
+        description: "Original Sanity _key. Migration helper.",
+        hidden: true,
+        position: "sidebar",
       },
     },
   ],
