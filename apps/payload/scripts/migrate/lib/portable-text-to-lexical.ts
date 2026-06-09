@@ -437,6 +437,36 @@ async function processNodes(
   return out;
 }
 
+/**
+ * Convenience wrapper: takes whatever a Sanity field might contain (an array
+ * of portable-text nodes, a plain string from a `text`/`string` field, or
+ * undefined) and produces a Lexical root. Strings get wrapped in a single
+ * normal-style block first. Without this, passing a raw string to
+ * portableTextToLexical iterates the string character-by-character and emits
+ * one empty paragraph per character.
+ */
+export function toLexical(
+  value: unknown,
+  ctx: ConvertContext,
+): Promise<LexicalRoot> {
+  if (typeof value === "string") {
+    if (!value.trim()) return portableTextToLexical([], ctx);
+    const block: PortableTextBlock = {
+      _type: "block",
+      children: [{ _type: "span", marks: [], text: value }],
+      markDefs: [],
+      style: "normal",
+    };
+
+    return portableTextToLexical([block], ctx);
+  }
+  if (Array.isArray(value)) {
+    return portableTextToLexical(value as PortableTextNode[], ctx);
+  }
+
+  return portableTextToLexical([], ctx);
+}
+
 export async function portableTextToLexical(
   nodes: PortableTextNode[] | undefined | null,
   ctx: ConvertContext,

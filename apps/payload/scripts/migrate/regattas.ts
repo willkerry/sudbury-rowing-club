@@ -44,16 +44,18 @@ function transform(doc: SanityDoc) {
       url: g.url ?? "",
     }));
 
+  // Sanity calls the quote text "text" on the testimonial object; Payload's
+  // schema names the field "quote". Map accordingly.
   const testimonials = (
     (doc.testimonials as
-      | { quote?: string; name?: string; club?: string }[]
+      | { text?: string; name?: string; club?: string }[]
       | undefined) ?? []
   )
-    .filter((t) => t.quote)
+    .filter((t) => t.text?.trim())
     .map((t) => ({
-      club: t.club ?? undefined,
-      name: t.name ?? undefined,
-      quote: t.quote ?? "",
+      club: t.club?.trim() || undefined,
+      name: t.name?.trim() || undefined,
+      quote: t.text ?? "",
     }));
 
   return {

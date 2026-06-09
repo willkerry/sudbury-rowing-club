@@ -1,10 +1,7 @@
 import { assetIdFrom } from "./lib/asset-ref";
 import { ensureMediaForRef } from "./lib/assets";
 import { getPayloadClient } from "./lib/payload-client";
-import {
-  type PortableTextNode,
-  portableTextToLexical,
-} from "./lib/portable-text-to-lexical";
+import { toLexical } from "./lib/portable-text-to-lexical";
 import { createSanityExportReader } from "./lib/sanity-export";
 
 const REGATTA_SETTINGS_ID = "1af70bac-279d-486d-9c87-cfb4de0b6964";
@@ -38,10 +35,7 @@ for (const img of sanityImages) {
   if (id) images.push({ image: id });
 }
 
-const description = await portableTextToLexical(
-  (lp.description as PortableTextNode[] | undefined) ?? [],
-  { resolveUpload },
-);
+const description = await toLexical(lp.description, { resolveUpload });
 
 // Events: array of event objects under regattaSettings.events.events.
 // Sanity stores boat classes with unicode (× and −); Payload's select uses
@@ -70,23 +64,18 @@ const events = sanityEvents.map((e) => ({
 
 // Entries: only description maps cleanly; the wave matrix has no Payload home.
 const sanityEntries =
-  (settings.entries as { description?: PortableTextNode[] } | undefined) ?? {};
-const entriesDescription = await portableTextToLexical(
-  sanityEntries.description ?? [],
-  { resolveUpload },
-);
+  (settings.entries as { description?: unknown } | undefined) ?? {};
+const entriesDescription = await toLexical(sanityEntries.description, {
+  resolveUpload,
+});
 
 const sanityResults =
   (settings.results as
-    | {
-        description?: PortableTextNode[];
-        courseRecords?: { _sanityAsset?: string };
-      }
+    | { description?: unknown; courseRecords?: { _sanityAsset?: string } }
     | undefined) ?? {};
-const resultsDescription = await portableTextToLexical(
-  sanityResults.description ?? [],
-  { resolveUpload },
-);
+const resultsDescription = await toLexical(sanityResults.description, {
+  resolveUpload,
+});
 const courseRecordsId = await resolveUpload(
   assetIdFrom(sanityResults.courseRecords) ?? "",
 );
@@ -95,15 +84,14 @@ const sanityCourse =
   (settings.courseMap as
     | {
         heading?: string;
-        description?: PortableTextNode[];
+        description?: unknown;
         map?: unknown;
         mapImage?: unknown;
       }
     | undefined) ?? {};
-const courseDescription = await portableTextToLexical(
-  sanityCourse.description ?? [],
-  { resolveUpload },
-);
+const courseDescription = await toLexical(sanityCourse.description, {
+  resolveUpload,
+});
 const courseMapId = await resolveUpload(assetIdFrom(sanityCourse.map) ?? "");
 const courseMapImageId = await resolveUpload(
   assetIdFrom(sanityCourse.mapImage) ?? "",
