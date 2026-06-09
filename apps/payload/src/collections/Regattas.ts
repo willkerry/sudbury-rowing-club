@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zv } from "../lib/zv";
 
 export const Regattas: CollectionConfig = {
+  defaultSort: "-number",
   slug: "regattas",
 
   admin: {
@@ -25,7 +26,17 @@ export const Regattas: CollectionConfig = {
       name: "results",
       type: "text",
 
-      validate: zv(z.url({ message: "This must be a valid URL." }).nullable()),
+      validate: zv(
+        z
+          .union([
+            z.url({ message: "Must be a full URL or a /site-relative path." }),
+            z.string().regex(/^(\/|mailto:|tel:|#)/, {
+              message: "Must be a full URL or a /site-relative path.",
+            }),
+            z.literal(""),
+          ])
+          .nullish(),
+      ),
       admin: {
         description: "Link to results",
       },
@@ -53,6 +64,36 @@ export const Regattas: CollectionConfig = {
           type: "text",
         },
       ],
+    },
+    {
+      labels: { plural: "Testimonials", singular: "Testimonial" },
+      name: "testimonials",
+      type: "array",
+      fields: [
+        {
+          name: "quote",
+          required: true,
+          type: "textarea",
+        },
+        {
+          name: "name",
+          type: "text",
+        },
+        {
+          name: "club",
+          type: "text",
+        },
+      ],
+    },
+    {
+      index: true,
+      name: "sanityDocId",
+      type: "text",
+      admin: {
+        description: "Original Sanity _id. Migration helper.",
+        hidden: true,
+        position: "sidebar",
+      },
     },
   ],
 };

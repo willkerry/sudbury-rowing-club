@@ -72,6 +72,7 @@ export interface Config {
     people: Person;
     officers: Officer;
     committees: Committee;
+    archive: Archive;
     regattaDocuments: RegattaDocument;
     regattas: Regatta;
     'vice-presidents': VicePresident;
@@ -93,6 +94,7 @@ export interface Config {
     people: PeopleSelect<false> | PeopleSelect<true>;
     officers: OfficersSelect<false> | OfficersSelect<true>;
     committees: CommitteesSelect<false> | CommitteesSelect<true>;
+    archive: ArchiveSelect<false> | ArchiveSelect<true>;
     regattaDocuments: RegattaDocumentsSelect<false> | RegattaDocumentsSelect<true>;
     regattas: RegattasSelect<false> | RegattasSelect<true>;
     'vice-presidents': VicePresidentsSelect<false> | VicePresidentsSelect<true>;
@@ -253,6 +255,38 @@ export interface Committee {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archive".
+ */
+export interface Archive {
+  id: string;
+  title: string;
+  year?: string | null;
+  /**
+   * Years either side of `year` to consider this record. Shown as 'c. (year-range)-(year+range)'.
+   */
+  range?: number | null;
+  description?: string | null;
+  image?: (string | null) | Media;
+  /**
+   * Alt text. Falls back to the Media record's alt text.
+   */
+  alt?: string | null;
+  /**
+   * Approximate map point (WGS-84).
+   */
+  location?: {
+    lat?: number | null;
+    lng?: number | null;
+  };
+  /**
+   * Original Sanity _id. Migration helper.
+   */
+  sanityDocId?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "regattaDocuments".
  */
 export interface RegattaDocument {
@@ -261,6 +295,10 @@ export interface RegattaDocument {
   title: string;
   enabled?: boolean | null;
   file?: (string | null) | Media;
+  /**
+   * Original Sanity _key. Migration helper.
+   */
+  sanityDocId?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -284,6 +322,18 @@ export interface Regatta {
         id?: string | null;
       }[]
     | null;
+  testimonials?:
+    | {
+        quote: string;
+        name?: string | null;
+        club?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Original Sanity _id. Migration helper.
+   */
+  sanityDocId?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -554,6 +604,10 @@ export interface PayloadLockedDocument {
         value: string | Committee;
       } | null)
     | ({
+        relationTo: 'archive';
+        value: string | Archive;
+      } | null)
+    | ({
         relationTo: 'regattaDocuments';
         value: string | RegattaDocument;
       } | null)
@@ -714,6 +768,27 @@ export interface CommitteesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "archive_select".
+ */
+export interface ArchiveSelect<T extends boolean = true> {
+  title?: T;
+  year?: T;
+  range?: T;
+  description?: T;
+  image?: T;
+  alt?: T;
+  location?:
+    | T
+    | {
+        lat?: T;
+        lng?: T;
+      };
+  sanityDocId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "regattaDocuments_select".
  */
 export interface RegattaDocumentsSelect<T extends boolean = true> {
@@ -721,6 +796,7 @@ export interface RegattaDocumentsSelect<T extends boolean = true> {
   title?: T;
   enabled?: T;
   file?: T;
+  sanityDocId?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -740,6 +816,15 @@ export interface RegattasSelect<T extends boolean = true> {
         password?: T;
         id?: T;
       };
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        name?: T;
+        club?: T;
+        id?: T;
+      };
+  sanityDocId?: T;
   updatedAt?: T;
   createdAt?: T;
 }

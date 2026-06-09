@@ -10,6 +10,7 @@ import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { r2Storage } from "@payloadcms/storage-r2";
 import { buildConfig, type Config } from "payload";
 import type { GetPlatformProxyOptions } from "wrangler";
+import { Archive } from "./collections/Archive";
 import { Committees } from "./collections/Committees";
 import { GovernanceDocuments } from "./collections/GovernanceDocuments";
 import { GovernanceGroups } from "./collections/GovernanceGroups";
@@ -103,6 +104,7 @@ export default buildConfig({
     People,
     Officers,
     Committees,
+    Archive,
     RegattaDocuments,
     Regattas,
     VicePresidents,

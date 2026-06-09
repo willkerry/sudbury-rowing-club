@@ -30,6 +30,16 @@ export const RegattaDocuments: CollectionConfig = {
       relationTo: "media",
       type: "upload",
     },
+    {
+      index: true,
+      name: "sanityDocId",
+      type: "text",
+      admin: {
+        description: "Original Sanity _key. Migration helper.",
+        hidden: true,
+        position: "sidebar",
+      },
+    },
   ],
 
   labels: {
