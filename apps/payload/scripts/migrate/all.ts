@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 
 const scripts = [
+  "scripts/migrate/media.ts",
   "scripts/migrate/safety-status.ts",
   "scripts/migrate/safety.ts",
   "scripts/migrate/people.ts",
