@@ -64,7 +64,12 @@ export const SafetyNotices: CollectionConfig = {
       label: "External link URL",
       name: "link",
       type: "text",
-      validate: zv(z.url({ message: "This must be a valid URL." }).nullable()),
+      validate: zv(
+        z
+          .url({ message: "This must be a valid URL." })
+          .or(z.literal(""))
+          .nullish(),
+      ),
     },
     {
       defaultValue: false,

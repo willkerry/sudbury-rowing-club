@@ -55,3 +55,4 @@ node_modules/
 
 # Sanity dataset exports (large; pulled fresh per cutover)
 .sanity-export/
+production.tar.gz
