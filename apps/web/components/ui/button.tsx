@@ -59,22 +59,36 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const Comp = asChild ? SlotPrimitive.Slot : "button";
+    const showAdornment = loading || icon !== undefined;
+    const adornment = showAdornment ? (
+      <span aria-hidden className="ml-2 w-4">
+        {loading ? <Loader2 className="animate-spin" /> : icon}
+      </span>
+    ) : null;
+
+    if (asChild) {
+      return (
+        <SlotPrimitive.Slot
+          className={cn(buttonVariants({ variant, size, className, shadow }))}
+          ref={ref}
+          {...props}
+        >
+          <SlotPrimitive.Slottable>{children}</SlotPrimitive.Slottable>
+          {adornment}
+        </SlotPrimitive.Slot>
+      );
+    }
 
     return (
-      <Comp
+      <button
         className={cn(buttonVariants({ variant, size, className, shadow }))}
         disabled={loading}
         ref={ref}
         {...props}
       >
-        <SlotPrimitive.Slottable>{children}</SlotPrimitive.Slottable>
-        <SlotPrimitive.Slottable>
-          <SlotPrimitive.Slot aria-hidden className="ml-2 w-4">
-            {loading ? <Loader2 className="animate-spin" /> : icon}
-          </SlotPrimitive.Slot>
-        </SlotPrimitive.Slottable>
-      </Comp>
+        {children}
+        {adornment}
+      </button>
     );
   },
 );
