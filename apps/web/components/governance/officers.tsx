@@ -1,156 +1,61 @@
-"use client";
-
-import { Popover, Transition } from "@headlessui/react";
-import type { Governance } from "@sudburyrc/api";
-import { Crest } from "@sudburyrc/blue";
-import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
-import Image from "next/image";
-import NextLink from "next/link";
-import { Description, GovGrid, SectionTitle } from "@/components/governance";
+import { GovGrid, SectionTitle } from "@/components/governance";
 import { Link } from "@/components/stour/link";
-import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { sdk } from "@/lib/server/payload";
+import { Officer } from "./officer";
 
-type Props = {
-  officers: Governance["officers"];
+const normalisePayloadReference = <T,>(
+  value: T | string | null | undefined,
+): T | null => {
+  if (value === null || value === undefined) {
+    return null;
+  }
+
+  if (typeof value === "string") {
+    return null;
+  }
+
+  return value;
 };
 
-const OfficerPhotograph = ({
-  id,
-  lqip,
-  name,
-}: {
-  id: string;
-  lqip: string;
-  name: string;
-}) => {
-  const { src, loader } = useSanityImageProps(id);
+export const Officers = async () => {
+  const { docs: officers } = await sdk.find({
+    collection: "officers",
+    limit: 100,
+  });
 
   return (
-    <Image
-      {...{ src, loader }}
-      alt={name || ""}
-      blurDataURL={lqip}
-      className="object-cover"
-      fill
-      placeholder="blur"
-      sizes="(max-width: 768px) 45vw, (max-width: 1024px) 148px, 222px"
-    />
+    <section>
+      <SectionTitle>Club Officers</SectionTitle>
+      <GovGrid>
+        {officers.map((officer) => {
+          const occupant = normalisePayloadReference(officer.occupant);
+
+          return (
+            <Officer
+              key={officer.id}
+              officer={{
+                description: officer.description ?? undefined,
+                hasEmail: occupant?.hasEmail ?? false,
+                id: officer.id,
+                image:
+                  normalisePayloadReference(occupant?.image)?.filename ??
+                  undefined,
+                occupant: occupant?.fullName ?? undefined,
+                role: officer.role,
+                vacant: !occupant,
+              }}
+            />
+          );
+        })}
+      </GovGrid>
+
+      <p className="py-12 text-gray-500 text-sm">
+        The role descriptions provided above are abbreviated and for
+        illustrative purposes only. Please refer to the{" "}
+        <Link href="/governance/constitution">constitution</Link> for accurate
+        details. If you wish to enquire about a vacant position, please{" "}
+        <Link href="/contact?q=secretary">contact the club secretary</Link>.
+      </p>
+    </section>
   );
 };
-
-const OfficerPhotographOrPlaceholder = ({
-  officer: { image, vacant, name },
-}: {
-  officer: Governance["officers"][0];
-}) => {
-  if (vacant) {
-    return (
-      <div className="font-bold text-gray-400 uppercase tracking-widest">
-        TBA
-      </div>
-    );
-  }
-
-  if (image) {
-    return (
-      <OfficerPhotograph id={image._id} lqip={image.lqip} name={name || ""} />
-    );
-  }
-
-  return <Crest className="w-12 text-gray-400" />;
-};
-
-const OfficerNameOrPlaceholder = ({
-  officer: { _id, name, vacant, hasEmail },
-}: {
-  officer: Governance["officers"][0];
-}) => {
-  if (vacant) {
-    return <span>&nbsp;</span>;
-  }
-
-  if (hasEmail) {
-    return (
-      <NextLink
-        className="group flex items-center gap-1.5"
-        href={{
-          pathname: "contact",
-          query: { to: _id },
-        }}
-        title={`Contact ${name}`}
-      >
-        {name}
-        <span className="sr-only">(Contact {name})</span>
-        <MessageCircle
-          aria-hidden
-          className="text-blue-500 transition group-hover:text-gray-600"
-          size="1em"
-          strokeWidth="0.15em"
-        />
-      </NextLink>
-    );
-  }
-
-  return <span>{name}</span>;
-};
-
-export const Officers = ({ officers }: Props) => (
-  <section>
-    <SectionTitle>Club Officers</SectionTitle>
-    <GovGrid>
-      {officers.map((officer) => (
-        <div key={officer._id}>
-          <div className="relative mb-2 flex h-36 w-full items-center justify-center overflow-hidden rounded-sm bg-linear-to-b from-gray-200 to-gray-100">
-            <OfficerPhotographOrPlaceholder {...{ officer }} />
-            {officer.description && (
-              <Popover>
-                <Popover.Button>
-                  <HelpCircle
-                    aria-hidden
-                    className="absolute right-2 bottom-2 fill-white text-blue-500 transition hover:text-gray-700"
-                    size="1.15em"
-                    strokeWidth="0.15em"
-                  />
-                  <span className="sr-only">Show description</span>
-                </Popover.Button>
-                <Transition
-                  enter="transition-opacity duration-150 ease-in-out"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="transition duration-75 ease-in-out"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Popover.Panel className="absolute top-0 left-0 h-full w-full rounded-sm border border-gray-300 bg-opacity- bg-white p-2 backdrop-blur-sm">
-                    <div className="h-full w-full overflow-y-auto font-medium text-black text-sm">
-                      <p>{officer.description}</p>
-                    </div>
-                    <Popover.Button>
-                      <XCircle
-                        className="absolute right-2 bottom-2 text-gray-500 transition hover:text-gray-700"
-                        size="1em"
-                        strokeWidth="0.15em"
-                      />
-                    </Popover.Button>
-                  </Popover.Panel>
-                </Transition>
-              </Popover>
-            )}
-          </div>
-          <div className="font-semibold text-gray-800 tracking-snug">
-            <OfficerNameOrPlaceholder {...{ officer }} />
-          </div>
-          <Description>{officer.role}</Description>
-        </div>
-      ))}
-    </GovGrid>
-
-    <p className="py-12 text-gray-500 text-sm">
-      The role descriptions provided above are abbreviated and for illustrative
-      purposes only. Please refer to the{" "}
-      <Link href="/governance/constitution">constitution</Link> for accurate
-      details. If you wish to enquire about a vacant position, please{" "}
-      <Link href="/contact?q=secretary">contact the club secretary</Link>.
-    </p>
-  </section>
-);
