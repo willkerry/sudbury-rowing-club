@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.0/schema.json",
   "assist": {
     "actions": {
       "source": {
@@ -84,9 +84,10 @@
       "!**/apps/results/data/**"
     ],
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "a11y": {
-        "noRedundantAlt": "off"
+        "noRedundantAlt": "off",
+        "noSvgWithoutTitle": "off"
       },
       "complexity": {
         "noExcessiveCognitiveComplexity": "error",

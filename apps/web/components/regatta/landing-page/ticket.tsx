@@ -35,7 +35,7 @@ export const Ticket = ({
         </div>
       ))}
     </div>
-    {/* biome-ignore lint/a11y/noSvgWithoutTitle: aria-hidden is used to hide the SVG from screen readers */}
+
     <svg
       aria-hidden
       className="absolute bottom-0 left-10 mb-5"
