@@ -69,11 +69,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <SlotPrimitive.Slottable>{children}</SlotPrimitive.Slottable>
-        <SlotPrimitive.Slottable>
-          <SlotPrimitive.Slot aria-hidden className="ml-2 w-4">
-            {loading ? <Loader2 className="animate-spin" /> : icon}
-          </SlotPrimitive.Slot>
-        </SlotPrimitive.Slottable>
+        <SlotPrimitive.Slot aria-hidden className="ml-2 w-4">
+          {loading ? <Loader2 className="animate-spin" /> : icon}
+        </SlotPrimitive.Slot>
       </Comp>
     );
   },

@@ -20,8 +20,8 @@
     "serve": "^14.2.5",
     "tidy-html5": "^0.1.1",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.3",
-    "wrangler": "^4.54.0"
+    "typescript": "catalog:",
+    "wrangler": "catalog:"
   },
   "scripts": {
     "build": "tsx src/build.ts",

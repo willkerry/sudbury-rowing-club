@@ -15,17 +15,17 @@
     "@sanity/ui": "^3.1.11",
     "@sanity/uuid": "^3.0.2",
     "@sanity/vision": "^4.11.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "sanity": "^4.11.0",
     "sanity-plugin-dashboard-widget-vercel": "^3.1.4",
     "styled-components": "^6.1.19",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "devDependencies": {
     "@sanity/cli": "^4.11.0",
-    "@types/react": "^19.2.2",
-    "wrangler": "^4.54.0"
+    "@types/react": "catalog:",
+    "wrangler": "catalog:"
   },
   "scripts": {
     "build": "sanity build -y && (test $SANITY_AUTH_TOKEN && sanity schema deploy || echo 'Warning: Skipping schema deploy as SANITY_AUTH_TOKEN is not defined. If building locally run `npx sanity schema deploy` to use OAUTH authentication istead.')",

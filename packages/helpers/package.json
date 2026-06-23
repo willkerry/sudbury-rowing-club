@@ -12,9 +12,9 @@
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
-    "tsdown": "^0.15.9",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.17"
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "exports": {
     ".": {

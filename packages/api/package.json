@@ -14,26 +14,26 @@
     "path": false
   },
   "dependencies": {
-    "@portabletext/types": "^2.0.15",
-    "@sanity/image-url": "^1.2.0",
+    "@portabletext/types": "catalog:",
+    "@sanity/image-url": "catalog:",
     "@stdlib/nlp-sentencize": "^0.2.2",
     "@sudburyrc/helpers": "workspace:*",
-    "emoji-regex": "^10.6.0",
-    "groq": "^4.11.0",
-    "he": "^1.2.0",
-    "isomorphic-dompurify": "^2.30.1",
+    "emoji-regex": "catalog:",
+    "groq": "catalog:",
+    "he": "catalog:",
+    "isomorphic-dompurify": "catalog:",
     "next-sanity": "^10.1.4",
     "picosanity": "^5.0.0",
-    "radashi": "^12.7.0",
+    "radashi": "catalog:",
     "rolldown": "^1.1.0",
-    "tsdown": "^0.15.9",
-    "zod": "^4.1.12"
+    "tsdown": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
-    "@types/he": "^1.2.3",
+    "@types/he": "catalog:",
     "@types/node": "^22.15.0",
-    "typescript": "^5.9.3"
+    "typescript": "catalog:"
   },
   "scripts": {
     "build": "tsdown",

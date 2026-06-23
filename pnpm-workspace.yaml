@@ -1,3 +1,36 @@
 packages:
-- "packages/*"
-- "apps/*"
+  - "packages/*"
+  - "apps/*"
+allowBuilds:
+  core-js: false
+  esbuild: false
+  lefthook: false
+  sharp: false
+  workerd: false
+
+catalog:
+  "@portabletext/types": "^2.0.15"
+  "@sanity/image-url": "^1.2.0"
+  "@types/he": "^1.2.3"
+  "@types/react": "^19.2.2"
+  "@types/react-dom": "^19.2.2"
+  emoji-regex: "^10.6.0"
+  groq: "^4.11.0"
+  he: "^1.2.0"
+  isomorphic-dompurify: "^2.30.1"
+  radashi: "^12.7.0"
+  react: "19.2.2"
+  react-dom: "19.2.2"
+  tsdown: "^0.15.9"
+  typescript: "^5.9.3"
+  vitest: "^4.0.17"
+  wrangler: "^4.54.0"
+  zod: "^4.1.12"
+
+
+overrides:
+  "@swc/core": "^1.13.5"
+  "@swc/core-darwin-arm64": "^1.13.5"
+  "@types/react": "catalog:"
+  "@types/react-dom": "catalog:"
+  parse5: "^7.1.2"

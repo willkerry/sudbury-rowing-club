@@ -10,8 +10,8 @@
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "ts-json-schema-generator": "^2.4.0",
-    "tsdown": "^0.15.9",
-    "typescript": "^5.9.3"
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   },
   "exports": {
     ".": {

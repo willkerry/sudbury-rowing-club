@@ -9,9 +9,9 @@
   "version": "1.0.0",
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
-    "@types/react": "^19.2.2",
-    "tsdown": "^0.15.9",
-    "typescript": "^5.9.3"
+    "@types/react": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "react": "^19.0.0"
