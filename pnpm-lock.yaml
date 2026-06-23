@@ -150,6 +150,9 @@ importers:
         specifier: workspace:*
         version: link:../../packages/static
     devDependencies:
+      '@minify-html/node':
+        specifier: ^0.18.1
+        version: 0.18.1
       '@types/fs-extra':
         specifier: ^11.0.4
         version: 11.0.4
@@ -162,12 +165,18 @@ importers:
       '@types/serve-handler':
         specifier: ^6.1.4
         version: 6.1.4
+      browserslist:
+        specifier: ^4.28.4
+        version: 4.28.4
       consola:
         specifier: ^3.4.2
         version: 3.4.2
       fs-extra:
         specifier: ^11.3.2
         version: 11.3.5
+      lightningcss:
+        specifier: ^1.32.0
+        version: 1.32.0
       ms:
         specifier: ^2.1.3
         version: 2.1.3
@@ -3056,6 +3065,36 @@ packages:
 
   '@mdx-js/mdx@3.1.1':
     resolution: {integrity: sha512-f6ZO2ifpwAQIpzGWaBQT2TXxPv6z3RBzQKpVftEWN78Vl/YweF1uwussDx8ECAXVtr3Rs89fKyG9YlzUs9DyGQ==}
+
+  '@minify-html/node-darwin-arm64@0.18.1':
+    resolution: {integrity: sha512-sc/VJHRcHtEk0IQP2hRA/TWkAQntaYH3RCw8n750NbfzliQqkyrDqNAGiKBOli7UlhFtG/H2aWqGjtOjIM/dZA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@minify-html/node-darwin-x64@0.18.1':
+    resolution: {integrity: sha512-0bff2ng4Vgp3+kdC8zgjd5dMN04zkM4nGuYEVP4dLR7J5NCD/Ka4XD4CKNSDZ9goLYQ8BjtKD6AeDTfJ8KBjrA==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@minify-html/node-linux-arm64@0.18.1':
+    resolution: {integrity: sha512-CVGu5XVmmDrGFuA9/b/695rJBFvfTZFwKJJYA1ZXAsBZrqlKVO4bfXPq9DVNmhQ76ky3LFtVZ/+UsU7xpyK5Qw==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@minify-html/node-linux-x64@0.18.1':
+    resolution: {integrity: sha512-qmIv4kRyhZTKO3nXDXHlFrhnmwIKTM57ZRomlYRYdZTWiFW3CbJ4Ggg57qIgx7D/t4dgyS7/O8OTetrWvmEg9w==}
+    cpu: [x64]
+    os: [linux]
+
+  '@minify-html/node-win32-x64@0.18.1':
+    resolution: {integrity: sha512-SNRE/NvcKXvh4UwXTRrujNSWaCj/3E+FFN+FLOBaN4FY+dZG83h6nWxGHJ5+LAoJxVTU7Al1e8toi4JjHpzv2w==}
+    cpu: [x64]
+    os: [win32]
+
+  '@minify-html/node@0.18.1':
+    resolution: {integrity: sha512-pNOv6z9zUDrjTU1+VcPOnDzGeaaqd6m9kbyHU+sg9O35450uzfke8ahx8gKlFdp/kQFrRn2rFIGAoANUZ62nSw==}
+    engines: {node: '>= 8.6.0'}
+    hasBin: true
 
   '@mux/mux-data-google-ima@0.3.17':
     resolution: {integrity: sha512-4wpH6dYybyZhqLn9qGn/+67Z8MZnQRAdqTFEEZw2bx61M9q01uPYYHxd8qwOnYtUGEeafsdTwVHVxKHGD3oc1A==}
@@ -13242,6 +13281,29 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@minify-html/node-darwin-arm64@0.18.1':
+    optional: true
+
+  '@minify-html/node-darwin-x64@0.18.1':
+    optional: true
+
+  '@minify-html/node-linux-arm64@0.18.1':
+    optional: true
+
+  '@minify-html/node-linux-x64@0.18.1':
+    optional: true
+
+  '@minify-html/node-win32-x64@0.18.1':
+    optional: true
+
+  '@minify-html/node@0.18.1':
+    optionalDependencies:
+      '@minify-html/node-darwin-arm64': 0.18.1
+      '@minify-html/node-darwin-x64': 0.18.1
+      '@minify-html/node-linux-arm64': 0.18.1
+      '@minify-html/node-linux-x64': 0.18.1
+      '@minify-html/node-win32-x64': 0.18.1
+
   '@mux/mux-data-google-ima@0.3.17':
     dependencies:
       mux-embed: 5.18.1
@@ -16255,7 +16317,7 @@ snapshots:
       obug: 2.1.3
       std-env: 4.1.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.9(@types/node@24.13.2)(@vitest/coverage-v8@4.1.9)(happy-dom@18.0.1)(jsdom@27.4.0(@noble/hashes@2.2.0))(vite@7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
+      vitest: 4.1.9(@types/node@24.13.2)(@vitest/coverage-v8@4.1.9)(happy-dom@18.0.1)(jsdom@28.1.0(@noble/hashes@2.2.0))(vite@7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(tsx@4.22.4)(yaml@2.9.0))
 
   '@vitest/expect@4.1.9':
     dependencies:
