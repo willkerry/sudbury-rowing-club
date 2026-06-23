@@ -18,6 +18,7 @@ export const env = createEnv({
     ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
     APP_URL: process.env.APP_URL,
     BUG_RECIPIENT_EMAIL: process.env.BUG_RECIPIENT_EMAIL,
+    FIRECRAWL_API_KEY: process.env.FIRECRAWL_API_KEY,
     NEXT_PUBLIC_ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
     NEXT_PUBLIC_ALGOLIA_INDEX_NAME: process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
     NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
@@ -39,6 +40,7 @@ export const env = createEnv({
   server: {
     ALGOLIA_API_KEY: z.string().min(1),
     BUG_RECIPIENT_EMAIL: z.string(),
+    FIRECRAWL_API_KEY: z.string().min(1),
     REDIRECT_SECRET: z.string().min(32),
     RESEND_API_KEY: z.string().min(1),
     RESEND_WEBHOOK_SECRET: z.string().min(1),
