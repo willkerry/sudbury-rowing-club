@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import Image, { type StaticImageData } from "next/image";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useShuffledArray } from "@/hooks/useShuffledArray";
 import { cn } from "@/lib/utils";
 import type { SponsorLogo } from ".";
@@ -48,8 +48,13 @@ export const LogoList = ({
   className?: string;
   shuffle?: boolean;
 }) => {
+  const [mounted, setMounted] = useState(false);
   const maybeShuffledLogos = useShuffledArray(logos, shuffle);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => setMounted(true), []);
+
+  if (shuffle && !mounted) return null;
 
   return (
     <div
