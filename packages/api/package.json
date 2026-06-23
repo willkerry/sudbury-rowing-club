@@ -18,13 +18,10 @@
     "@sanity/image-url": "catalog:",
     "@stdlib/nlp-sentencize": "^0.2.2",
     "@sudburyrc/helpers": "workspace:*",
-    "emoji-regex": "catalog:",
     "groq": "catalog:",
     "he": "catalog:",
-    "isomorphic-dompurify": "catalog:",
     "next-sanity": "^10.1.4",
     "picosanity": "^5.0.0",
-    "radashi": "catalog:",
     "rolldown": "^1.1.0",
     "tsdown": "catalog:",
     "zod": "catalog:"

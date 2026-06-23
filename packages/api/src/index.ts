@@ -16,12 +16,6 @@ export {
   fetchAuthor,
 } from "./queries/fetch-authors";
 export {
-  type BREvent,
-  fetchCompetitionById,
-  fetchCompetitions,
-  fetchRegions,
-} from "./queries/fetch-competitions";
-export {
   type ForecastResponse,
   fetchWeatherForecast,
   type WeatherCodeNumber,

@@ -1,10 +1,16 @@
 import type { Cache } from "@epic-web/cachified";
 import { configure, totalTtl } from "@epic-web/cachified";
-import { kv, type VercelKV } from "@vercel/kv";
+import { createClient, type VercelKV } from "@vercel/kv";
 import { parse as devalueParse, stringify as devalueStringify } from "devalue";
 import { env } from "@/env";
 
 const SEPARATOR = ":";
+
+const kv = createClient({
+  automaticDeserialization: false,
+  token: env.KV_REST_API_TOKEN,
+  url: env.KV_REST_API_URL,
+});
 
 const withCommitHash = (key: string): string => {
   const commitSha = env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA;
@@ -21,6 +27,7 @@ const redisCacheAdapter = (redisCache: VercelKV): Cache => ({
 
     return devalueParse(value);
   },
+
   set: (key, value) => {
     const ttl = totalTtl(value?.metadata);
     const createdAt = value?.metadata?.createdTime;

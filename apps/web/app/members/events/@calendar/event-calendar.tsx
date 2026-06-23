@@ -1,6 +1,6 @@
 "use client";
 
-import type { BREvent } from "@sudburyrc/api";
+import type { BREvent } from "@sudburyrc/ical-builder";
 import { ArrowUpRightIcon } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";

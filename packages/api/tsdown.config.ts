@@ -36,7 +36,6 @@ export default defineConfig({
     "src/queries/cached-fetch-news.ts",
     "src/queries/fetch-archives.ts",
     "src/queries/fetch-authors.ts",
-    "src/queries/fetch-competitions.ts",
     "src/queries/fetch-forecast.ts",
     "src/queries/fetch-governance.ts",
     "src/queries/fetch-landing-page.ts",

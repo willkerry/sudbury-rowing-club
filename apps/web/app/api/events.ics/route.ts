@@ -1,8 +1,8 @@
-import { fetchCompetitions } from "@sudburyrc/api";
 import IcalBuilder from "@sudburyrc/ical-builder";
 import { kv } from "@vercel/kv";
 import { type NextRequest, NextResponse } from "next/server";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
+import { cachedFetchCompetitions } from "@/lib/server/fetchCompetitions";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours
@@ -17,7 +17,7 @@ const cachedTransformToICS = async () => {
 
   console.log(new Date(), "iCal feed cold start");
 
-  const events = await fetchCompetitions(true);
+  const events = await cachedFetchCompetitions(true);
 
   const calendar = new IcalBuilder(
     "SRC Events",

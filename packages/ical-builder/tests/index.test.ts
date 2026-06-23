@@ -1,7 +1,6 @@
 import { fakerEN_GB as faker } from "@faker-js/faker";
-import type { BREvent } from "@sudburyrc/api";
 import { expect, test } from "vitest";
-import IcalBuilder from "../src/index";
+import IcalBuilder, { type BREvent } from "../src/index";
 
 const NUMBER_OF_EVENTS = 10;
 const FIRST_DATE = "2024-05-01";

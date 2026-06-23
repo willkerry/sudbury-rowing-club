@@ -1,13 +1,15 @@
 import { decode } from "he";
+import { tryit } from "radashi";
 import { z } from "zod";
 import { cached } from "./cached";
+import { firecrawl } from "./firecrawl";
 
 const QUERY_URL =
   "https://www.britishrowing.org/wp-json/wp/v2/posts?_fields=id,title,date,link&per_page=12";
 
 const schema = z.array(
   z.object({
-    date: z.coerce.date().transform((date) => date.toISOString()),
+    date: z.coerce.date(),
     id: z.int(),
     link: z.url(),
     title: z
@@ -16,21 +18,46 @@ const schema = z.array(
   }),
 );
 
-export type BRArticle = z.infer<typeof schema>[number];
+const transformedSchema = z.array(
+  z.object({
+    date: z.coerce.date(),
+    id: z.int(),
+    link: z.url(),
+    title: z.string(),
+  }),
+);
+
+export type BRArticle = z.infer<typeof transformedSchema>[number];
 
 export const fetchBritishRowingFeed = () =>
   cached({
-    checkValue: schema,
+    checkValue: transformedSchema,
     key: "british-rowing-feed",
-    ttl: 60 * 60 * 12,
+    ttl: 1000 * 60 * 60 * 12,
     getFreshValue: async () => {
-      const response = await fetch(QUERY_URL);
+      const page = await firecrawl.scrape(QUERY_URL, {
+        formats: ["rawHtml"],
+      });
 
-      if (!response.ok) {
-        throw new Error("British Rowing API request failed");
+      const rawHtml = page.rawHtml;
+
+      if (!rawHtml) {
+        throw new Error("Failed to scrape British Rowing feed");
       }
 
-      const feed = schema.safeParse(await response.json());
+      if (!page.rawHtml) {
+        throw new Error("Failed to scrape British Rowing feed");
+      }
+
+      const [parsedError, parsed] = await tryit(
+        async () => await JSON.parse(rawHtml),
+      )();
+
+      if (parsedError) {
+        throw new Error("Failed to parse British Rowing feed");
+      }
+
+      const feed = schema.safeParse(parsed);
 
       if (!feed.success) {
         throw new Error("Unparseable response provided by British Rowing API");

@@ -1,12 +1,20 @@
+import type { BREvent } from "@sudburyrc/ical-builder";
 import emojiRegex from "emoji-regex";
 import he from "he";
 import DOMPurify from "isomorphic-dompurify";
-import { dash } from "radashi";
+import { after } from "next/server";
+import { dash, tryit } from "radashi";
 import { z } from "zod";
+import { cached } from "./cached";
+import { firecrawl } from "./firecrawl";
 
 const EVENT_CALENDAR_API = "https://calendar.britishrowing.org/calendar.json";
 const MAX_COMPETITION_AGE_DAYS = 14;
-const REVALIDATE_SECONDS = 60 * 60 * 12;
+
+const HOUR_IN_MS = 1000 * 60 * 60;
+const DAY_IN_MS = HOUR_IN_MS * 24;
+const FRESH_FOR_MS = 48 * HOUR_IN_MS;
+const KEEP_IN_KV_FOR_MS = 14 * DAY_IN_MS;
 
 const sanitise = (html: string) => {
   const sanitised = he
@@ -81,7 +89,17 @@ const ZBREvent = z
     };
   });
 
-export type BREvent = z.infer<typeof ZBREvent>;
+const ZBREventOutput = z.array(
+  z.object({
+    cancelled: z.boolean(),
+    competition: z.string(),
+    id: z.string(),
+    notes: z.string().nullable(),
+    region: z.string(),
+    startDate: z.coerce.date(),
+    url: z.string().nullable(),
+  }),
+) satisfies z.ZodType<BREvent[]>;
 
 const removeStaleEvents = (events: BREvent[]): BREvent[] =>
   events.filter(
@@ -94,32 +112,30 @@ export const fetchCompetitions = async (
   includeOldEvents?: boolean,
 ): Promise<BREvent[]> => {
   try {
-    const response = await fetch(EVENT_CALENDAR_API, {
-      next: { revalidate: REVALIDATE_SECONDS },
-    } as RequestInit);
+    const [error, response] = await tryit(() =>
+      firecrawl.scrape(EVENT_CALENDAR_API, {
+        formats: ["rawHtml"],
+      }),
+    )();
 
-    if (!response.ok) {
-      console.warn(
-        `British Rowing calendar returned ${response.status} ${response.statusText}`,
-      );
-
-      return [];
-    }
-
-    if (response.headers.get("cf-mitigated") === "challenge") {
-      console.warn(
-        "British Rowing calendar served a Cloudflare challenge (cf-mitigated: challenge)",
-      );
+    if (error) {
+      console.warn("Failed to fetch British Rowing calendar:", error);
 
       return [];
     }
 
-    const contentType = response.headers.get("content-type") ?? "";
+    const rawHtml = response.rawHtml;
 
-    if (!contentType.toLowerCase().includes("json")) {
-      console.warn(
-        `British Rowing calendar returned non-JSON content-type "${contentType}"`,
-      );
+    if (!rawHtml) {
+      console.warn("Failed to fetch British Rowing calendar: no rawHtml");
+
+      return [];
+    }
+
+    const [parsedError, parsed] = await tryit(() => JSON.parse(rawHtml))();
+
+    if (parsedError) {
+      console.warn("Failed to parse British Rowing calendar:", parsedError);
 
       return [];
     }
@@ -127,7 +143,7 @@ export const fetchCompetitions = async (
     const result = z
       .array(ZBREvent)
       .transform(includeOldEvents ? (_) => _ : removeStaleEvents)
-      .safeParse(await response.json());
+      .safeParse(parsed);
 
     if (!result.success) {
       console.warn(
@@ -146,16 +162,28 @@ export const fetchCompetitions = async (
   }
 };
 
-export const fetchCompetitionById = async (id: string) => {
-  const competitions = await fetchCompetitions();
+export const cachedFetchCompetitions: typeof fetchCompetitions = async (
+  includeOldEvents,
+) => {
+  try {
+    return await cached({
+      checkValue: ZBREventOutput,
+      key: `competitions-${includeOldEvents ? "old" : "new"}`,
+      staleWhileRevalidate: KEEP_IN_KV_FOR_MS - FRESH_FOR_MS,
+      ttl: FRESH_FOR_MS,
+      waitUntil: after,
+      getFreshValue: async () => {
+        const events = await fetchCompetitions(includeOldEvents);
 
-  return competitions.find((competition) => competition.id === id);
-};
+        if (events.length === 0)
+          throw new Error("British Rowing calendar returned no events");
 
-export const fetchRegions = async () => {
-  const competitions = await fetchCompetitions();
+        return events;
+      },
+    });
+  } catch (error) {
+    console.warn("Failed to fetch British Rowing calendar:", error);
 
-  const regions = new Set(competitions.map(({ region }) => region));
-
-  return Array.from(regions);
+    return [];
+  }
 };
