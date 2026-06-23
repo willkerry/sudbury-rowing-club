@@ -4,7 +4,8 @@
   "keywords": [],
   "license": "ISC",
   "name": "@sudburyrc/monorepo",
-  "packageManager": "pnpm@11.8.0",
+  "packageManager": "pnpm@10.34.4",
+
   "version": "1.0.0",
   "dependencies": {
     "turbo": "^2.9.8"
