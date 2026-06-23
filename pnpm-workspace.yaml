@@ -34,3 +34,7 @@ overrides:
   "@types/react": "catalog:"
   "@types/react-dom": "catalog:"
   parse5: "^7.1.2"
+  # jsdom >=27 depends on the ESM-only @exodus/bytes, which breaks under
+  # Next's CJS `serverExternalPackages` require() with ERR_REQUIRE_ESM.
+  # Pin to the last line that still uses the CJS whatwg-encoding sniffer.
+  jsdom: "^26.1.0"
