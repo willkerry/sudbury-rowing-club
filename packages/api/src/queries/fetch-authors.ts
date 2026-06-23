@@ -64,5 +64,5 @@ const fetchAllAuthors = async () => {
   return ZAllAuthorsResponse.parse(response);
 };
 
-export { fetchAuthor, fetchAllAuthors };
 export type { Author, AuthorsResponse };
+export { fetchAllAuthors, fetchAuthor };

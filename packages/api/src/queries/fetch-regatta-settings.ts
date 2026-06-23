@@ -110,5 +110,5 @@ const fetchRegattaSettings = async () =>
 
 type RegattaSettings = z.infer<typeof ZRegattaSettings>;
 
-export { fetchRegattaSettings };
 export type { RegattaSettings };
+export { fetchRegattaSettings };

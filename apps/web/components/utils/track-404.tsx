@@ -15,7 +15,7 @@ export const Track404 = () => {
 
   useEffect(() => {
     const referrer =
-      typeof document !== "undefined" ? document.referrer : undefined;
+      typeof document === "undefined" ? undefined : document.referrer;
 
     posthog.capture("404_page_viewed", {
       attempted_path: pathname,

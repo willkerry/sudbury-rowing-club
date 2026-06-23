@@ -207,13 +207,13 @@ const DataTableColumnHeader = <TData, TValue>({
 };
 
 export {
+  DataTableColumnHeader,
   Table,
-  TableHeader,
   TableBody,
+  TableCaption,
+  TableCell,
   TableFooter,
   TableHead,
+  TableHeader,
   TableRow,
-  TableCell,
-  TableCaption,
-  DataTableColumnHeader,
 };

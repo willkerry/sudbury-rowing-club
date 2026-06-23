@@ -33,5 +33,5 @@ const fetchRegattas = async () =>
 type Regatta = z.infer<typeof ZRegatta>;
 type Testimonial = z.infer<typeof ZTestimonial>;
 
-export { fetchRegattas };
 export type { Regatta, Testimonial };
+export { fetchRegattas };

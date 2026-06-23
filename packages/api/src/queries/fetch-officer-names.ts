@@ -34,5 +34,5 @@ const fetchOfficerNames = async () => {
 
 type OfficerResponse = z.infer<typeof ZOfficerResponse>;
 
-export { fetchOfficerNames };
 export type { OfficerResponse };
+export { fetchOfficerNames };

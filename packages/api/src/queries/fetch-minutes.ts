@@ -57,5 +57,5 @@ const fetchMinutes = async () => {
 
 type Minutes = z.infer<typeof ZMinutes>;
 
-export { fetchMinutes };
 export type { Minutes };
+export { fetchMinutes };

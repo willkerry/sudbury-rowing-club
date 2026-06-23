@@ -60,7 +60,7 @@ const CLOSING_BODY_TAG_REGEX = /<\/body>/;
 // append a link, diorectly before the closing body tag, to the listing page
 function addListingLink(html: string, fileName: string): string {
   const returnLink =
-    fileName !== "index.html" ? `<a href="./index.html">Return</a>` : "";
+    fileName === "index.html" ? "" : `<a href="./index.html">Return</a>`;
 
   return html.replace(
     CLOSING_BODY_TAG_REGEX,

@@ -88,6 +88,5 @@ const fetchOneNotice = async (slug: string) => {
 
 type Notice = z.infer<typeof ZNotice>;
 
-export { fetchOneNotice, fetchNotices, fetchNoticeSlugs };
-
 export type { Notice };
+export { fetchNoticeSlugs, fetchNotices, fetchOneNotice };
