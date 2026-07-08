@@ -1,7 +1,7 @@
+import { Accordion } from "@base-ui/react/accordion";
 import { CloseButton } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import { Accordion } from "radix-ui";
 import { cn } from "@/lib/utils";
 import type { IconNavItemType } from "@/types/nav-item";
 
@@ -42,28 +42,30 @@ const SectionWrapper = ({
 
   if (collapse)
     return (
-      <Accordion.Root collapsible type="single">
+      <Accordion.Root>
         <Accordion.Item className={outer} value={title}>
-          <Accordion.Trigger
-            className={cn(
-              titleClasses,
-              "-my-4 flex w-full justify-between py-4 [&[data-state=open]>svg]:-rotate-180",
-            )}
-          >
-            {title}
-            <ChevronDownIcon
-              aria-hidden
-              className="h-4 w-4 transition-transform duration-200"
-            />
-          </Accordion.Trigger>
-          <Accordion.Content
+          <Accordion.Header>
+            <Accordion.Trigger
+              className={cn(
+                titleClasses,
+                "-my-4 flex w-full justify-between py-4 [&[data-panel-open]>svg]:-rotate-180",
+              )}
+            >
+              {title}
+              <ChevronDownIcon
+                aria-hidden
+                className="h-4 w-4 transition-transform duration-200"
+              />
+            </Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Panel
             className={cn(
               panel,
-              "transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down data-[state=closed]:opacity-0 data-[state=open]:opacity-100",
+              "transition-all data-[closed]:animate-accordion-up data-[open]:animate-accordion-down data-[closed]:opacity-0 data-[open]:opacity-100",
             )}
           >
             {inner}
-          </Accordion.Content>
+          </Accordion.Panel>
         </Accordion.Item>
       </Accordion.Root>
     );
