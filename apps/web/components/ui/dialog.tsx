@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog as RadixDialog } from "radix-ui";
+import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -83,27 +83,31 @@ const DialogComponent = () => {
   } = state;
 
   return (
-    <RadixDialog.Root onOpenChange={() => closeDialog()} open={isOpen}>
-      <RadixDialog.Portal>
-        <RadixDialog.Overlay className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=open]:animate-in" />
+    <BaseDialog.Root onOpenChange={() => closeDialog()} open={isOpen}>
+      <BaseDialog.Portal>
+        <BaseDialog.Backdrop className="data-[closed]:fade-out-0 data-[open]:fade-in-0 fixed inset-0 z-50 bg-black/50 data-[closed]:animate-out data-[open]:animate-in" />
 
-        <RadixDialog.Content className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-[50%] left-[50%] z-50 grid w-full max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-hidden border bg-gray-50 p-3 shadow-lg duration-200 data-[state=closed]:animate-out data-[state=open]:animate-in sm:rounded-sm">
+        <BaseDialog.Popup className="data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-[48%] data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-[48%] fixed top-[50%] left-[50%] z-50 grid w-full max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-hidden border bg-gray-50 p-3 shadow-lg duration-200 data-[closed]:animate-out data-[open]:animate-in sm:rounded-sm">
           {title && (
-            <RadixDialog.Title className="font-semibold text-gray-780 text-sm">
+            <BaseDialog.Title className="font-semibold text-gray-780 text-sm">
               {title}
-            </RadixDialog.Title>
+            </BaseDialog.Title>
           )}
 
-          <RadixDialog.Description className="font-medium text-gray-600 text-sm">
+          <BaseDialog.Description className="font-medium text-gray-600 text-sm">
             {description}
-          </RadixDialog.Description>
+          </BaseDialog.Description>
 
           <div className="-mx-0.5 mt-4 -mb-0.5 flex justify-between">
-            <RadixDialog.Close asChild className="flex-1" onClick={onClose}>
-              <Button size="xs" variant="secondary">
-                {closeText}
-              </Button>
-            </RadixDialog.Close>
+            <BaseDialog.Close
+              className="flex-1"
+              onClick={onClose}
+              render={
+                <Button size="xs" variant="secondary">
+                  {closeText}
+                </Button>
+              }
+            />
 
             {onConfirm && (
               <Button
@@ -118,9 +122,9 @@ const DialogComponent = () => {
               </Button>
             )}
           </div>
-        </RadixDialog.Content>
-      </RadixDialog.Portal>
-    </RadixDialog.Root>
+        </BaseDialog.Popup>
+      </BaseDialog.Portal>
+    </BaseDialog.Root>
   );
 };
 
