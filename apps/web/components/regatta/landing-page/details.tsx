@@ -1,6 +1,6 @@
+import { useRender } from "@base-ui/react/use-render";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 export type DetailProps = {
@@ -8,6 +8,14 @@ export type DetailProps = {
   icon: React.ReactNode;
   href: string;
 };
+
+const StyledIcon = ({
+  render,
+  className,
+}: {
+  render: React.ReactElement;
+  className: string;
+}) => useRender({ render, props: { className, "aria-hidden": true } });
 
 export const Details = ({ items }: { items: DetailProps[] }) => (
   <div className="flex flex-col">
@@ -34,12 +42,10 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
           })}
         />
 
-        <Slot.Slot
-          aria-hidden
+        <StyledIcon
           className="h-6 w-6 stroke-[1.5px] text-gray-400 transition-colors group-hover:text-blue-600 group-focus:text-blue-600"
-        >
-          {icon}
-        </Slot.Slot>
+          render={icon as React.ReactElement}
+        />
 
         <div>{summary}</div>
 
