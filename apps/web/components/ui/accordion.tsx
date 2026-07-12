@@ -50,7 +50,7 @@ const AccordionContent = forwardRef<
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Panel>
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Panel
-    className="overflow-hidden text-sm transition-all data-[closed]:animate-accordion-up data-[open]:animate-accordion-down"
+    className="overflow-hidden text-sm data-[closed]:animate-accordion-up data-[open]:animate-accordion-down"
     ref={ref}
     {...props}
   >

@@ -61,7 +61,7 @@ const SectionWrapper = ({
           <Accordion.Panel
             className={cn(
               panel,
-              "transition-all data-[closed]:animate-accordion-up data-[open]:animate-accordion-down data-[closed]:opacity-0 data-[open]:opacity-100",
+              "data-closed:animate-accordion-up data-open:animate-accordion-down",
             )}
           >
             {inner}
