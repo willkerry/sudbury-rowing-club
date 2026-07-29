@@ -6,11 +6,16 @@ import { ScrollLink } from "@/components/utils/scroll-link";
 type Props = {
   ticketItems: [string, string | JSX.Element][];
   subtitle: string;
+  cancelled?: boolean;
 };
 
-export const RegattaHero = ({ ticketItems, subtitle }: Props) => (
+export const RegattaHero = ({
+  ticketItems,
+  subtitle,
+  cancelled = false,
+}: Props) => (
   <div className="mx-auto mb-12 max-w-lg text-center sm:mt-12">
-    <ImageComposite ticketItems={ticketItems} />
+    <ImageComposite cancelled={cancelled} ticketItems={ticketItems} />
     <h1 className="bg-linear-to-br from-blue-400 to-blue-950 bg-clip-text pb-12 font-bold text-5xl text-transparent tracking-tight sm:text-7xl md:text-7xl">
       Sudbury <span className="font-light text-gray-900">‘International’</span>{" "}
       Regatta

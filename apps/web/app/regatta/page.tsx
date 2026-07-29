@@ -5,6 +5,7 @@ import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 import { logos as sponsors } from "@/components/landing/sponsors";
 import { Container } from "@/components/layouts/container";
+import { RegattaCancellationNotice } from "@/components/regatta/landing-page/cancellation-notice";
 import { DateLocation } from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import { Details } from "@/components/regatta/landing-page/details";
@@ -148,8 +149,13 @@ const RegattaPage = async () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         type="application/ld+json"
       />
+      <RegattaCancellationNotice />
       <Container>
-        <RegattaHero {...{ ticketItems }} subtitle={landingPage.tagline} />
+        <RegattaHero
+          {...{ ticketItems }}
+          cancelled
+          subtitle={landingPage.tagline}
+        />
         <DateLocation
           date={regattaDate}
           location={`${VENUE}, ${TOWN}, ${POSTCODE}`}
