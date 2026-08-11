@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getClub, getClubByCode } from "@/lib/getClub";
+import { getClub, getClubByCode, getClubById } from "@/lib/getClub";
 
 const club = {
   bladeUrl:
@@ -24,6 +24,16 @@ describe("getClub", () => {
 
   it("should return undefined if no club is found", () => {
     expect(getClub("DUMMY")).toBeUndefined();
+  });
+});
+
+describe("getClubById", () => {
+  it("should return the correct club", () => {
+    expect(getClubById(465)).toEqual(club);
+  });
+
+  it("should return undefined if no club is found", () => {
+    expect(getClubById(999999)).toBeUndefined();
   });
 });
 

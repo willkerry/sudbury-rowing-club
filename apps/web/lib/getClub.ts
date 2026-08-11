@@ -65,6 +65,19 @@ export const getClubByUrl = (url: string) => {
   return foundClub;
 };
 
+export const getClubById = (id: number) => {
+  const foundClub = clubs.find((club) => club.id === id);
+
+  if (!foundClub) return;
+
+  return {
+    bladeUrl: foundClub.newBladeUrl ?? undefined,
+    href: foundClub.href,
+    id: foundClub.id,
+    name: foundClub.name,
+  };
+};
+
 export const getClubByCode = (code: string) => {
   const foundClub =
     clubs.find((club) => club.code === code) ??

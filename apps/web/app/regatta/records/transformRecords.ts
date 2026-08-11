@@ -1,5 +1,10 @@
 import { slug } from "github-slugger";
 import { z } from "zod";
+import { getClubByCode } from "@/lib/getClub";
+import {
+  getClubsFromCompositeCrewString,
+  isCompositeCrew,
+} from "./[event]/utils";
 import recordJson from "./records.json";
 
 const parseDuration = (durationString: string) => {
@@ -51,6 +56,13 @@ const RecordSchema = z
   })
   .transform((record) => ({
     ...record,
+    parsedClub: (() => {
+      if (isCompositeCrew(record.club)) {
+        return getClubsFromCompositeCrewString(record.club);
+      }
+
+      return [getClubByCode(record.club) || { code: record.club }];
+    })(),
     slug: slugify(record.event),
   }));
 

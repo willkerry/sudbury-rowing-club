@@ -3,11 +3,10 @@ import { getClubByCode } from "@/lib/getClub";
 
 export const isCompositeCrew = (club: string) => club.includes("/");
 
-export const getClubsFromCompositeCrewString = (clubCode: string) => {
-  const clubs = clubCode.split("/");
+export const splitCompositeCrew = (clubCode: string) => clubCode.split("/");
 
-  return clubs.map((code) => getClubByCode(code) ?? { code });
-};
+export const getClubsFromCompositeCrewString = (clubCode: string) =>
+  splitCompositeCrew(clubCode).map((code) => getClubByCode(code) ?? { code });
 
 export const unpickCompositeCrewClubs = (clubCode: string) => {
   const clubs = getClubsFromCompositeCrewString(clubCode);

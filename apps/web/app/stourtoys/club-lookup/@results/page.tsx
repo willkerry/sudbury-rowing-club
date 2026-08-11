@@ -1,8 +1,7 @@
 import { clubs as allClubs } from "@sudburyrc/static";
-import Image from "next/image";
 import Link from "next/link";
+import { Blade } from "@/components/stour/blade";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 
 const MAX_CLUBS = 64;
 const MAX_CLUBS_WITH_BLADES = 10;
@@ -60,13 +59,10 @@ const ClubSearchResults = async (props: {
             {club.name}
             {clubs.length < MAX_CLUBS_WITH_BLADES && club.newBladeUrl && (
               <div className="absolute top-0 right-2 bottom-0 flex items-center">
-                <Image
-                  alt=""
+                <Blade
                   className="h-4 w-8"
                   height={16}
-                  loader={cloudflareLoader}
-                  loading="lazy"
-                  src={club.newBladeUrl}
+                  src={club.id}
                   width={32}
                 />
               </div>
