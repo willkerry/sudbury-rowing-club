@@ -1,5 +1,6 @@
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
+import { SYMBOL_CODES } from "../src/index";
 import { describeSymbol, WeatherIcon } from "../src/weather-icon";
 
 afterEach(cleanup);
@@ -47,5 +48,12 @@ describe("WeatherIcon", () => {
   it("strips variant suffixes when describing", () => {
     expect(describeSymbol("clearsky_polartwilight")).toBe("Clear sky");
     expect(describeSymbol("cloudy")).toBe("Cloudy");
+  });
+
+  it("resolves a non-empty description for every symbol code", () => {
+    for (const code of SYMBOL_CODES) {
+      const description = describeSymbol(code);
+      expect(description, `${code} has no description`).toBeTruthy();
+    }
   });
 });
