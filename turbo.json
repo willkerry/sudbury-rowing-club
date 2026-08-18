@@ -5,7 +5,7 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
       "env": [
@@ -35,14 +35,24 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
       "persistent": true
     },
+    "generate": {
+      "outputs": ["src/generated/**"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "vendor/**",
+        "scripts/**",
+        "svgr.config.mjs"
+      ]
+    },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "generate"],
       "outputs": []
     },
     "test:watch": {
       "outputs": []
     },
     "type-check": {
+      "dependsOn": ["generate"],
       "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
     }
   }
