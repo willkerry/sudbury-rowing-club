@@ -11,6 +11,7 @@
     "@types/react": "catalog:",
     "@vitejs/plugin-react": "^5.0.4",
     "jsdom": "^26.1.0",
+    "react": "catalog:",
     "react-dom": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
