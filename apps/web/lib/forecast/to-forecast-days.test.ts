@@ -2,11 +2,12 @@ import { describe, expect, it } from "vitest";
 import fixture from "./fixtures/locationforecast.json";
 import { toForecastDays, toLondonDate } from "./to-forecast-days";
 
-const days = toForecastDays(
-  JSON.parse(JSON.stringify(fixture), (key, value) =>
+const parse = (f: typeof fixture) =>
+  JSON.parse(JSON.stringify(f), (key, value) =>
     key === "time" ? new Date(value) : value,
-  ),
-);
+  );
+
+const days = toForecastDays(parse(fixture));
 
 describe("toLondonDate", () => {
   it("uses the London calendar day, not the UTC one", () => {
@@ -33,6 +34,23 @@ describe("toForecastDays", () => {
 
   it("orders slots within a day chronologically", () => {
     for (const day of days) {
+      const times = day.slots.map((slot) => slot.time.getTime());
+
+      expect(times).toEqual([...times].sort((a, b) => a - b));
+    }
+  });
+
+  it("orders slots within a day chronologically even when the input is reversed", () => {
+    const shuffled = {
+      ...fixture,
+      properties: {
+        ...fixture.properties,
+        timeseries: [...fixture.properties.timeseries].reverse(),
+      },
+    };
+    const shuffledDays = toForecastDays(parse(shuffled));
+
+    for (const day of shuffledDays) {
       const times = day.slots.map((slot) => slot.time.getTime());
 
       expect(times).toEqual([...times].sort((a, b) => a - b));
@@ -67,5 +85,18 @@ describe("toForecastDays", () => {
         expect(Number.isFinite(slot.fog)).toBe(true);
       }
     }
+
+    // The 6-hourly entries from 2026-08-22T06:00:00Z onward omit
+    // fog_area_fraction from instant.details; the slot must default to 0.
+    const aug22 = days.find((d) => d.date === "2026-08-22");
+    const slotAt06 = aug22?.slots.find(
+      (s) => s.time.toISOString() === "2026-08-22T06:00:00.000Z",
+    );
+
+    expect(slotAt06, "expected a slot for 2026-08-22T06:00Z").toBeDefined();
+    expect(slotAt06?.fog).toBe(0);
+
+    // No entry in the fixture omits precipitation_amount from its period
+    // details, so no precipitation defaulting case can be asserted here.
   });
 });

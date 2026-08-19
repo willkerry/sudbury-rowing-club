@@ -67,6 +67,9 @@ export const toForecastDays = (forecast: LocationForecast): ForecastDay[] => {
   }
 
   return [...slotsByDate.entries()]
-    .map(([date, slots]) => ({ date, slots }))
+    .map(([date, slots]) => ({
+      date,
+      slots: slots.sort((a, b) => a.time.getTime() - b.time.getTime()),
+    }))
     .sort((a, b) => a.date.localeCompare(b.date));
 };
