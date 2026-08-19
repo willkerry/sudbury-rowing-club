@@ -62,11 +62,7 @@ export const HourlyForecast = () => {
     return null;
 
   return (
-    <section
-      aria-label="Weather forecast"
-      // className="bg-linear-to-br from-gray-50 to-blue-50"
-      className="bg-gray-50"
-    >
+    <section aria-label="Weather forecast" className="bg-gray-50">
       {status === "pending" ? (
         <StripSkeleton />
       ) : (
