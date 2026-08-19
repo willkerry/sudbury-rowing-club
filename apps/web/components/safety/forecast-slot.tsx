@@ -1,6 +1,5 @@
 import { WeatherIcon } from "@sudburyrc/weathericons";
 import { ArrowUpCircleIcon, TriangleAlertIcon } from "lucide-react";
-import type { SkyInk } from "@/lib/forecast/sky-theme";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { cn } from "@/lib/utils";
 
@@ -11,8 +10,6 @@ const FOGGY_PERCENT = 40;
 
 const RAIN_FULL_SCALE_MM = 4;
 const RAIN_MIN_VISIBLE_PERCENT = 15;
-
-const HALF_TURN = 180;
 
 export const hasWarning = ({
   fog,
@@ -46,11 +43,9 @@ const hourFormatter = new Intl.DateTimeFormat("en-GB", {
 });
 
 export const ForecastSlotColumn = ({
-  ink,
   isNow = false,
   slot,
 }: {
-  ink: SkyInk;
   isNow?: boolean;
   slot: ForecastSlot;
 }) => {
@@ -60,47 +55,36 @@ export const ForecastSlotColumn = ({
     <div
       className={cn(
         "flex w-20 shrink-0 snap-start flex-col items-center gap-1 px-1 py-3 text-center",
-        isNow && ink.nowBackdrop,
+        isNow && "bg-white/5",
       )}
       data-hour={hourFormatter.format(slot.time)}
     >
       <div
         className={cn(
           "flex items-center gap-1 font-semibold text-xs tabular-nums",
-          isNow ? ink.hourNow : ink.hourMuted,
+          isNow ? "text-white" : "text-white/45",
         )}
       >
         {hourFormatter.format(slot.time)}
 
         {hasWarning(slot) && (
-          <TriangleAlertIcon
-            aria-hidden
-            className={cn("size-3", ink.warning)}
-          />
+          <TriangleAlertIcon aria-hidden className="size-3 text-red-400" />
         )}
       </div>
 
       <WeatherIcon className="size-7" symbol={slot.symbol} />
 
-      <div
-        className={cn(
-          "disambiguate font-semibold text-sm tabular-nums",
-          ink.temperature,
-        )}
-      >
+      <div className="disambiguate font-semibold text-sm text-white tabular-nums">
         {slot.temperature}°
       </div>
 
       <div
         aria-hidden
-        className={cn(
-          "flex h-4 w-3 items-end justify-center rounded-xs",
-          ink.rainTrack,
-        )}
+        className="flex h-4 w-3 items-end justify-center rounded-xs bg-white/8"
       >
         {rainHeight > 0 && (
           <div
-            className={cn("w-full rounded-xs", ink.rainBar)}
+            className="w-full rounded-xs bg-sky-400"
             style={{ height: `${rainHeight}%` }}
           />
         )}
@@ -112,17 +96,12 @@ export const ForecastSlotColumn = ({
           : "No rain expected"}
       </div>
 
-      <div
-        className={cn(
-          "flex items-center gap-0.5 font-semibold text-xs",
-          ink.wind,
-        )}
-      >
+      <div className="flex items-center gap-0.5 font-semibold text-white/80 text-xs">
         <span className="tabular-nums">{slot.wind.beaufort}</span>
         <ArrowUpCircleIcon
           aria-label={slot.wind.direction}
-          className={cn("size-4", ink.windArrow)}
-          style={{ transform: `rotate(${slot.wind.bearing - HALF_TURN}deg)` }}
+          className="size-4 text-white opacity-50"
+          style={{ transform: `rotate(${slot.wind.bearing - 180}deg)` }}
         />
       </div>
     </div>

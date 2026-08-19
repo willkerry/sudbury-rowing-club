@@ -1,6 +1,5 @@
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import { SKY_THEMES } from "@/lib/forecast/sky-theme";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import {
   ForecastSlotColumn,
@@ -11,8 +10,6 @@ import {
 afterEach(cleanup);
 
 const MM_PATTERN = /mm/;
-
-const NIGHT_INK = SKY_THEMES.night.ink;
 
 const slot = (overrides: Partial<ForecastSlot> = {}): ForecastSlot => ({
   fog: 0,
@@ -91,25 +88,20 @@ describe("rainBarPercent", () => {
 describe("ForecastSlotColumn", () => {
   it("announces precipitation to screen readers either way", () => {
     const { queryByText, rerender } = render(
-      <ForecastSlotColumn ink={NIGHT_INK} slot={slot()} />,
+      <ForecastSlotColumn slot={slot()} />,
     );
 
     expect(queryByText(MM_PATTERN)).toBeNull();
     expect(queryByText("No rain expected")).not.toBeNull();
 
-    rerender(
-      <ForecastSlotColumn
-        ink={NIGHT_INK}
-        slot={slot({ precipitation: 0.4 })}
-      />,
-    );
+    rerender(<ForecastSlotColumn slot={slot({ precipitation: 0.4 })} />);
 
     expect(queryByText("0.4mm of rain")).not.toBeNull();
   });
 
   it("shows the force as text and names the direction for screen readers", () => {
     const { getByLabelText, getByText } = render(
-      <ForecastSlotColumn ink={NIGHT_INK} slot={slot()} />,
+      <ForecastSlotColumn slot={slot()} />,
     );
 
     expect(getByText("3")).toBeDefined();
@@ -119,7 +111,6 @@ describe("ForecastSlotColumn", () => {
   it("points the wind arrow the way the wind is blowing, not where it came from", () => {
     const { getByLabelText } = render(
       <ForecastSlotColumn
-        ink={NIGHT_INK}
         slot={slot({ wind: { bearing: 270, beaufort: 4, direction: "W" } })}
       />,
     );
