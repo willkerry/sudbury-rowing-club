@@ -61,7 +61,7 @@ export const HourlyForecast = () => {
   const activeDay = days?.find((day) => day.date === active);
   const today = toLondonDate(new Date());
   const now = Date.now();
-  const isCoarse = activeDay?.slots.some((slot) => slot.span > 1);
+  const isCoarse = (activeDay?.slots.length ?? 0) <= 6;
 
   if (status === "error" || (status === "success" && !days?.length))
     return null;

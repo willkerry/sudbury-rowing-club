@@ -1,9 +1,10 @@
 import { WeatherIcon } from "@sudburyrc/weathericons";
-import { ArrowUpCircleIcon, TriangleAlertIcon } from "lucide-react";
+import { TriangleAlertIcon } from "lucide-react";
 import { toast } from "sonner";
 import { toLondonHourLabel } from "@/lib/forecast/london-time";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { cn } from "@/lib/utils";
+import { ArrowLongUpIcon } from "@heroicons/react/20/solid";
 
 const GALE_FORCE = 6;
 const COLD_CELSIUS = 4;
@@ -77,14 +78,14 @@ export const ForecastSlotColumn = ({
       </div>
 
       <div className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs tracking-widest">
-        <ArrowUpCircleIcon
+        <ArrowLongUpIcon
           aria-label={`Force ${slot.wind.beaufort}, wind from ${slot.wind.direction}`}
           className="size-3.5 text-gray-400"
           role="img"
           style={{ transform: `rotate(${slot.wind.bearing - 180}deg)` }}
         />
-        <span aria-hidden className="tabular-nums">
-          <span className="text-gray-400">F</span>
+        <span aria-hidden className="italic">
+          <span className="font-black text-gray-400">F</span>
           {slot.wind.beaufort}
         </span>
       </div>
