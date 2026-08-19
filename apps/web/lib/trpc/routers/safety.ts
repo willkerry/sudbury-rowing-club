@@ -15,7 +15,7 @@ export const safetyRouter = router({
       const safetyStatus = await cached({
         getFreshValue: getSafetyStatus,
         key: "safety-status",
-        ttl: 60 * 60,
+        ttl: 60 * 60 * 1_000,
       });
 
       if (safetyStatus.errors && safetyStatus.errors.length > 0) {
