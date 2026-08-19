@@ -323,9 +323,11 @@ hourly. It renders only as a marker, not as its own always-visible row.
 
 ### Coarse slots
 
-Slots with `span: 6` are labelled with their local start time and occupy twice
-the width of an hourly slot (`w-24` versus `w-20`). The change in resolution
-therefore reads visually and needs no explanatory text.
+Slots with `span: 6` are labelled with their local start time and are wider than
+an hourly slot (`w-24` versus `w-20`), so the change in resolution is visible
+without explanatory text. The original intent was a far larger ratio, but wide
+hourly columns read better and a six-fold difference would push most of the day
+off screen, so the difference is deliberately modest.
 
 ### Outbound links
 
