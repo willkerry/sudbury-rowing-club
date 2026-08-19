@@ -47,8 +47,8 @@ Taken from https://api.met.no/doc/TermsOfService.
    `sudburyrowingclub.org.uk webmaster@sudburyrowingclub.org.uk`, which matches
    MET's own documented example format.
 2. **Coordinate precision.** Requests with five or more decimal places receive
-   `403 Forbidden`. `CLUB_LOCATION` is currently `52.033997, 0.727634` — six
-   decimals — so coordinates must be truncated to `52.034, 0.7276` before being
+   `403 Forbidden`. `CLUB_LOCATION` is currently `52.033997, 0.727634` – six
+   decimals – so coordinates must be truncated to `52.034, 0.7276` before being
    placed in the query string.
 3. **Caching.** Responses must be cached. Clients must send `If-Modified-Since`
    with the exact previous `Last-Modified` value, and must not re-request before
@@ -82,7 +82,7 @@ in a flat `weather/svg/` directory, named to match `symbol_code` exactly,
 including `_day`, `_night` and `_polartwilight` variants. `weather/legend.csv`
 maps each base symbol to English descriptions.
 
-A new workspace package follows the `@sudburyrc/blue` shape — tsdown build,
+A new workspace package follows the `@sudburyrc/blue` shape – tsdown build,
 `dist/index.mjs` main, `dist/index.d.mts` types, React 19 peer dependency,
 `@sudburyrc/tsconfig`.
 
@@ -113,14 +113,14 @@ Within this package, `build` and `type-check` both declare
 The dependency matters because `src/generated/` is gitignored. Turbo currently
 caches only `dist/**`; were generation merely chained inside the `build` script,
 a build cache hit would restore `dist/` while leaving `src/generated/` empty,
-and `type-check` — which has no `dependsOn` and reads source — would then fail on
+and `type-check` – which has no `dependsOn` and reads source – would then fail on
 a clean checkout. Making `generate` a first-class cached task with its own
 outputs removes that failure mode.
 
 Turbo's default inputs cover the tracked submodule pointer, so bumping the
 submodule changes the hash and correctly invalidates the `generate` cache.
 
-`legend.csv` is keyed by *base* symbol — `clearsky`, `fair`, `partlycloudy` —
+`legend.csv` is keyed by *base* symbol – `clearsky`, `fair`, `partlycloudy` –
 without the `_day`, `_night` or `_polartwilight` suffix. The description lookup
 therefore strips the variant suffix before matching, so `partlycloudy_night`
 resolves to "Partly cloudy".
@@ -182,8 +182,8 @@ synchronous.
 
 Fresh clones and CI checkouts need `--recurse-submodules`. Vercel clones public
 HTTPS submodules automatically. The `README` and any contributor docs must say
-so, because the failure mode — an empty `vendor/` and a codegen step that emits
-an empty barrel — is confusing.
+so, because the failure mode – an empty `vendor/` and a codegen step that emits
+an empty barrel – is confusing.
 
 `SymbolCode` is derived from the vendored filenames rather than hand-written, so
 a symbol MET adds upstream surfaces as a type error at the lookup rather than a
@@ -205,7 +205,7 @@ value rather than returning a body.
 ### Caching
 
 `safety.forecast` in `apps/web/lib/trpc/routers/safety.ts` keeps its current
-shape — a `rateLimitedProcedure` wrapping `cached` — with two changes:
+shape – a `rateLimitedProcedure` wrapping `cached` – with two changes:
 
 - The flat `ttl: 60 * 60 * 12` is replaced by a TTL derived from the `Expires`
   header, floored at 10 minutes and capped at 1 hour. In practice MET returns an
@@ -270,13 +270,13 @@ within.
 │   ☁     ☁     ☁     ◑     ●     ●     ●     ●     ●        │
 │  22°   21°   19°   18°   17°   17°   16°   16°   15°       │
 │  0.1    ·     ·     ·     ·    0.2   0.4    ·     ·        │
-│  3↖   3↖   2↖   2←   2←   1←   1←   1↙   2↙      │
+│  3 NW  3 NW  2 NW  2 W   2 W   1 W   1 W   1 SW  2 SW  │
 └────────────────────────────────────────────────────────────┘
   Forecast data from MET Norway (CC BY 4.0). Icons by Yr (MIT).
 ```
 
 Rows, top to bottom: hour, condition icon, temperature, precipitation in mm,
-Beaufort force with a direction arrow.
+Beaufort force with a cardinal direction (e.g. `3 NW`).
 
 ### Day tabs
 
@@ -306,8 +306,8 @@ The selected day defaults to today, except after 20:00 Europe/London when it
 defaults to tomorrow. The motivating case is that at 21:00 nobody is planning to
 row at 23:00; they are planning the morning.
 
-On today, the strip scrolls to the current hour on mount. All 24 hours remain
-reachable by scrolling — no hours are hidden.
+MET does not return hours earlier than the current one, so today's strip always
+begins at the present hour. All available hours remain reachable by scrolling.
 
 ### Warning markers
 
@@ -323,9 +323,9 @@ hourly. It renders only as a marker, not as its own always-visible row.
 
 ### Coarse slots
 
-Slots with `span: 6` are labelled with their local start time and occupy six
-times the width of an hourly slot. The change in resolution therefore reads
-visually and needs no explanatory text.
+Slots with `span: 6` are labelled with their local start time and occupy twice
+the width of an hourly slot (`w-24` versus `w-20`). The change in resolution
+therefore reads visually and needs no explanatory text.
 
 ### Outbound links
 
