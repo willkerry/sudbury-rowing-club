@@ -254,11 +254,16 @@ than the browser's zone, since the forecast describes a fixed physical location.
 
 ## User interface
 
-The forecast becomes its own card on `/safety`, below the river status card and
-outside the page's `max-w-prose` constraint. `app/safety/(landing)/layout.tsx`
-currently wraps everything in a single `max-w-prose` container; the forecast
-card needs to sit outside it while the status card and prose content stay
-within.
+The forecast stays where the old seven-day strip lived: a section of the
+existing River Safety Status card, between the warnings and the EA/Met Office
+footer links, inside the page's `max-w-prose` column.
+
+It is distinguished not by position but by treatment. The strip sits on a dark
+`gray-950` to `blue-950` gradient, so it reads as an instrument panel set into
+the card rather than another band of the same material. That follows the site's
+established dark-section pattern, and the full-colour MET icons carry better on
+it than on white. It carries no heading of its own: hourly weather under a river
+safety status needs no label to be understood.
 
 ```
 ┌────────────────────────────────────────────────────────────┐

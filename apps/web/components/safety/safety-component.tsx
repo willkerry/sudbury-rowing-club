@@ -10,6 +10,7 @@ import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
 import { trpc } from "@/lib/trpc/client";
 import type { Severity } from "@/types/severity";
 import { Loading } from "../stour/loading";
+import { HourlyForecast } from "./hourly-forecast";
 import { QuotedWarning, type WarningSourceEnum } from "./quoted-warning";
 import { IS_LOADING, SeveritySection } from "./severity-section";
 
@@ -146,6 +147,8 @@ export const SafetyComponent = () => {
           {error && <ErrorMessage error={{ message: error.message }} />}
         </div>
       )}
+
+      <HourlyForecast />
 
       <div className="grid grid-flow-col grid-cols-2 divide-x">
         <a

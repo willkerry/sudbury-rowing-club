@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Label } from "@/components/stour/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { selectDefaultDayIndex } from "@/lib/forecast/select-default-day";
 import {
@@ -59,14 +58,8 @@ export const HourlyForecast = () => {
   return (
     <section
       aria-label="Weather forecast"
-      className="overflow-hidden rounded-sm bg-linear-to-br from-gray-950 to-blue-950"
+      className="bg-linear-to-br from-gray-950 to-blue-950"
     >
-      <div className="border-white/10 border-b px-3 py-3 sm:px-4">
-        <Label as="h2" className="text-white/60">
-          Forecast
-        </Label>
-      </div>
-
       {status === "pending" ? (
         <StripSkeleton />
       ) : (
