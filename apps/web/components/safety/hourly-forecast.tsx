@@ -42,7 +42,7 @@ const scrollToMorning = (strip: HTMLDivElement | null) => {
 };
 
 const StripSkeleton = () => (
-  <div aria-hidden className="flex gap-1 px-1 py-3">
+  <div aria-hidden className="flex gap-1 overflow-hidden px-1 py-3">
     {Array.from({ length: 12 }, (_, index) => (
       <div
         className="h-24 w-20 shrink-0 animate-pulse rounded-xs bg-white/5 motion-reduce:animate-none"
@@ -74,7 +74,7 @@ export const HourlyForecast = () => {
   return (
     <section
       aria-label="Weather forecast"
-      // className="bg-linear-to-br from-gray-950 to-blue-950"
+      className="w-full min-w-0 overflow-hidden bg-linear-to-br from-gray-950 to-blue-950"
     >
       {status === "pending" ? (
         <StripSkeleton />
@@ -124,7 +124,7 @@ export const HourlyForecast = () => {
               >
                 <div
                   className={cn(
-                    "flex snap-x snap-mandatory overflow-x-auto",
+                    "flex w-full min-w-0 snap-x snap-mandatory overflow-x-auto",
                     "mask-r-from-90% mask-r-to-100%",
                     HIDE_SCROLLBAR,
                   )}
