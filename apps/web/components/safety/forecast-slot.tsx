@@ -60,11 +60,15 @@ export const ForecastSlotColumn = ({
     >
       <div
         className={cn(
-          "font-semibold text-xs tabular-nums",
+          "flex items-center gap-1 font-semibold text-xs tabular-nums",
           isNow ? "text-white" : "text-white/45",
         )}
       >
         {hourFormatter.format(slot.time)}
+
+        {hasWarning(slot) && (
+          <TriangleAlertIcon aria-hidden className="size-3 text-red-400" />
+        )}
       </div>
 
       <WeatherIcon className="size-7" symbol={slot.symbol} />
@@ -94,12 +98,6 @@ export const ForecastSlotColumn = ({
       <div className="flex items-center gap-0.5 font-semibold text-white/80 text-xs">
         <span className="tabular-nums">{slot.wind.beaufort}</span>
         <span className="font-medium text-white/40">{slot.wind.direction}</span>
-      </div>
-
-      <div className="h-3">
-        {hasWarning(slot) && (
-          <TriangleAlertIcon aria-hidden className="size-3 text-red-400" />
-        )}
       </div>
     </div>
   );
