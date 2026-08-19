@@ -76,13 +76,17 @@ export const ForecastSlotColumn = ({
         <span className="text-gray-400">°</span>
       </div>
 
-      <div className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs">
-        <span className="tabular-nums">{slot.wind.beaufort}</span>
+      <div className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs tracking-widest">
         <ArrowUpCircleIcon
-          aria-label={`Wind from ${slot.wind.direction}`}
-          className="size-4 text-gray-400"
+          aria-label={`Force ${slot.wind.beaufort}, wind from ${slot.wind.direction}`}
+          className="size-3.5 text-gray-400"
+          role="img"
           style={{ transform: `rotate(${slot.wind.bearing - 180}deg)` }}
         />
+        <span aria-hidden className="tabular-nums">
+          <span className="text-gray-400">F</span>
+          {slot.wind.beaufort}
+        </span>
       </div>
     </div>
   );

@@ -81,13 +81,16 @@ describe("ForecastSlotColumn", () => {
     expect(getByText("10")).toBeDefined();
   });
 
-  it("shows the force as text and names the direction the wind comes from", () => {
-    const { getByLabelText, getByText } = render(
-      <ForecastSlotColumn slot={slot()} />,
-    );
+  it("marks the force as a Beaufort number rather than a bare figure", () => {
+    const { getByText } = render(<ForecastSlotColumn slot={slot()} />);
 
-    expect(getByText("3")).toBeDefined();
-    expect(getByLabelText("Wind from NW")).toBeDefined();
+    expect(getByText("F3")).toBeDefined();
+  });
+
+  it("announces the force and the direction the wind comes from as one label", () => {
+    const { getByLabelText } = render(<ForecastSlotColumn slot={slot()} />);
+
+    expect(getByLabelText("Force 3, wind from NW")).toBeDefined();
   });
 
   it("points the wind arrow the way the wind is blowing, not where it came from", () => {
@@ -97,9 +100,9 @@ describe("ForecastSlotColumn", () => {
       />,
     );
 
-    expect(getByLabelText("Wind from W").getAttribute("style")).toContain(
-      "rotate(90deg)",
-    );
+    expect(
+      getByLabelText("Force 4, wind from W").getAttribute("style"),
+    ).toContain("rotate(90deg)");
   });
 
   it("offers no controls when there is nothing to warn about", () => {
