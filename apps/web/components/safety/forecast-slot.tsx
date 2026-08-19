@@ -8,10 +8,16 @@ const COLD_CELSIUS = 4;
 const HOT_CELSIUS = 30;
 const FOGGY_PERCENT = 40;
 
-export const hasWarning = ({ fog, temperature, wind }: ForecastSlot): boolean =>
+export const hasWarning = ({
+  fog,
+  temperature,
+  temperatureMin,
+  temperatureMax,
+  wind,
+}: ForecastSlot): boolean =>
   wind.beaufort >= GALE_FORCE ||
-  temperature < COLD_CELSIUS ||
-  temperature > HOT_CELSIUS ||
+  (temperatureMin ?? temperature) < COLD_CELSIUS ||
+  (temperatureMax ?? temperature) > HOT_CELSIUS ||
   fog >= FOGGY_PERCENT;
 
 const hourFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -20,19 +26,12 @@ const hourFormatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Europe/London",
 });
 
-export const ForecastSlotColumn = ({
-  now = false,
-  slot,
-}: {
-  now?: boolean;
-  slot: ForecastSlot;
-}) => (
+export const ForecastSlotColumn = ({ slot }: { slot: ForecastSlot }) => (
   <div
     className={cn(
       "flex shrink-0 flex-col items-center gap-1 px-1 text-center",
       slot.span === 6 ? "w-24" : "w-12",
     )}
-    data-now={now}
     data-span={slot.span}
   >
     <div className="font-semibold text-gray-500 text-xs tabular-nums">

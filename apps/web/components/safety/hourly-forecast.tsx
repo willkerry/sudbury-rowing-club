@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { Label } from "@/components/stour/label";
 import { Loading } from "@/components/stour/loading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,8 +10,6 @@ import { toLondonDate } from "@/lib/forecast/to-forecast-days";
 import { trpc } from "@/lib/trpc/client";
 import { ForecastSlotColumn } from "./forecast-slot";
 
-export { isWeekend };
-
 const tabFormatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Europe/London",
   weekday: "short",
@@ -20,7 +18,6 @@ const tabFormatter = new Intl.DateTimeFormat("en-GB", {
 export const HourlyForecast = () => {
   const { data: days, status } = trpc.safety.hourlyForecast.useQuery();
   const [selected, setSelected] = useState<string>();
-  const stripRef = useRef<HTMLDivElement>(null);
 
   const defaultDate = useMemo(() => {
     if (!days?.length) return;
@@ -30,14 +27,6 @@ export const HourlyForecast = () => {
 
   const active = selected ?? defaultDate;
   const today = toLondonDate(new Date());
-
-  useEffect(() => {
-    if (active !== defaultDate) return;
-
-    stripRef.current
-      ?.querySelector("[data-now='true']")
-      ?.scrollIntoView({ block: "nearest", inline: "center" });
-  }, [active, defaultDate]);
 
   if (status === "error" || (status === "success" && !days?.length))
     return null;
@@ -67,14 +56,10 @@ export const HourlyForecast = () => {
 
             {days.map((day) => (
               <TabsContent key={day.date} value={day.date}>
-                <div
-                  className="flex overflow-x-auto py-3"
-                  ref={day.date === active ? stripRef : undefined}
-                >
-                  {day.slots.map((slot, index) => (
+                <div className="flex overflow-x-auto py-3">
+                  {day.slots.map((slot) => (
                     <ForecastSlotColumn
                       key={slot.time.toISOString()}
-                      now={day.date === defaultDate && index === 0}
                       slot={slot}
                     />
                   ))}

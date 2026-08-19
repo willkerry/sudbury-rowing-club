@@ -7,7 +7,13 @@ const USER_AGENT =
   "sudburyrowingclub.org.uk webmaster@sudburyrowingclub.org.uk";
 
 const ZPeriod = z.object({
-  details: z.object({ precipitation_amount: z.number().optional() }).optional(),
+  details: z
+    .object({
+      air_temperature_max: z.number().optional(),
+      air_temperature_min: z.number().optional(),
+      precipitation_amount: z.number().optional(),
+    })
+    .optional(),
   summary: z.object({ symbol_code: z.string() }).optional(),
 });
 

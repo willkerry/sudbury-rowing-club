@@ -24,6 +24,8 @@ export type ForecastSlot = {
   span: 1 | 6;
   symbol: SymbolCode;
   temperature: number;
+  temperatureMin?: number;
+  temperatureMax?: number;
   precipitation: number;
   wind: { beaufort: number; direction: CardinalDirection };
   fog: number;
@@ -46,12 +48,17 @@ export const toForecastDays = (forecast: LocationForecast): ForecastDay[] => {
 
     const { details } = entry.data.instant;
 
+    const tMin = period.details?.air_temperature_min;
+    const tMax = period.details?.air_temperature_max;
+
     const slot: ForecastSlot = {
       fog: details.fog_area_fraction ?? 0,
       precipitation: period.details?.precipitation_amount ?? 0,
       span: hourly ? 1 : 6,
       symbol: symbol as SymbolCode,
       temperature: Math.round(details.air_temperature),
+      ...(tMin !== undefined && { temperatureMin: Math.round(tMin) }),
+      ...(tMax !== undefined && { temperatureMax: Math.round(tMax) }),
       time: entry.time,
       wind: {
         beaufort: convertKphToBeaufort(details.wind_speed * MS_TO_KPH),

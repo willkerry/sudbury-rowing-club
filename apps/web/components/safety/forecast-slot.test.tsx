@@ -39,6 +39,22 @@ describe("hasWarning", () => {
     expect(hasWarning(slot({ temperature: 30 }))).toBe(false);
   });
 
+  it("warns when temperatureMin is cold even though instant temperature is not", () => {
+    expect(hasWarning(slot({ temperature: 15, temperatureMin: 3 }))).toBe(true);
+    expect(hasWarning(slot({ temperature: 15, temperatureMin: 4 }))).toBe(
+      false,
+    );
+  });
+
+  it("warns when temperatureMax is hot even though instant temperature is not", () => {
+    expect(hasWarning(slot({ temperature: 15, temperatureMax: 31 }))).toBe(
+      true,
+    );
+    expect(hasWarning(slot({ temperature: 15, temperatureMax: 30 }))).toBe(
+      false,
+    );
+  });
+
   it("warns on significant fog", () => {
     expect(hasWarning(slot({ fog: 40 }))).toBe(true);
     expect(hasWarning(slot({ fog: 39 }))).toBe(false);
