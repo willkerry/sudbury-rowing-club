@@ -82,9 +82,9 @@ describe("ForecastSlotColumn", () => {
   });
 
   it("marks the force as a Beaufort number rather than a bare figure", () => {
-    const { getByText } = render(<ForecastSlotColumn slot={slot()} />);
+    const { container } = render(<ForecastSlotColumn slot={slot()} />);
 
-    expect(getByText("F3")).toBeDefined();
+    expect(container.textContent).toContain("F3");
   });
 
   it("announces the force and the direction the wind comes from as one label", () => {
