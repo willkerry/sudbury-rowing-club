@@ -4,15 +4,12 @@ import { InfoIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { selectDefaultDayIndex } from "@/lib/forecast/select-default-day";
-import {
-  type ForecastSlot,
-  toLondonDate,
-} from "@/lib/forecast/to-forecast-days";
+import { currentSkyPhase } from "@/lib/forecast/sky-phase";
+import { SKY_THEMES } from "@/lib/forecast/sky-theme";
+import { coversNow, toLondonDate } from "@/lib/forecast/to-forecast-days";
 import { trpc } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 import { ForecastSlotColumn } from "./forecast-slot";
-
-const MS_PER_HOUR = 3_600_000;
 
 const SOURCES_ID = "forecast-sources";
 
@@ -22,12 +19,6 @@ const tabFormatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Europe/London",
   weekday: "short",
 });
-
-const coversNow = (slot: ForecastSlot, now: number): boolean => {
-  const start = slot.time.getTime();
-
-  return now >= start && now < start + slot.span * MS_PER_HOUR;
-};
 
 const COARSE_DAY_SLOTS = 4;
 const MORNING_HOUR = "06";
@@ -41,11 +32,14 @@ const scrollToMorning = (strip: HTMLDivElement | null) => {
     morning.getBoundingClientRect().left - strip.getBoundingClientRect().left;
 };
 
-const StripSkeleton = () => (
+const StripSkeleton = ({ className }: { className: string }) => (
   <div aria-hidden className="flex gap-1 overflow-hidden px-1 py-3">
     {Array.from({ length: 12 }, (_, index) => (
       <div
-        className="h-24 w-20 shrink-0 animate-pulse rounded-xs bg-white/5 motion-reduce:animate-none"
+        className={cn(
+          "h-24 w-20 shrink-0 animate-pulse rounded-xs motion-reduce:animate-none",
+          className,
+        )}
         key={`skeleton-${index}`}
         style={{ animationDelay: `${index * 60}ms` }}
       />
@@ -69,30 +63,40 @@ export const HourlyForecast = () => {
   const today = toLondonDate(new Date());
   const now = Date.now();
 
+  const { ink, ringOffset, surface } =
+    SKY_THEMES[days ? currentSkyPhase(days, now) : "night"];
+
   if (status === "error" || (status === "success" && !days?.length))
     return null;
 
   return (
     <section
       aria-label="Weather forecast"
-      className="bg-linear-to-br from-gray-950 to-blue-950"
+      className={cn("transition-colors duration-700", surface)}
     >
       {status === "pending" ? (
-        <StripSkeleton />
+        <StripSkeleton className={ink.skeleton} />
       ) : (
         days &&
         active && (
           <Tabs onValueChange={setSelected} value={active}>
-            <div className="flex items-center border-white/10 border-b">
+            <div className={cn("flex items-center border-b", ink.border)}>
               <TabsList
                 className={cn(
-                  "h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent p-1 text-white/50",
+                  "h-auto min-w-0 flex-1 justify-start gap-1 rounded-none bg-transparent p-1",
+                  "overflow-x-auto overflow-y-hidden",
+                  ink.tabIdle,
                   HIDE_SCROLLBAR,
                 )}
               >
                 {days.map((day) => (
                   <TabsTrigger
-                    className="ring-offset-blue-950 transition-colors hover:text-white/80 focus-visible:ring-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white data-[state=active]:shadow-none"
+                    className={cn(
+                      "transition-colors",
+                      ringOffset,
+                      ink.ring,
+                      ink.tabActive,
+                    )}
                     key={day.date}
                     value={day.date}
                   >
@@ -106,7 +110,11 @@ export const HourlyForecast = () => {
               <button
                 aria-controls={SOURCES_ID}
                 aria-expanded={sourcesShown}
-                className="mr-1 shrink-0 rounded-sm p-2 text-white/40 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                className={cn(
+                  "mr-1 shrink-0 rounded-sm p-2 transition-colors focus-visible:outline-none focus-visible:ring-2",
+                  ink.toggle,
+                  ink.ring,
+                )}
                 onClick={() => setSourcesShown((shown) => !shown)}
                 type="button"
               >
@@ -119,7 +127,11 @@ export const HourlyForecast = () => {
 
             {activeDay && (
               <TabsContent
-                className="fade-in mt-0 animate-in ring-offset-blue-950 duration-200 focus-visible:ring-white/60 motion-reduce:animate-none"
+                className={cn(
+                  "fade-in mt-0 animate-in duration-200 motion-reduce:animate-none",
+                  ringOffset,
+                  ink.ring,
+                )}
                 key={activeDay.date}
                 value={activeDay.date}
               >
@@ -138,6 +150,7 @@ export const HourlyForecast = () => {
                 >
                   {activeDay.slots.map((slot) => (
                     <ForecastSlotColumn
+                      ink={ink}
                       isNow={coversNow(slot, now)}
                       key={slot.time.toISOString()}
                       slot={slot}
@@ -157,25 +170,30 @@ export const HourlyForecast = () => {
         )}
         id={SOURCES_ID}
       >
-        <p className="overflow-hidden px-3 text-white/40 text-xs sm:px-4">
-          <span className="block border-white/10 border-t py-3">
+        <p
+          className={cn(
+            "overflow-hidden px-3 text-xs sm:px-4",
+            ink.attribution,
+          )}
+        >
+          <span className={cn("block border-t py-3", ink.border)}>
             Forecast data from{" "}
             <a
-              className="underline hover:text-white/70"
+              className={cn("underline", ink.link)}
               href="https://www.met.no/en"
             >
               MET Norway
             </a>
             , licensed{" "}
             <a
-              className="underline hover:text-white/70"
+              className={cn("underline", ink.link)}
               href="https://creativecommons.org/licenses/by/4.0/"
             >
               CC BY 4.0
             </a>
             . Weather icons by{" "}
             <a
-              className="underline hover:text-white/70"
+              className={cn("underline", ink.link)}
               href="https://github.com/metno/weathericons"
             >
               Yr

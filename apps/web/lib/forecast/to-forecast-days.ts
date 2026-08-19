@@ -81,3 +81,11 @@ export const toForecastDays = (forecast: LocationForecast): ForecastDay[] => {
     }))
     .sort((a, b) => a.date.localeCompare(b.date));
 };
+
+const MS_PER_HOUR = 3_600_000;
+
+export const coversNow = (slot: ForecastSlot, now: number): boolean => {
+  const start = slot.time.getTime();
+
+  return now >= start && now < start + slot.span * MS_PER_HOUR;
+};
