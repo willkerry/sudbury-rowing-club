@@ -14,9 +14,18 @@ const svgFilenames = readdirSync(
   .map((file) => file.slice(0, -4))
   .sort();
 
+const isPolarTwilight = (code: string) => code.endsWith("_polartwilight");
+
 describe("generated lookup", () => {
-  it("covers every vendored svg", () => {
-    expect([...SYMBOL_CODES]).toEqual(svgFilenames);
+  it("covers every vendored svg that can occur at this latitude", () => {
+    expect([...SYMBOL_CODES]).toEqual(
+      svgFilenames.filter((code) => !isPolarTwilight(code)),
+    );
+  });
+
+  it("leaves out the polar twilight variants, which cannot occur at 52°N", () => {
+    expect(svgFilenames.some(isPolarTwilight)).toBe(true);
+    expect([...SYMBOL_CODES].some(isPolarTwilight)).toBe(false);
   });
 
   it("maps every symbol code to a component", () => {

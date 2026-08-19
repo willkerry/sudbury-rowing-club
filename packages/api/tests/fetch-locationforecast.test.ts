@@ -80,6 +80,19 @@ describe("fetchLocationForecast", () => {
     mockFetch(null, { status: 304 });
 
     expect(await fetchLocationForecast("anything")).toEqual({
+      expires: null,
+      status: "not-modified",
+    });
+  });
+
+  it("surfaces the Expires header a 304 carries, so revalidation can honour it", async () => {
+    mockFetch(null, {
+      headers: { expires: "Tue, 18 Aug 2026 19:13:17 GMT" },
+      status: 304,
+    });
+
+    expect(await fetchLocationForecast("anything")).toEqual({
+      expires: "Tue, 18 Aug 2026 19:13:17 GMT",
       status: "not-modified",
     });
   });

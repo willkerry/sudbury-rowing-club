@@ -1,17 +1,40 @@
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 
 const generatedDir = new URL("../src/generated/", import.meta.url);
 const svgDir = new URL("../vendor/weather/svg/", import.meta.url);
 const legendFile = new URL("../vendor/weather/legend.csv", import.meta.url);
+
+if (!existsSync(svgDir)) {
+  throw new Error(
+    "packages/weathericons/vendor is empty. Run `git submodule update --init --recursive`, then try again.",
+  );
+}
+
+const barrelFile = new URL("index.ts", generatedDir);
+
+if (!existsSync(barrelFile)) {
+  throw new Error(
+    "No SVGR output in packages/weathericons/src/generated. svgr must run before this script; check that the vendored icon set is populated.",
+  );
+}
+
+/**
+ * Polar twilight only happens inside the polar circles, so MET never returns
+ * these codes for a club at 52°N. Excluding them keeps a quarter of the icon
+ * set out of the browser bundle, and WeatherIcon renders nothing for a code it
+ * does not recognise.
+ */
+const POLAR_TWILIGHT = /_polartwilight$/;
 
 const normalise = (value) => value.replace(/[^a-z0-9]/gi, "").toLowerCase();
 
 const symbolCodes = readdirSync(svgDir)
   .filter((file) => file.endsWith(".svg"))
   .map((file) => file.slice(0, -4))
+  .filter((code) => !POLAR_TWILIGHT.test(code))
   .sort();
 
-const barrel = readFileSync(new URL("index.ts", generatedDir), "utf8");
+const barrel = readFileSync(barrelFile, "utf8");
 const componentsByNormalisedName = new Map(
   [...barrel.matchAll(/export \{ default as (\w+) \}/g)].map(([, name]) => [
     normalise(name),

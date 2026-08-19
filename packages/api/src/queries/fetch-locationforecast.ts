@@ -11,7 +11,6 @@ const ZPeriod = z.object({
     .object({
       air_temperature_max: z.number().optional(),
       air_temperature_min: z.number().optional(),
-      precipitation_amount: z.number().optional(),
     })
     .optional(),
   summary: z.object({ symbol_code: z.string() }).optional(),
@@ -47,7 +46,7 @@ export type LocationForecastResult =
       lastModified: string | null;
       expires: string | null;
     }
-  | { status: "not-modified" };
+  | { status: "not-modified"; expires: string | null };
 
 export const fetchLocationForecast = async (
   lastModified?: string | null,
@@ -63,7 +62,9 @@ export const fetchLocationForecast = async (
 
   const response = await fetch(`${MET_URL}?${params.toString()}`, { headers });
 
-  if (response.status === 304) return { status: "not-modified" };
+  if (response.status === 304) {
+    return { expires: response.headers.get("expires"), status: "not-modified" };
+  }
 
   if (!response.ok) {
     throw new Error(`MET Locationforecast responded ${response.status}`);
