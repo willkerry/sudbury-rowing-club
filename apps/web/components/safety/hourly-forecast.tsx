@@ -64,7 +64,8 @@ export const HourlyForecast = () => {
   return (
     <section
       aria-label="Weather forecast"
-      className="bg-linear-to-br from-gray-950 to-blue-950"
+      // className="bg-linear-to-br from-gray-50 to-blue-50"
+      className="bg-gray-50"
     >
       {status === "pending" ? (
         <StripSkeleton />
@@ -72,18 +73,14 @@ export const HourlyForecast = () => {
         days &&
         active && (
           <Tabs onValueChange={setSelected} value={active}>
-            <div className="flex items-center border-white/10 border-b">
+            <div className="flex items-center border-b">
               <TabsList
                 className={cn(
-                  "h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent p-1 text-white/50",
+                  "h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent p-1",
                 )}
               >
                 {days.map((day) => (
-                  <TabsTrigger
-                    className="ring-offset-blue-950 transition-colors hover:text-white/80 focus-visible:ring-white/60 data-[state=active]:bg-white/10 data-[state=active]:text-white data-[state=active]:shadow-none"
-                    key={day.date}
-                    value={day.date}
-                  >
+                  <TabsTrigger key={day.date} value={day.date}>
                     {day.date === today
                       ? "Today"
                       : tabFormatter.format(new Date(day.date))}
@@ -94,7 +91,7 @@ export const HourlyForecast = () => {
               <button
                 aria-controls={SOURCES_ID}
                 aria-expanded={sourcesShown}
-                className="mr-1 shrink-0 rounded-sm p-2 text-white/40 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                className="mr-1 shrink-0 rounded-sm p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
                 onClick={() => setSourcesShown((shown) => !shown)}
                 type="button"
               >
@@ -108,12 +105,11 @@ export const HourlyForecast = () => {
             {activeDay && (
               <TabsContent
                 asChild
-                className="fade-in mt-0 animate-in ring-offset-blue-950 duration-200 focus-visible:ring-white/60 motion-reduce:animate-none"
+                className="fade-in mt-0 animate-in ring-offset-blue-50 duration-200 focus-visible:ring-gray-900/60 motion-reduce:animate-none"
                 key={activeDay.date}
                 value={activeDay.date}
               >
                 <Carousel
-                  className={cn("mask-r-from-90% mask-r-to-100%", "relative")}
                   opts={{
                     skipSnaps: true,
                     startIndex: activeDay.slots.findIndex(
@@ -121,13 +117,17 @@ export const HourlyForecast = () => {
                     ),
                   }}
                 >
-                  <CarouselContent>
+                  <CarouselContent
+                    className={cn(
+                      activeDay.slots.length > COARSE_DAY_SLOTS ? "pl-4" : "",
+                    )}
+                  >
                     {activeDay.slots.map((slot) => (
                       <CarouselItem
                         className={cn(
                           "shrink-0",
                           activeDay.slots.length > COARSE_DAY_SLOTS
-                            ? "basis-20"
+                            ? "basis-14"
                             : "basis-1/4",
                         )}
                         key={slot.time.toISOString()}
@@ -153,25 +153,25 @@ export const HourlyForecast = () => {
         )}
         id={SOURCES_ID}
       >
-        <p className="overflow-hidden px-3 text-white/40 text-xs sm:px-4">
-          <span className="block border-white/10 border-t py-3">
+        <p className="overflow-hidden px-3 text-gray-400 text-xs sm:px-4">
+          <span className="block border-t py-3">
             Forecast data from{" "}
             <a
-              className="underline hover:text-white/70"
+              className="underline hover:text-gray-900"
               href="https://www.met.no/en"
             >
               MET Norway
             </a>
             , licensed{" "}
             <a
-              className="underline hover:text-white/70"
+              className="underline hover:text-gray-900"
               href="https://creativecommons.org/licenses/by/4.0/"
             >
               CC BY 4.0
             </a>
             . Weather icons by{" "}
             <a
-              className="underline hover:text-white/70"
+              className="underline hover:text-gray-900"
               href="https://github.com/metno/weathericons"
             >
               Yr

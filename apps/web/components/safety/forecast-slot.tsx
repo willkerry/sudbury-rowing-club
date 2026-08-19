@@ -58,14 +58,14 @@ export const ForecastSlotColumn = ({
     <div
       className={cn(
         "flex select-none snap-start flex-col items-center gap-1 px-1 py-3 text-center",
-        isNow && "bg-white/5",
+        // isNow && "bg-sky-100",
       )}
       data-hour={hourFormatter.format(slot.time)}
     >
       <div
         className={cn(
           "flex items-center gap-1 font-semibold text-xs tabular-nums",
-          isNow ? "text-white" : "text-white/45",
+          isNow ? "text-black" : "text-gray-400",
         )}
       >
         {hourFormatter.format(slot.time)}
@@ -77,27 +77,27 @@ export const ForecastSlotColumn = ({
             }
             type="button"
           >
-            <TriangleAlertIcon aria-hidden className="size-3 text-red-400" />
+            <TriangleAlertIcon aria-hidden className="size-3 text-amber-600" />
           </button>
         )}
       </div>
 
       <WeatherIcon className="size-7" symbol={slot.symbol} />
 
-      <div className="disambiguate font-semibold text-sm text-white tabular-nums">
+      <div className="disambiguate font-semibold text-gray-600 text-sm tabular-nums">
         {slot.temperature}
-        <span className="text-white/60">°</span>
+        <span className="text-gray-400">°</span>
       </div>
 
       <button
-        className="flex items-center gap-0.5 font-semibold text-white/80 text-xs"
+        className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs"
         onClick={() => toast.info(warningDescription)}
         type="button"
       >
         <span className="tabular-nums">{slot.wind.beaufort}</span>
         <ArrowUpCircleIcon
           aria-label={slot.wind.direction}
-          className="size-4 text-white opacity-50"
+          className="size-4 text-gray-400"
           style={{ transform: `rotate(${slot.wind.bearing - 180}deg)` }}
         />
       </button>
