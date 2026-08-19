@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import {
   ForecastSlotColumn,
-  hasWarning,
+  getWarnings,
   rainBarPercent,
 } from "./forecast-slot";
 
@@ -24,44 +24,46 @@ const slot = (overrides: Partial<ForecastSlot> = {}): ForecastSlot => ({
 
 describe("hasWarning", () => {
   it("is quiet in ordinary conditions", () => {
-    expect(hasWarning(slot())).toBe(false);
+    expect(getWarnings(slot())).toBe(false);
   });
 
   it("warns at gale force", () => {
     expect(
-      hasWarning(slot({ wind: { bearing: 0, beaufort: 6, direction: "N" } })),
+      getWarnings(slot({ wind: { bearing: 0, beaufort: 6, direction: "N" } })),
     ).toBe(true);
   });
 
   it("warns when cold enough to matter", () => {
-    expect(hasWarning(slot({ temperature: 3 }))).toBe(true);
-    expect(hasWarning(slot({ temperature: 4 }))).toBe(false);
+    expect(getWarnings(slot({ temperature: 3 }))).toBe(true);
+    expect(getWarnings(slot({ temperature: 4 }))).toBe(false);
   });
 
   it("warns when hot enough to matter", () => {
-    expect(hasWarning(slot({ temperature: 31 }))).toBe(true);
-    expect(hasWarning(slot({ temperature: 30 }))).toBe(false);
+    expect(getWarnings(slot({ temperature: 31 }))).toBe(true);
+    expect(getWarnings(slot({ temperature: 30 }))).toBe(false);
   });
 
   it("warns when temperatureMin is cold even though instant temperature is not", () => {
-    expect(hasWarning(slot({ temperature: 15, temperatureMin: 3 }))).toBe(true);
-    expect(hasWarning(slot({ temperature: 15, temperatureMin: 4 }))).toBe(
+    expect(getWarnings(slot({ temperature: 15, temperatureMin: 3 }))).toBe(
+      true,
+    );
+    expect(getWarnings(slot({ temperature: 15, temperatureMin: 4 }))).toBe(
       false,
     );
   });
 
   it("warns when temperatureMax is hot even though instant temperature is not", () => {
-    expect(hasWarning(slot({ temperature: 15, temperatureMax: 31 }))).toBe(
+    expect(getWarnings(slot({ temperature: 15, temperatureMax: 31 }))).toBe(
       true,
     );
-    expect(hasWarning(slot({ temperature: 15, temperatureMax: 30 }))).toBe(
+    expect(getWarnings(slot({ temperature: 15, temperatureMax: 30 }))).toBe(
       false,
     );
   });
 
   it("warns on significant fog", () => {
-    expect(hasWarning(slot({ fog: 40 }))).toBe(true);
-    expect(hasWarning(slot({ fog: 39 }))).toBe(false);
+    expect(getWarnings(slot({ fog: 40 }))).toBe(true);
+    expect(getWarnings(slot({ fog: 39 }))).toBe(false);
   });
 });
 

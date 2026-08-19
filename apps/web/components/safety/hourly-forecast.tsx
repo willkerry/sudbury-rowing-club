@@ -10,13 +10,12 @@ import {
 } from "@/lib/forecast/to-forecast-days";
 import { trpc } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
+import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { ForecastSlotColumn } from "./forecast-slot";
 
 const MS_PER_HOUR = 3_600_000;
 
 const SOURCES_ID = "forecast-sources";
-
-const HIDE_SCROLLBAR = "[scrollbar-width:none] [&::-webkit-scrollbar]:hidden";
 
 const tabFormatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Europe/London",
@@ -30,16 +29,6 @@ const coversNow = (slot: ForecastSlot, now: number): boolean => {
 };
 
 const COARSE_DAY_SLOTS = 4;
-const MORNING_HOUR = "06";
-
-const scrollToMorning = (strip: HTMLDivElement | null) => {
-  const morning = strip?.querySelector(`[data-hour="${MORNING_HOUR}"]`);
-
-  if (!(strip && morning)) return;
-
-  strip.scrollLeft +=
-    morning.getBoundingClientRect().left - strip.getBoundingClientRect().left;
-};
 
 const StripSkeleton = () => (
   <div aria-hidden className="flex gap-1 overflow-hidden px-1 py-3">
@@ -87,7 +76,6 @@ export const HourlyForecast = () => {
               <TabsList
                 className={cn(
                   "h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent p-1 text-white/50",
-                  HIDE_SCROLLBAR,
                 )}
               >
                 {days.map((day) => (
@@ -119,31 +107,39 @@ export const HourlyForecast = () => {
 
             {activeDay && (
               <TabsContent
+                asChild
                 className="fade-in mt-0 animate-in ring-offset-blue-950 duration-200 focus-visible:ring-white/60 motion-reduce:animate-none"
                 key={activeDay.date}
                 value={activeDay.date}
               >
-                <div
-                  className={cn(
-                    "flex snap-x snap-mandatory overflow-x-auto",
-                    "mask-r-from-90% mask-r-to-100%",
-                    HIDE_SCROLLBAR,
-                  )}
-                  ref={
-                    activeDay.date !== today &&
-                    activeDay.slots.length > COARSE_DAY_SLOTS
-                      ? scrollToMorning
-                      : undefined
-                  }
+                <Carousel
+                  className={cn("mask-r-from-90% mask-r-to-100%", "relative")}
+                  opts={{
+                    skipSnaps: true,
+                    startIndex: activeDay.slots.findIndex(
+                      (slot) => slot.time.getHours() === 6,
+                    ),
+                  }}
                 >
-                  {activeDay.slots.map((slot) => (
-                    <ForecastSlotColumn
-                      isNow={coversNow(slot, now)}
-                      key={slot.time.toISOString()}
-                      slot={slot}
-                    />
-                  ))}
-                </div>
+                  <CarouselContent>
+                    {activeDay.slots.map((slot) => (
+                      <CarouselItem
+                        className={cn(
+                          "shrink-0",
+                          activeDay.slots.length > COARSE_DAY_SLOTS
+                            ? "basis-20"
+                            : "basis-1/4",
+                        )}
+                        key={slot.time.toISOString()}
+                      >
+                        <ForecastSlotColumn
+                          isNow={coversNow(slot, now)}
+                          slot={slot}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                </Carousel>
               </TabsContent>
             )}
           </Tabs>

@@ -1,5 +1,6 @@
 import { WeatherIcon } from "@sudburyrc/weathericons";
 import { ArrowUpCircleIcon, TriangleAlertIcon } from "lucide-react";
+import { toast } from "sonner";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { cn } from "@/lib/utils";
 
@@ -8,32 +9,30 @@ const COLD_CELSIUS = 4;
 const HOT_CELSIUS = 30;
 const FOGGY_PERCENT = 40;
 
-const RAIN_FULL_SCALE_MM = 4;
-const RAIN_MIN_VISIBLE_PERCENT = 15;
+type WarningType = "high wind" | "low temperature" | "high temperature" | "fog";
 
-export const hasWarning = ({
+const listFormatter = new Intl.ListFormat("en-GB", {
+  style: "long",
+  type: "conjunction",
+});
+
+export const getWarnings = ({
   fog,
   temperature,
   temperatureMin,
   temperatureMax,
   wind,
-}: ForecastSlot): boolean =>
-  wind.beaufort >= GALE_FORCE ||
-  (temperatureMin ?? temperature) < COLD_CELSIUS ||
-  (temperatureMax ?? temperature) > HOT_CELSIUS ||
-  fog >= FOGGY_PERCENT;
+}: ForecastSlot): WarningType[] => {
+  const warnings: WarningType[] = [];
 
-/**
- * The bar saturates at 4mm in an hour so ordinary drizzle stays legible
- * instead of collapsing to a sliver beside one downpour.
- */
-export const rainBarPercent = (millimetres: number): number => {
-  if (millimetres <= 0) return 0;
+  if (wind.beaufort >= GALE_FORCE) warnings.push("high wind");
+  if ((temperatureMin ?? temperature) < COLD_CELSIUS)
+    warnings.push("low temperature");
+  if ((temperatureMax ?? temperature) > HOT_CELSIUS)
+    warnings.push("high temperature");
+  if (fog >= FOGGY_PERCENT) warnings.push("fog");
 
-  return Math.max(
-    RAIN_MIN_VISIBLE_PERCENT,
-    Math.min(millimetres / RAIN_FULL_SCALE_MM, 1) * 100,
-  );
+  return warnings;
 };
 
 const hourFormatter = new Intl.DateTimeFormat("en-GB", {
@@ -49,12 +48,16 @@ export const ForecastSlotColumn = ({
   isNow?: boolean;
   slot: ForecastSlot;
 }) => {
-  const rainHeight = rainBarPercent(slot.precipitation);
+  const warnings = getWarnings(slot);
+  const warningDescription =
+    warnings.length > 0
+      ? `Warning due to ${listFormatter.format(warnings)}.`
+      : null;
 
   return (
     <div
       className={cn(
-        "flex w-20 shrink-0 snap-start flex-col items-center gap-1 px-1 py-3 text-center",
+        "flex select-none snap-start flex-col items-center gap-1 px-1 py-3 text-center",
         isNow && "bg-white/5",
       )}
       data-hour={hourFormatter.format(slot.time)}
@@ -67,43 +70,37 @@ export const ForecastSlotColumn = ({
       >
         {hourFormatter.format(slot.time)}
 
-        {hasWarning(slot) && (
-          <TriangleAlertIcon aria-hidden className="size-3 text-red-400" />
+        {warnings.length > 0 && (
+          <button
+            onClick={() =>
+              toast.info(`Warning due to ${listFormatter.format(warnings)}.`)
+            }
+            type="button"
+          >
+            <TriangleAlertIcon aria-hidden className="size-3 text-red-400" />
+          </button>
         )}
       </div>
 
       <WeatherIcon className="size-7" symbol={slot.symbol} />
 
       <div className="disambiguate font-semibold text-sm text-white tabular-nums">
-        {slot.temperature}°
+        {slot.temperature}
+        <span className="text-white/60">°</span>
       </div>
 
-      <div
-        aria-hidden
-        className="flex h-4 w-3 items-end justify-center rounded-xs bg-white/8"
+      <button
+        className="flex items-center gap-0.5 font-semibold text-white/80 text-xs"
+        onClick={() => toast.info(warningDescription)}
+        type="button"
       >
-        {rainHeight > 0 && (
-          <div
-            className="w-full rounded-xs bg-sky-400"
-            style={{ height: `${rainHeight}%` }}
-          />
-        )}
-      </div>
-
-      <div className="sr-only">
-        {slot.precipitation > 0
-          ? `${slot.precipitation}mm of rain`
-          : "No rain expected"}
-      </div>
-
-      <div className="flex items-center gap-0.5 font-semibold text-white/80 text-xs">
         <span className="tabular-nums">{slot.wind.beaufort}</span>
         <ArrowUpCircleIcon
           aria-label={slot.wind.direction}
           className="size-4 text-white opacity-50"
           style={{ transform: `rotate(${slot.wind.bearing - 180}deg)` }}
         />
-      </div>
+      </button>
     </div>
   );
 };
