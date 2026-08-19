@@ -1,7 +1,7 @@
+import fixture from "@sudburyrc/api/tests/fixtures/locationforecast.json";
 import { SYMBOL_CODES } from "@sudburyrc/weathericons";
 import { describe, expect, it } from "vitest";
-import fixture from "./fixtures/locationforecast.json";
-import { toForecastDays, toLondonDate } from "./to-forecast-days";
+import { toForecastDays } from "./to-forecast-days";
 
 const parse = (f: typeof fixture) =>
   JSON.parse(JSON.stringify(f), (key, value) =>
@@ -9,13 +9,6 @@ const parse = (f: typeof fixture) =>
   );
 
 const days = toForecastDays(parse(fixture));
-
-describe("toLondonDate", () => {
-  it("uses the London calendar day, not the UTC one", () => {
-    expect(toLondonDate(new Date("2026-08-18T23:30:00Z"))).toBe("2026-08-19");
-    expect(toLondonDate(new Date("2026-01-18T23:30:00Z"))).toBe("2026-01-18");
-  });
-});
 
 describe("toForecastDays", () => {
   it("returns days in ascending order with no duplicates", () => {
@@ -154,10 +147,9 @@ describe("toForecastDays", () => {
     }
   });
 
-  it("defaults missing precipitation and fog to zero", () => {
+  it("defaults missing fog to zero", () => {
     for (const day of days) {
       for (const slot of day.slots) {
-        expect(Number.isFinite(slot.precipitation)).toBe(true);
         expect(Number.isFinite(slot.fog)).toBe(true);
       }
     }
@@ -171,9 +163,6 @@ describe("toForecastDays", () => {
 
     expect(slotAt06, "expected a slot for 2026-08-22T06:00Z").toBeDefined();
     expect(slotAt06?.fog).toBe(0);
-
-    // No entry in the fixture omits precipitation_amount from its period
-    // details, so no precipitation defaulting case can be asserted here.
   });
 
   it("every symbol_code in the fixture resolves to a known weathericon", () => {

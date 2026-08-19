@@ -1,6 +1,7 @@
 import { WeatherIcon } from "@sudburyrc/weathericons";
 import { ArrowUpCircleIcon, TriangleAlertIcon } from "lucide-react";
 import { toast } from "sonner";
+import { toLondonHourLabel } from "@/lib/forecast/london-time";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { cn } from "@/lib/utils";
 
@@ -35,12 +36,6 @@ export const getWarnings = ({
   return warnings;
 };
 
-const hourFormatter = new Intl.DateTimeFormat("en-GB", {
-  hour: "2-digit",
-  hourCycle: "h23",
-  timeZone: "Europe/London",
-});
-
 export const ForecastSlotColumn = ({
   isNow = false,
   slot,
@@ -49,26 +44,17 @@ export const ForecastSlotColumn = ({
   slot: ForecastSlot;
 }) => {
   const warnings = getWarnings(slot);
-  const warningDescription =
-    warnings.length > 0
-      ? `Warning due to ${listFormatter.format(warnings)}.`
-      : null;
+  const hour = toLondonHourLabel(slot.time);
 
   return (
-    <div
-      className={cn(
-        "flex select-none snap-start flex-col items-center gap-1 px-1 py-3 text-center",
-        // isNow && "bg-sky-100",
-      )}
-      data-hour={hourFormatter.format(slot.time)}
-    >
+    <div className="flex select-none snap-start flex-col items-center gap-1 px-1 py-3 text-center">
       <div
         className={cn(
           "flex items-center gap-1 font-semibold text-xs tabular-nums",
           isNow ? "text-black" : "text-gray-400",
         )}
       >
-        {hourFormatter.format(slot.time)}
+        {hour}
 
         {warnings.length > 0 && (
           <button
@@ -78,6 +64,7 @@ export const ForecastSlotColumn = ({
             type="button"
           >
             <TriangleAlertIcon aria-hidden className="size-3 text-amber-600" />
+            <span className="sr-only">{`Weather warning at ${hour}`}</span>
           </button>
         )}
       </div>
@@ -89,18 +76,14 @@ export const ForecastSlotColumn = ({
         <span className="text-gray-400">°</span>
       </div>
 
-      <button
-        className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs"
-        onClick={() => toast.info(warningDescription)}
-        type="button"
-      >
+      <div className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs">
         <span className="tabular-nums">{slot.wind.beaufort}</span>
         <ArrowUpCircleIcon
-          aria-label={slot.wind.direction}
+          aria-label={`Wind from ${slot.wind.direction}`}
           className="size-4 text-gray-400"
           style={{ transform: `rotate(${slot.wind.bearing - 180}deg)` }}
         />
-      </button>
+      </div>
     </div>
   );
 };

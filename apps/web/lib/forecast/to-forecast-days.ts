@@ -5,19 +5,9 @@ import {
   convertBearingToCardinal,
 } from "@/lib/helpers/convertBearingToCardinal";
 import { convertKphToBeaufort } from "@/lib/helpers/convertKphToBeaufort";
+import { toLondonDate } from "./london-time";
 
 const MS_TO_KPH = 3.6;
-const TIME_ZONE = "Europe/London";
-
-const londonDayFormatter = new Intl.DateTimeFormat("en-CA", {
-  day: "2-digit",
-  month: "2-digit",
-  timeZone: TIME_ZONE,
-  year: "numeric",
-});
-
-export const toLondonDate = (date: Date): string =>
-  londonDayFormatter.format(date);
 
 export type ForecastSlot = {
   time: Date;
@@ -26,7 +16,6 @@ export type ForecastSlot = {
   temperature: number;
   temperatureMin?: number;
   temperatureMax?: number;
-  precipitation: number;
   wind: { beaufort: number; direction: CardinalDirection; bearing: number };
   fog: number;
 };
@@ -53,7 +42,6 @@ export const toForecastDays = (forecast: LocationForecast): ForecastDay[] => {
 
     const slot: ForecastSlot = {
       fog: details.fog_area_fraction ?? 0,
-      precipitation: period.details?.precipitation_amount ?? 0,
       span: hourly ? 1 : 6,
       symbol: symbol as SymbolCode,
       temperature: Math.round(details.air_temperature),

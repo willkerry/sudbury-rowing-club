@@ -1,19 +1,12 @@
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
-import {
-  ForecastSlotColumn,
-  getWarnings,
-  rainBarPercent,
-} from "./forecast-slot";
+import { ForecastSlotColumn, getWarnings } from "./forecast-slot";
 
 afterEach(cleanup);
 
-const MM_PATTERN = /mm/;
-
 const slot = (overrides: Partial<ForecastSlot> = {}): ForecastSlot => ({
   fog: 0,
-  precipitation: 0,
   span: 1,
   symbol: "cloudy",
   temperature: 15,
@@ -22,92 +15,79 @@ const slot = (overrides: Partial<ForecastSlot> = {}): ForecastSlot => ({
   ...overrides,
 });
 
-describe("hasWarning", () => {
+describe("getWarnings", () => {
   it("is quiet in ordinary conditions", () => {
-    expect(getWarnings(slot())).toBe(false);
+    expect(getWarnings(slot())).toEqual([]);
   });
 
   it("warns at gale force", () => {
     expect(
       getWarnings(slot({ wind: { bearing: 0, beaufort: 6, direction: "N" } })),
-    ).toBe(true);
+    ).toEqual(["high wind"]);
   });
 
   it("warns when cold enough to matter", () => {
-    expect(getWarnings(slot({ temperature: 3 }))).toBe(true);
-    expect(getWarnings(slot({ temperature: 4 }))).toBe(false);
+    expect(getWarnings(slot({ temperature: 3 }))).toEqual(["low temperature"]);
+    expect(getWarnings(slot({ temperature: 4 }))).toEqual([]);
   });
 
   it("warns when hot enough to matter", () => {
-    expect(getWarnings(slot({ temperature: 31 }))).toBe(true);
-    expect(getWarnings(slot({ temperature: 30 }))).toBe(false);
+    expect(getWarnings(slot({ temperature: 31 }))).toEqual([
+      "high temperature",
+    ]);
+    expect(getWarnings(slot({ temperature: 30 }))).toEqual([]);
   });
 
   it("warns when temperatureMin is cold even though instant temperature is not", () => {
-    expect(getWarnings(slot({ temperature: 15, temperatureMin: 3 }))).toBe(
-      true,
-    );
-    expect(getWarnings(slot({ temperature: 15, temperatureMin: 4 }))).toBe(
-      false,
+    expect(getWarnings(slot({ temperature: 15, temperatureMin: 3 }))).toEqual([
+      "low temperature",
+    ]);
+    expect(getWarnings(slot({ temperature: 15, temperatureMin: 4 }))).toEqual(
+      [],
     );
   });
 
   it("warns when temperatureMax is hot even though instant temperature is not", () => {
-    expect(getWarnings(slot({ temperature: 15, temperatureMax: 31 }))).toBe(
-      true,
-    );
-    expect(getWarnings(slot({ temperature: 15, temperatureMax: 30 }))).toBe(
-      false,
+    expect(getWarnings(slot({ temperature: 15, temperatureMax: 31 }))).toEqual([
+      "high temperature",
+    ]);
+    expect(getWarnings(slot({ temperature: 15, temperatureMax: 30 }))).toEqual(
+      [],
     );
   });
 
   it("warns on significant fog", () => {
-    expect(getWarnings(slot({ fog: 40 }))).toBe(true);
-    expect(getWarnings(slot({ fog: 39 }))).toBe(false);
-  });
-});
-
-describe("rainBarPercent", () => {
-  it("is zero when dry", () => {
-    expect(rainBarPercent(0)).toBe(0);
+    expect(getWarnings(slot({ fog: 40 }))).toEqual(["fog"]);
+    expect(getWarnings(slot({ fog: 39 }))).toEqual([]);
   });
 
-  it("keeps a trace of rain visible rather than sub-pixel", () => {
-    expect(rainBarPercent(0.1)).toBe(15);
-  });
-
-  it("scales linearly below the saturation point", () => {
-    expect(rainBarPercent(2)).toBe(50);
-    expect(rainBarPercent(3)).toBe(75);
-  });
-
-  it("saturates at heavy rain instead of dwarfing lighter hours", () => {
-    expect(rainBarPercent(4)).toBe(100);
-    expect(rainBarPercent(40)).toBe(100);
+  it("collects every reason a slot is unsafe", () => {
+    expect(
+      getWarnings(
+        slot({
+          fog: 80,
+          temperature: 2,
+          wind: { bearing: 0, beaufort: 7, direction: "N" },
+        }),
+      ),
+    ).toEqual(["high wind", "low temperature", "fog"]);
   });
 });
 
 describe("ForecastSlotColumn", () => {
-  it("announces precipitation to screen readers either way", () => {
-    const { queryByText, rerender } = render(
-      <ForecastSlotColumn slot={slot()} />,
-    );
+  it("labels the hour in London time rather than the browser's zone", () => {
+    const { getByText } = render(<ForecastSlotColumn slot={slot()} />);
 
-    expect(queryByText(MM_PATTERN)).toBeNull();
-    expect(queryByText("No rain expected")).not.toBeNull();
-
-    rerender(<ForecastSlotColumn slot={slot({ precipitation: 0.4 })} />);
-
-    expect(queryByText("0.4mm of rain")).not.toBeNull();
+    expect(getByText("10")).toBeDefined();
   });
 
-  it("shows the force as text and names the direction for screen readers", () => {
+  it("shows the force as text and names the direction the wind comes from", () => {
     const { getByLabelText, getByText } = render(
       <ForecastSlotColumn slot={slot()} />,
     );
 
     expect(getByText("3")).toBeDefined();
-    expect(getByLabelText("NW")).toBeDefined();
+    expect(getByLabelText("Wind from NW")).toBeDefined();
   });
 
   it("points the wind arrow the way the wind is blowing, not where it came from", () => {
@@ -117,8 +97,24 @@ describe("ForecastSlotColumn", () => {
       />,
     );
 
-    expect(getByLabelText("W").getAttribute("style")).toContain(
+    expect(getByLabelText("Wind from W").getAttribute("style")).toContain(
       "rotate(90deg)",
     );
+  });
+
+  it("offers no controls when there is nothing to warn about", () => {
+    const { queryByRole } = render(<ForecastSlotColumn slot={slot()} />);
+
+    expect(queryByRole("button")).toBeNull();
+  });
+
+  it("offers a named control when the slot carries a warning", () => {
+    const { getByRole } = render(
+      <ForecastSlotColumn slot={slot({ temperature: 2 })} />,
+    );
+
+    expect(
+      getByRole("button", { name: "Weather warning at 10" }),
+    ).toBeDefined();
   });
 });

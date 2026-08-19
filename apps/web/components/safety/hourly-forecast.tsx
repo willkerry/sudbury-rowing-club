@@ -2,12 +2,13 @@
 
 import { InfoIcon } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ServerOrClientDateFormatter } from "@/components/utils/server-or-client-date-formatter";
+import { toLondonDate } from "@/lib/forecast/london-time";
 import { selectDefaultDayIndex } from "@/lib/forecast/select-default-day";
-import {
-  type ForecastSlot,
-  toLondonDate,
-} from "@/lib/forecast/to-forecast-days";
+import { selectStartSlotIndex } from "@/lib/forecast/select-start-slot";
+import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { trpc } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
@@ -17,24 +18,17 @@ const MS_PER_HOUR = 3_600_000;
 
 const SOURCES_ID = "forecast-sources";
 
-const tabFormatter = new Intl.DateTimeFormat("en-GB", {
-  timeZone: "Europe/London",
-  weekday: "short",
-});
-
 const coversNow = (slot: ForecastSlot, now: number): boolean => {
   const start = slot.time.getTime();
 
   return now >= start && now < start + slot.span * MS_PER_HOUR;
 };
 
-const COARSE_DAY_SLOTS = 4;
-
 const StripSkeleton = () => (
   <div aria-hidden className="flex gap-1 overflow-hidden px-1 py-3">
     {Array.from({ length: 12 }, (_, index) => (
-      <div
-        className="h-24 w-20 shrink-0 animate-pulse rounded-xs bg-gray-100 motion-reduce:animate-none"
+      <Skeleton
+        className="h-24 w-20 shrink-0 rounded-xs motion-reduce:animate-none"
         key={`skeleton-${index}`}
         style={{ animationDelay: `${index * 60}ms` }}
       />
@@ -43,7 +37,12 @@ const StripSkeleton = () => (
 );
 
 export const HourlyForecast = () => {
-  const { data: days, status } = trpc.safety.hourlyForecast.useQuery();
+  const { data: days, status } = trpc.safety.hourlyForecast.useQuery(
+    undefined,
+    {
+      trpc: { context: { unbatched: true } },
+    },
+  );
   const [selected, setSelected] = useState<string>();
   const [sourcesShown, setSourcesShown] = useState(false);
 
@@ -53,10 +52,16 @@ export const HourlyForecast = () => {
     return days[selectDefaultDayIndex(days, new Date())].date;
   }, [days]);
 
-  const active = selected ?? defaultDate;
+  // A refetch can drop the selected day, so fall back rather than leave an
+  // empty strip under a tab list with nothing highlighted.
+  const active =
+    selected && days?.some((day) => day.date === selected)
+      ? selected
+      : defaultDate;
   const activeDay = days?.find((day) => day.date === active);
   const today = toLondonDate(new Date());
   const now = Date.now();
+  const isCoarse = activeDay?.slots.some((slot) => slot.span > 1);
 
   if (status === "error" || (status === "success" && !days?.length))
     return null;
@@ -70,16 +75,17 @@ export const HourlyForecast = () => {
         active && (
           <Tabs onValueChange={setSelected} value={active}>
             <div className="flex items-center border-b">
-              <TabsList
-                className={cn(
-                  "h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent p-1",
-                )}
-              >
+              <TabsList className="h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent p-1">
                 {days.map((day) => (
                   <TabsTrigger key={day.date} value={day.date}>
-                    {day.date === today
-                      ? "Today"
-                      : tabFormatter.format(new Date(day.date))}
+                    {day.date === today ? (
+                      "Today"
+                    ) : (
+                      <ServerOrClientDateFormatter
+                        dateString={day.date}
+                        format="shortWeekday"
+                      />
+                    )}
                   </TabsTrigger>
                 ))}
               </TabsList>
@@ -108,23 +114,15 @@ export const HourlyForecast = () => {
                 <Carousel
                   opts={{
                     skipSnaps: true,
-                    startIndex: activeDay.slots.findIndex(
-                      (slot) => slot.time.getHours() === 7,
-                    ),
+                    startIndex: selectStartSlotIndex(activeDay.slots),
                   }}
                 >
-                  <CarouselContent
-                    className={cn(
-                      activeDay.slots.length > COARSE_DAY_SLOTS ? "pl-4" : "",
-                    )}
-                  >
+                  <CarouselContent className={isCoarse ? "" : "pl-4"}>
                     {activeDay.slots.map((slot) => (
                       <CarouselItem
                         className={cn(
                           "shrink-0",
-                          activeDay.slots.length > COARSE_DAY_SLOTS
-                            ? "basis-14"
-                            : "basis-1/4",
+                          isCoarse ? "basis-1/4" : "basis-14",
                         )}
                         key={slot.time.toISOString()}
                       >
