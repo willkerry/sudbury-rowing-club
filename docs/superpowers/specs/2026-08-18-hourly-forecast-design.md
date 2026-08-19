@@ -264,7 +264,7 @@ within.
 ┌────────────────────────────────────────────────────────────┐
 │ FORECAST                                                   │
 ├────────────────────────────────────────────────────────────┤
-│  Today   Wed   Thu   Fri   SAT   SUN   Mon   Tue   Wed  ›  │
+│  Today   Wed   Thu   Fri   Sat   Sun   Mon   Tue   Wed  ›  │
 ├────────────────────────────────────────────────────────────┤
 │   18    19    20    21    22    23    00    01    02   →   │
 │   ☁     ☁     ☁     ◑     ●     ●     ●     ●     ●        │
@@ -280,8 +280,9 @@ Beaufort force with a cardinal direction (e.g. `3 NW`).
 
 ### Day tabs
 
-Every available day is offered, roughly nine. Saturday and Sunday are visually
-emphasised, since weekend outings are the common planning case.
+Every available day is offered, roughly nine. All tabs are styled identically:
+weekend days were originally to be emphasised, but every day carries its own
+weekday label already, and bolding two of nine added noise rather than guidance.
 
 No tab primitive exists in `components/ui`, so one is installed with
 `pnpm dlx shadcn@latest add tabs`. `apps/web/components.json` is already

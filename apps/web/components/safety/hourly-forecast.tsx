@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { Label } from "@/components/stour/label";
 import { Loading } from "@/components/stour/loading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { isWeekend } from "@/lib/forecast/is-weekend";
 import { selectDefaultDayIndex } from "@/lib/forecast/select-default-day";
 import { toLondonDate } from "@/lib/forecast/to-forecast-days";
 import { trpc } from "@/lib/trpc/client";
@@ -42,11 +41,7 @@ export const HourlyForecast = () => {
           <Tabs onValueChange={setSelected} value={active}>
             <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden rounded-none border-b bg-gray-50">
               {days.map((day) => (
-                <TabsTrigger
-                  className={isWeekend(day.date) ? "font-bold" : undefined}
-                  key={day.date}
-                  value={day.date}
-                >
+                <TabsTrigger key={day.date} value={day.date}>
                   {day.date === today
                     ? "Today"
                     : tabFormatter.format(new Date(day.date))}
