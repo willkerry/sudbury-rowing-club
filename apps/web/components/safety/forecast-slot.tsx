@@ -1,5 +1,5 @@
 import { WeatherIcon } from "@sudburyrc/weathericons";
-import { TriangleAlertIcon } from "lucide-react";
+import { ArrowUpCircleIcon, TriangleAlertIcon } from "lucide-react";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { cn } from "@/lib/utils";
 
@@ -57,6 +57,7 @@ export const ForecastSlotColumn = ({
         "flex w-20 shrink-0 snap-start flex-col items-center gap-1 px-1 py-3 text-center",
         isNow && "bg-white/5",
       )}
+      data-hour={hourFormatter.format(slot.time)}
     >
       <div
         className={cn(
@@ -97,7 +98,11 @@ export const ForecastSlotColumn = ({
 
       <div className="flex items-center gap-0.5 font-semibold text-white/80 text-xs">
         <span className="tabular-nums">{slot.wind.beaufort}</span>
-        <span className="font-medium text-white/40">{slot.wind.direction}</span>
+        <ArrowUpCircleIcon
+          aria-label={slot.wind.direction}
+          className="size-4 text-white opacity-50"
+          style={{ transform: `rotate(${slot.wind.bearing - 180}deg)` }}
+        />
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const slot = (overrides: Partial<ForecastSlot> = {}): ForecastSlot => ({
   symbol: "cloudy",
   temperature: 15,
   time: new Date("2026-08-18T09:00:00Z"),
-  wind: { beaufort: 3, direction: "NW" },
+  wind: { bearing: 315, beaufort: 3, direction: "NW" },
   ...overrides,
 });
 
@@ -28,9 +28,9 @@ describe("hasWarning", () => {
   });
 
   it("warns at gale force", () => {
-    expect(hasWarning(slot({ wind: { beaufort: 6, direction: "N" } }))).toBe(
-      true,
-    );
+    expect(
+      hasWarning(slot({ wind: { bearing: 0, beaufort: 6, direction: "N" } })),
+    ).toBe(true);
   });
 
   it("warns when cold enough to matter", () => {
@@ -99,10 +99,24 @@ describe("ForecastSlotColumn", () => {
     expect(queryByText("0.4mm of rain")).not.toBeNull();
   });
 
-  it("labels the wind with force and direction", () => {
-    const { getByText } = render(<ForecastSlotColumn slot={slot()} />);
+  it("shows the force as text and names the direction for screen readers", () => {
+    const { getByLabelText, getByText } = render(
+      <ForecastSlotColumn slot={slot()} />,
+    );
 
     expect(getByText("3")).toBeDefined();
-    expect(getByText("NW")).toBeDefined();
+    expect(getByLabelText("NW")).toBeDefined();
+  });
+
+  it("points the wind arrow the way the wind is blowing, not where it came from", () => {
+    const { getByLabelText } = render(
+      <ForecastSlotColumn
+        slot={slot({ wind: { bearing: 270, beaufort: 4, direction: "W" } })}
+      />,
+    );
+
+    expect(getByLabelText("W").getAttribute("style")).toContain(
+      "rotate(90deg)",
+    );
   });
 });

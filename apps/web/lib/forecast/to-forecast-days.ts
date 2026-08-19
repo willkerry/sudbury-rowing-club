@@ -27,7 +27,7 @@ export type ForecastSlot = {
   temperatureMin?: number;
   temperatureMax?: number;
   precipitation: number;
-  wind: { beaufort: number; direction: CardinalDirection };
+  wind: { beaufort: number; direction: CardinalDirection; bearing: number };
   fog: number;
 };
 
@@ -61,6 +61,7 @@ export const toForecastDays = (forecast: LocationForecast): ForecastDay[] => {
       ...(tMax !== undefined && { temperatureMax: Math.round(tMax) }),
       time: entry.time,
       wind: {
+        bearing: details.wind_from_direction,
         beaufort: convertKphToBeaufort(details.wind_speed * MS_TO_KPH),
         direction: convertBearingToCardinal(details.wind_from_direction),
       },

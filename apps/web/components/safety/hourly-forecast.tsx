@@ -29,6 +29,18 @@ const coversNow = (slot: ForecastSlot, now: number): boolean => {
   return now >= start && now < start + slot.span * MS_PER_HOUR;
 };
 
+const COARSE_DAY_SLOTS = 4;
+const MORNING_HOUR = "06";
+
+const scrollToMorning = (strip: HTMLDivElement | null) => {
+  const morning = strip?.querySelector(`[data-hour="${MORNING_HOUR}"]`);
+
+  if (!(strip && morning)) return;
+
+  strip.scrollLeft +=
+    morning.getBoundingClientRect().left - strip.getBoundingClientRect().left;
+};
+
 const StripSkeleton = () => (
   <div aria-hidden className="flex gap-1 px-1 py-3">
     {Array.from({ length: 12 }, (_, index) => (
@@ -62,7 +74,7 @@ export const HourlyForecast = () => {
   return (
     <section
       aria-label="Weather forecast"
-      className="bg-linear-to-br from-gray-950 to-blue-950"
+      // className="bg-linear-to-br from-gray-950 to-blue-950"
     >
       {status === "pending" ? (
         <StripSkeleton />
@@ -116,6 +128,11 @@ export const HourlyForecast = () => {
                     "mask-r-from-90% mask-r-to-100%",
                     HIDE_SCROLLBAR,
                   )}
+                  ref={
+                    day.date !== today && day.slots.length > COARSE_DAY_SLOTS
+                      ? scrollToMorning
+                      : undefined
+                  }
                 >
                   {day.slots.map((slot) => (
                     <ForecastSlotColumn
