@@ -15,11 +15,6 @@ export {
   fetchAllAuthors,
   fetchAuthor,
 } from "./queries/fetch-authors";
-export {
-  type ForecastResponse,
-  fetchWeatherForecast,
-  type WeatherCodeNumber,
-} from "./queries/fetch-forecast";
 export { fetchGovernance, type Governance } from "./queries/fetch-governance";
 export {
   fetchLandingPage,
