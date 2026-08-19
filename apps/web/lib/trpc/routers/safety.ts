@@ -9,7 +9,14 @@ const HOURLY_FORECAST_CACHE_SECONDS = 60 * 10;
 export const safetyRouter = router({
   hourlyForecast: rateLimitedProcedure
     .meta({ cacheSeconds: HOURLY_FORECAST_CACHE_SECONDS })
-    .query(getHourlyForecast),
+    .query(async () => {
+      try {
+        return await getHourlyForecast();
+      } catch (error) {
+        trackServerException(error);
+        throw error;
+      }
+    }),
   status: rateLimitedProcedure.query(async () => {
     try {
       const safetyStatus = await cached({
