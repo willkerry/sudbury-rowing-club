@@ -1,7 +1,11 @@
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
-import { ForecastSlotColumn, hasWarning } from "./forecast-slot";
+import {
+  ForecastSlotColumn,
+  hasWarning,
+  rainBarPercent,
+} from "./forecast-slot";
 
 afterEach(cleanup);
 
@@ -61,17 +65,38 @@ describe("hasWarning", () => {
   });
 });
 
+describe("rainBarPercent", () => {
+  it("is zero when dry", () => {
+    expect(rainBarPercent(0)).toBe(0);
+  });
+
+  it("keeps a trace of rain visible rather than sub-pixel", () => {
+    expect(rainBarPercent(0.1)).toBe(15);
+  });
+
+  it("scales linearly below the saturation point", () => {
+    expect(rainBarPercent(2)).toBe(50);
+    expect(rainBarPercent(3)).toBe(75);
+  });
+
+  it("saturates at heavy rain instead of dwarfing lighter hours", () => {
+    expect(rainBarPercent(4)).toBe(100);
+    expect(rainBarPercent(40)).toBe(100);
+  });
+});
+
 describe("ForecastSlotColumn", () => {
-  it("shows precipitation only when there is some", () => {
+  it("announces precipitation to screen readers either way", () => {
     const { queryByText, rerender } = render(
       <ForecastSlotColumn slot={slot()} />,
     );
 
     expect(queryByText(MM_PATTERN)).toBeNull();
+    expect(queryByText("No rain expected")).not.toBeNull();
 
     rerender(<ForecastSlotColumn slot={slot({ precipitation: 0.4 })} />);
 
-    expect(queryByText("0.4mm")).not.toBeNull();
+    expect(queryByText("0.4mm of rain")).not.toBeNull();
   });
 
   it("labels the wind with force and direction", () => {

@@ -17,7 +17,7 @@ const SafetyLayout = async ({
       <div className="overflow-hidden rounded-sm border">{status}</div>
     </Container>
 
-    <Container className="mx-auto mt-4">
+    <Container className="mt-6">
       <HourlyForecast />
     </Container>
 
