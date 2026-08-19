@@ -40,7 +40,7 @@ export const HourlyForecast = () => {
       <Loading visible={status === "pending"}>
         {days && active && (
           <Tabs onValueChange={setSelected} value={active}>
-            <TabsList className="w-full justify-start overflow-x-auto rounded-none border-b bg-gray-50 p-0">
+            <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden rounded-none border-b bg-gray-50">
               {days.map((day) => (
                 <TabsTrigger
                   className={isWeekend(day.date) ? "font-bold" : undefined}

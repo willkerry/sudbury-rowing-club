@@ -38,7 +38,7 @@ describe("getHourlyForecast", () => {
     vi.resetModules();
   });
 
-  it("returns mapped days on a fresh fetch and stores lastModified", async () => {
+  it("returns mapped days from a fresh fetch", async () => {
     vi.doMock("@sudburyrc/api", () => ({
       fetchLocationForecast: vi.fn(async () => ({
         expires: FAKE_EXPIRES,

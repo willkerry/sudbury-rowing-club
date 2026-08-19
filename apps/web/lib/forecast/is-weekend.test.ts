@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isWeekend } from "@/lib/forecast/is-weekend";
+import { isWeekend } from "./is-weekend";
 
 describe("isWeekend", () => {
   it("returns true for a Saturday in summer (BST)", () => {

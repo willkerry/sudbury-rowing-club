@@ -30,7 +30,7 @@ export const ForecastSlotColumn = ({ slot }: { slot: ForecastSlot }) => (
   <div
     className={cn(
       "flex shrink-0 flex-col items-center gap-1 px-1 text-center",
-      slot.span === 6 ? "w-24" : "w-12",
+      slot.span === 6 ? "w-24" : "w-20",
     )}
     data-span={slot.span}
   >
