@@ -65,6 +65,7 @@ export const HourlyForecast = () => {
   }, [days]);
 
   const active = selected ?? defaultDate;
+  const activeDay = days?.find((day) => day.date === active);
   const today = toLondonDate(new Date());
   const now = Date.now();
 
@@ -74,7 +75,7 @@ export const HourlyForecast = () => {
   return (
     <section
       aria-label="Weather forecast"
-      className="w-full min-w-0 overflow-hidden bg-linear-to-br from-gray-950 to-blue-950"
+      className="bg-linear-to-br from-gray-950 to-blue-950"
     >
       {status === "pending" ? (
         <StripSkeleton />
@@ -116,25 +117,26 @@ export const HourlyForecast = () => {
               </button>
             </div>
 
-            {days.map((day) => (
+            {activeDay && (
               <TabsContent
                 className="fade-in mt-0 animate-in ring-offset-blue-950 duration-200 focus-visible:ring-white/60 motion-reduce:animate-none"
-                key={day.date}
-                value={day.date}
+                key={activeDay.date}
+                value={activeDay.date}
               >
                 <div
                   className={cn(
-                    "flex w-full min-w-0 snap-x snap-mandatory overflow-x-auto",
+                    "flex snap-x snap-mandatory overflow-x-auto",
                     "mask-r-from-90% mask-r-to-100%",
                     HIDE_SCROLLBAR,
                   )}
                   ref={
-                    day.date !== today && day.slots.length > COARSE_DAY_SLOTS
+                    activeDay.date !== today &&
+                    activeDay.slots.length > COARSE_DAY_SLOTS
                       ? scrollToMorning
                       : undefined
                   }
                 >
-                  {day.slots.map((slot) => (
+                  {activeDay.slots.map((slot) => (
                     <ForecastSlotColumn
                       isNow={coversNow(slot, now)}
                       key={slot.time.toISOString()}
@@ -143,7 +145,7 @@ export const HourlyForecast = () => {
                   ))}
                 </div>
               </TabsContent>
-            ))}
+            )}
           </Tabs>
         )
       )}
