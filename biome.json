@@ -30,7 +30,8 @@
       "!**/.tmp",
       "!**/.vscode",
       "!**/.content-collections",
-      "!**/apps/results/data"
+      "!**/apps/results/data",
+      "!**/packages/weathericons/vendor"
     ]
   },
   "formatter": {
@@ -49,7 +50,8 @@
       "!**/.tmp/**",
       "!**/.vscode/**",
       "!**/.content-collections/**",
-      "!**/apps/results/data/**"
+      "!**/apps/results/data/**",
+      "!**/packages/weathericons/vendor/**"
     ]
   },
   "javascript": {
@@ -81,7 +83,8 @@
       "!**/.tmp/**",
       "!**/.vscode/**",
       "!**/.content-collections/**",
-      "!**/apps/results/data/**"
+      "!**/apps/results/data/**",
+      "!**/packages/weathericons/vendor/**"
     ],
     "rules": {
       "preset": "recommended",
