@@ -4,20 +4,18 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Label } from "@/components/stour/label";
 import { Loading } from "@/components/stour/loading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { isWeekend } from "@/lib/forecast/is-weekend";
 import { selectDefaultDayIndex } from "@/lib/forecast/select-default-day";
 import { toLondonDate } from "@/lib/forecast/to-forecast-days";
 import { trpc } from "@/lib/trpc/client";
 import { ForecastSlotColumn } from "./forecast-slot";
 
-const WEEKEND = [0, 6];
+export { isWeekend };
 
 const tabFormatter = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Europe/London",
   weekday: "short",
 });
-
-const isWeekend = (date: string) =>
-  WEEKEND.includes(new Date(date).getUTCDay());
 
 export const HourlyForecast = () => {
   const { data: days, status } = trpc.safety.hourlyForecast.useQuery();

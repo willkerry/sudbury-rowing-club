@@ -1,7 +1,9 @@
-import { render } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { cleanup, render } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { ForecastSlotColumn, hasWarning } from "./forecast-slot";
+
+afterEach(cleanup);
 
 const MM_PATTERN = /mm/;
 
