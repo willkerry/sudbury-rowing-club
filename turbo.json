@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "concurrency": "12",
   "globalDependencies": ["**/.env.*local"],
   "globalPassThroughEnv": ["ENABLE_EXPERIMENTAL_COREPACK"],
   "ui": "tui",
