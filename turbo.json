@@ -1,11 +1,12 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "concurrency": "12",
   "globalDependencies": ["**/.env.*local"],
   "globalPassThroughEnv": ["ENABLE_EXPERIMENTAL_COREPACK"],
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
       "env": [
@@ -30,19 +31,30 @@
     },
     "dev": {
       "cache": false,
+      "dependsOn": ["generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "outputLogs": "new-only",
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
       "persistent": true
     },
+    "generate": {
+      "outputs": ["src/generated/**"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "vendor/**",
+        "scripts/**",
+        "svgr.config.mjs"
+      ]
+    },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "generate"],
       "outputs": []
     },
     "test:watch": {
       "outputs": []
     },
     "type-check": {
+      "dependsOn": ["^build", "generate"],
       "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
     }
   }

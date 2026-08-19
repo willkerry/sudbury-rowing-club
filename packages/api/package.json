@@ -30,11 +30,14 @@
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "catalog:",
     "@types/node": "^22.15.0",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "type-check": "tsc --noEmit"
   }
 }

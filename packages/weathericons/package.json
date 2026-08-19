@@ -1,0 +1,37 @@
+{
+  "license": "MIT",
+  "main": "dist/index.mjs",
+  "name": "@sudburyrc/weathericons",
+  "types": "dist/index.d.mts",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@sudburyrc/tsconfig": "workspace:*",
+    "@svgr/cli": "^8.1.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "catalog:",
+    "@vitejs/plugin-react": "^5.0.4",
+    "jsdom": "^26.1.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    }
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown",
+    "generate": "svgr --config-file svgr.config.mjs --out-dir src/generated vendor/weather/svg && node scripts/generate-lookup.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "type-check": "tsc --noEmit"
+  }
+}

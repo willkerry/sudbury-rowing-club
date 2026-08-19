@@ -1,4 +1,5 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { trackServerException } from "@/lib/server/track";
 import {
   getCacheHeaders,
   getProcedureCacheSeconds,
@@ -12,6 +13,7 @@ const handler = (req: Request) =>
     req,
     router: appRouter,
     createContext: () => createTRPCContext({ headers: req.headers }),
+    onError: ({ error }) => trackServerException(error),
     responseMeta: ({ eagerGeneration, errors, info, type }) => {
       const headers = getCacheHeaders({
         cacheSeconds: (info?.calls ?? []).map((call) =>
