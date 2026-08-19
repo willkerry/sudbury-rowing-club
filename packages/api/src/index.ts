@@ -25,6 +25,12 @@ export {
   fetchLandingPage,
   type LandingPage,
 } from "./queries/fetch-landing-page";
+export {
+  fetchLocationForecast,
+  type LocationForecast,
+  type LocationForecastEntry,
+  type LocationForecastResult,
+} from "./queries/fetch-locationforecast";
 export { fetchMinutes, type Minutes } from "./queries/fetch-minutes";
 export {
   type Article,
