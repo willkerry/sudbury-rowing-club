@@ -34,7 +34,7 @@ const StripSkeleton = () => (
   <div aria-hidden className="flex gap-1 overflow-hidden px-1 py-3">
     {Array.from({ length: 12 }, (_, index) => (
       <div
-        className="h-24 w-20 shrink-0 animate-pulse rounded-xs bg-white/5 motion-reduce:animate-none"
+        className="h-24 w-20 shrink-0 animate-pulse rounded-xs bg-gray-100 motion-reduce:animate-none"
         key={`skeleton-${index}`}
         style={{ animationDelay: `${index * 60}ms` }}
       />
@@ -101,7 +101,7 @@ export const HourlyForecast = () => {
             {activeDay && (
               <TabsContent
                 asChild
-                className="fade-in mt-0 animate-in ring-offset-blue-50 duration-200 focus-visible:ring-gray-900/60 motion-reduce:animate-none"
+                className="fade-in relative mt-0 animate-in ring-offset-blue-50 duration-200 focus-visible:ring-gray-900/60 motion-reduce:animate-none"
                 key={activeDay.date}
                 value={activeDay.date}
               >
@@ -109,7 +109,7 @@ export const HourlyForecast = () => {
                   opts={{
                     skipSnaps: true,
                     startIndex: activeDay.slots.findIndex(
-                      (slot) => slot.time.getHours() === 6,
+                      (slot) => slot.time.getHours() === 7,
                     ),
                   }}
                 >
