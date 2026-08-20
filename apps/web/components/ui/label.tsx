@@ -1,7 +1,6 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import { Label as LabelPrimitive } from "radix-ui";
 import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
@@ -16,24 +15,24 @@ const RequiredIndicator = () => (
   </span>
 );
 
-type LabelProps = React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
+type LabelProps = React.ComponentPropsWithoutRef<"label"> &
   VariantProps<typeof labelVariants> & {
     required?: boolean;
   };
 
-const Label = forwardRef<
-  React.ComponentRef<typeof LabelPrimitive.Root>,
-  LabelProps
->(({ className, children, required, ...props }, ref) => (
-  <LabelPrimitive.Root
-    className={cn(labelVariants(), "relative", className)}
-    ref={ref}
-    {...props}
-  >
-    {children}
-    {required && <RequiredIndicator />}
-  </LabelPrimitive.Root>
-));
-Label.displayName = LabelPrimitive.Root.displayName;
+const Label = forwardRef<HTMLLabelElement, LabelProps>(
+  ({ className, children, required, ...props }, ref) => (
+    // biome-ignore lint/a11y/noLabelWithoutControl: htmlFor / wrapping is supplied by consumers
+    <label
+      className={cn(labelVariants(), "relative", className)}
+      ref={ref}
+      {...props}
+    >
+      {children}
+      {required && <RequiredIndicator />}
+    </label>
+  ),
+);
+Label.displayName = "Label";
 
 export { Label };

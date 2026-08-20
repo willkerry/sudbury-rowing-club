@@ -139,15 +139,17 @@ const DataTableColumnHeader = <TData, TValue>({
 
       {column.getCanSort() && (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              className="px-1"
-              size="xs"
-              variant={column.getIsSorted() ? "tertiary" : "ghost"}
-            >
-              {sortIcon}
-              <span className="sr-only">Sort</span>
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="px-1"
+                size="xs"
+                variant={column.getIsSorted() ? "tertiary" : "ghost"}
+              />
+            }
+          >
+            {sortIcon}
+            <span className="sr-only">Sort</span>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuItem
@@ -179,26 +181,27 @@ const DataTableColumnHeader = <TData, TValue>({
 
       {column.getCanFilter() && (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              className="px-1"
-              size="xs"
-              variant={column.getIsFiltered() ? "tertiary" : "ghost"}
-            >
-              <Search aria-hidden className="h-3.5 w-3.5" />
-              <span className="sr-only">Filter {title}</span>
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="px-1"
+                size="xs"
+                variant={column.getIsFiltered() ? "tertiary" : "ghost"}
+              />
+            }
+          >
+            <Search aria-hidden className="h-3.5 w-3.5" />
+            <span className="sr-only">Filter {title}</span>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="start" asChild>
-            <DropdownMenuItem asChild>
-              <Input
-                aria-label={`Filter by ${title}`}
-                onChange={(event) => column.setFilterValue(event.target.value)}
-                type="text"
-                value={String(column.getFilterValue() ?? "")}
-              />
-            </DropdownMenuItem>
+          <DropdownMenuContent align="start">
+            <Input
+              aria-label={`Filter by ${title}`}
+              onChange={(event) => column.setFilterValue(event.target.value)}
+              onKeyDown={(event) => event.stopPropagation()}
+              type="text"
+              value={String(column.getFilterValue() ?? "")}
+            />
           </DropdownMenuContent>
         </DropdownMenu>
       )}

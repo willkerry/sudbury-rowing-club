@@ -1,8 +1,8 @@
+import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "lib/utils";
 import { Loader2 } from "lucide-react";
-import { Slot as SlotPrimitive } from "radix-ui";
-import { forwardRef } from "react";
+import { forwardRef, isValidElement } from "react";
 
 const buttonVariants = cva(
   "not-prose relative inline-flex items-center justify-center whitespace-nowrap rounded-sm font-medium text-sm ring-offset-white transition-[color,background-color,box-shadow,transform] duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50",
@@ -59,21 +59,34 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    const Comp = asChild ? SlotPrimitive.Slot : "button";
-
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className, shadow }))}
-        disabled={loading}
-        ref={ref}
-        {...props}
-      >
-        <SlotPrimitive.Slottable>{children}</SlotPrimitive.Slottable>
-        <SlotPrimitive.Slot aria-hidden className="ml-2 w-4">
+    const trailing =
+      loading || icon ? (
+        <span aria-hidden className="ml-2 w-4">
           {loading ? <Loader2 className="animate-spin" /> : icon}
-        </SlotPrimitive.Slot>
-      </Comp>
-    );
+        </span>
+      ) : null;
+
+    const child =
+      asChild && isValidElement(children)
+        ? (children as React.ReactElement<{ children?: React.ReactNode }>)
+        : undefined;
+
+    return useRender({
+      defaultTagName: "button",
+      ref,
+      render: child,
+      props: {
+        className: cn(buttonVariants({ variant, size, className, shadow })),
+        disabled: loading,
+        ...props,
+        children: (
+          <>
+            {child ? child.props.children : children}
+            {trailing}
+          </>
+        ),
+      },
+    });
   },
 );
 Button.displayName = "Button";
