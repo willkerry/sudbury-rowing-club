@@ -31,12 +31,12 @@ export const metadata = createMetadata({
 const getLearnToRowCourseCost = async () => {
   const rates = await scrapeRatesTable();
 
-  if (rates.status === "error") {
+  if (!rates.ok) {
     return null;
   }
 
   const learnToRowCourse = rates.data
-    ?.filter((rate) => rate.Name.toLowerCase().includes("learn"))
+    .filter((rate) => rate.Name.toLowerCase().includes("learn"))
     .sort((a, b) => a.Cost.InclTax.Value - b.Cost.InclTax.Value)
     .reverse()[0];
 

@@ -9,20 +9,9 @@ import { EAStationResponseSchema } from "@/types/ea-station-respose";
 import { EAWarningSchema } from "@/types/ea-warning";
 import { type Severity, severities } from "@/types/severity";
 import { CLUB_LOCATION } from "./constants";
+import { err, ok, type Result } from "./result";
 import { fetchWeatherWarning } from "./server/fetchWeatherWarning";
 import { trackServerException } from "./server/track";
-
-type SafetyStatusResult<T> =
-  | {
-      ok: true;
-      data: T;
-      error?: never;
-    }
-  | {
-      ok: false;
-      data?: never;
-      error: string;
-    };
 
 const SanityStatusSchema = z.object({
   _updatedAt: z.coerce.date(),
@@ -33,11 +22,11 @@ const SanityStatusSchema = z.object({
 
 /** Fetches the latest safety status from the content management system */
 const fetchSanityStatus = async (): Promise<
-  SafetyStatusResult<z.infer<typeof SanityStatusSchema>>
+  Result<z.infer<typeof SanityStatusSchema>>
 > => {
   try {
-    return {
-      data: SanityStatusSchema.parse(
+    return ok(
+      SanityStatusSchema.parse(
         await sanityClient.fetch(
           groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
             _updatedAt,
@@ -47,18 +36,15 @@ const fetchSanityStatus = async (): Promise<
           }`,
         ),
       ),
-      ok: true,
-    };
+    );
   } catch (error) {
     trackServerException(error);
 
-    return {
-      error:
-        error instanceof Error
-          ? error.message
-          : "Failed to fetch safety status from content management system",
-      ok: false,
-    };
+    return err(
+      error instanceof Error
+        ? error.message
+        : "Failed to fetch safety status from content management system",
+    );
   }
 };
 
@@ -74,26 +60,21 @@ const getEaWarningUrl = (): string =>
 /** Fetches the latest flood warning from the Environment Agency API, using the
  * club's location */
 const fetchEAWarning = async (): Promise<
-  SafetyStatusResult<z.infer<typeof EAWarningSchema>>
+  Result<z.infer<typeof EAWarningSchema>>
 > => {
   try {
-    return {
-      data: z
+    return ok(
+      z
         .object({ items: z.array(EAWarningSchema) })
         .parse(await ky.get(getEaWarningUrl(), { timeout: 5000 }).json())
         .items[0],
-      ok: true,
-    };
+    );
   } catch (error) {
     trackServerException(error);
 
-    return {
-      error:
-        error instanceof HTTPError
-          ? error.message
-          : "Failed to fetch EA warning",
-      ok: false,
-    };
+    return err(
+      error instanceof HTTPError ? error.message : "Failed to fetch EA warning",
+    );
   }
 };
 
@@ -102,25 +83,20 @@ const STATION_URL =
 
 /** Fetches monitoring station data from the Environment Agency API */
 const fetchEAStation = async (): Promise<
-  SafetyStatusResult<z.infer<typeof EAStationResponseSchema>>
+  Result<z.infer<typeof EAStationResponseSchema>>
 > => {
   try {
-    return {
-      data: z
+    return ok(
+      z
         .object({ items: EAStationResponseSchema })
         .parse(await ky.get(STATION_URL, { timeout: 5000 }).json()).items,
-      ok: true,
-    };
+    );
   } catch (error) {
     trackServerException(error);
 
-    return {
-      error:
-        error instanceof HTTPError
-          ? error.message
-          : "Failed to fetch EA station",
-      ok: false,
-    };
+    return err(
+      error instanceof HTTPError ? error.message : "Failed to fetch EA station",
+    );
   }
 };
 

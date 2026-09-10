@@ -1,10 +1,10 @@
+import { ArrowLongUpIcon } from "@heroicons/react/20/solid";
 import { WeatherIcon } from "@sudburyrc/weathericons";
 import { TriangleAlertIcon } from "lucide-react";
 import { toast } from "sonner";
 import { toLondonHourLabel } from "@/lib/forecast/london-time";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { cn } from "@/lib/utils";
-import { ArrowLongUpIcon } from "@heroicons/react/20/solid";
 
 const GALE_FORCE = 6;
 const COLD_CELSIUS = 4;

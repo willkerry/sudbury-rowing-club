@@ -1,6 +1,6 @@
 "use client";
 
-import { Home } from "lucide-react";
+import { Home, RotateCcw } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePostHog } from "posthog-js/react";
@@ -11,8 +11,14 @@ import { SiteSearch } from "@/components/search";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
 import { ErrorMessage } from "@/components/ui/error";
+import { WhenDev } from "@/lib/environment";
 
-export default function SafetyError({ error }: { error: Error }) {
+type ErrorProps = {
+  error: Error & { digest?: string };
+  reset: () => void;
+};
+
+export default function RootError({ error, reset }: ErrorProps) {
   const posthog = usePostHog();
 
   useEffect(() => {
@@ -36,6 +42,9 @@ export default function SafetyError({ error }: { error: Error }) {
       <Container className="prose mt-12 max-w-prose">
         <div className="flex flex-col gap-4">
           <SiteSearch />
+          <Button icon={<RotateCcw />} onClick={reset} variant="secondary">
+            Try again
+          </Button>
           <Button asChild icon={<Home />} variant="secondary">
             <Link href="/">Return to the homepage</Link>
           </Button>
@@ -43,9 +52,17 @@ export default function SafetyError({ error }: { error: Error }) {
         <div className="h-12" />
 
         <ErrorMessage error={error} label={error.name}>
-          <pre className="rounded-sm bg-red-50 p-2 text-red-600 text-xs">
-            <code>{error.stack}</code>
-          </pre>
+          {error.digest && (
+            <p className="text-xs">
+              Reference: <code>{error.digest}</code>
+            </p>
+          )}
+
+          <WhenDev>
+            <pre className="rounded-sm bg-red-50 p-2 text-red-600 text-xs">
+              <code>{error.stack}</code>
+            </pre>
+          </WhenDev>
         </ErrorMessage>
       </Container>
     </>

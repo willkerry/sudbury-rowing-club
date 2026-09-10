@@ -45,22 +45,20 @@ export const fetchBritishRowingFeed = () =>
         throw new Error("Failed to scrape British Rowing feed");
       }
 
-      if (!page.rawHtml) {
-        throw new Error("Failed to scrape British Rowing feed");
-      }
-
-      const [parsedError, parsed] = await tryit(
-        async () => await JSON.parse(rawHtml),
-      )();
+      const [parsedError, parsed] = await tryit(() => JSON.parse(rawHtml))();
 
       if (parsedError) {
-        throw new Error("Failed to parse British Rowing feed");
+        throw new Error("Failed to parse British Rowing feed", {
+          cause: parsedError,
+        });
       }
 
       const feed = schema.safeParse(parsed);
 
       if (!feed.success) {
-        throw new Error("Unparseable response provided by British Rowing API");
+        throw new Error("Unparseable response provided by British Rowing API", {
+          cause: feed.error,
+        });
       }
 
       return feed.data;

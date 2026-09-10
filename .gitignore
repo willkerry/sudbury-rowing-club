@@ -56,3 +56,6 @@ tsconfig.tsbuildinfo
 
 **/dist/
 **/node_modules/
+
+# Git worktrees
+.worktrees/
