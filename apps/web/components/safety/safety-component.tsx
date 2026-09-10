@@ -1,11 +1,11 @@
 "use client";
 
-import type { QueryStatus } from "@tanstack/react-query";
+import { type QueryStatus, useQuery } from "@tanstack/react-query";
 import { Label } from "@/components/stour/label";
 import { ErrorMessage } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
-import { trpc } from "@/lib/trpc/client";
+import { useTRPC } from "@/lib/trpc/client";
 import type { Severity } from "@/types/severity";
 import { Loading } from "../stour/loading";
 import { HourlyForecast } from "./hourly-forecast";
@@ -80,7 +80,9 @@ const SafetyDescription = ({
 };
 
 export const SafetyComponent = () => {
-  const { data, status, error } = trpc.safety.status.useQuery();
+  const trpc = useTRPC();
+
+  const { data, status, error } = useQuery(trpc.safety.status.queryOptions());
 
   useTrackLoadTime(status, {
     errorEvent: "safety_api_request_failed",

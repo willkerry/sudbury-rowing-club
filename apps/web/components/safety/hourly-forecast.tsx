@@ -1,5 +1,6 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import { InfoIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -9,7 +10,7 @@ import { toLondonDate } from "@/lib/forecast/london-time";
 import { selectDefaultDayIndex } from "@/lib/forecast/select-default-day";
 import { selectStartSlotIndex } from "@/lib/forecast/select-start-slot";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
-import { trpc } from "@/lib/trpc/client";
+import { useTRPC } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { ForecastSlotColumn } from "./forecast-slot";
@@ -37,11 +38,12 @@ const StripSkeleton = () => (
 );
 
 export const HourlyForecast = () => {
-  const { data: days, status } = trpc.safety.hourlyForecast.useQuery(
-    undefined,
-    {
+  const trpc = useTRPC();
+
+  const { data: days, status } = useQuery(
+    trpc.safety.hourlyForecast.queryOptions(undefined, {
       trpc: { context: { unbatched: true } },
-    },
+    }),
   );
   const [selected, setSelected] = useState<string>();
   const [sourcesShown, setSourcesShown] = useState(false);

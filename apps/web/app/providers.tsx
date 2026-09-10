@@ -1,7 +1,12 @@
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
-import { httpBatchLink, httpLink, splitLink } from "@trpc/client";
+import {
+  createTRPCClient,
+  httpBatchLink,
+  httpLink,
+  splitLink,
+} from "@trpc/client";
 import { parse, stringify } from "devalue";
 import dynamic from "next/dynamic";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -13,7 +18,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/env";
 import { HOSTNAME } from "@/lib/constants";
 import { WhenDev, whenEnv } from "@/lib/environment";
-import { trpc } from "@/lib/trpc/client";
+import { TRPCProvider } from "@/lib/trpc/client";
+import type { AppRouter } from "@/lib/trpc/router";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
@@ -62,7 +68,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
   const [trpcClient] = useState(() =>
-    trpc.createClient({
+    createTRPCClient<AppRouter>({
       links: [
         splitLink({
           false: httpBatchLink({ url: getUrl(), transformer }),
@@ -77,8 +83,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <PostHogProvider client={posthog}>
-      <trpc.Provider client={trpcClient} queryClient={queryClient}>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <TRPCProvider queryClient={queryClient} trpcClient={trpcClient}>
           <NuqsAdapter>
             <DialogProvider>
               {children}
@@ -92,8 +98,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
             <Toaster />
           </NuqsAdapter>
-        </QueryClientProvider>
-      </trpc.Provider>
+        </TRPCProvider>
+      </QueryClientProvider>
     </PostHogProvider>
   );
 }
