@@ -11,22 +11,20 @@ export const checkForSpam = async (
   commentAuthorEmail: string,
   commentContent: string,
 ): Promise<boolean> => {
-  const formData = new FormData();
-
-  formData.append("api_key", API_KEY);
-  formData.append("blog", BASE_URL);
-  formData.append("user_ip", userIp);
-  formData.append("user_agent", userAgent);
-  formData.append("referrer", referrer);
-  formData.append("comment_type", "contact-form");
-  formData.append("comment_author", commentAuthor);
-  formData.append("comment_author_email", commentAuthorEmail);
-  formData.append("comment_content", commentContent);
-  formData.append("blog_lang", "en_gb");
-
   const response = await ky
     .post("https://rest.akismet.com/1.1/comment-check", {
-      body: formData,
+      body: new URLSearchParams({
+        api_key: API_KEY,
+        blog: BASE_URL,
+        blog_lang: "en_gb",
+        comment_author: commentAuthor,
+        comment_author_email: commentAuthorEmail,
+        comment_content: commentContent,
+        comment_type: "contact-form",
+        referrer: referrer,
+        user_agent: userAgent,
+        user_ip: userIp,
+      }),
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
