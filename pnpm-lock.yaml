@@ -570,6 +570,9 @@ importers:
       '@types/node':
         specifier: ^22.15.0
         version: 22.20.0
+      magic-string:
+        specifier: ^0.30.21
+        version: 0.30.21
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
