@@ -1,6 +1,57 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+@import "@sudburyrc/blue/blue.css";
 
-@config "../tailwind.config.js";
+@source "../{app,components,lib}/**/*.{js,ts,jsx,tsx,mdx}";
+
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/aspect-ratio";
+
+@theme {
+  --color-cyan: #79ffe1;
+
+  --font-sans: InterVariable, Inter, system-ui, sans-serif;
+  --font-serif: "Source Serif 4 Variable", serif;
+  --font-mono:
+    "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --tracking-tighter: -0.04em;
+  --leading-tight: 1.2;
+
+  --shadow-small: 0 5px 10px rgb(0 0 0 / 0.12);
+  --shadow-medium: 0 8px 30px rgb(0 0 0 / 0.12);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  `--font-digital-7` is injected by next/font in app/layout.tsx. It is declared
+  on <body> rather than :root, so the theme value has to be inlined into the
+  utility instead of read from a :root variable.
+*/
+@theme inline {
+  --font-digital: var(--font-digital-7), monospace;
+}
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
@@ -27,6 +78,13 @@
 @layer base {
   button:not([disabled]) {
     @apply cursor-pointer;
+  }
+}
+
+@layer base {
+  html {
+    @apply antialiased bg-white text-black;
+    font-feature-settings: "ss03" 1;
   }
 }
 
@@ -72,10 +130,85 @@
     "cv08" 1;
 }
 
-@layer base {
-  html {
-    @apply antialiased bg-white text-black;
-    font-feature-settings: "ss03" 1;
+@utility list-alpha {
+  list-style-type: lower-alpha;
+}
+
+@utility list-roman {
+  list-style-type: lower-roman;
+}
+
+@utility bg-indicate-transparency {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23000' fill-opacity='0.1'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/*
+  Typography plugin overrides. The plugin has no CSS-first theme namespace, so
+  its defaults are undone here rather than nulled out in a JS config. The
+  `:not(:where([class~="not-prose"], …))` guard mirrors the plugin's own
+  selectors so `not-prose` still opts out and specificity stays equal.
+*/
+@layer utilities {
+  .prose {
+    :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+      @apply text-blue-500 transition-colors duration-200 hover:text-blue-300;
+      font-weight: inherit;
+      text-decoration: none;
+    }
+
+    :where(blockquote):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+      border-inline-start-width: 0;
+      color: inherit;
+      font-size: 0.875rem;
+      font-style: normal;
+      font-weight: inherit;
+      quotes: none;
+    }
+
+    :where(blockquote p):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+      font-size: 1rem;
+    }
+
+    :where(blockquote p:first-of-type):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      )::before,
+    :where(blockquote p:last-of-type):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      )::after,
+    :where(code):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      )::before,
+    :where(code):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      )::after {
+      content: none;
+    }
+
+    :where(figure img):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+      @apply rounded-sm bg-gray-200;
+    }
+
+    :where(h1, h2, h3, h4, h5, h6):not(
+        :where([class~="not-prose"], [class~="not-prose"] *)
+      ) {
+      @apply font-semibold;
+    }
+  }
+
+  /*
+    The size modifiers set their own heading line heights, and did so under the
+    old JS config too because they were emitted after `.prose`. Excluding them
+    keeps that behaviour now that this rule comes last.
+  */
+  .prose:not(:is(.prose-sm, .prose-base, .prose-lg, .prose-xl, .prose-2xl))
+  :where(h2, h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    @apply leading-snug;
   }
 }
 

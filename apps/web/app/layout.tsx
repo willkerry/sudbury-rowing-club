@@ -15,7 +15,7 @@ import Providers from "./providers";
 const digital7Font = localFont({
   display: "swap",
   src: "./Digital-7MonoItalic.woff2",
-  variable: "--font-digital",
+  variable: "--font-digital-7",
 });
 
 export const metadata: Metadata = {

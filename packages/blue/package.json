@@ -9,9 +9,17 @@
   "version": "1.0.0",
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
+    "@types/node": "^24.9.1",
     "@types/react": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"
+  },
+  "exports": {
+    "./blue.css": "./dist/blue.css",
+    ".": {
+      "default": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    }
   },
   "peerDependencies": {
     "react": "^19.0.0"

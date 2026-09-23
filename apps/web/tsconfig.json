@@ -1,6 +1,7 @@
 {
   "exclude": ["node_modules"],
   "extends": "@sudburyrc/tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "moduleResolution": "bundler",
@@ -18,12 +19,5 @@
       "@/types/*": ["types/*"],
       "content-collections": ["./.content-collections/generated"]
     }
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "tailwind.config.js",
-    ".next/types/**/*.ts"
-  ]
+  }
 }
