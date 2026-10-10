@@ -1,4 +1,4 @@
-import { AlertOctagon, ArrowUpRight } from "lucide-react";
+import { IconAlertOctagon, IconArrowUpRight } from "@tabler/icons-react";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Alert } from "./alert";
@@ -26,7 +26,10 @@ export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorProps>(
       {...props}
     >
       <div className="flex items-start">
-        <AlertOctagon aria-hidden className="mt-0.5 mr-2 h-4 w-4 flex-none" />
+        <IconAlertOctagon
+          aria-hidden
+          className="mt-0.5 mr-2 h-4 w-4 flex-none"
+        />
 
         <div>
           {label && <span className="mr-2 font-semibold">{label}</span>}
@@ -39,7 +42,7 @@ export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorProps>(
               href={error.link}
             >
               {error.action}
-              <ArrowUpRight aria-hidden className="h-4 w-4" />
+              <IconArrowUpRight aria-hidden className="h-4 w-4" />
             </a>
           )}
 

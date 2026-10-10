@@ -1,6 +1,6 @@
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import { smartQuotes } from "@sudburyrc/helpers";
-import { AlignLeftIcon } from "lucide-react";
+import { IconAlignLeft } from "@tabler/icons-react";
 import { Container } from "@/components/layouts/container";
 import { DocPageHeader } from "@/components/layouts/docPage/DocPageHeader";
 import {
@@ -50,7 +50,7 @@ export const DocPage = ({
         <div className="sticky top-0 right-0 h-12 w-full bg-linear-to-t from-transparent to-white" />
 
         <h2 className="mb-3 flex items-center gap-2 font-medium text-gray-700 text-sm">
-          <AlignLeftIcon aria-hidden className="w-3 stroke-3 stroke-current" />
+          <IconAlignLeft aria-hidden className="w-3 stroke-3 stroke-current" />
           On this page
         </h2>
         <TableOfContents toc={toc} />

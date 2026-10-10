@@ -1,6 +1,6 @@
 import type { SafetyItem } from "@sudburyrc/api";
+import { IconDownload, IconExternalLink } from "@tabler/icons-react";
 import { BASE_URL } from "lib/constants";
-import { Download, ExternalLink } from "lucide-react";
 import NextLink from "next/link";
 import { first, isArray } from "radashi";
 import { forwardRef } from "react";
@@ -69,9 +69,9 @@ const SafetyItemLinkButton = ({
     className="w-full"
     icon={
       href.includes(BASE_URL) ? (
-        <Download className="h-3 w-3" />
+        <IconDownload className="h-3 w-3" />
       ) : (
-        <ExternalLink className="h-3 w-3" />
+        <IconExternalLink className="h-3 w-3" />
       )
     }
     size="xs"
@@ -95,7 +95,7 @@ const SafetyItemDownloadButton = ({
   <Button
     asChild
     className="w-full"
-    icon={<Download className="h-3 w-3" />}
+    icon={<IconDownload className="h-3 w-3" />}
     size="xs"
     variant={isEmergency ? "destructive" : "tertiary"}
   >

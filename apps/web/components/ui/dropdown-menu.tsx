@@ -1,5 +1,5 @@
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
-import { Check, ChevronRight, Circle } from "lucide-react";
+import { IconCheck, IconChevronRight, IconCircle } from "@tabler/icons-react";
 import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
@@ -32,7 +32,7 @@ const DropdownMenuSubTrigger = forwardRef<
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto" />
+    <IconChevronRight className="ml-auto" />
   </MenuPrimitive.SubmenuTrigger>
 ));
 DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";
@@ -112,7 +112,7 @@ const DropdownMenuCheckboxItem = forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <MenuPrimitive.CheckboxItemIndicator>
-        <Check className="h-4 w-4" />
+        <IconCheck className="h-4 w-4" />
       </MenuPrimitive.CheckboxItemIndicator>
     </span>
     {children}
@@ -134,7 +134,7 @@ const DropdownMenuRadioItem = forwardRef<
   >
     <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
       <MenuPrimitive.RadioItemIndicator>
-        <Circle className="h-2 w-2 fill-current" />
+        <IconCircle className="h-2 w-2 fill-current" />
       </MenuPrimitive.RadioItemIndicator>
     </span>
     {children}

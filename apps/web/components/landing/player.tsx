@@ -2,21 +2,21 @@
 
 import { useThrottledCallback } from "@mantine/hooks";
 import {
-  CircleAlertIcon,
-  CircleEllipsisIcon,
-  CirclePauseIcon,
-  CirclePlayIcon,
-} from "lucide-react";
+  IconDotsFilled,
+  IconExclamationMark,
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
 import { useRef, useState } from "react";
 
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 
-const controlIcons: Record<PlayerState, typeof CirclePlayIcon> = {
-  error: CircleAlertIcon,
-  idle: CirclePlayIcon,
-  loading: CircleEllipsisIcon,
-  paused: CirclePlayIcon,
-  playing: CirclePauseIcon,
+const controlIcons: Record<PlayerState, typeof IconPlayerPlayFilled> = {
+  error: IconExclamationMark,
+  idle: IconPlayerPlayFilled,
+  loading: IconDotsFilled,
+  paused: IconPlayerPlayFilled,
+  playing: IconPlayerPauseFilled,
 };
 
 const controlText: Record<PlayerState, string> = {
@@ -89,7 +89,9 @@ export const Player = () => {
         onClick={handleClick}
         type="button"
       >
-        <Icon aria-hidden className="h-6 w-6" />
+        <span className="flex size-6 items-center justify-center rounded-full bg-white text-gray-900">
+          <Icon aria-hidden className="size-3.5" stroke={2.5} />
+        </span>
         <div className="sr-only">{text}</div>
       </button>
     </div>

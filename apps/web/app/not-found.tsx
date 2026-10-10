@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { IconHome } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -40,7 +40,7 @@ const Custom404 = () => (
       <div className="flex flex-col gap-4">
         <SiteSearch />
 
-        <Button asChild icon={<Home />} variant="secondary">
+        <Button asChild icon={<IconHome />} variant="secondary">
           <Link href="/">Return to the homepage</Link>
         </Button>
       </div>

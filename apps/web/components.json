@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "iconLibrary": "lucide",
+  "iconLibrary": "tabler",
   "rsc": false,
   "style": "base-vega",
   "tsx": true,

@@ -1,4 +1,8 @@
-import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
+import {
+  IconArrowDown,
+  IconArrowRight,
+  IconArrowUpRight,
+} from "@tabler/icons-react";
 import NextLink from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -15,11 +19,11 @@ const assignIcon = (
   external: boolean,
   download: boolean,
   arrow: boolean,
-): typeof ArrowRightIcon => {
-  if (external) return ArrowUpRightIcon;
-  if (download) return ArrowDownIcon;
-  if (arrow) return ArrowRightIcon;
-  return ArrowRightIcon;
+): typeof IconArrowRight => {
+  if (external) return IconArrowUpRight;
+  if (download) return IconArrowDown;
+  if (arrow) return IconArrowRight;
+  return IconArrowRight;
 };
 
 export const Link = ({

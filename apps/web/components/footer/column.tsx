@@ -1,4 +1,4 @@
-import { ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
+import { IconArrowRight, IconArrowUpRight } from "@tabler/icons-react";
 import Link from "next/link";
 import type { HTMLAttributeAnchorTarget } from "react";
 
@@ -19,7 +19,7 @@ export const FooterColumn = ({ heading, data }: Props) => (
     </h3>
     {data.map((item) => {
       const Arrow =
-        item.target === "_blank" ? ArrowUpRightIcon : ArrowRightIcon;
+        item.target === "_blank" ? IconArrowUpRight : IconArrowRight;
 
       return (
         <Link

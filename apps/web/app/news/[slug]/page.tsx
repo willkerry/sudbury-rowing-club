@@ -4,8 +4,8 @@ import {
   serverGetArticleBySlug,
   urlFor,
 } from "@sudburyrc/api";
+import { IconArrowUpRight, IconEditFilled } from "@tabler/icons-react";
 import type { RecommendationsHit } from "algoliasearch/lite";
-import { ArrowUpRightIcon, SquarePenIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { Article as ArticleSchema, WithContext } from "schema-dts";
@@ -145,7 +145,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
               <div className="font-medium text-sm">
                 {`${post.author?.firstName} ${post.author?.surname}`}
                 <Link href={`/news/author/${post.author?._id}`}>
-                  <ArrowUpRightIcon aria-hidden className="inline h-4 w-4" />
+                  <IconArrowUpRight aria-hidden className="inline h-4 w-4" />
                   <span className="sr-only">
                     View all articles by {post.author?.firstName}{" "}
                     {post.author?.surname}
@@ -165,7 +165,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
           href={`https://edit.sudburyrowingclub.org.uk/structure/news;news;${post._id}`}
         >
           <span className="sr-only">Edit this article</span>
-          <SquarePenIcon aria-hidden className="inline h-4 w-4" />
+          <IconEditFilled aria-hidden className="inline h-4 w-4" />
         </Link>
       </div>
 

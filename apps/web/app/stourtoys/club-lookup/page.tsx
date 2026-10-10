@@ -1,6 +1,6 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { IconSearch } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,7 +26,7 @@ const Clubs = () => {
         name="q"
         type="search"
       />
-      <Button icon={<Search />} type="submit" variant="link">
+      <Button icon={<IconSearch />} type="submit" variant="link">
         Search
       </Button>
     </form>

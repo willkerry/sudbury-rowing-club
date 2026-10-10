@@ -1,7 +1,7 @@
 import { useRender } from "@base-ui/react/use-render";
+import { IconLoader2 } from "@tabler/icons-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "lib/utils";
-import { Loader2 } from "lucide-react";
 import { forwardRef, isValidElement } from "react";
 
 const buttonVariants = cva(
@@ -62,7 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const trailing =
       loading || icon ? (
         <span aria-hidden className="ml-2 w-4">
-          {loading ? <Loader2 className="animate-spin" /> : icon}
+          {loading ? <IconLoader2 className="animate-spin" /> : icon}
         </span>
       ) : null;
 

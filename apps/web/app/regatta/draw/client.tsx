@@ -1,6 +1,6 @@
 "use client";
 
-import { RadioTowerIcon } from "lucide-react";
+import { IconBuildingBroadcastTower } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { REGATTA } from "@/lib/constants";
@@ -125,7 +125,7 @@ export const ClientDraw = ({
       </p>
       <p>{paragraph}</p>
       <p className="py-4">
-        <Button asChild icon={<RadioTowerIcon />} size="lg">
+        <Button asChild icon={<IconBuildingBroadcastTower />} size="lg">
           <a
             href={REGATTA.LIVE_RESULTS_URL}
             rel="noopener noreferrer"

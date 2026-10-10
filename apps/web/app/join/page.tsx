@@ -1,4 +1,4 @@
-import { ThumbsUp } from "lucide-react";
+import { IconThumbUp } from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useId } from "react";
@@ -68,7 +68,7 @@ const Join = async () => {
         <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
         <h1 className="relative z-10 font-semibold text-6xl text-green-500 tracking-tighter drop-shadow-xl sm:text-8xl">
           Start rowing with us{" "}
-          <ThumbsUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
+          <IconThumbUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
         </h1>
         <div className="z-0 mx-auto flex max-h-[160px] max-w-[240px] -rotate-2 overflow-hidden rounded-sm shadow-xl">
           <Image

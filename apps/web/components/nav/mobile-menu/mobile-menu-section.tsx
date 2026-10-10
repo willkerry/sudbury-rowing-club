@@ -1,6 +1,6 @@
 import { Accordion } from "@base-ui/react/accordion";
 import { Dialog } from "@base-ui/react/dialog";
-import { ChevronDownIcon } from "lucide-react";
+import { IconChevronDown } from "@tabler/icons-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { IconNavItemType } from "@/types/nav-item";
@@ -52,7 +52,7 @@ const SectionWrapper = ({
               )}
             >
               {title}
-              <ChevronDownIcon
+              <IconChevronDown
                 aria-hidden
                 className="h-4 w-4 transition-transform duration-200 ease-out-strong motion-reduce:transition-none"
               />

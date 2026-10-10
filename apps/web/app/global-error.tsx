@@ -1,7 +1,7 @@
 "use client";
 
+import { IconHome, IconRotate } from "@tabler/icons-react";
 import "../styles/index.css";
-import { Home, RotateCcw } from "lucide-react";
 import posthog from "posthog-js";
 import { useEffect } from "react";
 import { Container } from "@/components/layouts/container";
@@ -35,10 +35,10 @@ export default function GlobalError({ error, reset }: ErrorProps) {
           </p>
 
           <div className="flex flex-col gap-4">
-            <Button icon={<RotateCcw />} onClick={reset} variant="secondary">
+            <Button icon={<IconRotate />} onClick={reset} variant="secondary">
               Try again
             </Button>
-            <Button asChild icon={<Home />} variant="secondary">
+            <Button asChild icon={<IconHome />} variant="secondary">
               <a href="/">Return to the homepage</a>
             </Button>
           </div>

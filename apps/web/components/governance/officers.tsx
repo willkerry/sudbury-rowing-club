@@ -3,7 +3,11 @@
 import { Popover } from "@base-ui/react/popover";
 import type { Governance } from "@sudburyrc/api";
 import { Crest } from "@sudburyrc/blue";
-import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
+import {
+  IconCircleX,
+  IconHelpCircle,
+  IconMessageCircle,
+} from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useRef } from "react";
@@ -84,11 +88,11 @@ const OfficerNameOrPlaceholder = ({
       >
         {name}
         <span className="sr-only">(Contact {name})</span>
-        <MessageCircle
+        <IconMessageCircle
           aria-hidden
           className="text-blue-500 transition group-hover:text-gray-600"
           size="1em"
-          strokeWidth="0.15em"
+          stroke="0.15em"
         />
       </NextLink>
     );
@@ -106,11 +110,11 @@ const OfficerDescription = ({
 }) => (
   <Popover.Root>
     <Popover.Trigger className="absolute right-2 bottom-2 text-blue-500 transition-colors hover:text-gray-700">
-      <HelpCircle
+      <IconHelpCircle
         aria-hidden
         className="fill-white"
         size="1.15em"
-        strokeWidth="0.15em"
+        stroke="0.15em"
       />
       <span className="sr-only">Show description</span>
     </Popover.Trigger>
@@ -128,7 +132,7 @@ const OfficerDescription = ({
             <p>{description}</p>
           </div>
           <Popover.Close className="absolute right-2 bottom-2 text-gray-500 transition-colors hover:text-gray-700">
-            <XCircle aria-hidden size="1em" strokeWidth="0.15em" />
+            <IconCircleX aria-hidden size="1em" stroke="0.15em" />
             <span className="sr-only">Hide description</span>
           </Popover.Close>
         </Popover.Popup>

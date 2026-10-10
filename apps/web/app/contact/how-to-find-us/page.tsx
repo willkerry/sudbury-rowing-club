@@ -1,4 +1,4 @@
-import { MapPinIcon } from "lucide-react";
+import { IconMapPinFilled } from "@tabler/icons-react";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { Container } from "@/components/layouts/container";
@@ -64,7 +64,7 @@ const addresses: Address[] = [
 const FindUsAddress = ({ name, address, postcode }: Address) => (
   <div>
     <h4 className="mb-1">
-      <MapPinIcon
+      <IconMapPinFilled
         aria-hidden
         className={cn(
           "mr-0.5 mb-[0.17em] -ml-0.5 inline-flex h-6 w-6 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5",

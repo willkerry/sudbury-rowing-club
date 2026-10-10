@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog } from "@base-ui/react/dialog";
-import { XIcon } from "lucide-react";
+import { IconX } from "@tabler/icons-react";
 import {
   MobileMenuButton,
   MobileMenuSection,
@@ -69,7 +69,7 @@ export const Nav = () => (
         <div className="absolute top-3 right-3">
           <Dialog.Close className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-500 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500">
             <span className="sr-only">Close menu</span>
-            <XIcon aria-hidden className="h-6 w-6" strokeWidth={1.5} />
+            <IconX aria-hidden className="h-6 w-6" stroke={1.5} />
           </Dialog.Close>
         </div>
       </Dialog.Popup>

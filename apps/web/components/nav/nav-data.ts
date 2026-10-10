@@ -1,22 +1,22 @@
 import {
-  CakeIcon,
-  CalendarIcon,
-  FlagIcon,
-  ImageIcon,
-  InfoIcon,
-  ListOrderedIcon,
-  MailIcon,
-  MapPinIcon,
-  NewspaperIcon,
-  ShieldCheckIcon,
-  SparklesIcon,
-  TicketIcon,
-} from "lucide-react";
+  IconBrandFacebookFilled,
+  IconBrandInstagramFilled,
+  IconCake,
+  IconCalendarFilled,
+  IconFlag,
+  IconInfoCircle,
+  IconListNumbers,
+  IconMail,
+  IconMapPin,
+  IconNews,
+  IconPhoto,
+  IconShieldCheck,
+  IconSparkles,
+  IconTicket,
+} from "@tabler/icons-react";
 import {
-  Facebook,
   Governance,
   History,
-  Instagram,
   MyClubhouse,
   Results,
   Safety,
@@ -38,7 +38,7 @@ const navigationGroups: NavigationGroup[] = [
       {
         description: "The latest club news.",
         href: "/news",
-        icon: NewspaperIcon,
+        icon: IconNews,
         name: "News",
       },
       {
@@ -62,27 +62,27 @@ const navigationGroups: NavigationGroup[] = [
       {
         description: "Discover the benefits of sponsorship.",
         href: "/about/sponsorship",
-        icon: SparklesIcon,
+        icon: IconSparkles,
         name: "Sponsorship",
       },
       {
         description: "View a century-and-a-half of photos.",
         href: "/150",
-        icon: CakeIcon,
+        icon: IconCake,
         name: "150th anniversary",
         shortName: "150 years",
       },
       {
         cta: true,
         href: "/contact/how-to-find-us",
-        icon: MapPinIcon,
+        icon: IconMapPin,
         name: "How to find us",
         shortName: "Find us",
       },
       {
         cta: true,
         href: "/contact",
-        icon: MailIcon,
+        icon: IconMail,
         name: "Contact",
       },
     ],
@@ -94,7 +94,7 @@ const navigationGroups: NavigationGroup[] = [
         description:
           "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
         href: "/regatta",
-        icon: InfoIcon,
+        icon: IconInfoCircle,
         name: "The ‘International’",
         shortName: "About",
       },
@@ -105,36 +105,36 @@ const navigationGroups: NavigationGroup[] = [
       },
       {
         href: "/regatta/records",
-        icon: ListOrderedIcon,
+        icon: IconListNumbers,
         name: "Course records",
       },
       {
         href: "/regatta/entries",
-        icon: TicketIcon,
+        icon: IconTicket,
         name: "Entries",
       },
       {
         href: "/regatta/course",
-        icon: FlagIcon,
+        icon: IconFlag,
         name: "Course map",
         shortName: "Course",
       },
       {
         href: "/regatta/galleries",
-        icon: ImageIcon,
+        icon: IconPhoto,
         name: "Official photography",
         shortName: "Photography",
       },
       {
         href: "/regatta/competitor-information",
-        icon: ShieldCheckIcon,
+        icon: IconShieldCheck,
         name: "Competitor information",
         shortName: "Competitors",
       },
       {
         cta: true,
         href: "/contact/how-to-find-us",
-        icon: MapPinIcon,
+        icon: IconMapPin,
         name: "Find the regatta",
         shortName: "Find",
       },
@@ -163,7 +163,7 @@ const navigationGroups: NavigationGroup[] = [
       {
         cta: true,
         href: "https://sudbury.squadlist.app",
-        icon: CalendarIcon,
+        icon: IconCalendarFilled,
         name: "Squadlist",
       },
       {
@@ -189,10 +189,10 @@ export const join: IconNavItemType = {
 
 const availableLogos: Record<
   (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
-  typeof Instagram
+  typeof IconBrandInstagramFilled
 > = {
-  facebook: Facebook,
-  instagram: Instagram,
+  facebook: IconBrandFacebookFilled,
+  instagram: IconBrandInstagramFilled,
 };
 
 export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(

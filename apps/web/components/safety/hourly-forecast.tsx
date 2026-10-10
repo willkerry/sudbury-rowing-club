@@ -1,7 +1,7 @@
 "use client";
 
+import { IconInfoCircle } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
-import { InfoIcon } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -99,7 +99,7 @@ export const HourlyForecast = () => {
                 onClick={() => setSourcesShown((shown) => !shown)}
                 type="button"
               >
-                <InfoIcon aria-hidden className="size-4" />
+                <IconInfoCircle aria-hidden className="size-4" />
                 <span className="sr-only">
                   {sourcesShown ? "Hide data sources" : "Show data sources"}
                 </span>

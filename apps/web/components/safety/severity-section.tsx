@@ -1,4 +1,4 @@
-import { CircleAlertIcon } from "lucide-react";
+import { IconExclamationCircleFilled } from "@tabler/icons-react";
 import type { Severity } from "@/types/severity";
 import { LoadingText } from "../stour/loading-text/loading-text";
 
@@ -34,7 +34,10 @@ export const SeveritySection = ({ status, message }: SeveritySectionProps) => {
         <div className="relative h-6 w-6">
           <div className="absolute inset-0.5 z-0 h-5 w-5 animate-ping rounded-full bg-current" />
           <div className="absolute inset-1 z-0 h-4 w-4 rounded-full bg-white" />
-          <CircleAlertIcon aria-hidden className="absolute z-10 h-6 w-6" />
+          <IconExclamationCircleFilled
+            aria-hidden
+            className="absolute z-10 h-6 w-6"
+          />
         </div>
       ) : null}
     </div>
