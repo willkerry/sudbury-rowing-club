@@ -6,9 +6,11 @@ import { Crest } from "@sudburyrc/blue";
 import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
 import Image from "next/image";
 import NextLink from "next/link";
-import { Description, GovGrid, SectionTitle } from "@/components/governance";
 import { Link } from "@/components/stour/link";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
+import { Description } from "./description";
+import { GovGrid } from "./gov-grid";
+import { SectionTitle } from "./section-title";
 
 type Props = {
   officers: Governance["officers"];

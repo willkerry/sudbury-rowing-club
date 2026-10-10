@@ -13,10 +13,11 @@ import {
   TicketIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
-import { Facebook, Instagram } from "lucide-react";
 import {
+  Facebook,
   Governance,
   History,
+  Instagram,
   MyClubhouse,
   Results,
   Safety,

@@ -3,20 +3,20 @@
   "extends": "@sudburyrc/tsconfig/nextjs.json",
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "compilerOptions": {
-    "baseUrl": ".",
     "moduleResolution": "bundler",
     "strictNullChecks": true,
     "paths": {
-      "@/app/*": ["app/*"],
-      "@/assets/*": ["public/assets/*"],
-      "@/components/*": ["components/*"],
-      "@/data/*": ["data/*"],
+      "@/app/*": ["./app/*"],
+      "@/assets/*": ["./public/assets/*"],
+      "@/components/*": ["./components/*"],
+      "@/data/*": ["./data/*"],
       "@/env": ["./env.ts"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"],
-      "@/pages/*": ["pages/*"],
-      "@/test-utils/*": ["test-utils/*"],
-      "@/types/*": ["types/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/test-utils/*": ["./test-utils/*"],
+      "@/types/*": ["./types/*"],
+      "*": ["./*"],
       "content-collections": ["./.content-collections/generated"]
     }
   }

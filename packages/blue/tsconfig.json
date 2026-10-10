@@ -3,6 +3,7 @@
   "extends": "@sudburyrc/tsconfig/react-library.json",
   "include": ["."],
   "compilerOptions": {
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "types": ["node"]
   }
 }

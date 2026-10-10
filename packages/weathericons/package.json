@@ -7,9 +7,9 @@
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@svgr/cli": "^8.1.0",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/react": "^16.3.3",
     "@types/react": "catalog:",
-    "@vitejs/plugin-react": "^5.0.4",
+    "@vitejs/plugin-react": "^6.1.2",
     "jsdom": "^26.1.0",
     "react": "catalog:",
     "react-dom": "catalog:",

@@ -1,6 +1,6 @@
 import type { BREvent } from "@sudburyrc/ical-builder";
 import emojiRegex from "emoji-regex";
-import he from "he";
+import { decode } from "he";
 import DOMPurify from "isomorphic-dompurify";
 import { after } from "next/server";
 import { dash, tryit } from "radashi";
@@ -17,13 +17,12 @@ const FRESH_FOR_MS = 48 * HOUR_IN_MS;
 const KEEP_IN_KV_FOR_MS = 14 * DAY_IN_MS;
 
 const sanitise = (html: string) => {
-  const sanitised = he
-    .decode(
-      DOMPurify.sanitize(html, {
-        ALLOWED_ATTR: [],
-        ALLOWED_TAGS: [],
-      }),
-    )
+  const sanitised = decode(
+    DOMPurify.sanitize(html, {
+      ALLOWED_ATTR: [],
+      ALLOWED_TAGS: [],
+    }),
+  )
     .replace(emojiRegex(), "")
     .trim();
 

@@ -1,4 +1,4 @@
-import { BillIcon } from "@sanity/icons";
+import { BillIcon } from "@sanity/icons/Bill";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 const Members = defineType({

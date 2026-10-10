@@ -7,13 +7,14 @@
   "packageManager": "pnpm@11.8.0",
   "version": "1.0.0",
   "dependencies": {
-    "turbo": "^2.9.8"
+    "turbo": "^2.11.7"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.0",
-    "@commitlint/cli": "^21.0.2",
-    "@commitlint/config-conventional": "^21.0.2",
-    "lefthook": "^2.1.9"
+    "@biomejs/biome": "^2.5.15",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
+    "lefthook": "^2.2.1",
+    "typescript": "catalog:"
   },
   "scripts": {
     "biome-migrate": "biome migrate --write",
