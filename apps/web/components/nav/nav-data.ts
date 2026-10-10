@@ -1,18 +1,17 @@
-import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
   CakeIcon,
-  EnvelopeIcon,
+  CalendarIcon,
   FlagIcon,
-  InformationCircleIcon,
+  ImageIcon,
+  InfoIcon,
+  ListOrderedIcon,
+  MailIcon,
   MapPinIcon,
   NewspaperIcon,
-  PhotoIcon,
-  QueueListIcon,
   ShieldCheckIcon,
   SparklesIcon,
   TicketIcon,
-  UserPlusIcon,
-} from "@heroicons/react/24/outline";
+} from "lucide-react";
 import {
   Facebook,
   Governance,
@@ -28,7 +27,7 @@ import type { IconNavItemType } from "@/types/nav-item";
 
 type NavigationGroup = {
   title: string;
-  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  compact?: boolean;
   items: IconNavItemType[];
 };
 
@@ -36,6 +35,12 @@ const navigationGroups: NavigationGroup[] = [
   {
     title: "About",
     items: [
+      {
+        description: "The latest club news.",
+        href: "/news",
+        icon: NewspaperIcon,
+        name: "News",
+      },
       {
         description: "Rowing in Sudbury since 1874.",
         href: "/about/history",
@@ -77,18 +82,8 @@ const navigationGroups: NavigationGroup[] = [
       {
         cta: true,
         href: "/contact",
-        icon: EnvelopeIcon,
+        icon: MailIcon,
         name: "Contact",
-      },
-    ],
-  },
-  {
-    title: "News",
-    items: [
-      {
-        href: "/news",
-        icon: NewspaperIcon,
-        name: "News",
       },
     ],
   },
@@ -99,7 +94,7 @@ const navigationGroups: NavigationGroup[] = [
         description:
           "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
         href: "/regatta",
-        icon: InformationCircleIcon,
+        icon: InfoIcon,
         name: "The ‘International’",
         shortName: "About",
       },
@@ -110,7 +105,7 @@ const navigationGroups: NavigationGroup[] = [
       },
       {
         href: "/regatta/records",
-        icon: QueueListIcon,
+        icon: ListOrderedIcon,
         name: "Course records",
       },
       {
@@ -126,7 +121,7 @@ const navigationGroups: NavigationGroup[] = [
       },
       {
         href: "/regatta/galleries",
-        icon: PhotoIcon,
+        icon: ImageIcon,
         name: "Official photography",
         shortName: "Photography",
       },
@@ -145,20 +140,8 @@ const navigationGroups: NavigationGroup[] = [
       },
     ],
   },
-];
-
-const secondaryNavigationGroups: NavigationGroup[] = [
   {
-    title: "Join",
-    items: [
-      {
-        href: "/join",
-        icon: UserPlusIcon,
-        name: "Join",
-      },
-    ],
-  },
-  {
+    compact: true,
     title: "Members",
     items: [
       {
@@ -199,6 +182,11 @@ const secondaryNavigationGroups: NavigationGroup[] = [
   },
 ];
 
+export const join: IconNavItemType = {
+  href: "/join",
+  name: "Join",
+};
+
 const availableLogos: Record<
   (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
   typeof Instagram
@@ -234,6 +222,6 @@ export const misc = [
   },
 ];
 
-export const [{ items: about }, , { items: regatta }] = navigationGroups;
-export const [, { items: members }] = secondaryNavigationGroups;
-export { navigationGroups, secondaryNavigationGroups };
+export const [{ items: about }, { items: regatta }, { items: members }] =
+  navigationGroups;
+export { navigationGroups };

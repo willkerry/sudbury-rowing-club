@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon } from "lucide-react";
 import type { JSX } from "react";
 import { ImageComposite } from "@/components/regatta/landing-page/image-composite";
 import { ScrollLink } from "@/components/utils/scroll-link";

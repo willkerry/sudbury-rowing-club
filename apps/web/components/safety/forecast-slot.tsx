@@ -1,6 +1,5 @@
-import { ArrowLongUpIcon } from "@heroicons/react/20/solid";
 import { WeatherIcon } from "@sudburyrc/weathericons";
-import { TriangleAlertIcon } from "lucide-react";
+import { MoveUpIcon, TriangleAlertIcon } from "lucide-react";
 import { toast } from "sonner";
 import { toLondonHourLabel } from "@/lib/forecast/london-time";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
@@ -78,7 +77,7 @@ export const ForecastSlotColumn = ({
       </div>
 
       <div className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs tracking-widest">
-        <ArrowLongUpIcon
+        <MoveUpIcon
           aria-label={`Force ${slot.wind.beaufort}, wind from ${slot.wind.direction}`}
           className="size-3.5 text-gray-400"
           role="img"

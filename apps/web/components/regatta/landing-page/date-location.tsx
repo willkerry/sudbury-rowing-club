@@ -1,4 +1,4 @@
-import { CalendarIcon, MapIcon } from "@heroicons/react/20/solid";
+import { CalendarIcon, MapIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link } from "@/components/stour/link";
 

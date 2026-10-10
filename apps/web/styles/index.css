@@ -22,6 +22,8 @@
   --shadow-small: 0 5px 10px rgb(0 0 0 / 0.12);
   --shadow-medium: 0 8px 30px rgb(0 0 0 / 0.12);
 
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 

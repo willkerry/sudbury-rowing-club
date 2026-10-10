@@ -1,9 +1,9 @@
 import { type AuthorsResponse, fetchAllAuthors } from "@sudburyrc/api";
-import cn from "clsx";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { Label } from "@/components/stour/label";
 import { createMetadata } from "@/lib/create-metadata";
+import { cn } from "@/lib/utils";
 
 export const metadata = createMetadata({
   description: "List of contributing authors",

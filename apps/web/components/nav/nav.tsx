@@ -1,137 +1,78 @@
 "use client";
 
-import {
-  Popover,
-  PopoverButton,
-  PopoverGroup,
-  PopoverPanel,
-  Transition,
-} from "@headlessui/react";
-import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
-import { fork } from "radashi";
-import { Fragment } from "react";
+import { Dialog } from "@base-ui/react/dialog";
+import { XIcon } from "lucide-react";
 import {
   MobileMenuButton,
   MobileMenuSection,
 } from "@/components/nav/mobile-menu";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
 import { NavSection } from "./desktop-menu/nav-section";
-import { navigationGroups, secondaryNavigationGroups } from "./nav-data";
+import { JoinLink } from "./join-link";
+import { navigationGroups } from "./nav-data";
 import { NavLogo } from "./nav-logo";
 
-const extractSingletonGroups = (
-  primary: typeof navigationGroups,
-  secondary: typeof secondaryNavigationGroups,
-) => {
-  const [primarySingletons, primaryGroups] = fork(
-    primary,
-    ({ items }) => items.length === 1,
-  );
-  const [secondarySingletons, secondaryGroups] = fork(
-    secondary,
-    ({ items }) => items.length === 1,
-  );
+export const Nav = () => (
+  <Dialog.Root>
+    <div className="bg-white text-gray-900">
+      <div className="mx-auto flex max-w-4xl items-center justify-between px-4! py-3 xs:py-4 md:py-6">
+        <NavLogo />
+        <MobileMenuButton />
 
-  return {
-    primaryGroups: [
-      ...primaryGroups,
-      {
-        title: "More",
-        items: [
-          ...primarySingletons.map(({ items }) => items[0]),
-          ...secondarySingletons.map(({ items }) => items[0]),
-        ],
-      },
-    ],
-    secondaryGroups,
-  };
-};
+        <NavigationMenu
+          align="center"
+          className="mx-auto hidden flex-none sm:flex"
+          popupClassName="rounded-md bg-gray-200 shadow-lg ring-0"
+        >
+          <NavigationMenuList>
+            {navigationGroups.map(({ title, items, compact }) => (
+              <NavSection
+                compact={compact}
+                items={items}
+                key={title}
+                label={title}
+              />
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
-export const Nav = () => {
-  const { primaryGroups, secondaryGroups } = extractSingletonGroups(
-    navigationGroups,
-    secondaryNavigationGroups,
-  );
+        <div className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1">
+          <JoinLink />
+        </div>
+      </div>
+    </div>
 
-  return (
-    <Popover className="bg-white text-gray-900">
-      {({ open }) => (
-        <>
-          <div className="mx-auto flex max-w-4xl items-center justify-between px-4! py-3 xs:py-4 md:py-6">
-            <NavLogo />
-            <MobileMenuButton />
+    <Dialog.Portal>
+      <Dialog.Popup className="fixed inset-x-0 top-0 z-50 max-h-dvh origin-top-right overflow-y-auto p-2 transition-[opacity,scale] duration-200 ease-out-strong data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-150 motion-reduce:data-ending-style:scale-100 motion-reduce:data-starting-style:scale-100 sm:hidden">
+        <Dialog.Title className="sr-only">Menu</Dialog.Title>
+        <div className="relative divide-y rounded-sm bg-white shadow-lg">
+          {navigationGroups.map(({ title, items, compact }) => (
+            <MobileMenuSection
+              collapse={title.toLowerCase() === "regatta"}
+              compact={compact}
+              data={items}
+              key={title}
+              title={title}
+            />
+          ))}
 
-            <PopoverGroup as="nav" className="mx-auto hidden sm:flex">
-              {navigationGroups.map(({ title, items }) => (
-                <NavSection key={title} label={title} {...{ items }} />
-              ))}
-            </PopoverGroup>
-
-            <PopoverGroup
-              as="nav"
-              className="hidden items-center justify-end sm:flex lg:w-0 lg:flex-1"
-            >
-              {secondaryNavigationGroups.map(
-                ({ title, items, icon: Icon = null }) => (
-                  <NavSection
-                    compact
-                    icon={
-                      Icon ? (
-                        <Icon aria-hidden className="flex h-4 w-4" />
-                      ) : undefined
-                    }
-                    items={items}
-                    key={title}
-                    label={title}
-                  />
-                ),
-              )}
-            </PopoverGroup>
+          <div className="px-5 py-4">
+            <Dialog.Close
+              nativeButton={false}
+              render={<JoinLink size="default" />}
+            />
           </div>
-
-          <Transition
-            as={Fragment}
-            enter="duration-200 ease-out"
-            enterFrom="opacity-0 scale-95"
-            enterTo="opacity-100 scale-100"
-            leave="duration-100 ease-in"
-            leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
-            show={open}
-          >
-            <PopoverPanel
-              className="absolute inset-x-0 top-0 z-20 origin-top-right transform p-2 transition md:hidden"
-              focus
-              static
-            >
-              <div className="relative divide-y rounded-sm bg-white shadow-lg">
-                {primaryGroups.map(({ title, items }) => (
-                  <MobileMenuSection
-                    collapse={title.toLowerCase() === "regatta"}
-                    data={items}
-                    key={title}
-                    title={title}
-                  />
-                ))}
-
-                {secondaryGroups.map(({ title, items }) => (
-                  <MobileMenuSection
-                    compact
-                    data={items}
-                    key={title}
-                    title={title}
-                  />
-                ))}
-              </div>
-              <div className="absolute top-3 right-3">
-                <PopoverButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition hover:bg-gray-100 hover:text-gray-500 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500">
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon aria-hidden className="h-6 w-6" />
-                </PopoverButton>
-              </div>
-            </PopoverPanel>
-          </Transition>
-        </>
-      )}
-    </Popover>
-  );
-};
+        </div>
+        <div className="absolute top-3 right-3">
+          <Dialog.Close className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition-colors hover:bg-gray-100 hover:text-gray-500 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500">
+            <span className="sr-only">Close menu</span>
+            <XIcon aria-hidden className="h-6 w-6" strokeWidth={1.5} />
+          </Dialog.Close>
+        </div>
+      </Dialog.Popup>
+    </Dialog.Portal>
+  </Dialog.Root>
+);

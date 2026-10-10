@@ -1,6 +1,11 @@
-import { QueueListIcon } from "@heroicons/react/24/outline";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
-import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
+import {
+  Award,
+  BadgeAlert,
+  ListOrderedIcon,
+  TicketIcon,
+  Timer,
+} from "lucide-react";
 import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 import { logos as sponsors } from "@/components/landing/sponsors";
@@ -100,7 +105,7 @@ const RegattaPage = async () => {
     },
     {
       href: "./regatta/draw",
-      icon: <QueueListIcon aria-hidden />,
+      icon: <ListOrderedIcon aria-hidden />,
       summary: "Draw",
     },
     {

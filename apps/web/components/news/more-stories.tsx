@@ -1,5 +1,5 @@
-import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import type { ArticleSummary } from "@sudburyrc/api";
+import { MoveRightIcon } from "lucide-react";
 import Link from "next/link";
 import { Loading } from "@/components/stour/loading";
 import { PostPreview } from "./post-preview";
@@ -46,7 +46,7 @@ export const MoreStories = ({
                   href={more}
                 >
                   See more{" "}
-                  <ArrowLongRightIcon
+                  <MoveRightIcon
                     aria-hidden
                     className="h-6 w-6 transition group-hover:translate-x-2 group-hover:text-blue-500"
                   />

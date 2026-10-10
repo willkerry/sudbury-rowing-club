@@ -1,4 +1,3 @@
-import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 import {
   type Article,
   serverGetAllSlugs,
@@ -6,6 +5,7 @@ import {
   urlFor,
 } from "@sudburyrc/api";
 import type { RecommendationsHit } from "algoliasearch/lite";
+import { ArrowUpRightIcon, SquarePenIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { Article as ArticleSchema, WithContext } from "schema-dts";
@@ -165,7 +165,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
           href={`https://edit.sudburyrowingclub.org.uk/structure/news;news;${post._id}`}
         >
           <span className="sr-only">Edit this article</span>
-          <PencilSquareIcon aria-hidden className="inline h-4 w-4" />
+          <SquarePenIcon aria-hidden className="inline h-4 w-4" />
         </Link>
       </div>
 

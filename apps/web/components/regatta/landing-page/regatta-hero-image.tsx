@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpIcon } from "@heroicons/react/20/solid";
+import { ArrowUpIcon } from "lucide-react";
 import Image from "next/image";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 

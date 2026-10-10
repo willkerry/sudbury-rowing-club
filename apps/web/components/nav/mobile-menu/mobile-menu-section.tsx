@@ -1,6 +1,6 @@
 import { Accordion } from "@base-ui/react/accordion";
-import { CloseButton } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Dialog } from "@base-ui/react/dialog";
+import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { IconNavItemType } from "@/types/nav-item";
@@ -28,7 +28,7 @@ const SectionWrapper = ({
   const outer: string = "px-5 py-4";
   const titleClasses =
     "text-xs font-semibold tracking-wider text-gray-500 uppercase";
-  const panel = "mt-3";
+  const panel = "pt-3";
   const inner = (
     <nav
       className={cn(
@@ -54,17 +54,12 @@ const SectionWrapper = ({
               {title}
               <ChevronDownIcon
                 aria-hidden
-                className="h-4 w-4 transition-transform duration-200"
+                className="h-4 w-4 transition-transform duration-200 ease-out-strong motion-reduce:transition-none"
               />
             </Accordion.Trigger>
           </Accordion.Header>
-          <Accordion.Panel
-            className={cn(
-              panel,
-              "data-closed:animate-accordion-up data-open:animate-accordion-down",
-            )}
-          >
-            {inner}
+          <Accordion.Panel className="h-(--accordion-panel-height) overflow-hidden transition-[height] duration-200 ease-out-strong data-ending-style:h-0 data-starting-style:h-0 motion-reduce:transition-none">
+            <div className={panel}>{inner}</div>
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion.Root>
@@ -88,22 +83,23 @@ export const MobileMenuSection = ({
       const Icon = item.icon || null;
 
       return (
-        <CloseButton
-          as={Link}
+        <Dialog.Close
           className="-m-2 flex items-center rounded-md p-2 hover:bg-gray-100"
-          href={item.href}
           key={item.name}
+          nativeButton={false}
+          render={<Link href={item.href} />}
         >
           {!compact && Icon && (
             <Icon
               aria-hidden
               className="mr-1.5 h-5 w-5 shrink-0 text-blue-700"
+              strokeWidth={1.5}
             />
           )}
           <span className="font-medium text-gray-900">
             {item.shortName ? item.shortName : item.name}
           </span>
-        </CloseButton>
+        </Dialog.Close>
       );
     })}
   </SectionWrapper>

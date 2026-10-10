@@ -1,22 +1,22 @@
 "use client";
 
-import {
-  EllipsisHorizontalCircleIcon,
-  ExclamationCircleIcon,
-  PauseCircleIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/24/solid";
 import { useThrottledCallback } from "@mantine/hooks";
+import {
+  CircleAlertIcon,
+  CircleEllipsisIcon,
+  CirclePauseIcon,
+  CirclePlayIcon,
+} from "lucide-react";
 import { useRef, useState } from "react";
 
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 
-const controlIcons: Record<PlayerState, typeof PlayCircleIcon> = {
-  error: ExclamationCircleIcon,
-  idle: PlayCircleIcon,
-  loading: EllipsisHorizontalCircleIcon,
-  paused: PlayCircleIcon,
-  playing: PauseCircleIcon,
+const controlIcons: Record<PlayerState, typeof CirclePlayIcon> = {
+  error: CircleAlertIcon,
+  idle: CirclePlayIcon,
+  loading: CircleEllipsisIcon,
+  paused: CirclePlayIcon,
+  playing: CirclePauseIcon,
 };
 
 const controlText: Record<PlayerState, string> = {
