@@ -16,7 +16,7 @@ import type { IconNavItemType } from "@/types/nav-item";
 const navLinkClasses = (isActive: boolean) =>
   cn(
     navigationMenuTriggerStyle(),
-    "h-auto px-2 py-2.5 text-gray-500 transition-colors hover:bg-transparent hover:text-black focus:bg-transparent focus-visible:ring-2 focus-visible:ring-blue-500 data-open:bg-transparent data-popup-open:bg-transparent data-open:text-black data-popup-open:text-black data-open:focus:bg-transparent data-open:hover:bg-transparent data-popup-open:hover:bg-transparent md:px-3 [&>svg]:text-gray-400 hover:[&>svg]:text-gray-800",
+    "h-auto px-2 py-2.5 text-gray-500 transition-colors hover:bg-transparent hover:text-black focus:bg-transparent focus-visible:ring-2 focus-visible:ring-blue-500 data-open:bg-transparent data-popup-open:bg-transparent data-open:text-black data-popup-open:text-black data-open:focus:bg-transparent data-open:hover:bg-transparent data-popup-open:hover:bg-transparent md:px-3 [&>svg]:ml-0.5 [&>svg]:text-gray-400 hover:[&>svg]:text-gray-800",
     isActive && "text-black [&>svg]:text-gray-700",
   );
 
