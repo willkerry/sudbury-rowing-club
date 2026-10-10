@@ -68,16 +68,16 @@ export const Player = () => {
           loop
           muted
           onEnded={setIdle}
-          onError={setError}
           onPlaying={setPlaying}
           ref={ref}
         >
           <source
-            src="https://cdn.sudburyrowingclub.org.uk/media%2Flanding_page_h265.mp4"
-            type="video/mp4"
+            src="https://cdn.sudburyrowingclub.org.uk/media/landing_page_h265.mp4"
+            type='video/mp4; codecs="hvc1"'
           />
           <source
-            src="https://cdn.sudburyrowingclub.org.uk/media%2Flanding_page_h264.mp4"
+            onError={setError}
+            src="https://cdn.sudburyrowingclub.org.uk/media/landing_page_h264.mp4"
             type="video/mp4"
           />
         </video>
