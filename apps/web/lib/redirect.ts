@@ -90,8 +90,7 @@ export const verifyRedirectUrl = (url: string, signature: string): string => {
     );
   }
 
-  if (verifyUrlSignature(url, signature)) {
-  } else {
+  if (!verifyUrlSignature(url, signature)) {
     throw new SignedUrlError(
       SignedUrlErrorCode.INVALID_SIGNATURE,
       "HMAC signature verification failed",
@@ -117,6 +116,7 @@ export const verifyRedirectUrl = (url: string, signature: string): string => {
     throw new SignedUrlError(
       SignedUrlErrorCode.INVALID_URL_FORMAT,
       `Failed to parse URL: ${url}`,
+      { cause: error },
     );
   }
 };

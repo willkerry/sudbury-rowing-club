@@ -25,11 +25,7 @@ const MembershipRates = async () => {
         on MyClubhouse.
       </p>
 
-      {rates.status === "error" && (
-        <ErrorMessage error={{ message: rates.message }} />
-      )}
-
-      {rates.status === "success" && (
+      {rates.ok ? (
         <table>
           <thead>
             <tr className="text-left">
@@ -80,6 +76,8 @@ const MembershipRates = async () => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <ErrorMessage error={{ message: rates.error }} />
       )}
     </TextPage>
   );

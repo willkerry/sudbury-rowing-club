@@ -63,7 +63,7 @@ const fallbackTitles: Record<DialogType, string> = {
   warn: "Warning",
 };
 
-// The actual dialog component using Radix UI
+// The actual dialog component using Base UI
 const DialogComponent = () => {
   const context = useContext(DialogContext);
   if (!context) throw new Error("Dialog must be used within DialogProvider");

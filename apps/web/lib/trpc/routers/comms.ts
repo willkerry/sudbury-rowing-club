@@ -52,6 +52,7 @@ export const commsRouter = router({
 
       if (spamError) {
         throw new TRPCError({
+          cause: spamError,
           code: "INTERNAL_SERVER_ERROR",
           message: "Could not connect to spam checking service.",
         });
@@ -129,6 +130,7 @@ export const commsRouter = router({
 
       if (spamError) {
         throw new TRPCError({
+          cause: spamError,
           code: "INTERNAL_SERVER_ERROR",
           message: "Could not connect to spam checking service.",
         });
@@ -146,6 +148,7 @@ export const commsRouter = router({
 
       if (officerError) {
         throw new TRPCError({
+          cause: officerError,
           code: "NOT_FOUND",
           message: officerError.message,
         });

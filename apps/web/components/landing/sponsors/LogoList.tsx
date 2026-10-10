@@ -13,10 +13,10 @@ const BASE_WIDTH = 48;
 
 const getLogoDimensions = (logo: StaticImageData) => {
   const aspectRatio = logo.width / logo.height;
-  const width = aspectRatio ** SCALE_FACTOR * BASE_WIDTH;
-  const height = width / aspectRatio;
+  const width = Math.round(aspectRatio ** SCALE_FACTOR * BASE_WIDTH);
+  const height = Math.round(width / aspectRatio);
 
-  return { height: Math.round(height), width: Math.round(width) };
+  return { height, width };
 };
 
 const useLogoDimensions = (logo: StaticImageData) =>

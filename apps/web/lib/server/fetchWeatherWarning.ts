@@ -1,4 +1,5 @@
 import Parser, { type Enclosure } from "rss-parser";
+import { err, ok, type Result } from "@/lib/result";
 
 const WEATHER_WARNING_URL =
   "https://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/ee";
@@ -23,35 +24,20 @@ export type WarningItem = {
   guid: string;
 };
 
-type WeatherWarningResult =
-  | {
-      ok: true;
-      data: WarningResponse;
-      error?: never;
-    }
-  | {
-      ok: false;
-      data?: never;
-      error: string;
-    };
-
 const parser = new Parser();
 
-export const fetchWeatherWarning = async (): Promise<WeatherWarningResult> => {
+export const fetchWeatherWarning = async (): Promise<
+  Result<WarningResponse>
+> => {
   try {
     const feed = await parser.parseURL(WEATHER_WARNING_URL);
 
-    return {
-      data: feed as WarningResponse,
-      ok: true,
-    };
+    return ok(feed as WarningResponse);
   } catch (error) {
-    return {
-      error:
-        error instanceof Error
-          ? error.message
-          : "Failed to fetch weather warning",
-      ok: false,
-    };
+    return err(
+      error instanceof Error
+        ? error.message
+        : "Failed to fetch weather warning",
+    );
   }
 };

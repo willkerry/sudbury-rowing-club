@@ -2,6 +2,7 @@
 
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { useForm } from "@tanstack/react-form";
+import { useMutation } from "@tanstack/react-query";
 import { TRPCClientError } from "@trpc/client";
 import { useQueryState } from "nuqs";
 import { usePostHog } from "posthog-js/react";
@@ -15,7 +16,7 @@ import { TextArea } from "@/components/ui/textarea";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
 import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
-import { trpc } from "@/lib/trpc/client";
+import { useTRPC } from "@/lib/trpc/client";
 
 const getUserAgent = () => {
   if (typeof window === "undefined") return null;
@@ -32,21 +33,24 @@ const formatIfStringIsParseableJSON = (string: string) => {
 };
 
 export const BugsClientSide = () => {
+  const trpc = useTRPC();
   const [message] = useQueryState("message");
 
   const posthog = usePostHog();
 
-  const { mutateAsync, error, data, status } = trpc.comms.bug.useMutation({
-    onError: (error) => {
-      if (error instanceof TRPCClientError && error.data?.zodError) return;
+  const { mutateAsync, error, data, status } = useMutation(
+    trpc.comms.bug.mutationOptions({
+      onError: (error) => {
+        if (error instanceof TRPCClientError && error.data?.zodError) return;
 
-      posthog.capture("bug_report_api_error", {
-        error_message: error.message,
-      });
-    },
-    onMutate: () => posthog.capture("bug_report_submitted"),
-    onSuccess: () => posthog.capture("bug_report_success"),
-  });
+        posthog.capture("bug_report_api_error", {
+          error_message: error.message,
+        });
+      },
+      onMutate: () => posthog.capture("bug_report_submitted"),
+      onSuccess: () => posthog.capture("bug_report_success"),
+    }),
+  );
 
   const additionalInformation = message
     ? formatIfStringIsParseableJSON(message)

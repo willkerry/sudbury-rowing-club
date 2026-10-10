@@ -4,7 +4,7 @@ This is the latest iteration of Sudbury Rowing Club’s website.
 
 - a data source/CMS: [Sanity.io](https://github.com/sanity-io/sanity)
 - a frontend framework: [Next.js](https://github.com/vercel/next.js)
-- some headless component primitives: [Radix UI](https://github.com/radix-ui/radix-ui)
+- some headless component primitives: [Base UI](https://base-ui.com)
 - a utility-first CSS framework: [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
 
 ### For fun, an approximate history of SRC online

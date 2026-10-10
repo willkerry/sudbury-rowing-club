@@ -47,3 +47,16 @@ const redisCacheAdapter = (redisCache: VercelKV): Cache => ({
 const cache = redisCacheAdapter(kv);
 
 export const cached = configure({ cache });
+
+/**
+ * Reads a cached value without refreshing it, for callers that need the
+ * previous entry while computing the next one. Returns null once the entry has
+ * aged out of its stale-while-revalidate window.
+ */
+export const getCachedEntry = async <Value>(
+  key: string,
+): Promise<Value | null> => {
+  const entry = await cache.get(key);
+
+  return (entry?.value as Value | undefined) ?? null;
+};

@@ -4,6 +4,7 @@
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
+import { useMutation } from "@tanstack/react-query";
 import { TRPCClientError } from "@trpc/client";
 import { usePostHog } from "posthog-js/react";
 import { shake } from "radashi";
@@ -20,7 +21,7 @@ import { TextArea } from "@/components/ui/textarea";
 import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
 import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
-import { trpc } from "@/lib/trpc/client";
+import { useTRPC } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 import { FromAndTo } from "./fromAndTo";
 import { DEFAULT_VALUE, type Message, MessageSchema } from "./Message";
@@ -37,22 +38,26 @@ type Props = {
  * valid recipients are provided, will render a fully-functional form.
  */
 export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
+  const trpc = useTRPC();
+
   const recipientWasProvided = !!initialValues.to;
 
   const posthog = usePostHog();
 
-  const { mutateAsync, status, error, data } = trpc.comms.send.useMutation({
-    onError: (error) => {
-      if (error instanceof TRPCClientError && error.data?.zodError) return;
+  const { mutateAsync, status, error, data } = useMutation(
+    trpc.comms.send.mutationOptions({
+      onError: (error) => {
+        if (error instanceof TRPCClientError && error.data?.zodError) return;
 
-      posthog.capture("contact_form_api_error", {
-        error_message: error.message,
-      });
-    },
-    onMutate: () => posthog.capture("contact_form_submitted"),
-    onSuccess: (data) =>
-      posthog.capture("contact_form_success", { message_id: data.messageId }),
-  });
+        posthog.capture("contact_form_api_error", {
+          error_message: error.message,
+        });
+      },
+      onMutate: () => posthog.capture("contact_form_submitted"),
+      onSuccess: (data) =>
+        posthog.capture("contact_form_success", { message_id: data.messageId }),
+    }),
+  );
 
   const optionArray = contacts.map((contact) => ({
     label: `${contact.role} (${contact.name})`,

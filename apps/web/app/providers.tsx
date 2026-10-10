@@ -1,7 +1,12 @@
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
-import { httpBatchLink } from "@trpc/client";
+import {
+  createTRPCClient,
+  httpBatchLink,
+  httpLink,
+  splitLink,
+} from "@trpc/client";
 import { parse, stringify } from "devalue";
 import dynamic from "next/dynamic";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -13,7 +18,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/env";
 import { HOSTNAME } from "@/lib/constants";
 import { WhenDev, whenEnv } from "@/lib/environment";
-import { trpc } from "@/lib/trpc/client";
+import { TRPCProvider } from "@/lib/trpc/client";
+import type { AppRouter } from "@/lib/trpc/router";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
@@ -47,6 +53,11 @@ function getUrl() {
   return "http://localhost:4321/api/trpc";
 }
 
+const transformer = {
+  deserialize: (object: string) => parse(object),
+  serialize: (object: unknown) => stringify(object),
+};
+
 const DialogInitializer = () => {
   useInitializeDialog();
 
@@ -57,14 +68,14 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
   const [trpcClient] = useState(() =>
-    trpc.createClient({
+    createTRPCClient<AppRouter>({
       links: [
-        httpBatchLink({
-          url: getUrl(),
-          transformer: {
-            deserialize: (object: string) => parse(object),
-            serialize: (object: unknown) => stringify(object),
-          },
+        splitLink({
+          false: httpBatchLink({ url: getUrl(), transformer }),
+          true: httpLink({ url: getUrl(), transformer }),
+          // A batch's CDN cache lifetime is the minimum across its calls, so a
+          // cacheable query batched with an uncacheable one is never cached.
+          condition: (op) => op.context.unbatched === true,
         }),
       ],
     }),
@@ -72,8 +83,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <PostHogProvider client={posthog}>
-      <trpc.Provider client={trpcClient} queryClient={queryClient}>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <TRPCProvider queryClient={queryClient} trpcClient={trpcClient}>
           <NuqsAdapter>
             <DialogProvider>
               {children}
@@ -87,8 +98,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
             <Toaster />
           </NuqsAdapter>
-        </QueryClientProvider>
-      </trpc.Provider>
+        </TRPCProvider>
+      </QueryClientProvider>
     </PostHogProvider>
   );
 }

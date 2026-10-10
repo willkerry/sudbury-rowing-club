@@ -2,8 +2,10 @@ import type { JSX } from "react";
 
 export const Ticket = ({
   items,
+  cancelled = false,
 }: {
   items: [string, string | JSX.Element][];
+  cancelled?: boolean;
 }) => (
   <div
     className="relative -rotate-6 rounded-lg bg-linear-to-tr from-gray-300 to-white drop-shadow-2xl"
@@ -35,6 +37,17 @@ export const Ticket = ({
         </div>
       ))}
     </div>
+
+    {cancelled && (
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-20 flex rotate-[-18deg] items-center justify-center"
+      >
+        <span className="rounded-sm border-2 border-red-700/80 bg-white/30 px-2 py-0.5 font-black text-[15px] text-red-700/80 uppercase tracking-[0.18em]">
+          Cancelled
+        </span>
+      </div>
+    )}
 
     <svg
       aria-hidden

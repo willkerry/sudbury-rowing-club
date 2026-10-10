@@ -7,8 +7,13 @@ export const createTRPCContext = cache((opts: { headers: Headers }) => ({
   headers: opts.headers,
 }));
 
+export type ProcedureMeta = {
+  cacheSeconds: number;
+};
+
 const t = initTRPC
   .context<Awaited<ReturnType<typeof createTRPCContext>>>()
+  .meta<ProcedureMeta>()
   .create({
     transformer: {
       deserialize: (object: string) => parse(object),

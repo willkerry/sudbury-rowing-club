@@ -1,0 +1,16 @@
+.grass {
+  mask-repeat: no-repeat;
+  mask-position: bottom;
+  mask-size: 100% auto;
+}
+
+.mask {
+  mask-image: url("/assets/regatta/landing/grass-border.svg");
+}
+
+.glass {
+  mask-image:
+    linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent);
+  mask-composite: intersect;
+}

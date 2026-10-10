@@ -15,16 +15,17 @@ export {
   fetchAllAuthors,
   fetchAuthor,
 } from "./queries/fetch-authors";
-export {
-  type ForecastResponse,
-  fetchWeatherForecast,
-  type WeatherCodeNumber,
-} from "./queries/fetch-forecast";
 export { fetchGovernance, type Governance } from "./queries/fetch-governance";
 export {
   fetchLandingPage,
   type LandingPage,
 } from "./queries/fetch-landing-page";
+export {
+  fetchLocationForecast,
+  type LocationForecast,
+  type LocationForecastEntry,
+  type LocationForecastResult,
+} from "./queries/fetch-locationforecast";
 export { fetchMinutes, type Minutes } from "./queries/fetch-minutes";
 export {
   type Article,
