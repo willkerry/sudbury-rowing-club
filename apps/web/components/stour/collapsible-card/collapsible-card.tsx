@@ -18,12 +18,10 @@ export const CollapsibleCard = ({
 }) => (
   <Accordion
     className="divide-y overflow-hidden rounded-sm border"
-    collapsible
     id={notice.slug}
-    type="single"
   >
     <AccordionItem value={notice.title}>
-      <AccordionTrigger className="group flex h-14 w-full items-center justify-between px-4 text-left transition hover:bg-gray-50 data-[state=open]:bg-gray-50">
+      <AccordionTrigger className="group flex h-14 w-full items-center justify-between px-4 text-left transition hover:bg-gray-50 data-[panel-open]:bg-gray-50">
         <Label
           as="p"
           className="transition duration-300 group-hover:text-black"

@@ -1,5 +1,6 @@
 "use client";
 
+import { Collapsible } from "@base-ui/react/collapsible";
 import {
   useClickOutside,
   useFocusWithin,
@@ -10,7 +11,6 @@ import { useQuery } from "@tanstack/react-query";
 import cn from "clsx";
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
-import { Collapsible } from "radix-ui";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/layouts/container";
 import { Text } from "@/components/stour/text";
@@ -78,7 +78,9 @@ const controlVariants: Record<
 
 const ButtonOrAnchor = (
   props:
-    | ({ type: "button" } & Collapsible.CollapsibleTriggerProps)
+    | ({ type: "button" } & React.ComponentPropsWithoutRef<
+        typeof Collapsible.Trigger
+      >)
     | ({ type: "a" } & LinkProps),
 ) => {
   if (props.type === "button") {
@@ -167,7 +169,7 @@ export const Banner = () => {
       </ButtonOrAnchor>
 
       {!data.link && (
-        <Collapsible.Content className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
+        <Collapsible.Panel className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
           <Container>
             <Text className="py-4" portableText={data?.text} size="small" />
 
@@ -181,7 +183,7 @@ export const Banner = () => {
               </div>
             )}
           </Container>
-        </Collapsible.Content>
+        </Collapsible.Panel>
       )}
     </Collapsible.Root>
   );

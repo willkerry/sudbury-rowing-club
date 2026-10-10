@@ -108,34 +108,34 @@ export const HourlyForecast = () => {
 
             {activeDay && (
               <TabsContent
-                asChild
                 className="fade-in relative mt-0 animate-in ring-offset-blue-50 duration-200 focus-visible:ring-gray-900/60 motion-reduce:animate-none"
                 key={activeDay.date}
+                render={
+                  <Carousel
+                    opts={{
+                      skipSnaps: true,
+                      startIndex: selectStartSlotIndex(activeDay.slots),
+                    }}
+                  />
+                }
                 value={activeDay.date}
               >
-                <Carousel
-                  opts={{
-                    skipSnaps: true,
-                    startIndex: selectStartSlotIndex(activeDay.slots),
-                  }}
-                >
-                  <CarouselContent className={isCoarse ? "" : "pl-4"}>
-                    {activeDay.slots.map((slot) => (
-                      <CarouselItem
-                        className={cn(
-                          "shrink-0",
-                          isCoarse ? "basis-1/4" : "basis-14",
-                        )}
-                        key={slot.time.toISOString()}
-                      >
-                        <ForecastSlotColumn
-                          isNow={coversNow(slot, now)}
-                          slot={slot}
-                        />
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                </Carousel>
+                <CarouselContent className={isCoarse ? "" : "pl-4"}>
+                  {activeDay.slots.map((slot) => (
+                    <CarouselItem
+                      className={cn(
+                        "shrink-0",
+                        isCoarse ? "basis-1/4" : "basis-14",
+                      )}
+                      key={slot.time.toISOString()}
+                    >
+                      <ForecastSlotColumn
+                        isNow={coversNow(slot, now)}
+                        slot={slot}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
               </TabsContent>
             )}
           </Tabs>
