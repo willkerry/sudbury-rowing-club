@@ -111,36 +111,35 @@ describe("POST /api/webhooks/resend", () => {
   });
 
   describe("terminal failure events", () => {
-    it.each([
-      "email.bounced",
-      "email.complained",
-      "email.failed",
-    ])("sends the failed notification and clears the inflight entry for %s", async (type) => {
-      mockVerify.mockReturnValue({
-        data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
-        type,
-      });
+    it.each(["email.bounced", "email.complained", "email.failed"])(
+      "sends the failed notification and clears the inflight entry for %s",
+      async (type) => {
+        mockVerify.mockReturnValue({
+          data: { email_id: EMAIL_ID, tags: { source: "contact_form" } },
+          type,
+        });
 
-      const response = await POST(buildRequest());
+        const response = await POST(buildRequest());
 
-      expect(response.status).toBe(200);
-      expect(mockSend).toHaveBeenCalledTimes(1);
+        expect(response.status).toBe(200);
+        expect(mockSend).toHaveBeenCalledTimes(1);
 
-      const args = mockSend.mock.calls[0][0];
+        const args = mockSend.mock.calls[0][0];
 
-      expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
-      expect(args.subject).toMatch(FAILURE_SUBJECT_PATTERN);
-      expect(args.subject).toContain(SAMPLE_CONTACT.toName);
-      expect(args.react.__template).toBe("failed");
-      expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);
-      expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
-      expect(args.react.__props.toName).toBe(SAMPLE_CONTACT.toName);
-      expect(args.react.__props.toRole).toBe(SAMPLE_CONTACT.toRole);
-      expect(args.react.__props.fallbackEmail).toBe(
-        "enquiries@sudburyrowingclub.org.uk",
-      );
-      expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
-    });
+        expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
+        expect(args.subject).toMatch(FAILURE_SUBJECT_PATTERN);
+        expect(args.subject).toContain(SAMPLE_CONTACT.toName);
+        expect(args.react.__template).toBe("failed");
+        expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);
+        expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
+        expect(args.react.__props.toName).toBe(SAMPLE_CONTACT.toName);
+        expect(args.react.__props.toRole).toBe(SAMPLE_CONTACT.toRole);
+        expect(args.react.__props.fallbackEmail).toBe(
+          "enquiries@sudburyrowingclub.org.uk",
+        );
+        expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
+      },
+    );
   });
 
   describe("non-terminal events", () => {

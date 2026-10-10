@@ -1,4 +1,9 @@
-import type { Column } from "@tanstack/react-table";
+import type {
+  Column,
+  columnFilteringFeature,
+  RowData,
+  rowSortingFeature,
+} from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, ChevronsUpDown, Search, Undo } from "lucide-react";
 import * as React from "react";
 
@@ -116,13 +121,28 @@ const TableCaption = React.forwardRef<
 ));
 TableCaption.displayName = "TableCaption";
 
-interface DataTableColumnHeaderProps<TData, TValue>
+type SortableFilterableFeatures = {
+  columnFilteringFeature: typeof columnFilteringFeature;
+  rowSortingFeature: typeof rowSortingFeature;
+};
+
+interface DataTableColumnHeaderProps<TData extends RowData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
-  column: Column<TData, TValue>;
+  column: Pick<
+    Column<SortableFilterableFeatures, TData, TValue>,
+    | "clearSorting"
+    | "getCanFilter"
+    | "getCanSort"
+    | "getFilterValue"
+    | "getIsFiltered"
+    | "getIsSorted"
+    | "setFilterValue"
+    | "toggleSorting"
+  >;
   title: string;
 }
 
-const DataTableColumnHeader = <TData, TValue>({
+const DataTableColumnHeader = <TData extends RowData, TValue>({
   column,
   title,
   className,

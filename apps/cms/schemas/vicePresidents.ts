@@ -1,4 +1,4 @@
-import { UsersIcon } from "@sanity/icons";
+import { UsersIcon } from "@sanity/icons/Users";
 import { defineField, defineType } from "sanity";
 
 const VicePresidents = defineType({

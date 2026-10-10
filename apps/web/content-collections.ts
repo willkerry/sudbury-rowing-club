@@ -31,6 +31,7 @@ const policies = defineCollection({
   include: "**/*.mdx",
   name: "policies",
   schema: z.object({
+    content: z.string(),
     description: z.string().optional(),
     postnotes: z.array(PrePostNoteSchema).optional(),
     prenotes: z.array(PrePostNoteSchema).optional(),
@@ -41,5 +42,5 @@ const policies = defineCollection({
 });
 
 export default defineConfig({
-  collections: [policies],
+  content: [policies],
 });

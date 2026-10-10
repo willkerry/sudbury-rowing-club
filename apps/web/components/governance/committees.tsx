@@ -1,11 +1,9 @@
 import type { Governance } from "@sudburyrc/api";
 import cn from "clsx";
-import {
-  Description,
-  GovGrid,
-  SectionTitle,
-  SubTitle,
-} from "@/components/governance";
+import { Description } from "./description";
+import { GovGrid } from "./gov-grid";
+import { SectionTitle } from "./section-title";
+import { SubTitle } from "./subtitle";
 
 type Props = {
   committees: Governance["committees"];

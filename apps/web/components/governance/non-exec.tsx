@@ -1,10 +1,8 @@
-import {
-  Description,
-  GovGrid,
-  SectionTitle,
-  SubTitle,
-} from "@/components/governance";
 import type { NonExecutiveOfficer } from "@/types/governance";
+import { Description } from "./description";
+import { GovGrid } from "./gov-grid";
+import { SectionTitle } from "./section-title";
+import { SubTitle } from "./subtitle";
 
 type Props = {
   vicePresidents: NonExecutiveOfficer[];

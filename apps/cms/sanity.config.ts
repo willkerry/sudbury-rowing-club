@@ -1,5 +1,5 @@
 import { dashboardTool } from "@sanity/dashboard";
-import { UsersIcon } from "@sanity/icons";
+import { UsersIcon } from "@sanity/icons/Users";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";

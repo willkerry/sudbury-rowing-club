@@ -10,12 +10,13 @@ import {
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
 import { fork } from "radashi";
 import { Fragment } from "react";
-import { NavLogo, NavSection } from "@/components/nav";
 import {
   MobileMenuButton,
   MobileMenuSection,
 } from "@/components/nav/mobile-menu";
+import { NavSection } from "./desktop-menu/nav-section";
 import { navigationGroups, secondaryNavigationGroups } from "./nav-data";
+import { NavLogo } from "./nav-logo";
 
 const extractSingletonGroups = (
   primary: typeof navigationGroups,

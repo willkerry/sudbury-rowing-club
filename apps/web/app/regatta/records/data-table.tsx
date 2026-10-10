@@ -4,14 +4,9 @@ import {
   type ColumnDef,
   type ColumnFiltersState,
   flexRender,
-  getCoreRowModel,
-  getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
+  type RowData,
   type SortingState,
-  useReactTable,
+  useTable,
 } from "@tanstack/react-table";
 import {
   createParser,
@@ -29,9 +24,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { type RecordsTableFeatures, recordsTableFeatures } from "./features";
 
-interface DataTableProps<TData, TValue> {
-  readonly columns: ColumnDef<TData, TValue>[];
+interface DataTableProps<TData extends RowData> {
+  readonly columns: ColumnDef<RecordsTableFeatures, TData>[];
   readonly data: TData[];
 }
 
@@ -58,10 +54,10 @@ const parseAsColumnFiltersState = createParser<ColumnFiltersState>({
     value.map((item) => `${item.id}:${item.value}`).join(","),
 });
 
-const DataTableWithoutSuspense = <TData, TValue>({
+const DataTableWithoutSuspense = <TData extends RowData>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) => {
+}: DataTableProps<TData>) => {
   const [sorting, setSorting] = useQueryState(
     "sorting",
     parseAsSortingState.withDefault(null as unknown as SortingState),
@@ -79,15 +75,10 @@ const DataTableWithoutSuspense = <TData, TValue>({
     pageSize: parseAsIndex.withDefault(10),
   });
 
-  const table = useReactTable({
+  const table = useTable({
+    features: recordsTableFeatures,
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getFacetedRowModel: getFacetedRowModel(),
-    getFacetedUniqueValues: getFacetedUniqueValues(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     onPaginationChange: setCurrentPage,
     onSortingChange: setSorting,
@@ -126,10 +117,7 @@ const DataTableWithoutSuspense = <TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  data-state={row.getIsSelected() && "selected"}
-                  key={row.id}
-                >
+                <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
@@ -169,8 +157,7 @@ const DataTableWithoutSuspense = <TData, TValue>({
         </Button>
 
         <span className="flex items-center gap-1 text-gray-500 text-sm tabular-nums">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
+          Page {table.state.pagination.pageIndex + 1} of {table.getPageCount()}
         </span>
 
         <Button
@@ -186,10 +173,10 @@ const DataTableWithoutSuspense = <TData, TValue>({
   );
 };
 
-export const DataTable = <TData, TValue>({
+export const DataTable = <TData extends RowData>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) => (
+}: DataTableProps<TData>) => (
   <Suspense fallback={<div>Loading...</div>}>
     <DataTableWithoutSuspense columns={columns} data={data} />
   </Suspense>

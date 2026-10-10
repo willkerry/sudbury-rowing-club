@@ -20,17 +20,17 @@
     "@sudburyrc/helpers": "workspace:*",
     "groq": "catalog:",
     "he": "catalog:",
-    "next-sanity": "^10.1.4",
+    "next-sanity": "^13.3.4",
     "picosanity": "^5.0.0",
-    "rolldown": "^1.1.0",
+    "rolldown": "^1.2.13",
     "tsdown": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/he": "catalog:",
-    "@types/node": "^22.15.0",
-    "magic-string": "^0.30.21",
+    "@types/node": "^26.6.4",
+    "magic-string": "^1.4.3",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
