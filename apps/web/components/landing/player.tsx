@@ -2,19 +2,21 @@
 
 import { useThrottledCallback } from "@mantine/hooks";
 import {
-  IconDotsFilled,
-  IconExclamationMark,
+  IconExclamationCircleFilled,
+  IconLoader2,
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 
 const controlIcons: Record<PlayerState, typeof IconPlayerPlayFilled> = {
-  error: IconExclamationMark,
+  error: IconExclamationCircleFilled,
   idle: IconPlayerPlayFilled,
-  loading: IconDotsFilled,
+  loading: IconLoader2,
   paused: IconPlayerPlayFilled,
   playing: IconPlayerPauseFilled,
 };
@@ -83,17 +85,20 @@ export const Player = () => {
         </video>
       )}
 
-      <button
+      <Button
         className="absolute right-3 bottom-3 z-10 text-white"
         disabled={playerState === "loading"}
         onClick={handleClick}
+        size="xs"
         type="button"
+        variant="link"
       >
-        <span className="flex size-6 items-center justify-center rounded-full bg-white text-gray-900">
-          <Icon aria-hidden className="size-3.5" stroke={2.5} />
-        </span>
+        <Icon
+          aria-hidden
+          className={cn("size-4", playerState === "loading" && "animate-spin")}
+        />
         <div className="sr-only">{text}</div>
-      </button>
+      </Button>
     </div>
   );
 };
