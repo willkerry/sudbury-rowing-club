@@ -1,5 +1,5 @@
 import type { Governance } from "@sudburyrc/api";
-import cn from "clsx";
+import { cn } from "@/lib/utils";
 import { Description } from "./description";
 import { GovGrid } from "./gov-grid";
 import { SectionTitle } from "./section-title";

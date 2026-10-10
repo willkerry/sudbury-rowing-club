@@ -1,7 +1,6 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import cn from "clsx";
 import { BritishRowing } from "@/components/icons/organisations/british-rowing";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
@@ -9,6 +8,7 @@ import { ErrorAlert } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import type { BRArticle } from "@/lib/server/fetchBritishRowingFeed";
 import { useTRPC } from "@/lib/trpc/client";
+import { cn } from "@/lib/utils";
 
 const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
   <a

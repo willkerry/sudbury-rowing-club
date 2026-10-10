@@ -1,7 +1,7 @@
 "use client";
 
 import type { BREvent } from "@sudburyrc/ical-builder";
-import { ArrowUpRightIcon } from "lucide-react";
+import { IconArrowUpRight } from "@tabler/icons-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useQueryState } from "nuqs";
@@ -54,7 +54,7 @@ const EventCard = ({
           {competition}
         </h3>
         {url && (
-          <ArrowUpRightIcon className="mt-0.5 size-3 shrink-0 text-gray-300 transition-[colors,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-400" />
+          <IconArrowUpRight className="mt-0.5 size-3 shrink-0 text-gray-300 transition-[colors,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-400" />
         )}
       </div>
 

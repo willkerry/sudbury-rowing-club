@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, RotateCcw } from "lucide-react";
+import { IconHome, IconRotate } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePostHog } from "posthog-js/react";
@@ -42,10 +42,10 @@ export default function RootError({ error, reset }: ErrorProps) {
       <Container className="prose mt-12 max-w-prose">
         <div className="flex flex-col gap-4">
           <SiteSearch />
-          <Button icon={<RotateCcw />} onClick={reset} variant="secondary">
+          <Button icon={<IconRotate />} onClick={reset} variant="secondary">
             Try again
           </Button>
-          <Button asChild icon={<Home />} variant="secondary">
+          <Button asChild icon={<IconHome />} variant="secondary">
             <Link href="/">Return to the homepage</Link>
           </Button>
         </div>

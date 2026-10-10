@@ -1,11 +1,16 @@
 "use client";
 
-import { Popover, Transition } from "@headlessui/react";
+import { Popover } from "@base-ui/react/popover";
 import type { Governance } from "@sudburyrc/api";
 import { Crest } from "@sudburyrc/blue";
-import { HelpCircle, MessageCircle, XCircle } from "lucide-react";
+import {
+  IconCircleX,
+  IconHelpCircle,
+  IconMessageCircle,
+} from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
+import { useRef } from "react";
 import { Link } from "@/components/stour/link";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 import { Description } from "./description";
@@ -83,11 +88,11 @@ const OfficerNameOrPlaceholder = ({
       >
         {name}
         <span className="sr-only">(Contact {name})</span>
-        <MessageCircle
+        <IconMessageCircle
           aria-hidden
           className="text-blue-500 transition group-hover:text-gray-600"
           size="1em"
-          strokeWidth="0.15em"
+          stroke="0.15em"
         />
       </NextLink>
     );
@@ -96,54 +101,77 @@ const OfficerNameOrPlaceholder = ({
   return <span>{name}</span>;
 };
 
+const OfficerDescription = ({
+  anchor,
+  description,
+}: {
+  anchor: React.RefObject<HTMLDivElement | null>;
+  description: string;
+}) => (
+  <Popover.Root>
+    <Popover.Trigger className="absolute right-2 bottom-2 text-blue-500 transition-colors hover:text-gray-700">
+      <IconHelpCircle
+        aria-hidden
+        className="fill-white"
+        size="1.15em"
+        stroke="0.15em"
+      />
+      <span className="sr-only">Show description</span>
+    </Popover.Trigger>
+    <Popover.Portal>
+      <Popover.Positioner
+        align="start"
+        anchor={anchor}
+        className="z-10"
+        collisionAvoidance={{ align: "none", side: "none" }}
+        side="bottom"
+        sideOffset={({ anchor: { height } }) => -height}
+      >
+        <Popover.Popup className="relative h-(--anchor-height) w-(--anchor-width) rounded-sm border border-gray-300 bg-white p-2 transition-opacity duration-150 ease-out-strong data-ending-style:opacity-0 data-starting-style:opacity-0">
+          <div className="h-full w-full overflow-y-auto font-medium text-black text-sm">
+            <p>{description}</p>
+          </div>
+          <Popover.Close className="absolute right-2 bottom-2 text-gray-500 transition-colors hover:text-gray-700">
+            <IconCircleX aria-hidden size="1em" stroke="0.15em" />
+            <span className="sr-only">Hide description</span>
+          </Popover.Close>
+        </Popover.Popup>
+      </Popover.Positioner>
+    </Popover.Portal>
+  </Popover.Root>
+);
+
+const OfficerCard = ({ officer }: { officer: Governance["officers"][0] }) => {
+  const photographRef = useRef<HTMLDivElement>(null);
+
+  return (
+    <div>
+      <div
+        className="relative mb-2 flex h-36 w-full items-center justify-center overflow-hidden rounded-sm bg-linear-to-b from-gray-200 to-gray-100"
+        ref={photographRef}
+      >
+        <OfficerPhotographOrPlaceholder {...{ officer }} />
+        {officer.description && (
+          <OfficerDescription
+            anchor={photographRef}
+            description={officer.description}
+          />
+        )}
+      </div>
+      <div className="font-semibold text-gray-800 tracking-snug">
+        <OfficerNameOrPlaceholder {...{ officer }} />
+      </div>
+      <Description>{officer.role}</Description>
+    </div>
+  );
+};
+
 export const Officers = ({ officers }: Props) => (
   <section>
     <SectionTitle>Club Officers</SectionTitle>
     <GovGrid>
       {officers.map((officer) => (
-        <div key={officer._id}>
-          <div className="relative mb-2 flex h-36 w-full items-center justify-center overflow-hidden rounded-sm bg-linear-to-b from-gray-200 to-gray-100">
-            <OfficerPhotographOrPlaceholder {...{ officer }} />
-            {officer.description && (
-              <Popover>
-                <Popover.Button>
-                  <HelpCircle
-                    aria-hidden
-                    className="absolute right-2 bottom-2 fill-white text-blue-500 transition hover:text-gray-700"
-                    size="1.15em"
-                    strokeWidth="0.15em"
-                  />
-                  <span className="sr-only">Show description</span>
-                </Popover.Button>
-                <Transition
-                  enter="transition-opacity duration-150 ease-in-out"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="transition duration-75 ease-in-out"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Popover.Panel className="absolute top-0 left-0 h-full w-full rounded-sm border border-gray-300 bg-opacity- bg-white p-2 backdrop-blur-sm">
-                    <div className="h-full w-full overflow-y-auto font-medium text-black text-sm">
-                      <p>{officer.description}</p>
-                    </div>
-                    <Popover.Button>
-                      <XCircle
-                        className="absolute right-2 bottom-2 text-gray-500 transition hover:text-gray-700"
-                        size="1em"
-                        strokeWidth="0.15em"
-                      />
-                    </Popover.Button>
-                  </Popover.Panel>
-                </Transition>
-              </Popover>
-            )}
-          </div>
-          <div className="font-semibold text-gray-800 tracking-snug">
-            <OfficerNameOrPlaceholder {...{ officer }} />
-          </div>
-          <Description>{officer.role}</Description>
-        </div>
+        <OfficerCard key={officer._id} officer={officer} />
       ))}
     </GovGrid>
 

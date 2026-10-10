@@ -1,6 +1,6 @@
 "use client";
 
-import { HelpCircle } from "lucide-react";
+import { IconHelpCircle } from "@tabler/icons-react";
 import { useRef } from "react";
 import { Link } from "@/components/stour/link";
 import { combineURLs } from "@/lib/helpers/combineURLs";
@@ -17,7 +17,7 @@ function FileExtensionWidget({ extension }: { extension: string }) {
       <code className="uppercase">{extension}</code>
       <Link href={combineURLs(fileInfo, extension)}>
         <span className="sr-only">{`About ${extension.toUpperCase()} files`}</span>
-        <HelpCircle aria-hidden className="h-4 w-4" />
+        <IconHelpCircle aria-hidden className="h-4 w-4" />
       </Link>
     </span>
   );

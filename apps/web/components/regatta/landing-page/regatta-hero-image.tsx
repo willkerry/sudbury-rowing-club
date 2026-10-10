@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpIcon } from "@heroicons/react/20/solid";
+import { IconArrowUp } from "@tabler/icons-react";
 import Image from "next/image";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
@@ -38,7 +38,7 @@ export const RegattaHeroImage = ({
             {title}
           </div>
           <div className="font-medium text-white opacity-75">
-            <ArrowUpIcon aria-hidden className="mb-px inline-flex h-4 w-4" />{" "}
+            <IconArrowUp aria-hidden className="mb-px inline-flex h-4 w-4" />{" "}
             {subtitle}
           </div>
         </div>

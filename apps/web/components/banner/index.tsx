@@ -8,7 +8,6 @@ import {
   useWindowEvent,
 } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
-import cn from "clsx";
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -17,6 +16,7 @@ import { Text } from "@/components/stour/text";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { useTRPC } from "@/lib/trpc/client";
 import type { Notice } from "@/lib/trpc/routers/content";
+import { cn } from "@/lib/utils";
 
 const LINK_REGEX = /^(https?|mailto):\/\//;
 const PATH_REGEX = /^\/[a-z0-9-]+/;

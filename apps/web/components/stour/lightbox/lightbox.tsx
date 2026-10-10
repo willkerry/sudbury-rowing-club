@@ -1,8 +1,8 @@
 "use client";
 
-import { Dialog, Transition } from "@headlessui/react";
-import { useReducedMotion, useToggle, useViewportSize } from "@mantine/hooks";
-import { type ComponentProps, createContext, Fragment, use } from "react";
+import { Dialog } from "@base-ui/react/dialog";
+import { useToggle, useViewportSize } from "@mantine/hooks";
+import { type ComponentProps, createContext, use } from "react";
 
 type LightBoxContextValue = {
   toggle: () => void;
@@ -58,7 +58,6 @@ export const LightBox = ({
 }: LightBoxProps) => {
   const [open, toggle] = useToggle();
   const { width: viewportWidth, height: viewportHeight } = useViewportSize();
-  const reducedMotion = useReducedMotion();
 
   const { width, height } = calculateImageSize(
     viewportWidth,
@@ -70,37 +69,29 @@ export const LightBox = ({
     <LightBoxContext value={{ toggle }}>
       {children}
 
-      <Transition
-        as={Fragment}
-        enter={reducedMotion ? "" : "transition"}
-        enterFrom={reducedMotion ? "" : "scale-50 opacity-0"}
-        enterTo={reducedMotion ? "" : "scale-100 opacity-100"}
-        leave={reducedMotion ? "" : "transition"}
-        leaveFrom={reducedMotion ? "" : "scale-100 opacity-100"}
-        leaveTo={reducedMotion ? "" : "scale-50 opacity-0"}
-        show={open}
-      >
-        <Dialog
-          className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center overscroll-contain bg-white bg-opacity-10 backdrop-blur-sm"
-          onClick={() => toggle()}
-          onClose={() => toggle()}
-          open={open}
-        >
-          <img
-            alt={alt}
-            className="rounded-sm shadow-lg"
-            height={height}
-            src={src}
-            style={{
-              backgroundImage: `url(${lqip})`,
-              backgroundSize: "cover",
-              maxHeight: viewportHeight,
-              maxWidth: viewportWidth,
-            }}
-            width={width}
-          />
-        </Dialog>
-      </Transition>
+      <Dialog.Root onOpenChange={() => toggle()} open={open}>
+        <Dialog.Portal>
+          <Dialog.Popup
+            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center overscroll-contain bg-white backdrop-blur-sm transition-[opacity,scale] duration-150 data-ending-style:scale-50 data-starting-style:scale-50 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
+            onClick={() => toggle()}
+          >
+            <Dialog.Title className="sr-only">{alt || "Image"}</Dialog.Title>
+            <img
+              alt={alt}
+              className="rounded-sm shadow-lg"
+              height={height}
+              src={src}
+              style={{
+                backgroundImage: `url(${lqip})`,
+                backgroundSize: "cover",
+                maxHeight: viewportHeight,
+                maxWidth: viewportWidth,
+              }}
+              width={width}
+            />
+          </Dialog.Popup>
+        </Dialog.Portal>
+      </Dialog.Root>
     </LightBoxContext>
   );
 };

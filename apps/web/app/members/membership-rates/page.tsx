@@ -1,4 +1,4 @@
-import { TagIcon } from "lucide-react";
+import { IconTag } from "@tabler/icons-react";
 import TextPage from "@/components/layouts/text-page";
 import { ErrorMessage } from "@/components/ui/error";
 import { createMetadata } from "@/lib/create-metadata";
@@ -43,7 +43,7 @@ const MembershipRates = async () => {
 
                   {rate.Category.Restrictions && (
                     <div className="mt-1 flex items-start gap-1 font-medium text-red-700 text-xs">
-                      <TagIcon
+                      <IconTag
                         aria-hidden
                         className="mt-0.5 h-3 w-3 shrink-0"
                       />

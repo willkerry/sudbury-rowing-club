@@ -1,23 +1,22 @@
-import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
-  CakeIcon,
-  EnvelopeIcon,
-  FlagIcon,
-  InformationCircleIcon,
-  MapPinIcon,
-  NewspaperIcon,
-  PhotoIcon,
-  QueueListIcon,
-  ShieldCheckIcon,
-  SparklesIcon,
-  TicketIcon,
-  UserPlusIcon,
-} from "@heroicons/react/24/outline";
+  IconBrandFacebookFilled,
+  IconBrandInstagramFilled,
+  IconCake,
+  IconCalendarFilled,
+  IconFlag,
+  IconInfoCircle,
+  IconListNumbers,
+  IconMail,
+  IconMapPin,
+  IconNews,
+  IconPhoto,
+  IconShieldCheck,
+  IconSparkles,
+  IconTicket,
+} from "@tabler/icons-react";
 import {
-  Facebook,
   Governance,
   History,
-  Instagram,
   MyClubhouse,
   Results,
   Safety,
@@ -28,7 +27,7 @@ import type { IconNavItemType } from "@/types/nav-item";
 
 type NavigationGroup = {
   title: string;
-  icon?: React.FC<React.SVGProps<SVGSVGElement>>;
+  compact?: boolean;
   items: IconNavItemType[];
 };
 
@@ -36,6 +35,12 @@ const navigationGroups: NavigationGroup[] = [
   {
     title: "About",
     items: [
+      {
+        description: "The latest club news.",
+        href: "/news",
+        icon: IconNews,
+        name: "News",
+      },
       {
         description: "Rowing in Sudbury since 1874.",
         href: "/about/history",
@@ -57,38 +62,28 @@ const navigationGroups: NavigationGroup[] = [
       {
         description: "Discover the benefits of sponsorship.",
         href: "/about/sponsorship",
-        icon: SparklesIcon,
+        icon: IconSparkles,
         name: "Sponsorship",
       },
       {
         description: "View a century-and-a-half of photos.",
         href: "/150",
-        icon: CakeIcon,
+        icon: IconCake,
         name: "150th anniversary",
         shortName: "150 years",
       },
       {
         cta: true,
         href: "/contact/how-to-find-us",
-        icon: MapPinIcon,
+        icon: IconMapPin,
         name: "How to find us",
         shortName: "Find us",
       },
       {
         cta: true,
         href: "/contact",
-        icon: EnvelopeIcon,
+        icon: IconMail,
         name: "Contact",
-      },
-    ],
-  },
-  {
-    title: "News",
-    items: [
-      {
-        href: "/news",
-        icon: NewspaperIcon,
-        name: "News",
       },
     ],
   },
@@ -99,7 +94,7 @@ const navigationGroups: NavigationGroup[] = [
         description:
           "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
         href: "/regatta",
-        icon: InformationCircleIcon,
+        icon: IconInfoCircle,
         name: "The ‘International’",
         shortName: "About",
       },
@@ -110,55 +105,43 @@ const navigationGroups: NavigationGroup[] = [
       },
       {
         href: "/regatta/records",
-        icon: QueueListIcon,
+        icon: IconListNumbers,
         name: "Course records",
       },
       {
         href: "/regatta/entries",
-        icon: TicketIcon,
+        icon: IconTicket,
         name: "Entries",
       },
       {
         href: "/regatta/course",
-        icon: FlagIcon,
+        icon: IconFlag,
         name: "Course map",
         shortName: "Course",
       },
       {
         href: "/regatta/galleries",
-        icon: PhotoIcon,
+        icon: IconPhoto,
         name: "Official photography",
         shortName: "Photography",
       },
       {
         href: "/regatta/competitor-information",
-        icon: ShieldCheckIcon,
+        icon: IconShieldCheck,
         name: "Competitor information",
         shortName: "Competitors",
       },
       {
         cta: true,
         href: "/contact/how-to-find-us",
-        icon: MapPinIcon,
+        icon: IconMapPin,
         name: "Find the regatta",
         shortName: "Find",
       },
     ],
   },
-];
-
-const secondaryNavigationGroups: NavigationGroup[] = [
   {
-    title: "Join",
-    items: [
-      {
-        href: "/join",
-        icon: UserPlusIcon,
-        name: "Join",
-      },
-    ],
-  },
-  {
+    compact: true,
     title: "Members",
     items: [
       {
@@ -180,7 +163,7 @@ const secondaryNavigationGroups: NavigationGroup[] = [
       {
         cta: true,
         href: "https://sudbury.squadlist.app",
-        icon: CalendarIcon,
+        icon: IconCalendarFilled,
         name: "Squadlist",
       },
       {
@@ -199,12 +182,17 @@ const secondaryNavigationGroups: NavigationGroup[] = [
   },
 ];
 
+export const join: IconNavItemType = {
+  href: "/join",
+  name: "Join",
+};
+
 const availableLogos: Record<
   (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
-  typeof Instagram
+  typeof IconBrandInstagramFilled
 > = {
-  facebook: Facebook,
-  instagram: Instagram,
+  facebook: IconBrandFacebookFilled,
+  instagram: IconBrandInstagramFilled,
 };
 
 export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
@@ -234,6 +222,6 @@ export const misc = [
   },
 ];
 
-export const [{ items: about }, , { items: regatta }] = navigationGroups;
-export const [, { items: members }] = secondaryNavigationGroups;
-export { navigationGroups, secondaryNavigationGroups };
+export const [{ items: about }, { items: regatta }, { items: members }] =
+  navigationGroups;
+export { navigationGroups };

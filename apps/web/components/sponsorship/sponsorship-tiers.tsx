@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { IconCheck } from "@tabler/icons-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -56,7 +56,7 @@ export const SponsorshipTiers = ({
         <ul className="my-2 grid grid-cols-1 gap-2 font-medium text-sm">
           {benefits.map((benefit) => (
             <li className="flex gap-x-2" key={benefit}>
-              <Check className="mt-1.5 h-4 w-4 flex-none text-blue-600" />
+              <IconCheck className="mt-1.5 h-4 w-4 flex-none text-blue-600" />
               {benefit}
             </li>
           ))}

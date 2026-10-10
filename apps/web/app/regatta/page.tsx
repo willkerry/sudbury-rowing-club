@@ -1,6 +1,11 @@
-import { QueueListIcon } from "@heroicons/react/24/outline";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
-import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
+import {
+  IconAlertHexagon,
+  IconAward,
+  IconListNumbers,
+  IconStopwatch,
+  IconTicket,
+} from "@tabler/icons-react";
 import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 import { logos as sponsors } from "@/components/landing/sponsors";
@@ -85,27 +90,27 @@ const RegattaPage = async () => {
   const accordion: DetailProps[] = [
     {
       href: "./regatta/events",
-      icon: <Award aria-hidden />,
+      icon: <IconAward aria-hidden />,
       summary: "Events",
     },
     {
       href: "./regatta/entries",
-      icon: <TicketIcon aria-hidden />,
+      icon: <IconTicket aria-hidden />,
       summary: "Entries",
     },
     {
       href: "./regatta/results",
-      icon: <Timer aria-hidden />,
+      icon: <IconStopwatch aria-hidden />,
       summary: "Results",
     },
     {
       href: "./regatta/draw",
-      icon: <QueueListIcon aria-hidden />,
+      icon: <IconListNumbers aria-hidden />,
       summary: "Draw",
     },
     {
       href: "./regatta/competitor-information",
-      icon: <BadgeAlert aria-hidden />,
+      icon: <IconAlertHexagon aria-hidden />,
       summary: "Competitor Information",
     },
   ];

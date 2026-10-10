@@ -1,6 +1,6 @@
 import { sanityClient } from "@sudburyrc/api";
+import { IconDownload } from "@tabler/icons-react";
 import groq from "groq";
-import { Download } from "lucide-react";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
@@ -50,7 +50,7 @@ const Coursemap = async () => {
         <div className="prose auto-lead mb-16">
           <p>{heading}</p>
           <p>{description}</p>
-          <Button asChild icon={<Download />}>
+          <Button asChild icon={<IconDownload />}>
             <a href={`${map}?dl=`}>Download the PDF</a>
           </Button>
         </div>

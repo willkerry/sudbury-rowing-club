@@ -1,22 +1,24 @@
 "use client";
 
-import {
-  EllipsisHorizontalCircleIcon,
-  ExclamationCircleIcon,
-  PauseCircleIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/24/solid";
 import { useThrottledCallback } from "@mantine/hooks";
+import {
+  IconExclamationCircleFilled,
+  IconLoader2,
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 
-const controlIcons: Record<PlayerState, typeof PlayCircleIcon> = {
-  error: ExclamationCircleIcon,
-  idle: PlayCircleIcon,
-  loading: EllipsisHorizontalCircleIcon,
-  paused: PlayCircleIcon,
-  playing: PauseCircleIcon,
+const controlIcons: Record<PlayerState, typeof IconPlayerPlayFilled> = {
+  error: IconExclamationCircleFilled,
+  idle: IconPlayerPlayFilled,
+  loading: IconLoader2,
+  paused: IconPlayerPlayFilled,
+  playing: IconPlayerPauseFilled,
 };
 
 const controlText: Record<PlayerState, string> = {
@@ -83,15 +85,20 @@ export const Player = () => {
         </video>
       )}
 
-      <button
+      <Button
         className="absolute right-3 bottom-3 z-10 text-white"
         disabled={playerState === "loading"}
         onClick={handleClick}
+        size="xs"
         type="button"
+        variant="link"
       >
-        <Icon aria-hidden className="h-6 w-6" />
+        <Icon
+          aria-hidden
+          className={cn("size-4", playerState === "loading" && "animate-spin")}
+        />
         <div className="sr-only">{text}</div>
-      </button>
+      </Button>
     </div>
   );
 };

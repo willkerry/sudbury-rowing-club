@@ -10,7 +10,7 @@ export const SocialIcons = () => (
         key={item.href}
       >
         <span className="sr-only">{item.name}</span>
-        {item.icon && <item.icon aria-hidden className="w-4 stroke-[1.5px]" />}
+        {item.icon && <item.icon aria-hidden className="size-4" />}
       </Link>
     ))}
   </>

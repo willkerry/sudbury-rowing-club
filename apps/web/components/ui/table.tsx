@@ -1,10 +1,16 @@
+import {
+  IconArrowBackUp,
+  IconArrowDown,
+  IconArrowUp,
+  IconSearch,
+  IconSelector,
+} from "@tabler/icons-react";
 import type {
   Column,
   columnFilteringFeature,
   RowData,
   rowSortingFeature,
 } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, ChevronsUpDown, Search, Undo } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -148,9 +154,9 @@ const DataTableColumnHeader = <TData extends RowData, TValue>({
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) => {
   const sortIcon = {
-    asc: <ArrowUp aria-hidden className="h-3.5 w-3.5" />,
-    desc: <ArrowDown aria-hidden className="h-3.5 w-3.5" />,
-    none: <ChevronsUpDown aria-hidden className="h-3.5 w-3.5" />,
+    asc: <IconArrowUp aria-hidden className="h-3.5 w-3.5" />,
+    desc: <IconArrowDown aria-hidden className="h-3.5 w-3.5" />,
+    none: <IconSelector aria-hidden className="h-3.5 w-3.5" />,
   }[column.getIsSorted() || "none"];
 
   return (
@@ -176,14 +182,14 @@ const DataTableColumnHeader = <TData extends RowData, TValue>({
               disabled={column.getIsSorted() === "asc"}
               onClick={() => column.toggleSorting(false)}
             >
-              <ArrowUp aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowUp aria-hidden className="h-3.5 w-3.5" />
               Ascending
             </DropdownMenuItem>
             <DropdownMenuItem
               disabled={column.getIsSorted() === "desc"}
               onClick={() => column.toggleSorting(true)}
             >
-              <ArrowDown aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowDown aria-hidden className="h-3.5 w-3.5" />
               Descending
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -192,7 +198,7 @@ const DataTableColumnHeader = <TData extends RowData, TValue>({
               disabled={!column.getIsSorted()}
               onClick={() => column.clearSorting()}
             >
-              <Undo aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowBackUp aria-hidden className="h-3.5 w-3.5" />
               Clear
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -210,7 +216,7 @@ const DataTableColumnHeader = <TData extends RowData, TValue>({
               />
             }
           >
-            <Search aria-hidden className="h-3.5 w-3.5" />
+            <IconSearch aria-hidden className="h-3.5 w-3.5" />
             <span className="sr-only">Filter {title}</span>
           </DropdownMenuTrigger>
 

@@ -1,5 +1,5 @@
 import { useRender } from "@base-ui/react/use-render";
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -49,9 +49,10 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
 
         <div>{summary}</div>
 
-        <ArrowRightIcon
+        <IconArrowRight
           aria-hidden
           className="ml-auto h-6 w-6 text-gray-300 transition-colors group-hover:text-blue-500 group-focus:text-blue-500"
+          stroke={1.5}
         />
       </Link>
     ))}

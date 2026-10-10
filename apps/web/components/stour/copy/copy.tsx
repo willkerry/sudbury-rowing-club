@@ -1,7 +1,7 @@
 "use client";
 
 import { useClipboard } from "@mantine/hooks";
-import { CheckIcon, Clipboard } from "lucide-react";
+import { IconCheck, IconClipboard } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -36,7 +36,7 @@ export const Copy = ({ value }: { value: string }) => {
         )}
         data-copied={copied}
       >
-        <Clipboard aria-hidden className="absolute h-4 w-4" />
+        <IconClipboard aria-hidden className="absolute h-4 w-4" />
         <AnimatePresence>
           {copied && (
             <motion.div
@@ -46,7 +46,7 @@ export const Copy = ({ value }: { value: string }) => {
               initial={{ opacity: 0, y: -5 }}
               transition={{ damping: 20, stiffness: 300, type: "spring" }}
             >
-              <CheckIcon
+              <IconCheck
                 aria-hidden
                 className="mx-auto mt-1.5 h-1.5 w-1.5 stroke-[5px]"
               />

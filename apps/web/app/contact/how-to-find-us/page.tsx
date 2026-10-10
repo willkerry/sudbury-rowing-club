@@ -1,5 +1,4 @@
-import { MapPinIcon } from "@heroicons/react/24/solid";
-import clsx from "clsx";
+import { IconMapPinFilled } from "@tabler/icons-react";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { Container } from "@/components/layouts/container";
@@ -13,6 +12,7 @@ import {
   REGATTA_LOCATION_STRING,
 } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
+import { cn } from "@/lib/utils";
 import { LocationMap } from "./location-map";
 
 export const metadata = createMetadata({
@@ -64,9 +64,9 @@ const addresses: Address[] = [
 const FindUsAddress = ({ name, address, postcode }: Address) => (
   <div>
     <h4 className="mb-1">
-      <MapPinIcon
+      <IconMapPinFilled
         aria-hidden
-        className={clsx(
+        className={cn(
           "mr-0.5 mb-[0.17em] -ml-0.5 inline-flex h-6 w-6 sm:-ml-2 md:-ml-0.5 lg:-ml-1.5",
           { Club: "text-blue-500", Regatta: "text-green-500" }[name],
         )}

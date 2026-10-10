@@ -1,5 +1,5 @@
 import { clampString, getInitials } from "@sudburyrc/helpers";
-import { ArrowRight } from "lucide-react";
+import { IconArrowRight } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
@@ -52,7 +52,7 @@ export const FromAndTo = ({ isOpen, from, to }: FromAndToRouteProps) => {
             />
 
             <div className="flex items-center justify-center">
-              <ArrowRight
+              <IconArrowRight
                 aria-hidden
                 className={cn("h-4 w-4", "text-gray-400")}
               />

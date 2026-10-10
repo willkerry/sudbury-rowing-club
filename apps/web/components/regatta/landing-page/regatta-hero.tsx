@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { IconChevronRight } from "@tabler/icons-react";
 import type { JSX } from "react";
 import { ImageComposite } from "@/components/regatta/landing-page/image-composite";
 import { ScrollLink } from "@/components/utils/scroll-link";
@@ -29,7 +29,7 @@ export const RegattaHero = ({
         to="regatta-body"
       >
         Learn more
-        <ChevronRightIcon aria-hidden className="mb-px inline-flex h-5 w-5" />
+        <IconChevronRight aria-hidden className="mb-px inline-flex h-5 w-5" />
       </ScrollLink>
     </p>
   </div>
