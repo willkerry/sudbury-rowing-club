@@ -1816,7 +1816,19 @@
     "president": null,
     "season": ["2025 II"],
     "secretary": ["Emma Krohn"],
-    "treasurer": ["Vacant"],
+    "treasurer": ["Charles Howard"],
     "viceCaptains": ["Emma Krohn", "Sophie Brown", "Amelia Moule"]
+  },
+  {
+    "captain": ["Amelia Moule"],
+    "chair": ["Tony Hogsbjerg"],
+    "ladiesCaptain": null,
+    "ladiesSecretary": null,
+    "ladiesViceCaptain": null,
+    "president": null,
+    "season": ["2026"],
+    "secretary": ["Emma Krohn"],
+    "treasurer": ["Charles Howard"],
+    "viceCaptains": ["Emma Krohn", "Luke Payne", "Amelia Moule"]
   }
 ]
