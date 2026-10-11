@@ -10,9 +10,11 @@ interface Props {
   title: string;
 }
 
-const Text = ({ title, description, label }: Props) => (
+const Text = ({ title, description, label, dark }: Props) => (
   <>
-    {label && <Label className="ml-1">{label}</Label>}
+    {label && (
+      <Label className={cn("ml-1", { "text-gray-400": dark })}>{label}</Label>
+    )}
     <h2 className="pt-3 pb-6 font-semibold text-4xl">{title}</h2>
     {description && <div className="font-medium opacity-80">{description}</div>}
   </>
@@ -26,7 +28,9 @@ export const Hero = ({
   fullwidth = false,
 }: Props) => {
   if (!fullwidth) {
-    return <Text description={description} label={label} title={title} />;
+    return (
+      <Text dark={dark} description={description} label={label} title={title} />
+    );
   }
   return (
     <div className={cn(dark ? "bg-blue-950 text-white" : "text-gray-900")}>

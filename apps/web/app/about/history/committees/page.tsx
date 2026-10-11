@@ -28,7 +28,7 @@ const Archive = () => (
         <ul className="mb-8 list-none pl-0">
           {listify(committee.committee, (key, office) => (
             <li className="mt-0 mb-2 pl-0" key={key}>
-              <span className="block font-semibold text-gray-400 text-xs uppercase tracking-widest">
+              <span className="caps block font-semibold text-gray-400 text-xs">
                 {office?.displayName}
               </span>
 

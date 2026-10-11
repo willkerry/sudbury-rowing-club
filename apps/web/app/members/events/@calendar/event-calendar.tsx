@@ -196,7 +196,7 @@ export const EventCalendar = ({
           ) : (
             groupByMonth(filteredEvents).map(({ month, events }) => (
               <div id={`month-${month + 1}`} key={month}>
-                <Label as="h2" className="mb-3 text-xs">
+                <Label as="h2" className="mb-3 text-xs" numeric>
                   <DateFormatter
                     dateString={events[0].startDate}
                     format={{ month: "long", year: "numeric" }}

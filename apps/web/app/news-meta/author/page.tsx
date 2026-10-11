@@ -68,7 +68,7 @@ const Authors = async () => {
                     </span>
 
                     {firstOfRank && (
-                      <span className="mb-0.5 ml-3 font-semibold text-gray-500 text-sm uppercase tracking-widest transition group-hover:text-gray-700">
+                      <span className="mb-0.5 ml-3 font-semibold text-gray-500 text-sm tabular-nums transition group-hover:text-gray-700">
                         {articleCount}
                       </span>
                     )}

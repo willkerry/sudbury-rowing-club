@@ -10,7 +10,7 @@ type Props = {
 
 export const PostTitle = ({ title, date, center }: Props) => (
   <div className={cn("mx-auto my-12 max-w-2xl", center && "text-center")}>
-    <Label>
+    <Label numeric>
       <DateFormatter dateString={date} />
     </Label>
     <h1 className="mt-2 mb-10 text-balance font-bold text-3xl text-gray-800 leading-tight md:text-5xl md:leading-none lg:text-6xl">

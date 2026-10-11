@@ -24,7 +24,7 @@ export const Committees = ({ committees }: Props) => (
                 <div
                   className={cn(
                     !i &&
-                      "after:block after:font-semibold after:text-gray-400 after:text-xs after:uppercase after:tracking-wider after:content-['Committee_Chair']",
+                      "after:caps after:block after:font-semibold after:text-gray-400 after:text-xs after:content-['Committee_Chair']",
                     "font-medium text-gray-700 text-sm",
                   )}
                 >

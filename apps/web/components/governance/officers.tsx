@@ -51,11 +51,7 @@ const OfficerPhotographOrPlaceholder = ({
   officer: Governance["officers"][0];
 }) => {
   if (vacant) {
-    return (
-      <div className="font-bold text-gray-400 uppercase tracking-widest">
-        TBA
-      </div>
-    );
+    return <div className="caps font-bold text-gray-400">TBA</div>;
   }
 
   if (image) {

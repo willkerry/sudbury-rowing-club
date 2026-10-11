@@ -25,7 +25,7 @@ export const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
                 <h3 className="font-medium text-xl">
                   Praise for the {ordinal(year.number)} regatta
                 </h3>
-                <Label>
+                <Label numeric>
                   <DateFormatter dateString={year.date} format="long" />
                 </Label>
               </div>

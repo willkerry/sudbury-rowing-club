@@ -158,7 +158,7 @@ const RegattaPage = async () => {
       <Container>
         <RegattaHero
           {...{ ticketItems }}
-          cancelled
+          cancelled={REGATTA.CANCELLED}
           subtitle={landingPage.tagline}
         />
         <DateLocation

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { initialiseName } from "@/lib/helpers/initialiseName";
+import { initialiseName, monogramName } from "@/lib/helpers/initialiseName";
 
 describe("initialiseName", () => {
   it("should initialise a name", () => {
@@ -16,5 +16,17 @@ describe("initialiseName", () => {
     expect(initialiseName("Tricia Smith+Jones+Smith")).toBe(
       "P Smith Jones Smith",
     );
+  });
+});
+
+describe("monogramName", () => {
+  it("should take the first forename and surname initials", () => {
+    expect(monogramName("John Smith")).toBe("JS");
+    expect(monogramName("John Paul Smith")).toBe("JS");
+    expect(monogramName("John Smith+Jones")).toBe("JS");
+  });
+
+  it("should handle names that don't abbreviate to their first letter", () => {
+    expect(monogramName("Tricia Smith")).toBe("PS");
   });
 });

@@ -14,9 +14,7 @@ type Props = {
 
 export const FooterColumn = ({ heading, data }: Props) => (
   <div className="mb-12 w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
-    <h3 className="mb-3 select-none font-semibold text-xs uppercase tracking-widest">
-      {heading}
-    </h3>
+    <h3 className="caps mb-3 select-none font-semibold text-xs">{heading}</h3>
     {data.map((item) => {
       const Arrow =
         item.target === "_blank" ? IconArrowUpRight : IconArrowRight;

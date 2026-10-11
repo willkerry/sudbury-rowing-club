@@ -26,8 +26,7 @@ const SectionWrapper = ({
   collapse = false,
 }: SectionWrapperProps) => {
   const outer: string = "px-5 py-4";
-  const titleClasses =
-    "text-xs font-semibold tracking-wider text-gray-500 uppercase";
+  const titleClasses = "text-xs font-semibold caps text-gray-500";
   const panel = "pt-3";
   const inner = (
     <nav
