@@ -36,37 +36,38 @@ const navigationGroups: NavigationGroup[] = [
     title: "About",
     items: [
       {
-        description: "The latest club news.",
+        description: "Who we are and where we row.",
+        href: "/about",
+        icon: IconInfoCircle,
+        name: "About the club",
+        shortName: "About",
+      },
+      {
         href: "/news",
         icon: IconNews,
         name: "News",
       },
       {
-        description: "Rowing in Sudbury since 1874.",
         href: "/about/history",
         icon: History,
         name: "History",
       },
       {
-        description: "Your safety is our top priority.",
         href: "/safety",
         icon: Safety,
         name: "Safety",
       },
       {
-        description: "How our club is organised.",
         href: "/governance",
         icon: Governance,
         name: "Governance",
       },
       {
-        description: "Discover the benefits of sponsorship.",
         href: "/about/sponsorship",
         icon: IconSparkles,
         name: "Sponsorship",
       },
       {
-        description: "View a century-and-a-half of photos.",
         href: "/150",
         icon: IconCake,
         name: "150th anniversary",

@@ -66,6 +66,9 @@ export namespace REGATTA {
     "Some of the people who’ve come to our regatta have said lovely things about it";
 
   export const LIVE_RESULTS_URL = "https://live.sudburyrowingclub.org.uk/";
+
+  /** Whether the regatta on the date set in the CMS is cancelled. */
+  export const CANCELLED = true;
 }
 
 export const ClubJsonLd: WithContext<SportsClub> = {
