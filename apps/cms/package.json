@@ -18,7 +18,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "sanity": "^6.18.0",
-    "sanity-plugin-dashboard-widget-vercel": "^4.0.29",
+    "sanity-plugin-dashboard-widget-vercel": "^4.0.30",
     "styled-components": "^6.5.3",
     "typescript": "catalog:"
   },
