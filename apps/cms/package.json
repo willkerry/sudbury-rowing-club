@@ -9,7 +9,7 @@
     "@sanity/color": "^3.0.9",
     "@sanity/dashboard": "^6.0.20",
     "@sanity/icons": "^5.2.3",
-    "@sanity/orderable-document-list": "^2.0.25",
+    "@sanity/orderable-document-list": "^2.0.26",
     "@sanity/table": "^3.1.18",
     "@sanity/types": "^6.18.0",
     "@sanity/ui": "^4.4.0",
