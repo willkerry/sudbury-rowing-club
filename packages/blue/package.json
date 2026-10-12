@@ -9,7 +9,7 @@
   "version": "1.0.0",
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
     "@types/react": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"
