@@ -9,9 +9,14 @@ const Person = defineType({
     defineField({ name: "surname", title: "Surname", type: "string" }),
     defineField({
       name: "email",
+      readOnly: true,
       title: "Email",
       type: "string",
-      validation: (Rule) => Rule.email(),
+      deprecated: {
+        reason:
+          "Personal addresses are no longer used. Set the Email field on the officer role instead.",
+      },
+      hidden: ({ value }) => !value,
     }),
 
     defineField({ name: "bio", rows: 3, type: "text" }),

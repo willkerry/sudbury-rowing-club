@@ -60,6 +60,7 @@ export {
   fetchSafetyById,
   type SafetyItem,
 } from "./queries/fetch-safety";
+export { OCCUPANT_NAMES } from "./queries/officer-fragments";
 export { ZTypedObject } from "./queries/typed-object";
 export { getSanityConfig, sanityClient } from "./sanity/client";
 export { urlFor } from "./sanity/image-url-builder";
