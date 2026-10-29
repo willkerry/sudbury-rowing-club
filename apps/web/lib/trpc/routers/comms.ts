@@ -154,7 +154,8 @@ export const commsRouter = router({
         });
       }
 
-      const { name: toName, email: toEmail, role: toRole } = officer;
+      const { email: toEmail, role: toRole } = officer;
+      const toName = officer.name ?? toRole;
       const sanitizedMessage = DOMPurify.sanitize(input.message);
 
       const createEmailResponse = await resend.emails.send({
@@ -171,7 +172,7 @@ export const commsRouter = router({
         subject: `${input.name} via SRC Contact`,
         tags: [CONTACT_FORM_TAG],
         text: sanitizedMessage,
-        to: formatName(toEmail, toName),
+        to: formatName(toEmail, toRole),
       });
 
       if (createEmailResponse.error) {

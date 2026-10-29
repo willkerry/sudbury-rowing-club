@@ -1,14 +1,14 @@
 import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
+import { OCCUPANT_NAMES } from "./officer-fragments";
 
-const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacant == false && defined(occupant->email)] | order(orderRank){
+const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacant != true && defined(email)] | order(orderRank){
   _id,
-  "occupantId": occupant->_id,
-  "name": occupant->firstName + " " + occupant->surname,
+  "name": ${OCCUPANT_NAMES},
   role,
   description,
-  "avatar": (occupant->image).image.asset->{ _id, url, "lqip": metadata.lqip }
+  "avatar": (occupants[0]->image).image.asset->{ _id, url, "lqip": metadata.lqip }
 }`;
 
 const ZOfficerResponse = z.object({
@@ -21,8 +21,7 @@ const ZOfficerResponse = z.object({
     })
     .nullable(),
   description: z.string().optional().nullable(),
-  name: z.string(),
-  occupantId: z.string(),
+  name: z.string().nullable(),
   role: z.string(),
 });
 

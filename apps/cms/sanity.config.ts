@@ -129,11 +129,6 @@ const config = defineConfig({
                     S.listItem()
                       .title("People")
                       .child(S.documentTypeList("person").title("People")),
-                    S.listItem()
-                      .title("Forwarders")
-                      .child(
-                        S.documentTypeList("forwarders").title("Forwarders"),
-                      ),
                   ]),
               ),
 
@@ -142,7 +137,6 @@ const config = defineConfig({
                 ![
                   "author",
                   "committees",
-                  "forwarders",
                   "minutes",
                   "members",
                   "news",

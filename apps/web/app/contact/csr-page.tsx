@@ -41,9 +41,9 @@ const ContactPage = ({
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
 
-  const initialRecipientName =
-    guessedRecipient?.name ??
-    officers.find((o) => o._id === initialValues.to)?.name;
+  const initialRecipient =
+    guessedRecipient ?? officers.find((o) => o._id === initialValues.to);
+  const initialRecipientName = initialRecipient?.name ?? initialRecipient?.role;
 
   const recipientWasProvided = !!initialValues.to;
 

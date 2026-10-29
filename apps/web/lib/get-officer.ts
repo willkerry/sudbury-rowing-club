@@ -1,12 +1,11 @@
-import { sanityClient } from "@sudburyrc/api";
+import { OCCUPANT_NAMES, sanityClient } from "@sudburyrc/api";
 import groq from "groq";
 import { z } from "zod";
 
 const GetOfficerSchema = z.object({
   _id: z.string(),
   email: z.email(),
-  name: z.string(),
-  occupantID: z.string(),
+  name: z.string().nullable(),
   role: z.string(),
 });
 
@@ -16,11 +15,10 @@ export const getOfficer = async (id: string) => {
   }
   const data = await sanityClient.fetch(
     groq`
-          *[_id == $id && !(_id in path("drafts.**")) && vacant == false && defined(occupant->email)]{
+          *[_id == $id && _type == "officers" && !(_id in path("drafts.**")) && vacant != true && defined(email)]{
             _id,
-            "occupantID": occupant->_id,
-            "name": occupant->firstName + " " + occupant->surname,
-            "email": occupant->email,
+            "name": ${OCCUPANT_NAMES},
+            email,
             role
           }[0]
         `,

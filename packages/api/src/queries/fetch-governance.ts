@@ -1,6 +1,7 @@
 import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
+import { OCCUPANT_NAMES } from "./officer-fragments";
 
 const ZNonExecOfficer = z.object({
   _id: z.string(),
@@ -30,7 +31,6 @@ const ZOfficer = z.object({
     })
     .nullable(),
   name: z.string().nullable(),
-  occupantId: z.string().nullable(),
   role: z.string(),
   vacant: z.boolean(),
 });
@@ -43,7 +43,6 @@ const ZCommittee = z.object({
       z.object({
         _id: z.string(),
         name: z.string().nullable(),
-        occupantId: z.string().nullable(),
         role: z.string(),
       }),
     )
@@ -68,13 +67,12 @@ const ZGovernance = z.object({
 const query = groq`{
 "officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(orderRank){
   _id,
-  "occupantId": occupant->_id,
-  "name": occupant->firstName + " " + occupant->surname,
+  "name": ${OCCUPANT_NAMES},
   role,
   vacant,
   description,
-  "hasEmail": defined(occupant->email),
-  "image": occupant->image.image {
+  "hasEmail": defined(email),
+  "image": occupants[0]->image.image {
       "_id": asset->_id,
       "lqip": asset->metadata.lqip,
   }
@@ -84,10 +82,9 @@ const query = groq`{
   title,
   description,
   members[]-> {
-    _id, 
-    "occupantId": occupant->_id,
-    role, 
-    "name": occupant->firstName + " " + occupant->surname,
+    _id,
+    role,
+    "name": ${OCCUPANT_NAMES},
   }
 },
 "vicePresidents": *[_type == "vicePresidents" && !(_id in path("drafts.**"))] | order(reference->surname asc, reference->firstName asc).reference->{
