@@ -54,7 +54,7 @@
     "get-wodehouse-name": "^0.3.1",
     "github-slugger": "^2.0.0",
     "groq": "catalog:",
-    "happy-dom": "^20.14.6",
+    "happy-dom": "^21.0.4",
     "he": "catalog:",
     "indefinite": "^2.5.2",
     "inter-ui": "^4.1.1",
