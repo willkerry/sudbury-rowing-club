@@ -1,16 +1,14 @@
-import {
-  Body,
-  Container,
-  Head,
-  Hr,
-  Html,
-  Link,
-  Markdown,
-  Preview,
-  Section,
-  Tailwind,
-  Text,
-} from "@react-email/components";
+import { Body } from "@react-email/body";
+import { Container } from "@react-email/container";
+import { Head } from "@react-email/head";
+import { Hr } from "@react-email/hr";
+import { Html } from "@react-email/html";
+import { Link } from "@react-email/link";
+import { Markdown } from "@react-email/markdown";
+import { Preview } from "@react-email/preview";
+import { Section } from "@react-email/section";
+import { Tailwind } from "@react-email/tailwind";
+import { Text } from "@react-email/text";
 
 export const Label = ({ children }: { children: React.ReactNode }) => (
   <Text className="mt-2 mb-0 font-medium text-gray-500 text-sm">

@@ -6,6 +6,7 @@ import { title as formatTitle } from "radashi";
 import { DocPage } from "@/components/layouts/doc-page";
 import { env } from "@/env";
 import { createMetadata } from "@/lib/create-metadata";
+import { loadPolicyContent } from "@/lib/policy-content";
 
 type PolicyPageParams = { slug: string };
 type PolicyPageParamObject = { params: Promise<PolicyPageParams> };
@@ -43,9 +44,13 @@ const TestPage = async ({ params }: PolicyPageParamObject) => {
   if (!policy || (!isDevelopment && policy.status === "draft"))
     return notFound();
 
+  const content = await loadPolicyContent(policy._meta.path);
+
+  if (!content) return notFound();
+
   return (
     <DocPage
-      body={policy.body}
+      content={content}
       description={policy.description}
       postnotes={policy.postnotes}
       prenotes={policy.prenotes}
