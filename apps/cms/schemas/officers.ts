@@ -33,14 +33,6 @@ const Officers = defineType({
         }),
       ],
     }),
-    defineField({
-      deprecated: { reason: "Use the Occupants field instead." },
-      name: "occupant",
-      readOnly: true,
-      to: [{ type: "person" } as const],
-      type: "reference",
-      hidden: ({ value }) => !value,
-    }),
 
     defineField({
       name: "vacant",
