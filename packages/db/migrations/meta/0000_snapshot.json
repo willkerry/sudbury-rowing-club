@@ -1,0 +1,55 @@
+{
+  "dialect": "sqlite",
+  "enums": {},
+  "id": "2506f0c9-52b9-47dd-b45e-7432b4cf4820",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "6",
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  },
+  "internal": {
+    "indexes": {}
+  },
+  "tables": {
+    "inflight_contacts": {
+      "checkConstraints": {},
+      "compositePrimaryKeys": {},
+      "foreignKeys": {},
+      "name": "inflight_contacts",
+      "uniqueConstraints": {},
+      "columns": {
+        "expires_at": {
+          "autoincrement": false,
+          "name": "expires_at",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "integer"
+        },
+        "message_id": {
+          "autoincrement": false,
+          "name": "message_id",
+          "notNull": true,
+          "primaryKey": true,
+          "type": "text"
+        },
+        "payload": {
+          "autoincrement": false,
+          "name": "payload",
+          "notNull": true,
+          "primaryKey": false,
+          "type": "text"
+        }
+      },
+      "indexes": {
+        "inflight_contacts_expires_at": {
+          "columns": ["expires_at"],
+          "isUnique": false,
+          "name": "inflight_contacts_expires_at"
+        }
+      }
+    }
+  }
+}
