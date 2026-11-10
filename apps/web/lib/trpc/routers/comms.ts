@@ -1,9 +1,9 @@
 import { TRPCError } from "@trpc/server";
 import Bowser from "bowser";
 import { ContactFormEmail } from "emails/contact-form";
-import DOMPurify from "isomorphic-dompurify";
 import { tryit } from "radashi";
 import { Resend } from "resend";
+import { filterXSS } from "xss";
 import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import { MessageSchema } from "@/components/contact/Message";
 import { env } from "@/env";
@@ -156,7 +156,9 @@ export const commsRouter = router({
 
       const { email: toEmail, role: toRole } = officer;
       const toName = officer.name ?? toRole;
-      const sanitizedMessage = DOMPurify.sanitize(input.message);
+      const sanitizedMessage = filterXSS(input.message, {
+        stripIgnoreTagBody: ["script", "style"],
+      });
 
       const createEmailResponse = await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),

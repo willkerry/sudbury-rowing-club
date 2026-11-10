@@ -1,4 +1,5 @@
 import ky from "ky";
+import { getClientIp } from "@/lib/client-ip";
 import { BASE_URL } from "./constants";
 
 const API_KEY = "6c80e09f5c4d";
@@ -39,7 +40,7 @@ export const checkHeadersForSpam = async (
   { name, email, message }: { name: string; email: string; message: string },
 ) =>
   checkForSpam(
-    headers.get("x-forwarded-for") ?? "",
+    getClientIp(headers) ?? "",
     headers.get("user-agent") ?? "",
     headers.get("referer") ?? "",
     name,

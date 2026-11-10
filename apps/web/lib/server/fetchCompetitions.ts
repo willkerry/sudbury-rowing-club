@@ -1,9 +1,9 @@
 import type { BREvent } from "@sudburyrc/ical-builder";
 import emojiRegex from "emoji-regex";
 import { decode } from "he";
-import DOMPurify from "isomorphic-dompurify";
 import { after } from "next/server";
 import { dash, tryit } from "radashi";
+import { filterXSS } from "xss";
 import { z } from "zod";
 import { cached } from "./cached";
 import { firecrawl } from "./firecrawl";
@@ -18,9 +18,10 @@ const KEEP_IN_KV_FOR_MS = 14 * DAY_IN_MS;
 
 const sanitise = (html: string) => {
   const sanitised = decode(
-    DOMPurify.sanitize(html, {
-      ALLOWED_ATTR: [],
-      ALLOWED_TAGS: [],
+    filterXSS(html, {
+      stripIgnoreTag: true,
+      stripIgnoreTagBody: ["script", "style"],
+      whiteList: {},
     }),
   )
     .replace(emojiRegex(), "")
