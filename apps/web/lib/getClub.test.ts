@@ -1,5 +1,8 @@
+import clubsData from "@sudburyrc/static/clubs.json";
 import { describe, expect, it } from "vitest";
-import { getClub, getClubByCode, getClubById } from "@/lib/getClub";
+import { createClubLookup } from "@/lib/getClub";
+
+const { getClub, getClubByCode, getClubById } = createClubLookup(clubsData);
 
 const club = {
   bladeUrl:

@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
-import { getResultBySlug, getSlugifiedRecords } from "../transformRecords";
+import { getResultBySlug } from "../load-records";
+import { getSlugifiedRecords } from "../transformRecords";
 import { formatDescription } from "./format-description";
 import { RecordHolderList } from "./record-holder-list";
 import { RecordTime } from "./record-time";
@@ -15,7 +16,7 @@ export const generateMetadata = async ({
   params: Promise<Param>;
 }) => {
   const { event } = await params;
-  const records = getResultBySlug(event);
+  const records = await getResultBySlug(event);
 
   if (!records || records.length === 0) {
     return;
@@ -46,7 +47,7 @@ export const generateStaticParams = (): Param[] => {
 const Page = async ({ params }: { params: Promise<Param> }) => {
   const { event } = await params;
 
-  const records = getResultBySlug(event);
+  const records = await getResultBySlug(event);
 
   if (!records || records.length === 0) {
     return notFound();
