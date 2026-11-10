@@ -31,28 +31,42 @@ interface DataTableProps<TData extends RowData> {
   readonly data: TData[];
 }
 
+const isSameState = (a: unknown, b: unknown) =>
+  JSON.stringify(a) === JSON.stringify(b);
+
 const parseAsSortingState = createParser<SortingState>({
+  eq: isSameState,
   parse: (value) =>
-    value.split(",").map((item) => {
-      const [id, desc] = item.split(":");
-      return {
-        id,
-        desc: desc === "desc",
-      };
-    }),
+    value
+      .split(",")
+      .filter(Boolean)
+      .map((item) => {
+        const [id, desc] = item.split(":");
+        return {
+          id,
+          desc: desc === "desc",
+        };
+      }),
   serialize: (value) =>
     value.map((item) => `${item.id}:${item.desc ? "desc" : "asc"}`).join(","),
 });
 
 const parseAsColumnFiltersState = createParser<ColumnFiltersState>({
+  eq: isSameState,
   parse: (value) =>
-    value.split(",").map((item) => {
-      const [id, value] = item.split(":");
-      return { id, value };
-    }),
+    value
+      .split(",")
+      .filter(Boolean)
+      .map((item) => {
+        const [id, value] = item.split(":");
+        return { id, value };
+      }),
   serialize: (value) =>
     value.map((item) => `${item.id}:${item.value}`).join(","),
 });
+
+const NO_SORTING: SortingState = [];
+const NO_COLUMN_FILTERS: ColumnFiltersState = [];
 
 const DataTableWithoutSuspense = <TData extends RowData>({
   columns,
@@ -60,14 +74,12 @@ const DataTableWithoutSuspense = <TData extends RowData>({
 }: DataTableProps<TData>) => {
   const [sorting, setSorting] = useQueryState(
     "sorting",
-    parseAsSortingState.withDefault(null as unknown as SortingState),
+    parseAsSortingState.withDefault(NO_SORTING),
   );
 
   const [columnFilters, setColumnFilters] = useQueryState(
     "columnFilters",
-    parseAsColumnFiltersState.withDefault(
-      null as unknown as ColumnFiltersState,
-    ),
+    parseAsColumnFiltersState.withDefault(NO_COLUMN_FILTERS),
   );
 
   const [currentPage, setCurrentPage] = useQueryStates({
