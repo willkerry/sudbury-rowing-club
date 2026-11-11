@@ -1,7 +1,6 @@
-import { kv } from "@vercel/kv";
 import { z } from "zod";
+import { inflightStore } from "@/lib/server/inflight-store";
 
-const KEY_PREFIX = "contact:inflight:";
 const TTL_SECONDS = 60 * 60 * 72;
 
 export const InflightContactSchema = z.object({
@@ -14,17 +13,15 @@ export const InflightContactSchema = z.object({
 
 export type InflightContact = z.infer<typeof InflightContactSchema>;
 
-const key = (messageId: string) => `${KEY_PREFIX}${messageId}`;
-
 export const storeInflightContact = async (
   messageId: string,
   value: InflightContact,
 ) => {
-  await kv.set(key(messageId), value, { ex: TTL_SECONDS });
+  await inflightStore.set(messageId, value, { ttlSeconds: TTL_SECONDS });
 };
 
 export const readInflightContact = async (messageId: string) => {
-  const value = await kv.get(key(messageId));
+  const value = await inflightStore.get(messageId);
 
   if (!value) return null;
 
@@ -36,7 +33,7 @@ export const readInflightContact = async (messageId: string) => {
 };
 
 export const claimInflightContact = async (messageId: string) => {
-  const deleted = await kv.del(key(messageId));
+  const deleted = await inflightStore.del(messageId);
 
   return deleted === 1;
 };

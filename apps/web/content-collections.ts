@@ -4,16 +4,28 @@ import { remarkAdmonition } from "fumadocs-core/mdx-plugins";
 import remarkSmartypants from "remark-smartypants";
 import { z } from "zod";
 
-const transform: typeof fumaTransformMDX = (document, context) =>
-  fumaTransformMDX(document, context, {
+// Only metadata and the table of contents are kept: the page renders each
+// policy from its build-time-compiled .mdx module (lib/policy-content.ts), so
+// the raw source, compiled body and search data would only add dead weight to
+// the Worker bundle.
+const transform = async <
+  TDocument extends Parameters<typeof fumaTransformMDX>[0],
+>(
+  document: TDocument,
+  context: Parameters<typeof fumaTransformMDX>[1],
+) => {
+  const {
+    body: _body,
+    content: _content,
+    structuredData: _structuredData,
+    ...policy
+  } = await fumaTransformMDX(document, context, {
+    rehypeCodeOptions: false,
     remarkPlugins: [remarkAdmonition, remarkSmartypants],
-    rehypeCodeOptions: {
-      themes: {
-        dark: "github-dark",
-        light: "github-dark",
-      },
-    },
   });
+
+  return policy;
+};
 
 const StatusSchema = z.union([z.literal("draft"), z.literal("published")]);
 

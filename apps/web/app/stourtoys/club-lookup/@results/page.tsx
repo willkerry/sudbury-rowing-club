@@ -1,7 +1,7 @@
-import { clubs as allClubs } from "@sudburyrc/static";
 import Link from "next/link";
 import { Blade } from "@/components/stour/blade";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { loadClubs } from "@/lib/clubs-data";
 
 const MAX_CLUBS = 64;
 const MAX_CLUBS_WITH_BLADES = 10;
@@ -15,6 +15,7 @@ const ClubSearchResults = async (props: {
   if (!searchParams.q) return null;
 
   const searchTerm = searchParams.q.toLowerCase();
+  const allClubs = await loadClubs();
 
   const clubs = allClubs.filter(
     ({ name, address }) =>
@@ -62,7 +63,7 @@ const ClubSearchResults = async (props: {
                 <Blade
                   className="h-4 w-8"
                   height={16}
-                  src={club.id}
+                  src={club.newBladeUrl}
                   width={32}
                 />
               </div>

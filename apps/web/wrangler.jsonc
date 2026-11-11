@@ -1,0 +1,54 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./worker.ts",
+  "name": "sudbury-web",
+  "preview_urls": true,
+  "workers_dev": true,
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "none"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "dfbb23fe-44fb-4191-8dc1-3797663f9c5a",
+      "database_name": "sudbury-web",
+      "migrations_dir": "../../packages/db/migrations"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "VINEXT_KV_CACHE",
+      "id": "ec9655a00e22406a95cb36d155abc017"
+    },
+    {
+      "binding": "DATA_CACHE",
+      "id": "e925387678ef4d849b5f13be35fada2d"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 10, "period": 10 }
+    }
+  ],
+  "routes": [
+    { "custom_domain": true, "pattern": "sudburyrowingclub.org.uk" },
+    { "custom_domain": true, "pattern": "www.sudburyrowingclub.org.uk" }
+  ],
+  "triggers": {
+    "crons": ["0 * * * *"]
+  },
+  "vars": {
+    "APP_URL": "https://sudburyrowingclub.org.uk"
+  },
+  "version_metadata": {
+    "binding": "CF_VERSION_METADATA"
+  }
+}

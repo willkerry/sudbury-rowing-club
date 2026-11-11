@@ -18,8 +18,8 @@ vi.mock("resend", () => ({
   },
 }));
 
-vi.mock("@vercel/kv", () => ({
-  kv: { del: mockKvDel, get: mockKvGet, set: mockKvSet },
+vi.mock("@/lib/server/inflight-store", () => ({
+  inflightStore: { del: mockKvDel, get: mockKvGet, set: mockKvSet },
 }));
 
 vi.mock("@/env", () => ({
@@ -106,7 +106,7 @@ describe("POST /api/webhooks/resend", () => {
       expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
       expect(args.react.__props.toName).toBe(SAMPLE_CONTACT.toName);
       expect(args.react.__props.toRole).toBe(SAMPLE_CONTACT.toRole);
-      expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
+      expect(mockKvDel).toHaveBeenCalledWith(EMAIL_ID);
     });
   });
 
@@ -137,7 +137,7 @@ describe("POST /api/webhooks/resend", () => {
         expect(args.react.__props.fallbackEmail).toBe(
           "enquiries@sudburyrowingclub.org.uk",
         );
-        expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
+        expect(mockKvDel).toHaveBeenCalledWith(EMAIL_ID);
       },
     );
   });
@@ -234,11 +234,11 @@ describe("POST /api/webhooks/resend", () => {
       const response = await POST(buildRequest());
 
       expect(response.status).toBe(500);
-      expect(mockKvDel).toHaveBeenCalledWith(`contact:inflight:${EMAIL_ID}`);
+      expect(mockKvDel).toHaveBeenCalledWith(EMAIL_ID);
       expect(mockKvSet).toHaveBeenCalledWith(
-        `contact:inflight:${EMAIL_ID}`,
+        EMAIL_ID,
         SAMPLE_CONTACT,
-        expect.objectContaining({ ex: expect.any(Number) }),
+        expect.objectContaining({ ttlSeconds: expect.any(Number) }),
       );
       expect(mockTrack).toHaveBeenCalledWith(
         "contact_form_status_notification_failure",

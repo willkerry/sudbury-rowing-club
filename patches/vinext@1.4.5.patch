@@ -1,0 +1,84 @@
+diff --git a/dist/shims/image-props.js b/dist/shims/image-props.js
+index 9483b5457f6855dbdb91b3dee160af43255e5f2e..b6d7159167188711ca3a0666ea21c85c4fb2da36 100644
+--- a/dist/shims/image-props.js
++++ b/dist/shims/image-props.js
+@@ -251,7 +251,8 @@ function imageOptimizationUrl(src, width, quality = 75) {
+ function getImageWidths(width) {
+ 	return [...new Set([width, width * 2].map((targetWidth) => ALL_IMAGE_WIDTHS.find((configuredWidth) => configuredWidth >= targetWidth) ?? ALL_IMAGE_WIDTHS[ALL_IMAGE_WIDTHS.length - 1]))];
+ }
+-function generateImageAttributes(src, width, quality = 75, sizes) {
++function generateImageAttributes(src, width, quality = 75, sizes, buildUrl = imageOptimizationUrl) {
++	const imageOptimizationUrl = buildUrl;
+ 	if (sizes) {
+ 		const viewportPercentages = Array.from(sizes.matchAll(/(^|\s)(1?\d?\d)vw/g), (match) => Number.parseInt(match[2], 10));
+ 		const minimumWidth = viewportPercentages.length > 0 ? RESPONSIVE_WIDTHS[0] * (Math.min(...viewportPercentages) * .01) : 0;
+@@ -271,6 +272,19 @@ function generateImageAttributes(src, width, quality = 75, sizes) {
+ * getImageProps — for advanced use cases (picture elements, background images).
+ * Returns the props that would be passed to the underlying <img> element.
+ */
++function generateLoaderAttributes(loader, src, width, quality, sizes, fill) {
++	const effectiveSizes = sizes ?? (fill ? "100vw" : void 0);
++	const buildUrl = (source, candidateWidth, candidateQuality) => loader({
++		src: source,
++		width: candidateWidth,
++		quality: candidateQuality
++	});
++	if (!effectiveSizes && !width) return { src: buildUrl(src, RESPONSIVE_WIDTHS[RESPONSIVE_WIDTHS.length - 1], quality) };
++	return {
++		...generateImageAttributes(src, width, quality, effectiveSizes, buildUrl),
++		sizes: effectiveSizes
++	};
++}
+ function getImageProps(props) {
+ 	const { src: srcProp, alt, width, height, fill, preload: _preload, priority, quality: _quality, placeholder, blurDataURL: blurDataURLProp, loader, sizes, className, style, onLoad: _onLoad, onLoadingComplete: _onLoadingComplete, unoptimized: _unoptimized, overrideSrc, loading, ...rest } = props;
+ 	const { src, width: imgWidth, height: imgHeight, blurDataURL: imgBlurDataURL } = resolveImageSource({
+@@ -355,4 +369,4 @@ function getImageProps(props) {
+ 	};
+ 	return { props: Object.assign(imageProps, { "data-nimg": fill ? "fill" : "1" }) };
+ }
+-export { RESPONSIVE_WIDTHS, __dangerouslyAllowSVG, __globallyUnoptimized, __isDev, generateImageAttributes, getFillStyle, getImageProps, imageOptimizationUrl, isRemoteUrl, isSvgUrl, parseImageQuality, resolveImageSource, sanitizeBlurDataURL, validateRemoteUrl };
++export { RESPONSIVE_WIDTHS, __dangerouslyAllowSVG, __globallyUnoptimized, __isDev, generateImageAttributes, generateLoaderAttributes, getFillStyle, getImageProps, imageOptimizationUrl, isRemoteUrl, isSvgUrl, parseImageQuality, resolveImageSource, sanitizeBlurDataURL, validateRemoteUrl };
+diff --git a/dist/shims/image.js b/dist/shims/image.js
+index 1c1cd0b195a30bdac7412f353dde365b06eb9f21..4598eae5bb67dbfc5a32341e6fb74bd3d50b3824 100644
+--- a/dist/shims/image.js
++++ b/dist/shims/image.js
+@@ -1,5 +1,5 @@
+ "use client";
+-import { RESPONSIVE_WIDTHS, __dangerouslyAllowSVG, __globallyUnoptimized, __isDev, generateImageAttributes, getFillStyle, getImageProps, imageOptimizationUrl, isRemoteUrl, isSvgUrl, parseImageQuality, resolveImageSource, sanitizeBlurDataURL, validateRemoteUrl } from "./image-props.js";
++import { RESPONSIVE_WIDTHS, __dangerouslyAllowSVG, __globallyUnoptimized, __isDev, generateImageAttributes, generateLoaderAttributes, getFillStyle, getImageProps, imageOptimizationUrl, isRemoteUrl, isSvgUrl, parseImageQuality, resolveImageSource, sanitizeBlurDataURL, validateRemoteUrl } from "./image-props.js";
+ import { useMergedRef } from "./use-merged-ref.js";
+ import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from "react";
+ import { jsx } from "react/jsx-runtime";
+@@ -198,26 +198,25 @@ const Image = forwardRef(function Image({ src: srcProp, alt, width, height, fill
+ 	}
+ 	if (loader) {
+ 		const resolvedQuality = parseImageQuality(quality) ?? 75;
+-		const resolvedSrc = loader({
+-			src,
+-			width: imgWidth ?? 0,
+-			quality: resolvedQuality
+-		});
++		const loaderAttributes = generateLoaderAttributes(loader, src, imgWidth, resolvedQuality, sizes, fill);
++		const resolvedSrc = loaderAttributes.src;
+ 		preloadImageResource({
+ 			shouldPreload,
+ 			src: resolvedSrc,
+-			sizes,
++			srcSet: loaderAttributes.srcSet,
++			sizes: loaderAttributes.sizes,
+ 			fetchPriority: priorityFetchPriority
+ 		});
+ 		return /* @__PURE__ */ jsx("img", {
+ 			ref: mergedRef,
+ 			src: resolvedSrc,
++			srcSet: loaderAttributes.srcSet,
+ 			alt,
+ 			width: fill ? void 0 : imgWidth,
+ 			height: fill ? void 0 : imgHeight,
+ 			loading: imageLoading,
+ 			decoding: "async",
+-			sizes,
++			sizes: loaderAttributes.sizes,
+ 			className,
+ 			onLoad: handleLoad,
+ 			onError: handleError,
