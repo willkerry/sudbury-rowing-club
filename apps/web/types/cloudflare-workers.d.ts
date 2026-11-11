@@ -15,6 +15,8 @@ declare module "cloudflare:workers" {
     CF_VERSION_METADATA: WorkerVersionMetadata;
     DATA_CACHE: KVNamespace;
     DB: D1Database;
+    OG: Fetcher;
+    OG_IMAGE_SECRET: string;
     RATE_LIMITER: RateLimit;
   };
 }

@@ -1,15 +1,17 @@
 "use client";
 
-import { useClipboard } from "@mantine/hooks";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useDebouncedValue, useElementSize } from "@mantine/hooks";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import type { ShareImage } from "@/app/api/og/route";
-import { Loading } from "@/components/stour/loading";
+import { ShareImageCard } from "@/components/share-image/share-image-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
-import { makeShareImageURL } from "@/lib/og-image";
-import { cn } from "@/lib/utils";
+import {
+  SHARE_IMAGE_HEIGHT,
+  SHARE_IMAGE_WIDTH,
+  type ShareImage,
+} from "@/lib/share-image";
 
 const DEFAULT_TITLE = "Share Image Playground 🎉";
 const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
@@ -18,139 +20,124 @@ const DEFAULT_SUBTITLE = new Date().toLocaleDateString("en-GB", {
   weekday: "long",
   year: "numeric",
 });
+const RENDER_DEBOUNCE_MS = 300;
 
+/**
+ * Previews and downloads share images entirely in the browser. It never calls
+ * the OG Worker, so experimenting here doesn't spend Browser Rendering time.
+ */
 export const SharePlayground = () => {
-  const titleInputRef = useRef<HTMLInputElement>(null);
-  const subtitleInputRef = useRef<HTMLInputElement>(null);
-  const variantInputRef = useRef<HTMLSelectElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const [image, setImage] = useState<ShareImage>({
+    subtitle: DEFAULT_SUBTITLE,
+    title: DEFAULT_TITLE,
+    variant: "blue",
+  });
+  const [debouncedImage] = useDebouncedValue(image, RENDER_DEBOUNCE_MS);
+  const [pngUrl, setPngUrl] = useState<string>();
 
-  const { copy, error } = useClipboard();
+  const { ref: previewRef, width: previewWidth } = useElementSize();
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  const [state, setState] = useState<"idle" | "loading" | "success" | "error">(
-    "idle",
-  );
-
-  const handleGenerateImageAndPutIntoImg = useCallback(() => {
-    if (!titleInputRef.current) return;
-    if (!subtitleInputRef.current) return;
-    if (!variantInputRef.current) return;
-
-    if (!imageRef.current) return;
-
-    const title = titleInputRef.current.value;
-    const subtitle = subtitleInputRef.current.value;
-    const variant = variantInputRef.current.value as ShareImage["variant"];
-
-    const imageUrl = makeShareImageURL(title, true, {
-      subtitle,
-      variant,
-    });
-
-    setState("loading");
-
-    const image = imageRef.current;
-    image.src = imageUrl;
-
-    image.onload = () => {
-      setState("success");
-    };
-
-    image.onerror = () => {
-      setState("error");
-    };
-  }, []);
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await handleGenerateImageAndPutIntoImg();
-  };
-
+  // Render the PNG ahead of time, so Download is a plain link the user clicks.
+  // Browsers drop downloads started from script after an await, because the
+  // click's user activation has expired by then.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: re-render the PNG when the debounced image changes
   useEffect(() => {
-    handleGenerateImageAndPutIntoImg();
-  }, [handleGenerateImageAndPutIntoImg]);
+    const card = cardRef.current;
+    if (!card) return;
+
+    let url: string | undefined;
+    let cancelled = false;
+
+    setPngUrl(undefined);
+
+    import("html-to-image")
+      .then(({ toBlob }) =>
+        toBlob(card, {
+          height: SHARE_IMAGE_HEIGHT,
+          pixelRatio: 1,
+          width: SHARE_IMAGE_WIDTH,
+        }),
+      )
+      .then((blob) => {
+        if (cancelled || !blob) return;
+
+        url = URL.createObjectURL(blob);
+        setPngUrl(url);
+      })
+      .catch(() => {
+        if (!cancelled) toast.error("Failed to create the image");
+      });
+
+    return () => {
+      cancelled = true;
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, [debouncedImage]);
 
   return (
-    <form
-      className="grid grid-cols-1 items-end gap-3 pt-4 pb-12 md:grid-cols-2"
-      onSubmit={onSubmit}
-    >
+    <div className="grid grid-cols-1 items-end gap-3 pt-4 pb-12 md:grid-cols-2">
       <Input
-        defaultValue={DEFAULT_TITLE}
-        disabled={state === "loading"}
         label="Title"
         name="title"
-        ref={titleInputRef}
+        onChange={(event) => setImage({ ...image, title: event.target.value })}
+        value={image.title}
       />
 
       <Input
-        defaultValue={DEFAULT_SUBTITLE}
-        disabled={state === "loading"}
         label="Subtitle"
         name="subtitle"
-        ref={subtitleInputRef}
+        onChange={(event) =>
+          setImage({ ...image, subtitle: event.target.value })
+        }
         required={false}
+        value={image.subtitle}
       />
 
       <Select
-        defaultValue="blue"
-        disabled={state === "loading"}
         label="Variant"
         name="variant"
-        ref={variantInputRef}
+        onChange={(event) =>
+          setImage({
+            ...image,
+            variant: event.target.value as ShareImage["variant"],
+          })
+        }
+        value={image.variant}
       >
         <option value="blue">Blue</option>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
       </Select>
 
-      <Button loading={state === "loading"} type="submit">
-        Generate
-      </Button>
-
-      <div className="relative mt-6 aspect-h-8 aspect-w-16 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2">
+      <div
+        className="relative mt-6 aspect-2/1 overflow-hidden rounded-lg border bg-gray-100 md:col-span-2"
+        ref={previewRef}
+      >
         <div
-          className={cn({
-            "absolute inset-0 z-10 items-center justify-center bg-white bg-opacity-90 backdrop-blur-sm":
-              state === "loading",
-            hidden: state !== "loading",
-          })}
+          aria-hidden
+          className="origin-top-left"
+          style={{ transform: `scale(${previewWidth / SHARE_IMAGE_WIDTH})` }}
         >
-          <Loading />
+          <div ref={cardRef}>
+            <ShareImageCard {...image} />
+          </div>
         </div>
-
-        <img alt="" ref={imageRef} suppressHydrationWarning />
       </div>
 
-      <div className="flex justify-end gap-1 md:col-span-2">
-        <Button asChild size="sm" variant="secondary">
-          <a
-            download="share-image.png"
-            href={imageRef.current?.src}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+      <div className="flex justify-end md:col-span-2">
+        {pngUrl && image === debouncedImage ? (
+          <Button asChild size="sm" variant="secondary">
+            <a download="share-image.png" href={pngUrl}>
+              Download
+            </a>
+          </Button>
+        ) : (
+          <Button disabled loading size="sm" variant="secondary">
             Download
-          </a>
-        </Button>
-
-        <Button
-          onClick={() => {
-            copy(imageRef.current?.src);
-
-            if (error) {
-              toast.error("Failed to copy URL to clipboard");
-              return;
-            }
-
-            toast.success("URL copied to clipboard");
-          }}
-          size="sm"
-          variant="ghost"
-        >
-          Copy URL
-        </Button>
+          </Button>
+        )}
       </div>
-    </form>
+    </div>
   );
 };

@@ -34,10 +34,6 @@ export const createMetadata: CreateMetadata = ({
           variant: image?.color || "blue",
         });
 
-  makeShareImageURL(title, true, {
-    subtitle: description,
-  });
-
   return {
     title,
     description,

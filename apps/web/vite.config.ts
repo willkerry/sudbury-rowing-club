@@ -127,6 +127,8 @@ export default defineConfig({
       },
     }),
     cloudflare({
+      // Runs the OG Worker alongside the app in dev, behind the OG binding.
+      auxiliaryWorkers: [{ configPath: "../og/wrangler.jsonc" }],
       viteEnvironment: { childEnvironments: ["ssr"], name: "rsc" },
     }),
   ],

@@ -5,6 +5,8 @@
   "main": "./worker.ts",
   "name": "sudbury-web",
   "preview_urls": true,
+  // worker.ts forwards signed /api/og requests to the OG Worker (apps/og).
+  "services": [{ "binding": "OG", "service": "sudbury-og" }],
   "workers_dev": true,
   "assets": {
     "binding": "ASSETS",

@@ -32,6 +32,7 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 **Apps:**
 - `apps/web` - Next.js API on [vinext](https://www.npmjs.com/package/vinext) (Vite), deployed to Cloudflare Workers as `sudbury-web` (React 19, Tailwind CSS 4, port 4321)
+- `apps/og` - Share (OG) image Worker, `sudbury-og`. Screenshots the web app's `/og-template` page with Browser Rendering and caches PNGs in R2. Only reachable through `sudbury-web`'s `OG` service binding, which checks each `/api/og` URL's `OG_IMAGE_SECRET` signature first
 - `apps/cms` - Sanity Studio CMS (content management, deploys via Cloudflare Workers Builds)
 - `apps/results` - Static results pages (Nunjucks templates, Parcel bundler)
 
@@ -47,7 +48,7 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 **Data flow:** Sanity CMS → GROQ queries → web app. A Sanity webhook to `/api/revalidate` invalidates cached pages.
 
-**Cloudflare bindings (apps/web/wrangler.jsonc):** Workers Cache for pages, KV for data (`DATA_CACHE`, `VINEXT_KV_CACHE`), D1 (`DB`), rate limiting, Images, an hourly cron (`worker.ts`). Keep the Worker under 3 MB gzipped (free plan).
+**Cloudflare bindings (apps/web/wrangler.jsonc):** Workers Cache for pages, KV for data (`DATA_CACHE`, `VINEXT_KV_CACHE`), D1 (`DB`), rate limiting, Images, the `OG` service binding to `apps/og`, an hourly cron (`worker.ts`). Keep the Worker under 3 MB gzipped (free plan).
 
 ## Code Style
 

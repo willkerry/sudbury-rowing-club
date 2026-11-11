@@ -100,6 +100,13 @@ jobs:
         working-directory: apps/web
         run: pnpm run db:migrate
 
+      # sudbury-web's OG service binding needs this Worker to exist first.
+      # Preview versions of sudbury-web share the production OG Worker.
+      - name: Deploy OG Worker
+        if: github.event_name == 'push'
+        working-directory: apps/og
+        run: pnpm exec wrangler deploy --message "${GITHUB_SHA::7}"
+
       - name: Deploy
         if: github.event_name == 'push'
         working-directory: apps/web
