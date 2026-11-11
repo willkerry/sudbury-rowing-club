@@ -157,7 +157,7 @@ jobs:
   # Uploads a preview version (pull requests) or migrates D1 and deploys to
   # production (pushes), then smoke tests it and reports on it.
   web:
-    name: ${{ github.event_name == 'push' && 'Deploy' || 'Preview' }}
+    name: Deploy
     needs: [lint, verify]
     # Production deploys only from master (a manual run on another branch
     # skips this job). Dependabot and fork PRs have no Cloudflare token.
