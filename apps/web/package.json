@@ -115,7 +115,7 @@
     "@vitejs/plugin-react": "^6.1.2",
     "@vitejs/plugin-rsc": "^0.5.39",
     "@vitest/coverage-v8": "^5.0.3",
-    "jsdom": "^26.1.0",
+    "jsdom": "^31.0.0",
     "postcss": "^8.5.29",
     "react-server-dom-webpack": "^19.3.1",
     "remark-frontmatter": "^5.0.0",
