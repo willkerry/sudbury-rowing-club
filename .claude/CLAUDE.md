@@ -52,6 +52,13 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 ## Code Style
 
+**DO NOT WRITE COMMENTS THAT STATE THE BLEEDING OBVIOUS.** NO COMMENTS THAT
+RESTATE WHAT THE CODE, CONFIG OR WORKFLOW STEP ALREADY SAYS. NO NARRATING
+STEPS, NO SUMMARISING A FUNCTION ABOVE IT, NO MULTI-LINE ESSAYS. A COMMENT
+EARNS ITS PLACE ONLY BY EXPLAINING A NON-OBVIOUS **WHY** (A PLATFORM QUIRK, A
+WORKAROUND, A CONSTRAINT) – AND THEN IN ONE SHORT LINE. WHEN IN DOUBT, LEAVE IT
+OUT.
+
 - **Biome** handles linting and formatting (not ESLint/Prettier)
 - **Lefthook** pre-commit hook runs `biome check --write` automatically
 - Semicolons required, double quotes, trailing commas
@@ -60,13 +67,12 @@ pnpm dev --filter@sudburyrc/results # Results app only
 - Arrow functions preferred over function expressions
 - Use `T[]` array syntax (not `Array<T>`)
 - Tailwind classes sorted by `cn`, `cva`, `clsx` functions
-- No comments that state what clear code does (code should be self-documenting)
 - Nearly always add an empty line before return statements
 
 ## Key Technologies
 
-- **Package manager:** pnpm 8.14.1
-- **Node version:** 22 (see `.nvmrc`)
+- **Package manager:** pnpm 11 (see `packageManager` in package.json)
+- **Node version:** 26 (see `.nvmrc`). Node runs `scripts/ci/*.ts` directly via type stripping, so keep them to erasable TypeScript syntax
 - **Build orchestration:** Turbo
 - **Testing:** Vitest with React Testing Library
 - **UI primitives:** Radix UI, Headless UI

@@ -221,7 +221,7 @@ alwaysApply: true
 - Make sure to use the digits argument with Number#toFixed().
 - Make sure typeof expressions are compared to valid values.
 - Make sure void (self-closing) elements don't have children.
-- Only add comments when code does more than meets the eye - don't comment obvious operations that match exactly what the code looks like it's doing.
+- **NEVER WRITE COMMENTS THAT STATE THE BLEEDING OBVIOUS.** Only comment a non-obvious why (a platform quirk, a workaround, a constraint), in one short line. When in doubt, leave it out.
 - Only use the `scope` prop on `<th>` elements.
 - Prevent duplicate polyfills from Polyfill.io.
 - Prevent import cycles.
