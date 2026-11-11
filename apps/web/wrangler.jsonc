@@ -38,6 +38,10 @@
       "simple": { "limit": 10, "period": 10 }
     }
   ],
+  "routes": [
+    { "custom_domain": true, "pattern": "sudburyrowingclub.org.uk" },
+    { "custom_domain": true, "pattern": "www.sudburyrowingclub.org.uk" }
+  ],
   "triggers": {
     "crons": ["0 * * * *"]
   },
