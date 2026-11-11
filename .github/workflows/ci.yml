@@ -184,8 +184,6 @@ jobs:
         deploy-${{ github.event_name == 'pull_request' &&
         github.event.pull_request.number || 'production' }}
       cancel-in-progress: false
-    outputs:
-      url: ${{ steps.deployed.outputs.url }}
     env:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -245,15 +243,27 @@ jobs:
           done > "$RUNNER_TEMP/migrations.txt"
           cat "$RUNNER_TEMP/migrations.txt"
 
-      - name: Upload preview version
+      # `wrangler preview` doesn't report the bundle size, so measure it with a
+      # dry-run upload, which builds locally and contacts nothing.
+      - name: Measure Worker size
         if: github.event_name == 'pull_request'
         working-directory: apps/web
         run: |
-          pnpm exec wrangler versions upload \
+          NO_COLOR=1 pnpm exec wrangler versions upload --dry-run \
+            -c dist/server/wrangler.json --outdir "$RUNNER_TEMP/dry-run" \
+            | grep "Total Upload" | tee "$RUNNER_TEMP/size.log"
+
+      # Version preview URLs aren't generated for Workers with Durable Objects,
+      # so each PR gets a Worker Preview (see `previews` in wrangler.jsonc).
+      - name: Deploy preview
+        if: github.event_name == 'pull_request'
+        working-directory: apps/web
+        run: |
+          pnpm exec wrangler preview \
             -c dist/server/wrangler.json \
-            --preview-alias "pr-$PR_NUMBER" \
+            --name "pr-$PR_NUMBER" \
             --message "PR #$PR_NUMBER @ ${SHA::7}" \
-            --tag "pr-$PR_NUMBER"
+            --tag "${SHA::7}"
 
       - name: Apply D1 migrations
         if: github.event_name != 'pull_request'
@@ -280,6 +290,8 @@ jobs:
       - name: Read deploy output
         id: deployed
         if: ${{ !cancelled() }}
+        env:
+          SIZE_LOG: ${{ runner.temp }}/size.log
         run: node scripts/ci/web-report.ts outputs "$RUNNER_TEMP/web-bundle-stats.json"
 
       - name: Smoke test
@@ -359,54 +371,3 @@ jobs:
             -H "Authorization: Bearer $POSTHOG_KEY" \
             -H "Content-Type: application/json" \
             -d "$body" > /dev/null
-
-  # Lighthouse scores for the preview (commented on the PR) or for production
-  # after a deploy (job summary only). Informational: never fails the run.
-  lighthouse:
-    name: Lighthouse
-    needs: web
-    if: needs.web.outputs.url != ''
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    continue-on-error: true
-    permissions:
-      pull-requests: write
-    steps:
-      - name: Lighthouse
-        id: lighthouse
-        uses: treosh/lighthouse-ci-action@3e7e23fb74242897f95c0ba9cabad3d0227b9b18 # 12.6.2
-        with:
-          urls: |
-            ${{ needs.web.outputs.url }}/
-            ${{ needs.web.outputs.url }}/news
-            ${{ needs.web.outputs.url }}/contact
-          runs: 3
-          temporaryPublicStorage: true
-          uploadArtifacts: true
-
-      - name: Report
-        env:
-          LINKS: ${{ steps.lighthouse.outputs.links }}
-          MANIFEST: ${{ steps.lighthouse.outputs.manifest }}
-        run: |
-          score() { jq -r --arg k "$1" '.summary[$k] * 100 | round | if . >= 90 then "🟢 \(.)" elif . >= 50 then "🟠 \(.)" else "🔴 \(.)" end'; }
-          {
-            echo "### Lighthouse"
-            echo
-            echo "Median of 3 runs, mobile emulation."
-            echo
-            echo "| Page | Performance | Accessibility | Best practices | SEO | Report |"
-            echo "| - | - | - | - | - | - |"
-            jq -c '.[] | select(.isRepresentativeRun)' <<<"$MANIFEST" | while read -r run; do
-              url=$(jq -r .url <<<"$run")
-              link=$(jq -r --arg u "$url" '.[$u] // empty' <<<"$LINKS")
-              echo "| \`/${url#*://*/}\` | $(score performance <<<"$run") | $(score accessibility <<<"$run") | $(score best-practices <<<"$run") | $(score seo <<<"$run") | ${link:+[View]($link)} |"
-            done
-          } | tee -a "$GITHUB_STEP_SUMMARY" > "$RUNNER_TEMP/lighthouse.md"
-
-      - name: Comment on PR
-        if: github.event_name == 'pull_request'
-        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
-        with:
-          header: lighthouse
-          path: ${{ runner.temp }}/lighthouse.md

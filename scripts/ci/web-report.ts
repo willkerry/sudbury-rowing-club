@@ -23,10 +23,15 @@ import { details, heading, table } from "./summary.ts";
 
 type BundleSize = { gzip_bytes: number; raw_bytes: number };
 
+type Url = string | { url?: string; hostname?: string };
+
 type WranglerEntry = {
   bundle_size?: BundleSize;
+  deployment_id?: string;
+  deployment_urls?: Url[];
   preview_alias_url?: string;
   preview_url?: string;
+  preview_urls?: Url[];
   timestamp?: string;
   type: string;
   version_id?: string;
@@ -95,11 +100,34 @@ const setOutput = (values: Record<string, string | number | undefined>) => {
   console.log(lines.join("\n"));
 };
 
+const firstUrl = (urls: Url[] | undefined) => {
+  const [url] = urls ?? [];
+  if (!url) return;
+  if (typeof url === "string") return url;
+
+  return url.url ?? (url.hostname && `https://${url.hostname}`);
+};
+
+const kib = 1024;
+const sizeLine = /Total Upload: ([\d.]+) KiB \/ gzip: ([\d.]+) KiB/;
+
+// `wrangler preview` reports no bundle size, so PR builds measure it with a
+// dry-run upload whose log (SIZE_LOG) has wrangler's "Total Upload" line.
+const sizeFromLog = (): BundleSize | undefined => {
+  const match = sizeLine.exec(readIfExists(env.SIZE_LOG) ?? "");
+  if (!match) return;
+
+  return {
+    gzip_bytes: Math.round(Number(match[2]) * kib),
+    raw_bytes: Math.round(Number(match[1]) * kib),
+  };
+};
+
 const outputs = (statsPath: string | undefined) => {
   const entries = wranglerEntries().filter(
     (entry) =>
       entry.worker_name === WORKER &&
-      (entry.type === "version-upload" || entry.type === "deploy"),
+      ["deploy", "preview", "version-upload"].includes(entry.type),
   );
   const latest = entries.at(-1);
 
@@ -111,7 +139,9 @@ const outputs = (statsPath: string | undefined) => {
     return;
   }
 
-  const size = entries.findLast((entry) => entry.bundle_size)?.bundle_size;
+  const size =
+    entries.findLast((entry) => entry.bundle_size)?.bundle_size ??
+    sizeFromLog();
 
   if (size && percentOfBudget(size.gzip_bytes) >= 90) {
     console.log(
@@ -119,24 +149,27 @@ const outputs = (statsPath: string | undefined) => {
     );
   }
 
+  const versionId = latest.version_id ?? latest.deployment_id;
+  // A Worker Preview has a stable URL per PR and a URL per deployment; a
+  // version upload has an alias and a version URL.
+  const stableUrl = firstUrl(latest.preview_urls) ?? latest.preview_alias_url;
+  const exactUrl = firstUrl(latest.deployment_urls) ?? latest.preview_url;
+
   if (size && statsPath) {
     const stats: Stats = {
       ...size,
       sha: env.GITHUB_SHA,
-      version_id: latest.version_id,
+      version_id: versionId,
     };
     writeFileSync(statsPath, JSON.stringify(stats));
   }
 
   setOutput({
-    alias_url: latest.preview_alias_url,
     gzip_bytes: size?.gzip_bytes,
-    preview_url: latest.preview_url,
+    preview_url: exactUrl,
     raw_bytes: size?.raw_bytes,
-    url: production
-      ? env.SITE_URL
-      : (latest.preview_alias_url ?? latest.preview_url),
-    version_id: latest.version_id,
+    url: production ? env.SITE_URL : (stableUrl ?? exactUrl),
+    version_id: versionId,
   });
 };
 
