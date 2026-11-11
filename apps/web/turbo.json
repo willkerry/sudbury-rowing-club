@@ -3,9 +3,7 @@
   "extends": ["//"],
   "tasks": {
     "build": {
-      // The build also writes the types type-check needs: next-env.d.ts,
-      // route types and the content-collections output. Caching them means a
-      // cache hit restores them too.
+      // Includes the generated types type-check needs.
       "outputs": [
         "dist/**",
         "public/**",

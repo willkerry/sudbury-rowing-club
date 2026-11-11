@@ -11,8 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Squash merges use the PR title as the commit message, so it has to pass
-  # the same conventional commit rules as lefthook's commit-msg hook.
+  # The title becomes the squash commit message.
   title:
     name: Title
     runs-on: ubuntu-latest
@@ -77,8 +76,6 @@ jobs:
         with:
           sync-labels: true
 
-  # Flags dependencies with known vulnerabilities, and summarises every
-  # dependency the PR adds, removes or changes.
   dependencies:
     name: Dependency review
     if: github.event.action != 'edited'

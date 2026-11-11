@@ -15,9 +15,7 @@ concurrency:
 env:
   FORCE_COLOR: "1"
   TURBO_TELEMETRY_DISABLED: "1"
-  # Dependabot and fork PRs get no secrets. The build validates these, so those
-  # PRs build with placeholders instead (and skip the deploy job). Pushes to
-  # master never fall back, so a missing secret still fails the build there.
+  # Dependabot and fork PRs get no secrets; pushes never use placeholders.
   NEXT_PUBLIC_ALGOLIA_APP_ID:
     ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID || (github.event_name ==
     'pull_request' && 'ci-placeholder' || '') }}
@@ -62,10 +60,8 @@ jobs:
         with:
           persist-credentials: false
 
-      # Reads the Biome version from the lockfile, so no pnpm install needed.
       - uses: biomejs/setup-biome@4c91541eaada48f67d7dbd7833600ce162b68f51 # v2.7.1
 
-      # Only runs the summary script; nothing is installed.
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
@@ -112,8 +108,7 @@ jobs:
           cache: pnpm
           node-version-file: .nvmrc
 
-      # Turbo's task hashes don't include the Node version, so the key does.
-      # The web job restores this exact key to reuse the build.
+      # Keyed by Node version, which turbo's hashes ignore.
       - name: Turbo cache
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
@@ -124,9 +119,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Unsetting GITHUB_STEP_SUMMARY stops each package's Vitest writing its
-      # own summary (its annotations still appear); the Report step below
-      # writes one for everything.
+      # Stops each package's Vitest writing its own summary.
       - name: Build, type-check and test
         run:
           env -u GITHUB_STEP_SUMMARY pnpm turbo run build type-check test
@@ -151,19 +144,14 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
-      # Each run restores the newest cache and saves a new one, so drop
-      # artifacts nothing has written for a week to stop it growing forever.
       - name: Prune turbo cache
         if: ${{ !cancelled() }}
         run: find .turbo/cache -type f -mtime +7 -delete 2>/dev/null || true
 
-  # Uploads a preview version (pull requests) or migrates D1 and deploys to
-  # production (pushes), then smoke tests it and reports on it.
   web:
     name: Deploy
     needs: [lint, verify]
-    # Production deploys only from master (a manual run on another branch
-    # skips this job). Dependabot and fork PRs have no Cloudflare token.
+    # Production only from master; Dependabot and fork PRs have no token.
     if:
       (github.event_name != 'pull_request' && github.ref ==
       'refs/heads/master') || (github.event_name == 'pull_request' &&
@@ -214,12 +202,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # A cache hit from the verify job replays the build in seconds.
       - name: Build
         run: pnpm turbo run build --filter=@sudburyrc/web...
 
-      # wrangler appends a JSON line per upload or deploy (version ID, preview
-      # URLs, bundle size) to a file in this directory; web-report.ts reads it.
       - name: Prepare
         run: |
           mkdir -p "$RUNNER_TEMP/wrangler"
@@ -228,8 +213,6 @@ jobs:
             echo "WRANGLER_SEND_METRICS=false"
           } >> "$GITHUB_ENV"
 
-      # Lists the migrations in the repo that production's D1 hasn't applied:
-      # on a PR, what merging will apply; on a push, what this deploy applies.
       - name: Check D1 migrations
         id: migrations
         continue-on-error: true
@@ -243,8 +226,7 @@ jobs:
           done > "$RUNNER_TEMP/migrations.txt"
           cat "$RUNNER_TEMP/migrations.txt"
 
-      # `wrangler preview` doesn't report the bundle size, so measure it with a
-      # dry-run upload, which builds locally and contacts nothing.
+      # `wrangler preview` doesn't report the bundle size.
       - name: Measure Worker size
         if: github.event_name == 'pull_request'
         working-directory: apps/web
@@ -253,8 +235,7 @@ jobs:
             -c dist/server/wrangler.json --outdir "$RUNNER_TEMP/dry-run" \
             | grep "Total Upload" | tee "$RUNNER_TEMP/size.log"
 
-      # Version preview URLs aren't generated for Workers with Durable Objects,
-      # so each PR gets a Worker Preview (see `previews` in wrangler.jsonc).
+      # Version preview URLs aren't generated for Workers with Durable Objects.
       - name: Deploy preview
         if: github.event_name == 'pull_request'
         working-directory: apps/web
@@ -300,8 +281,6 @@ jobs:
           URL: ${{ steps.deployed.outputs.url }}
         run: node scripts/ci/smoke.ts "$URL" "$RUNNER_TEMP/smoke.md"
 
-      # master's latest successful run uploads its bundle size, so PRs can
-      # show the change against it.
       - name: Download master's bundle size
         if: ${{ !cancelled() && github.event_name == 'pull_request' }}
         continue-on-error: true
@@ -348,8 +327,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 90
 
-      # Marks the deploy on PostHog's charts. Skipped until the
-      # POSTHOG_PERSONAL_API_KEY secret and POSTHOG_PROJECT_ID variable exist.
+      # Skipped until POSTHOG_PERSONAL_API_KEY and POSTHOG_PROJECT_ID exist.
       - name: Annotate deploy in PostHog
         if: github.event_name == 'push'
         continue-on-error: true

@@ -1,6 +1,3 @@
-// Shared building blocks for job summaries, so every report reads the same
-// way: a status heading, one line of headline numbers, then collapsible
-// tables.
 import { appendFileSync } from "node:fs";
 
 export type Status = "pass" | "warn" | "fail";
@@ -23,7 +20,6 @@ export const formatDuration = (ms: number) =>
     ? `${Math.floor(ms / 60_000)}m ${Math.round((ms % 60_000) / 1000)}s`
     : `${(ms / 1000).toFixed(1)}s`;
 
-// Table cells can't contain raw pipes or newlines.
 const cell = (value: string) =>
   value.replaceAll("|", "\\|").replaceAll("\n", " ");
 
@@ -45,7 +41,6 @@ export const stripAnsi = (text: string) => text.replace(ansi, "");
 export const codeBlock = (text: string, language = "text") =>
   `\`\`\`${language}\n${text.trimEnd()}\n\`\`\``;
 
-// Links to a line of a file at the commit being checked, as shown on GitHub.
 export const fileLink = (path: string, line?: number) => {
   const { GITHUB_REPOSITORY, GITHUB_SERVER_URL, SHA, GITHUB_SHA } = process.env;
   const label = `\`${path}${line ? `:${line}` : ""}\``;

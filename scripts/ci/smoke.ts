@@ -1,7 +1,3 @@
-// Requests a handful of routes on a deployed Worker and fails if any of them
-// doesn't answer 200 with the expected content type. Retries cover the few
-// seconds a new version or preview alias can take to propagate.
-//
 // Usage: node scripts/ci/smoke.ts <base-url> [markdown-output-path]
 import { writeFileSync } from "node:fs";
 

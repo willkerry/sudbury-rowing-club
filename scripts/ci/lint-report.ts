@@ -1,5 +1,3 @@
-// Turns Biome's JSON report into the job summary.
-//
 // Usage: node scripts/ci/lint-report.ts <biome-report.json>
 import { existsSync, readFileSync } from "node:fs";
 import {

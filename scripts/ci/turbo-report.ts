@@ -1,9 +1,3 @@
-// Turns the newest `turbo run --summarize` file into the job summary: type
-// errors, per-package test results and every task's status, cache and time.
-// It also annotates TypeScript errors with paths from the repository root;
-// turbo prefixes task output with the package name, which stops setup-node's
-// tsc problem matcher resolving them.
-//
 // Usage: node scripts/ci/turbo-report.ts [title]
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
@@ -72,8 +66,7 @@ const readLog = (task: Task) =>
     ? stripAnsi(readFileSync(task.logFile, "utf8")).split("\n")
     : [];
 
-// tsc prints `file(1,2): error TS1: …` when piped and `file:1:2 - error TS1: …`
-// with --pretty, which FORCE_COLOR turns on.
+// Plain and --pretty (FORCE_COLOR) formats.
 const tscErrors = [
   /^(?<file>[^\s(][^(]*)\((?<line>\d+),(?<col>\d+)\): error (?<code>TS\d+): (?<message>.*)$/,
   /^(?<file>\S[^:]*):(?<line>\d+):(?<col>\d+) - error (?<code>TS\d+): (?<message>.*)$/,
@@ -174,8 +167,6 @@ const testResults = tasks
 const passedTests = total(testResults, passedCount);
 const failedTests = total(testResults, failedCount);
 
-// Type-check failures are covered by the type errors table; show the log for
-// any other failure, or a type-check whose errors couldn't be parsed.
 const unexplained = failed.filter(
   (task) =>
     task.task !== "type-check" ||
