@@ -33,18 +33,9 @@ vi.mock("@/lib/server/track", () => ({
   trackServerEvent: mockTrack,
 }));
 
-vi.mock("emails/contact-form-delivered", () => ({
-  ContactFormDeliveredEmail: (props: Record<string, unknown>) => ({
-    __props: props,
-    __template: "delivered",
-  }),
-}));
-
-vi.mock("emails/contact-form-failed", () => ({
-  ContactFormFailedEmail: (props: Record<string, unknown>) => ({
-    __props: props,
-    __template: "failed",
-  }),
+vi.mock("@/lib/server/render-email", () => ({
+  renderEmail: (name: string, props: Record<string, unknown>) =>
+    Promise.resolve(JSON.stringify({ __props: props, __template: name })),
 }));
 
 const { POST } = await import("./route");
@@ -101,11 +92,15 @@ describe("POST /api/webhooks/resend", () => {
       expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
       expect(args.subject).toContain("delivered");
       expect(args.subject).toContain(SAMPLE_CONTACT.toName);
-      expect(args.react.__template).toBe("delivered");
-      expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);
-      expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
-      expect(args.react.__props.toName).toBe(SAMPLE_CONTACT.toName);
-      expect(args.react.__props.toRole).toBe(SAMPLE_CONTACT.toRole);
+      expect(JSON.parse(args.html).__template).toBe("contactFormDelivered");
+      expect(JSON.parse(args.html).__props.message).toBe(
+        SAMPLE_CONTACT.message,
+      );
+      expect(JSON.parse(args.html).__props.fromName).toBe(
+        SAMPLE_CONTACT.fromName,
+      );
+      expect(JSON.parse(args.html).__props.toName).toBe(SAMPLE_CONTACT.toName);
+      expect(JSON.parse(args.html).__props.toRole).toBe(SAMPLE_CONTACT.toRole);
       expect(mockKvDel).toHaveBeenCalledWith(EMAIL_ID);
     });
   });
@@ -129,12 +124,20 @@ describe("POST /api/webhooks/resend", () => {
         expect(args.to).toContain(SAMPLE_CONTACT.fromEmail);
         expect(args.subject).toMatch(FAILURE_SUBJECT_PATTERN);
         expect(args.subject).toContain(SAMPLE_CONTACT.toName);
-        expect(args.react.__template).toBe("failed");
-        expect(args.react.__props.message).toBe(SAMPLE_CONTACT.message);
-        expect(args.react.__props.fromName).toBe(SAMPLE_CONTACT.fromName);
-        expect(args.react.__props.toName).toBe(SAMPLE_CONTACT.toName);
-        expect(args.react.__props.toRole).toBe(SAMPLE_CONTACT.toRole);
-        expect(args.react.__props.fallbackEmail).toBe(
+        expect(JSON.parse(args.html).__template).toBe("contactFormFailed");
+        expect(JSON.parse(args.html).__props.message).toBe(
+          SAMPLE_CONTACT.message,
+        );
+        expect(JSON.parse(args.html).__props.fromName).toBe(
+          SAMPLE_CONTACT.fromName,
+        );
+        expect(JSON.parse(args.html).__props.toName).toBe(
+          SAMPLE_CONTACT.toName,
+        );
+        expect(JSON.parse(args.html).__props.toRole).toBe(
+          SAMPLE_CONTACT.toRole,
+        );
+        expect(JSON.parse(args.html).__props.fallbackEmail).toBe(
           "enquiries@sudburyrowingclub.org.uk",
         );
         expect(mockKvDel).toHaveBeenCalledWith(EMAIL_ID);

@@ -1,6 +1,5 @@
 import { TRPCError } from "@trpc/server";
 import Bowser from "bowser";
-import { ContactFormEmail } from "emails/contact-form";
 import { tryit } from "radashi";
 import { Resend } from "resend";
 import { filterXSS } from "xss";
@@ -11,6 +10,7 @@ import { checkHeadersForSpam } from "@/lib/akismet";
 import { CONTACT_FORM_TAG, SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
 import { storeInflightContact } from "@/lib/inflight-contact";
+import { renderEmail } from "@/lib/server/render-email";
 import { trackServerEvent } from "@/lib/server/track";
 // import { checkHeadersForTurnstileToken } from "@/lib/turnstile";
 import { rateLimitedProcedure, router } from "../init";
@@ -162,13 +162,13 @@ export const commsRouter = router({
 
       const createEmailResponse = await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),
-        react: ContactFormEmail({
-          toName,
-          toEmail,
-          toRole,
+        html: await renderEmail("contactForm", {
           fromEmail: input.email,
           fromName: input.name,
           message: sanitizedMessage,
+          toEmail,
+          toName,
+          toRole,
         }),
         replyTo: formatName(input.email, input.name),
         subject: `${input.name} via SRC Contact`,

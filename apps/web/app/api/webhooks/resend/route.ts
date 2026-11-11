@@ -1,5 +1,3 @@
-import { ContactFormDeliveredEmail } from "emails/contact-form-delivered";
-import { ContactFormFailedEmail } from "emails/contact-form-failed";
 import { type NextRequest, NextResponse } from "next/server";
 import { tryit } from "radashi";
 import { Resend, type WebhookEvent } from "resend";
@@ -12,6 +10,7 @@ import {
   readInflightContact,
   storeInflightContact,
 } from "@/lib/inflight-contact";
+import { renderEmail } from "@/lib/server/render-email";
 import { trackServerEvent } from "@/lib/server/track";
 
 const ResendEventSchema = z.object({
@@ -42,7 +41,7 @@ const sendDeliveredNotification = async (
 ): Promise<{ error?: string }> => {
   const { error } = await resend.emails.send({
     from: formatName(SENDER.email, SENDER.name),
-    react: ContactFormDeliveredEmail({
+    html: await renderEmail("contactFormDelivered", {
       fromName: contact.fromName,
       message: contact.message,
       toName: contact.toName,
@@ -62,7 +61,7 @@ const sendFailedNotification = async (
 ): Promise<{ error?: string }> => {
   const { error } = await resend.emails.send({
     from: formatName(SENDER.email, SENDER.name),
-    react: ContactFormFailedEmail({
+    html: await renderEmail("contactFormFailed", {
       fallbackEmail: EMAIL,
       fromName: contact.fromName,
       message: contact.message,
