@@ -2,6 +2,10 @@ const unavailable = (binding: string) => () => {
   throw new Error(`The ${binding} binding is not available in tests`);
 };
 
+export const waitUntil = (promise: Promise<unknown>) => {
+  void promise;
+};
+
 export const env = {
   ASSETS: { fetch: unavailable("ASSETS") },
   CF_VERSION_METADATA: { id: "test" },
