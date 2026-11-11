@@ -19,7 +19,7 @@ pnpm test:watch           # Run tests in watch mode
 pnpm check                # Run Biome linting/formatting with auto-fix
 
 # Web app (from apps/web)
-pnpm deploy               # vite build + wrangler deploy (CI does this on push to master)
+pnpm deploy               # vite build + vinext-cloudflare deploy with traffic-aware cache warming (CI deploys on push to master)
 pnpm db:migrate           # Apply D1 migrations from packages/db to production
 
 # Per-app commands (from app directory)
@@ -48,7 +48,7 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 **Data flow:** Sanity CMS → GROQ queries → web app. A Sanity webhook to `/api/revalidate` invalidates cached pages.
 
-**Cloudflare bindings (apps/web/wrangler.jsonc):** Workers Cache for pages, KV for data (`DATA_CACHE`, `VINEXT_KV_CACHE`), D1 (`DB`), rate limiting, Images, the `OG` service binding to `apps/og`, an hourly cron (`worker.ts`). Keep the Worker under 3 MB gzipped (free plan).
+**Cloudflare bindings (apps/web/wrangler.jsonc):** Workers Response Store for pages and data (R2 `CACHE_BODIES` + `CacheMetadata` Durable Object, see vite.config.ts), KV (`DATA_CACHE`), D1 (`DB`), rate limiting, Images, the `OG` service binding to `apps/og`, an hourly cron (`worker.ts`). Keep the Worker under 3 MB gzipped (free plan).
 
 ## Code Style
 

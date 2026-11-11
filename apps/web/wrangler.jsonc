@@ -1,5 +1,9 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
+  // Workers Response Store (vinext's cache adapter, self-contained mode). Only
+  // the ResponseStoreBinding entrypoint goes through Workers Cache; the R2
+  // bucket holds bodies and the CacheMetadata Durable Object holds metadata.
+  "cache": { "enabled": false },
   "compatibility_date": "2026-11-01",
   "compatibility_flags": ["nodejs_compat"],
   "main": "./worker.ts",
@@ -10,7 +14,8 @@
   "workers_dev": true,
   "assets": {
     "binding": "ASSETS",
-    "not_found_handling": "none"
+    "not_found_handling": "none",
+    "run_worker_first": ["/*", "!/_next/static/*", "!/*/_next/static/*"]
   },
   "d1_databases": [
     {
@@ -20,14 +25,18 @@
       "migrations_dir": "../../packages/db/migrations"
     }
   ],
+  "durable_objects": {
+    "bindings": [{ "class_name": "CacheMetadata", "name": "CACHE_METADATA" }]
+  },
+  "exports": {
+    "CacheMetadata": { "storage": "sqlite", "type": "durable-object" },
+    "default": { "cache": { "enabled": false }, "type": "worker" },
+    "ResponseStoreBinding": { "cache": { "enabled": true }, "type": "worker" }
+  },
   "images": {
     "binding": "IMAGES"
   },
   "kv_namespaces": [
-    {
-      "binding": "VINEXT_KV_CACHE",
-      "id": "ec9655a00e22406a95cb36d155abc017"
-    },
     {
       "binding": "DATA_CACHE",
       "id": "e925387678ef4d849b5f13be35fada2d"
@@ -41,6 +50,9 @@
       "invocation_logs": true
     }
   },
+  "r2_buckets": [
+    { "binding": "CACHE_BODIES", "bucket_name": "sudbury-web-response-store" }
+  ],
   "ratelimits": [
     {
       "name": "RATE_LIMITER",

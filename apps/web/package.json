@@ -132,7 +132,7 @@
   "scripts": {
     "build": "vite build",
     "db:migrate": "wrangler d1 migrations apply sudbury-web --remote",
-    "deploy": "vite build && wrangler deploy -c dist/server/wrangler.json",
+    "deploy": "vinext-cloudflare deploy --traffic-aware-warm-cache",
     "dev": "vite dev --port 4321",
     "email-dev": "email dev",
     "start": "vite preview --port 4321",

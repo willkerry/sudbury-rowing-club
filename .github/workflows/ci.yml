@@ -126,9 +126,12 @@ jobs:
         working-directory: apps/og
         run: pnpm exec wrangler deploy --message "${GITHUB_SHA::7}"
 
+      # Uploads a version at 0%, warms the Response Store with the routes that
+      # took the most traffic in the last 24 hours (zone analytics), then
+      # promotes it. Warming is skipped if the token can't read analytics.
       - name: Deploy
         if: github.event_name == 'push'
         working-directory: apps/web
         run:
-          pnpm exec wrangler deploy -c dist/server/wrangler.json --message
-          "${GITHUB_SHA::7}"
+          pnpm exec vinext-cloudflare deploy --skip-build --config
+          dist/server/wrangler.json --traffic-aware-warm-cache

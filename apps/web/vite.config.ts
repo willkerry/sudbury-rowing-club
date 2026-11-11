@@ -3,8 +3,7 @@ import { createRequire } from "node:module";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import contentCollections from "@content-collections/vite";
 import mdx from "@mdx-js/rollup";
-import { kvDataAdapter } from "@vinext/cloudflare/cache/kv-data-adapter";
-import { workersCacheCdnAdapter } from "@vinext/cloudflare/cache/workers-cache-cdn-adapter";
+import { responseStoreAdapter } from "@vinext/cloudflare/cache/response-store-adapter";
 import { imagesOptimizer } from "@vinext/cloudflare/images/images-optimizer";
 import {
   remarkAdmonition,
@@ -37,8 +36,6 @@ const validatePublicEnv = (): Plugin => ({
     throw new Error(`Invalid public environment variables:\n${problems}`);
   },
 });
-
-const isPreviewBuild = process.env.NEXT_PUBLIC_APP_ENV === "preview";
 
 // The browser loads the MapTiler SDK from its CDN (lib/load-maptiler-sdk.ts);
 // pin that to the installed devDependency so runtime and types agree.
@@ -138,14 +135,9 @@ export default defineConfig({
       }),
     },
     vinext({
+      // Bindings and exports for this mode live in wrangler.jsonc.
+      cache: responseStoreAdapter({ mode: "self-contained" }),
       images: { optimizer: imagesOptimizer() },
-      cache: {
-        // Workers Cache hands requests to a cached-response entrypoint that
-        // resolves to the deployed version, so a preview version's build ID
-        // never matches and it answers 503. Previews render uncached instead.
-        ...(isPreviewBuild ? {} : { cdn: workersCacheCdnAdapter() }),
-        data: kvDataAdapter(),
-      },
     }),
     cloudflare({
       // Runs the OG Worker alongside the app in dev, behind the OG binding.
