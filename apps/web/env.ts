@@ -1,22 +1,10 @@
 import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { clientSchema, serverSchema, sharedSchema } from "./env.schema";
 
 export const env = createEnv({
-  client: {
-    NEXT_PUBLIC_ALGOLIA_APP_ID: z.string(),
-    NEXT_PUBLIC_ALGOLIA_INDEX_NAME: z.string(),
-    NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: z.string(),
-    NEXT_PUBLIC_APP_ENV: z
-      .enum(["development", "preview", "production"])
-      .optional(),
-    NEXT_PUBLIC_GIT_COMMIT_SHA: z.string().optional(),
-    NEXT_PUBLIC_MAPTILER_KEY: z.string(),
-    NEXT_PUBLIC_POSTHOG_HOST: z.string(),
-    NEXT_PUBLIC_POSTHOG_KEY: z.string(),
-    NEXT_PUBLIC_SANITY_DATASET: z.string(),
-    NEXT_PUBLIC_SANITY_PROJECT_ID: z.string(),
-    NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string(),
-  },
+  client: clientSchema,
+  server: serverSchema,
+  shared: sharedSchema,
   runtimeEnv: {
     ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
     APP_URL: process.env.APP_URL,
@@ -40,20 +28,5 @@ export const env = createEnv({
     RESEND_WEBHOOK_SECRET: process.env.RESEND_WEBHOOK_SECRET,
     SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
     TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
-  },
-  server: {
-    ALGOLIA_API_KEY: z.string().min(1),
-    BUG_RECIPIENT_EMAIL: z.string(),
-    FIRECRAWL_API_KEY: z.templateLiteral(["fc-", z.string()]),
-    OG_IMAGE_SECRET: z.string().min(32),
-    REDIRECT_SECRET: z.string().min(32),
-    RESEND_API_KEY: z.string().min(1),
-    RESEND_WEBHOOK_SECRET: z.string().min(1),
-    SANITY_REVALIDATE_SECRET: z.string().min(32),
-    TURNSTILE_SECRET_KEY: z.string().min(1),
-  },
-  shared: {
-    APP_URL: z.string().optional(),
-    NODE_ENV: z.enum(["development", "production"]),
   },
 });

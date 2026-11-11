@@ -15,8 +15,28 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkSmartypants from "remark-smartypants";
 import vinext from "vinext";
 import { defineConfig, type Plugin } from "vite";
+import { z } from "zod";
+import { clientSchema } from "./env.schema";
 
 const require = createRequire(import.meta.url);
+
+// NEXT_PUBLIC_* values are inlined at build time, so a missing or malformed
+// one would only surface once the site is live. Fail the build instead. Runs
+// after vinext has loaded .env into process.env; never prints the values.
+const validatePublicEnv = (): Plugin => ({
+  apply: "build",
+  name: "validate-public-env",
+  configResolved() {
+    const result = z.object(clientSchema).safeParse(process.env);
+    if (result.success) return;
+
+    const problems = result.error.issues
+      .map((issue) => `  - ${issue.path.join(".")} ${issue.message}`)
+      .join("\n");
+
+    throw new Error(`Invalid public environment variables:\n${problems}`);
+  },
+});
 
 const isPreviewBuild = process.env.NEXT_PUBLIC_APP_ENV === "preview";
 
@@ -100,6 +120,7 @@ export default defineConfig({
     __MAPTILER_SDK_VERSION__: JSON.stringify(maptilerSdkVersion),
   },
   plugins: [
+    validatePublicEnv(),
     stubPrettier(),
     stubUnusedReactEmailComponents(),
     clubsDataAsset(),

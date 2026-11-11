@@ -44,6 +44,21 @@
     { "custom_domain": true, "pattern": "sudburyrowingclub.org.uk" },
     { "custom_domain": true, "pattern": "www.sudburyrowingclub.org.uk" }
   ],
+  // `wrangler deploy` and `wrangler versions upload` fail if any of these
+  // aren't set on the Worker. Keep in step with serverSchema in env.schema.ts.
+  "secrets": {
+    "required": [
+      "ALGOLIA_API_KEY",
+      "BUG_RECIPIENT_EMAIL",
+      "FIRECRAWL_API_KEY",
+      "OG_IMAGE_SECRET",
+      "REDIRECT_SECRET",
+      "RESEND_API_KEY",
+      "RESEND_WEBHOOK_SECRET",
+      "SANITY_REVALIDATE_SECRET",
+      "TURNSTILE_SECRET_KEY"
+    ]
+  },
   "triggers": {
     "crons": ["0 * * * *"]
   },
