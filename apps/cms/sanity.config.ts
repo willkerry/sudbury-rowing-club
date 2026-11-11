@@ -1,21 +1,19 @@
-import { dashboardTool } from "@sanity/dashboard";
-import { UsersIcon } from "@sanity/icons";
+import { UsersIcon } from "@sanity/icons/Users";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import schemas from "./schemas/schema";
 
 const config = defineConfig({
-  title: "Sudbury Rowing Club",
-  projectId: "gvxge7ps",
   dataset: "production",
+  projectId: "gvxge7ps",
+  title: "Sudbury Rowing Club",
   plugins: [
     structureTool({
-      structure: (S, context) => {
-        return S.list()
+      structure: (S, context) =>
+        S.list()
           .title("Content")
           .items([
             S.listItem()
@@ -45,9 +43,9 @@ const config = defineConfig({
                   .title("Governance")
                   .items([
                     orderableDocumentListDeskItem({
-                      type: "officers",
-                      title: "Club Officers",
                       icon: UsersIcon,
+                      title: "Club Officers",
+                      type: "officers",
                       S,
                       context,
                     }),
@@ -129,11 +127,6 @@ const config = defineConfig({
                     S.listItem()
                       .title("People")
                       .child(S.documentTypeList("person").title("People")),
-                    S.listItem()
-                      .title("Forwarders")
-                      .child(
-                        S.documentTypeList("forwarders").title("Forwarders"),
-                      ),
                   ]),
               ),
 
@@ -142,7 +135,6 @@ const config = defineConfig({
                 ![
                   "author",
                   "committees",
-                  "forwarders",
                   "minutes",
                   "members",
                   "news",
@@ -157,15 +149,11 @@ const config = defineConfig({
                   "vicePresidents",
                 ].includes(listItem.getId() as string),
             ),
-          ]);
-      },
+          ]),
     }),
 
     visionTool(),
     table(),
-    dashboardTool({
-      widgets: [vercelWidget()],
-    }),
   ],
 
   schema: {

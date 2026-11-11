@@ -1,9 +1,10 @@
-import { kyInstance } from "@/app/get-query-client";
+import ky from "ky";
+import { getClientIp } from "@/lib/client-ip";
 import { BASE_URL } from "./constants";
 
 const API_KEY = "6c80e09f5c4d";
 
-export const checkForSpam = (
+export const checkForSpam = async (
   userIp: string,
   userAgent: string,
   referrer: string,
@@ -11,26 +12,49 @@ export const checkForSpam = (
   commentAuthorEmail: string,
   commentContent: string,
 ): Promise<boolean> => {
-  const formData = new FormData();
+  const response = await ky.post("https://rest.akismet.com/1.1/comment-check", {
+    body: new URLSearchParams({
+      api_key: API_KEY,
+      blog: BASE_URL,
+      blog_lang: "en_gb",
+      comment_author: commentAuthor,
+      comment_author_email: commentAuthorEmail,
+      comment_content: commentContent,
+      comment_type: "contact-form",
+      referrer: referrer,
+      user_agent: userAgent,
+      user_ip: userIp,
+    }),
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  });
+  const verdict = await response.text();
 
-  formData.append("api_key", API_KEY);
-  formData.append("blog", BASE_URL);
-  formData.append("user_ip", userIp);
-  formData.append("user_agent", userAgent);
-  formData.append("referrer", referrer);
-  formData.append("comment_type", "contact-form");
-  formData.append("comment_author", commentAuthor);
-  formData.append("comment_author_email", commentAuthorEmail);
-  formData.append("comment_content", commentContent);
-  formData.append("blog_lang", "en_gb");
+  if (verdict !== "false") {
+    // Akismet explains spam and invalid verdicts in these response headers.
+    console.warn("Akismet verdict", {
+      debugHelp: response.headers.get("x-akismet-debug-help"),
+      hasReferrer: Boolean(referrer),
+      hasUserAgent: Boolean(userAgent),
+      hasUserIp: Boolean(userIp),
+      proTip: response.headers.get("x-akismet-pro-tip"),
+      verdict,
+    });
+  }
 
-  return kyInstance
-    .post("https://rest.akismet.com/1.1/comment-check", {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: formData,
-    })
-    .text()
-    .then((r) => r === "true");
+  return verdict === "true";
 };
+
+export const checkHeadersForSpam = async (
+  headers: Headers,
+  { name, email, message }: { name: string; email: string; message: string },
+) =>
+  checkForSpam(
+    getClientIp(headers) ?? "",
+    headers.get("user-agent") ?? "",
+    headers.get("referer") ?? "",
+    name,
+    email,
+    message,
+  );

@@ -7,8 +7,5 @@ export { MetOffice } from "./organisations/met-office";
 export { Results } from "./results";
 export { Rower } from "./rower";
 export { Safety } from "./safety";
-export { Facebook } from "./socials/facebook";
-export { Instagram } from "./socials/instagram";
-export { Twitter } from "./socials/twitter";
 export { Spond } from "./spond";
 export { UserDropdown } from "./user-dropdown";

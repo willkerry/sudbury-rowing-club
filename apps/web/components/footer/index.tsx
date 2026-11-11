@@ -7,13 +7,13 @@ import {
   regatta,
   socials,
 } from "@/components/nav/nav-data";
-import type { NavigationItem } from "@/components/nav/types";
+import type { IconNavItemType } from "@/types/nav-item";
 import { Address } from "./address";
 import { FooterColumn } from "./column";
 import { ReportABug } from "./reportABug";
 import { SocialIcons } from "./socialIcons";
 
-const columns: [string, NavigationItem[]][] = [
+const columns: [string, IconNavItemType[]][] = [
   ["About", about],
   ["Regatta", regatta],
   ["Community", [...members.filter((item) => item.cta), ...socials]],
@@ -24,16 +24,23 @@ export const Footer = () => (
   <footer className="border-t">
     <Container>
       <h2 className="sr-only">Footer</h2>
-      <div className="justify-left flex flex-wrap py-16">
+      <div className="flex flex-wrap py-16">
         <div className="w-1/2 sm:w-4/12 md:w-3/12">
           <Crest aria-hidden className="mb-6 h-12 text-gray-600 md:h-16" />
           <Address />
         </div>
       </div>
 
-      <div className="justify-left mb-12 flex flex-wrap">
+      <div className="mb-12 flex flex-wrap">
         {columns.map(([heading, data]) => (
-          <FooterColumn key={heading} heading={heading} data={data} />
+          <FooterColumn
+            data={data.map((item) => ({
+              ...item,
+              target: item.href.startsWith("http") ? "_blank" : undefined,
+            }))}
+            heading={heading}
+            key={heading}
+          />
         ))}
       </div>
 

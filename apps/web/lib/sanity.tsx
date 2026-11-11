@@ -4,40 +4,36 @@ import {
   type PortableTextProps,
 } from "@portabletext/react";
 import { smartQuotes } from "@sudburyrc/helpers";
-import {
-  AlertCircle,
-  CheckCircle,
-  HelpCircle,
-  InfoIcon,
-  XCircle,
-} from "lucide-react";
 import Link from "next/link";
+import type { ComponentProps } from "react";
 import { OEmbed } from "@/components/oembed/oembed";
 import { SanityFigure } from "@/components/stour/figure";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { cn } from "./utils";
 
 type WrappedPortableTextProps = PortableTextProps & {
+  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
+  /* @deprecated - use wrapperProps.className instead */
   className?: string;
 };
 
-const NOTE_ICONS = {
-  primary: InfoIcon,
-  secondary: HelpCircle,
-  success: CheckCircle,
-  warning: AlertCircle,
-  error: XCircle,
-} as const;
-
-const NoteIcon = ({ type }: { type: keyof typeof NOTE_ICONS }) => {
-  const Icon = NOTE_ICONS[type] ?? NOTE_ICONS.primary;
-
-  return <Icon aria-hidden={true} className="h-4 w-4" />;
+const mapNoteTypeToAlertVariant = (
+  type: string,
+): ComponentProps<typeof Alert>["variant"] => {
+  switch (type) {
+    case "warning":
+      return "warn";
+    case "error":
+      return "destructive";
+    default:
+      return "default";
+  }
 };
 
 const components: PortableTextComponents = {
   marks: {
-    normal: ({ value }) => <pre>{JSON.stringify(value)}</pre>,
     link: ({ value, children }) => <Link href={value?.href}>{children}</Link>,
+    normal: ({ value }) => <pre>{JSON.stringify(value)}</pre>,
   },
 
   types: {
@@ -46,6 +42,17 @@ const components: PortableTextComponents = {
         <code>{value?.code}</code>
       </pre>
     ),
+    figure: ({ value }) => <SanityFigure value={value} />,
+    note: ({ value }) => (
+      <Alert
+        className="not-prose"
+        variant={mapNoteTypeToAlertVariant(value?.type)}
+      >
+        {value?.label && <AlertTitle>{value?.label}</AlertTitle>}
+        {value?.note && <AlertDescription>{value?.note}</AlertDescription>}
+      </Alert>
+    ),
+    oembed: ({ value }) => <OEmbed url={value?.url} />,
     quote: ({ value }) => (
       <figure>
         <blockquote>
@@ -54,42 +61,26 @@ const components: PortableTextComponents = {
         <figcaption className="-mt-4 pl-3.5">{value?.attribution}</figcaption>
       </figure>
     ),
-    note: ({ value }) => (
-      <Alert
-        className="not-prose"
-        variant={
-          value?.type === "warning" || value?.type === "error"
-            ? "destructive"
-            : "default"
-        }
-      >
-        <NoteIcon type={value?.type} />
-        <AlertTitle>{value?.label}</AlertTitle>
-        <AlertDescription>{value?.note}</AlertDescription>
-      </Alert>
-    ),
-    figure: ({ value }) => <SanityFigure value={value} />,
-    oembed: ({ value }) => <OEmbed url={value?.url} />,
   },
 };
 
 export function PortableText({
   value,
-  className = "",
+  className,
+  wrapperProps,
   ...rest
 }: WrappedPortableTextProps) {
-  if (value) {
-    return (
-      <div {...{ className }}>
-        <BlockContent
-          components={components}
-          value={smartQuotesDeep(value)}
-          {...rest}
-        />
-      </div>
-    );
-  }
-  return null;
+  if (!value) return null;
+
+  return (
+    <div {...wrapperProps} className={cn(className, wrapperProps?.className)}>
+      <BlockContent
+        components={components}
+        value={smartQuotesDeep(value)}
+        {...rest}
+      />
+    </div>
+  );
 }
 
 function smartQuotesDeep(

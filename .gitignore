@@ -39,6 +39,7 @@ yarn-error.log*
 
 # typescript
 tsconfig.tsbuildinfo
+next-env.d.ts
 
 # temporary
 .tmp
@@ -56,3 +57,6 @@ tsconfig.tsbuildinfo
 
 **/dist/
 **/node_modules/
+
+# Git worktrees
+.worktrees/

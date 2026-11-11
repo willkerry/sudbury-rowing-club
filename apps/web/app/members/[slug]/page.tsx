@@ -20,8 +20,9 @@ export const generateMetadata = async ({ params }: MemberPageParamObject) => {
   if (!notice) return {};
 
   return createMetadata({
+    description: "Members' Notices",
+    image: { title: notice?.title || "Notice" },
     title: notice?.title,
-    description: "Members’ Notices",
   });
 };
 
@@ -32,7 +33,7 @@ const Notice = async ({ params }: MemberPageParamObject) => {
 
   return (
     <>
-      <PageHeader title={notice?.title} breadcrumbs />
+      <PageHeader breadcrumbs title={notice?.title} />
 
       <Container className="px-0">
         <NoticeBody notice={notice} />

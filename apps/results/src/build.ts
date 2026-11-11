@@ -1,36 +1,30 @@
-import { Parcel } from "@parcel/core";
+import { performance } from "node:perf_hooks";
 import { consola } from "consola";
-import { remove } from "fs-extra/esm";
+import ms from "ms";
 
-import { cleanResults, generateResults, TEMP } from "./convert.ts";
-
-const clean = async () =>
-  Promise.all([cleanResults(), remove(".parcel-cache")]);
+import { cleanResults, generateResults } from "./convert.ts";
+import { optimiseOutput } from "./optimise.ts";
 
 export const build = async () => {
-  const bundler = new Parcel({
-    entries: `${TEMP}/index.html`,
-    defaultConfig: "@parcel/config-default",
-    mode: "production",
-  });
+  const start = performance.now();
 
   try {
-    await clean();
+    await cleanResults();
+    consola.info(`Cleaned up old results in ${ms(performance.now() - start)}`);
 
     consola.start("Generating results from archival HTML...");
 
     await generateResults();
 
-    consola.start("Bundling results with Parcel...");
+    consola.start("Minifying HTML and CSS...");
 
-    await bundler.run();
+    const optimised = await optimiseOutput();
+    consola.info(`Optimised ${optimised} files`);
 
-    consola.success("Done.");
+    consola.success(`Done in ${ms(performance.now() - start)}`);
   } catch (error) {
     consola.error(error);
-  } finally {
-    await clean();
   }
 };
 
-build();
+await build();

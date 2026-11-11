@@ -5,12 +5,12 @@ export const SocialIcons = () => (
   <>
     {socials.map((item) => (
       <Link
-        key={item.href}
+        className="mr-4 rounded-sm text-gray-400 transition hover:text-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
         href={item.href}
-        className="mr-4 text-gray-400 transition hover:text-black"
+        key={item.href}
       >
         <span className="sr-only">{item.name}</span>
-        {item.icon && <item.icon aria-hidden className="w-4 stroke-[1.5px]" />}
+        {item.icon && <item.icon aria-hidden className="size-4" />}
       </Link>
     ))}
   </>

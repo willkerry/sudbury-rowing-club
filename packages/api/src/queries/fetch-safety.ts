@@ -1,7 +1,7 @@
 import groq from "groq";
 import { z } from "zod";
 import { sanityClient } from "../sanity/client";
-import { ZTypedObject } from "./typed-object";
+import { type TypedObject, ZTypedObject } from "./typed-object";
 
 const fields = groq`
 _updatedAt,
@@ -11,9 +11,9 @@ pin,
 body[]{
     ...,
     _type == "figure" => {
-    "_id": @.image.asset->_id,       
+    "_id": @.image.asset->_id,
     "altText": @.image.asset->altText,
-    "description": @.image.asset->description,   
+    "description": @.image.asset->description,
     "lqip": @.image.asset->metadata.lqip,
     "aspectRatio": @.image.asset->metadata.dimensions.aspectRatio, 
     },
@@ -28,7 +28,7 @@ document != null => {
 link != null => { link }`;
 
 const safetyQuery = groq`*[
-    _type == "safety" && 
+    _type == "safety" &&
     !(_id in path("drafts.**"))
   ] | order(_updatedAt asc) {
   ${fields}
@@ -36,40 +36,56 @@ const safetyQuery = groq`*[
 
 const safetyQueryById = groq`*[_id == $id][0]{${fields}}`;
 
-const ZSafetyResponse = z.object({
-  _updatedAt: z.string(),
-  _id: z.string(),
+const ZSafetyDocument = z.object({
+  extension: z.string(),
   title: z.string(),
-  body: z.array(ZTypedObject).nullable(),
+  url: z.string(),
+});
+type SafetyDocument = z.infer<typeof ZSafetyDocument>;
+
+const ZSafetyLink = z.object({
+  title: z.string(),
+  url: z.string(),
+});
+type SafetyLink = z.infer<typeof ZSafetyLink>;
+
+const ZPartialSafetyResponse = z.object({
+  _id: z.string(),
+  _updatedAt: z.coerce
+    .date()
+    .transform((date) => {
+      if (date.toDateString() === new Date("2025-09-22").toDateString())
+        return new Date("2025-01-30");
+
+      return date;
+    })
+    .transform((date) => date.toDateString()),
   pin: z.boolean().nullable().default(false),
-  document: z
-    .object({
-      title: z.string(),
-      url: z.string(),
-      extension: z.string(),
-    })
-    .optional(),
-  link: z
-    .object({
-      title: z.string(),
-      url: z.string(),
-    })
-    .optional(),
+  title: z.string(),
+});
+const ZSafetyItem = ZPartialSafetyResponse.extend({
+  body: z.array(ZTypedObject).nullable(),
+  document: ZSafetyDocument.optional(),
+  link: ZSafetyLink.optional(),
 });
 
-const fetchSafety = async () => {
+const fetchSafety = async (): Promise<SafetyItem[]> => {
   const response = await sanityClient.fetch(safetyQuery);
 
-  return z.array(ZSafetyResponse).parse(response);
+  return z.array(ZSafetyItem).parse(response);
 };
 
-const fetchSafetyById = async (id: string) => {
+const fetchSafetyById = async (id: string): Promise<SafetyItem | null> => {
   const response = await sanityClient.fetch(safetyQueryById, { id });
 
-  return ZSafetyResponse.nullable().parse(response);
+  return ZSafetyItem.nullable().parse(response);
 };
 
-type SafetyResponse = z.infer<typeof ZSafetyResponse>;
+interface SafetyItem extends z.infer<typeof ZPartialSafetyResponse> {
+  body: TypedObject[] | null;
+  document?: SafetyDocument;
+  link?: SafetyLink;
+}
 
+export type { SafetyItem };
 export { fetchSafety, fetchSafetyById };
-export type { SafetyResponse };

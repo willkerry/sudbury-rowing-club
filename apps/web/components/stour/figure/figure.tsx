@@ -25,7 +25,6 @@ export const Figure = React.forwardRef<
 
   return (
     <FigureWrapper
-      src={src}
       alt={alt}
       aspectRatio={
         width && height
@@ -33,22 +32,23 @@ export const Figure = React.forwardRef<
           : probableWidth / probableHeight
       }
       blurDataURL={blurDataURL}
+      src={src}
       {...props}
       ref={ref}
     >
       {willBeOptimised ? (
         <Image
-          sizes={`(max-width: ${WIDTH}px) 80vw, ${width}px`}
           className={cn(hasCaption && "mb-0", imageProps.className)}
+          sizes={`(max-width: ${WIDTH}px) 80vw, ${width}px`}
           {...imageProps}
         />
       ) : (
         <img
-          src={src}
           alt={alt}
           className={cn(hasCaption && "mb-0", imageProps.className)}
-          width={width}
           height={height}
+          src={src}
+          width={width}
         />
       )}
 
@@ -70,13 +70,13 @@ function getSrcString(src: ImageProps["src"]): string {
 function getStaticImageData(
   src: ImageProps["src"],
 ): StaticImageData | undefined {
-  if (!src) return undefined;
-  if (typeof src === "string") return undefined;
+  if (!src) return;
+  if (typeof src === "string") return;
 
   if ("src" in src) return src;
   if ("default" in src) return src.default;
 
-  return undefined;
+  return;
 }
 
 function isOptimisableImage(imageProps: ImageProps): boolean {

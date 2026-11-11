@@ -1,16 +1,16 @@
 import TextPage from "@/components/layouts/text-page";
 
-const Clubs = ({
+const SearchLayout = ({
   children,
   results,
 }: {
   children: React.ReactNode;
   results: React.ReactNode;
 }) => (
-  <TextPage title="Rowing club lookup" prose="max-w-prose">
+  <TextPage prose="max-w-prose" title="Rowing club lookup">
     {children}
     {results}
   </TextPage>
 );
 
-export default Clubs;
+export default SearchLayout;

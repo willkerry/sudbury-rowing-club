@@ -1,4 +1,8 @@
-import { ArrowDownIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
+import {
+  IconArrowDown,
+  IconArrowRight,
+  IconArrowUpRight,
+} from "@tabler/icons-react";
 import NextLink from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -11,16 +15,15 @@ type Props = {
   unstyled?: boolean;
 } & React.ComponentProps<typeof NextLink>;
 
-// Ridiculous hack because I set up an awful component API
 const assignIcon = (
   external: boolean,
   download: boolean,
   arrow: boolean,
-): typeof ArrowRightIcon => {
-  if (external) return ArrowUpRightIcon;
-  if (download) return ArrowDownIcon;
-  if (arrow) return ArrowRightIcon;
-  return ArrowRightIcon;
+): typeof IconArrowRight => {
+  if (external) return IconArrowUpRight;
+  if (download) return IconArrowDown;
+  if (arrow) return IconArrowRight;
+  return IconArrowRight;
 };
 
 export const Link = ({
@@ -43,21 +46,21 @@ export const Link = ({
 
   return (
     <LinkComponent
-      href={String(href)}
       className={cn(
         unstyled
           ? "stour-link"
           : [
-              "group break-words transition",
+              "group wrap-break-word transition",
               dark
                 ? "text-blue-100 hover:text-white"
                 : "text-blue-500 hover:text-blue-300",
             ],
         className,
       )}
+      href={String(href)}
       {...(isExternal && {
-        target: "_blank",
         rel: "noopener noreferrer",
+        target: "_blank",
       })}
       {...rest}
     >

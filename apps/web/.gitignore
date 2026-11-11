@@ -50,4 +50,6 @@ tsconfig.tsbuildinfo
 # content collections
 /.content-collections
 
-.cache
+.cache/dist/
+.vinext/
+.wrangler/

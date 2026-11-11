@@ -1,6 +1,6 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { IconSearch } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,11 +16,17 @@ const Clubs = () => {
         router.push(`?q=${encodeURIComponent(e.currentTarget.q.value)}`);
       }}
     >
-      <label htmlFor="q" className="sr-only">
+      <label className="sr-only" htmlFor="q">
         Search
       </label>
-      <Input type="search" aria-label="Search" className="flex-1" name="q" />
-      <Button type="submit" icon={<Search />} variant="link">
+      <Input
+        autoComplete="off"
+        className="flex-1"
+        id="q"
+        name="q"
+        type="search"
+      />
+      <Button icon={<IconSearch />} type="submit" variant="link">
         Search
       </Button>
     </form>

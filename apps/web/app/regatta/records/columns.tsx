@@ -1,80 +1,85 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import { Blade } from "@/components/stour/blade";
 import { Link } from "@/components/stour/link";
 import { DataTableColumnHeader } from "@/components/ui/table";
 import { detectAndFormatCourseLength } from "./[event]/format-description";
-import { getBladeUrls } from "./[event]/utils";
-import { Blade } from "./blade";
+import type { RecordsTableFeatures } from "./features";
 import { formatDuration, type Record, slugify } from "./transformRecords";
 
-export const columns: ColumnDef<Record>[] = [
+export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
   {
     accessorKey: "course",
+    enableColumnFilter: false,
+    cell: ({ row }) => detectAndFormatCourseLength(row.original),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Course" />
     ),
-    cell: ({ row }) => detectAndFormatCourseLength(row.original),
-    enableColumnFilter: false,
   },
   {
     accessorKey: "event",
     enableSorting: false,
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Event" />
-    ),
     filterFn: (row, _id, value) =>
       row.original.event
         .toLowerCase()
         .replaceAll("×", "x")
         .replaceAll("−", "-")
         .includes(value.toLowerCase()),
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Event" />
+    ),
   },
   {
     accessorKey: "year",
+    enableSorting: true,
     cell: ({ row }) => (
       <div className="disambiguate tabular-nums">
         {row.original.year.getFullYear()}
       </div>
     ),
-    sortingFn: (a, b) =>
-      a.original.year.getFullYear() - b.original.year.getFullYear(),
-    enableSorting: true,
+    filterFn: (row, _id, value) =>
+      row.original.year.getFullYear().toString().includes(value),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Year" />
     ),
-    filterFn: (row, _id, value) =>
-      row.original.year.getFullYear().toString().includes(value),
+    sortFn: (a, b) =>
+      a.original.year.getFullYear() - b.original.year.getFullYear(),
   },
   {
+    accessorKey: "club",
+    cell: ({ row }) => (
+      <div className="flex flex-row gap-2">
+        <div className="flex flex-row items-center gap-2">
+          {row.original.parsedClub.map((club, index) => {
+            if ("id" in club)
+              return <Blade key={`${club.id}-${index}`} src={club.bladeUrl} />;
+
+            return <Blade key={`${club.code}-${index}`} src={null} />;
+          })}
+        </div>
+        <div className="uppercase tracking-wider">{row.original.club}</div>
+      </div>
+    ),
+    filterFn: (row, _id, value) =>
+      row.original.club.toLowerCase().includes(value.toLowerCase()),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Club" />
     ),
-    accessorKey: "club",
-    cell: ({ row }) => {
-      const blades = getBladeUrls(row.original.club, true);
-
-      return (
-        <div className="flex flex-row gap-2">
-          {blades.length > 0 && (
-            <div className="flex flex-row items-center gap-2">
-              {blades.map((blade) => (
-                <Blade key={blade} src={blade} alt="" />
-              ))}
-            </div>
-          )}
-          <div className="uppercase tracking-wider">{row.original.club}</div>
-        </div>
-      );
-    },
-    filterFn: (row, _id, value) =>
-      row.original.club.toLowerCase().includes(value.toLowerCase()),
   },
   {
+    accessorKey: "time",
+    enableColumnFilter: false,
+    enableSorting: true,
+    cell: ({ row }) => (
+      <div className="tabular-nums tracking-wider">
+        {formatDuration(row.original.time)}
+      </div>
+    ),
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Time" />
     ),
-    sortingFn: (a, b) => {
+    sortFn: (a, b) => {
       const aTimeSeconds =
         a.original.time.minutes * 60 + a.original.time.seconds;
       const bTimeSeconds =
@@ -89,24 +94,16 @@ export const columns: ColumnDef<Record>[] = [
 
       return aTimeSeconds - bTimeSeconds;
     },
-    enableSorting: true,
-    enableColumnFilter: false,
-    accessorKey: "time",
-    cell: ({ row }) => (
-      <div className="tabular-nums tracking-wider">
-        {formatDuration(row.original.time)}
-      </div>
-    ),
   },
   {
     accessorKey: "link",
-    id: "link",
+    enableColumnFilter: false,
+    enableHiding: false,
+    enableSorting: false,
     header: "Link",
+    id: "link",
     cell: ({ row }) => (
       <Link href={`/regatta/records/${slugify(row.original.event)}`}>View</Link>
     ),
-    enableSorting: false,
-    enableColumnFilter: false,
-    enableHiding: false,
   },
 ];

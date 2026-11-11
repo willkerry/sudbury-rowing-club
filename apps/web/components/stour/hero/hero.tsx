@@ -1,13 +1,13 @@
-import cn from "clsx";
 import { Container } from "@/components/layouts/container";
 import { Label } from "@/components/stour/label";
+import { cn } from "@/lib/utils";
 
 interface Props {
-  title: string;
-  label?: string;
-  description?: string;
   dark?: boolean;
+  description?: string;
   fullwidth?: boolean;
+  label?: string;
+  title: string;
 }
 
 const Text = ({ title, description, label }: Props) => (
@@ -26,14 +26,14 @@ export const Hero = ({
   fullwidth = false,
 }: Props) => {
   if (!fullwidth) {
-    return <Text title={title} label={label} description={description} />;
+    return <Text description={description} label={label} title={title} />;
   }
   return (
     <div className={cn(dark ? "bg-blue-950 text-white" : "text-gray-900")}>
       <Container>
-        <div className="justify-content-center flex h-96 max-w-prose flex-col">
+        <div className="flex h-96 max-w-prose flex-col justify-center">
           <div className="my-auto">
-            <Text title={title} label={label} description={description} />
+            <Text description={description} label={label} title={title} />
           </div>
         </div>
       </Container>

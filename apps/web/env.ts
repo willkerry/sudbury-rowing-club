@@ -1,0 +1,32 @@
+import { createEnv } from "@t3-oss/env-nextjs";
+import { clientSchema, serverSchema, sharedSchema } from "./env.schema";
+
+export const env = createEnv({
+  client: clientSchema,
+  server: serverSchema,
+  shared: sharedSchema,
+  runtimeEnv: {
+    ALGOLIA_API_KEY: process.env.ALGOLIA_API_KEY,
+    APP_URL: process.env.APP_URL,
+    BUG_RECIPIENT_EMAIL: process.env.BUG_RECIPIENT_EMAIL,
+    FIRECRAWL_API_KEY: process.env.FIRECRAWL_API_KEY,
+    NEXT_PUBLIC_ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+    NEXT_PUBLIC_ALGOLIA_INDEX_NAME: process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
+    NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
+    NEXT_PUBLIC_APP_ENV: process.env.NEXT_PUBLIC_APP_ENV,
+    NEXT_PUBLIC_GIT_COMMIT_SHA: process.env.NEXT_PUBLIC_GIT_COMMIT_SHA,
+    NEXT_PUBLIC_MAPTILER_KEY: process.env.NEXT_PUBLIC_MAPTILER_KEY,
+    NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+    NODE_ENV: process.env.NODE_ENV,
+    OG_IMAGE_SECRET: process.env.OG_IMAGE_SECRET,
+    REDIRECT_SECRET: process.env.REDIRECT_SECRET,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    RESEND_WEBHOOK_SECRET: process.env.RESEND_WEBHOOK_SECRET,
+    SANITY_REVALIDATE_SECRET: process.env.SANITY_REVALIDATE_SECRET,
+    TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
+  },
+});

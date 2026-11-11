@@ -1,8 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
+import { Blade } from "@/components/stour/blade";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import allClubs from "@/data/clubs.json";
-import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
+import { loadClubs } from "@/lib/clubs-data";
 
 const MAX_CLUBS = 64;
 const MAX_CLUBS_WITH_BLADES = 10;
@@ -16,6 +15,7 @@ const ClubSearchResults = async (props: {
   if (!searchParams.q) return null;
 
   const searchTerm = searchParams.q.toLowerCase();
+  const allClubs = await loadClubs();
 
   const clubs = allClubs.filter(
     ({ name, address }) =>
@@ -40,7 +40,7 @@ const ClubSearchResults = async (props: {
   return (
     <>
       {clubs.length > MAX_CLUBS_WITH_BLADES && (
-        <Alert variant="warn" className="mb-2">
+        <Alert className="mb-2" variant="warn">
           <AlertDescription>
             When more than {MAX_CLUBS_WITH_BLADES} results are found, this
             service doesn&apos;t fetch blade images.
@@ -52,20 +52,19 @@ const ClubSearchResults = async (props: {
         {clubs.map((club) => (
           <Link
             className="relative block p-2 hover:bg-gray-50"
-            key={club.id}
             href={club.href}
+            key={club.id}
+            rel="noopener noreferrer"
+            target="_blank"
           >
             {club.name}
             {clubs.length < MAX_CLUBS_WITH_BLADES && club.newBladeUrl && (
               <div className="absolute top-0 right-2 bottom-0 flex items-center">
-                <Image
+                <Blade
                   className="h-4 w-8"
-                  src={club.newBladeUrl}
-                  alt=""
-                  loader={cloudflareLoader}
-                  width={32}
                   height={16}
-                  loading="lazy"
+                  src={club.newBladeUrl}
+                  width={32}
                 />
               </div>
             )}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { unique } from "radash";
+import { unique } from "radashi";
 import { prettifyBreadcrumb } from "./prettifyBreadcrumb";
 
 type Props = {
@@ -95,9 +95,9 @@ export const Breadcrumbs = ({
           if (i === abridgedBreadcrumbs.length - 1) {
             return (
               <li
-                key={breadcrumb.href}
                 aria-current="page"
                 className={activeItemClassName}
+                key={breadcrumb.href}
               >
                 {prettifyBreadcrumb(breadcrumb.breadcrumb)}
               </li>
@@ -106,14 +106,14 @@ export const Breadcrumbs = ({
 
           if (breadcrumb.breadcrumb === "") {
             return (
-              <li key={breadcrumb.href} className={inactiveItemClassName}>
+              <li className={inactiveItemClassName} key={breadcrumb.href}>
                 &hellip;
               </li>
             );
           }
 
           return (
-            <li key={breadcrumb.href} className={inactiveItemClassName}>
+            <li className={inactiveItemClassName} key={breadcrumb.href}>
               <Link href={breadcrumb.href}>
                 {prettifyBreadcrumb(breadcrumb.breadcrumb)}
               </Link>

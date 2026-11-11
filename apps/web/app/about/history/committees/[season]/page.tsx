@@ -1,7 +1,7 @@
 import { slug } from "github-slugger";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { listify } from "radash";
+import { listify } from "radashi";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { getCommitteeArchive } from "@/lib/get-committee-archive";
@@ -42,8 +42,9 @@ export const generateMetadata = async ({
   const clubName = getClubName(season);
 
   return createMetadata({
-    title: `The ${season} ${clubName[0]} Committee`,
     description: `${clubName[1]} committee of ${season}`,
+    image: { title: `${season} Committee` },
+    title: `The ${season} ${clubName[0]} Committee`,
   });
 };
 
@@ -59,13 +60,18 @@ const Committee = async ({ params }: { params: Promise<Params> }) => {
   const clubName = getClubName(committee.season);
   const pageTitle = `${committee.season} ${clubName[0]} Committee`;
 
+  const committeMemberCount = Object.values(committee.committee).reduce(
+    (acc, office) => acc + (office?.holders?.length ?? 0),
+    0,
+  );
+
   return (
     <TextPage title={pageTitle}>
       <table>
         <thead>
           <tr>
             <th className="sr-only">Role</th>
-            <th>Incumbent(s)</th>
+            <th>Incumbent{committeMemberCount > 1 ? "s" : ""}</th>
           </tr>
         </thead>
         <tbody>
@@ -74,7 +80,7 @@ const Committee = async ({ params }: { params: Promise<Params> }) => {
               <th>{office?.displayName}</th>
               <td>
                 {office?.holders?.map((name) => (
-                  <InitialisedName name={name} key={name} />
+                  <InitialisedName key={name} name={name} />
                 ))}
               </td>
             </tr>

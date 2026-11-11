@@ -1,31 +1,16 @@
 "use client";
 
+import { cloudflareLoader as baseCloudflareLoader } from "@sudburyrc/images";
 import type { ImageLoader } from "next/image";
+import { whenEnv } from "../environment";
 
-const normalizeSrc = (src: string) => {
-  return src.startsWith("/") ? src.slice(1) : src;
-};
-
-export const cloudflareLoader: ImageLoader = ({
-  src,
-  width,
-  quality,
-}: {
-  src: string;
-  width: number;
-  quality?: number;
-}) => {
-  if (process.env.NODE_ENV === "development") {
-    return src;
-  }
-
-  const params = [`width=${width}`];
-
-  if (quality) {
-    params.push(`quality=${quality}`);
-  }
-
-  const paramsString = params.join(",");
-
-  return `https://cdn.sudburyrowingclub.org.uk/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
-};
+/**
+ * Cloudflare image loader for Next.js Image components.
+ * In development, returns the original src to avoid CORS issues.
+ */
+export const cloudflareLoader: ImageLoader = (props) =>
+  whenEnv({
+    ifDev: () => props.src,
+    ifPreview: () => baseCloudflareLoader(props),
+    ifProd: () => baseCloudflareLoader(props),
+  });

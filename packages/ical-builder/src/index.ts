@@ -1,4 +1,12 @@
-import type { SRCEvent } from "@sudburyrc/api";
+export type BREvent = {
+  id: string;
+  competition: string;
+  cancelled: boolean;
+  url: string | null;
+  notes: string | null;
+  region: string;
+  startDate: Date;
+};
 
 type IcalEvent = {
   BEGIN: "VEVENT";
@@ -28,13 +36,13 @@ export default class IcalBuilder {
     eventSlot: number;
   } = {
     BEGIN: "VCALENDAR",
-    VERSION: "2.0",
+    END: "VCALENDAR",
+    eventSlot: 0,
     PRODID: "",
+    VERSION: "2.0",
+    X_WR_CALDESC: "",
     X_WR_CALNAME: "",
     X_WR_TIMEZONE: "",
-    X_WR_CALDESC: "",
-    eventSlot: 0,
-    END: "VCALENDAR",
   };
 
   private static readonly SEPARATOR = "//";
@@ -85,24 +93,24 @@ export default class IcalBuilder {
       .join("\n");
   }
 
-  addEvent(event: SRCEvent): void {
+  addEvent(event: BREvent): void {
     this.events.push({
       BEGIN: "VEVENT",
-      UID: event.id,
+      DESCRIPTION: event.notes ?? "",
       DTSTAMP: IcalBuilder._formatDate(new Date(event.startDate)),
       DTSTART: IcalBuilder._formatDay(new Date(event.startDate)),
-      SUMMARY: event.competition,
-      DESCRIPTION: event.notes ?? "",
+      END: "VEVENT",
       LOCATION: event.region,
-      URL: event.url ?? "",
       STATUS: event.notes?.toLowerCase().includes("cancelled")
         ? "CANCELLED"
         : "CONFIRMED",
-      END: "VEVENT",
+      SUMMARY: event.competition,
+      UID: event.id,
+      URL: event.url ?? "",
     });
   }
 
-  set(SRCEvents: SRCEvent[]): void {
+  set(SRCEvents: BREvent[]): void {
     SRCEvents.map((event) => this.addEvent(event));
   }
 

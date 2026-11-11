@@ -1,15 +1,15 @@
-import { TagIcon } from "lucide-react";
+import { IconTag } from "@tabler/icons-react";
 import TextPage from "@/components/layouts/text-page";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 
 export const revalidate = 86400;
 
 export const metadata = createMetadata({
-  title: "Membership Rates",
   description: "Membership rates for Sudbury Rowing Club.",
   image: { title: "Membership Rates 💸" },
+  title: "Membership Rates",
 });
 
 const MembershipRates = async () => {
@@ -25,11 +25,7 @@ const MembershipRates = async () => {
         on MyClubhouse.
       </p>
 
-      {rates.status === "error" && (
-        <ErrorComponent error={{ message: rates.message }} />
-      )}
-
-      {rates.status === "success" && (
+      {rates.ok ? (
         <table>
           <thead>
             <tr className="text-left">
@@ -47,7 +43,7 @@ const MembershipRates = async () => {
 
                   {rate.Category.Restrictions && (
                     <div className="mt-1 flex items-start gap-1 font-medium text-red-700 text-xs">
-                      <TagIcon
+                      <IconTag
                         aria-hidden
                         className="mt-0.5 h-3 w-3 shrink-0"
                       />
@@ -80,6 +76,8 @@ const MembershipRates = async () => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <ErrorMessage error={{ message: rates.error }} />
       )}
     </TextPage>
   );

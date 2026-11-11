@@ -14,9 +14,9 @@ export const REGATTA_LOCATION = [52.035273, 0.730891];
 export const REGATTA_LOCATION_STRING = `${REGATTA_LOCATION[0]},${REGATTA_LOCATION[1]}`;
 
 export const MAPPING_APIS = {
+  apple: "https://maps.apple.com/?address=",
   google: "https://www.google.com/maps/search/?api=1&query=",
   waze: "https://waze.com/ul?ll=",
-  apple: "https://maps.apple.com/?address=",
 };
 
 export const SENDER = {
@@ -24,21 +24,26 @@ export const SENDER = {
   name: "Sudbury Rowing Club",
 };
 
+export const CONTACT_FORM_TAG = {
+  name: "source",
+  value: "contact_form",
+} as const;
+
 export const SUPPORTED_SOCIALS = ["instagram", "facebook"] as const;
 
 export const SOCIALS: Record<
   (typeof SUPPORTED_SOCIALS)[number],
   { name: string; href: string; handle: string }
 > = {
-  instagram: {
-    name: "Instagram",
-    href: "https://www.instagram.com/sudburyrowingclubuk",
-    handle: "@sudburyrowingclubuk",
-  },
   facebook: {
-    name: "Facebook",
-    href: "https://www.facebook.com/profile.php?id=61561414559766",
     handle: "@sudburyrowing",
+    href: "https://www.facebook.com/profile.php?id=61561414559766",
+    name: "Facebook",
+  },
+  instagram: {
+    handle: "@sudburyrowingclubuk",
+    href: "https://www.instagram.com/sudburyrowingclubuk",
+    name: "Instagram",
   },
 } as const;
 
@@ -56,7 +61,7 @@ export namespace REGATTA {
   export const COUNTY = "Suffolk";
   export const POSTCODE = "CO10 2TL";
 
-  export const TESTIMONIAL_TITLE = "Feedack";
+  export const TESTIMONIAL_TITLE = "Feedback";
   export const TESTIMONIAL_DESCRIPTION =
     "Some of the people who’ve come to our regatta have said lovely things about it";
 
@@ -65,26 +70,27 @@ export namespace REGATTA {
 
 export const ClubJsonLd: WithContext<SportsClub> = {
   "@context": "https://schema.org",
-  "@type": "SportsClub",
   "@id": BASE_URL,
-  name: PROJECT_NAME,
-  url: BASE_URL,
+  "@type": "SportsClub",
+  email: EMAIL,
+  foundingDate: "1874-01-01",
+  hasMap: "https://maps.app.goo.gl/coRAF77w6s6BabJB7",
+  isicV4: "9312",
   logo: LOGO,
+  name: PROJECT_NAME,
+  sameAs: [SOCIALS.facebook.href, SOCIALS.instagram.href],
+  url: BASE_URL,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Quay Lane",
+    addressCountry: "United Kingdom",
     addressLocality: "Sudbury",
     addressRegion: "Suffolk",
     postalCode: "CO10 2TN",
-    addressCountry: "United Kingdom",
+    streetAddress: "Quay Lane",
   },
   geo: {
     "@type": "GeoCoordinates",
     latitude: CLUB_LOCATION[0],
     longitude: CLUB_LOCATION[1],
   },
-  hasMap: "https://maps.app.goo.gl/coRAF77w6s6BabJB7",
-  foundingDate: "1874-01-01",
-  email: EMAIL,
-  isicV4: "9312",
 };

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { type ExternalToast, toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { getBrowserClient, OFFICERS_INDEX_NAME } from "@/lib/algolia";
-import type { Message } from "./contactForm";
+import type { Message } from "./Message";
 
 const TESTING_MODE_TOAST_OPTIONS = {
   id: "testing-mode",
@@ -45,8 +45,8 @@ export const useTestingMode = ({
 
   const { refetch: setFieldValues } = useQuery({
     enabled: isEnabled && !!getWodehouseFullDetails,
-    queryKey: ["setFieldValues"],
     queryFn: getWodehouseFullDetails ?? (() => Promise.resolve(undefined)),
+    queryKey: ["setFieldValues"],
     select: (details) => {
       if (!details) return;
 
@@ -55,7 +55,7 @@ export const useTestingMode = ({
 
       setValues({ to: webmasterId ?? "", name, email });
 
-      return undefined;
+      return;
     },
   });
 
@@ -70,19 +70,19 @@ export const useTestingMode = ({
     const didConfirm = await new Promise<boolean>((resolve) => {
       toast("Enable testing mode?", {
         ...TESTING_MODE_TOAST_OPTIONS,
+        action: (
+          <Button autoFocus onClick={() => resolve(true)} size="xs">
+            Enable
+          </Button>
+        ),
         description: (
           <div className="text-gray-700">
             You can activate testing mode by pressing{" "}
             {os === "macos" ? <kbd>⌘+J</kbd> : <kbd>Ctrl+J</kbd>}.
           </div>
         ),
-        onDismiss: () => resolve(false),
         onAutoClose: () => resolve(false),
-        action: (
-          <Button onClick={() => resolve(true)} size="xs" autoFocus>
-            Enable
-          </Button>
-        ),
+        onDismiss: () => resolve(false),
       });
     });
 

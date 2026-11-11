@@ -1,21 +1,21 @@
-import { CogIcon } from "@sanity/icons";
+import { CogIcon } from "@sanity/icons/Cog";
 import { defineArrayMember, defineField, defineType } from "sanity";
 
 const SiteSettings = defineType({
-  name: "siteSettings",
-  type: "document",
-  title: "Site Settings",
   icon: CogIcon,
+  name: "siteSettings",
+  title: "Site Settings",
+  type: "document",
   fields: [
     defineField({
-      type: "landingPage",
       name: "landingPage",
+      type: "landingPage",
     }),
 
     defineField({
-      type: "array",
-      name: "governanceResources",
       description: "Links and downloads related to the running of the club. ",
+      name: "governanceResources",
+      type: "array",
       of: [
         defineArrayMember({
           type: "resourceGroup",

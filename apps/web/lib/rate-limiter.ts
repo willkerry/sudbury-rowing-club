@@ -1,14 +1,16 @@
-import { Ratelimit } from "@upstash/ratelimit";
-import { kv } from "@vercel/kv";
+import { env } from "cloudflare:workers";
 import { type NextRequest, NextResponse } from "next/server";
+import { getClientIp } from "@/lib/client-ip";
 
-export const ratelimiter = new Ratelimit({
-  redis: kv,
-  limiter: Ratelimit.slidingWindow(3, "10s"),
-});
+// Keep in step with the RATE_LIMITER binding in wrangler.jsonc (10 per 10s).
+const RATE_LIMIT_PERIOD_SECONDS = 10;
+
+export const ratelimiter = {
+  limit: (key: string) => env.RATE_LIMITER.limit({ key }),
+};
 
 export const routeHandlerRatelimiter = async (req: NextRequest) => {
-  const ip = req.headers.get("x-forwarded-for");
+  const ip = getClientIp(req.headers);
 
   if (!ip) {
     return new NextResponse("No IP address in request", {
@@ -16,13 +18,13 @@ export const routeHandlerRatelimiter = async (req: NextRequest) => {
     });
   }
 
-  const { success, reset } = await ratelimiter.limit(ip);
+  const { success } = await ratelimiter.limit(ip);
 
   if (!success) {
     return new NextResponse("Rate limit exceeded", {
       status: 429,
       headers: {
-        "Retry-After": Math.ceil((reset - Date.now()) / 1000).toString(),
+        "Retry-After": RATE_LIMIT_PERIOD_SECONDS.toString(),
       },
     });
   }

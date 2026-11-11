@@ -1,30 +1,32 @@
 "use client";
 
-import {
-  EllipsisHorizontalCircleIcon,
-  ExclamationCircleIcon,
-  PauseCircleIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/24/solid";
 import { useThrottledCallback } from "@mantine/hooks";
+import {
+  IconExclamationCircleFilled,
+  IconLoader2,
+  IconPlayerPauseFilled,
+  IconPlayerPlayFilled,
+} from "@tabler/icons-react";
 import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
 
 type PlayerState = "idle" | "playing" | "paused" | "loading" | "error";
 
-const controlIcons: Record<PlayerState, typeof PlayCircleIcon> = {
-  idle: PlayCircleIcon,
-  loading: EllipsisHorizontalCircleIcon,
-  paused: PlayCircleIcon,
-  playing: PauseCircleIcon,
-  error: ExclamationCircleIcon,
+const controlIcons: Record<PlayerState, typeof IconPlayerPlayFilled> = {
+  error: IconExclamationCircleFilled,
+  idle: IconPlayerPlayFilled,
+  loading: IconLoader2,
+  paused: IconPlayerPlayFilled,
+  playing: IconPlayerPauseFilled,
 };
 
 const controlText: Record<PlayerState, string> = {
+  error: "Error",
   idle: "Play video",
   loading: "Loading video",
   paused: "Play video",
   playing: "Pause video",
-  error: "Error",
 };
 
 export const Player = () => {
@@ -63,35 +65,40 @@ export const Player = () => {
     <div className="absolute inset-0 w-full">
       {playerState !== "idle" && (
         <video
-          ref={ref}
-          className="absolute inset-0 z-0 aspect-h-9 aspect-w-16 w-full"
           autoPlay
-          muted
+          className="absolute inset-0 z-0 aspect-h-9 aspect-w-16 w-full"
           loop
-          onPlaying={setPlaying}
+          muted
           onEnded={setIdle}
-          onError={setError}
+          onPlaying={setPlaying}
+          ref={ref}
         >
           <source
-            src="https://cdn.sudburyrowingclub.org.uk/media%2Flanding_page_h265.mp4"
-            type="video/mp4"
+            src="https://cdn.sudburyrowingclub.org.uk/media/landing_page_h265.mp4"
+            type='video/mp4; codecs="hvc1"'
           />
           <source
-            src="https://cdn.sudburyrowingclub.org.uk/media%2Flanding_page_h264.mp4"
+            onError={setError}
+            src="https://cdn.sudburyrowingclub.org.uk/media/landing_page_h264.mp4"
             type="video/mp4"
           />
         </video>
       )}
 
-      <button
+      <Button
+        className="absolute right-3 bottom-3 z-10 text-white"
         disabled={playerState === "loading"}
         onClick={handleClick}
+        size="xs"
         type="button"
-        className="absolute right-3 bottom-3 z-10 text-white"
+        variant="link"
       >
-        <Icon aria-hidden className="h-6 w-6" />
+        <Icon
+          aria-hidden
+          className={cn("size-4", playerState === "loading" && "animate-spin")}
+        />
         <div className="sr-only">{text}</div>
-      </button>
+      </Button>
     </div>
   );
 };

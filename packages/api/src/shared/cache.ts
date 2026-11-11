@@ -1,6 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-
 type Options<T> = {
   /** A unique identifier for the cache */
   key: string;
@@ -12,80 +9,47 @@ type Options<T> = {
   primaryKey: keyof T;
 };
 
+type Entry<T> = {
+  data: Record<string, T>;
+  lastFetchTime: number;
+};
+
+/**
+ * In-memory cache scoped to the current server instance (a Workers isolate or
+ * a Node process). Concurrent misses share a single in-flight fetch.
+ */
 export class Cache<T> {
   constructor(options: Options<T>) {
     this.options = options;
   }
 
-  private options: Options<T> = {
-    key: "",
-    ttl: 0,
-    function: () => Promise.resolve([]),
-    primaryKey: "" as keyof T,
-  };
+  private options: Options<T>;
 
-  private _cacheDirectoryPath(): string {
-    return path.join(process.cwd(), ".cache");
-  }
+  private entry: Entry<T> | undefined;
 
-  private _cacheFilePath(): string {
-    return path.join(this._cacheDirectoryPath(), `${this.options.key}.json`);
-  }
+  private pending: Promise<Record<string, T>> | undefined;
 
-  private async _read(): Promise<{
-    data: Record<string, T>;
-    lastFetchTime: number;
-  }> {
-    if (!fs.existsSync(this._cacheDirectoryPath())) {
-      await fs.promises.mkdir(this._cacheDirectoryPath());
-    }
-
-    if (!fs.existsSync(this._cacheFilePath())) {
-      try {
-        await fs.promises.writeFile(
-          this._cacheFilePath(),
-          JSON.stringify({
-            data: {},
-            lastFetchTime: 0,
-          }),
-        );
-      } catch (error) {
-        console.warn(`Unable to create cache file: ${error}`);
-
-        return {
-          data: this._toMap(await this.options.function()),
-          lastFetchTime: Date.now(),
-        };
-      }
-    }
-
-    const cache = await fs.promises.readFile(this._cacheFilePath(), "utf-8");
-
-    return JSON.parse(cache);
-  }
-
-  private async _write(data: Record<string, T>) {
-    await fs.promises.writeFile(
-      this._cacheFilePath(),
-      JSON.stringify({
-        data,
-        lastFetchTime: Date.now(),
-      }),
-    );
-  }
-
-  private async _cachedRead(): Promise<Record<string, T>> {
-    const { data, lastFetchTime } = await this._read();
-
-    if (lastFetchTime + this.options.ttl * 1000 > Date.now()) {
-      return data;
-    }
-
+  private async _refresh(): Promise<Record<string, T>> {
     console.log(`Cache "${this.options.key}" miss`);
-    const freshDataMap = this._toMap(await this.options.function());
-    await this._write(freshDataMap);
+    const data = this._toMap(await this.options.function());
+    this.entry = { data, lastFetchTime: Date.now() };
 
-    return freshDataMap;
+    return data;
+  }
+
+  private _cachedRead(): Promise<Record<string, T>> {
+    if (
+      this.entry &&
+      this.entry.lastFetchTime + this.options.ttl * 1000 > Date.now()
+    ) {
+      return Promise.resolve(this.entry.data);
+    }
+
+    this.pending ??= this._refresh().finally(() => {
+      this.pending = undefined;
+    });
+
+    return this.pending;
   }
 
   private _toMap(data: T[]): Record<string, T> {
@@ -98,12 +62,8 @@ export class Cache<T> {
     );
   }
 
-  private _fromMap(data: Record<string, T>): T[] {
-    return Object.values(data);
-  }
-
   public async get(): Promise<T[]> {
-    return this._fromMap(await this._cachedRead());
+    return Object.values(await this._cachedRead());
   }
 
   public async getByPrimaryKey(primaryKey: string): Promise<T | undefined> {
@@ -111,9 +71,7 @@ export class Cache<T> {
 
     const cacheKey = `${this.options.key}-${primaryKey}`;
 
-    if (!(cacheKey in data)) {
-      return undefined;
-    }
+    if (!(cacheKey in data)) return;
 
     return data[cacheKey];
   }

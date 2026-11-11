@@ -1,29 +1,40 @@
 "use client";
 
 import { QueryClientProvider } from "@tanstack/react-query";
+import {
+  createTRPCClient,
+  httpBatchLink,
+  httpLink,
+  splitLink,
+} from "@trpc/client";
+import { parse, stringify } from "devalue";
 import dynamic from "next/dynamic";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { useState } from "react";
 import { DialogProvider, useInitializeDialog } from "@/components/ui/dialog";
 import { Toaster } from "@/components/ui/sonner";
+import { env } from "@/env";
+import { HOSTNAME } from "@/lib/constants";
+import { WhenDev, whenEnv } from "@/lib/environment";
+import { TRPCProvider } from "@/lib/trpc/client";
+import type { AppRouter } from "@/lib/trpc/router";
 import { getQueryClient } from "./get-query-client";
 
 if (typeof window !== "undefined") {
-  if (!process.env.NEXT_PUBLIC_POSTHOG_KEY)
-    throw new Error("Missing NEXT_PUBLIC_POSTHOG_KEY");
-  if (!process.env.NEXT_PUBLIC_POSTHOG_HOST)
-    throw new Error("Missing NEXT_PUBLIC_POSTHOG_HOST");
-
-  const isProduction = process.env.NODE_ENV === "production";
-
-  if (isProduction) {
-    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-      person_profiles: "identified_only",
-      persistence: "localStorage",
-    });
-  }
+  whenEnv({
+    ifDev: () => undefined,
+    ifPreview: () => undefined,
+    ifProd: () => {
+      posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
+        __add_tracing_headers: [HOSTNAME],
+        api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+        persistence: "localStorage",
+        person_profiles: "identified_only",
+      });
+    },
+  });
 }
 
 const ReactQueryDevtools = dynamic(
@@ -34,6 +45,18 @@ const ReactQueryDevtools = dynamic(
   { ssr: false },
 );
 
+function getUrl() {
+  if (typeof window !== "undefined") return "/api/trpc";
+  if (process.env.APP_URL) return `${process.env.APP_URL}/api/trpc`;
+
+  return "http://localhost:4321/api/trpc";
+}
+
+const transformer = {
+  deserialize: (object: string) => parse(object),
+  serialize: (object: unknown) => stringify(object),
+};
+
 const DialogInitializer = () => {
   useInitializeDialog();
 
@@ -43,22 +66,38 @@ const DialogInitializer = () => {
 export default function Providers({ children }: { children: React.ReactNode }) {
   const queryClient = getQueryClient();
 
+  const [trpcClient] = useState(() =>
+    createTRPCClient<AppRouter>({
+      links: [
+        splitLink({
+          false: httpBatchLink({ url: getUrl(), transformer }),
+          true: httpLink({ url: getUrl(), transformer }),
+          // A batch's CDN cache lifetime is the minimum across its calls, so a
+          // cacheable query batched with an uncacheable one is never cached.
+          condition: (op) => op.context.unbatched === true,
+        }),
+      ],
+    }),
+  );
+
   return (
     <PostHogProvider client={posthog}>
       <QueryClientProvider client={queryClient}>
-        <NuqsAdapter>
-          <DialogProvider>
-            {children}
+        <TRPCProvider queryClient={queryClient} trpcClient={trpcClient}>
+          <NuqsAdapter>
+            <DialogProvider>
+              {children}
 
-            {process.env.NODE_ENV === "development" && (
-              <ReactQueryDevtools initialIsOpen={false} />
-            )}
+              <WhenDev>
+                <ReactQueryDevtools initialIsOpen={false} />
+              </WhenDev>
 
-            <DialogInitializer />
-          </DialogProvider>
+              <DialogInitializer />
+            </DialogProvider>
 
-          <Toaster />
-        </NuqsAdapter>
+            <Toaster />
+          </NuqsAdapter>
+        </TRPCProvider>
       </QueryClientProvider>
     </PostHogProvider>
   );

@@ -1,1 +1,1 @@
-export { LightBox, useLightBox } from "./lightbox";
+export { LightBox, LightBoxTrigger } from "./lightbox";

@@ -4,54 +4,67 @@ import { remarkAdmonition } from "fumadocs-core/mdx-plugins";
 import remarkSmartypants from "remark-smartypants";
 import { z } from "zod";
 
-const transform: typeof fumaTransformMDX = (document, context) =>
-  fumaTransformMDX(document, context, {
+// Only metadata and the table of contents are kept: the page renders each
+// policy from its build-time-compiled .mdx module (lib/policy-content.ts), so
+// the raw source, compiled body and search data would only add dead weight to
+// the Worker bundle.
+const transform = async <
+  TDocument extends Parameters<typeof fumaTransformMDX>[0],
+>(
+  document: TDocument,
+  context: Parameters<typeof fumaTransformMDX>[1],
+) => {
+  const {
+    body: _body,
+    content: _content,
+    structuredData: _structuredData,
+    ...policy
+  } = await fumaTransformMDX(document, context, {
+    rehypeCodeOptions: false,
     remarkPlugins: [remarkAdmonition, remarkSmartypants],
-    rehypeCodeOptions: {
-      themes: {
-        light: "github-dark",
-        dark: "github-dark",
-      },
-    },
   });
+
+  return policy;
+};
 
 const StatusSchema = z.union([z.literal("draft"), z.literal("published")]);
 
 const PrePostNoteSchema = z.union([
   z.object({
     label: z.string(),
-    value: z.string(),
     url: z.string().optional(),
+    value: z.string(),
   }),
   z.string(),
 ]);
 
 const policies = defineCollection({
-  name: "policies",
   directory: "content/policies",
   include: "**/*.mdx",
+  name: "policies",
   schema: z.object({
-    title: z.string(),
-    status: StatusSchema.optional().default("published"),
+    content: z.string(),
     description: z.string().optional(),
-    prenotes: z.array(PrePostNoteSchema).optional(),
     postnotes: z.array(PrePostNoteSchema).optional(),
+    prenotes: z.array(PrePostNoteSchema).optional(),
+    status: StatusSchema.optional().default("published"),
+    title: z.string(),
   }),
   transform,
 });
 
 const squads = defineCollection({
-  name: "squads",
   directory: "content/squads",
   include: "**/*.mdx",
+  name: "squads",
   schema: z.object({
-    title: z.string(),
     description: z.string().optional(),
     keyword: z.string().optional(),
+    title: z.string(),
   }),
   transform,
 });
 
 export default defineConfig({
-  collections: [policies, squads],
+  content: [policies, squads],
 });

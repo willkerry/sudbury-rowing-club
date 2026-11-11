@@ -64,8 +64,8 @@ describe("scrollToSelector", () => {
       scrollIntoView: mockScrollIntoView,
     };
     const mockElement = {
-      parentElement: mockParentElement,
       focus: mockFocus,
+      parentElement: mockParentElement,
     };
 
     const mockQuerySelector = vi.fn().mockReturnValue(mockElement);
@@ -108,8 +108,8 @@ describe("scrollToSelector", () => {
       scrollIntoView: mockScrollIntoView,
     };
     const mockElement = {
-      parentElement: mockParentElement,
       focus: "not a function", // focus exists but is not a function
+      parentElement: mockParentElement,
     };
 
     const mockQuerySelector = vi.fn().mockReturnValue(mockElement);
@@ -131,8 +131,8 @@ describe("scrollToSelector", () => {
       scrollIntoView: mockScrollIntoView,
     };
     const mockElement = {
-      parentElement: mockParentElement,
       focus: mockFocus,
+      parentElement: mockParentElement,
     };
 
     const mockQuerySelector = vi.fn().mockReturnValue(mockElement);

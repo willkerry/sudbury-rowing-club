@@ -38,7 +38,7 @@ export const TableOfContents = ({
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -49,7 +49,7 @@ export const TableOfContents = ({
         const isActive = activeHeading === props.url.slice(1);
 
         return (
-          <TableOfContentsItem key={props.url} isActive={isActive} {...props} />
+          <TableOfContentsItem isActive={isActive} key={props.url} {...props} />
         );
       })}
     </ul>

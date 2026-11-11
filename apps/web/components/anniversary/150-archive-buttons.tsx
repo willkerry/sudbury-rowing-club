@@ -25,7 +25,7 @@ export const HundredAndFiftyArchiveButtons = ({
             archive.location?.lng || 0,
             archive.title,
           )}
-          rel="noreferrer"
+          rel="noopener noreferrer"
           target="_blank"
         >
           View location
@@ -34,15 +34,20 @@ export const HundredAndFiftyArchiveButtons = ({
     )}
 
     <Button asChild size="xs" variant="secondary">
-      <a href={archive.image.url} rel="noreferrer" target="_blank" download>
+      <a
+        download
+        href={archive.image.url}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         Download full size image
       </a>
     </Button>
 
     <HundredAndFiftyContactButton
+      message={`I would like to help identify or date the photo '${archive.title}', (ID ${archive._id}).\n\nMy message: `}
       size="xs"
       variant="link"
-      message={`I would like to help identify or date the photo '${archive.title}', (ID ${archive._id}).\n\nMy message: `}
     >
       Help identify this photo
     </HundredAndFiftyContactButton>

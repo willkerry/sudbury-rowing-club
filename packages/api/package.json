@@ -1,42 +1,44 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "@sudburyrc/api",
-  "version": "0.0.0",
-  "private": true,
-  "main": "dist/index.mjs",
-  "types": "dist/index.d.mts",
-  "scripts": {
-    "build": "tsup",
-    "dev": "tsup",
-    "type-check": "tsc --noEmit"
-  },
-  "keywords": [],
   "author": "",
+  "keywords": [],
   "license": "ISC",
-  "dependencies": {
-    "@portabletext/types": "^2.0.15",
-    "@sanity/image-url": "^1.2.0",
-    "@stdlib/nlp-sentencize": "^0.2.2",
-    "@sudburyrc/helpers": "workspace:*",
-    "emoji-regex": "^10.5.0",
-    "groq": "^4.7.0",
-    "he": "^1.2.0",
-    "isomorphic-dompurify": "^2.26.0",
-    "next-sanity": "^10.1.2",
-    "picosanity": "^5.0.0",
-    "radash": "^12.1.1",
-    "tsup": "^8.5.0",
-    "zod": "^4.1.5"
-  },
-  "devDependencies": {
-    "@sudburyrc/tsconfig": "workspace:*",
-    "@types/he": "^1.2.3",
-    "@types/node": "^20.19.13",
-    "typescript": "^5.9.2"
-  },
+  "main": "dist/index.mjs",
+  "name": "@sudburyrc/api",
+  "private": true,
+  "types": "dist/index.d.mts",
+  "version": "0.0.0",
   "browser": {
     "fs": false,
     "os": false,
     "path": false
+  },
+  "dependencies": {
+    "@portabletext/types": "catalog:",
+    "@sanity/image-url": "catalog:",
+    "@stdlib/nlp-sentencize": "^0.2.2",
+    "@sudburyrc/helpers": "workspace:*",
+    "groq": "catalog:",
+    "he": "catalog:",
+    "next-sanity": "^13.3.4",
+    "picosanity": "^5.0.0",
+    "rolldown": "^1.2.13",
+    "tsdown": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@sudburyrc/tsconfig": "workspace:*",
+    "@types/he": "catalog:",
+    "@types/node": "^26.6.4",
+    "magic-string": "^1.4.3",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "type-check": "tsc --noEmit"
   }
 }

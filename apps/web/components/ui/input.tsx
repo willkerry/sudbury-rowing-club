@@ -4,10 +4,10 @@ import { forwardRef, type InputHTMLAttributes, useId } from "react";
 import { Label } from "./label";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
   description?: string;
   error?: string;
   inputClassName?: string;
+  label?: string;
 }
 
 export const inputVariants = cva(
@@ -21,9 +21,9 @@ export const inputVariants = cva(
         true: "animate-pulse bg-gray-100 ease-in-out",
       },
       size: {
-        sm: "h-8 text-xs",
-        md: "h-10 text-sm",
         lg: "h-12 text-base",
+        md: "h-10 text-sm",
+        sm: "h-8 text-xs",
       },
     },
   },
@@ -39,7 +39,7 @@ export const InputDescription = ({
   if (!description) return null;
 
   return (
-    <div id={id} className="mt-1 text-gray-600 text-xs">
+    <div className="mt-1 text-gray-600 text-xs" id={id}>
       {description}
     </div>
   );
@@ -50,9 +50,9 @@ export const InputError = ({ id, error }: { id: string; error?: string }) => {
 
   return (
     <div
-      id={id}
-      className="mt-1 font-medium text-red-700 text-xs"
       aria-atomic
+      className="mt-1 font-medium text-red-700 text-xs"
+      id={id}
       role="alert"
     >
       {error}
@@ -65,8 +65,8 @@ export const InputLabel = ({ id, label }: { id: string; label?: string }) => {
 
   return (
     <Label
-      htmlFor={id}
       className="-order-1 pb-2 after:hidden after:text-red-600 after:content-['＊'] peer-required:after:inline"
+      htmlFor={id}
     >
       {label}
     </Label>
@@ -107,21 +107,21 @@ const Input = forwardRef<
     return (
       <InputWrapper className={className}>
         <input
-          type={type}
-          data-error={!!error}
-          className={cn(inputVariants(props), inputClassName)}
-          ref={ref}
-          id={inputId}
           aria-describedby={description && descriptionId}
           aria-errormessage={error && errorId}
           aria-invalid={!!error}
+          className={cn(inputVariants(props), inputClassName)}
+          data-error={!!error}
           formNoValidate
+          id={inputId}
+          ref={ref}
+          type={type}
           {...props}
         />
 
         <InputLabel id={inputId} label={label} />
-        <InputDescription id={descriptionId} description={description} />
-        <InputError id={errorId} error={error} />
+        <InputDescription description={description} id={descriptionId} />
+        <InputError error={error} id={errorId} />
       </InputWrapper>
     );
   },

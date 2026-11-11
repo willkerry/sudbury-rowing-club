@@ -1,20 +1,23 @@
-import { ArrowUpRightIcon, PencilSquareIcon } from "@heroicons/react/20/solid";
 import {
   type Article,
   serverGetAllSlugs,
   serverGetArticleBySlug,
   urlFor,
 } from "@sudburyrc/api";
+import { IconArrowUpRight, IconEditFilled } from "@tabler/icons-react";
 import type { RecommendationsHit } from "algoliasearch/lite";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { Article as ArticleSchema, WithContext } from "schema-dts";
 import { PostBody } from "@/components/news/post-body";
 import { PostHeader } from "@/components/news/post-header";
 import { PostPreview } from "@/components/news/post-preview";
+import { BreadcrumbJsonLd } from "@/components/stour/breadcrumbs/breadcrumb-json-ld";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { getBrowserClient } from "@/lib/algolia";
+import { BASE_URL, ClubJsonLd } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
 
 type NewsPageParams = { slug: string };
@@ -27,7 +30,7 @@ export const generateStaticParams = async (): Promise<NewsPageParams[]> => {
 };
 
 const coverImage = (image: Article["featuredImage"]) => {
-  if (!image) return undefined;
+  if (!image) return;
 
   return urlFor(image).width(1200).url();
 };
@@ -43,10 +46,10 @@ const getRelatedArticles = async (
     requests: [
       {
         indexName: "news",
-        model: "related-products",
-        threshold: 0.7,
         maxRecommendations: 3,
+        model: "related-products",
         objectID: slug,
+        threshold: 0.7,
       },
     ],
   });
@@ -64,40 +67,73 @@ export const generateMetadata = async ({
 
   return {
     ...createMetadata({
-      title: post.title,
       description: post.excerpt || "",
+      title: post.title,
       ...(post.author && {
         author: `${post.author.firstName} ${post.author.surname}`,
       }),
-      type: "article",
-      publishedTime: post.date,
       image: post.featuredImage
         ? coverImage(post.featuredImage)
         : {
             color: "light",
-            title: post.title,
             subtitle: new Date(post.date).toLocaleDateString("en-GB", {
-              year: "numeric",
-              month: "long",
               day: "numeric",
+              month: "long",
+              year: "numeric",
             }),
+            title: post.title,
           },
+      publishedTime: post.date,
+      type: "article",
     }),
   };
 };
 
 const Post = async ({ params }: NewsPageParamObject) => {
-  const post = await serverGetArticleBySlug((await params).slug);
+  const { slug } = await params;
+  const post = await serverGetArticleBySlug(slug);
   const relatedArticles = post?._id ? await getRelatedArticles(post._id) : [];
 
   if (!post) return notFound();
 
+  const articleUrl = `${BASE_URL}/news/${slug}`;
+
+  const articleJsonLd: WithContext<ArticleSchema> = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    datePublished: post.date,
+    description: post.excerpt || undefined,
+    headline: post.title,
+    publisher: ClubJsonLd,
+    url: articleUrl,
+    ...(post.author && {
+      author: {
+        "@type": "Person",
+        name: `${post.author.firstName} ${post.author.surname}`,
+      },
+    }),
+    ...(post.featuredImage && {
+      image: coverImage(post.featuredImage),
+    }),
+  };
+
   return (
     <>
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        type="application/ld+json"
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: BASE_URL },
+          { name: "News", url: `${BASE_URL}/news` },
+          { name: post.title, url: articleUrl },
+        ]}
+      />
       <PostHeader
-        title={post.title}
-        featuredImage={post.featuredImage}
         date={post.date}
+        featuredImage={post.featuredImage}
+        title={post.title}
       />
       {post.body && <PostBody content={post.body} />}
 
@@ -109,7 +145,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
               <div className="font-medium text-sm">
                 {`${post.author?.firstName} ${post.author?.surname}`}
                 <Link href={`/news/author/${post.author?._id}`}>
-                  <ArrowUpRightIcon aria-hidden className="inline h-4 w-4" />
+                  <IconArrowUpRight aria-hidden className="inline h-4 w-4" />
                   <span className="sr-only">
                     View all articles by {post.author?.firstName}{" "}
                     {post.author?.surname}
@@ -129,13 +165,13 @@ const Post = async ({ params }: NewsPageParamObject) => {
           href={`https://edit.sudburyrowingclub.org.uk/structure/news;news;${post._id}`}
         >
           <span className="sr-only">Edit this article</span>
-          <PencilSquareIcon aria-hidden className="inline h-4 w-4" />
+          <IconEditFilled aria-hidden className="inline h-4 w-4" />
         </Link>
       </div>
 
       <div className="grid grid-cols-3 gap-4">
         {relatedArticles.map((hit) => (
-          <PostPreview post={hit} key={hit._id} />
+          <PostPreview key={hit._id} post={hit} />
         ))}
       </div>
     </>

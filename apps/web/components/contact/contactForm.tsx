@@ -1,40 +1,31 @@
 "use client";
 
+// import { Turnstile } from "@marsidev/react-turnstile";
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { OfficerResponse } from "@sudburyrc/api";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
-import { shake } from "radash";
-import { z } from "zod";
-import { kyInstance } from "@/app/get-query-client";
+import { TRPCClientError } from "@trpc/client";
+import { usePostHog } from "posthog-js/react";
+import { shake } from "radashi";
+// import { toast } from "sonner";
 import { DisabledOverlay } from "@/components/contact/views/disabledOverlay";
 import { Success } from "@/components/contact/views/success";
 import Center from "@/components/stour/center";
 import { Button } from "@/components/ui/button";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { TextArea } from "@/components/ui/textarea";
+// import { env } from "@/env";
+import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
+import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
+import { useTRPC } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 import { FromAndTo } from "./fromAndTo";
+import { DEFAULT_VALUE, type Message, MessageSchema } from "./Message";
 import { useTestingMode } from "./useTestingMode";
-
-const MessageToSchema = z.string().refine((value) => value !== "default", {
-  message: "Select a recipient",
-});
-const MessageNameSchema = z.string().min(1, "Provide your name");
-const MessageEmailSchema = z.string().min(1, "Provide your email").email();
-const MessageMessageSchema = z.string().trim().min(1, "Provide a message");
-
-const MessageSchema = z.object({
-  to: MessageToSchema,
-  name: MessageNameSchema,
-  email: MessageEmailSchema,
-  message: MessageMessageSchema,
-});
-
-export type Message = z.infer<typeof MessageSchema>;
 
 type Props = {
   disabled?: boolean;
@@ -47,29 +38,58 @@ type Props = {
  * valid recipients are provided, will render a fully-functional form.
  */
 export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
+  const trpc = useTRPC();
+
   const recipientWasProvided = !!initialValues.to;
 
-  const { mutateAsync, status, error, data } = useMutation({
-    mutationKey: ["contact-form"],
-    mutationFn: (values: Message) =>
-      kyInstance.post("/api/send", { json: values }),
-  });
+  const posthog = usePostHog();
+
+  const { mutateAsync, status, error, data } = useMutation(
+    trpc.comms.send.mutationOptions({
+      onError: (error) => {
+        if (error instanceof TRPCClientError && error.data?.zodError) return;
+
+        posthog.capture("contact_form_api_error", {
+          error_message: error.message,
+        });
+      },
+      onMutate: () => posthog.capture("contact_form_submitted"),
+      onSuccess: (data) =>
+        posthog.capture("contact_form_success", { message_id: data.messageId }),
+    }),
+  );
 
   const optionArray = contacts.map((contact) => ({
+    label: contact.name ? `${contact.role} (${contact.name})` : contact.role,
     value: contact._id,
-    label: `${contact.role} (${contact.name})`,
   }));
 
   const form = useForm({
     defaultValues: {
-      to: initialValues.to || "default",
-      name: initialValues.name || "",
       email: initialValues.email || "",
       message: initialValues.message || "",
+      name: initialValues.name || "",
+      to: initialValues.to || DEFAULT_VALUE,
+      token: "",
     },
-    onSubmit: ({ value }) => mutateAsync(value),
-    validators: { onSubmit: MessageSchema },
-    onSubmitInvalid: () => scrollToSelector('[aria-invalid="true"]'),
+    onSubmitInvalid: ({ formApi }) => {
+      const fieldErrors = Object.fromEntries(
+        Object.entries(formApi.state.fieldMeta)
+          .filter(([, meta]) => meta.errors.length > 0)
+          .map(([field, meta]) => [field, meta.errors.map(getErrorMessage)]),
+      );
+
+      posthog.capture("contact_form_validation_error", {
+        error_details: fieldErrors,
+        fields_with_errors: Object.keys(fieldErrors),
+      });
+
+      scrollToSelector('[aria-invalid="true"]');
+    },
+    validators: {
+      onSubmit: MessageSchema,
+      onSubmitAsync: withServerValidation(mutateAsync),
+    },
   });
 
   useTestingMode({
@@ -80,8 +100,15 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     },
   });
 
+  const hasTouchedFields = Object.values(form.state.fieldMeta).some(
+    (meta) => meta.isTouched,
+  );
+
+  useTrackFormStarted("contact_form", hasTouchedFields);
+
   if (disabled) return <DisabledOverlay form={<div />} />;
-  if (data && status === "success") return <Success response={data} />;
+  if (data && status === "success")
+    return <Success messageId={data.messageId} />;
 
   const disableFields =
     form.state.isSubmitting ||
@@ -102,13 +129,13 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
           <Select
             className={cn("col-span-2", recipientWasProvided && "hidden")}
             disabled={disableFields}
-            error={field.state.meta.errors[0]?.toString()}
+            error={getErrorMessage(field.state.meta.errors[0])}
             label="Who would you like to contact?"
-            value={field.state.value}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
+            value={field.state.value}
           >
-            <option value="default" disabled />
+            <option disabled value={DEFAULT_VALUE} />
             {optionArray.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -118,18 +145,19 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         )}
       </form.Field>
 
-      <div className="-mb-4 col-span-2 grid gap-x-4 sm:grid-cols-2">
+      <div className="col-span-2 -mb-4 grid gap-x-4 sm:grid-cols-2">
         <form.Field name="name">
           {(field) => (
             <Input
-              disabled={disableFields}
-              label="Your name"
-              type="text"
+              autoComplete="name"
               className="mb-4"
-              error={field.state.meta.errors[0]?.toString()}
-              value={field.state.value}
+              disabled={disableFields}
+              error={getErrorMessage(field.state.meta.errors[0])}
+              label="Your name"
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
+              type="text"
+              value={field.state.value}
             />
           )}
         </form.Field>
@@ -137,14 +165,16 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
         <form.Field name="email">
           {(field) => (
             <Input
-              disabled={disableFields}
-              label="Your email"
-              type="email"
+              autoComplete="email"
               className="mb-4"
-              error={field.state.meta.errors[0]?.toString().split(",")[0]}
-              value={field.state.value}
+              disabled={disableFields}
+              error={getErrorMessage(field.state.meta.errors[0])}
+              label="Your email"
               onBlur={field.handleBlur}
               onChange={(e) => field.handleChange(e.target.value)}
+              spellCheck={false}
+              type="email"
+              value={field.state.value}
             />
           )}
         </form.Field>
@@ -159,13 +189,16 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       >
         {([to, name, email]) => (
           <FromAndTo
-            to={shake(contacts.find((o) => o._id === to))}
-            isOpen={to !== "default"}
             from={{
               name,
               email: email || "Placeholder",
               isPlaceholder: !(name && form.getFieldValue("email")),
             }}
+            isOpen={to !== "default"}
+            to={shake(
+              contacts.find((o) => o._id === to) ?? {},
+              (value) => value == null,
+            )}
           />
         )}
       </form.Subscribe>
@@ -173,39 +206,60 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       <form.Field name="message">
         {(field) => (
           <TextArea
-            label="Your message"
             className={cn("col-span-2")}
             disabled={disableFields}
+            error={getErrorMessage(field.state.meta.errors[0])}
             id={field.name}
+            label="Your message"
             minRows={3}
-            error={field.state.meta.errors[0]?.toString()}
-            value={field.state.value}
             onBlur={field.handleBlur}
             onChange={(e) => field.handleChange(e.target.value)}
+            value={field.state.value}
           />
         )}
       </form.Field>
 
-      {status === "error" && (
-        <ErrorComponent className="col-span-2" error={error}>
-          <div className="text-sm">
-            Contact us{" "}
-            <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
-              by email
-            </Obfuscate>
-            .
-          </div>
-        </ErrorComponent>
-      )}
+      {/* TODO: Re-enable Turnstile */}
+      {/* <Turnstile
+        className="col-span-2"
+        onError={(error) => {
+          posthog.capture("turnstile_error", {
+            error_message: error,
+          });
+          toast.error(
+            "There was an error verifying the turnstile token. Please try again.",
+          );
+        }}
+        onSuccess={(token) => form.setFieldValue("token", token)}
+        options={{
+          appearance: "interaction-only",
+          size: "flexible",
+          theme: "light",
+        }}
+        siteKey={env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+      /> */}
+
+      {status === "error" &&
+        !(error instanceof TRPCClientError && error.data?.zodError) && (
+          <ErrorMessage className="col-span-2" error={error}>
+            <div className="text-sm">
+              Contact us{" "}
+              <Obfuscate email="webmaster@sudburyrowingclub.org.uk">
+                by email
+              </Obfuscate>
+              .
+            </div>
+          </ErrorMessage>
+        )}
 
       <Center className="col-span-2">
         <form.Subscribe selector={(state) => state.isSubmitting}>
           {(isSubmitting) => (
             <Button
+              className="w-full"
               loading={isSubmitting}
               size="lg"
               type="submit"
-              className="w-full"
               variant="secondary"
             >
               Send

@@ -5,9 +5,9 @@ import { createMetadata } from "@/lib/create-metadata";
 import { BugsClientSide } from "./client-page";
 
 export const metadata = createMetadata({
-  title: "Report a bug | Sudbury Rowing Club",
   description: "Report a bug",
   image: { title: "Report a bug 💩" },
+  title: "Report a bug | Sudbury Rowing Club",
 });
 
 const BugsPage = () => (

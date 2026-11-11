@@ -1,4 +1,4 @@
-import { HeartHandshake } from "lucide-react";
+import { IconHeartHandshake } from "@tabler/icons-react";
 import Link from "next/link";
 import { Sponsors } from "@/components/landing/sponsors";
 import { Container } from "@/components/layouts/container";
@@ -17,7 +17,7 @@ export const SponsorshipHero = ({
     <Label className="sm:mb-3">{title}</Label>
     <h1 className="relative z-10 bg-linear-to-br from-emerald-400 to-blue-700 bg-clip-text font-semibold text-6xl text-transparent drop-shadow-xl sm:text-8xl">
       Sponsor us{" "}
-      <HeartHandshake className="inline h-12 w-12 rotate-6 text-gray-500 drop-shadow-2xl sm:h-16 sm:w-16" />
+      <IconHeartHandshake className="inline h-12 w-12 rotate-6 text-gray-500 drop-shadow-2xl sm:h-16 sm:w-16" />
     </h1>
 
     <div className="prose mx-auto mt-12 mb-16 max-w-xl text-left">
@@ -26,12 +26,12 @@ export const SponsorshipHero = ({
 
     <div className="flex justify-center gap-2 pb-12">
       <ScrollLink
-        to="sponsorship-tiers"
+        className="text-white"
         offset={-175}
         smooth
-        className="text-white"
+        to="sponsorship-tiers"
       >
-        <Button variant="secondary" size="lg">
+        <Button size="lg" variant="secondary">
           Learn more
         </Button>
       </ScrollLink>

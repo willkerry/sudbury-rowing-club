@@ -29,11 +29,11 @@ export const Events = ({ data }: { data: Event[] }) => (
       <section key={item._key}>
         <div className="text-center">
           <Image
-            src={item.course === "350m" ? shortCourse : longCourse}
-            className="w-full px-4"
             alt={`Illustrative map of the ${
               item.course === "350m" ? "short" : "long"
             } regatta course.`}
+            className="w-full px-4"
+            src={item.course === "350m" ? shortCourse : longCourse}
           />
           <h4 className="pt-6 pb-1 font-bold text-xl">{item.title}</h4>
           <p className="h-14 pb-6 text-gray-500 text-sm">{item.description}</p>
@@ -45,7 +45,7 @@ export const Events = ({ data }: { data: Event[] }) => (
             <Row
               label="Boat Classes"
               value={item.boatClasses.map((w, index) => (
-                <span key={w} className="disambiguate">
+                <span className="disambiguate" key={w}>
                   {(index ? ", " : "") + w}
                 </span>
               ))}

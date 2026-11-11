@@ -1,29 +1,29 @@
 import { defineField, defineType } from "sanity";
 
 const ResourceItem = defineType({
-  type: "object",
   name: "resourceItem",
+  type: "object",
   fields: [
-    defineField({ type: "string", name: "name" }),
+    defineField({ name: "name", type: "string" }),
     defineField({
-      type: "string",
       name: "fileOrLink",
+      type: "string",
       options: {
-        list: ["Upload a file", "Enter a link"],
         layout: "radio",
+        list: ["Upload a file", "Enter a link"],
       },
     }),
     defineField({
-      type: "file",
       name: "file",
       title: "Upload a file",
+      type: "file",
       hidden: ({ parent, value }) =>
         !value && parent?.fileOrLink === "Enter a link",
     }),
     defineField({
-      type: "string",
       name: "url",
       title: "Enter a link",
+      type: "string",
       hidden: ({ parent, value }) =>
         !value && parent?.fileOrLink === "Upload a file",
     }),

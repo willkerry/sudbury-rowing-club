@@ -2,10 +2,12 @@ import { allSquads } from "content-collections";
 import { notFound } from "next/navigation";
 import { OfficerContactCard } from "@/components/about/squads/officer-contact-card";
 import { SquadLatestNews } from "@/components/about/squads/squad-latest-news";
+import { SquadPathways } from "@/components/about/squads/squad-pathways";
 import { Container } from "@/components/layouts/container";
 import { MDXContent } from "@/components/mdx/mdx-content";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Text } from "@/components/stour/text";
+import { loadSquadContent } from "@/lib/squad-content";
 
 type SquadPageParams = { slug: string };
 type SquadPageParamObject = { params: Promise<SquadPageParams> };
@@ -23,12 +25,16 @@ const SquadPage = async ({ params }: SquadPageParamObject) => {
 
   if (!squad) return notFound();
 
+  const content = await loadSquadContent(slug);
+
+  if (!content) return notFound();
+
   return (
     <>
       <PageHeader
-        title={squad?.title}
         breadcrumbs
         description={squad?.description}
+        title={squad?.title}
       />
 
       <Container className="mb-12">
@@ -36,7 +42,7 @@ const SquadPage = async ({ params }: SquadPageParamObject) => {
 
         <div className="h-6 md:h-12" />
 
-        <MDXContent code={squad?.body} />
+        <MDXContent components={{ SquadPathways, Text }} content={content} />
       </Container>
 
       {squad.keyword && (

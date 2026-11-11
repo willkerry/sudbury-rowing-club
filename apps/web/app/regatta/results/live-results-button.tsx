@@ -1,6 +1,6 @@
 "use client";
 
-import { RadioTowerIcon } from "lucide-react";
+import { IconBuildingBroadcastTower } from "@tabler/icons-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { REGATTA } from "@/lib/constants";
@@ -17,8 +17,15 @@ export const LiveResultsButton = ({ regattaDate }: { regattaDate: Date }) => {
     );
 
   return (
-    <Button asChild icon={<RadioTowerIcon />} variant="success">
-      <a href={REGATTA.LIVE_RESULTS_URL}>Live results</a>
+    <Button asChild icon={<IconBuildingBroadcastTower />} variant="success">
+      <a
+        href={REGATTA.LIVE_RESULTS_URL}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Live results
+        <span className="sr-only"> (opens in new tab)</span>
+      </a>
     </Button>
   );
 };

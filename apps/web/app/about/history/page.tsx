@@ -12,12 +12,14 @@ import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
+  description:
+    "The history of Sudbury Rowing Club – from its founding on the River Stour in the 1870s through 150 years of rowing in Sudbury, Suffolk.",
+  image: { title: "Club History 📜" },
   title: "History",
-  description: "A history of Sudbury Rowing Club",
 });
 
 const History: NextPage = () => (
-  <TextPage title="Club history" lead>
+  <TextPage lead title="Club history">
     <p>
       Although early records have been lost, it is known that Sudbury RC,
       formerly Stour BC, was formed some time before 1873, but ceased to
@@ -46,8 +48,8 @@ const History: NextPage = () => (
     </p>
     <figure>
       <Image
-        src={regatta1888Image}
         alt="The annual ‘Sudbury Amateur Sports, Bicycle and Boat Races’ taking place on the sports field in Quay Lane and the river beyond. Here the camera has caught one of the special attractions in 1888 – the town Postmaster, Mr Hills, making a balloon ascent from the field. The balloon was filled with gas provide by the gas works just across the Lane; the balloon later landed safely at Newton Green."
+        src={regatta1888Image}
       />
       <figcaption>
         The annual ‘Sudbury Amateur Sports, Bicycle and Boat Races’ taking place
@@ -80,11 +82,11 @@ const History: NextPage = () => (
     </p>
     <figure>
       <Image
-        src={river1920sImage}
         alt="An image thought to date from the 1920s of pleasure boating on the river
           – probably looking downstream from the vicinity of the railway bridge
           towards the cut (on the left) leading to The Quay and Friars Meadow
           beyond."
+        src={river1920sImage}
       />
       <figcaption>
         An image thought to date from the 1920s of pleasure boating on the river
@@ -116,12 +118,12 @@ const History: NextPage = () => (
     </p>
     <figure>
       <Image
+        alt="An Edwardian photograph of Lady’s Bridge, which crossed from Lady Island to the Essex bank and collapsed in the 1930s."
         src={bridge1900sImage}
-        alt="An Edwardian photograph of Ladies’s Bridge, which crossed from Lady Island to the Essex bank and collapsed in the 1930s."
       />
       <figcaption>
-        An Edwardian photograph of Ladies’s Bridge, which crossed from Lady
-        Island to the Essex bank and collapsed in the 1930s.
+        An Edwardian photograph of Lady’s Bridge, which crossed from Lady Island
+        to the Essex bank and collapsed in the 1930s.
       </figcaption>
     </figure>
     <p>
@@ -215,9 +217,9 @@ const History: NextPage = () => (
     </p>
     <figure>
       <Image
-        src={aerial1936Image}
         alt="A 1936 aerial view of the Quay Lane gasworks. The then-new boathouse is at the bottom of frame. "
         className="flex"
+        src={aerial1936Image}
       />
       <figcaption>
         A 1936 aerial view of the Quay Lane gasworks. The then-new boathouse is
@@ -227,22 +229,22 @@ const History: NextPage = () => (
     <p>
       The new boathouse was completed by February 1932, the new boats received
       and an opening ceremony was performed by the Mayoress on 16 March. It was
-      then best-equipped club in East Anglia and the only one with boats fitted
-      with swivel rowlocks. With this advantage the Club attracted a lot of new
-      members and over the following years they managed to win many events both
-      at home and away regattas. This continues up the time of the outbreak of
-      war in 1939 when, an enthusiastic nucleus kept the club running until 1946
-      when some of the pre-war members returned to try and pick up where they
-      had left off in 1939, and quite successful they were for by 1948 they
-      swept the board in winning every major rowing event they entered. Sadly,
-      within a year most of the older experienced members had retired or left
-      the area, and the younger ones who had joined since the war found success
-      rather more difficult.
+      then the best-equipped club in East Anglia and the only one with boats
+      fitted with swivel rowlocks. With this advantage the Club attracted a lot
+      of new members and over the following years they managed to win many
+      events both at home and away regattas. This continues up the time of the
+      outbreak of war in 1939 when, an enthusiastic nucleus kept the club
+      running until 1946 when some of the pre-war members returned to try and
+      pick up where they had left off in 1939, and quite successful they were
+      for by 1948 they swept the board in winning every major rowing event they
+      entered. Sadly, within a year most of the older experienced members had
+      retired or left the area, and the younger ones who had joined since the
+      war found success rather more difficult.
     </p>
     <figure>
       <Image
-        src={rowers1940sImage}
         alt="A victorious crew poses in front of the clubhouse doors, probably in the 1940s."
+        src={rowers1940sImage}
       />
       <figcaption>
         A victorious crew poses in front of the clubhouse doors, probably in the
@@ -262,7 +264,7 @@ const History: NextPage = () => (
       It is safe to say that during a very difficult period in the club’s
       history during the 1960s and 1970s the ladies made an increasing
       contribution to the rowing as well as the social health of the club and
-      played a bid part in keeping the club going.
+      played a big part in keeping the club going.
     </p>
 
     <h2>1955, The Stour is Straightened</h2>
@@ -271,26 +273,26 @@ const History: NextPage = () => (
       Over the years the club had suffered from the lack of facilities on the
       river, having only about a quarter of a mile of straight water on which to
       practice, and every club knew that if they could hold Stour over the first
-      quarter of a mile, they could wear them down over the, however, was soon
-      to come to an end for in 1954, after another bad flooding in part of
-      Sudbury, the River Authority decided to straighten and widen the river
-      from Ballingdon to Cornard floodgates. When this was completed in 1955 the
-      club then had a vastly superior course of 1000 metres with the river now
-      70ft wide which meant that at long last boats could row abreast. During
-      the following years the club organised very successful regattas but the
-      club, as usual, was suffering from lack of funds to renew the ageing
-      equipment and, consequently, had very little success in winning events.
-      There was a continual turnover of membership for one reason or another,
-      but it resulted in very few reaching senior status which was unfortunate
-      so far as competition such as the the Duechar Cup was concerned. As we
-      were unable to enter a crew for a year or so the trophy went to Norfolk by
-      default.
+      quarter of a mile, they could wear them down over the rest of the course,
+      however, was soon to come to an end for in 1954, after another bad
+      flooding in part of Sudbury, the River Authority decided to straighten and
+      widen the river from Ballingdon to Cornard floodgates. When this was
+      completed in 1955 the club then had a vastly superior course of 1000
+      metres with the river now 70ft wide which meant that at long last boats
+      could row abreast. During the following years the club organised very
+      successful regattas but the club, as usual, was suffering from lack of
+      funds to renew the ageing equipment and, consequently, had very little
+      success in winning events. There was a continual turnover of membership
+      for one reason or another, but it resulted in very few reaching senior
+      status which was unfortunate so far as competition such as the the Duechar
+      Cup was concerned. As we were unable to enter a crew for a year or so the
+      trophy went to Norfolk by default.
     </p>
 
     <figure>
       <Image
-        src={reachPreWw1Image}
         alt="A pre-WW1 view of the bridge taken looking downstream along ‘The Reach’ from the vicinity of Friars Meadow.The photo brings out the meandering nature of the old river course, often the cause of flooding in the low-lying parts of the town. The channel was straightened and meanders cut through after WW2. Before that I the bridge led directly onto the Essex bank, not as today onto an island."
+        src={reachPreWw1Image}
       />
       <figcaption>
         A pre-WW1 view of the bridge taken looking downstream along ‘The Reach’
@@ -358,8 +360,8 @@ const History: NextPage = () => (
 
     <figure>
       <Image
-        src={henley2002Image}
         alt="Sam Hogsbjerg and Aidan Dunn carrying their pair at Henley in 2002."
+        src={henley2002Image}
       />
       <figcaption>
         Sam Hogsbjerg and Aidan Dunn carrying their pair at Henley in 2002.

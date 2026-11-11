@@ -56,15 +56,15 @@ const PostPreviewText = ({ title }: { title: string }) => (
 
 export const PostPreview = ({ post }: { post: ArticleSummary }) => (
   <li
-    id={post.slug}
     className="group overflow-hidden rounded-sm border bg-white transition hover:border-blue-400"
+    id={post.slug}
   >
-    <Link href={`/news/${post.slug}`} className="flex h-full flex-col">
+    <Link className="flex h-full flex-col" href={`/news/${post.slug}`}>
       {post.featuredImage ? (
         <div className="relative h-48 overflow-hidden border-b">
           <PostPreviewImage
-            id={post.featuredImage._id}
             alt={post.featuredImage.alt || post.title}
+            id={post.featuredImage._id}
             lqip={post.featuredImage.lqip}
           />
         </div>
@@ -83,8 +83,8 @@ export const PostPreview = ({ post }: { post: ArticleSummary }) => (
       )}
 
       <DateFormatter
-        dateString={post.date}
         className="mx-2 my-2 font-mono font-semibold text-gray-600 text-xs uppercase"
+        dateString={post.date}
       />
     </Link>
   </li>

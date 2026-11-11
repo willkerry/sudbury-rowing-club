@@ -4,13 +4,13 @@ import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import type { fetchOfficerNames, OfficerResponse } from "@sudburyrc/api";
 import { useQuery } from "@tanstack/react-query";
 import { parseAsArrayOf, parseAsString, useQueryStates } from "nuqs";
-import { shake } from "radash";
 import { Suspense } from "react";
 import { ContactForm } from "@/components/contact";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Loading } from "@/components/stour/loading";
 import { getBrowserClient, OFFICERS_INDEX_NAME } from "@/lib/algolia";
+import { removeNullValues } from "@/lib/helpers/removeNullValues";
 
 const ContactPage = ({
   officers,
@@ -18,15 +18,17 @@ const ContactPage = ({
   officers: Awaited<ReturnType<typeof fetchOfficerNames>>;
 }) => {
   const [{ q, ...initialValues }] = useQueryStates({
-    q: parseAsArrayOf(parseAsString),
-    to: parseAsString,
-    name: parseAsString,
     email: parseAsString,
     message: parseAsString,
+    name: parseAsString,
+    q: parseAsArrayOf(parseAsString),
+    to: parseAsString,
   });
 
   const { data: guessedRecipient } = useQuery({
+    enabled: !!q,
     queryKey: ["officers", q],
+    staleTime: Number.POSITIVE_INFINITY,
     queryFn: () =>
       getBrowserClient().searchForHits<OfficerResponse>({
         requests: (q ?? []).map((query) => ({
@@ -34,16 +36,14 @@ const ContactPage = ({
           query,
         })),
       }),
-    enabled: !!q,
-    staleTime: Number.POSITIVE_INFINITY,
     select: (data) => data.results.flatMap((d) => d.hits)?.[0],
   });
 
   if (guessedRecipient) initialValues.to = guessedRecipient._id;
 
-  const initialRecipientName =
-    guessedRecipient?.name ??
-    officers.find((o) => o._id === initialValues.to)?.name;
+  const initialRecipient =
+    guessedRecipient ?? officers.find((o) => o._id === initialValues.to);
+  const initialRecipientName = initialRecipient?.name ?? initialRecipient?.role;
 
   const recipientWasProvided = !!initialValues.to;
 
@@ -61,14 +61,15 @@ const ContactPage = ({
         <div className="prose mx-auto pb-10">
           {recipientWasProvided ? null : (
             <p>
-              We’re a volunteer-run club that provides a safe and fun way to
-              row, but we also need your help. Since we don’t have a full-time
-              staff to respond to enquiries, we ask that you select an
-              appropriate recipient for your enquiry.
+              We’re a volunteer-run club. Selecting the right person below helps
+              us get back to you faster.
             </p>
           )}
         </div>
-        <ContactForm contacts={officers} initialValues={shake(initialValues)} />
+        <ContactForm
+          contacts={officers}
+          initialValues={removeNullValues(initialValues)}
+        />
         <div className="prose mt-16 text-gray-500 text-sm">
           Alternatively, mail{" "}
           <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general

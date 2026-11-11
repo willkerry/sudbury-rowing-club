@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpIcon } from "@heroicons/react/20/solid";
+import { IconArrowUp } from "@tabler/icons-react";
 import Image from "next/image";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
@@ -25,11 +25,11 @@ export const RegattaHeroImage = ({
     <div className="relative flex overflow-hidden rounded-xl shadow-lg">
       <Image
         {...useSanityImageProps(src)}
-        placeholder="blur"
         alt=""
         blurDataURL={blurDataURL}
-        width={imageWidth}
         height={imageHeight}
+        placeholder="blur"
+        width={imageWidth}
       />
       <div className="absolute top-0 left-0 h-full w-full bg-linear-to-tr from-black via-transparent to-transparent" />
       <div className="absolute top-0 left-0 flex h-full w-full items-end p-6 md:p-12">
@@ -38,7 +38,7 @@ export const RegattaHeroImage = ({
             {title}
           </div>
           <div className="font-medium text-white opacity-75">
-            <ArrowUpIcon aria-hidden className="mb-px inline-flex h-4 w-4" />{" "}
+            <IconArrowUp aria-hidden className="mb-px inline-flex h-4 w-4" />{" "}
             {subtitle}
           </div>
         </div>

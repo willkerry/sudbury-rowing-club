@@ -3,33 +3,33 @@ import { defineArrayMember, defineField } from "sanity";
 const FileDocumentGroup = defineField({
   name: "fileDocumentGroup",
   type: "object",
-  options: {
-    columns: 2,
-  },
   fields: [
     defineField({
       name: "title",
-      type: "string",
       title: "Title",
+      type: "string",
     }),
     defineField({
       name: "documents",
       type: "array",
       of: [
         defineArrayMember({
-          type: "file",
           title: "Documents",
+          type: "file",
           fields: [
             defineField({
               name: "title",
-              type: "string",
               title: "Title",
+              type: "string",
             }),
           ],
         }),
       ],
     }),
   ],
+  options: {
+    columns: 2,
+  },
 });
 
 export default FileDocumentGroup;

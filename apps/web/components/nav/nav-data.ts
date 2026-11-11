@@ -1,20 +1,20 @@
-import { CalendarIcon } from "@heroicons/react/20/solid";
 import {
-  CakeIcon,
-  EnvelopeIcon,
-  FlagIcon,
-  InformationCircleIcon,
-  MapPinIcon,
-  NewspaperIcon,
-  PhotoIcon,
-  QueueListIcon,
-  ShieldCheckIcon,
-  SparklesIcon,
-  TicketIcon,
-  UserGroupIcon,
-  UserPlusIcon,
-} from "@heroicons/react/24/outline";
-import { Facebook, Instagram } from "lucide-react";
+  IconBrandFacebookFilled,
+  IconBrandInstagramFilled,
+  IconCake,
+  IconCalendarFilled,
+  IconFlag,
+  IconInfoCircle,
+  IconListNumbers,
+  IconMail,
+  IconMapPin,
+  IconNews,
+  IconPhoto,
+  IconShieldCheck,
+  IconSparkles,
+  IconTicket,
+  IconUsersGroup,
+} from "@tabler/icons-react";
 import {
   Governance,
   History,
@@ -24,89 +24,79 @@ import {
   Spond,
 } from "@/components/icons";
 import { SOCIALS } from "@/lib/constants";
-import type { NavigationGroup, NavigationItem } from "./types";
+import type { IconNavItemType } from "@/types/nav-item";
+
+type NavigationGroup = {
+  title: string;
+  compact?: boolean;
+  items: IconNavItemType[];
+};
 
 const navigationGroups: NavigationGroup[] = [
   {
     title: "About",
     items: [
       {
-        name: "Squads",
+        description: "The latest club news.",
+        href: "/news",
+        icon: IconNews,
+        name: "News",
+      },
+      {
         description: "Find out about our squads.",
         href: "/about/squads",
-        icon: UserGroupIcon,
+        icon: IconUsersGroup,
+        name: "Squads",
         items: [
-          {
-            name: "Masters",
-            href: "/about/squads/masters",
-          },
-          {
-            name: "Seniors",
-            href: "/about/squads/seniors",
-          },
-          {
-            name: "Adaptive",
-            href: "/about/squads/adaptive",
-          },
-          {
-            name: "Juniors",
-            href: "/about/squads/juniors",
-          },
+          { href: "/about/squads/masters", name: "Masters" },
+          { href: "/about/squads/seniors", name: "Seniors" },
+          { href: "/about/squads/adaptive", name: "Adaptive" },
+          { href: "/about/squads/juniors", name: "Juniors" },
         ],
       },
       {
-        name: "History",
         description: "Rowing in Sudbury since 1874.",
         href: "/about/history",
         icon: History,
+        name: "History",
       },
       {
-        name: "Safety",
         description: "Your safety is our top priority.",
         href: "/safety",
         icon: Safety,
+        name: "Safety",
       },
       {
-        name: "Governance",
         description: "How our club is organised.",
         href: "/governance",
         icon: Governance,
+        name: "Governance",
       },
       {
-        name: "Sponsorship",
         description: "Discover the benefits of sponsorship.",
         href: "/about/sponsorship",
-        icon: SparklesIcon,
+        icon: IconSparkles,
+        name: "Sponsorship",
       },
       {
-        name: "150th anniversary",
-        shortName: "150 years",
         description: "View a century-and-a-half of photos.",
         href: "/150",
-        icon: CakeIcon,
+        icon: IconCake,
+        name: "150th anniversary",
+        shortName: "150 years",
       },
       {
+        cta: true,
+        href: "/contact/how-to-find-us",
+        icon: IconMapPin,
         name: "How to find us",
         shortName: "Find us",
-        href: "/contact/how-to-find-us",
-        icon: MapPinIcon,
-        cta: true,
       },
       {
-        name: "Contact",
+        cta: true,
         href: "/contact",
-        icon: EnvelopeIcon,
-        cta: true,
-      },
-    ],
-  },
-  {
-    title: "News",
-    items: [
-      {
-        name: "News",
-        href: "/news",
-        icon: NewspaperIcon,
+        icon: IconMail,
+        name: "Contact",
       },
     ],
   },
@@ -114,118 +104,111 @@ const navigationGroups: NavigationGroup[] = [
     title: "Regatta",
     items: [
       {
-        name: "The ‘International’",
-        shortName: "About",
         description:
           "Learn everything you need to know about Sudbury’s ’Little Henley‘.",
         href: "/regatta",
-        icon: InformationCircleIcon,
+        icon: IconInfoCircle,
+        name: "The ‘International’",
+        shortName: "About",
       },
       {
-        name: "Results",
         href: "/regatta/results",
         icon: Results,
+        name: "Results",
       },
       {
-        name: "Course records",
         href: "/regatta/records",
-        icon: QueueListIcon,
+        icon: IconListNumbers,
+        name: "Course records",
       },
       {
-        name: "Entries",
         href: "/regatta/entries",
-        icon: TicketIcon,
+        icon: IconTicket,
+        name: "Entries",
       },
       {
+        href: "/regatta/course",
+        icon: IconFlag,
         name: "Course map",
         shortName: "Course",
-        href: "/regatta/course",
-        icon: FlagIcon,
       },
       {
+        href: "/regatta/galleries",
+        icon: IconPhoto,
         name: "Official photography",
         shortName: "Photography",
-        href: "/regatta/galleries",
-        icon: PhotoIcon,
       },
       {
+        href: "/regatta/competitor-information",
+        icon: IconShieldCheck,
         name: "Competitor information",
         shortName: "Competitors",
-        href: "/regatta/competitor-information",
-        icon: ShieldCheckIcon,
       },
       {
+        cta: true,
+        href: "/contact/how-to-find-us",
+        icon: IconMapPin,
         name: "Find the regatta",
         shortName: "Find",
-        href: "/contact/how-to-find-us",
-        icon: MapPinIcon,
-        cta: true,
-      },
-    ],
-  },
-];
-
-const secondaryNavigationGroups: NavigationGroup[] = [
-  {
-    title: "Join",
-    items: [
-      {
-        name: "Join",
-        href: "/join",
-        icon: UserPlusIcon,
       },
     ],
   },
   {
+    compact: true,
     title: "Members",
     items: [
       {
-        name: "Notices",
         href: "/members",
+        name: "Notices",
       },
       {
-        name: "Competitions",
         href: "/members/events",
+        name: "Competitions",
       },
       {
-        name: "Kit",
         href: "/members/kit",
+        name: "Kit",
       },
       {
-        name: "Rates",
         href: "/members/membership-rates",
+        name: "Rates",
       },
       {
-        name: "Squadlist",
-        href: "https://sudbury.squadlist.app",
-        icon: CalendarIcon,
         cta: true,
+        href: "https://sudbury.squadlist.app",
+        icon: IconCalendarFilled,
+        name: "Squadlist",
       },
       {
-        name: "myClubhouse",
+        cta: true,
         href: "https://sudburyrowingclub.myclubhouse.co.uk",
         icon: MyClubhouse,
-        cta: true,
+        name: "myClubhouse",
       },
       {
-        name: "Spond",
+        cta: true,
         href: "https://spond.com/login",
         icon: Spond,
-        cta: true,
+        name: "Spond",
       },
     ],
   },
 ];
 
-const availableLogos: Record<
-  (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
-  typeof Instagram
-> = {
-  instagram: Instagram,
-  facebook: Facebook,
+export const join: IconNavItemType = {
+  href: "/join",
+  name: "Join",
 };
 
-export const socials: NavigationItem[] = Object.entries(SOCIALS).map(
+const availableLogos: Record<
+  (typeof SOCIALS)[keyof typeof SOCIALS]["name"],
+  typeof IconBrandInstagramFilled
+> = {
+  facebook: IconBrandFacebookFilled,
+  instagram: IconBrandInstagramFilled,
+};
+
+export const socials: IconNavItemType[] = Object.entries(SOCIALS).map(
   ([key, { href, name }]) => ({
     name,
     href,
@@ -235,19 +218,23 @@ export const socials: NavigationItem[] = Object.entries(SOCIALS).map(
 
 export const misc = [
   {
-    name: "Get brand assets",
     href: "/about/brand",
+    name: "Get brand assets",
   },
   {
-    name: "Privacy policy",
     href: "/governance/privacy-policy",
+    name: "Privacy policy",
   },
   {
-    name: "Content Management System",
     href: "https://edit.sudburyrowingclub.org.uk/",
+    name: "Content Management System",
+  },
+  {
+    href: "/stourtoys",
+    name: "StourToys",
   },
 ];
 
-export const [{ items: about }, , { items: regatta }] = navigationGroups;
-export const [, { items: members }] = secondaryNavigationGroups;
-export { navigationGroups, secondaryNavigationGroups };
+export const [{ items: about }, { items: regatta }, { items: members }] =
+  navigationGroups;
+export { navigationGroups };

@@ -10,10 +10,10 @@ const EventsLayout = ({
 }) => (
   <>
     <PageHeader breadcrumbs title="Competition Calendar" />
-    <Container>{children}</Container>
-    <Container>{calendar}</Container>
-
-    <div className="mt-4" />
+    <Container className="pb-12">
+      {children}
+      {calendar}
+    </Container>
   </>
 );
 

@@ -3,7 +3,7 @@ import a from "indefinite";
 import type { Metadata } from "next";
 import NextLink from "next/link";
 import toWords from "num-words";
-import { capitalize } from "radash";
+import { capitalize } from "radashi";
 import { SharePlayground } from "@/components/about/share-playground";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
@@ -12,8 +12,8 @@ import { ColorIndicator } from "./color-indicator";
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: "Brand Assets",
     description: "Some handy resources for building things for Sudbury RC.",
+    title: "Brand Assets",
   }),
 };
 
@@ -66,14 +66,15 @@ const Brand = () => (
     </p>
 
     <figure>
-      <div
-        className="h-16 w-full rounded-sm bg-blue-950 shadow-sm"
-        style={{
-          background: `linear-gradient(to right, ${brandColors.map(
-            (a) => a.color,
-          )})`,
-        }}
-      />
+      <div className="flex flex-row gap-1.5">
+        {brandColors.map((item) => (
+          <div
+            className="h-48 w-full rounded-sm bg-blue-950 shadow-sm"
+            key={item.id}
+            style={{ background: item.color }}
+          />
+        ))}
+      </div>
       <figcaption>
         A visual representation of the shade scale, starting at the original
         Oxford Blue.
@@ -103,7 +104,7 @@ const Brand = () => (
 
       <tbody>
         {brandColors.map((item) => (
-          <tr key={item.id} className={item.id === "900" ? "bg-gray-100" : ""}>
+          <tr className={item.id === "900" ? "bg-gray-100" : ""} key={item.id}>
             <td className="text-right">
               <code>{item.id}</code>
             </td>

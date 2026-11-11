@@ -2,18 +2,18 @@ import { defineField } from "sanity";
 
 const Link = defineField({
   name: "link",
-  type: "object",
   title: "Link",
+  type: "object",
   fields: [
     defineField({
       name: "title",
-      type: "string",
       title: "Title",
+      type: "string",
     }),
     defineField({
       name: "url",
-      type: "url",
       title: "URL",
+      type: "url",
     }),
   ],
 });

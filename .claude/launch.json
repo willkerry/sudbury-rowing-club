@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "web-vinext",
+      "port": 4321,
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "apps/web",
+        "exec",
+        "vite",
+        "dev",
+        "--port",
+        "4321",
+        "--strictPort"
+      ]
+    }
+  ]
+}

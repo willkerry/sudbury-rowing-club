@@ -1,8 +1,8 @@
 "use client";
 
 import type { serverGetNArticles } from "@sudburyrc/api";
+import { IconArrowBackUp, IconSearch, IconX } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
-import { SearchIcon, Undo2Icon, XIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
 import { Suspense, useState } from "react";
 import { Container } from "@/components/layouts/container";
@@ -67,11 +67,11 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
           <div className="flex items-center md:col-span-2">
             {searchTerm && (
               <button
-                type="button"
                 className="py-3 pr-4 text-gray-400 hover:text-blue-600"
                 onClick={() => cancelSearch()}
+                type="button"
               >
-                <Undo2Icon aria-hidden className="h-4 w-4" />
+                <IconArrowBackUp aria-hidden className="h-4 w-4" />
                 <span className="sr-only">Cancel search</span>
               </button>
             )}
@@ -90,13 +90,13 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
                     {status === "pending" && "Searching for"}
                     {status === "error" && "Error searching for"}{" "}
                     <button
-                      type="button"
                       className={
                         "group relative mb-px inline-block rounded-sm border border-blue-200 bg-blue-50 px-0.5 font-bold text-blue-400 text-xs uppercase tracking-widest transition-colors hover:border-red-200 hover:bg-red-50 hover:text-red-200"
                       }
                       onClick={() => cancelSearch()}
+                      type="button"
                     >
-                      <XIcon
+                      <IconX
                         aria-hidden
                         className="absolute right-0 left-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
                       />
@@ -123,31 +123,33 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
             }}
           >
             <Input
-              value={searchInputValue}
+              aria-label="Search"
+              autoComplete="off"
+              inputClassName="rounded-r-none"
+              name="q"
               onChange={(e) => setSearchInputValue(e.target.value)}
               type="search"
-              name="q"
-              inputClassName="rounded-r-none"
-              aria-label="Search"
+              value={searchInputValue}
             />
             <Button
+              aria-label="Search"
+              className="z-0 -ml-px h-10 rounded-l-none border-l"
+              disabled={!searchInputValue}
               type="submit"
               variant="secondary"
-              className="-ml-px z-0 h-10 rounded-l-none border-l"
-              disabled={!searchInputValue}
             >
-              <SearchIcon aria-hidden className="h-4 w-4" />
+              <IconSearch aria-hidden className="h-4 w-4" />
             </Button>
           </form>
         </Container>
       </div>
       <Container className="my-10">
         <NewsList
-          posts={searchTerm && results ? results : articles}
+          error={error ?? undefined}
           hero={!searchTerm}
           more={getMoreUrl(searchTerm ?? "", articles)}
+          posts={searchTerm && results ? results : articles}
           status={searchTerm ? status : "success"}
-          error={error ?? undefined}
         />
       </Container>
     </>

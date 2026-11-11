@@ -26,7 +26,7 @@ const TextPage = ({
   description?: string;
 }) => (
   <>
-    <PageHeader title={title} breadcrumbs description={description} />
+    <PageHeader breadcrumbs description={description} title={title} />
     <Container>
       {prose === "prose" ? (
         <Text className={cn("mb-16", className)} font={font} lead={lead}>

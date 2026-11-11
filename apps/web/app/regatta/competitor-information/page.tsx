@@ -6,9 +6,9 @@ import { Link } from "@/components/stour/link";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  title: "Competitor Information | Sudbury Regatta",
   description: "Essential information for competitors at the Sudbury Regatta.",
   image: { title: "Competitor Information" },
+  title: "Competitor Information | Sudbury Regatta",
 });
 
 export type CompetitorInformationType = {
@@ -23,17 +23,17 @@ export type CompetitorInformationType = {
 
 const CompetitorInformationPage = async () => {
   const {
-    competitorInformation: { description, documents },
+    competitorInformation: { description, documents = [] },
   }: {
     competitorInformation: CompetitorInformationType;
   } = await sanityClient.fetch(groq`
   *[_type == "regattaSettings"][0]{
-    competitorInformation { 
-      description, 
-      documents[] { 
-        title, 
-        "extension": asset->extension, 
-        "url": asset->url, 
+    competitorInformation {
+      description,
+      documents[] {
+        title,
+        "extension": asset->extension,
+        "url": asset->url,
         "_id": asset->_id
       },
     },
@@ -41,16 +41,16 @@ const CompetitorInformationPage = async () => {
 
   return (
     <>
-      <PageHeader title="Competitor information" breadcrumbs />
+      <PageHeader breadcrumbs title="Competitor information" />
       <Container className="pb-16">
         <div className="prose">
           <p>{description}</p>
 
-          {documents ? (
+          {documents.length > 0 ? (
             <ul>
-              {documents?.map((item) => (
+              {documents.map((item) => (
                 <li key={item._id}>
-                  <Link href={item.url} extension={item.extension}>
+                  <Link extension={item.extension} href={item.url}>
                     {item.title}
                   </Link>
                 </li>

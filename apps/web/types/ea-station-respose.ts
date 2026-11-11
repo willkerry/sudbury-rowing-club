@@ -45,7 +45,6 @@ const MeasuresSchema = z.object({
 
 export const EAStationResponseSchema = z.object({
   "@id": z.string(),
-  RLOIid: z.string(),
   catchmentName: z.string(),
   dateOpened: z.coerce.date(),
   datumOffset: z.number(),
@@ -59,6 +58,7 @@ export const EAStationResponseSchema = z.object({
   measures: MeasuresSchema,
   northing: z.number(),
   notation: z.string(),
+  RLOIid: z.string(),
   riverName: z.string(),
   stageScale: StageScaleSchema,
   stationReference: z.string(),

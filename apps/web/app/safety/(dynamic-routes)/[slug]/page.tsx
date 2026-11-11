@@ -1,10 +1,11 @@
 import { fetchSafety, fetchSafetyById } from "@sudburyrc/api";
-import { Download, ExternalLink } from "lucide-react";
+import { IconDownload, IconExternalLink } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Text } from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import { BASE_URL } from "@/lib/constants";
+import { containsUrgentWords } from "@/lib/contains-urgent-words";
 import { createMetadata } from "@/lib/create-metadata";
 
 type SafetyPageParams = { slug: string };
@@ -25,7 +26,11 @@ export const generateMetadata = async ({
 
   const { title } = item;
 
-  return createMetadata({ title });
+  return createMetadata({
+    title,
+    description: "Safety information from Sudbury Rowing Club.",
+    image: { title },
+  });
 };
 
 const SafetyItem = async ({ params }: SafetyPageParamObject) => {
@@ -41,14 +46,22 @@ const SafetyItem = async ({ params }: SafetyPageParamObject) => {
         <Button
           asChild
           icon={
-            item.link.url.includes(BASE_URL) ? <Download /> : <ExternalLink />
+            item.link.url.includes(BASE_URL) ? (
+              <IconDownload />
+            ) : (
+              <IconExternalLink />
+            )
           }
         >
           <a href={item.link.url}>{item.link.title}</a>
         </Button>
       )}
       {item.document && (
-        <Button asChild icon={<Download />}>
+        <Button
+          asChild
+          icon={<IconDownload />}
+          variant={containsUrgentWords(item.title) ? "destructive" : "tertiary"}
+        >
           <a href={`${item.document.url}?dl=`}>{item.document.title}</a>
         </Button>
       )}

@@ -1,41 +1,62 @@
 "use client";
 
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog } from "@base-ui/react/dialog";
 import { useToggle, useViewportSize } from "@mantine/hooks";
-import { Fragment, type SetStateAction } from "react";
+import { type ComponentProps, createContext, use } from "react";
+
+type LightBoxContextValue = {
+  toggle: () => void;
+};
+
+const LightBoxContext = createContext<LightBoxContextValue | null>(null);
+
+const useLightBoxContext = () => {
+  const context = use(LightBoxContext);
+  if (!context) {
+    throw new Error("LightBoxTrigger must be used within a LightBox");
+  }
+
+  return context;
+};
+
+const PADDING = 16;
+
+const calculateImageSize = (
+  windowWidth: number,
+  windowHeight: number,
+  aspectRatio = 1,
+) => {
+  const windowAspectRatio = windowWidth / windowHeight;
+
+  if (windowAspectRatio > aspectRatio) {
+    return {
+      height: windowHeight - PADDING * 2,
+      width: (windowHeight - PADDING * 2) * aspectRatio,
+    };
+  }
+
+  return {
+    height: (windowWidth - PADDING * 2) / aspectRatio,
+    width: windowWidth - PADDING * 2,
+  };
+};
 
 type LightBoxProps = {
   aspectRatio?: number;
   src: string;
   lqip?: string;
   alt?: string;
-  open: boolean;
-  toggle: (value?: SetStateAction<boolean>) => void;
+  children: React.ReactNode;
 };
 
-const PADDING = 16;
-
-function calculateImageSize(
-  windowWidth: number,
-  windowHeight: number,
-  aspectRatio = 1,
-) {
-  const windowAspectRatio = windowWidth / windowHeight;
-
-  if (windowAspectRatio > aspectRatio) {
-    return {
-      width: (windowHeight - PADDING * 2) * aspectRatio,
-      height: windowHeight - PADDING * 2,
-    };
-  }
-
-  return {
-    width: windowWidth - PADDING * 2,
-    height: (windowWidth - PADDING * 2) / aspectRatio,
-  };
-}
-
-function useLightBoxSize(aspectRatio?: number) {
+export const LightBox = ({
+  aspectRatio,
+  src,
+  lqip,
+  alt,
+  children,
+}: LightBoxProps) => {
+  const [open, toggle] = useToggle();
   const { width: viewportWidth, height: viewportHeight } = useViewportSize();
 
   const { width, height } = calculateImageSize(
@@ -44,67 +65,39 @@ function useLightBoxSize(aspectRatio?: number) {
     aspectRatio,
   );
 
-  return { width, height, viewportWidth, viewportHeight };
-}
-
-export const LightBox = ({
-  aspectRatio,
-  src,
-  lqip,
-  alt,
-  open,
-  toggle,
-}: LightBoxProps) => {
-  const { width, height, viewportWidth, viewportHeight } =
-    useLightBoxSize(aspectRatio);
-
   return (
-    <Transition
-      show={open}
-      enter="transition"
-      enterFrom="transform scale-50 opacity-0"
-      enterTo="transform scale-100 opacity-100"
-      leave="transition"
-      leaveFrom="transform scale-100 opacity-100"
-      leaveTo="transform scale-50 opacity-0"
-      as={Fragment}
-    >
-      <Dialog
-        className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-white bg-opacity-10 backdrop-blur-sm"
-        open={open}
-        onClose={() => toggle()}
-        onClick={() => toggle()}
-      >
-        <img
-          alt={alt}
-          width={width}
-          height={height}
-          src={src}
-          className="rounded-sm shadow-lg"
-          style={{
-            maxWidth: viewportWidth,
-            maxHeight: viewportHeight,
-            backgroundImage: `url(${lqip})`,
-            backgroundSize: "cover",
-          }}
-        />
-      </Dialog>
-    </Transition>
+    <LightBoxContext value={{ toggle }}>
+      {children}
+
+      <Dialog.Root onOpenChange={() => toggle()} open={open}>
+        <Dialog.Portal>
+          <Dialog.Popup
+            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center overscroll-contain bg-white backdrop-blur-sm transition-[opacity,scale] duration-150 data-ending-style:scale-50 data-starting-style:scale-50 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
+            onClick={() => toggle()}
+          >
+            <Dialog.Title className="sr-only">{alt || "Image"}</Dialog.Title>
+            <img
+              alt={alt}
+              className="rounded-sm shadow-lg"
+              height={height}
+              src={src}
+              style={{
+                backgroundImage: `url(${lqip})`,
+                backgroundSize: "cover",
+                maxHeight: viewportHeight,
+                maxWidth: viewportWidth,
+              }}
+              width={width}
+            />
+          </Dialog.Popup>
+        </Dialog.Portal>
+      </Dialog.Root>
+    </LightBoxContext>
   );
 };
 
-export const useLightBox = ({
-  aspectRatio,
-  src,
-  lqip,
-  alt,
-}: Omit<LightBoxProps, "open" | "toggle">) => {
-  const [isOpen, toggle] = useToggle();
+export const LightBoxTrigger = (props: ComponentProps<"button">) => {
+  const { toggle } = useLightBoxContext();
 
-  return {
-    toggle,
-    LightBox: () => (
-      <LightBox {...{ aspectRatio, src, lqip, alt, open: isOpen, toggle }} />
-    ),
-  };
+  return <button type="button" {...props} onClick={toggle} />;
 };

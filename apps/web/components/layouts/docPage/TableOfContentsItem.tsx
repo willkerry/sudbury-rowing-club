@@ -3,15 +3,25 @@
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { chain } from "radash";
+import { chain } from "radashi";
 import { type MouseEventHandler, memo } from "react";
 import { animateScroll } from "react-scroll";
 import { cn } from "@/lib/utils";
 
+const PRECEDING_NUMBERS_REGEX = /^\d+\./;
+const TRAILING_PUNCTUATION_REGEX = /\.$/;
+
+const PRECEDING_PARENTHESES_REGEX = /^\d+\)/;
+const TRAILING_PARENTHESES_REGEX = /\)$/;
+
 const removePrecedingNumbers = (title: string) =>
-  title.replace(/^\d+\./, "").replace(/^\d+\)/, "");
+  title
+    .replace(PRECEDING_NUMBERS_REGEX, "")
+    .replace(PRECEDING_PARENTHESES_REGEX, "");
 const removeTrailingPunctuation = (title: string) =>
-  title.replace(/\.$/, "").replace(/\)$/, "");
+  title
+    .replace(TRAILING_PUNCTUATION_REGEX, "")
+    .replace(TRAILING_PARENTHESES_REGEX, "");
 
 const formatTitle = chain(removePrecedingNumbers, removeTrailingPunctuation);
 
@@ -54,17 +64,15 @@ export const TableOfContentsItem = memo(
     return (
       <li>
         <Link
-          href={url}
-          onClick={scrollTo}
           className={cn(
             "line-clamp-1 py-1 text-sm hover:text-gray-900",
             depth <= 2 ? "text-gray-700" : "text-gray-500",
-            // isActive && "text-blue-500",
             getDepthClassName(depth),
             "data-[active='true']:text-blue-500",
           )}
           data-active={isActive || undefined}
-          // style={depth - 2 ? { paddingLeft: `${depth - 2}em` } : undefined}
+          href={url}
+          onClick={scrollTo}
         >
           {formatTitle(title)}
         </Link>

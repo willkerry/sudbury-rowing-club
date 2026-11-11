@@ -1,10 +1,16 @@
-import { QueueListIcon } from "@heroicons/react/24/outline";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
-import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
+import {
+  IconAlertHexagon,
+  IconAward,
+  IconListNumbers,
+  IconStopwatch,
+  IconTicket,
+} from "@tabler/icons-react";
 import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 import { logos as sponsors } from "@/components/landing/sponsors";
 import { Container } from "@/components/layouts/container";
+import { RegattaCancellationNotice } from "@/components/regatta/landing-page/cancellation-notice";
 import { DateLocation } from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import { Details } from "@/components/regatta/landing-page/details";
@@ -17,11 +23,14 @@ import { Text } from "@/components/stour/text";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { ClubJsonLd, REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
-import { getClub } from "@/lib/getClub";
+import { getClubLookup } from "@/lib/getClub";
 
 const fetchRegattasAndSettings = async () => {
   const regattaSettings = await fetchRegattaSettings();
-  const regattas = await fetchRegattas();
+  const [regattas, clubs] = await Promise.all([
+    fetchRegattas(),
+    getClubLookup(),
+  ]);
 
   const regattasWithTestimonials = regattas.map((regatta) => ({
     ...regatta,
@@ -30,7 +39,7 @@ const fetchRegattasAndSettings = async () => {
         const name = testimonial.club || testimonial.name;
 
         const probableClubName = name.split(", ")[1] || name;
-        const club = getClub(probableClubName);
+        const club = clubs.getClub(probableClubName);
 
         if (!club) return testimonial;
 
@@ -64,9 +73,9 @@ const {
 } = REGATTA;
 
 export const metadata = createMetadata({
-  title: EVENT_NAME_LONG,
   description: EVENT_TAGLINE,
   image: OG_IMAGE_URL,
+  title: EVENT_NAME_LONG,
 });
 
 const RegattaPage = async () => {
@@ -83,83 +92,88 @@ const RegattaPage = async () => {
 
   const accordion: DetailProps[] = [
     {
-      summary: "Events",
-      icon: <Award aria-hidden />,
       href: "./regatta/events",
+      icon: <IconAward aria-hidden />,
+      summary: "Events",
     },
     {
-      summary: "Entries",
-      icon: <TicketIcon aria-hidden />,
       href: "./regatta/entries",
+      icon: <IconTicket aria-hidden />,
+      summary: "Entries",
     },
     {
-      summary: "Results",
-      icon: <Timer aria-hidden />,
       href: "./regatta/results",
+      icon: <IconStopwatch aria-hidden />,
+      summary: "Results",
     },
     {
-      summary: "Draw",
-      icon: <QueueListIcon aria-hidden />,
       href: "./regatta/draw",
+      icon: <IconListNumbers aria-hidden />,
+      summary: "Draw",
     },
     {
-      summary: "Competitor Information",
-      icon: <BadgeAlert aria-hidden />,
       href: "./regatta/competitor-information",
+      icon: <IconAlertHexagon aria-hidden />,
+      summary: "Competitor Information",
     },
   ];
 
   const jsonLd: WithContext<SportsEvent> = {
     "@context": "https://schema.org",
-    "@type": "SportsEvent",
     "@id": CANONICAL_URL,
+    "@type": "SportsEvent",
+    description: EVENT_TAGLINE,
+    endDate: date,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    image: OG_IMAGE_URL,
     isAccessibleForFree: true,
+    name: EVENT_NAME_LONG,
+    organizer: ClubJsonLd,
     sponsor: sponsors.map(({ href, name }) => ({
       "@type": "Organization",
       name,
       url: href,
     })),
-    name: EVENT_NAME_LONG,
+    sport: "Rowing",
     startDate: date,
-    endDate: date,
+    url: CANONICAL_URL,
     location: {
       "@type": "Place",
       name: VENUE,
       address: {
         "@type": "PostalAddress",
-        streetAddress: `${VENUE}, ${STREET}`,
+        addressCountry: "UK",
         addressLocality: TOWN,
         addressRegion: COUNTY,
         postalCode: POSTCODE,
-        addressCountry: "UK",
+        streetAddress: `${VENUE}, ${STREET}`,
       },
     },
-    url: CANONICAL_URL,
-    image: OG_IMAGE_URL,
-    description: EVENT_TAGLINE,
-    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    organizer: ClubJsonLd,
-    sport: "Rowing",
   };
 
   return (
     <>
       <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        type="application/ld+json"
       />
+      <RegattaCancellationNotice />
       <Container>
-        <RegattaHero {...{ ticketItems }} subtitle={landingPage.tagline} />
+        <RegattaHero
+          {...{ ticketItems }}
+          cancelled
+          subtitle={landingPage.tagline}
+        />
         <DateLocation
           date={regattaDate}
           location={`${VENUE}, ${TOWN}, ${POSTCODE}`}
         />
         <RegattaHeroImage
           aspectRatio={landingPage.heroImage.image.aspectRatio || 1}
-          src={landingPage.heroImage.image._id}
           blurDataURL={landingPage.heroImage.image.lqip || ""}
-          title={landingPage.heroImage.heading}
+          src={landingPage.heroImage.image._id}
           subtitle={landingPage.heroImage.subheading}
+          title={landingPage.heroImage.heading}
         />
       </Container>
       <Container className="my-24 max-w-prose">
@@ -173,9 +187,9 @@ const RegattaPage = async () => {
 
       <div>
         <Hero
-          title={TESTIMONIAL_DESCRIPTION}
-          label={TESTIMONIAL_TITLE}
           fullwidth
+          label={TESTIMONIAL_TITLE}
+          title={TESTIMONIAL_DESCRIPTION}
         />
 
         <Container>

@@ -2,8 +2,8 @@ import { Wordmark } from "@sudburyrc/blue";
 
 const DottedLine = () => (
   <span
-    className="ml-2 flex grow border-gray-400 border-b-2 border-dotted"
     aria-hidden
+    className="ml-2 flex grow border-gray-400 border-b-2 border-dotted"
   >
     &nbsp;
   </span>

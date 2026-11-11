@@ -1,27 +1,27 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import cn from "clsx";
-import { kyInstance } from "@/app/get-query-client";
 import { BritishRowing } from "@/components/icons/organisations/british-rowing";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
 import { ErrorAlert } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import type { BRArticle } from "@/lib/server/fetchBritishRowingFeed";
+import { useTRPC } from "@/lib/trpc/client";
+import { cn } from "@/lib/utils";
 
 const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
   <a
-    href={article?.link}
-    target="_blank"
-    rel="noopener noreferrer"
     className={cn(
       "group grid gap-1.5 rounded-sm border p-2 transition-colors",
       {
-        "hover:border-blue-500": article,
         "h-16 animate-pulse bg-gray-50": !article,
+        "hover:border-blue-500": article,
       },
     )}
+    href={article?.link}
+    rel="noopener noreferrer"
+    target="_blank"
   >
     {article && (
       <>
@@ -67,14 +67,11 @@ const PresentationalFeed = ({
 );
 
 export const Feed = () => {
-  const { data, status, error } = useQuery({
-    queryKey: ["br-feed"],
-    queryFn: ({ signal }) =>
-      kyInstance.get<BRArticle[]>("/api/br", { signal }).json(),
-  });
+  const trpc = useTRPC();
+  const { data, status, error } = useQuery(trpc.content.feed.queryOptions());
 
   if (status === "pending") return <PresentationalFeed skeleton />;
-  if (status === "error") return <ErrorAlert error={error} className="my-12" />;
+  if (status === "error") return <ErrorAlert className="my-12" error={error} />;
 
   return <PresentationalFeed articles={data} />;
 };

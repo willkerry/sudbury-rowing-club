@@ -27,16 +27,16 @@ const allAuthorsQuery = groq`
 
 const ZArticleMeta = z.object({
   _id: z.string(),
-  title: z.string(),
   date: z.string(),
   slug: z.string(),
+  title: z.string(),
 });
 
 const ZAuthorResponse = z.object({
   _id: z.string(),
+  articles: z.array(ZArticleMeta),
   firstName: z.string(),
   surname: z.string(),
-  articles: z.array(ZArticleMeta),
 });
 
 const ZAllAuthorsResponse = ZAuthorResponse.pick({
@@ -64,5 +64,5 @@ const fetchAllAuthors = async () => {
   return ZAllAuthorsResponse.parse(response);
 };
 
-export { fetchAuthor, fetchAllAuthors };
 export type { Author, AuthorsResponse };
+export { fetchAllAuthors, fetchAuthor };

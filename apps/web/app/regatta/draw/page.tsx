@@ -1,4 +1,5 @@
-import { Browser } from "happy-dom";
+import { parseHTML } from "linkedom";
+import { tryit } from "radashi";
 import TextPage from "@/components/layouts/text-page";
 import { REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
@@ -12,24 +13,28 @@ const HOUR_OF_DRAW_PUBLICATION = 10;
 
 export const revalidate = 86_400;
 export const metadata = createMetadata({
-  title: `Regatta Draw ${String(new Date().getFullYear())}`,
   description: "Draw for the Sudbury Regatta",
+  image: { title: "Regatta Draw" },
+  title: `Regatta Draw ${String(new Date().getFullYear())}`,
 });
 
+const LIVE_RESULTS_TIMEOUT_MS = 5000;
+
 const getThisYearsDrawIsPublished = async (year: number): Promise<boolean> => {
-  const browser = new Browser();
-  const page = browser.newPage();
+  const [error, response] = await tryit(fetch)(REGATTA.LIVE_RESULTS_URL, {
+    signal: AbortSignal.timeout(LIVE_RESULTS_TIMEOUT_MS),
+  });
 
-  await page.goto(REGATTA.LIVE_RESULTS_URL);
+  if (error || !response.ok) return false;
 
-  const title = page.mainFrame.document.querySelector("title");
+  const { document } = parseHTML(await response.text());
+
+  const title = document.querySelector("title");
   const titleContainsThisYear = Boolean(
     title?.textContent?.includes(year.toString()),
   );
 
-  const pageContainsATable = Boolean(
-    page.mainFrame.document.querySelector("table"),
-  );
+  const pageContainsATable = Boolean(document.querySelector("table"));
 
   return titleContainsThisYear && pageContainsATable;
 };
@@ -40,13 +45,13 @@ const Draw = async () => {
   );
 
   return (
-    <TextPage title="Regatta draw" lead>
+    <TextPage lead title="Regatta draw">
       <ClientDraw
-        weekDayOfRegatta={WEEK_DAY_OF_REGATTA}
-        monthOfRegatta={MONTH_OF_REGATTA}
-        weekDayOfDrawPublication={WEEK_DAY_OF_DRAW_PUBLICATION}
         hourOfDrawPublication={HOUR_OF_DRAW_PUBLICATION}
+        monthOfRegatta={MONTH_OF_REGATTA}
         thisYearsDrawIsPublished={thisYearsDrawIsPublished}
+        weekDayOfDrawPublication={WEEK_DAY_OF_DRAW_PUBLICATION}
+        weekDayOfRegatta={WEEK_DAY_OF_REGATTA}
       />
     </TextPage>
   );

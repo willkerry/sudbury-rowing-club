@@ -3,16 +3,20 @@
 import { Obfuscate } from "@south-paw/react-obfuscate-ts";
 import { useForm } from "@tanstack/react-form";
 import { useMutation } from "@tanstack/react-query";
+import { TRPCClientError } from "@trpc/client";
 import { useQueryState } from "nuqs";
-import { type BugReport, BugReportSchema } from "@/app/api/bug/BugReportSchema";
-import { Success } from "@/components/contact/views/success";
+import { usePostHog } from "posthog-js/react";
+import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import Center from "@/components/stour/center";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Error as ErrorComponent } from "@/components/ui/error";
+import { ErrorMessage } from "@/components/ui/error";
 import { Input } from "@/components/ui/input";
 import { TextArea } from "@/components/ui/textarea";
+import { useTrackFormStarted } from "@/hooks/useTrackFormStarted";
+import { getErrorMessage, withServerValidation } from "@/lib/form";
 import { scrollToSelector } from "@/lib/scrollToSelector";
-import { kyInstance } from "../get-query-client";
+import { useTRPC } from "@/lib/trpc/client";
 
 const getUserAgent = () => {
   if (typeof window === "undefined") return null;
@@ -23,19 +27,30 @@ const getUserAgent = () => {
 const formatIfStringIsParseableJSON = (string: string) => {
   try {
     return JSON.stringify(JSON.parse(string), null, 2);
-  } catch (_error) {
+  } catch {
     return string;
   }
 };
 
 export const BugsClientSide = () => {
+  const trpc = useTRPC();
   const [message] = useQueryState("message");
 
-  const { mutateAsync, error, data, status } = useMutation({
-    mutationKey: ["bug-report"],
-    mutationFn: (values: BugReport) =>
-      kyInstance.post("/api/bug", { json: values }),
-  });
+  const posthog = usePostHog();
+
+  const { mutateAsync, error, data, status } = useMutation(
+    trpc.comms.bug.mutationOptions({
+      onError: (error) => {
+        if (error instanceof TRPCClientError && error.data?.zodError) return;
+
+        posthog.capture("bug_report_api_error", {
+          error_message: error.message,
+        });
+      },
+      onMutate: () => posthog.capture("bug_report_submitted"),
+      onSuccess: () => posthog.capture("bug_report_success"),
+    }),
+  );
 
   const additionalInformation = message
     ? formatIfStringIsParseableJSON(message)
@@ -43,19 +58,48 @@ export const BugsClientSide = () => {
 
   const form = useForm({
     defaultValues: {
-      name: "",
-      email: "",
       description: "",
+      email: "",
+      name: "",
       userAgent: getUserAgent() || "Unknown",
       additionalInformation,
     },
-    validators: { onSubmit: BugReportSchema },
-    onSubmit: ({ value }) => mutateAsync(value),
-    canSubmitWhenInvalid: true,
-    onSubmitInvalid: () => scrollToSelector('[aria-invalid="true"]'),
+    onSubmitInvalid: ({ formApi }) => {
+      const fieldErrors = Object.fromEntries(
+        Object.entries(formApi.state.fieldMeta)
+          .filter(([, meta]) => meta.errors.length > 0)
+          .map(([field, meta]) => [field, meta.errors.map(getErrorMessage)]),
+      );
+
+      posthog.capture("bug_report_validation_error", {
+        error_details: fieldErrors,
+        fields_with_errors: Object.keys(fieldErrors),
+      });
+
+      scrollToSelector('[aria-invalid="true"]');
+    },
+    validators: {
+      onSubmit: BugReportSchema,
+      onSubmitAsync: withServerValidation(mutateAsync),
+    },
   });
 
-  if (data && status === "success") return <Success response={data} />;
+  const hasTouchedFields = Object.values(form.state.fieldMeta).some(
+    (meta) => meta.isTouched,
+  );
+
+  useTrackFormStarted("bug_report", hasTouchedFields);
+
+  if (data && status === "success") {
+    return (
+      <Alert variant="success">
+        <AlertTitle>Bug report sent</AlertTitle>
+        <AlertDescription>
+          Thank you for your report. We will investigate as soon as possible.
+        </AlertDescription>
+      </Alert>
+    );
+  }
 
   const disableFields = form.state.isSubmitting || form.state.isSubmitted;
 
@@ -79,15 +123,15 @@ export const BugsClientSide = () => {
         <form.Field name="name">
           {({ state, handleBlur, handleChange, name }) => (
             <Input
-              disabled={disableFields}
               className="col-span-2 sm:col-span-1"
+              disabled={disableFields}
+              error={getErrorMessage(state.meta.errors[0])}
               id={name}
               label="Your name"
-              error={state.meta.errors[0]?.message}
-              type="text"
-              value={state.value}
               onBlur={handleBlur}
               onChange={(e) => handleChange(e.target.value)}
+              type="text"
+              value={state.value}
             />
           )}
         </form.Field>
@@ -95,15 +139,15 @@ export const BugsClientSide = () => {
         <form.Field name="email">
           {({ state, handleBlur, handleChange, name }) => (
             <Input
-              disabled={disableFields}
               className="col-span-2 sm:col-span-1"
+              disabled={disableFields}
+              error={getErrorMessage(state.meta.errors[0])}
               id={name}
-              label="Your email"
-              error={state.meta.errors[0]?.message}
               inputMode="email"
-              value={state.value}
+              label="Your email"
               onBlur={handleBlur}
               onChange={(e) => handleChange(e.target.value)}
+              value={state.value}
             />
           )}
         </form.Field>
@@ -112,15 +156,15 @@ export const BugsClientSide = () => {
           {({ state, handleBlur, handleChange, name }) => (
             <TextArea
               className="col-span-2"
-              disabled={disableFields}
-              error={state.meta.errors[0]?.message}
-              id={name}
-              minRows={3}
-              label="Description"
               description="Describe what you were trying to do, what you expected to happen, and what actually happened."
-              value={state.value}
+              disabled={disableFields}
+              error={getErrorMessage(state.meta.errors[0])}
+              id={name}
+              label="Description"
+              minRows={3}
               onBlur={handleBlur}
               onChange={(e) => handleChange(e.target.value)}
+              value={state.value}
             />
           )}
         </form.Field>
@@ -133,15 +177,15 @@ export const BugsClientSide = () => {
           <form.Field name="userAgent">
             {({ state, name }) => (
               <Input
+                className="col-span-2"
+                description="Any time you use the web, your browser identifies itself (not you) to websites using a user agent string. This is included automatically."
                 disabled
                 id={name}
-                value={state.value}
-                label="User agent"
-                type="text"
-                className="col-span-2"
                 inputClassName="text-xs p-1.5 font-mono"
-                description="Any time you use the web, your browser identifies itself (not you) to websites using a user agent string. This is included automatically."
+                label="User agent"
                 required={false}
+                type="text"
+                value={state.value}
               />
             )}
           </form.Field>
@@ -150,24 +194,27 @@ export const BugsClientSide = () => {
             <form.Field name="additionalInformation">
               {({ state, handleBlur, handleChange, name }) => (
                 <TextArea
-                  value={state.value}
-                  onBlur={handleBlur}
-                  onChange={(e) => handleChange(e.target.value)}
                   className="col-span-2"
-                  inputClassName="p-1.5 font-mono text-xs text-gray-600"
+                  description="The page you were on when you clicked the “Report a bug” link gave us some additional information. Delete it if you don’t want to include it."
                   disabled={disableFields}
                   id={name}
-                  required={false}
-                  minRows={3}
+                  inputClassName="p-1.5 font-mono text-xs text-gray-600"
                   label="Additional information"
-                  description="The page you were on when you clicked the “Report a bug” link gave us some additional information. Delete it if you don’t want to include it."
+                  minRows={3}
+                  onBlur={handleBlur}
+                  onChange={(e) => handleChange(e.target.value)}
+                  required={false}
+                  value={state.value}
                 />
               )}
             </form.Field>
           )}
         </fieldset>
 
-        {error && <ErrorComponent className="col-span-2" error={error} />}
+        {error &&
+          !(error instanceof TRPCClientError && error.data?.zodError) && (
+            <ErrorMessage className="col-span-2" error={error} />
+          )}
 
         <Center className="col-span-2">
           <Button

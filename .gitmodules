@@ -1,0 +1,3 @@
+[submodule "packages/weathericons/vendor"]
+	path = packages/weathericons/vendor
+	url = https://github.com/metno/weathericons.git

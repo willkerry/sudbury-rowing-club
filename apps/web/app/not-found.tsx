@@ -1,12 +1,14 @@
-import { Home } from "lucide-react";
+import { IconHome } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import TroubleAtTMill from "public/assets/error/trouble-at-tmill.jpg";
+import { Suspense } from "react";
 import { Container } from "@/components/layouts/container";
 import { SiteSearch } from "@/components/search";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Button } from "@/components/ui/button";
+import { Track404 } from "@/components/utils/track-404";
 
 export const metadata: Metadata = {
   title: "404 Page not found",
@@ -14,6 +16,10 @@ export const metadata: Metadata = {
 
 const Custom404 = () => (
   <>
+    <Suspense fallback={null}>
+      <Track404 />
+    </Suspense>
+
     <PageHeader prose title="404 Page not found." />
 
     <div className="flex justify-center">
@@ -34,7 +40,7 @@ const Custom404 = () => (
       <div className="flex flex-col gap-4">
         <SiteSearch />
 
-        <Button asChild icon={<Home />} variant="secondary">
+        <Button asChild icon={<IconHome />} variant="secondary">
           <Link href="/">Return to the homepage</Link>
         </Button>
       </div>

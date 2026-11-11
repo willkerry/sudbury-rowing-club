@@ -1,12 +1,15 @@
+import clubsData from "@sudburyrc/static/clubs.json";
 import { describe, expect, it } from "vitest";
-import { getClub, getClubByCode } from "@/lib/getClub";
+import { createClubLookup } from "@/lib/getClub";
+
+const { getClub, getClubByCode, getClubById } = createClubLookup(clubsData);
 
 const club = {
-  id: 465,
-  name: "Sudbury Rowing Club",
   bladeUrl:
     "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
   href: "https://www.britishrowing.org/rowing-activity-finder/club/?clubid=465",
+  id: 465,
+  name: "Sudbury Rowing Club",
 };
 
 describe("getClub", () => {
@@ -24,6 +27,16 @@ describe("getClub", () => {
 
   it("should return undefined if no club is found", () => {
     expect(getClub("DUMMY")).toBeUndefined();
+  });
+});
+
+describe("getClubById", () => {
+  it("should return the correct club", () => {
+    expect(getClubById(465)).toEqual(club);
+  });
+
+  it("should return undefined if no club is found", () => {
+    expect(getClubById(999999)).toBeUndefined();
   });
 });
 

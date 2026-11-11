@@ -1,24 +1,24 @@
-import { DropIcon } from "@sanity/icons";
+import { DropIcon } from "@sanity/icons/Drop";
 import { defineField, defineType } from "sanity";
 
 const Safety = defineType({
-  name: "safety",
-  type: "document",
-  title: "Safety",
   icon: DropIcon,
+  name: "safety",
+  title: "Safety",
+  type: "document",
   fields: [
-    defineField({ name: "title", type: "string", title: "Title" }),
-    defineField({ name: "body", type: "richText", title: "Body" }),
-    defineField({ name: "pin", type: "boolean", title: "Pin to top" }),
+    defineField({ name: "title", title: "Title", type: "string" }),
+    defineField({ name: "body", title: "Body", type: "richText" }),
+    defineField({ name: "pin", title: "Pin to top", type: "boolean" }),
     defineField({
       name: "document",
-      type: "file",
       title: "Document",
+      type: "file",
       fields: [
         defineField({
           name: "title",
-          type: "string",
           title: "Title",
+          type: "string",
         }),
       ],
     }),
@@ -26,7 +26,7 @@ const Safety = defineType({
       name: "link",
       type: "link",
     }),
-    defineField({ name: "date", type: "date", title: "Date Updated" }),
+    defineField({ name: "date", title: "Date Updated", type: "date" }),
   ],
 });
 

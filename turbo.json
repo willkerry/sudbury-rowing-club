@@ -1,35 +1,63 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "agentGuidance": false,
+  "concurrency": "12",
   "globalDependencies": ["**/.env.*local"],
+  "globalPassThroughEnv": ["ENABLE_EXPERIMENTAL_COREPACK"],
   "ui": "tui",
   "tasks": {
-    "type-check": {
-      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+    "build": {
+      "dependsOn": ["^build", "generate"],
+      "inputs": ["$TURBO_DEFAULT$", ".env.local"],
+      "outputs": ["dist/**", "public/**"],
+      "env": [
+        "ALGOLIA_API_KEY",
+        "APP_URL",
+        "BUG_RECIPIENT_EMAIL",
+        "FIRECRAWL_API_KEY",
+        "NEXT_PUBLIC_*",
+        "OG_IMAGE_SECRET",
+        "REDIRECT_SECRET",
+        "RESEND_API_KEY",
+        "RESEND_WEBHOOK_SECRET",
+        "SANITY_REVALIDATE_SECRET",
+        "TURNSTILE_SECRET_KEY",
+        "SANITY_API_*",
+        "SANITY_STUDIO_*",
+        "SANITY_AUTH_TOKEN"
+      ]
+    },
+    "deploy": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "dev": {
+      "cache": false,
+      "dependsOn": ["generate"],
+      "inputs": ["$TURBO_DEFAULT$", ".env.local"],
+      "outputLogs": "new-only",
+      "outputs": ["dist/**", "public/**"],
+      "persistent": true
+    },
+    "generate": {
+      "outputs": ["src/generated/**"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "vendor/**",
+        "scripts/**",
+        "svgr.config.mjs"
+      ]
     },
     "test": {
+      "dependsOn": ["^build", "generate"],
       "outputs": []
     },
     "test:watch": {
       "outputs": []
     },
-    "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env.local"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
-      "env": [
-        "ALGOLIA_API_KEY",
-        "APP_URL",
-        "BUG_RECIPIENT_EMAIL",
-        "NEXT_PUBLIC_*",
-        "RESEND_API_KEY",
-        "SANITY_STUDIO_*",
-        "SANITY_AUTH_TOKEN"
-      ]
-    },
-    "dev": {
-      "outputLogs": "new-only",
-      "inputs": ["$TURBO_DEFAULT$", ".env.local"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"]
+    "type-check": {
+      "dependsOn": ["^build", "generate"],
+      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
     }
   }
 }

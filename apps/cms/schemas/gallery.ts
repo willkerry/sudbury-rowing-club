@@ -7,21 +7,21 @@ const Gallery = defineField({
   fields: [
     defineField({
       name: "name",
-      type: "string",
       title: "Provider name",
+      type: "string",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "url",
-      type: "url",
       title: "URL to photo provider",
+      type: "url",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "password",
-      type: "string",
-      title: "Password",
       description: "Leave blank if not required.",
+      name: "password",
+      title: "Password",
+      type: "string",
     }),
   ],
 });

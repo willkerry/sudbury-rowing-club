@@ -1,28 +1,23 @@
 {
+  "exclude": ["node_modules"],
   "extends": "@sudburyrc/tsconfig/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/components/*": ["components/*"],
-      "@/data/*": ["data/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"],
-      "@/types/*": ["types/*"],
-      "@/pages/*": ["pages/*"],
-      "@/app/*": ["app/*"],
-      "@/assets/*": ["public/assets/*"],
-      "content-collections": ["./.content-collections/generated"],
-      "@/test-utils/*": ["test-utils/*"]
-    },
+    "moduleResolution": "bundler",
     "strictNullChecks": true,
-    "moduleResolution": "bundler"
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "tailwind.config.js",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+    "paths": {
+      "@/app/*": ["./app/*"],
+      "@/assets/*": ["./public/assets/*"],
+      "@/components/*": ["./components/*"],
+      "@/data/*": ["./data/*"],
+      "@/env": ["./env.ts"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/test-utils/*": ["./test-utils/*"],
+      "@/types/*": ["./types/*"],
+      "*": ["./*"],
+      "content-collections": ["./.content-collections/generated"]
+    }
+  }
 }

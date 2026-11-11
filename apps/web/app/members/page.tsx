@@ -5,12 +5,10 @@ import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { NoticeBody } from "./notice-body";
 
-export const revalidate = 60;
-
 export const metadata = createMetadata({
-  title: "Members’ Notices",
   description: "Notices for members of Sudbury Rowing Club.",
   image: { title: "Members’ Notices 📢" },
+  title: "Members’ Notices",
 });
 
 const Notices = async () => {

@@ -8,9 +8,9 @@ export const Crest = (
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>,
 ) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     fill="currentColor"
     viewBox="0 0 800 1000"
+    xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
     <title>Club Crest</title>

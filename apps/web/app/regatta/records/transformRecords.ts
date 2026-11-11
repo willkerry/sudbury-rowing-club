@@ -1,5 +1,6 @@
 import { slug } from "github-slugger";
 import { z } from "zod";
+import type { ParsedClub } from "./[event]/utils";
 import recordJson from "./records.json";
 
 const parseDuration = (durationString: string) => {
@@ -39,47 +40,56 @@ export const formatVerboseDuration = (duration: {
 const prettifyBoatnames = (boatname: string) =>
   boatname.replace(/(\d)x/g, "$1×");
 
-const RecordSchema = z.object({
-  boat: z.string().transform(prettifyBoatnames),
-  event: z.string().transform(prettifyBoatnames),
-  year: z.string().transform((year) => new Date(year)),
-  club: z.string(),
-  name: z.string(),
-  time: z.string().transform(parseDuration),
-  round: z.union([z.literal("F"), z.literal("S"), z.literal("Q")]),
-});
+export const RecordSchema = z
+  .object({
+    boat: z.string().transform(prettifyBoatnames),
+    club: z.string(),
+    event: z.string().transform(prettifyBoatnames),
+    name: z.string(),
+    round: z.union([z.literal("F"), z.literal("S"), z.literal("Q")]),
+    time: z.string().transform(parseDuration),
+    year: z.string().transform((year) => new Date(year)),
+  })
+  .transform((record) => ({
+    ...record,
+    slug: slugify(record.event),
+  }));
 
-export type Record = z.infer<typeof RecordSchema>;
+export type Record = z.infer<typeof RecordSchema> & {
+  parsedClub: ParsedClub[];
+};
 
-export const transformRecords = (records: typeof recordJson) =>
-  RecordSchema.array().parse(records);
+const REGEXES = {
+  coxedFour: /4\+/g,
+  coxedPair: /2\+/g,
+  coxedQuad: /4[x×]\+/g,
+  coxlessFour: /4-/g,
+  coxlessQuad: /4[x×]-/g,
+  double: /2[x×]/g,
+  eight: /8\+/g,
+  octuple: /8[x×]/g,
+  pair: /2-/g,
+  quad: /4[x×](?![+-])/g,
+  single: /1[x×]/g,
+};
 
 export const slugify = (event: string) => {
   // Replace boat class notation with full names
   const replacedEvent = event
-    .replace(/8\+/g, "eight")
-    .replace(/8[x×]/g, "octuple")
-    .replace(/4\+/g, "coxed four")
-    .replace(/4-/g, "coxless four")
-    .replace(/4[x×]\+/g, "coxed quad")
-    .replace(/4[x×]-/g, "coxless quad")
-    .replace(/4[x×](?![+-])/g, "quad")
-    .replace(/2\+/g, "coxed pair")
-    .replace(/2-/g, "pair")
-    .replace(/2[x×]/g, "double")
-    .replace(/1[x×]/g, "single");
+    .replace(REGEXES.eight, "eight")
+    .replace(REGEXES.octuple, "octuple")
+    .replace(REGEXES.coxedFour, "coxed four")
+    .replace(REGEXES.coxlessFour, "coxless four")
+    .replace(REGEXES.coxedQuad, "coxed quad")
+    .replace(REGEXES.coxlessQuad, "coxless quad")
+    .replace(REGEXES.quad, "quad")
+    .replace(REGEXES.coxedPair, "coxed pair")
+    .replace(REGEXES.pair, "pair")
+    .replace(REGEXES.double, "double")
+    .replace(REGEXES.single, "single");
 
   return slug(replacedEvent);
 };
 
-export const getSlugifiedRecords = (eventSlug?: string) => {
-  if (!eventSlug) {
-    return transformRecords(recordJson);
-  }
-
-  const untransformedRecords = recordJson.filter(
-    (record) => slugify(prettifyBoatnames(record.event)) === eventSlug,
-  );
-
-  return transformRecords(untransformedRecords);
-};
+/** Records without club details, for routes and the sitemap. */
+export const getSlugifiedRecords = () => RecordSchema.array().parse(recordJson);

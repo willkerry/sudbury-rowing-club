@@ -8,11 +8,33 @@ import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/create-metadata";
 
 const TITLE = "Sponsorship";
-const DESCRIPTION = "Partner with us and discover the benefits of sponsorship.";
+const DESCRIPTION =
+  "Sponsor Sudbury Rowing Club – put your brand at regattas, on racing boats, and in front of thousands of spectators across Suffolk.";
 
 const LINK_ON_SRC_WEBSITE = "Link on our website";
 
 const SPONSORSHIP_TIERS = {
+  "Board sponsor": {
+    description: "Advertise at the club year-round",
+    benefits: [
+      "Advertising board at the club with the company logo",
+      "Social media promotion across all platforms",
+      LINK_ON_SRC_WEBSITE,
+      "Announcement during the Sudbury Regatta",
+    ],
+  },
+  "Boat sponsor": {
+    description: "Sponsor a boat",
+    benefits: [
+      "One sponsor per boat",
+      "Name and logo on the side of the boat",
+      "Social media promotion across all platforms following events",
+      LINK_ON_SRC_WEBSITE,
+      "Team building day",
+      "Announcement during the Sudbury International Regatta",
+      "Four entries to the sponsors’ marquee at the Sudbury Regatta",
+    ],
+  },
   "Club sponsor": {
     description: "Be the club’s main sponsor",
     benefits: [
@@ -35,27 +57,6 @@ const SPONSORSHIP_TIERS = {
       "A table in the sponsors marquee",
     ],
   },
-  "Boat sponsor": {
-    description: "Sponsor a boat",
-    benefits: [
-      "One sponsor per boat",
-      "Name and logo on the side of the boat",
-      "Social media promotion across all platforms following events",
-      LINK_ON_SRC_WEBSITE,
-      "Team building day",
-      "Announcement during the Sudbury International Regatta",
-      "Four entries to the sponsors’ marquee at the Sudbury Regatta",
-    ],
-  },
-  "Board sponsor": {
-    description: "Advertise at the club year-round",
-    benefits: [
-      "Advertising board at the club with the company logo",
-      "Social media promotion across all platforms",
-      LINK_ON_SRC_WEBSITE,
-      "Announcement during the Sudbury Regatta",
-    ],
-  },
 } satisfies Record<
   string,
   {
@@ -65,8 +66,8 @@ const SPONSORSHIP_TIERS = {
 >;
 
 export const metadata = createMetadata({
-  title: TITLE,
   description: DESCRIPTION,
+  title: TITLE,
 });
 
 const SponsorshipPage = async () => {
@@ -79,9 +80,9 @@ const SponsorshipPage = async () => {
   return (
     <>
       <SponsorshipHero
-        title={TITLE}
         description={`Sudbury Rowing Club is looking for sponsors to help support the club and
         its members. ${DESCRIPTION}`}
+        title={TITLE}
       />
 
       <Container className="mt-12 mb-24">

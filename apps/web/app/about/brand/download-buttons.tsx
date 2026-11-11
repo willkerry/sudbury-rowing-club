@@ -27,7 +27,7 @@ export const DownloadSVGButton = ({
     URL.revokeObjectURL(url);
   };
 
-  return <button type="button" onClick={downloadSVG} {...props} />;
+  return <button onClick={downloadSVG} type="button" {...props} />;
 };
 
 const svgToPng = (
@@ -36,8 +36,8 @@ const svgToPng = (
   height: number,
   originalWidth: number,
   originalHeight: number,
-): Promise<Blob> => {
-  return new Promise((resolve, reject) => {
+): Promise<Blob> =>
+  new Promise((resolve, reject) => {
     const img = new Image();
     const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
     const url = URL.createObjectURL(svgBlob);
@@ -82,14 +82,13 @@ const svgToPng = (
 
     img.src = url;
   });
-};
 
 const getSvgDimensions = (svgElement: SVGElement) => {
   const viewBox = svgElement.getAttribute("viewBox");
 
   if (viewBox) {
     const [, , vbWidth, vbHeight] = viewBox.split(" ").map(Number);
-    return { width: vbWidth, height: vbHeight };
+    return { height: vbHeight, width: vbWidth };
   }
 
   const widthAttribute = svgElement.getAttribute("width");
@@ -97,12 +96,12 @@ const getSvgDimensions = (svgElement: SVGElement) => {
 
   if (widthAttribute && heightAttribute) {
     return {
-      width: Number.parseInt(widthAttribute, 10),
       height: Number.parseInt(heightAttribute, 10),
+      width: Number.parseInt(widthAttribute, 10),
     };
   }
 
-  return { width: 400, height: 400 };
+  return { height: 400, width: 400 };
 };
 
 export const DownloadPNGButton = ({
@@ -148,7 +147,7 @@ export const DownloadPNGButton = ({
     }
   };
 
-  return <button type="button" onClick={downloadPNG} {...props} />;
+  return <button onClick={downloadPNG} type="button" {...props} />;
 };
 
 export const DownloadImageButton = ({

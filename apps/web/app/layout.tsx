@@ -6,6 +6,7 @@ import "inter-ui/inter-variable.css";
 import { Banner } from "@/components/banner";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { env } from "@/env";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
 import "../styles/index.css";
 import { blue } from "@sudburyrc/blue";
@@ -13,41 +14,24 @@ import localFont from "next/font/local";
 import Providers from "./providers";
 
 const digital7Font = localFont({
-  src: "./Digital-7MonoItalic.woff2",
   display: "swap",
-  variable: "--font-digital",
+  src: "./Digital-7MonoItalic.woff2",
+  variable: "--font-digital-7",
 });
 
+const isPreview = env.NEXT_PUBLIC_APP_ENV === "preview";
+
 export const metadata: Metadata = {
-  title: PROJECT_NAME,
+  applicationName: "Sudbury Rowing Club",
   creator: PROJECT_NAME,
+  description:
+    "Sudbury Rowing Club – rowing for all ages and abilities on the River Stour since 1874. Learn to row courses, competitive racing, and recreational rowing in Suffolk.",
+  manifest: "/favicon/site.webmanifest",
+  metadataBase: new URL(BASE_URL),
+  robots: isPreview ? { follow: false, index: false } : undefined,
+  title: PROJECT_NAME,
   alternates: {
     canonical: BASE_URL,
-  },
-  openGraph: {
-    title: PROJECT_NAME,
-    type: "website",
-    siteName: PROJECT_NAME,
-    countryName: "United Kingdom",
-    locale: "en_GB",
-
-    images: [
-      {
-        url: HOME_OG_IMAGE_URL,
-      },
-    ],
-  },
-  twitter: {
-    title: PROJECT_NAME,
-    creator: PROJECT_NAME,
-  },
-  metadataBase: new URL(BASE_URL),
-
-  applicationName: "Sudbury Rowing Club",
-  manifest: "/favicon/site.webmanifest",
-  other: {
-    "msapplication-TileColor": "#00295A",
-    "msapplication-config": "/favicon/browserconfig.xml",
   },
 
   icons: {
@@ -57,6 +41,27 @@ export const metadata: Metadata = {
         url: "/favicon/safari-pinned-tab.svg",
       },
     ],
+  },
+  openGraph: {
+    countryName: "United Kingdom",
+    locale: "en_GB",
+    siteName: PROJECT_NAME,
+    title: PROJECT_NAME,
+    type: "website",
+
+    images: [
+      {
+        url: HOME_OG_IMAGE_URL,
+      },
+    ],
+  },
+  other: {
+    "msapplication-config": "/favicon/browserconfig.xml",
+    "msapplication-TileColor": "#00295A",
+  },
+  twitter: {
+    creator: PROJECT_NAME,
+    title: PROJECT_NAME,
   },
 };
 

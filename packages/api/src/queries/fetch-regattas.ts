@@ -14,8 +14,8 @@ const regattasQuery = groq`
 
 const ZTestimonial = z.object({
   _key: z.string(),
-  name: z.string().default(""),
   club: z.string().default(""),
+  name: z.string().default(""),
   text: z.string(),
 });
 
@@ -33,5 +33,5 @@ const fetchRegattas = async () =>
 type Regatta = z.infer<typeof ZRegatta>;
 type Testimonial = z.infer<typeof ZTestimonial>;
 
-export { fetchRegattas };
 export type { Regatta, Testimonial };
+export { fetchRegattas };

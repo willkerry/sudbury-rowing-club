@@ -31,7 +31,7 @@ export const Paginate = ({
     <PaginationContent>
       {showPrev && (
         <PaginationItem>
-          <PaginationPrevious href={previous} aria-disabled={!showPrev} />
+          <PaginationPrevious aria-disabled={!showPrev} href={previous} />
         </PaginationItem>
       )}
 
@@ -50,7 +50,7 @@ export const Paginate = ({
       )}
 
       <PaginationItem>
-        <PaginationLink isActive href={`${template}${page}`}>
+        <PaginationLink href={`${template}${page}`} isActive>
           {page}
         </PaginationLink>
       </PaginationItem>
@@ -77,7 +77,7 @@ export const Paginate = ({
 
       {showNext && (
         <PaginationItem>
-          <PaginationNext href={next} aria-disabled={!showNext} />
+          <PaginationNext aria-disabled={!showNext} href={next} />
         </PaginationItem>
       )}
     </PaginationContent>

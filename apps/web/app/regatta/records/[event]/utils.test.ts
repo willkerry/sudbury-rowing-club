@@ -1,3 +1,4 @@
+import clubsData from "@sudburyrc/static/clubs.json";
 import { describe, expect, it } from "vitest";
 import {
   extendEventName,
@@ -7,32 +8,39 @@ import {
   isCompositeCrew,
   unpickCompositeCrewClubs,
 } from "@/app/regatta/records/[event]/utils";
+import { createClubLookup } from "@/lib/getClub";
+
+const clubs = createClubLookup(clubsData);
+const parse = (clubCode: string) =>
+  getClubsFromCompositeCrewString(clubCode, clubs);
 
 describe("formatClubAndCrewName", () => {
   it("should format the club name", () => {
-    expect(formatClubAndCrewName("SRC", true)).toBe("Sudbury Rowing Club");
+    expect(formatClubAndCrewName(parse("SRC"), true)).toBe(
+      "Sudbury Rowing Club",
+    );
   });
 
   it("should verbosely format composite crew names", () => {
-    expect(formatClubAndCrewName("SRC/LEA", true)).toBe(
+    expect(formatClubAndCrewName(parse("SRC/LEA"), true)).toBe(
       "a composite crew from Sudbury Rowing Club and Lea Rowing Club",
     );
   });
 
   it("should verbosely format names of composite with more than two clubs", () => {
-    expect(formatClubAndCrewName("SRC/LEA/NOR", true)).toBe(
+    expect(formatClubAndCrewName(parse("SRC/LEA/NOR"), true)).toBe(
       "a composite crew from Sudbury Rowing Club, Lea Rowing Club and Norwich Rowing Club",
     );
   });
 
   it("should non-verbosely format composite crew names", () => {
-    expect(formatClubAndCrewName("SRC/LEA", false)).toBe(
+    expect(formatClubAndCrewName(parse("SRC/LEA"), false)).toBe(
       "Sudbury Rowing Club and Lea Rowing Club",
     );
   });
 
   it("should pass through the code if the club can't be found", () => {
-    expect(formatClubAndCrewName("NOT_A_CLUB", true)).toBe("NOT_A_CLUB");
+    expect(formatClubAndCrewName(parse("NOT_A_CLUB"), true)).toBe("NOT_A_CLUB");
   });
 });
 
@@ -54,7 +62,7 @@ describe("isCompositeCrew", () => {
 
 describe("getClubsFromCompositeCrewString", () => {
   it("should return the clubs from a composite crew string", () => {
-    expect(getClubsFromCompositeCrewString("SRC/LEA")).toEqual([
+    expect(getClubsFromCompositeCrewString("SRC/LEA", clubs)).toEqual([
       {
         bladeUrl:
           "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
@@ -74,43 +82,42 @@ describe("getClubsFromCompositeCrewString", () => {
 
   it("should return the codes if the club cannot be found", () => {
     expect(
-      getClubsFromCompositeCrewString("NOT_A_CLUB/ALSO_NOT_A_CLUB"),
+      getClubsFromCompositeCrewString("NOT_A_CLUB/ALSO_NOT_A_CLUB", clubs),
     ).toEqual([{ code: "NOT_A_CLUB" }, { code: "ALSO_NOT_A_CLUB" }]);
   });
 });
 
 describe("unpickCompositeCrewClubs", () => {
   it("should return the clubs from a composite crew string", () => {
-    expect(unpickCompositeCrewClubs("SRC/LEA")).toEqual([
+    expect(unpickCompositeCrewClubs(parse("SRC/LEA"))).toEqual([
       "Sudbury Rowing Club",
       "Lea Rowing Club",
     ]);
   });
 
   it("should return the codes if the club cannot be found", () => {
-    expect(unpickCompositeCrewClubs("NOT_A_CLUB/ALSO_NOT_A_CLUB")).toEqual([
-      "NOT_A_CLUB",
-      "ALSO_NOT_A_CLUB",
-    ]);
+    expect(
+      unpickCompositeCrewClubs(parse("NOT_A_CLUB/ALSO_NOT_A_CLUB")),
+    ).toEqual(["NOT_A_CLUB", "ALSO_NOT_A_CLUB"]);
   });
 });
 
 describe("getBladeUrls", () => {
   it("should return the blade urls for a composite crew", () => {
-    expect(getBladeUrls("SRC/LEA")).toEqual([
+    expect(getBladeUrls(parse("SRC/LEA"))).toEqual([
       "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
       "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/116964/537.png",
     ]);
   });
 
   it("should handle club's with no blade url", () => {
-    expect(getBladeUrls("SRC/NOT_A_CLUB")).toEqual([
+    expect(getBladeUrls(parse("SRC/NOT_A_CLUB"))).toEqual([
       "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
     ]);
   });
 
   it("should return null for missing clubs if nullIfNotFound is true", () => {
-    expect(getBladeUrls("SRC/NOT_A_CLUB", true)).toEqual([
+    expect(getBladeUrls(parse("SRC/NOT_A_CLUB"), true)).toEqual([
       "https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/117191/465.png",
       null,
     ]);

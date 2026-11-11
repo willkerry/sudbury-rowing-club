@@ -1,14 +1,26 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { makeShareImageURL } from "@/lib/og-image";
 
+vi.mock("@/env", () => ({
+  env: { OG_IMAGE_SECRET: "test-secret-that-is-at-least-32-characters" },
+}));
+
+const SIGNED_RELATIVE_URL = /^\/api\/og\?title=Test\+Title&sig=[\w-]+$/;
+const SIGNED_ABSOLUTE_URL =
+  /^https:\/\/sudburyrowingclub\.org\.uk\/api\/og\?title=Test\+Title&sig=[\w-]+$/;
+
 describe("makeShareImageURL", () => {
-  it("should return the correct URL", () => {
-    expect(makeShareImageURL("Test Title")).toBe("/api/og?title=Test+Title");
+  it("returns a signed relative URL", () => {
+    expect(makeShareImageURL("Test Title")).toMatch(SIGNED_RELATIVE_URL);
   });
 
-  it("should return the correct URL with absolute", () => {
-    expect(makeShareImageURL("Test Title", true)).toBe(
-      "https://sudburyrowingclub.org.uk/api/og?title=Test+Title",
-    );
+  it("returns a signed absolute URL", () => {
+    expect(makeShareImageURL("Test Title", true)).toMatch(SIGNED_ABSOLUTE_URL);
+  });
+
+  it("omits default options", () => {
+    expect(
+      makeShareImageURL("Test Title", false, { subtitle: "", variant: "blue" }),
+    ).toMatch(SIGNED_RELATIVE_URL);
   });
 });

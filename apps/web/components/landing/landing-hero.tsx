@@ -17,8 +17,8 @@ export const LandingHero = ({
 }: Props) => (
   <div className="group relative flex overflow-hidden rounded-sm shadow-sm">
     <LandingHeroImage
-      imageId={imageId}
       imageAspectRatio={imageAspectRatio}
+      imageId={imageId}
       imageLqip={imageLqip}
     />
     <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-3 p-6 sm:gap-8 sm:p-12 md:gap-12 md:p-24 lg:gap-14">

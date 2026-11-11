@@ -24,20 +24,8 @@ export const NESTED_IMAGE_FIELDS = groq`
 `;
 
 export const Z_IMAGE_SCHEMA = z.object({
-  alt: z.string().nullable().optional(),
-  caption: z.string().nullable().optional(),
-  url: z
-    .string()
-    .url()
-    .nullable()
-    .optional()
-    .transform((v) => v || undefined),
   _id: z.string(),
-  lqip: z
-    .string()
-    .nullable()
-    .optional()
-    .transform((v) => v || ""),
+  alt: z.string().nullable().optional(),
   aspectRatio: z
     .number()
     .nullable()
@@ -49,9 +37,21 @@ export const Z_IMAGE_SCHEMA = z.object({
     .nullable()
     .optional()
     .transform((v) => v || undefined),
+  caption: z.string().nullable().optional(),
   foreground: z
     .string()
     .regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)
+    .nullable()
+    .optional()
+    .transform((v) => v || undefined),
+  lqip: z
+    .string()
+    .nullable()
+    .optional()
+    .transform((v) => v || ""),
+  url: z
+    .string()
+    .url()
     .nullable()
     .optional()
     .transform((v) => v || undefined),

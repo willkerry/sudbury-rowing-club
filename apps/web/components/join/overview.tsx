@@ -41,16 +41,16 @@ export const Overview = ({ items }: OverviewProps) => (
     </div>
     <div className="prose col-span-8">
       {items.map(({ title, content, image }) => (
-        <div key={title} id={title}>
+        <div id={title} key={title}>
           {image && (
             <div className="flex overflow-hidden">
               <Image
                 alt={image.alt}
+                className="rounded-sm shadow-sm"
                 height={(635 / image.src.width) * image.src.height}
                 placeholder="blur"
                 src={image.src}
                 width={635}
-                className="rounded-sm shadow-sm"
               />
             </div>
           )}

@@ -1,0 +1,31 @@
+{
+  "description": "Drizzle schema and client for the web app's Cloudflare D1 database",
+  "license": "ISC",
+  "main": "dist/index.mjs",
+  "name": "@sudburyrc/db",
+  "private": true,
+  "types": "dist/index.d.mts",
+  "version": "1.0.0",
+  "dependencies": {
+    "drizzle-orm": "^0.45.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261109.1",
+    "@sudburyrc/tsconfig": "workspace:*",
+    "drizzle-kit": "^0.31.11",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  },
+  "exports": {
+    ".": {
+      "default": "./dist/index.mjs",
+      "types": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "db:generate": "drizzle-kit generate",
+    "dev": "tsdown",
+    "type-check": "tsc --noEmit"
+  }
+}

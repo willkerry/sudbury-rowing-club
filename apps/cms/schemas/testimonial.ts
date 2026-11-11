@@ -7,20 +7,20 @@ const Testimonial = defineField({
   fields: [
     defineField({
       name: "text",
-      type: "text",
       title: "Text",
+      type: "text",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "name",
-      type: "string",
-      title: "Name",
       description: "Leave blank to display testimonial as ‘Anonymous’.",
+      name: "name",
+      title: "Name",
+      type: "string",
     }),
     defineField({
       name: "club",
-      type: "string",
       title: "Club",
+      type: "string",
     }),
   ],
 });

@@ -1,5 +1,6 @@
 import { fetchLandingPage } from "@sudburyrc/api";
 import Script from "next/script";
+import { useId } from "react";
 import { LandingCTA } from "@/components/landing";
 import { CommitteeSignature } from "@/components/landing/committee-signature";
 import { Feed } from "@/components/landing/feed";
@@ -13,6 +14,7 @@ import { Link } from "@/components/stour/link";
 import { Text } from "@/components/stour/text";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ClubJsonLd, SOCIALS } from "@/lib/constants";
+import { PortableText } from "@/lib/sanity";
 
 export const generateMetadata = async () => {
   const {
@@ -26,6 +28,8 @@ export const generateMetadata = async () => {
 };
 
 const Home = async () => {
+  const introId = useId();
+
   const {
     landingPage: { note, heroImage, tagline, description, images },
     news,
@@ -34,41 +38,50 @@ const Home = async () => {
   return (
     <>
       <Script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ClubJsonLd) }}
+        id="club-json-ld"
+        type="application/ld+json"
       />
 
       {note.display && (
         <Container>
           <Alert variant="default">
             <AlertTitle>{note.label}</AlertTitle>
-            <AlertDescription>{note.text}</AlertDescription>
+            {note.text && (
+              <AlertDescription>
+                <PortableText value={note.text} />
+              </AlertDescription>
+            )}
           </Alert>
         </Container>
       )}
 
       <Container>
         <LandingHero
-          imageId={heroImage._id}
-          imageAspectRatio={heroImage.aspectRatio}
-          imageLqip={heroImage.lqip}
           description={tagline}
+          imageAspectRatio={heroImage.aspectRatio}
+          imageId={heroImage._id}
+          imageLqip={heroImage.lqip}
         />
       </Container>
 
       <Container>
-        <LandingCTA />
+        <LandingCTA introId={introId} />
       </Container>
 
       <Container className="my-16">
         <div className="mx-auto my-16">
-          <Text portableText={description} className="mx-auto my-16" />
+          <Text
+            className="mx-auto my-16"
+            id={introId}
+            portableText={description}
+          />
           <span className="sr-only">The Committee</span>
           <CommitteeSignature aria-hidden className="mx-auto w-48" />
           <Affiliates />
         </div>
 
-        <Sponsors heading="Sponsored by" className="mb-24" />
+        <Sponsors className="mb-24" heading="Sponsored by" />
       </Container>
 
       <Gallery images={images} />
@@ -81,9 +94,9 @@ const Home = async () => {
           For more updates, follow us on{" "}
           <Link href={SOCIALS.facebook.href}>{SOCIALS.facebook.name}</Link>.
         </p>
-        <NewsList posts={news} hero />
+        <NewsList hero posts={news} />
         <div className="h-8" />
-        <Link href="/news" arrow>
+        <Link arrow href="/news">
           See more news
         </Link>
       </Container>

@@ -1,6 +1,6 @@
-import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import { useRender } from "@base-ui/react/use-render";
+import { IconArrowRight } from "@tabler/icons-react";
 import Link from "next/link";
-import { Slot } from "radix-ui";
 import { cn } from "@/lib/utils";
 
 export type DetailProps = {
@@ -9,13 +9,18 @@ export type DetailProps = {
   href: string;
 };
 
+const StyledIcon = ({
+  render,
+  className,
+}: {
+  render: React.ReactElement;
+  className: string;
+}) => useRender({ render, props: { className, "aria-hidden": true } });
+
 export const Details = ({ items }: { items: DetailProps[] }) => (
   <div className="flex flex-col">
     {items.map(({ summary, icon, href }, i) => (
       <Link
-        key={summary}
-        id={summary}
-        href={href}
         className={cn([
           "relative",
           "group flex items-center gap-x-2.5 p-4 transition-colors",
@@ -24,28 +29,30 @@ export const Details = ({ items }: { items: DetailProps[] }) => (
           "hover:bg-blue-50 focus:bg-blue-50",
           "transition-colors",
         ])}
+        href={href}
+        id={summary}
+        key={summary}
       >
         <div
           className={cn({
-            "-inset-px absolute transition-colors": true,
+            "absolute -inset-px transition-colors": true,
             "border-[1.5px] border-transparent group-hover:border-blue-300": true,
-            "rounded-t": i === 0,
             "rounded-b": i === items.length - 1,
+            "rounded-t": i === 0,
           })}
         />
 
-        <Slot.Slot
-          aria-hidden
+        <StyledIcon
           className="h-6 w-6 stroke-[1.5px] text-gray-400 transition-colors group-hover:text-blue-600 group-focus:text-blue-600"
-        >
-          {icon}
-        </Slot.Slot>
+          render={icon as React.ReactElement}
+        />
 
         <div>{summary}</div>
 
-        <ArrowRightIcon
-          className="ml-auto h-6 w-6 text-gray-300 transition-colors group-hover:text-blue-500 group-focus:text-blue-500"
+        <IconArrowRight
           aria-hidden
+          className="ml-auto h-6 w-6 text-gray-300 transition-colors group-hover:text-blue-500 group-focus:text-blue-500"
+          stroke={1.5}
         />
       </Link>
     ))}

@@ -19,7 +19,7 @@ export const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
     {regattas.map(
       (year) =>
         year.testimonials && (
-          <div key={year._id} className="mb-24">
+          <div className="mb-24" key={year._id}>
             <Masonry>
               <div className="py-8 sm:py-24">
                 <h3 className="font-medium text-xl">

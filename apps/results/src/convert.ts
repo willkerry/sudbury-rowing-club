@@ -1,5 +1,7 @@
 import path from "node:path";
 import { cwd } from "node:process";
+import { buildCloudflareImageUrl } from "@sudburyrc/images";
+import { clubs } from "@sudburyrc/static";
 import fs from "fs-extra";
 // @ts-expect-error
 import tidy from "tidy-html5";
@@ -9,10 +11,8 @@ import { createDirectoryListing } from "./createDirectoryListing";
  * CONSTANTS
  */
 
-export const TEMP = ".temp";
-
 export const INPUT_DIR = path.join(cwd(), "data");
-const OUTPUT_DIR = path.join(cwd(), TEMP);
+export const OUTPUT_DIR = path.join(cwd(), "dist");
 
 const VIEWPORT_TAG = `<meta name="viewport" content="width=device-width, initial-scale=1.0">`;
 const RETURN_LINK_HTML = `<a href="https://sudburyrowingclub.org.uk/regatta/results/">View all results</a>`;
@@ -24,39 +24,118 @@ const STYLES = fs.readFileSync(path.join(cwd(), "src", "style.css"), "utf8");
  * HELPER FUNCTIONS
  */
 
+const CHARSET_REGEX = /charset=iso-8859-1/g;
+const HYPHEN_CHARACTER_REGEX = /ï¿/g;
+
 /** Changes the `charset` to utf-8 and remove the `ï¿` character. */
 function modifyHtmlCharsetTag(str: string) {
   if (!str) throw new Error("Input is empty");
-  return str.replace(/charset=iso-8859-1/g, "charset=utf-8").replace(/ï¿/g, "");
+  return str
+    .replace(CHARSET_REGEX, "charset=utf-8")
+    .replace(HYPHEN_CHARACTER_REGEX, "");
 }
+
+const OPENING_HEAD_TAG_REGEX = /<head>/;
 
 /** Add viewport meta tag. */
 function addVieportMetaTag(str: string) {
   if (!str) throw new Error("Input is empty");
-  return str.toString().replace(/<head>/, `<head>${VIEWPORT_TAG}`);
+  return str
+    .toString()
+    .replace(OPENING_HEAD_TAG_REGEX, `<head>${VIEWPORT_TAG}`);
 }
+
+const GENERATOR_META_TAG_REGEX =
+  /<meta\s+(?:name|content)*?=['"]*?\s*?generator\s*?['"][\s\S]*?>/gi;
 
 function stripGeneratorMetaTags(html: string): string {
   // Match both uppercase and lowercase variations, with flexible spacing
-  const generatorPattern =
-    /<meta\s+(?:name|content)*?=['"]*?\s*?generator\s*?['"][\s\S]*?>/gi;
+  const generatorPattern = GENERATOR_META_TAG_REGEX;
 
   return html.replace(generatorPattern, "");
 }
 
+const CLOSING_BODY_TAG_REGEX = /<\/body>/;
+
 // append a link, diorectly before the closing body tag, to the listing page
-function addListingLink(html: string): string {
+function addListingLink(html: string, fileName: string): string {
+  const returnLink =
+    fileName === "index.html" ? "" : `<a href="./index.html">Return</a>`;
+
   return html.replace(
-    /<\/body>/,
-    `<footer class="generated-footer">${LISTING_LINK_HTML} ${RETURN_LINK_HTML}</footer>\n</body>`,
+    CLOSING_BODY_TAG_REGEX,
+    `<footer class="generated-footer">
+    ${returnLink}
+    ${LISTING_LINK_HTML} ${RETURN_LINK_HTML}</footer>\n</body>`,
   );
 }
+const CLOSING_HEAD_TAG_REGEX = /<\/head>/;
+
 function addStyleLinkTag(html: string): string {
   return html.replace(
-    /<\/head>/,
+    CLOSING_HEAD_TAG_REGEX,
     `<link rel="stylesheet" href="../style.css">\n</head>`,
   );
 }
+
+/**
+ * Build a map from old blade URL to new blade URL.
+ * Old format: https://clubimages.britishrowing.org/blades?id=XXX
+ * New format: https://britishrowing.justgo.com/store/downloadpublic?t=custom&f=media/images/BladeDesign/XXXXX/XXX.png
+ */
+const bladeUrlMap = new Map(
+  clubs
+    .filter((club) => club.bladeUrl && club.newBladeUrl)
+    .map((club) => [club.bladeUrl, club.newBladeUrl]),
+);
+
+/**
+ * Build a map from boat code (lowercase) to new blade URL.
+ * Used for old format: http://www.britishrowing.org/sites/all/themes/britishrowing/images/blades/XXX.gif
+ */
+const boatCodeToBladeUrlMap = new Map(
+  clubs
+    .filter((club) => club.code && club.newBladeUrl)
+    .map((club) => [club.code.toLowerCase(), club.newBladeUrl]),
+);
+
+const CLUBIMAGES_URL_REGEX =
+  /https:\/\/clubimages\.britishrowing\.org\/blades\?id=\d+/g;
+const WORDPRESS_URL_REGEX =
+  /http:\/\/www\.britishrowing\.org\/sites\/all\/themes\/britishrowing\/images\/blades\/([a-z]+)\.gif/gi;
+
+const BLADE_WIDTH = 75;
+const BLADE_HEIGHT = 70;
+
+const replaceBladeUrls = (html: string): string => {
+  let result = html;
+
+  result = result.replaceAll(CLUBIMAGES_URL_REGEX, (match) => {
+    const newUrl = bladeUrlMap.get(match);
+
+    if (!newUrl) return match;
+
+    return buildCloudflareImageUrl(newUrl, {
+      fit: "contain",
+      height: BLADE_HEIGHT,
+      width: BLADE_WIDTH,
+    });
+  });
+
+  result = result.replaceAll(WORDPRESS_URL_REGEX, (match, boatCode) => {
+    const newUrl = boatCodeToBladeUrlMap.get(boatCode.toLowerCase());
+
+    if (!newUrl) return match;
+
+    return buildCloudflareImageUrl(newUrl, {
+      fit: "contain",
+      height: BLADE_HEIGHT,
+      width: BLADE_WIDTH,
+    });
+  });
+
+  return result;
+};
 
 const convertFile = async (
   fileName: string,
@@ -82,23 +161,22 @@ const convertFile = async (
       tidy
         .tidy_html5(output, {
           clean: true,
-          quiet: true,
           doctype: "html5",
-          "quote-ampersand": false,
           "drop-proprietary-attributes": true,
+          quiet: true,
+          "quote-ampersand": false,
+          "show-errors": 0,
           "show-info": false,
           "show-warnings": false,
-          "show-errors": 0,
         })
         ?.toString() ?? output;
     output = addVieportMetaTag(output);
     output = addStyleLinkTag(output);
 
     output = stripGeneratorMetaTags(output);
+    output = replaceBladeUrls(output);
 
-    if (fileName.startsWith("index")) {
-      output = addListingLink(output);
-    }
+    output = addListingLink(output, fileName);
   }
 
   await fs.writeFile(outputFile, output);

@@ -1,27 +1,17 @@
 import { sanityClient } from "@sudburyrc/api";
 import groq from "groq";
-import { HTTPError } from "ky";
-import { sift } from "radash";
+import ky, { HTTPError } from "ky";
+import { sift } from "radashi";
 import { z } from "zod";
-import { kyInstance } from "@/app/get-query-client";
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import type { SafetyComponentProps } from "@/components/safety/safety-component";
 import { EAStationResponseSchema } from "@/types/ea-station-respose";
 import { EAWarningSchema } from "@/types/ea-warning";
 import { type Severity, severities } from "@/types/severity";
 import { CLUB_LOCATION } from "./constants";
-
-type SafetyStatusResult<T> =
-  | {
-      ok: true;
-      data: T;
-      error?: never;
-    }
-  | {
-      ok: false;
-      data?: never;
-      error: string;
-    };
+import { err, ok, type Result } from "./result";
+import { fetchWeatherWarning } from "./server/fetchWeatherWarning";
+import { trackServerException } from "./server/track";
 
 const SanityStatusSchema = z.object({
   _updatedAt: z.coerce.date(),
@@ -32,12 +22,11 @@ const SanityStatusSchema = z.object({
 
 /** Fetches the latest safety status from the content management system */
 const fetchSanityStatus = async (): Promise<
-  SafetyStatusResult<z.infer<typeof SanityStatusSchema>>
+  Result<z.infer<typeof SanityStatusSchema>>
 > => {
   try {
-    return {
-      ok: true,
-      data: SanityStatusSchema.parse(
+    return ok(
+      SanityStatusSchema.parse(
         await sanityClient.fetch(
           groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
             _updatedAt,
@@ -47,49 +36,45 @@ const fetchSanityStatus = async (): Promise<
           }`,
         ),
       ),
-    };
+    );
   } catch (error) {
-    return {
-      ok: false,
-      error:
-        error instanceof Error
-          ? error.message
-          : "Failed to fetch safety status from content management system",
-    };
+    trackServerException(error);
+
+    return err(
+      error instanceof Error
+        ? error.message
+        : "Failed to fetch safety status from content management system",
+    );
   }
 };
 
 const getEaWarningUrl = (): string =>
   `https://environment.data.gov.uk/flood-monitoring/id/floods?${new URLSearchParams(
     {
+      dist: String(3),
       lat: String(CLUB_LOCATION[0]),
       long: String(CLUB_LOCATION[1]),
-      dist: String(3),
     },
   ).toString()}`;
 
 /** Fetches the latest flood warning from the Environment Agency API, using the
  * club's location */
 const fetchEAWarning = async (): Promise<
-  SafetyStatusResult<z.infer<typeof EAWarningSchema>>
+  Result<z.infer<typeof EAWarningSchema>>
 > => {
   try {
-    return {
-      ok: true,
-      data: z
+    return ok(
+      z
         .object({ items: z.array(EAWarningSchema) })
-        .parse(
-          await kyInstance.get(getEaWarningUrl(), { timeout: 5000 }).json(),
-        ).items[0],
-    };
+        .parse(await ky.get(getEaWarningUrl(), { timeout: 5000 }).json())
+        .items[0],
+    );
   } catch (error) {
-    return {
-      ok: false,
-      error:
-        error instanceof HTTPError
-          ? error.message
-          : "Failed to fetch EA warning",
-    };
+    trackServerException(error);
+
+    return err(
+      error instanceof HTTPError ? error.message : "Failed to fetch EA warning",
+    );
   }
 };
 
@@ -98,24 +83,20 @@ const STATION_URL =
 
 /** Fetches monitoring station data from the Environment Agency API */
 const fetchEAStation = async (): Promise<
-  SafetyStatusResult<z.infer<typeof EAStationResponseSchema>>
+  Result<z.infer<typeof EAStationResponseSchema>>
 > => {
   try {
-    return {
-      ok: true,
-      data: z
+    return ok(
+      z
         .object({ items: EAStationResponseSchema })
-        .parse(await kyInstance.get(STATION_URL, { timeout: 5000 }).json())
-        .items,
-    };
+        .parse(await ky.get(STATION_URL, { timeout: 5000 }).json()).items,
+    );
   } catch (error) {
-    return {
-      ok: false,
-      error:
-        error instanceof HTTPError
-          ? error.message
-          : "Failed to fetch EA station",
-    };
+    trackServerException(error);
+
+    return err(
+      error instanceof HTTPError ? error.message : "Failed to fetch EA station",
+    );
   }
 };
 
@@ -145,9 +126,9 @@ function formatDescriptionString(
 
   const [l, c, f] = [level, ceil, floor].map((v) =>
     Intl.NumberFormat("en-GB", {
+      maximumFractionDigits: 0,
       style: "unit",
       unit: "centimeter",
-      maximumFractionDigits: 0,
     }).format(Math.max(0, v * 100)),
   );
 
@@ -159,19 +140,22 @@ function formatDescriptionString(
  * as it finds a reason to display a warning.
  */
 export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
-  const [sanityResult, eaWarningResult, stationResult] = await Promise.all([
-    fetchSanityStatus(),
-    fetchEAWarning(),
-    fetchEAStation(),
-  ]);
+  const [sanityResult, eaWarningResult, stationResult, weatherWarningResult] =
+    await Promise.all([
+      fetchSanityStatus(),
+      fetchEAWarning(),
+      fetchEAStation(),
+      fetchWeatherWarning(),
+    ]);
 
   if (sanityResult.ok && sanityResult.data?.display) {
     const { data: sanityStatus } = sanityResult;
 
     return {
-      status: sanityStatus.status,
-      description: sanityStatus.description,
       date: sanityStatus._updatedAt,
+      description: sanityStatus.description,
+      retrievedAt: new Date(),
+      status: sanityStatus.status,
       statusMessage: sanityStatus.status.toString(),
     };
   }
@@ -182,11 +166,34 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     } = eaWarningResult;
 
     return {
-      status: numericSeverityMap[severityLevel],
-      description: message || "",
       date: timeRaised,
-      statusMessage: severity,
+      description: message || "",
       source: WarningSourceEnum.environmentAgency,
+      status: numericSeverityMap[severityLevel],
+      statusMessage: severity,
+    };
+  }
+
+  if (
+    weatherWarningResult.ok &&
+    weatherWarningResult.data &&
+    weatherWarningResult.data.items.length > 0
+  ) {
+    const { data: weatherWarning } = weatherWarningResult;
+
+    const lowerCaseSnippet =
+      weatherWarning.items[0].contentSnippet.toLowerCase();
+
+    const isYellowOrAmber =
+      lowerCaseSnippet.includes("yellow") || lowerCaseSnippet.includes("amber");
+
+    return {
+      date: new Date(weatherWarning.pubDate),
+      description: weatherWarning.items[0].content,
+      retrievedAt: new Date(),
+      source: WarningSourceEnum.metoffice,
+      status: isYellowOrAmber ? "amber" : "red",
+      statusMessage: "Weather warning",
     };
   }
 
@@ -199,26 +206,28 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
 
     return {
       status,
+      date: stationResult.data.measures.latestReading.dateTime,
       description: formatDescriptionString(
         stationResult.data.label,
         value,
         typicalRangeHigh,
         typicalRangeLow,
       ),
-      date: stationResult.data.measures.latestReading.dateTime,
+      retrievedAt: new Date(),
       statusMessage: "Monitoring station",
     };
   }
 
   return {
-    status: "neutral",
-    description: "Unable to fetch safety data from any source",
     date: new Date(),
-    statusMessage: "No data available",
+    description: "Unable to fetch safety data from any source",
     errors: sift([
       sanityResult.error,
       eaWarningResult.error,
       stationResult.error,
     ]),
+    retrievedAt: new Date(),
+    status: "neutral",
+    statusMessage: "No data available",
   };
 };

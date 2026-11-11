@@ -21,9 +21,9 @@ export const generateMetadata = async ({ params }: AuthorPageParamObject) => {
   if (!author) return {};
 
   return createMetadata({
-    title: `${author?.firstName} ${author?.surname}`,
     description: `Archive of all posts by ${author?.firstName} ${author?.surname}`,
     image: { color: "light" },
+    title: `${author?.firstName} ${author?.surname}`,
   });
 };
 
@@ -49,15 +49,15 @@ const AuthorArchive = async ({ params }: AuthorPageParamObject) => {
         <div className="prose my-6 mr-auto">
           <ul className="pl-0">
             {author?.articles?.map(({ _id, slug, title, date }) => (
-              <li key={_id} className="list-none pl-0">
-                <Link href={`/news/${slug}`} className="block leading-none">
+              <li className="list-none pl-0" key={_id}>
+                <Link className="block leading-none" href={`/news/${slug}`}>
                   {title}
                 </Link>
 
                 <DateFormatter
+                  className="font-medium text-sm"
                   dateString={date}
                   format="short"
-                  className="font-medium text-sm"
                 />
               </li>
             ))}

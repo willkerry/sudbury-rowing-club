@@ -11,7 +11,7 @@ type StourToy = {
 const StourToyList = ({ items }: { items: StourToy[] }) => (
   <ul className="list-none pl-0">
     {items.map((item) => (
-      <li key={item.href} className="mb-6 p-0">
+      <li className="mb-6 p-0" key={item.href}>
         <Link className="p-0 font-semibold leading-tight" href={item.href}>
           {item.name}
         </Link>
@@ -23,18 +23,25 @@ const StourToyList = ({ items }: { items: StourToy[] }) => (
 
 const stourToys: StourToy[] = [
   {
-    name: "Club Lookup",
-    href: "/stourtoys/club-lookup",
     description: "Search for rowing clubs and their blades.",
+    href: "/stourtoys/club-lookup",
+    name: "Club lookup",
   },
   {
-    name: "Search",
-    href: "/stourtoys/search",
     description: "Search the SRC website.",
+    href: "/stourtoys/search",
+    name: "Search",
+  },
+  {
+    description: "Generate Open Graph images for sharing on social media.",
+    href: "/stourtoys/share-image",
+    name: "Share image generator",
   },
 ];
 
 export const metadata = createMetadata({
+  description: "Useful tools and utilities for Sudbury Rowing Club members.",
+  image: { title: "StourToys 🧸" },
   title: "StourToys",
 });
 

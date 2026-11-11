@@ -13,11 +13,11 @@ const DESCRIPTION = "See how we celebrated 150 years of rowing in Sudbury";
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: TITLE,
     description: DESCRIPTION,
+    title: TITLE,
     image: {
-      title: "150 Years 🍾",
       subtitle: "1874–2024",
+      title: "150 Years 🍾",
     },
   }),
 };
@@ -50,9 +50,9 @@ const Join = () => (
           </Button>
 
           <HundredAndFiftyContactButton
-            variant="link"
             className="text-white"
             message={`I'd like to contribute to the 150th anniversary gallery.\n\nNOTE: It isn't possible to attach images to this form: we'll provide a secure way to share them after you send this message.\n\nYour message: `}
+            variant="link"
           >
             Contribute
           </HundredAndFiftyContactButton>

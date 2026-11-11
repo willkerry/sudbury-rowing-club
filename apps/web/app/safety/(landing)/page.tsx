@@ -1,23 +1,21 @@
-import { fetchSafety } from "@sudburyrc/api";
+import { fetchSafety, type SafetyItem } from "@sudburyrc/api";
+import { fork } from "radashi";
 import { SafetyItemCard } from "@/components/safety/safety-item-card";
+import { containsUrgentWords } from "@/lib/contains-urgent-words";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
+  description:
+    "River safety, incident reporting, water quality, and rowing safety guidance for Sudbury Rowing Club members on the River Stour.",
+  image: { title: "Safety ⚠️" },
   title: "Safety",
-  description: "Safety information from Sudbury Rowing Club.",
 });
 
-const getSafetyItems = async () => {
-  const safetyItems = await fetchSafety();
-
-  const pinned = safetyItems.filter((item) => item.pin);
-  const unpinned = safetyItems.filter((item) => !item.pin);
-
-  return [...pinned, ...unpinned];
-};
+const isPinnedDiscriminator = (item: SafetyItem) =>
+  item.pin || containsUrgentWords(item.title);
 
 const Safety = async () => {
-  const safetyItems = await getSafetyItems();
+  const safetyItems = fork(await fetchSafety(), isPinnedDiscriminator).flat();
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

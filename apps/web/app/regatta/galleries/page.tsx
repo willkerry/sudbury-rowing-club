@@ -8,9 +8,9 @@ import { DateFormatter } from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  title: "Official Photography | Sudbury Regatta",
   description: "Professional photography from the Sudbury Regatta.",
   image: { title: "Official Photography" },
+  title: "Official Photography | Sudbury Regatta",
 });
 
 export interface Gallery {
@@ -38,23 +38,23 @@ const Photography = async () => {
 
   return (
     <>
-      <PageHeader title="Official regatta photography" breadcrumbs />
+      <PageHeader breadcrumbs title="Official regatta photography" />
       <Container>
         <div className="prose prose-lg max-w-none pb-16">
           <table>
             <thead>
               <tr>
-                <th>Year</th>
-                <th>
-                  <span className="sm:hidden">Password</span>
+                <th scope="col">Year</th>
+                <th scope="col">
+                  <span className="sr-only sm:not-sr-only">Password</span>
                 </th>
-                <th>Providers</th>
+                <th scope="col">Providers</th>
               </tr>
             </thead>
             <tbody>
               {regattas.map(({ _id, date, galleries }) => (
                 <tr key={_id}>
-                  <th>
+                  <th scope="row">
                     <DateFormatter dateString={date} format="year" />
                     <span className="hidden sm:inline"> Regatta</span>
                   </th>
@@ -79,7 +79,7 @@ const Photography = async () => {
                       if (!url) return null;
 
                       return (
-                        <Link key={_key} href={url} external>
+                        <Link external href={url} key={_key}>
                           {name}
                         </Link>
                       );

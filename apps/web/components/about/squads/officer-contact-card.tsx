@@ -21,15 +21,15 @@ export const OfficerContactCard = async ({ query }: { query: string }) => {
   return (
     <div className="flex max-w-sm items-center gap-3 rounded-sm border p-2">
       <Identity
+        description={officer.role}
         imageId={officer.avatar?._id}
         lqip={officer.avatar?.lqip}
-        name={officer.name}
-        description={officer.role}
+        name={officer.name ?? officer.role}
       />
 
       <div className="flex-1" />
 
-      <Button variant="brand" size="xs" className="mr-1" asChild>
+      <Button asChild className="mr-1" size="xs" variant="brand">
         <Link href={`/contact?to=${officer._id}`}>Contact</Link>
       </Button>
     </div>

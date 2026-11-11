@@ -1,5 +1,16 @@
-import type { Column } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, ChevronsUpDown, Search, Undo } from "lucide-react";
+import {
+  IconArrowBackUp,
+  IconArrowDown,
+  IconArrowUp,
+  IconSearch,
+  IconSelector,
+} from "@tabler/icons-react";
+import type {
+  Column,
+  columnFilteringFeature,
+  RowData,
+  rowSortingFeature,
+} from "@tanstack/react-table";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -19,8 +30,8 @@ const Table = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div className="relative w-full overflow-auto">
     <table
-      ref={ref}
       className={cn("w-full caption-bottom text-sm", className)}
+      ref={ref}
       {...props}
     />
   </div>
@@ -31,7 +42,7 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  <thead className={cn("[&_tr]:border-b", className)} ref={ref} {...props} />
 ));
 TableHeader.displayName = "TableHeader";
 
@@ -40,8 +51,8 @@ const TableBody = React.forwardRef<
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
   <tbody
-    ref={ref}
     className={cn("[&_tr:last-child]:border-0", className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -52,11 +63,11 @@ const TableFooter = React.forwardRef<
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
   <tfoot
-    ref={ref}
     className={cn(
       "border-t bg-gray-100/50 font-medium last:[&>tr]:border-b-0",
       className,
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -67,11 +78,11 @@ const TableRow = React.forwardRef<
   React.HTMLAttributes<HTMLTableRowElement>
 >(({ className, ...props }, ref) => (
   <tr
-    ref={ref}
     className={cn(
       "border-b transition-colors hover:bg-gray-100/50 data-[state=selected]:bg-gray-100",
       className,
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -82,11 +93,11 @@ const TableHead = React.forwardRef<
   React.ThHTMLAttributes<HTMLTableCellElement>
 >(({ className, ...props }, ref) => (
   <th
-    ref={ref}
     className={cn(
       "h-12 px-4 text-left align-middle font-medium text-gray-500 [&:has([role=checkbox])]:pr-0",
       className,
     )}
+    ref={ref}
     {...props}
   />
 ));
@@ -97,8 +108,8 @@ const TableCell = React.forwardRef<
   React.TdHTMLAttributes<HTMLTableCellElement>
 >(({ className, ...props }, ref) => (
   <td
-    ref={ref}
     className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
+    ref={ref}
     {...props}
   />
 ));
@@ -109,28 +120,43 @@ const TableCaption = React.forwardRef<
   React.HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref) => (
   <caption
-    ref={ref}
     className={cn("mt-4 text-gray-500 text-sm", className)}
+    ref={ref}
     {...props}
   />
 ));
 TableCaption.displayName = "TableCaption";
 
-interface DataTableColumnHeaderProps<TData, TValue>
+type SortableFilterableFeatures = {
+  columnFilteringFeature: typeof columnFilteringFeature;
+  rowSortingFeature: typeof rowSortingFeature;
+};
+
+interface DataTableColumnHeaderProps<TData extends RowData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
-  column: Column<TData, TValue>;
+  column: Pick<
+    Column<SortableFilterableFeatures, TData, TValue>,
+    | "clearSorting"
+    | "getCanFilter"
+    | "getCanSort"
+    | "getFilterValue"
+    | "getIsFiltered"
+    | "getIsSorted"
+    | "setFilterValue"
+    | "toggleSorting"
+  >;
   title: string;
 }
 
-const DataTableColumnHeader = <TData, TValue>({
+const DataTableColumnHeader = <TData extends RowData, TValue>({
   column,
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) => {
   const sortIcon = {
-    desc: <ArrowDown aria-hidden className="h-3.5 w-3.5" />,
-    asc: <ArrowUp aria-hidden className="h-3.5 w-3.5" />,
-    none: <ChevronsUpDown aria-hidden className="h-3.5 w-3.5" />,
+    asc: <IconArrowUp aria-hidden className="h-3.5 w-3.5" />,
+    desc: <IconArrowDown aria-hidden className="h-3.5 w-3.5" />,
+    none: <IconSelector aria-hidden className="h-3.5 w-3.5" />,
   }[column.getIsSorted() || "none"];
 
   return (
@@ -139,38 +165,40 @@ const DataTableColumnHeader = <TData, TValue>({
 
       {column.getCanSort() && (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant={column.getIsSorted() ? "tertiary" : "ghost"}
-              className="px-1"
-              size="xs"
-            >
-              {sortIcon}
-              <span className="sr-only">Sort</span>
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="px-1"
+                size="xs"
+                variant={column.getIsSorted() ? "tertiary" : "ghost"}
+              />
+            }
+          >
+            {sortIcon}
+            <span className="sr-only">Sort</span>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuItem
-              onClick={() => column.toggleSorting(false)}
               disabled={column.getIsSorted() === "asc"}
+              onClick={() => column.toggleSorting(false)}
             >
-              <ArrowUp aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowUp aria-hidden className="h-3.5 w-3.5" />
               Ascending
             </DropdownMenuItem>
             <DropdownMenuItem
-              onClick={() => column.toggleSorting(true)}
               disabled={column.getIsSorted() === "desc"}
+              onClick={() => column.toggleSorting(true)}
             >
-              <ArrowDown aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowDown aria-hidden className="h-3.5 w-3.5" />
               Descending
             </DropdownMenuItem>
             <DropdownMenuSeparator />
 
             <DropdownMenuItem
-              onClick={() => column.clearSorting()}
               disabled={!column.getIsSorted()}
+              onClick={() => column.clearSorting()}
             >
-              <Undo aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowBackUp aria-hidden className="h-3.5 w-3.5" />
               Clear
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -179,24 +207,27 @@ const DataTableColumnHeader = <TData, TValue>({
 
       {column.getCanFilter() && (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant={column.getIsFiltered() ? "tertiary" : "ghost"}
-              className="px-1"
-              size="xs"
-            >
-              <Search aria-hidden className="h-3.5 w-3.5" />
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="px-1"
+                size="xs"
+                variant={column.getIsFiltered() ? "tertiary" : "ghost"}
+              />
+            }
+          >
+            <IconSearch aria-hidden className="h-3.5 w-3.5" />
+            <span className="sr-only">Filter {title}</span>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="start" asChild>
-            <DropdownMenuItem asChild>
-              <Input
-                type="text"
-                value={String(column.getFilterValue() ?? "")}
-                onChange={(event) => column.setFilterValue(event.target.value)}
-              />
-            </DropdownMenuItem>
+          <DropdownMenuContent align="start">
+            <Input
+              aria-label={`Filter by ${title}`}
+              onChange={(event) => column.setFilterValue(event.target.value)}
+              onKeyDown={(event) => event.stopPropagation()}
+              type="text"
+              value={String(column.getFilterValue() ?? "")}
+            />
           </DropdownMenuContent>
         </DropdownMenu>
       )}
@@ -205,13 +236,13 @@ const DataTableColumnHeader = <TData, TValue>({
 };
 
 export {
+  DataTableColumnHeader,
   Table,
-  TableHeader,
   TableBody,
+  TableCaption,
+  TableCell,
   TableFooter,
   TableHead,
+  TableHeader,
   TableRow,
-  TableCell,
-  TableCaption,
-  DataTableColumnHeader,
 };

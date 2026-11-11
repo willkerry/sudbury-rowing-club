@@ -8,27 +8,24 @@ import { createMetadata } from "@/lib/create-metadata";
 import { CSRNewsPage } from "./csr-page";
 
 export const metadata = createMetadata({
-  title: "News | Sudbury Rowing Club",
-  description: "Latest news from Sudbury Rowing Club.",
+  description:
+    "News and race reports from Sudbury Rowing Club – results, events, and updates from Suffolk's rowing club on the River Stour.",
   image: { title: "News" },
+  title: "News | Sudbury Rowing Club",
 });
 
 const fetchArticlesAndUpdateSearchIndex = async () => {
   try {
-    const articles = await serverGetNArticles(0, 30);
-
-    const sanityTotal = await fetchArticleCount();
-
-    // Then fetch the number of posts on Algolia
-    const algoliaTotal = await getServerClient()
-      .searchSingleIndex({
-        indexName: SEARCH_INDEX_NAME,
-        searchParams: {
-          query: "",
-          hitsPerPage: 0,
-        },
-      })
-      .then((r) => r.nbHits);
+    const [articles, sanityTotal, { nbHits: algoliaTotal }] = await Promise.all(
+      [
+        serverGetNArticles(0, 30),
+        fetchArticleCount(),
+        getServerClient().searchSingleIndex({
+          indexName: SEARCH_INDEX_NAME,
+          searchParams: { hitsPerPage: 0, query: "" },
+        }),
+      ],
+    );
 
     // If the number of posts on Sanity does not equal the number of posts on
     // Algolia, reindex. (Obviously, this is not fault-proof, but it should ensure

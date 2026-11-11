@@ -1,26 +1,27 @@
 import { slug } from "github-slugger";
 import Link from "next/link";
-import { listify } from "radash";
+import { listify } from "radashi";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { getCommitteeArchive } from "@/lib/get-committee-archive";
 import { InitialisedName } from "./InitialiseName";
 
 export const metadata = createMetadata({
-  title: "Committees",
   description: "List of Sudbury Rowing Club committees since 1874",
+  image: { title: "Committee Archive" },
+  title: "Committees",
 });
 
 const committeeArchive = getCommitteeArchive();
 
 const Archive = () => (
   <TextPage
-    title="Committee archive"
-    prose={false}
     className="prose flex max-w-full flex-wrap"
+    prose={false}
+    title="Committee archive"
   >
     {committeeArchive.map(({ season, ...committee }) => (
-      <div key={season} className="w-40">
+      <div className="w-40" key={season}>
         <Link href={`committees/${slug(season)}`}>
           <h2>{season}</h2>
         </Link>
@@ -32,7 +33,7 @@ const Archive = () => (
               </span>
 
               {office?.holders.map((name) => (
-                <InitialisedName name={name} key={name} />
+                <InitialisedName key={name} name={name} />
               ))}
             </li>
           ))}

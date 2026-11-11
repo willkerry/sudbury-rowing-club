@@ -21,16 +21,14 @@ export const SquadLatestNews = async ({
   });
 
   const latestThreeNews = squadNews.results?.[0]?.hits
-    .sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
 
   return (
     <div className="not-prose">
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {latestThreeNews.map((hit) => (
-          <PostPreview post={hit} key={hit._id} />
+          <PostPreview key={hit._id} post={hit} />
         ))}
       </ul>
     </div>

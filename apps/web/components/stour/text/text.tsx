@@ -1,42 +1,40 @@
 import type { PortableTextProps } from "@portabletext/react";
 import { cva, type VariantProps } from "class-variance-authority";
-import cn from "clsx";
 import { PortableText } from "@/lib/sanity";
+import { cn } from "@/lib/utils";
 
 const variants = cva(["prose", "prose-lead:font-medium prose-lead:font-sans"], {
+  defaultVariants: {
+    font: "sans",
+    lead: false,
+    size: "base",
+    type: "default",
+  },
   variants: {
-    type: {
-      default: "",
-      invert: "text-white",
-      secondary: "text-gray-500",
-    },
-    size: {
-      small: "prose-sm",
-      base: "",
-      large: "prose-lg",
-      xlarge: "prose-xl",
-    },
     font: {
       sans: "",
       serif:
         "prose-p:font-[360] prose-p:font-serif prose-p:text-lg prose-p:leading-relaxed",
     },
     lead: {
-      true: "auto-lead",
       false: "",
+      true: "auto-lead",
     },
-  },
-  defaultVariants: {
-    type: "default",
-    size: "base",
-    font: "sans",
-    lead: false,
+    size: {
+      base: "",
+      large: "prose-lg",
+      small: "prose-sm",
+      xlarge: "prose-xl",
+    },
+    type: {
+      default: "",
+      invert: "text-white",
+      secondary: "text-gray-500",
+    },
   },
 });
 
-type Props = {
-  children?: React.ReactNode;
-  className?: string;
+type Props = React.HTMLAttributes<HTMLDivElement> & {
   portableText?: PortableTextProps["value"];
 } & VariantProps<typeof variants>;
 
@@ -48,12 +46,22 @@ export const Text = ({
   className,
   lead,
   portableText,
+  ...props
 }: Props) => {
   const classes = cn(variants({ type, size, font, lead }), className);
 
-  return portableText ? (
-    <PortableText className={classes} value={portableText} />
-  ) : (
-    <div className={classes}>{children}</div>
+  if (portableText) {
+    return (
+      <PortableText
+        value={portableText}
+        wrapperProps={{ className: classes, ...props }}
+      />
+    );
+  }
+
+  return (
+    <div className={classes} {...props}>
+      {children}
+    </div>
   );
 };

@@ -1,0 +1,9 @@
+{
+  "exclude": ["dist", "build", "node_modules"],
+  "extends": "@sudburyrc/tsconfig/base.json",
+  "include": ["."],
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "target": "ES2022"
+  }
+}

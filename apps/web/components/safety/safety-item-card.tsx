@@ -1,19 +1,15 @@
-import type { SafetyResponse } from "@sudburyrc/api";
+import type { SafetyItem } from "@sudburyrc/api";
+import { IconDownload, IconExternalLink } from "@tabler/icons-react";
 import { BASE_URL } from "lib/constants";
-import { Download, ExternalLink } from "lucide-react";
 import NextLink from "next/link";
-import { first, isArray } from "radash";
+import { first, isArray } from "radashi";
 import { forwardRef } from "react";
 import { Link } from "@/components/stour/link";
 import { Text } from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import { DateFormatter } from "@/components/utils/date-formatter";
+import { containsUrgentWords } from "@/lib/contains-urgent-words";
 import { cn } from "@/lib/utils";
-
-const URGENT_WORDS = ["emergency", "urgent", "critical"];
-
-const containsUrgentWords = (title: string) =>
-  URGENT_WORDS.some((word) => title.toLowerCase().includes(word));
 
 const SafetyItemCardBorder = forwardRef<
   HTMLDivElement,
@@ -24,12 +20,12 @@ const SafetyItemCardBorder = forwardRef<
 >(({ isEmergency, className, children, ...props }, ref) => (
   <div {...props}>
     <div
-      ref={ref}
       className={cn(
         "rounded-lg border p-2",
         isEmergency ? "border-2 border-red-400" : "bg-white",
         className,
       )}
+      ref={ref}
     >
       {children}
     </div>
@@ -44,8 +40,8 @@ const SafetyItemTitle = ({
   children: React.ReactNode;
 }) => (
   <Link
-    href={href}
     className="text-gray-900 transition hover:text-blue-500 hover:underline"
+    href={href}
   >
     <h2 className="mb-2 line-clamp-1 font-semibold text-xl leading-tight md:text-base">
       {children}
@@ -70,18 +66,18 @@ const SafetyItemLinkButton = ({
 }) => (
   <Button
     asChild
-    size="xs"
-    variant={isEmergency ? "destructive" : "tertiary"}
     className="w-full"
     icon={
       href.includes(BASE_URL) ? (
-        <Download className="h-3 w-3" />
+        <IconDownload className="h-3 w-3" />
       ) : (
-        <ExternalLink className="h-3 w-3" />
+        <IconExternalLink className="h-3 w-3" />
       )
     }
+    size="xs"
+    variant={isEmergency ? "destructive" : "tertiary"}
   >
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a href={href} rel="noopener noreferrer" target="_blank">
       {children}
     </a>
   </Button>
@@ -97,13 +93,13 @@ const SafetyItemDownloadButton = ({
   isEmergency: boolean;
 }) => (
   <Button
-    icon={<Download className="h-3 w-3" />}
+    asChild
     className="w-full"
+    icon={<IconDownload className="h-3 w-3" />}
     size="xs"
     variant={isEmergency ? "destructive" : "tertiary"}
-    asChild
   >
-    <a href={`${href}?dl=`} target="_blank" rel="noopener noreferrer">
+    <a href={`${href}?dl=`} rel="noopener noreferrer" target="_blank">
       {children}
     </a>
   </Button>
@@ -116,7 +112,7 @@ export const SafetyItemCard = ({
   body,
   link,
   document,
-}: SafetyResponse) => {
+}: SafetyItem) => {
   const permalink = `safety/${_id}`;
   const firstParagraph = body ? first(body) : null;
   const hasMultipleParagraphs = isArray(body) && body.length > 1;
@@ -124,21 +120,21 @@ export const SafetyItemCard = ({
 
   return (
     <SafetyItemCardBorder
-      key={_id}
-      id={_id}
       data-updated-at={_updatedAt}
+      id={_id}
       isEmergency={isAnUrgentItem}
+      key={_id}
     >
       <SafetyItemUpdatedAt date={_updatedAt} />
       <SafetyItemTitle href={permalink}>{title}</SafetyItemTitle>
 
       {firstParagraph && (
-        <Text portableText={firstParagraph} className="prose-sm mb-4" />
+        <Text className="prose-sm mb-4" portableText={firstParagraph} />
       )}
 
       <div className="space-y-2">
         {hasMultipleParagraphs && (
-          <Button asChild variant="secondary" className="w-full">
+          <Button asChild className="w-full" variant="secondary">
             <NextLink href={permalink}>More</NextLink>
           </Button>
         )}

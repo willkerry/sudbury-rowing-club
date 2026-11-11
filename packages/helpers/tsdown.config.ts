@@ -1,6 +1,10 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
+  dts: true,
+  format: ["esm"],
+  minify: true,
+  sourcemap: true,
   entry: [
     "src/index.ts",
     "src/clampString.ts",
@@ -8,8 +12,4 @@ export default defineConfig({
     "src/ordinal.ts",
     "src/smartQuotes.ts",
   ],
-  dts: true,
-  sourcemap: true,
-  minify: true,
-  format: ["esm"],
 });

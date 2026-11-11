@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { env } from "@/env";
 
 const useLocale = () => Intl.DateTimeFormat().resolvedOptions().locale;
 
@@ -30,15 +31,15 @@ export const ReportABug = () => {
     language,
     url,
     date: new Date().toISOString(),
-    sha: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA,
+    sha: env.NEXT_PUBLIC_GIT_COMMIT_SHA,
   });
 
   const message = encodeURIComponent(stringifiedMessage);
 
   return (
     <a
-      href={`/bugs?message=${message}`}
       className="transition hover:text-black"
+      href={`/bugs?message=${message}`}
       suppressHydrationWarning
     >
       Report a bug.

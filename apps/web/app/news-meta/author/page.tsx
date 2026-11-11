@@ -1,14 +1,14 @@
 import { type AuthorsResponse, fetchAllAuthors } from "@sudburyrc/api";
-import cn from "clsx";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { Label } from "@/components/stour/label";
 import { createMetadata } from "@/lib/create-metadata";
+import { cn } from "@/lib/utils";
 
 export const metadata = createMetadata({
-  title: "Authors",
   description: "List of contributing authors",
   image: { title: "Our authors" },
+  title: "Authors",
 });
 
 type AuthorResponseWithRank = AuthorsResponse[number] & { rank: number };
@@ -52,8 +52,8 @@ const Authors = async () => {
 
               return (
                 <li
-                  key={_id}
                   className={cn("mb-4 flex text-lg", firstOfRank && "pt-2")}
+                  key={_id}
                 >
                   <div className="relative w-6">
                     {firstOfRank && (

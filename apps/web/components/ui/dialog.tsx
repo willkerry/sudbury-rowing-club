@@ -1,18 +1,18 @@
 "use client";
 
-import { Dialog as RadixDialog } from "radix-ui";
+import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 type DialogType = "error" | "success" | "warn" | "info";
 
 interface DialogOptions {
-  title?: string;
+  closeText?: string;
+  confirmText?: string;
   description: string;
   onClose?: () => void;
-  closeText?: string;
   onConfirm?: () => void;
-  confirmText?: string;
+  title?: string;
 }
 
 interface DialogState extends DialogOptions {
@@ -58,12 +58,12 @@ export const DialogProvider: React.FC<{ children: React.ReactNode }> = ({
 
 const fallbackTitles: Record<DialogType, string> = {
   error: "Error",
+  info: "Info",
   success: "Success",
   warn: "Warning",
-  info: "Info",
 };
 
-// The actual dialog component using Radix UI
+// The actual dialog component using Base UI
 const DialogComponent = () => {
   const context = useContext(DialogContext);
   if (!context) throw new Error("Dialog must be used within DialogProvider");
@@ -83,44 +83,48 @@ const DialogComponent = () => {
   } = state;
 
   return (
-    <RadixDialog.Root open={isOpen} onOpenChange={() => closeDialog()}>
-      <RadixDialog.Portal>
-        <RadixDialog.Overlay className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50 data-[state=closed]:animate-out data-[state=open]:animate-in" />
+    <BaseDialog.Root onOpenChange={() => closeDialog()} open={isOpen}>
+      <BaseDialog.Portal>
+        <BaseDialog.Backdrop className="data-[closed]:fade-out-0 data-[open]:fade-in-0 fixed inset-0 z-50 bg-black/50 data-[closed]:animate-out data-[open]:animate-in" />
 
-        <RadixDialog.Content className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-[50%] left-[50%] z-50 grid w-full max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-hidden border bg-gray-50 p-3 shadow-lg duration-200 data-[state=closed]:animate-out data-[state=open]:animate-in sm:rounded-sm">
+        <BaseDialog.Popup className="data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-[48%] data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-[48%] fixed top-[50%] left-[50%] z-50 grid w-full max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-hidden border bg-gray-50 p-3 shadow-lg duration-200 data-[closed]:animate-out data-[open]:animate-in sm:rounded-sm">
           {title && (
-            <RadixDialog.Title className="font-semibold text-gray-780 text-sm">
+            <BaseDialog.Title className="font-semibold text-gray-780 text-sm">
               {title}
-            </RadixDialog.Title>
+            </BaseDialog.Title>
           )}
 
-          <RadixDialog.Description className="font-medium text-gray-600 text-sm">
+          <BaseDialog.Description className="font-medium text-gray-600 text-sm">
             {description}
-          </RadixDialog.Description>
+          </BaseDialog.Description>
 
-          <div className="-mx-0.5 -mb-0.5 mt-4 flex justify-between">
-            <RadixDialog.Close onClick={onClose} asChild className="flex-1">
-              <Button size="xs" variant="secondary">
-                {closeText}
-              </Button>
-            </RadixDialog.Close>
+          <div className="-mx-0.5 mt-4 -mb-0.5 flex justify-between">
+            <BaseDialog.Close
+              className="flex-1"
+              onClick={onClose}
+              render={
+                <Button size="xs" variant="secondary">
+                  {closeText}
+                </Button>
+              }
+            />
 
             {onConfirm && (
               <Button
-                size="sm"
+                className="flex-1"
                 onClick={() => {
                   onConfirm();
                   closeDialog();
                 }}
-                className="flex-1"
+                size="sm"
               >
                 {confirmText}
               </Button>
             )}
           </div>
-        </RadixDialog.Content>
-      </RadixDialog.Portal>
-    </RadixDialog.Root>
+        </BaseDialog.Popup>
+      </BaseDialog.Portal>
+    </BaseDialog.Root>
   );
 };
 
@@ -139,6 +143,13 @@ export const Dialog = {
     dialogContext.showDialog("error", options);
   },
 
+  info: (options: DialogOptions) => {
+    if (!dialogContext) {
+      throw new Error("DialogProvider not found");
+    }
+    dialogContext.showDialog("info", options);
+  },
+
   success: (options: DialogOptions) => {
     if (!dialogContext) {
       throw new Error("DialogProvider not found");
@@ -151,13 +162,6 @@ export const Dialog = {
       throw new Error("DialogProvider not found");
     }
     dialogContext.showDialog("warn", options);
-  },
-
-  info: (options: DialogOptions) => {
-    if (!dialogContext) {
-      throw new Error("DialogProvider not found");
-    }
-    dialogContext.showDialog("info", options);
   },
 };
 

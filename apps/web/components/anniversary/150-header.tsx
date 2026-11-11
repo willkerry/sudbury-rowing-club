@@ -14,7 +14,7 @@ export const HundredAndFiftyHeader = ({
       <h1>
         <Label>{title}</Label>
       </h1>
-      <Link href={href} className="text-blue-950 hover:text-blue-700">
+      <Link className="text-blue-950 hover:text-blue-700" href={href}>
         ← Back
       </Link>
     </Container>

@@ -1,6 +1,6 @@
 import { fetchArchives } from "@sudburyrc/api";
 import type { Metadata } from "next";
-import { select } from "radash";
+import { select } from "radashi";
 import { HundredAndFiftyHeader } from "@/components/anniversary/150-header";
 import { Container } from "@/components/layouts/container";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -13,10 +13,11 @@ const DESCRIPTION =
 
 export const metadata: Metadata = {
   ...createMetadata({
-    title: TITLE,
     description: DESCRIPTION,
+    title: TITLE,
     image: {
       subtitle: "1874–2024",
+      title: "Memory Map 🗺️",
     },
   }),
 };
@@ -38,10 +39,10 @@ const MemoryMapPage = async () => {
 
   return (
     <>
-      <HundredAndFiftyHeader title="Memory Map" href="/150" />
+      <HundredAndFiftyHeader href="/150" title="Memory Map" />
 
       <Container>
-        <Alert variant="default" className="mb-8">
+        <Alert className="mb-8" variant="default">
           <AlertTitle>Hint</AlertTitle>
           <AlertDescription>
             Zoom out to see more photo locations.

@@ -1,0 +1,8 @@
+{
+  "exclude": ["dist", "build", "node_modules"],
+  "extends": "@sudburyrc/tsconfig/base.json",
+  "include": ["."],
+  "compilerOptions": {
+    "resolveJsonModule": true
+  }
+}

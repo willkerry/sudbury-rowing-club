@@ -1,16 +1,13 @@
 import { defineArrayMember, defineField } from "sanity";
 
 const LandingPage = defineField({
-  type: "object",
+  description: "Content displayed on the main landing page.",
   name: "landingPage",
   title: "Landing Page",
-  description: "Content displayed on the main landing page.",
-  options: {
-    collapsible: true,
-  },
+  type: "object",
   fields: [
     defineField({ name: "title", type: "string" }),
-    defineField({ name: "tagline", type: "text", rows: 2 }),
+    defineField({ name: "tagline", rows: 2, type: "text" }),
     defineField({ name: "description", type: "richText" }),
     defineField({ name: "heroImage", type: "image" }),
     defineField({
@@ -20,9 +17,6 @@ const LandingPage = defineField({
     defineField({
       name: "images",
       type: "array",
-      options: {
-        layout: "grid",
-      },
       of: [
         defineArrayMember({
           name: "image",
@@ -31,14 +25,20 @@ const LandingPage = defineField({
           fields: [
             defineField({
               name: "caption",
-              type: "string",
               title: "Caption",
+              type: "string",
             }),
           ],
         }),
       ],
+      options: {
+        layout: "grid",
+      },
     }),
   ],
+  options: {
+    collapsible: true,
+  },
 });
 
 export default LandingPage;

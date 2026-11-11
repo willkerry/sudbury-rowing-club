@@ -1,4 +1,8 @@
-import { fetchArticleCount, serverGetNArticles } from "@sudburyrc/api";
+import {
+  type ArticleSummary,
+  fetchArticleCount,
+  serverGetNArticles,
+} from "@sudburyrc/api";
 import type { Metadata } from "next";
 import { Container } from "@/components/layouts/container";
 import { NewsList } from "@/components/news/news-list";
@@ -23,8 +27,12 @@ export const generateMetadata = async (props: {
   params: Promise<Params>;
 }): Promise<Metadata> =>
   createMetadata({
-    title: `News | Page ${(await props.params).page} | Sudbury Rowing Club`,
     description: "News from Sudbury Rowing Club.",
+    title: `News | Page ${(await props.params).page} | Sudbury Rowing Club`,
+    image: {
+      subtitle: `Page ${(await props.params).page}`,
+      title: "News Archive",
+    },
   });
 
 const fetchPagedArticles = (page: number) => {
@@ -34,11 +42,28 @@ const fetchPagedArticles = (page: number) => {
   return serverGetNArticles(firstArticleNumber, lastArticleNumber);
 };
 
+const DateRange = ({ articles }: { articles: ArticleSummary[] }) => {
+  const start = articles[0]?.date;
+  const end = articles.at(-1)?.date;
+
+  if (!start) return;
+  if (!end) return;
+
+  return (
+    <span>
+      From <DateFormatter dateString={start} /> to{" "}
+      <DateFormatter dateString={end} />.
+    </span>
+  );
+};
+
 const News = async (props: { params: Promise<Params> }) => {
   const { page } = await props.params;
 
-  const pages = await fetchPageCount();
-  const data = await fetchPagedArticles(Number(page));
+  const [pages, data] = await Promise.all([
+    fetchPageCount(),
+    fetchPagedArticles(Number(page)),
+  ]);
 
   const showPrev = Number(page) > 1;
   const showNext = pages > Number(page);
@@ -53,14 +78,8 @@ const News = async (props: { params: Promise<Params> }) => {
             <Label className="max-w-prose">News Archive</Label>
           </h1>
           <p className="flex justify-between">
-            <span>
-              {data.length > 0 && (
-                <>
-                  From <DateFormatter dateString={data[0].date} /> to{" "}
-                  <DateFormatter dateString={data[data.length - 1].date} />.
-                </>
-              )}
-            </span>
+            <DateRange articles={data} />
+
             <span className="font-medium text-gray-600 text-sm uppercase tracking-wider">
               Page {page} of {pages}
             </span>

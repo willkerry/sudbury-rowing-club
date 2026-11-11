@@ -1,5 +1,5 @@
-import { ArrowLongRightIcon } from "@heroicons/react/24/solid";
 import type { ArticleSummary } from "@sudburyrc/api";
+import { IconArrowNarrowRight } from "@tabler/icons-react";
 import Link from "next/link";
 import { Loading } from "@/components/stour/loading";
 import { PostPreview } from "./post-preview";
@@ -42,11 +42,11 @@ export const MoreStories = ({
             {more && (
               <li>
                 <Link
-                  href={more}
                   className="group flex h-56 items-center justify-center gap-1 rounded-sm border font-medium text-gray-500 transition hover:border-blue-400 hover:text-black"
+                  href={more}
                 >
                   See more{" "}
-                  <ArrowLongRightIcon
+                  <IconArrowNarrowRight
                     aria-hidden
                     className="h-6 w-6 transition group-hover:translate-x-2 group-hover:text-blue-500"
                   />

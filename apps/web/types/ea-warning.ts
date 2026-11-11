@@ -31,6 +31,9 @@ const SeverityLevelSchema = z.union([
   z.literal(4),
 ]);
 
+const INTRA_NEWLINE_REGEX = /(\n)(?!\n)/g;
+const TRAILING_NEWLINE_REGEX = /\n$/;
+
 export const EAWarningSchema = z
   .object({
     "@id": z.string(),
@@ -40,7 +43,16 @@ export const EAWarningSchema = z
     floodArea: FloodAreaSchema,
     floodAreaID: z.string(),
     isTidal: z.boolean(),
-    message: z.string().optional(),
+    message: z
+      .string()
+      .transform((value) =>
+        value
+          // double up single newlines
+          .replace(INTRA_NEWLINE_REGEX, "$1$1")
+          // then strip trailing newlines
+          .replace(TRAILING_NEWLINE_REGEX, ""),
+      )
+      .optional(),
     severity: z.string(),
     severityLevel: SeverityLevelSchema,
     timeMessageChanged: z.coerce.date(),

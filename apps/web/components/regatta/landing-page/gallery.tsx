@@ -30,15 +30,15 @@ const GalleryFigure = ({
   const imageProps: ComponentProps<typeof Image> = {
     loader,
     src,
-    width: WIDTH,
-    height: HEIGHT,
-    unoptimized: true,
-    quality: 60,
-    placeholder: "blur",
-    blurDataURL: lqip,
     alt: caption || "",
-    sizes: "(min-width: 640px) 100vw, 30vw",
+    blurDataURL: lqip,
     className: "rounded-sm shadow-sm",
+    height: HEIGHT,
+    placeholder: "blur",
+    quality: 60,
+    sizes: "(min-width: 640px) 100vw, 30vw",
+    unoptimized: true,
+    width: WIDTH,
   };
 
   return (
@@ -51,12 +51,11 @@ const GalleryFigure = ({
         <Image {...imageProps} />
       )}
 
-      <figcaption
-        aria-hidden
-        className="mt-1 flex items-center text-gray-600 text-sm"
-      >
-        {caption}
-      </figcaption>
+      {caption && (
+        <figcaption className="mt-1 flex items-center text-gray-600 text-sm">
+          {caption}
+        </figcaption>
+      )}
     </figure>
   );
 };
@@ -81,9 +80,9 @@ export const Gallery = ({ images }: { images: SudburyImage[] }) => {
       <CarouselContent className="mx-4">
         {images.map((image) => (
           <CarouselItem
-            key={image._id}
-            id={image._id}
             className="basis-[80%] sm:basis-1/2 lg:basis-1/4"
+            id={image._id}
+            key={image._id}
           >
             <GalleryFigure {...image} />
           </CarouselItem>
