@@ -16,6 +16,7 @@
         "BUG_RECIPIENT_EMAIL",
         "FIRECRAWL_API_KEY",
         "NEXT_PUBLIC_*",
+        "OG_IMAGE_SECRET",
         "REDIRECT_SECRET",
         "RESEND_API_KEY",
         "RESEND_WEBHOOK_SECRET",

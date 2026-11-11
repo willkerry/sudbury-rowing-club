@@ -14,7 +14,6 @@ const EMOJI = /(\p{Extended_Pictographic}(?:️|‍\p{Extended_Pictographic})*)/
 const withColourEmoji = (text: string) =>
   text.split(EMOJI).map((part, index) =>
     index % 2 === 1 ? (
-      // biome-ignore lint/suspicious/noArrayIndexKey: parts never reorder
       <span className="text-black" key={index}>
         {part}
       </span>
