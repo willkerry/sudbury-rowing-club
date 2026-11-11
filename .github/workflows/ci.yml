@@ -71,7 +71,7 @@ jobs:
             --reporter=summary --reporter-file="$RUNNER_TEMP/biome.txt" .
 
       - name: Biome summary
-        if: always()
+        if: ${{ !cancelled() }}
         run: |
           [ -s "$RUNNER_TEMP/biome.txt" ] || exit 0
           {
@@ -82,14 +82,14 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: actionlint
-        if: always()
+        if: ${{ !cancelled() }}
         run: |
           bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12 "$RUNNER_TEMP"
           # shellcheck disable=SC2016 # a Go template, not shell
           "$RUNNER_TEMP/actionlint" -format '{{range $err := .}}::error file={{$err.Filepath}},line={{$err.Line}},col={{$err.Column}},title=actionlint ({{$err.Kind}})::{{$err.Message}}\n{{end}}'
 
       - name: zizmor
-        if: always()
+        if: ${{ !cancelled() }}
         uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
         with:
           advanced-security: false
@@ -130,15 +130,15 @@ jobs:
         run: pnpm turbo run build type-check test --continue --summarize
 
       - name: Type-check CI scripts
-        if: always()
+        if: ${{ !cancelled() }}
         run: pnpm exec tsc -p scripts/ci
 
       - name: Report
-        if: always()
+        if: ${{ !cancelled() }}
         run: node scripts/ci/turbo-report.ts "Build, type-check and test"
 
       - name: Upload coverage
-        if: always()
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: coverage
@@ -151,7 +151,7 @@ jobs:
       # Each run restores the newest cache and saves a new one, so drop
       # artifacts nothing has written for a week to stop it growing forever.
       - name: Prune turbo cache
-        if: always()
+        if: ${{ !cancelled() }}
         run: find .turbo/cache -type f -mtime +7 -delete 2>/dev/null || true
 
   # Uploads a preview version (pull requests) or migrates D1 and deploys to
@@ -276,7 +276,7 @@ jobs:
 
       - name: Read deploy output
         id: deployed
-        if: always()
+        if: ${{ !cancelled() }}
         run: node scripts/ci/web-report.ts outputs "$RUNNER_TEMP/web-bundle-stats.json"
 
       - name: Smoke test
@@ -288,7 +288,7 @@ jobs:
       # master's latest successful run uploads its bundle size, so PRs can
       # show the change against it.
       - name: Download master's bundle size
-        if: always() && github.event_name == 'pull_request'
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
@@ -300,7 +300,7 @@ jobs:
             --name web-bundle-stats --dir "$RUNNER_TEMP/base"
 
       - name: Report
-        if: always()
+        if: ${{ !cancelled() }}
         env:
           BASE_STATS_FILE: ${{ runner.temp }}/base/web-bundle-stats.json
           JOB_STATUS: ${{ job.status }}
@@ -315,7 +315,7 @@ jobs:
         run: node scripts/ci/web-report.ts report "$RUNNER_TEMP/web-report.md"
 
       - name: Comment on PR
-        if: always() && github.event_name == 'pull_request'
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           header: web-preview
