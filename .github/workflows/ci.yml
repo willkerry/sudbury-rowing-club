@@ -298,9 +298,12 @@ jobs:
         run: |
           run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml \
             --branch master --event push --status success --limit 1 \
-            --json databaseId --jq '.[0].databaseId')
-          gh run download "$run_id" --repo "$GITHUB_REPOSITORY" \
-            --name web-bundle-stats --dir "$RUNNER_TEMP/base"
+            --json databaseId --jq '.[0].databaseId // empty')
+          if [ -z "$run_id" ] || ! gh run download "$run_id" \
+            --repo "$GITHUB_REPOSITORY" --name web-bundle-stats \
+            --dir "$RUNNER_TEMP/base"; then
+            echo "No bundle size from master yet, so no comparison this time"
+          fi
 
       - name: Report
         if: ${{ !cancelled() }}
