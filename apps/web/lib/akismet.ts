@@ -12,27 +12,38 @@ export const checkForSpam = async (
   commentAuthorEmail: string,
   commentContent: string,
 ): Promise<boolean> => {
-  const response = await ky
-    .post("https://rest.akismet.com/1.1/comment-check", {
-      body: new URLSearchParams({
-        api_key: API_KEY,
-        blog: BASE_URL,
-        blog_lang: "en_gb",
-        comment_author: commentAuthor,
-        comment_author_email: commentAuthorEmail,
-        comment_content: commentContent,
-        comment_type: "contact-form",
-        referrer: referrer,
-        user_agent: userAgent,
-        user_ip: userIp,
-      }),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    })
-    .text();
+  const response = await ky.post("https://rest.akismet.com/1.1/comment-check", {
+    body: new URLSearchParams({
+      api_key: API_KEY,
+      blog: BASE_URL,
+      blog_lang: "en_gb",
+      comment_author: commentAuthor,
+      comment_author_email: commentAuthorEmail,
+      comment_content: commentContent,
+      comment_type: "contact-form",
+      referrer: referrer,
+      user_agent: userAgent,
+      user_ip: userIp,
+    }),
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  });
+  const verdict = await response.text();
 
-  return response === "true";
+  if (verdict !== "false") {
+    // Akismet explains spam and invalid verdicts in these response headers.
+    console.warn("Akismet verdict", {
+      debugHelp: response.headers.get("x-akismet-debug-help"),
+      hasReferrer: Boolean(referrer),
+      hasUserAgent: Boolean(userAgent),
+      hasUserIp: Boolean(userIp),
+      proTip: response.headers.get("x-akismet-pro-tip"),
+      verdict,
+    });
+  }
+
+  return verdict === "true";
 };
 
 export const checkHeadersForSpam = async (
