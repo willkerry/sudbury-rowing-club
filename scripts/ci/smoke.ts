@@ -1,5 +1,6 @@
 // Usage: node scripts/ci/smoke.ts <base-url> [markdown-output-path]
 import { writeFileSync } from "node:fs";
+import { annotate, table } from "./utils.ts";
 
 type Route = { path: string; type: string };
 
@@ -91,8 +92,10 @@ for (const result of results) {
   );
 
   if (!result.ok) {
-    console.log(
-      `::error title=Smoke test failed::${result.path} returned ${result.status}${errorSuffix(result)} after ${result.attempt} attempts`,
+    annotate(
+      "error",
+      `${result.path} returned ${result.status}${errorSuffix(result)} after ${result.attempt} attempts`,
+      { title: "Smoke test failed" },
     );
   }
 }
@@ -100,11 +103,15 @@ for (const result of results) {
 const markdown = [
   `**${passed}/${results.length}** routes healthy on ${baseUrl}`,
   "",
-  "| | Route | Status | Time | Content type |",
-  "| - | - | - | - | - |",
-  ...results.map(
-    (result) =>
-      `| ${result.ok ? "✅" : "❌"} | [\`${result.path}\`](${new URL(result.path, baseUrl)}) | ${result.status} | ${result.ms} ms | ${result.contentType.split(";")[0] || "–"} |`,
+  table(
+    ["", "Route", "Status", "Time", "Content type"],
+    results.map((result) => [
+      result.ok ? "✅" : "❌",
+      `[\`${result.path}\`](${new URL(result.path, baseUrl)})`,
+      String(result.status),
+      `${result.ms} ms`,
+      result.contentType.split(";")[0] || "–",
+    ]),
   ),
   "",
 ].join("\n");

@@ -2,19 +2,19 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import {
+  annotate,
   codeBlock,
   details,
-  escapeData,
-  escapeProperty,
   fileLink,
   formatDuration,
   heading,
   headline,
   plural,
+  readIfExists,
   stripAnsi,
   table,
   writeSummary,
-} from "./summary.ts";
+} from "./utils.ts";
 
 type Task = {
   cache?: { status: "HIT" | "MISS"; timeSaved?: number };
@@ -62,9 +62,7 @@ const latestSummary = (): RunSummary | undefined => {
 };
 
 const readLog = (task: Task) =>
-  task.logFile && existsSync(task.logFile)
-    ? stripAnsi(readFileSync(task.logFile, "utf8")).split("\n")
-    : [];
+  stripAnsi(readIfExists(task.logFile) ?? "").split("\n");
 
 // Plain and --pretty (FORCE_COLOR) formats.
 const tscErrors = [
@@ -154,9 +152,12 @@ const typeErrors = failed
   .flatMap(parseTypeErrors);
 
 for (const error of typeErrors) {
-  console.log(
-    `::error file=${escapeProperty(error.path)},line=${error.line},col=${error.column},title=${escapeProperty(`${error.code} (${error.task.package})`)}::${escapeData(error.message)}`,
-  );
+  annotate("error", error.message, {
+    col: error.column,
+    file: error.path,
+    line: error.line,
+    title: `${error.code} (${error.task.package})`,
+  });
 }
 
 const testResults = tasks

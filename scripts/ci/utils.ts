@@ -1,4 +1,4 @@
-import { appendFileSync } from "node:fs";
+import { appendFileSync, existsSync, readFileSync } from "node:fs";
 
 export type Status = "pass" | "warn" | "fail";
 
@@ -53,11 +53,53 @@ export const fileLink = (path: string, line?: number) => {
   return `[${label}](${url})`;
 };
 
-export const escapeData = (value: string) =>
+const escapeData = (value: string) =>
   value.replaceAll("%", "%25").replaceAll("\r", "%0D").replaceAll("\n", "%0A");
 
-export const escapeProperty = (value: string) =>
+const escapeProperty = (value: string) =>
   escapeData(value).replaceAll(":", "%3A").replaceAll(",", "%2C");
+
+type AnnotationProperties = {
+  col?: number;
+  file?: string;
+  line?: number;
+  title?: string;
+};
+
+export const annotate = (
+  level: "error" | "warning" | "notice",
+  message: string,
+  properties: AnnotationProperties = {},
+) => {
+  const props = Object.entries(properties)
+    .filter(([, value]) => value !== undefined)
+    .map(([key, value]) => `${key}=${escapeProperty(String(value))}`)
+    .join(",");
+
+  console.log(`::${level}${props ? ` ${props}` : ""}::${escapeData(message)}`);
+};
+
+export const readIfExists = (path: string | undefined) =>
+  path && existsSync(path) ? readFileSync(path, "utf8") : undefined;
+
+export const readJson = <T>(path: string | undefined): T | undefined => {
+  const text = readIfExists(path);
+
+  return text ? JSON.parse(text) : undefined;
+};
+
+export const setOutput = (
+  values: Record<string, string | number | undefined>,
+) => {
+  const lines = Object.entries(values)
+    .filter(([, value]) => value !== undefined && value !== "")
+    .map(([key, value]) => `${key}=${value}`);
+
+  if (process.env.GITHUB_OUTPUT) {
+    appendFileSync(process.env.GITHUB_OUTPUT, `${lines.join("\n")}\n`);
+  }
+  console.log(lines.join("\n"));
+};
 
 export const writeSummary = (markdown: string) => {
   const path = process.env.GITHUB_STEP_SUMMARY;

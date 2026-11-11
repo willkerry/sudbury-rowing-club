@@ -1,5 +1,4 @@
 // Usage: node scripts/ci/lint-report.ts <biome-report.json>
-import { existsSync, readFileSync } from "node:fs";
 import {
   details,
   fileLink,
@@ -7,10 +6,11 @@ import {
   heading,
   headline,
   plural,
+  readJson,
   type Status,
   table,
   writeSummary,
-} from "./summary.ts";
+} from "./utils.ts";
 
 type Diagnostic = {
   category?: string;
@@ -34,16 +34,16 @@ type Report = {
 
 const [reportPath] = process.argv.slice(2);
 
-if (!(reportPath && existsSync(reportPath))) {
+const report = readJson<Report>(reportPath);
+
+if (!report) {
   writeSummary(
     `${heading("fail", "Lint")}\n\nBiome didn't produce a report. See the job log.`,
   );
   process.exit(0);
 }
 
-const { diagnostics, summary }: Report = JSON.parse(
-  readFileSync(reportPath, "utf8"),
-);
+const { diagnostics, summary } = report;
 
 const severityIcon: Record<Diagnostic["severity"], string> = {
   error: "❌",

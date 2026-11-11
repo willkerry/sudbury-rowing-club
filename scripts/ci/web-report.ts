@@ -8,7 +8,15 @@ import {
   writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
-import { details, heading, table } from "./summary.ts";
+import {
+  annotate,
+  details,
+  heading,
+  readIfExists,
+  readJson,
+  setOutput,
+  table,
+} from "./utils.ts";
 
 type BundleSize = { gzip_bytes: number; raw_bytes: number };
 
@@ -35,15 +43,6 @@ const GZIP_BUDGET = 3 * 1024 * 1024;
 const [command, target] = process.argv.slice(2);
 const env = process.env;
 const production = env.MODE === "production";
-
-const readIfExists = (path: string | undefined) =>
-  path && existsSync(path) ? readFileSync(path, "utf8") : undefined;
-
-const readStats = (path: string | undefined): Stats | undefined => {
-  const text = readIfExists(path);
-
-  return text ? JSON.parse(text) : undefined;
-};
 
 const wranglerEntries = (): WranglerEntry[] => {
   const dir = env.WRANGLER_OUTPUT_FILE_DIRECTORY;
@@ -78,17 +77,6 @@ const formatDelta = (bytes: number) => {
 
 const percentOfBudget = (bytes: number) => (bytes / GZIP_BUDGET) * 100;
 
-const setOutput = (values: Record<string, string | number | undefined>) => {
-  const lines = Object.entries(values)
-    .filter(([, value]) => value !== undefined && value !== "")
-    .map(([key, value]) => `${key}=${value}`);
-
-  if (env.GITHUB_OUTPUT) {
-    appendFileSync(env.GITHUB_OUTPUT, `${lines.join("\n")}\n`);
-  }
-  console.log(lines.join("\n"));
-};
-
 const toUrl = (url: Url) =>
   typeof url === "string"
     ? url
@@ -122,8 +110,10 @@ const outputs = (statsPath: string | undefined) => {
   const latest = entries.at(-1);
 
   if (!latest) {
-    console.log(
-      `::warning title=No wrangler output::No ${WORKER} upload found in wrangler's output files`,
+    annotate(
+      "warning",
+      `No ${WORKER} upload found in wrangler's output files`,
+      { title: "No wrangler output" },
     );
 
     return;
@@ -134,8 +124,10 @@ const outputs = (statsPath: string | undefined) => {
     sizeFromLog();
 
   if (size && percentOfBudget(size.gzip_bytes) >= 90) {
-    console.log(
-      `::warning title=Worker size::${WORKER} is ${formatBytes(size.gzip_bytes)} gzipped, ${percentOfBudget(size.gzip_bytes).toFixed(0)}% of the ${formatBytes(GZIP_BUDGET)} free plan limit`,
+    annotate(
+      "warning",
+      `${WORKER} is ${formatBytes(size.gzip_bytes)} gzipped, ${percentOfBudget(size.gzip_bytes).toFixed(0)}% of the ${formatBytes(GZIP_BUDGET)} free plan limit`,
+      { title: "Worker size" },
     );
   }
 
@@ -196,8 +188,8 @@ const meter = (stats: Stats | undefined) => {
 };
 
 const report = (outputPath: string) => {
-  const stats = readStats(env.STATS_FILE);
-  const base = readStats(env.BASE_STATS_FILE);
+  const stats = readJson<Stats>(env.STATS_FILE);
+  const base = readJson<Stats>(env.BASE_STATS_FILE);
   const smoke = readIfExists(env.SMOKE_FILE);
   const repoUrl = `${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}`;
   const shortSha = env.SHA?.slice(0, 7);
