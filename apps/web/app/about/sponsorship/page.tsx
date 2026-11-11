@@ -1,6 +1,7 @@
 import { fetchOfficerNames } from "@sudburyrc/api";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
+import { ScrollReveal } from "@/components/sponsorship/scroll-reveal";
 import { SponsorshipHero } from "@/components/sponsorship/sponsorship-hero";
 import { SponsorshipTiers } from "@/components/sponsorship/sponsorship-tiers";
 import { Hero } from "@/components/stour/hero";
@@ -9,52 +10,52 @@ import { createMetadata } from "@/lib/create-metadata";
 
 const TITLE = "Sponsorship";
 const DESCRIPTION =
-  "Sponsor Sudbury Rowing Club – put your brand at regattas, on racing boats, and in front of thousands of spectators across Suffolk.";
+  "Sponsor Sudbury Rowing Club – put your brand on racing boats and in front of thousands of spectators, from local regattas to Henley.";
 
 const LINK_ON_SRC_WEBSITE = "Link on our website";
 
 const SPONSORSHIP_TIERS = {
   "Board sponsor": {
-    description: "Advertise at the club year-round",
+    description: "Year-round visibility at the boathouse",
     benefits: [
-      "Advertising board at the club with the company logo",
+      "Advertising board at the club with your company logo",
       "Social media promotion across all platforms",
       LINK_ON_SRC_WEBSITE,
       "Announcement during the Sudbury Regatta",
     ],
   },
   "Boat sponsor": {
-    description: "Sponsor a boat",
+    description: "Your name on the water at every race",
     benefits: [
-      "One sponsor per boat",
+      "Exclusive – one partner per boat",
       "Name and logo on the side of the boat",
-      "Social media promotion across all platforms following events",
+      "Social media shoutouts after every event",
       LINK_ON_SRC_WEBSITE,
-      "Team building day",
+      "A team building day on the river for your staff",
       "Announcement during the Sudbury International Regatta",
       "Four entries to the sponsors’ marquee at the Sudbury Regatta",
     ],
   },
   "Club sponsor": {
-    description: "Be the club’s main sponsor",
+    description: "The club’s headline partner – on kit, equipment, and events",
     benefits: [
-      "Only one club sponsor",
-      "Logo on racing kit worn for racing",
-      "Logo on other equipment, such as flags, trailers etc",
+      "Exclusive – one club sponsor only",
+      "Logo on racing kit worn at every event",
+      "Logo on equipment, flags, and trailers",
       "Social media promotion across all platforms",
       LINK_ON_SRC_WEBSITE,
-      "Team building day",
+      "A team building day on the river for your staff",
       "A table in the sponsors’ marquee at the Sudbury Regatta",
     ],
   },
   "Regatta sponsor": {
-    description: "Sponsor Sudbury’s famous regatta",
+    description: "Headline the region’s biggest rowing event",
     benefits: [
       "Main sponsor for the Sudbury Regatta",
-      "Name and logo on regatta material",
-      "Social media promotion across all platforms for the regatta",
+      "Name and logo on all regatta material",
+      "Dedicated social media promotion for the regatta",
       LINK_ON_SRC_WEBSITE,
-      "A table in the sponsors marquee",
+      "A table in the sponsors’ marquee",
     ],
   },
 } satisfies Record<
@@ -73,87 +74,92 @@ export const metadata = createMetadata({
 const SponsorshipPage = async () => {
   const officers = await fetchOfficerNames();
 
-  const sponsorshipOfficer = officers.find(({ role }) =>
-    role.toLowerCase().includes("sponsor"),
-  );
+  const findOfficer = (keyword: string) =>
+    officers.find(({ role }) => role.toLowerCase().includes(keyword));
+
+  const sponsorshipOfficer = findOfficer("sponsor");
+  const contact =
+    sponsorshipOfficer ?? findOfficer("secretary") ?? findOfficer("chair");
 
   return (
     <>
       <SponsorshipHero
-        description={`Sudbury Rowing Club is looking for sponsors to help support the club and
-        its members. ${DESCRIPTION}`}
+        description="Put your brand in front of thousands of spectators – from local regattas to Henley."
         title={TITLE}
       />
 
-      <Container className="mt-12 mb-24">
-        <Hero label="The need" title="Why do we need sponsors?" />
-        <div className="prose">
-          <p className="lead">
-            Your sponsorship directly contributes to the growth and success of
-            our club.
-          </p>
-          <p>
-            The club generates revenue through membership fees and its annual
-            regatta. This provides funds for the running of the club and to
-            undertake maintenance activities but falls short of the revenue
-            needed to reinvest in racing shells and other equipment.
-          </p>
-          <p>
-            Therefore, additional income is required to bring the current fleet
-            up to standard and allow those members who race to remain
-            competitive, whilst also providing suitable equipment for
-            recreational rowers.
-          </p>
-        </div>
-      </Container>
+      <ScrollReveal>
+        <Container className="mt-12 mb-24">
+          <Hero label="Your impact" title="Where your sponsorship goes" />
+          <div className="prose">
+            <p className="lead">
+              Every sponsorship goes directly into boats, training equipment,
+              and youth development.
+            </p>
+            <p>
+              Membership fees and our annual regatta cover the day-to-day
+              running of the club, but they don't stretch to replacing and
+              upgrading the fleet. Your support keeps our crews competitive at
+              events from local regattas to Henley – and puts your brand
+              alongside them.
+            </p>
+          </div>
+        </Container>
+      </ScrollReveal>
 
-      <Container className="mt-12 mb-24">
-        <Hero label="The benefits" title="How does sponsorship benefit you?" />
-        <div className="prose">
-          <p>
-            The club attends a number of regional events as well as some
-            national events, such as Henley Royal Regatta and the Head of the
-            River Race. These events provide large audiences which have the
-            potential to generate increased brand exposure for sponsors.
-          </p>
-          <p>
-            The <Link href="/regatta">Sudbury Regatta</Link> takes place on the
-            first Saturday of August each year, attracting crews and spectators
-            from across the region. This, combined with our location near to
-            Friars Meadow and active social media following, provides brand
-            exposure for sponsors, which the club can tailor to meet an
-            organisation’s individual needs.
-          </p>
-        </div>
-      </Container>
+      <ScrollReveal>
+        <Container className="mt-12 mb-24">
+          <Hero label="Your reach" title="Where your brand goes" />
+          <div className="prose">
+            <p>
+              Our crews race at events across the region and nationally –
+              including Henley Royal Regatta and the Head of the River Race –
+              putting your brand in front of large, engaged audiences.
+            </p>
+            <p>
+              The <Link href="/regatta">Sudbury Regatta</Link> draws crews and
+              spectators from across East Anglia every August. Combined with our
+              prominent riverside location near Friars Meadow and our social
+              media following, we can tailor exposure to fit what your business
+              needs.
+            </p>
+          </div>
+        </Container>
+      </ScrollReveal>
 
-      <Container className="mt-12 mb-24">
-        <Hero label="Sponsorship tiers" title="What can you sponsor?" />
-        <div className="prose">
-          <p>
-            A number of sponsorship opportunities are available at Sudbury
-            Rowing Club. Each tier offers a range of benefits, from social media
-            promotion to team building days.
-          </p>
-        </div>
+      <ScrollReveal>
+        <Container className="mt-12 mb-24">
+          <Hero label="Sponsorship tiers" title="What can you sponsor?" />
+          <div className="prose">
+            <p>
+              Four ways to partner with us – from a board at the boathouse to
+              your logo on racing kit.
+            </p>
+          </div>
 
-        <SponsorshipTiers tiers={SPONSORSHIP_TIERS} />
-      </Container>
+          <SponsorshipTiers emphasisedIndex={1} tiers={SPONSORSHIP_TIERS} />
+        </Container>
+      </ScrollReveal>
 
-      <Container className="mt-12 mb-24">
-        <Hero label="Speak to us" title="Want to find out more?" />
-        <div className="prose mb-6">
-          <p>
-            Our sponsorship officer
-            {sponsorshipOfficer?.name ? `, ${sponsorshipOfficer?.name}, ` : ""}{" "}
-            is available to discuss the various sponsorship opportunities
-            available at Sudbury Rowing Club.
-          </p>
-        </div>
-        <Button asChild size="lg">
-          <Link href="/contact?q=sponsorship,chair">Contact us</Link>
-        </Button>
-      </Container>
+      <ScrollReveal>
+        <Container className="mt-12 mb-24">
+          <Hero label="Speak to us" title="Interested?" />
+          <div className="prose mb-6">
+            <p>
+              {contact
+                ? `${contact.name}, our ${contact.role.toLowerCase()}, would`
+                : "We'd"}{" "}
+              love to talk through which tier is the right fit for your
+              business.
+            </p>
+          </div>
+          <Button asChild size="lg">
+            <Link href="/contact?q=sponsorship,secretary,chair">
+              Enquire about sponsorship
+            </Link>
+          </Button>
+        </Container>
+      </ScrollReveal>
     </>
   );
 };
