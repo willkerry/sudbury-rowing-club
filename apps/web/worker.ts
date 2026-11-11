@@ -6,22 +6,26 @@ import type {
 import app from "vinext/server/app-router-entry";
 import { pruneExpiredInflightContacts } from "@/lib/server/inflight-store";
 import { verifyShareImage } from "@/lib/server/share-image-signature";
+import { toShareImageParams } from "@/lib/share-image";
 
 const WWW_PREFIX = "www.";
 const OG_IMAGE_PATH = "/api/og";
 
-// Only signed URLs (see lib/og-image.ts) reach the OG Worker, so nobody can
-// spend the Browser Rendering quota on text the site didn't generate.
 const forwardShareImage = (request: Request, url: URL) => {
   if (request.method !== "GET" && request.method !== "HEAD") {
     return new Response("Method not allowed", { status: 405 });
   }
 
-  if (!verifyShareImage(url.searchParams, env.OG_IMAGE_SECRET)) {
+  const image = verifyShareImage(url.searchParams, env.OG_IMAGE_SECRET);
+
+  if (!image) {
     return new Response("Invalid share image signature", { status: 403 });
   }
 
-  return env.OG.fetch(request.url);
+  const target = new URL(OG_IMAGE_PATH, url.origin);
+  target.search = toShareImageParams(image).toString();
+
+  return env.OG.fetch(target.toString());
 };
 
 // vinext's entry only handles `fetch`; this adds the www-to-apex redirect for

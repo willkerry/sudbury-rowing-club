@@ -12,6 +12,8 @@ export type Env = {
 const TEMPLATE_VERSION = "1";
 const TEMPLATE_PATH = "/og-template";
 
+const TEMPLATE_PARAMS = ["title", "subtitle", "variant"] as const;
+
 const toHex = (buffer: ArrayBuffer) =>
   [...new Uint8Array(buffer)]
     .map((byte) => byte.toString(16).padStart(2, "0"))
@@ -59,8 +61,12 @@ export default {
     }
 
     const url = new URL(request.url);
-    const params = new URLSearchParams(url.searchParams);
-    params.delete("sig");
+    const params = new URLSearchParams();
+
+    for (const name of TEMPLATE_PARAMS) {
+      const value = url.searchParams.get(name);
+      if (value) params.set(name, value);
+    }
 
     if (!params.get("title")) {
       return new Response("Missing title", { status: 400 });
