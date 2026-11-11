@@ -65,21 +65,19 @@ jobs:
       # Reads the Biome version from the lockfile, so no pnpm install needed.
       - uses: biomejs/setup-biome@4c91541eaada48f67d7dbd7833600ce162b68f51 # v2.7.1
 
+      # Only runs the summary script; nothing is installed.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+
       - name: Biome
         run: |
           biome ci --reporter=github \
-            --reporter=summary --reporter-file="$RUNNER_TEMP/biome.txt" .
+            --reporter=json --reporter-file="$RUNNER_TEMP/biome.json" .
 
-      - name: Biome summary
+      - name: Report
         if: ${{ !cancelled() }}
-        run: |
-          [ -s "$RUNNER_TEMP/biome.txt" ] || exit 0
-          {
-            echo "### Biome"
-            echo '```text'
-            cat "$RUNNER_TEMP/biome.txt"
-            echo '```'
-          } >> "$GITHUB_STEP_SUMMARY"
+        run: node scripts/ci/lint-report.ts "$RUNNER_TEMP/biome.json"
 
       - name: actionlint
         if: ${{ !cancelled() }}
@@ -126,8 +124,13 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Unsetting GITHUB_STEP_SUMMARY stops each package's Vitest writing its
+      # own summary (its annotations still appear); the Report step below
+      # writes one for everything.
       - name: Build, type-check and test
-        run: pnpm turbo run build type-check test --continue --summarize
+        run:
+          env -u GITHUB_STEP_SUMMARY pnpm turbo run build type-check test
+          --continue --summarize
 
       - name: Type-check CI scripts
         if: ${{ !cancelled() }}

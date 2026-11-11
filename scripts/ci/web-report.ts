@@ -19,6 +19,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
+import { details, heading, table } from "./summary.ts";
 
 type BundleSize = { gzip_bytes: number; raw_bytes: number };
 
@@ -182,9 +183,9 @@ const report = (outputPath: string) => {
   const failed = env.JOB_STATUS && env.JOB_STATUS !== "success";
   const subject = production ? "Production deploy" : "Preview";
 
-  const heading = failed
-    ? `### ❌ ${subject} failed`
-    : `### ${production ? "Deployed to production" : "Preview ready"}`;
+  const title = failed
+    ? heading("fail", `${subject} failed`)
+    : heading("pass", production ? "Deployed to production" : "Preview ready");
 
   const rows: [string, string | undefined][] = [
     [production ? "Site" : "Preview", env.URL],
@@ -200,17 +201,18 @@ const report = (outputPath: string) => {
   ];
 
   const smokeDetails = smoke
-    ? `<details${smoke.includes("❌") ? " open" : ""}><summary>Smoke test</summary>\n\n${smoke}\n</details>`
+    ? details("Smoke test", smoke.trimEnd(), smoke.includes("❌"))
     : "";
 
   const markdown = [
-    heading,
+    title,
     "",
-    "| | |",
-    "| - | - |",
-    ...rows
-      .filter(([, value]) => value)
-      .map(([label, value]) => `| **${label}** | ${value} |`),
+    table(
+      ["", ""],
+      rows
+        .filter((row): row is [string, string] => Boolean(row[1]))
+        .map(([label, value]) => [`**${label}**`, value]),
+    ),
     ...meter(stats),
     "",
     smokeDetails,

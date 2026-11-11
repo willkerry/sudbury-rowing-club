@@ -2,9 +2,24 @@
   "$schema": "https://turbo.build/schema.json",
   "extends": ["//"],
   "tasks": {
+    "build": {
+      // The build also writes the types type-check needs: next-env.d.ts,
+      // route types and the content-collections output. Caching them means a
+      // cache hit restores them too.
+      "outputs": [
+        "dist/**",
+        "public/**",
+        "next-env.d.ts",
+        ".next/types/**",
+        ".content-collections/generated/**"
+      ]
+    },
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "type-check": {
+      "dependsOn": ["^build", "build"]
     }
   }
 }
