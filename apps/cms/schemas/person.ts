@@ -7,13 +7,6 @@ const Person = defineType({
   fields: [
     defineField({ name: "firstName", title: "First name", type: "string" }),
     defineField({ name: "surname", title: "Surname", type: "string" }),
-    defineField({
-      name: "email",
-      title: "Email",
-      type: "string",
-      validation: (Rule) => Rule.email(),
-    }),
-
     defineField({ name: "bio", rows: 3, type: "text" }),
     defineField({ name: "image", title: "Image", type: "figure" }),
   ],

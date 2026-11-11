@@ -1,5 +1,5 @@
 import type { Notice } from "@sudburyrc/api";
-import { LinkIcon } from "lucide-react";
+import { IconLink } from "@tabler/icons-react";
 import Link from "next/link";
 import { Label } from "@/components/stour/label";
 import { Text } from "@/components/stour/text";
@@ -60,7 +60,7 @@ export const NoticeBody = ({ notice }: { notice: Notice }) => {
           href={`../members/${notice.slug}`}
         >
           <span className="sr-only">Open permalink</span>
-          <LinkIcon aria-hidden className="h-4 w-4" />
+          <IconLink aria-hidden className="h-4 w-4" />
         </Link>
       </div>
     </>

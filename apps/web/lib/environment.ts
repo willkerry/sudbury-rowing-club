@@ -10,7 +10,7 @@ export const whenEnv = <ReturnType>({
   ifProd: () => ReturnType;
   ifDev: () => ReturnType;
 }) => {
-  const normalizedEnv = env.VERCEL_ENV ?? env.NODE_ENV;
+  const normalizedEnv = env.NEXT_PUBLIC_APP_ENV ?? env.NODE_ENV;
 
   switch (normalizedEnv) {
     case "preview":

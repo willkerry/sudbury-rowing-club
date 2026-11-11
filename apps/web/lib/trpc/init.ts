@@ -1,14 +1,20 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { parse, stringify } from "devalue";
 import { cache } from "react";
+import { getClientIp } from "@/lib/client-ip";
 import { ratelimiter } from "@/lib/rate-limiter";
 
 export const createTRPCContext = cache((opts: { headers: Headers }) => ({
   headers: opts.headers,
 }));
 
+export type ProcedureMeta = {
+  cacheSeconds: number;
+};
+
 const t = initTRPC
   .context<Awaited<ReturnType<typeof createTRPCContext>>>()
+  .meta<ProcedureMeta>()
   .create({
     transformer: {
       deserialize: (object: string) => parse(object),
@@ -21,7 +27,7 @@ export const router = t.router;
 export const publicProcedure = t.procedure;
 
 const rateLimitMiddleware = t.middleware(async ({ ctx, next }) => {
-  const ip = ctx.headers.get("x-forwarded-for");
+  const ip = getClientIp(ctx.headers);
 
   if (!ip) {
     throw new TRPCError({

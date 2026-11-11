@@ -1,5 +1,9 @@
 {
   "exclude": ["dist", "build", "node_modules"],
   "extends": "@sudburyrc/tsconfig/react-library.json",
-  "include": ["."]
+  "include": ["."],
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "types": ["node"]
+  }
 }

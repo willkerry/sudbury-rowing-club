@@ -1,14 +1,14 @@
-import { serversideFetchCompetitions } from "@sudburyrc/api";
+import { env } from "cloudflare:workers";
 import IcalBuilder from "@sudburyrc/ical-builder";
-import { kv } from "@vercel/kv";
 import { type NextRequest, NextResponse } from "next/server";
 import { routeHandlerRatelimiter } from "@/lib/rate-limiter";
+import { cachedFetchCompetitions } from "@/lib/server/fetchCompetitions";
 
 const CACHE_KEY = "events-ics";
 const CACHE_TTL_SECONDS = 60 * 60 * 12; // 12 hours
 
 const cachedTransformToICS = async () => {
-  const cached = await kv.get<string>(CACHE_KEY);
+  const cached = await env.DATA_CACHE.get(CACHE_KEY);
 
   if (cached) {
     console.log(new Date(), "iCal feed hit cache");
@@ -17,7 +17,7 @@ const cachedTransformToICS = async () => {
 
   console.log(new Date(), "iCal feed cold start");
 
-  const events = await serversideFetchCompetitions(true);
+  const events = await cachedFetchCompetitions(true);
 
   const calendar = new IcalBuilder(
     "SRC Events",
@@ -28,7 +28,18 @@ const cachedTransformToICS = async () => {
   calendar.set(events);
 
   const icsString = calendar.stringify();
-  await kv.set(CACHE_KEY, icsString, { ex: CACHE_TTL_SECONDS });
+
+  if (events.length === 0) {
+    console.warn(
+      "British Rowing calendar returned no events; skipping KV cache write to preserve last-known-good feed",
+    );
+
+    return icsString;
+  }
+
+  await env.DATA_CACHE.put(CACHE_KEY, icsString, {
+    expirationTtl: CACHE_TTL_SECONDS,
+  });
 
   return icsString;
 };

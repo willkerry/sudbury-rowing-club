@@ -1,4 +1,4 @@
-import { ArchiveIcon } from "@sanity/icons";
+import { ArchiveIcon } from "@sanity/icons/Archive";
 import { defineField, defineType } from "sanity";
 
 const Archive = defineType({

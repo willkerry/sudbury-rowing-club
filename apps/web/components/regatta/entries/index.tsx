@@ -101,8 +101,9 @@ export const Entries = ({
 
             {listFormatter
               .formatToParts(boatsByWave[wave].map(({ x, y }) => `${x} ${y}`))
-              .map(({ type, value }) => {
-                if (type === "literal") return <span key={value}>{value}</span>;
+              .map(({ type, value }, i) => {
+                if (type === "literal")
+                  return <span key={`${wave}-${type}-${i}`}>{value}</span>;
 
                 return (
                   <Chip

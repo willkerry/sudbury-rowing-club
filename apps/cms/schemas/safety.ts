@@ -1,4 +1,4 @@
-import { DropIcon } from "@sanity/icons";
+import { DropIcon } from "@sanity/icons/Drop";
 import { defineField, defineType } from "sanity";
 
 const Safety = defineType({

@@ -87,5 +87,5 @@ interface SafetyItem extends z.infer<typeof ZPartialSafetyResponse> {
   link?: SafetyLink;
 }
 
-export { fetchSafety, fetchSafetyById };
 export type { SafetyItem };
+export { fetchSafety, fetchSafetyById };

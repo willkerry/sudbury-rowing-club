@@ -60,13 +60,18 @@ const Committee = async ({ params }: { params: Promise<Params> }) => {
   const clubName = getClubName(committee.season);
   const pageTitle = `${committee.season} ${clubName[0]} Committee`;
 
+  const committeMemberCount = Object.values(committee.committee).reduce(
+    (acc, office) => acc + (office?.holders?.length ?? 0),
+    0,
+  );
+
   return (
     <TextPage title={pageTitle}>
       <table>
         <thead>
           <tr>
             <th className="sr-only">Role</th>
-            <th>Incumbent(s)</th>
+            <th>Incumbent{committeMemberCount > 1 ? "s" : ""}</th>
           </tr>
         </thead>
         <tbody>

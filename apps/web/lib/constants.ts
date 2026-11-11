@@ -24,6 +24,11 @@ export const SENDER = {
   name: "Sudbury Rowing Club",
 };
 
+export const CONTACT_FORM_TAG = {
+  name: "source",
+  value: "contact_form",
+} as const;
+
 export const SUPPORTED_SOCIALS = ["instagram", "facebook"] as const;
 
 export const SOCIALS: Record<
@@ -56,7 +61,7 @@ export namespace REGATTA {
   export const COUNTY = "Suffolk";
   export const POSTCODE = "CO10 2TL";
 
-  export const TESTIMONIAL_TITLE = "Feedack";
+  export const TESTIMONIAL_TITLE = "Feedback";
   export const TESTIMONIAL_DESCRIPTION =
     "Some of the people who’ve come to our regatta have said lovely things about it";
 

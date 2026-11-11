@@ -1,13 +1,12 @@
-import Image from "next/image";
-import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
+import { Blade } from "@/components/stour/blade";
 import type { Record } from "../transformRecords";
 import { formatClubAndCrewName, getBladeUrls } from "./utils";
 
 const RecordHolder = ({ record }: { record: Record }) => {
-  const bladeUrls = getBladeUrls(record.club);
+  const bladeUrls = getBladeUrls(record.parsedClub);
 
   const year = record.year.getFullYear();
-  const club = formatClubAndCrewName(record.club);
+  const club = formatClubAndCrewName(record.parsedClub);
 
   const crew = record.club.concat(record.name && ` ${record.name}`);
 
@@ -16,13 +15,10 @@ const RecordHolder = ({ record }: { record: Record }) => {
   return (
     <li className="p-0">
       {bladeUrls.map((url) => (
-        <Image
-          alt=""
+        <Blade
           className="mr-2 inline-block h-6 w-12"
           height={24}
           key={url}
-          loader={cloudflareLoader}
-          loading="lazy"
           src={url}
           width={48}
         />

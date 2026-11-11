@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { IconSearch } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { HOSTNAME } from "@/lib/constants";
@@ -18,7 +18,7 @@ export const SiteSearch = () => (
       placeholder="Search our site with Google"
       type="search"
     />
-    <Button icon={<Search />} type="submit" variant="link">
+    <Button icon={<IconSearch />} type="submit" variant="link">
       Search
     </Button>
   </form>

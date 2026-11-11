@@ -1,4 +1,5 @@
-import { Browser } from "happy-dom";
+import { parseHTML } from "linkedom";
+import { tryit } from "radashi";
 import TextPage from "@/components/layouts/text-page";
 import { REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
@@ -17,20 +18,23 @@ export const metadata = createMetadata({
   title: `Regatta Draw ${String(new Date().getFullYear())}`,
 });
 
+const LIVE_RESULTS_TIMEOUT_MS = 5000;
+
 const getThisYearsDrawIsPublished = async (year: number): Promise<boolean> => {
-  const browser = new Browser();
-  const page = browser.newPage();
+  const [error, response] = await tryit(fetch)(REGATTA.LIVE_RESULTS_URL, {
+    signal: AbortSignal.timeout(LIVE_RESULTS_TIMEOUT_MS),
+  });
 
-  await page.goto(REGATTA.LIVE_RESULTS_URL);
+  if (error || !response.ok) return false;
 
-  const title = page.mainFrame.document.querySelector("title");
+  const { document } = parseHTML(await response.text());
+
+  const title = document.querySelector("title");
   const titleContainsThisYear = Boolean(
     title?.textContent?.includes(year.toString()),
   );
 
-  const pageContainsATable = Boolean(
-    page.mainFrame.document.querySelector("table"),
-  );
+  const pageContainsATable = Boolean(document.querySelector("table"));
 
   return titleContainsThisYear && pageContainsATable;
 };

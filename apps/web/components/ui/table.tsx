@@ -1,5 +1,16 @@
-import type { Column } from "@tanstack/react-table";
-import { ArrowDown, ArrowUp, ChevronsUpDown, Search, Undo } from "lucide-react";
+import {
+  IconArrowBackUp,
+  IconArrowDown,
+  IconArrowUp,
+  IconSearch,
+  IconSelector,
+} from "@tabler/icons-react";
+import type {
+  Column,
+  columnFilteringFeature,
+  RowData,
+  rowSortingFeature,
+} from "@tanstack/react-table";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -116,21 +127,36 @@ const TableCaption = React.forwardRef<
 ));
 TableCaption.displayName = "TableCaption";
 
-interface DataTableColumnHeaderProps<TData, TValue>
+type SortableFilterableFeatures = {
+  columnFilteringFeature: typeof columnFilteringFeature;
+  rowSortingFeature: typeof rowSortingFeature;
+};
+
+interface DataTableColumnHeaderProps<TData extends RowData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
-  column: Column<TData, TValue>;
+  column: Pick<
+    Column<SortableFilterableFeatures, TData, TValue>,
+    | "clearSorting"
+    | "getCanFilter"
+    | "getCanSort"
+    | "getFilterValue"
+    | "getIsFiltered"
+    | "getIsSorted"
+    | "setFilterValue"
+    | "toggleSorting"
+  >;
   title: string;
 }
 
-const DataTableColumnHeader = <TData, TValue>({
+const DataTableColumnHeader = <TData extends RowData, TValue>({
   column,
   title,
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) => {
   const sortIcon = {
-    asc: <ArrowUp aria-hidden className="h-3.5 w-3.5" />,
-    desc: <ArrowDown aria-hidden className="h-3.5 w-3.5" />,
-    none: <ChevronsUpDown aria-hidden className="h-3.5 w-3.5" />,
+    asc: <IconArrowUp aria-hidden className="h-3.5 w-3.5" />,
+    desc: <IconArrowDown aria-hidden className="h-3.5 w-3.5" />,
+    none: <IconSelector aria-hidden className="h-3.5 w-3.5" />,
   }[column.getIsSorted() || "none"];
 
   return (
@@ -139,29 +165,31 @@ const DataTableColumnHeader = <TData, TValue>({
 
       {column.getCanSort() && (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              className="px-1"
-              size="xs"
-              variant={column.getIsSorted() ? "tertiary" : "ghost"}
-            >
-              {sortIcon}
-              <span className="sr-only">Sort</span>
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="px-1"
+                size="xs"
+                variant={column.getIsSorted() ? "tertiary" : "ghost"}
+              />
+            }
+          >
+            {sortIcon}
+            <span className="sr-only">Sort</span>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuItem
               disabled={column.getIsSorted() === "asc"}
               onClick={() => column.toggleSorting(false)}
             >
-              <ArrowUp aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowUp aria-hidden className="h-3.5 w-3.5" />
               Ascending
             </DropdownMenuItem>
             <DropdownMenuItem
               disabled={column.getIsSorted() === "desc"}
               onClick={() => column.toggleSorting(true)}
             >
-              <ArrowDown aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowDown aria-hidden className="h-3.5 w-3.5" />
               Descending
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -170,7 +198,7 @@ const DataTableColumnHeader = <TData, TValue>({
               disabled={!column.getIsSorted()}
               onClick={() => column.clearSorting()}
             >
-              <Undo aria-hidden className="h-3.5 w-3.5" />
+              <IconArrowBackUp aria-hidden className="h-3.5 w-3.5" />
               Clear
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -179,26 +207,27 @@ const DataTableColumnHeader = <TData, TValue>({
 
       {column.getCanFilter() && (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              className="px-1"
-              size="xs"
-              variant={column.getIsFiltered() ? "tertiary" : "ghost"}
-            >
-              <Search aria-hidden className="h-3.5 w-3.5" />
-              <span className="sr-only">Filter {title}</span>
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                className="px-1"
+                size="xs"
+                variant={column.getIsFiltered() ? "tertiary" : "ghost"}
+              />
+            }
+          >
+            <IconSearch aria-hidden className="h-3.5 w-3.5" />
+            <span className="sr-only">Filter {title}</span>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent align="start" asChild>
-            <DropdownMenuItem asChild>
-              <Input
-                aria-label={`Filter by ${title}`}
-                onChange={(event) => column.setFilterValue(event.target.value)}
-                type="text"
-                value={String(column.getFilterValue() ?? "")}
-              />
-            </DropdownMenuItem>
+          <DropdownMenuContent align="start">
+            <Input
+              aria-label={`Filter by ${title}`}
+              onChange={(event) => column.setFilterValue(event.target.value)}
+              onKeyDown={(event) => event.stopPropagation()}
+              type="text"
+              value={String(column.getFilterValue() ?? "")}
+            />
           </DropdownMenuContent>
         </DropdownMenu>
       )}
@@ -207,13 +236,13 @@ const DataTableColumnHeader = <TData, TValue>({
 };
 
 export {
+  DataTableColumnHeader,
   Table,
-  TableHeader,
   TableBody,
+  TableCaption,
+  TableCell,
   TableFooter,
   TableHead,
+  TableHeader,
   TableRow,
-  TableCell,
-  TableCaption,
-  DataTableColumnHeader,
 };

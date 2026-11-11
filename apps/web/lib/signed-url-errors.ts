@@ -23,8 +23,12 @@ export class SignedUrlError extends Error {
   readonly code: SignedUrlErrorCode;
   readonly userMessage: string;
 
-  constructor(code: SignedUrlErrorCode, technicalMessage?: string) {
-    super(technicalMessage || ERROR_MESSAGES[code]);
+  constructor(
+    code: SignedUrlErrorCode,
+    technicalMessage?: string,
+    options?: ErrorOptions,
+  ) {
+    super(technicalMessage || ERROR_MESSAGES[code], options);
     this.name = "SignedUrlError";
     this.code = code;
     this.userMessage = ERROR_MESSAGES[code];

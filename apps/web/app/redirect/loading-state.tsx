@@ -1,4 +1,4 @@
-import { ExternalLink, Loader2 } from "lucide-react";
+import { IconExternalLink, IconLoader2 } from "@tabler/icons-react";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
@@ -23,7 +23,7 @@ export const LoadingState = ({
       <p>This link leads to another site and may no longer work.</p>
 
       <div className="flex justify-center">
-        <Loader2 className="animate-spin text-gray-300" />
+        <IconLoader2 className="animate-spin text-gray-300" />
       </div>
 
       <p className="text-gray-600 text-sm">
@@ -33,7 +33,7 @@ export const LoadingState = ({
 
       <div className="flex flex-col gap-4">
         {verifiedUrl && (
-          <Button asChild icon={<ExternalLink />} variant="default">
+          <Button asChild icon={<IconExternalLink />} variant="default">
             <Link href={verifiedUrl} rel="noopener noreferrer" target="_blank">
               Continue{domain ? ` to ${domain}` : ""}
             </Link>

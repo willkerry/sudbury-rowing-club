@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./src/index.ts",
+  "migrations": [{ "new_sqlite_classes": ["OgRenderer"], "tag": "v1" }],
+  "name": "sudbury-og",
+  // Only reachable through the OG service binding on sudbury-web, which
+  // checks each request's signature before forwarding it.
+  "preview_urls": false,
+  "workers_dev": false,
+  "browser": {
+    "binding": "BROWSER"
+  },
+  "durable_objects": {
+    "bindings": [{ "class_name": "OgRenderer", "name": "OG_RENDERER" }]
+  },
+  "observability": {
+    "enabled": true
+  },
+  "r2_buckets": [
+    {
+      "binding": "OG_CACHE",
+      "bucket_name": "sudbury-og"
+    }
+  ]
+}

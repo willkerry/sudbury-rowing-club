@@ -1,5 +1,5 @@
+import { IconCircle } from "@tabler/icons-react";
 import Color from "color";
-import { Circle } from "lucide-react";
 import { tryit } from "radashi";
 import { Copy } from "@/components/stour/copy";
 
@@ -24,7 +24,7 @@ export const ColorIndicator = ({
     <span className="flex flex-row items-center text-xs">
       {print ? (
         <>
-          <Circle aria-hidden className="h-4 text-gray-200" fill={color} />
+          <IconCircle aria-hidden className="h-4 text-gray-200" fill={color} />
           <Copy value={print.toUpperCase()} />
         </>
       ) : (

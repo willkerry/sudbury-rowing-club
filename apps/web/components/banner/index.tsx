@@ -1,21 +1,22 @@
 "use client";
 
+import { Collapsible } from "@base-ui/react/collapsible";
 import {
   useClickOutside,
   useFocusWithin,
   useMergedRef,
   useWindowEvent,
 } from "@mantine/hooks";
-import cn from "clsx";
+import { useQuery } from "@tanstack/react-query";
 import Link, { type LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
-import { Collapsible } from "radix-ui";
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/layouts/container";
 import { Text } from "@/components/stour/text";
 import { DateFormatter } from "@/components/utils/date-formatter";
-import { trpc } from "@/lib/trpc/client";
+import { useTRPC } from "@/lib/trpc/client";
 import type { Notice } from "@/lib/trpc/routers/content";
+import { cn } from "@/lib/utils";
 
 const LINK_REGEX = /^(https?|mailto):\/\//;
 const PATH_REGEX = /^\/[a-z0-9-]+/;
@@ -77,7 +78,9 @@ const controlVariants: Record<
 
 const ButtonOrAnchor = (
   props:
-    | ({ type: "button" } & Collapsible.CollapsibleTriggerProps)
+    | ({ type: "button" } & React.ComponentPropsWithoutRef<
+        typeof Collapsible.Trigger
+      >)
     | ({ type: "a" } & LinkProps),
 ) => {
   if (props.type === "button") {
@@ -90,9 +93,12 @@ const ButtonOrAnchor = (
 };
 
 export const Banner = () => {
-  const { data, error } = trpc.content.notice.useQuery(undefined, {
-    staleTime: 5 * 60 * 1000,
-  });
+  const trpc = useTRPC();
+  const { data, error } = useQuery(
+    trpc.content.notice.queryOptions(undefined, {
+      staleTime: 5 * 60 * 1000,
+    }),
+  );
 
   const collapsibleRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
@@ -163,7 +169,7 @@ export const Banner = () => {
       </ButtonOrAnchor>
 
       {!data.link && (
-        <Collapsible.Content className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
+        <Collapsible.Panel className="absolute z-40 w-full overflow-hidden bg-gray-50 shadow-sm transition-all duration-500">
           <Container>
             <Text className="py-4" portableText={data?.text} size="small" />
 
@@ -177,7 +183,7 @@ export const Banner = () => {
               </div>
             )}
           </Container>
-        </Collapsible.Content>
+        </Collapsible.Panel>
       )}
     </Collapsible.Root>
   );

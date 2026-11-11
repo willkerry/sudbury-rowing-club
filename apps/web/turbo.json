@@ -2,9 +2,22 @@
   "$schema": "https://turbo.build/schema.json",
   "extends": ["//"],
   "tasks": {
+    "build": {
+      // Includes the generated types type-check needs.
+      "outputs": [
+        "dist/**",
+        "public/**",
+        "next-env.d.ts",
+        ".next/types/**",
+        ".content-collections/generated/**"
+      ]
+    },
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "type-check": {
+      "dependsOn": ["^build", "build"]
     }
   }
 }

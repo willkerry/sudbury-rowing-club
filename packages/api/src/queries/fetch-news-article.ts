@@ -128,11 +128,11 @@ const fetchAllArticles = async () => {
 };
 
 export {
-  fetchOneArticle,
-  fetchNArticles,
   fetchAllArticles,
-  fetchArticleCount,
   fetchAllSlugs,
+  fetchArticleCount,
+  fetchNArticles,
+  fetchOneArticle,
 };
 export type Article = z.infer<typeof ZArticle>;
 export type ArticleSummary = z.infer<typeof ZArticleSummary>;

@@ -1,11 +1,9 @@
-import { dashboardTool } from "@sanity/dashboard";
-import { UsersIcon } from "@sanity/icons";
+import { UsersIcon } from "@sanity/icons/Users";
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import { vercelWidget } from "sanity-plugin-dashboard-widget-vercel";
 import schemas from "./schemas/schema";
 
 const config = defineConfig({
@@ -129,11 +127,6 @@ const config = defineConfig({
                     S.listItem()
                       .title("People")
                       .child(S.documentTypeList("person").title("People")),
-                    S.listItem()
-                      .title("Forwarders")
-                      .child(
-                        S.documentTypeList("forwarders").title("Forwarders"),
-                      ),
                   ]),
               ),
 
@@ -142,7 +135,6 @@ const config = defineConfig({
                 ![
                   "author",
                   "committees",
-                  "forwarders",
                   "minutes",
                   "members",
                   "news",
@@ -162,9 +154,6 @@ const config = defineConfig({
 
     visionTool(),
     table(),
-    dashboardTool({
-      widgets: [vercelWidget()],
-    }),
   ],
 
   schema: {

@@ -1,9 +1,4 @@
 export {
-  cachedFetchCompetitionBySlug,
-  cachedFetchCompetitions,
-  cachedFetchRegions,
-} from "./queries/cached-fetch-competitions";
-export {
   serverGetAllSlugs,
   serverGetArticleBySlug,
   serverGetArticleCount,
@@ -20,20 +15,17 @@ export {
   fetchAllAuthors,
   fetchAuthor,
 } from "./queries/fetch-authors";
-export {
-  type BREvent,
-  serversideFetchCompetitions,
-} from "./queries/fetch-competitions";
-export {
-  type ForecastResponse,
-  fetchWeatherForecast,
-  type WeatherCodeNumber,
-} from "./queries/fetch-forecast";
 export { fetchGovernance, type Governance } from "./queries/fetch-governance";
 export {
   fetchLandingPage,
   type LandingPage,
 } from "./queries/fetch-landing-page";
+export {
+  fetchLocationForecast,
+  type LocationForecast,
+  type LocationForecastEntry,
+  type LocationForecastResult,
+} from "./queries/fetch-locationforecast";
 export { fetchMinutes, type Minutes } from "./queries/fetch-minutes";
 export {
   type Article,
@@ -68,6 +60,7 @@ export {
   fetchSafetyById,
   type SafetyItem,
 } from "./queries/fetch-safety";
+export { OCCUPANT_NAMES } from "./queries/officer-fragments";
 export { ZTypedObject } from "./queries/typed-object";
 export { getSanityConfig, sanityClient } from "./sanity/client";
 export { urlFor } from "./sanity/image-url-builder";

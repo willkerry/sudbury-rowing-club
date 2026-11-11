@@ -1,4 +1,12 @@
-import type { BREvent } from "@sudburyrc/api";
+export type BREvent = {
+  id: string;
+  competition: string;
+  cancelled: boolean;
+  url: string | null;
+  notes: string | null;
+  region: string;
+  startDate: Date;
+};
 
 type IcalEvent = {
   BEGIN: "VEVENT";

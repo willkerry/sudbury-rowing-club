@@ -1,8 +1,8 @@
 "use client";
 
 import type { serverGetNArticles } from "@sudburyrc/api";
+import { IconArrowBackUp, IconSearch, IconX } from "@tabler/icons-react";
 import { useQuery } from "@tanstack/react-query";
-import { SearchIcon, Undo2Icon, XIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
 import { Suspense, useState } from "react";
 import { Container } from "@/components/layouts/container";
@@ -71,7 +71,7 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
                 onClick={() => cancelSearch()}
                 type="button"
               >
-                <Undo2Icon aria-hidden className="h-4 w-4" />
+                <IconArrowBackUp aria-hidden className="h-4 w-4" />
                 <span className="sr-only">Cancel search</span>
               </button>
             )}
@@ -96,7 +96,7 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
                       onClick={() => cancelSearch()}
                       type="button"
                     >
-                      <XIcon
+                      <IconX
                         aria-hidden
                         className="absolute right-0 left-0 mx-auto h-4 w-4 stroke-red-600 text-red-600 opacity-0 transition-opacity group-hover:opacity-100"
                       />
@@ -138,7 +138,7 @@ const NewsPage = ({ articles }: { articles: MinimalArticle[] }) => {
               type="submit"
               variant="secondary"
             >
-              <SearchIcon aria-hidden className="h-4 w-4" />
+              <IconSearch aria-hidden className="h-4 w-4" />
             </Button>
           </form>
         </Container>

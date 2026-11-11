@@ -1,4 +1,4 @@
-import { ThumbsUp } from "lucide-react";
+import { IconThumbUp } from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useId } from "react";
@@ -31,12 +31,12 @@ export const metadata = createMetadata({
 const getLearnToRowCourseCost = async () => {
   const rates = await scrapeRatesTable();
 
-  if (rates.status === "error") {
+  if (!rates.ok) {
     return null;
   }
 
   const learnToRowCourse = rates.data
-    ?.filter((rate) => rate.Name.toLowerCase().includes("learn"))
+    .filter((rate) => rate.Name.toLowerCase().includes("learn"))
     .sort((a, b) => a.Cost.InclTax.Value - b.Cost.InclTax.Value)
     .reverse()[0];
 
@@ -68,7 +68,7 @@ const Join = async () => {
         <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
         <h1 className="relative z-10 font-semibold text-6xl text-green-500 tracking-tighter drop-shadow-xl sm:text-8xl">
           Start rowing with us{" "}
-          <ThumbsUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
+          <IconThumbUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
         </h1>
         <div className="z-0 mx-auto flex max-h-[160px] max-w-[240px] -rotate-2 overflow-hidden rounded-sm shadow-xl">
           <Image
@@ -165,21 +165,20 @@ const Join = async () => {
           <div className="mb-20 grid gap-12 md:grid-cols-2">
             <div className="prose">
               <p className="lead">
-                Our Learn to Row progamme starts with a ‘taster session’ after
-                which you can apply for a place on one of our courses during
-                which you will learn the basics of sculling (an oar in each
-                hand) over approximately 4 × 3-hour sessions.
+                Our Learn to Row programme starts with a taster session. After
+                that, you can apply for a place on a course – four sessions of
+                about three hours each – where you’ll learn the basics of
+                sculling (rowing with an oar in each hand).
               </p>
               <p>
-                We plan to run the Learn to Row programme on a group basis for
-                adults over the next year. Attending a taster session is an
-                opportunity to find out about rowing and the course. You don’t
-                have to make a commitment to the course until after the taster
-                session when you can apply for a place on one of the upcoming
-                courses. Subject to availability you will be allocated a start
-                date along with a number of other participants at a similar
-                level. Juniors (under 18) will be separately invited to
-                programmed courses.
+                We run the Learn to Row programme in groups throughout the year.
+                Attending a taster session is an opportunity to find out about
+                rowing and the course. You don’t have to make a commitment to
+                the course until after the taster session when you can apply for
+                a place on one of the upcoming courses. Subject to availability
+                you will be allocated a start date along with a number of other
+                participants at a similar level. Juniors (under 18) will be
+                separately invited to programmed courses.
               </p>
               <p>
                 {templateLearnToRowCourseCost(await getLearnToRowCourseCost())}{" "}

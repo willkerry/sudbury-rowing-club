@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { IconCheck } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -77,7 +77,7 @@ export const SponsorshipTiers = ({
                 viewport={{ margin: "-30px", once: true }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <Check className="mt-1.5 h-4 w-4 flex-none text-blue-600" />
+                <IconCheck className="mt-1.5 h-4 w-4 flex-none text-blue-600" />
                 {benefit}
               </motion.li>
             ))}

@@ -1,4 +1,4 @@
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { SanityImageSource } from "@sanity/image-url";
 import { sanityClient } from "@sudburyrc/api";
 import {
   type UseNextSanityImageOptions,

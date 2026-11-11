@@ -1,14 +1,14 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import { Blade } from "@/components/stour/blade";
 import { Link } from "@/components/stour/link";
 import { DataTableColumnHeader } from "@/components/ui/table";
 import { detectAndFormatCourseLength } from "./[event]/format-description";
-import { getBladeUrls } from "./[event]/utils";
-import { Blade } from "./blade";
+import type { RecordsTableFeatures } from "./features";
 import { formatDuration, type Record, slugify } from "./transformRecords";
 
-export const columns: ColumnDef<Record>[] = [
+export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
   {
     accessorKey: "course",
     enableColumnFilter: false,
@@ -43,27 +43,24 @@ export const columns: ColumnDef<Record>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Year" />
     ),
-    sortingFn: (a, b) =>
+    sortFn: (a, b) =>
       a.original.year.getFullYear() - b.original.year.getFullYear(),
   },
   {
     accessorKey: "club",
-    cell: ({ row }) => {
-      const blades = getBladeUrls(row.original.club, true);
+    cell: ({ row }) => (
+      <div className="flex flex-row gap-2">
+        <div className="flex flex-row items-center gap-2">
+          {row.original.parsedClub.map((club, index) => {
+            if ("id" in club)
+              return <Blade key={`${club.id}-${index}`} src={club.bladeUrl} />;
 
-      return (
-        <div className="flex flex-row gap-2">
-          {blades.length > 0 && (
-            <div className="flex flex-row items-center gap-2">
-              {blades.map((blade) => (
-                <Blade alt="" key={blade} src={blade} />
-              ))}
-            </div>
-          )}
-          <div className="uppercase tracking-wider">{row.original.club}</div>
+            return <Blade key={`${club.code}-${index}`} src={null} />;
+          })}
         </div>
-      );
-    },
+        <div className="uppercase tracking-wider">{row.original.club}</div>
+      </div>
+    ),
     filterFn: (row, _id, value) =>
       row.original.club.toLowerCase().includes(value.toLowerCase()),
     header: ({ column }) => (
@@ -82,7 +79,7 @@ export const columns: ColumnDef<Record>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Time" />
     ),
-    sortingFn: (a, b) => {
+    sortFn: (a, b) => {
       const aTimeSeconds =
         a.original.time.minutes * 60 + a.original.time.seconds;
       const bTimeSeconds =

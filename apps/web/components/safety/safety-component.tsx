@@ -1,16 +1,14 @@
 "use client";
 
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
-import type { QueryStatus } from "@tanstack/react-query";
-import { EnvironmentAgency, MetOffice } from "@/components/icons";
+import { type QueryStatus, useQuery } from "@tanstack/react-query";
 import { Label } from "@/components/stour/label";
 import { ErrorMessage } from "@/components/ui/error";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
-import { trpc } from "@/lib/trpc/client";
+import { useTRPC } from "@/lib/trpc/client";
 import type { Severity } from "@/types/severity";
 import { Loading } from "../stour/loading";
-import { ForecastComponent } from "./forecast";
+import { HourlyForecast } from "./hourly-forecast";
 import { QuotedWarning, type WarningSourceEnum } from "./quoted-warning";
 import { IS_LOADING, SeveritySection } from "./severity-section";
 
@@ -82,7 +80,9 @@ const SafetyDescription = ({
 };
 
 export const SafetyComponent = () => {
-  const { data, status, error } = trpc.safety.status.useQuery();
+  const trpc = useTRPC();
+
+  const { data, status, error } = useQuery(trpc.safety.status.queryOptions());
 
   useTrackLoadTime(status, {
     errorEvent: "safety_api_request_failed",
@@ -148,34 +148,7 @@ export const SafetyComponent = () => {
         </div>
       )}
 
-      <ForecastComponent />
-
-      <div className="grid grid-flow-col grid-cols-2 divide-x">
-        <a
-          className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-gray-500 text-sm transition duration-300 hover:bg-white hover:text-black"
-          href="https://check-for-flooding.service.gov.uk/location/sudbury-suffolk"
-        >
-          <EnvironmentAgency aria-hidden className="h-4 w-4" />
-          EA Floods
-          <ArrowTopRightOnSquareIcon
-            aria-hidden
-            className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70"
-          />
-        </a>
-        <a
-          className="group flex h-14 items-center justify-between bg-gray-50 px-4 text-gray-500 text-sm transition duration-300 hover:bg-white hover:text-black"
-          href="https://www.metoffice.gov.uk/weather/warnings-and-advice/uk-warnings"
-        >
-          <div className="w-0">
-            <MetOffice aria-hidden className="h-4 w-4" />
-          </div>
-          Met Office
-          <ArrowTopRightOnSquareIcon
-            aria-hidden
-            className="h-4 w-4 opacity-30 transition duration-300 group-hover:opacity-70"
-          />
-        </a>
-      </div>
+      <HourlyForecast />
     </div>
   );
 };

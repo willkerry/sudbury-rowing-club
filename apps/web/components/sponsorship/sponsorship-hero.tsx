@@ -1,6 +1,6 @@
 "use client";
 
-import { HeartHandshake } from "lucide-react";
+import { IconHeartHandshake } from "@tabler/icons-react";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { Sponsors } from "@/components/landing/sponsors";
@@ -50,7 +50,7 @@ export const SponsorshipHero = ({
             type: "spring",
           }}
         >
-          <HeartHandshake className="inline h-12 w-12 text-gray-500 drop-shadow-2xl sm:h-16 sm:w-16" />
+          <IconHeartHandshake className="inline h-12 w-12 text-gray-500 drop-shadow-2xl sm:h-16 sm:w-16" />
         </motion.span>
       </motion.h1>
 

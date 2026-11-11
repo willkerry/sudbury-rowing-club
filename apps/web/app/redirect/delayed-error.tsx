@@ -1,6 +1,6 @@
 "use client";
 
-import { Home } from "lucide-react";
+import { IconHome } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePostHog } from "posthog-js/react";
 import type { ReactNode } from "react";
@@ -72,7 +72,7 @@ export const DelayedError = ({
         </div>
 
         <div className="flex flex-col gap-4">
-          <Button asChild icon={<Home />} variant="default">
+          <Button asChild icon={<IconHome />} variant="default">
             <Link href="/">Go to homepage</Link>
           </Button>
         </div>

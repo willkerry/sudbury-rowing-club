@@ -1,0 +1,351 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  FORCE_COLOR: "1"
+  TURBO_TELEMETRY_DISABLED: "1"
+  # Dependabot and fork PRs get no secrets; pushes never use placeholders.
+  NEXT_PUBLIC_ALGOLIA_APP_ID:
+    ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+  NEXT_PUBLIC_ALGOLIA_INDEX_NAME:
+    ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+  NEXT_PUBLIC_ALGOLIA_SEARCH_KEY:
+    ${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+  NEXT_PUBLIC_APP_ENV:
+    ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+  NEXT_PUBLIC_GIT_COMMIT_SHA:
+    ${{ github.event.pull_request.head.sha || github.sha }}
+  NEXT_PUBLIC_MAPTILER_KEY:
+    ${{ secrets.NEXT_PUBLIC_MAPTILER_KEY || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+  NEXT_PUBLIC_POSTHOG_HOST:
+    ${{ secrets.NEXT_PUBLIC_POSTHOG_HOST || (github.event_name ==
+    'pull_request' && 'https://eu.i.posthog.com' || '') }}
+  NEXT_PUBLIC_POSTHOG_KEY:
+    ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+  NEXT_PUBLIC_SANITY_DATASET:
+    ${{ secrets.NEXT_PUBLIC_SANITY_DATASET || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+  NEXT_PUBLIC_SANITY_PROJECT_ID:
+    ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY:
+    ${{ secrets.NEXT_PUBLIC_TURNSTILE_SITE_KEY || (github.event_name ==
+    'pull_request' && 'ci-placeholder' || '') }}
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: biomejs/setup-biome@4c91541eaada48f67d7dbd7833600ce162b68f51 # v2.7.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: Biome
+        run: |
+          biome ci --reporter=github \
+            --reporter=json --reporter-file="$RUNNER_TEMP/biome.json" .
+
+      - name: Report
+        if: ${{ !cancelled() }}
+        run: node scripts/ci/lint-report.ts "$RUNNER_TEMP/biome.json"
+
+      - name: actionlint
+        if: ${{ !cancelled() }}
+        run: |
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12 "$RUNNER_TEMP"
+          # shellcheck disable=SC2016 # a Go template, not shell
+          "$RUNNER_TEMP/actionlint" -format '{{range $err := .}}::error file={{$err.Filepath}},line={{$err.Line}},col={{$err.Column}},title=actionlint ({{$err.Kind}})::{{$err.Message}}\n{{end}}'
+
+      - name: zizmor
+        if: ${{ !cancelled() }}
+        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+        with:
+          advanced-security: false
+          annotations: true
+
+  verify:
+    name: Build, type-check and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          cache: pnpm
+          node-version-file: .nvmrc
+
+      # Keyed by Node version, which turbo's hashes ignore.
+      - name: Turbo cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo/cache
+          key: turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
+
+      - run: pnpm install --frozen-lockfile
+
+      # Stops each package's Vitest writing its own summary.
+      - name: Build, type-check and test
+        run:
+          env -u GITHUB_STEP_SUMMARY pnpm turbo run build type-check test
+          --continue --summarize
+
+      - name: Type-check CI scripts
+        if: ${{ !cancelled() }}
+        run: pnpm exec tsc -p scripts/ci
+
+      - name: Report
+        if: ${{ !cancelled() }}
+        run: node scripts/ci/turbo-report.ts "Build, type-check and test"
+
+      - name: Upload coverage
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: coverage
+          path: |
+            apps/*/coverage/
+            packages/*/coverage/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Prune turbo cache
+        if: ${{ !cancelled() }}
+        run: find .turbo/cache -type f -mtime +7 -delete 2>/dev/null || true
+
+  web:
+    name: Deploy
+    needs: [lint, verify]
+    # Production only from master; Dependabot and fork PRs have no token.
+    if:
+      (github.event_name != 'pull_request' && github.ref ==
+      'refs/heads/master') || (github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'dependabot[bot]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      actions: read
+      contents: read
+      deployments: write
+      pull-requests: write
+    environment:
+      name: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+      url: ${{ steps.deployed.outputs.url }}
+    concurrency:
+      group:
+        deploy-${{ github.event_name == 'pull_request' &&
+        github.event.pull_request.number || 'production' }}
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      MODE: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      SITE_URL: https://sudburyrowingclub.org.uk
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          submodules: recursive
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          cache: pnpm
+          node-version-file: .nvmrc
+
+      - name: Restore turbo cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo/cache
+          key: turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm turbo run build --filter=@sudburyrc/web...
+
+      - name: Prepare
+        run: |
+          mkdir -p "$RUNNER_TEMP/wrangler"
+          {
+            echo "WRANGLER_OUTPUT_FILE_DIRECTORY=$RUNNER_TEMP/wrangler"
+            echo "WRANGLER_SEND_METRICS=false"
+          } >> "$GITHUB_ENV"
+
+      - name: Check D1 migrations
+        id: migrations
+        continue-on-error: true
+        working-directory: apps/web
+        run: |
+          applied=$(pnpm exec wrangler d1 execute sudbury-web --remote --json \
+            --command "SELECT name FROM d1_migrations" | jq -r '.[0].results[].name')
+          for file in ../../packages/db/migrations/*.sql; do
+            name=$(basename "$file")
+            grep -qxF "$name" <<<"$applied" || echo "$name"
+          done > "$RUNNER_TEMP/migrations.txt"
+          cat "$RUNNER_TEMP/migrations.txt"
+
+      # `wrangler preview` doesn't report the bundle size.
+      - name: Measure Worker size
+        if: github.event_name == 'pull_request'
+        working-directory: apps/web
+        run: |
+          NO_COLOR=1 pnpm exec wrangler versions upload --dry-run \
+            -c dist/server/wrangler.json --outdir "$RUNNER_TEMP/dry-run" \
+            | grep "Total Upload" | tee "$RUNNER_TEMP/size.log"
+
+      # Version preview URLs aren't generated for Workers with Durable Objects.
+      - name: Deploy preview
+        if: github.event_name == 'pull_request'
+        working-directory: apps/web
+        run: |
+          pnpm exec wrangler preview \
+            -c dist/server/wrangler.json \
+            --name "pr-$PR_NUMBER" \
+            --message "PR #$PR_NUMBER @ ${SHA::7}" \
+            --tag "${SHA::7}"
+
+      - name: Apply D1 migrations
+        if: github.event_name != 'pull_request'
+        working-directory: apps/web
+        run: pnpm run db:migrate
+
+      # sudbury-web's OG service binding needs this Worker to exist first.
+      # Preview versions of sudbury-web share the production OG Worker.
+      - name: Deploy OG Worker
+        if: github.event_name != 'pull_request'
+        working-directory: apps/og
+        run: pnpm exec wrangler deploy --message "${SHA::7}"
+
+      # Uploads a version at 0%, warms the Response Store with the routes that
+      # took the most traffic in the last 24 hours (zone analytics), then
+      # promotes it. Warming is skipped if the token can't read analytics.
+      - name: Deploy
+        if: github.event_name != 'pull_request'
+        working-directory: apps/web
+        run:
+          pnpm exec vinext-cloudflare deploy --skip-build --config
+          dist/server/wrangler.json --traffic-aware-warm-cache
+
+      - name: Read deploy output
+        id: deployed
+        if: ${{ !cancelled() }}
+        env:
+          SIZE_LOG: ${{ runner.temp }}/size.log
+        run: node scripts/ci/web-report.ts outputs "$RUNNER_TEMP/web-bundle-stats.json"
+
+      - name: Smoke test
+        if: steps.deployed.outputs.url != ''
+        env:
+          URL: ${{ steps.deployed.outputs.url }}
+        run: node scripts/ci/smoke.ts "$URL" "$RUNNER_TEMP/smoke.md"
+
+      - name: Download master's bundle size
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml \
+            --branch master --event push --status success --limit 1 \
+            --json databaseId --jq '.[0].databaseId // empty')
+          if [ -z "$run_id" ] || ! gh run download "$run_id" \
+            --repo "$GITHUB_REPOSITORY" --name web-bundle-stats \
+            --dir "$RUNNER_TEMP/base"; then
+            echo "No bundle size from master yet, so no comparison this time"
+          fi
+
+      - name: Report
+        if: ${{ !cancelled() }}
+        env:
+          BASE_STATS_FILE: ${{ runner.temp }}/base/web-bundle-stats.json
+          JOB_STATUS: ${{ job.status }}
+          MIGRATIONS_FILE:
+            ${{ steps.migrations.outcome == 'success' &&
+            format('{0}/migrations.txt', runner.temp) || '' }}
+          SMOKE_FILE: ${{ runner.temp }}/smoke.md
+          STATS_FILE: ${{ runner.temp }}/web-bundle-stats.json
+          URL: ${{ steps.deployed.outputs.url }}
+          VERSION_ID: ${{ steps.deployed.outputs.version_id }}
+          VERSION_URL: ${{ steps.deployed.outputs.preview_url }}
+        run: node scripts/ci/web-report.ts report "$RUNNER_TEMP/web-report.md"
+
+      - name: Comment on PR
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          header: web-preview
+          path: ${{ runner.temp }}/web-report.md
+
+      - name: Upload bundle size
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: web-bundle-stats
+          path: ${{ runner.temp }}/web-bundle-stats.json
+          if-no-files-found: ignore
+          retention-days: 90
+
+      # Skipped until POSTHOG_PERSONAL_API_KEY and POSTHOG_PROJECT_ID exist.
+      - name: Annotate deploy in PostHog
+        if: github.event_name == 'push'
+        continue-on-error: true
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          POSTHOG_KEY: ${{ secrets.POSTHOG_PERSONAL_API_KEY }}
+          POSTHOG_PROJECT_ID: ${{ vars.POSTHOG_PROJECT_ID }}
+        run: |
+          if [ -z "$POSTHOG_KEY" ] || [ -z "$POSTHOG_PROJECT_ID" ]; then
+            echo "PostHog not configured, skipping"
+            exit 0
+          fi
+          api_host=${NEXT_PUBLIC_POSTHOG_HOST/.i.posthog.com/.posthog.com}
+          body=$(jq -n \
+            --arg content "Deployed ${SHA::7}: ${COMMIT_MESSAGE%%$'\n'*}" \
+            --arg date "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            '{content: $content, date_marker: $date, scope: "project"}')
+          curl -fsS -X POST "$api_host/api/projects/$POSTHOG_PROJECT_ID/annotations/" \
+            -H "Authorization: Bearer $POSTHOG_KEY" \
+            -H "Content-Type: application/json" \
+            -d "$body" > /dev/null

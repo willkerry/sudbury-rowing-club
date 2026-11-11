@@ -14,7 +14,7 @@ export const LandingCTA = ({ introId }: { introId: string }) => {
   return (
     <div className="flex items-center justify-center space-x-3 pt-16 text-white">
       <Button onClick={scrollTo} shadow size="lg">
-        Discover<span className="hidden sm:inline">&nbsp;more</span>
+        About<span className="hidden sm:inline">&nbsp;the club</span>
       </Button>
       <Button asChild shadow size="lg" variant="secondary">
         <Link href="/join">Join us</Link>

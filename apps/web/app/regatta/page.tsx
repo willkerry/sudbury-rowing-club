@@ -1,10 +1,16 @@
-import { QueueListIcon } from "@heroicons/react/24/outline";
 import { fetchRegattaSettings, fetchRegattas } from "@sudburyrc/api";
-import { Award, BadgeAlert, TicketIcon, Timer } from "lucide-react";
+import {
+  IconAlertHexagon,
+  IconAward,
+  IconListNumbers,
+  IconStopwatch,
+  IconTicket,
+} from "@tabler/icons-react";
 import type { JSX } from "react";
 import type { SportsEvent, WithContext } from "schema-dts";
 import { logos as sponsors } from "@/components/landing/sponsors";
 import { Container } from "@/components/layouts/container";
+import { RegattaCancellationNotice } from "@/components/regatta/landing-page/cancellation-notice";
 import { DateLocation } from "@/components/regatta/landing-page/date-location";
 import type { DetailProps } from "@/components/regatta/landing-page/details";
 import { Details } from "@/components/regatta/landing-page/details";
@@ -17,11 +23,14 @@ import { Text } from "@/components/stour/text";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { ClubJsonLd, REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
-import { getClub } from "@/lib/getClub";
+import { getClubLookup } from "@/lib/getClub";
 
 const fetchRegattasAndSettings = async () => {
   const regattaSettings = await fetchRegattaSettings();
-  const regattas = await fetchRegattas();
+  const [regattas, clubs] = await Promise.all([
+    fetchRegattas(),
+    getClubLookup(),
+  ]);
 
   const regattasWithTestimonials = regattas.map((regatta) => ({
     ...regatta,
@@ -30,7 +39,7 @@ const fetchRegattasAndSettings = async () => {
         const name = testimonial.club || testimonial.name;
 
         const probableClubName = name.split(", ")[1] || name;
-        const club = getClub(probableClubName);
+        const club = clubs.getClub(probableClubName);
 
         if (!club) return testimonial;
 
@@ -84,27 +93,27 @@ const RegattaPage = async () => {
   const accordion: DetailProps[] = [
     {
       href: "./regatta/events",
-      icon: <Award aria-hidden />,
+      icon: <IconAward aria-hidden />,
       summary: "Events",
     },
     {
       href: "./regatta/entries",
-      icon: <TicketIcon aria-hidden />,
+      icon: <IconTicket aria-hidden />,
       summary: "Entries",
     },
     {
       href: "./regatta/results",
-      icon: <Timer aria-hidden />,
+      icon: <IconStopwatch aria-hidden />,
       summary: "Results",
     },
     {
       href: "./regatta/draw",
-      icon: <QueueListIcon aria-hidden />,
+      icon: <IconListNumbers aria-hidden />,
       summary: "Draw",
     },
     {
       href: "./regatta/competitor-information",
-      icon: <BadgeAlert aria-hidden />,
+      icon: <IconAlertHexagon aria-hidden />,
       summary: "Competitor Information",
     },
   ];
@@ -148,8 +157,13 @@ const RegattaPage = async () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         type="application/ld+json"
       />
+      <RegattaCancellationNotice />
       <Container>
-        <RegattaHero {...{ ticketItems }} subtitle={landingPage.tagline} />
+        <RegattaHero
+          {...{ ticketItems }}
+          cancelled
+          subtitle={landingPage.tagline}
+        />
         <DateLocation
           date={regattaDate}
           location={`${VENUE}, ${TOWN}, ${POSTCODE}`}

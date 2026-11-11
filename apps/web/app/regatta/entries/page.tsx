@@ -7,7 +7,7 @@ import { Text } from "@/components/stour/text";
 import { createMetadata } from "@/lib/create-metadata";
 
 export const metadata = createMetadata({
-  description: "Details for competetive entry to the Sudbury Regatta.",
+  description: "Details for competitive entry to the Sudbury Regatta.",
   image: { title: "Entry Information" },
   title: "Entry Information | Sudbury Rowing Club",
 });

@@ -1,6 +1,7 @@
 import { smartQuotes } from "@sudburyrc/helpers";
-import { Browser } from "happy-dom";
+import { parseHTML } from "linkedom";
 import { z } from "zod";
+import { err, ok, type Result } from "./result";
 
 const parseAndReformatDates = (input: string): string => {
   const dateRegex =
@@ -186,46 +187,32 @@ const MYCLUBHOUSE_RATES_URL =
   "https://sudburyrowingclub.myclubhouse.co.uk/Register/MembershipCategories";
 
 const scrapeMembershipData = async () => {
-  const browser = new Browser();
-  const page = browser.newPage();
+  const response = await fetch(MYCLUBHOUSE_RATES_URL, {
+    signal: AbortSignal.timeout(5000),
+  });
+  const { document } = parseHTML(await response.text());
 
-  await page.goto(MYCLUBHOUSE_RATES_URL, { timeout: 5000 });
-
-  const membershipData =
-    page.mainFrame.document.querySelector("#membership-data");
+  const membershipData = document.querySelector("#membership-data");
 
   if (!membershipData) {
     throw new Error("Could not find table element");
   }
 
-  const parsedData = MyClubhouseMembershipSchema.parse(
+  return MyClubhouseMembershipSchema.parse(
     JSON.parse(membershipData.textContent ?? ""),
   );
-
-  await browser.close();
-
-  return parsedData;
 };
 
 export const scrapeRatesTable = async (): Promise<
-  | {
-      status: "success";
-      data: z.infer<typeof MembershipSchema>[];
-    }
-  | {
-      status: "error";
-      message: string;
-    }
+  Result<z.infer<typeof MembershipSchema>[]>
 > => {
   try {
     const membershipData = await scrapeMembershipData();
 
-    return { data: membershipData.Groups[0].Memberships, status: "success" };
+    return ok(membershipData.Groups[0].Memberships);
   } catch {
-    return {
-      message:
-        "We’re temporarily unable to display current membership rates – please check back soon or contact us for information.",
-      status: "error",
-    };
+    return err(
+      "We’re temporarily unable to display current membership rates – please check back soon or contact us for information.",
+    );
   }
 };

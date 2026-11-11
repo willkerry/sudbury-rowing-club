@@ -41,8 +41,8 @@ const serverGetNArticles = async (
 };
 
 export {
+  serverGetAllSlugs,
   serverGetArticleBySlug,
   serverGetArticleCount,
-  serverGetAllSlugs,
   serverGetNArticles,
 };

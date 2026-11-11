@@ -36,16 +36,13 @@
 }
 
 .listing {
-  &body {
-    margin: 0;
-    padding: 30px;
-    background: #fff;
-    font-family:
-      -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
+  margin: 0;
+  padding: 30px;
+  background: #fff;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
 
   main {
     max-width: 920px;
@@ -170,7 +167,7 @@
   }
 
   @media (min-width: 992px) {
-    body {
+    & {
       padding: 45px;
     }
 

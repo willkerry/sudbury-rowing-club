@@ -40,11 +40,11 @@ export const formatDescription = (records: Record[]): string => {
   const recordDescription = isHeldByMultipleClubs
     ? `The record of ${formatVerboseDuration(holder.time)} is jointly held ${listFormatter.format(
         records.map(
-          ({ club, year }, i) =>
-            `by ${formatClubAndCrewName(club, true)} ${i === 0 ? `who set it in ${year.getFullYear()}` : `who matched it in ${year.getFullYear()}`}`,
+          ({ parsedClub, year }, i) =>
+            `by ${formatClubAndCrewName(parsedClub, true)} ${i === 0 ? `who set it in ${year.getFullYear()}` : `who matched it in ${year.getFullYear()}`}`,
         ),
       )}.`
-    : `The record is held by ${formatClubAndCrewName(holder.club, true)}, who set a time of ${formatVerboseDuration(holder.time)} in ${holder.year.getFullYear()}.`;
+    : `The record is held by ${formatClubAndCrewName(holder.parsedClub, true)}, who set a time of ${formatVerboseDuration(holder.time)} in ${holder.year.getFullYear()}.`;
 
   return [eventDescription, recordDescription].join(" ");
 };

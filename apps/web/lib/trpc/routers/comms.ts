@@ -1,16 +1,18 @@
 import { TRPCError } from "@trpc/server";
 import Bowser from "bowser";
-import { ContactFormEmail } from "emails/contact-form";
-import DOMPurify from "isomorphic-dompurify";
 import { tryit } from "radashi";
 import { Resend } from "resend";
+import { filterXSS } from "xss";
 import { BugReportSchema } from "@/app/bugs/BugReportSchema";
 import { MessageSchema } from "@/components/contact/Message";
 import { env } from "@/env";
 import { checkHeadersForSpam } from "@/lib/akismet";
-import { SENDER } from "@/lib/constants";
+import { CONTACT_FORM_TAG, SENDER } from "@/lib/constants";
 import { getOfficer } from "@/lib/get-officer";
+import { storeInflightContact } from "@/lib/inflight-contact";
+import { renderEmail } from "@/lib/server/render-email";
 import { trackServerEvent } from "@/lib/server/track";
+// import { checkHeadersForTurnstileToken } from "@/lib/turnstile";
 import { rateLimitedProcedure, router } from "../init";
 
 const resend = new Resend(env.RESEND_API_KEY);
@@ -50,6 +52,7 @@ export const commsRouter = router({
 
       if (spamError) {
         throw new TRPCError({
+          cause: spamError,
           code: "INTERNAL_SERVER_ERROR",
           message: "Could not connect to spam checking service.",
         });
@@ -99,6 +102,27 @@ export const commsRouter = router({
   send: rateLimitedProcedure
     .input(MessageSchema)
     .mutation(async ({ input, ctx }) => {
+      // TODO: Re-enable Turnstile verification
+      // const [turnstileError, turnstileResponse] = await tryit(
+      //   checkHeadersForTurnstileToken,
+      // )(ctx.headers, { token: input.token });
+      //
+      // if (turnstileError) {
+      //   throw new TRPCError({
+      //     cause: turnstileError.message,
+      //     code: "INTERNAL_SERVER_ERROR",
+      //     message: "Could not connect to verification service.",
+      //   });
+      // }
+      //
+      // if (!turnstileResponse.success) {
+      //   throw new TRPCError({
+      //     cause: turnstileResponse.messages?.join(", "),
+      //     code: "FORBIDDEN",
+      //     message: "The verification service has blocked this request.",
+      //   });
+      // }
+
       const [spamError, isSpam] = await tryit(checkHeadersForSpam)(
         ctx.headers,
         input,
@@ -106,6 +130,7 @@ export const commsRouter = router({
 
       if (spamError) {
         throw new TRPCError({
+          cause: spamError,
           code: "INTERNAL_SERVER_ERROR",
           message: "Could not connect to spam checking service.",
         });
@@ -123,27 +148,33 @@ export const commsRouter = router({
 
       if (officerError) {
         throw new TRPCError({
+          cause: officerError,
           code: "NOT_FOUND",
           message: officerError.message,
         });
       }
 
-      const { name: toName, email: toEmail, role: toRole } = officer;
+      const { email: toEmail, role: toRole } = officer;
+      const toName = officer.name ?? toRole;
+      const sanitizedMessage = filterXSS(input.message, {
+        stripIgnoreTagBody: ["script", "style"],
+      });
 
       const createEmailResponse = await resend.emails.send({
         from: formatName(SENDER.email, SENDER.name),
-        react: ContactFormEmail({
-          toName,
-          toEmail,
-          toRole,
+        html: await renderEmail("contactForm", {
           fromEmail: input.email,
           fromName: input.name,
-          message: DOMPurify.sanitize(input.message),
+          message: sanitizedMessage,
+          toEmail,
+          toName,
+          toRole,
         }),
         replyTo: formatName(input.email, input.name),
         subject: `${input.name} via SRC Contact`,
-        text: DOMPurify.sanitize(input.message),
-        to: formatName(toEmail, toName),
+        tags: [CONTACT_FORM_TAG],
+        text: sanitizedMessage,
+        to: formatName(toEmail, toRole),
       });
 
       if (createEmailResponse.error) {
@@ -159,8 +190,27 @@ export const commsRouter = router({
         });
       }
 
+      const messageId = createEmailResponse.data?.id ?? null;
+
+      if (messageId) {
+        const [storeError] = await tryit(storeInflightContact)(messageId, {
+          fromEmail: input.email,
+          fromName: input.name,
+          message: sanitizedMessage,
+          toName,
+          toRole,
+        });
+
+        if (storeError) {
+          trackServerEvent("contact_form_inflight_store_failure", {
+            error_message: storeError.message,
+            error_name: storeError.name,
+          });
+        }
+      }
+
       return {
-        messageId: createEmailResponse.data?.id ?? null,
+        messageId,
       };
     }),
 });

@@ -1,8 +1,8 @@
 import type { PortableTextProps } from "@portabletext/react";
 import { fetchRegattaSettings, sanityClient } from "@sudburyrc/api";
 import { ordinal } from "@sudburyrc/helpers";
+import { IconDownload, IconTable } from "@tabler/icons-react";
 import groq from "groq";
-import { Download, Table2 } from "lucide-react";
 import NextLink from "next/link";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
@@ -60,14 +60,14 @@ const ResultsPage = async () => {
           <div className="flex gap-2">
             <LiveResultsButton regattaDate={regattaDate} />
 
-            <Button asChild icon={<Table2 />} variant="secondary">
+            <Button asChild icon={<IconTable />} variant="secondary">
               <NextLink href="/regatta/records">
                 View interactive records
               </NextLink>
             </Button>
 
             {other.records && (
-              <Button asChild icon={<Download />} variant="ghost">
+              <Button asChild icon={<IconDownload />} variant="ghost">
                 <a href={`${other.records}?dl=`}>Download course records</a>
               </Button>
             )}

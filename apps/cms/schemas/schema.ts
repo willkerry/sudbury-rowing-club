@@ -9,7 +9,6 @@ import events from "./events";
 import figure from "./figure";
 import fileDocumentGroup from "./fileDocumentGroup";
 import fileDocumentGroupArray from "./fileDocumentGroupArray";
-import forwarders from "./forwarders";
 import gallery from "./gallery";
 import heroImage from "./heroImage";
 import labelValueItem from "./labelValueItem";
@@ -49,7 +48,6 @@ const schemas = [
   figure,
   fileDocumentGroup,
   fileDocumentGroupArray,
-  forwarders,
   gallery,
   heroImage,
   labelValueItem,

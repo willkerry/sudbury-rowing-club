@@ -1,120 +1,93 @@
-import { kv } from "@vercel/kv";
+import { env as workerEnv } from "cloudflare:workers";
+import type { Cache, CacheEntry } from "@epic-web/cachified";
+import { configure, totalTtl } from "@epic-web/cachified";
 import { parse as devalueParse, stringify as devalueStringify } from "devalue";
 import { env } from "@/env";
-import { whenEnv } from "../environment";
 
-type CacheOptions<T, R = T> = {
-  /** Unique cache key */
-  key: string;
-  /** Time to live in seconds */
-  ttl: number;
-  /** Async function whose return value should be cached */
-  fn: () => Promise<T>;
-  /** Optional function to transform cached data (e.g., reconstruct Date objects) */
-  transform?: (data: T) => R;
-};
+const SEPARATOR = ":";
+// Workers KV rejects expirations less than 60 seconds away.
+const MIN_KV_TTL_SECONDS = 60;
+// KV writes are metered (1,000/day on the free plan), so only entries that
+// refresh at most this often are shared through KV. Faster-refreshing entries,
+// such as the 60-second regatta notice, stay in each Worker instance's memory.
+const MIN_KV_FRESH_TTL_MS = 10 * 60 * 1000;
 
-type HitMiss = "hit" | "miss";
-
-type CacheHeaders = {
-  "X-Cache-Result": HitMiss;
-};
-
-type CachedResult<R> = {
-  data: R;
-  cacheResult: HitMiss;
-  headers: CacheHeaders;
-  cachedAt: Date;
-};
-
+// Scope entries to the deployed version so a deploy starts with a fresh cache.
 const withCommitHash = (key: string): string => {
-  const commitSha = env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA;
-
-  return commitSha ? `${key}:${commitSha}` : key;
+  const version =
+    env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? workerEnv.CF_VERSION_METADATA?.id;
+  return version ? `${key}${SEPARATOR}${version}` : key;
 };
 
-type CachedData<T> = {
-  data: T;
-  cachedAt: Date;
+const expiresAt = (entry: CacheEntry) => {
+  const lifetime = totalTtl(entry.metadata);
+
+  return lifetime === Number.POSITIVE_INFINITY
+    ? Number.POSITIVE_INFINITY
+    : entry.metadata.createdTime + lifetime;
 };
 
-// kv.get() will attempt to parse the string as JSON if it looks like JSON
-const stringify = (data: unknown): string =>
-  Buffer.from(devalueStringify(data)).toString("base64");
-const parse = <T>(data: string): T =>
-  devalueParse(Buffer.from(data, "base64").toString());
+const memory = new Map<string, CacheEntry>();
+
+const tieredCacheAdapter = (): Cache => ({
+  name: "Memory + Workers KV",
+  delete: async (key) => {
+    memory.delete(key);
+    await workerEnv.DATA_CACHE.delete(withCommitHash(key));
+  },
+  get: async (key) => {
+    const local = memory.get(key);
+
+    if (local && expiresAt(local) > Date.now()) return local;
+
+    memory.delete(key);
+
+    const value = await workerEnv.DATA_CACHE.get(withCommitHash(key));
+
+    if (typeof value !== "string") return null;
+
+    const entry = devalueParse(value) as CacheEntry;
+    memory.set(key, entry);
+
+    return entry;
+  },
+
+  set: async (key, entry) => {
+    memory.set(key, entry);
+
+    const freshTtl = entry.metadata.ttl ?? Number.POSITIVE_INFINITY;
+
+    if (freshTtl < MIN_KV_FRESH_TTL_MS) return;
+
+    const expiry = expiresAt(entry);
+    const expiresInSeconds =
+      expiry === Number.POSITIVE_INFINITY
+        ? undefined
+        : Math.ceil((expiry - Date.now()) / 1000);
+
+    await workerEnv.DATA_CACHE.put(
+      withCommitHash(key),
+      devalueStringify(entry),
+      expiresInSeconds === undefined
+        ? undefined
+        : { expirationTtl: Math.max(expiresInSeconds, MIN_KV_TTL_SECONDS) },
+    );
+  },
+});
+
+const cache = tieredCacheAdapter();
+
+export const cached = configure({ cache });
 
 /**
- * Caches the return value of an async function in KV store with proper
- * serialisation/deserialisation using `devalue`. Returns an object with the
- * data and cache status.
- *
- * If a transform function is provided, it will be applied to cached data after
- * their retrieval from the cache (or the resolution of the async function).
- *
- * Cache validity is managed by the TTL. If the function rejects when there's
- * no cached data, the error will propagate.
+ * Reads a cached value without refreshing it, for callers that need the
+ * previous entry while computing the next one. Returns null once the entry has
+ * aged out of its stale-while-revalidate window.
  */
-export const cached = async <T, R = T>(
-  options: CacheOptions<T, R>,
-): Promise<CachedResult<R>> => {
-  const { key, ttl, fn, transform } = whenEnv({
-    ifDev: () => ({
-      ...options,
-      key: `${options.key}-dev`,
-      ttl: 30,
-    }),
-    ifPreview: () => ({
-      ...options,
-      key: `${options.key}-preview-${env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA}`,
-    }),
-    ifProd: () => options,
-  });
-  const cacheKey = withCommitHash(key);
+export const getCachedEntry = async <Value>(
+  key: string,
+): Promise<Value | null> => {
+  const entry = await cache.get(key);
 
-  const cached = await kv.get<string>(cacheKey);
-
-  if (cached) {
-    try {
-      console.log(new Date(), `${cacheKey} hit cache`);
-      const parsed = parse<CachedData<T>>(cached);
-      const data = transform
-        ? transform(parsed.data)
-        : (parsed.data as unknown as R);
-
-      const cacheResult = "hit";
-
-      return {
-        data,
-        cacheResult,
-        cachedAt: parsed.cachedAt,
-        headers: { "X-Cache-Result": cacheResult },
-      };
-    } catch (parseError) {
-      console.error(
-        new Date(),
-        `${cacheKey} failed to parse cached data, falling back to fresh fetch`,
-        parseError,
-      );
-      // Fall through to fetch fresh data
-    }
-  }
-
-  console.log(new Date(), `${key} cold start`);
-  const fetchedData = await fn();
-  const cachedAt = new Date();
-  const dataWithTimestamp: CachedData<T> = {
-    data: fetchedData,
-    cachedAt,
-  };
-  await kv.set(cacheKey, stringify(dataWithTimestamp), { ex: ttl });
-
-  const cacheResult = "miss";
-
-  return {
-    data: transform ? transform(fetchedData) : (fetchedData as unknown as R),
-    cacheResult,
-    headers: { "X-Cache-Result": cacheResult },
-    cachedAt,
-  };
+  return (entry?.value as Value | undefined) ?? null;
 };

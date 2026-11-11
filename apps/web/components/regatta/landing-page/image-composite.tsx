@@ -8,12 +8,14 @@ import victoriaImage from "../../../public/assets/regatta/landing/victoria.png";
 
 export const ImageComposite = ({
   ticketItems,
+  cancelled = false,
 }: {
   ticketItems: [string, string | JSX.Element][];
+  cancelled?: boolean;
 }) => (
   <div className="relative mx-auto h-96 w-64">
     <div className="absolute bottom-12 left-10 z-10">
-      <Ticket items={ticketItems} />
+      <Ticket cancelled={cancelled} items={ticketItems} />
     </div>
     <div className="absolute right-0 bottom-8 z-10 rotate-3 drop-shadow-lg">
       <Image alt="" height="100" placeholder="blur" src={cupImage} width="90" />
