@@ -1,7 +1,7 @@
 {
   "exclude": ["node_modules"],
   "extends": "@sudburyrc/tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "moduleResolution": "bundler",
     "strictNullChecks": true,

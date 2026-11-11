@@ -11,12 +11,16 @@ Sudbury Rowing Club website - a pnpm monorepo with three applications and shared
 ```bash
 # Development
 pnpm install              # Install all dependencies
-pnpm dev                  # Start all dev servers via Turbo (web on port 4321)
+pnpm dev                  # Start all dev servers via Turbo (web on port 4321, in local workerd)
 pnpm build                # Build all packages and apps
 pnpm type-check           # TypeScript type checking
 pnpm test                 # Run tests
 pnpm test:watch           # Run tests in watch mode
 pnpm check                # Run Biome linting/formatting with auto-fix
+
+# Web app (from apps/web)
+pnpm deploy               # vite build + wrangler deploy (CI does this on push to master)
+pnpm db:migrate           # Apply D1 migrations from packages/db to production
 
 # Per-app commands (from app directory)
 pnpm dev --filter@sudburyrc/web     # Web app only
@@ -27,20 +31,23 @@ pnpm dev --filter@sudburyrc/results # Results app only
 ## Architecture
 
 **Apps:**
-- `apps/web` - Next.js 16 frontend (React 19, Tailwind CSS 4, port 4321)
-- `apps/cms` - Sanity Studio CMS (content management, deploys via Wrangler)
+- `apps/web` - Next.js API on [vinext](https://www.npmjs.com/package/vinext) (Vite), deployed to Cloudflare Workers as `sudbury-web` (React 19, Tailwind CSS 4, port 4321)
+- `apps/cms` - Sanity Studio CMS (content management, deploys via Cloudflare Workers Builds)
 - `apps/results` - Static results pages (Nunjucks templates, Parcel bundler)
 
 **Packages:**
 - `packages/api` - API utilities and data processing (tsup-built)
 - `packages/blue` - Headless UI component library
+- `packages/db` - Drizzle schema and client for the web app's D1 database
 - `packages/helpers` - Shared utility functions
 - `packages/ical-builder` - iCalendar generation
 - `packages/images` - Cloudflare CDN image URL builders
 - `packages/static` - Shared static data across apps
 - `packages/tsconfig` - Shared TypeScript configurations
 
-**Data flow:** Sanity CMS → GROQ queries → Next.js web app
+**Data flow:** Sanity CMS → GROQ queries → web app. A Sanity webhook to `/api/revalidate` invalidates cached pages.
+
+**Cloudflare bindings (apps/web/wrangler.jsonc):** Workers Cache for pages, KV for data (`DATA_CACHE`, `VINEXT_KV_CACHE`), D1 (`DB`), rate limiting, Images, an hourly cron (`worker.ts`). Keep the Worker under 3 MB gzipped (free plan).
 
 ## Code Style
 
@@ -70,8 +77,7 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 ## Environment Variables
 
-Build-time env vars (configure in `.env.local`):
+Local values live in `apps/web/.env` (validated by `apps/web/env.ts`):
+- `NEXT_PUBLIC_*` - Client-accessible vars, inlined at build time (CI reads them from GitHub secrets)
+- Server secrets (`ALGOLIA_API_KEY`, `RESEND_API_KEY`, `SANITY_REVALIDATE_SECRET`, etc.) - set on the Worker with `wrangler secret put`
 - `SANITY_STUDIO_*`, `SANITY_AUTH_TOKEN` - CMS access
-- `ALGOLIA_API_KEY` - Search
-- `RESEND_API_KEY` - Email sending
-- `NEXT_PUBLIC_*` - Client-accessible vars

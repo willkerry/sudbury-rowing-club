@@ -32,6 +32,6 @@ export const getCacheHeaders = ({
 
   return {
     "cache-control": BROWSER_CACHE_CONTROL,
-    "vercel-cdn-cache-control": `public, s-maxage=${ttl}, stale-while-revalidate=${ttl}, stale-if-error=${STALE_IF_ERROR_SECONDS}`,
+    "cdn-cache-control": `public, s-maxage=${ttl}, stale-while-revalidate=${ttl}, stale-if-error=${STALE_IF_ERROR_SECONDS}`,
   };
 };
