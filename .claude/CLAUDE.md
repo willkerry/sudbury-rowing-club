@@ -65,8 +65,8 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 ## Key Technologies
 
-- **Package manager:** pnpm 8.14.1
-- **Node version:** 22 (see `.nvmrc`)
+- **Package manager:** pnpm 11 (see `packageManager` in package.json)
+- **Node version:** 26 (see `.nvmrc`). Node runs `scripts/ci/*.ts` directly via type stripping, so keep them to erasable TypeScript syntax
 - **Build orchestration:** Turbo
 - **Testing:** Vitest with React Testing Library
 - **UI primitives:** Radix UI, Headless UI

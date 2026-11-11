@@ -1,0 +1,40 @@
+# Labels for actions/labeler (.github/workflows/pr.yml), by changed paths.
+
+web:
+  - changed-files:
+      - any-glob-to-any-file: apps/web/**
+
+og:
+  - changed-files:
+      - any-glob-to-any-file: apps/og/**
+
+cms:
+  - changed-files:
+      - any-glob-to-any-file: apps/cms/**
+
+results:
+  - changed-files:
+      - any-glob-to-any-file: apps/results/**
+
+packages:
+  - changed-files:
+      - any-glob-to-any-file: packages/**
+
+database:
+  - changed-files:
+      - any-glob-to-any-file:
+          - packages/db/**
+          - apps/web/wrangler.jsonc
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/**
+          - scripts/ci/**
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - pnpm-lock.yaml
+          - pnpm-workspace.yaml
+          - "**/package.json"

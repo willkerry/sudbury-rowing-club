@@ -166,6 +166,18 @@
       }
     }
   },
+  "overrides": [
+    {
+      "includes": ["scripts/ci/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noUndeclaredEnvVars": "off"
+          }
+        }
+      }
+    }
+  ],
   "vcs": {
     "clientKind": "git",
     "defaultBranch": "master",
