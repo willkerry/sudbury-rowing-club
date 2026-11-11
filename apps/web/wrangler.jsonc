@@ -33,6 +33,12 @@
       "id": "e925387678ef4d849b5f13be35fada2d"
     }
   ],
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  },
   "ratelimits": [
     {
       "name": "RATE_LIMITER",
