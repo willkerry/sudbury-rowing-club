@@ -2,8 +2,8 @@ import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
+import { transformRecords } from "./load-records";
 import recordJson from "./records.json";
-import { transformRecords } from "./transformRecords";
 
 export const metadata = createMetadata({
   description:
@@ -12,8 +12,8 @@ export const metadata = createMetadata({
   title: "Course Records | Sudbury Regatta",
 });
 
-const RecordsPage = () => {
-  const records = transformRecords(recordJson);
+const RecordsPage = async () => {
+  const records = await transformRecords(recordJson);
 
   return (
     <>

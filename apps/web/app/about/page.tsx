@@ -172,13 +172,13 @@ const About = async () => {
   ]);
 
   const featured = officers.slice(0, 4);
-  const featuredPeople = new Set(featured.map(({ occupantId }) => occupantId));
+  const featuredPeople = new Set(featured.map(({ avatar }) => avatar?._id));
   const faces = officers
     .filter((officer): officer is Face => officer.avatar !== null)
     .filter(
-      ({ occupantId }, i, all) =>
-        !featuredPeople.has(occupantId) &&
-        all.findIndex((other) => other.occupantId === occupantId) === i,
+      ({ avatar }, i, all) =>
+        !featuredPeople.has(avatar._id) &&
+        all.findIndex((other) => other.avatar._id === avatar._id) === i,
     );
 
   const ticketItems: [string, string][] = [

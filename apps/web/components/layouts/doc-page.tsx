@@ -1,6 +1,7 @@
 import type { SerializableTOC } from "@fumadocs/content-collections/configuration";
 import { smartQuotes } from "@sudburyrc/helpers";
 import { IconAlignLeft } from "@tabler/icons-react";
+import type { MDXContent as MDXContentType } from "mdx/types";
 import { Container } from "@/components/layouts/container";
 import { DocPageHeader } from "@/components/layouts/docPage/DocPageHeader";
 import {
@@ -16,14 +17,14 @@ export const DocPage = ({
   description,
   prenotes,
   postnotes,
-  body,
+  content,
   toc,
 }: {
   title: string;
   description?: string;
   prenotes?: PrePostNote[];
   postnotes?: PrePostNote[];
-  body: string;
+  content: MDXContentType;
   toc: SerializableTOC;
 }) => {
   const smartTitle = smartQuotes(title);
@@ -36,7 +37,7 @@ export const DocPage = ({
 
         {prenotes && <DocPagePrePostNote notes={prenotes} />}
 
-        <MDXContent code={body} />
+        <MDXContent content={content} />
 
         {postnotes && (
           <>

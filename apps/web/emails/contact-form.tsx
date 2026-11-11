@@ -1,4 +1,5 @@
-import { Heading, Section } from "@react-email/components";
+import { Heading } from "@react-email/heading";
+import { Section } from "@react-email/section";
 import {
   ContactFormLink,
   EmailShell,

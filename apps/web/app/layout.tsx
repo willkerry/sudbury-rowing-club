@@ -7,6 +7,7 @@ import "inter-ui/inter-variable.css";
 import { Banner } from "@/components/banner";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import { env } from "@/env";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
 import "../styles/index.css";
 import { blue } from "@sudburyrc/blue";
@@ -19,6 +20,8 @@ const digital7Font = localFont({
   variable: "--font-digital-7",
 });
 
+const isPreview = env.NEXT_PUBLIC_APP_ENV === "preview";
+
 export const metadata: Metadata = {
   applicationName: "Sudbury Rowing Club",
   creator: PROJECT_NAME,
@@ -26,6 +29,7 @@ export const metadata: Metadata = {
     "Sudbury Rowing Club – rowing for all ages and abilities on the River Stour since 1874. Learn to row courses, competitive racing, and recreational rowing in Suffolk.",
   manifest: "/favicon/site.webmanifest",
   metadataBase: new URL(BASE_URL),
+  robots: isPreview ? { follow: false, index: false } : undefined,
   title: PROJECT_NAME,
   alternates: {
     canonical: BASE_URL,

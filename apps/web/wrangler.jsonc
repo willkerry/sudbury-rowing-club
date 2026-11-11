@@ -1,0 +1,131 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // Workers Response Store (vinext's cache adapter, self-contained mode). Only
+  // the ResponseStoreBinding entrypoint goes through Workers Cache; the R2
+  // bucket holds bodies and the CacheMetadata Durable Object holds metadata.
+  "cache": { "enabled": false },
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./worker.ts",
+  "name": "sudbury-web",
+  "preview_urls": true,
+  // worker.ts forwards signed /api/og requests to the OG Worker (apps/og).
+  "services": [{ "binding": "OG", "service": "sudbury-og" }],
+  "workers_dev": true,
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "none",
+    "run_worker_first": ["/*", "!/_next/static/*", "!/*/_next/static/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "dfbb23fe-44fb-4191-8dc1-3797663f9c5a",
+      "database_name": "sudbury-web",
+      "migrations_dir": "../../packages/db/migrations"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [{ "class_name": "CacheMetadata", "name": "CACHE_METADATA" }]
+  },
+  "exports": {
+    "CacheMetadata": { "storage": "sqlite", "type": "durable-object" },
+    "default": { "cache": { "enabled": false }, "type": "worker" },
+    "ResponseStoreBinding": { "cache": { "enabled": true }, "type": "worker" }
+  },
+  "images": {
+    "binding": "IMAGES"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DATA_CACHE",
+      "id": "e925387678ef4d849b5f13be35fada2d"
+    }
+  ],
+  "observability": {
+    "issues": { "enabled": true },
+    "traces": { "enabled": true },
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  },
+  // Secrets: `wrangler preview base-config secret put <NAME>`.
+  "previews": {
+    "images": { "binding": "IMAGES" },
+    "services": [{ "binding": "OG", "service": "sudbury-og" }],
+    "vars": { "APP_URL": "https://sudburyrowingclub.org.uk" },
+    "version_metadata": { "binding": "CF_VERSION_METADATA" },
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_id": "dfbb23fe-44fb-4191-8dc1-3797663f9c5a",
+        "database_name": "sudbury-web"
+      }
+    ],
+    "durable_objects": {
+      "bindings": [{ "class_name": "CacheMetadata", "name": "CACHE_METADATA" }]
+    },
+    "kv_namespaces": [
+      { "binding": "DATA_CACHE", "id": "e925387678ef4d849b5f13be35fada2d" }
+    ],
+    "observability": {
+      "logs": { "enabled": true, "invocation_logs": true },
+      "traces": { "enabled": true }
+    },
+    "r2_buckets": [
+      { "binding": "CACHE_BODIES", "bucket_name": "sudbury-web-response-store" }
+    ],
+    "ratelimits": [
+      {
+        "name": "RATE_LIMITER",
+        "namespace_id": "1001",
+        "simple": { "limit": 10, "period": 10 }
+      }
+    ]
+  },
+  "r2_buckets": [
+    { "binding": "CACHE_BODIES", "bucket_name": "sudbury-web-response-store" }
+  ],
+  "ratelimits": [
+    {
+      "name": "RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 10, "period": 10 }
+    }
+  ],
+  "routes": [
+    { "custom_domain": true, "pattern": "sudburyrowingclub.org.uk" },
+    { "custom_domain": true, "pattern": "www.sudburyrowingclub.org.uk" },
+    {
+      "custom_domain": true,
+      "enabled": false,
+      "pattern": "preview.sudburyrowingclub.org.uk",
+      "previews_enabled": true
+    }
+  ],
+  // `wrangler deploy` and `wrangler versions upload` fail if any of these
+  // aren't set on the Worker. Keep in step with serverSchema in env.schema.ts.
+  "secrets": {
+    "required": [
+      "ALGOLIA_API_KEY",
+      "BUG_RECIPIENT_EMAIL",
+      "FIRECRAWL_API_KEY",
+      "OG_IMAGE_SECRET",
+      "REDIRECT_SECRET",
+      "RESEND_API_KEY",
+      "RESEND_WEBHOOK_SECRET",
+      "SANITY_REVALIDATE_SECRET",
+      "TURNSTILE_SECRET_KEY"
+    ]
+  },
+  "triggers": {
+    "crons": ["0 * * * *"]
+  },
+  "vars": {
+    "APP_URL": "https://sudburyrowingclub.org.uk"
+  },
+  "version_metadata": {
+    "binding": "CF_VERSION_METADATA"
+  }
+}

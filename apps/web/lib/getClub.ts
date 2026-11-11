@@ -1,5 +1,6 @@
-import { clubs } from "@sudburyrc/static";
+import type { Club as ClubRecord } from "@sudburyrc/static/clubs";
 import { unique } from "radashi";
+import { loadClubs } from "./clubs-data";
 import { getHostname } from "./helpers/getHostname";
 
 const SUFFIX_ALIASES = {
@@ -12,17 +13,22 @@ const ROWING_CLUB_REGEX = / Rowing Club$/;
 const BC_REGEX = / BC$/;
 const BOAT_CLUB_REGEX = / Boat Club$/;
 
-type Club = {
+export type Club = {
   id: number;
   name: string;
   href: string;
   bladeUrl?: string;
 };
 
-export const getClub = (name: string): Club | undefined => {
-  if (!name) return;
+const toClub = (club: ClubRecord, name = club.name): Club => ({
+  bladeUrl: club.newBladeUrl ?? undefined,
+  href: club.href,
+  id: club.id,
+  name,
+});
 
-  const possibleNames = unique(
+const getPossibleNames = (name: string) =>
+  unique(
     Object.entries(SUFFIX_ALIASES).reduce(
       (acc, [suffix, aliases]) => {
         const containsAliasable = aliases.some((alias) => name.includes(alias));
@@ -44,55 +50,6 @@ export const getClub = (name: string): Club | undefined => {
     ),
   );
 
-  const foundClub = clubs.find((club) =>
-    possibleNames.includes(club?.name.toLowerCase()),
-  );
-
-  if (!foundClub) return;
-
-  return {
-    bladeUrl: foundClub.newBladeUrl ?? undefined,
-    href: foundClub.href,
-    id: foundClub.id,
-    name: foundClub.name,
-  };
-};
-
-export const getClubByUrl = (url: string) => {
-  const hostname = getHostname(url);
-
-  const foundClub = clubs.find((club) => club.website?.includes(hostname));
-  return foundClub;
-};
-
-export const getClubById = (id: number) => {
-  const foundClub = clubs.find((club) => club.id === id);
-
-  if (!foundClub) return;
-
-  return {
-    bladeUrl: foundClub.newBladeUrl ?? undefined,
-    href: foundClub.href,
-    id: foundClub.id,
-    name: foundClub.name,
-  };
-};
-
-export const getClubByCode = (code: string) => {
-  const foundClub =
-    clubs.find((club) => club.code === code) ??
-    clubs.find((club) => club.aliasCodes?.includes(code));
-
-  if (!foundClub) return;
-
-  return {
-    bladeUrl: foundClub.newBladeUrl ?? undefined,
-    href: foundClub.href,
-    id: foundClub.id,
-    name: foundClub.name,
-  };
-};
-
 const normaliseClubName = (
   name: string,
   format: "short" | "long" | undefined,
@@ -110,22 +67,60 @@ const normaliseClubName = (
   return name;
 };
 
-export const getClubByBoatCode = (
-  code: string,
-  options?: { normaliseClubName?: "short" | "long" },
-) => {
-  const uppercaseCode = code.toUpperCase();
-
-  const foundClub =
-    clubs.find((club) => club.code === uppercaseCode) ??
-    clubs.find((club) => club.aliasCodes?.includes(uppercaseCode));
-
-  if (!foundClub) return;
+/** Synchronous club lookups over an already-loaded club list. */
+export const createClubLookup = (clubs: readonly ClubRecord[]) => {
+  const findByCode = (code: string) =>
+    clubs.find((club) => club.code === code) ??
+    clubs.find((club) => club.aliasCodes?.includes(code));
 
   return {
-    bladeUrl: foundClub.newBladeUrl ?? undefined,
-    href: foundClub.href,
-    id: foundClub.id,
-    name: normaliseClubName(foundClub.name, options?.normaliseClubName),
+    getClub: (name: string): Club | undefined => {
+      if (!name) return;
+
+      const possibleNames = getPossibleNames(name);
+      const foundClub = clubs.find((club) =>
+        possibleNames.includes(club?.name.toLowerCase()),
+      );
+
+      return foundClub && toClub(foundClub);
+    },
+
+    getClubByBoatCode: (
+      code: string,
+      options?: { normaliseClubName?: "short" | "long" },
+    ): Club | undefined => {
+      const foundClub = findByCode(code.toUpperCase());
+
+      return (
+        foundClub &&
+        toClub(
+          foundClub,
+          normaliseClubName(foundClub.name, options?.normaliseClubName),
+        )
+      );
+    },
+
+    getClubByCode: (code: string): Club | undefined => {
+      const foundClub = findByCode(code);
+
+      return foundClub && toClub(foundClub);
+    },
+
+    getClubById: (id: number): Club | undefined => {
+      const foundClub = clubs.find((club) => club.id === id);
+
+      return foundClub && toClub(foundClub);
+    },
+
+    getClubByUrl: (url: string) => {
+      const hostname = getHostname(url);
+
+      return clubs.find((club) => club.website?.includes(hostname));
+    },
   };
 };
+
+export type ClubLookup = ReturnType<typeof createClubLookup>;
+
+export const getClubLookup = async (): Promise<ClubLookup> =>
+  createClubLookup(await loadClubs());

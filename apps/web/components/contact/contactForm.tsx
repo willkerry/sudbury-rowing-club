@@ -60,7 +60,7 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
   );
 
   const optionArray = contacts.map((contact) => ({
-    label: `${contact.role} (${contact.name})`,
+    label: contact.name ? `${contact.role} (${contact.name})` : contact.role,
     value: contact._id,
   }));
 
@@ -195,7 +195,10 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
               isPlaceholder: !(name && form.getFieldValue("email")),
             }}
             isOpen={to !== "default"}
-            to={shake(contacts.find((o) => o._id === to) ?? {})}
+            to={shake(
+              contacts.find((o) => o._id === to) ?? {},
+              (value) => value == null,
+            )}
           />
         )}
       </form.Subscribe>

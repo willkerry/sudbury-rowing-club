@@ -1,5 +1,5 @@
 import { blue } from "@sudburyrc/blue";
-import type { ShareImage } from "./route";
+import type { ShareImage } from "@/lib/share-image";
 
 export const variants: Record<
   ShareImage["variant"],
@@ -41,5 +41,3 @@ export const variants: Record<
     weight: 500,
   },
 };
-
-export const variantsList = Object.keys(variants) as ShareImage["variant"][];

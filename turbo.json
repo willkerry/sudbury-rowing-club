@@ -9,17 +9,18 @@
     "build": {
       "dependsOn": ["^build", "generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
+      "outputs": ["dist/**", "public/**"],
       "env": [
         "ALGOLIA_API_KEY",
         "APP_URL",
         "BUG_RECIPIENT_EMAIL",
         "FIRECRAWL_API_KEY",
-        "KV_*",
         "NEXT_PUBLIC_*",
+        "OG_IMAGE_SECRET",
         "REDIRECT_SECRET",
         "RESEND_API_KEY",
         "RESEND_WEBHOOK_SECRET",
+        "SANITY_REVALIDATE_SECRET",
         "TURNSTILE_SECRET_KEY",
         "SANITY_API_*",
         "SANITY_STUDIO_*",
@@ -35,7 +36,7 @@
       "dependsOn": ["generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "outputLogs": "new-only",
-      "outputs": [".next/**", "!.next/cache/**", "dist/**", "public/**"],
+      "outputs": ["dist/**", "public/**"],
       "persistent": true
     },
     "generate": {

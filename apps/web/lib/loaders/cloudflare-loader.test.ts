@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 const mockEnv = vi.hoisted(() => ({
   env: {
-    NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA: undefined,
+    NEXT_PUBLIC_GIT_COMMIT_SHA: undefined,
     get NODE_ENV() {
       return process.env.NODE_ENV as "development" | "production";
     },

@@ -35,14 +35,14 @@ describe("getCacheHeaders", () => {
   it("caches a query on the CDN but not in the browser", () => {
     expect(request({ cacheSeconds: [60] })).toEqual({
       "cache-control": "public, max-age=0, must-revalidate",
-      "vercel-cdn-cache-control":
+      "cdn-cache-control":
         "public, s-maxage=60, stale-while-revalidate=60, stale-if-error=86400",
     });
   });
 
   it("uses the shortest TTL in a batch", () => {
     expect(
-      request({ cacheSeconds: [3600, 60] })?.["vercel-cdn-cache-control"],
+      request({ cacheSeconds: [3600, 60] })?.["cdn-cache-control"],
     ).toContain("s-maxage=60");
   });
 

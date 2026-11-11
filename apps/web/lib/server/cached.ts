@@ -1,50 +1,81 @@
-import type { Cache } from "@epic-web/cachified";
+import { env as workerEnv } from "cloudflare:workers";
+import type { Cache, CacheEntry } from "@epic-web/cachified";
 import { configure, totalTtl } from "@epic-web/cachified";
-import { createClient, type VercelKV } from "@vercel/kv";
 import { parse as devalueParse, stringify as devalueStringify } from "devalue";
 import { env } from "@/env";
 
 const SEPARATOR = ":";
+// Workers KV rejects expirations less than 60 seconds away.
+const MIN_KV_TTL_SECONDS = 60;
+// KV writes are metered (1,000/day on the free plan), so only entries that
+// refresh at most this often are shared through KV. Faster-refreshing entries,
+// such as the 60-second regatta notice, stay in each Worker instance's memory.
+const MIN_KV_FRESH_TTL_MS = 10 * 60 * 1000;
 
-const kv = createClient({
-  automaticDeserialization: false,
-  token: env.KV_REST_API_TOKEN,
-  url: env.KV_REST_API_URL,
-});
-
+// Scope entries to the deployed version so a deploy starts with a fresh cache.
 const withCommitHash = (key: string): string => {
-  const commitSha = env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA;
-  return commitSha ? `${key}${SEPARATOR}${commitSha}` : key;
+  const version =
+    env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? workerEnv.CF_VERSION_METADATA?.id;
+  return version ? `${key}${SEPARATOR}${version}` : key;
 };
 
-const redisCacheAdapter = (redisCache: VercelKV): Cache => ({
-  name: "Redis",
-  delete: (key) => redisCache.del(withCommitHash(key)),
+const expiresAt = (entry: CacheEntry) => {
+  const lifetime = totalTtl(entry.metadata);
+
+  return lifetime === Number.POSITIVE_INFINITY
+    ? Number.POSITIVE_INFINITY
+    : entry.metadata.createdTime + lifetime;
+};
+
+const memory = new Map<string, CacheEntry>();
+
+const tieredCacheAdapter = (): Cache => ({
+  name: "Memory + Workers KV",
+  delete: async (key) => {
+    memory.delete(key);
+    await workerEnv.DATA_CACHE.delete(withCommitHash(key));
+  },
   get: async (key) => {
-    const value = await redisCache.get(withCommitHash(key));
+    const local = memory.get(key);
+
+    if (local && expiresAt(local) > Date.now()) return local;
+
+    memory.delete(key);
+
+    const value = await workerEnv.DATA_CACHE.get(withCommitHash(key));
 
     if (typeof value !== "string") return null;
 
-    return devalueParse(value);
+    const entry = devalueParse(value) as CacheEntry;
+    memory.set(key, entry);
+
+    return entry;
   },
 
-  set: (key, value) => {
-    const ttl = totalTtl(value?.metadata);
-    const createdAt = value?.metadata?.createdTime;
+  set: async (key, entry) => {
+    memory.set(key, entry);
 
-    return redisCache.set(
+    const freshTtl = entry.metadata.ttl ?? Number.POSITIVE_INFINITY;
+
+    if (freshTtl < MIN_KV_FRESH_TTL_MS) return;
+
+    const expiry = expiresAt(entry);
+    const expiresInSeconds =
+      expiry === Number.POSITIVE_INFINITY
+        ? undefined
+        : Math.ceil((expiry - Date.now()) / 1000);
+
+    await workerEnv.DATA_CACHE.put(
       withCommitHash(key),
-      devalueStringify(value),
-      ttl > 0 && ttl < Number.POSITIVE_INFINITY && typeof createdAt === "number"
-        ? {
-            exat: Math.ceil((ttl + createdAt) / 1000),
-          }
-        : undefined,
+      devalueStringify(entry),
+      expiresInSeconds === undefined
+        ? undefined
+        : { expirationTtl: Math.max(expiresInSeconds, MIN_KV_TTL_SECONDS) },
     );
   },
 });
 
-const cache = redisCacheAdapter(kv);
+const cache = tieredCacheAdapter();
 
 export const cached = configure({ cache });
 

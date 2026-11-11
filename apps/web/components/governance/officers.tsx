@@ -64,7 +64,7 @@ const OfficerPhotographOrPlaceholder = ({
 };
 
 const OfficerNameOrPlaceholder = ({
-  officer: { _id, name, vacant, hasEmail },
+  officer: { _id, name, role, vacant, hasEmail },
 }: {
   officer: Governance["officers"][0];
 }) => {
@@ -80,10 +80,10 @@ const OfficerNameOrPlaceholder = ({
           pathname: "contact",
           query: { to: _id },
         }}
-        title={`Contact ${name}`}
+        title={`Contact ${name ?? role}`}
       >
-        {name}
-        <span className="sr-only">(Contact {name})</span>
+        {name ?? "Contact"}
+        <span className="sr-only">(Contact {name ?? role})</span>
         <IconMessageCircle
           aria-hidden
           className="text-blue-500 transition group-hover:text-gray-600"
@@ -94,7 +94,7 @@ const OfficerNameOrPlaceholder = ({
     );
   }
 
-  return <span>{name}</span>;
+  return <span>{name || "\u00a0"}</span>;
 };
 
 const OfficerDescription = ({

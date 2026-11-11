@@ -1,0 +1,94 @@
+name: Pull request
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions: {}
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  # The title becomes the squash commit message.
+  title:
+    name: Title
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: amannn/action-semantic-pull-request@2252a14e810aa9b85c2d560bd7070c802206ecf6 # v6.1.2
+        id: lint
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          types: |
+            build
+            chore
+            ci
+            docs
+            feat
+            fix
+            perf
+            refactor
+            revert
+            style
+            test
+          requireScope: false
+          validateSingleCommit: true
+
+      # Dependabot's token is read-only, and its titles always pass.
+      - name: Explain failure
+        if: failure() && github.actor != 'dependabot[bot]'
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          header: pr-title
+          message: |
+            The PR title needs to follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), since it becomes the squash commit message.
+
+            ```text
+            ${{ steps.lint.outputs.error_message }}
+            ```
+
+            For example: `feat(web): add regatta entry form` or `fix: correct fixture times`.
+
+      - name: Clear failure comment
+        if: success() && github.actor != 'dependabot[bot]'
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          header: pr-title
+          delete: true
+
+  labels:
+    name: Labels
+    if:
+      github.event.action != 'edited' && github.actor != 'dependabot[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
+        with:
+          sync-labels: true
+
+  dependencies:
+    name: Dependency review
+    if: github.event.action != 'edited'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          comment-summary-in-pr:
+            ${{ github.actor == 'dependabot[bot]' && 'never' || 'on-failure' }}
+          fail-on-severity: high
+          show-openssf-scorecard: true
+          warn-on-openssf-scorecard-level: 3

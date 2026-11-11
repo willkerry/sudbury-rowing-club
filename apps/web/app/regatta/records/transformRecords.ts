@@ -1,10 +1,6 @@
 import { slug } from "github-slugger";
 import { z } from "zod";
-import { getClubByCode } from "@/lib/getClub";
-import {
-  getClubsFromCompositeCrewString,
-  isCompositeCrew,
-} from "./[event]/utils";
+import type { ParsedClub } from "./[event]/utils";
 import recordJson from "./records.json";
 
 const parseDuration = (durationString: string) => {
@@ -44,7 +40,7 @@ export const formatVerboseDuration = (duration: {
 const prettifyBoatnames = (boatname: string) =>
   boatname.replace(/(\d)x/g, "$1×");
 
-const RecordSchema = z
+export const RecordSchema = z
   .object({
     boat: z.string().transform(prettifyBoatnames),
     club: z.string(),
@@ -56,20 +52,12 @@ const RecordSchema = z
   })
   .transform((record) => ({
     ...record,
-    parsedClub: (() => {
-      if (isCompositeCrew(record.club)) {
-        return getClubsFromCompositeCrewString(record.club);
-      }
-
-      return [getClubByCode(record.club) || { code: record.club }];
-    })(),
     slug: slugify(record.event),
   }));
 
-export type Record = z.infer<typeof RecordSchema>;
-
-export const transformRecords = (records: typeof recordJson) =>
-  RecordSchema.array().parse(records);
+export type Record = z.infer<typeof RecordSchema> & {
+  parsedClub: ParsedClub[];
+};
 
 const REGEXES = {
   coxedFour: /4\+/g,
@@ -103,7 +91,5 @@ export const slugify = (event: string) => {
   return slug(replacedEvent);
 };
 
-export const getSlugifiedRecords = (): Record[] => transformRecords(recordJson);
-
-export const getResultBySlug = (eventSlug: string): Record[] =>
-  transformRecords(recordJson).filter((record) => record.slug === eventSlug);
+/** Records without club details, for routes and the sitemap. */
+export const getSlugifiedRecords = () => RecordSchema.array().parse(recordJson);

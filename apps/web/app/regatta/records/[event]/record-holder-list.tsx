@@ -3,10 +3,10 @@ import type { Record } from "../transformRecords";
 import { formatClubAndCrewName, getBladeUrls } from "./utils";
 
 const RecordHolder = ({ record }: { record: Record }) => {
-  const bladeUrls = getBladeUrls(record.club);
+  const bladeUrls = getBladeUrls(record.parsedClub);
 
   const year = record.year.getFullYear();
-  const club = formatClubAndCrewName(record.club);
+  const club = formatClubAndCrewName(record.parsedClub);
 
   const crew = record.club.concat(record.name && ` ${record.name}`);
 

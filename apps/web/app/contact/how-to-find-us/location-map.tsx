@@ -16,7 +16,7 @@ const maptilerProvider = maptiler(
 );
 
 export const LocationMap = ({ defaultCenter, markers }: LocationMapProps) => (
-  <div className="touch-manipulation">
+  <div className="flex w-full touch-manipulation">
     <PigeonMap
       attribution={false}
       defaultCenter={defaultCenter}

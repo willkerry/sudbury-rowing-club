@@ -1,4 +1,4 @@
-import { MDXContent as BaseMDXContent } from "@content-collections/mdx/react";
+import type { MDXComponents, MDXContent as MDXContentType } from "mdx/types";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import { Declaration } from "@/components/mdx/constitution/declaration";
@@ -19,11 +19,13 @@ const Callout = ({
 );
 
 export const MDXContent = ({
+  content: Content,
   components,
-  ...props
-}: ComponentProps<typeof BaseMDXContent>) => (
-  <BaseMDXContent
-    {...props}
+}: {
+  content: MDXContentType;
+  components?: MDXComponents;
+}) => (
+  <Content
     components={{
       ...components,
       a: Link,

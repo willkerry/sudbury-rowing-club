@@ -47,8 +47,7 @@ const ReactQueryDevtools = dynamic(
 
 function getUrl() {
   if (typeof window !== "undefined") return "/api/trpc";
-  if (process.env.VERCEL_URL)
-    return `https://${process.env.VERCEL_URL}/api/trpc`;
+  if (process.env.APP_URL) return `${process.env.APP_URL}/api/trpc`;
 
   return "http://localhost:4321/api/trpc";
 }

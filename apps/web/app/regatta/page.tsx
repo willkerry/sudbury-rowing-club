@@ -23,11 +23,14 @@ import { Text } from "@/components/stour/text";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { ClubJsonLd, REGATTA } from "@/lib/constants";
 import { createMetadata } from "@/lib/create-metadata";
-import { getClub } from "@/lib/getClub";
+import { getClubLookup } from "@/lib/getClub";
 
 const fetchRegattasAndSettings = async () => {
   const regattaSettings = await fetchRegattaSettings();
-  const regattas = await fetchRegattas();
+  const [regattas, clubs] = await Promise.all([
+    fetchRegattas(),
+    getClubLookup(),
+  ]);
 
   const regattasWithTestimonials = regattas.map((regatta) => ({
     ...regatta,
@@ -36,7 +39,7 @@ const fetchRegattasAndSettings = async () => {
         const name = testimonial.club || testimonial.name;
 
         const probableClubName = name.split(", ")[1] || name;
-        const club = getClub(probableClubName);
+        const club = clubs.getClub(probableClubName);
 
         if (!club) return testimonial;
 

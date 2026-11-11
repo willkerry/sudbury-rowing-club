@@ -3,7 +3,7 @@ This is the latest iteration of Sudbury Rowing Club’s website.
 ### It’s made of:
 
 - a data source/CMS: [Sanity.io](https://github.com/sanity-io/sanity)
-- a frontend framework: [Next.js](https://github.com/vercel/next.js)
+- a frontend framework: [vinext](https://www.npmjs.com/package/vinext) (the Next.js API on Vite), hosted on [Cloudflare Workers](https://workers.cloudflare.com)
 - some headless component primitives: [Base UI](https://base-ui.com)
 - a utility-first CSS framework: [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss)
 

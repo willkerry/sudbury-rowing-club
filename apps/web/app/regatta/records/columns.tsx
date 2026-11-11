@@ -52,10 +52,10 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
       <div className="flex flex-row gap-2">
         <div className="flex flex-row items-center gap-2">
           {row.original.parsedClub.map((club, index) => {
-            if ("bladeUrl" in club)
+            if ("id" in club)
               return <Blade key={`${club.id}-${index}`} src={club.bladeUrl} />;
 
-            return <Blade key={`${club.code}-${index}`} src={club.code} />;
+            return <Blade key={`${club.code}-${index}`} src={null} />;
           })}
         </div>
         <div className="uppercase tracking-wider">{row.original.club}</div>
