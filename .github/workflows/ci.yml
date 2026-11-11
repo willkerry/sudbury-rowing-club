@@ -86,7 +86,7 @@ jobs:
         run: |
           bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12 "$RUNNER_TEMP"
           # shellcheck disable=SC2016 # a Go template, not shell
-          "$RUNNER_TEMP/actionlint" -format '{{range $err := .}}::error file={{$err.Filepath}},line={{$err.Line}},col={{$err.Column}},title=actionlint ({{$err.Kind}})::{{$err.Message}}{{"\n"}}{{end}}'
+          "$RUNNER_TEMP/actionlint" -format '{{range $err := .}}::error file={{$err.Filepath}},line={{$err.Line}},col={{$err.Column}},title=actionlint ({{$err.Kind}})::{{$err.Message}}\n{{end}}'
 
       - name: zizmor
         if: always()
