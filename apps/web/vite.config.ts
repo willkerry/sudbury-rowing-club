@@ -18,6 +18,8 @@ import { defineConfig, type Plugin } from "vite";
 
 const require = createRequire(import.meta.url);
 
+const isPreviewBuild = process.env.NEXT_PUBLIC_APP_ENV === "preview";
+
 // The browser loads the MapTiler SDK from its CDN (lib/load-maptiler-sdk.ts);
 // pin that to the installed devDependency so runtime and types agree.
 const maptilerSdkVersion: string = JSON.parse(
@@ -115,8 +117,14 @@ export default defineConfig({
       }),
     },
     vinext({
-      cache: { cdn: workersCacheCdnAdapter(), data: kvDataAdapter() },
       images: { optimizer: imagesOptimizer() },
+      cache: {
+        // Workers Cache hands requests to a cached-response entrypoint that
+        // resolves to the deployed version, so a preview version's build ID
+        // never matches and it answers 503. Previews render uncached instead.
+        ...(isPreviewBuild ? {} : { cdn: workersCacheCdnAdapter() }),
+        data: kvDataAdapter(),
+      },
     }),
     cloudflare({
       viteEnvironment: { childEnvironments: ["ssr"], name: "rsc" },
