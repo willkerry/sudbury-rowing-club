@@ -159,10 +159,12 @@ jobs:
   web:
     name: ${{ github.event_name == 'push' && 'Deploy' || 'Preview' }}
     needs: [lint, verify]
-    # Dependabot and fork PRs have no Cloudflare token.
+    # Production deploys only from master (a manual run on another branch
+    # skips this job). Dependabot and fork PRs have no Cloudflare token.
     if:
-      github.event_name != 'pull_request' ||
-      (github.event.pull_request.head.repo.full_name == github.repository &&
+      (github.event_name != 'pull_request' && github.ref ==
+      'refs/heads/master') || (github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
       github.actor != 'dependabot[bot]')
     runs-on: ubuntu-latest
     timeout-minutes: 20
