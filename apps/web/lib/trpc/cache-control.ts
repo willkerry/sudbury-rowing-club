@@ -2,7 +2,7 @@ import type { ProcedureMeta } from "./init";
 
 const STALE_IF_ERROR_SECONDS = 60 * 60 * 24;
 
-const BROWSER_CACHE_CONTROL = "public, max-age=0, must-revalidate";
+export const BROWSER_CACHE_CONTROL = "public, max-age=0, must-revalidate";
 
 export const getProcedureCacheSeconds = (meta: unknown): number => {
   const { cacheSeconds } = (meta ?? {}) as Partial<ProcedureMeta>;

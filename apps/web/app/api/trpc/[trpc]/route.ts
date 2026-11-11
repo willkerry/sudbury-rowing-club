@@ -4,6 +4,7 @@ import {
   getCacheHeaders,
   getProcedureCacheSeconds,
 } from "@/lib/trpc/cache-control";
+import { withEdgeCache } from "@/lib/trpc/edge-cache";
 import { createTRPCContext } from "@/lib/trpc/init";
 import { appRouter } from "@/lib/trpc/router";
 
@@ -28,4 +29,6 @@ const handler = (req: Request) =>
     },
   });
 
-export { handler as GET, handler as POST };
+const cachedHandler = withEdgeCache(handler);
+
+export { cachedHandler as GET, handler as POST };
