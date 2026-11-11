@@ -1,16 +1,5 @@
-// Reports on a sudbury-web deploy from the structured output wrangler writes
-// to WRANGLER_OUTPUT_FILE_DIRECTORY, rather than scraping its logs.
-//
-//   node scripts/ci/web-report.ts outputs <stats.json>
-//     Writes url, version_id, preview_url, alias_url and bundle sizes to
-//     GITHUB_OUTPUT, and the bundle size to <stats.json> for later runs to
-//     compare against. `url` is SITE_URL when MODE is production, otherwise
-//     the preview alias.
-//
-//   node scripts/ci/web-report.ts report <markdown-output-path>
-//     Combines the stats, master's stats (BASE_STATS_FILE), the D1 migration
-//     state (MIGRATIONS_FILE) and smoke test (SMOKE_FILE) into one markdown
-//     report for the job summary and the pull request comment.
+// Usage: node scripts/ci/web-report.ts outputs <stats.json>
+//        node scripts/ci/web-report.ts report <markdown-output-path>
 import {
   appendFileSync,
   existsSync,
@@ -100,19 +89,20 @@ const setOutput = (values: Record<string, string | number | undefined>) => {
   console.log(lines.join("\n"));
 };
 
-const firstUrl = (urls: Url[] | undefined) => {
-  const [url] = urls ?? [];
-  if (!url) return;
-  if (typeof url === "string") return url;
+const toUrl = (url: Url) =>
+  typeof url === "string"
+    ? url
+    : (url.url ?? (url.hostname && `https://${url.hostname}`));
 
-  return url.url ?? (url.hostname && `https://${url.hostname}`);
+const firstUrl = (urls: Url[] | undefined) => {
+  const all = (urls ?? []).map(toUrl).filter((url) => url !== undefined);
+
+  return all.find((url) => !url.includes(".workers.dev")) ?? all[0];
 };
 
 const kib = 1024;
 const sizeLine = /Total Upload: ([\d.]+) KiB \/ gzip: ([\d.]+) KiB/;
 
-// `wrangler preview` reports no bundle size, so PR builds measure it with a
-// dry-run upload whose log (SIZE_LOG) has wrangler's "Total Upload" line.
 const sizeFromLog = (): BundleSize | undefined => {
   const match = sizeLine.exec(readIfExists(env.SIZE_LOG) ?? "");
   if (!match) return;
@@ -150,8 +140,6 @@ const outputs = (statsPath: string | undefined) => {
   }
 
   const versionId = latest.version_id ?? latest.deployment_id;
-  // A Worker Preview has a stable URL per PR and a URL per deployment; a
-  // version upload has an alias and a version URL.
   const stableUrl = firstUrl(latest.preview_urls) ?? latest.preview_alias_url;
   const exactUrl = firstUrl(latest.deployment_urls) ?? latest.preview_url;
 
