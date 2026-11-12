@@ -18,5 +18,6 @@ export interface IconNavItemType extends NavItemType {
           titleId?: string;
         } & React.RefAttributes<SVGSVGElement>
       >;
+  items?: NavItemType[];
 }
 export default NavItemType;

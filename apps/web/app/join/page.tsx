@@ -58,7 +58,7 @@ const templateLearnToRowCourseCost = (cost: string | null) =>
     : "For the duration of the programme, you’ll be a club member.";
 
 const Join = async () => {
-  const learnToRowId = useId();
+  const learnToRowId = "l2r";
   const experienceId = useId();
 
   return (

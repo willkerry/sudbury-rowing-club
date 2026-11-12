@@ -27,12 +27,14 @@ const ListItem = ({
   icon,
   mobileOnly,
   cta,
+  items,
 }: IconNavItemType) => {
   if (mobileOnly) return null;
 
   const Icon = icon || null;
+  const isSubItem = !(icon || description);
 
-  return (
+  const link = (
     <NavigationMenuLink
       className={cn(
         "group gap-2.5 transition-colors hover:bg-transparent focus:bg-transparent",
@@ -51,7 +53,8 @@ const ListItem = ({
       <div className="flex flex-col">
         <p
           className={cn(
-            "flex py-0.5 font-semibold text-sm leading-none transition-colors",
+            "flex py-0.5 text-sm leading-none transition-colors",
+            isSubItem ? "font-medium" : "font-semibold",
             {
               "text-gray-600 group-hover:text-gray-900": !cta,
               "text-gray-900 group-hover:text-gray-700": cta,
@@ -75,6 +78,19 @@ const ListItem = ({
         )}
       </div>
     </NavigationMenuLink>
+  );
+
+  if (!items) return link;
+
+  return (
+    <>
+      {link}
+      <div className="-mt-2 ml-8.5 grid grid-cols-2">
+        {items.map((item) => (
+          <ListItem key={item.href} {...item} />
+        ))}
+      </div>
+    </>
   );
 };
 

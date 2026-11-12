@@ -53,6 +53,18 @@ const policies = defineCollection({
   transform,
 });
 
+const squads = defineCollection({
+  directory: "content/squads",
+  include: "**/*.mdx",
+  name: "squads",
+  schema: z.object({
+    description: z.string().optional(),
+    keyword: z.string().optional(),
+    title: z.string(),
+  }),
+  transform,
+});
+
 export default defineConfig({
-  content: [policies],
+  content: [policies, squads],
 });

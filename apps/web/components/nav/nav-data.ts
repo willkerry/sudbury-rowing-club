@@ -13,6 +13,7 @@ import {
   IconShieldCheck,
   IconSparkles,
   IconTicket,
+  IconUsersGroup,
 } from "@tabler/icons-react";
 import {
   Governance,
@@ -40,6 +41,18 @@ const navigationGroups: NavigationGroup[] = [
         href: "/news",
         icon: IconNews,
         name: "News",
+      },
+      {
+        description: "Find out about our squads.",
+        href: "/about/squads",
+        icon: IconUsersGroup,
+        name: "Squads",
+        items: [
+          { href: "/about/squads/masters", name: "Masters" },
+          { href: "/about/squads/seniors", name: "Seniors" },
+          { href: "/about/squads/adaptive", name: "Adaptive" },
+          { href: "/about/squads/juniors", name: "Juniors" },
+        ],
       },
       {
         description: "Rowing in Sudbury since 1874.",

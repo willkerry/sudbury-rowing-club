@@ -1,3 +1,6 @@
+"use client";
+
+import { getInitials } from "@sudburyrc/helpers";
 import Image from "next/image";
 import { forwardRef } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -31,8 +34,8 @@ IdentityImage.displayName = AvatarImage.displayName;
 export const Identity = ({
   imageId,
   lqip,
-  fallback,
   name,
+  fallback = getInitials(name),
   description,
   highlightDescription,
   className,
@@ -48,7 +51,9 @@ export const Identity = ({
   <div className={cn("flex w-full items-center gap-2", className)}>
     <Avatar>
       {imageId && <IdentityImage id={imageId} lqip={lqip} />}
-      <AvatarFallback>{fallback}</AvatarFallback>
+      <AvatarFallback className="font-semibold text-gray-400 tracking-wider">
+        {fallback}
+      </AvatarFallback>
     </Avatar>
     <div>
       <p className="font-semibold text-gray-800 text-xs leading-snug">{name}</p>
