@@ -1,3 +1,4 @@
+import { env as workerEnv } from "cloudflare:workers";
 import { TRPCError } from "@trpc/server";
 import Bowser from "bowser";
 import { tryit } from "radashi";
@@ -76,7 +77,9 @@ export const commsRouter = router({
             ),
             description: input.description,
             parsedUserAgent: Bowser.parse(input.userAgent),
+            sha: workerEnv.GIT_COMMIT_SHA || undefined,
             userAgent: input.userAgent,
+            versionId: workerEnv.CF_VERSION_METADATA?.id,
           },
           null,
           2,

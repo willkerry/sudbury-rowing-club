@@ -7,7 +7,7 @@
   "scripts": {
     "build": "vite build",
     "db:migrate": "wrangler d1 migrations apply sudbury-web --remote",
-    "deploy": "vinext-cloudflare deploy --traffic-aware-warm-cache",
+    "deploy": "vinext-cloudflare deploy",
     "dev": "vite dev --port 4321",
     "email-dev": "email dev",
     "generate": "wrangler types --include-runtime=false --strict-vars=false",

@@ -182,20 +182,6 @@ const migrationsRow = (text: string | undefined) => {
   return `${production ? "Applied" : "Applies on merge"}: ${names}`;
 };
 
-const meter = (stats: Stats | undefined) => {
-  if (!stats) return [];
-
-  const filled = Math.min(
-    20,
-    Math.round((percentOfBudget(stats.gzip_bytes) / 100) * 20),
-  );
-
-  return [
-    "",
-    `\`${"█".repeat(filled)}${"░".repeat(20 - filled)}\` Worker size against the free plan limit`,
-  ];
-};
-
 const report = (outputPath: string) => {
   const stats = readJson<Stats>(env.STATS_FILE);
   const base = readJson<Stats>(env.BASE_STATS_FILE);
@@ -206,13 +192,20 @@ const report = (outputPath: string) => {
   const subject = production ? "Production deploy" : "Preview";
 
   const title = failed
-    ? heading("fail", `${subject} failed`)
-    : heading("pass", production ? "Deployed to production" : "Preview ready");
+    ? `${subject} failed`
+    : production
+      ? "Deployed to production"
+      : "Preview ready";
+
+  const headline = heading(failed ? "fail" : "pass", title, [
+    env.URL && `[${new URL(env.URL).host}](${env.URL})`,
+    shortSha && `[\`${shortSha}\`](${repoUrl}/commit/${env.SHA})`,
+    stats &&
+      `${formatBytes(stats.gzip_bytes)} gzip (${percentOfBudget(stats.gzip_bytes).toFixed(0)}%)`,
+  ]);
 
   const rows: [string, string | undefined][] = [
-    [production ? "Site" : "Preview", env.URL],
     ["Version URL", env.VERSION_URL],
-    ["Commit", shortSha && `[\`${shortSha}\`](${repoUrl}/commit/${env.SHA})`],
     ["Worker version", env.VERSION_ID && `\`${env.VERSION_ID}\``],
     ["Worker size", stats && sizeRow(stats, base)],
     ["D1 migrations", migrationsRow(readIfExists(env.MIGRATIONS_FILE))],
@@ -222,27 +215,28 @@ const report = (outputPath: string) => {
     ],
   ];
 
-  const smokeDetails = smoke
-    ? details("Smoke test", smoke.trimEnd(), smoke.includes("❌"))
-    : "";
-
-  const markdown = [
-    title,
-    "",
+  const body = [
     table(
       ["", ""],
-      rows
-        .filter((row): row is [string, string] => Boolean(row[1]))
-        .map(([label, value]) => [`**${label}**`, value]),
+      rows.filter((row): row is [string, string] => Boolean(row[1])),
     ),
-    ...meter(stats),
-    "",
-    smokeDetails,
+    smoke?.trimEnd(),
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
+  const markdown = [
+    headline,
+    details(
+      "<sub>Details</sub>",
+      body,
+      Boolean(failed) || Boolean(smoke?.includes("❌")),
+    ),
     production
       ? ""
-      : "\nPreviews share production's KV, D1 and email bindings, so the contact form sends real email.",
+      : "<sub>Previews share production's KV, D1 and email bindings, so the contact form sends real email.</sub>",
     "",
-  ].join("\n");
+  ].join("\n\n");
 
   writeFileSync(outputPath, markdown);
   if (env.GITHUB_STEP_SUMMARY)

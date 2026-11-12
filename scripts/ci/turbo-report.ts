@@ -7,8 +7,8 @@ import {
   details,
   fileLink,
   formatDuration,
+  failedMark,
   heading,
-  headline,
   plural,
   readIfExists,
   stripAnsi,
@@ -118,13 +118,6 @@ const total = (results: TestResult[], pattern: RegExp) =>
     0,
   );
 
-const taskIcon = (task: Task) => {
-  if (task.execution?.exitCode) return "❌";
-  if (task.cache?.status === "HIT") return "⚡";
-
-  return "✅";
-};
-
 const taskDuration = (task: Task) =>
   task.execution
     ? formatDuration(task.execution.endTime - task.execution.startTime)
@@ -200,10 +193,9 @@ const sections = [
     ? details(
         `Tests in ${testResults.length} package${testResults.length === 1 ? "" : "s"}`,
         table(
-          ["", "Package", "Files", "Tests", "Duration"],
+          ["Package", "Files", "Tests", "Duration"],
           testResults.map((result) => [
-            taskIcon(result.task),
-            `\`${result.task.package}\``,
+            `${failedMark(Boolean(result.task.execution?.exitCode))}\`${result.task.package}\``,
             result.files ?? "–",
             result.tests ?? "–",
             result.duration ?? "–",
@@ -215,7 +207,7 @@ const sections = [
   details(
     `All ${tasks.length} tasks`,
     table(
-      ["", "Package", "Task", "Cache", "Duration"],
+      ["Package", "Task", "Cache", "Duration"],
       [...tasks]
         .sort(
           (a, b) =>
@@ -224,8 +216,7 @@ const sections = [
             a.taskId.localeCompare(b.taskId),
         )
         .map((task) => [
-          taskIcon(task),
-          `\`${task.package}\``,
+          `${failedMark(Boolean(task.execution?.exitCode))}\`${task.package}\``,
           task.task,
           task.cache?.status ?? "–",
           taskDuration(task),
@@ -236,15 +227,14 @@ const sections = [
 
 writeSummary(
   [
-    heading(failed.length ? "fail" : "pass", title),
-    headline([
-      `**${tasks.length - failed.length}/${tasks.length}** tasks passed`,
-      `**${hits.length}** from cache${hits.length === tasks.length ? " (full turbo)" : ""}`,
-      `${formatDuration(execution.endTime - execution.startTime)} wall time`,
-      saved > 0 && `${formatDuration(saved)} saved by the cache`,
+    heading(failed.length ? "fail" : "pass", title, [
+      `${tasks.length - failed.length}/${tasks.length} tasks`,
+      `${hits.length} cached`,
+      formatDuration(execution.endTime - execution.startTime),
+      saved > 0 && `${formatDuration(saved)} saved`,
       typeErrors.length > 0 && plural(typeErrors.length, "type error"),
       testResults.length > 0 &&
-        `**${passedTests}** tests passed${failedTests ? `, **${failedTests}** failed` : ""}`,
+        `${passedTests} tests passed${failedTests ? `, ${failedTests} failed` : ""}`,
     ]),
     ...sections,
   ].join("\n\n"),

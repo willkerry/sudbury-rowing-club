@@ -5,7 +5,6 @@ import {
   fileLink,
   formatDuration,
   heading,
-  headline,
   plural,
   readIfExists,
   readJson,
@@ -106,12 +105,10 @@ const rows = [
 ];
 
 const markdown = [
-  heading(status, "Lint"),
-  "",
-  headline([
-    plural(errors, "error"),
-    plural(warnings, "warning"),
-    `${report.number_of_files} files checked by Oxlint in ${formatDuration(report.start_time * 1000)}`,
+  heading(status, "Lint", [
+    errors > 0 && plural(errors, "error"),
+    warnings > 0 && plural(warnings, "warning"),
+    `${report.number_of_files} files in ${formatDuration(report.start_time * 1000)}`,
   ]),
   "",
   rows.length

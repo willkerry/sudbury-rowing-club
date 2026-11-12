@@ -27,8 +27,6 @@ env:
     'pull_request' && 'ci-placeholder' || '') }}
   NEXT_PUBLIC_APP_ENV:
     ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
-  NEXT_PUBLIC_GIT_COMMIT_SHA:
-    ${{ github.event.pull_request.head.sha || github.sha }}
   NEXT_PUBLIC_MAPTILER_KEY:
     ${{ secrets.NEXT_PUBLIC_MAPTILER_KEY || (github.event_name ==
     'pull_request' && 'ci-placeholder' || '') }}
@@ -49,65 +47,22 @@ env:
     'pull_request' && 'ci-placeholder' || '') }}
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
-
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          cache: pnpm
-          node-version-file: .nvmrc
-
-      - run: pnpm install --frozen-lockfile
-
-      - name: Oxlint
-        run: pnpm exec oxlint --format=json > "$RUNNER_TEMP/oxlint.json"
-
-      # Tailwind class sorting reads apps/web's stylesheet, which imports blue's built CSS.
-      - name: Oxfmt
-        if: ${{ !cancelled() }}
-        run: |
-          pnpm turbo run build --filter=@sudburyrc/blue
-          pnpm exec oxfmt --list-different > "$RUNNER_TEMP/oxfmt.txt"
-
-      - name: Report
-        if: ${{ !cancelled() }}
-        run: |
-          node scripts/ci/lint-report.ts \
-            "$RUNNER_TEMP/oxlint.json" "$RUNNER_TEMP/oxfmt.txt"
-
-      - name: actionlint
-        if: ${{ !cancelled() }}
-        run: |
-          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12 "$RUNNER_TEMP"
-          # shellcheck disable=SC2016 # a Go template, not shell
-          "$RUNNER_TEMP/actionlint" -format '{{range $err := .}}::error file={{$err.Filepath}},line={{$err.Line}},col={{$err.Column}},title=actionlint ({{$err.Kind}})::{{$err.Message}}\n{{end}}'
-
-      - name: zizmor
-        if: ${{ !cancelled() }}
-        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
-        with:
-          advanced-security: false
-          annotations: true
-
   verify:
-    name: Build, type-check and test
+    name: Lint, build, type-check and test
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
+      actions: read
       contents: read
+    outputs:
+      base: ${{ steps.changes.outputs.base }}
+      web: ${{ steps.changes.outputs.web }}
     steps:
+      # Full history, without blobs, so turbo can diff against the last good deploy.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0
+          filter: blob:none
           persist-credentials: false
           submodules: recursive
 
@@ -135,13 +90,42 @@ jobs:
           env -u GITHUB_STEP_SUMMARY pnpm turbo run build type-check test
           --continue --summarize
 
+      - name: Oxlint
+        if: ${{ !cancelled() }}
+        run: pnpm exec oxlint --format=json > "$RUNNER_TEMP/oxlint.json"
+
+      # After the build: Tailwind class sorting reads blue's built CSS.
+      - name: Oxfmt
+        if: ${{ !cancelled() }}
+        run: pnpm exec oxfmt --list-different > "$RUNNER_TEMP/oxfmt.txt"
+
+      - name: actionlint
+        if: ${{ !cancelled() }}
+        run: |
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12 "$RUNNER_TEMP"
+          # shellcheck disable=SC2016 # a Go template, not shell
+          "$RUNNER_TEMP/actionlint" -format '{{range $err := .}}::error file={{$err.Filepath}},line={{$err.Line}},col={{$err.Column}},title=actionlint ({{$err.Kind}})::{{$err.Message}}\n{{end}}'
+
+      - name: zizmor
+        if: ${{ !cancelled() }}
+        uses: zizmorcore/zizmor-action@45d7276c9ca790aabd705e31ca99c6185c3e76dd # v0.8.1
+        with:
+          advanced-security: false
+          annotations: true
+
       - name: Type-check CI scripts
         if: ${{ !cancelled() }}
         run: pnpm exec tsc -p scripts/ci
 
-      - name: Report
+      - name: Build report
         if: ${{ !cancelled() }}
         run: node scripts/ci/turbo-report.ts "Build, type-check and test"
+
+      - name: Lint report
+        if: ${{ !cancelled() }}
+        run: |
+          node scripts/ci/lint-report.ts \
+            "$RUNNER_TEMP/oxlint.json" "$RUNNER_TEMP/oxfmt.txt"
 
       - name: Upload coverage
         if: ${{ !cancelled() }}
@@ -154,22 +138,50 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+      # Diffs against the last fully green master run, so the next push retries a
+      # failed deploy. With no base (a manual run, or none found), everything deploys.
+      - name: Find changes since the last good deploy
+        id: changes
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          base=""
+          if [ "$GITHUB_EVENT_NAME" = push ]; then
+            base=$(gh run list --workflow ci.yml --branch master --event push \
+              --status success --limit 1 --json headSha --jq '.[0].headSha // empty')
+            git cat-file -e "$base^{commit}" 2>/dev/null || base=""
+          fi
+
+          web=true
+          if [ -n "$base" ]; then
+            web=$(TURBO_SCM_BASE="$base" node_modules/.bin/turbo ls --affected \
+              --filter=@sudburyrc/web --output=json | jq '.packages.count > 0')
+          fi
+
+          echo "base=$base" >> "$GITHUB_OUTPUT"
+          echo "web=$web" >> "$GITHUB_OUTPUT"
+
+      # Keeps only this run's outputs, so the saved cache doesn't grow run on run.
       - name: Prune turbo cache
-        if: ${{ !cancelled() }}
-        run: find .turbo/cache -type f -mtime +7 -delete 2>/dev/null || true
+        if: ${{ !cancelled() && hashFiles('.turbo/runs/*.json') != '' }}
+        run: |
+          jq -r '.tasks[].hash' .turbo/runs/*.json | sort -u > "$RUNNER_TEMP/hashes.txt"
+          for file in .turbo/cache/*; do
+            name=$(basename "$file")
+            grep -qxF "${name%%[-.]*}" "$RUNNER_TEMP/hashes.txt" || rm "$file"
+          done
 
   web:
-    name: Deploy
-    # Waits for the OG Worker deploy, but not on its result: a failed app deploy
-    # leaves the previous OG version serving. Production only from master;
-    # Dependabot and fork PRs have no token.
-    needs: [lint, verify, apps]
+    name: Deploy web
+    # Previews for same-repo PRs (Dependabot and forks get no token); production
+    # from master when web changed since the last good deploy.
+    needs: verify
     if: >-
-      ${{ !cancelled() && needs.lint.result == 'success' &&
-      needs.verify.result == 'success' && ((github.event_name != 'pull_request' &&
-      github.ref == 'refs/heads/master') || (github.event_name == 'pull_request' &&
+      ${{ (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.actor != 'dependabot[bot]')) }}
+      github.actor != 'dependabot[bot]') || (github.ref == 'refs/heads/master' &&
+      needs.verify.outputs.web == 'true') }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -218,6 +230,14 @@ jobs:
       - name: Build
         run: pnpm turbo run build --filter=@sudburyrc/web...
 
+      # After the build, so turbo can reuse web's build across commits.
+      - name: Stamp commit SHA
+        working-directory: apps/web
+        run: |
+          jq --arg sha "$SHA" '.vars.GIT_COMMIT_SHA = $sha | .previews.vars.GIT_COMMIT_SHA = $sha' \
+            dist/server/wrangler.json > "$RUNNER_TEMP/wrangler.json"
+          mv "$RUNNER_TEMP/wrangler.json" dist/server/wrangler.json
+
       - name: Prepare
         run: |
           mkdir -p "$RUNNER_TEMP/wrangler"
@@ -264,15 +284,12 @@ jobs:
         working-directory: apps/web
         run: pnpm run db:migrate
 
-      # Uploads a version at 0%, warms the Response Store with the routes that
-      # took the most traffic in the last 24 hours (zone analytics), then
-      # promotes it. Warming is skipped if the token can't read analytics.
       - name: Deploy
         if: github.event_name != 'pull_request'
         working-directory: apps/web
         run:
           pnpm exec vinext-cloudflare deploy --skip-build --config
-          dist/server/wrangler.json --traffic-aware-warm-cache
+          dist/server/wrangler.json
 
       - name: Read deploy output
         id: deployed
@@ -287,15 +304,15 @@ jobs:
           URL: ${{ steps.deployed.outputs.smoke_url }}
         run: node scripts/ci/smoke.ts "$URL" "$RUNNER_TEMP/smoke.md"
 
+      # Master pushes that don't touch web skip its deploy, so take the newest artifact.
       - name: Download master's bundle size
         if: ${{ !cancelled() && github.event_name == 'pull_request' }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          run_id=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml \
-            --branch master --event push --status success --limit 1 \
-            --json databaseId --jq '.[0].databaseId // empty')
+          run_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=web-bundle-stats&per_page=30" \
+            --jq '[.artifacts[] | select((.expired | not) and .workflow_run.head_branch == "master")][0].workflow_run.id // empty')
           if [ -z "$run_id" ] || ! gh run download "$run_id" \
             --repo "$GITHUB_REPOSITORY" --name web-bundle-stats \
             --dir "$RUNNER_TEMP/base"; then
@@ -357,34 +374,23 @@ jobs:
             -d "$body" > /dev/null
 
   apps:
-    name: Deploy ${{ matrix.app }}
-    needs: [lint, verify]
+    name: Deploy og, cms and results
+    needs: verify
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
       contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          # Preview versions of sudbury-web share this production OG Worker.
-          - app: og
-          - app: cms
-            url: https://edit.sudburyrowingclub.org.uk
-          - app: results
-            url: https://results.sudburyrowingclub.org.uk
     concurrency:
-      group: deploy-${{ matrix.app }}
+      group: deploy-apps
       cancel-in-progress: false
     env:
-      APP: ${{ matrix.app }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      SHA: ${{ github.sha }}
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      TURBO_SCM_BASE: ${{ needs.verify.outputs.base }}
       WRANGLER_SEND_METRICS: "false"
     steps:
-      # Full history, without blobs, so turbo can diff against the last push.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
@@ -408,44 +414,16 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # Deploys unless turbo positively reports no change, so manual runs, force
-      # pushes and any error here all deploy.
-      - name: Check for changes
-        id: changed
-        env:
-          BEFORE: ${{ github.event.before }}
+      # Runs each changed app's own `deploy` script; web deploys in its own job.
+      - name: Deploy changed apps
         run: |
-          affected=unknown
-          if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
-            affected=$(TURBO_SCM_BASE="$BEFORE" pnpm exec turbo ls --affected --output=json |
-              jq --arg name "@sudburyrc/$APP" '.packages.items | any(.name == $name)') || affected=error
-          fi
-          if [ "$affected" = false ]; then
-            echo "Skipped $APP: unchanged since ${BEFORE::7}" >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "$TURBO_SCM_BASE" ]; then
+            pnpm turbo run deploy --filter='!@sudburyrc/web' --affected
           else
-            echo "deploy=true" >> "$GITHUB_OUTPUT"
+            pnpm turbo run deploy --filter='!@sudburyrc/web'
           fi
-
-      - name: Build
-        if: steps.changed.outputs.deploy == 'true'
-        run: pnpm turbo run build --filter="@sudburyrc/$APP"
-
-      - name: Deploy
-        if: steps.changed.outputs.deploy == 'true'
-        working-directory: apps/${{ matrix.app }}
-        run: pnpm exec wrangler deploy --message "${SHA::7}"
-
-      - name: Deploy Sanity schema
-        if: steps.changed.outputs.deploy == 'true' && matrix.app == 'cms'
-        working-directory: apps/cms
-        env:
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-        run: pnpm exec sanity schema deploy
 
       - name: Smoke test
-        if: steps.changed.outputs.deploy == 'true' && matrix.url
-        env:
-          URL: ${{ matrix.url }}
         run: |
-          curl -fsSL -o /dev/null "$URL"
-          echo "Deployed $APP to $URL" >> "$GITHUB_STEP_SUMMARY"
+          curl -fsSL -o /dev/null https://edit.sudburyrowingclub.org.uk
+          curl -fsSL -o /dev/null https://results.sudburyrowingclub.org.uk

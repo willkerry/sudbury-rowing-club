@@ -2,7 +2,6 @@ import { env as workerEnv } from "cloudflare:workers";
 import type { Cache, CacheEntry } from "@epic-web/cachified";
 import { configure, totalTtl } from "@epic-web/cachified";
 import { parse as devalueParse, stringify as devalueStringify } from "devalue";
-import { env } from "@/env";
 
 const SEPARATOR = ":";
 // Workers KV rejects expirations less than 60 seconds away.
@@ -13,9 +12,8 @@ const MIN_KV_TTL_SECONDS = 60;
 const MIN_KV_FRESH_TTL_MS = 10 * 60 * 1000;
 
 // Scope entries to the deployed version so a deploy starts with a fresh cache.
-const withCommitHash = (key: string): string => {
-  const version =
-    env.NEXT_PUBLIC_GIT_COMMIT_SHA ?? workerEnv.CF_VERSION_METADATA?.id;
+const withVersion = (key: string): string => {
+  const version = workerEnv.CF_VERSION_METADATA?.id;
   return version ? `${key}${SEPARATOR}${version}` : key;
 };
 
@@ -33,7 +31,7 @@ const tieredCacheAdapter = (): Cache => ({
   name: "Memory + Workers KV",
   delete: async (key) => {
     memory.delete(key);
-    await workerEnv.DATA_CACHE.delete(withCommitHash(key));
+    await workerEnv.DATA_CACHE.delete(withVersion(key));
   },
   get: async (key) => {
     const local = memory.get(key);
@@ -42,7 +40,7 @@ const tieredCacheAdapter = (): Cache => ({
 
     memory.delete(key);
 
-    const value = await workerEnv.DATA_CACHE.get(withCommitHash(key));
+    const value = await workerEnv.DATA_CACHE.get(withVersion(key));
 
     if (typeof value !== "string") return null;
 
@@ -66,7 +64,7 @@ const tieredCacheAdapter = (): Cache => ({
         : Math.ceil((expiry - Date.now()) / 1000);
 
     await workerEnv.DATA_CACHE.put(
-      withCommitHash(key),
+      withVersion(key),
       devalueStringify(entry),
       expiresInSeconds === undefined
         ? undefined

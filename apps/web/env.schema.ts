@@ -14,7 +14,6 @@ export const clientSchema = {
   NEXT_PUBLIC_APP_ENV: z
     .enum(["development", "preview", "production"])
     .optional(),
-  NEXT_PUBLIC_GIT_COMMIT_SHA: z.string().optional(),
   NEXT_PUBLIC_MAPTILER_KEY: bareValue,
   NEXT_PUBLIC_POSTHOG_HOST: bareValue.pipe(z.url()),
   NEXT_PUBLIC_POSTHOG_KEY: bareValue,
