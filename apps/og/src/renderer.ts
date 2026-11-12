@@ -1,6 +1,5 @@
 import { DurableObject } from "cloudflare:workers";
 import puppeteer, { type Browser } from "@cloudflare/puppeteer";
-import type { Env } from "./index";
 
 const NAVIGATION_TIMEOUT_MS = 15_000;
 const FAILURE_COOLDOWN_MS = 60_000;

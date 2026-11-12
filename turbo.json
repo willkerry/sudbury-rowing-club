@@ -41,7 +41,7 @@
       "persistent": true
     },
     "generate": {
-      "outputs": ["src/generated/**"],
+      "outputs": ["src/generated/**", "worker-configuration.d.ts"],
       "inputs": [
         "$TURBO_DEFAULT$",
         "vendor/**",

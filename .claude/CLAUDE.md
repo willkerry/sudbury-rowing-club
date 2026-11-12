@@ -48,7 +48,7 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 **Data flow:** Sanity CMS → GROQ queries → web app. A Sanity webhook to `/api/revalidate` invalidates cached pages.
 
-**Cloudflare bindings (apps/web/wrangler.jsonc):** Workers Response Store for pages and data (R2 `CACHE_BODIES` + `CacheMetadata` Durable Object, see vite.config.ts), KV (`DATA_CACHE`), D1 (`DB`), rate limiting, Images, the `OG` service binding to `apps/og`, an hourly cron (`worker.ts`). Keep the Worker under 3 MB gzipped (free plan).
+**Cloudflare bindings (apps/web/wrangler.jsonc):** Workers Response Store for pages and data (R2 `CACHE_BODIES` + `CacheMetadata` Durable Object, see vite.config.ts), KV (`DATA_CACHE`), D1 (`DB`), rate limiting, Images, the `OG` service binding to `apps/og`, an hourly cron (`worker.ts`). Keep the Worker under 3 MB gzipped (free plan). `Env` types are generated from each wrangler.jsonc into a gitignored `worker-configuration.d.ts` by `pnpm generate` (`wrangler types`), which turbo runs before dev, build and type-check.
 
 ## Code Style
 

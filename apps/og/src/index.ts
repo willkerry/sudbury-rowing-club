@@ -2,12 +2,6 @@ import { OgRenderer } from "./renderer";
 
 export { OgRenderer };
 
-export type Env = {
-  BROWSER: Fetcher;
-  OG_CACHE: R2Bucket;
-  OG_RENDERER: DurableObjectNamespace<OgRenderer>;
-};
-
 // Bump after changing the share image design to re-render every image.
 const TEMPLATE_VERSION = "1";
 const TEMPLATE_PATH = "/og-template";
