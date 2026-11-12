@@ -150,13 +150,16 @@ jobs:
 
   web:
     name: Deploy
-    needs: [lint, verify]
-    # Production only from master; Dependabot and fork PRs have no token.
-    if:
-      (github.event_name != 'pull_request' && github.ref ==
-      'refs/heads/master') || (github.event_name == 'pull_request' &&
+    # Waits for the OG Worker deploy, but not on its result: a failed app deploy
+    # leaves the previous OG version serving. Production only from master;
+    # Dependabot and fork PRs have no token.
+    needs: [lint, verify, apps]
+    if: >-
+      ${{ !cancelled() && needs.lint.result == 'success' &&
+      needs.verify.result == 'success' && ((github.event_name != 'pull_request' &&
+      github.ref == 'refs/heads/master') || (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.actor != 'dependabot[bot]')
+      github.actor != 'dependabot[bot]')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -251,13 +254,6 @@ jobs:
         working-directory: apps/web
         run: pnpm run db:migrate
 
-      # sudbury-web's OG service binding needs this Worker to exist first.
-      # Preview versions of sudbury-web share the production OG Worker.
-      - name: Deploy OG Worker
-        if: github.event_name != 'pull_request'
-        working-directory: apps/og
-        run: pnpm exec wrangler deploy --message "${SHA::7}"
-
       # Uploads a version at 0%, warms the Response Store with the routes that
       # took the most traffic in the last 24 hours (zone analytics), then
       # promotes it. Warming is skipped if the token can't read analytics.
@@ -349,3 +345,97 @@ jobs:
             -H "Authorization: Bearer $POSTHOG_KEY" \
             -H "Content-Type: application/json" \
             -d "$body" > /dev/null
+
+  apps:
+    name: Deploy ${{ matrix.app }}
+    needs: [lint, verify]
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Preview versions of sudbury-web share this production OG Worker.
+          - app: og
+          - app: cms
+            url: https://edit.sudburyrowingclub.org.uk
+          - app: results
+            url: https://results.sudburyrowingclub.org.uk
+    concurrency:
+      group: deploy-${{ matrix.app }}
+      cancel-in-progress: false
+    env:
+      APP: ${{ matrix.app }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      SHA: ${{ github.sha }}
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      # Full history, without blobs, so turbo can diff against the last push.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          cache: pnpm
+          node-version-file: .nvmrc
+
+      - name: Restore turbo cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo/cache
+          key: turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
+
+      - run: pnpm install --frozen-lockfile
+
+      # Deploys unless turbo positively reports no change, so manual runs, force
+      # pushes and any error here all deploy.
+      - name: Check for changes
+        id: changed
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          affected=unknown
+          if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            affected=$(TURBO_SCM_BASE="$BEFORE" pnpm exec turbo ls --affected --output=json |
+              jq --arg name "@sudburyrc/$APP" '.packages.items | any(.name == $name)') || affected=error
+          fi
+          if [ "$affected" = false ]; then
+            echo "Skipped $APP: unchanged since ${BEFORE::7}" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build
+        if: steps.changed.outputs.deploy == 'true'
+        run: pnpm turbo run build --filter="@sudburyrc/$APP"
+
+      - name: Deploy
+        if: steps.changed.outputs.deploy == 'true'
+        working-directory: apps/${{ matrix.app }}
+        run: pnpm exec wrangler deploy --message "${SHA::7}"
+
+      - name: Deploy Sanity schema
+        if: steps.changed.outputs.deploy == 'true' && matrix.app == 'cms'
+        working-directory: apps/cms
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+        run: pnpm exec sanity schema deploy
+
+      - name: Smoke test
+        if: steps.changed.outputs.deploy == 'true' && matrix.url
+        env:
+          URL: ${{ matrix.url }}
+        run: |
+          curl -fsS -o /dev/null "$URL"
+          echo "Deployed $APP to $URL" >> "$GITHUB_STEP_SUMMARY"

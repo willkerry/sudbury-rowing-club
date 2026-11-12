@@ -6,5 +6,8 @@
   "workers_dev": true,
   "assets": {
     "directory": "./dist/"
-  }
+  },
+  "routes": [
+    { "custom_domain": true, "pattern": "results.sudburyrowingclub.org.uk" }
+  ]
 }

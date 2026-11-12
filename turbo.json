@@ -23,8 +23,7 @@
         "SANITY_REVALIDATE_SECRET",
         "TURNSTILE_SECRET_KEY",
         "SANITY_API_*",
-        "SANITY_STUDIO_*",
-        "SANITY_AUTH_TOKEN"
+        "SANITY_STUDIO_*"
       ]
     },
     "deploy": {
