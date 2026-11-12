@@ -10,6 +10,21 @@
         "next-env.d.ts",
         ".next/types/**",
         ".content-collections/generated/**"
+      ],
+      "env": [
+        "ALGOLIA_API_KEY",
+        "APP_URL",
+        "BUG_RECIPIENT_EMAIL",
+        "FIRECRAWL_API_KEY",
+        "NEXT_PUBLIC_*",
+        "OG_IMAGE_SECRET",
+        "REDIRECT_SECRET",
+        "RESEND_API_KEY",
+        "RESEND_WEBHOOK_SECRET",
+        "SANITY_API_*",
+        "SANITY_REVALIDATE_SECRET",
+        "SANITY_STUDIO_*",
+        "TURNSTILE_SECRET_KEY"
       ]
     },
     // vinext-cloudflare deploy runs its own build.

@@ -19,7 +19,7 @@ pnpm test:watch           # Run tests in watch mode
 pnpm check                # Run oxlint and oxfmt with auto-fix
 
 # Web app (from apps/web)
-pnpm run deploy           # vite build + vinext-cloudflare deploy with traffic-aware cache warming (CI deploys on push to master)
+pnpm run deploy           # vite build + vinext-cloudflare deploy (CI deploys on push to master)
 pnpm run db:migrate       # Apply D1 migrations from packages/db to production
 
 # Per-app commands (from app directory)
@@ -32,7 +32,7 @@ pnpm dev --filter@sudburyrc/results # Results app only
 
 **Apps:**
 - `apps/web` - Next.js API on [vinext](https://www.npmjs.com/package/vinext) (Vite), deployed to Cloudflare Workers as `sudbury-web` (React 19, Tailwind CSS 4, port 4321)
-- `apps/og` - Share (OG) image Worker, `sudbury-og`. Screenshots the web app's `/og-template` page with Browser Rendering and caches PNGs in R2. Only reachable through `sudbury-web`'s `OG` service binding, which checks each `/api/og` URL's `OG_IMAGE_SECRET` signature first. CI deploys og, cms and results as a matrix on push to master, each only when it changed.
+- `apps/og` - Share (OG) image Worker, `sudbury-og`. Screenshots the web app's `/og-template` page with Browser Rendering and caches PNGs in R2. Only reachable through `sudbury-web`'s `OG` service binding, which checks each `/api/og` URL's `OG_IMAGE_SECRET` signature first. On push to master, CI deploys each app that changed since the last fully green master run: web in its own job, the rest through `turbo run deploy --affected`.
 - `apps/cms` - Sanity Studio CMS (content management; its CI deploy also deploys the schema)
 - `apps/results` - Static regatta results archive at results.sudburyrowingclub.org.uk. Astro site: a content loader parses each archival HTML file in `data/<year>/` into an entry rendered through layouts at its original URL; each year's `GeneralStyle.css` is scoped to its pages by a Lightning CSS selector visitor (`src/integrations/archive-assets.ts`). New pages or year folders need no code changes
 

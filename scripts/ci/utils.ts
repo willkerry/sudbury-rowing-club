@@ -6,14 +6,23 @@ const icons: Record<Status, string> = { fail: "❌", pass: "✅", warn: "⚠️"
 
 export const icon = (status: Status) => icons[status];
 
-export const heading = (status: Status, title: string) =>
-  `### ${icon(status)} ${title}`;
+type Part = string | false | undefined;
 
-export const headline = (parts: (string | false | undefined)[]) =>
-  parts.filter(Boolean).join(" · ");
+// One quiet line: an icon only when something needs attention, details in small type.
+export const heading = (status: Status, title: string, parts: Part[] = []) => {
+  const meta = parts.filter(Boolean).join(" · ");
+
+  return [
+    status === "pass" ? "" : `${icon(status)} `,
+    `**${title}**`,
+    meta ? ` <sub>${meta}</sub>` : "",
+  ].join("");
+};
 
 export const plural = (count: number, noun: string) =>
-  `**${count}** ${noun}${count === 1 ? "" : "s"}`;
+  `${count} ${noun}${count === 1 ? "" : "s"}`;
+
+export const failedMark = (failed: boolean) => (failed ? "❌ " : "");
 
 export const formatDuration = (ms: number) =>
   ms >= 60_000

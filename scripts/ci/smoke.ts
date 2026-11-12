@@ -1,6 +1,6 @@
 // Usage: node scripts/ci/smoke.ts <base-url> [markdown-output-path]
 import { writeFileSync } from "node:fs";
-import { annotate, table } from "./utils.ts";
+import { annotate, failedMark, table } from "./utils.ts";
 
 type Route = { path: string; type: string };
 
@@ -101,13 +101,12 @@ for (const result of results) {
 }
 
 const markdown = [
-  `**${passed}/${results.length}** routes healthy on ${baseUrl}`,
+  `${passed}/${results.length} routes healthy on ${baseUrl}`,
   "",
   table(
-    ["", "Route", "Status", "Time", "Content type"],
+    ["Route", "Status", "Time", "Content type"],
     results.map((result) => [
-      result.ok ? "✅" : "❌",
-      `[\`${result.path}\`](${new URL(result.path, baseUrl)})`,
+      `${failedMark(!result.ok)}[\`${result.path}\`](${new URL(result.path, baseUrl)})`,
       String(result.status),
       `${result.ms} ms`,
       result.contentType.split(";")[0] || "–",
