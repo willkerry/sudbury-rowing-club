@@ -42,6 +42,7 @@
     "**/.tmp",
     "**/.vscode",
     "**/.content-collections",
+    "**/.astro",
     "**/apps/results/data",
     "**/packages/weathericons/vendor",
     "pnpm-lock.yaml",

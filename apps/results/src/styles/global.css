@@ -1,0 +1,31 @@
+@layer base {
+  :root {
+    --ink: #111;
+    --muted: #6f6f6f;
+    --faint: #a8a8a8;
+    --font-sans: InterVariable, Inter, system-ui, sans-serif;
+
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--ink);
+    font: 14px/1.6 var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--ink);
+    outline-offset: 2px;
+  }
+
+  /* Archive pages keep browser-default sizing, as they always did; any font their year's stylesheet or markup sets still wins. */
+  [data-archive-content] {
+    color: initial;
+    font: initial;
+    font-family: var(--font-sans);
+  }
+}

@@ -1,0 +1,35 @@
+---
+import Base from "../layouts/Base.astro";
+import { folderUrl, getFolders } from "../lib/folders.ts";
+import styles from "./Listing.module.css";
+
+const folders = await getFolders();
+const years = folders.flatMap((folder) => (folder.year ? [folder.year] : []));
+const range = years.length > 0 ? `${Math.min(...years)} to ${Math.max(...years)}` : "";
+---
+
+<Base title="Sudbury Regatta results">
+  <main class={styles.column}>
+    <header class={styles.header}>
+      <h1 class={styles.title}>Sudbury Regatta</h1>
+      <p class={styles.subtitle}>Results, {range}</p>
+    </header>
+    <ul class={styles.rows}>
+      {
+        folders.map((folder) => (
+          <li>
+            <a class={styles.row} href={folderUrl(folder)}>
+              <span class={styles.year}>{folder.label}</span>
+              <span class={styles.count}>
+                {folder.listed.length} {folder.listed.length === 1 ? "page" : "pages"}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <footer class={styles.footer}>
+      <a href="https://sudburyrowingclub.org.uk/">Sudbury Rowing Club</a>
+    </footer>
+  </main>
+</Base>

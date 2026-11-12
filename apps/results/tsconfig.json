@@ -1,18 +1,12 @@
 {
-  "extends": "@sudburyrc/tsconfig/base.json",
-  "include": ["src/**/*.ts"],
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "data"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
-    "declaration": false,
-    "declarationMap": false,
-    "lib": ["ES2022"],
-    "moduleDetection": "force",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "target": "ES2022",
     "verbatimModuleSyntax": true
   }
 }

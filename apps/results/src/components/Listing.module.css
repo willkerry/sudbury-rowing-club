@@ -1,0 +1,115 @@
+.column {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 4rem 1rem 6rem;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 500;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+.breadcrumbs {
+  margin-bottom: 2.5rem;
+}
+
+.rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.year {
+  transition: opacity 150ms ease;
+}
+
+.count {
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.rows:has(.row:focus-visible) .row:not(:focus-visible) .year {
+  opacity: 0.35;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rows:has(.row:hover) .row:not(:hover) .year {
+    opacity: 0.35;
+  }
+}
+
+.section + .section {
+  margin-top: 2rem;
+}
+
+.sectionTitle {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: inherit;
+  font-weight: 400;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: block;
+  padding: 0.125rem 0;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 150ms ease;
+  overflow-wrap: anywhere;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      text-decoration-color: var(--faint);
+    }
+  }
+}
+
+.footer {
+  margin-top: 3rem;
+  color: var(--muted);
+
+  & a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--faint);
+    text-underline-offset: 3px;
+    transition: color 150ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    & a:hover {
+      color: var(--ink);
+    }
+  }
+}

@@ -15,6 +15,34 @@
         "4321",
         "--strictPort"
       ]
+    },
+    {
+      "name": "results",
+      "port": 4322,
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "apps/results",
+        "exec",
+        "astro",
+        "dev",
+        "--port",
+        "4322"
+      ]
+    },
+    {
+      "name": "results-preview",
+      "port": 4323,
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "apps/results",
+        "exec",
+        "astro",
+        "preview",
+        "--port",
+        "4323"
+      ]
     }
   ]
 }

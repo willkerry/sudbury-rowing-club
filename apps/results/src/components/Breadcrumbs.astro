@@ -1,0 +1,37 @@
+---
+import styles from "./Breadcrumbs.module.css";
+
+interface Props {
+  class?: string;
+  items: { href?: string; label: string }[];
+}
+
+const { class: className, items } = Astro.props;
+---
+
+<nav class:list={[styles.nav, className]} aria-label="Breadcrumb">
+  <ol class={styles.list}>
+    {
+      items.map(({ href, label }) => (
+        <li>
+          {href ? (
+            <a class={styles.link} href={href}>
+              {label}
+            </a>
+          ) : (
+            <span class={styles.current} aria-current="page">
+              {label}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+  {
+    Astro.slots.has("default") && (
+      <div class={styles.aside}>
+        <slot />
+      </div>
+    )
+  }
+</nav>

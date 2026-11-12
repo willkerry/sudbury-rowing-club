@@ -58,6 +58,7 @@ next-env.d.ts
 .parcel-cache
 
 **/dist/
+**/.astro/
 **/node_modules/
 
 # Git worktrees

@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from "astro";
+import ArchivePage from "../../layouts/ArchivePage.astro";
+import { folderUrl, getFolders, isDirectoryIndex } from "../../lib/folders.ts";
+
+export const getStaticPaths = (async () => {
+  const folders = await getFolders();
+
+  return folders.flatMap((folder) =>
+    folder.pages.filter(isDirectoryIndex).map((entry) => ({
+      params: { folder: folder.name },
+      props: { entry, folderUrl: folderUrl(folder) },
+    })),
+  );
+}) satisfies GetStaticPaths;
+
+const { entry, folderUrl: url } = Astro.props;
+---
+
+<ArchivePage entry={entry} folderUrl={url} />

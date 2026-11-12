@@ -33,6 +33,7 @@
     "**/.tmp",
     "**/.vscode",
     "**/.content-collections",
+    "**/.astro",
     "apps/results/data",
     "packages/weathericons/vendor"
   ],
@@ -124,5 +125,13 @@
         "maxArgs": 2
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.astro"],
+      "globals": {
+        "Astro": "readonly"
+      }
+    }
+  ]
 }

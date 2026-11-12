@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths } from "astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import styles from "../../components/Listing.module.css";
+import Base from "../../layouts/Base.astro";
+import {
+  ALL_REGATTAS_URL,
+  type ArchiveEntry,
+  byLabel,
+  folderUrl,
+  getFolders,
+  isDirectoryIndex,
+  pageUrl,
+} from "../../lib/folders.ts";
+
+export const getStaticPaths = (async () => {
+  const folders = await getFolders();
+
+  return folders.map((folder) => ({
+    params: { folder: folder.name, listing: "_listing" },
+    props: { folder },
+  }));
+}) satisfies GetStaticPaths;
+
+const { folder } = Astro.props;
+
+const SECTIONS: [ArchiveEntry["data"]["kind"], string][] = [
+  ["index", "Index"],
+  ["division", "Divisions"],
+  ["event", "Events"],
+  ["club", "Clubs"],
+  ["page", "Pages"],
+];
+
+const sections = SECTIONS.map(([kind, heading]) => ({
+  heading,
+  pages: folder.listed
+    .filter((page) => page.data.kind === kind && !isDirectoryIndex(page))
+    .sort(byLabel),
+})).filter((section) => section.pages.length > 0);
+---
+
+<Base title={`All pages – Sudbury Regatta ${folder.label}`}>
+  <main class={styles.column}>
+    <Breadcrumbs
+      class={styles.breadcrumbs}
+      items={[
+        { href: ALL_REGATTAS_URL, label: "Results" },
+        { href: folderUrl(folder), label: folder.label },
+        { label: "All pages" },
+      ]}
+    />
+    {
+      sections.map((section) => (
+        <section class={styles.section}>
+          <h2 class={styles.sectionTitle}>{section.heading}</h2>
+          <ul class={styles.grid}>
+            {section.pages.map((page) => (
+              <li>
+                <a class={styles.link} href={pageUrl(page)}>
+                  {page.data.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </main>
+</Base>

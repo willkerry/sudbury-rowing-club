@@ -1,0 +1,41 @@
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  & li + li::before {
+    content: "/";
+    margin-right: 0.5rem;
+    color: var(--faint);
+  }
+}
+
+.current {
+  color: var(--ink);
+}
+
+.link,
+.aside a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms ease;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--ink);
+    }
+  }
+}

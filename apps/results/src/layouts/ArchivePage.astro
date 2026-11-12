@@ -1,0 +1,48 @@
+---
+import { render } from "astro:content";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import {
+  ARCHIVE_STYLE_ATTRIBUTE,
+  archiveStyleUrl,
+} from "../lib/archive-styles.ts";
+import {
+  ALL_REGATTAS_URL,
+  type ArchiveEntry,
+  listingUrl,
+} from "../lib/folders.ts";
+import styles from "./ArchivePage.module.css";
+import Base from "./Base.astro";
+
+interface Props {
+  entry: ArchiveEntry;
+  folderUrl: string;
+}
+
+const { entry, folderUrl } = Astro.props;
+const { folder, year, kind, label, style } = entry.data;
+const { Content } = await render(entry);
+
+const folderLabel = year ? String(year) : folder;
+const isIndex = kind === "index";
+const title = isIndex
+  ? `Sudbury Regatta ${folderLabel}`
+  : `${label} – Sudbury Regatta ${folderLabel}`;
+const scope = style ? { [ARCHIVE_STYLE_ATTRIBUTE]: style } : {};
+---
+
+<Base title={title}>
+  {style && <link slot="head" rel="stylesheet" href={archiveStyleUrl(style)} />}
+  <Breadcrumbs
+    class={styles.breadcrumbs}
+    items={[
+      { href: ALL_REGATTAS_URL, label: "Results" },
+      isIndex ? { label: folderLabel } : { href: folderUrl, label: folderLabel },
+      ...(isIndex ? [] : [{ label }]),
+    ]}
+  >
+    <a href={listingUrl(folder)}>All pages</a>
+  </Breadcrumbs>
+  <main class={styles.archive} data-archive-content {...scope}>
+    <Content />
+  </main>
+</Base>
