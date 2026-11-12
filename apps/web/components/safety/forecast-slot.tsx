@@ -9,6 +9,7 @@ const GALE_FORCE = 6;
 const COLD_CELSIUS = 4;
 const HOT_CELSIUS = 30;
 const FOGGY_PERCENT = 40;
+const MS_PER_HOUR = 3_600_000;
 
 type WarningType = "high wind" | "low temperature" | "high temperature" | "fog";
 
@@ -45,6 +46,12 @@ export const ForecastSlotColumn = ({
 }) => {
   const warnings = getWarnings(slot);
   const hour = toLondonHourLabel(slot.time);
+  const isBlock = slot.span === 6;
+  const label = isBlock
+    ? `${hour}–${toLondonHourLabel(new Date(slot.time.getTime() + slot.span * MS_PER_HOUR))}`
+    : hour;
+  const high = isBlock ? (slot.temperatureMax ?? slot.temperature) : undefined;
+  const low = isBlock ? slot.temperatureMin : undefined;
 
   return (
     <div className="flex select-none snap-start flex-col items-center gap-1 px-1 py-3 text-center">
@@ -54,7 +61,7 @@ export const ForecastSlotColumn = ({
           isNow ? "text-black" : "text-gray-400",
         )}
       >
-        {hour}
+        {label}
 
         {warnings.length > 0 && (
           <button
@@ -64,17 +71,33 @@ export const ForecastSlotColumn = ({
             type="button"
           >
             <IconAlertTriangle aria-hidden className="size-3 text-amber-600" />
-            <span className="sr-only">{`Weather warning at ${hour}`}</span>
+            <span className="sr-only">{`Weather warning at ${label}`}</span>
           </button>
         )}
       </div>
 
       <WeatherIcon className="size-7" symbol={slot.symbol} />
 
-      <div className="disambiguate font-semibold text-gray-600 text-sm tabular-nums">
-        {slot.temperature}
-        <span className="text-gray-400">°</span>
-      </div>
+      {high === undefined ? (
+        <div className="disambiguate font-semibold text-gray-600 text-sm tabular-nums">
+          {slot.temperature}
+          <span className="text-gray-400">°</span>
+        </div>
+      ) : (
+        <div className="disambiguate flex items-baseline gap-1.5 font-semibold text-sm tabular-nums">
+          <span className="sr-only">High</span>
+          <span className="text-gray-600">
+            {high}
+            <span className="text-gray-400">°</span>
+          </span>
+          {low !== undefined && low !== high && (
+            <>
+              <span className="sr-only">, low</span>
+              <span className="text-gray-400 text-xs">{low}°</span>
+            </>
+          )}
+        </div>
+      )}
 
       <div className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs tracking-widest">
         <IconArrowNarrowUp
