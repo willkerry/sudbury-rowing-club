@@ -135,6 +135,7 @@
     "deploy": "vinext-cloudflare deploy --traffic-aware-warm-cache",
     "dev": "vite dev --port 4321",
     "email-dev": "email dev",
+    "generate": "wrangler types --include-runtime=false --strict-vars=false",
     "start": "vite preview --port 4321",
     "test": "vitest run",
     "test:watch": "vitest watch",

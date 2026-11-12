@@ -1,11 +1,11 @@
 {
   "extends": "@sudburyrc/tsconfig/base.json",
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "worker-configuration.d.ts"],
   "compilerOptions": {
     "declaration": false,
     "declarationMap": false,
     "lib": ["esnext"],
     "noEmit": true,
-    "types": ["@cloudflare/workers-types"]
+    "types": []
   }
 }

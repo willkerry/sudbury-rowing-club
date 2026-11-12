@@ -34,6 +34,7 @@ yarn-error.log*
 # deploy tooling
 .vercel
 .wrangler/
+worker-configuration.d.ts
 
 # intellij
 .idea
