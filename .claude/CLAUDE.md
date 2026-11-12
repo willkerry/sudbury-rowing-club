@@ -59,7 +59,7 @@ EARNS ITS PLACE ONLY BY EXPLAINING A NON-OBVIOUS **WHY** (A PLATFORM QUIRK, A
 WORKAROUND, A CONSTRAINT) – AND THEN IN ONE SHORT LINE. WHEN IN DOUBT, LEAVE IT
 OUT.
 
-- **Biome** handles linting and formatting (not ESLint/Prettier)
+- **Biome** handles linting and formatting (not ESLint/Prettier). Its rules are the source of truth; run `pnpm check` rather than memorising them
 - **Lefthook** pre-commit hook runs `biome check --write` automatically
 - Semicolons required, double quotes, trailing commas
 - Prefer named exports (default exports only where frameworks require them)
@@ -67,7 +67,7 @@ OUT.
 - Arrow functions preferred over function expressions
 - Use `T[]` array syntax (not `Array<T>`)
 - Tailwind classes sorted by `cn`, `cva`, `clsx` functions
-- Nearly always add an empty line before return statements
+- Use empty lines to break code into short paragraphs of related statements, and nearly always before a `return`
 
 ## Key Technologies
 
