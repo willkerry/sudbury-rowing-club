@@ -12,6 +12,11 @@
         ".content-collections/generated/**"
       ]
     },
+    // vinext-cloudflare deploy runs its own build.
+    "deploy": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

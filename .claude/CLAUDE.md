@@ -34,7 +34,7 @@ pnpm dev --filter@sudburyrc/results # Results app only
 - `apps/web` - Next.js API on [vinext](https://www.npmjs.com/package/vinext) (Vite), deployed to Cloudflare Workers as `sudbury-web` (React 19, Tailwind CSS 4, port 4321)
 - `apps/og` - Share (OG) image Worker, `sudbury-og`. Screenshots the web app's `/og-template` page with Browser Rendering and caches PNGs in R2. Only reachable through `sudbury-web`'s `OG` service binding, which checks each `/api/og` URL's `OG_IMAGE_SECRET` signature first. CI deploys og, cms and results as a matrix on push to master, each only when it changed.
 - `apps/cms` - Sanity Studio CMS (content management; its CI deploy also deploys the schema)
-- `apps/results` - Static results pages (Nunjucks templates, Parcel bundler)
+- `apps/results` - Static regatta results archive at results.sudburyrowingclub.org.uk (archival HTML converted by a tsx script, Nunjucks directory listings)
 
 **Packages:**
 - `packages/api` - API utilities and data processing (tsup-built)
