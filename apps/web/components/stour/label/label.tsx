@@ -13,7 +13,7 @@ export const Label = ({
 }: Props) => (
   <Component
     className={cn(
-      "inline-block font-medium text-gray-600 text-sm uppercase leading-tight tracking-widest",
+      "inline-block uppercase text-sm leading-tight font-medium tracking-widest text-gray-600",
       className,
     )}
   >

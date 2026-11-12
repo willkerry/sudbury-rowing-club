@@ -105,7 +105,7 @@ export const BugsClientSide = () => {
 
   return (
     <>
-      <div className="prose mx-auto pb-10">
+      <div className="mx-auto prose pb-10">
         <p>
           This is a mechanism for reporting website bugs, which bypasses the
           (potentially buggy) main contact form.
@@ -170,7 +170,7 @@ export const BugsClientSide = () => {
         </form.Field>
 
         <fieldset className="col-span-2 grid gap-4 rounded-sm border bg-gray-50 p-2">
-          <legend className="font-medium text-gray-700 text-xs">
+          <legend className="text-xs font-medium text-gray-700">
             Included automatically
           </legend>
 
@@ -229,7 +229,7 @@ export const BugsClientSide = () => {
         </Center>
       </form>
 
-      <div className="prose mt-16 text-gray-500 text-sm">
+      <div className="prose mt-16 text-sm text-gray-500">
         Alternatively, mail{" "}
         <Obfuscate email="webmaster@sudburyrowingclub.org.uk" />.
       </div>

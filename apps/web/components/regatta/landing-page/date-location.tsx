@@ -13,12 +13,12 @@ export const DateLocation = ({ date, location }: Props) => (
   <div className="my-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
     <div className="flex items-center">
       <IconCalendarFilled aria-hidden className={ICON_CLASSES} />
-      <span className="text-gray-800 text-sm">{date}</span>
+      <span className="text-sm text-gray-800">{date}</span>
     </div>
     <div className="flex items-center">
       <IconMapPinFilled aria-hidden className={ICON_CLASSES} />
       <Link
-        className="disambiguate text-gray-800 text-sm"
+        className="disambiguate text-sm text-gray-800"
         href="/contact/how-to-find-us"
       >
         {location}

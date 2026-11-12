@@ -31,11 +31,11 @@ const Join = () => (
       <Container className="my-16">
         <HundredAndFiftyLogo />
 
-        <h1 className="mx-auto mt-20 mb-12 text-center font-semibold text-3xl text-white md:text-7xl">
+        <h1 className="mx-auto mt-20 mb-12 text-center text-3xl font-semibold text-white md:text-7xl">
           150 years of rowing in Sudbury
         </h1>
 
-        <div className="prose prose-invert mx-auto mb-6 text-blue-50">
+        <div className="mx-auto prose mb-6 text-blue-50 prose-invert">
           <p>
             Sudbury Rowing Club, formerly Stour Boat Club, was founded in 1874.
             In 2024, in celebration of the 150th anniversary of our foundation,

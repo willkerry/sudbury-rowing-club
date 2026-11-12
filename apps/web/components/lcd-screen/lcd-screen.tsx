@@ -40,7 +40,7 @@ export const LCDScreen = ({
       <div
         className={cn(
           "whitespace-pre",
-          "relative z-20 font-base font-digital font-light text-9xl text-green-400 leading-none",
+          "font-base relative z-20 font-digital text-9xl leading-none font-light text-green-400",
           "before:pointer-events-none before:absolute before:inset-0 before:z-[-1] before:text-green-400 before:opacity-10 before:content-['88:88']",
         )}
       >

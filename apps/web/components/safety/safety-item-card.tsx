@@ -43,14 +43,14 @@ const SafetyItemTitle = ({
     className="text-gray-900 transition hover:text-blue-500 hover:underline"
     href={href}
   >
-    <h2 className="mb-2 line-clamp-1 font-semibold text-xl leading-tight md:text-base">
+    <h2 className="mb-2 line-clamp-1 text-xl leading-tight font-semibold md:text-base">
       {children}
     </h2>
   </Link>
 );
 
 const SafetyItemUpdatedAt = ({ date }: { date: string }) => (
-  <div className="mb-2 font-medium text-gray-500 text-xs">
+  <div className="mb-2 text-xs font-medium text-gray-500">
     Updated on <DateFormatter dateString={date} />
   </div>
 );

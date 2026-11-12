@@ -5,7 +5,7 @@ export const SocialIcons = () => (
   <>
     {socials.map((item) => (
       <Link
-        className="mr-4 rounded-sm text-gray-400 transition hover:text-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="mr-4 rounded-sm text-gray-400 transition hover:text-black focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-hidden"
         href={item.href}
         key={item.href}
       >

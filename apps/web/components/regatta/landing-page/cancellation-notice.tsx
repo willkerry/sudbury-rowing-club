@@ -54,7 +54,7 @@ export const RegattaCancellationNotice = () => (
             </p>
           </Text>
 
-          <p className="mt-6 font-medium text-gray-500 text-xs">
+          <p className="mt-6 text-xs font-medium text-gray-500">
             Updated 28 July 2026
           </p>
         </div>

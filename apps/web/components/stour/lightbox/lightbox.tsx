@@ -72,7 +72,7 @@ export const LightBox = ({
       <Dialog.Root onOpenChange={() => toggle()} open={open}>
         <Dialog.Portal>
           <Dialog.Popup
-            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center overscroll-contain bg-white backdrop-blur-sm transition-[opacity,scale] duration-150 data-ending-style:scale-50 data-starting-style:scale-50 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
+            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center overscroll-contain bg-white backdrop-blur-sm transition-[opacity,scale] duration-150 data-ending-style:scale-50 data-ending-style:opacity-0 data-starting-style:scale-50 data-starting-style:opacity-0 motion-reduce:transition-none"
             onClick={() => toggle()}
           >
             <Dialog.Title className="sr-only">{alt || "Image"}</Dialog.Title>

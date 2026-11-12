@@ -50,12 +50,12 @@ export const DocPage = ({
       <div className="sticky top-0 hidden max-h-[100dvh] max-w-72 overflow-y-auto px-4 lg:block">
         <div className="sticky top-0 right-0 h-12 w-full bg-linear-to-t from-transparent to-white" />
 
-        <h2 className="mb-3 flex items-center gap-2 font-medium text-gray-700 text-sm">
-          <IconAlignLeft aria-hidden className="w-3 stroke-3 stroke-current" />
+        <h2 className="mb-3 flex items-center gap-2 text-sm font-medium text-gray-700">
+          <IconAlignLeft aria-hidden className="w-3 stroke-current stroke-3" />
           On this page
         </h2>
         <TableOfContents toc={toc} />
-        <div className="sticky right-0 bottom-0 h-12 w-full bg-linear-to-b bg-opacity-50 from-transparent to-white" />
+        <div className="bg-opacity-50 sticky right-0 bottom-0 h-12 w-full bg-linear-to-b from-transparent to-white" />
       </div>
     </Container>
   );

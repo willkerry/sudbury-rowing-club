@@ -1,9 +1,18 @@
 {
-  "author": "Will Kerry <webmaster@sudburyrowingclub.org.uk>",
-  "description": "",
-  "main": "package.json",
   "name": "@sudburyrc/cms",
   "version": "2.0.0",
+  "description": "",
+  "author": "Will Kerry <webmaster@sudburyrowingclub.org.uk>",
+  "main": "package.json",
+  "scripts": {
+    "build": "sanity build -y",
+    "deploy": "wrangler deploy && sanity schema deploy",
+    "dev": "sanity dev",
+    "preview": "sanity preview",
+    "sanity": "sanity",
+    "sanity:upgrade": "sanity upgrade",
+    "type-check": "tsc --noEmit"
+  },
   "dependencies": {
     "@sanity/client": "^8.9.0",
     "@sanity/color": "^3.0.9",
@@ -25,14 +34,5 @@
     "@sudburyrc/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "wrangler": "catalog:"
-  },
-  "scripts": {
-    "build": "sanity build -y",
-    "deploy": "wrangler deploy && sanity schema deploy",
-    "dev": "sanity dev",
-    "preview": "sanity preview",
-    "sanity": "sanity",
-    "sanity:upgrade": "sanity upgrade",
-    "type-check": "tsc --noEmit"
   }
 }

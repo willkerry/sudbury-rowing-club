@@ -26,7 +26,7 @@ export const SeveritySection = ({ status, message }: SeveritySectionProps) => {
 
   return (
     <div
-      className={`${severityClasses[status]} flex h-12 items-center justify-between p-3 font-bold text-2xl sm:h-16 sm:p-4 md:text-3xl`}
+      className={`${severityClasses[status]} flex h-12 items-center justify-between p-3 text-2xl font-bold sm:h-16 sm:p-4 md:text-3xl`}
     >
       {getMessage(status, message)}
 

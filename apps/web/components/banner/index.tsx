@@ -174,7 +174,7 @@ export const Banner = () => {
             <Text className="py-4" portableText={data?.text} size="small" />
 
             {data.date && (
-              <div className="mb-4 font-medium text-gray-700 text-xs">
+              <div className="mb-4 text-xs font-medium text-gray-700">
                 Updated{" "}
                 <DateFormatter
                   dateString={data.date}

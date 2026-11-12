@@ -85,16 +85,16 @@ const DialogComponent = () => {
   return (
     <BaseDialog.Root onOpenChange={() => closeDialog()} open={isOpen}>
       <BaseDialog.Portal>
-        <BaseDialog.Backdrop className="data-[closed]:fade-out-0 data-[open]:fade-in-0 fixed inset-0 z-50 bg-black/50 data-[closed]:animate-out data-[open]:animate-in" />
+        <BaseDialog.Backdrop className="fixed inset-0 z-50 bg-black/50 data-[closed]:animate-out data-[closed]:fade-out-0 data-[open]:animate-in data-[open]:fade-in-0" />
 
-        <BaseDialog.Popup className="data-[closed]:fade-out-0 data-[open]:fade-in-0 data-[closed]:zoom-out-95 data-[open]:zoom-in-95 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-[48%] data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-[48%] fixed top-[50%] left-[50%] z-50 grid w-full max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-hidden border bg-gray-50 p-3 shadow-lg duration-200 data-[closed]:animate-out data-[open]:animate-in sm:rounded-sm">
+        <BaseDialog.Popup className="fixed top-[50%] left-[50%] z-50 grid w-full max-w-sm translate-x-[-50%] translate-y-[-50%] overflow-hidden border bg-gray-50 p-3 shadow-lg duration-200 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-[48%] data-[closed]:zoom-out-95 data-[open]:animate-in data-[open]:fade-in-0 data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-[48%] data-[open]:zoom-in-95 sm:rounded-sm">
           {title && (
-            <BaseDialog.Title className="font-semibold text-gray-780 text-sm">
+            <BaseDialog.Title className="text-gray-780 text-sm font-semibold">
               {title}
             </BaseDialog.Title>
           )}
 
-          <BaseDialog.Description className="font-medium text-gray-600 text-sm">
+          <BaseDialog.Description className="text-sm font-medium text-gray-600">
             {description}
           </BaseDialog.Description>
 

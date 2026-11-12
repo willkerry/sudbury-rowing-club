@@ -25,13 +25,13 @@ const BritishRowingArticle = ({ article }: { article?: BRArticle }) => (
   >
     {article && (
       <>
-        <h3 className="font-medium text-sm leading-tight transition-colors group-hover:text-blue-500">
+        <h3 className="text-sm leading-tight font-medium transition-colors group-hover:text-blue-500">
           {article.title}
         </h3>
 
         <div className="flex items-end justify-between gap-1">
           <DateFormatter
-            className="font-medium text-gray-500 text-xs leading-none transition-colors group-hover:text-gray-800"
+            className="text-xs leading-none font-medium text-gray-500 transition-colors group-hover:text-gray-800"
             dateString={article.date}
           />
           <BritishRowing className="h-4" />

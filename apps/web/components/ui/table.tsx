@@ -120,7 +120,7 @@ const TableCaption = React.forwardRef<
   React.HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref) => (
   <caption
-    className={cn("mt-4 text-gray-500 text-sm", className)}
+    className={cn("mt-4 text-sm text-gray-500", className)}
     ref={ref}
     {...props}
   />
@@ -132,8 +132,10 @@ type SortableFilterableFeatures = {
   rowSortingFeature: typeof rowSortingFeature;
 };
 
-interface DataTableColumnHeaderProps<TData extends RowData, TValue>
-  extends React.HTMLAttributes<HTMLDivElement> {
+interface DataTableColumnHeaderProps<
+  TData extends RowData,
+  TValue,
+> extends React.HTMLAttributes<HTMLDivElement> {
   column: Pick<
     Column<SortableFilterableFeatures, TData, TValue>,
     | "clearSorting"

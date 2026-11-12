@@ -25,7 +25,7 @@ pnpm install   # install all dependencies
 pnpm dev       # start all dev servers (web on port 4321)
 pnpm test      # run tests
 pnpm type-check
-pnpm check     # Biome lint + format with auto-fix
+pnpm check     # Oxlint + Oxfmt with auto-fix
 ```
 
 See [`CLAUDE.md`](.claude/CLAUDE.md) for the full architecture and code-style guide.

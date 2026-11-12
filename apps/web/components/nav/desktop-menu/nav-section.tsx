@@ -16,7 +16,7 @@ import type { IconNavItemType } from "@/types/nav-item";
 const navLinkClasses = (isActive: boolean) =>
   cn(
     navigationMenuTriggerStyle(),
-    "h-auto px-2 py-2.5 text-gray-500 transition-colors hover:bg-transparent hover:text-black focus:bg-transparent focus-visible:ring-2 focus-visible:ring-blue-500 data-open:bg-transparent data-popup-open:bg-transparent data-open:text-black data-popup-open:text-black data-open:focus:bg-transparent data-open:hover:bg-transparent data-popup-open:hover:bg-transparent md:px-3 [&>svg]:ml-0.5 [&>svg]:text-gray-400 hover:[&>svg]:text-gray-800",
+    "h-auto px-2 py-2.5 text-gray-500 transition-colors hover:bg-transparent hover:text-black focus:bg-transparent focus-visible:ring-2 focus-visible:ring-blue-500 data-open:bg-transparent data-open:text-black data-open:hover:bg-transparent data-open:focus:bg-transparent data-popup-open:bg-transparent data-popup-open:text-black data-popup-open:hover:bg-transparent md:px-3 [&>svg]:ml-0.5 [&>svg]:text-gray-400 hover:[&>svg]:text-gray-800",
     isActive && "text-black [&>svg]:text-gray-700",
   );
 
@@ -51,7 +51,7 @@ const ListItem = ({
       <div className="flex flex-col">
         <p
           className={cn(
-            "flex py-0.5 font-semibold text-sm leading-none transition-colors",
+            "flex py-0.5 text-sm leading-none font-semibold transition-colors",
             {
               "text-gray-600 group-hover:text-gray-900": !cta,
               "text-gray-900 group-hover:text-gray-700": cta,
@@ -69,7 +69,7 @@ const ListItem = ({
           )}
         </p>
         {description && (
-          <p className="font-medium text-gray-500 text-xs transition-colors group-hover:text-gray-900">
+          <p className="text-xs font-medium text-gray-500 transition-colors group-hover:text-gray-900">
             {description}
           </p>
         )}

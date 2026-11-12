@@ -30,7 +30,7 @@ const AmendmentDate = ({ set }: { set: keyof typeof COLORS }) => (
   <>
     <span className="sr-only"> Amendment ratified in </span>
     <ServerOrClientDateFormatter
-      className="disambiguate font-semibold text-xs"
+      className="disambiguate text-xs font-semibold"
       dateString={AMENDEMENTS[set]}
       format="year"
     />

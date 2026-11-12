@@ -74,7 +74,7 @@ const Attribution = ({ testimonial }: { testimonial: TestimonialType }) => {
           {testimonial.name}
 
           <WithBlade
-            className="text-gray-500 text-sm"
+            className="text-sm text-gray-500"
             testimonial={testimonial}
           />
         </cite>
@@ -94,15 +94,15 @@ export const Testimonial = ({ ...testimonial }: TestimonialType) => (
       className={cn(
         "space-y-4 leading-snug",
         {
-          "hyphens-auto text-gray-800 text-sm": testimonial.text?.length > 250,
+          "text-sm hyphens-auto text-gray-800": testimonial.text?.length > 250,
         },
-        { "font-light text-black text-lg": testimonial.text?.length < 250 },
+        { "text-lg font-light text-black": testimonial.text?.length < 250 },
       )}
     >
       {testimonial.text}
     </blockquote>
 
-    <figcaption className="pt-3 font-medium leading-snug">
+    <figcaption className="pt-3 leading-snug font-medium">
       <Attribution testimonial={testimonial} />
     </figcaption>
   </figure>

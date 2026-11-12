@@ -47,7 +47,7 @@ const Coursemap = async () => {
     <>
       <PageHeader breadcrumbs title="Regatta course" />
       <Container className="mb-16">
-        <div className="prose auto-lead mb-16">
+        <div className="prose mb-16 auto-lead">
           <p>{heading}</p>
           <p>{description}</p>
           <Button asChild icon={<IconDownload />}>

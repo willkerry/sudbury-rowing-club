@@ -81,7 +81,7 @@ export const Sponsors = ({
       <LogoList className="md:justify-center md:gap-8" logos={affiliateLogos} />
     )}
     {heading && (
-      <h3 className="mb-4 text-center font-medium text-gray-500 text-sm">
+      <h3 className="mb-4 text-center text-sm font-medium text-gray-500">
         {heading}
       </h3>
     )}

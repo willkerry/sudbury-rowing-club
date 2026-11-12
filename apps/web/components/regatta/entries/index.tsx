@@ -46,7 +46,7 @@ export const Entries = ({
           className={cn(
             "prose",
             "overflow-x-auto",
-            compact ? "prose-sm my-6" : "my-12 text-xs sm:text-sm lg:text-base",
+            compact ? "my-6 prose-sm" : "my-12 text-xs sm:text-sm lg:text-base",
           )}
         >
           <table className="table-fixed">

@@ -57,7 +57,7 @@ const CompetitorInformationPage = async () => {
               ))}
             </ul>
           ) : (
-            <p className="text-gray-500 text-sm">No documents available</p>
+            <p className="text-sm text-gray-500">No documents available</p>
           )}
         </div>
       </Container>

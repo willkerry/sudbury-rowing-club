@@ -13,11 +13,11 @@ export function getBoatsByWave(
   const boats: string[] = matrix[0];
   const outputMap: OutputMap = {};
 
-  matrix.forEach((row, x) => {
-    if (!x) return;
+  for (const [x, row] of matrix.entries()) {
+    if (!x) continue;
 
-    row.forEach((value, y) => {
-      if (!(y && value) || value === exclude) return;
+    for (const [y, value] of row.entries()) {
+      if (!(y && value) || value === exclude) continue;
 
       if (!outputMap[value]) outputMap[value] = [];
 
@@ -25,8 +25,8 @@ export function getBoatsByWave(
         x: categories[x].toString(),
         y: boats[y].toString(),
       });
-    });
-  });
+    }
+  }
 
   for (const key in outputMap) {
     outputMap[key].sort((a, b) => {

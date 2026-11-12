@@ -44,7 +44,7 @@ export const PageHeader = ({
       })}
     >
       <h1
-        className={cn("max-w-2xl font-semibold text-3xl sm:text-5xl", {
+        className={cn("max-w-2xl text-3xl font-semibold sm:text-5xl", {
           "mx-auto": !!prose,
         })}
       >
@@ -54,7 +54,7 @@ export const PageHeader = ({
       {description && (
         <div
           className={cn(
-            "mb-7 max-w-2xl text-gray-600 text-lg sm:my-3.5 sm:text-2xl",
+            "mb-7 max-w-2xl text-lg text-gray-600 sm:my-3.5 sm:text-2xl",
             {
               "mx-auto": !!prose,
             },

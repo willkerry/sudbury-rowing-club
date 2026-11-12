@@ -3,7 +3,7 @@ import { Wordmark } from "@sudburyrc/blue";
 const DottedLine = () => (
   <span
     aria-hidden
-    className="ml-2 flex grow border-gray-400 border-b-2 border-dotted"
+    className="ml-2 flex grow border-b-2 border-dotted border-gray-400"
   >
     &nbsp;
   </span>
@@ -36,7 +36,7 @@ export const Declaration = () => (
 
     <br className="mb-6" />
 
-    <div className="text-gray-700 text-sm">
+    <div className="text-sm text-gray-700">
       <p>
         <em>
           <span className="font-semibold">*</span>

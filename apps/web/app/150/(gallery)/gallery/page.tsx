@@ -75,7 +75,7 @@ const Join = async () => {
 
         {archives.map(({ era, slug, archives }) => (
           <div className="mb-8" key={slug}>
-            <h2 className="mb-2 font-medium text-gray-900 text-xl">{era}</h2>
+            <h2 className="mb-2 text-xl font-medium text-gray-900">{era}</h2>
             <div className="sm:columns-2">
               {archives?.map((archive) => (
                 <ArchiveItem key={archive._id} {...archive} />

@@ -52,7 +52,7 @@ const OfficerPhotographOrPlaceholder = ({
 }) => {
   if (vacant) {
     return (
-      <div className="font-bold text-gray-400 uppercase tracking-widest">
+      <div className="uppercase font-bold tracking-widest text-gray-400">
         TBA
       </div>
     );
@@ -128,7 +128,7 @@ const OfficerDescription = ({
         sideOffset={({ anchor: { height } }) => -height}
       >
         <Popover.Popup className="relative h-(--anchor-height) w-(--anchor-width) rounded-sm border border-gray-300 bg-white p-2 transition-opacity duration-150 ease-out-strong data-ending-style:opacity-0 data-starting-style:opacity-0">
-          <div className="h-full w-full overflow-y-auto font-medium text-black text-sm">
+          <div className="h-full w-full overflow-y-auto text-sm font-medium text-black">
             <p>{description}</p>
           </div>
           <Popover.Close className="absolute right-2 bottom-2 text-gray-500 transition-colors hover:text-gray-700">
@@ -158,7 +158,7 @@ const OfficerCard = ({ officer }: { officer: Governance["officers"][0] }) => {
           />
         )}
       </div>
-      <div className="font-semibold text-gray-800 tracking-snug">
+      <div className="tracking-snug font-semibold text-gray-800">
         <OfficerNameOrPlaceholder {...{ officer }} />
       </div>
       <Description>{officer.role}</Description>
@@ -175,7 +175,7 @@ export const Officers = ({ officers }: Props) => (
       ))}
     </GovGrid>
 
-    <p className="py-12 text-gray-500 text-sm">
+    <p className="py-12 text-sm text-gray-500">
       The role descriptions provided above are abbreviated and for illustrative
       purposes only. Please refer to the{" "}
       <Link href="/governance/constitution">constitution</Link> for accurate

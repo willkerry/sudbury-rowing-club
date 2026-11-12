@@ -52,7 +52,7 @@ const GalleryFigure = ({
       )}
 
       {caption && (
-        <figcaption className="mt-1 flex items-center text-gray-600 text-sm">
+        <figcaption className="mt-1 flex items-center text-sm text-gray-600">
           {caption}
         </figcaption>
       )}

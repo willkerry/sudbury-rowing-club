@@ -1,19 +1,12 @@
 {
-  "author": "",
+  "name": "@sudburyrc/blue",
+  "version": "1.0.0",
   "description": "",
   "keywords": [],
   "license": "ISC",
+  "author": "",
   "main": "dist/index.mjs",
-  "name": "@sudburyrc/blue",
   "types": "dist/index.d.mts",
-  "version": "1.0.0",
-  "devDependencies": {
-    "@sudburyrc/tsconfig": "workspace:*",
-    "@types/node": "^26.6.4",
-    "@types/react": "catalog:",
-    "tsdown": "catalog:",
-    "typescript": "catalog:"
-  },
   "exports": {
     "./blue.css": "./dist/blue.css",
     ".": {
@@ -21,12 +14,19 @@
       "types": "./dist/index.d.mts"
     }
   },
-  "peerDependencies": {
-    "react": "^19.0.0"
-  },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown",
     "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@sudburyrc/tsconfig": "workspace:*",
+    "@types/node": "^26.6.4",
+    "@types/react": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
   }
 }

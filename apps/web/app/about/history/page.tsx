@@ -378,7 +378,7 @@ const History: NextPage = () => (
       Cup for coxless pairs.
     </p>
 
-    <div className="pt-16 text-gray-500 text-sm">
+    <div className="pt-16 text-sm text-gray-500">
       <p>
         Written by Trevor Chambers in 1996.
         <br />
@@ -393,8 +393,8 @@ const History: NextPage = () => (
       </p>
     </div>
 
-    <div className="pt-8 text-gray-500 text-sm">
-      <h2 className="mb-0 font-medium text-base">See also</h2>
+    <div className="pt-8 text-sm text-gray-500">
+      <h2 className="mb-0 text-base font-medium">See also</h2>
       <Link className="block" href="/150">
         150th anniversary gallery
       </Link>

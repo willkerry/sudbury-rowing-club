@@ -26,7 +26,7 @@ export default function GlobalError({ error, reset }: ErrorProps) {
   return (
     <html lang="en-GB">
       <body>
-        <Container className="prose my-24 max-w-prose">
+        <Container className="my-24 prose max-w-prose">
           <h1>Something went wrong.</h1>
 
           <p>

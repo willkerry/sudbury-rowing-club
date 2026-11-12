@@ -16,11 +16,11 @@ export const RegattaHero = ({
 }: Props) => (
   <div className="mx-auto mb-12 max-w-lg text-center sm:mt-12">
     <ImageComposite cancelled={cancelled} ticketItems={ticketItems} />
-    <h1 className="bg-linear-to-br from-blue-400 to-blue-950 bg-clip-text pb-12 font-bold text-5xl text-transparent tracking-tight sm:text-7xl md:text-7xl">
+    <h1 className="bg-linear-to-br from-blue-400 to-blue-950 bg-clip-text pb-12 text-5xl font-bold tracking-tight text-transparent sm:text-7xl md:text-7xl">
       Sudbury <span className="font-light text-gray-900">‘International’</span>{" "}
       Regatta
     </h1>
-    <p className="text-gray-800 text-xl">
+    <p className="text-xl text-gray-800">
       {subtitle}{" "}
       <ScrollLink
         className="text-blue-500 hover:cursor-pointer hover:text-gray-600"

@@ -45,7 +45,7 @@ export const Footer = () => (
       </div>
 
       <div className="pt-2">
-        <div className="m-auto flex justify-between py-5 text-gray-500 text-sm md:flex-row">
+        <div className="m-auto flex justify-between py-5 text-sm text-gray-500 md:flex-row">
           <div className="mt-2">
             © Sudbury Rowing Club {new Date().getFullYear()}. <ReportABug />
           </div>

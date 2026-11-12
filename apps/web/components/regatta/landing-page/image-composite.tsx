@@ -47,7 +47,7 @@ export const ImageComposite = ({
         width="34"
       />
     </div>
-    <div className="absolute right-28 bottom-0 z-0 -rotate-45 scale-x-[-1] drop-shadow-2xl">
+    <div className="absolute right-28 bottom-0 z-0 scale-x-[-1] -rotate-45 drop-shadow-2xl">
       <Image
         alt=""
         height="425"

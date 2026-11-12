@@ -11,6 +11,6 @@ export const SectionHeading = ({
     <Label as="div" className="my-4">
       {label}
     </Label>
-    <h2 className="font-bold text-5xl">{title}</h2>
+    <h2 className="text-5xl font-bold">{title}</h2>
   </div>
 );

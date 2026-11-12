@@ -8,7 +8,7 @@ export const Success = ({ messageId }: { messageId?: string | null }) => (
         Thank you for your message. We will get back to you as soon as possible.
       </p>
       {messageId && (
-        <p className="pt-2 font-medium font-mono text-xs">
+        <p className="pt-2 font-mono text-xs font-medium">
           Message ID: {messageId}
         </p>
       )}

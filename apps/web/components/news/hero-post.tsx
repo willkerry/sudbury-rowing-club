@@ -18,7 +18,7 @@ export const HeroPost = ({ post }: { post: ArticleSummary }) => (
           title={post.title}
         />
       ) : (
-        <div className="relative h-full select-none overflow-hidden bg-white px-2.5 pt-1 font-bold text-8xl text-gray-100 transition group-hover:text-blue-50">
+        <div className="relative h-full overflow-hidden bg-white px-2.5 pt-1 text-8xl font-bold text-gray-100 transition select-none group-hover:text-blue-50">
           {post.title}
         </div>
       )}
@@ -31,13 +31,13 @@ export const HeroPost = ({ post }: { post: ArticleSummary }) => (
           post.isSyntheticExcerpt && "line-clamp-4",
         )}
       >
-        {post.excerpt && post.excerpt}
+        {post.excerpt}
       </p>
       <div>
-        <div className="mb-1 font-mono font-semibold text-gray-600 text-xs uppercase">
+        <div className="mb-1 font-mono uppercase text-xs font-semibold text-gray-600">
           <DateFormatter dateString={post.date} />
         </div>
-        <h3 className="text-balance font-semibold text-2xl text-gray-900 leading-tighter tracking-tight transition duration-200 group-hover:text-blue-500">
+        <h3 className="leading-tighter text-2xl font-semibold tracking-tight text-balance text-gray-900 transition duration-200 group-hover:text-blue-500">
           {post.title}
         </h3>
       </div>

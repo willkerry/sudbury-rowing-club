@@ -50,7 +50,7 @@ export const Blade = ({
 
         <div
           aria-hidden
-          className="absolute inset-0 ml-1 flex select-none items-center font-semibold text-[0.5em]"
+          className="absolute inset-0 ml-1 flex items-center text-[0.5em] font-semibold select-none"
         >
           ?
         </div>

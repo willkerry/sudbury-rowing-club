@@ -95,7 +95,7 @@ export const HourlyForecast = () => {
               <button
                 aria-controls={SOURCES_ID}
                 aria-expanded={sourcesShown}
-                className="mr-1 shrink-0 rounded-sm p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+                className="mr-1 shrink-0 rounded-sm p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
                 onClick={() => setSourcesShown((shown) => !shown)}
                 type="button"
               >
@@ -108,7 +108,7 @@ export const HourlyForecast = () => {
 
             {activeDay && (
               <TabsContent
-                className="fade-in relative mt-0 animate-in ring-offset-blue-50 duration-200 focus-visible:ring-gray-900/60 motion-reduce:animate-none"
+                className="relative mt-0 ring-offset-blue-50 duration-200 animate-in fade-in focus-visible:ring-gray-900/60 motion-reduce:animate-none"
                 key={activeDay.date}
                 render={
                   <Carousel
@@ -149,7 +149,7 @@ export const HourlyForecast = () => {
         )}
         id={SOURCES_ID}
       >
-        <p className="overflow-hidden px-3 text-gray-400 text-xs sm:px-4">
+        <p className="overflow-hidden px-3 text-xs text-gray-400 sm:px-4">
           <span className="block border-t py-3">
             Forecast data from{" "}
             <a

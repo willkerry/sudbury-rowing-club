@@ -158,7 +158,7 @@ const DataTableWithoutSuspense = <TData extends RowData>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex select-none items-center justify-center gap-2 space-x-2 py-4">
+      <div className="flex items-center justify-center gap-2 space-x-2 py-4 select-none">
         <Button
           disabled={!table.getCanPreviousPage()}
           onClick={() => table.previousPage()}
@@ -168,7 +168,7 @@ const DataTableWithoutSuspense = <TData extends RowData>({
           Previous
         </Button>
 
-        <span className="flex items-center gap-1 text-gray-500 text-sm tabular-nums">
+        <span className="flex items-center gap-1 text-sm text-gray-500 tabular-nums">
           Page {table.state.pagination.pageIndex + 1} of {table.getPageCount()}
         </span>
 

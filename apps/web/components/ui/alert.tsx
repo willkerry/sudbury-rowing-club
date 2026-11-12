@@ -3,7 +3,7 @@ import { cn } from "lib/utils";
 import * as React from "react";
 
 const alertVariants = cva(
-  "relative w-full rounded-sm border border-gray-200 p-3 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:top-3 [&>svg]:left-3 [&>svg]:text-gray-950 [&>svg~*]:pl-6",
+  "relative w-full rounded-sm border border-gray-200 p-3 [&>svg]:absolute [&>svg]:top-3 [&>svg]:left-3 [&>svg]:text-gray-950 [&>svg+div]:translate-y-[-3px] [&>svg~*]:pl-6",
   {
     defaultVariants: {
       variant: "default",
@@ -36,8 +36,9 @@ const AlertTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
+  // oxlint-disable-next-line jsx-a11y/heading-has-content -- children arrive via props
   <h5
-    className={cn("mb-1 font-semibold text-sm leading-none", className)}
+    className={cn("mb-1 text-sm leading-none font-semibold", className)}
     ref={ref}
     {...props}
   />

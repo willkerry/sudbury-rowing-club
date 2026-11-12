@@ -27,11 +27,11 @@ export const ContactFormDeliveredEmail = ({
   message = "Hello, this is a message\n\nIt has come to my attention that you are a person. This is a good thing, as I am also a person. We should meet up and do person things together.\n\nRegards,\n\nPerson",
 }: ContactFormDeliveredEmailProps) => (
   <EmailShell preview={`${toName} will reply to you directly.`}>
-    <Heading className="font-normal text-black text-lg">
+    <Heading className="text-lg font-normal text-black">
       We’ve delivered your message, {fromName}
     </Heading>
 
-    <Text className="text-gray-700 text-sm">
+    <Text className="text-sm text-gray-700">
       {toName} will reply to you directly.
     </Text>
 

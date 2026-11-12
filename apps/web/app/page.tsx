@@ -28,6 +28,7 @@ export const generateMetadata = async () => {
 };
 
 const Home = async () => {
+  // oxlint-disable-next-line react/rules-of-hooks -- useId is safe in server components
   const introId = useId();
 
   const {
