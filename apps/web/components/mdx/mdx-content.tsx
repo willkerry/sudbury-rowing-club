@@ -18,6 +18,13 @@ const Callout = ({
   </Alert>
 );
 
+const Mark = ({ className, ...props }: ComponentProps<"mark">) => (
+  <mark
+    className={cn("rounded-xs bg-blue-100 px-px text-black", className)}
+    {...props}
+  />
+);
+
 export const MDXContent = ({
   content: Content,
   components,
@@ -33,12 +40,7 @@ export const MDXContent = ({
       Declaration,
       Ins,
       InsBlock,
-      mark: ({ className, ...props }) => (
-        <mark
-          className={cn("rounded-xs bg-blue-100 px-px text-black", className)}
-          {...props}
-        />
-      ),
+      mark: Mark,
     }}
   />
 );

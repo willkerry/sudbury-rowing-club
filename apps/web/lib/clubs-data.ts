@@ -26,14 +26,12 @@ const importClubsData = async (): Promise<readonly Club[]> =>
  * asset so the data stays out of the Worker bundle; dev and tests import it.
  */
 export const loadClubs = (): Promise<readonly Club[]> => {
-  clubsPromise ??=
-    // biome-ignore lint/suspicious/noUndeclaredEnvVars: Vite build-time constant, not a runtime env var
-    (import.meta.env.DEV ? importClubsData() : fetchClubsAsset()).catch(
-      (error: unknown) => {
-        clubsPromise = undefined;
-        throw error;
-      },
-    );
+  clubsPromise ??= (
+    import.meta.env.DEV ? importClubsData() : fetchClubsAsset()
+  ).catch((error: unknown) => {
+    clubsPromise = undefined;
+    throw error;
+  });
 
   return clubsPromise;
 };

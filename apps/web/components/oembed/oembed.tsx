@@ -46,7 +46,7 @@ export const OEmbed = async ({ url }: { url: string }) => {
               </Avatar>
               <div className="leading-tight">
                 <div className="font-bold">{username}</div>
-                <div className="font-medium text-gray-500 text-xs">
+                <div className="text-xs font-medium text-gray-500">
                   @{handle}
                 </div>
               </div>

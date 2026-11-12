@@ -71,6 +71,7 @@ export const useTestingMode = ({
       toast("Enable testing mode?", {
         ...TESTING_MODE_TOAST_OPTIONS,
         action: (
+          // oxlint-disable-next-line jsx-a11y/no-autofocus -- confirm toast takes focus
           <Button autoFocus onClick={() => resolve(true)} size="xs">
             Enable
           </Button>

@@ -38,7 +38,7 @@ const SafetyDateUpdated = ({
     new Date(date).toDateString() === new Date(retrievedAt).toDateString();
 
   return (
-    <div className="disambiguate mt-4 font-medium text-gray-500 text-sm">
+    <div className="mt-4 disambiguate text-sm font-medium text-gray-500">
       {date && (
         <>
           Published <DateFormatter dateString={date} format="time" />

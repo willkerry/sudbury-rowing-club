@@ -1,16 +1,16 @@
-import type { Metadata, Viewport } from "next";
+import { blue } from "@sudburyrc/blue";
 import "@fontsource-variable/jetbrains-mono/index.css";
 import "@fontsource-variable/source-serif-4/opsz.css";
 import "@fontsource-variable/source-serif-4/opsz-italic.css";
 import "inter-ui/inter-variable.css";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import { Banner } from "@/components/banner";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
+import "../styles/index.css";
 import { env } from "@/env";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
-import "../styles/index.css";
-import { blue } from "@sudburyrc/blue";
-import localFont from "next/font/local";
 import Providers from "./providers";
 
 const digital7Font = localFont({

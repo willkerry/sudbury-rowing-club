@@ -58,7 +58,9 @@ const templateLearnToRowCourseCost = (cost: string | null) =>
     : "For the duration of the programme, you’ll be a club member.";
 
 const Join = async () => {
+  // oxlint-disable-next-line react/rules-of-hooks -- useId is safe in server components
   const learnToRowId = useId();
+  // oxlint-disable-next-line react/rules-of-hooks -- useId is safe in server components
   const experienceId = useId();
 
   return (
@@ -66,7 +68,7 @@ const Join = async () => {
       {/* Big hero */}
       <Container className="py-16 text-center text-gray-900 sm:py-24">
         <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
-        <h1 className="relative z-10 font-semibold text-6xl text-green-500 tracking-tighter drop-shadow-xl sm:text-8xl">
+        <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 drop-shadow-xl sm:text-8xl">
           Start rowing with us{" "}
           <IconThumbUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
         </h1>
@@ -79,7 +81,7 @@ const Join = async () => {
             width={240}
           />
         </div>
-        <div className="prose mx-auto mt-12 mb-16 max-w-xl text-left">
+        <div className="mx-auto prose mt-12 mb-16 max-w-xl text-left">
           <p className="lead">
             Sudbury Rowing Club welcomes new members
             <span className="whitespace-nowrap"> –</span> whether you’ve never
@@ -137,7 +139,7 @@ const Join = async () => {
           </div>
           <div className="flex items-center rounded-sm border border-gray-200 bg-gray-50 p-4 text-center">
             <div className="w-full">
-              <div className="mb-2 font-medium text-lg">
+              <div className="mb-2 text-lg font-medium">
                 Contact the club captain
               </div>
               <Button asChild size="lg">
@@ -149,9 +151,9 @@ const Join = async () => {
       </Container>
 
       <Container className="my-40 flex items-center">
-        <div className="grow border-gray-300 border-t" />
-        <div className="mb-px px-4 font-medium text-lg leading-none">or</div>
-        <div className="grow border-gray-300 border-t" />
+        <div className="grow border-t border-gray-300" />
+        <div className="mb-px px-4 text-lg leading-none font-medium">or</div>
+        <div className="grow border-t border-gray-300" />
       </Container>
 
       {/* About the L2R course */}

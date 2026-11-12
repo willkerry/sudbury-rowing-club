@@ -32,7 +32,7 @@ export const ContactFormEmail = ({
   message = "Hello, this is a message\n\nIt has come to my attention that you are a person. This is a good thing, as I am also a person. We should meet up and do person things together.\n\nRegards,\n\nPerson",
 }: ContactFormEmailProps) => (
   <EmailShell preview={message}>
-    <Heading className="font-normal text-black text-lg">
+    <Heading className="text-lg font-normal text-black">
       You have received a message via SRC Contact
     </Heading>
 

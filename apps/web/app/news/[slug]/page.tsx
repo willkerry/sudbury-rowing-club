@@ -142,7 +142,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
           {post.author && (
             <div>
               <Label className="text-xs">Author</Label>
-              <div className="font-medium text-sm">
+              <div className="text-sm font-medium">
                 {`${post.author?.firstName} ${post.author?.surname}`}
                 <Link href={`/news/author/${post.author?._id}`}>
                   <IconArrowUpRight aria-hidden className="inline h-4 w-4" />
@@ -156,7 +156,7 @@ const Post = async ({ params }: NewsPageParamObject) => {
           )}
           <div>
             <Label className="text-xs">Published</Label>
-            <div className="font-medium text-sm">
+            <div className="text-sm font-medium">
               <DateFormatter dateString={post.date} />
             </div>
           </div>

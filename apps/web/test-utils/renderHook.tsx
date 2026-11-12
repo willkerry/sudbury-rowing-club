@@ -27,14 +27,12 @@ const TestProviders: React.FC<TestProvidersProps & RenderHookOptions> = ({
   children,
   queryClient = createDefaultQueryClient(),
   // Add more providers here as needed
-}) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      {/* Add more providers here in the future */}
-      {children}
-    </QueryClientProvider>
-  );
-};
+}) => (
+  <QueryClientProvider client={queryClient}>
+    {/* Add more providers here in the future */}
+    {children}
+  </QueryClientProvider>
+);
 
 /**
  * Custom renderHook that wraps hooks with necessary providers

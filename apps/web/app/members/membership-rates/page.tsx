@@ -42,7 +42,7 @@ const MembershipRates = async () => {
                   <div className="text-xs">{rate.Category.Description}</div>
 
                   {rate.Category.Restrictions && (
-                    <div className="mt-1 flex items-start gap-1 font-medium text-red-700 text-xs">
+                    <div className="mt-1 flex items-start gap-1 text-xs font-medium text-red-700">
                       <IconTag
                         aria-hidden
                         className="mt-0.5 h-3 w-3 shrink-0"
@@ -52,19 +52,19 @@ const MembershipRates = async () => {
                   )}
                 </td>
                 <td>
-                  <div className="disambiguate font-medium text-sm tabular-nums leading-6">
+                  <div className="disambiguate text-sm leading-6 font-medium tabular-nums">
                     {formatCurrency(rate.Cost.InclTax.Value)}
                   </div>
-                  <div className="font-medium text-gray-500 text-xs">
+                  <div className="text-xs font-medium text-gray-500">
                     {rate.DurationDescription}
                   </div>
 
                   {rate.HasEarlyPaymentOption ? (
                     <>
-                      <div className="disambiguate mt-2 font-medium tabular-nums">
+                      <div className="mt-2 disambiguate font-medium tabular-nums">
                         {formatCurrency(rate.EarlyPaymentCost.InclTax.Value)}
                       </div>
-                      <div className="font-medium text-gray-500 text-xs">
+                      <div className="text-xs font-medium text-gray-500">
                         if paid within{" "}
                         {formatDays(rate.EarlyPaymentDeadlineDaysAbs)} of season
                         start

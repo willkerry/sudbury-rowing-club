@@ -19,8 +19,8 @@ export const NoticeBody = ({ notice }: { notice: Notice }) => {
         <div className="flex bg-gray-50 py-2.5 text-sm">
           {notice.meta.map((item) => (
             <div className="px-4" key={item._key}>
-              <Label className="select-none text-xs">{`${item.label}: `}</Label>
-              <span className="disambiguate font-medium text-gray-800! text-xs">
+              <Label className="text-xs select-none">{`${item.label}: `}</Label>
+              <span className="disambiguate text-xs font-medium text-gray-800!">
                 {item.value}
               </span>
             </div>
@@ -35,7 +35,7 @@ export const NoticeBody = ({ notice }: { notice: Notice }) => {
         </div>
       )}
 
-      <div className="flex justify-between gap-4 px-4 py-3 font-medium text-gray-500 text-xs">
+      <div className="flex justify-between gap-4 px-4 py-3 text-xs font-medium text-gray-500">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
           <span>
             Created:{" "}

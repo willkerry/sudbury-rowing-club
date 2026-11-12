@@ -5,7 +5,7 @@ import { cn } from "lib/utils";
 import { forwardRef, isValidElement } from "react";
 
 const buttonVariants = cva(
-  "not-prose relative inline-flex items-center justify-center whitespace-nowrap rounded-sm font-medium text-sm ring-offset-white transition-[color,background-color,box-shadow,transform] duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50",
+  "not-prose relative inline-flex items-center justify-center rounded-sm text-sm font-medium whitespace-nowrap ring-offset-white transition-[color,background-color,box-shadow,transform] duration-150 focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:outline-hidden active:translate-y-px disabled:pointer-events-none disabled:opacity-50",
   {
     defaultVariants: {
       size: "default",
@@ -20,7 +20,7 @@ const buttonVariants = cva(
         icon: "h-10 w-10",
         lg: "h-11 px-8",
         sm: "h-9 px-3",
-        xs: "h-7 px-2 font-medium text-xs",
+        xs: "h-7 px-2 text-xs font-medium",
       },
       variant: {
         brand: "bg-blue-700 text-white hover:bg-blue-500",
@@ -37,7 +37,8 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   icon?: React.ReactNode;

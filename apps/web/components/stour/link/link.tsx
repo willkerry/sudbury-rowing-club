@@ -66,7 +66,7 @@ export const Link = ({
     >
       {children}
       {extension && (
-        <span className="ml-1 rounded-full border px-1 font-medium text-gray-400 text-xs uppercase transition">
+        <span className="ml-1 rounded-full border px-1 uppercase text-xs font-medium text-gray-400 transition">
           {extension}
         </span>
       )}

@@ -26,7 +26,7 @@ export const LoadingState = ({
         <IconLoader2 className="animate-spin text-gray-300" />
       </div>
 
-      <p className="text-gray-600 text-sm">
+      <p className="text-sm text-gray-600">
         You will be redirected automatically in{" "}
         {typeof delay === "number" ? delay / 1000 : "a few"} seconds.
       </p>

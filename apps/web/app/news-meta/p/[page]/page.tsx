@@ -80,7 +80,7 @@ const News = async (props: { params: Promise<Params> }) => {
           <p className="flex justify-between">
             <DateRange articles={data} />
 
-            <span className="font-medium text-gray-600 text-sm uppercase tracking-wider">
+            <span className="uppercase text-sm font-medium tracking-wider text-gray-600">
               Page {page} of {pages}
             </span>
           </p>

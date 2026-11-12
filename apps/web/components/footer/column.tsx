@@ -14,7 +14,7 @@ type Props = {
 
 export const FooterColumn = ({ heading, data }: Props) => (
   <div className="mb-12 w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
-    <h3 className="mb-3 select-none font-semibold text-xs uppercase tracking-widest">
+    <h3 className="mb-3 uppercase text-xs font-semibold tracking-widest select-none">
       {heading}
     </h3>
     {data.map((item) => {
@@ -23,7 +23,7 @@ export const FooterColumn = ({ heading, data }: Props) => (
 
       return (
         <Link
-          className="group my-3 flex items-center text-gray-600 text-sm transition-[color,font-weight] hover:font-[450] hover:text-black"
+          className="group my-3 flex items-center text-sm text-gray-600 transition-[color,font-weight] hover:font-[450] hover:text-black"
           href={item.href}
           key={item.href}
           target={item.target}

@@ -46,7 +46,7 @@ const AuthorArchive = async ({ params }: AuthorPageParamObject) => {
       </div>
 
       <Container>
-        <div className="prose my-6 mr-auto">
+        <div className="my-6 prose mr-auto">
           <ul className="pl-0">
             {author?.articles?.map(({ _id, slug, title, date }) => (
               <li className="list-none pl-0" key={_id}>
@@ -55,7 +55,7 @@ const AuthorArchive = async ({ params }: AuthorPageParamObject) => {
                 </Link>
 
                 <DateFormatter
-                  className="font-medium text-sm"
+                  className="text-sm font-medium"
                   dateString={date}
                   format="short"
                 />

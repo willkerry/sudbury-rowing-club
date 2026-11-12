@@ -59,7 +59,7 @@ export default function RootError({ error, reset }: ErrorProps) {
           )}
 
           <WhenDev>
-            <pre className="rounded-sm bg-red-50 p-2 text-red-600 text-xs">
+            <pre className="rounded-sm bg-red-50 p-2 text-xs text-red-600">
               <code>{error.stack}</code>
             </pre>
           </WhenDev>

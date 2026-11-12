@@ -40,14 +40,14 @@ const getDeterministicGradient = (title: string) => {
 const PostPreviewText = ({ title }: { title: string }) => (
   <div
     className={cn(
-      "relative h-[191px] select-none overflow-hidden border-b",
+      "relative h-[191px] overflow-hidden border-b select-none",
       getDeterministicGradient(title),
       "opacity-75 transition-opacity group-hover:opacity-100",
     )}
   >
     <div
       aria-hidden
-      className="mx-2.5 mt-1.5 w-96 text-balance font-bold text-6xl text-black leading-none mix-blend-soft-light transition-all"
+      className="mx-2.5 mt-1.5 w-96 text-6xl leading-none font-bold text-balance text-black mix-blend-soft-light transition-all"
     >
       {title}
     </div>
@@ -72,18 +72,18 @@ export const PostPreview = ({ post }: { post: ArticleSummary }) => (
         <PostPreviewText title={post.title} />
       )}
 
-      <h3 className="m-2 mb-3 line-clamp-3 grow text-pretty font-semibold text-xl leading-tight transition group-hover:text-blue-500">
+      <h3 className="m-2 mb-3 line-clamp-3 grow text-xl leading-tight font-semibold text-pretty transition group-hover:text-blue-500">
         {post.title}
       </h3>
 
       {post.excerpt && (
-        <p className="mx-2 line-clamp-3 font-medium text-gray-600 text-xs">
+        <p className="mx-2 line-clamp-3 text-xs font-medium text-gray-600">
           {post.excerpt}
         </p>
       )}
 
       <DateFormatter
-        className="mx-2 my-2 font-mono font-semibold text-gray-600 text-xs uppercase"
+        className="mx-2 my-2 font-mono uppercase text-xs font-semibold text-gray-600"
         dateString={post.date}
       />
     </Link>

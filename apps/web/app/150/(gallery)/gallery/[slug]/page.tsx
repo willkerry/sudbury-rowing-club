@@ -100,7 +100,7 @@ const Archive = async ({ params }: ArchivePageParamObject) => {
 
       <ArchiveImage alt={archive.alt || ""} image={archive.image} />
 
-      <div className="max-w-prose pb-8 text-gray-800 text-sm">
+      <div className="max-w-prose pb-8 text-sm text-gray-800">
         <div
           dangerouslySetInnerHTML={{
             __html: snarkdown(
@@ -108,7 +108,7 @@ const Archive = async ({ params }: ArchivePageParamObject) => {
             ),
           }}
         />
-        <div className="mt-4 mb-6 font-medium text-gray-600 text-xs">
+        <div className="mt-4 mb-6 text-xs font-medium text-gray-600">
           {archive.year ? (
             <ArchiveDate date={archive.year} range={archive.range}>
               {formatYear(archive.year, archive.range)}

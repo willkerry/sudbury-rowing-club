@@ -12,7 +12,7 @@ const StourToyList = ({ items }: { items: StourToy[] }) => (
   <ul className="list-none pl-0">
     {items.map((item) => (
       <li className="mb-6 p-0" key={item.href}>
-        <Link className="p-0 font-semibold leading-tight" href={item.href}>
+        <Link className="p-0 leading-tight font-semibold" href={item.href}>
           {item.name}
         </Link>
         <span className="block p-0 leading-tight">{item.description}</span>

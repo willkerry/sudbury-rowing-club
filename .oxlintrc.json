@@ -1,0 +1,128 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "jsx-a11y",
+    "nextjs",
+    "import",
+    "vitest"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "env": {
+    "browser": true,
+    "builtin": true,
+    "es2024": true,
+    "node": true
+  },
+  "globals": {
+    "JSX": "readonly",
+    "React": "readonly",
+    "__MAPTILER_SDK_VERSION__": "readonly"
+  },
+  "ignorePatterns": [
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/.next",
+    "**/.tmp",
+    "**/.vscode",
+    "**/.content-collections",
+    "apps/results/data",
+    "packages/weathericons/vendor"
+  ],
+  "rules": {
+    "arrow-body-style": "error",
+    "default-param-last": "error",
+    "import/no-cycle": "error",
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/no-unassigned-import": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "jsx-a11y/img-redundant-alt": "off",
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "nextjs/no-async-client-component": "error",
+    "nextjs/no-html-link-for-pages": "off",
+    "nextjs/no-img-element": "off",
+    "no-case-declarations": "error",
+    "no-dupe-else-if": "error",
+    "no-else-return": "error",
+    "no-lonely-if": "error",
+    "no-negated-condition": "error",
+    "no-param-reassign": "error",
+    "no-shadow": "off",
+    "no-undef": "error",
+    "no-underscore-dangle": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-useless-concat": "error",
+    "one-var": ["error", "never"],
+    "operator-assignment": "error",
+    "prefer-arrow-callback": "error",
+    "react/capitalized-calls": "off",
+    "react/error-boundaries": "off",
+    "react/exhaustive-deps": "error",
+    "react/exhaustive-effect-dependencies": "off",
+    "react/iframe-missing-sandbox": "off",
+    "react/jsx-fragments": "error",
+    "react/no-array-index-key": "off",
+    "react/no-danger": "off",
+    "react/no-unstable-nested-components": "error",
+    "react/purity": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/rules-of-hooks": "error",
+    "react/self-closing-comp": "error",
+    "react/set-state-in-effect": "off",
+    "react/static-components": "off",
+    "require-await": "off",
+    "typescript/array-type": [
+      "error",
+      {
+        "default": "array"
+      }
+    ],
+    "typescript/no-inferrable-types": "error",
+    "typescript/no-non-null-assertion": "error",
+    "typescript/prefer-as-const": "error",
+    "typescript/prefer-enum-initializers": "error",
+    "typescript/prefer-for-of": "error",
+    "typescript/triple-slash-reference": "off",
+    "unicorn/consistent-function-scoping": "off",
+    "unicorn/error-message": "error",
+    "unicorn/no-array-for-each": "error",
+    "unicorn/no-array-reverse": "off",
+    "unicorn/no-array-sort": "off",
+    "unicorn/no-new-array": "off",
+    "unicorn/no-useless-undefined": [
+      "error",
+      {
+        "checkArguments": false,
+        "checkArrowFunctionBody": false
+      }
+    ],
+    "unicorn/prefer-add-event-listener": "off",
+    "unicorn/prefer-at": "error",
+    "unicorn/prefer-date-now": "error",
+    "unicorn/prefer-number-properties": "error",
+    "unicorn/prefer-optional-catch-binding": "error",
+    "vitest/no-focused-tests": "off",
+    "vitest/require-mock-type-parameters": "off",
+    "vitest/require-to-throw-message": "off",
+    "vitest/valid-expect": [
+      "error",
+      {
+        "maxArgs": 2
+      }
+    ]
+  }
+}

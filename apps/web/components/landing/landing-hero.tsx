@@ -23,7 +23,7 @@ export const LandingHero = ({
     />
     <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-3 p-6 sm:gap-8 sm:p-12 md:gap-12 md:p-24 lg:gap-14">
       <BoathouseDoor aria-hidden className="z-10 w-full text-white" />
-      <span className="z-10 rounded-full bg-white px-1 py-0.5 font-medium text-black text-xs mix-blend-screen shadow-sm backdrop-blur-sm sm:text-sm md:px-3 md:py-1 md:text-base">
+      <span className="z-10 rounded-full bg-white px-1 py-0.5 text-xs font-medium text-black mix-blend-screen shadow-sm backdrop-blur-sm sm:text-sm md:px-3 md:py-1 md:text-base">
         {description}
       </span>
     </div>

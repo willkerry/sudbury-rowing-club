@@ -62,7 +62,7 @@ export const DelayedError = ({
           <AlertDescription>{errorMessage}</AlertDescription>
         </Alert>
 
-        <div className="mb-12 text-gray-600 text-sm">
+        <div className="mb-12 text-sm text-gray-600">
           <p>This could happen if:</p>
           <ul>
             <li>The link is broken or outdated</li>

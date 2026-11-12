@@ -49,7 +49,7 @@ export const ShareImageCard = ({ title, subtitle, variant }: ShareImage) => {
 
           {subtitle && (
             <div
-              className="mt-[3.7px] ml-8 text-[23px] uppercase tracking-[2px]"
+              className="mt-[3.7px] ml-8 uppercase text-[23px] tracking-[2px]"
               style={{ color: mg }}
             >
               {subtitle}
@@ -58,7 +58,7 @@ export const ShareImageCard = ({ title, subtitle, variant }: ShareImage) => {
         </div>
 
         <div
-          className="my-2.5 bg-clip-text text-[72px] text-transparent leading-tight"
+          className="my-2.5 bg-clip-text text-[72px] leading-tight text-transparent"
           style={{
             backgroundImage: `linear-gradient(90deg, ${g1} 0%, ${g2} 100%)`,
             fontWeight: weight,

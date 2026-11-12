@@ -11,17 +11,17 @@ import { Tailwind } from "@react-email/tailwind";
 import { Text } from "@react-email/text";
 
 export const Label = ({ children }: { children: React.ReactNode }) => (
-  <Text className="mt-2 mb-0 font-medium text-gray-500 text-sm">
+  <Text className="mt-2 mb-0 text-sm font-medium text-gray-500">
     {children}
   </Text>
 );
 
 export const Value = ({ children }: { children: React.ReactNode }) => (
-  <Text className="m-0 font-medium text-gray-900 text-sm">{children}</Text>
+  <Text className="m-0 text-sm font-medium text-gray-900">{children}</Text>
 );
 
 export const MessageBody = ({ children }: { children: string }) => (
-  <div className="text-gray-900 text-sm">
+  <div className="text-sm text-gray-900">
     <Markdown>{children}</Markdown>
   </div>
 );
@@ -61,7 +61,7 @@ export const WillLink = ({
 export const FooterNote = ({ children }: { children: React.ReactNode }) => (
   <Section className="mt-8">
     <Hr className="border-gray-200" />
-    <Text className="font-medium text-gray-600 text-xs">{children}</Text>
+    <Text className="text-xs font-medium text-gray-600">{children}</Text>
   </Section>
 );
 

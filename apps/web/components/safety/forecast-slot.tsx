@@ -54,10 +54,10 @@ export const ForecastSlotColumn = ({
   const low = isBlock ? slot.temperatureMin : undefined;
 
   return (
-    <div className="flex select-none snap-start flex-col items-center gap-1 px-1 py-3 text-center">
+    <div className="flex snap-start flex-col items-center gap-1 px-1 py-3 text-center select-none">
       <div
         className={cn(
-          "flex items-center gap-1 font-semibold text-xs tabular-nums",
+          "flex items-center gap-1 text-xs font-semibold tabular-nums",
           isNow ? "text-black" : "text-gray-400",
         )}
       >
@@ -79,12 +79,12 @@ export const ForecastSlotColumn = ({
       <WeatherIcon className="size-7" symbol={slot.symbol} />
 
       {high === undefined ? (
-        <div className="disambiguate font-semibold text-gray-600 text-sm tabular-nums">
+        <div className="disambiguate text-sm font-semibold text-gray-600 tabular-nums">
           {slot.temperature}
           <span className="text-gray-400">°</span>
         </div>
       ) : (
-        <div className="disambiguate flex items-baseline gap-1.5 font-semibold text-sm tabular-nums">
+        <div className="flex items-baseline gap-1.5 disambiguate text-sm font-semibold tabular-nums">
           <span className="sr-only">High</span>
           <span className="text-gray-600">
             {high}
@@ -93,13 +93,13 @@ export const ForecastSlotColumn = ({
           {low !== undefined && low !== high && (
             <>
               <span className="sr-only">, low</span>
-              <span className="text-gray-400 text-xs">{low}°</span>
+              <span className="text-xs text-gray-400">{low}°</span>
             </>
           )}
         </div>
       )}
 
-      <div className="flex items-center gap-0.5 font-semibold text-gray-600 text-xs tracking-widest">
+      <div className="flex items-center gap-0.5 text-xs font-semibold tracking-widest text-gray-600">
         <IconArrowNarrowUp
           aria-label={`Force ${slot.wind.beaufort}, wind from ${slot.wind.direction}`}
           className="size-3.5 text-gray-400"

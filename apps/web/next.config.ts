@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 
-import { redirects as redirectsArray } from "./data/redirects.json" with {
-  type: "json",
-};
+import { redirects as redirectsArray } from "./data/redirects.json" with { type: "json" };
 
 const config: NextConfig = {
   reactStrictMode: true,

@@ -1,18 +1,12 @@
 {
-  "author": "",
+  "name": "@sudburyrc/static",
+  "version": "1.0.0",
   "description": "Static data shared across apps and packages",
   "keywords": [],
   "license": "ISC",
+  "author": "",
   "main": "dist/index.mjs",
-  "name": "@sudburyrc/static",
   "types": "dist/index.d.mts",
-  "version": "1.0.0",
-  "devDependencies": {
-    "@sudburyrc/tsconfig": "workspace:*",
-    "ts-json-schema-generator": "^2.4.0",
-    "tsdown": "catalog:",
-    "typescript": "catalog:"
-  },
   "exports": {
     "./clubs.json": "./src/data/clubs.json",
     ".": {
@@ -29,5 +23,11 @@
     "dev": "pnpm run generate-schemas && tsdown",
     "generate-schemas": "ts-json-schema-generator --path src/clubs.ts --type ClubsSchema --out schemas/clubs.schema.json",
     "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@sudburyrc/tsconfig": "workspace:*",
+    "ts-json-schema-generator": "^2.4.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   }
 }

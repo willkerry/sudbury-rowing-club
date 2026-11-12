@@ -109,7 +109,7 @@ const Brand = () => (
               <code>{item.id}</code>
             </td>
             <td>
-              <span className="font-medium text-sm">
+              <span className="text-sm font-medium">
                 {item.name} {item.library}
               </span>
             </td>
@@ -149,7 +149,7 @@ const Brand = () => (
       </li>
 
       <li>
-        <span className="font-bold font-mono">
+        <span className="font-mono font-bold">
           <a href="https://jetbrains.com/mono">JetBrains Mono</a>
         </span>
         , for code and monospaced text. This is a free and open-source typeface

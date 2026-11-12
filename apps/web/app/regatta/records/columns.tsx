@@ -72,7 +72,7 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
     enableColumnFilter: false,
     enableSorting: true,
     cell: ({ row }) => (
-      <div className="tabular-nums tracking-wider">
+      <div className="tracking-wider tabular-nums">
         {formatDuration(row.original.time)}
       </div>
     ),

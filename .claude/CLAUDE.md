@@ -16,7 +16,7 @@ pnpm build                # Build all packages and apps
 pnpm type-check           # TypeScript type checking
 pnpm test                 # Run tests
 pnpm test:watch           # Run tests in watch mode
-pnpm check                # Run Biome linting/formatting with auto-fix
+pnpm check                # Run oxlint and oxfmt with auto-fix
 
 # Web app (from apps/web)
 pnpm run deploy           # vite build + vinext-cloudflare deploy with traffic-aware cache warming (CI deploys on push to master)
@@ -59,8 +59,9 @@ EARNS ITS PLACE ONLY BY EXPLAINING A NON-OBVIOUS **WHY** (A PLATFORM QUIRK, A
 WORKAROUND, A CONSTRAINT) – AND THEN IN ONE SHORT LINE. WHEN IN DOUBT, LEAVE IT
 OUT.
 
-- **Biome** handles linting and formatting (not ESLint/Prettier). Its rules are the source of truth; run `pnpm check` rather than memorising them
-- **Lefthook** pre-commit hook runs `biome check --write` automatically
+- **Oxlint** (`.oxlintrc.json`) and **Oxfmt** (`.oxfmtrc.json`) handle linting and formatting (not ESLint/Prettier/Biome). Their configs are the source of truth; run `pnpm check` rather than memorising them
+- **Lefthook** pre-commit hook runs `oxlint --fix` and `oxfmt` on staged files automatically
+- Suppress a lint with `// oxlint-disable-next-line <rule> -- <reason>`
 - Semicolons required, double quotes, trailing commas
 - Prefer named exports (default exports only where frameworks require them)
 - Use `for...of` instead of `Array.forEach`

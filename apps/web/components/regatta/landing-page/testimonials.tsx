@@ -22,7 +22,7 @@ export const Testimonials = ({ regattas }: { regattas: Regatta[] }) => (
           <div className="mb-24" key={year._id}>
             <Masonry>
               <div className="py-8 sm:py-24">
-                <h3 className="font-medium text-xl">
+                <h3 className="text-xl font-medium">
                   Praise for the {ordinal(year.number)} regatta
                 </h3>
                 <Label>

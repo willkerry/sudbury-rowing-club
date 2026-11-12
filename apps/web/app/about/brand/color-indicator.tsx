@@ -4,7 +4,7 @@ import { tryit } from "radashi";
 import { Copy } from "@/components/stour/copy";
 
 const getPrint = (color: string, type: string) => {
-  const [_, newColor] = tryit(() => Color(color))();
+  const [, newColor] = tryit(() => Color(color))();
 
   if (newColor && type === "rgb") return newColor.rgb().string();
   if (newColor && type === "hsl") return newColor.hsl().round().string();

@@ -41,7 +41,6 @@ export const SharePlayground = () => {
   // Render the PNG ahead of time, so Download is a plain link the user clicks.
   // Browsers drop downloads started from script after an await, because the
   // click's user activation has expired by then.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: re-render the PNG when the debounced image changes
   useEffect(() => {
     const card = cardRef.current;
     if (!card) return;

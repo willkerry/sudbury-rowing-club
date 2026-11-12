@@ -33,7 +33,7 @@ export const table = (headers: string[], rows: string[][]) =>
 export const details = (summary: string, body: string, open = false) =>
   `<details${open ? " open" : ""}><summary>${summary}</summary>\n\n${body}\n\n</details>`;
 
-// biome-ignore lint/suspicious/noControlCharactersInRegex: matches ANSI escapes
+// oxlint-disable-next-line no-control-regex -- matches ANSI escapes
 const ansi = /\u001b\[[0-9;]*[A-Za-z]/g;
 
 export const stripAnsi = (text: string) => text.replace(ansi, "");

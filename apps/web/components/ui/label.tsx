@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
 
 const labelVariants = cva(
-  "font-medium text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+  "text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
 );
 
 const RequiredIndicator = () => (
@@ -22,7 +22,6 @@ type LabelProps = React.ComponentPropsWithoutRef<"label"> &
 
 const Label = forwardRef<HTMLLabelElement, LabelProps>(
   ({ className, children, required, ...props }, ref) => (
-    // biome-ignore lint/a11y/noLabelWithoutControl: htmlFor / wrapping is supplied by consumers
     <label
       className={cn(labelVariants(), "relative", className)}
       ref={ref}

@@ -22,7 +22,7 @@ const Tag = ({
 }) => (
   <span
     className={cn(
-      "rounded-xs border p-0.5 font-semibold text-xs leading-none transition-colors first-of-type:-ml-0.5",
+      "rounded-xs border p-0.5 text-xs leading-none font-semibold transition-colors first-of-type:-ml-0.5",
       variant === "cancelled"
         ? "border-red-200 bg-red-50 text-red-400 group-hover:text-red-500"
         : "bg-gray-50 text-gray-400 group-hover:text-gray-500",
@@ -46,7 +46,7 @@ const EventCard = ({
       <div className="flex items-start justify-between gap-1">
         <h3
           className={cn(
-            "mb-0.5 line-clamp-1 font-semibold text-sm",
+            "mb-0.5 line-clamp-1 text-sm font-semibold",
             url && "group-hover:text-blue-500",
             cancelled && "line-through decoration-gray-300",
           )}
@@ -59,11 +59,11 @@ const EventCard = ({
       </div>
 
       <DateFormatter
-        className="mb-2 block font-semibold text-gray-500 text-xs leading-none"
+        className="mb-2 block text-xs leading-none font-semibold text-gray-500"
         dateString={startDate}
       />
       {notes && (
-        <div className="mb-2 text-gray-500 text-xs italic">{notes}</div>
+        <div className="mb-2 text-xs text-gray-500 italic">{notes}</div>
       )}
 
       <div className="flex flex-wrap gap-2">
@@ -190,7 +190,7 @@ export const EventCalendar = ({
           transition={{ duration: reducedMotion ? 0 : 0.15 }}
         >
           {filteredEvents.length === 0 ? (
-            <p className="col-span-full py-16 text-center text-gray-400 text-sm">
+            <p className="col-span-full py-16 text-center text-sm text-gray-400">
               No events listed for this region yet.
             </p>
           ) : (

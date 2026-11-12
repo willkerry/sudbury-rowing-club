@@ -8,7 +8,7 @@ export const RecordTime = ({
 }) => (
   <div className="mb-12 inline-block">
     <LCDScreen time={time} />
-    <div className="mt-1.5 text-center text-gray-800 text-sm">
+    <div className="mt-1.5 text-center text-sm text-gray-800">
       {formatVerboseDuration(time)}
     </div>
   </div>

@@ -1,0 +1,67 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "useTabs": false,
+  "tabWidth": 2,
+  "printWidth": 80,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "semi": true,
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "singleAttributePerLine": false,
+  "sortImports": {
+    "groups": [
+      "protocol",
+      "builtin",
+      "external",
+      "internal",
+      ["parent", "sibling", "index"],
+      "unknown"
+    ],
+    "newlinesBetween": false,
+    "partitionByNewline": true,
+    "customGroups": [
+      {
+        "groupName": "protocol",
+        "elementNamePattern": ["cloudflare:*"]
+      }
+    ]
+  },
+  "sortTailwindcss": {
+    "functions": ["cn", "cva", "clsx"],
+    "stylesheet": "./apps/web/styles/index.css"
+  },
+  "ignorePatterns": [
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/.next",
+    "**/.tmp",
+    "**/.vscode",
+    "**/.content-collections",
+    "**/apps/results/data",
+    "**/packages/weathericons/vendor",
+    "pnpm-lock.yaml",
+    "**/*.md",
+    "**/*.mdx",
+    "**/*.yml",
+    "**/*.yaml",
+    "**/*.html",
+    "**/*.njk",
+    "**/*.toml"
+  ],
+  "sortPackageJson": {
+    "sortScripts": true
+  },
+  "overrides": [
+    {
+      "files": ["**/*.jsonc"],
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
+}

@@ -30,16 +30,16 @@ export const ContactFormFailedEmail = ({
   message = "Hello, this is a message\n\nIt has come to my attention that you are a person. This is a good thing, as I am also a person. We should meet up and do person things together.\n\nRegards,\n\nPerson",
 }: ContactFormFailedEmailProps) => (
   <EmailShell preview="Don’t expect a reply. Here’s what to do next.">
-    <Heading className="font-normal text-black text-lg">
+    <Heading className="text-lg font-normal text-black">
       We couldn’t deliver your message, {fromName}
     </Heading>
 
     <Section className="mb-2">
-      <Text className="text-gray-700 text-sm">
+      <Text className="text-sm text-gray-700">
         Your message didn’t get through, so don’t expect a reply.
       </Text>
 
-      <Text className="text-gray-700 text-sm">
+      <Text className="text-sm text-gray-700">
         Please email{" "}
         <Link className="text-blue-500" href={`mailto:${fallbackEmail}`}>
           {fallbackEmail}

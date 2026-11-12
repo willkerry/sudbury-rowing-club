@@ -16,7 +16,7 @@ export const Ticket = ({
       width: 174,
     }}
   >
-    <div className="-m-1 border-b bg-blue-950 px-2 pt-3 pb-0.5 text-center font-bold text-[11px] text-white uppercase tracking-wider">
+    <div className="-m-1 border-b bg-blue-950 px-2 pt-3 pb-0.5 text-center uppercase text-[11px] font-bold tracking-wider text-white">
       Sudbury Rowing Club
     </div>
     <div
@@ -28,10 +28,10 @@ export const Ticket = ({
     <div className="space-y-1.5 px-3 py-3">
       {items.map((item) => (
         <div key={item[0].toString()}>
-          <div className="font-bold text-[9px] text-gray-500 uppercase tracking-widest">
+          <div className="uppercase text-[9px] font-bold tracking-widest text-gray-500">
             {item[0]}
           </div>
-          <div className="whitespace-pre-line font-medium font-mono text-[11px]">
+          <div className="font-mono text-[11px] font-medium whitespace-pre-line">
             {item[1]}
           </div>
         </div>
@@ -43,7 +43,7 @@ export const Ticket = ({
         aria-hidden
         className="pointer-events-none absolute inset-0 z-20 flex rotate-[-18deg] items-center justify-center"
       >
-        <span className="rounded-sm border-2 border-red-700/80 bg-white/30 px-2 py-0.5 font-black text-[15px] text-red-700/80 uppercase tracking-[0.18em]">
+        <span className="rounded-sm border-2 border-red-700/80 bg-white/30 px-2 py-0.5 uppercase text-[15px] font-black tracking-[0.18em] text-red-700/80">
           Cancelled
         </span>
       </div>

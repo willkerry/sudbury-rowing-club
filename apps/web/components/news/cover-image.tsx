@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import type { UseNextSanityImageBuilder } from "next-sanity-image";
+import Image from "next/image";
 import { useSanityImageProps } from "@/hooks/useSanityImageProps";
 
 type Props = {

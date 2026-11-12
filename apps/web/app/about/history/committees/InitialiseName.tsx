@@ -10,12 +10,12 @@ export const InitialisedName = ({ name }: { name: string }) => {
   const initialisedName = initialiseName(name);
 
   if (initialisedName === name)
-    return <div className="select-none leading-snug">{name}</div>;
+    return <div className="leading-snug select-none">{name}</div>;
 
   return (
     <TooltipProvider delay={0}>
       <Tooltip>
-        <TooltipTrigger className="block select-none leading-snug">
+        <TooltipTrigger className="block leading-snug select-none">
           {initialisedName}
         </TooltipTrigger>
         <TooltipContent>{name.replace("+", " ")}</TooltipContent>

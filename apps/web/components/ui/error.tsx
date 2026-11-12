@@ -20,7 +20,7 @@ export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorProps>(
   ({ children, error, label, className, ...props }, ref) => (
     <div
       aria-atomic
-      className={cn("font-medium text-red-600 text-sm", className)}
+      className={cn("text-sm font-medium text-red-600", className)}
       ref={ref}
       role="alert"
       {...props}
@@ -47,7 +47,7 @@ export const ErrorMessage = React.forwardRef<HTMLDivElement, ErrorProps>(
           )}
 
           {children && (
-            <div className="prose prose-red mt-2 prose-a:underline">
+            <div className="prose mt-2 prose-red prose-a:underline">
               {children}
             </div>
           )}
@@ -61,7 +61,7 @@ ErrorMessage.displayName = "ErrorMessage";
 export const ErrorAlert = React.forwardRef<HTMLDivElement, ErrorProps>(
   ({ error, label, className, ...props }, ref) => (
     <Alert
-      className={cn("font-medium text-red-600 text-sm", className)}
+      className={cn("text-sm font-medium text-red-600", className)}
       ref={ref}
       variant="destructive"
       {...props}

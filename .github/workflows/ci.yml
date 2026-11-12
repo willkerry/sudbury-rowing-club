@@ -60,20 +60,30 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: biomejs/setup-biome@4c91541eaada48f67d7dbd7833600ce162b68f51 # v2.7.1
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
+          cache: pnpm
           node-version-file: .nvmrc
 
-      - name: Biome
+      - run: pnpm install --frozen-lockfile
+
+      - name: Oxlint
+        run: pnpm exec oxlint --format=json > "$RUNNER_TEMP/oxlint.json"
+
+      # Tailwind class sorting reads apps/web's stylesheet, which imports blue's built CSS.
+      - name: Oxfmt
+        if: ${{ !cancelled() }}
         run: |
-          biome ci --reporter=github \
-            --reporter=json --reporter-file="$RUNNER_TEMP/biome.json" .
+          pnpm turbo run build --filter=@sudburyrc/blue
+          pnpm exec oxfmt --list-different > "$RUNNER_TEMP/oxfmt.txt"
 
       - name: Report
         if: ${{ !cancelled() }}
-        run: node scripts/ci/lint-report.ts "$RUNNER_TEMP/biome.json"
+        run: |
+          node scripts/ci/lint-report.ts \
+            "$RUNNER_TEMP/oxlint.json" "$RUNNER_TEMP/oxfmt.txt"
 
       - name: actionlint
         if: ${{ !cancelled() }}

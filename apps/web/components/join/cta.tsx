@@ -20,7 +20,7 @@ export const LearnToRowCtaSection = ({
 }: LearnToRowCtaProps) => (
   <div>
     <p className="text-center">
-      <span className="font-medium text-gray-800 text-xl">{title}</span>
+      <span className="text-xl font-medium text-gray-800">{title}</span>
       <br />
       <span className="text-gray-500">{children}</span>
     </p>

@@ -1,12 +1,25 @@
 {
-  "author": "",
+  "name": "@sudburyrc/helpers",
+  "version": "1.0.0",
   "description": "",
   "keywords": [],
   "license": "ISC",
+  "author": "",
   "main": "dist/index.mjs",
-  "name": "@sudburyrc/helpers",
   "types": "dist/index.d.mts",
-  "version": "1.0.0",
+  "exports": {
+    ".": {
+      "default": "./dist/index.mjs",
+      "types": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "type-check": "tsc --noEmit"
+  },
   "dependencies": {
     "smartypants": "^0.2.2"
   },
@@ -16,20 +29,7 @@
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
-  "exports": {
-    ".": {
-      "default": "./dist/index.mjs",
-      "types": "./src/index.ts"
-    }
-  },
   "peerDependencies": {
     "react": "^19.0.0"
-  },
-  "scripts": {
-    "build": "tsdown",
-    "dev": "tsdown",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "type-check": "tsc --noEmit"
   }
 }

@@ -19,7 +19,7 @@ const Row = ({ label, value }: { label: string; value: React.ReactNode }) => (
     <dd>
       <Label className="text-xs">{label}</Label>
     </dd>
-    <dl className="w-full font-medium text-gray-800 text-sm">{value}</dl>
+    <dl className="w-full text-sm font-medium text-gray-800">{value}</dl>
   </div>
 );
 
@@ -35,8 +35,8 @@ export const Events = ({ data }: { data: Event[] }) => (
             className="w-full px-4"
             src={item.course === "350m" ? shortCourse : longCourse}
           />
-          <h4 className="pt-6 pb-1 font-bold text-xl">{item.title}</h4>
-          <p className="h-14 pb-6 text-gray-500 text-sm">{item.description}</p>
+          <h4 className="pt-6 pb-1 text-xl font-bold">{item.title}</h4>
+          <p className="h-14 pb-6 text-sm text-gray-500">{item.description}</p>
         </div>
         <div className="w-full">
           <dl>

@@ -32,14 +32,14 @@ export const Overview = ({ items }: OverviewProps) => (
             >
               {title}
             </ScrollLink>
-            <div className="hidden text-gray-500 text-sm md:block">
+            <div className="hidden text-sm text-gray-500 md:block">
               {subtitle}
             </div>
           </li>
         ))}
       </ul>
     </div>
-    <div className="prose col-span-8">
+    <div className="col-span-8 prose">
       {items.map(({ title, content, image }) => (
         <div id={title} key={title}>
           {image && (

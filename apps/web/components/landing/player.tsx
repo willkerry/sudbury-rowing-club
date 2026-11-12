@@ -66,7 +66,7 @@ export const Player = () => {
       {playerState !== "idle" && (
         <video
           autoPlay
-          className="absolute inset-0 z-0 aspect-h-9 aspect-w-16 w-full"
+          className="aspect-w-16 absolute inset-0 z-0 w-full aspect-h-9"
           loop
           muted
           onEnded={setIdle}

@@ -58,7 +58,7 @@ const ContactPage = ({
         }
       />
       <Container className="max-w-lg pt-6 pb-12 sm:pt-12">
-        <div className="prose mx-auto pb-10">
+        <div className="mx-auto prose pb-10">
           {recipientWasProvided ? null : (
             <p>
               We’re a volunteer-run club. Selecting the right person below helps
@@ -70,7 +70,7 @@ const ContactPage = ({
           contacts={officers}
           initialValues={removeNullValues(initialValues)}
         />
-        <div className="prose mt-16 text-gray-500 text-sm">
+        <div className="prose mt-16 text-sm text-gray-500">
           Alternatively, mail{" "}
           <Obfuscate email="enquiries@sudburyrowingclub.org.uk" /> for general
           enquiries, or <Obfuscate email="regatta@sudburyrowingclub.org.uk" />{" "}

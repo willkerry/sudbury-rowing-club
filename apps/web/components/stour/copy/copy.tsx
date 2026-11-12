@@ -26,12 +26,12 @@ export const Copy = ({ value }: { value: string }) => {
       onClick={handleClick}
       type="button"
     >
-      <span className="disambiguate select-all font-medium text-black tracking-wider">
+      <span className="disambiguate font-medium tracking-wider text-black select-all">
         {value}
       </span>
       <span
         className={cn(
-          "relative mb-0.5 hidden select-none items-center font-semibold text-blue-500 text-xs opacity-0 md:flex",
+          "relative mb-0.5 hidden items-center text-xs font-semibold text-blue-500 opacity-0 select-none md:flex",
           "transition-opacity duration-300 group-hover:opacity-100 data-[copied=true]:opacity-100",
         )}
         data-copied={copied}

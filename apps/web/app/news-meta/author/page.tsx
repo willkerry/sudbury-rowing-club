@@ -57,7 +57,7 @@ const Authors = async () => {
                 >
                   <div className="relative w-6">
                     {firstOfRank && (
-                      <span className="disambiguate absolute inset-0 text-center font-medium text-blue-500 leading-none">
+                      <span className="absolute inset-0 text-center disambiguate leading-none font-medium text-blue-500">
                         {rank}
                       </span>
                     )}
@@ -68,7 +68,7 @@ const Authors = async () => {
                     </span>
 
                     {firstOfRank && (
-                      <span className="mb-0.5 ml-3 font-semibold text-gray-500 text-sm uppercase tracking-widest transition group-hover:text-gray-700">
+                      <span className="mb-0.5 ml-3 uppercase text-sm font-semibold tracking-widest text-gray-500 transition group-hover:text-gray-700">
                         {articleCount}
                       </span>
                     )}

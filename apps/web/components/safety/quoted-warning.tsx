@@ -68,7 +68,7 @@ export const QuotedWarning = ({ description, source }: QuotedWarningProps) => {
             <AgencyIcon aria-hidden className="h-4 w-4" />
           </div>
         )}
-        <p className="whitespace-pre-line text-sm">
+        <p className="text-sm whitespace-pre-line">
           {smartQuotes(description)}
         </p>
       </blockquote>
