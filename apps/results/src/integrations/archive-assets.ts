@@ -105,14 +105,17 @@ const readDevAsset = async (requestUrl: string) => {
 
   if (!(folder && file) || rest.length > 0 || !isStaticFile(file)) return null;
 
-  try {
-    return {
-      type: undefined,
-      body: await readFile(path.join(DATA_DIR, folder, file)),
-    };
-  } catch {
-    return null;
-  }
+  // Only names the archive actually lists, so `..` or encoded separators can't reach outside it.
+  const isArchiveFile =
+    (await listFolders()).includes(folder) &&
+    (await listFiles(folder)).includes(file);
+
+  if (!isArchiveFile) return null;
+
+  return {
+    type: undefined,
+    body: await readFile(path.join(DATA_DIR, folder, file)),
+  };
 };
 
 export const archiveAssets = (): AstroIntegration => ({

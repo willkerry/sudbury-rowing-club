@@ -11,6 +11,11 @@ const { class: className, items } = Astro.props;
 
 <nav class:list={[styles.nav, className]} aria-label="Breadcrumb">
   <ol class={styles.list}>
+    <li hidden>
+      <a class={styles.link} href="https://sudburyrowingclub.org.uk/" data-return-link>
+        Sudbury Rowing Club
+      </a>
+    </li>
     {
       items.map(({ href, label }) => (
         <li>

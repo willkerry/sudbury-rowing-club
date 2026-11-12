@@ -11,6 +11,7 @@ import { Text } from "@/components/stour/text";
 import { Button } from "@/components/ui/button";
 import { DateFormatter } from "@/components/utils/date-formatter";
 import { createMetadata } from "@/lib/create-metadata";
+import { withReturnPath } from "@/lib/results-link";
 import { LiveResultsButton } from "./live-results-button";
 
 export interface Result {
@@ -107,7 +108,7 @@ const ResultsPage = async () => {
                       <Link
                         aria-label={`View results from the ${date} regatta.`}
                         external
-                        href={resultsLink}
+                        href={withReturnPath(resultsLink, "/regatta/results")}
                       >
                         View<span className="hidden sm:inline"> results</span>
                       </Link>
