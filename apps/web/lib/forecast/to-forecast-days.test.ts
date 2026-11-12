@@ -21,9 +21,29 @@ describe("toForecastDays", () => {
   it("groups a late-evening UTC entry into the correct London BST day", () => {
     // 2026-08-21T23:00:00Z is 2026-08-22 00:00 BST (UTC+1).
     // Grouping on the raw UTC date string would place it on 2026-08-21.
-    const aug22 = days.find((d) => d.date === "2026-08-22");
+    const [aug22] = toForecastDays(
+      parse({
+        properties: {
+          timeseries: [
+            {
+              time: "2026-08-21T23:00:00Z",
+              data: {
+                next_1_hours: { summary: { symbol_code: "cloudy" } },
+                instant: {
+                  details: {
+                    air_temperature: 15,
+                    wind_from_direction: 0,
+                    wind_speed: 1,
+                  },
+                },
+              },
+            },
+          ],
+        },
+      } as typeof fixture),
+    );
 
-    expect(aug22, "expected a day for 2026-08-22").toBeDefined();
+    expect(aug22?.date).toBe("2026-08-22");
 
     const slotAtMidnight = aug22?.slots.find(
       (s) => s.time.toISOString() === "2026-08-21T23:00:00.000Z",
@@ -60,18 +80,61 @@ describe("toForecastDays", () => {
     }
   });
 
-  it("produces a single day that contains both hourly and six-hourly spans", () => {
-    // 2026-08-22 transitions from 6-hourly at 00:00 (BST midnight = 2026-08-21T23:00Z)
-    // and has 6-hourly slots from 06:00 onward.
-    const mixedDay = days.find((d) => {
-      const spans = new Set(d.slots.map((s) => s.span));
-      return spans.has(1) && spans.has(6);
+  it("never mixes hourly and six-hourly slots within a day", () => {
+    for (const day of days) {
+      expect(new Set(day.slots.map((s) => s.span)).size, day.date).toBe(1);
+    }
+  });
+
+  it("rebuilds the transition day as contiguous six-hour blocks", () => {
+    // 2026-08-22 has an hourly 00:00 BST entry before MET switches to
+    // six-hourly at 01:00 BST, which must not survive as a stray hour.
+    const aug22 = days.find((d) => d.date === "2026-08-22");
+
+    expect(aug22?.slots.map((s) => s.time.toISOString())).toEqual([
+      "2026-08-22T00:00:00.000Z",
+      "2026-08-22T06:00:00.000Z",
+      "2026-08-22T12:00:00.000Z",
+      "2026-08-22T18:00:00.000Z",
+    ]);
+    expect(aug22?.slots.every((s) => s.span === 6)).toBe(true);
+  });
+
+  it("uses next_6_hours from an hourly entry on a block boundary", () => {
+    const entry = (time: string, hourly: boolean) => ({
+      time,
+      data: {
+        instant: {
+          details: {
+            air_temperature: 10,
+            wind_from_direction: 0,
+            wind_speed: 1,
+          },
+        },
+        ...(hourly && { next_1_hours: { summary: { symbol_code: "rain" } } }),
+        next_6_hours: {
+          details: { air_temperature_max: 12, air_temperature_min: 6 },
+          summary: { symbol_code: "cloudy" },
+        },
+      },
     });
 
-    expect(
-      mixedDay,
-      "expected at least one day with both span: 1 and span: 6",
-    ).toBeDefined();
+    const [day] = toForecastDays(
+      parse({
+        properties: {
+          timeseries: [
+            entry("2026-11-15T00:00:00Z", true),
+            entry("2026-11-15T01:00:00Z", true),
+            entry("2026-11-15T06:00:00Z", false),
+          ],
+        },
+      } as typeof fixture),
+    );
+
+    expect(day.slots).toMatchObject([
+      { span: 6, symbol: "cloudy", temperatureMax: 12, temperatureMin: 6 },
+      { span: 6 },
+    ]);
   });
 
   it("prefers the one-hour period when both are present", () => {

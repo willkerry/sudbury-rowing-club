@@ -26,10 +26,10 @@ const coversNow = (slot: ForecastSlot, now: number): boolean => {
 };
 
 const StripSkeleton = () => (
-  <div aria-hidden className="flex gap-1 overflow-hidden px-1 py-3">
+  <div aria-hidden className="flex gap-4 overflow-hidden px-5 py-3">
     {Array.from({ length: 12 }, (_, index) => (
       <Skeleton
-        className="h-24 w-20 shrink-0 rounded-xs motion-reduce:animate-none"
+        className="h-24 w-10 shrink-0 rounded-xs motion-reduce:animate-none"
         key={`skeleton-${index}`}
         style={{ animationDelay: `${index * 60}ms` }}
       />
@@ -63,7 +63,7 @@ export const HourlyForecast = () => {
   const activeDay = days?.find((day) => day.date === active);
   const today = toLondonDate(new Date());
   const now = Date.now();
-  const isCoarse = (activeDay?.slots.length ?? 0) <= 6;
+  const isBlocks = activeDay?.slots.every((slot) => slot.span === 6) ?? false;
 
   if (status === "error" || (status === "success" && !days?.length))
     return null;
@@ -120,12 +120,12 @@ export const HourlyForecast = () => {
                 }
                 value={activeDay.date}
               >
-                <CarouselContent className={isCoarse ? "" : "pl-4"}>
+                <CarouselContent className={isBlocks ? "" : "pl-4"}>
                   {activeDay.slots.map((slot) => (
                     <CarouselItem
                       className={cn(
                         "shrink-0",
-                        isCoarse ? "basis-1/4" : "basis-14",
+                        isBlocks ? "basis-1/4" : "basis-14",
                       )}
                       key={slot.time.toISOString()}
                     >
