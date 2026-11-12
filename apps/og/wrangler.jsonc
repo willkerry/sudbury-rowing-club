@@ -16,7 +16,12 @@
     "bindings": [{ "class_name": "OgRenderer", "name": "OG_RENDERER" }]
   },
   "observability": {
-    "enabled": true
+    "issues": { "enabled": true },
+    "traces": { "enabled": true },
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
   },
   "r2_buckets": [
     {

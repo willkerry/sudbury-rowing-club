@@ -1,20 +1,15 @@
 {
-  "exclude": ["node_modules"],
+  "exclude": ["dist", "node_modules"],
+  "extends": "@sudburyrc/tsconfig/base.json",
   "include": ["**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "allowJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "declaration": false,
+    "declarationMap": false,
     "incremental": true,
-    "isolatedModules": true,
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
     "noEmit": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
     "target": "ES2022"
   }
 }

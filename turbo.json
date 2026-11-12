@@ -28,7 +28,8 @@
       ]
     },
     "deploy": {
-      "dependsOn": ["^build"],
+      "cache": false,
+      "dependsOn": ["build", "^build"],
       "outputs": []
     },
     "dev": {

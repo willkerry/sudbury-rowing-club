@@ -19,8 +19,8 @@ pnpm test:watch           # Run tests in watch mode
 pnpm check                # Run Biome linting/formatting with auto-fix
 
 # Web app (from apps/web)
-pnpm deploy               # vite build + vinext-cloudflare deploy with traffic-aware cache warming (CI deploys on push to master)
-pnpm db:migrate           # Apply D1 migrations from packages/db to production
+pnpm run deploy           # vite build + vinext-cloudflare deploy with traffic-aware cache warming (CI deploys on push to master)
+pnpm run db:migrate       # Apply D1 migrations from packages/db to production
 
 # Per-app commands (from app directory)
 pnpm dev --filter@sudburyrc/web     # Web app only

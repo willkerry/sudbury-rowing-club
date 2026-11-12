@@ -1,7 +1,9 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "compatibility_date": "2026-02-11",
+  "compatibility_date": "2026-11-01",
   "name": "sudbury-regatta-results",
+  "preview_urls": false,
+  "workers_dev": true,
   "assets": {
     "directory": "./dist/"
   }

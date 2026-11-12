@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@sanity/cli": "^8.16.0",
+    "@sudburyrc/tsconfig": "workspace:*",
     "@types/react": "catalog:",
     "wrangler": "catalog:"
   },
@@ -29,9 +30,9 @@
     "build": "sanity build -y && (test $SANITY_AUTH_TOKEN && sanity schema deploy || echo 'Warning: Skipping schema deploy as SANITY_AUTH_TOKEN is not defined. If building locally run `npx sanity schema deploy` to use OAUTH authentication istead.')",
     "deploy": "wrangler deploy",
     "dev": "sanity dev",
+    "preview": "sanity preview",
     "sanity": "sanity",
     "sanity:upgrade": "sanity upgrade",
-    "start": "sanity start",
     "type-check": "tsc --noEmit"
   }
 }

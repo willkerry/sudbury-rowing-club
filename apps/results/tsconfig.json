@@ -1,26 +1,17 @@
 {
+  "extends": "@sudburyrc/tsconfig/base.json",
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     "allowImportingTsExtensions": true,
-    "allowJs": true,
-    "jsx": "react-jsx",
-    // Enable latest features
+    "declaration": false,
+    "declarationMap": false,
     "lib": ["ES2022"],
-    "module": "ESNext",
     "moduleDetection": "force",
-
-    // Bundler mode
-    "moduleResolution": "bundler",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noPropertyAccessFromIndexSignature": true,
-
-    // Some stricter flags
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "skipLibCheck": true,
-
-    // Best practices
-    "strict": true,
     "target": "ES2022",
     "verbatimModuleSyntax": true
   }
