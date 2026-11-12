@@ -348,7 +348,7 @@ const History: NextPage = () => (
       its appeal to a greater number of people in the community. This day marked
       the culmination of a five year project that would not have been possible
       without significant funding from The National Lottery, The Sports Aid
-      Foundation, Sudbury Common Lands Trust, Sudbury Freeman’s Trust and
+      Foundation, Sudbury Common Lands Trust, Sudbury Freemen’s Trust and
       Babergh District Council. Later on 11 September 1999 the old changing
       rooms at the back end of the boathouse were demolished to provide much
       needed additional boat storage space to house the inventory of 3 eights, 5

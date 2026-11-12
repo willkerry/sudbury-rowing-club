@@ -136,8 +136,16 @@ const FindUs: NextPage = () => (
         <div className="prose self-center">
           <p className="text-lg">
             The club is located at the end of Quay Lane, a few minutes from the
-            centre of Sudbury, and next-door to the Quay Theatre. Parking is
-            available outside the club gates.
+            centre of Sudbury, and next door to the Quay Theatre. Babergh
+            District Council’s free{" "}
+            <a
+              href="https://www.babergh.gov.uk/w/quay-lane-car-park"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Quay Lane Car Park
+            </a>{" "}
+            is right outside the club gates.
           </p>
           <Alert variant="default">
             <AlertTitle>Find the regatta</AlertTitle>

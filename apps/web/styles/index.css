@@ -7,11 +7,28 @@
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/aspect-ratio";
 
+/* All-caps labels and eyebrow headings, in expanded Archivo. */
+@utility caps {
+  font-family: var(--font-archivo);
+  font-stretch: 125%;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 @theme {
   --color-cyan: #79ffe1;
+  /* blue-100’s lightness and chroma, turned to green. */
+  --color-meadow: oklch(0.889 0.052 155);
+  /* Tree crowns on the meadow, a shade darker than it. */
+  --color-wood: color-mix(
+    in oklab,
+    var(--color-meadow) 94%,
+    var(--color-blue-950)
+  );
 
   --font-sans: InterVariable, Inter, system-ui, sans-serif;
   --font-serif: "Source Serif 4 Variable", serif;
+  --font-archivo: "Archivo Variable", sans-serif;
   --font-mono:
     "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;

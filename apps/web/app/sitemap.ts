@@ -97,6 +97,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       changeFrequency: "yearly",
       lastModified: new Date(),
+      priority: 0.8,
+      url: url("/about"),
+    },
+    {
+      changeFrequency: "yearly",
+      lastModified: new Date(),
       priority: 0.5,
       url: url("/about/history"),
     },

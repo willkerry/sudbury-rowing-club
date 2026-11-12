@@ -1,4 +1,5 @@
 import { IconTag } from "@tabler/icons-react";
+import { slug } from "github-slugger";
 import TextPage from "@/components/layouts/text-page";
 import { ErrorMessage } from "@/components/ui/error";
 import { createMetadata } from "@/lib/create-metadata";
@@ -35,7 +36,11 @@ const MembershipRates = async () => {
           </thead>
           <tbody>
             {rates.data.map((rate) => (
-              <tr key={rate.ID}>
+              <tr
+                className="scroll-mt-24"
+                id={slug(rate.Name.trim())}
+                key={rate.ID}
+              >
                 <td>
                   <strong className="block leading-6">{rate.Name}</strong>
 

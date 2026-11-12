@@ -1,6 +1,6 @@
 const NAME_SWAPS = new Map<string, string>([["Tricia", "P"]]);
 
-export const initialiseName = (name: string) => {
+const splitName = (name: string) => {
   const names = name.split(" ");
 
   for (const nameSwap of NAME_SWAPS.keys()) {
@@ -11,6 +11,18 @@ export const initialiseName = (name: string) => {
 
   const surname = names.pop()?.replaceAll("+", " ");
 
-  const initials = names.map((name) => name[0]).join(" ");
+  return { forenames: names, surname };
+};
+
+export const initialiseName = (name: string) => {
+  const { forenames, surname } = splitName(name);
+
+  const initials = forenames.map((name) => name[0]).join(" ");
   return `${initials} ${surname}`;
+};
+
+export const monogramName = (name: string) => {
+  const { forenames, surname } = splitName(name);
+
+  return `${forenames[0]?.[0] ?? ""}${surname?.[0] ?? ""}`;
 };

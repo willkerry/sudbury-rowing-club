@@ -46,11 +46,6 @@
       "source": "/history"
     },
     {
-      "destination": "/",
-      "permanent": true,
-      "source": "/about"
-    },
-    {
       "destination": "/regatta/course",
       "permanent": true,
       "source": "/course"
