@@ -276,9 +276,9 @@ jobs:
         run: node scripts/ci/web-report.ts outputs "$RUNNER_TEMP/web-bundle-stats.json"
 
       - name: Smoke test
-        if: steps.deployed.outputs.url != ''
+        if: steps.deployed.outputs.smoke_url != ''
         env:
-          URL: ${{ steps.deployed.outputs.url }}
+          URL: ${{ steps.deployed.outputs.smoke_url }}
         run: node scripts/ci/smoke.ts "$URL" "$RUNNER_TEMP/smoke.md"
 
       - name: Download master's bundle size

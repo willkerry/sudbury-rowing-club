@@ -82,10 +82,15 @@ const toUrl = (url: Url) =>
     ? url
     : (url.url ?? (url.hostname && `https://${url.hostname}`));
 
-const firstUrl = (urls: Url[] | undefined) => {
-  const all = (urls ?? []).map(toUrl).filter((url) => url !== undefined);
+const allUrls = (urls: Url[] | undefined) =>
+  (urls ?? []).map(toUrl).filter((url) => url !== undefined);
 
-  return all.find((url) => !url.includes(".workers.dev")) ?? all[0];
+const isWorkersDev = (url: string) => url.includes(".workers.dev");
+
+const firstUrl = (urls: Url[] | undefined) => {
+  const all = allUrls(urls);
+
+  return all.find((url) => !isWorkersDev(url)) ?? all[0];
 };
 
 const kib = 1024;
@@ -134,6 +139,9 @@ const outputs = (statsPath: string | undefined) => {
   const versionId = latest.version_id ?? latest.deployment_id;
   const stableUrl = firstUrl(latest.preview_urls) ?? latest.preview_alias_url;
   const exactUrl = firstUrl(latest.deployment_urls) ?? latest.preview_url;
+  // The custom preview domain sits behind zone bot protection, which 403s CI runners
+  const smokeUrl =
+    allUrls(latest.preview_urls).find(isWorkersDev) ?? stableUrl ?? exactUrl;
 
   if (size && statsPath) {
     const stats: Stats = {
@@ -148,6 +156,7 @@ const outputs = (statsPath: string | undefined) => {
     gzip_bytes: size?.gzip_bytes,
     preview_url: exactUrl,
     raw_bytes: size?.raw_bytes,
+    smoke_url: production ? env.SITE_URL : smokeUrl,
     url: production ? env.SITE_URL : (stableUrl ?? exactUrl),
     version_id: versionId,
   });
