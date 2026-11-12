@@ -437,5 +437,5 @@ jobs:
         env:
           URL: ${{ matrix.url }}
         run: |
-          curl -fsS -o /dev/null "$URL"
+          curl -fsSL -o /dev/null "$URL"
           echo "Deployed $APP to $URL" >> "$GITHUB_STEP_SUMMARY"
