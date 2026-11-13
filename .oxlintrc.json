@@ -35,7 +35,8 @@
     "**/.content-collections",
     "**/.astro",
     "apps/results/data",
-    "packages/weathericons/vendor"
+    "packages/weathericons/vendor",
+    "apps/web/components/iso"
   ],
   "rules": {
     "arrow-body-style": "error",

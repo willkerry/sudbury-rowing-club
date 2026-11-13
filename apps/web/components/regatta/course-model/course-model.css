@@ -1,0 +1,143 @@
+.cm {
+  --cm-water: #e6edf3;
+  --cm-water-line: #c9d6e2;
+  --cm-wall: #dfdfda;
+  --cm-wall-shade: #d3d3cd;
+  --cm-boat: #003b80;
+  --anatomy-lit: #003b80;
+}
+
+.cm-wall {
+  fill: var(--cm-wall);
+}
+
+.cm-wall-shade {
+  fill: var(--cm-wall-shade);
+}
+
+.cm-water {
+  fill: var(--cm-water);
+}
+
+.cm-flow-line {
+  fill: none;
+  stroke: var(--cm-water-line);
+  stroke-width: 0.6px;
+  stroke-linecap: round;
+  stroke-dasharray: 2 13;
+  vector-effect: non-scaling-stroke;
+}
+
+.cm-slit {
+  fill: var(--anatomy-hi);
+  stroke: none;
+  opacity: 0.75;
+}
+
+.cm-needle {
+  fill: var(--anatomy-hi);
+  stroke: none;
+}
+
+.cm-boat-fill {
+  fill: var(--anatomy-face);
+}
+
+.cm-boat-top {
+  fill: #e8eef6;
+}
+
+.cm-boat-shade {
+  fill: #c5d3e4;
+}
+
+.cm-boat-edge,
+.cm-boat-oar {
+  fill: none;
+  stroke: var(--cm-boat);
+  stroke-width: 0.6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.cm-boat-blade {
+  fill: none;
+  stroke: var(--cm-boat);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.cm-boat-crew {
+  fill: var(--cm-boat);
+}
+
+.cm {
+  --cm-grass: #f1f4ec;
+  --cm-meadow: #e9efe2;
+  --cm-field: #e6ecdd;
+  --cm-town: #f5f5f2;
+}
+
+.cm-land > .iso-top {
+  fill: var(--cm-grass);
+}
+
+.cm-patch {
+  stroke: none;
+}
+
+.cm-patch[data-kind="meadow"],
+.cm-patch[data-kind="pitch"] {
+  fill: var(--cm-meadow);
+}
+
+.cm-patch[data-kind="field"] {
+  fill: var(--cm-field);
+}
+
+.cm-patch[data-kind="town"] {
+  fill: var(--cm-town);
+}
+
+.cm-tree > circle.iso-fill {
+  fill: #edf2e7;
+}
+
+.cm-tree > .iso-shade {
+  fill: #dbe4d2;
+}
+
+.cm .iso-plate {
+  padding: 44px 12px;
+}
+
+.iso-svg.cm-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.cm-stage {
+  touch-action: pan-y;
+  border-radius: 2px;
+  outline-offset: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-flow-line {
+    animation: none;
+  }
+}
+
+@keyframes cm-flow {
+  to {
+    stroke-dashoffset: -15;
+  }
+}
+
+.cm-flow-line {
+  animation: cm-flow 9s linear infinite;
+}
