@@ -5,11 +5,16 @@ import { sift } from "radashi";
 import { z } from "zod";
 import { WarningSourceEnum } from "@/components/safety/quoted-warning";
 import type { SafetyComponentProps } from "@/components/safety/safety-component";
-import { EAStationResponseSchema } from "@/types/ea-station-respose";
 import { EAWarningSchema } from "@/types/ea-warning";
 import { type Severity, severities } from "@/types/severity";
 import { CLUB_LOCATION } from "./constants";
 import { err, ok, type Result } from "./result";
+import {
+  describeFlow,
+  type RiverFlow,
+  type RiverLevel,
+  type RiverReadings,
+} from "./river-level";
 import { fetchWeatherWarning } from "./server/fetchWeatherWarning";
 import { trackServerException } from "./server/track";
 
@@ -48,6 +53,9 @@ const fetchSanityStatus = async (): Promise<
   }
 };
 
+const CENTIMETRES_PER_METRE = 100;
+const MS_PER_HOUR = 3_600_000;
+
 const getEaWarningUrl = (): string =>
   `https://environment.data.gov.uk/flood-monitoring/id/floods?${new URLSearchParams(
     {
@@ -78,26 +86,67 @@ const fetchEAWarning = async (): Promise<
   }
 };
 
-const STATION_URL =
-  "https://environment.data.gov.uk/flood-monitoring/id/stations/E21856";
+const EA_API = "https://environment.data.gov.uk";
+const LAMARSH_FLOW_URL = `${EA_API}/hydrology/id/measures/4e87c615-767d-4b34-94c1-ca47926f6a70-flow-m-86400-m3s-qualified/readings?latest`;
+// 25 fifteen-minute readings span the last six hours.
+const LAMARSH_LEVEL_URL = `${EA_API}/flood-monitoring/id/measures/E21227-level-stage-i-15_min-mASD/readings?_sorted&_limit=25`;
 
-/** Fetches monitoring station data from the Environment Agency API */
-const fetchEAStation = async (): Promise<
-  Result<z.infer<typeof EAStationResponseSchema>>
-> => {
+const FlowResponseSchema = z.object({
+  items: z.array(z.object({ date: z.string(), value: z.number() })).nonempty(),
+});
+
+const LevelResponseSchema = z.object({
+  items: z
+    .array(z.object({ dateTime: z.coerce.date(), value: z.number() }))
+    .nonempty(),
+});
+
+const fetchEA = async <T extends z.ZodType>(
+  url: string,
+  schema: T,
+  label: string,
+): Promise<Result<z.infer<T>>> => {
   try {
-    return ok(
-      z
-        .object({ items: EAStationResponseSchema })
-        .parse(await ky.get(STATION_URL, { timeout: 5000 }).json()).items,
-    );
+    return ok(schema.parse(await ky.get(url, { timeout: 5000 }).json()));
   } catch (error) {
     trackServerException(error);
 
     return err(
-      error instanceof HTTPError ? error.message : "Failed to fetch EA station",
+      error instanceof HTTPError ? error.message : `Failed to fetch ${label}`,
     );
   }
+};
+
+/** Daily average flow at Lamarsh, published the following day. */
+const fetchLamarshFlow = async (): Promise<Result<RiverFlow>> => {
+  const result = await fetchEA(
+    LAMARSH_FLOW_URL,
+    FlowResponseSchema,
+    "Lamarsh flow",
+  );
+
+  return result.ok ? ok(result.data.items[0]) : result;
+};
+
+/** The live level at Lamarsh and how far it has moved over the last six hours. */
+const fetchLamarshLevel = async (): Promise<Result<RiverLevel>> => {
+  const result = await fetchEA(
+    LAMARSH_LEVEL_URL,
+    LevelResponseSchema,
+    "Lamarsh level",
+  );
+  if (!result.ok) return result;
+
+  const [latest] = result.data.items;
+  const oldest = result.data.items.at(-1) ?? latest;
+
+  return ok({
+    change: Math.round((latest.value - oldest.value) * CENTIMETRES_PER_METRE),
+    hours: Math.round(
+      (latest.dateTime.getTime() - oldest.dateTime.getTime()) / MS_PER_HOUR,
+    ),
+    readAt: latest.dateTime,
+  });
 };
 
 /** Maps the EA's 1-4 severity levels to our traffic light Severity enum */
@@ -108,45 +157,37 @@ const numericSeverityMap: Record<1 | 2 | 3 | 4, Severity> = {
   4: "neutral",
 };
 
-/** Assembles a string describing the current water level at the club's monitoring station */
-function formatDescriptionString(
-  name: string,
-  level: number,
-  ceil: number,
-  floor: number,
-): string {
-  const rangeWord = () => {
-    if (level < floor) return "below";
-    if (level > ceil) return "above";
-    return "within";
-  };
-
-  const WEIR_WARNING =
-    "There is a downstream weir between our piece of river and the monitoring station, so this value is only an indication of true water conditions.";
-
-  const [l, c, f] = [level, ceil, floor].map((v) =>
-    Intl.NumberFormat("en-GB", {
-      maximumFractionDigits: 0,
-      style: "unit",
-      unit: "centimeter",
-    }).format(Math.max(0, v * 100)),
-  );
-
-  return `The water level at the ${name} measuring station is ${l}. This is ${rangeWord()} the typical range of ${f} to ${c}. ${WEIR_WARNING}`;
-}
+const CLUB_HEADLINES: Record<Severity, string> = {
+  amber: "Amber: club warning",
+  green: "Green: club update",
+  neutral: "Club notice",
+  red: "Red: club warning",
+};
 
 /**
  * Fetches safety status data from a series of different APIs, stopping as soon
  * as it finds a reason to display a warning.
  */
 export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
-  const [sanityResult, eaWarningResult, stationResult, weatherWarningResult] =
-    await Promise.all([
-      fetchSanityStatus(),
-      fetchEAWarning(),
-      fetchEAStation(),
-      fetchWeatherWarning(),
-    ]);
+  const [
+    sanityResult,
+    eaWarningResult,
+    flowResult,
+    levelResult,
+    weatherWarningResult,
+  ] = await Promise.all([
+    fetchSanityStatus(),
+    fetchEAWarning(),
+    fetchLamarshFlow(),
+    fetchLamarshLevel(),
+    fetchWeatherWarning(),
+  ]);
+
+  const flow = flowResult.ok ? flowResult.data : undefined;
+  const level = levelResult.ok ? levelResult.data : undefined;
+  const river: RiverReadings | undefined =
+    flow || level ? { flow, level, station: "Lamarsh" } : undefined;
+  const retrievedAt = new Date();
 
   if (sanityResult.ok && sanityResult.data?.display) {
     const { data: sanityStatus } = sanityResult;
@@ -154,9 +195,11 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     return {
       date: sanityStatus._updatedAt,
       description: sanityStatus.description,
-      retrievedAt: new Date(),
+      river,
+      kind: "club",
+      retrievedAt,
       status: sanityStatus.status,
-      statusMessage: sanityStatus.status.toString(),
+      statusMessage: CLUB_HEADLINES[sanityStatus.status],
     };
   }
 
@@ -168,6 +211,9 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     return {
       date: timeRaised,
       description: message || "",
+      river,
+      kind: "flood",
+      retrievedAt,
       source: WarningSourceEnum.environmentAgency,
       status: numericSeverityMap[severityLevel],
       statusMessage: severity,
@@ -190,44 +236,43 @@ export const getSafetyStatus = async (): Promise<SafetyComponentProps> => {
     return {
       date: new Date(weatherWarning.pubDate),
       description: weatherWarning.items[0].content,
-      retrievedAt: new Date(),
+      river,
+      kind: "weather",
+      retrievedAt,
       source: WarningSourceEnum.metoffice,
       status: isYellowOrAmber ? "amber" : "red",
-      statusMessage: "Weather warning",
+      statusMessage: "Met Office weather warning",
     };
   }
 
-  if (stationResult.ok && stationResult.data) {
-    const { value } = stationResult.data.measures.latestReading;
-    const { typicalRangeHigh, typicalRangeLow } = stationResult.data.stageScale;
-    const mean = (typicalRangeHigh + typicalRangeLow) / 2;
-
-    const status = value >= mean ? "amber" : "neutral";
+  if (river) {
+    const { headline, status } = flow
+      ? describeFlow(flow.value)
+      : { headline: "Flow reading unavailable", status: "neutral" as const };
 
     return {
+      description: "",
+      kind: "river",
+      retrievedAt,
+      river,
       status,
-      date: stationResult.data.measures.latestReading.dateTime,
-      description: formatDescriptionString(
-        stationResult.data.label,
-        value,
-        typicalRangeHigh,
-        typicalRangeLow,
-      ),
-      retrievedAt: new Date(),
-      statusMessage: "Monitoring station",
+      statusMessage: headline,
     };
   }
 
   return {
     date: new Date(),
-    description: "Unable to fetch safety data from any source",
+    description:
+      "We couldn’t reach the river gauges or warning services. Check conditions at the river before you go out.",
     errors: sift([
       sanityResult.error,
       eaWarningResult.error,
-      stationResult.error,
+      flowResult.error,
+      levelResult.error,
     ]),
-    retrievedAt: new Date(),
+    kind: "unavailable",
+    retrievedAt,
     status: "neutral",
-    statusMessage: "No data available",
+    statusMessage: "Status unavailable",
   };
 };

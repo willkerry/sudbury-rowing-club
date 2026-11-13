@@ -1,6 +1,10 @@
 import { WeatherIcon } from "@sudburyrc/weathericons";
 import { IconAlertTriangle, IconArrowNarrowUp } from "@tabler/icons-react";
-import { toast } from "sonner";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { toLondonHourLabel } from "@/lib/forecast/london-time";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
 import { cn } from "@/lib/utils";
@@ -17,6 +21,20 @@ const listFormatter = new Intl.ListFormat("en-GB", {
   style: "long",
   type: "conjunction",
 });
+
+const WARNING_PHRASES: Record<WarningType, string> = {
+  fog: "fog",
+  "high temperature": `temperatures above ${HOT_CELSIUS}°C`,
+  "high wind": `wind at force ${GALE_FORCE} or more`,
+  "low temperature": `temperatures below ${COLD_CELSIUS}°C`,
+};
+
+export const describeWarnings = (warnings: WarningType[]): string =>
+  `Expect ${listFormatter.format(warnings.map((warning) => WARNING_PHRASES[warning]))}.`;
+
+// A typographic minus reads as a sign rather than a hyphen.
+export const formatTemperature = (celsius: number): string =>
+  celsius < 0 ? `−${Math.abs(celsius)}` : String(celsius);
 
 export const getWarnings = ({
   fog,
@@ -64,15 +82,21 @@ export const ForecastSlotColumn = ({
         {label}
 
         {warnings.length > 0 && (
-          <button
-            onClick={() =>
-              toast.info(`Warning due to ${listFormatter.format(warnings)}.`)
-            }
-            type="button"
-          >
-            <IconAlertTriangle aria-hidden className="size-3 text-amber-600" />
-            <span className="sr-only">{`Weather warning at ${label}`}</span>
-          </button>
+          <Popover>
+            <PopoverTrigger className="-m-1.5 rounded-sm p-1.5 transition-transform duration-100 ease-out focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-hidden active:scale-90">
+              <IconAlertTriangle
+                aria-hidden
+                className="size-3 text-amber-600"
+              />
+              <span className="sr-only">{`Weather warning at ${label}`}</span>
+            </PopoverTrigger>
+            <PopoverContent
+              className="w-max max-w-64 px-3 py-2 font-normal text-gray-900"
+              side="top"
+            >
+              {describeWarnings(warnings)}
+            </PopoverContent>
+          </Popover>
         )}
       </div>
 
@@ -80,20 +104,22 @@ export const ForecastSlotColumn = ({
 
       {high === undefined ? (
         <div className="disambiguate text-sm font-semibold text-gray-600 tabular-nums">
-          {slot.temperature}
+          {formatTemperature(slot.temperature)}
           <span className="text-gray-400">°</span>
         </div>
       ) : (
         <div className="flex items-baseline gap-1.5 disambiguate text-sm font-semibold tabular-nums">
           <span className="sr-only">High</span>
           <span className="text-gray-600">
-            {high}
+            {formatTemperature(high)}
             <span className="text-gray-400">°</span>
           </span>
           {low !== undefined && low !== high && (
             <>
               <span className="sr-only">, low</span>
-              <span className="text-xs text-gray-400">{low}°</span>
+              <span className="text-xs text-gray-400">
+                {formatTemperature(low)}°
+              </span>
             </>
           )}
         </div>

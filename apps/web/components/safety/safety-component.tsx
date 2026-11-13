@@ -1,16 +1,20 @@
 "use client";
 
 import { type QueryStatus, useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { Label } from "@/components/stour/label";
-import { ErrorMessage } from "@/components/ui/error";
-import { DateFormatter } from "@/components/utils/date-formatter";
 import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
+import type { RiverReadings } from "@/lib/river-level";
+import { formatAgo, formatWhen } from "@/lib/safety-times";
 import { useTRPC } from "@/lib/trpc/client";
 import type { Severity } from "@/types/severity";
 import { Loading } from "../stour/loading";
 import { HourlyForecast } from "./hourly-forecast";
 import { QuotedWarning, type WarningSourceEnum } from "./quoted-warning";
+import { RiverGauge } from "./river-gauge";
 import { IS_LOADING, SeveritySection } from "./severity-section";
+
+export type SafetyKind = "club" | "flood" | "weather" | "river" | "unavailable";
 
 export type SafetyComponentProps = {
   description: string;
@@ -18,69 +22,70 @@ export type SafetyComponentProps = {
   retrievedAt?: Date;
   status: Severity;
   statusMessage: string;
+  kind: SafetyKind;
+  river?: RiverReadings;
   source?: WarningSourceEnum;
   errors?: string[];
 };
 
-const SafetyDateUpdated = ({
-  date,
-  retrievedAt,
-}: {
-  date?: Date;
-  retrievedAt?: Date;
-}) => {
-  const hasTimestamps = Boolean(date || retrievedAt);
-  if (!hasTimestamps) return null;
+const TICK_MS = 30_000;
 
-  const isSameDay =
-    date &&
-    retrievedAt &&
-    new Date(date).toDateString() === new Date(retrievedAt).toDateString();
+const useNow = () => {
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setNow(new Date()), TICK_MS);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return now;
+};
+
+const DATE_LABELS: Partial<Record<SafetyKind, string>> = {
+  club: "Updated",
+  flood: "Issued",
+  weather: "Issued",
+};
+
+const SafetyTimes = ({
+  date,
+  kind,
+  now,
+  retrievedAt,
+}: Pick<SafetyComponentProps, "date" | "kind" | "retrievedAt"> & {
+  now: Date;
+}) => {
+  const dateLabel = DATE_LABELS[kind];
+  const parts = [
+    dateLabel && date && `${dateLabel} ${formatWhen(new Date(date), now)}`,
+    retrievedAt && `Checked ${formatAgo(new Date(retrievedAt), now)}`,
+  ].filter(Boolean);
+
+  if (parts.length === 0) return null;
 
   return (
-    <div className="mt-4 disambiguate text-sm font-medium text-gray-500">
-      {date && (
-        <>
-          Published <DateFormatter dateString={date} format="time" />
-          {retrievedAt && (
-            <>
-              {" "}
-              (Retrieved{" "}
-              <DateFormatter
-                dateString={retrievedAt}
-                format={
-                  isSameDay ? { hour: "numeric", minute: "numeric" } : "time"
-                }
-              />
-              )
-            </>
-          )}
-        </>
-      )}
-      {!date && retrievedAt && (
-        <>
-          Retrieved <DateFormatter dateString={retrievedAt} format="time" />
-        </>
-      )}
-    </div>
+    <p className="text-sm text-gray-500">
+      {parts.join(" · ").replace(/^./, (first) => first.toUpperCase())}
+    </p>
   );
 };
 
 const SafetyDescription = ({
   description,
+  kind,
   source,
-}: Partial<Pick<SafetyComponentProps, "description" | "source">>) => {
-  if (source && description) {
+}: Pick<SafetyComponentProps, "description" | "kind" | "source">) => {
+  if (!description || kind === "river") return null;
+  if (source)
     return <QuotedWarning description={description} source={source} />;
-  }
 
-  if (description) return <>{description}</>;
-
-  return null;
+  return <p className="text-gray-900">{description}</p>;
 };
 
 export const SafetyComponent = () => {
   const trpc = useTRPC();
+  const now = useNow();
 
   const { data, status, error } = useQuery(trpc.safety.status.queryOptions());
 
@@ -95,23 +100,19 @@ export const SafetyComponent = () => {
     error,
   });
 
-  const severityStatusMap: Record<QueryStatus, SafetyComponentProps["status"]> =
-    {
-      error: "neutral",
-      pending: "neutral",
-      success: data?.status || "neutral",
-    };
-  const severityStatus = severityStatusMap[status];
+  const severityStatusMap: Record<QueryStatus, Severity> = {
+    error: "neutral",
+    pending: "neutral",
+    success: data?.status || "neutral",
+  };
 
-  const statusMessageMap: Record<
-    QueryStatus,
-    SafetyComponentProps["statusMessage"] | undefined
-  > = {
-    error: "Error",
+  const statusMessageMap: Record<QueryStatus, string | undefined> = {
+    error: "Status unavailable",
     pending: IS_LOADING,
     success: data?.statusMessage,
   };
-  const statusMessage = statusMessageMap[status];
+
+  const isUnavailable = status === "error" || data?.kind === "unavailable";
 
   return (
     <div className="divide-y">
@@ -119,34 +120,39 @@ export const SafetyComponent = () => {
         <Label as="h2">River Safety Status</Label>
       </div>
 
-      <SeveritySection message={statusMessage} status={severityStatus} />
+      <SeveritySection
+        isUnavailable={isUnavailable}
+        message={statusMessageMap[status]}
+        status={severityStatusMap[status]}
+      />
 
-      <div className="min-h-22 p-3 sm:p-4">
-        {status === "pending" ? (
-          <Loading className="h-22" />
-        ) : (
+      <div className="min-h-22 space-y-4 p-3 sm:p-4">
+        {status === "pending" && <Loading className="h-22" />}
+
+        {status === "error" && (
+          <p className="text-gray-900">
+            We couldn’t load the river status. Check conditions at the river
+            before you go out.
+          </p>
+        )}
+
+        {data && (
           <>
             <SafetyDescription
-              description={data?.description}
-              source={data?.source}
+              description={data.description}
+              kind={data.kind}
+              source={data.source}
             />
-            <SafetyDateUpdated
-              date={data?.date}
-              retrievedAt={data?.retrievedAt}
+            {data.river && <RiverGauge now={now} river={data.river} />}
+            <SafetyTimes
+              date={data.date}
+              kind={data.kind}
+              now={now}
+              retrievedAt={data.retrievedAt}
             />
           </>
         )}
       </div>
-
-      {(Number(data?.errors?.length) > 0 || error) && (
-        <div className="p-3 sm:p-4">
-          {data?.errors?.map((error) => (
-            <ErrorMessage error={{ message: error }} key={error} />
-          ))}
-
-          {error && <ErrorMessage error={{ message: error.message }} />}
-        </div>
-      )}
 
       <HourlyForecast />
     </div>
