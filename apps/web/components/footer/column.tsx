@@ -13,26 +13,27 @@ type Props = {
 };
 
 export const FooterColumn = ({ heading, data }: Props) => (
-  <div className="mb-12 w-1/2 text-gray-700 sm:w-4/12 md:w-3/12">
-    <h3 className="mb-3 uppercase text-xs font-semibold tracking-widest select-none">
-      {heading}
-    </h3>
-    {data.map((item) => {
-      const Arrow =
-        item.target === "_blank" ? IconArrowUpRight : IconArrowRight;
+  <div>
+    <h3 className="text-sm font-medium text-gray-900">{heading}</h3>
+    <ul className="mt-4 space-y-3">
+      {data.map((item) => {
+        const Arrow =
+          item.target === "_blank" ? IconArrowUpRight : IconArrowRight;
 
-      return (
-        <Link
-          className="group my-3 flex items-center text-sm text-gray-600 transition-[color,font-weight] hover:font-[450] hover:text-black"
-          href={item.href}
-          key={item.href}
-          target={item.target}
-        >
-          {item.shortName ? item.shortName : item.name}
+        return (
+          <li key={item.href}>
+            <Link
+              className="group inline-flex items-center gap-1 text-sm text-gray-600 transition-colors duration-150 hover:text-gray-900"
+              href={item.href}
+              target={item.target}
+            >
+              {item.shortName ? item.shortName : item.name}
 
-          <Arrow className="h-3 w-3 stroke-3 text-blue-400 opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100" />
-        </Link>
-      );
-    })}
+              <Arrow className="size-3 stroke-3 text-blue-400 opacity-0 transition-[opacity,transform] duration-150 ease-out group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-visible:opacity-100" />
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
   </div>
 );

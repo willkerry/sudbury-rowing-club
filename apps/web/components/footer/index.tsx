@@ -1,4 +1,5 @@
 import { Crest } from "@sudburyrc/blue";
+import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import {
   about,
@@ -11,6 +12,7 @@ import type { IconNavItemType } from "@/types/nav-item";
 import { Address } from "./address";
 import { FooterColumn } from "./column";
 import { ReportABug } from "./reportABug";
+import { RiverStatus } from "./river-status";
 import { SocialIcons } from "./socialIcons";
 
 const columns: [string, IconNavItemType[]][] = [
@@ -21,37 +23,44 @@ const columns: [string, IconNavItemType[]][] = [
 ];
 
 export const Footer = () => (
-  <footer className="border-t">
-    <Container>
+  <footer className="bg-gray-50">
+    <Container className="pt-20 md:pt-24">
       <h2 className="sr-only">Footer</h2>
-      <div className="flex flex-wrap py-16">
-        <div className="w-1/2 sm:w-4/12 md:w-3/12">
-          <Crest aria-hidden className="mb-6 h-12 text-gray-600 md:h-16" />
+
+      <div className="grid gap-y-14 md:grid-cols-12 md:gap-x-6">
+        <div className="md:col-span-3">
+          <Link
+            aria-label="Home"
+            className="mb-6 inline-block rounded-sm transition-transform duration-150 ease-out focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-hidden active:scale-[0.97]"
+            href="/"
+          >
+            <Crest aria-hidden className="h-14 text-blue-950 md:h-16" />
+          </Link>
           <Address />
+        </div>
+
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 md:col-span-9">
+          {columns.map(([heading, data]) => (
+            <FooterColumn
+              data={data.map((item) => ({
+                ...item,
+                target: item.href.startsWith("http") ? "_blank" : undefined,
+              }))}
+              heading={heading}
+              key={heading}
+            />
+          ))}
         </div>
       </div>
 
-      <div className="mb-12 flex flex-wrap">
-        {columns.map(([heading, data]) => (
-          <FooterColumn
-            data={data.map((item) => ({
-              ...item,
-              target: item.href.startsWith("http") ? "_blank" : undefined,
-            }))}
-            heading={heading}
-            key={heading}
-          />
-        ))}
-      </div>
+      <RiverStatus className="mt-16" />
 
-      <div className="pt-2">
-        <div className="m-auto flex justify-between py-5 text-sm text-gray-500 md:flex-row">
-          <div className="mt-2">
-            © Sudbury Rowing Club {new Date().getFullYear()}. <ReportABug />
-          </div>
-          <div className="mt-2 flex flex-row">
-            <SocialIcons />
-          </div>
+      <div className="flex items-center justify-between gap-6 pt-8 pb-12 text-sm text-gray-500">
+        <p>
+          © Sudbury Rowing Club {new Date().getFullYear()}. <ReportABug />
+        </p>
+        <div className="flex shrink-0">
+          <SocialIcons />
         </div>
       </div>
     </Container>
