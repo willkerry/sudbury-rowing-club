@@ -21,7 +21,7 @@ export const safetyRouter = router({
   status: rateLimitedProcedure.query(async () => {
     const safetyStatus = await cached({
       getFreshValue: getSafetyStatus,
-      key: "safety-status",
+      key: "safety-status:v3",
       staleWhileRevalidate: STATUS_STALE_WHILE_REVALIDATE_MS,
       ttl: STATUS_TTL_MS,
     });

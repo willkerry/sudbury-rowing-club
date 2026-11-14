@@ -77,7 +77,7 @@ export const HourlyForecast = () => {
         active && (
           <Tabs onValueChange={setSelected} value={active}>
             <div className="flex items-center border-b">
-              <TabsList className="h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent p-1">
+              <TabsList className="h-auto min-w-0 flex-1 justify-start gap-1 overflow-x-auto overflow-y-hidden rounded-none bg-transparent [mask-image:linear-gradient(to_right,black_calc(100%-2rem),transparent)] p-1">
                 {days.map((day) => (
                   <TabsTrigger key={day.date} value={day.date}>
                     {day.date === today ? (
@@ -108,7 +108,7 @@ export const HourlyForecast = () => {
 
             {activeDay && (
               <TabsContent
-                className="relative mt-0 ring-offset-blue-50 duration-200 animate-in fade-in focus-visible:ring-gray-900/60 motion-reduce:animate-none"
+                className="relative mt-0 [mask-image:linear-gradient(to_right,transparent,black_1.5rem,black_calc(100%-1.5rem),transparent)] ring-offset-blue-50 duration-200 animate-in fade-in focus-visible:ring-gray-900/60 motion-reduce:animate-none"
                 key={activeDay.date}
                 render={
                   <Carousel

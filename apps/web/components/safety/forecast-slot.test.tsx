@@ -1,7 +1,12 @@
 import { cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 import type { ForecastSlot } from "@/lib/forecast/to-forecast-days";
-import { ForecastSlotColumn, getWarnings } from "./forecast-slot";
+import {
+  describeWarnings,
+  ForecastSlotColumn,
+  formatTemperature,
+  getWarnings,
+} from "./forecast-slot";
 
 afterEach(cleanup);
 
@@ -119,5 +124,21 @@ describe("ForecastSlotColumn", () => {
     expect(
       getByRole("button", { name: "Weather warning at 10" }),
     ).toBeDefined();
+  });
+});
+
+describe("describeWarnings", () => {
+  it("states each threshold in plain terms", () => {
+    expect(describeWarnings(["high wind", "low temperature", "fog"])).toBe(
+      "Expect wind at force 6 or more, temperatures below 4°C and fog.",
+    );
+  });
+});
+
+describe("formatTemperature", () => {
+  it("uses a minus sign below zero and leaves other values alone", () => {
+    expect(formatTemperature(-1)).toBe("−1");
+    expect(formatTemperature(0)).toBe("0");
+    expect(formatTemperature(12)).toBe("12");
   });
 });
