@@ -1,4 +1,4 @@
-import { Crest, Wordmark } from "@sudburyrc/blue";
+import { Crest } from "@sudburyrc/blue";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import {
@@ -14,7 +14,6 @@ import { FooterColumn } from "./column";
 import { ReportABug } from "./reportABug";
 import { RiverStatus } from "./river-status";
 import { SocialIcons } from "./socialIcons";
-import styles from "./wordmark.module.css";
 
 const columns: [string, IconNavItemType[]][] = [
   ["About", about],
@@ -24,7 +23,7 @@ const columns: [string, IconNavItemType[]][] = [
 ];
 
 export const Footer = () => (
-  <footer className={`${styles.footer} bg-gray-50`}>
+  <footer className="bg-gray-50">
     <Container className="pt-20 md:pt-24">
       <h2 className="sr-only">Footer</h2>
 
@@ -56,7 +55,7 @@ export const Footer = () => (
 
       <RiverStatus className="mt-16" />
 
-      <div className="flex items-center justify-between gap-6 py-8 text-sm text-gray-500">
+      <div className="flex items-center justify-between gap-6 pt-8 pb-12 text-sm text-gray-500">
         <p>
           © Sudbury Rowing Club {new Date().getFullYear()}. <ReportABug />
         </p>
@@ -65,14 +64,5 @@ export const Footer = () => (
         </div>
       </div>
     </Container>
-
-    <div aria-hidden className="px-4 select-none">
-      {/* viewBox crops the wordmark to "SUDBURY"; the footer's edge cuts off its lower third */}
-      <Wordmark
-        className={`${styles.wordmark} block w-full text-blue-950/[0.06]`}
-        suppressTitle
-        viewBox="974 385 2014 185"
-      />
-    </div>
   </footer>
 );
