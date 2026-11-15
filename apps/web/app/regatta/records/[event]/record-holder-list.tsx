@@ -1,5 +1,6 @@
 import { Blade } from "@/components/stour/blade";
 import type { Record } from "../transformRecords";
+import { isRecordSetter } from "./format-description";
 import { formatClubAndCrewName, getBladeUrls } from "./utils";
 
 const RecordHolder = ({
@@ -43,12 +44,16 @@ const RecordHolder = ({
 
 export const RecordHolderList = ({ records }: { records: Record[] }) => (
   <ul className="not-prose mb-12 grid grid-cols-1 gap-4">
-    {records.map((record, index) => (
+    {records.map((record) => (
       <RecordHolder
         key={`${record.club}-${record.year}`}
         record={record}
         status={
-          records.length > 1 ? (index === 0 ? "Set" : "Equalled") : undefined
+          records.length > 1
+            ? isRecordSetter(records, record.year)
+              ? "Set"
+              : "Equalled"
+            : undefined
         }
       />
     ))}

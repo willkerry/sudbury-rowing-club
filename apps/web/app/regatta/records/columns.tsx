@@ -4,16 +4,14 @@ import type { ColumnDef } from "@tanstack/react-table";
 import NextLink from "next/link";
 import { Fragment } from "react";
 import { Blade } from "@/components/stour/blade";
+import { toTotalSeconds } from "@/lib/duration";
 import {
   detectAndFormatCourseLength,
   detectCourseLength,
 } from "./[event]/format-description";
 import { unpickCompositeCrewClubs } from "./[event]/utils";
 import type { RecordsTableFeatures } from "./features";
-import { formatDuration, type Record, slugify } from "./transformRecords";
-
-const toSeconds = ({ minutes, seconds }: Record["time"]) =>
-  minutes * 60 + seconds;
+import { formatDuration, type Record } from "./transformRecords";
 
 export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
   {
@@ -23,8 +21,8 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
     cell: ({ row }) => (
       <>
         <NextLink
-          className="font-medium text-gray-900 outline-none after:absolute after:inset-0 focus-visible:after:ring-2 focus-visible:after:ring-gray-950 focus-visible:after:ring-inset"
-          href={`/regatta/records/${slugify(row.original.event)}`}
+          className="rounded-xs font-medium text-gray-900 hover:underline focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 focus-visible:outline-none"
+          href={`/regatta/records/${row.original.slug}`}
         >
           {row.original.event}
         </NextLink>
@@ -38,6 +36,7 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
   {
     accessorFn: (record) => detectCourseLength(record),
     id: "course",
+    meta: { className: "hidden w-24 sm:table-cell" },
     sortFn: "basic",
     header: "Course",
     cell: ({ row }) => (
@@ -49,6 +48,7 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
   {
     accessorKey: "club",
     enableSorting: false,
+    meta: { className: "sm:w-40" },
     header: "Club",
     cell: ({ row }) => (
       <div
@@ -80,6 +80,7 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
   },
   {
     accessorKey: "year",
+    meta: { className: "hidden w-24 sm:table-cell" },
     sortDescFirst: true,
     header: "Year",
     cell: ({ row }) => (
@@ -92,6 +93,7 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
   },
   {
     accessorKey: "time",
+    meta: { className: "text-right sm:w-24" },
     sortDescFirst: false,
     header: "Time",
     cell: ({ row }) => (
@@ -100,7 +102,7 @@ export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
       </span>
     ),
     sortFn: (a, b) =>
-      toSeconds(a.original.time) - toSeconds(b.original.time) ||
+      toTotalSeconds(a.original.time) - toTotalSeconds(b.original.time) ||
       a.original.year.getFullYear() - b.original.year.getFullYear(),
   },
 ];

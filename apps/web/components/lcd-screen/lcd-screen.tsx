@@ -3,18 +3,16 @@
 import { motion, useTransform } from "motion/react";
 import { useMemo } from "react";
 import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";
+import { toTotalSeconds } from "@/lib/duration";
 import { cn } from "@/lib/utils";
 import styles from "./lcd-screen.module.css";
-
-const getTotalSeconds = (time: { minutes: number; seconds: number }) =>
-  time.minutes * 60 + time.seconds;
 
 export const LCDScreen = ({
   time,
 }: {
   time: { minutes: number; seconds: number };
 }) => {
-  const targetSeconds = useMemo(() => getTotalSeconds(time), [time]);
+  const targetSeconds = useMemo(() => toTotalSeconds(time), [time]);
 
   const animatedSeconds = useAnimatedNumber(targetSeconds);
   const minutesText = useTransform(animatedSeconds, (v) =>
@@ -44,9 +42,15 @@ export const LCDScreen = ({
           "before:pointer-events-none before:absolute before:inset-0 before:z-[-1] before:text-green-400 before:opacity-10 before:content-['88:88']",
         )}
       >
-        <motion.span>{minutesText}</motion.span>
-        <span className="motion-safe:animate-pulse">:</span>
-        <motion.span>{secondsText}</motion.span>
+        <span className="motion-reduce:hidden">
+          <motion.span>{minutesText}</motion.span>
+          <span className="animate-pulse">:</span>
+          <motion.span>{secondsText}</motion.span>
+        </span>
+        <span className="motion-safe:hidden">
+          {time.minutes.toString().padStart(2, " ")}:
+          {time.seconds.toString().padStart(2, "0")}
+        </span>
       </div>
     </div>
   );

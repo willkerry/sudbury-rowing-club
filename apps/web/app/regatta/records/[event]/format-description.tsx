@@ -26,6 +26,10 @@ export const detectAndFormatCourseLength = (record: Record): string => {
   return formatLocalisedCourseLength(course);
 };
 
+export const isRecordSetter = (records: Record[], year: Date): boolean =>
+  year.getFullYear() ===
+  Math.min(...records.map((record) => record.year.getFullYear()));
+
 export const formatDescription = (records: Record[]): string => {
   const holder = records[0];
 
@@ -40,8 +44,8 @@ export const formatDescription = (records: Record[]): string => {
   const recordDescription = isHeldByMultipleClubs
     ? `The record of ${formatVerboseDuration(holder.time)} is jointly held ${listFormatter.format(
         records.map(
-          ({ parsedClub, year }, i) =>
-            `by ${formatClubAndCrewName(parsedClub, true)} ${i === 0 ? `who set it in ${year.getFullYear()}` : `who matched it in ${year.getFullYear()}`}`,
+          ({ parsedClub, year }) =>
+            `by ${formatClubAndCrewName(parsedClub, true)} who ${isRecordSetter(records, year) ? "set" : "matched"} it in ${year.getFullYear()}`,
         ),
       )}.`
     : `The record is held by ${formatClubAndCrewName(holder.parsedClub, true)}, who set a time of ${formatVerboseDuration(holder.time)} in ${holder.year.getFullYear()}.`;

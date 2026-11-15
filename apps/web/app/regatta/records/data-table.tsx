@@ -12,13 +12,14 @@ import {
   type SortingState,
   useTable,
 } from "@tanstack/react-table";
+import { useRouter } from "next/navigation";
 import {
   createParser,
   parseAsString,
   parseAsStringLiteral,
   useQueryState,
 } from "nuqs";
-import { Suspense, useMemo } from "react";
+import { type MouseEvent, Suspense, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { inputVariants } from "@/components/ui/input";
 import {
@@ -63,13 +64,6 @@ const parseAsSortingState = createParser<SortingState>({
 
 const NO_SORTING: SortingState = [];
 const COURSES = ["all", "350", "650"] as const;
-
-const COLUMN_CLASSES: { [id: string]: string } = {
-  course: "hidden sm:table-cell w-24",
-  club: "sm:w-40",
-  year: "hidden sm:table-cell w-24",
-  time: "text-right sm:w-24",
-};
 
 const normalise = (value: string) =>
   value.toLowerCase().replaceAll("×", "x").replaceAll("−", "-").trim();
@@ -120,8 +114,29 @@ const RecordsTableWithoutSuspense = ({ columns, data }: RecordsTableProps) => {
     state: { sorting },
   });
 
+  const router = useRouter();
   const rows = table.getRowModel().rows;
   const isFiltered = query !== "" || course !== "all";
+
+  const openRecord = (event: MouseEvent, href: string) => {
+    const target = event.target as Element;
+
+    if (
+      event.button === 2 ||
+      target.closest("a, button") ||
+      window.getSelection()?.toString()
+    ) {
+      return;
+    }
+
+    if (event.metaKey || event.ctrlKey || event.button === 1) {
+      window.open(href, "_blank", "noopener");
+
+      return;
+    }
+
+    router.push(href);
+  };
 
   const clearFilters = () => {
     void setQuery(null);
@@ -199,7 +214,7 @@ const RecordsTableWithoutSuspense = ({ columns, data }: RecordsTableProps) => {
                       }
                       className={cn(
                         "h-10 px-3 text-xs sm:px-4",
-                        COLUMN_CLASSES[column.id],
+                        column.columnDef.meta?.className,
                       )}
                       key={header.id}
                     >
@@ -241,14 +256,20 @@ const RecordsTableWithoutSuspense = ({ columns, data }: RecordsTableProps) => {
             {rows.length ? (
               rows.map((row) => (
                 <TableRow
-                  className="relative hover:bg-gray-50 active:bg-gray-100 active:transition-none"
+                  className="cursor-pointer hover:bg-gray-50 active:bg-gray-100 active:transition-none"
                   key={row.id}
+                  onAuxClick={(event) =>
+                    openRecord(event, `/regatta/records/${row.original.slug}`)
+                  }
+                  onClick={(event) =>
+                    openRecord(event, `/regatta/records/${row.original.slug}`)
+                  }
                 >
                   {row.getAllCells().map((cell) => (
                     <TableCell
                       className={cn(
                         "px-3 py-3 sm:px-4",
-                        COLUMN_CLASSES[cell.column.id],
+                        cell.column.columnDef.meta?.className,
                       )}
                       key={cell.id}
                     >

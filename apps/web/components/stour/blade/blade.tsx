@@ -16,7 +16,7 @@ const PLACEHOLDER_BACKGROUND = {
 const DEFAULT_WIDTH = 24;
 const DEFAULT_HEIGHT = 12;
 
-type BladeProps = Omit<React.ComponentProps<"div">, "children"> & {
+type BladeProps = Omit<React.ComponentProps<"div">, "children" | "ref"> & {
   /** The blade image URL; a placeholder shows where none is known. */
   src: string | null | undefined;
   /** Leave empty where the club is named alongside the blade. */
@@ -27,26 +27,37 @@ type BladeProps = Omit<React.ComponentProps<"div">, "children"> & {
   height?: number;
 };
 
-const visibilityCallbacks = new WeakMap<Element, () => void>();
+const pendingBlades = new Map<Element, () => void>();
 let observer: IntersectionObserver | undefined;
+
+const revealAll = () => {
+  for (const reveal of pendingBlades.values()) reveal();
+
+  pendingBlades.clear();
+  observer?.disconnect();
+};
 
 // Native lazy loading fetches images well outside the viewport; this waits until a blade is actually on screen.
 const observeUntilVisible = (element: Element, onVisible: () => void) => {
-  observer ??= new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
+  if (!observer) {
+    observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
 
-      visibilityCallbacks.get(entry.target)?.();
-      visibilityCallbacks.delete(entry.target);
-      observer?.unobserve(entry.target);
-    }
-  });
+        pendingBlades.get(entry.target)?.();
+        pendingBlades.delete(entry.target);
+        observer?.unobserve(entry.target);
+      }
+    });
 
-  visibilityCallbacks.set(element, onVisible);
+    window.addEventListener("beforeprint", revealAll);
+  }
+
+  pendingBlades.set(element, onVisible);
   observer.observe(element);
 
   return () => {
-    visibilityCallbacks.delete(element);
+    pendingBlades.delete(element);
     observer?.unobserve(element);
   };
 };
@@ -68,16 +79,30 @@ export const Blade = ({
     return observeUntilVisible(ref.current, () => setIsVisible(true));
   }, [url, isVisible]);
 
+  const image = url && (
+    <Image
+      alt={alt}
+      className="h-full w-full mix-blend-multiply"
+      height={height}
+      loader={cloudflareLoader}
+      src={url}
+      style={PLACEHOLDER_BACKGROUND}
+      width={width}
+    />
+  );
+
   if (url && !isVisible) {
     return (
       <div
         aria-label={alt || undefined}
         className={cn("relative h-3 w-6 overflow-hidden", className)}
+        ref={ref}
         role={alt ? "img" : undefined}
         style={PLACEHOLDER_BACKGROUND}
         {...props}
-        ref={ref}
-      />
+      >
+        <noscript>{image}</noscript>
+      </div>
     );
   }
 
@@ -87,15 +112,7 @@ export const Blade = ({
       {...props}
     >
       {url ? (
-        <Image
-          alt={alt}
-          className="h-full w-full mix-blend-multiply"
-          height={height}
-          loader={cloudflareLoader}
-          src={url}
-          style={PLACEHOLDER_BACKGROUND}
-          width={width}
-        />
+        image
       ) : (
         <>
           <img alt="" className="h-full w-full" src={BLADE_PLACEHOLDER} />
