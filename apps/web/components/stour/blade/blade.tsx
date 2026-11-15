@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { cloudflareLoader } from "@/lib/loaders/cloudflare-loader";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +27,30 @@ type BladeProps = Omit<React.ComponentProps<"div">, "children"> & {
   height?: number;
 };
 
+const visibilityCallbacks = new WeakMap<Element, () => void>();
+let observer: IntersectionObserver | undefined;
+
+// Native lazy loading fetches images well outside the viewport; this waits until a blade is actually on screen.
+const observeUntilVisible = (element: Element, onVisible: () => void) => {
+  observer ??= new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+
+      visibilityCallbacks.get(entry.target)?.();
+      visibilityCallbacks.delete(entry.target);
+      observer?.unobserve(entry.target);
+    }
+  });
+
+  visibilityCallbacks.set(element, onVisible);
+  observer.observe(element);
+
+  return () => {
+    visibilityCallbacks.delete(element);
+    observer?.unobserve(element);
+  };
+};
+
 export const Blade = ({
   alt = "",
   className,
@@ -31,30 +58,56 @@ export const Blade = ({
   src: url,
   width = DEFAULT_WIDTH,
   ...props
-}: BladeProps) => (
-  <div className={cn("relative h-3 w-6 overflow-hidden", className)} {...props}>
-    {url ? (
-      <Image
-        alt={alt}
-        className="h-full w-full mix-blend-multiply"
-        height={height}
-        loader={cloudflareLoader}
-        loading="lazy"
-        src={url}
-        style={PLACEHOLDER_BACKGROUND}
-        width={width}
-      />
-    ) : (
-      <>
-        <img alt="" className="h-full w-full" src={BLADE_PLACEHOLDER} />
+}: BladeProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-        <div
-          aria-hidden
-          className="absolute inset-0 ml-1 flex items-center text-[0.5em] font-semibold select-none"
-        >
-          ?
-        </div>
-      </>
-    )}
-  </div>
-);
+  useEffect(() => {
+    if (!url || isVisible || !ref.current) return;
+
+    return observeUntilVisible(ref.current, () => setIsVisible(true));
+  }, [url, isVisible]);
+
+  if (url && !isVisible) {
+    return (
+      <div
+        aria-label={alt || undefined}
+        className={cn("relative h-3 w-6 overflow-hidden", className)}
+        role={alt ? "img" : undefined}
+        style={PLACEHOLDER_BACKGROUND}
+        {...props}
+        ref={ref}
+      />
+    );
+  }
+
+  return (
+    <div
+      className={cn("relative h-3 w-6 overflow-hidden", className)}
+      {...props}
+    >
+      {url ? (
+        <Image
+          alt={alt}
+          className="h-full w-full mix-blend-multiply"
+          height={height}
+          loader={cloudflareLoader}
+          src={url}
+          style={PLACEHOLDER_BACKGROUND}
+          width={width}
+        />
+      ) : (
+        <>
+          <img alt="" className="h-full w-full" src={BLADE_PLACEHOLDER} />
+
+          <div
+            aria-hidden
+            className="absolute inset-0 ml-1 flex items-center text-[0.5em] font-semibold select-none"
+          >
+            ?
+          </div>
+        </>
+      )}
+    </div>
+  );
+};

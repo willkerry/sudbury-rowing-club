@@ -1,109 +1,106 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
+import NextLink from "next/link";
+import { Fragment } from "react";
 import { Blade } from "@/components/stour/blade";
-import { Link } from "@/components/stour/link";
-import { DataTableColumnHeader } from "@/components/ui/table";
-import { detectAndFormatCourseLength } from "./[event]/format-description";
+import {
+  detectAndFormatCourseLength,
+  detectCourseLength,
+} from "./[event]/format-description";
+import { unpickCompositeCrewClubs } from "./[event]/utils";
 import type { RecordsTableFeatures } from "./features";
 import { formatDuration, type Record, slugify } from "./transformRecords";
 
+const toSeconds = ({ minutes, seconds }: Record["time"]) =>
+  minutes * 60 + seconds;
+
 export const columns: ColumnDef<RecordsTableFeatures, Record>[] = [
-  {
-    accessorKey: "course",
-    enableColumnFilter: false,
-    cell: ({ row }) => detectAndFormatCourseLength(row.original),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Course" />
-    ),
-  },
   {
     accessorKey: "event",
     enableSorting: false,
-    filterFn: (row, _id, value) =>
-      row.original.event
-        .toLowerCase()
-        .replaceAll("×", "x")
-        .replaceAll("−", "-")
-        .includes(value.toLowerCase()),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Event" />
+    header: "Event",
+    cell: ({ row }) => (
+      <>
+        <NextLink
+          className="font-medium text-gray-900 outline-none after:absolute after:inset-0 focus-visible:after:ring-2 focus-visible:after:ring-gray-950 focus-visible:after:ring-inset"
+          href={`/regatta/records/${slugify(row.original.event)}`}
+        >
+          {row.original.event}
+        </NextLink>
+        <div className="mt-0.5 text-xs whitespace-nowrap text-gray-500 tabular-nums sm:hidden">
+          {detectAndFormatCourseLength(row.original)} ·{" "}
+          {row.original.year.getFullYear()}
+        </div>
+      </>
+    ),
+  },
+  {
+    accessorFn: (record) => detectCourseLength(record),
+    id: "course",
+    sortFn: "basic",
+    header: "Course",
+    cell: ({ row }) => (
+      <span className="text-gray-500 tabular-nums">
+        {detectAndFormatCourseLength(row.original)}
+      </span>
+    ),
+  },
+  {
+    accessorKey: "club",
+    enableSorting: false,
+    header: "Club",
+    cell: ({ row }) => (
+      <div
+        className="flex flex-wrap items-center gap-x-2 gap-y-1"
+        title={unpickCompositeCrewClubs(row.original.parsedClub).join(", ")}
+      >
+        <div className="flex shrink-0 items-center gap-1">
+          {row.original.parsedClub.map((club, index) => (
+            <Blade
+              key={`${"id" in club ? club.id : club.code}-${index}`}
+              src={"id" in club ? club.bladeUrl : null}
+            />
+          ))}
+        </div>
+        <span className="uppercase tracking-wider text-gray-700">
+          {row.original.club.split("/").map((code, index) => (
+            <Fragment key={`${code}-${index}`}>
+              {index > 0 && (
+                <>
+                  /<wbr />
+                </>
+              )}
+              {code}
+            </Fragment>
+          ))}
+        </span>
+      </div>
     ),
   },
   {
     accessorKey: "year",
-    enableSorting: true,
+    sortDescFirst: true,
+    header: "Year",
     cell: ({ row }) => (
-      <div className="disambiguate tabular-nums">
+      <span className="disambiguate text-gray-700 tabular-nums">
         {row.original.year.getFullYear()}
-      </div>
-    ),
-    filterFn: (row, _id, value) =>
-      row.original.year.getFullYear().toString().includes(value),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Year" />
+      </span>
     ),
     sortFn: (a, b) =>
       a.original.year.getFullYear() - b.original.year.getFullYear(),
   },
   {
-    accessorKey: "club",
-    cell: ({ row }) => (
-      <div className="flex flex-row gap-2">
-        <div className="flex flex-row items-center gap-2">
-          {row.original.parsedClub.map((club, index) => {
-            if ("id" in club)
-              return <Blade key={`${club.id}-${index}`} src={club.bladeUrl} />;
-
-            return <Blade key={`${club.code}-${index}`} src={null} />;
-          })}
-        </div>
-        <div className="uppercase tracking-wider">{row.original.club}</div>
-      </div>
-    ),
-    filterFn: (row, _id, value) =>
-      row.original.club.toLowerCase().includes(value.toLowerCase()),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Club" />
-    ),
-  },
-  {
     accessorKey: "time",
-    enableColumnFilter: false,
-    enableSorting: true,
+    sortDescFirst: false,
+    header: "Time",
     cell: ({ row }) => (
-      <div className="tracking-wider tabular-nums">
+      <span className="font-medium text-gray-900 tabular-nums">
         {formatDuration(row.original.time)}
-      </div>
+      </span>
     ),
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Time" />
-    ),
-    sortFn: (a, b) => {
-      const aTimeSeconds =
-        a.original.time.minutes * 60 + a.original.time.seconds;
-      const bTimeSeconds =
-        b.original.time.minutes * 60 + b.original.time.seconds;
-
-      const aYear = a.original.year.getFullYear();
-      const bYear = b.original.year.getFullYear();
-
-      if (aTimeSeconds === bTimeSeconds) {
-        return aYear - bYear;
-      }
-
-      return aTimeSeconds - bTimeSeconds;
-    },
-  },
-  {
-    accessorKey: "link",
-    enableColumnFilter: false,
-    enableHiding: false,
-    enableSorting: false,
-    header: "Link",
-    id: "link",
-    cell: ({ row }) => (
-      <Link href={`/regatta/records/${slugify(row.original.event)}`}>View</Link>
-    ),
+    sortFn: (a, b) =>
+      toSeconds(a.original.time) - toSeconds(b.original.time) ||
+      a.original.year.getFullYear() - b.original.year.getFullYear(),
   },
 ];

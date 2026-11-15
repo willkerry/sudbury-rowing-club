@@ -45,7 +45,7 @@ export const LCDScreen = ({
         )}
       >
         <motion.span>{minutesText}</motion.span>
-        <span className="animate-pulse">:</span>
+        <span className="motion-safe:animate-pulse">:</span>
         <motion.span>{secondsText}</motion.span>
       </div>
     </div>

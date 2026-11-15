@@ -1,3 +1,4 @@
+import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { createMetadata } from "@/lib/create-metadata";
 import { columns } from "./columns";
@@ -19,9 +20,9 @@ const RecordsPage = async () => {
     <>
       <PageHeader breadcrumbs title="Course records" />
 
-      <div className="p-4">
+      <Container className="pb-16">
         <DataTable columns={columns} data={records} />
-      </div>
+      </Container>
     </>
   );
 };
