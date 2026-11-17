@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "pnpm",
+      "args": ["--dir", "apps/web", "exec", "shadcn", "mcp"]
+    }
+  }
+}

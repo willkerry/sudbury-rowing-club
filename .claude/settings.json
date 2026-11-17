@@ -5,13 +5,25 @@
     "frontend-design@anthropics-claude-code": true
   },
   "hooks": {
-    "PostToolUse": [
+    "PreToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Edit|MultiEdit|Write",
         "hooks": [
           {
-            "command": "pnpm check",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-generated-files.sh",
             "timeout": 5,
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/check-edited-file.sh",
+            "timeout": 15,
             "type": "command"
           }
         ]

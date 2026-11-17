@@ -74,6 +74,7 @@ OUT.
 - Use `T[]` array syntax (not `Array<T>`)
 - Tailwind classes sorted by `cn`, `cva`, `clsx` functions
 - Use empty lines to break code into short paragraphs of related statements, and nearly always before a `return`
+- Run the `club-copy-reviewer` agent on changes to user-facing text before committing
 
 ## Key Technologies
 
