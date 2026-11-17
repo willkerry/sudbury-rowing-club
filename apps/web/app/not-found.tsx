@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Track404 } from "@/components/utils/track-404";
 
 export const metadata: Metadata = {
-  title: "404 Page not found",
+  title: "Page not found",
 };
 
 const Custom404 = () => (
@@ -20,11 +20,11 @@ const Custom404 = () => (
       <Track404 />
     </Suspense>
 
-    <PageHeader prose title="404 Page not found." />
+    <PageHeader prose title="Page not found" />
 
     <div className="flex justify-center">
       <Image
-        alt="The time the river ran dry."
+        alt="The cut beside the boathouse drained to mud, with the landing stage and a launch on the riverbed."
         className="rounded-xs"
         height={144}
         src={TroubleAtTMill}
@@ -34,8 +34,8 @@ const Custom404 = () => (
 
     <Container className="prose mt-12 max-w-prose">
       <p>
-        The page you are looking for might have been removed, or might have just
-        moved.
+        We could not find this page. It may have moved or been removed. Try
+        searching, or return to the homepage.
       </p>
       <div className="flex flex-col gap-4">
         <SiteSearch />

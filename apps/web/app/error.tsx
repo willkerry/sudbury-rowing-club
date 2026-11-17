@@ -31,7 +31,7 @@ export default function RootError({ error, reset }: ErrorProps) {
 
       <div className="flex justify-center">
         <Image
-          alt="The time the river ran dry."
+          alt="The cut beside the boathouse drained to mud, with the landing stage and a launch on the riverbed."
           className="rounded-lg"
           height={144}
           src={TroubleAtTMill}
