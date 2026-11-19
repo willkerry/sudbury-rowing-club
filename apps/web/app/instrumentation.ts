@@ -17,8 +17,9 @@ export const onRequestError: Instrumentation.onRequestError = async (
       const sessionId = request.headers["x-posthog-session-id"];
       const distinctId = request.headers["x-posthog-distinct-id"];
 
-      posthog.captureException(error, distinctId as string | undefined, {
-        $session_id: sessionId,
+      posthog.captureException(error, {
+        distinctId: distinctId as string | undefined,
+        properties: { $session_id: sessionId },
       });
     },
   });

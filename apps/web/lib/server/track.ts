@@ -33,7 +33,7 @@ export const trackServerException = (error: unknown) => {
     ifProd: () => {
       const posthog = getPostHogServer();
 
-      posthog.captureException(error, "server");
+      posthog.captureException(error, { distinctId: "server" });
     },
   });
 };

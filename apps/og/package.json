@@ -13,7 +13,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@cloudflare/puppeteer": "^1.4.0"
+    "@cloudflare/puppeteer": "^2.0.1"
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",

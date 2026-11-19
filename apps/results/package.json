@@ -16,11 +16,11 @@
   "devDependencies": {
     "@minify-html/node": "^0.18.1",
     "@sudburyrc/tsconfig": "workspace:*",
-    "astro": "^7.4.11",
-    "browserslist": "^4.29.3",
+    "astro": "^7.4.13",
+    "browserslist": "^4.29.6",
     "inter-ui": "^4.1.1",
     "lightningcss": "^1.33.0",
-    "parse5": "^7.3.0",
+    "parse5": "^8.1.1",
     "typescript": "catalog:",
     "wrangler": "catalog:"
   },
