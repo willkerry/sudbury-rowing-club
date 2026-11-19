@@ -68,7 +68,7 @@ const Join = async () => {
       {/* Big hero */}
       <Container className="py-16 text-center text-gray-900 sm:py-24">
         <Label className="sm:mb-3">Join Sudbury Rowing Club</Label>
-        <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 drop-shadow-xl sm:text-8xl">
+        <h1 className="relative z-10 text-6xl font-semibold tracking-tighter text-green-500 drop-shadow-xl roundness-friendly sm:text-8xl">
           Start rowing with us{" "}
           <IconThumbUp className="inline h-12 w-12 rotate-3 text-blue-400 sm:h-16 sm:w-16" />
         </h1>
