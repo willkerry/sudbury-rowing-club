@@ -10,13 +10,19 @@
 @theme {
   --color-cyan: #79ffe1;
 
-  --font-sans: InterVariable, Inter, system-ui, sans-serif;
+  --font-sans: Allo, system-ui, sans-serif;
   --font-serif: "Source Serif 4 Variable", serif;
   --font-mono:
     "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
 
-  --tracking-tighter: -0.04em;
+  --font-roundness-sharp: 0;
+  --font-roundness-slight: 20;
+  --font-roundness-friendly: 50;
+  --font-roundness-round: 100;
+
+  --tracking-tighter: -0.02em;
+  --tracking-tight: -0.005em;
   --leading-tight: 1.2;
 
   --shadow-small: 0 5px 10px rgb(0 0 0 / 0.12);
@@ -85,8 +91,7 @@
 
 @layer base {
   html {
-    @apply bg-white text-black antialiased;
-    font-feature-settings: "ss03" 1;
+    @apply bg-white text-black antialiased roundness-slight;
   }
 }
 
@@ -119,17 +124,23 @@
   break-inside: avoid;
 }
 
+@utility roundness-* {
+  font-variation-settings: "ROND"
+    --value(--font-roundness-*, integer, [integer]);
+}
+
 @utility disambiguate {
   font-feature-settings:
-    "ss01" 1,
-    "ss04" 1;
+    "ss03" 1,
+    "cv01" 1,
+    "cv03" 1,
+    "cv04" 1;
 }
 
 @utility uppercase {
   font-feature-settings:
     "case" 1,
-    "cpsp" 1,
-    "cv08" 1;
+    "cv04" 1;
 }
 
 @utility list-alpha {

@@ -130,12 +130,15 @@ const Brand = () => (
 
     <ul>
       <li>
-        <a href="https://rsms.me/inter/">
-          <strong>Inter</strong>
+        <a href="https://allo.joshpuckett.me">
+          <strong>Allo</strong>
         </a>{" "}
-        by Rasmus Andersson, for pretty much everything. It’s a great typeface
-        for user interfaces, provided ‘free’ to the world by a very
-        well-respected software designer.
+        by Josh Puckett, for pretty much everything. It’s a free and open-source
+        typeface for screens and interfaces, built from Rasmus Andersson’s{" "}
+        <a href="https://rsms.me/inter/">Inter</a>. Its roundness is adjustable:
+        most of the site uses a slightly rounded setting, and the big headings
+        on the joining, sponsorship, regatta and 150th anniversary pages use a
+        rounder one.
       </li>
 
       <li>

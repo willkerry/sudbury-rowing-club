@@ -3,7 +3,8 @@
     --ink: #111;
     --muted: #6f6f6f;
     --faint: #a8a8a8;
-    --font-sans: InterVariable, Inter, system-ui, sans-serif;
+    --font-sans: Allo, system-ui, sans-serif;
+    --font-roundness: "ROND" 20;
 
     color-scheme: light;
   }
@@ -13,6 +14,7 @@
     background: #fff;
     color: var(--ink);
     font: 14px/1.6 var(--font-sans);
+    font-variation-settings: var(--font-roundness);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -27,5 +29,6 @@
     color: initial;
     font: initial;
     font-family: var(--font-sans);
+    font-variation-settings: var(--font-roundness);
   }
 }
