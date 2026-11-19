@@ -1,5 +1,5 @@
 import { animate } from "motion";
-import { useMotionValue } from "motion/react";
+import { useMotionValue, useReducedMotion } from "motion/react";
 import { useEffect } from "react";
 
 /**
@@ -21,8 +21,15 @@ export function useAnimatedNumber(
   shelfWidth = 0.2,
 ) {
   const value = useMotionValue(0);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (shouldReduceMotion) {
+      value.set(target);
+
+      return;
+    }
+
     const duration = getDuration(value.get(), target);
 
     const controls = animate(value, target, {
@@ -47,7 +54,7 @@ export function useAnimatedNumber(
     });
 
     return () => controls.cancel();
-  }, [target, aggressiveness, shelfWidth, value]);
+  }, [target, aggressiveness, shelfWidth, value, shouldReduceMotion]);
 
   return value;
 }

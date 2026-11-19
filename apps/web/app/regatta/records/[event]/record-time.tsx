@@ -1,15 +1,19 @@
 import { LCDScreen } from "@/components/lcd-screen";
-import { formatVerboseDuration } from "../transformRecords";
+import { formatVerboseDuration, type Record } from "../transformRecords";
+import {
+  detectCourseLength,
+  formatLocalisedCourseLength,
+} from "./format-description";
 
-export const RecordTime = ({
-  time,
-}: {
-  time: { minutes: number; seconds: number };
-}) => (
+export const RecordTime = ({ record }: { record: Record }) => (
   <div className="mb-12 inline-block">
-    <LCDScreen time={time} />
+    <LCDScreen time={record.time} />
     <div className="mt-1.5 text-center text-sm text-gray-800">
-      {formatVerboseDuration(time)}
+      {formatVerboseDuration(record.time)}
+      <span className="text-gray-500">
+        {" · "}
+        {formatLocalisedCourseLength(detectCourseLength(record))} course
+      </span>
     </div>
   </div>
 );

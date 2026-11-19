@@ -54,13 +54,12 @@ const Page = async ({ params }: { params: Promise<Param> }) => {
   }
 
   const eventName = records[0].event;
-  const time = records[0].time;
 
   const description = formatDescription(records);
 
   return (
     <TextPage prose="prose" title={extendEventName(eventName)}>
-      <RecordTime time={time} />
+      <RecordTime record={records[0]} />
       <RecordHolderList records={records} />
 
       <p>{description}</p>

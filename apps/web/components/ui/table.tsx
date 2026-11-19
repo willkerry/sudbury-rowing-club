@@ -1,28 +1,6 @@
-import {
-  IconArrowBackUp,
-  IconArrowDown,
-  IconArrowUp,
-  IconSearch,
-  IconSelector,
-} from "@tabler/icons-react";
-import type {
-  Column,
-  columnFilteringFeature,
-  RowData,
-  rowSortingFeature,
-} from "@tanstack/react-table";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { Input } from "./input";
 
 const Table = React.forwardRef<
   HTMLTableElement,
@@ -127,118 +105,7 @@ const TableCaption = React.forwardRef<
 ));
 TableCaption.displayName = "TableCaption";
 
-type SortableFilterableFeatures = {
-  columnFilteringFeature: typeof columnFilteringFeature;
-  rowSortingFeature: typeof rowSortingFeature;
-};
-
-interface DataTableColumnHeaderProps<
-  TData extends RowData,
-  TValue,
-> extends React.HTMLAttributes<HTMLDivElement> {
-  column: Pick<
-    Column<SortableFilterableFeatures, TData, TValue>,
-    | "clearSorting"
-    | "getCanFilter"
-    | "getCanSort"
-    | "getFilterValue"
-    | "getIsFiltered"
-    | "getIsSorted"
-    | "setFilterValue"
-    | "toggleSorting"
-  >;
-  title: string;
-}
-
-const DataTableColumnHeader = <TData extends RowData, TValue>({
-  column,
-  title,
-  className,
-}: DataTableColumnHeaderProps<TData, TValue>) => {
-  const sortIcon = {
-    asc: <IconArrowUp aria-hidden className="h-3.5 w-3.5" />,
-    desc: <IconArrowDown aria-hidden className="h-3.5 w-3.5" />,
-    none: <IconSelector aria-hidden className="h-3.5 w-3.5" />,
-  }[column.getIsSorted() || "none"];
-
-  return (
-    <div className={cn("flex items-center gap-1", className)}>
-      <div>{title}</div>
-
-      {column.getCanSort() && (
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            render={
-              <Button
-                className="px-1"
-                size="xs"
-                variant={column.getIsSorted() ? "tertiary" : "ghost"}
-              />
-            }
-          >
-            {sortIcon}
-            <span className="sr-only">Sort</span>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            <DropdownMenuItem
-              disabled={column.getIsSorted() === "asc"}
-              onClick={() => column.toggleSorting(false)}
-            >
-              <IconArrowUp aria-hidden className="h-3.5 w-3.5" />
-              Ascending
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              disabled={column.getIsSorted() === "desc"}
-              onClick={() => column.toggleSorting(true)}
-            >
-              <IconArrowDown aria-hidden className="h-3.5 w-3.5" />
-              Descending
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-
-            <DropdownMenuItem
-              disabled={!column.getIsSorted()}
-              onClick={() => column.clearSorting()}
-            >
-              <IconArrowBackUp aria-hidden className="h-3.5 w-3.5" />
-              Clear
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )}
-
-      {column.getCanFilter() && (
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            render={
-              <Button
-                className="px-1"
-                size="xs"
-                variant={column.getIsFiltered() ? "tertiary" : "ghost"}
-              />
-            }
-          >
-            <IconSearch aria-hidden className="h-3.5 w-3.5" />
-            <span className="sr-only">Filter {title}</span>
-          </DropdownMenuTrigger>
-
-          <DropdownMenuContent align="start">
-            <Input
-              aria-label={`Filter by ${title}`}
-              onChange={(event) => column.setFilterValue(event.target.value)}
-              onKeyDown={(event) => event.stopPropagation()}
-              type="text"
-              value={String(column.getFilterValue() ?? "")}
-            />
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )}
-    </div>
-  );
-};
-
 export {
-  DataTableColumnHeader,
   Table,
   TableBody,
   TableCaption,
