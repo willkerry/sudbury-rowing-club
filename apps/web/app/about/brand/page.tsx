@@ -9,6 +9,7 @@ import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 import { BrandAssets } from "./brand-assets";
 import { ColorIndicator } from "./color-indicator";
+import { MarginNote } from "./margin-note";
 
 export const metadata: Metadata = {
   ...createMetadata({
@@ -66,7 +67,7 @@ const Brand = () => (
     </p>
 
     <figure>
-      <div className="flex flex-row gap-1.5">
+      <div className="relative flex flex-row gap-1.5">
         {brandColors.map((item) => (
           <div
             className="h-48 w-full rounded-sm bg-blue-950 shadow-sm"
@@ -74,6 +75,7 @@ const Brand = () => (
             style={{ background: item.color }}
           />
         ))}
+        <MarginNote>freshly re-mixed</MarginNote>
       </div>
       <figcaption>
         A visual representation of the shade scale, starting at the original
