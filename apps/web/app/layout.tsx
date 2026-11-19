@@ -2,7 +2,7 @@ import { blue } from "@sudburyrc/blue";
 import "@fontsource-variable/jetbrains-mono/index.css";
 import "@fontsource-variable/source-serif-4/opsz.css";
 import "@fontsource-variable/source-serif-4/opsz-italic.css";
-import "inter-ui/inter-variable.css";
+import "allo-font/allo.css";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Banner } from "@/components/banner";

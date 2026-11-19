@@ -19,7 +19,7 @@ export const variants: Record<
     g1: "#a1c4fd",
     g2: "#c2e9fb",
     mg: blue[200],
-    spacing: -1,
+    spacing: 0,
     weight: 600,
   },
   dark: {
@@ -28,7 +28,7 @@ export const variants: Record<
     g1: "#fff",
     g2: "#fff",
     mg: "rgba(255, 255, 255, 0.5)",
-    spacing: -2,
+    spacing: -0.5,
     weight: 500,
   },
   light: {
@@ -37,7 +37,7 @@ export const variants: Record<
     g1: "#000",
     g2: "#000",
     mg: "rgba(0, 0, 0, 0.5)",
-    spacing: -2,
+    spacing: -0.5,
     weight: 500,
   },
 };
