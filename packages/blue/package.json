@@ -21,8 +21,8 @@
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
-    "@types/node": "^26.6.6",
-    "@types/react": "^19.3.0",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"
   },

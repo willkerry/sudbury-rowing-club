@@ -32,7 +32,7 @@
   "devDependencies": {
     "@sanity/cli": "^8.31.0",
     "@sudburyrc/tsconfig": "workspace:*",
-    "@types/react": "^19.3.0",
+    "@types/react": "catalog:",
     "wrangler": "catalog:"
   }
 }
