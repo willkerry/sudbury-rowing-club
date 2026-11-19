@@ -1,6 +1,7 @@
 packages:
   - "packages/*"
   - "apps/*"
+registry: https://registry.vlt.io/upstream/npm/
 allowBuilds:
   core-js: false
   esbuild: false
