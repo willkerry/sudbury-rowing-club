@@ -8,7 +8,7 @@
   "scripts": {
     "build": "turbo build",
     "check": "oxlint --fix && oxfmt",
-    "clean": "sh scripts/clean.sh",
+    "clean": "pnpm dlx npkill -t .turbo,node_modules,dist,build,.next -E .claude,.worktrees -D -y --json --no-stats",
     "deploy": "turbo deploy",
     "dev": "turbo watch dev",
     "format": "oxfmt",
