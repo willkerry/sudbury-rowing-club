@@ -35,10 +35,6 @@ catalog:
   wrangler: "^4.165.0"
   zod: "^4.6.7"
 
-minimumReleaseAgeExclude:
-  - vinext@1.4.6
-  - "@vinext/cloudflare@1.4.0"
-
 overrides:
   "@swc/core": "^1.13.5"
   "@swc/core-darwin-arm64": "^1.13.5"
