@@ -1,12 +1,12 @@
 "use client";
 
 import { type QueryStatus, useQuery } from "@tanstack/react-query";
+import { usePostHog } from "posthog-js/react";
 import { useEffect, useState } from "react";
 import { Label } from "@/components/stour/label";
-import { useTrackLoadTime } from "@/hooks/useTrackLoadTime";
 import type { RiverReadings } from "@/lib/river-level";
 import { formatAgo, formatWhen } from "@/lib/safety-times";
-import { useTRPC } from "@/lib/trpc/client";
+import { useTRPC, useTRPCClient } from "@/lib/trpc/client";
 import type { Severity } from "@/types/severity";
 import { Loading } from "../stour/loading";
 import { HourlyForecast } from "./hourly-forecast";
@@ -85,19 +85,38 @@ const SafetyDescription = ({
 
 export const SafetyComponent = () => {
   const trpc = useTRPC();
+  const trpcClient = useTRPCClient();
+  const posthog = usePostHog();
   const now = useNow();
 
-  const { data, status, error } = useQuery(trpc.safety.status.queryOptions());
+  const { data, status } = useQuery({
+    ...trpc.safety.status.queryOptions(),
+    queryFn: async ({ signal }) => {
+      const startTime = performance.now();
+      const getLoadDurationMs = () => Math.round(performance.now() - startTime);
 
-  useTrackLoadTime(status, {
-    errorEvent: "safety_api_request_failed",
-    successEvent: "safety_api_response",
-    successProperties: {
-      has_partial_errors: (data?.errors?.length ?? 0) > 0,
-      status: data?.status,
-      status_message: data?.statusMessage,
+      try {
+        const response = await trpcClient.safety.status.query(undefined, {
+          signal,
+        });
+
+        posthog.capture("safety_api_response", {
+          load_duration_ms: getLoadDurationMs(),
+          has_partial_errors: (response.errors?.length ?? 0) > 0,
+          status: response.status,
+          status_message: response.statusMessage,
+        });
+
+        return response;
+      } catch (error) {
+        posthog.capture("safety_api_request_failed", {
+          error_message: error instanceof Error ? error.message : undefined,
+          load_duration_ms: getLoadDurationMs(),
+        });
+
+        throw error;
+      }
     },
-    error,
   });
 
   const severityStatusMap: Record<QueryStatus, Severity> = {

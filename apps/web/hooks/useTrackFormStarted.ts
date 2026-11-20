@@ -1,9 +1,9 @@
 import { usePostHog } from "posthog-js/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 /**
- * Hook to track when a user first interacts with a form.
- * Fires once per form mount when any field becomes touched.
+ * Returns a callback that tracks when a user first interacts with a form.
+ * Pass it to the form's `listeners`; it fires once per form mount.
  *
  * Use with PostHog funnels:
  *   1. {formName}_started (this hook)
@@ -12,17 +12,14 @@ import { useEffect, useRef } from "react";
  *
  * Abandonment = started events without corresponding submitted events.
  */
-export const useTrackFormStarted = (
-  formName: string,
-  hasTouchedFields: boolean,
-) => {
+export const useTrackFormStarted = (formName: string) => {
   const posthog = usePostHog();
   const hasTracked = useRef(false);
 
-  useEffect(() => {
-    if (hasTouchedFields && !hasTracked.current) {
-      hasTracked.current = true;
-      posthog.capture(`${formName}_started`);
-    }
-  }, [hasTouchedFields, formName, posthog]);
+  return () => {
+    if (hasTracked.current) return;
+
+    hasTracked.current = true;
+    posthog.capture(`${formName}_started`);
+  };
 };

@@ -77,6 +77,9 @@ importers:
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
+      eslint-plugin-react-you-might-not-need-an-effect:
+        specifier: ^1.2.0
+        version: 1.2.0(eslint@10.14.0(jiti@2.7.0))
       lefthook:
         specifier: ^2.2.1
         version: 2.2.1
@@ -7223,6 +7226,12 @@ packages:
     engines: {node: '>=18.x'}
     peerDependencies:
       eslint: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
+
+  eslint-plugin-react-you-might-not-need-an-effect@1.2.0:
+    resolution: {integrity: sha512-ieSAjWnVO92c2kyDPYgGJplcX1Fs4dhCmbEVgM9PMJ3Kg0mE9BBacT7HQRyKqrhaxVyneiIlA8BsY7vzF+bQ4A==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      eslint: '>=8.40.0'
 
   eslint-scope@9.1.2:
     resolution: {integrity: sha512-xS90H51cKw0jltxmvmHy2Iai1LIqrfbw57b79w/J7MfvDfkIkFZ+kj6zC3BjtUwh150HsSSdxXZcsuv72miDFQ==}
@@ -18417,6 +18426,10 @@ snapshots:
       globals: 15.15.0
       lodash.memoize: 4.1.2
       semver: 7.8.5
+
+  eslint-plugin-react-you-might-not-need-an-effect@1.2.0(eslint@10.14.0(jiti@2.7.0)):
+    dependencies:
+      eslint: 10.14.0(jiti@2.7.0)
 
   eslint-scope@9.1.2:
     dependencies:
