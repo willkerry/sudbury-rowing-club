@@ -1,20 +1,20 @@
 "use client";
 
-import { type ComponentProps, Suspense, useEffect, useState } from "react";
+import { type ComponentProps, useSyncExternalStore } from "react";
 import { ServerOrClientDateFormatter } from "./server-or-client-date-formatter";
 
-export const DateFormatter = ({
-  ...props
-}: ComponentProps<typeof ServerOrClientDateFormatter>) => {
-  const [hydrated, setHydrated] = useState(false);
+const subscribe = () => () => {};
+const getTimeZone = () => Intl.DateTimeFormat().resolvedOptions().timeZone;
+const getServerTimeZone = () => "Europe/London";
 
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  return (
-    <Suspense>
-      {hydrated && <ServerOrClientDateFormatter {...props} />}
-    </Suspense>
+export const DateFormatter = (
+  props: ComponentProps<typeof ServerOrClientDateFormatter>,
+) => {
+  const timeZone = useSyncExternalStore(
+    subscribe,
+    getTimeZone,
+    getServerTimeZone,
   );
+
+  return <ServerOrClientDateFormatter timeZone={timeZone} {...props} />;
 };

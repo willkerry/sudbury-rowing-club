@@ -56,7 +56,10 @@ export const BugsClientSide = () => {
     ? formatIfStringIsParseableJSON(message)
     : "";
 
+  const trackFormStarted = useTrackFormStarted("bug_report");
+
   const form = useForm({
+    listeners: { onBlur: trackFormStarted, onChange: trackFormStarted },
     defaultValues: {
       description: "",
       email: "",
@@ -83,12 +86,6 @@ export const BugsClientSide = () => {
       onSubmitAsync: withServerValidation(mutateAsync),
     },
   });
-
-  const hasTouchedFields = Object.values(form.state.fieldMeta).some(
-    (meta) => meta.isTouched,
-  );
-
-  useTrackFormStarted("bug_report", hasTouchedFields);
 
   if (data && status === "success") {
     return (

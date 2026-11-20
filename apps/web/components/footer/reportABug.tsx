@@ -1,44 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useIsClient } from "@/hooks/useIsClient";
 
-const useLocale = () => Intl.DateTimeFormat().resolvedOptions().locale;
-
-const useLanguage = () => {
-  const [language, setLanguage] = useState<string | undefined>(undefined);
-
-  useEffect(() => {
-    setLanguage(navigator.language);
-  }, []);
-
-  return language;
-};
-
-const useURL = () => {
-  if (typeof window === "undefined") return "";
-
-  return window.location.href;
-};
+const getMessage = () =>
+  encodeURIComponent(
+    JSON.stringify({
+      locale: Intl.DateTimeFormat().resolvedOptions().locale,
+      language: navigator.language,
+      url: window.location.href,
+      date: new Date().toISOString(),
+    }),
+  );
 
 export const ReportABug = () => {
-  const locale = useLocale();
-  const language = useLanguage();
-  const url = useURL();
-
-  const stringifiedMessage = JSON.stringify({
-    locale,
-    language,
-    url,
-    date: new Date().toISOString(),
-  });
-
-  const message = encodeURIComponent(stringifiedMessage);
+  const isClient = useIsClient();
 
   return (
     <a
       className="transition hover:text-black"
-      href={`/bugs?message=${message}`}
-      suppressHydrationWarning
+      href={isClient ? `/bugs?message=${getMessage()}` : "/bugs"}
     >
       Report a bug.
     </a>

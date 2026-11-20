@@ -64,7 +64,10 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
     value: contact._id,
   }));
 
+  const trackFormStarted = useTrackFormStarted("contact_form");
+
   const form = useForm({
+    listeners: { onBlur: trackFormStarted, onChange: trackFormStarted },
     defaultValues: {
       email: initialValues.email || "",
       message: initialValues.message || "",
@@ -99,12 +102,6 @@ export const ContactForm = ({ disabled, contacts, initialValues }: Props) => {
       form.setFieldValue("email", values.email);
     },
   });
-
-  const hasTouchedFields = Object.values(form.state.fieldMeta).some(
-    (meta) => meta.isTouched,
-  );
-
-  useTrackFormStarted("contact_form", hasTouchedFields);
 
   if (disabled) return <DisabledOverlay form={<div />} />;
   if (data && status === "success")

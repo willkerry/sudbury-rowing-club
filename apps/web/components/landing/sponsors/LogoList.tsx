@@ -2,8 +2,9 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import Image, { type StaticImageData } from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useIsClient } from "@/hooks/useIsClient";
 import { useShuffledArray } from "@/hooks/useShuffledArray";
 import { cn } from "@/lib/utils";
 import type { SponsorLogo } from ".";
@@ -51,18 +52,16 @@ export const LogoList = ({
   className?: string;
   shuffle?: boolean;
 }) => {
-  const [mounted, setMounted] = useState(false);
+  const isClient = useIsClient();
   const maybeShuffledLogos = useShuffledArray(logos, shuffle);
   const reduceMotion = useReducedMotion();
-
-  useEffect(() => setMounted(true), []);
 
   const containerClassName = cn(
     "flex flex-wrap items-center justify-center gap-10",
     className,
   );
 
-  if (shuffle && !mounted)
+  if (shuffle && !isClient)
     return (
       <div className={containerClassName}>
         {logos.map(({ logo }) => {
