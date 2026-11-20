@@ -40,6 +40,8 @@ overrides:
   "@swc/core-darwin-arm64": "^1.13.5"
   "@types/react": "catalog:"
   "@types/react-dom": "catalog:"
+  # Only imports next/image types; its next <=15 peer range pulls in next 15 and its vulnerable postcss.
+  next-sanity-image>next: ^16.4.6
 
 patchedDependencies:
   vinext@1.4.6: patches/vinext@1.4.6.patch
