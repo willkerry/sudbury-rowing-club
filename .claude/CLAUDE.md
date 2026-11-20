@@ -78,7 +78,7 @@ OUT.
 
 ## Key Technologies
 
-- **Package manager:** pnpm 11 (see `packageManager` in package.json)
+- **Package manager:** pnpm 12 (see `packageManager` in package.json)
 - **Node version:** 26 (see `.nvmrc`). Node runs `scripts/ci/*.ts` directly via type stripping, so keep them to erasable TypeScript syntax
 - **Build orchestration:** Turbo
 - **Testing:** Vitest with React Testing Library

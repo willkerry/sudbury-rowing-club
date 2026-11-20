@@ -29,5 +29,5 @@
     "oxlint": "^1.94.0",
     "typescript": "catalog:"
   },
-  "packageManager": "pnpm@11.8.0"
+  "packageManager": "pnpm@12.21.0"
 }
