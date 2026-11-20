@@ -15,7 +15,6 @@ type CarouselProps = {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
-  setApi?: (api: CarouselApi) => void;
 };
 
 type CarouselContextProps = {
@@ -47,7 +46,6 @@ const Carousel = React.forwardRef<
     {
       orientation = "horizontal",
       opts,
-      setApi,
       plugins,
       className,
       children,
@@ -94,14 +92,6 @@ const Carousel = React.forwardRef<
       },
       [scrollPrev, scrollNext],
     );
-
-    React.useEffect(() => {
-      if (!(api && setApi)) {
-        return;
-      }
-
-      setApi(api);
-    }, [api, setApi]);
 
     React.useEffect(() => {
       if (!api) {

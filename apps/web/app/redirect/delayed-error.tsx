@@ -34,21 +34,16 @@ export const DelayedError = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowError(true);
-    }, delay);
-
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  useEffect(() => {
-    if (showError) {
       posthog.capture("redirect_error", {
         errorCode,
         errorMessage,
         badUrl,
         referrer,
       });
-    }
-  }, [showError, posthog, errorCode, errorMessage, badUrl, referrer]);
+    }, delay);
+
+    return () => clearTimeout(timer);
+  }, [delay, posthog, errorCode, errorMessage, badUrl, referrer]);
 
   if (!showError) return <>{loadingState}</>;
 
