@@ -67,36 +67,6 @@ export default {};`;
   },
 });
 
-// @react-email/tailwind imports every React Email component it knows how to
-// restyle, as optional peers. Stub the ones our emails don't use, so code-block
-// (with its Prism grammars) and friends stay out of the server bundles.
-const UNUSED_REACT_EMAIL_COMPONENTS: Record<string, string> = {
-  "@react-email/button": "Button",
-  "@react-email/code-block": "CodeBlock",
-  "@react-email/code-inline": "CodeInline",
-  "@react-email/img": "Img",
-};
-const REACT_EMAIL_STUB_PREFIX = "\0react-email-stub:";
-const stubUnusedReactEmailComponents = (): Plugin => ({
-  enforce: "pre",
-  name: "stub-unused-react-email-components",
-  applyToEnvironment: (environment) => environment.name !== "client",
-  load(id) {
-    if (!id.startsWith(REACT_EMAIL_STUB_PREFIX)) return;
-
-    const name =
-      UNUSED_REACT_EMAIL_COMPONENTS[id.slice(REACT_EMAIL_STUB_PREFIX.length)];
-
-    return `export const ${name} = () => {
-  throw new Error("${name} is stubbed out; add its @react-email package and remove the stub in vite.config.ts to use it.");
-};`;
-  },
-  resolveId(source) {
-    if (source in UNUSED_REACT_EMAIL_COMPONENTS)
-      return `${REACT_EMAIL_STUB_PREFIX}${source}`;
-  },
-});
-
 // Club data ships as a static asset (served by the ASSETS binding) rather than
 // inside the Worker bundle. See lib/clubs-data.ts.
 const clubsDataAsset = (): Plugin => ({
@@ -119,7 +89,6 @@ export default defineConfig({
   plugins: [
     validatePublicEnv(),
     stubPrettier(),
-    stubUnusedReactEmailComponents(),
     clubsDataAsset(),
     contentCollections(),
     {

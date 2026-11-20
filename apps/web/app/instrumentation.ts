@@ -14,11 +14,15 @@ export const onRequestError: Instrumentation.onRequestError = async (
       const { getPostHogServer } = await import("./posthog-server");
       const posthog = await getPostHogServer();
 
-      const sessionId = request.headers["x-posthog-session-id"];
-      const distinctId = request.headers["x-posthog-distinct-id"];
+      const header = (name: string) => {
+        const value = request.headers[name];
 
-      posthog.captureException(error, distinctId as string | undefined, {
-        $session_id: sessionId,
+        return typeof value === "string" ? value : undefined;
+      };
+
+      posthog.captureException(error, {
+        distinctId: header("x-posthog-distinct-id"),
+        properties: { $session_id: header("x-posthog-session-id") },
       });
     },
   });

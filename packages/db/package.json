@@ -19,10 +19,10 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "drizzle-orm": "^0.45.4"
+    "drizzle-orm": "catalog:"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261109.1",
+    "@cloudflare/workers-types": "catalog:",
     "@sudburyrc/tsconfig": "workspace:*",
     "drizzle-kit": "^0.31.11",
     "tsdown": "catalog:",

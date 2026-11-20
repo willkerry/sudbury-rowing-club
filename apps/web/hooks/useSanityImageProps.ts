@@ -1,4 +1,3 @@
-import type { SanityImageSource } from "@sanity/image-url";
 import { sanityClient } from "@sudburyrc/api";
 import {
   type UseNextSanityImageOptions,
@@ -6,6 +5,6 @@ import {
 } from "next-sanity-image";
 
 export const useSanityImageProps = (
-  imageId: SanityImageSource,
+  imageId: NonNullable<Parameters<typeof useNextSanityImage>[1]>,
   options?: UseNextSanityImageOptions,
 ) => useNextSanityImage(sanityClient, imageId, options);

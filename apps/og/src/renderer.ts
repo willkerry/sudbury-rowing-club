@@ -108,7 +108,7 @@ export class OgRenderer extends DurableObject<Env> {
     });
 
     const browser = await this.browser;
-    if (browser.isConnected()) return browser;
+    if (browser.connected) return browser;
 
     this.browser = undefined;
 

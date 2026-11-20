@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@sudburyrc/tsconfig": "workspace:*",
-    "ts-json-schema-generator": "^2.4.0",
+    "ts-json-schema-generator": "^2.9.0",
     "tsdown": "catalog:",
     "typescript": "catalog:"
   }
