@@ -7,7 +7,7 @@
     "strictNullChecks": true,
     "paths": {
       "@/app/*": ["./src/app/*"],
-      "@/assets/*": ["./public/assets/*"],
+      "@/assets/*": ["./src/assets/*"],
       "@/components/*": ["./src/components/*"],
       "@/data/*": ["./src/data/*"],
       "@/env": ["./src/env.ts"],
