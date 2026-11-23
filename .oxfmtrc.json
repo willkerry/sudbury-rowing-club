@@ -32,7 +32,7 @@
   },
   "sortTailwindcss": {
     "functions": ["cn", "cva", "clsx"],
-    "stylesheet": "./apps/web/styles/index.css"
+    "stylesheet": "./apps/web/src/styles/index.css"
   },
   "ignorePatterns": [
     "**/node_modules",

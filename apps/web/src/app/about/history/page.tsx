@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import regatta1888Image from "public/assets/history/1888-regatta.jpg";
-import bridge1900sImage from "public/assets/history/1900s-bridge.jpg";
-import river1920sImage from "public/assets/history/1920s-river.jpg";
-import aerial1936Image from "public/assets/history/1936-aerial.jpg";
-import rowers1940sImage from "public/assets/history/1940s-rowers.jpg";
-import henley2002Image from "public/assets/history/2002-henley.jpg";
-import reachPreWw1Image from "public/assets/history/reach.jpg";
+import regatta1888Image from "@/assets/history/1888-regatta.jpg";
+import bridge1900sImage from "@/assets/history/1900s-bridge.jpg";
+import river1920sImage from "@/assets/history/1920s-river.jpg";
+import aerial1936Image from "@/assets/history/1936-aerial.jpg";
+import rowers1940sImage from "@/assets/history/1940s-rowers.jpg";
+import henley2002Image from "@/assets/history/2002-henley.jpg";
+import reachPreWw1Image from "@/assets/history/reach.jpg";
 import TextPage from "@/components/layouts/text-page";
 import { createMetadata } from "@/lib/create-metadata";
 
