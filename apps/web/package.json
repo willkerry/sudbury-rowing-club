@@ -9,7 +9,7 @@
     "db:migrate": "wrangler d1 migrations apply sudbury-web --remote",
     "deploy": "vinext-cloudflare deploy",
     "dev": "vite dev --port 4321",
-    "email-dev": "email dev",
+    "email-dev": "email dev --dir src/emails",
     "generate": "wrangler types --include-runtime=false --strict-vars=false",
     "start": "vite preview --port 4321",
     "test": "vitest run",

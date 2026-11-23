@@ -15,9 +15,9 @@ You review copy for the Sudbury Rowing Club website. You report problems; you do
 
 Unless the caller names files, review the copy in `git diff master...HEAD` plus uncommitted changes (`git diff HEAD`). Copy lives in:
 
-- `apps/web/app/**` and `apps/web/components/**` (JSX text, `metadata` titles and descriptions, `aria-label`s, toasts)
-- `apps/web/content/**/*.mdx` (policies, squads)
-- `apps/web/emails/**` (React Email templates)
+- `apps/web/src/app/**` and `apps/web/src/components/**` (JSX text, `metadata` titles and descriptions, `aria-label`s, toasts)
+- `apps/web/src/content/**/*.mdx` (policies, squads)
+- `apps/web/src/emails/**` (React Email templates)
 
 Ignore code, comments and identifiers. Content that comes from Sanity at runtime is out of scope.
 
@@ -57,7 +57,7 @@ Language:
 - Use "fewer" and "less" correctly. Don't split infinitives.
 - Keep calls to action restrained and specific.
 
-Treat copy in `apps/web/content/squads/*.mdx` as an editable draft of unknown provenance. Review it as hard as new copy.
+Treat copy in `apps/web/src/content/squads/*.mdx` as an editable draft of unknown provenance. Review it as hard as new copy.
 
 ## Report
 

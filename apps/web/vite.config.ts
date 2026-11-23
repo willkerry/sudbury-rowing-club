@@ -15,7 +15,7 @@ import remarkSmartypants from "remark-smartypants";
 import vinext from "vinext";
 import { defineConfig, type Plugin } from "vite";
 import { z } from "zod";
-import { clientSchema } from "./env.schema";
+import { clientSchema } from "./src/env.schema";
 
 const require = createRequire(import.meta.url);
 
@@ -37,7 +37,7 @@ const validatePublicEnv = (): Plugin => ({
   },
 });
 
-// The browser loads the MapTiler SDK from its CDN (lib/load-maptiler-sdk.ts);
+// The browser loads the MapTiler SDK from its CDN (src/lib/load-maptiler-sdk.ts);
 // pin that to the installed devDependency so runtime and types agree.
 const maptilerSdkVersion: string = JSON.parse(
   readFileSync(
@@ -68,7 +68,7 @@ export default {};`;
 });
 
 // Club data ships as a static asset (served by the ASSETS binding) rather than
-// inside the Worker bundle. See lib/clubs-data.ts.
+// inside the Worker bundle. See src/lib/clubs-data.ts.
 const clubsDataAsset = (): Plugin => ({
   apply: "build",
   name: "clubs-data-asset",

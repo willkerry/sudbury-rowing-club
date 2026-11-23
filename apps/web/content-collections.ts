@@ -5,7 +5,7 @@ import remarkSmartypants from "remark-smartypants";
 import { z } from "zod";
 
 // Only metadata and the table of contents are kept: the page renders each
-// policy from its build-time-compiled .mdx module (lib/policy-content.ts), so
+// policy from its build-time-compiled .mdx module (src/lib/policy-content.ts), so
 // the raw source, compiled body and search data would only add dead weight to
 // the Worker bundle.
 const transform = async <
@@ -39,7 +39,7 @@ const PrePostNoteSchema = z.union([
 ]);
 
 const policies = defineCollection({
-  directory: "content/policies",
+  directory: "src/content/policies",
   include: "**/*.mdx",
   name: "policies",
   schema: z.object({

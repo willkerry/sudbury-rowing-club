@@ -1,6 +1,9 @@
 import { IconMapPinFilled } from "@tabler/icons-react";
 import type { NextPage } from "next";
 import Image from "next/image";
+import appleMapsIcon from "@/assets/contact/how-to-find-us/apple-maps.png";
+import googleMapsIcon from "@/assets/contact/how-to-find-us/google-maps.png";
+import wazeIcon from "@/assets/contact/how-to-find-us/waze.png";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -25,19 +28,19 @@ const openInApp = [
   {
     href: `${MAPPING_APIS.google}${CLUB_LOCATION_STRING}`,
     hrefregatta: `${MAPPING_APIS.google}${REGATTA_LOCATION_STRING}`,
-    icon: "/assets/contact/how-to-find-us/google-maps.png",
+    icon: googleMapsIcon,
     name: "Google Maps",
   },
   {
     href: `${MAPPING_APIS.waze}${CLUB_LOCATION_STRING}`,
     hrefregatta: `${MAPPING_APIS.waze}${REGATTA_LOCATION_STRING}`,
-    icon: "/assets/contact/how-to-find-us/waze.png",
+    icon: wazeIcon,
     name: "Waze",
   },
   {
     href: `${MAPPING_APIS.apple}${CLUB_LOCATION_STRING}`,
     hrefregatta: `${MAPPING_APIS.apple}${REGATTA_LOCATION_STRING}`,
-    icon: "/assets/contact/how-to-find-us/apple-maps.png",
+    icon: appleMapsIcon,
     name: "Apple Maps",
   },
 ];

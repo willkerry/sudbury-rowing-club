@@ -1,10 +1,10 @@
 import Image from "next/image";
 import type { JSX } from "react";
+import bladeImage from "@/assets/regatta/landing/blade.png";
+import buntingImage from "@/assets/regatta/landing/bunting.png";
+import cupImage from "@/assets/regatta/landing/cup.png";
+import victoriaImage from "@/assets/regatta/landing/victoria.png";
 import { Ticket } from "@/components/regatta/landing-page/ticket";
-import bladeImage from "../../../public/assets/regatta/landing/blade.png";
-import buntingImage from "../../../public/assets/regatta/landing/bunting.png";
-import cupImage from "../../../public/assets/regatta/landing/cup.png";
-import victoriaImage from "../../../public/assets/regatta/landing/victoria.png";
 
 export const ImageComposite = ({
   ticketItems,

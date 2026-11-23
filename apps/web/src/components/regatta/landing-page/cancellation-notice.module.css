@@ -5,7 +5,7 @@
 }
 
 .mask {
-  mask-image: url("/assets/regatta/landing/grass-border.svg");
+  mask-image: url("../../../assets/regatta/landing/grass-border.svg");
 }
 
 .glass {

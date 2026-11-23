@@ -11,7 +11,7 @@ export default defineConfig({
       {
         find: "cloudflare:workers",
         replacement: fileURLToPath(
-          new URL("./test-utils/cloudflare-workers.ts", import.meta.url),
+          new URL("./src/test-utils/cloudflare-workers.ts", import.meta.url),
         ),
       },
       // `next` isn't installed; vinext's Vite plugin normally does this.
@@ -25,9 +25,9 @@ export default defineConfig({
       reporter: ["text", "json", "html"],
       exclude: [
         ...coverageConfigDefaults.exclude,
-        "type?(s)/**",
+        "src/type?(s)/**",
         "next/**",
-        "data/**",
+        "src/data/**",
         "**/*config**",
         "**/constants*",
         "**/*.tsx",

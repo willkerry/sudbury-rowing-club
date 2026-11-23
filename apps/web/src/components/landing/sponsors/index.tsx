@@ -1,11 +1,11 @@
 import type { StaticImageData } from "next/image";
+import abglass from "@/assets/logos/ab-glass-home-improvement.svg";
+import ashtons from "@/assets/logos/ashtons.svg";
+import britishRowing from "@/assets/logos/british-rowing.svg";
+import errc from "@/assets/logos/errc.svg";
+import mooreGreen from "@/assets/logos/moore-green.svg";
+import swan from "@/assets/logos/swan-at-lavenham.svg";
 import { cn } from "@/lib/utils";
-import abglass from "../../../public/assets/logos/ab-glass-home-improvement.svg";
-import ashtons from "../../../public/assets/logos/ashtons.svg";
-import britishRowing from "../../../public/assets/logos/british-rowing.svg";
-import errc from "../../../public/assets/logos/errc.svg";
-import mooreGreen from "../../../public/assets/logos/moore-green.svg";
-import swan from "../../../public/assets/logos/swan-at-lavenham.svg";
 import { LogoList } from "./LogoList";
 
 export type SponsorLogo = {

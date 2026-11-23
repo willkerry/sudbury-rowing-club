@@ -14,7 +14,7 @@
   "tailwind": {
     "baseColor": "gray",
     "config": "",
-    "css": "styles/index.css",
+    "css": "src/styles/index.css",
     "cssVariables": false,
     "prefix": ""
   }

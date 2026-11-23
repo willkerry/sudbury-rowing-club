@@ -6,17 +6,17 @@
     "moduleResolution": "bundler",
     "strictNullChecks": true,
     "paths": {
-      "@/app/*": ["./app/*"],
-      "@/assets/*": ["./public/assets/*"],
-      "@/components/*": ["./components/*"],
-      "@/data/*": ["./data/*"],
-      "@/env": ["./env.ts"],
-      "@/hooks/*": ["./hooks/*"],
-      "@/lib/*": ["./lib/*"],
-      "@/pages/*": ["./pages/*"],
-      "@/test-utils/*": ["./test-utils/*"],
-      "@/types/*": ["./types/*"],
-      "*": ["./*"],
+      "@/app/*": ["./src/app/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/data/*": ["./src/data/*"],
+      "@/env": ["./src/env.ts"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/test-utils/*": ["./src/test-utils/*"],
+      "@/types/*": ["./src/types/*"],
+      "*": ["./src/*"],
       "content-collections": ["./.content-collections/generated"]
     }
   }

@@ -83,8 +83,8 @@ OUT.
 - **Build orchestration:** Turbo
 - **Testing:** Vitest with React Testing Library
 - **UI primitives:** shadcn/ui on Base UI (`base-vega` style, `components/ui`), Tabler icons
-- **API layer:** tRPC over TanStack Query (`apps/web/lib/trpc`)
-- **Content:** MDX policy pages in `apps/web/content` via content-collections + fumadocs
+- **API layer:** tRPC over TanStack Query (`apps/web/src/lib/trpc`)
+- **Content:** MDX policy pages in `apps/web/src/content` via content-collections + fumadocs
 - **State/data fetching:** TanStack React Query, TanStack React Form
 - **Type validation:** Zod
 - **Email:** React Email + Resend
@@ -93,7 +93,7 @@ OUT.
 
 ## Environment Variables
 
-Local values live in `apps/web/.env`, copied from `.env.template` (validated by `apps/web/env.ts` against `env.schema.ts`):
+Local values live in `apps/web/.env`, copied from `.env.template` (validated by `apps/web/src/env.ts` against `env.schema.ts`):
 - `NEXT_PUBLIC_*` - Client-accessible vars, inlined at build time (CI reads them from GitHub secrets)
 - Server secrets (`ALGOLIA_API_KEY`, `RESEND_API_KEY`, `SANITY_REVALIDATE_SECRET`, etc.) - set on the Worker with `wrangler secret put`
 - `SANITY_STUDIO_*`, `SANITY_AUTH_TOKEN` - CMS access
