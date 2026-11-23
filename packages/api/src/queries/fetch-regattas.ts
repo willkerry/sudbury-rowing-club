@@ -1,9 +1,9 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 
 const regattasQuery = groq`
-    *[_type == "regattas" && !(_id in path("drafts.**"))] | order(date desc) {
+    *[_type == "regattas"] | order(date desc) {
         _id,
         date,
         number,
@@ -28,7 +28,7 @@ const ZRegatta = z.object({
 });
 
 const fetchRegattas = async () =>
-  z.array(ZRegatta).parse(await sanityClient.fetch(regattasQuery));
+  sanityFetch(regattasQuery, z.array(ZRegatta).parse);
 
 type Regatta = z.infer<typeof ZRegatta>;
 type Testimonial = z.infer<typeof ZTestimonial>;

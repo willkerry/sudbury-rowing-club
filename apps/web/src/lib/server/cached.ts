@@ -2,6 +2,7 @@ import { env as workerEnv } from "cloudflare:workers";
 import type { Cache, CacheEntry } from "@epic-web/cachified";
 import { configure, totalTtl } from "@epic-web/cachified";
 import { parse as devalueParse, stringify as devalueStringify } from "devalue";
+import { isDraftModeRequest } from "./draft-mode";
 
 const SEPARATOR = ":";
 // Workers KV rejects expirations less than 60 seconds away.
@@ -33,7 +34,10 @@ const tieredCacheAdapter = (): Cache => ({
     memory.delete(key);
     await workerEnv.DATA_CACHE.delete(withVersion(key));
   },
+  // Draft content must never reach memory or KV shared with public requests.
   get: async (key) => {
+    if (await isDraftModeRequest()) return null;
+
     const local = memory.get(key);
 
     if (local && expiresAt(local) > Date.now()) return local;
@@ -51,6 +55,8 @@ const tieredCacheAdapter = (): Cache => ({
   },
 
   set: async (key, entry) => {
+    if (await isDraftModeRequest()) return;
+
     memory.set(key, entry);
 
     const freshTtl = entry.metadata.ttl ?? Number.POSITIVE_INFINITY;

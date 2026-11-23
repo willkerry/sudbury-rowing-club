@@ -4,6 +4,7 @@ import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
+import { presentation } from "./presentation";
 import { PreviewNavbar, prNumber } from "./preview-banner";
 import schemas from "./schemas/schema";
 
@@ -156,6 +157,7 @@ const config = defineConfig({
           ]),
     }),
 
+    presentation,
     visionTool(),
     table(),
   ],

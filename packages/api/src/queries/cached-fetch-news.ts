@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isDraftMode } from "../sanity/client";
 import { Cache } from "../shared/cache";
 import {
   type Article,
@@ -14,31 +15,28 @@ const cache = new Cache({
   ttl: 60 * 5,
 });
 
-const serverGetArticleBySlug = (slug: string): Promise<Article | undefined> =>
-  cache.getByPrimaryKey(slug);
+// The cache is shared by every request in the isolate, so drafts bypass it.
+const getArticles = async (): Promise<Article[]> =>
+  (await isDraftMode()) ? fetchAllArticles() : cache.get();
 
-const serverGetArticleCount = async (): Promise<number> => {
-  const articles = await cache.get();
+const serverGetArticleBySlug = async (
+  slug: string,
+): Promise<Article | undefined> =>
+  (await isDraftMode())
+    ? (await fetchAllArticles()).find((article) => article.slug === slug)
+    : cache.getByPrimaryKey(slug);
 
-  return Object.keys(articles).length;
-};
+const serverGetArticleCount = async (): Promise<number> =>
+  (await getArticles()).length;
 
-const serverGetAllSlugs = async (): Promise<string[]> => {
-  const articles = await cache.get();
-
-  return articles.map((article) => article.slug);
-};
+const serverGetAllSlugs = async (): Promise<string[]> =>
+  (await getArticles()).map((article) => article.slug);
 
 const serverGetNArticles = async (
   first: number,
   last: number,
-): Promise<ArticleSummary[]> => {
-  const articles = await cache.get();
-
-  return z
-    .array(ZArticleSummary)
-    .parse(Object.values(articles).slice(first, last));
-};
+): Promise<ArticleSummary[]> =>
+  z.array(ZArticleSummary).parse((await getArticles()).slice(first, last));
 
 export {
   serverGetAllSlugs,

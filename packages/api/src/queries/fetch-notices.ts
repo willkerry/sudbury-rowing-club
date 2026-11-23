@@ -1,6 +1,6 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 import { ZTypedObject } from "./typed-object";
 
 const noticeFields = groq`
@@ -31,9 +31,9 @@ const noticeFields = groq`
     } 
 `;
 
-const query = groq`*[_type == "members" && !(_id in path("drafts.**"))]| order(_updatedAt desc){${noticeFields}}`;
-const queryForOne = groq`*[_type == "members" && !(_id in path("drafts.**")) && slug.current == $slug][0]{${noticeFields}}`;
-const queryForSlugs = groq`*[_type == "members" && !(_id in path("drafts.**"))] | order(_updatedAt desc) { "slug": slug.current }`;
+const query = groq`*[_type == "members"]| order(_updatedAt desc){${noticeFields}}`;
+const queryForOne = groq`*[_type == "members" && slug.current == $slug][0]{${noticeFields}}`;
+const queryForSlugs = groq`*[_type == "members"] | order(_updatedAt desc) { "slug": slug.current }`;
 
 const ZNotice = z.object({
   _createdAt: z.string().datetime(),
@@ -68,23 +68,13 @@ const ZNotice = z.object({
   title: z.string(),
 });
 
-const fetchNoticeSlugs = async () => {
-  const response = await sanityClient.fetch(queryForSlugs);
+const fetchNoticeSlugs = async () =>
+  sanityFetch(queryForSlugs, z.array(z.object({ slug: z.string() })).parse);
 
-  return z.array(z.object({ slug: z.string() })).parse(response);
-};
+const fetchNotices = async () => sanityFetch(query, z.array(ZNotice).parse);
 
-const fetchNotices = async () => {
-  const response = await sanityClient.fetch(query);
-
-  return z.array(ZNotice).parse(response);
-};
-
-const fetchOneNotice = async (slug: string) => {
-  const response = await sanityClient.fetch(queryForOne, { slug });
-
-  return ZNotice.nullable().parse(response);
-};
+const fetchOneNotice = async (slug: string) =>
+  sanityFetch(queryForOne, ZNotice.nullable().parse, { slug });
 
 type Notice = z.infer<typeof ZNotice>;
 

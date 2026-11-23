@@ -1,5 +1,5 @@
 import type { PortableTextProps } from "@portabletext/react";
-import { fetchRegattaSettings, sanityClient } from "@sudburyrc/api";
+import { fetchRegattaSettings, getClient } from "@sudburyrc/api";
 import { ordinal } from "@sudburyrc/helpers";
 import { IconDownload, IconTable } from "@tabler/icons-react";
 import groq from "groq";
@@ -32,9 +32,10 @@ export const metadata = createMetadata({
 });
 
 const ResultsPage = async () => {
-  const { results, other }: { results: Result[]; other: Other } =
-    await sanityClient.fetch(
-      groq`{ 
+  const { results, other }: { results: Result[]; other: Other } = await (
+    await getClient()
+  ).fetch(
+    groq`{ 
       "results": *[_type == "regattas" && results != "" && !(_id in path("drafts.**"))] | order(date desc) {
         _id,
         date,
@@ -46,7 +47,7 @@ const ResultsPage = async () => {
         "records": results.courseRecords.asset->url
         }
       }`,
-    );
+  );
 
   const { date: regattaDateString } = await fetchRegattaSettings();
   const regattaDate = new Date(regattaDateString);

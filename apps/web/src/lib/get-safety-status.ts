@@ -1,4 +1,4 @@
-import { sanityClient } from "@sudburyrc/api";
+import { getClient } from "@sudburyrc/api";
 import groq from "groq";
 import ky, { HTTPError } from "ky";
 import { sift } from "radashi";
@@ -32,7 +32,9 @@ const fetchSanityStatus = async (): Promise<
   try {
     return ok(
       SanityStatusSchema.parse(
-        await sanityClient.fetch(
+        await (
+          await getClient()
+        ).fetch(
           groq`*[_id == "safetyStatus" && !(_id in path("drafts.**"))][0]{
             _updatedAt,
             description,

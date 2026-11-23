@@ -2,7 +2,7 @@ import sentencize from "@stdlib/nlp-sentencize";
 import { smartQuotes } from "@sudburyrc/helpers";
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
 import { ZTypedObject } from "./typed-object";
 
@@ -91,40 +91,33 @@ const fetchOneArticle = async (slug: string) => {
   const query = groq`*[_type == "news" && slug.current == $slug][0] {
     ${articleFields}
   }`;
-  const article = await sanityClient.fetch(query, { slug });
-
-  return ZArticle.parse(article);
+  return sanityFetch(query, ZArticle.parse, { slug });
 };
 
 const fetchNArticles = async (first: number, last: number) => {
   const query = groq`*[_type == "news"] | order(date desc) {
     ${articleSummaryFields}
   }[$first...$last]`;
-  const articles = await sanityClient.fetch(query, { first, last });
-
-  return z.array(ZArticleSummary).parse(articles);
+  return sanityFetch(query, z.array(ZArticleSummary).parse, { first, last });
 };
 
 const fetchArticleCount = async () => {
-  const query = groq`count(*[_type == "news" && !(_id in path("drafts.**"))])`;
-  const count = await sanityClient.fetch(query);
+  const query = groq`count(*[_type == "news"])`;
 
-  return ZArticleCount.parse(count);
+  return sanityFetch(query, ZArticleCount.parse);
 };
 
 const fetchAllSlugs = async () => {
   const query = groq`*[_type == "news" && defined(slug.current)][].slug.current`;
 
-  return z.array(z.string()).parse(await sanityClient.fetch(query));
+  return sanityFetch(query, z.array(z.string()).parse);
 };
 
 const fetchAllArticles = async () => {
-  const query = groq`*[_type == "news" && !(_id in path("drafts.**"))] | order(date desc) {
+  const query = groq`*[_type == "news"] | order(date desc) {
     ${articleFields}
   }`;
-  const articles = await sanityClient.fetch(query);
-
-  return z.array(ZArticle).parse(articles);
+  return sanityFetch(query, z.array(ZArticle).parse);
 };
 
 export {

@@ -5,6 +5,7 @@ import {
 } from "@sudburyrc/api";
 import { getServerClient, SEARCH_INDEX_NAME } from "@/lib/algolia";
 import { createMetadata } from "@/lib/create-metadata";
+import { isDraftModeRequest } from "@/lib/server/draft-mode";
 import { CSRNewsPage } from "./csr-page";
 
 export const metadata = createMetadata({
@@ -50,7 +51,10 @@ const fetchArticlesAndUpdateSearchIndex = async () => {
 };
 
 const NewsPage = async () => {
-  const articles = await fetchArticlesAndUpdateSearchIndex();
+  // Draft articles must never reach the public search index.
+  const articles = (await isDraftModeRequest())
+    ? await serverGetNArticles(0, 30)
+    : await fetchArticlesAndUpdateSearchIndex();
 
   return (
     <div>

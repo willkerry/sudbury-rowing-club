@@ -1,9 +1,9 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 import { OCCUPANT_NAMES } from "./officer-fragments";
 
-const query = groq`*[_type == "officers" && !(_id in path("drafts.**")) && vacant != true && defined(email)] | order(orderRank){
+const query = groq`*[_type == "officers" && vacant != true && defined(email)] | order(orderRank){
   _id,
   "name": ${OCCUPANT_NAMES},
   role,
@@ -25,11 +25,8 @@ const ZOfficerResponse = z.object({
   role: z.string(),
 });
 
-const fetchOfficerNames = async () => {
-  const response = await sanityClient.fetch(query);
-
-  return z.array(ZOfficerResponse).parse(response);
-};
+const fetchOfficerNames = async () =>
+  sanityFetch(query, z.array(ZOfficerResponse).parse);
 
 type OfficerResponse = z.infer<typeof ZOfficerResponse>;
 

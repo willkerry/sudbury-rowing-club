@@ -6,11 +6,13 @@ import "inter-ui/inter-variable.css";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Banner } from "@/components/banner";
+import { DraftModeTools } from "@/components/draft-mode/draft-mode-tools";
 import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import "../styles/index.css";
 import { env } from "@/env";
 import { BASE_URL, HOME_OG_IMAGE_URL, PROJECT_NAME } from "@/lib/constants";
+import { isDraftModeRequest } from "@/lib/server/draft-mode";
 import Providers from "./providers";
 
 const digital7Font = localFont({
@@ -21,14 +23,13 @@ const digital7Font = localFont({
 
 const isPreview = env.NEXT_PUBLIC_APP_ENV === "preview";
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   applicationName: "Sudbury Rowing Club",
   creator: PROJECT_NAME,
   description:
     "Sudbury Rowing Club – rowing for all ages and abilities on the River Stour since 1874. Learn to row courses, competitive racing, and recreational rowing in Suffolk.",
   manifest: "/favicon/site.webmanifest",
   metadataBase: new URL(BASE_URL),
-  robots: isPreview ? { follow: false, index: false } : undefined,
   title: PROJECT_NAME,
   alternates: {
     canonical: BASE_URL,
@@ -65,6 +66,14 @@ export const metadata: Metadata = {
   },
 };
 
+export const generateMetadata = async (): Promise<Metadata> => ({
+  ...metadata,
+  robots:
+    isPreview || (await isDraftModeRequest())
+      ? { follow: false, index: false }
+      : undefined,
+});
+
 export const viewport: Viewport = {
   themeColor: [
     { color: "#fff", media: "(prefers-color-scheme: light)" },
@@ -72,11 +81,13 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const isDraftMode = await isDraftModeRequest();
+
   return (
     <html lang="en-GB">
       <body className={digital7Font.variable}>
@@ -90,6 +101,8 @@ export default function RootLayout({
             <Footer />
           </main>
         </Providers>
+
+        {isDraftMode && <DraftModeTools />}
       </body>
     </html>
   );

@@ -44,13 +44,16 @@ describe("clientSchema", () => {
 });
 
 describe("wrangler.jsonc secrets.required", () => {
-  it("lists exactly the server secrets env.ts validates", () => {
+  it("lists exactly the server secrets env.ts requires", () => {
     const config = unstable_readConfig({
       config: fileURLToPath(new URL("../wrangler.jsonc", import.meta.url)),
     });
+    const required = Object.entries(serverSchema)
+      .filter(([, schema]) => !schema.safeParse(undefined).success)
+      .map(([key]) => key);
 
     expect([...(config.secrets?.required ?? [])].sort()).toEqual(
-      Object.keys(serverSchema).sort(),
+      required.sort(),
     );
   });
 });

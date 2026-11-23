@@ -1,6 +1,6 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 
 const authorQuery = groq`
 *[_id == $id][0] {
@@ -50,19 +50,13 @@ const ZAllAuthorsResponse = ZAuthorResponse.pick({
 type Author = z.infer<typeof ZAuthorResponse>;
 type AuthorsResponse = z.infer<typeof ZAllAuthorsResponse>;
 
-const fetchAuthor = async (id: string) => {
-  const response = await sanityClient.fetch(authorQuery, {
+const fetchAuthor = async (id: string) =>
+  sanityFetch(authorQuery, ZAuthorResponse.nullable().parse, {
     id,
   });
 
-  return ZAuthorResponse.nullable().parse(response);
-};
-
-const fetchAllAuthors = async () => {
-  const response = await sanityClient.fetch(allAuthorsQuery);
-
-  return ZAllAuthorsResponse.parse(response);
-};
+const fetchAllAuthors = async () =>
+  sanityFetch(allAuthorsQuery, ZAllAuthorsResponse.parse);
 
 export type { Author, AuthorsResponse };
 export { fetchAllAuthors, fetchAuthor };

@@ -1,6 +1,6 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 import { NESTED_IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
 import { ZTypedObject } from "./typed-object";
 
@@ -106,7 +106,7 @@ const ZRegattaSettings = z.object({
 });
 
 const fetchRegattaSettings = async () =>
-  ZRegattaSettings.parse(await sanityClient.fetch(regattaSettingsQuery));
+  sanityFetch(regattaSettingsQuery, ZRegattaSettings.parse);
 
 type RegattaSettings = z.infer<typeof ZRegattaSettings>;
 

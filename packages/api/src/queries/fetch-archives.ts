@@ -1,6 +1,6 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 import { IMAGE_FIELDS, Z_IMAGE_SCHEMA } from "../shared/image";
 
 const archiveFields = `
@@ -33,14 +33,8 @@ export const ZArchive = z.object({
 });
 export type Archive = z.infer<typeof ZArchive>;
 
-export const fetchArchives = async (): Promise<Archive[]> => {
-  const response = await sanityClient.fetch(query);
+export const fetchArchives = async (): Promise<Archive[]> =>
+  sanityFetch(query, z.array(ZArchive).parse);
 
-  return z.array(ZArchive).parse(response);
-};
-
-export const fetchArchiveById = async (id: string): Promise<Archive | null> => {
-  const response = await sanityClient.fetch(queryById, { id });
-
-  return ZArchive.nullable().parse(response);
-};
+export const fetchArchiveById = async (id: string): Promise<Archive | null> =>
+  sanityFetch(queryById, ZArchive.nullable().parse, { id });

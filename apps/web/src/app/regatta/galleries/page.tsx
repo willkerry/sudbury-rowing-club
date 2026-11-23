@@ -1,4 +1,4 @@
-import { sanityClient } from "@sudburyrc/api";
+import { getClient } from "@sudburyrc/api";
 import groq from "groq";
 import { Container } from "@/components/layouts/container";
 import { Copy } from "@/components/stour/copy";
@@ -27,7 +27,9 @@ export interface Regatta {
 }
 
 const Photography = async () => {
-  const regattas: Regatta[] = await sanityClient.fetch(
+  const regattas: Regatta[] = await (
+    await getClient()
+  ).fetch(
     groq`
       *[_type == "regattas" && galleries != null] | order(date desc) {
           _id,

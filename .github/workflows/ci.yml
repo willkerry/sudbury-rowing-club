@@ -414,6 +414,7 @@ jobs:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
       SANITY_STUDIO_PR_NUMBER: ${{ github.event.pull_request.number }}
+      SANITY_STUDIO_PREVIEW_URL: https://pr-${{ github.event.pull_request.number }}.preview.sudburyrowingclub.org.uk
       SHA: ${{ github.event.pull_request.head.sha }}
       WEB_URL: https://pr-${{ github.event.pull_request.number }}.preview.sudburyrowingclub.org.uk
       WRANGLER_SEND_METRICS: "false"

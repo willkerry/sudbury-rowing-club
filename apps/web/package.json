@@ -28,6 +28,8 @@
     "@marsidev/react-turnstile": "^1.6.3",
     "@portabletext/react": "^8.0.1",
     "@react-email/render": "^2.3.1",
+    "@sanity/preview-url-secret": "catalog:",
+    "@sanity/visual-editing": "catalog:",
     "@sanity/webhook": "^4.0.4",
     "@south-paw/react-obfuscate-ts": "^2.0.0",
     "@sudburyrc/api": "workspace:*",
