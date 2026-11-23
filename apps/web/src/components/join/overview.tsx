@@ -1,26 +1,18 @@
-import Image, { type StaticImageData } from "next/image";
+import type { JoinPage } from "@sudburyrc/api";
 import { ScrollLink } from "@/components/utils/scroll-link";
-
-type OverviewType = {
-  title: string;
-  subtitle: string;
-  content: string[];
-  image?: {
-    src: StaticImageData;
-    alt: string;
-  };
-};
+import { PortableText } from "@/lib/sanity";
+import { SectionImage } from "./section-image";
 
 interface OverviewProps {
-  items: OverviewType[];
+  items: JoinPage["sections"];
 }
 
 export const Overview = ({ items }: OverviewProps) => (
   <div className="my-24 gap-16 sm:grid sm:grid-cols-12">
     <div className="hidden sm:col-span-4 sm:block">
       <ul className="sticky top-36 space-y-4 md:space-y-6">
-        {items.map(({ title, subtitle }) => (
-          <li key={title}>
+        {items.map(({ _key, title, subtitle }) => (
+          <li key={_key}>
             <ScrollLink
               activeClass="text-blue-500! font-semibold"
               className="font-medium text-gray-700 transition hover:cursor-pointer hover:text-gray-900"
@@ -32,34 +24,25 @@ export const Overview = ({ items }: OverviewProps) => (
             >
               {title}
             </ScrollLink>
-            <div className="hidden text-sm text-gray-500 md:block">
-              {subtitle}
-            </div>
+            {subtitle && (
+              <div className="hidden text-sm text-gray-500 md:block">
+                {subtitle}
+              </div>
+            )}
           </li>
         ))}
       </ul>
     </div>
     <div className="col-span-8 prose">
-      {items.map(({ title, content, image }) => (
-        <div id={title} key={title}>
+      {items.map(({ _key, title, content, image }) => (
+        <div id={title} key={_key}>
           {image && (
             <div className="flex overflow-hidden">
-              <Image
-                alt={image.alt}
-                className="rounded-sm shadow-sm"
-                height={(635 / image.src.width) * image.src.height}
-                placeholder="blur"
-                src={image.src}
-                width={635}
-              />
+              <SectionImage image={image} />
             </div>
           )}
           <h3>{title}</h3>
-          <div className="pb-10">
-            {content.map((paragraph) => (
-              <p key={paragraph.substring(4, 9)}>{paragraph}</p>
-            ))}
-          </div>
+          <PortableText value={content} wrapperProps={{ className: "pb-10" }} />
         </div>
       ))}
     </div>

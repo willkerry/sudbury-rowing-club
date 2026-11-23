@@ -11,6 +11,7 @@ import fileDocumentGroup from "./fileDocumentGroup";
 import fileDocumentGroupArray from "./fileDocumentGroupArray";
 import gallery from "./gallery";
 import heroImage from "./heroImage";
+import joinPage from "./joinPage";
 import labelValueItem from "./labelValueItem";
 import landingPage from "./landingPage";
 import link from "./link";
@@ -50,6 +51,7 @@ const schemas = [
   fileDocumentGroupArray,
   gallery,
   heroImage,
+  joinPage,
   labelValueItem,
   landingPage,
   link,
