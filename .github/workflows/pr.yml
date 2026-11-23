@@ -19,7 +19,8 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: amannn/action-semantic-pull-request@2252a14e810aa9b85c2d560bd7070c802206ecf6 # v6.1.2
+      - name: Check title
+        uses: amannn/action-semantic-pull-request@2252a14e810aa9b85c2d560bd7070c802206ecf6 # v6.1.2
         id: lint
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -46,7 +47,9 @@ jobs:
         with:
           header: pr-title
           message: |
-            The PR title needs to follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), since it becomes the squash commit message.
+            ### ❌ PR title
+
+            The title needs to follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), since it becomes the squash commit message.
 
             ```text
             ${{ steps.lint.outputs.error_message }}
@@ -72,7 +75,8 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
+      - name: Label by changed paths
+        uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13 # v7.0.0
         with:
           sync-labels: true
 
@@ -85,7 +89,8 @@ jobs:
       contents: read
       pull-requests: write
     steps:
-      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+      - name: Review dependency changes
+        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
         with:
           comment-summary-in-pr:
             ${{ github.actor == 'dependabot[bot]' && 'never' || 'on-failure' }}

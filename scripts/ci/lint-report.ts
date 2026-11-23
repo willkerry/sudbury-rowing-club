@@ -28,12 +28,13 @@ type Report = {
 };
 
 const [reportPath, unformattedPath] = process.argv.slice(2);
+const title = "Lint and format";
 
 const report = readJson<Report>(reportPath);
 
 if (!report) {
   writeSummary(
-    `${heading("fail", "Lint")}\n\nOxlint didn't produce a report. See the job log.`,
+    `${heading("fail", title)}\n\nOxlint didn't produce a report. See the job log.`,
   );
   process.exit(0);
 }
@@ -51,11 +52,20 @@ const severityIcon: Record<Diagnostic["severity"], string> = {
   warning: "⚠️",
 };
 
+const annotationLevel = {
+  advice: "notice",
+  error: "error",
+  warning: "warning",
+} as const;
+
 const severityOrder = ["error", "warning", "advice"];
 
-const errors =
-  diagnostics.filter((d) => d.severity === "error").length + unformatted.length;
-const warnings = diagnostics.filter((d) => d.severity === "warning").length;
+const count = (severity: Diagnostic["severity"]) =>
+  diagnostics.filter((d) => d.severity === severity).length;
+
+const errors = count("error") + unformatted.length;
+const warnings = count("warning");
+const advice = count("advice");
 
 let status: Status = "pass";
 if (warnings) status = "warn";
@@ -64,16 +74,12 @@ if (errors) status = "fail";
 for (const diagnostic of diagnostics) {
   const start = diagnostic.labels?.[0]?.span;
 
-  annotate(
-    diagnostic.severity === "error" ? "error" : "warning",
-    diagnostic.message,
-    {
-      col: start?.column,
-      file: diagnostic.filename,
-      line: start?.line,
-      title: diagnostic.code ? `oxlint ${diagnostic.code}` : "oxlint",
-    },
-  );
+  annotate(annotationLevel[diagnostic.severity], diagnostic.message, {
+    col: start?.column,
+    file: diagnostic.filename,
+    line: start?.line,
+    title: diagnostic.code ? `oxlint ${diagnostic.code}` : "oxlint",
+  });
 }
 
 for (const file of unformatted) {
@@ -104,20 +110,26 @@ const rows = [
   ]),
 ];
 
+const lintErrors = errors - unformatted.length;
+
 const markdown = [
-  heading(status, "Lint", [
-    errors > 0 && plural(errors, "error"),
+  heading(status, title, [
+    rows.length === 0 && "No problems",
+    lintErrors > 0 && plural(lintErrors, "error"),
     warnings > 0 && plural(warnings, "warning"),
-    `${report.number_of_files} files in ${formatDuration(report.start_time * 1000)}`,
+    advice > 0 && plural(advice, "suggestion"),
+    unformatted.length > 0 && plural(unformatted.length, "unformatted file"),
+    `${report.number_of_files} files linted in ${formatDuration(report.start_time * 1000)}`,
   ]),
-  "",
   rows.length
     ? details(
-        `${rows.length} problem${rows.length === 1 ? "" : "s"}`,
-        table(["", "Rule", "Location", "Message"], rows),
+        plural(rows.length, "problem"),
+        table(["Level", "Rule", "Location", "Message"], rows),
         status === "fail",
       )
     : "",
-].join("\n");
+]
+  .filter(Boolean)
+  .join("\n\n");
 
 writeSummary(markdown);
