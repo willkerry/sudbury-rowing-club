@@ -1,5 +1,5 @@
+import { SanityImage } from "@/components/stour/sanity-image";
 import { BoathouseDoor } from "./boathouse-door";
-import { LandingHeroImage } from "./landing-hero-image";
 import { Player } from "./player";
 
 type Props = {
@@ -16,10 +16,13 @@ export const LandingHero = ({
   description,
 }: Props) => (
   <div className="group relative flex overflow-hidden rounded-sm shadow-sm">
-    <LandingHeroImage
-      imageAspectRatio={imageAspectRatio}
-      imageId={imageId}
-      imageLqip={imageLqip}
+    <SanityImage
+      alt="Aerial photograph of a Sudbury crew training."
+      aspectRatio={imageAspectRatio}
+      id={imageId}
+      lqip={imageLqip}
+      priority
+      width={992}
     />
     <div className="absolute top-0 flex h-full w-full flex-col items-center justify-center gap-3 p-6 sm:gap-8 sm:p-12 md:gap-12 md:p-24 lg:gap-14">
       <BoathouseDoor aria-hidden className="z-10 w-full text-white" />

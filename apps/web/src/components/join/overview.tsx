@@ -1,7 +1,7 @@
 import type { JoinPage } from "@sudburyrc/api";
+import { SanityImage } from "@/components/stour/sanity-image";
 import { ScrollLink } from "@/components/utils/scroll-link";
 import { PortableText } from "@/lib/sanity";
-import { SectionImage } from "./section-image";
 
 interface OverviewProps {
   items: JoinPage["sections"];
@@ -38,7 +38,15 @@ export const Overview = ({ items }: OverviewProps) => (
         <div id={title} key={_key}>
           {image && (
             <div className="flex overflow-hidden">
-              <SectionImage image={image} />
+              <SanityImage
+                alt={image.alt ?? ""}
+                aspectRatio={image.aspectRatio}
+                className="rounded-sm shadow-sm"
+                id={image._id}
+                lqip={image.lqip}
+                sizes="(max-width: 640px) 100vw, 635px"
+                width={635}
+              />
             </div>
           )}
           <h3>{title}</h3>
