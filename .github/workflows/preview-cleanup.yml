@@ -1,0 +1,36 @@
+name: Preview clean-up
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions: {}
+
+jobs:
+  cms:
+    name: Delete CMS preview
+    if: >-
+      ${{ github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.user.login != 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      # The API wrangler's `preview delete` calls, which can't tell a missing
+      # preview from a failure; PRs that didn't touch the CMS have none.
+      - name: Delete preview
+        run: |
+          url="https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/workers/sudbury-sanity-cms/previews/pr-$PR_NUMBER"
+          auth="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+
+          status=$(curl -sS -o /dev/null -w '%{http_code}' -H "$auth" "$url")
+          case $status in
+            200) curl -fsS -X DELETE -H "$auth" "$url" > /dev/null
+                 echo "Deleted CMS preview pr-$PR_NUMBER" ;;
+            404) echo "No CMS preview for PR #$PR_NUMBER" ;;
+            *) echo "::error::Looking up the CMS preview returned HTTP $status"
+               exit 1 ;;
+          esac

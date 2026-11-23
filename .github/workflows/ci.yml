@@ -56,6 +56,7 @@ jobs:
       contents: read
     outputs:
       base: ${{ steps.changes.outputs.base }}
+      cms: ${{ steps.changes.outputs.cms }}
       web: ${{ steps.changes.outputs.web }}
     steps:
       # Full history, without blobs, so turbo can diff against the last good deploy.
@@ -142,11 +143,11 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
-      # Diffs against the last fully green master run, so the next push retries a
-      # failed deploy. With no base (a manual run, or none found), everything deploys.
-      - name: Find changes since the last good deploy
+      # Master diffs against the last fully green master run, so the next push
+      # retries a failed deploy. With no base (a manual run, or none found),
+      # everything deploys. PRs diff against their base branch.
+      - name: Find changed apps
         id: changes
-        if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -157,14 +158,25 @@ jobs:
             git cat-file -e "$base^{commit}" 2>/dev/null || base=""
           fi
 
-          web=true
-          if [ -n "$base" ]; then
-            web=$(TURBO_SCM_BASE="$base" node_modules/.bin/turbo ls --affected \
-              --filter=@sudburyrc/web --output=json | jq '.packages.count > 0')
+          scm_base=$base
+          if [ "$GITHUB_EVENT_NAME" = pull_request ]; then
+            scm_base="origin/$GITHUB_BASE_REF"
           fi
 
-          echo "base=$base" >> "$GITHUB_OUTPUT"
-          echo "web=$web" >> "$GITHUB_OUTPUT"
+          affected() {
+            if [ -z "$scm_base" ]; then
+              echo true
+            else
+              TURBO_SCM_BASE="$scm_base" node_modules/.bin/turbo ls --affected \
+                --filter="$1" --output=json | jq '.packages.count > 0'
+            fi
+          }
+
+          {
+            echo "base=$base"
+            echo "cms=$(affected @sudburyrc/cms)"
+            echo "web=$(affected @sudburyrc/web)"
+          } >> "$GITHUB_OUTPUT"
 
       # Keeps only this run's outputs, so the saved cache doesn't grow run on run.
       - name: Prune Turbo cache
@@ -381,6 +393,80 @@ jobs:
             -H "Authorization: Bearer $POSTHOG_KEY" \
             -H "Content-Type: application/json" \
             -d "$body" > /dev/null
+
+  cms:
+    name: Preview CMS
+    needs: verify
+    if: >-
+      ${{ github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'dependabot[bot]' && needs.verify.outputs.cms == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    concurrency:
+      group: deploy-cms-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      SANITY_STUDIO_PR_NUMBER: ${{ github.event.pull_request.number }}
+      SHA: ${{ github.event.pull_request.head.sha }}
+      WEB_URL: https://pr-${{ github.event.pull_request.number }}.preview.sudburyrowingclub.org.uk
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          cache: pnpm
+          node-version-file: .nvmrc
+
+      - name: Restore turbo cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .turbo/cache
+          key: turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-${{ github.sha }}
+          restore-keys: |
+            turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm turbo run build --filter=@sudburyrc/cms
+
+      # No `sanity schema deploy`: the schema is per dataset, so a PR's would
+      # replace master's in production.
+      - name: Deploy preview
+        working-directory: apps/cms
+        env:
+          WRANGLER_OUTPUT_FILE_DIRECTORY: ${{ runner.temp }}/wrangler
+        run: |
+          pnpm exec wrangler preview \
+            --name "pr-$PR_NUMBER" \
+            --message "PR #$PR_NUMBER @ ${SHA::7}" \
+            --tag "${SHA::7}"
+
+      - name: Report
+        if: ${{ !cancelled() }}
+        env:
+          JOB_STATUS: ${{ job.status }}
+          WRANGLER_OUTPUT_FILE_DIRECTORY: ${{ runner.temp }}/wrangler
+        run: node scripts/ci/cms-report.ts "$RUNNER_TEMP/cms-report.md"
+
+      - name: Comment on PR
+        if: ${{ !cancelled() }}
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          header: cms-preview
+          path: ${{ runner.temp }}/cms-report.md
 
   apps:
     name: Deploy og, cms and results

@@ -4,12 +4,16 @@ import { table } from "@sanity/table";
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
+import { PreviewNavbar, prNumber } from "./preview-banner";
 import schemas from "./schemas/schema";
 
 const config = defineConfig({
   dataset: "production",
   projectId: "gvxge7ps",
-  title: "Sudbury Rowing Club",
+  title: prNumber
+    ? `Sudbury Rowing Club (PR #${prNumber})`
+    : "Sudbury Rowing Club",
+  studio: prNumber ? { components: { navbar: PreviewNavbar } } : undefined,
   plugins: [
     structureTool({
       structure: (S, context) =>

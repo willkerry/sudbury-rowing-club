@@ -2,13 +2,20 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "compatibility_date": "2026-11-01",
   "name": "sudbury-sanity-cms",
-  "preview_urls": false,
+  "preview_urls": true,
   "workers_dev": true,
   "assets": {
     "directory": "./dist/",
     "not_found_handling": "single-page-application"
   },
+  "previews": {},
   "routes": [
-    { "custom_domain": true, "pattern": "edit.sudburyrowingclub.org.uk" }
+    { "custom_domain": true, "pattern": "edit.sudburyrowingclub.org.uk" },
+    {
+      "custom_domain": true,
+      "enabled": false,
+      "pattern": "edit-preview.sudburyrowingclub.org.uk",
+      "previews_enabled": true
+    }
   ]
 }
