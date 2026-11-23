@@ -1,4 +1,4 @@
-import { sanityClient } from "@sudburyrc/api";
+import { getClient } from "@sudburyrc/api";
 import groq from "groq";
 import { Container } from "@/components/layouts/container";
 import { Events as EventsComponent } from "@/components/regatta/events";
@@ -25,9 +25,9 @@ export type Event = {
 const EventsPage = async () => {
   const {
     events: { events },
-  }: { events: { events: Event[] } } = await sanityClient.fetch(
-    groq`*[_type == "regattaSettings"][0]{events}`,
-  );
+  }: { events: { events: Event[] } } = await (
+    await getClient()
+  ).fetch(groq`*[_type == "regattaSettings"][0]{events}`);
 
   return (
     <>

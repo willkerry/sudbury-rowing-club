@@ -1,4 +1,4 @@
-import { sanityClient } from "@sudburyrc/api";
+import { getClient } from "@sudburyrc/api";
 import groq from "groq";
 import { Container } from "@/components/layouts/container";
 import { PageHeader } from "@/components/stour/hero/page-header";
@@ -26,7 +26,9 @@ const CompetitorInformationPage = async () => {
     competitorInformation: { description, documents = [] },
   }: {
     competitorInformation: CompetitorInformationType;
-  } = await sanityClient.fetch(groq`
+  } = await (
+    await getClient()
+  ).fetch(groq`
   *[_type == "regattaSettings"][0]{
     competitorInformation {
       description,

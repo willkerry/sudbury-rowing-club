@@ -10,6 +10,18 @@ import { toShareImageParams } from "@/lib/share-image";
 
 const WWW_PREFIX = "www.";
 const OG_IMAGE_PATH = "/api/og";
+const DRAFT_MODE_COOKIE = "__prerender_bypass=";
+
+const withNoIndex = (response: Response) => {
+  const headers = new Headers(response.headers);
+  headers.set("x-robots-tag", "noindex, nofollow");
+
+  return new Response(response.body, {
+    headers,
+    status: response.status,
+    statusText: response.statusText,
+  });
+};
 
 const forwardShareImage = (request: Request, url: URL) => {
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -32,7 +44,7 @@ const forwardShareImage = (request: Request, url: URL) => {
 // the custom domains, the OG image hand-off, and the cron trigger configured
 // in wrangler.jsonc.
 export default {
-  fetch: (...args: Parameters<typeof app.fetch>) => {
+  fetch: async (...args: Parameters<typeof app.fetch>) => {
     const [request] = args;
     const url = new URL(request.url);
 
@@ -44,7 +56,11 @@ export default {
 
     if (url.pathname === OG_IMAGE_PATH) return forwardShareImage(request, url);
 
-    return app.fetch(...args);
+    if (!request.headers.get("cookie")?.includes(DRAFT_MODE_COOKIE)) {
+      return app.fetch(...args);
+    }
+
+    return withNoIndex(await app.fetch(...args));
   },
   scheduled: (
     _controller: ScheduledController,

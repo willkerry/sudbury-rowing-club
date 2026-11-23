@@ -1,8 +1,8 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 
-const query = groq`*[_type == "minutes" && !(_id in path("drafts.**"))] | order(date desc){
+const query = groq`*[_type == "minutes"] | order(date desc){
   _id,
   date,
   "public": defined(public),
@@ -49,11 +49,7 @@ const ZMinutes = z.object({
   public: z.boolean(),
 });
 
-const fetchMinutes = async () => {
-  const response = await sanityClient.fetch(query);
-
-  return z.array(ZMinutes).parse(response);
-};
+const fetchMinutes = async () => sanityFetch(query, z.array(ZMinutes).parse);
 
 type Minutes = z.infer<typeof ZMinutes>;
 

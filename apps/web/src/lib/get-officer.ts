@@ -1,4 +1,4 @@
-import { OCCUPANT_NAMES, sanityClient } from "@sudburyrc/api";
+import { getClient, OCCUPANT_NAMES } from "@sudburyrc/api";
 import groq from "groq";
 import { z } from "zod";
 
@@ -13,7 +13,9 @@ export const getOfficer = async (id: string) => {
   if (!id) {
     throw new Error("No officer ID supplied");
   }
-  const data = await sanityClient.fetch(
+  const data = await (
+    await getClient()
+  ).fetch(
     groq`
           *[_id == $id && _type == "officers" && !(_id in path("drafts.**")) && vacant != true && defined(email)]{
             _id,

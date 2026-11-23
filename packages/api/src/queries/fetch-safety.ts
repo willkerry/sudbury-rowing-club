@@ -1,6 +1,6 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 import { type TypedObject, ZTypedObject } from "./typed-object";
 
 const fields = groq`
@@ -28,8 +28,7 @@ document != null => {
 link != null => { link }`;
 
 const safetyQuery = groq`*[
-    _type == "safety" &&
-    !(_id in path("drafts.**"))
+    _type == "safety"
   ] | order(_updatedAt asc) {
   ${fields}
 }`;
@@ -69,17 +68,11 @@ const ZSafetyItem = ZPartialSafetyResponse.extend({
   link: ZSafetyLink.optional(),
 });
 
-const fetchSafety = async (): Promise<SafetyItem[]> => {
-  const response = await sanityClient.fetch(safetyQuery);
+const fetchSafety = async (): Promise<SafetyItem[]> =>
+  sanityFetch(safetyQuery, z.array(ZSafetyItem).parse);
 
-  return z.array(ZSafetyItem).parse(response);
-};
-
-const fetchSafetyById = async (id: string): Promise<SafetyItem | null> => {
-  const response = await sanityClient.fetch(safetyQueryById, { id });
-
-  return ZSafetyItem.nullable().parse(response);
-};
+const fetchSafetyById = async (id: string): Promise<SafetyItem | null> =>
+  sanityFetch(safetyQueryById, ZSafetyItem.nullable().parse, { id });
 
 interface SafetyItem extends z.infer<typeof ZPartialSafetyResponse> {
   body: TypedObject[] | null;

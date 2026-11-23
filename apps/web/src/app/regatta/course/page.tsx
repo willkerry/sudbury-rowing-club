@@ -1,4 +1,4 @@
-import { sanityClient } from "@sudburyrc/api";
+import { getClient } from "@sudburyrc/api";
 import { IconDownload } from "@tabler/icons-react";
 import groq from "groq";
 import { Container } from "@/components/layouts/container";
@@ -28,7 +28,9 @@ const Coursemap = async () => {
       lqip: string;
       aspectRatio: number;
     };
-  } = await sanityClient.fetch(
+  } = await (
+    await getClient()
+  ).fetch(
     groq`*[_type == "regattaSettings"][0]
     {
       "heading": courseMap.heading,

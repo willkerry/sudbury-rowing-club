@@ -62,6 +62,13 @@ export {
 } from "./queries/fetch-safety";
 export { OCCUPANT_NAMES } from "./queries/officer-fragments";
 export { ZTypedObject } from "./queries/typed-object";
-export { getSanityConfig, sanityClient } from "./sanity/client";
+export {
+  configureDraftMode,
+  getClient,
+  getSanityConfig,
+  isDraftMode,
+  sanityClient,
+  sanityFetch,
+} from "./sanity/client";
 export { urlFor } from "./sanity/image-url-builder";
 export type { SudburyImage } from "./shared/image";

@@ -1,6 +1,6 @@
 import groq from "groq";
 import { z } from "zod";
-import { sanityClient } from "../sanity/client";
+import { sanityFetch } from "../sanity/client";
 import { OCCUPANT_NAMES } from "./officer-fragments";
 
 const ZNonExecOfficer = z.object({
@@ -65,7 +65,7 @@ const ZGovernance = z.object({
 });
 
 const query = groq`{
-"officers": *[_type == "officers" && !(_id in path("drafts.**"))] | order(orderRank){
+"officers": *[_type == "officers"] | order(orderRank){
   _id,
   "name": ${OCCUPANT_NAMES},
   role,
@@ -77,7 +77,7 @@ const query = groq`{
       "lqip": asset->metadata.lqip,
   }
 },
-"committees": *[_type == "committees" && !(_id in path("drafts.**"))] | order(title desc){
+"committees": *[_type == "committees"] | order(title desc){
   _id,
   title,
   description,
@@ -87,17 +87,17 @@ const query = groq`{
     "name": ${OCCUPANT_NAMES},
   }
 },
-"vicePresidents": *[_type == "vicePresidents" && !(_id in path("drafts.**"))] | order(reference->surname asc, reference->firstName asc).reference->{
+"vicePresidents": *[_type == "vicePresidents"] | order(reference->surname asc, reference->firstName asc).reference->{
   _id,
   firstName,
   surname
 },
-"trustees": *[_type == "trustees" && !(_id in path("drafts.**"))] | order(reference->surname asc, reference->firstName asc).reference->{
+"trustees": *[_type == "trustees"] | order(reference->surname asc, reference->firstName asc).reference->{
   _id,
   firstName,
   surname
 },
-"documents": *[_id == "siteSettings" && !(_id in path("drafts.**"))][0].governanceResources[] {
+"documents": *[_id == "siteSettings"][0].governanceResources[] {
   _key,
   groupTitle,
   resources[] {
@@ -113,7 +113,5 @@ const query = groq`{
 
 export type Governance = z.infer<typeof ZGovernance>;
 
-export const fetchGovernance = async () => {
-  const data = await sanityClient.fetch(query);
-  return ZGovernance.parse(data);
-};
+export const fetchGovernance = async () =>
+  sanityFetch(query, ZGovernance.parse);

@@ -1,4 +1,4 @@
-import { sanityClient, ZTypedObject } from "@sudburyrc/api";
+import { getClient, ZTypedObject } from "@sudburyrc/api";
 import { getWodehouseFullDetails } from "get-wodehouse-name";
 import groq from "groq";
 import { z } from "zod";
@@ -36,8 +36,10 @@ export const contentRouter = router({
         key: "regatta-notice",
         staleWhileRevalidate: NOTICE_CACHE_SECONDS * 1000,
         ttl: NOTICE_CACHE_SECONDS * 1000,
-        getFreshValue: () =>
-          sanityClient.fetch(groq`*[_type == "regattaSettings"][0].note`),
+        getFreshValue: async () =>
+          (await getClient()).fetch(
+            groq`*[_type == "regattaSettings"][0].note`,
+          ),
       }),
     ),
   pg: rateLimitedProcedure.query(getWodehouseFullDetails),

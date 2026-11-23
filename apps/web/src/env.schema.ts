@@ -38,6 +38,8 @@ export const serverSchema = {
   REDIRECT_SECRET: z.string().min(32),
   RESEND_API_KEY: z.string().min(1),
   RESEND_WEBHOOK_SECRET: z.string().min(1),
+  // Optional, so not in `secrets.required`: without it, draft mode stays off.
+  SANITY_API_READ_TOKEN: z.string().min(1).optional(),
   SANITY_REVALIDATE_SECRET: z.string().min(32),
   TURNSTILE_SECRET_KEY: z.string().min(1),
 };

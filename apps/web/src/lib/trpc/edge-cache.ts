@@ -1,4 +1,5 @@
 import { waitUntil } from "cloudflare:workers";
+import { isDraftModeRequest } from "@/lib/server/draft-mode";
 import { BROWSER_CACHE_CONTROL } from "./cache-control";
 
 const CDN_POLICY_HEADER = "cdn-cache-control";
@@ -21,7 +22,9 @@ export const withEdgeCache =
   async (request) => {
     const cache = getEdgeCache();
 
-    if (!cache || request.method !== "GET") return handler(request);
+    if (!cache || request.method !== "GET" || (await isDraftModeRequest())) {
+      return handler(request);
+    }
 
     // vinext hands route handlers a proxied Request, which the Cache API
     // rejects, so key entries on a plain request for the same URL.
