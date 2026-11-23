@@ -16,6 +16,7 @@ export {
   fetchAuthor,
 } from "./queries/fetch-authors";
 export { fetchGovernance, type Governance } from "./queries/fetch-governance";
+export { fetchJoinPage, type JoinPage } from "./queries/fetch-join-page";
 export {
   fetchLandingPage,
   type LandingPage,

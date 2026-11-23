@@ -1,3 +1,4 @@
+import { fetchJoinPage } from "@sudburyrc/api";
 import { IconThumbUp } from "@tabler/icons-react";
 import Image from "next/image";
 import NextLink from "next/link";
@@ -14,7 +15,6 @@ import { Container } from "@/components/layouts/container";
 import { Label } from "@/components/stour/label";
 import { Link } from "@/components/stour/link";
 import { Button } from "@/components/ui/button";
-import { l2rStages, overview } from "@/data/join/";
 import { createMetadata } from "@/lib/create-metadata";
 import { scrapeRatesTable } from "@/lib/scrapeRatesTable";
 import { NextCourse } from "./next-course";
@@ -62,6 +62,8 @@ const Join = async () => {
   const learnToRowId = useId();
   // oxlint-disable-next-line react/rules-of-hooks -- useId is safe in server components
   const experienceId = useId();
+
+  const { sections, stages } = await fetchJoinPage();
 
   return (
     <>
@@ -194,7 +196,7 @@ const Join = async () => {
             </div>
           </div>
 
-          <L2RStages stages={l2rStages} />
+          <L2RStages stages={stages} />
           <L2RCallToAction />
         </Container>
       </div>
@@ -203,7 +205,7 @@ const Join = async () => {
           label="What to expect"
           title="What can you do at Sudbury Rowing Club?"
         />
-        <Overview items={overview} />
+        <Overview items={sections} />
         <L2RCallToAction />
       </Container>
     </>

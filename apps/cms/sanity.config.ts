@@ -72,6 +72,12 @@ const config = defineConfig({
               ),
 
             S.listItem()
+              .title("Join Page")
+              .child(
+                S.document().schemaType("joinPage").documentId("joinPage"),
+              ),
+
+            S.listItem()
               .title("Regatta")
               .child(
                 S.list()
@@ -135,6 +141,7 @@ const config = defineConfig({
                 ![
                   "author",
                   "committees",
+                  "joinPage",
                   "minutes",
                   "members",
                   "news",

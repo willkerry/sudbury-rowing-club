@@ -1,10 +1,10 @@
+import type { JoinPage } from "@sudburyrc/api";
 import { Label } from "@/components/stour/label";
 import { cn } from "@/lib/utils";
 import styles from "./stages.module.css";
 
-type Stage = { name: string; content: string };
 type Props = {
-  stages: Stage[];
+  stages: JoinPage["stages"];
 };
 
 export const L2RStages = ({ stages }: Props) => (
@@ -27,7 +27,7 @@ export const L2RStages = ({ stages }: Props) => (
             "before:top-px before:-left-7 before:h-5 before:w-5 before:leading-4",
             styles.incrementStageCounter,
           )}
-          key={stage.name}
+          key={stage._key}
         >
           <div className="text-lg leading-tight font-semibold text-gray-700">
             {stage.name}
