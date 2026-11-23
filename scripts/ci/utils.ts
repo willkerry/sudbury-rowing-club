@@ -47,6 +47,8 @@ export const list = (items: [string, Part][]) =>
     .map(([label, value]) => `- **${label}:** ${value}`)
     .join("\n");
 
+export const link = (url: string) => `[${new URL(url).host}](${url})`;
+
 export const details = (summary: string, body: string, open = false) =>
   `<details${open ? " open" : ""}><summary>${summary}</summary>\n\n${body}\n\n</details>`;
 

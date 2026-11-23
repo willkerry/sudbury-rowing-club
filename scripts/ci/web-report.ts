@@ -1,13 +1,6 @@
 // Usage: node scripts/ci/web-report.ts outputs <stats.json>
 //        node scripts/ci/web-report.ts report <markdown-output-path>
-import {
-  appendFileSync,
-  existsSync,
-  readdirSync,
-  readFileSync,
-  writeFileSync,
-} from "node:fs";
-import { join } from "node:path";
+import { appendFileSync, writeFileSync } from "node:fs";
 import type { SmokeReport } from "./smoke.ts";
 import {
   annotate,
@@ -15,6 +8,7 @@ import {
   failedMark,
   formatDuration,
   heading,
+  link,
   list,
   readIfExists,
   readJson,
@@ -22,23 +16,13 @@ import {
   type Status,
   table,
 } from "./utils.ts";
-
-type BundleSize = { gzip_bytes: number; raw_bytes: number };
-
-type Url = string | { url?: string; hostname?: string };
-
-type WranglerEntry = {
-  bundle_size?: BundleSize;
-  deployment_id?: string;
-  deployment_urls?: Url[];
-  preview_alias_url?: string;
-  preview_url?: string;
-  preview_urls?: Url[];
-  timestamp?: string;
-  type: string;
-  version_id?: string;
-  worker_name?: string | null;
-};
+import {
+  allUrls,
+  type BundleSize,
+  firstUrl,
+  isWorkersDev,
+  wranglerEntries,
+} from "./wrangler.ts";
 
 type Stats = BundleSize & { sha?: string; version_id?: string };
 
@@ -48,23 +32,6 @@ const GZIP_BUDGET = 3 * 1024 * 1024;
 const [command, target] = process.argv.slice(2);
 const env = process.env;
 const production = env.MODE === "production";
-
-const wranglerEntries = (): WranglerEntry[] => {
-  const dir = env.WRANGLER_OUTPUT_FILE_DIRECTORY;
-  if (!(dir && existsSync(dir))) return [];
-
-  return readdirSync(dir)
-    .filter((name) => name.endsWith(".json"))
-    .flatMap((name) =>
-      readFileSync(join(dir, name), "utf8")
-        .split("\n")
-        .filter(Boolean)
-        .map((line): WranglerEntry => JSON.parse(line)),
-    )
-    .sort(
-      (a, b) => Date.parse(a.timestamp ?? "0") - Date.parse(b.timestamp ?? "0"),
-    );
-};
 
 const formatBytes = (bytes: number) => {
   const kib = bytes / 1024;
@@ -81,22 +48,6 @@ const formatDelta = (bytes: number) => {
 };
 
 const percentOfBudget = (bytes: number) => (bytes / GZIP_BUDGET) * 100;
-
-const toUrl = (url: Url) =>
-  typeof url === "string"
-    ? url
-    : (url.url ?? (url.hostname && `https://${url.hostname}`));
-
-const allUrls = (urls: Url[] | undefined) =>
-  (urls ?? []).map(toUrl).filter((url) => url !== undefined);
-
-const isWorkersDev = (url: string) => url.includes(".workers.dev");
-
-const firstUrl = (urls: Url[] | undefined) => {
-  const all = allUrls(urls);
-
-  return all.find((url) => !isWorkersDev(url)) ?? all[0];
-};
 
 const kib = 1024;
 const sizeLine = /Total Upload: ([\d.]+) KiB \/ gzip: ([\d.]+) KiB/;
@@ -220,8 +171,6 @@ const smokeTable = ({ baseUrl, results }: SmokeReport) =>
     }),
     ["left", "right", "right", "left"],
   );
-
-const link = (url: string) => `[${new URL(url).host}](${url})`;
 
 const report = (outputPath: string) => {
   const stats = readJson<Stats>(env.STATS_FILE);
