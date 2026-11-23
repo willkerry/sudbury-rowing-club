@@ -59,16 +59,19 @@ jobs:
       web: ${{ steps.changes.outputs.web }}
     steps:
       # Full history, without blobs, so turbo can diff against the last good deploy.
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           filter: blob:none
           persist-credentials: false
           submodules: recursive
 
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           cache: pnpm
           node-version-file: .nvmrc
@@ -82,7 +85,8 @@ jobs:
           restore-keys: |
             turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       # Stops each package's Vitest writing its own summary.
       - name: Build, type-check and test
@@ -163,7 +167,7 @@ jobs:
           echo "web=$web" >> "$GITHUB_OUTPUT"
 
       # Keeps only this run's outputs, so the saved cache doesn't grow run on run.
-      - name: Prune turbo cache
+      - name: Prune Turbo cache
         if: ${{ !cancelled() && hashFiles('.turbo/runs/*.json') != '' }}
         run: |
           jq -r '.tasks[].hash' .turbo/runs/*.json | sort -u > "$RUNNER_TEMP/hashes.txt"
@@ -205,19 +209,22 @@ jobs:
       SHA: ${{ github.event.pull_request.head.sha || github.sha }}
       SITE_URL: https://sudburyrowingclub.org.uk
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
           submodules: recursive
 
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           cache: pnpm
           node-version-file: .nvmrc
 
-      - name: Restore turbo cache
+      - name: Restore Turbo cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .turbo/cache
@@ -225,7 +232,8 @@ jobs:
           restore-keys: |
             turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm turbo run build --filter=@sudburyrc/web...
@@ -302,7 +310,7 @@ jobs:
         if: steps.deployed.outputs.smoke_url != ''
         env:
           URL: ${{ steps.deployed.outputs.smoke_url }}
-        run: node scripts/ci/smoke.ts "$URL" "$RUNNER_TEMP/smoke.md"
+        run: node scripts/ci/smoke.ts "$URL" "$RUNNER_TEMP/smoke.json"
 
       # Master pushes that don't touch web skip its deploy, so take the newest artifact.
       - name: Download master's bundle size
@@ -319,7 +327,7 @@ jobs:
             echo "No bundle size from master yet, so no comparison this time"
           fi
 
-      - name: Report
+      - name: Deploy report
         if: ${{ !cancelled() }}
         env:
           BASE_STATS_FILE: ${{ runner.temp }}/base/web-bundle-stats.json
@@ -327,7 +335,8 @@ jobs:
           MIGRATIONS_FILE:
             ${{ steps.migrations.outcome == 'success' &&
             format('{0}/migrations.txt', runner.temp) || '' }}
-          SMOKE_FILE: ${{ runner.temp }}/smoke.md
+          MIGRATIONS_OUTCOME: ${{ steps.migrations.outcome }}
+          SMOKE_FILE: ${{ runner.temp }}/smoke.json
           STATS_FILE: ${{ runner.temp }}/web-bundle-stats.json
           URL: ${{ steps.deployed.outputs.url }}
           VERSION_ID: ${{ steps.deployed.outputs.version_id }}
@@ -391,21 +400,24 @@ jobs:
       TURBO_SCM_BASE: ${{ needs.verify.outputs.base }}
       WRANGLER_SEND_METRICS: "false"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           filter: blob:none
           persist-credentials: false
           submodules: recursive
 
-      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           cache: pnpm
           node-version-file: .nvmrc
 
-      - name: Restore turbo cache
+      - name: Restore Turbo cache
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .turbo/cache
@@ -413,16 +425,21 @@ jobs:
           restore-keys: |
             turbo-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
 
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       # Runs each changed app's own `deploy` script; web deploys in its own job.
       - name: Deploy changed apps
         run: |
           if [ -n "$TURBO_SCM_BASE" ]; then
-            pnpm turbo run deploy --filter='!@sudburyrc/web' --affected
+            pnpm turbo run deploy --filter='!@sudburyrc/web' --affected --summarize
           else
-            pnpm turbo run deploy --filter='!@sudburyrc/web'
+            pnpm turbo run deploy --filter='!@sudburyrc/web' --summarize
           fi
+
+      - name: Deploy report
+        if: ${{ !cancelled() }}
+        run: node scripts/ci/turbo-report.ts "Deploy og, cms and results"
 
       - name: Smoke test
         run: |

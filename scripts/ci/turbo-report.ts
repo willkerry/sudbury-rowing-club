@@ -133,6 +133,12 @@ if (!summary) {
 }
 
 const { execution, tasks } = summary;
+
+if (!tasks.length) {
+  writeSummary(heading("pass", title, ["Nothing changed, so no tasks ran"]));
+  process.exit(0);
+}
+
 const failed = tasks.filter((task) => task.execution?.exitCode);
 const hits = tasks.filter((task) => task.cache?.status === "HIT");
 const saved = tasks.reduce(
@@ -149,7 +155,7 @@ for (const error of typeErrors) {
     col: error.column,
     file: error.path,
     line: error.line,
-    title: `${error.code} (${error.task.package})`,
+    title: `tsc ${error.code} (${error.task.package})`,
   });
 }
 
@@ -191,7 +197,7 @@ const sections = [
   ),
   testResults.length
     ? details(
-        `Tests in ${testResults.length} package${testResults.length === 1 ? "" : "s"}`,
+        `Tests in ${plural(testResults.length, "package")}`,
         table(
           ["Package", "Files", "Tests", "Duration"],
           testResults.map((result) => [
@@ -200,6 +206,7 @@ const sections = [
             result.tests ?? "–",
             result.duration ?? "–",
           ]),
+          ["left", "left", "left", "right"],
         ),
         failedTests > 0,
       )
@@ -221,6 +228,7 @@ const sections = [
           task.cache?.status ?? "–",
           taskDuration(task),
         ]),
+      ["left", "left", "left", "right"],
     ),
   ),
 ].filter(Boolean);
@@ -228,10 +236,9 @@ const sections = [
 writeSummary(
   [
     heading(failed.length ? "fail" : "pass", title, [
-      `${tasks.length - failed.length}/${tasks.length} tasks`,
-      `${hits.length} cached`,
-      formatDuration(execution.endTime - execution.startTime),
-      saved > 0 && `${formatDuration(saved)} saved`,
+      `${tasks.length - failed.length}/${tasks.length} tasks passed`,
+      `${hits.length} from cache${saved > 0 ? ` (${formatDuration(saved)} saved)` : ""}`,
+      `took ${formatDuration(execution.endTime - execution.startTime)}`,
       typeErrors.length > 0 && plural(typeErrors.length, "type error"),
       testResults.length > 0 &&
         `${passedTests} tests passed${failedTests ? `, ${failedTests} failed` : ""}`,

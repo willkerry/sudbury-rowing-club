@@ -1,10 +1,10 @@
-// Usage: node scripts/ci/smoke.ts <base-url> [markdown-output-path]
+// Usage: node scripts/ci/smoke.ts <base-url> [json-output-path]
 import { writeFileSync } from "node:fs";
-import { annotate, failedMark, table } from "./utils.ts";
+import { annotate } from "./utils.ts";
 
 type Route = { path: string; type: string };
 
-type Result = {
+export type Result = {
   attempt: number;
   contentType: string;
   error?: string;
@@ -14,10 +14,12 @@ type Result = {
   status: number | "error";
 };
 
+export type SmokeReport = { baseUrl: string; results: Result[] };
+
 const [baseUrl, outputPath] = process.argv.slice(2);
 
 if (!baseUrl) {
-  console.error("Usage: smoke.ts <base-url> [markdown-output-path]");
+  console.error("Usage: smoke.ts <base-url> [json-output-path]");
   process.exit(2);
 }
 
@@ -100,21 +102,9 @@ for (const result of results) {
   }
 }
 
-const markdown = [
-  `${passed}/${results.length} routes healthy on ${baseUrl}`,
-  "",
-  table(
-    ["Route", "Status", "Time", "Content type"],
-    results.map((result) => [
-      `${failedMark(!result.ok)}[\`${result.path}\`](${new URL(result.path, baseUrl)})`,
-      String(result.status),
-      `${result.ms} ms`,
-      result.contentType.split(";")[0] || "–",
-    ]),
-  ),
-  "",
-].join("\n");
-
-if (outputPath) writeFileSync(outputPath, markdown);
+if (outputPath) {
+  const report: SmokeReport = { baseUrl, results };
+  writeFileSync(outputPath, JSON.stringify(report));
+}
 
 process.exit(passed === results.length ? 0 : 1);

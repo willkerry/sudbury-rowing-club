@@ -8,15 +8,10 @@ export const icon = (status: Status) => icons[status];
 
 type Part = string | false | undefined;
 
-// One quiet line: an icon only when something needs attention, details in small type.
 export const heading = (status: Status, title: string, parts: Part[] = []) => {
   const meta = parts.filter(Boolean).join(" · ");
 
-  return [
-    status === "pass" ? "" : `${icon(status)} `,
-    `**${title}**`,
-    meta ? ` <sub>${meta}</sub>` : "",
-  ].join("");
+  return `### ${icon(status)} ${title}${meta ? `\n\n${meta}` : ""}`;
 };
 
 export const plural = (count: number, noun: string) =>
@@ -32,12 +27,25 @@ export const formatDuration = (ms: number) =>
 const cell = (value: string) =>
   value.replaceAll("|", "\\|").replaceAll("\n", " ");
 
-export const table = (headers: string[], rows: string[][]) =>
+type Align = "left" | "right";
+
+// Unaligned header cells render centred on GitHub.
+export const table = (
+  headers: string[],
+  rows: string[][],
+  align: Align[] = [],
+) =>
   [
     `| ${headers.join(" | ")} |`,
-    `| ${headers.map(() => "-").join(" | ")} |`,
+    `| ${headers.map((_, i) => (align[i] === "right" ? "--:" : ":--")).join(" | ")} |`,
     ...rows.map((row) => `| ${row.map(cell).join(" | ")} |`),
   ].join("\n");
+
+export const list = (items: [string, Part][]) =>
+  items
+    .filter((item): item is [string, string] => Boolean(item[1]))
+    .map(([label, value]) => `- **${label}:** ${value}`)
+    .join("\n");
 
 export const details = (summary: string, body: string, open = false) =>
   `<details${open ? " open" : ""}><summary>${summary}</summary>\n\n${body}\n\n</details>`;

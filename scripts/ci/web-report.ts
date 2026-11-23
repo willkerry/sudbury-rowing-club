@@ -8,13 +8,18 @@ import {
   writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
+import type { SmokeReport } from "./smoke.ts";
 import {
   annotate,
   details,
+  failedMark,
+  formatDuration,
   heading,
+  list,
   readIfExists,
   readJson,
   setOutput,
+  type Status,
   table,
 } from "./utils.ts";
 
@@ -162,16 +167,24 @@ const outputs = (statsPath: string | undefined) => {
   });
 };
 
-const sizeRow = (stats: Stats, base: Stats | undefined) => {
+const sizeSummary = (stats: Stats, base: Stats | undefined) => {
   const percent = percentOfBudget(stats.gzip_bytes).toFixed(0);
-  const delta = base
-    ? ` · ${formatDelta(stats.gzip_bytes - base.gzip_bytes)} vs \`master\``
-    : "";
+  const delta =
+    base && `${formatDelta(stats.gzip_bytes - base.gzip_bytes)} vs \`master\``;
 
-  return `${formatBytes(stats.gzip_bytes)} gzip (${percent}% of ${formatBytes(GZIP_BUDGET)}), ${formatBytes(stats.raw_bytes)} raw${delta}`;
+  return [
+    `${formatBytes(stats.gzip_bytes)} gzip (${percent}% of the ${formatBytes(GZIP_BUDGET)} limit)`,
+    delta,
+  ]
+    .filter(Boolean)
+    .join(", ");
 };
 
-const migrationsRow = (text: string | undefined) => {
+const migrationsSummary = () => {
+  if (env.MIGRATIONS_OUTCOME === "failure")
+    return "Couldn't check, see the log";
+
+  const text = readIfExists(env.MIGRATIONS_FILE);
   if (text === undefined) return;
 
   const pending = text.split("\n").filter(Boolean);
@@ -179,17 +192,51 @@ const migrationsRow = (text: string | undefined) => {
 
   const names = pending.map((name) => `\`${name}\``).join(", ");
 
-  return `${production ? "Applied" : "Applies on merge"}: ${names}`;
+  return `${production ? "Applied" : "Apply on merge"}: ${names}`;
 };
+
+const smokeSummary = ({ results }: SmokeReport) => {
+  const failures = results.filter((result) => !result.ok).length;
+
+  return failures
+    ? `${failures}/${results.length} routes failing`
+    : `${results.length}/${results.length} routes healthy`;
+};
+
+const smokeTable = ({ baseUrl, results }: SmokeReport) =>
+  table(
+    ["Route", "Status", "Time", "Content type"],
+    results.map((result) => {
+      const url = new URL(result.path, baseUrl);
+
+      return [
+        `${failedMark(!result.ok)}[${result.path}](${url})`,
+        result.error
+          ? `${result.status} (${result.error})`
+          : String(result.status),
+        formatDuration(result.ms),
+        result.contentType.split(";")[0] || "–",
+      ];
+    }),
+    ["left", "right", "right", "left"],
+  );
+
+const link = (url: string) => `[${new URL(url).host}](${url})`;
 
 const report = (outputPath: string) => {
   const stats = readJson<Stats>(env.STATS_FILE);
   const base = readJson<Stats>(env.BASE_STATS_FILE);
-  const smoke = readIfExists(env.SMOKE_FILE);
+  const smoke = readJson<SmokeReport>(env.SMOKE_FILE);
   const repoUrl = `${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}`;
+  const runUrl = `${repoUrl}/actions/runs/${env.GITHUB_RUN_ID}`;
   const shortSha = env.SHA?.slice(0, 7);
-  const failed = env.JOB_STATUS && env.JOB_STATUS !== "success";
+  const failed = Boolean(env.JOB_STATUS && env.JOB_STATUS !== "success");
+  const smokeFailed = Boolean(smoke?.results.some((result) => !result.ok));
   const subject = production ? "Production deploy" : "Preview";
+
+  let status: Status = "pass";
+  if (stats && percentOfBudget(stats.gzip_bytes) >= 90) status = "warn";
+  if (failed) status = "fail";
 
   const title = failed
     ? `${subject} failed`
@@ -197,40 +244,38 @@ const report = (outputPath: string) => {
       ? "Deployed to production"
       : "Preview ready";
 
-  const headline = heading(failed ? "fail" : "pass", title, [
-    env.URL && `[${new URL(env.URL).host}](${env.URL})`,
+  const headline = heading(status, title, [
+    failed && `[See the log](${runUrl})`,
+    env.URL && link(env.URL),
     shortSha && `[\`${shortSha}\`](${repoUrl}/commit/${env.SHA})`,
     stats &&
-      `${formatBytes(stats.gzip_bytes)} gzip (${percentOfBudget(stats.gzip_bytes).toFixed(0)}%)`,
+      `${formatBytes(stats.gzip_bytes)} gzip (${
+        base
+          ? `${formatDelta(stats.gzip_bytes - base.gzip_bytes)} vs \`master\``
+          : `${percentOfBudget(stats.gzip_bytes).toFixed(0)}% of limit`
+      })`,
+    smoke && smokeSummary(smoke),
   ]);
 
-  const rows: [string, string | undefined][] = [
-    ["Version URL", env.VERSION_URL],
+  const facts = list([
+    ["Version URL", env.VERSION_URL && link(env.VERSION_URL)],
     ["Worker version", env.VERSION_ID && `\`${env.VERSION_ID}\``],
-    ["Worker size", stats && sizeRow(stats, base)],
-    ["D1 migrations", migrationsRow(readIfExists(env.MIGRATIONS_FILE))],
     [
-      "Build",
-      `[Run #${env.GITHUB_RUN_NUMBER}](${repoUrl}/actions/runs/${env.GITHUB_RUN_ID})`,
+      "Worker size",
+      stats &&
+        `${sizeSummary(stats, base)}; ${formatBytes(stats.raw_bytes)} uncompressed`,
     ],
-  ];
-
-  const body = [
-    table(
-      ["", ""],
-      rows.filter((row): row is [string, string] => Boolean(row[1])),
-    ),
-    smoke?.trimEnd(),
-  ]
-    .filter(Boolean)
-    .join("\n\n");
+    ["D1 migrations", migrationsSummary()],
+    ["Smoke test", smoke && `${smokeSummary(smoke)} on ${link(smoke.baseUrl)}`],
+    ["Workflow run", `[CI #${env.GITHUB_RUN_NUMBER}](${runUrl})`],
+  ]);
 
   const markdown = [
     headline,
     details(
-      "<sub>Details</sub>",
-      body,
-      Boolean(failed) || Boolean(smoke?.includes("❌")),
+      "Deploy details",
+      [facts, smoke && smokeTable(smoke)].filter(Boolean).join("\n\n"),
+      failed || smokeFailed,
     ),
     production
       ? ""
